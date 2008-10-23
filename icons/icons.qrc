@@ -1,0 +1,15 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+	<file>focuswriter.png</file>
+	<file>application-exit.png</file>
+	<file>document-new.png</file>
+	<file>document-open.png</file>
+	<file>document-print.png</file>
+	<file>document-save.png</file>
+	<file>document-save-as.png</file>
+	<file>help-about.png</file>
+	<file>preferences-other.png</file>
+	<file>view-fullscreen.png</file>
+	<file>window-close.png</file>
+</qresource>
+</RCC>

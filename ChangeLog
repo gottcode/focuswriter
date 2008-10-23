@@ -1,0 +1,64 @@
+2008-10-22 Graeme Gott <graeme@gottcode.org>
+	* Add application icon.
+
+2008-10-18 Graeme Gott <graeme@gottcode.org>
+	* Arrange preferences dialog.
+
+2008-10-17 Graeme Gott <graeme@gottcode.org>
+	* Add toolbar icons.
+	* Add support for changing page opacity.
+
+2008-10-16 Graeme Gott <graeme@gottcode.org>
+	* Add clock to details.
+	* Add filename to details.
+
+2008-10-13 Graeme Gott <graeme@gottcode.org>
+	* Add image selection dialog.
+
+2008-10-12 Graeme Gott <graeme@gottcode.org>
+	* Add setting background image.
+	* Add background image.
+
+2008-10-11 Graeme Gott <graeme@gottcode.org>
+	* Add intelligent word count algorithm.
+
+2008-10-10 Graeme Gott <graeme@gottcode.org>
+	* Store non-fullscreen size.
+	* Add closing files.
+	* Store fullscreen status across runs.
+	* Fullscreen applies to all windows.
+	* Save changes on program close.
+	* Add auto save.
+
+2008-10-08 Graeme Gott <graeme@gottcode.org>
+	* Center cursor when entering text.
+	* Store active document across runs.
+	* Add renaming files.
+	* Add saving files.
+	* Add opening files.
+	* Add creating files.
+	* Add support for multiple windows.
+
+2008-10-04 Graeme Gott <graeme@gottcode.org>
+	* Store preferences across runs.
+
+2008-10-03 Graeme Gott <graeme@gottcode.org>
+	* Add toggling auto-save.
+	* Add setting default file path.
+	* Add changing page width.
+	* Add changing font.
+	* Add changing colors.
+	* Add color button class.
+
+2008-10-02 Graeme Gott <graeme@gottcode.org>
+	* Hide mouse over text edit.
+	* Add printing support.
+	* Set text area colors.
+	* Autohide toolbar, scrollbar, and wordcount.
+	* Add toolbar.
+
+2008-10-01 Graeme Gott <graeme@gottcode.org>
+	* Add dynamic wordcount.
+	* Move scrollbar out of text edit.
+	* Add text edit to window.
+	* Add window class.

@@ -1,0 +1,28 @@
+Installation
+============
+
+Open a terminal and browse into the extracted folder.
+
+Linux:
+    1.) Type 'qmake' to configure the program. If you would like to install the
+        program somewhere other than /usr/local, pass a new value for PREFIX
+        during configuration: 'qmake PREFIX=/opt'.
+
+    2.) Type 'make' to compile the program.
+
+    3.) Type 'sudo make install' to install the program.
+
+Mac OS X:
+    1.) Type 'qmake -spec macx-g++' to configure the program.
+
+    2.) Type 'make' to compile the program.
+
+    3.) Type './mac_deploy.sh' to create a disk image of the program.
+
+Windows:
+    1.) Type 'qmake' to configure the program.
+
+    2.) Type 'make' to compile the program.
+
+    3.) Type 'windows_deploy' to copy the program and its required libraries
+        into a subfolder.
