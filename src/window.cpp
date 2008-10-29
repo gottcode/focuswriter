@@ -434,7 +434,7 @@ void Window::updateColors(const QColor& text, const QColor& page) {
 	p.setColor(QPalette::Base, page);
 	p.setColor(QPalette::Text, text);
 	p.setColor(QPalette::Highlight, text);
-	p.setColor(QPalette::HighlightedText, page);
+	p.setColor(QPalette::HighlightedText, page.rgb());
 	m_text->setPalette(p);
 }
 
