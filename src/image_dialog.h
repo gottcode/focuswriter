@@ -33,8 +33,10 @@ class ImageDialog : public QDialog {
 public:
 	ImageDialog(QWidget* parent = 0);
 
+	QString selectedFile() const;
 	QStringList selectedFiles() const;
-	void setDirectory(const QString& directory);
+	void setMultipleSelections(bool multiple);
+	void setPath(const QString& path);
 
 protected:
 	virtual void hideEvent(QHideEvent* event);

@@ -22,11 +22,14 @@
 
 #include <QMutex>
 #include <QThread>
+class QPixmap;
 
 class ThumbnailLoader : public QThread {
 	Q_OBJECT
 public:
 	ThumbnailLoader();
+
+	static QPixmap loadingIcon();
 
 	void add(const QString& file, const QString& preview);
 	void stop();

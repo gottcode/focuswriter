@@ -58,41 +58,14 @@ ThumbnailModel::ThumbnailModel(QObject* parent)
 : QDirModel(parent) {
 	fetchPreviewPath();
 
-	m_loading = QPixmap(100, 100);
-	m_loading.fill(QColor(0, 0, 0, 0));
-	{
-		QPainter painter(&m_loading);
-		painter.translate(32, 32);
-		painter.setRenderHint(QPainter::Antialiasing, true);
-
-		painter.setPen(QColor(100, 100, 100));
-		painter.setBrush(QColor(200, 200, 200));
-		painter.drawEllipse(0, 0, 36, 36);
-
-		painter.setBrush(Qt::white);
-		painter.drawEllipse(2, 2, 32, 32);
-
-		painter.setPen(QPen(QColor(100, 100, 100), 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
-		painter.drawPoint(18, 6);
-		painter.drawPoint(18, 30);
-		painter.drawPoint(6, 18);
-		painter.drawPoint(30, 18);
-
-		painter.setPen(QPen(QColor(0, 0, 0), 1.5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
-		painter.setBrush(QColor(0, 0, 0, 0));
-		painter.drawEllipse(16, 16, 4, 4);
-		painter.drawLine(20, 20, 27, 24);
-
-		painter.setPen(QPen(QColor(0, 0, 0), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
-		painter.drawLine(19, 16, 22, 6);
-	}
-
 	setFilter(QDir::Files);
 	QStringList filters;
 	foreach (QByteArray type, QImageReader::supportedImageFormats()) {
 		filters.append("*." + type);
 	}
 	setNameFilters(filters);
+
+	m_loading = ThumbnailLoader::loadingIcon();
 
 	m_loader = new ThumbnailLoader;
 	connect(m_loader, SIGNAL(generated(const QString&)), this, SLOT(generated(const QString&)));

@@ -50,9 +50,9 @@ void ImageButton::setImage(const QString& path) {
 
 void ImageButton::onClicked() {
 	ImageDialog dialog(window());
-	dialog.setDirectory(m_path);
-	if (dialog.exec()) {
-		setImage(dialog.selectedFiles().first());
+	dialog.setPath(m_path);
+	if (dialog.exec() == QDialog::Accepted) {
+		setImage(dialog.selectedFile());
 	}
 }
 

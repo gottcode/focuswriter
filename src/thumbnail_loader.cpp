@@ -34,6 +34,40 @@ ThumbnailLoader::ThumbnailLoader()
 
 /*****************************************************************************/
 
+QPixmap ThumbnailLoader::loadingIcon() {
+	QPixmap icon = QPixmap(100, 100);
+	icon.fill(QColor(0, 0, 0, 0));
+	{
+		QPainter painter(&icon);
+		painter.translate(32, 32);
+		painter.setRenderHint(QPainter::Antialiasing, true);
+
+		painter.setPen(QColor(100, 100, 100));
+		painter.setBrush(QColor(200, 200, 200));
+		painter.drawEllipse(0, 0, 36, 36);
+
+		painter.setBrush(Qt::white);
+		painter.drawEllipse(2, 2, 32, 32);
+
+		painter.setPen(QPen(QColor(100, 100, 100), 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		painter.drawPoint(18, 6);
+		painter.drawPoint(18, 30);
+		painter.drawPoint(6, 18);
+		painter.drawPoint(30, 18);
+
+		painter.setPen(QPen(QColor(0, 0, 0), 1.5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		painter.setBrush(QColor(0, 0, 0, 0));
+		painter.drawEllipse(16, 16, 4, 4);
+		painter.drawLine(20, 20, 27, 24);
+
+		painter.setPen(QPen(QColor(0, 0, 0), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		painter.drawLine(19, 16, 22, 6);
+	}
+	return icon;
+}
+
+/*****************************************************************************/
+
 void ThumbnailLoader::add(const QString& file, const QString& preview) {
 	m_thumbnails_mutex.lock();
 	Thumbnail thumb = { file, preview };
@@ -64,7 +98,6 @@ void ThumbnailLoader::clear() {
 /*****************************************************************************/
 
 void ThumbnailLoader::run() {
-	Thumbnail details;
 	forever {
 		// Fetch next thumbnail to process
 		m_thumbnails_mutex.lock();

@@ -1,3 +1,7 @@
+2008-11-03 Graeme Gott <graeme@gottcode.org>
+	* Add double click support to image selection dialog.
+	* FIXED: Image selection dialog was not showing last visited path.
+
 2008-10-29 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Highlighted text used page alpha.
 

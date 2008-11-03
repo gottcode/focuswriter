@@ -40,6 +40,7 @@ ImageDialog::ImageDialog(QWidget* parent)
 	// Setup folders
 	m_folders = new QDirModel(this);
 	m_folders->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+	m_folders->setResolveSymlinks(false);
 	m_folders->setSorting(QDir::Name | QDir::IgnoreCase | QDir::LocaleAware);
 
 	m_folders_view = new QTreeView;
@@ -62,6 +63,7 @@ ImageDialog::ImageDialog(QWidget* parent)
 	m_files_view->setMovement(QListView::Static);
 	m_files_view->setResizeMode(QListView::Adjust);
 	m_files_view->setSelectionMode(QAbstractItemView::SingleSelection);
+	connect(m_files_view, SIGNAL(activated(const QModelIndex&)), this, SLOT(accept()));
 
 	// Position folder and file views
 	m_contents = new QSplitter(this);
@@ -85,6 +87,20 @@ ImageDialog::ImageDialog(QWidget* parent)
 	QSettings settings("GottCode");
 	resize(settings.value("OpenImage/Size", QSize(675, 430)).toSize());
 	m_contents->restoreState(settings.value("OpenImage/Splitter").toByteArray());
+
+	// Default to home directory
+	setPath(QDir::homePath());
+}
+
+/*****************************************************************************/
+
+QString ImageDialog::selectedFile() const {
+	QStringList files = selectedFiles();
+	if (!files.isEmpty()) {
+		return files.first();
+	} else {
+		return QString();
+	}
 }
 
 /*****************************************************************************/
@@ -100,24 +116,37 @@ QStringList ImageDialog::selectedFiles() const {
 
 /*****************************************************************************/
 
-void ImageDialog::setDirectory(const QString& directory) {
-	QFileInfo info(directory);
+void ImageDialog::setMultipleSelections(bool multiple) {
+	if (multiple) {
+		m_files_view->setSelectionMode(QAbstractItemView::ExtendedSelection);
+	} else {
+		m_files_view->setSelectionMode(QAbstractItemView::SingleSelection);
+	}
+}
+
+/*****************************************************************************/
+
+void ImageDialog::setPath(const QString& path) {
+	QFileInfo info(path);
 	if (!info.exists()) {
 		return;
 	}
-	QString path = info.canonicalPath();
+
+	// Find directory
+	QString dir = !info.isDir() ? info.absolutePath() : info.absoluteFilePath();
 
 	// Expand directory
-	QModelIndex index = m_folders->index(path);
-	while (index.isValid()) {
-		m_folders_view->expand(index);
-		index = index.parent();
-	}
-	m_folders_view->selectionModel()->select(m_folders->index(path), QItemSelectionModel::Select);
+	QModelIndex index = m_folders->index(dir);
+	m_folders_view->collapseAll();
+	m_folders_view->expand(index);
+	m_folders_view->selectionModel()->select(index, QItemSelectionModel::ClearAndSelect);
+	m_folders_view->scrollTo(index);
 
 	// Select file
-	m_files_view->setRootIndex(m_files->index(path));
-	m_files_view->selectionModel()->select(m_files->index(info.canonicalFilePath()), QItemSelectionModel::Select);
+	m_files_view->setRootIndex(m_files->index(dir));
+	if (info.isFile()) {
+		m_files_view->selectionModel()->select(m_files->index(path), QItemSelectionModel::Select);
+	}
 }
 
 /*****************************************************************************/
