@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,6 +60,7 @@ private slots:
 	void updateFont(const QFont& font);
 	void updateWidth(int width);
 	void updateAutoSave(bool enabled);
+	void updateAutoAppend(bool enabled);
 	void updateWordCount(int position, int removed, int added);
 	void updateClock();
 
@@ -83,6 +84,7 @@ private:
 	QTimer* m_clock_timer;
 	QTimer* m_hide_timer;
 	bool m_auto_save;
+	bool m_auto_append;
 	Preferences* m_preferences;
 };
 

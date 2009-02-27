@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ namespace {
 /*****************************************************************************/
 
 Window::Window(Preferences* preferences)
-: m_background_position(0), m_auto_save(false), m_preferences(preferences) {
+: m_background_position(0), m_auto_save(false), m_auto_append(true), m_preferences(preferences) {
 	windows.append(this);
 
 	setWindowTitle("FocusWriter");
@@ -212,6 +212,7 @@ Window::Window(Preferences* preferences)
 	connect(m_preferences, SIGNAL(fontChanged(const QFont&)), this, SLOT(updateFont(const QFont&)));
 	connect(m_preferences, SIGNAL(widthChanged(int)), this, SLOT(updateWidth(int)));
 	connect(m_preferences, SIGNAL(autoSaveChanged(bool)), this, SLOT(updateAutoSave(bool)));
+	connect(m_preferences, SIGNAL(autoAppendChanged(bool)), this, SLOT(updateAutoAppend(bool)));
 	m_preferences->emitSettings();
 
 	// Load windowed size
@@ -328,7 +329,7 @@ void Window::newClicked() {
 /*****************************************************************************/
 
 void Window::openClicked() {
-	QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("Plain Text (*.txt)"));
+	QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("Plain Text (*.txt);;All Files (*)"));
 	if (!filename.isEmpty()) {
 		Window* window = (m_filename.isEmpty() && !m_text->document()->isModified()) ? this : new Window(m_preferences);
 		window->open(filename);
@@ -376,9 +377,9 @@ void Window::renameClicked() {
 		return;
 	}
 
-	QString filename = QFileDialog::getSaveFileName(this, tr("Rename"), m_filename, tr("Plain Text (*.txt)"));
+	QString filename = QFileDialog::getSaveFileName(this, tr("Rename"), m_filename, tr("Plain Text (*.txt);;All Files (*)"));
 	if (!filename.isEmpty()) {
-		if (!filename.endsWith(".txt")) {
+		if (m_auto_append && !filename.endsWith(".txt")) {
 			filename.append(".txt");
 		}
 		QFile::remove(filename);
@@ -477,6 +478,12 @@ void Window::updateAutoSave(bool enabled) {
 	} else {
 		m_clock_timer->disconnect(SIGNAL(timeout()), this, SLOT(saveClicked()));
 	}
+}
+
+/*****************************************************************************/
+
+void Window::updateAutoAppend(bool enabled) {
+	m_auto_append = enabled;
 }
 
 /*****************************************************************************/

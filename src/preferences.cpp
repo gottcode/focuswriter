@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -171,16 +171,21 @@ Preferences::Preferences(QWidget* parent)
 	m_auto_save->setCheckState(settings.value("Save/Auto", true).toBool() ? Qt::Checked : Qt::Unchecked);
 	connect(m_auto_save, SIGNAL(stateChanged(int)), this, SLOT(updateAutoSave()));
 
+	m_auto_append = new QCheckBox(tr("Automatically append filename extension"), tab);
+	m_auto_append->setCheckState(settings.value("Save/Append", true).toBool() ? Qt::Checked : Qt::Unchecked);
+	connect(m_auto_append, SIGNAL(stateChanged(int)), this, SLOT(updateAutoAppend()));
+
 	// Lay out tab
 	tab_layout = new QGridLayout(tab);
 	tab_layout->setMargin(12);
 	tab_layout->setSpacing(6);
 	tab_layout->setColumnStretch(1, 1);
 	tab_layout->setRowStretch(0, 1);
-	tab_layout->setRowStretch(3, 1);
+	tab_layout->setRowStretch(4, 1);
 	tab_layout->addWidget(new QLabel(tr("Location:"), this), 1, 0, Qt::AlignRight | Qt::AlignVCenter);
 	tab_layout->addWidget(m_location, 1, 1);
 	tab_layout->addWidget(m_auto_save, 2, 1, Qt::AlignLeft | Qt::AlignVCenter);
+	tab_layout->addWidget(m_auto_append, 3, 1, Qt::AlignLeft | Qt::AlignVCenter);
 }
 
 /*****************************************************************************/
@@ -193,6 +198,7 @@ void Preferences::emitSettings() {
 	emit widthChanged(m_page_width->value());
 	emit fontChanged(QFont(m_font_names->currentFont().family(), m_font_sizes->currentText().toInt()));
 	emit autoSaveChanged(m_auto_save->checkState() == Qt::Checked);
+	emit autoAppendChanged(m_auto_append->checkState() == Qt::Checked);
 }
 
 /*****************************************************************************/
@@ -250,6 +256,14 @@ void Preferences::updateAutoSave() {
 	bool autosave = (m_auto_save->checkState() == Qt::Checked);
 	QSettings().setValue("Save/Auto", autosave);
 	emit autoSaveChanged(autosave);
+}
+
+/*****************************************************************************/
+
+void Preferences::updateAutoAppend() {
+	bool append = (m_auto_append->checkState() == Qt::Checked);
+	QSettings().setValue("Save/Append", append);
+	emit autoAppendChanged(append);
 }
 
 /*****************************************************************************/
