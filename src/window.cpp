@@ -215,7 +215,8 @@ Window::Window()
 	layout->addWidget(m_details, 2, 0, 1, 3, Qt::AlignBottom);
 
 	// Load settings
-	loadPreferences(Preferences());
+	Preferences preferences(this);
+	loadPreferences(preferences);
 	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
 
 	// Load windowed size
