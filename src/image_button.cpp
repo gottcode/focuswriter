@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,12 +23,11 @@
 
 /*****************************************************************************/
 
-ImageButton::ImageButton(const QString& path, QWidget* parent)
+ImageButton::ImageButton(QWidget* parent)
 : QPushButton(parent) {
 	setAutoDefault(false);
 	setIconSize(QSize(100, 100));
-	setMinimumSize(QSize(100, 100));
-	setImage(path);
+	unsetImage();
 	connect(this, SIGNAL(clicked()), this, SLOT(onClicked()));
 }
 
@@ -42,6 +41,19 @@ void ImageButton::setImage(const QString& path) {
 		QImage icon = m_image.scaled(QSize(100, 100), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		setIcon(QPixmap::fromImage(icon));
 	}
+
+	emit changed(m_image);
+}
+
+/*****************************************************************************/
+
+void ImageButton::unsetImage() {
+	m_path.clear();
+	m_image = QImage();
+
+	QPixmap icon(100,100);
+	icon.fill(Qt::transparent);
+	setIcon(icon);
 
 	emit changed(m_image);
 }

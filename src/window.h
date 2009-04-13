@@ -30,11 +30,12 @@ class QTextBlock;
 class QTimer;
 class QToolBar;
 class Preferences;
+class Theme;
 
 class Window : public QWidget {
 	Q_OBJECT
 public:
-	Window(Preferences* preferences);
+	Window();
 
 	void open(const QString& filename);
 
@@ -52,19 +53,17 @@ private slots:
 	void saveClicked();
 	void renameClicked();
 	void printClicked();
+	void themeClicked();
+	void preferencesClicked();
 	void aboutClicked();
 	void setFullscreen(bool fullscreen);
 	void hideMouse();
-	void updateColors(const QColor& text, const QColor& page);
-	void updateBackground(const QColor& color, const QImage& image, int position);
-	void updateFont(const QFont& font);
-	void updateWidth(int width);
-	void updateAutoSave(bool enabled);
-	void updateAutoAppend(bool enabled);
 	void updateWordCount(int position, int removed, int added);
 	void updateClock();
 
 private:
+	void loadTheme(const Theme& theme);
+	void loadPreferences(const Preferences& preferences);
 	void scaleBackground();
 
 private:
@@ -85,7 +84,6 @@ private:
 	QTimer* m_hide_timer;
 	bool m_auto_save;
 	bool m_auto_append;
-	Preferences* m_preferences;
 };
 
 #endif

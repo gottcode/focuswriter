@@ -20,6 +20,8 @@
 #include "window.h"
 
 #include "preferences.h"
+#include "theme.h"
+#include "theme_manager.h"
 
 #include <QAction>
 #include <QApplication>
@@ -76,8 +78,8 @@ namespace {
 
 /*****************************************************************************/
 
-Window::Window(Preferences* preferences)
-: m_background_position(0), m_auto_save(false), m_auto_append(true), m_preferences(preferences) {
+Window::Window()
+: m_background_position(0), m_auto_save(false), m_auto_append(true) {
 	windows.append(this);
 
 	setWindowTitle("FocusWriter");
@@ -168,7 +170,13 @@ Window::Window(Preferences* preferences)
 	m_fullscreen_action->setCheckable(true);
 	connect(m_fullscreen_action, SIGNAL(triggered(bool)), this, SLOT(setFullscreen(bool)));
 
-	m_toolbar->addAction(QIcon(":/preferences-other.png"), tr("Preferences"), m_preferences, SLOT(exec()));
+	m_toolbar->addSeparator();
+
+	m_toolbar->addAction(QIcon(":/preferences-desktop-color.png"), tr("Themes"), this, SLOT(themeClicked()));
+
+	m_toolbar->addAction(QIcon(":/preferences-other.png"), tr("Preferences"), this, SLOT(preferencesClicked()));
+
+	m_toolbar->addSeparator();
 
 	m_toolbar->addAction(QIcon(":/help-about.png"), tr("About"), this, SLOT(aboutClicked()));
 
@@ -206,14 +214,9 @@ Window::Window(Preferences* preferences)
 	layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
 	layout->addWidget(m_details, 2, 0, 1, 3, Qt::AlignBottom);
 
-	// Connect to preferences dialog
-	connect(m_preferences, SIGNAL(colorsChanged(const QColor&, const QColor&)), this, SLOT(updateColors(const QColor&, const QColor&)));
-	connect(m_preferences, SIGNAL(backgroundChanged(const QColor&, const QImage&, int)), this, SLOT(updateBackground(const QColor&, const QImage&, int)));
-	connect(m_preferences, SIGNAL(fontChanged(const QFont&)), this, SLOT(updateFont(const QFont&)));
-	connect(m_preferences, SIGNAL(widthChanged(int)), this, SLOT(updateWidth(int)));
-	connect(m_preferences, SIGNAL(autoSaveChanged(bool)), this, SLOT(updateAutoSave(bool)));
-	connect(m_preferences, SIGNAL(autoAppendChanged(bool)), this, SLOT(updateAutoAppend(bool)));
-	m_preferences->emitSettings();
+	// Load settings
+	loadPreferences(Preferences());
+	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
 
 	// Load windowed size
 	restoreGeometry(QSettings().value("Window/Geometry").toByteArray());
@@ -267,9 +270,7 @@ bool Window::eventFilter(QObject* watched, QEvent* event) {
 /*****************************************************************************/
 
 bool Window::event(QEvent* event) {
-	if (event->type() == QEvent::WindowActivate) {
-		m_preferences->setParent(this, Qt::Dialog);
-	} else if (event->type() == QEvent::WindowBlocked) {
+	if (event->type() == QEvent::WindowBlocked) {
 		m_toolbar->hide();
 	}
 	return QWidget::event(event);
@@ -323,7 +324,7 @@ void Window::resizeEvent(QResizeEvent* event) {
 /*****************************************************************************/
 
 void Window::newClicked() {
-	new Window(m_preferences);
+	new Window;
 }
 
 /*****************************************************************************/
@@ -331,7 +332,7 @@ void Window::newClicked() {
 void Window::openClicked() {
 	QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("Plain Text (*.txt);;All Files (*)"));
 	if (!filename.isEmpty()) {
-		Window* window = (m_filename.isEmpty() && !m_text->document()->isModified()) ? this : new Window(m_preferences);
+		Window* window = (m_filename.isEmpty() && !m_text->document()->isModified()) ? this : new Window;
 		window->open(filename);
 	}
 }
@@ -403,6 +404,29 @@ void Window::printClicked() {
 
 /*****************************************************************************/
 
+void Window::themeClicked() {
+	ThemeManager manager(this);
+	if (manager.exec() == QDialog::Accepted) {
+		Theme theme(QSettings().value("ThemeManager/Theme").toString());
+		foreach (Window* window, windows) {
+			window->loadTheme(theme);
+		}
+	}
+}
+
+/*****************************************************************************/
+
+void Window::preferencesClicked() {
+	Preferences preferences(this);
+	if (preferences.exec() == QDialog::Accepted) {
+		foreach (Window* window, windows) {
+			window->loadPreferences(preferences);
+		}
+	}
+}
+
+/*****************************************************************************/
+
 void Window::aboutClicked() {
 	QMessageBox::about(this, tr("About FocusWriter"), tr(
 		"<center>"
@@ -426,64 +450,6 @@ void Window::setFullscreen(bool fullscreen) {
 		}
 		window->m_fullscreen_action->setChecked(fullscreen);
 	}
-}
-
-/*****************************************************************************/
-
-void Window::updateColors(const QColor& text, const QColor& page) {
-	QPalette p = m_text->palette();
-	p.setColor(QPalette::Base, page);
-	p.setColor(QPalette::Text, text);
-	p.setColor(QPalette::Highlight, text);
-	p.setColor(QPalette::HighlightedText, page.rgb());
-	m_text->setPalette(p);
-}
-
-/*****************************************************************************/
-
-void Window::updateBackground(const QColor& color, const QImage& image, int position) {
-	m_background = image;
-	m_background_position = position;
-
-	QPalette p = palette();
-	if (m_background_position != 1) {
-		p.setColor(QPalette::Window, color.rgb());
-	} else {
-		p.setBrush(QPalette::Window, m_background);
-	}
-	setPalette(p);
-
-	scaleBackground();
-	update();
-}
-
-/*****************************************************************************/
-
-void Window::updateFont(const QFont& font) {
-	m_text->setFont(font);
-}
-
-/*****************************************************************************/
-
-void Window::updateWidth(int width) {
-	m_text->setFixedWidth(width);
-}
-
-/*****************************************************************************/
-
-void Window::updateAutoSave(bool enabled) {
-	m_auto_save = enabled;
-	if (enabled) {
-		connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(saveClicked()));
-	} else {
-		m_clock_timer->disconnect(SIGNAL(timeout()), this, SLOT(saveClicked()));
-	}
-}
-
-/*****************************************************************************/
-
-void Window::updateAutoAppend(bool enabled) {
-	m_auto_append = enabled;
 }
 
 /*****************************************************************************/
@@ -527,6 +493,59 @@ void Window::updateWordCount(int position, int removed, int added) {
 
 void Window::updateClock() {
 	m_clock_label->setText(QTime::currentTime().toString("h:mm A"));
+}
+
+/*****************************************************************************/
+
+void Window::loadTheme(const Theme& theme) {
+	// Update colors
+	QPalette p = m_text->palette();
+	QColor color = theme.foregroundColor();
+	color.setAlpha(theme.foregroundOpacity() * 2.55f);
+	p.setColor(QPalette::Base, color);
+	p.setColor(QPalette::Text, theme.textColor());
+	p.setColor(QPalette::Highlight, theme.textColor());
+	p.setColor(QPalette::HighlightedText, theme.foregroundColor());
+	m_text->setPalette(p);
+
+	// Update background
+	m_background.load(theme.backgroundImage());
+	m_background_position = theme.backgroundType();
+
+	p = palette();
+	if (m_background_position != 1) {
+		p.setColor(QPalette::Window, theme.backgroundColor().rgb());
+	} else {
+		p.setBrush(QPalette::Window, m_background);
+	}
+	setPalette(p);
+
+	scaleBackground();
+
+	// Update text
+	m_text->setFont(theme.textFont());
+	m_text->setFixedWidth(theme.foregroundWidth());
+
+	// Refresh
+	update();
+}
+
+/*****************************************************************************/
+
+void Window::loadPreferences(const Preferences& preferences) {
+	if (preferences.alwaysCenter()) {
+		connect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
+	} else {
+		disconnect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
+	}
+
+	m_auto_save = preferences.autoSave();
+	if (m_auto_save) {
+		connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(saveClicked()));
+	} else {
+		disconnect(m_text, SIGNAL(timeout()), this, SLOT(saveClicked()));
+	}
+	m_auto_append = preferences.autoAppend();
 }
 
 /*****************************************************************************/

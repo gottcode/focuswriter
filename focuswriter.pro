@@ -20,6 +20,9 @@ HEADERS = src/color_button.h \
 	src/image_button.h \
 	src/image_dialog.h \
 	src/preferences.h \
+	src/theme.h \
+	src/theme_dialog.h \
+	src/theme_manager.h \
 	src/thumbnail_loader.h \
 	src/thumbnail_model.h \
 	src/window.h
@@ -29,6 +32,9 @@ SOURCES = src/color_button.cpp \
 	src/image_dialog.cpp \
 	src/main.cpp \
 	src/preferences.cpp \
+	src/theme.cpp \
+	src/theme_dialog.cpp \
+	src/theme_manager.cpp \
 	src/thumbnail_loader.cpp \
 	src/thumbnail_model.cpp \
 	src/window.cpp

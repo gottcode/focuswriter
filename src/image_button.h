@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 class ImageButton : public QPushButton {
 	Q_OBJECT
 public:
-	ImageButton(const QString& image, QWidget* parent = 0);
+	ImageButton(QWidget* parent = 0);
 
 	QImage image() const {
 		return m_image;
@@ -40,6 +40,7 @@ signals:
 
 public slots:
 	void setImage(const QString& path);
+	void unsetImage();
 
 private slots:
 	void onClicked();

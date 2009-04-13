@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,57 @@
  *
  ***********************************************************************/
 
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
+#ifndef THEME_DIALOG_H
+#define THEME_DIALOG_H
 
 #include <QDialog>
-class QCheckBox;
+class QComboBox;
+class QFontComboBox;
+class QFrame;
+class QLabel;
+class QLineEdit;
 class QPushButton;
+class QSpinBox;
+class ColorButton;
+class ImageButton;
+class Theme;
 
-class Preferences : public QDialog {
+class ThemeDialog : public QDialog {
 	Q_OBJECT
 public:
-	Preferences(QWidget* parent = 0);
+	ThemeDialog(Theme& theme, QWidget* parent = 0);
 
-	bool alwaysCenter() const;
-	QString saveLocation() const;
-	bool autoSave() const;
-	bool autoAppend() const;
+	static void createPreview(const QString& name);
 
 public slots:
 	virtual void accept();
 
 private slots:
-	void changeSaveLocation();
+	void checkNameAvailable();
+	void renderPreview();
 
 private:
-	QCheckBox* m_always_center;
-	QPushButton* m_location;
-	QCheckBox* m_auto_save;
-	QCheckBox* m_auto_append;
+	void savePreview();
+
+private:
+	Theme& m_theme;
+
+	QLineEdit* m_name;
+	QPushButton* m_ok;
+
+	QLabel* m_preview;
+
+	QComboBox* m_background_type;
+	ColorButton* m_background_color;
+	ImageButton* m_background_image;
+
+	ColorButton* m_foreground_color;
+	QSpinBox* m_foreground_width;
+	QSpinBox* m_foreground_opacity;
+
+	ColorButton* m_text_color;
+	QFontComboBox* m_font_names;
+	QComboBox* m_font_sizes;
 };
 
 #endif

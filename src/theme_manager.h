@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,33 @@
  *
  ***********************************************************************/
 
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
+#ifndef THEME_MANAGER_H
+#define THEME_MANAGER_H
 
 #include <QDialog>
-class QCheckBox;
-class QPushButton;
+class QListWidget;
 
-class Preferences : public QDialog {
+class ThemeManager : public QDialog {
 	Q_OBJECT
 public:
-	Preferences(QWidget* parent = 0);
-
-	bool alwaysCenter() const;
-	QString saveLocation() const;
-	bool autoSave() const;
-	bool autoAppend() const;
+	ThemeManager(QWidget* parent = 0);
 
 public slots:
 	virtual void accept();
 
+protected:
+	virtual void hideEvent(QHideEvent* event);
+
 private slots:
-	void changeSaveLocation();
+	void addTheme();
+	void modifyTheme();
+	void removeTheme();
 
 private:
-	QCheckBox* m_always_center;
-	QPushButton* m_location;
-	QCheckBox* m_auto_save;
-	QCheckBox* m_auto_append;
+	void addItem(const QString& name);
+
+private:
+	QListWidget* m_themes;
 };
 
 #endif
