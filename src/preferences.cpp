@@ -26,7 +26,9 @@
 #include <QFormLayout>
 #include <QGroupBox>
 #include <QPushButton>
+#include <QRadioButton>
 #include <QSettings>
+#include <QSpinBox>
 #include <QVBoxLayout>
 
 /*****************************************************************************/
@@ -34,6 +36,38 @@
 Preferences::Preferences(QWidget* parent)
 : QDialog(parent) {
 	setWindowTitle(tr("Preferences"));
+
+	// Create goal options
+	QGroupBox* goals_group = new QGroupBox(tr("Daily Goal"), this);
+
+	m_option_none = new QRadioButton(tr("None"), goals_group);
+
+	m_option_time = new QRadioButton(tr("Minutes:"), goals_group);
+
+	m_time = new QSpinBox(goals_group);
+	m_time->setRange(5, 1440);
+	m_time->setSingleStep(5);
+
+	QHBoxLayout* time_layout = new QHBoxLayout;
+	time_layout->addWidget(m_option_time);
+	time_layout->addWidget(m_time);
+	time_layout->addStretch();
+
+	m_option_wordcount = new QRadioButton(tr("Words:"), goals_group);
+
+	m_wordcount = new QSpinBox(goals_group);
+	m_wordcount->setRange(100, 100000);
+	m_wordcount->setSingleStep(100);
+
+	QHBoxLayout* wordcount_layout = new QHBoxLayout;
+	wordcount_layout->addWidget(m_option_wordcount);
+	wordcount_layout->addWidget(m_wordcount);
+	wordcount_layout->addStretch();
+
+	QVBoxLayout* goals_layout = new QVBoxLayout(goals_group);
+	goals_layout->addWidget(m_option_none);
+	goals_layout->addLayout(time_layout);
+	goals_layout->addLayout(wordcount_layout);
 
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), this);
@@ -64,16 +98,54 @@ Preferences::Preferences(QWidget* parent)
 	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
+	layout->addWidget(goals_group);
 	layout->addWidget(edit_group);
 	layout->addWidget(save_group);
 	layout->addWidget(buttons);
 
 	// Load settings
 	QSettings settings;
+	switch (settings.value("Goal/Type").toInt()) {
+	case 1:
+		m_option_time->setChecked(true);
+		break;
+	case 2:
+		m_option_wordcount->setChecked(true);
+		break;
+	default:
+		m_option_none->setChecked(true);
+		break;
+	}
+	m_time->setValue(settings.value("Goal/Minutes", 15).toInt());
+	m_wordcount->setValue(settings.value("Goal/Words", 2000).toInt());
 	m_always_center->setCheckState(settings.value("Edit/AlwaysCenter", false).toBool() ? Qt::Checked : Qt::Unchecked);
 	m_location->setText(settings.value("Save/Location", QDir::currentPath()).toString());
 	m_auto_save->setCheckState(settings.value("Save/Auto", true).toBool() ? Qt::Checked : Qt::Unchecked);
 	m_auto_append->setCheckState(settings.value("Save/Append", true).toBool() ? Qt::Checked : Qt::Unchecked);
+}
+
+/*****************************************************************************/
+
+int Preferences::goalType() const {
+	if (m_option_time->isChecked()) {
+		return 1;
+	} else if (m_option_wordcount->isChecked()) {
+		return 2;
+	} else {
+		return 0;
+	}
+}
+
+/*****************************************************************************/
+
+int Preferences::goalMinutes() const {
+	return m_time->value();
+}
+
+/*****************************************************************************/
+
+int Preferences::goalWords() const {
+	return m_wordcount->value();
 }
 
 /*****************************************************************************/
@@ -104,6 +176,9 @@ bool Preferences::autoAppend() const {
 
 void Preferences::accept() {
 	QSettings settings;
+	settings.setValue("Goal/Type", goalType());
+	settings.setValue("Goal/Minutes", goalMinutes());
+	settings.setValue("Goal/Words", goalWords());
 	settings.setValue("Edit/AlwaysCenter", alwaysCenter());
 	settings.setValue("Save/Auto", autoSave());
 	settings.setValue("Save/Append", autoAppend());

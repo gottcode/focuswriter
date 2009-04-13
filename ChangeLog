@@ -1,6 +1,9 @@
 2008-04-14 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Crashed when first sentence was deleted.
 
+2008-04-13 Graeme Gott <graeme@gottcode.org>
+	* Add interface for goals.
+
 2008-04-12 Graeme Gott <graeme@gottcode.org>
 	* Allow user to disable always center on type.
 	* Load theme in window class.

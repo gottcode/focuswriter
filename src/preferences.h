@@ -23,12 +23,17 @@
 #include <QDialog>
 class QCheckBox;
 class QPushButton;
+class QRadioButton;
+class QSpinBox;
 
 class Preferences : public QDialog {
 	Q_OBJECT
 public:
 	Preferences(QWidget* parent = 0);
 
+	int goalType() const;
+	int goalMinutes() const;
+	int goalWords() const;
 	bool alwaysCenter() const;
 	QString saveLocation() const;
 	bool autoSave() const;
@@ -41,6 +46,11 @@ private slots:
 	void changeSaveLocation();
 
 private:
+	QRadioButton* m_option_none;
+	QRadioButton* m_option_time;
+	QRadioButton* m_option_wordcount;
+	QSpinBox* m_time;
+	QSpinBox* m_wordcount;
 	QCheckBox* m_always_center;
 	QPushButton* m_location;
 	QCheckBox* m_auto_save;
