@@ -467,6 +467,9 @@ void Window::hideMouse() {
 
 void Window::updateWordCount(int position, int removed, int added) {
 	QTextBlock begin = m_text->document()->findBlock(position - removed);
+	if (!begin.isValid()) {
+		begin = m_text->document()->begin();
+	}
 	QTextBlock end = m_text->document()->findBlock(position + added);
 	if (end.isValid()) {
 		end = end.next();
