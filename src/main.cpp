@@ -21,6 +21,7 @@
 #include "window.h"
 
 #include <QApplication>
+#include <QDate>
 #include <QDir>
 #include <QFile>
 #include <QLocale>
@@ -89,8 +90,17 @@ int main(int argc, char** argv) {
 	}
 	QDir::setCurrent(path);
 
+	// Load current daily progress
+	QSettings settings;
+	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
+		settings.remove("Progress");
+	}
+	settings.setValue("Progress/Date", QDate::currentDate().toString(Qt::ISODate));
+	int current_wordcount = settings.value("Progress/Words", 0).toInt();
+	int current_time = settings.value("Progress/Time", 0).toInt();
+
 	// Open last saved document
-	Window window;
+	Window window(current_wordcount, current_time);
 	QString filename = QSettings().value("Save/Current").toString();
 	if (!filename.isEmpty()) {
 		window.open(filename);

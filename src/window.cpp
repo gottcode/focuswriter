@@ -78,8 +78,8 @@ namespace {
 
 /*****************************************************************************/
 
-Window::Window()
-: m_background_position(0), m_auto_save(false), m_auto_append(true) {
+Window::Window(int& current_wordcount, int& current_time)
+: m_background_position(0), m_auto_save(false), m_auto_append(true), m_wordcount(0), m_current_wordcount(current_wordcount), m_current_time(current_time) {
 	windows.append(this);
 
 	setWindowTitle("FocusWriter");
@@ -237,11 +237,15 @@ void Window::open(const QString& filename) {
 		m_filename_label->setText(m_filename.section('/', -1));
 
 		QTextStream stream(&file);
+		m_text->document()->blockSignals(true);
 		m_text->setPlainText(stream.readAll());
 		m_text->moveCursor(QTextCursor::End);
 		m_text->document()->setModified(false);
+		m_text->document()->blockSignals(false);
 	}
 	m_text->centerCursor();
+	m_wordcount = calculateWordCount();
+	updateWordCount(0,0,0);
 }
 
 /*****************************************************************************/
@@ -325,7 +329,7 @@ void Window::resizeEvent(QResizeEvent* event) {
 /*****************************************************************************/
 
 void Window::newClicked() {
-	new Window;
+	new Window(m_current_wordcount, m_current_time);
 }
 
 /*****************************************************************************/
@@ -333,7 +337,7 @@ void Window::newClicked() {
 void Window::openClicked() {
 	QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("Plain Text (*.txt);;All Files (*)"));
 	if (!filename.isEmpty()) {
-		Window* window = (m_filename.isEmpty() && !m_text->document()->isModified()) ? this : new Window;
+		Window* window = (m_filename.isEmpty() && !m_text->document()->isModified()) ? this : new Window(m_current_wordcount, m_current_time);
 		window->open(filename);
 	}
 }
@@ -341,6 +345,11 @@ void Window::openClicked() {
 /*****************************************************************************/
 
 void Window::saveClicked() {
+	// Save progress
+	QSettings settings;
+	settings.setValue("Progress/Words", m_current_wordcount);
+	settings.setValue("Progress/Time", m_current_time);
+
 	// Don't save unless modified
 	if (!m_text->document()->isModified()) {
 		return;
@@ -480,6 +489,26 @@ void Window::updateWordCount(int position, int removed, int added) {
 		}
 	}
 
+	int words = calculateWordCount();
+	m_current_wordcount += (words - m_wordcount);
+	m_wordcount = words;
+	m_wordcount_label->setText(words != 1 ? tr("%L1 words").arg(words) : tr("1 word"));
+
+	int msecs = m_time.restart();
+	if (msecs < 30000) {
+		m_current_time += msecs;
+	}
+}
+
+/*****************************************************************************/
+
+void Window::updateClock() {
+	m_clock_label->setText(QTime::currentTime().toString("h:mm A"));
+}
+
+/*****************************************************************************/
+
+int Window::calculateWordCount() {
 	int words = 0;
 	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 		if (i.userData()) {
@@ -490,13 +519,7 @@ void Window::updateWordCount(int position, int removed, int added) {
 			i.setUserData(data);
 		}
 	}
-	m_wordcount_label->setText(words != 1 ? tr("%L1 words").arg(words) : tr("1 word"));
-}
-
-/*****************************************************************************/
-
-void Window::updateClock() {
-	m_clock_label->setText(QTime::currentTime().toString("h:mm A"));
+	return words;
 }
 
 /*****************************************************************************/

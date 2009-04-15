@@ -20,6 +20,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <QTime>
 #include <QWidget>
 class QAction;
 class QGridLayout;
@@ -35,7 +36,7 @@ class Theme;
 class Window : public QWidget {
 	Q_OBJECT
 public:
-	Window();
+	Window(int& current_wordcount, int& current_time);
 
 	void open(const QString& filename);
 
@@ -62,6 +63,7 @@ private slots:
 	void updateClock();
 
 private:
+	int calculateWordCount();
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void scaleBackground();
@@ -84,6 +86,12 @@ private:
 	QTimer* m_hide_timer;
 	bool m_auto_save;
 	bool m_auto_append;
+
+	// Daily progress
+	int m_wordcount;
+	int& m_current_wordcount;
+	QTime m_time;
+	int& m_current_time;
 };
 
 #endif
