@@ -67,6 +67,7 @@ private:
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void scaleBackground();
+	void updateProgress();
 
 private:
 	QString m_filename;
@@ -80,6 +81,7 @@ private:
 	QWidget* m_details;
 	QLabel* m_filename_label;
 	QLabel* m_wordcount_label;
+	QLabel* m_progress_label;
 	QLabel* m_clock_label;
 	int m_margin;
 	QTimer* m_clock_timer;
@@ -90,8 +92,11 @@ private:
 	// Daily progress
 	int m_wordcount;
 	int& m_current_wordcount;
+	int m_wordcount_goal;
 	QTime m_time;
 	int& m_current_time;
+	int m_time_goal;
+	int m_goal_type;
 };
 
 #endif

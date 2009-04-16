@@ -28,6 +28,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QGridLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QMessageBox>
 #include <QMouseEvent>
@@ -103,6 +104,9 @@ Window::Window(int& current_wordcount, int& current_time)
 
 	m_wordcount_label = new QLabel(tr("0 words"), m_details);
 	m_wordcount_label->setAlignment(Qt::AlignCenter);
+
+	m_progress_label = new QLabel(tr("0% of daily goal"), m_details);
+	m_progress_label->setAlignment(Qt::AlignCenter);
 
 	m_clock_label = new QLabel(m_details);
 	m_clock_label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -186,17 +190,13 @@ Window::Window(int& current_wordcount, int& current_time)
 	addShortcut(action, Qt::CTRL + Qt::Key_Q);
 
 	// Lay out details
-	QGridLayout* details_layout = new QGridLayout(m_details);
+	QHBoxLayout* details_layout = new QHBoxLayout(m_details);
 	details_layout->setSpacing(12);
-	details_layout->setMargin(0);
-	details_layout->setColumnMinimumWidth(0, 6);
-	details_layout->setColumnStretch(1, 1);
-	details_layout->setColumnStretch(2, 1);
-	details_layout->setColumnStretch(3, 1);
-	details_layout->setColumnMinimumWidth(4, 6);
-	details_layout->addWidget(m_filename_label, 0, 1);
-	details_layout->addWidget(m_wordcount_label, 0, 2);
-	details_layout->addWidget(m_clock_label, 0, 3);
+	details_layout->setMargin(6);
+	details_layout->addWidget(m_filename_label);
+	details_layout->addWidget(m_wordcount_label);
+	details_layout->addWidget(m_progress_label);
+	details_layout->addWidget(m_clock_label);
 
 	// Lay out window
 	m_margin = m_toolbar->sizeHint().height();
@@ -498,6 +498,8 @@ void Window::updateWordCount(int position, int removed, int added) {
 	if (msecs < 30000) {
 		m_current_time += msecs;
 	}
+
+	updateProgress();
 }
 
 /*****************************************************************************/
@@ -560,6 +562,12 @@ void Window::loadTheme(const Theme& theme) {
 /*****************************************************************************/
 
 void Window::loadPreferences(const Preferences& preferences) {
+	m_goal_type = preferences.goalType();
+	m_wordcount_goal = preferences.goalWords();
+	m_time_goal = preferences.goalMinutes();
+	m_progress_label->setVisible(m_goal_type != 0);
+	updateProgress();
+
 	if (preferences.alwaysCenter()) {
 		connect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
 	} else {
@@ -594,6 +602,18 @@ void Window::scaleBackground() {
 	default:
 		break;
 	}
+}
+
+/*****************************************************************************/
+
+void Window::updateProgress() {
+	int progress = 0;
+	if (m_goal_type == 1) {
+		progress = (m_current_time * 100) / (m_time_goal * 60000);
+	} else if (m_goal_type == 2) {
+		progress = (m_current_wordcount * 100) / m_wordcount_goal;
+	}
+	m_progress_label->setText(tr("%1% of daily goal").arg(progress));
 }
 
 /*****************************************************************************/
