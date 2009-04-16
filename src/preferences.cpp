@@ -116,8 +116,8 @@ Preferences::Preferences(QWidget* parent)
 		m_option_none->setChecked(true);
 		break;
 	}
-	m_time->setValue(settings.value("Goal/Minutes", 15).toInt());
-	m_wordcount->setValue(settings.value("Goal/Words", 2000).toInt());
+	m_time->setValue(settings.value("Goal/Minutes", 30).toInt());
+	m_wordcount->setValue(settings.value("Goal/Words", 1000).toInt());
 	m_always_center->setCheckState(settings.value("Edit/AlwaysCenter", false).toBool() ? Qt::Checked : Qt::Unchecked);
 	m_location->setText(settings.value("Save/Location", QDir::currentPath()).toString());
 	m_auto_save->setCheckState(settings.value("Save/Auto", true).toBool() ? Qt::Checked : Qt::Unchecked);
