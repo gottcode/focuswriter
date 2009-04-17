@@ -59,6 +59,7 @@ ThemeManager::ThemeManager(QWidget* parent)
 	if (!items.isEmpty()) {
 		m_themes->setCurrentItem(items.first());
 	}
+	connect(m_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
 	connect(m_themes, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(modifyTheme()));
 
 	// Add control buttons
@@ -135,6 +136,7 @@ void ThemeManager::modifyTheme() {
 	if (dialog.exec() == QDialog::Accepted) {
 		if (theme.name() == item->text()) {
 			item->setIcon(QIcon(Theme::iconPath(item->text())));
+			emit themeSelected(theme);
 		} else {
 			delete item;
 			item = 0;
@@ -156,6 +158,15 @@ void ThemeManager::removeTheme() {
 		QFile::remove(Theme::iconPath(item->text()));
 		delete item;
 		item = 0;
+	}
+}
+
+/*****************************************************************************/
+
+void ThemeManager::currentThemeChanged(QListWidgetItem* current) {
+	if (current) {
+		Theme theme(current->text());
+		emit themeSelected(theme);
 	}
 }
 

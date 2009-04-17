@@ -416,12 +416,8 @@ void Window::printClicked() {
 
 void Window::themeClicked() {
 	ThemeManager manager(this);
-	if (manager.exec() == QDialog::Accepted) {
-		Theme theme(QSettings().value("ThemeManager/Theme").toString());
-		foreach (Window* window, windows) {
-			window->loadTheme(theme);
-		}
-	}
+	connect(&manager, SIGNAL(themeSelected(const Theme&)), this, SLOT(themeSelected(const Theme&)));
+	manager.exec();
 }
 
 /*****************************************************************************/
@@ -469,6 +465,14 @@ void Window::hideMouse() {
 	if (widget == m_text->viewport() || widget == m_text->parentWidget()) {
 		m_text->viewport()->setCursor(Qt::BlankCursor);
 		m_text->parentWidget()->setCursor(Qt::BlankCursor);
+	}
+}
+
+/*****************************************************************************/
+
+void Window::themeSelected(const Theme& theme) {
+	foreach (Window* window, windows) {
+		window->loadTheme(theme);
 	}
 }
 

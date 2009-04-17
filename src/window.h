@@ -59,6 +59,7 @@ private slots:
 	void aboutClicked();
 	void setFullscreen(bool fullscreen);
 	void hideMouse();
+	void themeSelected(const Theme& theme);
 	void updateWordCount(int position, int removed, int added);
 	void updateClock();
 
