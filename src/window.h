@@ -20,11 +20,10 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <QLabel>
 #include <QTime>
-#include <QWidget>
 class QAction;
 class QGridLayout;
-class QLabel;
 class QScrollBar;
 class QPlainTextEdit;
 class QTextBlock;
@@ -33,7 +32,7 @@ class QToolBar;
 class Preferences;
 class Theme;
 
-class Window : public QWidget {
+class Window : public QLabel {
 	Q_OBJECT
 public:
 	Window(int& current_wordcount, int& current_time);
@@ -45,7 +44,6 @@ public:
 protected:
 	virtual bool event(QEvent* event);
 	virtual void closeEvent(QCloseEvent* event);
-	virtual void paintEvent(QPaintEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
@@ -67,13 +65,14 @@ private:
 	int calculateWordCount();
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
-	void scaleBackground();
+	void updateBackground();
 	void updateProgress();
 
 private:
 	QString m_filename;
 	QImage m_background;
-	QImage m_background_scaled;
+	QString m_background_path;
+	QString m_background_cached;
 	int m_background_position;
 	QToolBar* m_toolbar;
 	QAction* m_fullscreen_action;
@@ -89,6 +88,7 @@ private:
 	QTimer* m_hide_timer;
 	bool m_auto_save;
 	bool m_auto_append;
+	bool m_loaded;
 
 	// Daily progress
 	int m_wordcount;

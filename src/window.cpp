@@ -80,7 +80,7 @@ namespace {
 /*****************************************************************************/
 
 Window::Window(int& current_wordcount, int& current_time)
-: m_background_position(0), m_auto_save(false), m_auto_append(true), m_wordcount(0), m_current_wordcount(current_wordcount), m_current_time(current_time) {
+: m_background_position(0), m_auto_save(false), m_auto_append(true), m_loaded(false), m_wordcount(0), m_current_wordcount(current_wordcount), m_current_time(current_time) {
 	windows.append(this);
 
 	setWindowTitle("FocusWriter");
@@ -226,6 +226,9 @@ Window::Window(int& current_wordcount, int& current_time)
 	bool fullscreen = QSettings().value("Window/Fullscreen", true).toBool();
 	m_fullscreen_action->setChecked(fullscreen);
 	setFullscreen(fullscreen);
+
+	// Enable background loading
+	m_loaded = true;
 }
 
 /*****************************************************************************/
@@ -308,21 +311,11 @@ void Window::closeEvent(QCloseEvent* event) {
 
 /*****************************************************************************/
 
-void Window::paintEvent(QPaintEvent*) {
-	if (m_background_position > 1) {
-		QPainter painter(this);
-		QSize s = (size() - m_background_scaled.size()) / 2;
-		painter.drawImage(s.width(), s.height(), m_background_scaled);
-	}
-}
-
-/*****************************************************************************/
-
 void Window::resizeEvent(QResizeEvent* event) {
 	if (isActiveWindow() && !isFullScreen()) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
-	scaleBackground();
+	updateBackground();
 	QWidget::resizeEvent(event);
 }
 
@@ -542,8 +535,10 @@ void Window::loadTheme(const Theme& theme) {
 	m_text->setPalette(p);
 
 	// Update background
-	m_background.load(theme.backgroundImage());
+	m_background = QImage();
+	m_background_path = theme.backgroundImage();
 	m_background_position = theme.backgroundType();
+	m_background_cached = Theme::backgroundPath(theme.name());
 
 	p = palette();
 	if (m_background_position != 1) {
@@ -553,14 +548,11 @@ void Window::loadTheme(const Theme& theme) {
 	}
 	setPalette(p);
 
-	scaleBackground();
+	updateBackground();
 
 	// Update text
 	m_text->setFont(theme.textFont());
 	m_text->setFixedWidth(theme.foregroundWidth());
-
-	// Refresh
-	update();
 }
 
 /*****************************************************************************/
@@ -589,23 +581,46 @@ void Window::loadPreferences(const Preferences& preferences) {
 
 /*****************************************************************************/
 
-void Window::scaleBackground() {
-	switch (m_background_position) {
-	case 2:
-		m_background_scaled = m_background;
-		break;
-	case 3:
-		m_background_scaled = m_background.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-		break;
-	case 4:
-		m_background_scaled = m_background.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-		break;
-	case 5:
-		m_background_scaled = m_background.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-		break;
-	default:
-		break;
+void Window::updateBackground() {
+	if (!m_loaded) {
+		return;
 	}
+
+	QPixmap pixmap(m_background_cached);
+	if (pixmap.isNull() || pixmap.size() != size()) {
+		pixmap = QPixmap(size());
+		pixmap.fill(this, 0, 0);
+
+		if (m_background.isNull() && !m_background_path.isEmpty()) {
+			m_background.load(m_background_path);
+		}
+
+		QImage background;
+		switch (m_background_position) {
+		case 2:
+			background = m_background;
+			break;
+		case 3:
+			background = m_background.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+			break;
+		case 4:
+			background = m_background.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+			break;
+		case 5:
+			background = m_background.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+			break;
+		default:
+			break;
+		}
+		if (m_background_position > 1) {
+			QPainter painter(&pixmap);
+			painter.drawImage(rect().center() - background.rect().center(), background);
+		}
+
+		pixmap.save(m_background_cached);
+	}
+
+	setPixmap(pixmap);
 }
 
 /*****************************************************************************/
