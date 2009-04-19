@@ -110,7 +110,9 @@ void FindDialog::hideEvent(QHideEvent* event) {
 /*****************************************************************************/
 
 void FindDialog::showEvent(QShowEvent* event) {
-	m_find_string->setText(m_document->textCursor().selectedText());
+	QString text = m_document->textCursor().selectedText().trimmed();
+	text.remove(0, text.lastIndexOf(QChar(0x2029)) + 1);
+	m_find_string->setText(text);
 	m_replace_string->clear();
 	QDialog::showEvent(event);
 }
