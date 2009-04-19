@@ -105,7 +105,7 @@ Preferences::Preferences(QWidget* parent)
 
 	// Load settings
 	QSettings settings;
-	switch (settings.value("Goal/Type").toInt()) {
+	switch (settings.value("Goal/Type").toInt(), 1) {
 	case 1:
 		m_option_time->setChecked(true);
 		break;
@@ -118,10 +118,10 @@ Preferences::Preferences(QWidget* parent)
 	}
 	m_time->setValue(settings.value("Goal/Minutes", 30).toInt());
 	m_wordcount->setValue(settings.value("Goal/Words", 1000).toInt());
-	m_always_center->setCheckState(settings.value("Edit/AlwaysCenter", false).toBool() ? Qt::Checked : Qt::Unchecked);
+	m_always_center->setChecked(settings.value("Edit/AlwaysCenter", false).toBool());
 	m_location->setText(settings.value("Save/Location", QDir::currentPath()).toString());
-	m_auto_save->setCheckState(settings.value("Save/Auto", true).toBool() ? Qt::Checked : Qt::Unchecked);
-	m_auto_append->setCheckState(settings.value("Save/Append", true).toBool() ? Qt::Checked : Qt::Unchecked);
+	m_auto_save->setChecked(settings.value("Save/Auto", true).toBool());
+	m_auto_append->setChecked(settings.value("Save/Append", true).toBool());
 }
 
 /*****************************************************************************/
@@ -151,7 +151,7 @@ int Preferences::goalWords() const {
 /*****************************************************************************/
 
 bool Preferences::alwaysCenter() const {
-	return m_always_center->checkState() == Qt::Checked;
+	return m_always_center->isChecked();
 }
 
 /*****************************************************************************/
@@ -163,13 +163,13 @@ QString Preferences::saveLocation() const {
 /*****************************************************************************/
 
 bool Preferences::autoSave() const {
-	return m_auto_save->checkState() == Qt::Checked;
+	return m_auto_save->isChecked();
 }
 
 /*****************************************************************************/
 
 bool Preferences::autoAppend() const {
-	return m_auto_append->checkState() == Qt::Checked;
+	return m_auto_append->isChecked();
 }
 
 /*****************************************************************************/
