@@ -235,7 +235,9 @@ Window::Window(int& current_wordcount, int& current_time)
 	setFullscreen(fullscreen);
 
 	// Enable background loading
+	qApp->processEvents();
 	m_loaded = true;
+	updateBackground();
 }
 
 /*****************************************************************************/
