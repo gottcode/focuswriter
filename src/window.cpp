@@ -438,12 +438,12 @@ void Window::preferencesClicked() {
 void Window::aboutClicked() {
 	QMessageBox::about(this, tr("About FocusWriter"), tr(
 		"<center>"
-		"<big><b>FocusWriter 1.0.0</b></big><br/>"
+		"<big><b>FocusWriter %1</b></big><br/>"
 		"A simple fullscreen word processor<br/>"
-		"<small>Copyright &copy; 2008 Graeme Gott</small><br/><br/>"
+		"<small>Copyright &copy; 2008-2009 Graeme Gott</small><br/><br/>"
 		"Toolbar icons are from <a href=\"http://www.oxygen-icons.org/\">Oyxgen</a>"
 		"</center>"
-	));
+	).arg(qApp->applicationVersion()));
 }
 
 /*****************************************************************************/
