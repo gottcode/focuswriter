@@ -29,6 +29,7 @@ class QPlainTextEdit;
 class QTextBlock;
 class QTimer;
 class QToolBar;
+class FindDialog;
 class Preferences;
 class Theme;
 
@@ -76,6 +77,7 @@ private:
 	int m_background_position;
 	QToolBar* m_toolbar;
 	QAction* m_fullscreen_action;
+	FindDialog* m_find_dialog;
 	QPlainTextEdit* m_text;
 	QScrollBar* m_scrollbar;
 	QWidget* m_details;

@@ -19,6 +19,7 @@
 
 #include "window.h"
 
+#include "find_dialog.h"
 #include "preferences.h"
 #include "theme.h"
 #include "theme_manager.h"
@@ -136,6 +137,9 @@ Window::Window(int& current_wordcount, int& current_time)
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setVisible(false);
 
+	// Set up find dialog
+	m_find_dialog = new FindDialog(m_text, this);
+
 	// Set up toolbar
 	m_toolbar = new QToolBar(this);
 	m_toolbar->setPalette(QApplication::palette());
@@ -168,6 +172,9 @@ Window::Window(int& current_wordcount, int& current_time)
 
 	action = m_toolbar->addAction(QIcon(":/document-print.png"), tr("Print"), this, SLOT(printClicked()));
 	addShortcut(action, Qt::CTRL + Qt::Key_P);
+
+	action = m_toolbar->addAction(QIcon(":/edit-find.png"), tr("Find"), m_find_dialog, SLOT(show()));
+	addShortcut(action, Qt::CTRL + Qt::Key_F);
 
 	m_fullscreen_action = m_toolbar->addAction(QIcon(":/view-fullscreen.png"), tr("Fullscreen"));
 	addShortcut(m_fullscreen_action, Qt::Key_Escape);

@@ -17,6 +17,7 @@ unix: !macx {
 }
 
 HEADERS = src/color_button.h \
+	src/find_dialog.h \
 	src/image_button.h \
 	src/image_dialog.h \
 	src/preferences.h \
@@ -28,6 +29,7 @@ HEADERS = src/color_button.h \
 	src/window.h
 
 SOURCES = src/color_button.cpp \
+	src/find_dialog.cpp \
 	src/image_button.cpp \
 	src/image_dialog.cpp \
 	src/main.cpp \
