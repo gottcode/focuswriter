@@ -37,12 +37,9 @@ protected:
 	virtual void showEvent(QShowEvent* event);
 
 private slots:
-	void findNext();
-	void replaceNext();
+	void find();
+	void replace();
 	void replaceAll();
-
-private:
-	QTextCursor find();
 
 private:
 	QPlainTextEdit* m_document;

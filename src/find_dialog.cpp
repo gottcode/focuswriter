@@ -65,10 +65,10 @@ FindDialog::FindDialog(QPlainTextEdit* document, QWidget* parent)
 
 	// Create buttons
 	QPushButton* find_button = new QPushButton(tr("Find"), this);
-	connect(find_button, SIGNAL(clicked()), this, SLOT(findNext()));
+	connect(find_button, SIGNAL(clicked()), this, SLOT(find()));
 
 	QPushButton* replace_button = new QPushButton(tr("Replace"), this);
-	connect(replace_button, SIGNAL(clicked()), this, SLOT(replaceNext()));
+	connect(replace_button, SIGNAL(clicked()), this, SLOT(replace()));
 
 	QPushButton* replace_all_button = new QPushButton(tr("Replace All"), this);
 	connect(replace_all_button, SIGNAL(clicked()), this, SLOT(replaceAll()));
@@ -117,8 +117,29 @@ void FindDialog::showEvent(QShowEvent* event) {
 
 /*****************************************************************************/
 
-void FindDialog::findNext() {
-	QTextCursor cursor = find();
+void FindDialog::find() {
+	QTextDocument::FindFlags flags;
+	if (m_match_case->isChecked()) {
+		flags |= QTextDocument::FindCaseSensitively;
+	}
+	if (m_whole_words->isChecked()) {
+		flags |= QTextDocument::FindWholeWords;
+	}
+	if (m_search_backwards->isChecked()) {
+		flags |= QTextDocument::FindBackward;
+	}
+
+	QTextCursor cursor = m_document->document()->find(m_find_string->text(), m_document->textCursor(), flags);
+	if (cursor.isNull()) {
+		cursor = m_document->textCursor();
+		if (!m_search_backwards->isChecked()) {
+			cursor.movePosition(QTextCursor::Start);
+		} else {
+			cursor.movePosition(QTextCursor::End);
+		}
+		cursor = m_document->document()->find(m_find_string->text(), cursor, flags);
+	}
+
 	if (!cursor.isNull()) {
 		m_document->setTextCursor(cursor);
 	} else {
@@ -128,13 +149,13 @@ void FindDialog::findNext() {
 
 /*****************************************************************************/
 
-void FindDialog::replaceNext() {
+void FindDialog::replace() {
 	QTextCursor cursor = m_document->textCursor();
 	if (cursor.selectedText() == m_find_string->text()) {
 		cursor.insertText(m_replace_string->text());
 		m_document->setTextCursor(cursor);
 	} else {
-		return findNext();
+		return find();
 	}
 }
 
@@ -176,38 +197,10 @@ void FindDialog::replaceAll() {
 		if (!cursor.isNull()) {
 			cursor.insertText(m_replace_string->text());
 			m_document->setTextCursor(cursor);
-			found = true;
 		} else {
 			break;
 		}
 	}
-}
-
-/*****************************************************************************/
-
-QTextCursor FindDialog::find() {
-	QTextDocument::FindFlags flags;
-	if (m_match_case->isChecked()) {
-		flags |= QTextDocument::FindCaseSensitively;
-	}
-	if (m_whole_words->isChecked()) {
-		flags |= QTextDocument::FindWholeWords;
-	}
-	if (m_search_backwards->isChecked()) {
-		flags |= QTextDocument::FindBackward;
-	}
-
-	QTextCursor cursor = m_document->document()->find(m_find_string->text(), m_document->textCursor(), flags);
-	if (cursor.isNull()) {
-		cursor = m_document->textCursor();
-		if (!m_search_backwards->isChecked()) {
-			cursor.movePosition(QTextCursor::Start);
-		} else {
-			cursor.movePosition(QTextCursor::End);
-		}
-		cursor = m_document->document()->find(m_find_string->text(), cursor, flags);
-	}
-	return cursor;
 }
 
 /*****************************************************************************/
