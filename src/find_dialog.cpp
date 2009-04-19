@@ -141,11 +141,38 @@ void FindDialog::replaceNext() {
 /*****************************************************************************/
 
 void FindDialog::replaceAll() {
-	bool found = false;
+	QTextDocument::FindFlags flags;
+	if (m_match_case->isChecked()) {
+		flags |= QTextDocument::FindCaseSensitively;
+	}
+	if (m_whole_words->isChecked()) {
+		flags |= QTextDocument::FindWholeWords;
+	}
 
-	QTextCursor cursor;
+	// Count instances
+	int found = 0;
+	QTextCursor cursor = m_document->textCursor();
+	cursor.movePosition(QTextCursor::Start);
 	forever {
-		cursor = find();
+		cursor = m_document->document()->find(m_find_string->text(), cursor, flags);
+		if (!cursor.isNull()) {
+			found++;
+		} else {
+			break;
+		}
+	}
+	if (found) {
+		if (QMessageBox::question(this, tr("Question"), tr("Replace %1 instances?").arg(found), QMessageBox::Yes | QMessageBox::No) == QMessageBox::No) {
+			return;
+		}
+	} else {
+		QMessageBox::information(this, tr("Sorry"), tr("Phrase not found."));
+		return;
+	}
+
+	// Replace instances
+	forever {
+		cursor = m_document->document()->find(m_find_string->text(), 0, flags);
 		if (!cursor.isNull()) {
 			cursor.insertText(m_replace_string->text());
 			m_document->setTextCursor(cursor);
@@ -153,10 +180,6 @@ void FindDialog::replaceAll() {
 		} else {
 			break;
 		}
-	}
-
-	if (!found) {
-		QMessageBox::information(this, tr("Sorry"), tr("Phrase not found."));
 	}
 }
 
