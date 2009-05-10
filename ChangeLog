@@ -1,42 +1,42 @@
-2008-04-19 Graeme Gott <graeme@gottcode.org>
+2009-04-19 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.1.0.
 
-2008-04-18 Graeme Gott <graeme@gottcode.org>
+2009-04-18 Graeme Gott <graeme@gottcode.org>
 	* Add find dialog.
 
-2008-04-17 Graeme Gott <graeme@gottcode.org>
+2009-04-17 Graeme Gott <graeme@gottcode.org>
 	* Cache theme backgrounds.
 	* Change theme immediately.
 
-2008-04-16 Graeme Gott <graeme@gottcode.org>
+2009-04-16 Graeme Gott <graeme@gottcode.org>
 	* Show progress on daily goals.
 
-2008-04-15 Graeme Gott <graeme@gottcode.org>
+2009-04-15 Graeme Gott <graeme@gottcode.org>
 	* Track daily progress.
 
-2008-04-14 Graeme Gott <graeme@gottcode.org>
+2009-04-14 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Crashed when first sentence was deleted.
 
-2008-04-13 Graeme Gott <graeme@gottcode.org>
+2009-04-13 Graeme Gott <graeme@gottcode.org>
 	* Add interface for goals.
 
-2008-04-12 Graeme Gott <graeme@gottcode.org>
+2009-04-12 Graeme Gott <graeme@gottcode.org>
 	* Allow user to disable always center on type.
 	* Load theme in window class.
 
-2008-04-11 Graeme Gott <graeme@gottcode.org>
+2009-04-11 Graeme Gott <graeme@gottcode.org>
 	* Create default theme from old settings.
 	* Add theme manager class.
 	* Add drop shadow to theme previews.
 	* Save theme previews to disk.
 
-2008-04-10 Graeme Gott <graeme@gottcode.org>
+2009-04-10 Graeme Gott <graeme@gottcode.org>
 	* Allow user to rename themes.
 	* Read and write themes to disk.
 	* Add theme editor dialog.
 	* Add theme class.
 
-2008-02-27 Graeme Gott <graeme@gottcode.org>
+2009-02-27 Graeme Gott <graeme@gottcode.org>
 	* Refactor preferences code.
 	* Allow file extensions other than txt.
 
@@ -46,6 +46,9 @@
 
 2008-10-29 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Highlighted text used page alpha.
+
+2008-10-23 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.0.0.
 
 2008-10-22 Graeme Gott <graeme@gottcode.org>
 	* Add application icon.
