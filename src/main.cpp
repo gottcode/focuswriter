@@ -31,7 +31,7 @@
 int main(int argc, char** argv) {
 	QApplication app(argc, argv);
 	app.setApplicationName("FocusWriter");
-	app.setApplicationVersion("1.1.0");
+	app.setApplicationVersion("1.1.1");
 	app.setOrganizationDomain("gottcode.org");
 	app.setOrganizationName("GottCode");
 
