@@ -1,3 +1,6 @@
+2009-05-10 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Was always launching with time based goals.
+
 2009-04-19 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.1.0.
 

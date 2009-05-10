@@ -105,7 +105,7 @@ Preferences::Preferences(QWidget* parent)
 
 	// Load settings
 	QSettings settings;
-	switch (settings.value("Goal/Type").toInt(), 1) {
+	switch (settings.value("Goal/Type", 1).toInt()) {
 	case 1:
 		m_option_time->setChecked(true);
 		break;
