@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP='FocusWriter'
-VERSION='1.1.1'
+VERSION='1.1.2'
 
 BUNDLE="$APP.app"
 BUNDLE_FW="$BUNDLE/Contents/Frameworks"
