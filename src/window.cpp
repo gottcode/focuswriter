@@ -41,6 +41,7 @@
 #include <QShortcut>
 #include <QPlainTextEdit>
 #include <QTextBlock>
+#include <QTextCodec>
 #include <QTextStream>
 #include <QTime>
 #include <QTimer>
@@ -249,6 +250,7 @@ void Window::open(const QString& filename) {
 		m_filename_label->setText(m_filename.section('/', -1));
 
 		QTextStream stream(&file);
+		stream.setCodec(QTextCodec::codecForName("UTF-8"));
 		m_text->document()->blockSignals(true);
 		m_text->setPlainText(stream.readAll());
 		m_text->moveCursor(QTextCursor::End);
@@ -376,6 +378,7 @@ void Window::saveClicked() {
 	QFile file(m_filename);
 	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
+		stream.setCodec(QTextCodec::codecForName("UTF-8"));
 		stream << m_text->toPlainText();
 	}
 
