@@ -194,8 +194,9 @@ void FindDialog::replaceAll() {
 	}
 
 	// Replace instances
+	QTextCursor start_cursor = m_document->textCursor();
 	forever {
-		cursor = m_document->document()->find(m_find_string->text(), 0, flags);
+		cursor = m_document->document()->find(m_find_string->text(), cursor, flags);
 		if (!cursor.isNull()) {
 			cursor.insertText(m_replace_string->text());
 			m_document->setTextCursor(cursor);
@@ -203,6 +204,7 @@ void FindDialog::replaceAll() {
 			break;
 		}
 	}
+	m_document->setTextCursor(start_cursor);
 }
 
 /*****************************************************************************/

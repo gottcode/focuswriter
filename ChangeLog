@@ -1,3 +1,6 @@
+2009-06-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Infinite loop when replacing all instances of a word.
+
 2009-05-31 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.1.2.
 	* Use UTF-8 character encoding for files.
