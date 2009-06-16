@@ -17,6 +17,7 @@
  *
  ***********************************************************************/
 
+#include "dictionary.h"
 #include "theme.h"
 #include "window.h"
 
@@ -43,26 +44,67 @@ int main(int argc, char** argv) {
 	translator.load("focuswriter_" + QLocale::system().name());
 	app.installTranslator(&translator);
 
-	// Create theme path
+	// Find data paths
+	QStringList locations;
 #if defined(Q_OS_MAC)
-	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/Themes";
+	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
+	QString themes = "Themes";
+	QString dictionaries = "Dictionaries";
+
+	locations.append(QCoreApplication::applicationDirPath() + "/../Resources/Dictionaries");
+	locations.append("/Library/Application Support/GottCode/FocusWriter/Dictionaries");
 #elif defined(Q_OS_UNIX)
-	QString path = qgetenv("$XDG_DATA_HOME");
+	QString path = qgetenv("XDG_DATA_HOME");
 	if (path.isEmpty()) {
 		path = QDir::homePath() + "/.local/share";
 	}
-	path += "/focuswriter/themes";
+	path += "/focuswriter/";
+	QString themes = "themes";
+	QString dictionaries = "dictionaries";
+
+	QStringList xdg = QString(qgetenv("XDG_DATA_DIRS")).split(QChar(':'), QString::SkipEmptyParts);
+	if (xdg.isEmpty()) {
+		xdg.append("/usr/local/share");
+		xdg.append("/usr/share");
+	}
+	QStringList subdirs = QStringList() << "/hunspell" << "/myspell/dicts" << "/myspell";
+	foreach (const QString& subdir, subdirs) {
+		foreach (const QString& dir, xdg) {
+			QString path = dir + subdir;
+			if (!locations.contains(path)) {
+				locations.append(path);
+			}
+		}
+	}
 #elif defined(Q_OS_WIN32)
-	QString path = QDir::homePath() + "/Application Data/GottCode/FocusWriter/Themes";
+	QString path = QDir::homePath() + "/Application Data/GottCode/FocusWriter/";
+	QString themes = "Themes";
+	QString dictionaries = "Dictionaries";
+
+	locations.append(QCoreApplication::applicationDirPath() + "/Dictionaries");
 #endif
+	QDir dir = QDir::home();
 	if (!QFile::exists(path)) {
-		QDir dir = QDir::home();
 		dir.mkpath(path);
 	}
-	Theme::setPath(path);
+	dir.setPath(path);
+
+	// Set themes path
+	if (!dir.exists(themes)) {
+		dir.mkdir(themes);
+	}
+	Theme::setPath(dir.filePath(themes));
+
+	// Set dictionary paths
+	if (!dir.exists(dictionaries)) {
+		dir.mkdir(dictionaries);
+	}
+	Dictionary::setPath(dir.filePath(dictionaries));
+	locations.prepend(Dictionary::path());
+	QDir::setSearchPaths("dict", locations);
 
 	// Create theme from old settings
-	if (QDir(path, "*.theme").entryList(QDir::Files).isEmpty()) {
+	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
 		QSettings settings;
 		Theme theme;
 

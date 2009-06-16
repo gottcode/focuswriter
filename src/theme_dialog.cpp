@@ -138,6 +138,10 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_font_sizes->setCurrentIndex(m_font_sizes->findData(m_theme.textFont().pointSize()));
 	connect(m_font_sizes, SIGNAL(activated(int)), this, SLOT(renderPreview()));
 
+	m_misspelled_color = new ColorButton(tab);
+	m_misspelled_color->setColor(m_theme.misspelledColor());
+	connect(m_misspelled_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
+
 	QHBoxLayout* font_layout = new QHBoxLayout;
 	font_layout->addWidget(m_font_names);
 	font_layout->addWidget(m_font_sizes);
@@ -148,6 +152,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	text_layout->setLabelAlignment(Qt::AlignRight);
 	text_layout->addRow(tr("Color:"), m_text_color);
 	text_layout->addRow(tr("Font:"), font_layout);
+	text_layout->addRow(tr("Misspelled:"), m_misspelled_color);
 
 
 	// Create preview
@@ -198,6 +203,7 @@ void ThemeDialog::accept() {
 
 	m_theme.setTextColor(m_text_color->color());
 	m_theme.setTextFont(QFont(m_font_names->currentFont().family(), m_font_sizes->currentText().toInt()));
+	m_theme.setMisspelledColor(m_misspelled_color->color());
 
 	savePreview();
 

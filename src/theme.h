@@ -61,9 +61,11 @@ public:
 	// Text settings
 	QColor textColor() const;
 	QFont textFont() const;
+	QColor misspelledColor() const;
 
 	void setTextColor(const QColor& color);
 	void setTextFont(const QFont& font);
+	void setMisspelledColor(const QColor& color);
 
 private:
 	static QString m_path;
@@ -79,6 +81,7 @@ private:
 
 	QColor m_text_color;
 	QFont m_text_font;
+	QColor m_misspelled_color;
 
 	bool m_changed;
 };

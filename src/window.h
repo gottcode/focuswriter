@@ -30,6 +30,7 @@ class QTextBlock;
 class QTimer;
 class QToolBar;
 class FindDialog;
+class Highlighter;
 class Preferences;
 class Theme;
 
@@ -53,6 +54,7 @@ private slots:
 	void saveClicked();
 	void renameClicked();
 	void printClicked();
+	void checkSpellingClicked();
 	void themeClicked();
 	void preferencesClicked();
 	void aboutClicked();
@@ -63,7 +65,7 @@ private slots:
 	void updateClock();
 
 private:
-	int calculateWordCount();
+	void calculateWordCount();
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void updateBackground();
@@ -79,6 +81,7 @@ private:
 	QAction* m_fullscreen_action;
 	FindDialog* m_find_dialog;
 	QPlainTextEdit* m_text;
+	Highlighter* m_highlighter;
 	QScrollBar* m_scrollbar;
 	QWidget* m_details;
 	QLabel* m_filename_label;

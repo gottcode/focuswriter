@@ -6,7 +6,9 @@ Open a terminal and browse into the extracted folder.
 Linux:
     1.) Type 'qmake' to configure the program. If you would like to install the
         program somewhere other than /usr/local, pass a new value for PREFIX
-        during configuration: 'qmake PREFIX=/opt'.
+        during configuration: 'qmake PREFIX=/opt'. If you would like to use the
+        included Hunspell instead of the system one, pass the value 'no' for
+        USE_SYSTEM_HUNSPELL during configuration: 'qmake USE_SYSTEM_HUNSPELL=no'.
 
     2.) Type 'make' to compile the program.
 

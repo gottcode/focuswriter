@@ -1,0 +1,155 @@
+/***********************************************************************
+ *
+ * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ ***********************************************************************/
+
+#include "highlighter.h"
+
+#include "dictionary.h"
+#include "spell_checker.h"
+
+#include <QAction>
+#include <QMenu>
+#include <QPlainTextEdit>
+
+/*****************************************************************************/
+
+Highlighter::Highlighter(QPlainTextEdit* text)
+: QSyntaxHighlighter(text->document()),
+  m_text(text),
+  m_enabled(true),
+  m_misspelled("#ff0000") {
+	m_dictionary = new Dictionary(this);
+	connect(m_dictionary, SIGNAL(changed()), this, SLOT(rehighlight()));
+
+	m_text->viewport()->installEventFilter(this);
+	m_add_action = new QAction(tr("Add"), this);
+	m_check_action = new QAction(tr("Check Spelling..."), this);
+}
+
+/*****************************************************************************/
+
+bool Highlighter::enabled() {
+	return m_enabled;
+}
+
+/*****************************************************************************/
+
+void Highlighter::setEnabled(bool enabled) {
+	m_enabled = enabled;
+	rehighlight();
+}
+
+/*****************************************************************************/
+
+void Highlighter::setMisspelledColor(const QColor& color) {
+	m_misspelled = color;
+	rehighlight();
+}
+
+/*****************************************************************************/
+
+bool Highlighter::eventFilter(QObject* watched, QEvent* event) {
+	if (watched != m_text->viewport() || event->type() != QEvent::ContextMenu || !m_enabled) {
+		return QSyntaxHighlighter::eventFilter(watched, event);
+	} else {
+		// Check spelling of text block under mouse
+		QContextMenuEvent* context_event = static_cast<QContextMenuEvent*>(event);
+		m_start_cursor = m_text->cursorForPosition(context_event->pos());
+		QTextBlock block = m_start_cursor.block();
+		QString text = block.text();
+		QList<Word> words = m_dictionary->check(text);
+		int cursor = m_start_cursor.position() - block.position();
+		int i = 0;
+		for (; i < words.count(); ++i) {
+			const Word& word = words.at(i);
+			int delta = cursor - word.index();
+			if (delta >= 0 && delta <= word.length()) {
+				break;
+			}
+		}
+
+		if (i == words.count()) {
+			m_text->setTextCursor(m_start_cursor);
+			return false;
+		} else {
+			// Select misspelled word
+			const Word& word = words.at(i);
+			m_word = text.mid(word.index(), word.length());
+			m_cursor = m_start_cursor;
+			m_cursor.setPosition(word.index() + block.position());
+			m_cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, word.length());
+			m_text->setTextCursor(m_cursor);
+
+			// List suggestions in context menu
+			QMenu* menu = new QMenu;
+			QStringList guesses = m_dictionary->suggestions(m_word);
+			if (!guesses.isEmpty()) {
+				foreach (const QString& guess, guesses) {
+					menu->addAction(guess);
+				}
+			} else {
+				QAction* none_action = menu->addAction(tr("(No suggestions found)"));
+				none_action->setEnabled(false);
+			}
+			menu->addSeparator();
+			menu->addAction(m_add_action);
+			menu->addSeparator();
+			menu->addAction(m_check_action);
+
+			// Show menu
+			connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(suggestion(QAction*)));
+			menu->exec(context_event->globalPos());
+			delete menu;
+
+			return true;
+		}
+	}
+}
+
+/*****************************************************************************/
+
+void Highlighter::highlightBlock(const QString& text) {
+	if (!m_enabled) {
+		return;
+	}
+
+	QTextCharFormat error;
+	error.setUnderlineColor(m_misspelled);
+	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
+
+	QList<Word> words = m_dictionary->check(text);
+	foreach (const Word& word, words) {
+		setFormat(word.index(), word.length(), error);
+	}
+}
+
+/*****************************************************************************/
+
+void Highlighter::suggestion(QAction* action) {
+	if (action == m_add_action) {
+		m_text->setTextCursor(m_start_cursor);
+		m_dictionary->add(m_word);
+	} else if (action == m_check_action) {
+		m_text->setTextCursor(m_start_cursor);
+		SpellChecker::checkDocument(m_text);
+	} else {
+		m_cursor.insertText(action->text());
+	}
+}
+
+/*****************************************************************************/

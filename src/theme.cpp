@@ -53,6 +53,7 @@ Theme::Theme(const QString& name)
 	// Load text settings
 	m_text_color = settings.value("Text/Color", "#000000").toString();
 	m_text_font.fromString(settings.value("Text/Font", QFont().toString()).toString());
+	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
 }
 
 /*****************************************************************************/
@@ -77,6 +78,7 @@ Theme::~Theme() {
 	// Store text settings
 	settings.setValue("Text/Color", m_text_color.name());
 	settings.setValue("Text/Font", m_text_font.toString());
+	settings.setValue("Text/Misspelled", m_misspelled_color.name());
 }
 
 /*****************************************************************************/
@@ -216,6 +218,12 @@ QFont Theme::textFont() const {
 
 /*****************************************************************************/
 
+QColor Theme::misspelledColor() const {
+	return m_misspelled_color;
+}
+
+/*****************************************************************************/
+
 void Theme::setTextColor(const QColor& color) {
 	m_text_color = color;
 	m_changed = true;
@@ -225,6 +233,13 @@ void Theme::setTextColor(const QColor& color) {
 
 void Theme::setTextFont(const QFont& font) {
 	m_text_font = font;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Theme::setMisspelledColor(const QColor& color) {
+	m_misspelled_color = color;
 	m_changed = true;
 }
 

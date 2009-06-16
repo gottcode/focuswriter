@@ -22,9 +22,13 @@
 
 #include <QDialog>
 class QCheckBox;
+class QComboBox;
+class QLineEdit;
+class QListWidget;
 class QPushButton;
 class QRadioButton;
 class QSpinBox;
+class Dictionary;
 
 class Preferences : public QDialog {
 	Q_OBJECT
@@ -38,12 +42,28 @@ public:
 	QString saveLocation() const;
 	bool autoSave() const;
 	bool autoAppend() const;
+	bool highlightMisspelled() const;
+	bool ignoredWordsWithNumbers() const;
+	bool ignoredUppercaseWords() const;
+	QString language() const;
 
 public slots:
 	virtual void accept();
+	virtual void reject();
 
 private slots:
 	void changeSaveLocation();
+	void addLanguage();
+	void removeLanguage();
+	void selectedLanguageChanged(int index);
+	void addWord();
+	void removeWord();
+	void selectedWordChanged();
+	void wordEdited();
+
+private:
+	QWidget* initGeneralTab();
+	QWidget* initSpellingTab();
 
 private:
 	QRadioButton* m_option_none;
@@ -55,6 +75,19 @@ private:
 	QPushButton* m_location;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_auto_append;
+
+	Dictionary* m_dictionary;
+	QCheckBox* m_highlight_misspelled;
+	QCheckBox* m_ignore_uppercase;
+	QCheckBox* m_ignore_numbers;
+	QComboBox* m_languages;
+	QLineEdit* m_word;
+	QListWidget* m_personal_dictionary;
+	QPushButton* m_add_language_button;
+	QPushButton* m_remove_language_button;
+	QPushButton* m_add_word_button;
+	QPushButton* m_remove_word_button;
+	QStringList m_uninstalled;
 };
 
 #endif

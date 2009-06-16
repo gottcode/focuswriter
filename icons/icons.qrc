@@ -12,6 +12,7 @@
 	<file>preferences-desktop-color.png</file>
 	<file>preferences-other.png</file>
 	<file>shadow.png</file>
+	<file>tools-check-spelling.png</file>
 	<file>view-fullscreen.png</file>
 	<file>window-close.png</file>
 </qresource>

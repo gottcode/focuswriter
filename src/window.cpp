@@ -20,7 +20,9 @@
 #include "window.h"
 
 #include "find_dialog.h"
+#include "highlighter.h"
 #include "preferences.h"
+#include "spell_checker.h"
 #include "theme.h"
 #include "theme_manager.h"
 
@@ -134,6 +136,7 @@ Window::Window(int& current_wordcount, int& current_time)
 	m_text->viewport()->installEventFilter(this);
 	connect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
+	m_highlighter = new Highlighter(m_text);
 
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setVisible(false);
@@ -176,6 +179,9 @@ Window::Window(int& current_wordcount, int& current_time)
 
 	action = m_toolbar->addAction(QIcon(":/edit-find.png"), tr("Find"), m_find_dialog, SLOT(show()));
 	addShortcut(action, Qt::CTRL + Qt::Key_F);
+
+	action = m_toolbar->addAction(QIcon(":/tools-check-spelling.png"), tr("Check Spelling"), this, SLOT(checkSpellingClicked()));
+	addShortcut(action, Qt::Key_F7);
 
 	m_fullscreen_action = m_toolbar->addAction(QIcon(":/view-fullscreen.png"), tr("Fullscreen"));
 	addShortcut(m_fullscreen_action, Qt::Key_Escape);
@@ -251,15 +257,14 @@ void Window::open(const QString& filename) {
 
 		QTextStream stream(&file);
 		stream.setCodec(QTextCodec::codecForName("UTF-8"));
-		m_text->document()->blockSignals(true);
+		disconnect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 		m_text->setPlainText(stream.readAll());
 		m_text->moveCursor(QTextCursor::End);
 		m_text->document()->setModified(false);
-		m_text->document()->blockSignals(false);
+		connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	}
 	m_text->centerCursor();
-	m_wordcount = calculateWordCount();
-	updateWordCount(0,0,0);
+	calculateWordCount();
 }
 
 /*****************************************************************************/
@@ -419,6 +424,12 @@ void Window::printClicked() {
 
 /*****************************************************************************/
 
+void Window::checkSpellingClicked() {
+	SpellChecker::checkDocument(m_text);
+}
+
+/*****************************************************************************/
+
 void Window::themeClicked() {
 	ThemeManager manager(this);
 	connect(&manager, SIGNAL(themeSelected(const Theme&)), this, SLOT(themeSelected(const Theme&)));
@@ -443,8 +454,12 @@ void Window::aboutClicked() {
 		"<center>"
 		"<big><b>FocusWriter %1</b></big><br/>"
 		"A simple fullscreen word processor<br/>"
-		"<small>Copyright &copy; 2008-2009 Graeme Gott</small><br/><br/>"
-		"Toolbar icons are from <a href=\"http://www.oxygen-icons.org/\">Oyxgen</a>"
+		"<small>Copyright &copy; 2008-2009 Graeme Gott</small><br/>"
+		"<small>Released under the <a href=\"http://www.gnu.org/licenses/gpl.html\">GPL 3</a> license</small><br/><br/>"
+		"Includes <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> 1.2.8 for spell checking<br/>"
+		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small><br/><br/>"
+		"Includes icons from the <a href=\"http://www.oxygen-icons.org/\">Oyxgen</a> icon theme<br/>"
+		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small>"
 		"</center>"
 	).arg(qApp->applicationVersion()));
 }
@@ -484,6 +499,10 @@ void Window::themeSelected(const Theme& theme) {
 /*****************************************************************************/
 
 void Window::updateWordCount(int position, int removed, int added) {
+	if (added == removed) {
+		return;
+	}
+
 	QTextBlock begin = m_text->document()->findBlock(position - removed);
 	if (!begin.isValid()) {
 		begin = m_text->document()->begin();
@@ -498,10 +517,9 @@ void Window::updateWordCount(int position, int removed, int added) {
 		}
 	}
 
-	int words = calculateWordCount();
-	m_current_wordcount += (words - m_wordcount);
-	m_wordcount = words;
-	m_wordcount_label->setText(words != 1 ? tr("%L1 words").arg(words) : tr("1 word"));
+	int words = m_wordcount;
+	calculateWordCount();
+	m_current_wordcount += (m_wordcount - words);
 
 	int msecs = m_time.restart();
 	if (msecs < 30000) {
@@ -519,18 +537,18 @@ void Window::updateClock() {
 
 /*****************************************************************************/
 
-int Window::calculateWordCount() {
-	int words = 0;
+void Window::calculateWordCount() {
+	m_wordcount = 0;
 	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 		if (i.userData()) {
-			words += static_cast<WordCountData*>(i.userData())->count();
+			m_wordcount += static_cast<WordCountData*>(i.userData())->count();
 		} else {
 			WordCountData* data = new WordCountData;
-			words += data->update(i.text());
+			m_wordcount += data->update(i.text());
 			i.setUserData(data);
 		}
 	}
-	return words;
+	m_wordcount_label->setText(m_wordcount != 1 ? tr("%L1 words").arg(m_wordcount) : tr("1 word"));
 }
 
 /*****************************************************************************/
@@ -545,6 +563,7 @@ void Window::loadTheme(const Theme& theme) {
 	p.setColor(QPalette::Highlight, theme.textColor());
 	p.setColor(QPalette::HighlightedText, theme.foregroundColor());
 	m_text->setPalette(p);
+	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update background
 	m_background = QImage();
@@ -589,6 +608,8 @@ void Window::loadPreferences(const Preferences& preferences) {
 		disconnect(m_text, SIGNAL(timeout()), this, SLOT(saveClicked()));
 	}
 	m_auto_append = preferences.autoAppend();
+
+	m_highlighter->setEnabled(preferences.highlightMisspelled());
 }
 
 /*****************************************************************************/

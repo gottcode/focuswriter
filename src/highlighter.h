@@ -17,58 +17,42 @@
  *
  ***********************************************************************/
 
-#ifndef THEME_DIALOG_H
-#define THEME_DIALOG_H
+#ifndef HIGHLIGHTER_H
+#define HIGHLIGHTER_H
 
-#include <QDialog>
-class QComboBox;
-class QFontComboBox;
-class QFrame;
-class QLabel;
-class QLineEdit;
-class QPushButton;
-class QSpinBox;
-class ColorButton;
-class ImageButton;
-class Theme;
+#include <QSyntaxHighlighter>
+#include <QTextCursor>
+class QAction;
+class QPlainTextEdit;
+class Dictionary;
 
-class ThemeDialog : public QDialog {
+class Highlighter : public QSyntaxHighlighter {
 	Q_OBJECT
+
 public:
-	ThemeDialog(Theme& theme, QWidget* parent = 0);
+    Highlighter(QPlainTextEdit* text);
 
-	static void createPreview(const QString& name);
+	bool enabled();
+	void setEnabled(bool enabled);
+	void setMisspelledColor(const QColor& color);
 
-public slots:
-	virtual void accept();
+	virtual bool eventFilter(QObject* watched, QEvent* event);
+	virtual void highlightBlock(const QString& text);
 
 private slots:
-	void checkNameAvailable();
-	void renderPreview();
+	void suggestion(QAction* action);
 
 private:
-	void savePreview();
+	Dictionary* m_dictionary;
+	QPlainTextEdit* m_text;
+	QTextCursor m_cursor;
+	QTextCursor m_start_cursor;
+	bool m_enabled;
+	QColor m_misspelled;
+	QString m_word;
 
-private:
-	Theme& m_theme;
-
-	QLineEdit* m_name;
-	QPushButton* m_ok;
-
-	QLabel* m_preview;
-
-	QComboBox* m_background_type;
-	ColorButton* m_background_color;
-	ImageButton* m_background_image;
-
-	ColorButton* m_foreground_color;
-	QSpinBox* m_foreground_width;
-	QSpinBox* m_foreground_opacity;
-
-	ColorButton* m_text_color;
-	QFontComboBox* m_font_names;
-	QComboBox* m_font_sizes;
-	ColorButton* m_misspelled_color;
+	QAction* m_add_action;
+	QAction* m_check_action;
 };
 
 #endif

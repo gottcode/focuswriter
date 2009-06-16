@@ -17,58 +17,54 @@
  *
  ***********************************************************************/
 
-#ifndef THEME_DIALOG_H
-#define THEME_DIALOG_H
+#ifndef SPELL_H
+#define SPELL_H
 
 #include <QDialog>
-class QComboBox;
-class QFontComboBox;
-class QFrame;
-class QLabel;
+#include <QHash>
+#include <QTextCursor>
+class QAction;
 class QLineEdit;
-class QPushButton;
-class QSpinBox;
-class ColorButton;
-class ImageButton;
-class Theme;
+class QListWidget;
+class QListWidgetItem;
+class QPlainTextEdit;
+class QTextEdit;
+class Dictionary;
 
-class ThemeDialog : public QDialog {
+class SpellChecker : public QDialog {
 	Q_OBJECT
-public:
-	ThemeDialog(Theme& theme, QWidget* parent = 0);
 
-	static void createPreview(const QString& name);
+public:
+	static void checkDocument(QPlainTextEdit* document);
 
 public slots:
-	virtual void accept();
+	virtual void reject();
 
 private slots:
-	void checkNameAvailable();
-	void renderPreview();
+	void suggestionChanged(QListWidgetItem* suggestion);
+	void add();
+	void ignore();
+	void ignoreAll();
+	void change();
+	void changeAll();
 
 private:
-	void savePreview();
+	SpellChecker(QPlainTextEdit* document);
+	void check();
 
 private:
-	Theme& m_theme;
+	Dictionary* m_dictionary;
 
-	QLineEdit* m_name;
-	QPushButton* m_ok;
+	QPlainTextEdit* m_document;
+	QTextEdit* m_context;
+	QLineEdit* m_suggestion;
+	QListWidget* m_suggestions;
+	QTextCursor m_cursor;
+	QTextCursor m_start_cursor;
 
-	QLabel* m_preview;
-
-	QComboBox* m_background_type;
-	ColorButton* m_background_color;
-	ImageButton* m_background_image;
-
-	ColorButton* m_foreground_color;
-	QSpinBox* m_foreground_width;
-	QSpinBox* m_foreground_opacity;
-
-	ColorButton* m_text_color;
-	QFontComboBox* m_font_names;
-	QComboBox* m_font_sizes;
-	ColorButton* m_misspelled_color;
+	QString m_word;
+	QStringList m_ignored;
+	QHash<QString, QString> m_replaced;
 };
 
 #endif
