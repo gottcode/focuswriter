@@ -21,7 +21,6 @@
 #define SPELL_H
 
 #include <QDialog>
-#include <QHash>
 #include <QTextCursor>
 class QAction;
 class QLineEdit;
@@ -64,7 +63,6 @@ private:
 
 	QString m_word;
 	QStringList m_ignored;
-	QHash<QString, QString> m_replaced;
 };
 
 #endif

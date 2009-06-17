@@ -91,8 +91,19 @@ void SpellChecker::change() {
 /*****************************************************************************/
 
 void SpellChecker::changeAll() {
-	m_replaced.insert(m_word, m_suggestion->text());
-	m_cursor.insertText(m_suggestion->text());
+	QString replacement = m_suggestion->text();
+
+	QTextCursor cursor = m_cursor;
+	cursor.movePosition(QTextCursor::Start);
+	forever {
+		cursor = m_document->document()->find(m_word, cursor, QTextDocument::FindCaseSensitively | QTextDocument::FindWholeWords);
+		if (!cursor.isNull()) {
+			cursor.insertText(replacement);
+		} else {
+			break;
+		}
+	}
+
 	check();
 }
 
@@ -192,10 +203,7 @@ void SpellChecker::check() {
 		m_cursor.setPosition(m_cursor.position() + word.length(), QTextCursor::KeepAnchor);
 		m_word = m_cursor.selectedText();
 
-		QString replacement = m_replaced.value(m_word);
-		if (!replacement.isEmpty()) {
-			m_cursor.insertText(replacement);
-		} else if (!m_ignored.contains(m_word)) {
+		if (!m_ignored.contains(m_word)) {
 			wait_dialog.close();
 			setEnabled(true);
 

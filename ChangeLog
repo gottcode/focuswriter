@@ -1,3 +1,6 @@
+2009-06-17 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Changing all misspelled words didn't start at beginning.
+
 2009-06-16 Graeme Gott <graeme@gottcode.org>
 	* Add spell checking.
 
