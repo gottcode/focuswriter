@@ -23,29 +23,6 @@
 #include <QObject>
 #include <QStringList>
 
-class Word {
-public:
-	Word(int index, int length)
-	: m_index(index), m_length(length) {
-	}
-
-	int index() const {
-		return m_index;
-	}
-
-	int length() const {
-		return m_length;
-	}
-
-	bool operator==(const Word& word) const {
-		return (m_index == word.m_index && m_length == word.m_length);
-	}
-
-private:
-	int m_index;
-	int m_length;
-};
-
 class Dictionary : public QObject {
 	Q_OBJECT
 
@@ -56,7 +33,7 @@ public:
 	~Dictionary();
 
 	void add(const QString& word);
-	QList<Word> check(const QString& string, int start_at = 0) const;
+	QStringRef check(const QString& string, int start_at = 0) const;
 	QStringList suggestions(const QString& word) const;
 
 	QStringList availableLanguages();

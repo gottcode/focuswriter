@@ -86,35 +86,74 @@ void Dictionary::add(const QString& word) {
 
 /*****************************************************************************/
 
-QList<Word> Dictionary::check(const QString& string, int start_at) const {
-	QList<Word> result;
+QStringRef Dictionary::check(const QString& string, int start_at) const {
 	if (!f_dictionary) {
-		return result;
+		return QStringRef();
 	}
 
-	QRegExp exp("(\\w['\\x2019\\w]+\\w)");
+	int index = -1;
 	int length = 0;
-	while ((start_at = exp.indexIn(string, start_at + length)) != -1) {
-		length = exp.matchedLength();
-		QString check = string.mid(start_at, length);
+	int chars = 1;
+	bool number = false;
+	bool uppercase = f_ignore_uppercase;
+	bool word = false;
 
-		bool number = false;
-		bool uppercase = f_ignore_uppercase;
-		for (int i = 0; i < length; ++i) {
-			QChar c = check.at(i);
-			if (c.isNumber()) {
+	int count = string.length() - 1;
+	for (int i = start_at; i <= count; ++i) {
+		QChar c = string.at(i);
+		switch (c.category()) {
+			case QChar::Number_DecimalDigit:
+			case QChar::Number_Letter:
+			case QChar::Number_Other:
 				number = true;
-			} else if (c.isLower()) {
+				goto Letter;
+			case QChar::Letter_Lowercase:
 				uppercase = false;
-			}
+				Letter:
+			case QChar::Letter_Uppercase:
+			case QChar::Letter_Titlecase:
+			case QChar::Letter_Modifier:
+			case QChar::Letter_Other:
+			case QChar::Mark_NonSpacing:
+			case QChar::Mark_SpacingCombining:
+			case QChar::Mark_Enclosing:
+				if (index == -1) {
+					index = i;
+					chars = 1;
+					length = 0;
+				}
+				length += chars;
+				chars = 1;
+				break;
+
+			case QChar::Punctuation_FinalQuote:
+			case QChar::Punctuation_Other:
+				if (c == 0x0027 || c == 0x2019) {
+					chars++;
+					break;
+				}
+
+			default:
+				if (index != -1) {
+					word = true;
+				}
+				break;
 		}
 
-		if (!uppercase && !(number && f_ignore_numbers) && !f_dictionary->spell(check.toUtf8().data())) {
-			result.append(Word(start_at, length));
+		if (word || (i == count && index != -1)) {
+			if (!uppercase && !(number && f_ignore_numbers)) {
+				QStringRef check(&string, index, length);
+				if (!f_dictionary->spell(check.toString().toUtf8().data())) {
+					return check;
+				}
+			}
+			index = -1;
+			word = false;
+			number = false;
+			uppercase = f_ignore_uppercase;
 		}
 	}
-
-	return result;
+	return QStringRef();
 }
 
 /*****************************************************************************/

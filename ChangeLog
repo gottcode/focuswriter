@@ -1,3 +1,6 @@
+2009-06-18 Graeme Gott <graeme@gottcode.org>
+	* Speed up spell checking.
+
 2009-06-17 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Changing all misspelled words didn't start at beginning.
 

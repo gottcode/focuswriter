@@ -187,8 +187,8 @@ void SpellChecker::check() {
 
 		// Check current line
 		QTextBlock block = m_cursor.block();
-		QList<Word> words = m_dictionary->check(block.text(), m_cursor.position() - block.position());
-		if (words.isEmpty()) {
+		QStringRef word =  m_dictionary->check(block.text(), m_cursor.position() - block.position());
+		if (word.isNull()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);
 				continue;
@@ -198,8 +198,7 @@ void SpellChecker::check() {
 		}
 
 		// Select misspelled word
-		const Word& word = words.first();
-		m_cursor.setPosition(word.index() + block.position());
+		m_cursor.setPosition(word.position() + block.position());
 		m_cursor.setPosition(m_cursor.position() + word.length(), QTextCursor::KeepAnchor);
 		m_word = m_cursor.selectedText();
 

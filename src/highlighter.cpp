@@ -72,27 +72,27 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event) {
 		m_start_cursor = m_text->cursorForPosition(context_event->pos());
 		QTextBlock block = m_start_cursor.block();
 		QString text = block.text();
-		QList<Word> words = m_dictionary->check(text);
 		int cursor = m_start_cursor.position() - block.position();
-		int i = 0;
-		for (; i < words.count(); ++i) {
-			const Word& word = words.at(i);
-			int delta = cursor - word.index();
+
+		bool under_mouse = false;
+		QStringRef word;
+		while ((word = m_dictionary->check(text, word.position() + word.length())).isNull() == false) {
+			int delta = cursor - word.position();
 			if (delta >= 0 && delta <= word.length()) {
+				under_mouse = true;
 				break;
 			}
 		}
 
-		if (i == words.count()) {
+		if (!under_mouse) {
 			m_text->setTextCursor(m_start_cursor);
 			return false;
 		} else {
 			// Select misspelled word
-			const Word& word = words.at(i);
-			m_word = text.mid(word.index(), word.length());
 			m_cursor = m_start_cursor;
-			m_cursor.setPosition(word.index() + block.position());
-			m_cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, word.length());
+			m_cursor.setPosition(word.position() + block.position());
+			m_cursor.setPosition(m_cursor.position() + word.length(), QTextCursor::KeepAnchor);
+			m_word = m_cursor.selectedText();
 			m_text->setTextCursor(m_cursor);
 
 			// List suggestions in context menu
@@ -131,10 +131,9 @@ void Highlighter::highlightBlock(const QString& text) {
 	QTextCharFormat error;
 	error.setUnderlineColor(m_misspelled);
 	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
-
-	QList<Word> words = m_dictionary->check(text);
-	foreach (const Word& word, words) {
-		setFormat(word.index(), word.length(), error);
+	QStringRef word;
+	while ((word = m_dictionary->check(text, word.position() + word.length())).isNull() == false) {
+		setFormat(word.position(), word.length(), error);
 	}
 }
 
