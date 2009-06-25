@@ -86,6 +86,10 @@ Preferences::Preferences(QWidget* parent)
 	}
 	m_time->setValue(settings.value("Goal/Minutes", 30).toInt());
 	m_wordcount->setValue(settings.value("Goal/Words", 1000).toInt());
+	m_show_characters->setChecked(settings.value("Stats/ShowCharacters", true).toBool());
+	m_show_pages->setChecked(settings.value("Stats/ShowPages", true).toBool());
+	m_show_paragraphs->setChecked(settings.value("Stats/ShowParagraphs", true).toBool());
+	m_show_words->setChecked(settings.value("Stats/ShowWords", true).toBool());
 	m_always_center->setChecked(settings.value("Edit/AlwaysCenter", false).toBool());
 	m_location->setText(settings.value("Save/Location", QDir::currentPath()).toString());
 	m_auto_save->setChecked(settings.value("Save/Auto", true).toBool());
@@ -124,6 +128,30 @@ int Preferences::goalMinutes() const {
 
 int Preferences::goalWords() const {
 	return m_wordcount->value();
+}
+
+/*****************************************************************************/
+
+bool Preferences::showCharacters() const {
+	return m_show_characters->isChecked();
+}
+
+/*****************************************************************************/
+
+bool Preferences::showPages() const {
+	return m_show_pages->isChecked();
+}
+
+/*****************************************************************************/
+
+bool Preferences::showParagraphs() const {
+	return m_show_paragraphs->isChecked();
+}
+
+/*****************************************************************************/
+
+bool Preferences::showWords() const {
+	return m_show_words->isChecked();
 }
 
 /*****************************************************************************/
@@ -185,6 +213,10 @@ void Preferences::accept() {
 	settings.setValue("Goal/Type", goalType());
 	settings.setValue("Goal/Minutes", goalMinutes());
 	settings.setValue("Goal/Words", goalWords());
+	settings.setValue("Stats/ShowCharacters", showCharacters());
+	settings.setValue("Stats/ShowPages", showPages());
+	settings.setValue("Stats/ShowParagraphs", showParagraphs());
+	settings.setValue("Stats/ShowWords", showWords());
 	settings.setValue("Edit/AlwaysCenter", alwaysCenter());
 	settings.setValue("Save/Auto", autoSave());
 	settings.setValue("Save/Append", autoAppend());
@@ -439,6 +471,20 @@ QWidget* Preferences::initGeneralTab() {
 	goals_layout->addLayout(time_layout);
 	goals_layout->addLayout(wordcount_layout);
 
+	// Create statistics options
+	QGroupBox* stats_group = new QGroupBox(tr("Statistics"), tab);
+
+	m_show_characters = new QCheckBox(tr("Show character count"), stats_group);
+	m_show_pages = new QCheckBox(tr("Show page count"), stats_group);
+	m_show_paragraphs = new QCheckBox(tr("Show paragraph count"), stats_group);
+	m_show_words = new QCheckBox(tr("Show word count"), stats_group);
+
+	QVBoxLayout* stats_layout = new QVBoxLayout(stats_group);
+	stats_layout->addWidget(m_show_words);
+	stats_layout->addWidget(m_show_pages);
+	stats_layout->addWidget(m_show_paragraphs);
+	stats_layout->addWidget(m_show_characters);
+
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
@@ -465,6 +511,7 @@ QWidget* Preferences::initGeneralTab() {
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
 	layout->addWidget(goals_group);
+	layout->addWidget(stats_group);
 	layout->addWidget(edit_group);
 	layout->addWidget(save_group);
 	layout->addStretch();
@@ -554,7 +601,6 @@ QWidget* Preferences::initSpellingTab() {
 	layout->addWidget(general_group);
 	layout->addWidget(languages_group);
 	layout->addWidget(personal_dictionary_group);
-	layout->addStretch();
 
 	return tab;
 }

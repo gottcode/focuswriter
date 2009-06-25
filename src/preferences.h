@@ -38,6 +38,10 @@ public:
 	int goalType() const;
 	int goalMinutes() const;
 	int goalWords() const;
+	bool showCharacters() const;
+	bool showPages() const;
+	bool showParagraphs() const;
+	bool showWords() const;
 	bool alwaysCenter() const;
 	QString saveLocation() const;
 	bool autoSave() const;
@@ -71,6 +75,10 @@ private:
 	QRadioButton* m_option_wordcount;
 	QSpinBox* m_time;
 	QSpinBox* m_wordcount;
+	QCheckBox* m_show_characters;
+	QCheckBox* m_show_pages;
+	QCheckBox* m_show_paragraphs;
+	QCheckBox* m_show_words;
 	QCheckBox* m_always_center;
 	QPushButton* m_location;
 	QCheckBox* m_auto_save;

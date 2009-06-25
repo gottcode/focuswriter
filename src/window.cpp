@@ -49,6 +49,8 @@
 #include <QTimer>
 #include <QToolBar>
 
+#include <cmath>
+
 /*****************************************************************************/
 
 namespace {
@@ -61,24 +63,55 @@ namespace {
 		QObject::connect(shortcut, SIGNAL(activated()), action, SLOT(trigger()));
 	}
 
-	// Text block word count
-	class WordCountData : public QTextBlockUserData {
+	// Text block statistics
+	class BlockStats : public QTextBlockUserData {
 	public:
-		WordCountData() : m_words(0) {
+		BlockStats(const QString& text) : m_characters(0), m_spaces(0), m_words(0) {
+			update(text);
 		}
 
-		int count() const {
+		bool isEmpty() const {
+			return m_words == 0;
+		}
+
+		int characterCount() const {
+			return m_characters;
+		}
+
+		int spaceCount() const {
+			return m_spaces;
+		}
+
+		int wordCount() const {
 			return m_words;
 		}
 
-		int update(const QString& text) {
-			m_words = text.split(QRegExp("\\s+"), QString::SkipEmptyParts).count();
-			return m_words;
-		}
+		void update(const QString& text);
 
 	private:
+		int m_characters;
+		int m_spaces;
 		int m_words;
 	};
+
+	void BlockStats::update(const QString& text) {
+		m_characters = text.length();
+		m_spaces = 0;
+		m_words = 0;
+		int index = -1;
+		for (int i = 0; i < m_characters; ++i) {
+			const QChar& c = text[i];
+			if (c.isLetterOrNumber()) {
+				if (index == -1) {
+					index = i;
+					m_words++;
+				}
+			} else if (c != 0x0027 && c != 0x2019) {
+				index = -1;
+				m_spaces += c.isSpace();
+			}
+		}
+	}
 }
 
 /*****************************************************************************/
@@ -104,16 +137,12 @@ Window::Window(int& current_wordcount, int& current_time)
 	m_details->setVisible(false);
 
 	m_filename_label = new QLabel(m_details);
-	m_filename_label->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-
-	m_wordcount_label = new QLabel(tr("0 words"), m_details);
-	m_wordcount_label->setAlignment(Qt::AlignCenter);
-
+	m_wordcount_label = new QLabel(tr("Words: 0"), m_details);
+	m_page_label = new QLabel(tr("Pages: 0"), m_details);
+	m_paragraph_label = new QLabel(tr("Paragraphs: 0"), m_details);
+	m_character_label = new QLabel(tr("Characters: 0"), m_details);
 	m_progress_label = new QLabel(tr("0% of daily goal"), m_details);
-	m_progress_label->setAlignment(Qt::AlignCenter);
-
 	m_clock_label = new QLabel(m_details);
-	m_clock_label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	updateClock();
 
 	// Set up clock
@@ -205,11 +234,16 @@ Window::Window(int& current_wordcount, int& current_time)
 
 	// Lay out details
 	QHBoxLayout* details_layout = new QHBoxLayout(m_details);
-	details_layout->setSpacing(12);
+	details_layout->setSpacing(25);
 	details_layout->setMargin(6);
 	details_layout->addWidget(m_filename_label);
 	details_layout->addWidget(m_wordcount_label);
+	details_layout->addWidget(m_page_label);
+	details_layout->addWidget(m_paragraph_label);
+	details_layout->addWidget(m_character_label);
+	details_layout->addStretch();
 	details_layout->addWidget(m_progress_label);
+	details_layout->addStretch();
 	details_layout->addWidget(m_clock_label);
 
 	// Lay out window
@@ -513,7 +547,7 @@ void Window::updateWordCount(int position, int removed, int added) {
 	}
 	for (QTextBlock i = begin; i != end; i = i.next()) {
 		if (i.userData()) {
-			static_cast<WordCountData*>(i.userData())->update(i.text());
+			static_cast<BlockStats*>(i.userData())->update(i.text());
 		}
 	}
 
@@ -538,17 +572,24 @@ void Window::updateClock() {
 /*****************************************************************************/
 
 void Window::calculateWordCount() {
+	int character_count = 0;
+	int paragraph_count = 0;
+	int space_count = 0;
 	m_wordcount = 0;
 	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
-		if (i.userData()) {
-			m_wordcount += static_cast<WordCountData*>(i.userData())->count();
-		} else {
-			WordCountData* data = new WordCountData;
-			m_wordcount += data->update(i.text());
-			i.setUserData(data);
+		if (!i.userData()) {
+			i.setUserData(new BlockStats(i.text()));
 		}
+		BlockStats* stats = static_cast<BlockStats*>(i.userData());
+		character_count += stats->characterCount();
+		paragraph_count += !stats->isEmpty();
+		space_count += stats->spaceCount();
+		m_wordcount += stats->wordCount();
 	}
-	m_wordcount_label->setText(m_wordcount != 1 ? tr("%L1 words").arg(m_wordcount) : tr("1 word"));
+	m_character_label->setText(tr("Characters: %L1 / %L2").arg(character_count - space_count).arg(character_count));
+	m_page_label->setText(tr("Pages: %L1").arg(std::ceil(m_wordcount / 350.0f)));
+	m_paragraph_label->setText(tr("Paragraphs: %L1").arg(paragraph_count));
+	m_wordcount_label->setText(tr("Words: %L1").arg(m_wordcount));
 }
 
 /*****************************************************************************/
@@ -592,6 +633,10 @@ void Window::loadPreferences(const Preferences& preferences) {
 	m_goal_type = preferences.goalType();
 	m_wordcount_goal = preferences.goalWords();
 	m_time_goal = preferences.goalMinutes();
+	m_character_label->setVisible(preferences.showCharacters());
+	m_page_label->setVisible(preferences.showPages());
+	m_paragraph_label->setVisible(preferences.showParagraphs());
+	m_wordcount_label->setVisible(preferences.showWords());
 	m_progress_label->setVisible(m_goal_type != 0);
 	updateProgress();
 

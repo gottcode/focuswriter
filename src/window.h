@@ -85,6 +85,9 @@ private:
 	QScrollBar* m_scrollbar;
 	QWidget* m_details;
 	QLabel* m_filename_label;
+	QLabel* m_character_label;
+	QLabel* m_page_label;
+	QLabel* m_paragraph_label;
 	QLabel* m_wordcount_label;
 	QLabel* m_progress_label;
 	QLabel* m_clock_label;
