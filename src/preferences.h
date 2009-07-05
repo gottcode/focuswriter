@@ -20,91 +20,77 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QDialog>
-class QCheckBox;
-class QComboBox;
-class QLineEdit;
-class QListWidget;
-class QPushButton;
-class QRadioButton;
-class QSpinBox;
+#include <QStringList>
 class Dictionary;
 
-class Preferences : public QDialog {
-	Q_OBJECT
+class Preferences {
 public:
-	Preferences(QWidget* parent = 0);
+	Preferences();
+	~Preferences();
 
 	int goalType() const;
 	int goalMinutes() const;
 	int goalWords() const;
+	void setGoalType(int goal);
+	void setGoalMinutes(int goal);
+	void setGoalWords(int goal);
+
 	bool showCharacters() const;
 	bool showPages() const;
 	bool showParagraphs() const;
 	bool showWords() const;
+	void setShowCharacters(bool show);
+	void setShowPages(bool show);
+	void setShowParagraphs(bool show);
+	void setShowWords(bool show);
+
 	bool alwaysCenter() const;
+	void setAlwaysCenter(bool center);
+
 	bool autoSave() const;
 	bool autoAppend() const;
+	void setAutoSave(bool save);
+	void setAutoAppend(bool append);
+
 	int toolbarStyle() const;
 	QStringList toolbarActions() const;
+	void setToolbarStyle(int style);
+	void setToolbarActions(const QStringList& actions);
+
 	bool highlightMisspelled() const;
 	bool ignoredWordsWithNumbers() const;
 	bool ignoredUppercaseWords() const;
 	QString language() const;
-
-public slots:
-	virtual void accept();
-	virtual void reject();
-
-private slots:
-	void moveActionUp();
-	void moveActionDown();
-	void addSeparatorAction();
-	void currentActionChanged(int action);
-	void addLanguage();
-	void removeLanguage();
-	void selectedLanguageChanged(int index);
-	void addWord();
-	void removeWord();
-	void selectedWordChanged();
-	void wordEdited();
+	void setHighlightMisspelled(bool highlight);
+	void setIgnoreWordsWithNumbers(bool ignore);
+	void setIgnoreUppercaseWords(bool ignore);
+	void setLanguage(const QString& language);
 
 private:
-	QWidget* initGeneralTab();
-	QWidget* initToolbarTab();
-	QWidget* initSpellingTab();
+	int m_goal_type;
+	int m_goal_minutes;
+	int m_goal_words;
 
-private:
-	QRadioButton* m_option_none;
-	QRadioButton* m_option_time;
-	QRadioButton* m_option_wordcount;
-	QSpinBox* m_time;
-	QSpinBox* m_wordcount;
-	QCheckBox* m_show_characters;
-	QCheckBox* m_show_pages;
-	QCheckBox* m_show_paragraphs;
-	QCheckBox* m_show_words;
-	QCheckBox* m_always_center;
-	QCheckBox* m_auto_save;
-	QCheckBox* m_auto_append;
+	bool m_show_characters;
+	bool m_show_pages;
+	bool m_show_paragraphs;
+	bool m_show_words;
 
-	QComboBox* m_toolbar_style;
-	QListWidget* m_toolbar_actions;
-	QPushButton* m_move_up_button;
-	QPushButton* m_move_down_button;
+	bool m_always_center;
 
+	bool m_auto_save;
+	bool m_auto_append;
+
+	int m_toolbar_style;
+	QStringList m_toolbar_actions;
+
+	bool m_highlight_misspelled;
+	bool m_ignore_uppercase;
+	bool m_ignore_numbers;
+	QString m_language;
 	Dictionary* m_dictionary;
-	QCheckBox* m_highlight_misspelled;
-	QCheckBox* m_ignore_uppercase;
-	QCheckBox* m_ignore_numbers;
-	QComboBox* m_languages;
-	QLineEdit* m_word;
-	QListWidget* m_personal_dictionary;
-	QPushButton* m_add_language_button;
-	QPushButton* m_remove_language_button;
-	QPushButton* m_add_word_button;
-	QPushButton* m_remove_word_button;
-	QStringList m_uninstalled;
+
+	bool m_changed;
 };
 
 #endif

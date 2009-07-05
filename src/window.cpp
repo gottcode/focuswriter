@@ -21,6 +21,7 @@
 
 #include "document.h"
 #include "preferences.h"
+#include "preferences_dialog.h"
 #include "stack.h"
 #include "theme.h"
 #include "theme_manager.h"
@@ -150,7 +151,7 @@ Window::Window()
 	updateProgress();
 
 	// Load settings
-	Preferences preferences(this);
+	Preferences preferences;
 	loadPreferences(preferences);
 	m_documents->themeSelected(Theme(settings.value("ThemeManager/Theme").toString()));
 
@@ -313,8 +314,9 @@ void Window::themeClicked() {
 /*****************************************************************************/
 
 void Window::preferencesClicked() {
-	Preferences preferences(this);
-	if (preferences.exec() == QDialog::Accepted) {
+	Preferences preferences;
+	PreferencesDialog dialog(preferences, this);
+	if (dialog.exec() == QDialog::Accepted) {
 		loadPreferences(preferences);
 	}
 }

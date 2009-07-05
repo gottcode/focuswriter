@@ -148,7 +148,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
 
 	// Load settings
-	Preferences preferences(this);
+	Preferences preferences;
 	loadPreferences(preferences);
 	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
 

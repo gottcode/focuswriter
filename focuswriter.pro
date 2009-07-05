@@ -55,6 +55,7 @@ HEADERS += src/color_button.h \
 	src/image_button.h \
 	src/image_dialog.h \
 	src/preferences.h \
+	src/preferences_dialog.h \
 	src/spell_checker.h \
 	src/stack.h \
 	src/theme.h \
@@ -73,6 +74,7 @@ SOURCES += src/color_button.cpp \
 	src/image_dialog.cpp \
 	src/main.cpp \
 	src/preferences.cpp \
+	src/preferences_dialog.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/theme.cpp \
