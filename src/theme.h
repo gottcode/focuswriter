@@ -34,7 +34,6 @@ public:
 	static QString path();
 	static QString filePath(const QString& theme);
 	static QString iconPath(const QString& theme);
-	static QString backgroundPath(const QString& theme);
 	static void setPath(const QString& path);
 
 	QString name() const;

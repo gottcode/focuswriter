@@ -20,28 +20,20 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <QLabel>
-#include <QTime>
+#include <QHash>
+#include <QMainWindow>
 class QAction;
-class QGridLayout;
-class QScrollBar;
-class QPlainTextEdit;
-class QTextBlock;
-class QTimer;
+class QLabel;
+class QTabBar;
 class QToolBar;
-class FindDialog;
-class Highlighter;
+class Document;
 class Preferences;
-class Theme;
+class Stack;
 
-class Window : public QLabel {
+class Window : public QMainWindow {
 	Q_OBJECT
 public:
-	Window(int& current_wordcount, int& current_time);
-
-	void open(const QString& filename);
-
-	virtual bool eventFilter(QObject* watched, QEvent* event);
+	Window();
 
 protected:
 	virtual bool event(QEvent* event);
@@ -49,63 +41,58 @@ protected:
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
-	void newClicked();
-	void openClicked();
-	void saveClicked();
-	void renameClicked();
-	void printClicked();
-	void checkSpellingClicked();
+	void newDocument();
+	void openDocument();
+	void renameDocument();
+	void saveAllDocuments();
+	void closeDocument();
+	void toggleFullscreen();
+	void toggleToolbar(bool visible);
 	void themeClicked();
 	void preferencesClicked();
 	void aboutClicked();
-	void setFullscreen(bool fullscreen);
-	void hideMouse();
-	void themeSelected(const Theme& theme);
-	void updateWordCount(int position, int removed, int added);
+	void tabClicked(int index);
+	void tabMoved(int from, int to);
+	void tabClosed(int index);
 	void updateClock();
-
-private:
-	void calculateWordCount();
-	void loadTheme(const Theme& theme);
-	void loadPreferences(const Preferences& preferences);
-	void updateBackground();
+	void updateDetails();
 	void updateProgress();
+	void updateSave();
 
 private:
-	QString m_filename;
-	QImage m_background;
-	QString m_background_path;
-	QString m_background_cached;
-	int m_background_position;
+	void addDocument(Document* document);
+	bool saveDocument(int index);
+	void loadPreferences(const Preferences& preferences);
+	void updateMargin();
+	void updateTab(int index);
+	void initMenuBar();
+	void initToolBar();
+
+private:
+	QWidget* m_header;
+	QMenuBar* m_menubar;
 	QToolBar* m_toolbar;
-	QAction* m_fullscreen_action;
-	FindDialog* m_find_dialog;
-	QPlainTextEdit* m_text;
-	Highlighter* m_highlighter;
-	QScrollBar* m_scrollbar;
-	QWidget* m_details;
-	QLabel* m_filename_label;
+	QHash<QString, QAction*> m_actions;
+
+	Stack* m_documents;
+	QTabBar* m_tabs;
+
+	QWidget* m_footer;
 	QLabel* m_character_label;
 	QLabel* m_page_label;
 	QLabel* m_paragraph_label;
 	QLabel* m_wordcount_label;
 	QLabel* m_progress_label;
 	QLabel* m_clock_label;
-	int m_margin;
 	QTimer* m_clock_timer;
-	QTimer* m_hide_timer;
-	bool m_auto_save;
-	bool m_auto_append;
-	bool m_loaded;
 
-	// Daily progress
-	int m_wordcount;
-	int& m_current_wordcount;
-	int m_wordcount_goal;
-	QTime m_time;
-	int& m_current_time;
-	int m_time_goal;
+	bool m_fullscreen;
+	bool m_auto_save;
 	int m_goal_type;
+	int m_time_goal;
+	int m_wordcount_goal;
+	int m_current_time;
+	int m_current_wordcount;
 };
 
 #endif

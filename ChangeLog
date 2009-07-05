@@ -1,3 +1,20 @@
+2009-07-04 Graeme Gott <graeme@gottcode.org>
+	* Improve document saving.
+
+2009-07-01 Graeme Gott <graeme@gottcode.org>
+	* Add menubar.
+	* Add toolbar customization.
+
+2009-06-29 Graeme Gott <graeme@gottcode.org>
+	* Add unsaved changes indicator.
+
+2009-06-28 Graeme Gott <graeme@gottcode.org>
+	* Move background loading to separate thread.
+
+2009-06-27 Graeme Gott <graeme@gottcode.org>
+	* Add document tabs.
+	* Store open documents across runs.
+
 2009-06-25 Graeme Gott <graeme@gottcode.org>
 	* Add document statistics.
 

@@ -101,12 +101,6 @@ QString Theme::iconPath(const QString& theme) {
 
 /*****************************************************************************/
 
-QString Theme::backgroundPath(const QString& theme) {
-	return path() + "/" + theme + "-background.png";
-}
-
-/*****************************************************************************/
-
 void Theme::setPath(const QString& path) {
 	m_path = path;
 }

@@ -49,12 +49,14 @@ isEmpty(USE_SYSTEM_HUNSPELL) {
 
 HEADERS += src/color_button.h \
 	src/dictionary.h \
+	src/document.h \
 	src/find_dialog.h \
 	src/highlighter.h \
 	src/image_button.h \
 	src/image_dialog.h \
 	src/preferences.h \
 	src/spell_checker.h \
+	src/stack.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
@@ -64,6 +66,7 @@ HEADERS += src/color_button.h \
 
 SOURCES += src/color_button.cpp \
 	src/dictionary.cpp \
+	src/document.cpp \
 	src/find_dialog.cpp \
 	src/highlighter.cpp \
 	src/image_button.cpp \
@@ -71,6 +74,7 @@ SOURCES += src/color_button.cpp \
 	src/main.cpp \
 	src/preferences.cpp \
 	src/spell_checker.cpp \
+	src/stack.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \

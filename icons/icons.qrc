@@ -1,19 +1,50 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 	<file>focuswriter.png</file>
-	<file>application-exit.png</file>
-	<file>document-new.png</file>
-	<file>document-open.png</file>
-	<file>document-print.png</file>
-	<file>document-save.png</file>
-	<file>document-save-as.png</file>
-	<file>edit-find.png</file>
-	<file>help-about.png</file>
-	<file>preferences-desktop-color.png</file>
-	<file>preferences-other.png</file>
 	<file>shadow.png</file>
-	<file>tools-check-spelling.png</file>
-	<file>view-fullscreen.png</file>
-	<file>window-close.png</file>
+
+	<file>oxygen/16x16/application-exit.png</file>
+	<file>oxygen/16x16/document-new.png</file>
+	<file>oxygen/16x16/document-open.png</file>
+	<file>oxygen/16x16/document-print.png</file>
+	<file>oxygen/16x16/document-save.png</file>
+	<file>oxygen/16x16/document-save-all.png</file>
+	<file>oxygen/16x16/document-save-as.png</file>
+	<file>oxygen/16x16/edit-copy.png</file>
+	<file>oxygen/16x16/edit-cut.png</file>
+	<file>oxygen/16x16/edit-find.png</file>
+	<file>oxygen/16x16/edit-paste.png</file>
+	<file>oxygen/16x16/edit-redo.png</file>
+	<file>oxygen/16x16/edit-rename.png</file>
+	<file>oxygen/16x16/edit-select-all.png</file>
+	<file>oxygen/16x16/edit-undo.png</file>
+	<file>oxygen/16x16/format-fill-color.png</file>
+	<file>oxygen/16x16/help-about.png</file>
+	<file>oxygen/16x16/preferences-other.png</file>
+	<file>oxygen/16x16/tools-check-spelling.png</file>
+	<file>oxygen/16x16/view-fullscreen.png</file>
+	<file>oxygen/16x16/window-close.png</file>
+
+	<file>oxygen/22x22/application-exit.png</file>
+	<file>oxygen/22x22/document-new.png</file>
+	<file>oxygen/22x22/document-open.png</file>
+	<file>oxygen/22x22/document-print.png</file>
+	<file>oxygen/22x22/document-save.png</file>
+	<file>oxygen/22x22/document-save-all.png</file>
+	<file>oxygen/22x22/document-save-as.png</file>
+	<file>oxygen/22x22/edit-copy.png</file>
+	<file>oxygen/22x22/edit-cut.png</file>
+	<file>oxygen/22x22/edit-find.png</file>
+	<file>oxygen/22x22/edit-paste.png</file>
+	<file>oxygen/22x22/edit-redo.png</file>
+	<file>oxygen/22x22/edit-rename.png</file>
+	<file>oxygen/22x22/edit-select-all.png</file>
+	<file>oxygen/22x22/edit-undo.png</file>
+	<file>oxygen/22x22/format-fill-color.png</file>
+	<file>oxygen/22x22/help-about.png</file>
+	<file>oxygen/22x22/preferences-other.png</file>
+	<file>oxygen/22x22/tools-check-spelling.png</file>
+	<file>oxygen/22x22/view-fullscreen.png</file>
+	<file>oxygen/22x22/window-close.png</file>
 </qresource>
 </RCC>

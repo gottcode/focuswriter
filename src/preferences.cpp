@@ -21,6 +21,7 @@
 
 #include "dictionary.h"
 
+#include <QAction>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDialogButtonBox>
@@ -61,6 +62,7 @@ Preferences::Preferences(QWidget* parent)
 
 	QTabWidget* tabs = new QTabWidget(this);
 	tabs->addTab(initGeneralTab(), tr("General"));
+	tabs->addTab(initToolbarTab(), tr("Toolbar"));
 	tabs->addTab(initSpellingTab(), tr("Spell Checking"));
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -91,9 +93,46 @@ Preferences::Preferences(QWidget* parent)
 	m_show_paragraphs->setChecked(settings.value("Stats/ShowParagraphs", true).toBool());
 	m_show_words->setChecked(settings.value("Stats/ShowWords", true).toBool());
 	m_always_center->setChecked(settings.value("Edit/AlwaysCenter", false).toBool());
-	m_location->setText(settings.value("Save/Location", QDir::currentPath()).toString());
 	m_auto_save->setChecked(settings.value("Save/Auto", true).toBool());
 	m_auto_append->setChecked(settings.value("Save/Append", true).toBool());
+
+	int style = m_toolbar_style->findData(settings.value("Toolbar/Style", Qt::ToolButtonTextUnderIcon).toInt());
+	if (style == -1) {
+		style = m_toolbar_style->findData(Qt::ToolButtonTextUnderIcon);
+	}
+	m_toolbar_style->setCurrentIndex(style);
+	QStringList actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find";
+	actions = settings.value("Toolbar/Actions", actions).toStringList();
+	int pos = 0;
+	foreach (const QString& action, actions) {
+		QString text = action;
+		bool checked = !text.startsWith("^");
+		if (!checked) {
+			text.remove(0, 1);
+		}
+
+		QListWidgetItem* item = 0;
+		if (text != "|") {
+			int count = m_toolbar_actions->count();
+			for (int i = pos; i < count; ++i) {
+				if (m_toolbar_actions->item(i)->data(Qt::UserRole).toString() == text) {
+					item = m_toolbar_actions->takeItem(i);
+					break;
+				}
+			}
+		} else if (checked) {
+			item = new QListWidgetItem(QString(20, QChar('-')));
+			item->setData(Qt::UserRole, "|");
+		}
+
+		if (item != 0) {
+			item->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
+			m_toolbar_actions->insertItem(pos, item);
+			pos++;
+		}
+	}
+	m_toolbar_actions->setCurrentRow(0);
+
 	m_highlight_misspelled->setChecked(settings.value("Spelling/HighlightMisspelled", true).toBool());
 	m_ignore_numbers->setChecked(settings.value("Spelling/IgnoreNumbers", true).toBool());
 	m_ignore_uppercase->setChecked(settings.value("Spelling/IgnoreUppercase", true).toBool());
@@ -162,12 +201,6 @@ bool Preferences::alwaysCenter() const {
 
 /*****************************************************************************/
 
-QString Preferences::saveLocation() const {
-	return m_location->text();
-}
-
-/*****************************************************************************/
-
 bool Preferences::autoSave() const {
 	return m_auto_save->isChecked();
 }
@@ -176,6 +209,27 @@ bool Preferences::autoSave() const {
 
 bool Preferences::autoAppend() const {
 	return m_auto_append->isChecked();
+}
+
+/*****************************************************************************/
+
+int Preferences::toolbarStyle() const {
+	return m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt();
+}
+
+/*****************************************************************************/
+
+QStringList Preferences::toolbarActions() const {
+	QStringList result;
+	int count = m_toolbar_actions->count();
+	for (int i = 0; i < count; ++i) {
+		QListWidgetItem* item = m_toolbar_actions->item(i);
+		QString action = (item->checkState() == Qt::Unchecked ? "^" : "") + item->data(Qt::UserRole).toString();
+		if (action != "^|") {
+			result.append(action);
+		}
+	}
+	return result;
 }
 
 /*****************************************************************************/
@@ -220,8 +274,9 @@ void Preferences::accept() {
 	settings.setValue("Edit/AlwaysCenter", alwaysCenter());
 	settings.setValue("Save/Auto", autoSave());
 	settings.setValue("Save/Append", autoAppend());
-	settings.setValue("Save/Location", m_location->text());
-	QDir::setCurrent(m_location->text());
+
+	settings.setValue("Toolbar/Style", toolbarStyle());
+	settings.setValue("Toolbar/Actions", toolbarActions());
 
 	settings.setValue("Spelling/HighlightMisspelled", highlightMisspelled());
 	settings.setValue("Spelling/IgnoreNumbers", ignoredWordsWithNumbers());
@@ -277,10 +332,41 @@ void Preferences::reject() {
 
 /*****************************************************************************/
 
-void Preferences::changeSaveLocation() {
-	QString location = QFileDialog::getExistingDirectory(this, tr("Find Directory"), m_location->text());
-	if (!location.isEmpty()) {
-		m_location->setText(location);
+void Preferences::moveActionUp() {
+	int from = m_toolbar_actions->currentRow();
+	int to = from - 1;
+	if (from > 0) {
+		m_toolbar_actions->insertItem(to, m_toolbar_actions->takeItem(from));
+		m_toolbar_actions->setCurrentRow(to);
+	}
+}
+
+/*****************************************************************************/
+
+void Preferences::moveActionDown() {
+	int from = m_toolbar_actions->currentRow();
+	int to = from + 1;
+	if (to < m_toolbar_actions->count()) {
+		m_toolbar_actions->insertItem(to, m_toolbar_actions->takeItem(from));
+		m_toolbar_actions->setCurrentRow(to);
+	}
+}
+
+/*****************************************************************************/
+
+void Preferences::addSeparatorAction() {
+	QListWidgetItem* item = new QListWidgetItem(QString(20, QChar('-')));
+	item->setCheckState(Qt::Checked);
+	item->setData(Qt::UserRole, "|");
+	m_toolbar_actions->insertItem(m_toolbar_actions->currentRow(), item);
+}
+
+/*****************************************************************************/
+
+void Preferences::currentActionChanged(int action) {
+	if (action != -1) {
+		m_move_up_button->setEnabled(action > 0);
+		m_move_down_button->setEnabled((action + 1) < m_toolbar_actions->count());
 	}
 }
 
@@ -496,17 +582,12 @@ QWidget* Preferences::initGeneralTab() {
 	// Create save options
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);
 
-	m_location = new QPushButton(save_group);
-	m_location->setAutoDefault(false);
-	connect(m_location, SIGNAL(clicked()), this, SLOT(changeSaveLocation()));
-
 	m_auto_save = new QCheckBox(tr("Automatically save changes"), save_group);
 	m_auto_append = new QCheckBox(tr("Append filename extension"), save_group);
 
-	QFormLayout* save_layout = new QFormLayout(save_group);
-	save_layout->addRow(tr("Location:"), m_location);
-	save_layout->addRow(m_auto_save);
-	save_layout->addRow(m_auto_append);
+	QVBoxLayout* save_layout = new QVBoxLayout(save_group);
+	save_layout->addWidget(m_auto_save);
+	save_layout->addWidget(m_auto_append);
 
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
@@ -515,6 +596,62 @@ QWidget* Preferences::initGeneralTab() {
 	layout->addWidget(edit_group);
 	layout->addWidget(save_group);
 	layout->addStretch();
+
+	return tab;
+}
+
+/*****************************************************************************/
+
+QWidget* Preferences::initToolbarTab() {
+	QWidget* tab = new QWidget(this);
+
+	// Create style options
+	QGroupBox* style_group = new QGroupBox(tr("Style"), tab);
+
+	m_toolbar_style = new QComboBox(style_group);
+	m_toolbar_style->addItem(tr("Icons Only"), Qt::ToolButtonIconOnly);
+	m_toolbar_style->addItem(tr("Text Only"), Qt::ToolButtonTextOnly);
+	m_toolbar_style->addItem(tr("Text Alongside Icons"), Qt::ToolButtonTextBesideIcon);
+	m_toolbar_style->addItem(tr("Text Under Icons"), Qt::ToolButtonTextUnderIcon);
+
+	// Lay out style options
+	QFormLayout* style_layout = new QFormLayout(style_group);
+	style_layout->addRow(tr("Text Position:"), m_toolbar_style);
+
+	// Create action options
+	QGroupBox* actions_group = new QGroupBox(tr("Actions"), tab);
+
+	m_toolbar_actions = new QListWidget(actions_group);
+	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
+	QList<QAction*> actions = parentWidget()->window()->actions();
+	foreach (QAction* action, actions) {
+		QListWidgetItem* item = new QListWidgetItem(action->icon(), action->iconText(), m_toolbar_actions);
+		item->setData(Qt::UserRole, action->data());
+		item->setCheckState(Qt::Unchecked);
+	}
+	m_toolbar_actions->sortItems();
+	connect(m_toolbar_actions, SIGNAL(currentRowChanged(int)), this, SLOT(currentActionChanged(int)));
+
+	m_move_up_button = new QPushButton(tr("Move Up"), actions_group);
+	connect(m_move_up_button, SIGNAL(clicked()), this, SLOT(moveActionUp()));
+	m_move_down_button = new QPushButton(tr("Move Down"), actions_group);
+	connect(m_move_down_button, SIGNAL(clicked()), this, SLOT(moveActionDown()));
+	QPushButton* add_separator_button = new QPushButton(tr("Add Separator"), actions_group);
+	connect(add_separator_button, SIGNAL(clicked()), this, SLOT(addSeparatorAction()));
+
+	// Lay out action options
+	QGridLayout* actions_layout = new QGridLayout(actions_group);
+	actions_layout->setRowStretch(0, 1);
+	actions_layout->setRowStretch(4, 1);
+	actions_layout->addWidget(m_toolbar_actions, 0, 0, 5, 1);
+	actions_layout->addWidget(m_move_up_button, 1, 1);
+	actions_layout->addWidget(m_move_down_button, 2, 1);
+	actions_layout->addWidget(add_separator_button, 3, 1);
+
+	// Lay out toolbar tab
+	QVBoxLayout* layout = new QVBoxLayout(tab);
+	layout->addWidget(style_group);
+	layout->addWidget(actions_group);
 
 	return tab;
 }

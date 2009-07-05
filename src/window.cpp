@@ -19,224 +19,101 @@
 
 #include "window.h"
 
-#include "find_dialog.h"
-#include "highlighter.h"
+#include "document.h"
 #include "preferences.h"
-#include "spell_checker.h"
+#include "stack.h"
 #include "theme.h"
 #include "theme_manager.h"
 
 #include <QAction>
 #include <QApplication>
-#include <QFile>
+#include <QCloseEvent>
+#include <QDate>
 #include <QFileDialog>
 #include <QGridLayout>
-#include <QHBoxLayout>
+#include <QIcon>
 #include <QLabel>
+#include <QMenu>
+#include <QMenuBar>
 #include <QMessageBox>
-#include <QMouseEvent>
-#include <QPainter>
-#include <QPrintDialog>
-#include <QPrinter>
-#include <QScrollBar>
-#include <QSettings>
-#include <QShortcut>
 #include <QPlainTextEdit>
-#include <QTextBlock>
-#include <QTextCodec>
-#include <QTextStream>
-#include <QTime>
+#include <QSettings>
+#include <QTabBar>
 #include <QTimer>
 #include <QToolBar>
 
-#include <cmath>
-
 /*****************************************************************************/
 
-namespace {
-	// Window list to share fullscreen status
-	QList<Window*> windows;
-
-	// Make actions work even when toolbar is hidden
-	void addShortcut(QAction* action, const QKeySequence& key) {
-		QShortcut* shortcut = new QShortcut(key, action->parentWidget()->window());
-		QObject::connect(shortcut, SIGNAL(activated()), action, SLOT(trigger()));
-	}
-
-	// Text block statistics
-	class BlockStats : public QTextBlockUserData {
-	public:
-		BlockStats(const QString& text) : m_characters(0), m_spaces(0), m_words(0) {
-			update(text);
-		}
-
-		bool isEmpty() const {
-			return m_words == 0;
-		}
-
-		int characterCount() const {
-			return m_characters;
-		}
-
-		int spaceCount() const {
-			return m_spaces;
-		}
-
-		int wordCount() const {
-			return m_words;
-		}
-
-		void update(const QString& text);
-
-	private:
-		int m_characters;
-		int m_spaces;
-		int m_words;
-	};
-
-	void BlockStats::update(const QString& text) {
-		m_characters = text.length();
-		m_spaces = 0;
-		m_words = 0;
-		int index = -1;
-		for (int i = 0; i < m_characters; ++i) {
-			const QChar& c = text[i];
-			if (c.isLetterOrNumber()) {
-				if (index == -1) {
-					index = i;
-					m_words++;
-				}
-			} else if (c != 0x0027 && c != 0x2019) {
-				index = -1;
-				m_spaces += c.isSpace();
-			}
-		}
-	}
-}
-
-/*****************************************************************************/
-
-Window::Window(int& current_wordcount, int& current_time)
-: m_background_position(0), m_auto_save(false), m_auto_append(true), m_loaded(false), m_wordcount(0), m_current_wordcount(current_wordcount), m_current_time(current_time) {
-	windows.append(this);
-
-	setWindowTitle("FocusWriter");
+Window::Window()
+: m_toolbar(0),
+  m_fullscreen(true),
+  m_auto_save(true),
+  m_goal_type(0),
+  m_time_goal(0),
+  m_wordcount_goal(0),
+  m_current_time(0),
+  m_current_wordcount(0) {
+	setAttribute(Qt::WA_DeleteOnClose);
 	setWindowIcon(QIcon(":/focuswriter.png"));
-	setMouseTracking(true);
-	installEventFilter(this);
 
-	m_hide_timer = new QTimer(this);
-	m_hide_timer->setInterval(5000);
-	m_hide_timer->setSingleShot(true);
-	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(hideMouse()));
+	// Add contents
+	QWidget* contents = new QWidget(this);
+	setCentralWidget(contents);
+	m_documents = new Stack(contents);
+
+	// Set up menubar and toolbar
+	m_header = new QWidget(this);
+	m_header->setAutoFillBackground(true);
+	m_header->setVisible(false);
+	initMenuBar();
+	initToolBar();
+
+	// Lay out header
+	QVBoxLayout* header_layout = new QVBoxLayout(m_header);
+	header_layout->setMargin(0);
+	header_layout->setSpacing(0);
+#ifndef Q_OS_MAC
+	header_layout->addWidget(m_menubar);
+#endif
+	header_layout->addWidget(m_toolbar);
 
 	// Set up details
-	m_details = new QWidget(this);
-	m_details->setPalette(QApplication::palette());
-	m_details->setAutoFillBackground(true);
-	m_details->setVisible(false);
-
-	m_filename_label = new QLabel(m_details);
-	m_wordcount_label = new QLabel(tr("Words: 0"), m_details);
-	m_page_label = new QLabel(tr("Pages: 0"), m_details);
-	m_paragraph_label = new QLabel(tr("Paragraphs: 0"), m_details);
-	m_character_label = new QLabel(tr("Characters: 0"), m_details);
-	m_progress_label = new QLabel(tr("0% of daily goal"), m_details);
-	m_clock_label = new QLabel(m_details);
+	m_footer = new QWidget(this);
+	m_footer->setAutoFillBackground(true);
+	m_footer->setVisible(false);
+	QWidget* details = new QWidget(m_footer);
+	m_wordcount_label = new QLabel(tr("Words: 0"), details);
+	m_page_label = new QLabel(tr("Pages: 0"), details);
+	m_paragraph_label = new QLabel(tr("Paragraphs: 0"), details);
+	m_character_label = new QLabel(tr("Characters: 0"), details);
+	m_progress_label = new QLabel(tr("0% of daily goal"), details);
+	m_clock_label = new QLabel(details);
 	updateClock();
 
 	// Set up clock
 	m_clock_timer = new QTimer(this);
 	m_clock_timer->setInterval(60000);
+	connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(updateClock()));
 	int delay = (60 - QTime::currentTime().second()) * 1000;
 	QTimer::singleShot(delay, m_clock_timer, SLOT(start()));
 	QTimer::singleShot(delay, this, SLOT(updateClock()));
-	connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(updateClock()));
 
-	// Set up text area
-	m_text = new QPlainTextEdit(this);
-	m_text->setCenterOnScroll(true);
-	m_text->setTabStopWidth(50);
-	m_text->setMinimumHeight(500);
-	m_text->setFrameStyle(QFrame::NoFrame);
-	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_text->viewport()->setMouseTracking(true);
-	m_text->viewport()->installEventFilter(this);
-	connect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
-	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-	m_highlighter = new Highlighter(m_text);
-
-	m_scrollbar = m_text->verticalScrollBar();
-	m_scrollbar->setVisible(false);
-
-	// Set up find dialog
-	m_find_dialog = new FindDialog(m_text, this);
-
-	// Set up toolbar
-	m_toolbar = new QToolBar(this);
-	m_toolbar->setPalette(QApplication::palette());
-	m_toolbar->setAutoFillBackground(true);
-	m_toolbar->setIconSize(QSize(22,22));
-	m_toolbar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-	m_toolbar->setPalette(QApplication::palette());
-	m_toolbar->setVisible(false);
-	connect(m_toolbar, SIGNAL(actionTriggered(QAction*)), m_toolbar, SLOT(hide()));
-
-	QAction* action;
-
-	action = m_toolbar->addAction(QIcon(":/document-new.png"), tr("New"), this, SLOT(newClicked()));
-	addShortcut(action, Qt::CTRL + Qt::Key_N);
-
-	action = m_toolbar->addAction(QIcon(":/document-open.png"), tr("Open"), this, SLOT(openClicked()));
-	addShortcut(action, Qt::CTRL + Qt::Key_O);
-
-	action = m_toolbar->addAction(QIcon(":/document-save.png"), tr("Save"), this, SLOT(saveClicked()));
-	addShortcut(action, Qt::CTRL + Qt::Key_S);
-	action->setEnabled(false);
-	connect(m_text, SIGNAL(modificationChanged(bool)), action, SLOT(setEnabled(bool)));
-
-	m_toolbar->addAction(QIcon(":/document-save-as.png"), tr("Rename"), this, SLOT(renameClicked()));
-
-	action = m_toolbar->addAction(QIcon(":/window-close.png"), tr("Close"), this, SLOT(close()));
-	addShortcut(action, Qt::CTRL + Qt::Key_W);
-
-	m_toolbar->addSeparator();
-
-	action = m_toolbar->addAction(QIcon(":/document-print.png"), tr("Print"), this, SLOT(printClicked()));
-	addShortcut(action, Qt::CTRL + Qt::Key_P);
-
-	action = m_toolbar->addAction(QIcon(":/edit-find.png"), tr("Find"), m_find_dialog, SLOT(show()));
-	addShortcut(action, Qt::CTRL + Qt::Key_F);
-
-	action = m_toolbar->addAction(QIcon(":/tools-check-spelling.png"), tr("Check Spelling"), this, SLOT(checkSpellingClicked()));
-	addShortcut(action, Qt::Key_F7);
-
-	m_fullscreen_action = m_toolbar->addAction(QIcon(":/view-fullscreen.png"), tr("Fullscreen"));
-	addShortcut(m_fullscreen_action, Qt::Key_Escape);
-	m_fullscreen_action->setCheckable(true);
-	connect(m_fullscreen_action, SIGNAL(triggered(bool)), this, SLOT(setFullscreen(bool)));
-
-	m_toolbar->addSeparator();
-
-	m_toolbar->addAction(QIcon(":/preferences-desktop-color.png"), tr("Themes"), this, SLOT(themeClicked()));
-
-	m_toolbar->addAction(QIcon(":/preferences-other.png"), tr("Preferences"), this, SLOT(preferencesClicked()));
-
-	m_toolbar->addSeparator();
-
-	m_toolbar->addAction(QIcon(":/help-about.png"), tr("About"), this, SLOT(aboutClicked()));
-
-	m_toolbar->addSeparator();
-
-	action = m_toolbar->addAction(QIcon(":/application-exit.png"), tr("Quit"), qApp, SLOT(closeAllWindows()));
-	addShortcut(action, Qt::CTRL + Qt::Key_Q);
+	// Set up tabs
+	m_tabs = new QTabBar(m_footer);
+	m_tabs->setShape(QTabBar::RoundedSouth);
+	m_tabs->setDocumentMode(true);
+	m_tabs->setExpanding(false);
+	m_tabs->setMovable(true);
+	m_tabs->setTabsClosable(true);
+	m_tabs->setUsesScrollButtons(true);
+	connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabClicked(int)));
+	connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosed(int)));
+	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
 
 	// Lay out details
-	QHBoxLayout* details_layout = new QHBoxLayout(m_details);
+	QHBoxLayout* details_layout = new QHBoxLayout(details);
 	details_layout->setSpacing(25);
 	details_layout->setMargin(6);
-	details_layout->addWidget(m_filename_label);
 	details_layout->addWidget(m_wordcount_label);
 	details_layout->addWidget(m_page_label);
 	details_layout->addWidget(m_paragraph_label);
@@ -246,227 +123,190 @@ Window::Window(int& current_wordcount, int& current_time)
 	details_layout->addStretch();
 	details_layout->addWidget(m_clock_label);
 
+	// Lay out footer
+	QVBoxLayout* footer_layout = new QVBoxLayout(m_footer);
+	footer_layout->setSpacing(0);
+	footer_layout->setMargin(0);
+	footer_layout->addWidget(details);
+	footer_layout->addWidget(m_tabs);
+
 	// Lay out window
-	m_margin = m_toolbar->sizeHint().height();
-	QGridLayout* layout = new QGridLayout(this);
+	QGridLayout* layout = new QGridLayout(contents);
 	layout->setSpacing(0);
 	layout->setMargin(0);
-	layout->setColumnStretch(0, 1);
-	layout->setColumnStretch(2, 1);
-	layout->setColumnMinimumWidth(0, m_margin);
-	layout->setColumnMinimumWidth(2, m_margin);
-	layout->setRowMinimumHeight(0, m_margin);
-	layout->setRowMinimumHeight(2, m_margin);
-	layout->addWidget(m_toolbar, 0, 0, 1, 3);
-	layout->addWidget(m_text, 1, 1);
-	layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
-	layout->addWidget(m_details, 2, 0, 1, 3, Qt::AlignBottom);
+	layout->setRowStretch(1, 1);
+	layout->addWidget(m_documents, 0, 0, 3, 3);
+	layout->addWidget(m_header, 0, 0, 1, 3);
+	layout->addWidget(m_footer, 2, 0, 1, 3);
+
+	// Load current daily progress
+	QSettings settings;
+	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
+		settings.remove("Progress");
+	}
+	settings.setValue("Progress/Date", QDate::currentDate().toString(Qt::ISODate));
+	m_current_wordcount = settings.value("Progress/Words", 0).toInt();
+	m_current_time = settings.value("Progress/Time", 0).toInt();
+	updateProgress();
 
 	// Load settings
 	Preferences preferences(this);
 	loadPreferences(preferences);
-	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
+	m_documents->themeSelected(Theme(settings.value("ThemeManager/Theme").toString()));
 
-	// Load windowed size
-	restoreGeometry(QSettings().value("Window/Geometry").toByteArray());
+	// Restore window geometry
+	restoreGeometry(settings.value("Window/Geometry").toByteArray());
+	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
+	toggleFullscreen();
 
-	// Determine if it should be fullscreen or not
-	bool fullscreen = QSettings().value("Window/Fullscreen", true).toBool();
-	m_fullscreen_action->setChecked(fullscreen);
-	setFullscreen(fullscreen);
-
-	// Enable background loading
-	qApp->processEvents();
-	m_loaded = true;
-	updateBackground();
-}
-
-/*****************************************************************************/
-
-void Window::open(const QString& filename) {
-	QFile file(filename);
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		m_filename = filename;
-		m_filename_label->setText(m_filename.section('/', -1));
-
-		QTextStream stream(&file);
-		stream.setCodec(QTextCodec::codecForName("UTF-8"));
-		disconnect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-		m_text->setPlainText(stream.readAll());
-		m_text->moveCursor(QTextCursor::End);
-		m_text->document()->setModified(false);
-		connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-	}
-	m_text->centerCursor();
-	calculateWordCount();
-}
-
-/*****************************************************************************/
-
-bool Window::eventFilter(QObject* watched, QEvent* event) {
-	if (event->type() == QEvent::MouseMove) {
-		m_text->viewport()->setCursor(Qt::IBeamCursor);
-		m_text->parentWidget()->unsetCursor();
-		if (watched == m_text->viewport() || watched == m_text->parentWidget()) {
-			m_hide_timer->start();
-		}
-		const QPoint& point = mapFromGlobal(static_cast<QMouseEvent*>(event)->globalPos());
-		m_toolbar->setVisible(point.y() <= m_margin);
-		m_details->setVisible(point.y() >= (height() - m_margin));
-		m_scrollbar->setVisible(point.x() >= (width() - m_margin) && !m_toolbar->isVisible() && !m_details->isVisible());
-	} else if (event->type() == QEvent::Wheel) {
-		if (watched == m_text->parentWidget()) {
-			int delta = static_cast<QWheelEvent*>(event)->delta();
-			if ( (delta > 0 && m_scrollbar->value() > m_scrollbar->minimum()) || (delta < 0 && m_scrollbar->value() < m_scrollbar->maximum()) ) {
-				qApp->sendEvent(m_scrollbar, event);
-			}
+	// Open previous documents
+	QStringList files = QApplication::arguments();
+	files.removeFirst();
+	if (files.isEmpty()) {
+		files = settings.value("Save/Current").toStringList();
+		settings.remove("Save/Current");
+		if (files.isEmpty()) {
+			files.append(QString());
 		}
 	}
-	return QWidget::eventFilter(watched, event);
+	foreach (const QString& file, files) {
+		addDocument(new Document(file, m_current_wordcount, m_current_time, this));
+	}
+	m_tabs->setCurrentIndex(settings.value("Save/Active", 0).toInt());
 }
 
 /*****************************************************************************/
 
 bool Window::event(QEvent* event) {
 	if (event->type() == QEvent::WindowBlocked) {
-		m_toolbar->hide();
+		m_header->hide();
 	}
-	return QWidget::event(event);
+	return QMainWindow::event(event);
 }
 
 /*****************************************************************************/
 
 void Window::closeEvent(QCloseEvent* event) {
-	if (m_auto_save) {
-		saveClicked();
-	} else if (m_text->document()->isModified()) {
-		switch (QMessageBox::question(this, tr("Question"), tr("Save changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel)) {
-		case QMessageBox::Save:
-			saveClicked();
-		case QMessageBox::Discard:
-			event->accept();
-			windows.removeAll(this);
-			break;
-		case QMessageBox::Cancel:
-		default:
-			event->ignore();
-			break;
+	QStringList files;
+	int index = m_tabs->currentIndex();
+	for (int i = 0; i < m_documents->count(); ++i) {
+		Document* document = m_documents->document(i);
+		QString filename = document->filename();
+		if (!filename.isEmpty()) {
+			files.append(filename);
 		}
-		return;
-	}
 
-	windows.removeAll(this);
-	QWidget::closeEvent(event);
+		m_tabs->setCurrentIndex(i);
+		if (!saveDocument(i)) {
+			event->ignore();
+			m_tabs->setCurrentIndex(index);
+			return;
+		}
+	}
+	m_tabs->setCurrentIndex(index);
+
+	QSettings settings;
+	settings.setValue("Save/Current", files);
+	settings.setValue("Save/Active", m_tabs->currentIndex());
+
+	event->accept();
+	QMainWindow::closeEvent(event);
 }
 
 /*****************************************************************************/
 
 void Window::resizeEvent(QResizeEvent* event) {
-	if (isActiveWindow() && !isFullScreen()) {
+	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
-	updateBackground();
-	QWidget::resizeEvent(event);
+	QMainWindow::resizeEvent(event);
 }
 
 /*****************************************************************************/
 
-void Window::newClicked() {
-	new Window(m_current_wordcount, m_current_time);
+void Window::newDocument() {
+	addDocument(new Document(QString(), m_current_wordcount, m_current_time, this));
+	m_actions["Rename"]->setEnabled(false);
 }
 
 /*****************************************************************************/
 
-void Window::openClicked() {
-	QString filename = QFileDialog::getOpenFileName(this, QString(), QString(), tr("Plain Text (*.txt);;All Files (*)"));
+void Window::openDocument() {
+	QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), QString(), tr("Plain Text (*.txt);;All Files (*)"));
 	if (!filename.isEmpty()) {
-		Window* window = (m_filename.isEmpty() && !m_text->document()->isModified()) ? this : new Window(m_current_wordcount, m_current_time);
-		window->open(filename);
+		addDocument(new Document(filename, m_current_wordcount, m_current_time, this));
 	}
 }
 
 /*****************************************************************************/
 
-void Window::saveClicked() {
-	// Save progress
-	QSettings settings;
-	settings.setValue("Progress/Words", m_current_wordcount);
-	settings.setValue("Progress/Time", m_current_time);
+void Window::renameDocument() {
+	if (m_documents->currentDocument()->rename()) {
+		updateTab(m_documents->currentIndex());
+	}
+}
 
-	// Don't save unless modified
-	if (!m_text->document()->isModified()) {
+/*****************************************************************************/
+
+void Window::saveAllDocuments() {
+	int index = m_tabs->currentIndex();
+	for (int i = 0; i < m_documents->count(); ++i) {
+		Document* document = m_documents->document(i);
+		if (!document->filename().isEmpty()) {
+			document->save();
+		} else {
+			m_tabs->setCurrentIndex(i);
+			document->saveAs();
+		}
+	}
+	m_tabs->setCurrentIndex(index);
+}
+
+/*****************************************************************************/
+
+void Window::closeDocument() {
+	int index = m_documents->currentIndex();
+	if (!saveDocument(index)) {
 		return;
 	}
-	m_text->document()->setModified(false);
-
-	// Fetch filename of new files
-	if (m_filename.isEmpty()) {
-		int max = 0;
-		QRegExp regex("^Document (\\d+).txt$");
-		foreach (const QString& file, QDir().entryList()) {
-			if (regex.exactMatch(file)) {
-				int val = regex.cap(1).toInt();
-				max = (val > max) ? val : max;
-			}
-		}
-		m_filename = QString("Document %1.txt").arg(++max);
-		m_filename_label->setText(m_filename.section('/', -1));
+	if (m_documents->count() == 1) {
+		newDocument();
 	}
-
-	// Write file to disk
-	QFile file(m_filename);
-	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-		QTextStream stream(&file);
-		stream.setCodec(QTextCodec::codecForName("UTF-8"));
-		stream << m_text->toPlainText();
-	}
-
-	// Store as active file
-	QSettings().setValue("Save/Current", m_filename);
+	m_documents->removeDocument(index);
+	m_tabs->removeTab(index);
 }
 
 /*****************************************************************************/
 
-void Window::renameClicked() {
-	if (m_filename.isEmpty()) {
-		return;
-	}
+void Window::toggleFullscreen() {
+	m_fullscreen = !m_fullscreen;
+	QSettings().setValue("Window/Fullscreen", m_fullscreen);
 
-	QString filename = QFileDialog::getSaveFileName(this, tr("Rename"), m_filename, tr("Plain Text (*.txt);;All Files (*)"));
-	if (!filename.isEmpty()) {
-		if (m_auto_append && !filename.endsWith(".txt")) {
-			filename.append(".txt");
-		}
-		QFile::remove(filename);
-		QFile::rename(m_filename, filename);
-		m_filename = filename;
-		m_filename_label->setText(m_filename.section('/', -1));
+	if (m_fullscreen) {
+		showFullScreen();
+		m_actions["Fullscreen"]->setText(tr("Leave Fullscreen"));
+	} else {
+		showNormal();
+		m_actions["Fullscreen"]->setText(tr("Fullscreen"));
 	}
+	QApplication::processEvents();
+	raise();
+	activateWindow();
 }
 
 /*****************************************************************************/
 
-void Window::printClicked() {
-	QPrinter printer;
-	printer.setPageSize(QPrinter::Letter);
-	printer.setPageMargins(0.5, 0.5, 0.5, 0.5, QPrinter::Inch);
-	QPrintDialog dialog(&printer, this);
-	if (dialog.exec() == QDialog::Accepted) {
-		m_text->print(&printer);
-	}
-}
-
-/*****************************************************************************/
-
-void Window::checkSpellingClicked() {
-	SpellChecker::checkDocument(m_text);
+void Window::toggleToolbar(bool visible) {
+	m_toolbar->setVisible(visible);
+	QSettings().setValue("Toolbar/Shown", visible);
+	updateMargin();
 }
 
 /*****************************************************************************/
 
 void Window::themeClicked() {
 	ThemeManager manager(this);
-	connect(&manager, SIGNAL(themeSelected(const Theme&)), this, SLOT(themeSelected(const Theme&)));
+	connect(&manager, SIGNAL(themeSelected(const Theme&)), m_documents, SLOT(themeSelected(const Theme&)));
 	manager.exec();
 }
 
@@ -475,9 +315,7 @@ void Window::themeClicked() {
 void Window::preferencesClicked() {
 	Preferences preferences(this);
 	if (preferences.exec() == QDialog::Accepted) {
-		foreach (Window* window, windows) {
-			window->loadPreferences(preferences);
-		}
+		loadPreferences(preferences);
 	}
 }
 
@@ -485,82 +323,38 @@ void Window::preferencesClicked() {
 
 void Window::aboutClicked() {
 	QMessageBox::about(this, tr("About FocusWriter"), tr(
-		"<center>"
-		"<big><b>FocusWriter %1</b></big><br/>"
+		"<p><center><big><b>FocusWriter %1</b></big><br/>"
 		"A simple fullscreen word processor<br/>"
 		"<small>Copyright &copy; 2008-2009 Graeme Gott</small><br/>"
-		"<small>Released under the <a href=\"http://www.gnu.org/licenses/gpl.html\">GPL 3</a> license</small><br/><br/>"
-		"Includes <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> 1.2.8 for spell checking<br/>"
-		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small><br/><br/>"
-		"Includes icons from the <a href=\"http://www.oxygen-icons.org/\">Oyxgen</a> icon theme<br/>"
-		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small>"
-		"</center>"
-	).arg(qApp->applicationVersion()));
+		"<small>Released under the <a href=\"http://www.gnu.org/licenses/gpl.html\">GPL 3</a> license</small></center></p>"
+		"<p><center>Includes <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> 1.2.8 for spell checking<br/>"
+		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small></center></p>"
+		"<p><center>Includes icons from the <a href=\"http://www.oxygen-icons.org/\">Oxygen</a> icon theme<br/>"
+		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small></center></p>"
+	).arg(QApplication::applicationVersion()));
 }
 
 /*****************************************************************************/
 
-void Window::setFullscreen(bool fullscreen) {
-	QSettings().setValue("Window/Fullscreen", fullscreen);
-	foreach (Window* window, windows) {
-		if (fullscreen) {
-			window->showFullScreen();
-		} else {
-			window->showNormal();
-		}
-		window->m_fullscreen_action->setChecked(fullscreen);
-	}
+void Window::tabClicked(int index) {
+	m_documents->setCurrentDocument(index);
+	updateDetails();
+	updateSave();
+	m_documents->currentDocument()->text()->setFocus();
 }
 
 /*****************************************************************************/
 
-void Window::hideMouse() {
-	QWidget* widget = QApplication::widgetAt(QCursor::pos());
-	if (widget == m_text->viewport() || widget == m_text->parentWidget()) {
-		m_text->viewport()->setCursor(Qt::BlankCursor);
-		m_text->parentWidget()->setCursor(Qt::BlankCursor);
-	}
+void Window::tabClosed(int index) {
+	m_tabs->setCurrentIndex(index);
+	closeDocument();
 }
 
 /*****************************************************************************/
 
-void Window::themeSelected(const Theme& theme) {
-	foreach (Window* window, windows) {
-		window->loadTheme(theme);
-	}
-}
-
-/*****************************************************************************/
-
-void Window::updateWordCount(int position, int removed, int added) {
-	if (added == removed) {
-		return;
-	}
-
-	QTextBlock begin = m_text->document()->findBlock(position - removed);
-	if (!begin.isValid()) {
-		begin = m_text->document()->begin();
-	}
-	QTextBlock end = m_text->document()->findBlock(position + added);
-	if (end.isValid()) {
-		end = end.next();
-	}
-	for (QTextBlock i = begin; i != end; i = i.next()) {
-		if (i.userData()) {
-			static_cast<BlockStats*>(i.userData())->update(i.text());
-		}
-	}
-
-	int words = m_wordcount;
-	calculateWordCount();
-	m_current_wordcount += (m_wordcount - words);
-
-	int msecs = m_time.restart();
-	if (msecs < 30000) {
-		m_current_time += msecs;
-	}
-
-	updateProgress();
+void Window::tabMoved(int from, int to) {
+	m_documents->moveDocument(from, to);
+	m_documents->setCurrentDocument(m_tabs->currentIndex());
 }
 
 /*****************************************************************************/
@@ -571,134 +365,12 @@ void Window::updateClock() {
 
 /*****************************************************************************/
 
-void Window::calculateWordCount() {
-	int character_count = 0;
-	int paragraph_count = 0;
-	int space_count = 0;
-	m_wordcount = 0;
-	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
-		if (!i.userData()) {
-			i.setUserData(new BlockStats(i.text()));
-		}
-		BlockStats* stats = static_cast<BlockStats*>(i.userData());
-		character_count += stats->characterCount();
-		paragraph_count += !stats->isEmpty();
-		space_count += stats->spaceCount();
-		m_wordcount += stats->wordCount();
-	}
-	m_character_label->setText(tr("Characters: %L1 / %L2").arg(character_count - space_count).arg(character_count));
-	m_page_label->setText(tr("Pages: %L1").arg(std::ceil(m_wordcount / 350.0f)));
-	m_paragraph_label->setText(tr("Paragraphs: %L1").arg(paragraph_count));
-	m_wordcount_label->setText(tr("Words: %L1").arg(m_wordcount));
-}
-
-/*****************************************************************************/
-
-void Window::loadTheme(const Theme& theme) {
-	// Update colors
-	QPalette p = m_text->palette();
-	QColor color = theme.foregroundColor();
-	color.setAlpha(theme.foregroundOpacity() * 2.55f);
-	p.setColor(QPalette::Base, color);
-	p.setColor(QPalette::Text, theme.textColor());
-	p.setColor(QPalette::Highlight, theme.textColor());
-	p.setColor(QPalette::HighlightedText, theme.foregroundColor());
-	m_text->setPalette(p);
-	m_highlighter->setMisspelledColor(theme.misspelledColor());
-
-	// Update background
-	m_background = QImage();
-	m_background_path = theme.backgroundImage();
-	m_background_position = theme.backgroundType();
-	m_background_cached = Theme::backgroundPath(theme.name());
-
-	p = palette();
-	if (m_background_position != 1) {
-		p.setColor(QPalette::Window, theme.backgroundColor().rgb());
-	} else {
-		p.setBrush(QPalette::Window, m_background);
-	}
-	setPalette(p);
-
-	updateBackground();
-
-	// Update text
-	m_text->setFont(theme.textFont());
-	m_text->setFixedWidth(theme.foregroundWidth());
-}
-
-/*****************************************************************************/
-
-void Window::loadPreferences(const Preferences& preferences) {
-	m_goal_type = preferences.goalType();
-	m_wordcount_goal = preferences.goalWords();
-	m_time_goal = preferences.goalMinutes();
-	m_character_label->setVisible(preferences.showCharacters());
-	m_page_label->setVisible(preferences.showPages());
-	m_paragraph_label->setVisible(preferences.showParagraphs());
-	m_wordcount_label->setVisible(preferences.showWords());
-	m_progress_label->setVisible(m_goal_type != 0);
-	updateProgress();
-
-	if (preferences.alwaysCenter()) {
-		connect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
-	} else {
-		disconnect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
-	}
-
-	m_auto_save = preferences.autoSave();
-	if (m_auto_save) {
-		connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(saveClicked()));
-	} else {
-		disconnect(m_text, SIGNAL(timeout()), this, SLOT(saveClicked()));
-	}
-	m_auto_append = preferences.autoAppend();
-
-	m_highlighter->setEnabled(preferences.highlightMisspelled());
-}
-
-/*****************************************************************************/
-
-void Window::updateBackground() {
-	if (!m_loaded) {
-		return;
-	}
-
-	QPixmap pixmap(m_background_cached);
-	if (pixmap.isNull() || pixmap.size() != size()) {
-		pixmap = QPixmap(size());
-		pixmap.fill(this, 0, 0);
-
-		if (m_background.isNull() && !m_background_path.isEmpty()) {
-			m_background.load(m_background_path);
-		}
-
-		QImage background;
-		switch (m_background_position) {
-		case 2:
-			background = m_background;
-			break;
-		case 3:
-			background = m_background.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-			break;
-		case 4:
-			background = m_background.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-			break;
-		case 5:
-			background = m_background.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-			break;
-		default:
-			break;
-		}
-		if (m_background_position > 1) {
-			QPainter painter(&pixmap);
-			painter.drawImage(rect().center() - background.rect().center(), background);
-		}
-
-		pixmap.save(m_background_cached);
-	}
-
-	setPixmap(pixmap);
+void Window::updateDetails() {
+	Document* document = m_documents->currentDocument();
+	m_character_label->setText(tr("Characters: %L1 / %L2").arg(document->characterCount()).arg(document->characterAndSpaceCount()));
+	m_page_label->setText(tr("Pages: %L1").arg(document->pageCount()));
+	m_paragraph_label->setText(tr("Paragraphs: %L1").arg(document->paragraphCount()));
+	m_wordcount_label->setText(tr("Words: %L1").arg(document->wordCount()));
 }
 
 /*****************************************************************************/
@@ -711,6 +383,241 @@ void Window::updateProgress() {
 		progress = (m_current_wordcount * 100) / m_wordcount_goal;
 	}
 	m_progress_label->setText(tr("%1% of daily goal").arg(progress));
+}
+
+/*****************************************************************************/
+
+void Window::updateSave() {
+	m_actions["Save"]->setEnabled(m_documents->currentDocument()->text()->document()->isModified());
+	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->filename().isEmpty());
+	for (int i = 0; i < m_documents->count(); ++i) {
+		updateTab(i);
+	}
+}
+
+/*****************************************************************************/
+
+void Window::addDocument(Document* document) {
+	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
+	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
+	connect(document, SIGNAL(footerVisible(bool)), m_footer, SLOT(setVisible(bool)));
+	connect(document, SIGNAL(headerVisible(bool)), m_header, SLOT(setVisible(bool)));
+	connect(document->text(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
+
+	m_documents->addDocument(document);
+	updateMargin();
+
+	int index = m_tabs->addTab(tr("Untitled"));
+	updateTab(index);
+	m_tabs->setCurrentIndex(index);
+
+	document->text()->centerCursor();
+}
+
+/*****************************************************************************/
+
+bool Window::saveDocument(int index) {
+	Document* document = m_documents->document(index);
+	if (!document->text()->document()->isModified()) {
+		return true;
+	}
+
+	// Auto-save document
+	if (m_auto_save && document->text()->document()->isModified() && !document->filename().isEmpty()) {
+		document->save();
+		return true;
+	}
+
+	// Prompt about saving changes
+	switch (QMessageBox::question(this, tr("Question"), tr("Save changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel)) {
+	case QMessageBox::Save:
+		return document->save();
+	case QMessageBox::Discard:
+		document->text()->document()->setModified(false);
+		return true;
+	case QMessageBox::Cancel:
+	default:
+		return false;
+	}
+}
+
+/*****************************************************************************/
+
+void Window::loadPreferences(const Preferences& preferences) {
+	m_auto_save = preferences.autoSave();
+	if (m_auto_save) {
+		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+	} else {
+		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+	}
+
+	m_character_label->setVisible(preferences.showCharacters());
+	m_page_label->setVisible(preferences.showPages());
+	m_paragraph_label->setVisible(preferences.showParagraphs());
+	m_wordcount_label->setVisible(preferences.showWords());
+	m_progress_label->setVisible(preferences.goalType() != 0);
+
+	m_goal_type = preferences.goalType();
+	m_wordcount_goal = preferences.goalWords();
+	m_time_goal = preferences.goalMinutes();
+	updateProgress();
+
+	m_toolbar->clear();
+	m_toolbar->hide();
+	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(preferences.toolbarStyle()));
+	QStringList actions = preferences.toolbarActions();
+	foreach (const QString action, actions) {
+		if (action == "|") {
+			m_toolbar->addSeparator();
+		} else if (!action.startsWith("^")) {
+			m_toolbar->addAction(m_actions.value(action));
+		}
+	}
+	m_toolbar->setVisible(QSettings().value("Toolbar/Shown", true).toBool());
+	updateMargin();
+
+	for (int i = 0; i < m_documents->count(); ++i) {
+		m_documents->document(i)->loadPreferences(preferences);
+	}
+}
+
+/*****************************************************************************/
+
+void Window::updateMargin() {
+	int margin = qMax(m_header->sizeHint().height(), m_footer->sizeHint().height());
+	for (int i = 0; i < m_documents->count(); ++i) {
+		m_documents->document(i)->setMargin(margin);
+	}
+}
+
+/*****************************************************************************/
+
+void Window::updateTab(int index) {
+	Document* document = m_documents->document(index);
+	QString filename = document->filename();
+	if (filename.isEmpty()) {
+		filename = tr("(Untitled %1)").arg(document->index());
+	}
+	bool modified = document->text()->document()->isModified();
+	m_tabs->setTabText(index, QFileInfo(filename).fileName() + (modified ? "*" : ""));
+	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(filename));
+	if (document == m_documents->currentDocument()) {
+		setWindowFilePath(filename);
+		setWindowModified(modified);
+	}
+}
+
+/*****************************************************************************/
+
+void Window::initMenuBar() {
+	m_menubar = menuBar();
+
+	// Create file menu
+	QMenu* file_menu = m_menubar->addMenu(tr("&File"));
+	m_actions["New"] = file_menu->addAction(tr("&New"), this, SLOT(newDocument()), tr("Ctrl+N"));
+	m_actions["Open"] = file_menu->addAction(tr("&Open..."), this, SLOT(openDocument()), tr("Ctrl+O"));
+	file_menu->addSeparator();
+	m_actions["Save"] = file_menu->addAction(tr("&Save"), m_documents, SLOT(save()), tr("Ctrl+S"));
+	m_actions["Save"]->setEnabled(false);
+	m_actions["SaveAs"] = file_menu->addAction(tr("Save &As..."), m_documents, SLOT(saveAs()));
+	m_actions["Rename"] = file_menu->addAction(tr("&Rename..."), this, SLOT(renameDocument()));
+	m_actions["Rename"]->setEnabled(false);
+	m_actions["SaveAll"] = file_menu->addAction(tr("Save A&ll"), this, SLOT(saveAllDocuments()));
+	file_menu->addSeparator();
+	m_actions["Print"] = file_menu->addAction(tr("&Print..."), m_documents, SLOT(print()), tr("Ctrl+P"));
+	file_menu->addSeparator();
+	m_actions["Close"] = file_menu->addAction(tr("&Close"), this, SLOT(closeDocument()), tr("Ctrl+W"));
+	m_actions["Quit"] = file_menu->addAction(tr("&Quit"), this, SLOT(close()), tr("Ctrl+Q"));
+
+	// Create edit menu
+	QMenu* edit_menu = m_menubar->addMenu(tr("&Edit"));
+	m_actions["Undo"] = edit_menu->addAction(tr("&Undo"), m_documents, SLOT(undo()), tr("Ctrl+Z"));
+	m_actions["Undo"]->setEnabled(false);
+	connect(m_documents, SIGNAL(undoAvailable(bool)), m_actions["Undo"], SLOT(setEnabled(bool)));
+	m_actions["Redo"] = edit_menu->addAction(tr("&Redo"), m_documents, SLOT(redo()), tr("Shift+Ctrl+Z"));
+	m_actions["Redo"]->setEnabled(false);
+	connect(m_documents, SIGNAL(redoAvailable(bool)), m_actions["Redo"], SLOT(setEnabled(bool)));
+	edit_menu->addSeparator();
+	m_actions["Cut"] = edit_menu->addAction(tr("Cu&t"), m_documents, SLOT(cut()), tr("Ctrl+X"));
+	m_actions["Cut"]->setEnabled(false);
+	connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
+	m_actions["Copy"] = edit_menu->addAction(tr("&Copy"), m_documents, SLOT(copy()), tr("Ctrl+C"));
+	m_actions["Copy"]->setEnabled(false);
+	connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Copy"], SLOT(setEnabled(bool)));
+	m_actions["Paste"] = edit_menu->addAction(tr("&Paste"), m_documents, SLOT(paste()), tr("Ctrl+V"));
+	edit_menu->addSeparator();
+	m_actions["SelectAll"] = edit_menu->addAction(tr("Select &All"), m_documents, SLOT(selectAll()), tr("Ctrl+A"));
+
+	// Create tools menu
+	QMenu* tools_menu = m_menubar->addMenu(tr("&Tools"));
+	m_actions["Find"] = tools_menu->addAction(tr("&Find..."), m_documents, SLOT(find()), tr("Ctrl+F"));
+	m_actions["CheckSpelling"] = tools_menu->addAction(tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
+
+	// Create settings menu
+	QMenu* settings_menu = m_menubar->addMenu(tr("&Settings"));
+	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
+	action->setCheckable(true);
+	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
+	settings_menu->addSeparator();
+	m_actions["Fullscreen"] = settings_menu->addAction(tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
+#ifdef Q_OS_MAC
+	m_actions["Fullscreen"]->setShortcut(tr("Esc"));
+#endif
+	settings_menu->addSeparator();
+	m_actions["Themes"] = settings_menu->addAction(tr("&Themes..."), this, SLOT(themeClicked()));
+	m_actions["Preferences"] = settings_menu->addAction(tr("&Preferences..."), this, SLOT(preferencesClicked()));
+
+	// Create help menu
+	QMenu* help_menu = m_menubar->addMenu(tr("&Help"));
+	m_actions["About"] = help_menu->addAction(tr("&About"), this, SLOT(aboutClicked()));
+	m_actions["AboutQt"] = help_menu->addAction(tr("About &Qt"), qApp, SLOT(aboutQt()));
+
+	// Enable shortcuts when menubar is hidden
+	addActions(m_actions.values());
+}
+
+/*****************************************************************************/
+
+void Window::initToolBar() {
+	m_toolbar = new QToolBar(m_header);
+	m_toolbar->setIconSize(QSize(22,22));
+
+	QHashIterator<QString, QAction*> action(m_actions);
+	while (action.hasNext()) {
+		action.next();
+		action.value()->setData(action.key());
+	}
+
+	QHash<QString, QString> icons;
+	icons["About"] = "help-about";
+	icons["CheckSpelling"] = "tools-check-spelling";
+	icons["Close"] = "window-close";
+	icons["Copy"] = "edit-copy";
+	icons["Cut"] = "edit-cut";
+	icons["Find"] = "edit-find";
+	icons["Fullscreen"] = "view-fullscreen";
+	icons["New"] = "document-new";
+	icons["Open"] = "document-open";
+	icons["Paste"] = "edit-paste";
+	icons["Preferences"] = "preferences-other";
+	icons["Print"] = "document-print";
+	icons["Quit"] = "application-exit";
+	icons["Redo"] = "edit-redo";
+	icons["Rename"] = "edit-rename";
+	icons["Save"] = "document-save";
+	icons["SaveAll"] = "document-save-all";
+	icons["SaveAs"] = "document-save-as";
+	icons["SelectAll"] = "edit-select-all";
+	icons["Themes"] = "format-fill-color";
+	icons["Undo"] = "edit-undo";
+	QHashIterator<QString, QString> i(icons);
+	while (i.hasNext()) {
+		i.next();
+		QIcon icon(QString(":/oxygen/22x22/%1.png").arg(i.value()));
+		icon.addFile(QString(":/oxygen/16x16/%1.png").arg(i.value()));
+		m_actions[i.key()]->setIcon(icon);
+	}
+	m_actions["AboutQt"]->setIcon(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"));
 }
 
 /*****************************************************************************/

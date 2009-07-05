@@ -27,7 +27,6 @@
 #include <QFile>
 #include <QFontComboBox>
 #include <QFormLayout>
-#include <QFrame>
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
@@ -195,7 +194,6 @@ void ThemeDialog::accept() {
 	m_theme.setBackgroundType(m_background_type->currentIndex());
 	m_theme.setBackgroundColor(m_background_color->color());
 	m_theme.setBackgroundImage(m_background_image->toString());
-	QFile::remove(Theme::backgroundPath(m_name->text()));
 
 	m_theme.setForegroundColor(m_foreground_color->color());
 	m_theme.setForegroundWidth(m_foreground_width->value());

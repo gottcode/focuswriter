@@ -22,7 +22,6 @@
 #include "window.h"
 
 #include <QApplication>
-#include <QDate>
 #include <QDir>
 #include <QFile>
 #include <QLocale>
@@ -47,6 +46,8 @@ int main(int argc, char** argv) {
 	// Find data paths
 	QStringList locations;
 #if defined(Q_OS_MAC)
+	app.setAttribute(Qt::AA_DontShowIconsInMenus);
+
 	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
 	QString themes = "Themes";
 	QString dictionaries = "Dictionaries";
@@ -126,28 +127,10 @@ int main(int argc, char** argv) {
 	}
 
 	// Browse to documents
-	path = QSettings().value("Save/Location", QDir::homePath() + "/FocusWriter").toString();
-	if (!QFile::exists(path)) {
-		QDir dir = QDir::home();
-		dir.mkpath(path);
-	}
-	QDir::setCurrent(path);
+	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());
 
-	// Load current daily progress
-	QSettings settings;
-	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
-		settings.remove("Progress");
-	}
-	settings.setValue("Progress/Date", QDate::currentDate().toString(Qt::ISODate));
-	int current_wordcount = settings.value("Progress/Words", 0).toInt();
-	int current_time = settings.value("Progress/Time", 0).toInt();
-
-	// Open last saved document
-	Window window(current_wordcount, current_time);
-	QString filename = QSettings().value("Save/Current").toString();
-	if (!filename.isEmpty()) {
-		window.open(filename);
-	}
+	// Create main window
+	new Window;
 
 	return app.exec();
 }

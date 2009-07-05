@@ -43,9 +43,10 @@ public:
 	bool showParagraphs() const;
 	bool showWords() const;
 	bool alwaysCenter() const;
-	QString saveLocation() const;
 	bool autoSave() const;
 	bool autoAppend() const;
+	int toolbarStyle() const;
+	QStringList toolbarActions() const;
 	bool highlightMisspelled() const;
 	bool ignoredWordsWithNumbers() const;
 	bool ignoredUppercaseWords() const;
@@ -56,7 +57,10 @@ public slots:
 	virtual void reject();
 
 private slots:
-	void changeSaveLocation();
+	void moveActionUp();
+	void moveActionDown();
+	void addSeparatorAction();
+	void currentActionChanged(int action);
 	void addLanguage();
 	void removeLanguage();
 	void selectedLanguageChanged(int index);
@@ -67,6 +71,7 @@ private slots:
 
 private:
 	QWidget* initGeneralTab();
+	QWidget* initToolbarTab();
 	QWidget* initSpellingTab();
 
 private:
@@ -80,9 +85,13 @@ private:
 	QCheckBox* m_show_paragraphs;
 	QCheckBox* m_show_words;
 	QCheckBox* m_always_center;
-	QPushButton* m_location;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_auto_append;
+
+	QComboBox* m_toolbar_style;
+	QListWidget* m_toolbar_actions;
+	QPushButton* m_move_up_button;
+	QPushButton* m_move_down_button;
 
 	Dictionary* m_dictionary;
 	QCheckBox* m_highlight_misspelled;
