@@ -282,6 +282,7 @@ void Document::loadTheme(const Theme& theme) {
 	// Update text
 	m_text->setFont(theme.textFont());
 	m_text->setFixedWidth(theme.foregroundWidth());
+	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 }
 
 /*****************************************************************************/
@@ -294,6 +295,8 @@ void Document::loadPreferences(const Preferences& preferences) {
 	}
 
 	m_auto_append = preferences.autoAppend();
+	m_block_cursor = preferences.blockCursor();
+	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 
 	m_highlighter->setEnabled(preferences.highlightMisspelled());
 }

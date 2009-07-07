@@ -96,6 +96,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_show_words->setChecked(m_preferences.showWords());
 
 	m_always_center->setChecked(m_preferences.alwaysCenter());
+	m_block_cursor->setChecked(m_preferences.blockCursor());
 
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_auto_append->setChecked(m_preferences.autoAppend());
@@ -165,6 +166,7 @@ void PreferencesDialog::accept() {
 	m_preferences.setShowWords(m_show_words->isChecked());
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
+	m_preferences.setBlockCursor(m_block_cursor->isChecked());
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
 	m_preferences.setAutoAppend(m_auto_append->isChecked());
@@ -482,9 +484,11 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
 	m_always_center = new QCheckBox(tr("Always center"), edit_group);
+	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
 
-	QFormLayout* edit_layout = new QFormLayout(edit_group);
-	edit_layout->addRow(m_always_center);
+	QVBoxLayout* edit_layout = new QVBoxLayout(edit_group);
+	edit_layout->addWidget(m_always_center);
+	edit_layout->addWidget(m_block_cursor);
 
 	// Create save options
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);

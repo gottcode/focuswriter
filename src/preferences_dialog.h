@@ -71,6 +71,7 @@ private:
 	QCheckBox* m_show_paragraphs;
 	QCheckBox* m_show_words;
 	QCheckBox* m_always_center;
+	QCheckBox* m_block_cursor;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_auto_append;
 

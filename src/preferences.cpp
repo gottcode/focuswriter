@@ -40,6 +40,8 @@ Preferences::Preferences()
 	m_show_words = settings.value("Stats/ShowWords", true).toBool();
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
+	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
+
 	m_auto_save = settings.value("Save/Auto", true).toBool();
 	m_auto_append = settings.value("Save/Append", true).toBool();
 
@@ -78,6 +80,7 @@ Preferences::~Preferences() {
 	settings.setValue("Stats/ShowWords", m_show_words);
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
+	settings.setValue("Edit/BlockCursor", m_block_cursor);
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/Append", m_auto_append);
@@ -190,8 +193,21 @@ bool Preferences::alwaysCenter() const {
 
 /*****************************************************************************/
 
+bool Preferences::blockCursor() const {
+	return m_block_cursor;
+}
+
+/*****************************************************************************/
+
 void Preferences::setAlwaysCenter(bool center) {
 	m_always_center = center;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setBlockCursor(bool block) {
+	m_block_cursor = block;
 	m_changed = true;
 }
 

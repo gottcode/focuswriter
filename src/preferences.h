@@ -45,7 +45,9 @@ public:
 	void setShowWords(bool show);
 
 	bool alwaysCenter() const;
+	bool blockCursor() const;
 	void setAlwaysCenter(bool center);
+	void setBlockCursor(bool block);
 
 	bool autoSave() const;
 	bool autoAppend() const;
@@ -77,6 +79,7 @@ private:
 	bool m_show_words;
 
 	bool m_always_center;
+	bool m_block_cursor;
 
 	bool m_auto_save;
 	bool m_auto_append;

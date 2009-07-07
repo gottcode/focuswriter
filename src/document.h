@@ -97,6 +97,7 @@ private:
 	QString m_filename;
 	int m_index;
 	bool m_auto_append;
+	bool m_block_cursor;
 
 	FindDialog* m_find_dialog;
 	QTimer* m_hide_timer;
