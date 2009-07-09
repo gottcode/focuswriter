@@ -1,3 +1,6 @@
+2009-07-09 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Newly created themes were not loaded.
+
 2009-07-06 Graeme Gott <graeme@gottcode.org>
 	* Add option to use a block insertion cursor.
 

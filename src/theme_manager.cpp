@@ -116,11 +116,16 @@ void ThemeManager::hideEvent(QHideEvent* event) {
 /*****************************************************************************/
 
 void ThemeManager::addTheme() {
-	Theme theme;
-	ThemeDialog dialog(theme, this);
-	if (dialog.exec() == QDialog::Accepted) {
-		addItem(theme.name());
+	QString name;
+	{
+		Theme theme;
+		ThemeDialog dialog(theme, this);
+		if (dialog.exec() == QDialog::Rejected) {
+			return;
+		}
+		name = theme.name();
 	}
+	addItem(name);
 }
 
 /*****************************************************************************/
@@ -131,17 +136,22 @@ void ThemeManager::modifyTheme() {
 		return;
 	}
 
-	Theme theme(item->text());
-	ThemeDialog dialog(theme, this);
-	if (dialog.exec() == QDialog::Accepted) {
-		if (theme.name() == item->text()) {
-			item->setIcon(QIcon(Theme::iconPath(item->text())));
-			emit themeSelected(theme);
-		} else {
-			delete item;
-			item = 0;
-			addItem(theme.name());
+	QString name;
+	{
+		Theme theme(item->text());
+		ThemeDialog dialog(theme, this);
+		if (dialog.exec() == QDialog::Rejected) {
+			return;
 		}
+		name = theme.name();
+	}
+	if (name == item->text()) {
+		item->setIcon(QIcon(Theme::iconPath(name)));
+		emit themeSelected(Theme(name));
+	} else {
+		delete item;
+		item = 0;
+		addItem(name);
 	}
 }
 
