@@ -268,6 +268,8 @@ void Document::print() {
 /*****************************************************************************/
 
 void Document::loadTheme(const Theme& theme) {
+	m_text->document()->blockSignals(true);
+
 	// Update colors
 	QPalette p = m_text->palette();
 	QColor color = theme.foregroundColor();
@@ -283,6 +285,8 @@ void Document::loadTheme(const Theme& theme) {
 	m_text->setFont(theme.textFont());
 	m_text->setFixedWidth(theme.foregroundWidth());
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+
+	m_text->document()->blockSignals(false);
 }
 
 /*****************************************************************************/
