@@ -122,7 +122,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
   m_current_wordcount(current_wordcount),
   m_current_time(current_time) {
 	setMouseTracking(true);
-	installEventFilter(this);
 
 	m_hide_timer = new QTimer(this);
 	m_hide_timer->setInterval(5000);
@@ -332,19 +331,26 @@ void Document::setMargin(int margin) {
 
 bool Document::eventFilter(QObject* watched, QEvent* event) {
 	if (event->type() == QEvent::MouseMove) {
-		m_text->viewport()->setCursor(Qt::IBeamCursor);
-		m_text->parentWidget()->unsetCursor();
-		if (watched == m_text->viewport() || watched == m_text->parentWidget()) {
-			m_hide_timer->start();
-		}
-		const QPoint& point = mapFromGlobal(static_cast<QMouseEvent*>(event)->globalPos());
-		bool header_visible = point.y() <= m_margin;
-		bool footer_visible = point.y() >= (height() - m_margin);
-		m_scrollbar->setVisible(point.x() >= (width() - m_margin) && !header_visible && !footer_visible);
-		emit headerVisible(header_visible);
-		emit footerVisible(footer_visible);
+		mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	}
 	return QWidget::eventFilter(watched, event);
+}
+
+/*****************************************************************************/
+
+void Document::mouseMoveEvent(QMouseEvent* event) {
+	m_text->viewport()->setCursor(Qt::IBeamCursor);
+	unsetCursor();
+	m_hide_timer->start();
+
+	const QPoint& point = mapFromGlobal(event->globalPos());
+	bool header_visible = point.y() <= m_margin;
+	bool footer_visible = point.y() >= (height() - m_margin);
+	m_scrollbar->setVisible(point.x() >= (width() - m_margin) && !header_visible && !footer_visible);
+	emit headerVisible(header_visible);
+	emit footerVisible(footer_visible);
+
+	return QWidget::mouseMoveEvent(event);
 }
 
 /*****************************************************************************/
@@ -361,9 +367,9 @@ void Document::wheelEvent(QWheelEvent* event) {
 
 void Document::hideMouse() {
 	QWidget* widget = QApplication::widgetAt(QCursor::pos());
-	if (widget == m_text->viewport() || widget == m_text->parentWidget()) {
+	if (widget == m_text->viewport() || widget == this) {
 		m_text->viewport()->setCursor(Qt::BlankCursor);
-		m_text->parentWidget()->setCursor(Qt::BlankCursor);
+		setCursor(Qt::BlankCursor);
 	}
 }
 
