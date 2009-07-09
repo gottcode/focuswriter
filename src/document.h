@@ -20,6 +20,7 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
+#include <QFuture>
 #include <QTime>
 #include <QWidget>
 class QGridLayout;
@@ -35,6 +36,7 @@ class Document : public QWidget {
 	Q_OBJECT
 public:
 	Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent = 0);
+	~Document();
 
 	QString filename() const {
 		return m_filename;
@@ -98,6 +100,7 @@ private:
 	int m_index;
 	bool m_auto_append;
 	bool m_block_cursor;
+	QFuture<void> m_file_save;
 
 	FindDialog* m_find_dialog;
 	QTimer* m_hide_timer;

@@ -40,6 +40,7 @@
 #include <QTextCodec>
 #include <QTextStream>
 #include <QTimer>
+#include <QtConcurrentRun>
 
 #include <cmath>
 
@@ -93,6 +94,16 @@ namespace {
 				index = -1;
 				m_spaces += c.isSpace();
 			}
+		}
+	}
+
+	// Threaded file saving
+	void write(const QString& filename, const QString& data) {
+		QFile file(filename);
+		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream << data;
 		}
 	}
 }
@@ -178,6 +189,12 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 /*****************************************************************************/
 
+Document::~Document() {
+	m_file_save.waitForFinished();
+}
+
+/*****************************************************************************/
+
 bool Document::save() {
 	// Save progress
 	QSettings settings;
@@ -186,12 +203,8 @@ bool Document::save() {
 
 	// Write file to disk
 	if (!m_filename.isEmpty()) {
-		QFile file(m_filename);
-		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream << m_text->toPlainText();
-		}
+		m_file_save.waitForFinished();
+		m_file_save = QtConcurrent::run(write, m_filename, m_text->toPlainText());
 	} else {
 		if (!saveAs()) {
 			return false;

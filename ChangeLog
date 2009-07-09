@@ -1,4 +1,5 @@
 2009-07-09 Graeme Gott <graeme@gottcode.org>
+	* Use threaded file saving.
 	* FIXED: Changing themes increased progress on daily goals.
 	* FIXED: Newly created themes were not loaded.
 
