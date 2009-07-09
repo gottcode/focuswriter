@@ -87,6 +87,9 @@ signals:
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
 
+protected:
+	virtual void wheelEvent(QWheelEvent* event);
+
 private slots:
 	void hideMouse();
 	void updateWordCount(int position, int removed, int added);

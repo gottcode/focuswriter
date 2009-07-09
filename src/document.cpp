@@ -343,15 +343,18 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 		m_scrollbar->setVisible(point.x() >= (width() - m_margin) && !header_visible && !footer_visible);
 		emit headerVisible(header_visible);
 		emit footerVisible(footer_visible);
-	} else if (event->type() == QEvent::Wheel) {
-		if (watched == m_text->parentWidget()) {
-			int delta = static_cast<QWheelEvent*>(event)->delta();
-			if ( (delta > 0 && m_scrollbar->value() > m_scrollbar->minimum()) || (delta < 0 && m_scrollbar->value() < m_scrollbar->maximum()) ) {
-				QApplication::sendEvent(m_scrollbar, event);
-			}
-		}
 	}
 	return QWidget::eventFilter(watched, event);
+}
+
+/*****************************************************************************/
+
+void Document::wheelEvent(QWheelEvent* event) {
+	int delta = event->delta();
+	if ( (delta > 0 && m_scrollbar->value() > m_scrollbar->minimum()) || (delta < 0 && m_scrollbar->value() < m_scrollbar->maximum()) ) {
+		QApplication::sendEvent(m_scrollbar, event);
+	}
+	return QWidget::wheelEvent(event);
 }
 
 /*****************************************************************************/

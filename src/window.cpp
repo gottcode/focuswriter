@@ -38,6 +38,7 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QPlainTextEdit>
+#include <QScrollBar>
 #include <QSettings>
 #include <QTabBar>
 #include <QTimer>
@@ -413,6 +414,7 @@ void Window::addDocument(Document* document) {
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
+	document->text()->verticalScrollBar()->triggerAction(QAbstractSlider::SliderToMinimum);
 	document->text()->centerCursor();
 }
 
