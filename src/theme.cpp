@@ -21,6 +21,7 @@
 
 #include <QFile>
 #include <QSettings>
+#include <QUrl>
 
 /*****************************************************************************/
 
@@ -90,13 +91,13 @@ QString Theme::path() {
 /*****************************************************************************/
 
 QString Theme::filePath(const QString& theme) {
-	return path() + "/" + theme + ".theme";
+	return path() + "/" + QUrl::toPercentEncoding(theme, " ") + ".theme";
 }
 
 /*****************************************************************************/
 
 QString Theme::iconPath(const QString& theme) {
-	return path() + "/" + theme + ".png";
+	return path() + "/" + QUrl::toPercentEncoding(theme, " ") + ".png";
 }
 
 /*****************************************************************************/
