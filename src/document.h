@@ -124,6 +124,8 @@ private:
 	int m_page_type;
 	float m_page_amount;
 
+	bool m_accurate_wordcount;
+
 	// Daily progress
 	int& m_current_wordcount;
 	int m_wordcount_goal;

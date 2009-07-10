@@ -82,6 +82,8 @@ private:
 	QSpinBox* m_page_characters;
 	QSpinBox* m_page_paragraphs;
 	QSpinBox* m_page_words;
+	QRadioButton* m_option_accurate_wordcount;
+	QRadioButton* m_option_estimate_wordcount;
 
 	QComboBox* m_toolbar_style;
 	QListWidget* m_toolbar_actions;

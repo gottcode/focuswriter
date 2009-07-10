@@ -44,6 +44,8 @@ Preferences::Preferences()
 	m_page_paragraphs = settings.value("Stats/ParagraphsPerPage", 5).toInt();
 	m_page_words = settings.value("Stats/WordsPerPage", 250).toInt();
 
+	m_accurate_wordcount = settings.value("Stats/AccurateWordcount", true).toBool();
+
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
 
@@ -88,6 +90,8 @@ Preferences::~Preferences() {
 	settings.setValue("Stats/CharactersPerPage", m_page_characters);
 	settings.setValue("Stats/ParagraphsPerPage", m_page_paragraphs);
 	settings.setValue("Stats/WordsPerPage", m_page_words);
+
+	settings.setValue("Stats/AccurateWordcount", m_accurate_wordcount);
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
@@ -244,6 +248,19 @@ void Preferences::setPageParagraphs(int paragraphs) {
 
 void Preferences::setPageWords(int words) {
 	m_page_words = words;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+bool Preferences::accurateWordcount() const {
+	return m_accurate_wordcount;
+}
+
+/*****************************************************************************/
+
+void Preferences::setAccurateWordcount(bool accurate) {
+	m_accurate_wordcount = accurate;
 	m_changed = true;
 }
 

@@ -111,6 +111,12 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_page_paragraphs->setValue(m_preferences.pageParagraphs());
 	m_page_words->setValue(m_preferences.pageWords());
 
+	if (m_preferences.accurateWordcount()) {
+		m_option_accurate_wordcount->setChecked(true);
+	} else {
+		m_option_estimate_wordcount->setChecked(true);
+	}
+
 	m_always_center->setChecked(m_preferences.alwaysCenter());
 	m_block_cursor->setChecked(m_preferences.blockCursor());
 
@@ -191,6 +197,8 @@ void PreferencesDialog::accept() {
 	m_preferences.setPageCharacters(m_page_characters->value());
 	m_preferences.setPageParagraphs(m_page_paragraphs->value());
 	m_preferences.setPageWords(m_page_words->value());
+
+	m_preferences.setAccurateWordcount(m_option_accurate_wordcount->isChecked());
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
@@ -577,10 +585,21 @@ QWidget* PreferencesDialog::initStatisticsTab() {
 	page_layout->addLayout(paragraphs_layout);
 	page_layout->addLayout(words_layout);
 
+	// Create wordcount options
+	QGroupBox* wordcount_group = new QGroupBox(tr("Word Count Algorithm"), this);
+
+	m_option_accurate_wordcount = new QRadioButton(tr("Detect word boundaries"), wordcount_group);
+	m_option_estimate_wordcount = new QRadioButton(tr("Estimate from character count"), wordcount_group);
+
+	QVBoxLayout* wordcount_layout = new QVBoxLayout(wordcount_group);
+	wordcount_layout->addWidget(m_option_accurate_wordcount);
+	wordcount_layout->addWidget(m_option_estimate_wordcount);
+
 	// Lay out statistics options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
 	layout->addWidget(counts_group);
 	layout->addWidget(page_group);
+	layout->addWidget(wordcount_group);
 	layout->addStretch();
 
 	return tab;

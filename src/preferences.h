@@ -53,6 +53,9 @@ public:
 	void setPageParagraphs(int paragraphs);
 	void setPageWords(int words);
 
+	bool accurateWordcount() const;
+	void setAccurateWordcount(bool accurate);
+
 	bool alwaysCenter() const;
 	bool blockCursor() const;
 	void setAlwaysCenter(bool center);
@@ -91,6 +94,8 @@ private:
 	int m_page_characters;
 	int m_page_paragraphs;
 	int m_page_words;
+
+	bool m_accurate_wordcount;
 
 	bool m_always_center;
 	bool m_block_cursor;

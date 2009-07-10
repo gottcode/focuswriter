@@ -1,4 +1,5 @@
 2009-07-10 Graeme Gott <graeme@gottcode.org>
+	* Add estimated word count algorithm.
 	* Allow any character in theme names.
 	* Make page size adjustable.
 

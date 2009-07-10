@@ -121,6 +121,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
   m_wordcount(0),
   m_page_type(0),
   m_page_amount(0),
+  m_accurate_wordcount(true),
   m_current_wordcount(current_wordcount),
   m_current_time(current_time) {
 	setMouseTracking(true);
@@ -325,6 +326,9 @@ void Document::loadPreferences(const Preferences& preferences) {
 		break;
 	}
 
+	m_accurate_wordcount = preferences.accurateWordcount();
+	calculateWordCount();
+
 	m_auto_append = preferences.autoAppend();
 	m_block_cursor = preferences.blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
@@ -433,6 +437,9 @@ void Document::calculateWordCount() {
 		m_paragraph_count += !stats->isEmpty();
 		m_space_count += stats->spaceCount();
 		m_wordcount += stats->wordCount();
+	}
+	if (!m_accurate_wordcount) {
+		m_wordcount = std::ceil(m_character_count / 6.0f);
 	}
 
 	float amount = 0;
