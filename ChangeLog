@@ -1,3 +1,6 @@
+2009-07-10 Graeme Gott <graeme@gottcode.org>
+	* Make page size adjustable.
+
 2009-07-09 Graeme Gott <graeme@gottcode.org>
 	* Reduce text jittering when scrolling.
 	* Use threaded file saving.

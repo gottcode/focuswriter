@@ -44,6 +44,15 @@ public:
 	void setShowParagraphs(bool show);
 	void setShowWords(bool show);
 
+	int pageType() const;
+	int pageCharacters() const;
+	int pageParagraphs() const;
+	int pageWords() const;
+	void setPageType(int type);
+	void setPageCharacters(int characters);
+	void setPageParagraphs(int paragraphs);
+	void setPageWords(int words);
+
 	bool alwaysCenter() const;
 	bool blockCursor() const;
 	void setAlwaysCenter(bool center);
@@ -77,6 +86,11 @@ private:
 	bool m_show_pages;
 	bool m_show_paragraphs;
 	bool m_show_words;
+
+	int m_page_type;
+	int m_page_characters;
+	int m_page_paragraphs;
+	int m_page_words;
 
 	bool m_always_center;
 	bool m_block_cursor;

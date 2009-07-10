@@ -64,6 +64,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 
 	QTabWidget* tabs = new QTabWidget(this);
 	tabs->addTab(initGeneralTab(), tr("General"));
+	tabs->addTab(initStatisticsTab(), tr("Statistics"));
 	tabs->addTab(initToolbarTab(), tr("Toolbar"));
 	tabs->addTab(initSpellingTab(), tr("Spell Checking"));
 
@@ -94,6 +95,21 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_show_pages->setChecked(m_preferences.showPages());
 	m_show_paragraphs->setChecked(m_preferences.showParagraphs());
 	m_show_words->setChecked(m_preferences.showWords());
+
+	switch (m_preferences.pageType()) {
+	case 1:
+		m_option_paragraphs->setChecked(true);
+		break;
+	case 2:
+		m_option_words->setChecked(true);
+		break;
+	default:
+		m_option_characters->setChecked(true);
+		break;
+	}
+	m_page_characters->setValue(m_preferences.pageCharacters());
+	m_page_paragraphs->setValue(m_preferences.pageParagraphs());
+	m_page_words->setValue(m_preferences.pageWords());
 
 	m_always_center->setChecked(m_preferences.alwaysCenter());
 	m_block_cursor->setChecked(m_preferences.blockCursor());
@@ -164,6 +180,17 @@ void PreferencesDialog::accept() {
 	m_preferences.setShowPages(m_show_pages->isChecked());
 	m_preferences.setShowParagraphs(m_show_paragraphs->isChecked());
 	m_preferences.setShowWords(m_show_words->isChecked());
+
+	if (m_option_paragraphs->isChecked()) {
+		m_preferences.setPageType(1);
+	} else if (m_option_words->isChecked()) {
+		m_preferences.setPageType(2);
+	} else {
+		m_preferences.setPageType(0);
+	}
+	m_preferences.setPageCharacters(m_page_characters->value());
+	m_preferences.setPageParagraphs(m_page_paragraphs->value());
+	m_preferences.setPageWords(m_page_words->value());
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
@@ -466,20 +493,6 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	goals_layout->addLayout(time_layout);
 	goals_layout->addLayout(wordcount_layout);
 
-	// Create statistics options
-	QGroupBox* stats_group = new QGroupBox(tr("Statistics"), tab);
-
-	m_show_characters = new QCheckBox(tr("Show character count"), stats_group);
-	m_show_pages = new QCheckBox(tr("Show page count"), stats_group);
-	m_show_paragraphs = new QCheckBox(tr("Show paragraph count"), stats_group);
-	m_show_words = new QCheckBox(tr("Show word count"), stats_group);
-
-	QVBoxLayout* stats_layout = new QVBoxLayout(stats_group);
-	stats_layout->addWidget(m_show_words);
-	stats_layout->addWidget(m_show_pages);
-	stats_layout->addWidget(m_show_paragraphs);
-	stats_layout->addWidget(m_show_characters);
-
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
@@ -503,9 +516,71 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
 	layout->addWidget(goals_group);
-	layout->addWidget(stats_group);
 	layout->addWidget(edit_group);
 	layout->addWidget(save_group);
+	layout->addStretch();
+
+	return tab;
+}
+
+/*****************************************************************************/
+
+QWidget* PreferencesDialog::initStatisticsTab() {
+	QWidget* tab = new QWidget(this);
+
+	// Create statistics options
+	QGroupBox* counts_group = new QGroupBox(tr("Contents"), tab);
+
+	m_show_characters = new QCheckBox(tr("Character count"), counts_group);
+	m_show_pages = new QCheckBox(tr("Page count"), counts_group);
+	m_show_paragraphs = new QCheckBox(tr("Paragraph count"), counts_group);
+	m_show_words = new QCheckBox(tr("Word count"), counts_group);
+
+	QVBoxLayout* counts_layout = new QVBoxLayout(counts_group);
+	counts_layout->addWidget(m_show_words);
+	counts_layout->addWidget(m_show_pages);
+	counts_layout->addWidget(m_show_paragraphs);
+	counts_layout->addWidget(m_show_characters);
+
+	// Create page algorithm options
+	QGroupBox* page_group = new QGroupBox(tr("Page Size"), tab);
+
+	m_option_characters = new QRadioButton(tr("Characters:"), page_group);
+	m_page_characters = new QSpinBox(page_group);
+	m_page_characters->setRange(500, 10000);
+	m_page_characters->setSingleStep(250);
+	QHBoxLayout* characters_layout = new QHBoxLayout;
+	characters_layout->addWidget(m_option_characters);
+	characters_layout->addWidget(m_page_characters);
+	characters_layout->addStretch();
+
+	m_option_paragraphs = new QRadioButton(tr("Paragraphs:"), page_group);
+	m_page_paragraphs = new QSpinBox(page_group);
+	m_page_paragraphs->setRange(1, 100);
+	m_page_paragraphs->setSingleStep(1);
+	QHBoxLayout* paragraphs_layout = new QHBoxLayout;
+	paragraphs_layout->addWidget(m_option_paragraphs);
+	paragraphs_layout->addWidget(m_page_paragraphs);
+	paragraphs_layout->addStretch();
+
+	m_option_words = new QRadioButton(tr("Words:"), page_group);
+	m_page_words = new QSpinBox(page_group);
+	m_page_words->setRange(100, 2000);
+	m_page_words->setSingleStep(50);
+	QHBoxLayout* words_layout = new QHBoxLayout;
+	words_layout->addWidget(m_option_words);
+	words_layout->addWidget(m_page_words);
+	words_layout->addStretch();
+
+	QVBoxLayout* page_layout = new QVBoxLayout(page_group);
+	page_layout->addLayout(characters_layout);
+	page_layout->addLayout(paragraphs_layout);
+	page_layout->addLayout(words_layout);
+
+	// Lay out statistics options
+	QVBoxLayout* layout = new QVBoxLayout(tab);
+	layout->addWidget(counts_group);
+	layout->addWidget(page_group);
 	layout->addStretch();
 
 	return tab;

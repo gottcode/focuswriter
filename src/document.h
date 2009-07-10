@@ -121,6 +121,9 @@ private:
 	int m_space_count;
 	int m_wordcount;
 
+	int m_page_type;
+	float m_page_amount;
+
 	// Daily progress
 	int& m_current_wordcount;
 	int m_wordcount_goal;

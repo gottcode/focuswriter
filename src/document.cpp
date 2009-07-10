@@ -119,6 +119,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
   m_paragraph_count(0),
   m_space_count(0),
   m_wordcount(0),
+  m_page_type(0),
+  m_page_amount(0),
   m_current_wordcount(current_wordcount),
   m_current_time(current_time) {
 	setMouseTracking(true);
@@ -310,6 +312,19 @@ void Document::loadPreferences(const Preferences& preferences) {
 		disconnect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
 	}
 
+	m_page_type = preferences.pageType();
+	switch (m_page_type) {
+	case 1:
+		m_page_amount = preferences.pageParagraphs();
+		break;
+	case 2:
+		m_page_amount = preferences.pageWords();
+		break;
+	default:
+		m_page_amount = preferences.pageCharacters();
+		break;
+	}
+
 	m_auto_append = preferences.autoAppend();
 	m_block_cursor = preferences.blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
@@ -419,7 +434,20 @@ void Document::calculateWordCount() {
 		m_space_count += stats->spaceCount();
 		m_wordcount += stats->wordCount();
 	}
-	m_page_count = std::ceil(m_wordcount / 350.0f);
+
+	float amount = 0;
+	switch (m_page_type) {
+	case 1:
+		amount = m_paragraph_count;
+		break;
+	case 2:
+		amount = m_wordcount;
+		break;
+	default:
+		amount = m_character_count;
+		break;
+	}
+	m_page_count = std::ceil(amount / m_page_amount);
 }
 
 /*****************************************************************************/

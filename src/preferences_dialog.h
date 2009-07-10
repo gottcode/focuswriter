@@ -55,6 +55,7 @@ private slots:
 
 private:
 	QWidget* initGeneralTab();
+	QWidget* initStatisticsTab();
 	QWidget* initToolbarTab();
 	QWidget* initSpellingTab();
 
@@ -66,14 +67,21 @@ private:
 	QRadioButton* m_option_wordcount;
 	QSpinBox* m_time;
 	QSpinBox* m_wordcount;
-	QCheckBox* m_show_characters;
-	QCheckBox* m_show_pages;
-	QCheckBox* m_show_paragraphs;
-	QCheckBox* m_show_words;
 	QCheckBox* m_always_center;
 	QCheckBox* m_block_cursor;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_auto_append;
+
+	QCheckBox* m_show_characters;
+	QCheckBox* m_show_pages;
+	QCheckBox* m_show_paragraphs;
+	QCheckBox* m_show_words;
+	QRadioButton* m_option_characters;
+	QRadioButton* m_option_paragraphs;
+	QRadioButton* m_option_words;
+	QSpinBox* m_page_characters;
+	QSpinBox* m_page_paragraphs;
+	QSpinBox* m_page_words;
 
 	QComboBox* m_toolbar_style;
 	QListWidget* m_toolbar_actions;

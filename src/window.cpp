@@ -483,6 +483,9 @@ void Window::loadPreferences(const Preferences& preferences) {
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->loadPreferences(preferences);
 	}
+	if (m_documents->count() > 0) {
+		updateDetails();
+	}
 }
 
 /*****************************************************************************/

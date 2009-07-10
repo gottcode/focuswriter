@@ -39,6 +39,11 @@ Preferences::Preferences()
 	m_show_paragraphs = settings.value("Stats/ShowParagraphs", true).toBool();
 	m_show_words = settings.value("Stats/ShowWords", true).toBool();
 
+	m_page_type = settings.value("Stats/PageSizeType", 0).toInt();
+	m_page_characters = settings.value("Stats/CharactersPerPage", 1500).toInt();
+	m_page_paragraphs = settings.value("Stats/ParagraphsPerPage", 5).toInt();
+	m_page_words = settings.value("Stats/WordsPerPage", 250).toInt();
+
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
 
@@ -78,6 +83,11 @@ Preferences::~Preferences() {
 	settings.setValue("Stats/ShowPages", m_show_pages);
 	settings.setValue("Stats/ShowParagraphs", m_show_paragraphs);
 	settings.setValue("Stats/ShowWords", m_show_words);
+
+	settings.setValue("Stats/PageSizeType", m_page_type);
+	settings.setValue("Stats/CharactersPerPage", m_page_characters);
+	settings.setValue("Stats/ParagraphsPerPage", m_page_paragraphs);
+	settings.setValue("Stats/WordsPerPage", m_page_words);
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
@@ -182,6 +192,58 @@ void Preferences::setShowParagraphs(bool show) {
 
 void Preferences::setShowWords(bool show) {
 	m_show_words = show;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+int Preferences::pageType() const {
+	return m_page_type;
+}
+
+/*****************************************************************************/
+
+int Preferences::pageCharacters() const {
+	return m_page_characters;
+}
+
+/*****************************************************************************/
+
+int Preferences::pageParagraphs() const {
+	return m_page_paragraphs;
+}
+
+/*****************************************************************************/
+
+int Preferences::pageWords() const {
+	return m_page_words;
+}
+
+/*****************************************************************************/
+
+void Preferences::setPageType(int type) {
+	m_page_type = type;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setPageCharacters(int characters) {
+	m_page_characters = characters;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setPageParagraphs(int paragraphs) {
+	m_page_paragraphs = paragraphs;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setPageWords(int words) {
+	m_page_words = words;
 	m_changed = true;
 }
 
