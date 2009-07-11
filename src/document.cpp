@@ -110,7 +110,7 @@ namespace {
 
 /*****************************************************************************/
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
+Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, QWidget* parent)
 : QWidget(parent),
   m_auto_append(true),
   m_margin(50),
@@ -125,6 +125,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
   m_current_wordcount(current_wordcount),
   m_current_time(current_time) {
 	setMouseTracking(true);
+	resize(size);
 
 	m_hide_timer = new QTimer(this);
 	m_hide_timer->setInterval(5000);
@@ -159,6 +160,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_layout->setColumnStretch(2, 1);
 	m_layout->addWidget(m_text, 1, 1);
 	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
+	setMargin(margin);
 
 	// Load settings
 	Preferences preferences;

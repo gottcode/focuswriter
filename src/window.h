@@ -26,7 +26,6 @@ class QAction;
 class QLabel;
 class QTabBar;
 class QToolBar;
-class Document;
 class Preferences;
 class Stack;
 
@@ -60,7 +59,7 @@ private slots:
 	void updateSave();
 
 private:
-	void addDocument(Document* document);
+	void addDocument(const QString& filename = QString());
 	bool saveDocument(int index);
 	void loadPreferences(const Preferences& preferences);
 	void updateMargin();
@@ -76,6 +75,7 @@ private:
 
 	Stack* m_documents;
 	QTabBar* m_tabs;
+	int m_margin;
 
 	QWidget* m_footer;
 	QLabel* m_character_label;

@@ -48,6 +48,7 @@
 
 Window::Window()
 : m_toolbar(0),
+  m_margin(0),
   m_fullscreen(true),
   m_auto_save(true),
   m_goal_type(0),
@@ -140,6 +141,7 @@ Window::Window()
 	layout->addWidget(m_documents, 0, 0, 3, 3);
 	layout->addWidget(m_header, 0, 0, 1, 3);
 	layout->addWidget(m_footer, 2, 0, 1, 3);
+	updateMargin();
 
 	// Load current daily progress
 	QSettings settings;
@@ -172,7 +174,7 @@ Window::Window()
 		}
 	}
 	foreach (const QString& file, files) {
-		addDocument(new Document(file, m_current_wordcount, m_current_time, this));
+		addDocument(file);
 	}
 	m_tabs->setCurrentIndex(settings.value("Save/Active", 0).toInt());
 }
@@ -227,7 +229,7 @@ void Window::resizeEvent(QResizeEvent* event) {
 /*****************************************************************************/
 
 void Window::newDocument() {
-	addDocument(new Document(QString(), m_current_wordcount, m_current_time, this));
+	addDocument();
 	m_actions["Rename"]->setEnabled(false);
 }
 
@@ -236,7 +238,7 @@ void Window::newDocument() {
 void Window::openDocument() {
 	QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), QString(), tr("Plain Text (*.txt);;All Files (*)"));
 	if (!filename.isEmpty()) {
-		addDocument(new Document(filename, m_current_wordcount, m_current_time, this));
+		addDocument(filename);
 	}
 }
 
@@ -400,7 +402,8 @@ void Window::updateSave() {
 
 /*****************************************************************************/
 
-void Window::addDocument(Document* document) {
+void Window::addDocument(const QString& filename) {
+	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(footerVisible(bool)), m_footer, SLOT(setVisible(bool)));
@@ -408,7 +411,6 @@ void Window::addDocument(Document* document) {
 	connect(document->text(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	m_documents->addDocument(document);
-	updateMargin();
 
 	int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
@@ -491,9 +493,9 @@ void Window::loadPreferences(const Preferences& preferences) {
 /*****************************************************************************/
 
 void Window::updateMargin() {
-	int margin = qMax(m_header->sizeHint().height(), m_footer->sizeHint().height());
+	m_margin = qMax(m_header->sizeHint().height(), m_footer->sizeHint().height());
 	for (int i = 0; i < m_documents->count(); ++i) {
-		m_documents->document(i)->setMargin(margin);
+		m_documents->document(i)->setMargin(m_margin);
 	}
 }
 
