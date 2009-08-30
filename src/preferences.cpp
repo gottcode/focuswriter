@@ -48,6 +48,7 @@ Preferences::Preferences()
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
+	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 
 	m_auto_save = settings.value("Save/Auto", true).toBool();
 	m_auto_append = settings.value("Save/Append", true).toBool();
@@ -95,6 +96,7 @@ Preferences::~Preferences() {
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
+	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/Append", m_auto_append);
@@ -278,6 +280,12 @@ bool Preferences::blockCursor() const {
 
 /*****************************************************************************/
 
+bool Preferences::smoothFonts() const {
+	return m_smooth_fonts;
+}
+
+/*****************************************************************************/
+
 void Preferences::setAlwaysCenter(bool center) {
 	m_always_center = center;
 	m_changed = true;
@@ -287,6 +295,13 @@ void Preferences::setAlwaysCenter(bool center) {
 
 void Preferences::setBlockCursor(bool block) {
 	m_block_cursor = block;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setSmoothFonts(bool smooth) {
+	m_smooth_fonts = smooth;
 	m_changed = true;
 }
 

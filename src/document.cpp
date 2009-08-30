@@ -299,7 +299,9 @@ void Document::loadTheme(const Theme& theme) {
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update text
-	m_text->setFont(theme.textFont());
+	QFont font = theme.textFont();
+	font.setStyleStrategy(m_text->font().styleStrategy());
+	m_text->setFont(font);
 	m_text->setFixedWidth(theme.foregroundWidth());
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 
@@ -334,6 +336,9 @@ void Document::loadPreferences(const Preferences& preferences) {
 	m_auto_append = preferences.autoAppend();
 	m_block_cursor = preferences.blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+	QFont font = m_text->font();
+	font.setStyleStrategy(preferences.smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
+	m_text->setFont(font);
 
 	m_highlighter->setEnabled(preferences.highlightMisspelled());
 }

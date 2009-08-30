@@ -58,8 +58,10 @@ public:
 
 	bool alwaysCenter() const;
 	bool blockCursor() const;
+	bool smoothFonts() const;
 	void setAlwaysCenter(bool center);
 	void setBlockCursor(bool block);
+	void setSmoothFonts(bool smooth);
 
 	bool autoSave() const;
 	bool autoAppend() const;
@@ -99,6 +101,7 @@ private:
 
 	bool m_always_center;
 	bool m_block_cursor;
+	bool m_smooth_fonts;
 
 	bool m_auto_save;
 	bool m_auto_append;

@@ -119,6 +119,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 
 	m_always_center->setChecked(m_preferences.alwaysCenter());
 	m_block_cursor->setChecked(m_preferences.blockCursor());
+	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
 
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_auto_append->setChecked(m_preferences.autoAppend());
@@ -202,6 +203,7 @@ void PreferencesDialog::accept() {
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
+	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
 	m_preferences.setAutoAppend(m_auto_append->isChecked());
@@ -506,10 +508,12 @@ QWidget* PreferencesDialog::initGeneralTab() {
 
 	m_always_center = new QCheckBox(tr("Always center"), edit_group);
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
+	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
 
 	QVBoxLayout* edit_layout = new QVBoxLayout(edit_group);
 	edit_layout->addWidget(m_always_center);
 	edit_layout->addWidget(m_block_cursor);
+	edit_layout->addWidget(m_smooth_fonts);
 
 	// Create save options
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);

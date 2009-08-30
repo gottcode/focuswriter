@@ -69,6 +69,7 @@ private:
 	QSpinBox* m_wordcount;
 	QCheckBox* m_always_center;
 	QCheckBox* m_block_cursor;
+	QCheckBox* m_smooth_fonts;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_auto_append;
 
