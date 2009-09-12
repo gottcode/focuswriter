@@ -1,4 +1,5 @@
 2009-09-12 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Clock did not respect user's locale.
 	* FIXED: Time daily goal increased when preferences changed.
 
 2009-08-29 Graeme Gott <graeme@gottcode.org>
