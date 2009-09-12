@@ -1,3 +1,6 @@
+2009-09-12 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Time daily goal increased when preferences changed.
+
 2009-08-29 Graeme Gott <graeme@gottcode.org>
 	* Allow user to disable antialiasing.
 

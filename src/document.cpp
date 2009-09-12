@@ -134,6 +134,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	// Set up text area
 	m_text = new QPlainTextEdit(this);
+	m_text->installEventFilter(this);
 	m_text->setCenterOnScroll(true);
 	m_text->setTabStopWidth(50);
 	m_text->setMinimumHeight(500);
@@ -358,6 +359,12 @@ void Document::setMargin(int margin) {
 bool Document::eventFilter(QObject* watched, QEvent* event) {
 	if (event->type() == QEvent::MouseMove) {
 		mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (event->type() == QEvent::KeyPress && watched == m_text) {
+		int msecs = m_time.restart();
+		if (msecs < 30000) {
+			m_current_time += msecs;
+		}
+		emit changed();
 	}
 	return QWidget::eventFilter(watched, event);
 }
@@ -419,12 +426,6 @@ void Document::updateWordCount(int position, int removed, int added) {
 	int words = m_wordcount;
 	calculateWordCount();
 	m_current_wordcount += (m_wordcount - words);
-
-	int msecs = m_time.restart();
-	if (msecs < 30000) {
-		m_current_time += msecs;
-	}
-
 	emit changed();
 }
 
