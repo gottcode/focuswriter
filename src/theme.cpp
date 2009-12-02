@@ -50,6 +50,7 @@ Theme::Theme(const QString& name)
 	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
 	m_foreground_width = settings.value("Foreground/Width", 700).toInt();
 	m_foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
+	m_foreground_position = settings.value("Foreground/Position", 1).toInt();
 
 	// Load text settings
 	m_text_color = settings.value("Text/Color", "#000000").toString();
@@ -75,6 +76,7 @@ Theme::~Theme() {
 	settings.setValue("Foreground/Color", m_foreground_color.name());
 	settings.setValue("Foreground/Width", m_foreground_width);
 	settings.setValue("Foreground/Opacity", m_foreground_opacity);
+	settings.setValue("Foreground/Position", m_foreground_position);
 
 	// Store text settings
 	settings.setValue("Text/Color", m_text_color.name());
@@ -180,6 +182,12 @@ int Theme::foregroundOpacity() const {
 
 /*****************************************************************************/
 
+int Theme::foregroundPosition() const {
+	return m_foreground_position;
+}
+
+/*****************************************************************************/
+
 void Theme::setForegroundColor(const QColor& color) {
 	m_foreground_color = color;
 	m_changed = true;
@@ -196,6 +204,13 @@ void Theme::setForegroundWidth(int width) {
 
 void Theme::setForegroundOpacity(int opacity) {
 	m_foreground_opacity = opacity;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Theme::setForegroundPosition(int position) {
+	m_foreground_position = position;
 	m_changed = true;
 }
 

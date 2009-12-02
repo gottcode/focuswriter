@@ -157,8 +157,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_layout = new QGridLayout(this);
 	m_layout->setSpacing(0);
 	m_layout->setMargin(0);
-	m_layout->setColumnStretch(0, 1);
-	m_layout->setColumnStretch(2, 1);
 	m_layout->addWidget(m_text, 1, 1);
 	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
 	setMargin(margin);
@@ -305,6 +303,24 @@ void Document::loadTheme(const Theme& theme) {
 	m_text->setFont(font);
 	m_text->setFixedWidth(theme.foregroundWidth());
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+
+	switch (theme.foregroundPosition()) {
+		case 0:
+			m_layout->setColumnStretch(0, 0);
+			m_layout->setColumnStretch(2, 1);
+			break;
+
+		case 2:
+			m_layout->setColumnStretch(0, 1);
+			m_layout->setColumnStretch(2, 0);
+			break;
+
+		case 1:
+		default:
+			m_layout->setColumnStretch(0, 1);
+			m_layout->setColumnStretch(2, 1);
+			break;
+	};
 
 	m_text->document()->blockSignals(false);
 }

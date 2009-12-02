@@ -1,3 +1,6 @@
+2009-12-02 Graeme Gott <graeme@gottcode.org>
+	* Allow user to change text area position.
+
 2009-09-12 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Clock did not respect user's locale.
 	* FIXED: Time daily goal increased when preferences changed.

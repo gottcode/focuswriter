@@ -108,6 +108,10 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width->setRange(500, 2000);
 	m_foreground_width->setValue(m_theme.foregroundWidth());
 
+	m_foreground_position = new QComboBox(tab);
+	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Middle") << tr("Right"));
+	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
+
 	QFormLayout* foreground_layout = new QFormLayout(tab);
 	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	foreground_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
@@ -115,6 +119,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	foreground_layout->addRow(tr("Color:"), m_foreground_color);
 	foreground_layout->addRow(tr("Width:"), m_foreground_width);
 	foreground_layout->addRow(tr("Opacity:"), m_foreground_opacity);
+	foreground_layout->addRow(tr("Position:"), m_foreground_position);
 
 
 	// Create text group
@@ -198,6 +203,7 @@ void ThemeDialog::accept() {
 	m_theme.setForegroundColor(m_foreground_color->color());
 	m_theme.setForegroundWidth(m_foreground_width->value());
 	m_theme.setForegroundOpacity(m_foreground_opacity->value());
+	m_theme.setForegroundPosition(m_foreground_position->currentIndex());
 
 	m_theme.setTextColor(m_text_color->color());
 	m_theme.setTextFont(QFont(m_font_names->currentFont().family(), m_font_sizes->currentText().toInt()));

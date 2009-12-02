@@ -52,10 +52,12 @@ public:
 	QColor foregroundColor() const;
 	int foregroundWidth() const;
 	int foregroundOpacity() const;
+	int foregroundPosition() const;
 
 	void setForegroundColor(const QColor& color);
 	void setForegroundWidth(int width);
 	void setForegroundOpacity(int opacity);
+	void setForegroundPosition(int position);
 
 	// Text settings
 	QColor textColor() const;
@@ -77,6 +79,7 @@ private:
 	QColor m_foreground_color;
 	int m_foreground_width;
 	int m_foreground_opacity;
+	int m_foreground_position;
 
 	QColor m_text_color;
 	QFont m_text_font;
