@@ -141,7 +141,6 @@ Window::Window()
 	layout->addWidget(m_documents, 0, 0, 3, 3);
 	layout->addWidget(m_header, 0, 0, 1, 3);
 	layout->addWidget(m_footer, 2, 0, 1, 3);
-	updateMargin();
 
 	// Load current daily progress
 	QSettings settings;
@@ -177,6 +176,7 @@ Window::Window()
 		addDocument(file);
 	}
 	m_tabs->setCurrentIndex(settings.value("Save/Active", 0).toInt());
+	updateMargin();
 }
 
 /*****************************************************************************/
@@ -493,7 +493,12 @@ void Window::loadPreferences(const Preferences& preferences) {
 /*****************************************************************************/
 
 void Window::updateMargin() {
+	m_header->show();
+	m_footer->show();
 	m_margin = qMax(m_header->sizeHint().height(), m_footer->sizeHint().height());
+	m_header->hide();
+	m_footer->hide();
+
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->setMargin(m_margin);
 	}
