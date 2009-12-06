@@ -372,6 +372,12 @@ void Document::setMargin(int margin) {
 
 /*****************************************************************************/
 
+void Document::setScrollBarVisible(bool visible) {
+	m_scrollbar->setVisible(visible);
+}
+
+/*****************************************************************************/
+
 bool Document::eventFilter(QObject* watched, QEvent* event) {
 	if (event->type() == QEvent::MouseMove) {
 		mouseMoveEvent(static_cast<QMouseEvent*>(event));

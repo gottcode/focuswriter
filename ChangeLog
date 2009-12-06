@@ -1,3 +1,6 @@
+2009-12-05 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Interface was not hidden when mouse left window.
+
 2009-12-03 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Margins were not correct when using Qt 4.6.0.
 

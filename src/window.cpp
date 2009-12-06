@@ -57,6 +57,7 @@ Window::Window()
   m_current_time(0),
   m_current_wordcount(0) {
 	setAttribute(Qt::WA_DeleteOnClose);
+	setMouseTracking(true);
 	setWindowIcon(QIcon(":/focuswriter.png"));
 
 	// Add contents
@@ -183,7 +184,7 @@ Window::Window()
 
 bool Window::event(QEvent* event) {
 	if (event->type() == QEvent::WindowBlocked) {
-		m_header->hide();
+		hideInterface();
 	}
 	return QMainWindow::event(event);
 }
@@ -215,6 +216,15 @@ void Window::closeEvent(QCloseEvent* event) {
 
 	event->accept();
 	QMainWindow::closeEvent(event);
+}
+
+/*****************************************************************************/
+
+void Window::mouseMoveEvent(QMouseEvent* event) {
+	if (!rect().contains(event->pos(), true)) {
+		hideInterface();
+	}
+	QMainWindow::mouseMoveEvent(event);
 }
 
 /*****************************************************************************/
@@ -487,6 +497,16 @@ void Window::loadPreferences(const Preferences& preferences) {
 	}
 	if (m_documents->count() > 0) {
 		updateDetails();
+	}
+}
+
+/*****************************************************************************/
+
+void Window::hideInterface() {
+	m_header->hide();
+	m_footer->hide();
+	for (int i = 0; i < m_documents->count(); ++i) {
+		m_documents->document(i)->setScrollBarVisible(false);
 	}
 }
 

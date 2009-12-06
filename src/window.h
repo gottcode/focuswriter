@@ -37,6 +37,7 @@ public:
 protected:
 	virtual bool event(QEvent* event);
 	virtual void closeEvent(QCloseEvent* event);
+	virtual void mouseMoveEvent(QMouseEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
@@ -62,6 +63,7 @@ private:
 	void addDocument(const QString& filename = QString());
 	bool saveDocument(int index);
 	void loadPreferences(const Preferences& preferences);
+	void hideInterface();
 	void updateMargin();
 	void updateTab(int index);
 	void initMenuBar();

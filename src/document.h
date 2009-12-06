@@ -79,6 +79,7 @@ public:
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void setMargin(int margin);
+	void setScrollBarVisible(bool visible);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 
