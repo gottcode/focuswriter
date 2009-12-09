@@ -57,7 +57,6 @@ Window::Window()
   m_current_time(0),
   m_current_wordcount(0) {
 	setAttribute(Qt::WA_DeleteOnClose);
-	setMouseTracking(true);
 	setWindowIcon(QIcon(":/focuswriter.png"));
 
 	// Add contents
@@ -220,11 +219,11 @@ void Window::closeEvent(QCloseEvent* event) {
 
 /*****************************************************************************/
 
-void Window::mouseMoveEvent(QMouseEvent* event) {
-	if (!rect().contains(event->pos(), true)) {
+void Window::leaveEvent(QEvent* event) {
+	if (qApp->activePopupWidget() == 0) {
 		hideInterface();
 	}
-	QMainWindow::mouseMoveEvent(event);
+	QMainWindow::leaveEvent(event);
 }
 
 /*****************************************************************************/

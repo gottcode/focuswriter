@@ -37,7 +37,7 @@ public:
 protected:
 	virtual bool event(QEvent* event);
 	virtual void closeEvent(QCloseEvent* event);
-	virtual void mouseMoveEvent(QMouseEvent* event);
+	virtual void leaveEvent(QEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
