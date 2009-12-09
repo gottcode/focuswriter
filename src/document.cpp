@@ -422,7 +422,7 @@ void Document::wheelEvent(QWheelEvent* event) {
 
 void Document::hideMouse() {
 	QWidget* widget = QApplication::widgetAt(QCursor::pos());
-	if (widget == m_text->viewport() || widget == this) {
+	if (m_text->viewport()->hasFocus() && (widget == m_text->viewport() || widget == this)) {
 		m_text->viewport()->setCursor(Qt::BlankCursor);
 		setCursor(Qt::BlankCursor);
 	}
