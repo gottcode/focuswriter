@@ -1,3 +1,6 @@
+2010-01-02 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Dictionary was assumed to use UTF-8 encoding.
+
 2009-12-08 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Mouse cursor sometimes disappeared when opening files.
 

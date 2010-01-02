@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
 namespace {
 	QList<Dictionary*> f_instances;
 	Hunspell* f_dictionary = 0;
+	QTextCodec* f_codec = 0;
 	int f_ref_count = 0;
 	QString f_path;
 	QString f_language;
@@ -143,7 +144,7 @@ QStringRef Dictionary::check(const QString& string, int start_at) const {
 		if (word || (i == count && index != -1)) {
 			if (!uppercase && !(number && f_ignore_numbers)) {
 				QStringRef check(&string, index, length);
-				if (!f_dictionary->spell(check.toString().toUtf8().data())) {
+				if (!f_dictionary->spell(f_codec->fromUnicode(check.toString()).constData())) {
 					return check;
 				}
 			}
@@ -165,10 +166,10 @@ QStringList Dictionary::suggestions(const QString& word) const {
 	}
 
 	char** suggestions = 0;
-	int count = f_dictionary->suggest(&suggestions, word.toUtf8().data());
+	int count = f_dictionary->suggest(&suggestions, f_codec->fromUnicode(word).constData());
 	if (suggestions != 0) {
 		for (int i = 0; i < count; ++i) {
-			result.append(QString::fromUtf8(suggestions[i]));
+			result.append(f_codec->toUnicode(suggestions[i]));
 		}
 		f_dictionary->free_list(&suggestions, count);
 	}
@@ -234,10 +235,16 @@ void Dictionary::setLanguage(const QString& language) {
 	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
 	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
 	f_dictionary = new Hunspell(aff.toUtf8().data(), dic.toUtf8().data());
+	f_codec = QTextCodec::codecForName(f_dictionary->get_dic_encoding());
 
-	QStringList words = personal();
-	foreach (const QString& word, words) {
-		f_dictionary->add(word.toUtf8().data());
+	if (f_codec) {
+		QStringList words = personal();
+		foreach (const QString& word, words) {
+			f_dictionary->add(f_codec->fromUnicode(word).constData());
+		}
+	} else {
+		delete f_dictionary;
+		f_dictionary = 0;
 	}
 
 	foreach (Dictionary* dictionary, f_instances) {
@@ -250,7 +257,7 @@ void Dictionary::setLanguage(const QString& language) {
 void Dictionary::setPersonal(const QStringList& words) {
 	if (f_dictionary) {
 		foreach (const QString& word, f_personal) {
-			f_dictionary->remove(word.toUtf8().data());
+			f_dictionary->remove(f_codec->fromUnicode(word).constData());
 		}
 	}
 
@@ -268,7 +275,7 @@ void Dictionary::setPersonal(const QStringList& words) {
 
 	if (f_dictionary) {
 		foreach (const QString& word, f_personal) {
-			f_dictionary->add(word.toUtf8().data());
+			f_dictionary->add(f_codec->fromUnicode(word).constData());
 		}
 	}
 
