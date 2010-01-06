@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -118,6 +118,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	}
 
 	m_always_center->setChecked(m_preferences.alwaysCenter());
+	m_blinking_cursor->setChecked(m_preferences.blinkingCursor());
 	m_block_cursor->setChecked(m_preferences.blockCursor());
 	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
 
@@ -202,6 +203,7 @@ void PreferencesDialog::accept() {
 	m_preferences.setAccurateWordcount(m_option_accurate_wordcount->isChecked());
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
+	m_preferences.setBlinkingCursor(m_blinking_cursor->isChecked());
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
 	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
 
@@ -507,11 +509,13 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
 	m_always_center = new QCheckBox(tr("Always center"), edit_group);
+	m_blinking_cursor = new QCheckBox(tr("Blinking cursor"), edit_group);
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
 
 	QVBoxLayout* edit_layout = new QVBoxLayout(edit_group);
 	edit_layout->addWidget(m_always_center);
+	edit_layout->addWidget(m_blinking_cursor);
 	edit_layout->addWidget(m_block_cursor);
 	edit_layout->addWidget(m_smooth_fonts);
 
