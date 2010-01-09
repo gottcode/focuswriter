@@ -33,13 +33,14 @@
 #include <QLineEdit>
 #include <QListWidget>
 #include <QMessageBox>
-#include <QProcess>
 #include <QPushButton>
 #include <QRadioButton>
 #include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
 #include <QVBoxLayout>
+
+#include "../minizip/unzip.h"
 
 /*****************************************************************************/
 
@@ -327,89 +328,133 @@ void PreferencesDialog::addLanguage() {
 	}
 
 	// File lists
-	QStringList files;
-	QStringList aff_files;
-	QStringList dic_files;
+	QHash<QString, uLong> aff_files;
+	QHash<QString, uLong> dic_files;
+	QHash<QString, uLong> files;
 	QStringList dictionaries;
 
-	// List files in archive
-	QProcess list_files;
-	list_files.setWorkingDirectory(Dictionary::path());
-	list_files.start(QString("unzip -qq -l %1").arg(path));
-	list_files.waitForFinished(-1);
-	if (list_files.exitCode() != 0) {
-		QMessageBox::warning(this, tr("Error"), tr("Unable to list files in archive."));
-		return;
-	}
-	QStringList lines = QString(list_files.readAllStandardOutput()).split(QChar('\n'), QString::SkipEmptyParts);
-	foreach (const QString& line, lines) {
-		// Fetch file name
-		int index = line.lastIndexOf(QChar(' '));
-		if (index == -1) {
-			continue;
-		}
-		QString file = line.mid(index + 1);
-
-		// Determine file type
-		if (file.endsWith(".aff")) {
-			aff_files.append(file);
-		} else if (file.endsWith(".dic")) {
-			dic_files.append(file);
-		} else {
-			continue;
-		}
-	}
-
-	// Find dictionary files
-	foreach (const QString& dic, dic_files) {
-		QString aff = dic;
-		aff.replace(".dic", ".aff");
-		if (aff_files.contains(aff)) {
-			files.append(dic);
-			files.append(aff);
-			int index = dic.lastIndexOf(QChar('/')) + 1;
-			dictionaries.append(dic.mid(index, dic.length() - index - 4));
-		}
-	}
-
-	// Extract files
-	if (files.isEmpty()) {
-		return;
-	}
-	QProcess unzip;
-	unzip.setWorkingDirectory(Dictionary::path());
-	unzip.start(QString("unzip -qq -o -j %1 %2 -d install").arg(path).arg(files.join(" ")));
-	unzip.waitForFinished(-1);
-	if (unzip.exitCode() != 0) {
-		QMessageBox::warning(this, tr("Error"), tr("Unable to extract dictionary files from archive."));
+	// Open archive
+	unzFile archive = unzOpen(path.toUtf8().data());
+	bool archive_file_open = false;
+	if (!archive) {
+		QMessageBox::warning(this, tr("Error"), tr("Unable to open archive."));
 		return;
 	}
 
-	// Add to language selection
-	QString dictionary_path = Dictionary::path() + "/install/";
-	QString dictionary_new_path = Dictionary::path() + "/";
-	foreach (const QString& dictionary, dictionaries) {
-		QString language = dictionary;
-		language.replace(QChar('-'), QChar('_'));
-		QString name = languageName(language);
-
-		// Prompt user about replacing duplicate languages
-		QString aff_file = dictionary_path + dictionary + ".aff";
-		QString dic_file = dictionary_path + dictionary + ".dic";
-		QString new_aff_file = dictionary_new_path + language + ".aff";
-		QString new_dic_file = dictionary_new_path + language + ".dic";
-
-		if (QFile::exists(new_aff_file) || QFile::exists(new_dic_file)) {
-			if (QMessageBox::question(this, tr("Question"), tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
-				QFile::remove(aff_file);
-				QFile::remove(dic_file);
+	try {
+		// List files
+		unz_global_info info;
+		if (unzGetGlobalInfo(archive, &info) != UNZ_OK) {
+			throw tr("Unable to read archive metadata.");
+		}
+		if ((info.number_entry > 0) && unzGoToFirstFile(archive) != UNZ_OK) {
+			throw tr("Unable to access first file.");
+		}
+		for (uLong i = 0; i < info.number_entry; ++i) {
+			unz_file_info entry;
+			if (unzGetCurrentFileInfo(archive, &entry, 0, 0, 0, 0, 0, 0) != UNZ_OK) {
+				throw tr("Unable to read file metadata.");
 			}
-			continue;
+
+			// Read file name
+			QByteArray buffer(entry.size_filename, 0);
+			if (unzGetCurrentFileInfo(archive, 0, buffer.data(), entry.size_filename, 0, 0, 0, 0) != UNZ_OK) {
+				throw tr("Unable to read file metadata.");
+			}
+			QString name = (entry.flag & 2048) ? QString::fromUtf8(buffer) : QString::fromAscii(buffer);
+
+			// Store file details
+			if (name.endsWith(".aff")) {
+				aff_files[name] = entry.uncompressed_size;
+			} else if (name.endsWith(".dic")) {
+				dic_files[name] = entry.uncompressed_size;
+			}
+
+			unzGoToNextFile(archive);
 		}
 
-		m_languages->addItem(name, language);
+		// Find dictionary files
+		foreach (const QString& dic, dic_files.keys()) {
+			QString aff = dic;
+			aff.replace(".dic", ".aff");
+			if (aff_files.contains(aff)) {
+				files[dic] = dic_files[dic];
+				files[aff] = aff_files[aff];
+				QString dictionary = dic.section('/', -1);
+				dictionary.chop(4);
+				dictionaries += dictionary;
+			}
+		}
+
+		// Extract files
+		QDir dir(Dictionary::path());
+		dir.mkdir("install");
+		QString install = dir.absoluteFilePath("install") + "/";
+		QHashIterator<QString, uLong> i(files);
+		while (i.hasNext()) {
+			i.next();
+
+			if (unzLocateFile(archive, i.key().toUtf8().constData(), 0) != UNZ_OK) {
+				throw tr("Unable to locate file '%1'.").arg(i.key());
+			}
+			if (unzOpenCurrentFile(archive) != UNZ_OK) {
+				throw tr("Unable to open file '%1'.").arg(i.key());
+			}
+
+			archive_file_open = true;
+			QByteArray buffer(i.value(), 0);
+			if (unzReadCurrentFile(archive, buffer.data(), buffer.size()) > -1) {
+				QFile file(install + i.key().section('/', -1));
+				if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+					file.write(buffer);
+					file.close();
+				}
+			} else {
+				throw tr("Unable to read file '%1'.").arg(i.key());
+			}
+			archive_file_open = false;
+
+			if (unzCloseCurrentFile(archive) != UNZ_OK) {
+				throw tr("Unable to close file '%1'.").arg(i.key());
+			}
+		}
+
+		// Add to language selection
+		QString dictionary_path = Dictionary::path() + "/install/";
+		QString dictionary_new_path = Dictionary::path() + "/";
+		foreach (const QString& dictionary, dictionaries) {
+			QString language = dictionary;
+			language.replace(QChar('-'), QChar('_'));
+			QString name = languageName(language);
+
+			// Prompt user about replacing duplicate languages
+			QString aff_file = dictionary_path + dictionary + ".aff";
+			QString dic_file = dictionary_path + dictionary + ".dic";
+			QString new_aff_file = dictionary_new_path + language + ".aff";
+			QString new_dic_file = dictionary_new_path + language + ".dic";
+
+			if (QFile::exists(new_aff_file) || QFile::exists(new_dic_file)) {
+				if (QMessageBox::question(this, tr("Question"), tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+					QFile::remove(aff_file);
+					QFile::remove(dic_file);
+				}
+				continue;
+			}
+
+			m_languages->addItem(name, language);
+		}
+		m_languages->model()->sort(0);
 	}
-	m_languages->model()->sort(0);
+
+	catch (QString error) {
+		QMessageBox::warning(this, tr("Error"), error);
+	}
+
+	// Close archive
+	if (archive_file_open) {
+		unzCloseCurrentFile(archive);
+	}
+	unzClose(archive);
 }
 
 /*****************************************************************************/
@@ -696,11 +741,6 @@ QWidget* PreferencesDialog::initSpellingTab() {
 	m_remove_language_button = new QPushButton(tr("Remove"), languages_group);
 	m_remove_language_button->setAutoDefault(false);
 	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
-
-	QProcess unzip;
-	unzip.start("unzip");
-	unzip.waitForFinished(-1);
-	m_add_language_button->setEnabled(unzip.error() != QProcess::FailedToStart);
 
 	m_languages = new QComboBox(languages_group);
 	connect(m_languages, SIGNAL(currentIndexChanged(int)), this, SLOT(selectedLanguageChanged(int)));

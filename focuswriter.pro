@@ -47,6 +47,14 @@ isEmpty(USE_SYSTEM_HUNSPELL) {
 	LIBS += $$system(pkg-config --libs hunspell)
 }
 
+# Include minizip
+SOURCES += minizip/ioapi.c \
+	minizip/unzip.c \
+	minizip/zip.c
+macx {
+	LIBS += -lz
+}
+
 HEADERS += src/color_button.h \
 	src/dictionary.h \
 	src/document.h \
