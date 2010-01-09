@@ -1,7 +1,10 @@
 @ECHO OFF
-ECHO Copying libraries
+ECHO Copying executable
 MKDIR FocusWriter
 COPY release\FocusWriter.exe FocusWriter
+STRIP FocusWriter\FocusWriter.exe
+ECHO Copying libraries
+COPY %QTDIR%\bin\libgcc_s_dw2-1.dll FocusWriter
 COPY %QTDIR%\bin\mingwm10.dll FocusWriter
 COPY %QTDIR%\bin\QtCore4.dll FocusWriter
 COPY %QTDIR%\bin\QtGui4.dll FocusWriter
