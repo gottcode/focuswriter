@@ -553,7 +553,7 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
-	m_always_center = new QCheckBox(tr("Always center"), edit_group);
+	m_always_center = new QCheckBox(tr("Always vertically center"), edit_group);
 	m_blinking_cursor = new QCheckBox(tr("Blinking cursor"), edit_group);
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
@@ -642,7 +642,7 @@ QWidget* PreferencesDialog::initStatisticsTab() {
 	QGroupBox* wordcount_group = new QGroupBox(tr("Word Count Algorithm"), this);
 
 	m_option_accurate_wordcount = new QRadioButton(tr("Detect word boundaries"), wordcount_group);
-	m_option_estimate_wordcount = new QRadioButton(tr("Estimate from character count"), wordcount_group);
+	m_option_estimate_wordcount = new QRadioButton(tr("Divide character count by six"), wordcount_group);
 
 	QVBoxLayout* wordcount_layout = new QVBoxLayout(wordcount_group);
 	wordcount_layout->addWidget(m_option_accurate_wordcount);
