@@ -1,4 +1,5 @@
 2010-01-11 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Prompted user about replacing a removed dictionary.
 	* FIXED: Dictionary added most recently was not selected.
 	* FIXED: Dictionaries couldn't be used immediately.
 

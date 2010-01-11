@@ -434,7 +434,7 @@ void PreferencesDialog::addLanguage() {
 			QString new_aff_file = dictionary_new_path + language + ".aff";
 			QString new_dic_file = dictionary_new_path + language + ".dic";
 
-			if (QFile::exists(new_aff_file) || QFile::exists(new_dic_file)) {
+			if (!m_uninstalled.contains(language) && (QFile::exists(new_aff_file) || QFile::exists(new_dic_file))) {
 				if (QMessageBox::question(this, tr("Question"), tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 					QFile::remove(aff_file);
 					QFile::remove(dic_file);
