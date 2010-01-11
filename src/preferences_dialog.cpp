@@ -223,18 +223,6 @@ void PreferencesDialog::accept() {
 	}
 	m_preferences.setToolbarActions(actions);
 
-	m_preferences.setHighlightMisspelled(m_highlight_misspelled->isChecked());
-	m_preferences.setIgnoreWordsWithNumbers(m_ignore_numbers->isChecked());
-	m_preferences.setIgnoreUppercaseWords(m_ignore_uppercase->isChecked());
-	if (m_languages->count()) {
-		m_preferences.setLanguage(m_languages->itemData(m_languages->currentIndex()).toString());
-	} else {
-		m_preferences.setLanguage(QString());
-	}
-	m_dictionary->setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
-	m_dictionary->setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
-	m_dictionary->setLanguage(m_preferences.language());
-
 	// Uninstall languages
 	foreach (const QString& language, m_uninstalled) {
 		QFile::remove("dict:" + language + ".aff");
@@ -253,6 +241,19 @@ void PreferencesDialog::accept() {
 	}
 	dir.cdUp();
 	dir.rmdir("install");
+
+	// Set dictionary
+	m_preferences.setHighlightMisspelled(m_highlight_misspelled->isChecked());
+	m_preferences.setIgnoreWordsWithNumbers(m_ignore_numbers->isChecked());
+	m_preferences.setIgnoreUppercaseWords(m_ignore_uppercase->isChecked());
+	if (m_languages->count()) {
+		m_preferences.setLanguage(m_languages->itemData(m_languages->currentIndex()).toString());
+	} else {
+		m_preferences.setLanguage(QString());
+	}
+	m_dictionary->setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
+	m_dictionary->setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
+	m_dictionary->setLanguage(m_preferences.language());
 
 	// Save personal dictionary
 	QStringList words;
