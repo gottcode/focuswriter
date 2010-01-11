@@ -1,4 +1,5 @@
 2010-01-11 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Dictionary added most recently was not selected.
 	* FIXED: Dictionaries couldn't be used immediately.
 
 2010-01-08 Graeme Gott <graeme@gottcode.org>

@@ -443,6 +443,7 @@ void PreferencesDialog::addLanguage() {
 			}
 
 			m_languages->addItem(name, language);
+			m_languages->setCurrentIndex(m_languages->count() - 1);
 		}
 		m_languages->model()->sort(0);
 	}
