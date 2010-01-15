@@ -1,3 +1,6 @@
+2010-01-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Program would crash if dictionary couldn't be found.
+
 2010-01-11 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Prompted user about replacing a removed dictionary.
 	* FIXED: Dictionary added most recently was not selected.

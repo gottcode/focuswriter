@@ -226,14 +226,14 @@ void Dictionary::setIgnoreUppercase(bool ignore) {
 /*****************************************************************************/
 
 void Dictionary::setLanguage(const QString& language) {
-	if (language.isEmpty() || language == f_language) {
+	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
+	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
+	if (language.isEmpty() || aff.isEmpty() || dic.isEmpty() || language == f_language) {
 		return;
 	}
 	f_language = language;
 
 	delete f_dictionary;
-	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
-	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
 	f_dictionary = new Hunspell(aff.toUtf8().data(), dic.toUtf8().data());
 	f_codec = QTextCodec::codecForName(f_dictionary->get_dic_encoding());
 
