@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QFile>
+#include <QLibraryInfo>
 #include <QLocale>
 #include <QSettings>
 #include <QTranslator>
@@ -36,11 +37,11 @@ int main(int argc, char** argv) {
 	app.setOrganizationName("GottCode");
 
 	QTranslator qt_translator;
-	qt_translator.load("qt_" + QLocale::system().name());
+	qt_translator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 	app.installTranslator(&qt_translator);
 
 	QTranslator translator;
-	translator.load("focuswriter_" + QLocale::system().name());
+	translator.load(":/focuswriter_" + QLocale::system().name());
 	app.installTranslator(&translator);
 
 	// Find data paths

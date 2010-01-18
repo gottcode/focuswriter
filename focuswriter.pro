@@ -92,7 +92,9 @@ SOURCES += src/color_button.cpp \
 	src/thumbnail_model.cpp \
 	src/window.cpp
 
-RESOURCES = icons/icons.qrc
+TRANSLATIONS = translations/focuswriter_fr.ts translations/focuswriter_pt.ts
+
+RESOURCES = icons/icons.qrc translations/translations.qrc
 macx {
 	ICON = icons/focuswriter.icns
 }
