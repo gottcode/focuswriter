@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -351,7 +351,6 @@ void Document::loadPreferences(const Preferences& preferences) {
 	calculateWordCount();
 
 	m_auto_append = preferences.autoAppend();
-	m_blinking_cursor = preferences.blinkingCursor();
 	m_block_cursor = preferences.blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 	QFont font = m_text->font();
@@ -380,7 +379,6 @@ void Document::setScrollBarVisible(bool visible) {
 /*****************************************************************************/
 
 bool Document::eventFilter(QObject* watched, QEvent* event) {
-	static int flash = QApplication::cursorFlashTime();
 	if (event->type() == QEvent::MouseMove) {
 		mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (event->type() == QEvent::KeyPress && watched == m_text) {
@@ -389,12 +387,6 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 			m_current_time += msecs;
 		}
 		emit changed();
-	} else if (event->type() == QEvent::FocusIn) {
-		if (!m_blinking_cursor) {
-			QApplication::setCursorFlashTime(0);
-		}
-	} else if (event->type() == QEvent::FocusOut) {
-		QApplication::setCursorFlashTime(flash);
 	}
 	return QWidget::eventFilter(watched, event);
 }

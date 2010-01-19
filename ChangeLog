@@ -13,9 +13,6 @@
 2010-01-08 Graeme Gott <graeme@gottcode.org>
 	* Include minizip for extracting dictionaries.
 
-2010-01-06 Graeme Gott <graeme@gottcode.org>
-	* Allow user to disable blinking cursor.
-
 2010-01-02 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Dictionary was assumed to use UTF-8 encoding.
 

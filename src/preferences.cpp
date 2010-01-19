@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,6 @@ Preferences::Preferences()
 	m_accurate_wordcount = settings.value("Stats/AccurateWordcount", true).toBool();
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
-	m_blinking_cursor = settings.value("Edit/BlinkingCursor", true).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 
@@ -96,7 +95,6 @@ Preferences::~Preferences() {
 	settings.setValue("Stats/AccurateWordcount", m_accurate_wordcount);
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
-	settings.setValue("Edit/BlinkingCursor", m_blinking_cursor);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
 	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
 
@@ -276,12 +274,6 @@ bool Preferences::alwaysCenter() const {
 
 /*****************************************************************************/
 
-bool Preferences::blinkingCursor() const {
-	return m_blinking_cursor;
-}
-
-/*****************************************************************************/
-
 bool Preferences::blockCursor() const {
 	return m_block_cursor;
 }
@@ -296,13 +288,6 @@ bool Preferences::smoothFonts() const {
 
 void Preferences::setAlwaysCenter(bool center) {
 	m_always_center = center;
-	m_changed = true;
-}
-
-/*****************************************************************************/
-
-void Preferences::setBlinkingCursor(bool blink) {
-	m_blinking_cursor = blink;
 	m_changed = true;
 }
 

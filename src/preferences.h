@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,11 +57,9 @@ public:
 	void setAccurateWordcount(bool accurate);
 
 	bool alwaysCenter() const;
-	bool blinkingCursor() const;
 	bool blockCursor() const;
 	bool smoothFonts() const;
 	void setAlwaysCenter(bool center);
-	void setBlinkingCursor(bool blink);
 	void setBlockCursor(bool block);
 	void setSmoothFonts(bool smooth);
 
@@ -102,7 +100,6 @@ private:
 	bool m_accurate_wordcount;
 
 	bool m_always_center;
-	bool m_blinking_cursor;
 	bool m_block_cursor;
 	bool m_smooth_fonts;
 

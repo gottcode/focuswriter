@@ -150,273 +150,268 @@
         <translation>Orthographe</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="326"/>
+        <location filename="../src/preferences_dialog.cpp" line="324"/>
         <source>Select Dictionary</source>
         <translation>Choisir le dictionnaire</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="341"/>
-        <location filename="../src/preferences_dialog.cpp" line="452"/>
+        <location filename="../src/preferences_dialog.cpp" line="339"/>
+        <location filename="../src/preferences_dialog.cpp" line="450"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="438"/>
-        <location filename="../src/preferences_dialog.cpp" line="469"/>
+        <location filename="../src/preferences_dialog.cpp" line="436"/>
+        <location filename="../src/preferences_dialog.cpp" line="467"/>
         <source>Question</source>
         <translation>Question</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="438"/>
+        <location filename="../src/preferences_dialog.cpp" line="436"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
         <translation>Le dictionnaire &quot;%1&quot; existe déjà. Voulez-vous le remplacer ?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="469"/>
+        <location filename="../src/preferences_dialog.cpp" line="467"/>
         <source>Remove current dictionary?</source>
         <translation>Supprimer le dictionnaire courant ?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="524"/>
+        <location filename="../src/preferences_dialog.cpp" line="522"/>
         <source>Daily Goal</source>
         <translation>Objectif quotidien</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="526"/>
+        <location filename="../src/preferences_dialog.cpp" line="524"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="528"/>
+        <location filename="../src/preferences_dialog.cpp" line="526"/>
         <source>Minutes:</source>
         <translation>Minutes :</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="539"/>
-        <location filename="../src/preferences_dialog.cpp" line="629"/>
+        <location filename="../src/preferences_dialog.cpp" line="537"/>
+        <location filename="../src/preferences_dialog.cpp" line="625"/>
         <source>Words:</source>
         <translation>Mots :</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="556"/>
+        <location filename="../src/preferences_dialog.cpp" line="554"/>
         <source>Editing</source>
         <translation>Édition</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="560"/>
+        <location filename="../src/preferences_dialog.cpp" line="557"/>
         <source>Block insertion cursor</source>
         <translation>Curseur bloc</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="570"/>
+        <location filename="../src/preferences_dialog.cpp" line="566"/>
         <source>Saving</source>
         <translation>Enregistrement</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="572"/>
+        <location filename="../src/preferences_dialog.cpp" line="568"/>
         <source>Automatically save changes</source>
         <translation>Automatique</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="573"/>
+        <location filename="../src/preferences_dialog.cpp" line="569"/>
         <source>Append filename extension</source>
         <translation>Ajouter automatiquement l&apos;extension au nom de fichier</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="595"/>
+        <location filename="../src/preferences_dialog.cpp" line="591"/>
         <source>Contents</source>
         <translation>Contenu</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="597"/>
+        <location filename="../src/preferences_dialog.cpp" line="593"/>
         <source>Character count</source>
         <translation>Nombre de caractères</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="598"/>
+        <location filename="../src/preferences_dialog.cpp" line="594"/>
         <source>Page count</source>
         <translation>Nombre de pages</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="599"/>
+        <location filename="../src/preferences_dialog.cpp" line="595"/>
         <source>Paragraph count</source>
         <translation>Nombre de paragraphes</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="600"/>
+        <location filename="../src/preferences_dialog.cpp" line="596"/>
         <source>Word count</source>
         <translation>Nombre de mots</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="609"/>
+        <location filename="../src/preferences_dialog.cpp" line="605"/>
         <source>Page Size</source>
         <translation>Taille de page</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="611"/>
+        <location filename="../src/preferences_dialog.cpp" line="607"/>
         <source>Characters:</source>
         <translation>Caractères :</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="620"/>
+        <location filename="../src/preferences_dialog.cpp" line="616"/>
         <source>Paragraphs:</source>
         <translation>Paragraphes :</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="644"/>
+        <location filename="../src/preferences_dialog.cpp" line="640"/>
         <source>Word Count Algorithm</source>
         <translation>Algorithme de comptage des mots</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="646"/>
+        <location filename="../src/preferences_dialog.cpp" line="642"/>
         <source>Detect word boundaries</source>
         <translation>Détecter la fin des mots</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="341"/>
+        <location filename="../src/preferences_dialog.cpp" line="339"/>
         <source>Unable to open archive.</source>
         <translation>Impossible d&apos;ouvrir l&apos;archive.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="349"/>
+        <location filename="../src/preferences_dialog.cpp" line="347"/>
         <source>Unable to read archive metadata.</source>
         <translation>Impossible de lire les métadonnées de l&apos;archive.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="352"/>
+        <location filename="../src/preferences_dialog.cpp" line="350"/>
         <source>Unable to access first file.</source>
         <translation>Impossible de lire le premier fichier.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="357"/>
-        <location filename="../src/preferences_dialog.cpp" line="363"/>
+        <location filename="../src/preferences_dialog.cpp" line="355"/>
+        <location filename="../src/preferences_dialog.cpp" line="361"/>
         <source>Unable to read file metadata.</source>
         <translation>Impossible de lire les métadonnées du fichier.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="399"/>
+        <location filename="../src/preferences_dialog.cpp" line="397"/>
         <source>Unable to locate file &apos;%1&apos;.</source>
         <translation>Impossible de localiser le fichier &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="402"/>
+        <location filename="../src/preferences_dialog.cpp" line="400"/>
         <source>Unable to open file &apos;%1&apos;.</source>
         <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="414"/>
+        <location filename="../src/preferences_dialog.cpp" line="412"/>
         <source>Unable to read file &apos;%1&apos;.</source>
         <translation>Impossible de lire le fichier &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="419"/>
+        <location filename="../src/preferences_dialog.cpp" line="417"/>
         <source>Unable to close file &apos;%1&apos;.</source>
         <translation>Impossible de fermer le fichier &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="558"/>
+        <location filename="../src/preferences_dialog.cpp" line="556"/>
         <source>Always vertically center</source>
         <translation>Toujours centrer verticalement</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="559"/>
-        <source>Blinking cursor</source>
-        <translation>Curseur clignotant</translation>
-    </message>
-    <message>
-        <location filename="../src/preferences_dialog.cpp" line="561"/>
+        <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>Smooth fonts</source>
         <translation>Polices lissées</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="647"/>
+        <location filename="../src/preferences_dialog.cpp" line="643"/>
         <source>Divide character count by six</source>
         <translation>Diviser le nombre de caractères par six</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="669"/>
+        <location filename="../src/preferences_dialog.cpp" line="665"/>
         <source>Style</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="672"/>
+        <location filename="../src/preferences_dialog.cpp" line="668"/>
         <source>Icons Only</source>
         <translation>Icône seule</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="673"/>
+        <location filename="../src/preferences_dialog.cpp" line="669"/>
         <source>Text Only</source>
         <translation>Texte seul</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="674"/>
+        <location filename="../src/preferences_dialog.cpp" line="670"/>
         <source>Text Alongside Icons</source>
         <translation>Texte à côté des icônes</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="675"/>
+        <location filename="../src/preferences_dialog.cpp" line="671"/>
         <source>Text Under Icons</source>
         <translation>Texte sous les icônes</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="679"/>
+        <location filename="../src/preferences_dialog.cpp" line="675"/>
         <source>Text Position:</source>
         <translation>Position du texte :</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="682"/>
+        <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>Actions</source>
         <translation>Actions</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="695"/>
+        <location filename="../src/preferences_dialog.cpp" line="691"/>
         <source>Move Up</source>
         <translation>Monter</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="697"/>
+        <location filename="../src/preferences_dialog.cpp" line="693"/>
         <source>Move Down</source>
         <translation>Descendre</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="699"/>
+        <location filename="../src/preferences_dialog.cpp" line="695"/>
         <source>Add Separator</source>
         <translation>Ajouter un séparateur</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="727"/>
+        <location filename="../src/preferences_dialog.cpp" line="723"/>
         <source>Check spelling as you type</source>
         <translation>Vérifier l&apos;orthographe pendant la frappe</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="728"/>
+        <location filename="../src/preferences_dialog.cpp" line="724"/>
         <source>Ignore words in UPPERCASE</source>
         <translation>Ignorer les mots en MAJUSCULES</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="729"/>
+        <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Ignore words with numbers</source>
         <translation>Ignorer les mots comportant des chiffres</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="738"/>
+        <location filename="../src/preferences_dialog.cpp" line="734"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="740"/>
-        <location filename="../src/preferences_dialog.cpp" line="775"/>
+        <location filename="../src/preferences_dialog.cpp" line="736"/>
+        <location filename="../src/preferences_dialog.cpp" line="771"/>
         <source>Add</source>
         <translation>Ajouter</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="743"/>
-        <location filename="../src/preferences_dialog.cpp" line="779"/>
+        <location filename="../src/preferences_dialog.cpp" line="739"/>
+        <location filename="../src/preferences_dialog.cpp" line="775"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="763"/>
+        <location filename="../src/preferences_dialog.cpp" line="759"/>
         <source>Personal Dictionary</source>
         <translation>Dictionnaire personnel</translation>
     </message>

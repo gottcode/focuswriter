@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,7 +104,6 @@ private:
 	QString m_filename;
 	int m_index;
 	bool m_auto_append;
-	bool m_blinking_cursor;
 	bool m_block_cursor;
 	QFuture<void> m_file_save;
 
