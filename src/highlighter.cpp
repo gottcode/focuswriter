@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -85,7 +85,6 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event) {
 		}
 
 		if (!under_mouse) {
-			m_text->setTextCursor(m_start_cursor);
 			return false;
 		} else {
 			// Select misspelled word

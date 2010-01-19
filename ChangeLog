@@ -1,4 +1,5 @@
 2010-01-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Highlight was removed when right-clicking.
 	* FIXED: Only focused document was centered on launch.
 
 2010-01-17 Jérôme Borme <jerome.borme@gmail.com>
