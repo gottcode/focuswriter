@@ -157,6 +157,7 @@ void Stack::addDocument(Document* document) {
 	connect(document->text(), SIGNAL(redoAvailable(bool)), this, SIGNAL(redoAvailable(bool)));
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
 
+	document->setBackground(m_background);
 	m_documents.append(document);
 	m_layout->addWidget(document);
 }
@@ -286,19 +287,9 @@ void Stack::undo() {
 
 /*****************************************************************************/
 
-void Stack::paintEvent(QPaintEvent* event) {
-	QPainter painter(this);
-	if (!m_background.isNull()) {
-		painter.drawPixmap(event->rect(), m_background, event->rect());
-	}
-	painter.end();
-	QWidget::paintEvent(event);
-}
-
-/*****************************************************************************/
-
 void Stack::resizeEvent(QResizeEvent* event) {
 	m_background = QPixmap();
+	updateDocumentBackgrounds();
 	m_resize_timer->start();
 	QWidget::resizeEvent(event);
 }
@@ -311,7 +302,15 @@ void Stack::updateBackground() {
 		m_background = QPixmap();
 		background_loader.create(m_background_position, m_background_path, this);
 	}
-	update();
+	updateDocumentBackgrounds();
+}
+
+/*****************************************************************************/
+
+void Stack::updateDocumentBackgrounds() {
+	foreach (Document* document, m_documents) {
+		document->setBackground(m_background);
+	}
 }
 
 /*****************************************************************************/

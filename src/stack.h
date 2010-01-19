@@ -76,11 +76,13 @@ public slots:
 	void undo();
 
 protected:
-	virtual void paintEvent(QPaintEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
 	void updateBackground();
+
+private:
+	void updateDocumentBackgrounds();
 
 private:
 	QStackedLayout* m_layout;

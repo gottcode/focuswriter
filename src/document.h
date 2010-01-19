@@ -78,6 +78,7 @@ public:
 	void print();
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
+	void setBackground(const QPixmap& background);
 	void setMargin(int margin);
 	void setScrollBarVisible(bool visible);
 
@@ -90,6 +91,7 @@ signals:
 
 protected:
 	virtual void mouseMoveEvent(QMouseEvent* event);
+	virtual void paintEvent(QPaintEvent* event);
 	virtual void wheelEvent(QWheelEvent* event);
 
 private slots:
@@ -126,6 +128,8 @@ private:
 	float m_page_amount;
 
 	bool m_accurate_wordcount;
+
+	QPixmap m_background;
 
 	// Daily progress
 	int& m_current_wordcount;

@@ -31,6 +31,7 @@
 #include <QFileDialog>
 #include <QGridLayout>
 #include <QMouseEvent>
+#include <QPainter>
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QScrollBar>
@@ -164,6 +165,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	// Load settings
 	Preferences preferences;
 	loadPreferences(preferences);
+	setAutoFillBackground(true);
 	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
 
 	// Open file
@@ -362,6 +364,13 @@ void Document::loadPreferences(const Preferences& preferences) {
 
 /*****************************************************************************/
 
+void Document::setBackground(const QPixmap& background) {
+	m_background = background;
+	update();
+}
+
+/*****************************************************************************/
+
 void Document::setMargin(int margin) {
 	m_margin = margin;
 	m_layout->setColumnMinimumWidth(0, m_margin);
@@ -406,6 +415,16 @@ void Document::mouseMoveEvent(QMouseEvent* event) {
 	emit footerVisible(footer_visible);
 
 	return QWidget::mouseMoveEvent(event);
+}
+
+/*****************************************************************************/
+
+void Document::paintEvent(QPaintEvent* event) {
+	QPainter painter(this);
+	if (!m_background.isNull()) {
+		painter.drawPixmap(event->rect(), m_background, event->rect());
+	}
+	painter.end();
 }
 
 /*****************************************************************************/
