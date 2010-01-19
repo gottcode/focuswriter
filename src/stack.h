@@ -20,11 +20,12 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <QStackedWidget>
+#include <QWidget>
+class QStackedLayout;
 class Document;
 class Theme;
 
-class Stack : public QStackedWidget {
+class Stack : public QWidget {
 	Q_OBJECT
 public:
 	Stack(QWidget* parent = 0);
@@ -82,6 +83,8 @@ private slots:
 	void updateBackground();
 
 private:
+	QStackedLayout* m_layout;
+
 	QList<Document*> m_documents;
 	Document* m_current_document;
 

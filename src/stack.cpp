@@ -27,6 +27,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QPlainTextEdit>
+#include <QStackedLayout>
 #include <QThread>
 #include <QTimer>
 
@@ -130,9 +131,12 @@ namespace {
 /*****************************************************************************/
 
 Stack::Stack(QWidget* parent)
-: QStackedWidget(parent),
+: QWidget(parent),
   m_current_document(0),
   m_background_position(0) {
+	m_layout = new QStackedLayout(this);
+	m_layout->setStackingMode(QStackedLayout::StackAll);
+
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);
 	m_resize_timer->setSingleShot(true);
@@ -154,7 +158,7 @@ void Stack::addDocument(Document* document) {
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
 
 	m_documents.append(document);
-	addWidget(document);
+	m_layout->addWidget(document);
 }
 
 /*****************************************************************************/
@@ -167,7 +171,7 @@ void Stack::moveDocument(int from, int to) {
 
 void Stack::removeDocument(int index) {
 	Document* document = m_documents.takeAt(index);
-	removeWidget(document);
+	m_layout->removeWidget(document);
 	delete document;
 }
 
@@ -175,7 +179,7 @@ void Stack::removeDocument(int index) {
 
 void Stack::setCurrentDocument(int index) {
 	m_current_document = m_documents[index];
-	setCurrentWidget(m_current_document);
+	m_layout->setCurrentWidget(m_current_document);
 
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
@@ -288,7 +292,7 @@ void Stack::paintEvent(QPaintEvent* event) {
 		painter.drawPixmap(event->rect(), m_background, event->rect());
 	}
 	painter.end();
-	QStackedWidget::paintEvent(event);
+	QWidget::paintEvent(event);
 }
 
 /*****************************************************************************/
@@ -296,7 +300,7 @@ void Stack::paintEvent(QPaintEvent* event) {
 void Stack::resizeEvent(QResizeEvent* event) {
 	m_background = QPixmap();
 	m_resize_timer->start();
-	QStackedWidget::resizeEvent(event);
+	QWidget::resizeEvent(event);
 }
 
 /*****************************************************************************/
