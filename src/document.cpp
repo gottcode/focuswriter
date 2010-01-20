@@ -141,11 +141,32 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setMinimumHeight(500);
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
 	m_highlighter = new Highlighter(m_text);
 
+	// Open file
+	if (!filename.isEmpty()) {
+		QFile file(filename);
+		if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			m_text->setPlainText(stream.readAll());
+			m_text->moveCursor(QTextCursor::End);
+			m_text->document()->setModified(false);
+			file.close();
+
+			m_filename = QFileInfo(file).canonicalFilePath();
+			updateSaveLocation();
+		}
+	}
+	if (m_filename.isEmpty()) {
+		static int indexes = 0;
+		m_index = ++indexes;
+	}
+
+	// Set up scroll bar
+	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
@@ -167,26 +188,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	loadPreferences(preferences);
 	setAutoFillBackground(true);
 	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
-
-	// Open file
-	if (!filename.isEmpty()) {
-		QFile file(filename);
-		if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			m_text->setPlainText(stream.readAll());
-			m_text->moveCursor(QTextCursor::End);
-			m_text->document()->setModified(false);
-			file.close();
-
-			m_filename = QFileInfo(file).canonicalFilePath();
-			updateSaveLocation();
-		}
-	}
-	if (m_filename.isEmpty()) {
-		static int indexes = 0;
-		m_index = ++indexes;
-	}
 
 	calculateWordCount();
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));

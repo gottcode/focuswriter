@@ -1,4 +1,5 @@
 2010-01-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Scrollbar wasn't tracking properly.
 	* FIXED: Highlight was removed when right-clicking.
 	* FIXED: Only focused document was centered on launch.
 
