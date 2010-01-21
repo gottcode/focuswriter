@@ -1,3 +1,6 @@
+2010-01-21 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Scrolling to top didn't work properly in Linux.
+
 2010-01-19 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Scrollbar wasn't tracking properly.
 	* FIXED: Highlight was removed when right-clicking.

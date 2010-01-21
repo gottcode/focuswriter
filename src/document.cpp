@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -152,7 +152,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 			QTextStream stream(&file);
 			stream.setCodec(QTextCodec::codecForName("UTF-8"));
 			m_text->setPlainText(stream.readAll());
-			m_text->moveCursor(QTextCursor::End);
 			m_text->document()->setModified(false);
 			file.close();
 
@@ -171,6 +170,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
 	m_scrollbar->setVisible(false);
+	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 
 	// Set up find dialog
 	m_find_dialog = new FindDialog(m_text, this);
@@ -445,6 +445,16 @@ void Document::hideMouse() {
 	if (m_text->viewport()->hasFocus() && (widget == m_text->viewport() || widget == this)) {
 		m_text->viewport()->setCursor(Qt::BlankCursor);
 		setCursor(Qt::BlankCursor);
+	}
+}
+
+/*****************************************************************************/
+
+void Document::scrollBarActionTriggered(int action) {
+	if (action == QAbstractSlider::SliderToMinimum) {
+		m_text->moveCursor(QTextCursor::Start);
+	} else if (action == QAbstractSlider::SliderToMaximum) {
+		m_text->moveCursor(QTextCursor::End);
 	}
 }
 
