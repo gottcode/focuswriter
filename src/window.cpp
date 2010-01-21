@@ -167,7 +167,6 @@ Window::Window()
 	files.removeFirst();
 	if (files.isEmpty()) {
 		files = settings.value("Save/Current").toStringList();
-		settings.remove("Save/Current");
 		if (files.isEmpty()) {
 			files.append(QString());
 		}
