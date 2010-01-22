@@ -631,7 +631,7 @@ void Window::initToolBar() {
 	icons["New"] = "document-new";
 	icons["Open"] = "document-open";
 	icons["Paste"] = "edit-paste";
-	icons["Preferences"] = "preferences-other";
+	icons["Preferences"] = "configure";
 	icons["Print"] = "document-print";
 	icons["Quit"] = "application-exit";
 	icons["Redo"] = "edit-redo";
@@ -640,7 +640,7 @@ void Window::initToolBar() {
 	icons["SaveAll"] = "document-save-all";
 	icons["SaveAs"] = "document-save-as";
 	icons["SelectAll"] = "edit-select-all";
-	icons["Themes"] = "format-fill-color";
+	icons["Themes"] = "applications-graphics";
 	icons["Undo"] = "edit-undo";
 	QHashIterator<QString, QString> i(icons);
 	while (i.hasNext()) {

@@ -4,6 +4,8 @@
 	<file>shadow.png</file>
 
 	<file>oxygen/16x16/application-exit.png</file>
+	<file>oxygen/16x16/applications-graphics.png</file>
+	<file>oxygen/16x16/configure.png</file>
 	<file>oxygen/16x16/document-new.png</file>
 	<file>oxygen/16x16/document-open.png</file>
 	<file>oxygen/16x16/document-print.png</file>
@@ -18,14 +20,14 @@
 	<file>oxygen/16x16/edit-rename.png</file>
 	<file>oxygen/16x16/edit-select-all.png</file>
 	<file>oxygen/16x16/edit-undo.png</file>
-	<file>oxygen/16x16/format-fill-color.png</file>
 	<file>oxygen/16x16/help-about.png</file>
-	<file>oxygen/16x16/preferences-other.png</file>
 	<file>oxygen/16x16/tools-check-spelling.png</file>
 	<file>oxygen/16x16/view-fullscreen.png</file>
 	<file>oxygen/16x16/window-close.png</file>
 
 	<file>oxygen/22x22/application-exit.png</file>
+	<file>oxygen/22x22/applications-graphics.png</file>
+	<file>oxygen/22x22/configure.png</file>
 	<file>oxygen/22x22/document-new.png</file>
 	<file>oxygen/22x22/document-open.png</file>
 	<file>oxygen/22x22/document-print.png</file>
@@ -40,9 +42,7 @@
 	<file>oxygen/22x22/edit-rename.png</file>
 	<file>oxygen/22x22/edit-select-all.png</file>
 	<file>oxygen/22x22/edit-undo.png</file>
-	<file>oxygen/22x22/format-fill-color.png</file>
 	<file>oxygen/22x22/help-about.png</file>
-	<file>oxygen/22x22/preferences-other.png</file>
 	<file>oxygen/22x22/tools-check-spelling.png</file>
 	<file>oxygen/22x22/view-fullscreen.png</file>
 	<file>oxygen/22x22/window-close.png</file>
