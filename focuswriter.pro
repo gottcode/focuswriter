@@ -1,5 +1,5 @@
 TEMPLATE = app
-VERSION = 1.2.0
+VERSION = 1.2.1
 CONFIG += warn_on release
 macx {
 	# Uncomment the following line to compile on PowerPC Macs

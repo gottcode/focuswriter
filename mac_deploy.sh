@@ -2,7 +2,7 @@
 
 APP='FocusWriter'
 BUNDLE="$APP.app"
-VERSION='1.2.0'
+VERSION='1.2.1'
 
 DICTIONARIES="$BUNDLE/Contents/Resources/Dictionaries"
 mkdir $DICTIONARIES
