@@ -340,7 +340,7 @@ void Window::aboutClicked() {
 		"A simple fullscreen word processor<br/>"
 		"<small>Copyright &copy; 2008-2010 Graeme Gott</small><br/>"
 		"<small>Released under the <a href=\"http://www.gnu.org/licenses/gpl.html\">GPL 3</a> license</small></center></p>"
-		"<p><center>Includes <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> 1.2.8 for spell checking<br/>"
+		"<p><center>Includes <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> 1.2.11 for spell checking<br/>"
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small></center></p>"
 		"<p><center>Includes icons from the <a href=\"http://www.oxygen-icons.org/\">Oxygen</a> icon theme<br/>"
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small></center></p>"

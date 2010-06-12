@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: vg $ $Date: 2003/06/12 10:38:24 $
+#   last change: $Author: caolan $ $Date: 2010/02/25 14:42:08 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -60,11 +60,13 @@
 #
 #*************************************************************************
 
-PRJ = ..
+PRJ = ../../../../../..
 
 PRJNAME	= hunspell
 TARGET	= hunspell
-LIBTARGET=NO
+LIBTARGET=YES
+EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
+UWINAPILIB=
 
 #----- Settings ---------------------------------------------------------
 
@@ -72,13 +74,7 @@ LIBTARGET=NO
 
 # --- Files --------------------------------------------------------
 
-# all_target: ALLTAR DICTIONARY
-all_target: ALLTAR
-
-##CXXFLAGS += -I..$/..$/lingutil
-##CFLAGSCXX += -I..$/..$/lingutil
-##CFLAGSCC += -I..$/..$/lingutil
-
+CFLAGS+=-I..$/..$/
 CDEFS+=-DOPENOFFICEORG
 
 SLOFILES=	\
@@ -86,9 +82,12 @@ SLOFILES=	\
 		$(SLO)$/affixmgr.obj \
 		$(SLO)$/dictmgr.obj \
 		$(SLO)$/csutil.obj \
-		$(SLO)$/utf_info.obj \
 		$(SLO)$/hashmgr.obj \
 		$(SLO)$/suggestmgr.obj \
+		$(SLO)$/phonet.obj \
+		$(SLO)$/hunzip.obj \
+		$(SLO)$/filemgr.obj \
+		$(SLO)$/replist.obj \
 		$(SLO)$/hunspell.obj
 
 LIB1TARGET= $(SLB)$/lib$(TARGET).lib

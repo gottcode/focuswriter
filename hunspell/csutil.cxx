@@ -1,17 +1,10 @@
 #include "license.hunspell"
 #include "license.myspell"
 
-#ifndef MOZILLA_CLIENT
-#include <cstdlib>
-#include <cstring>
-#include <cstdio>
-#include <cctype>
-#else
 #include <stdlib.h> 
 #include <string.h>
 #include <stdio.h> 
 #include <ctype.h>
-#endif
 
 #include "csutil.hxx"
 #include "atypes.hxx"
@@ -38,16 +31,6 @@
 
 static NS_DEFINE_CID(kCharsetConverterManagerCID, NS_ICHARSETCONVERTERMANAGER_CID);
 static NS_DEFINE_CID(kUnicharUtilCID, NS_UNICHARUTIL_CID);
-#endif
-
-#ifdef MOZILLA_CLIENT
-#ifdef __SUNPRO_CC // for SunONE Studio compiler
-using namespace std;
-#endif
-#else
-#ifndef WIN32
-using namespace std;
-#endif
 #endif
 
 static struct unicode_info2 * utf_tbl = NULL;
@@ -172,7 +155,7 @@ int u8_u16(w_char * dest, int size, const char * src) {
     u8++;
     u2++;
     }
-    return u2 - dest;
+    return (int)(u2 - dest);
 }
 
 void flag_qsort(unsigned short flags[], int begin, int end) {
@@ -236,11 +219,10 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
          *stringp = dp+1;
          int nc = (int)((unsigned long)dp - (unsigned long)mp);
          *(mp+nc) = '\0';
-         return mp;
       } else {
          *stringp = mp + strlen(mp);
-         return mp;
       }
+      return mp;
    }
    return NULL;
  }
@@ -250,13 +232,13 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
  {
    char * d = NULL;
    if (s) {
-      int sl = strlen(s);
-      d = (char *) malloc(((sl+1) * sizeof(char)));
+      int sl = strlen(s)+1;
+      d = (char *) malloc(sl);
       if (d) {
-         memcpy(d,s,((sl+1)*sizeof(char)));
-         return d;
+         memcpy(d,s,sl);
+      } else {
+         HUNSPELL_WARNING(stderr, "Can't allocate memory.\n");
       }
-      HUNSPELL_WARNING(stderr, "Can't allocate memory.\n");
    }
    return d;
  }
@@ -288,12 +270,14 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
      char * d = NULL;
      if (s) {
         int sl = strlen(s);
-        d = (char *) malloc((sl+1) * sizeof(char));
+        d = (char *) malloc(sl+1);
         if (d) {
           const char * p = s + sl - 1;
           char * q = d;
           while (p >= s) *q++ = *p--;
           *q = '\0';
+        } else {
+          HUNSPELL_WARNING(stderr, "Can't allocate memory.\n");
         }
      }
      return d;
@@ -303,6 +287,9 @@ int flag_bsearch(unsigned short flags[], unsigned short flag, int length) {
 // return number of lines
 int line_tok(const char * text, char *** lines, char breakchar) {
     int linenum = 0;
+    if (!text) {
+        return linenum;
+    }
     char * dup = mystrdup(text);
     char * p = strchr(dup, breakchar);
     while (p) {
@@ -529,7 +516,7 @@ int get_sfxcount(const char * morph)
 int fieldlen(const char * r)
 {
     int n = 0;
-    while (r && *r != '\t' && *r != '\0' && *r != '\n' && *r != ' ') {
+    while (r && *r != ' ' && *r != '\t' && *r != '\0' && *r != '\n') {
         r++;
         n++;
     }
@@ -668,7 +655,7 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
     }
 }
  
- // convert null terminated string to have intial capital
+ // convert null terminated string to have initial capital
  void mkinitcap(char * p, const struct cs_info * csconv)
  {
    if (*p != '\0') *p = csconv[((unsigned char)*p)].cupper;
@@ -681,7 +668,7 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
  }
 
  // conversion function for protected memory
- char * get_stored_pointer(char * s)
+ char * get_stored_pointer(const char * s)
  {
     char * p;
     memcpy(&p, s, sizeof(char *));
@@ -712,7 +699,7 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
    *d = '\0';
  }
 
- // convert null terminated string to have intial capital using encoding
+ // convert null terminated string to have initial capital using encoding
  void enmkinitcap(char * d, const char * p, const char * encoding)
  {
    struct cs_info * csconv = get_current_cs(encoding);
@@ -724,7 +711,7 @@ void mkallcap_utf(w_char * u, int nc, int langnum) {
 // encodings supported
 // supplying isupper, tolower, and toupper
 
-struct cs_info iso1_tbl[] = {
+static struct cs_info iso1_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -984,7 +971,7 @@ struct cs_info iso1_tbl[] = {
 };
 
 
-struct cs_info iso2_tbl[] = {
+static struct cs_info iso2_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -1244,7 +1231,7 @@ struct cs_info iso2_tbl[] = {
 };
 
 
-struct cs_info iso3_tbl[] = {
+static struct cs_info iso3_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -1503,7 +1490,7 @@ struct cs_info iso3_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso4_tbl[] = {
+static struct cs_info iso4_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -1762,7 +1749,7 @@ struct cs_info iso4_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso5_tbl[] = {
+static struct cs_info iso5_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2021,7 +2008,7 @@ struct cs_info iso5_tbl[] = {
 { 0x00, 0xff, 0xaf }
 };
 
-struct cs_info iso6_tbl[] = {
+static struct cs_info iso6_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2280,7 +2267,7 @@ struct cs_info iso6_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso7_tbl[] = {
+static struct cs_info iso7_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2539,7 +2526,7 @@ struct cs_info iso7_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso8_tbl[] = {
+static struct cs_info iso8_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -2798,7 +2785,7 @@ struct cs_info iso8_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso9_tbl[] = {
+static struct cs_info iso9_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3057,7 +3044,7 @@ struct cs_info iso9_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso10_tbl[] = {
+static struct cs_info iso10_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3316,7 +3303,7 @@ struct cs_info iso10_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info koi8r_tbl[] = {
+static struct cs_info koi8r_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3575,7 +3562,7 @@ struct cs_info koi8r_tbl[] = {
 { 0x01, 0xdf, 0xff }
 };
 
-struct cs_info koi8u_tbl[] = {
+static struct cs_info koi8u_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -3834,7 +3821,7 @@ struct cs_info koi8u_tbl[] = {
 { 0x01, 0xdf, 0xff }
 };
 
-struct cs_info cp1251_tbl[] = {
+static struct cs_info cp1251_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4093,7 +4080,7 @@ struct cs_info cp1251_tbl[] = {
 { 0x00, 0xff, 0xdf }
 };
 
-struct cs_info iso13_tbl[] = {
+static struct cs_info iso13_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4353,7 +4340,7 @@ struct cs_info iso13_tbl[] = {
 };
 
 
-struct cs_info iso14_tbl[] = {
+static struct cs_info iso14_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4612,7 +4599,7 @@ struct cs_info iso14_tbl[] = {
 { 0x00, 0xff, 0xff }
 };
 
-struct cs_info iso15_tbl[] = {
+static struct cs_info iso15_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -4871,7 +4858,7 @@ struct cs_info iso15_tbl[] = {
 { 0x00, 0xff, 0xbe }
 };
 
-struct cs_info iscii_devanagari_tbl[] = {
+static struct cs_info iscii_devanagari_tbl[] = {
 { 0x00, 0x00, 0x00 },
 { 0x00, 0x01, 0x01 },
 { 0x00, 0x02, 0x02 },
@@ -5188,14 +5175,14 @@ struct cs_info * get_current_cs(const char * es) {
   if (NS_FAILED(rv))
     return nsnull;
 
-  ccs = (struct cs_info *) malloc(256 * sizeof(cs_info));
+  ccs = new cs_info[256];
 
   PRInt32 charLength = 256;
   PRInt32 uniLength = 512;
-  char *source = (char *)malloc(charLength * sizeof(char));
+  char *source = (char *)malloc(charLength);
   PRUnichar *uni = (PRUnichar *)malloc(uniLength * sizeof(PRUnichar));
-  char *lower = (char *)malloc(charLength * sizeof(char));
-  char *upper = (char *)malloc(charLength * sizeof(char));
+  char *lower = (char *)malloc(charLength);
+  char *upper = (char *)malloc(charLength);
 
   // Create a long string of all chars.
   unsigned int i;
@@ -5250,14 +5237,14 @@ char * get_casechars(const char * enc) {
     }
     *p = '\0';
 #ifdef MOZILLA_CLIENT
-    delete csconv;
+    delete [] csconv;
 #endif
     return mystrdup(expw);
 }
 
 
 
-struct lang_map lang2enc[] = {
+static struct lang_map lang2enc[] = {
 {"ar", "UTF-8", LANG_ar},
 {"az", "UTF-8", LANG_az},
 {"bg", "microsoft-cp1251", LANG_bg},
@@ -5313,7 +5300,7 @@ int initialize_utf_tbl() {
   if (utf_tbl) return 0;
   utf_tbl = (unicode_info2 *) malloc(CONTSIZE * sizeof(unicode_info2));
   if (utf_tbl) {
-    int j;
+    size_t j;
     for (j = 0; j < CONTSIZE; j++) {
       utf_tbl[j].cletter = 0;
       utf_tbl[j].clower = (unsigned short) j;
