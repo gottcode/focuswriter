@@ -1,3 +1,6 @@
+2010-06-29 Graeme Gott <graeme@gottcode.org>
+	* Add support for storing data with executable.
+
 2010-06-12 Graeme Gott <graeme@gottcode.org>
 	* Update included minizip version to 1.01h.
 	* Update included hunspell version to 1.2.11.

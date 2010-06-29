@@ -24,6 +24,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QSettings>
@@ -49,20 +50,18 @@ int main(int argc, char** argv) {
 #if defined(Q_OS_MAC)
 	app.setAttribute(Qt::AA_DontShowIconsInMenus);
 
+	QFileInfo portable(QCoreApplication::applicationDirPath() + "/../../../Data");
 	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
-	QString themes = "Themes";
-	QString dictionaries = "Dictionaries";
 
 	locations.append(QCoreApplication::applicationDirPath() + "/../Resources/Dictionaries");
 	locations.append("/Library/Application Support/GottCode/FocusWriter/Dictionaries");
 #elif defined(Q_OS_UNIX)
+	QFileInfo portable(QCoreApplication::applicationDirPath() + "/Data");
 	QString path = qgetenv("XDG_DATA_HOME");
 	if (path.isEmpty()) {
 		path = QDir::homePath() + "/.local/share";
 	}
 	path += "/focuswriter/";
-	QString themes = "themes";
-	QString dictionaries = "dictionaries";
 
 	QStringList xdg = QString(qgetenv("XDG_DATA_DIRS")).split(QChar(':'), QString::SkipEmptyParts);
 	if (xdg.isEmpty()) {
@@ -79,29 +78,45 @@ int main(int argc, char** argv) {
 		}
 	}
 #elif defined(Q_OS_WIN32)
+	QFileInfo portable(QCoreApplication::applicationDirPath() + "/Data");
 	QString path = QDir::homePath() + "/Application Data/GottCode/FocusWriter/";
-	QString themes = "Themes";
-	QString dictionaries = "Dictionaries";
 
 	locations.append(QCoreApplication::applicationDirPath() + "/Dictionaries");
 #endif
-	QDir dir = QDir::home();
+
+	// Handle portability
+	if (portable.exists() && portable.isWritable()) {
+		path = portable.absoluteFilePath();
+		QSettings::setDefaultFormat(QSettings::IniFormat);
+		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, path + "/Settings");
+	}
+
+	// Create base data path
+	QDir dir;
 	if (!QFile::exists(path)) {
 		dir.mkpath(path);
 	}
 	dir.setPath(path);
 
 	// Set themes path
-	if (!dir.exists(themes)) {
-		dir.mkdir(themes);
+	if (!dir.exists("Themes")) {
+		if (dir.exists("themes")) {
+			dir.rename("themes", "Themes");
+		} else {
+			dir.mkdir("Themes");
+		}
 	}
-	Theme::setPath(dir.filePath(themes));
+	Theme::setPath(dir.absoluteFilePath("Themes"));
 
 	// Set dictionary paths
-	if (!dir.exists(dictionaries)) {
-		dir.mkdir(dictionaries);
+	if (!dir.exists("Dictionaries")) {
+		if (dir.exists("dictionaries")) {
+			dir.rename("dictionaries", "Dictionaries");
+		} else {
+			dir.mkdir("Dictionaries");
+		}
 	}
-	Dictionary::setPath(dir.filePath(dictionaries));
+	Dictionary::setPath(dir.absoluteFilePath("Dictionaries"));
 	locations.prepend(Dictionary::path());
 	QDir::setSearchPaths("dict", locations);
 
