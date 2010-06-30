@@ -569,43 +569,43 @@ void Window::initMenuBar() {
 
 	// Create file menu
 	QMenu* file_menu = m_menubar->addMenu(tr("&File"));
-	m_actions["New"] = file_menu->addAction(tr("&New"), this, SLOT(newDocument()), tr("Ctrl+N"));
-	m_actions["Open"] = file_menu->addAction(tr("&Open..."), this, SLOT(openDocument()), tr("Ctrl+O"));
+	m_actions["New"] = file_menu->addAction(tr("&New"), this, SLOT(newDocument()), QKeySequence::New);
+	m_actions["Open"] = file_menu->addAction(tr("&Open..."), this, SLOT(openDocument()), QKeySequence::Open);
 	file_menu->addSeparator();
-	m_actions["Save"] = file_menu->addAction(tr("&Save"), m_documents, SLOT(save()), tr("Ctrl+S"));
+	m_actions["Save"] = file_menu->addAction(tr("&Save"), m_documents, SLOT(save()), QKeySequence::Save);
 	m_actions["Save"]->setEnabled(false);
-	m_actions["SaveAs"] = file_menu->addAction(tr("Save &As..."), m_documents, SLOT(saveAs()));
+	m_actions["SaveAs"] = file_menu->addAction(tr("Save &As..."), m_documents, SLOT(saveAs()), QKeySequence::SaveAs);
 	m_actions["Rename"] = file_menu->addAction(tr("&Rename..."), this, SLOT(renameDocument()));
 	m_actions["Rename"]->setEnabled(false);
 	m_actions["SaveAll"] = file_menu->addAction(tr("Save A&ll"), this, SLOT(saveAllDocuments()));
 	file_menu->addSeparator();
-	m_actions["Print"] = file_menu->addAction(tr("&Print..."), m_documents, SLOT(print()), tr("Ctrl+P"));
+	m_actions["Print"] = file_menu->addAction(tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
 	file_menu->addSeparator();
-	m_actions["Close"] = file_menu->addAction(tr("&Close"), this, SLOT(closeDocument()), tr("Ctrl+W"));
-	m_actions["Quit"] = file_menu->addAction(tr("&Quit"), this, SLOT(close()), tr("Ctrl+Q"));
+	m_actions["Close"] = file_menu->addAction(tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
+	m_actions["Quit"] = file_menu->addAction(tr("&Quit"), this, SLOT(close()), QKeySequence::Quit);
 
 	// Create edit menu
 	QMenu* edit_menu = m_menubar->addMenu(tr("&Edit"));
-	m_actions["Undo"] = edit_menu->addAction(tr("&Undo"), m_documents, SLOT(undo()), tr("Ctrl+Z"));
+	m_actions["Undo"] = edit_menu->addAction(tr("&Undo"), m_documents, SLOT(undo()), QKeySequence::Undo);
 	m_actions["Undo"]->setEnabled(false);
 	connect(m_documents, SIGNAL(undoAvailable(bool)), m_actions["Undo"], SLOT(setEnabled(bool)));
-	m_actions["Redo"] = edit_menu->addAction(tr("&Redo"), m_documents, SLOT(redo()), tr("Shift+Ctrl+Z"));
+	m_actions["Redo"] = edit_menu->addAction(tr("&Redo"), m_documents, SLOT(redo()), QKeySequence::Redo);
 	m_actions["Redo"]->setEnabled(false);
 	connect(m_documents, SIGNAL(redoAvailable(bool)), m_actions["Redo"], SLOT(setEnabled(bool)));
 	edit_menu->addSeparator();
-	m_actions["Cut"] = edit_menu->addAction(tr("Cu&t"), m_documents, SLOT(cut()), tr("Ctrl+X"));
+	m_actions["Cut"] = edit_menu->addAction(tr("Cu&t"), m_documents, SLOT(cut()), QKeySequence::Cut);
 	m_actions["Cut"]->setEnabled(false);
 	connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
-	m_actions["Copy"] = edit_menu->addAction(tr("&Copy"), m_documents, SLOT(copy()), tr("Ctrl+C"));
+	m_actions["Copy"] = edit_menu->addAction(tr("&Copy"), m_documents, SLOT(copy()), QKeySequence::Copy);
 	m_actions["Copy"]->setEnabled(false);
 	connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Copy"], SLOT(setEnabled(bool)));
-	m_actions["Paste"] = edit_menu->addAction(tr("&Paste"), m_documents, SLOT(paste()), tr("Ctrl+V"));
+	m_actions["Paste"] = edit_menu->addAction(tr("&Paste"), m_documents, SLOT(paste()), QKeySequence::Paste);
 	edit_menu->addSeparator();
-	m_actions["SelectAll"] = edit_menu->addAction(tr("Select &All"), m_documents, SLOT(selectAll()), tr("Ctrl+A"));
+	m_actions["SelectAll"] = edit_menu->addAction(tr("Select &All"), m_documents, SLOT(selectAll()), QKeySequence::SelectAll);
 
 	// Create tools menu
 	QMenu* tools_menu = m_menubar->addMenu(tr("&Tools"));
-	m_actions["Find"] = tools_menu->addAction(tr("&Find..."), m_documents, SLOT(find()), tr("Ctrl+F"));
+	m_actions["Find"] = tools_menu->addAction(tr("&Find..."), m_documents, SLOT(find()), QKeySequence::Find);
 	m_actions["CheckSpelling"] = tools_menu->addAction(tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 
 	// Create settings menu
@@ -620,7 +620,7 @@ void Window::initMenuBar() {
 #endif
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(tr("&Themes..."), this, SLOT(themeClicked()));
-	m_actions["Preferences"] = settings_menu->addAction(tr("&Preferences..."), this, SLOT(preferencesClicked()));
+	m_actions["Preferences"] = settings_menu->addAction(tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
 
 	// Create help menu
 	QMenu* help_menu = m_menubar->addMenu(tr("&Help"));
