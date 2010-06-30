@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,8 @@
 
 #include "image_button.h"
 
-#include "image_dialog.h"
+#include <QFileDialog>
+#include <QImageReader>
 
 /*****************************************************************************/
 
@@ -61,10 +62,14 @@ void ImageButton::unsetImage() {
 /*****************************************************************************/
 
 void ImageButton::onClicked() {
-	ImageDialog dialog(window());
-	dialog.setPath(m_path);
-	if (dialog.exec() == QDialog::Accepted) {
-		setImage(dialog.selectedFile());
+	QStringList filters;
+	QList<QByteArray> formats = QImageReader::supportedImageFormats();
+	foreach (QByteArray type, formats) {
+		filters.append("*." + type);
+	}
+	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), m_path, tr("Images (%1)").arg(filters.join(" ")));
+	if (!image.isEmpty()) {
+		setImage(image);
 	}
 }
 

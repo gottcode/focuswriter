@@ -61,7 +61,6 @@ HEADERS += src/color_button.h \
 	src/find_dialog.h \
 	src/highlighter.h \
 	src/image_button.h \
-	src/image_dialog.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
 	src/spell_checker.h \
@@ -69,8 +68,6 @@ HEADERS += src/color_button.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
-	src/thumbnail_loader.h \
-	src/thumbnail_model.h \
 	src/window.h
 
 SOURCES += src/color_button.cpp \
@@ -79,7 +76,6 @@ SOURCES += src/color_button.cpp \
 	src/find_dialog.cpp \
 	src/highlighter.cpp \
 	src/image_button.cpp \
-	src/image_dialog.cpp \
 	src/main.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
@@ -88,8 +84,6 @@ SOURCES += src/color_button.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \
-	src/thumbnail_loader.cpp \
-	src/thumbnail_model.cpp \
 	src/window.cpp
 
 TRANSLATIONS = translations/focuswriter_fr.ts translations/focuswriter_pt.ts
