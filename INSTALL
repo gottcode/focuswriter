@@ -26,5 +26,6 @@ Windows:
 
     2.) Type 'make' to compile the program.
 
-    3.) Type 'windows_deploy' to copy the program and its required libraries
-        into a subfolder.
+    3.) Type 'windows_deploy' to create a compressed image of the program. Note
+        that you must have the 7z executable from 7-zip.org in your %PATH% for
+        this to work.
