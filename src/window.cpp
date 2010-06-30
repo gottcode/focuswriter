@@ -40,6 +40,7 @@
 #include <QPlainTextEdit>
 #include <QScrollBar>
 #include <QSettings>
+#include <QShortcut>
 #include <QTabBar>
 #include <QTimer>
 #include <QToolBar>
@@ -112,6 +113,8 @@ Window::Window()
 	connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabClicked(int)));
 	connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosed(int)));
 	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
+	new QShortcut(QKeySequence::NextChild, this, SLOT(nextDocument()));
+	new QShortcut(QKeySequence::PreviousChild, this, SLOT(previousDocument()));
 
 	// Lay out details
 	QHBoxLayout* details_layout = new QHBoxLayout(details);
@@ -286,6 +289,26 @@ void Window::closeDocument() {
 	}
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
+}
+
+/*****************************************************************************/
+
+void Window::nextDocument() {
+	int index = m_tabs->currentIndex() + 1;
+	if (index >= m_tabs->count()) {
+		index = 0;
+	}
+	m_tabs->setCurrentIndex(index);
+}
+
+/*****************************************************************************/
+
+void Window::previousDocument() {
+	int index = m_tabs->currentIndex() - 1;
+	if (index < 0) {
+		index = m_tabs->count() - 1;
+	}
+	m_tabs->setCurrentIndex(index);
 }
 
 /*****************************************************************************/

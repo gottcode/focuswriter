@@ -46,6 +46,8 @@ private slots:
 	void renameDocument();
 	void saveAllDocuments();
 	void closeDocument();
+	void nextDocument();
+	void previousDocument();
 	void toggleFullscreen();
 	void toggleToolbar(bool visible);
 	void themeClicked();

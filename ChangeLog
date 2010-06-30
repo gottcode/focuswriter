@@ -1,4 +1,5 @@
 2010-06-29 Graeme Gott <graeme@gottcode.org>
+	* Add keyboard navigation for tabs.
 	* Use Qt file dialog for selecting backgrounds.
 	* Add support for storing data with executable.
 
