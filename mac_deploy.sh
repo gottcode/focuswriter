@@ -2,7 +2,7 @@
 
 APP='FocusWriter'
 BUNDLE="$APP.app"
-VERSION='1.2.1'
+VERSION='1.2.2'
 
 # Create disk folder
 echo -n 'Copying application bundle... '
