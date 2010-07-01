@@ -670,7 +670,11 @@ void Window::initToolBar() {
 		i.next();
 		QIcon icon(QString(":/oxygen/22x22/%1.png").arg(i.value()));
 		icon.addFile(QString(":/oxygen/16x16/%1.png").arg(i.value()));
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0))
+		m_actions[i.key()]->setIcon(QIcon::fromTheme(i.value(), icon));
+#else
 		m_actions[i.key()]->setIcon(icon);
+#endif
 	}
 	m_actions["AboutQt"]->setIcon(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"));
 }
