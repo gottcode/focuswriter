@@ -115,11 +115,16 @@
     </message>
 </context>
 <context>
-    <name>ImageDialog</name>
+    <name>ImageButton</name>
     <message>
-        <location filename="../src/image_dialog.cpp" line="38"/>
+        <location filename="../src/image_button.cpp" line="70"/>
         <source>Open Image</source>
         <translation>Ouvrir une image</translation>
+    </message>
+    <message>
+        <location filename="../src/image_button.cpp" line="70"/>
+        <source>Images(%1)</source>
+        <translation>Images(%1)</translation>
     </message>
 </context>
 <context>
@@ -658,322 +663,257 @@
 <context>
     <name>Window</name>
     <message>
-        <location filename="../src/window.cpp" line="88"/>
+        <location filename="../src/window.cpp" line="89"/>
         <source>Words: 0</source>
         <translation>Mots : 0</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="89"/>
+        <location filename="../src/window.cpp" line="90"/>
         <source>Pages: 0</source>
         <translation>Pages : 0</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="90"/>
+        <location filename="../src/window.cpp" line="91"/>
         <source>Paragraphs: 0</source>
         <translation>Paragraphes : 0</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="91"/>
+        <location filename="../src/window.cpp" line="92"/>
         <source>Characters: 0</source>
         <translation>Caractères : 0</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="92"/>
+        <location filename="../src/window.cpp" line="93"/>
         <source>0% of daily goal</source>
         <translation>0 % de l&apos;objectif quotidien</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="247"/>
+        <location filename="../src/window.cpp" line="250"/>
         <source>Open File</source>
         <translation>Ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="247"/>
+        <location filename="../src/window.cpp" line="250"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texte brut (*.txt);;Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="299"/>
+        <location filename="../src/window.cpp" line="322"/>
         <source>Leave Fullscreen</source>
         <translation>Quitter le mode plein écran</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="302"/>
+        <location filename="../src/window.cpp" line="325"/>
         <source>Fullscreen</source>
         <translation>Plein écran</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="338"/>
+        <location filename="../src/window.cpp" line="361"/>
         <source>About FocusWriter</source>
         <translation>À propos de FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="338"/>
+        <location filename="../src/window.cpp" line="361"/>
         <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Includes &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; 1.2.11 for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Includes icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Un traitement de texte simple en plein écran&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Distribué sous la licence &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Inclut &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; 1.2.11 pour la vérification d&apos;orthographe&lt;br/&gt;&lt;small&gt;Utilisé sous la licence &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Inclut des icônes du thème &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Utilisé sous la licence &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Un traitement de texte simple en plein écran&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Distribué sous la licence &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Inclut &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; 1.2.11 pour la vérification d&apos;orthographe&lt;br/&gt;&lt;small&gt;Utilisé sous la licence &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Inclut des icônes du thème &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Utilisé sous la licence &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="383"/>
+        <location filename="../src/window.cpp" line="406"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Caractères : %L1 / %L2</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="384"/>
+        <location filename="../src/window.cpp" line="407"/>
         <source>Pages: %L1</source>
         <translation>Pages : %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="385"/>
+        <location filename="../src/window.cpp" line="408"/>
         <source>Paragraphs: %L1</source>
         <translation>Paragraphes : %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="386"/>
+        <location filename="../src/window.cpp" line="409"/>
         <source>Words: %L1</source>
         <translation>Mots : %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="398"/>
+        <location filename="../src/window.cpp" line="421"/>
         <source>%1% of daily goal</source>
         <translation>%1 % de l&apos;objectif quotidien</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="423"/>
+        <location filename="../src/window.cpp" line="446"/>
         <source>Untitled</source>
         <translation>Sans titre</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="446"/>
+        <location filename="../src/window.cpp" line="469"/>
         <source>Question</source>
         <translation>Question</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="446"/>
+        <location filename="../src/window.cpp" line="469"/>
         <source>Save changes?</source>
         <translation>Enrefistrer les changements ?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="531"/>
+        <location filename="../src/window.cpp" line="554"/>
         <source>(Untitled %1)</source>
         <translation>(Sans titre %1)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="548"/>
+        <location filename="../src/window.cpp" line="571"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="549"/>
+        <location filename="../src/window.cpp" line="572"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="549"/>
-        <source>Ctrl+N</source>
-        <translation>Ctrl+N</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="550"/>
+        <location filename="../src/window.cpp" line="573"/>
         <source>&amp;Open...</source>
         <translation>&amp;Ouvrir...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="550"/>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="552"/>
+        <location filename="../src/window.cpp" line="575"/>
         <source>&amp;Save</source>
         <translation>&amp;Enregistrer</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="552"/>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="554"/>
+        <location filename="../src/window.cpp" line="577"/>
         <source>Save &amp;As...</source>
         <translation>Enregistrer &amp;sous...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="555"/>
+        <location filename="../src/window.cpp" line="578"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Renommer...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="557"/>
+        <location filename="../src/window.cpp" line="580"/>
         <source>Save A&amp;ll</source>
         <translation>Enregistrer &amp;tout</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="559"/>
+        <location filename="../src/window.cpp" line="582"/>
         <source>&amp;Print...</source>
         <translation>Im&amp;primer...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="559"/>
-        <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="561"/>
+        <location filename="../src/window.cpp" line="584"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="561"/>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="562"/>
+        <location filename="../src/window.cpp" line="585"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="562"/>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="565"/>
+        <location filename="../src/window.cpp" line="588"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="566"/>
+        <location filename="../src/window.cpp" line="589"/>
         <source>&amp;Undo</source>
         <translation>Annu&amp;ler</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="566"/>
-        <source>Ctrl+Z</source>
-        <translation>Ctrl+Z</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="569"/>
+        <location filename="../src/window.cpp" line="592"/>
         <source>&amp;Redo</source>
         <translation>Re&amp;faire</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="569"/>
-        <source>Shift+Ctrl+Z</source>
-        <translation>Shift+Ctrl+Z</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="573"/>
+        <location filename="../src/window.cpp" line="596"/>
         <source>Cu&amp;t</source>
         <translation>Co&amp;uper</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="573"/>
-        <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="576"/>
+        <location filename="../src/window.cpp" line="599"/>
         <source>&amp;Copy</source>
         <translation>Cop&amp;ier</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="576"/>
-        <source>Ctrl+C</source>
-        <translation>Ctrl+C</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="579"/>
+        <location filename="../src/window.cpp" line="602"/>
         <source>&amp;Paste</source>
         <translation>C&amp;oller</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="579"/>
-        <source>Ctrl+V</source>
-        <translation>Ctrl+V</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="581"/>
+        <location filename="../src/window.cpp" line="604"/>
         <source>Select &amp;All</source>
         <translation>Tout &amp;sélectionner</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="581"/>
-        <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="584"/>
+        <location filename="../src/window.cpp" line="607"/>
         <source>&amp;Tools</source>
         <translation>O&amp;utils</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="585"/>
+        <location filename="../src/window.cpp" line="608"/>
         <source>&amp;Find...</source>
         <translation>&amp;Chercher...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="585"/>
-        <source>Ctrl+F</source>
-        <translation>Ctrl+F</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="586"/>
+        <location filename="../src/window.cpp" line="609"/>
         <source>&amp;Spelling...</source>
         <translation>Ortho&amp;graphe...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="586"/>
+        <location filename="../src/window.cpp" line="609"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="589"/>
+        <location filename="../src/window.cpp" line="612"/>
         <source>&amp;Settings</source>
         <translation>&amp;Configuration</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="590"/>
+        <location filename="../src/window.cpp" line="613"/>
         <source>Show &amp;Toolbar</source>
         <translation>Afficher la barre d&apos;&amp;outils</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="594"/>
+        <location filename="../src/window.cpp" line="617"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Plein écran</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="594"/>
+        <location filename="../src/window.cpp" line="617"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="596"/>
+        <location filename="../src/window.cpp" line="619"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="599"/>
+        <location filename="../src/window.cpp" line="622"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Thèmes...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="600"/>
+        <location filename="../src/window.cpp" line="623"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Préférences...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="603"/>
+        <location filename="../src/window.cpp" line="626"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="604"/>
+        <location filename="../src/window.cpp" line="627"/>
         <source>&amp;About</source>
         <translation>À &amp;propos</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="605"/>
+        <location filename="../src/window.cpp" line="628"/>
         <source>About &amp;Qt</source>
         <translation>À propos de &amp;Qt</translation>
     </message>

@@ -67,7 +67,7 @@ void ImageButton::onClicked() {
 	foreach (QByteArray type, formats) {
 		filters.append("*." + type);
 	}
-	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), m_path, tr("Images (%1)").arg(filters.join(" ")));
+	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), m_path, tr("Images(%1)").arg(filters.join(" ")));
 	if (!image.isEmpty()) {
 		setImage(image);
 	}
