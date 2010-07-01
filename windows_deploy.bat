@@ -5,7 +5,8 @@ SET VERSION=1.2.1
 
 ECHO Copying executable
 MKDIR %APP%
-COPY README %APP%\README.txt >nul
+TYPE COPYING | FIND "" /V > %APP%\COPYING.txt
+TYPE README | FIND "" /V > %APP%\README.txt
 COPY release\%APP%.exe %APP% >nul
 strip %APP%\%APP%.exe
 
