@@ -582,7 +582,11 @@ void Window::initMenuBar() {
 	m_actions["Print"] = file_menu->addAction(tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
 	file_menu->addSeparator();
 	m_actions["Close"] = file_menu->addAction(tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0))
 	m_actions["Quit"] = file_menu->addAction(tr("&Quit"), this, SLOT(close()), QKeySequence::Quit);
+#else
+	m_actions["Quit"] = file_menu->addAction(tr("&Quit"), this, SLOT(close()), Qt::CTRL + Qt::Key_Q);
+#endif
 
 	// Create edit menu
 	QMenu* edit_menu = m_menubar->addMenu(tr("&Edit"));
@@ -620,7 +624,11 @@ void Window::initMenuBar() {
 #endif
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(tr("&Themes..."), this, SLOT(themeClicked()));
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0))
 	m_actions["Preferences"] = settings_menu->addAction(tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
+#else
+	m_actions["Preferences"] = settings_menu->addAction(tr("&Preferences..."), this, SLOT(preferencesClicked()));
+#endif
 
 	// Create help menu
 	QMenu* help_menu = m_menubar->addMenu(tr("&Help"));
