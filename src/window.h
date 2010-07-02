@@ -72,8 +72,6 @@ private:
 	void initToolBar();
 
 private:
-	QWidget* m_header;
-	QMenuBar* m_menubar;
 	QToolBar* m_toolbar;
 	QHash<QString, QAction*> m_actions;
 

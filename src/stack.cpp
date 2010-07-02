@@ -133,7 +133,11 @@ namespace {
 Stack::Stack(QWidget* parent)
 : QWidget(parent),
   m_current_document(0),
-  m_background_position(0) {
+  m_background_position(0),
+  m_footer_margin(0),
+  m_header_margin(0),
+  m_footer_visible(0),
+  m_header_visible(0) {
 	m_layout = new QStackedLayout(this);
 	m_layout->setStackingMode(QStackedLayout::StackAll);
 
@@ -153,6 +157,8 @@ Stack::~Stack() {
 /*****************************************************************************/
 
 void Stack::addDocument(Document* document) {
+	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
+	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
 	connect(document->text(), SIGNAL(copyAvailable(bool)), this, SIGNAL(copyAvailable(bool)));
 	connect(document->text(), SIGNAL(redoAvailable(bool)), this, SIGNAL(redoAvailable(bool)));
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
@@ -185,6 +191,16 @@ void Stack::setCurrentDocument(int index) {
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
 	emit undoAvailable(m_current_document->text()->document()->isUndoAvailable());
+}
+
+/*****************************************************************************/
+
+void Stack::setMargins(int footer, int header) {
+	m_footer_margin = footer;
+	m_header_margin = header;
+	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
+	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
+	updateMask();
 }
 
 /*****************************************************************************/
@@ -287,9 +303,24 @@ void Stack::undo() {
 
 /*****************************************************************************/
 
+void Stack::setFooterVisible(bool visible) {
+	m_footer_visible = visible * -m_footer_margin;
+	updateMask();
+}
+
+/*****************************************************************************/
+
+void Stack::setHeaderVisible(bool visible) {
+	m_header_visible = visible * m_header_margin;
+	updateMask();
+}
+
+/*****************************************************************************/
+
 void Stack::resizeEvent(QResizeEvent* event) {
 	m_background = QPixmap();
 	updateDocumentBackgrounds();
+	updateMask();
 	m_resize_timer->start();
 	QWidget::resizeEvent(event);
 }
@@ -311,6 +342,16 @@ void Stack::updateDocumentBackgrounds() {
 	foreach (Document* document, m_documents) {
 		document->setBackground(m_background);
 	}
+}
+
+/*****************************************************************************/
+
+void Stack::updateMask() {
+	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
+	foreach (Document* document, m_documents) {
+		document->setMask(mask());
+	}
+	update();
 }
 
 /*****************************************************************************/

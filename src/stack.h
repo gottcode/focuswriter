@@ -55,6 +55,8 @@ public:
 
 	void setCurrentDocument(int index);
 
+	void setMargins(int footer, int header);
+
 signals:
 	void copyAvailable(bool);
 	void redoAvailable(bool);
@@ -74,12 +76,15 @@ public slots:
 	void selectAll();
 	void themeSelected(const Theme& theme);
 	void undo();
+	void setFooterVisible(bool visible);
+	void setHeaderVisible(bool visible);
 
 protected:
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
 	void updateBackground();
+	void updateMask();
 
 private:
 	void updateDocumentBackgrounds();
@@ -94,6 +99,11 @@ private:
 	int m_background_position;
 	QString m_background_path;
 	QTimer* m_resize_timer;
+
+	int m_footer_margin;
+	int m_header_margin;
+	int m_footer_visible;
+	int m_header_visible;
 };
 
 #endif

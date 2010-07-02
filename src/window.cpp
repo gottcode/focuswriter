@@ -58,33 +58,30 @@ Window::Window()
   m_current_time(0),
   m_current_wordcount(0) {
 	setAttribute(Qt::WA_DeleteOnClose);
+	setContextMenuPolicy(Qt::NoContextMenu);
 	setWindowIcon(QIcon(":/focuswriter.png"));
 
-	// Add contents
+	// Create window contents first so they stack behind documents
+	menuBar();
+	m_toolbar = new QToolBar(this);
+	m_toolbar->setFloatable(false);
+	m_toolbar->setMovable(false);
+#if defined(Q_OS_MAC) || defined(Q_OS_WIN32) || (QT_VERSION < QT_VERSION_CHECK(4, 6, 0))
+	m_toolbar->setIconSize(QSize(22,22));
+#endif
+	addToolBar(m_toolbar);
 	QWidget* contents = new QWidget(this);
 	setCentralWidget(contents);
-	m_documents = new Stack(contents);
+
+	// Create documents
+	m_documents = new Stack(this);
 
 	// Set up menubar and toolbar
-	m_header = new QWidget(this);
-	m_header->setAutoFillBackground(true);
-	m_header->setVisible(false);
 	initMenuBar();
 	initToolBar();
 
-	// Lay out header
-	QVBoxLayout* header_layout = new QVBoxLayout(m_header);
-	header_layout->setMargin(0);
-	header_layout->setSpacing(0);
-#ifndef Q_OS_MAC
-	header_layout->addWidget(m_menubar);
-#endif
-	header_layout->addWidget(m_toolbar);
-
 	// Set up details
-	m_footer = new QWidget(this);
-	m_footer->setAutoFillBackground(true);
-	m_footer->setVisible(false);
+	m_footer = new QWidget(contents);
 	QWidget* details = new QWidget(m_footer);
 	m_wordcount_label = new QLabel(tr("Words: 0"), details);
 	m_page_label = new QLabel(tr("Pages: 0"), details);
@@ -137,15 +134,14 @@ Window::Window()
 	footer_layout->addWidget(m_tabs);
 
 	// Lay out window
-	QGridLayout* layout = new QGridLayout(contents);
+	QVBoxLayout* layout = new QVBoxLayout(contents);
 	layout->setSpacing(0);
 	layout->setMargin(0);
-	layout->setRowStretch(1, 1);
-	layout->addWidget(m_documents, 0, 0, 3, 3);
-	layout->addWidget(m_header, 0, 0, 1, 3);
-	layout->addWidget(m_footer, 2, 0, 1, 3);
+	layout->addStretch();
+	layout->addWidget(m_footer);
 
 	// Load current daily progress
+	QApplication::setOverrideCursor(Qt::WaitCursor);
 	QSettings settings;
 	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
 		settings.remove("Progress");
@@ -179,6 +175,7 @@ Window::Window()
 	}
 	m_tabs->setCurrentIndex(settings.value("Save/Active", 0).toInt());
 	updateMargin();
+	QApplication::restoreOverrideCursor();
 }
 
 /*****************************************************************************/
@@ -234,6 +231,7 @@ void Window::resizeEvent(QResizeEvent* event) {
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
+	m_documents->resize(size());
 	QMainWindow::resizeEvent(event);
 }
 
@@ -249,7 +247,9 @@ void Window::newDocument() {
 void Window::openDocument() {
 	QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), QString(), tr("Plain Text (*.txt);;All Files (*)"));
 	if (!filename.isEmpty()) {
+		QApplication::setOverrideCursor(Qt::WaitCursor);
 		addDocument(filename);
+		QApplication::restoreOverrideCursor();
 	}
 }
 
@@ -437,8 +437,6 @@ void Window::addDocument(const QString& filename) {
 	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
-	connect(document, SIGNAL(footerVisible(bool)), m_footer, SLOT(setVisible(bool)));
-	connect(document, SIGNAL(headerVisible(bool)), m_header, SLOT(setVisible(bool)));
 	connect(document->text(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	m_documents->addDocument(document);
@@ -524,8 +522,8 @@ void Window::loadPreferences(const Preferences& preferences) {
 /*****************************************************************************/
 
 void Window::hideInterface() {
-	m_header->hide();
-	m_footer->hide();
+	m_documents->setFooterVisible(false);
+	m_documents->setHeaderVisible(false);
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->setScrollBarVisible(false);
 	}
@@ -534,15 +532,19 @@ void Window::hideInterface() {
 /*****************************************************************************/
 
 void Window::updateMargin() {
-	m_header->show();
-	m_footer->show();
-	m_margin = qMax(m_header->sizeHint().height(), m_footer->sizeHint().height());
-	m_header->hide();
-	m_footer->hide();
+	int header = 0;
+	if (m_toolbar->isVisible()) {
+		header = m_toolbar->mapToParent(m_toolbar->rect().bottomLeft()).y() + 1;
+	} else if (menuBar()->window() == this) {
+		header = menuBar()->mapToParent(menuBar()->rect().bottomLeft()).y() + 1;
+	}
+	int footer = m_footer->sizeHint().height();
+	m_margin = qMax(header, footer);
 
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->setMargin(m_margin);
 	}
+	m_documents->setMargins(footer, header);
 }
 
 /*****************************************************************************/
@@ -565,10 +567,8 @@ void Window::updateTab(int index) {
 /*****************************************************************************/
 
 void Window::initMenuBar() {
-	m_menubar = menuBar();
-
 	// Create file menu
-	QMenu* file_menu = m_menubar->addMenu(tr("&File"));
+	QMenu* file_menu = menuBar()->addMenu(tr("&File"));
 	m_actions["New"] = file_menu->addAction(tr("&New"), this, SLOT(newDocument()), QKeySequence::New);
 	m_actions["Open"] = file_menu->addAction(tr("&Open..."), this, SLOT(openDocument()), QKeySequence::Open);
 	file_menu->addSeparator();
@@ -589,7 +589,7 @@ void Window::initMenuBar() {
 #endif
 
 	// Create edit menu
-	QMenu* edit_menu = m_menubar->addMenu(tr("&Edit"));
+	QMenu* edit_menu = menuBar()->addMenu(tr("&Edit"));
 	m_actions["Undo"] = edit_menu->addAction(tr("&Undo"), m_documents, SLOT(undo()), QKeySequence::Undo);
 	m_actions["Undo"]->setEnabled(false);
 	connect(m_documents, SIGNAL(undoAvailable(bool)), m_actions["Undo"], SLOT(setEnabled(bool)));
@@ -608,12 +608,12 @@ void Window::initMenuBar() {
 	m_actions["SelectAll"] = edit_menu->addAction(tr("Select &All"), m_documents, SLOT(selectAll()), QKeySequence::SelectAll);
 
 	// Create tools menu
-	QMenu* tools_menu = m_menubar->addMenu(tr("&Tools"));
+	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));
 	m_actions["Find"] = tools_menu->addAction(tr("&Find..."), m_documents, SLOT(find()), QKeySequence::Find);
 	m_actions["CheckSpelling"] = tools_menu->addAction(tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 
 	// Create settings menu
-	QMenu* settings_menu = m_menubar->addMenu(tr("&Settings"));
+	QMenu* settings_menu = menuBar()->addMenu(tr("&Settings"));
 	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
@@ -631,20 +631,17 @@ void Window::initMenuBar() {
 #endif
 
 	// Create help menu
-	QMenu* help_menu = m_menubar->addMenu(tr("&Help"));
+	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 	m_actions["About"] = help_menu->addAction(tr("&About"), this, SLOT(aboutClicked()));
 	m_actions["AboutQt"] = help_menu->addAction(tr("About &Qt"), qApp, SLOT(aboutQt()));
 
-	// Enable shortcuts when menubar is hidden
+	// Enable preferences dialog to find toolbar actions
 	addActions(m_actions.values());
 }
 
 /*****************************************************************************/
 
 void Window::initToolBar() {
-	m_toolbar = new QToolBar(m_header);
-	m_toolbar->setIconSize(QSize(22,22));
-
 	QHashIterator<QString, QAction*> action(m_actions);
 	while (action.hasNext()) {
 		action.next();
