@@ -3,48 +3,50 @@
 	<file>focuswriter.png</file>
 	<file>shadow.png</file>
 
-	<file>oxygen/16x16/application-exit.png</file>
-	<file>oxygen/16x16/applications-graphics.png</file>
-	<file>oxygen/16x16/configure.png</file>
-	<file>oxygen/16x16/document-new.png</file>
-	<file>oxygen/16x16/document-open.png</file>
-	<file>oxygen/16x16/document-print.png</file>
-	<file>oxygen/16x16/document-save.png</file>
-	<file>oxygen/16x16/document-save-all.png</file>
-	<file>oxygen/16x16/document-save-as.png</file>
-	<file>oxygen/16x16/edit-copy.png</file>
-	<file>oxygen/16x16/edit-cut.png</file>
-	<file>oxygen/16x16/edit-find.png</file>
-	<file>oxygen/16x16/edit-paste.png</file>
-	<file>oxygen/16x16/edit-redo.png</file>
-	<file>oxygen/16x16/edit-rename.png</file>
-	<file>oxygen/16x16/edit-select-all.png</file>
-	<file>oxygen/16x16/edit-undo.png</file>
-	<file>oxygen/16x16/help-about.png</file>
-	<file>oxygen/16x16/tools-check-spelling.png</file>
-	<file>oxygen/16x16/view-fullscreen.png</file>
-	<file>oxygen/16x16/window-close.png</file>
+	<file alias="icons/hicolor/index.theme">oxygen/index.theme</file>
 
-	<file>oxygen/22x22/application-exit.png</file>
-	<file>oxygen/22x22/applications-graphics.png</file>
-	<file>oxygen/22x22/configure.png</file>
-	<file>oxygen/22x22/document-new.png</file>
-	<file>oxygen/22x22/document-open.png</file>
-	<file>oxygen/22x22/document-print.png</file>
-	<file>oxygen/22x22/document-save.png</file>
-	<file>oxygen/22x22/document-save-all.png</file>
-	<file>oxygen/22x22/document-save-as.png</file>
-	<file>oxygen/22x22/edit-copy.png</file>
-	<file>oxygen/22x22/edit-cut.png</file>
-	<file>oxygen/22x22/edit-find.png</file>
-	<file>oxygen/22x22/edit-paste.png</file>
-	<file>oxygen/22x22/edit-redo.png</file>
-	<file>oxygen/22x22/edit-rename.png</file>
-	<file>oxygen/22x22/edit-select-all.png</file>
-	<file>oxygen/22x22/edit-undo.png</file>
-	<file>oxygen/22x22/help-about.png</file>
-	<file>oxygen/22x22/tools-check-spelling.png</file>
-	<file>oxygen/22x22/view-fullscreen.png</file>
-	<file>oxygen/22x22/window-close.png</file>
+	<file alias="icons/hicolor/16x16/actions/application-exit.png">oxygen/16x16/application-exit.png</file>
+	<file alias="icons/hicolor/16x16/actions/applications-graphics.png">oxygen/16x16/applications-graphics.png</file>
+	<file alias="icons/hicolor/16x16/actions/configure.png">oxygen/16x16/configure.png</file>
+	<file alias="icons/hicolor/16x16/actions/document-new.png">oxygen/16x16/document-new.png</file>
+	<file alias="icons/hicolor/16x16/actions/document-open.png">oxygen/16x16/document-open.png</file>
+	<file alias="icons/hicolor/16x16/actions/document-print.png">oxygen/16x16/document-print.png</file>
+	<file alias="icons/hicolor/16x16/actions/document-save-all.png">oxygen/16x16/document-save-all.png</file>
+	<file alias="icons/hicolor/16x16/actions/document-save-as.png">oxygen/16x16/document-save-as.png</file>
+	<file alias="icons/hicolor/16x16/actions/document-save.png">oxygen/16x16/document-save.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-copy.png">oxygen/16x16/edit-copy.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-cut.png">oxygen/16x16/edit-cut.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-find.png">oxygen/16x16/edit-find.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-paste.png">oxygen/16x16/edit-paste.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-redo.png">oxygen/16x16/edit-redo.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-rename.png">oxygen/16x16/edit-rename.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-select-all.png">oxygen/16x16/edit-select-all.png</file>
+	<file alias="icons/hicolor/16x16/actions/edit-undo.png">oxygen/16x16/edit-undo.png</file>
+	<file alias="icons/hicolor/16x16/actions/help-about.png">oxygen/16x16/help-about.png</file>
+	<file alias="icons/hicolor/16x16/actions/tools-check-spelling.png">oxygen/16x16/tools-check-spelling.png</file>
+	<file alias="icons/hicolor/16x16/actions/view-fullscreen.png">oxygen/16x16/view-fullscreen.png</file>
+	<file alias="icons/hicolor/16x16/actions/window-close.png">oxygen/16x16/window-close.png</file>
+
+	<file alias="icons/hicolor/22x22/actions/application-exit.png">oxygen/22x22/application-exit.png</file>
+	<file alias="icons/hicolor/22x22/actions/applications-graphics.png">oxygen/22x22/applications-graphics.png</file>
+	<file alias="icons/hicolor/22x22/actions/configure.png">oxygen/22x22/configure.png</file>
+	<file alias="icons/hicolor/22x22/actions/document-new.png">oxygen/22x22/document-new.png</file>
+	<file alias="icons/hicolor/22x22/actions/document-open.png">oxygen/22x22/document-open.png</file>
+	<file alias="icons/hicolor/22x22/actions/document-print.png">oxygen/22x22/document-print.png</file>
+	<file alias="icons/hicolor/22x22/actions/document-save-all.png">oxygen/22x22/document-save-all.png</file>
+	<file alias="icons/hicolor/22x22/actions/document-save-as.png">oxygen/22x22/document-save-as.png</file>
+	<file alias="icons/hicolor/22x22/actions/document-save.png">oxygen/22x22/document-save.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-copy.png">oxygen/22x22/edit-copy.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-cut.png">oxygen/22x22/edit-cut.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-find.png">oxygen/22x22/edit-find.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-paste.png">oxygen/22x22/edit-paste.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-redo.png">oxygen/22x22/edit-redo.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-rename.png">oxygen/22x22/edit-rename.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-select-all.png">oxygen/22x22/edit-select-all.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-undo.png">oxygen/22x22/edit-undo.png</file>
+	<file alias="icons/hicolor/22x22/actions/help-about.png">oxygen/22x22/help-about.png</file>
+	<file alias="icons/hicolor/22x22/actions/tools-check-spelling.png">oxygen/22x22/tools-check-spelling.png</file>
+	<file alias="icons/hicolor/22x22/actions/view-fullscreen.png">oxygen/22x22/view-fullscreen.png</file>
+	<file alias="icons/hicolor/22x22/actions/window-close.png">oxygen/22x22/window-close.png</file>
 </qresource>
 </RCC>

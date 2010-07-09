@@ -61,14 +61,21 @@ Window::Window()
 	setContextMenuPolicy(Qt::NoContextMenu);
 	setWindowIcon(QIcon(":/focuswriter.png"));
 
+	// Set up icons
+	QStringList paths = QIcon::themeSearchPaths();
+	paths.removeAll(":/icons");
+	paths.prepend(":/icons");
+	QIcon::setThemeSearchPaths(paths);
+	if (QIcon::themeName().isEmpty()) {
+		QIcon::setThemeName("hicolor");
+		setIconSize(QSize(22,22));
+	}
+
 	// Create window contents first so they stack behind documents
 	menuBar();
 	m_toolbar = new QToolBar(this);
 	m_toolbar->setFloatable(false);
 	m_toolbar->setMovable(false);
-#if defined(Q_OS_MAC) || defined(Q_OS_WIN32) || (QT_VERSION < QT_VERSION_CHECK(4, 6, 0))
-	m_toolbar->setIconSize(QSize(22,22));
-#endif
 	addToolBar(m_toolbar);
 	QWidget* contents = new QWidget(this);
 	setCentralWidget(contents);
@@ -582,11 +589,7 @@ void Window::initMenuBar() {
 	m_actions["Print"] = file_menu->addAction(tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
 	file_menu->addSeparator();
 	m_actions["Close"] = file_menu->addAction(tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
-#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0))
 	m_actions["Quit"] = file_menu->addAction(tr("&Quit"), this, SLOT(close()), QKeySequence::Quit);
-#else
-	m_actions["Quit"] = file_menu->addAction(tr("&Quit"), this, SLOT(close()), Qt::CTRL + Qt::Key_Q);
-#endif
 
 	// Create edit menu
 	QMenu* edit_menu = menuBar()->addMenu(tr("&Edit"));
@@ -624,11 +627,7 @@ void Window::initMenuBar() {
 #endif
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(tr("&Themes..."), this, SLOT(themeClicked()));
-#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0))
 	m_actions["Preferences"] = settings_menu->addAction(tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
-#else
-	m_actions["Preferences"] = settings_menu->addAction(tr("&Preferences..."), this, SLOT(preferencesClicked()));
-#endif
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
@@ -673,13 +672,7 @@ void Window::initToolBar() {
 	QHashIterator<QString, QString> i(icons);
 	while (i.hasNext()) {
 		i.next();
-		QIcon icon(QString(":/oxygen/22x22/%1.png").arg(i.value()));
-		icon.addFile(QString(":/oxygen/16x16/%1.png").arg(i.value()));
-#if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0))
-		m_actions[i.key()]->setIcon(QIcon::fromTheme(i.value(), icon));
-#else
-		m_actions[i.key()]->setIcon(icon);
-#endif
+		m_actions[i.key()]->setIcon(QIcon::fromTheme(i.value()));
 	}
 	m_actions["AboutQt"]->setIcon(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"));
 }
