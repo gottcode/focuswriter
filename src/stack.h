@@ -21,7 +21,9 @@
 #define STACK_H
 
 #include <QWidget>
+class QGridLayout;
 class QStackedLayout;
+class AlertLayer;
 class Document;
 class Theme;
 
@@ -32,6 +34,10 @@ public:
 	~Stack();
 
 	void addDocument(Document* document);
+
+	AlertLayer* alerts() const {
+		return m_alerts;
+	}
 
 	int count() const {
 		return m_documents.count();
@@ -61,6 +67,8 @@ signals:
 	void copyAvailable(bool);
 	void redoAvailable(bool);
 	void undoAvailable(bool);
+	void documentAdded(Document* document);
+	void documentRemoved(Document* document);
 
 public slots:
 	void autoSave();
@@ -90,8 +98,11 @@ private:
 	void updateDocumentBackgrounds();
 
 private:
-	QStackedLayout* m_layout;
+	AlertLayer* m_alerts;
+	QWidget* m_contents;
+	QGridLayout* m_layout;
 
+	QStackedLayout* m_documents_layout;
 	QList<Document*> m_documents;
 	Document* m_current_document;
 

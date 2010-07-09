@@ -19,9 +19,11 @@
 
 #include "stack.h"
 
+#include "alert_layer.h"
 #include "document.h"
 #include "theme.h"
 
+#include <QGridLayout>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QPainter>
@@ -138,8 +140,24 @@ Stack::Stack(QWidget* parent)
   m_header_margin(0),
   m_footer_visible(0),
   m_header_visible(0) {
-	m_layout = new QStackedLayout(this);
-	m_layout->setStackingMode(QStackedLayout::StackAll);
+	m_contents = new QWidget(this);
+
+	m_documents_layout = new QStackedLayout(m_contents);
+	m_documents_layout->setStackingMode(QStackedLayout::StackAll);
+
+	m_alerts = new AlertLayer(this);
+
+	m_layout = new QGridLayout(this);
+	m_layout->setMargin(0);
+	m_layout->setRowStretch(1, 1);
+	m_layout->setColumnStretch(1, 2);
+	m_layout->setColumnStretch(2, 1);
+	m_layout->setRowMinimumHeight(0, 6);
+	m_layout->setRowMinimumHeight(3, 6);
+	m_layout->setColumnMinimumWidth(0, 6);
+	m_layout->setColumnMinimumWidth(3, 6);
+	m_layout->addWidget(m_contents, 0, 0, 4, 4);
+	m_layout->addWidget(m_alerts, 2, 2);
 
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);
@@ -165,7 +183,9 @@ void Stack::addDocument(Document* document) {
 
 	document->setBackground(m_background);
 	m_documents.append(document);
-	m_layout->addWidget(document);
+	m_documents_layout->addWidget(document);
+
+	emit documentAdded(document);
 }
 
 /*****************************************************************************/
@@ -178,15 +198,16 @@ void Stack::moveDocument(int from, int to) {
 
 void Stack::removeDocument(int index) {
 	Document* document = m_documents.takeAt(index);
-	m_layout->removeWidget(document);
-	delete document;
+	m_documents_layout->removeWidget(document);
+	emit documentRemoved(document);
+	document->deleteLater();
 }
 
 /*****************************************************************************/
 
 void Stack::setCurrentDocument(int index) {
 	m_current_document = m_documents[index];
-	m_layout->setCurrentWidget(m_current_document);
+	m_documents_layout->setCurrentWidget(m_current_document);
 
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
@@ -200,6 +221,13 @@ void Stack::setMargins(int footer, int header) {
 	m_header_margin = header;
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
 	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
+
+	int margin = qMax(m_footer_margin, m_header_margin) + 6;
+	m_layout->setRowMinimumHeight(0, margin);
+	m_layout->setRowMinimumHeight(3, margin);
+	m_layout->setColumnMinimumWidth(0, margin);
+	m_layout->setColumnMinimumWidth(3, margin);
+
 	updateMask();
 }
 
@@ -348,6 +376,7 @@ void Stack::updateDocumentBackgrounds() {
 
 void Stack::updateMask() {
 	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
+	m_contents->setMask(mask());
 	foreach (Document* document, m_documents) {
 		document->setMask(mask());
 	}

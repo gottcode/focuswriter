@@ -1,5 +1,4 @@
 TEMPLATE = app
-VERSION = 1.2.1
 CONFIG += warn_on release
 macx {
 	# Uncomment the following line to compile on PowerPC Macs
@@ -55,7 +54,9 @@ macx {
 	LIBS += -lz
 }
 
-HEADERS += src/color_button.h \
+HEADERS += src/alert.h \
+	src/alert_layer.h \
+	src/color_button.h \
 	src/dictionary.h \
 	src/document.h \
 	src/find_dialog.h \
@@ -70,7 +71,9 @@ HEADERS += src/color_button.h \
 	src/theme_manager.h \
 	src/window.h
 
-SOURCES += src/color_button.cpp \
+SOURCES += src/alert.cpp \
+	src/alert_layer.cpp \
+	src/color_button.cpp \
 	src/dictionary.cpp \
 	src/document.cpp \
 	src/find_dialog.cpp \
