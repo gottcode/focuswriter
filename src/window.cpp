@@ -25,6 +25,8 @@
 #include "stack.h"
 #include "theme.h"
 #include "theme_manager.h"
+#include "timer_display.h"
+#include "timer_manager.h"
 
 #include <QAction>
 #include <QApplication>
@@ -82,6 +84,7 @@ Window::Window()
 
 	// Create documents
 	m_documents = new Stack(this);
+	m_timers = new TimerManager(m_documents, this);
 
 	// Set up menubar and toolbar
 	initMenuBar();
@@ -102,6 +105,7 @@ Window::Window()
 	m_clock_timer = new QTimer(this);
 	m_clock_timer->setInterval(60000);
 	connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(updateClock()));
+	connect(m_clock_timer, SIGNAL(timeout()), m_timers, SLOT(saveTimers()));
 	int delay = (60 - QTime::currentTime().second()) * 1000;
 	QTimer::singleShot(delay, m_clock_timer, SLOT(start()));
 	QTimer::singleShot(delay, this, SLOT(updateClock()));
@@ -121,6 +125,12 @@ Window::Window()
 	new QShortcut(QKeySequence::PreviousChild, this, SLOT(previousDocument()));
 
 	// Lay out details
+	QHBoxLayout* clock_layout = new QHBoxLayout;
+	clock_layout->setMargin(0);
+	clock_layout->setSpacing(6);
+	clock_layout->addWidget(m_timers->display(), 0, Qt::AlignCenter);
+	clock_layout->addWidget(m_clock_label);
+
 	QHBoxLayout* details_layout = new QHBoxLayout(details);
 	details_layout->setSpacing(25);
 	details_layout->setMargin(6);
@@ -131,7 +141,7 @@ Window::Window()
 	details_layout->addStretch();
 	details_layout->addWidget(m_progress_label);
 	details_layout->addStretch();
-	details_layout->addWidget(m_clock_label);
+	details_layout->addLayout(clock_layout);
 
 	// Lay out footer
 	QVBoxLayout* footer_layout = new QVBoxLayout(m_footer);
@@ -197,6 +207,11 @@ bool Window::event(QEvent* event) {
 /*****************************************************************************/
 
 void Window::closeEvent(QCloseEvent* event) {
+	if (!m_timers->cancelEditing()) {
+		event->ignore();
+		return;
+	}
+
 	QStringList files;
 	int index = m_tabs->currentIndex();
 	for (int i = 0; i < m_documents->count(); ++i) {
@@ -445,6 +460,7 @@ void Window::addDocument(const QString& filename) {
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document->text(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
+	connect(document, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
 
 	m_documents->addDocument(document);
 
@@ -614,6 +630,7 @@ void Window::initMenuBar() {
 	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));
 	m_actions["Find"] = tools_menu->addAction(tr("&Find..."), m_documents, SLOT(find()), QKeySequence::Find);
 	m_actions["CheckSpelling"] = tools_menu->addAction(tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
+	m_actions["Timers"] = tools_menu->addAction(tr("&Timers..."), m_timers, SLOT(show()));
 
 	// Create settings menu
 	QMenu* settings_menu = menuBar()->addMenu(tr("&Settings"));
@@ -667,6 +684,7 @@ void Window::initToolBar() {
 	icons["SaveAll"] = "document-save-all";
 	icons["SaveAs"] = "document-save-as";
 	icons["SelectAll"] = "edit-select-all";
+	icons["Timers"] = "chronometer";
 	icons["Themes"] = "applications-graphics";
 	icons["Undo"] = "edit-undo";
 	QHashIterator<QString, QString> i(icons);

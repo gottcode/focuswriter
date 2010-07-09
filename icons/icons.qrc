@@ -9,6 +9,7 @@
 	<file alias="icons/hicolor/16x16/actions/applications-graphics.png">oxygen/16x16/applications-graphics.png</file>
 	<file alias="icons/hicolor/16x16/actions/arrow-right.png">oxygen/16x16/arrow-right.png</file>
 	<file alias="icons/hicolor/16x16/actions/arrow-up.png">oxygen/16x16/arrow-up.png</file>
+	<file alias="icons/hicolor/16x16/actions/chronometer.png">oxygen/16x16/chronometer.png</file>
 	<file alias="icons/hicolor/16x16/actions/configure.png">oxygen/16x16/configure.png</file>
 	<file alias="icons/hicolor/16x16/actions/document-new.png">oxygen/16x16/document-new.png</file>
 	<file alias="icons/hicolor/16x16/actions/document-open.png">oxygen/16x16/document-open.png</file>
@@ -31,6 +32,7 @@
 
 	<file alias="icons/hicolor/22x22/actions/application-exit.png">oxygen/22x22/application-exit.png</file>
 	<file alias="icons/hicolor/22x22/actions/applications-graphics.png">oxygen/22x22/applications-graphics.png</file>
+	<file alias="icons/hicolor/22x22/actions/chronometer.png">oxygen/22x22/chronometer.png</file>
 	<file alias="icons/hicolor/22x22/actions/configure.png">oxygen/22x22/configure.png</file>
 	<file alias="icons/hicolor/22x22/actions/document-new.png">oxygen/22x22/document-new.png</file>
 	<file alias="icons/hicolor/22x22/actions/document-open.png">oxygen/22x22/document-open.png</file>

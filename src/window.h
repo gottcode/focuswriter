@@ -28,6 +28,7 @@ class QTabBar;
 class QToolBar;
 class Preferences;
 class Stack;
+class TimerManager;
 
 class Window : public QMainWindow {
 	Q_OBJECT
@@ -77,6 +78,7 @@ private:
 
 	Stack* m_documents;
 	QTabBar* m_tabs;
+	TimerManager* m_timers;
 	int m_margin;
 
 	QWidget* m_footer;

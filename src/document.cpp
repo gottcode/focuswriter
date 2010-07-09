@@ -514,7 +514,7 @@ void Document::calculateWordCount() {
 		amount = m_character_count;
 		break;
 	}
-	m_page_count = std::ceil(amount / m_page_amount);
+	m_page_count = qMax(1.0f, std::ceil(amount / m_page_amount));
 }
 
 /*****************************************************************************/

@@ -1,4 +1,5 @@
 2010-07-09 Graeme Gott <graeme@gottcode.org>
+	* Add timers.
 	* Add alerts.
 	* Switch to using Qt 4.6.
 

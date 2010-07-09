@@ -57,6 +57,7 @@ macx {
 HEADERS += src/alert.h \
 	src/alert_layer.h \
 	src/color_button.h \
+	src/deltas.h \
 	src/dictionary.h \
 	src/document.h \
 	src/find_dialog.h \
@@ -69,11 +70,15 @@ HEADERS += src/alert.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
+	src/timer.h \
+	src/timer_display.h \
+	src/timer_manager.h \
 	src/window.h
 
 SOURCES += src/alert.cpp \
 	src/alert_layer.cpp \
 	src/color_button.cpp \
+	src/deltas.cpp \
 	src/dictionary.cpp \
 	src/document.cpp \
 	src/find_dialog.cpp \
@@ -87,6 +92,9 @@ SOURCES += src/alert.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \
+	src/timer.cpp \
+	src/timer_display.cpp \
+	src/timer_manager.cpp \
 	src/window.cpp
 
 TRANSLATIONS = translations/focuswriter_fr.ts translations/focuswriter_pt.ts
