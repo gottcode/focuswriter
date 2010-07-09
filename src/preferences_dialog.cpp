@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ namespace {
 /*****************************************************************************/
 
 PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
-: QDialog(parent),
+: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
   m_preferences(preferences) {
 	setWindowTitle(tr("Preferences"));
 	m_dictionary = new Dictionary(this);
