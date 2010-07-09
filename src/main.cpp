@@ -36,6 +36,8 @@ int main(int argc, char** argv) {
 	app.setApplicationVersion("1.2.2");
 	app.setOrganizationDomain("gottcode.org");
 	app.setOrganizationName("GottCode");
+	app.setAttribute(Qt::AA_DontShowIconsInMenus);
+	QString appdir = app.applicationDirPath();
 
 	QTranslator qt_translator;
 	qt_translator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
@@ -48,15 +50,13 @@ int main(int argc, char** argv) {
 	// Find data paths
 	QStringList locations;
 #if defined(Q_OS_MAC)
-	app.setAttribute(Qt::AA_DontShowIconsInMenus);
-
-	QFileInfo portable(QCoreApplication::applicationDirPath() + "/../../../Data");
+	QFileInfo portable(appdir + "/../../../Data");
 	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
 
-	locations.append(QCoreApplication::applicationDirPath() + "/../Resources/Dictionaries");
+	locations.append(appdir + "/../Resources/Dictionaries");
 	locations.append("/Library/Application Support/GottCode/FocusWriter/Dictionaries");
 #elif defined(Q_OS_UNIX)
-	QFileInfo portable(QCoreApplication::applicationDirPath() + "/Data");
+	QFileInfo portable(appdir + "/Data");
 	QString path = qgetenv("XDG_DATA_HOME");
 	if (path.isEmpty()) {
 		path = QDir::homePath() + "/.local/share";
@@ -78,10 +78,10 @@ int main(int argc, char** argv) {
 		}
 	}
 #elif defined(Q_OS_WIN32)
-	QFileInfo portable(QCoreApplication::applicationDirPath() + "/Data");
+	QFileInfo portable(appdir + "/Data");
 	QString path = QDir::homePath() + "/Application Data/GottCode/FocusWriter/";
 
-	locations.append(QCoreApplication::applicationDirPath() + "/Dictionaries");
+	locations.append(appdir + "/Dictionaries");
 #endif
 
 	// Handle portability
