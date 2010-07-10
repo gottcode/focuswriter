@@ -325,6 +325,7 @@ void Document::loadTheme(const Theme& theme) {
 			break;
 	};
 
+	m_text->centerCursor();
 	m_text->document()->blockSignals(false);
 }
 

@@ -42,7 +42,6 @@ ThemeManager::ThemeManager(QWidget* parent)
 	// Add themes list
 	m_themes = new QListWidget(this);
 	m_themes->setSortingEnabled(true);
-	m_themes->setSpacing(12);
 	m_themes->setViewMode(QListView::IconMode);
 	m_themes->setIconSize(QSize(218, 168));
 	m_themes->setMovement(QListView::Static);
