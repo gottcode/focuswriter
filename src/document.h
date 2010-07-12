@@ -27,7 +27,6 @@ class QGridLayout;
 class QScrollBar;
 class QPlainTextEdit;
 class QTimer;
-class FindDialog;
 class Highlighter;
 class Preferences;
 class Theme;
@@ -74,7 +73,6 @@ public:
 	bool saveAs();
 	bool rename();
 	void checkSpelling();
-	void find();
 	void print();
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
@@ -110,7 +108,6 @@ private:
 	bool m_block_cursor;
 	QFuture<void> m_file_save;
 
-	FindDialog* m_find_dialog;
 	QTimer* m_hide_timer;
 
 	QGridLayout* m_layout;

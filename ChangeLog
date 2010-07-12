@@ -1,3 +1,6 @@
+2010-07-12 Graeme Gott <graeme@gottcode.org>
+	* Rewrite find support.
+
 2010-07-09 Graeme Gott <graeme@gottcode.org>
 	* Remove icons from menus.
 	* Add timers.

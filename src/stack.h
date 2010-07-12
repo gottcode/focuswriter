@@ -25,6 +25,7 @@ class QGridLayout;
 class QStackedLayout;
 class AlertLayer;
 class Document;
+class FindDialog;
 class Theme;
 
 class Stack : public QWidget {
@@ -69,6 +70,7 @@ signals:
 	void undoAvailable(bool);
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
+	void findNextAvailable(bool available);
 
 public slots:
 	void autoSave();
@@ -76,9 +78,12 @@ public slots:
 	void cut();
 	void copy();
 	void find();
+	void findNext();
+	void findPrevious();
 	void paste();
 	void print();
 	void redo();
+	void replace();
 	void save();
 	void saveAs();
 	void selectAll();
@@ -101,6 +106,7 @@ private:
 	AlertLayer* m_alerts;
 	QWidget* m_contents;
 	QGridLayout* m_layout;
+	FindDialog* m_find_dialog;
 
 	QStackedLayout* m_documents_layout;
 	QList<Document*> m_documents;

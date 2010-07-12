@@ -22,11 +22,14 @@
 	<file alias="icons/hicolor/22x22/actions/edit-copy.png">oxygen/22x22/edit-copy.png</file>
 	<file alias="icons/hicolor/22x22/actions/edit-cut.png">oxygen/22x22/edit-cut.png</file>
 	<file alias="icons/hicolor/22x22/actions/edit-find.png">oxygen/22x22/edit-find.png</file>
+	<file alias="icons/hicolor/22x22/actions/edit-find-replace.png">oxygen/22x22/edit-find-replace.png</file>
 	<file alias="icons/hicolor/22x22/actions/edit-paste.png">oxygen/22x22/edit-paste.png</file>
 	<file alias="icons/hicolor/22x22/actions/edit-redo.png">oxygen/22x22/edit-redo.png</file>
 	<file alias="icons/hicolor/22x22/actions/edit-rename.png">oxygen/22x22/edit-rename.png</file>
 	<file alias="icons/hicolor/22x22/actions/edit-select-all.png">oxygen/22x22/edit-select-all.png</file>
 	<file alias="icons/hicolor/22x22/actions/edit-undo.png">oxygen/22x22/edit-undo.png</file>
+	<file alias="icons/hicolor/22x22/actions/go-down.png">oxygen/22x22/go-down.png</file>
+	<file alias="icons/hicolor/22x22/actions/go-up.png">oxygen/22x22/go-up.png</file>
 	<file alias="icons/hicolor/22x22/actions/help-about.png">oxygen/22x22/help-about.png</file>
 	<file alias="icons/hicolor/22x22/actions/tools-check-spelling.png">oxygen/22x22/tools-check-spelling.png</file>
 	<file alias="icons/hicolor/22x22/actions/view-fullscreen.png">oxygen/22x22/view-fullscreen.png</file>

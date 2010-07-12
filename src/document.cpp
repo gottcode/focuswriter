@@ -19,7 +19,6 @@
 
 #include "document.h"
 
-#include "find_dialog.h"
 #include "highlighter.h"
 #include "preferences.h"
 #include "spell_checker.h"
@@ -172,9 +171,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_scrollbar->setVisible(false);
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 
-	// Set up find dialog
-	m_find_dialog = new FindDialog(m_text, this);
-
 	// Lay out window
 	m_layout = new QGridLayout(this);
 	m_layout->setSpacing(0);
@@ -263,13 +259,6 @@ bool Document::rename() {
 
 void Document::checkSpelling() {
 	SpellChecker::checkDocument(m_text);
-}
-
-/*****************************************************************************/
-
-void Document::find() {
-	m_find_dialog->show();
-	m_find_dialog->raise();
 }
 
 /*****************************************************************************/

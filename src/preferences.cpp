@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ Preferences::Preferences()
 	m_auto_append = settings.value("Save/Append", true).toBool();
 
 	m_toolbar_style = settings.value("Toolbar/Style", Qt::ToolButtonTextUnderIcon).toInt();
-	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find";
+	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace";
 	m_toolbar_actions = settings.value("Toolbar/Actions", m_toolbar_actions).toStringList();
 
 	m_highlight_misspelled = settings.value("Spelling/HighlightMisspelled", true).toBool();

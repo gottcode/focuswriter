@@ -629,6 +629,14 @@ void Window::initMenuBar() {
 	// Create tools menu
 	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));
 	m_actions["Find"] = tools_menu->addAction(tr("&Find..."), m_documents, SLOT(find()), QKeySequence::Find);
+	m_actions["FindNext"] = tools_menu->addAction(tr("Find &Next"), m_documents, SLOT(findNext()), QKeySequence::FindNext);
+	m_actions["FindNext"]->setEnabled(false);
+	connect(m_documents, SIGNAL(findNextAvailable(bool)), m_actions["FindNext"], SLOT(setEnabled(bool)));
+	m_actions["FindPrevious"] = tools_menu->addAction(tr("Find Pre&vious"), m_documents, SLOT(findPrevious()), QKeySequence::FindPrevious);
+	m_actions["FindPrevious"]->setEnabled(false);
+	connect(m_documents, SIGNAL(findNextAvailable(bool)), m_actions["FindPrevious"], SLOT(setEnabled(bool)));
+	m_actions["Replace"] = tools_menu->addAction(tr("&Replace..."), m_documents, SLOT(replace()), QKeySequence::Replace);
+	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 	m_actions["Timers"] = tools_menu->addAction(tr("&Timers..."), m_timers, SLOT(show()));
 
@@ -671,6 +679,8 @@ void Window::initToolBar() {
 	icons["Copy"] = "edit-copy";
 	icons["Cut"] = "edit-cut";
 	icons["Find"] = "edit-find";
+	icons["FindNext"] = "go-down";
+	icons["FindPrevious"] = "go-up";
 	icons["Fullscreen"] = "view-fullscreen";
 	icons["New"] = "document-new";
 	icons["Open"] = "document-open";
@@ -680,6 +690,7 @@ void Window::initToolBar() {
 	icons["Quit"] = "application-exit";
 	icons["Redo"] = "edit-redo";
 	icons["Rename"] = "edit-rename";
+	icons["Replace"] = "edit-find-replace";
 	icons["Save"] = "document-save";
 	icons["SaveAll"] = "document-save-all";
 	icons["SaveAs"] = "document-save-as";

@@ -21,6 +21,7 @@
 
 #include "alert_layer.h"
 #include "document.h"
+#include "find_dialog.h"
 #include "theme.h"
 
 #include <QGridLayout>
@@ -147,6 +148,9 @@ Stack::Stack(QWidget* parent)
 
 	m_alerts = new AlertLayer(this);
 
+	m_find_dialog = new FindDialog(this);
+	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
+
 	m_layout = new QGridLayout(this);
 	m_layout->setMargin(0);
 	m_layout->setRowStretch(1, 1);
@@ -262,7 +266,19 @@ void Stack::copy() {
 /*****************************************************************************/
 
 void Stack::find() {
-	m_current_document->find();
+	m_find_dialog->showFindMode();
+}
+
+/*****************************************************************************/
+
+void Stack::findNext() {
+	m_find_dialog->findNext();
+}
+
+/*****************************************************************************/
+
+void Stack::findPrevious() {
+	m_find_dialog->findPrevious();
 }
 
 /*****************************************************************************/
@@ -281,6 +297,12 @@ void Stack::print() {
 
 void Stack::redo() {
 	m_current_document->text()->redo();
+}
+
+/*****************************************************************************/
+
+void Stack::replace() {
+	m_find_dialog->showReplaceMode();
 }
 
 /*****************************************************************************/
