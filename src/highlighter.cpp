@@ -23,12 +23,14 @@
 #include "spell_checker.h"
 
 #include <QAction>
+#include <QContextMenuEvent>
+#include <QEvent>
 #include <QMenu>
-#include <QPlainTextEdit>
+#include <QTextEdit>
 
 /*****************************************************************************/
 
-Highlighter::Highlighter(QPlainTextEdit* text)
+Highlighter::Highlighter(QTextEdit* text)
 : QSyntaxHighlighter(text->document()),
   m_text(text),
   m_enabled(true),

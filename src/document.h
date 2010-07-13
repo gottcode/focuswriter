@@ -25,7 +25,7 @@
 #include <QWidget>
 class QGridLayout;
 class QScrollBar;
-class QPlainTextEdit;
+class QTextEdit;
 class QTimer;
 class Highlighter;
 class Preferences;
@@ -65,7 +65,7 @@ public:
 		return m_wordcount;
 	}
 
-	QPlainTextEdit* text() const {
+	QTextEdit* text() const {
 		return m_text;
 	}
 
@@ -82,6 +82,9 @@ public:
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 
+public slots:
+	void centerCursor();
+
 signals:
 	void changed();
 	void footerVisible(bool visible);
@@ -95,6 +98,7 @@ protected:
 private slots:
 	void hideMouse();
 	void scrollBarActionTriggered(int action);
+	void scrollBarRangeChanged(int min, int max);
 	void updateWordCount(int position, int removed, int added);
 
 private:
@@ -104,6 +108,7 @@ private:
 private:
 	QString m_filename;
 	int m_index;
+	bool m_always_center;
 	bool m_auto_append;
 	bool m_block_cursor;
 	QFuture<void> m_file_save;
@@ -111,7 +116,7 @@ private:
 	QTimer* m_hide_timer;
 
 	QGridLayout* m_layout;
-	QPlainTextEdit* m_text;
+	QTextEdit* m_text;
 	QScrollBar* m_scrollbar;
 	Highlighter* m_highlighter;
 	int m_margin;

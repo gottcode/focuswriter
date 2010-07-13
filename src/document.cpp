@@ -35,9 +35,9 @@
 #include <QPrinter>
 #include <QScrollBar>
 #include <QSettings>
-#include <QPlainTextEdit>
 #include <QTextBlock>
 #include <QTextCodec>
+#include <QTextEdit>
 #include <QTextStream>
 #include <QTimer>
 #include <QtConcurrentRun>
@@ -112,6 +112,7 @@ namespace {
 
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, QWidget* parent)
 : QWidget(parent),
+  m_always_center(false),
   m_auto_append(true),
   m_margin(50),
   m_character_count(0),
@@ -133,9 +134,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(hideMouse()));
 
 	// Set up text area
-	m_text = new QPlainTextEdit(this);
+	m_text = new QTextEdit(this);
 	m_text->installEventFilter(this);
-	m_text->setCenterOnScroll(true);
 	m_text->setTabStopWidth(50);
 	m_text->setMinimumHeight(500);
 	m_text->setFrameStyle(QFrame::NoFrame);
@@ -170,6 +170,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_scrollbar->setAutoFillBackground(true);
 	m_scrollbar->setVisible(false);
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
+	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
 
 	// Lay out window
 	m_layout = new QGridLayout(this);
@@ -187,6 +188,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	calculateWordCount();
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
+	connect(m_text, SIGNAL(textChanged()), this, SLOT(centerCursor()));
 }
 
 /*****************************************************************************/
@@ -314,18 +316,14 @@ void Document::loadTheme(const Theme& theme) {
 			break;
 	};
 
-	m_text->centerCursor();
+	centerCursor();
 	m_text->document()->blockSignals(false);
 }
 
 /*****************************************************************************/
 
 void Document::loadPreferences(const Preferences& preferences) {
-	if (preferences.alwaysCenter()) {
-		connect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
-	} else {
-		disconnect(m_text, SIGNAL(textChanged()), m_text, SLOT(centerCursor()));
-	}
+	m_always_center = preferences.alwaysCenter();
 
 	m_page_type = preferences.pageType();
 	switch (m_page_type) {
@@ -393,6 +391,18 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 
 /*****************************************************************************/
 
+void Document::centerCursor() {
+	QRect cursor = m_text->cursorRect();
+	QRect viewport = m_text->viewport()->rect();
+	if (m_always_center || !viewport.contains(cursor, true)) {
+		QPoint offset = viewport.center() - cursor.center();
+		QScrollBar* scrollbar = m_text->verticalScrollBar();
+		scrollbar->setValue(scrollbar->value() - offset.y());
+	}
+}
+
+/*****************************************************************************/
+
 void Document::mouseMoveEvent(QMouseEvent* event) {
 	m_text->viewport()->setCursor(Qt::IBeamCursor);
 	unsetCursor();
@@ -446,6 +456,14 @@ void Document::scrollBarActionTriggered(int action) {
 	} else if (action == QAbstractSlider::SliderToMaximum) {
 		m_text->moveCursor(QTextCursor::End);
 	}
+}
+
+/*****************************************************************************/
+
+void Document::scrollBarRangeChanged(int, int max) {
+	m_scrollbar->blockSignals(true);
+	m_scrollbar->setMaximum(max + m_text->viewport()->height());
+	m_scrollbar->blockSignals(false);
 }
 
 /*****************************************************************************/

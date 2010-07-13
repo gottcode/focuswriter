@@ -28,7 +28,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
-#include <QPlainTextEdit>
+#include <QTextEdit>
 #include <QPushButton>
 #include <QRadioButton>
 #include <QSettings>
@@ -163,7 +163,7 @@ void FindDialog::replace()
 		return;
 	}
 
-	QPlainTextEdit* document = m_documents->currentDocument()->text();
+	QTextEdit* document = m_documents->currentDocument()->text();
 	QTextCursor cursor = document->textCursor();
 	Qt::CaseSensitivity cs = m_ignore_case->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive;
 	if (QString::compare(cursor.selectedText(), text, cs) == 0) {
@@ -193,7 +193,7 @@ void FindDialog::replaceAll()
 
 	// Count instances
 	int found = 0;
-	QPlainTextEdit* document = m_documents->currentDocument()->text();
+	QTextEdit* document = m_documents->currentDocument()->text();
 	QTextCursor cursor = document->textCursor();
 	cursor.movePosition(QTextCursor::Start);
 	forever {
@@ -247,7 +247,7 @@ void FindDialog::find(bool backwards)
 		flags |= QTextDocument::FindBackward;
 	}
 
-	QPlainTextEdit* document = m_documents->currentDocument()->text();
+	QTextEdit* document = m_documents->currentDocument()->text();
 	QTextCursor cursor = document->document()->find(text, document->textCursor(), flags);
 	if (cursor.isNull()) {
 		cursor = document->textCursor();

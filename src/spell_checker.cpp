@@ -30,14 +30,14 @@
 #include <QLineEdit>
 #include <QListWidget>
 #include <QMessageBox>
-#include <QPlainTextEdit>
 #include <QProgressDialog>
 #include <QPushButton>
 #include <QTextBlock>
+#include <QTextEdit>
 
 /*****************************************************************************/
 
-void SpellChecker::checkDocument(QPlainTextEdit* document) {
+void SpellChecker::checkDocument(QTextEdit* document) {
 	SpellChecker* checker = new SpellChecker(document);
 	checker->m_start_cursor = document->textCursor();
 	checker->m_cursor = checker->m_start_cursor;
@@ -109,7 +109,7 @@ void SpellChecker::changeAll() {
 
 /*****************************************************************************/
 
-SpellChecker::SpellChecker(QPlainTextEdit* document)
+SpellChecker::SpellChecker(QTextEdit* document)
 : QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
   m_document(document) {
 	setWindowTitle(tr("Check Spelling"));

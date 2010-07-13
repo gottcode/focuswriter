@@ -23,14 +23,14 @@
 #include <QSyntaxHighlighter>
 #include <QTextCursor>
 class QAction;
-class QPlainTextEdit;
+class QTextEdit;
 class Dictionary;
 
 class Highlighter : public QSyntaxHighlighter {
 	Q_OBJECT
 
 public:
-    Highlighter(QPlainTextEdit* text);
+	Highlighter(QTextEdit* text);
 
 	bool enabled();
 	void setEnabled(bool enabled);
@@ -44,7 +44,7 @@ private slots:
 
 private:
 	Dictionary* m_dictionary;
-	QPlainTextEdit* m_text;
+	QTextEdit* m_text;
 	QTextCursor m_cursor;
 	QTextCursor m_start_cursor;
 	bool m_enabled;

@@ -26,7 +26,6 @@ class QAction;
 class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
-class QPlainTextEdit;
 class QTextEdit;
 class Dictionary;
 
@@ -34,7 +33,7 @@ class SpellChecker : public QDialog {
 	Q_OBJECT
 
 public:
-	static void checkDocument(QPlainTextEdit* document);
+	static void checkDocument(QTextEdit* document);
 
 public slots:
 	virtual void reject();
@@ -48,13 +47,13 @@ private slots:
 	void changeAll();
 
 private:
-	SpellChecker(QPlainTextEdit* document);
+	SpellChecker(QTextEdit* document);
 	void check();
 
 private:
 	Dictionary* m_dictionary;
 
-	QPlainTextEdit* m_document;
+	QTextEdit* m_document;
 	QTextEdit* m_context;
 	QLineEdit* m_suggestion;
 	QListWidget* m_suggestions;

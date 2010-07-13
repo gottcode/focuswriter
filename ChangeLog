@@ -1,3 +1,6 @@
+2010-07-13 Graeme Gott <graeme@gottcode.org>
+	* Switch to QTextEdit.
+
 2010-07-12 Graeme Gott <graeme@gottcode.org>
 	* Rewrite find support.
 

@@ -178,6 +178,13 @@ Window::Window()
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
 	toggleFullscreen();
 
+	// Update margin
+	m_tabs->blockSignals(true);
+	m_tabs->addTab(tr("Untitled"));
+	updateMargin();
+	m_tabs->removeTab(0);
+	m_tabs->blockSignals(false);
+
 	// Open previous documents
 	QStringList files = QApplication::arguments();
 	files.removeFirst();
@@ -191,7 +198,6 @@ Window::Window()
 		addDocument(file);
 	}
 	m_tabs->setCurrentIndex(settings.value("Save/Active", 0).toInt());
-	updateMargin();
 	QApplication::restoreOverrideCursor();
 }
 
@@ -459,7 +465,7 @@ void Window::addDocument(const QString& filename) {
 	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
-	connect(document->text(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
+	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 	connect(document, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
 
 	m_documents->addDocument(document);
@@ -469,7 +475,7 @@ void Window::addDocument(const QString& filename) {
 	m_tabs->setCurrentIndex(index);
 
 	document->text()->verticalScrollBar()->triggerAction(QAbstractSlider::SliderToMaximum);
-	document->text()->centerCursor();
+	document->centerCursor();
 }
 
 /*****************************************************************************/
