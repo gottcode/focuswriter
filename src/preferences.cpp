@@ -48,6 +48,7 @@ Preferences::Preferences()
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
+	m_rich_text = settings.value("Edit/RichText", false).toBool();
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 
 	m_auto_save = settings.value("Save/Auto", true).toBool();
@@ -96,6 +97,7 @@ Preferences::~Preferences() {
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
+	settings.setValue("Edit/RichText", m_rich_text);
 	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
 
 	settings.setValue("Save/Auto", m_auto_save);
@@ -280,6 +282,12 @@ bool Preferences::blockCursor() const {
 
 /*****************************************************************************/
 
+bool Preferences::richText() const {
+	return m_rich_text;
+}
+
+/*****************************************************************************/
+
 bool Preferences::smoothFonts() const {
 	return m_smooth_fonts;
 }
@@ -295,6 +303,13 @@ void Preferences::setAlwaysCenter(bool center) {
 
 void Preferences::setBlockCursor(bool block) {
 	m_block_cursor = block;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setRichText(bool rich) {
+	m_rich_text = rich;
 	m_changed = true;
 }
 

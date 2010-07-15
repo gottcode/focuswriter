@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,9 +58,11 @@ public:
 
 	bool alwaysCenter() const;
 	bool blockCursor() const;
+	bool richText() const;
 	bool smoothFonts() const;
 	void setAlwaysCenter(bool center);
 	void setBlockCursor(bool block);
+	void setRichText(bool rich);
 	void setSmoothFonts(bool smooth);
 
 	bool autoSave() const;
@@ -101,6 +103,7 @@ private:
 
 	bool m_always_center;
 	bool m_block_cursor;
+	bool m_rich_text;
 	bool m_smooth_fonts;
 
 	bool m_auto_save;

@@ -85,6 +85,7 @@ Window::Window()
 	// Create documents
 	m_documents = new Stack(this);
 	m_timers = new TimerManager(m_documents, this);
+	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
 
 	// Set up menubar and toolbar
 	initMenuBar();
@@ -273,7 +274,7 @@ void Window::newDocument() {
 /*****************************************************************************/
 
 void Window::openDocument() {
-	QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), QString(), tr("Plain Text (*.txt);;All Files (*)"));
+	QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), QString(), m_open_filter);
 	if (!filename.isEmpty()) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
 		addDocument(filename);
@@ -439,6 +440,47 @@ void Window::updateDetails() {
 
 /*****************************************************************************/
 
+void Window::updateFormatActions() {
+	Document* document = m_documents->currentDocument();
+	if (!document) {
+		return;
+	}
+
+	bool enabled = document->isRichText();
+	foreach (QAction* action, m_format_actions) {
+		action->setEnabled(enabled);
+	}
+	if (enabled) {
+		m_richtext_action->setVisible(false);
+		m_plaintext_action->setVisible(true);
+	} else {
+		m_plaintext_action->setVisible(false);
+		m_richtext_action->setVisible(true);
+	}
+	m_actions["FormatIndentDecrease"]->setEnabled(document->text()->textCursor().blockFormat().indent() > 0);
+
+	QTextCharFormat format = document->text()->currentCharFormat();
+	m_actions["FormatBold"]->setChecked(format.fontWeight() == QFont::Bold);
+	m_actions["FormatItalic"]->setChecked(format.fontItalic());
+	m_actions["FormatStrikeOut"]->setChecked(format.fontStrikeOut());
+	m_actions["FormatUnderline"]->setChecked(format.fontUnderline());
+	m_actions["FormatSuperScript"]->setChecked(format.verticalAlignment() == QTextCharFormat::AlignSuperScript);
+	m_actions["FormatSubScript"]->setChecked(format.verticalAlignment() == QTextCharFormat::AlignSubScript);
+
+	Qt::Alignment alignment = document->text()->alignment();
+	if (alignment & Qt::AlignLeft) {
+		m_actions["FormatAlignLeft"]->setChecked(true);
+	} else if (alignment & Qt::AlignRight) {
+		m_actions["FormatAlignRight"]->setChecked(true);
+	} else if (alignment & Qt::AlignCenter) {
+		m_actions["FormatAlignCenter"]->setChecked(true);
+	} else if (alignment & Qt::AlignJustify) {
+		m_actions["FormatAlignJustify"]->setChecked(true);
+	}
+}
+
+/*****************************************************************************/
+
 void Window::updateProgress() {
 	int progress = 0;
 	if (m_goal_type == 1) {
@@ -514,6 +556,11 @@ void Window::loadPreferences(const Preferences& preferences) {
 	} else {
 		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 	}
+
+	QString plaintext = tr("Plain Text (*.txt)");
+	QString richtext = tr("FocusWriter Rich Text (*.fwr)");
+	QString all = tr("All Files (*)");
+	m_open_filter = preferences.richText() ? (richtext + ";;" + plaintext+ ";;" + all) : (plaintext + ";;" + richtext+ ";;" + all);
 
 	m_character_label->setVisible(preferences.showCharacters());
 	m_page_label->setVisible(preferences.showPages());
@@ -632,6 +679,51 @@ void Window::initMenuBar() {
 	edit_menu->addSeparator();
 	m_actions["SelectAll"] = edit_menu->addAction(tr("Select &All"), m_documents, SLOT(selectAll()), QKeySequence::SelectAll);
 
+	// Create format menu
+	QMenu* format_menu = menuBar()->addMenu(tr("&Format"));
+	m_actions["FormatBold"] = format_menu->addAction(tr("&Bold"), m_documents, SLOT(setFontBold(bool)), QKeySequence::Bold);
+	m_actions["FormatBold"]->setCheckable(true);
+	m_actions["FormatItalic"] = format_menu->addAction(tr("&Italic"), m_documents, SLOT(setFontItalic(bool)), QKeySequence::Italic);
+	m_actions["FormatItalic"]->setCheckable(true);
+	m_actions["FormatUnderline"] = format_menu->addAction(tr("&Underline"), m_documents, SLOT(setFontUnderline(bool)), QKeySequence::Underline);
+	m_actions["FormatUnderline"]->setCheckable(true);
+	m_actions["FormatStrikeOut"] = format_menu->addAction(tr("Stri&kethrough"), m_documents, SLOT(setFontStrikeOut(bool)), tr("Ctrl+K"));
+	m_actions["FormatStrikeOut"]->setCheckable(true);
+	format_menu->addSeparator();
+	m_actions["FormatSuperScript"] = format_menu->addAction(tr("Sup&erscript"), m_documents, SLOT(setFontSuperScript(bool)), tr("Ctrl+^"));
+	m_actions["FormatSuperScript"]->setCheckable(true);
+	m_actions["FormatSubScript"] = format_menu->addAction(tr("&Subscript"), m_documents, SLOT(setFontSubScript(bool)), tr("Ctrl+_"));
+	m_actions["FormatSubScript"]->setCheckable(true);
+	format_menu->addSeparator();
+	m_actions["FormatAlignLeft"] = format_menu->addAction(tr("Align &Left"), m_documents, SLOT(alignLeft()), tr("Ctrl+{"));
+	m_actions["FormatAlignLeft"]->setCheckable(true);
+	m_actions["FormatAlignCenter"] = format_menu->addAction(tr("Align &Center"), m_documents, SLOT(alignCenter()), tr("Ctrl+|"));
+	m_actions["FormatAlignCenter"]->setCheckable(true);
+	m_actions["FormatAlignRight"] = format_menu->addAction(tr("Align &Right"), m_documents, SLOT(alignRight()), tr("Ctrl+}"));
+	m_actions["FormatAlignRight"]->setCheckable(true);
+	m_actions["FormatAlignJustify"] = format_menu->addAction(tr("&Align Block"), m_documents, SLOT(alignJustify()));
+	m_actions["FormatAlignJustify"]->setCheckable(true);
+	QActionGroup* alignment = new QActionGroup(this);
+	alignment->addAction(m_actions["FormatAlignLeft"]);
+	alignment->addAction(m_actions["FormatAlignCenter"]);
+	alignment->addAction(m_actions["FormatAlignRight"]);
+	alignment->addAction(m_actions["FormatAlignJustify"]);
+	m_actions["FormatAlignLeft"]->setChecked(true);
+	format_menu->addSeparator();
+	m_actions["FormatIndentDecrease"] = format_menu->addAction(tr("&Decrease Indent"), m_documents, SLOT(decreaseIndent()));
+	m_actions["FormatIndentIncrease"] = format_menu->addAction(tr("I&ncrease Indent"), m_documents, SLOT(increaseIndent()));
+	format_menu->addSeparator();
+	m_plaintext_action = format_menu->addAction(tr("&Make Plain Text"), m_documents, SLOT(makePlainText()));
+	m_richtext_action = format_menu->addAction(tr("&Make Rich Text"), m_documents, SLOT(makeRichText()));
+	m_richtext_action->setVisible(false);
+	QHashIterator<QString, QAction*> i(m_actions);
+	while (i.hasNext()) {
+		i.next();
+		if (i.key().startsWith("Format")) {
+			m_format_actions.append(i.value());
+		}
+	}
+
 	// Create tools menu
 	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));
 	m_actions["Find"] = tools_menu->addAction(tr("&Find..."), m_documents, SLOT(find()), QKeySequence::Find);
@@ -687,6 +779,18 @@ void Window::initToolBar() {
 	icons["Find"] = "edit-find";
 	icons["FindNext"] = "go-down";
 	icons["FindPrevious"] = "go-up";
+	icons["FormatAlignCenter"] = "format-justify-center";
+	icons["FormatAlignJustify"] = "format-justify-fill";
+	icons["FormatAlignLeft"] = "format-justify-left";
+	icons["FormatAlignRight"] = "format-justify-right";
+	icons["FormatIndentDecrease"] = "format-indent-less";
+	icons["FormatIndentIncrease"] = "format-indent-more";
+	icons["FormatBold"] = "format-text-bold";
+	icons["FormatItalic"] = "format-text-italic";
+	icons["FormatStrikeOut"] = "format-text-strikethrough";
+	icons["FormatSubScript"] = "format-text-subscript";
+	icons["FormatSuperScript"] = "format-text-superscript";
+	icons["FormatUnderline"] = "format-text-underline";
 	icons["Fullscreen"] = "view-fullscreen";
 	icons["New"] = "document-new";
 	icons["Open"] = "document-open";

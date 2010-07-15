@@ -20,7 +20,6 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
-#include <QFuture>
 #include <QTime>
 #include <QWidget>
 class QGridLayout;
@@ -39,6 +38,10 @@ public:
 
 	QString filename() const {
 		return m_filename;
+	}
+
+	bool isRichText() const {
+		return m_rich_text;
 	}
 
 	int index() const {
@@ -78,6 +81,7 @@ public:
 	void loadPreferences(const Preferences& preferences);
 	void setBackground(const QPixmap& background);
 	void setMargin(int margin);
+	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
@@ -103,6 +107,8 @@ private slots:
 
 private:
 	void calculateWordCount();
+	QString fileFilter() const;
+	QString fileSuffix() const;
 	void updateSaveLocation();
 
 private:
@@ -111,7 +117,7 @@ private:
 	bool m_always_center;
 	bool m_auto_append;
 	bool m_block_cursor;
-	QFuture<void> m_file_save;
+	bool m_rich_text;
 
 	QTimer* m_hide_timer;
 

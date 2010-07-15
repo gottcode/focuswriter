@@ -29,6 +29,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QGridLayout>
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPrintDialog>
@@ -40,13 +41,14 @@
 #include <QTextEdit>
 #include <QTextStream>
 #include <QTimer>
-#include <QtConcurrentRun>
 
 #include <cmath>
 
 /*****************************************************************************/
 
 namespace {
+	static int g_untitled_indexes = 0;
+
 	// Text block statistics
 	class BlockStats : public QTextBlockUserData {
 	public:
@@ -96,16 +98,6 @@ namespace {
 			}
 		}
 	}
-
-	// Threaded file saving
-	void write(const QString& filename, const QString& data) {
-		QFile file(filename);
-		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream << data;
-		}
-	}
 }
 
 /*****************************************************************************/
@@ -114,6 +106,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 : QWidget(parent),
   m_always_center(false),
   m_auto_append(true),
+  m_rich_text(false),
   m_margin(50),
   m_character_count(0),
   m_page_count(0),
@@ -145,22 +138,37 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_highlighter = new Highlighter(m_text);
 
 	// Open file
+	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
 		QFile file(filename);
-		if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+		m_rich_text = (QFileInfo(file).suffix().toLower() == QLatin1String("fwr"));
+		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&file);
 			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			m_text->setPlainText(stream.readAll());
+
+			bool error = false;
+			if (m_rich_text) {
+				if (stream.readLine() == "FWR1") {
+					m_text->setHtml(stream.readAll());
+				} else {
+					QMessageBox::information(parent->window(), tr("Sorry"), tr("Unable to read FocusWriter Rich Text file."));
+					error = true;
+				}
+			} else {
+				m_text->setPlainText(stream.readAll());
+			}
 			m_text->document()->setModified(false);
 			file.close();
 
-			m_filename = QFileInfo(file).canonicalFilePath();
-			updateSaveLocation();
+			if (!error) {
+				m_filename = QFileInfo(file).canonicalFilePath();
+				updateSaveLocation();
+			}
 		}
 	}
 	if (m_filename.isEmpty()) {
-		static int indexes = 0;
-		m_index = ++indexes;
+		m_index = ++g_untitled_indexes;
+		unknown_rich_text = true;
 	}
 
 	// Set up scroll bar
@@ -182,6 +190,10 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	// Load settings
 	Preferences preferences;
+	if (unknown_rich_text) {
+		m_rich_text = preferences.richText();
+	}
+	m_text->setAcceptRichText(m_rich_text);
 	loadPreferences(preferences);
 	setAutoFillBackground(true);
 	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
@@ -194,7 +206,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 /*****************************************************************************/
 
 Document::~Document() {
-	m_file_save.waitForFinished();
 }
 
 /*****************************************************************************/
@@ -207,8 +218,83 @@ bool Document::save() {
 
 	// Write file to disk
 	if (!m_filename.isEmpty()) {
-		m_file_save.waitForFinished();
-		m_file_save = QtConcurrent::run(write, m_filename, m_text->toPlainText());
+		QFile file(m_filename);
+		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			if (!m_rich_text) {
+				stream << m_text->toPlainText();
+			} else {
+				stream << QLatin1String("FWR1\n"
+										"<html>\n"
+										"<head>\n"
+										"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n"
+										"<style type=\"text/css\">\n"
+										"p { margin: 0px; text-indent: 0px; white-space: pre-wrap; -qt-block-indent: 0; }\n"
+										"</style>\n"
+										"</head>\n"
+										"<body>\n");
+				for (QTextBlock block = m_text->document()->begin(); block.isValid(); block = block.next()) {
+
+					stream << QLatin1String("<p");
+					QTextBlockFormat block_format = block.blockFormat();
+					Qt::Alignment align = block_format.alignment();
+					if (align & Qt::AlignCenter) {
+						stream << QLatin1String(" align=\"center\"");
+					} else if (align & Qt::AlignRight) {
+						stream << QLatin1String(" align=\"right\"");
+					} else if (align & Qt::AlignJustify) {
+						stream << QLatin1String(" align=\"justify\"");
+					}
+					QString style;
+					if (block_format.indent() > 0) {
+						style += QString(" -qt-block-indent: %1;").arg(block_format.indent());
+					}
+					if (block.begin() == block.end()) {
+						style += QLatin1String(" -qt-paragraph-type: empty;");
+					}
+					if (!style.isEmpty()) {
+						stream << QLatin1String(" style=\"") << style.trimmed() << QLatin1Char('"');
+					}
+					stream << QLatin1Char('>');
+
+					for (QTextBlock::iterator iter = block.begin(); iter != block.end(); ++iter) {
+						QTextFragment fragment = iter.fragment();
+						QTextCharFormat char_format = fragment.charFormat();
+						QString text = fragment.text();
+						text.replace(QLatin1String("&"), QLatin1String("&amp;"));
+						text.replace(QLatin1String("<"), QLatin1String("&lt;"));
+						text.replace(QLatin1String(">"), QLatin1String("&gt;"));
+						QString style;
+						if (char_format.fontWeight() == QFont::Bold) {
+							style += QLatin1String(" font-weight: bold;");
+						}
+						if (char_format.fontItalic()) {
+							style += QLatin1String(" font-style: italic;");
+						}
+						if (char_format.fontUnderline()) {
+							style += QLatin1String(" text-decoration: underline;");
+						}
+						if (char_format.fontStrikeOut()) {
+							style += QLatin1String(" text-decoration: line-through;");
+						}
+						if (char_format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
+							style += QLatin1String(" vertical-align: super;");
+						} else if (char_format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
+							style += QLatin1String(" vertical-align: sub;");
+						}
+						if (!style.isEmpty()) {
+							stream << QLatin1String("<span style=\"") << style.trimmed() << QLatin1String("\">") << text << QLatin1String("</span>");
+						} else {
+							stream << text;
+						}
+					}
+
+					stream << QLatin1String("</p>\n");
+				}
+				stream << QLatin1String("</body>\n</html>");
+			}
+		}
 	} else {
 		if (!saveAs()) {
 			return false;
@@ -221,10 +307,11 @@ bool Document::save() {
 /*****************************************************************************/
 
 bool Document::saveAs() {
-	QString filename = QFileDialog::getSaveFileName(this, tr("Save File As"), QString(), tr("Plain Text (*.txt);;All Files (*)"));
+	QString filename = QFileDialog::getSaveFileName(this, tr("Save File As"), QString(), fileFilter());
 	if (!filename.isEmpty()) {
-		if (m_auto_append && !filename.endsWith(".txt")) {
-			filename.append(".txt");
+		QString suffix = fileSuffix();
+		if (m_auto_append && !filename.endsWith(suffix)) {
+			filename.append(suffix);
 		}
 		m_filename = filename;
 		save();
@@ -242,10 +329,11 @@ bool Document::rename() {
 		return false;
 	}
 
-	QString filename = QFileDialog::getSaveFileName(this, tr("Rename File"), m_filename, tr("Plain Text (*.txt);;All Files (*)"));
+	QString filename = QFileDialog::getSaveFileName(this, tr("Rename File"), m_filename, fileFilter());
 	if (!filename.isEmpty()) {
-		if (m_auto_append && !filename.endsWith(".txt")) {
-			filename.append(".txt");
+		QString suffix = fileSuffix();
+		if (m_auto_append && !filename.endsWith(suffix)) {
+			filename.append(suffix);
 		}
 		QFile::remove(filename);
 		QFile::rename(m_filename, filename);
@@ -366,6 +454,29 @@ void Document::setMargin(int margin) {
 	m_layout->setColumnMinimumWidth(2, m_margin);
 	m_layout->setRowMinimumHeight(0, m_margin);
 	m_layout->setRowMinimumHeight(2, m_margin);
+}
+
+/*****************************************************************************/
+
+void Document::setRichText(bool rich_text) {
+	m_rich_text = rich_text;
+	m_text->setAcceptRichText(m_rich_text);
+
+	if (!m_filename.isEmpty()) {
+		m_filename.clear();
+		m_index = ++g_untitled_indexes;
+	}
+
+	m_text->setUndoRedoEnabled(false);
+	m_text->document()->setModified(false);
+	if (!m_rich_text) {
+		QTextCursor cursor(m_text->document());
+		cursor.movePosition(QTextCursor::End, QTextCursor::KeepAnchor);
+		cursor.setBlockFormat(QTextBlockFormat());
+		cursor.setCharFormat(QTextCharFormat());
+	}
+	m_text->document()->setModified(true);
+	m_text->setUndoRedoEnabled(true);
 }
 
 /*****************************************************************************/
@@ -523,6 +634,18 @@ void Document::calculateWordCount() {
 		break;
 	}
 	m_page_count = qMax(1.0f, std::ceil(amount / m_page_amount));
+}
+
+/*****************************************************************************/
+
+QString Document::fileFilter() const {
+	return m_rich_text ? tr("FocusWriter Rich Text (*.fwr)") : tr("Plain Text (*.txt);;All Files (*)");
+}
+
+/*****************************************************************************/
+
+QString Document::fileSuffix() const {
+	return m_rich_text ? QLatin1String(".fwr") : QLatin1String(".txt");
 }
 
 /*****************************************************************************/

@@ -25,12 +25,14 @@
 #include "theme.h"
 
 #include <QGridLayout>
+#include <QMessageBox>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QPainter>
 #include <QPaintEvent>
 #include <QPlainTextEdit>
 #include <QStackedLayout>
+#include <QTextCursor>
 #include <QThread>
 #include <QTimer>
 
@@ -184,12 +186,14 @@ void Stack::addDocument(Document* document) {
 	connect(document->text(), SIGNAL(copyAvailable(bool)), this, SIGNAL(copyAvailable(bool)));
 	connect(document->text(), SIGNAL(redoAvailable(bool)), this, SIGNAL(redoAvailable(bool)));
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
+	connect(document->text(), SIGNAL(cursorPositionChanged()), this, SIGNAL(updateFormatActions()));
 
 	document->setBackground(m_background);
 	m_documents.append(document);
 	m_documents_layout->addWidget(document);
 
 	emit documentAdded(document);
+	emit updateFormatActions();
 }
 
 /*****************************************************************************/
@@ -216,6 +220,7 @@ void Stack::setCurrentDocument(int index) {
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
 	emit undoAvailable(m_current_document->text()->document()->isUndoAvailable());
+	emit updateFormatActions();
 }
 
 /*****************************************************************************/
@@ -233,6 +238,30 @@ void Stack::setMargins(int footer, int header) {
 	m_layout->setColumnMinimumWidth(3, margin);
 
 	updateMask();
+}
+
+/*****************************************************************************/
+
+void Stack::alignCenter() {
+	m_current_document->text()->setAlignment(Qt::AlignCenter);
+}
+
+/*****************************************************************************/
+
+void Stack::alignJustify() {
+	m_current_document->text()->setAlignment(Qt::AlignJustify);
+}
+
+/*****************************************************************************/
+
+void Stack::alignLeft() {
+	m_current_document->text()->setAlignment(Qt::AlignLeft);
+}
+
+/*****************************************************************************/
+
+void Stack::alignRight() {
+	m_current_document->text()->setAlignment(Qt::AlignRight);
 }
 
 /*****************************************************************************/
@@ -265,6 +294,16 @@ void Stack::copy() {
 
 /*****************************************************************************/
 
+void Stack::decreaseIndent() {
+	QTextCursor cursor = m_current_document->text()->textCursor();
+	QTextBlockFormat format = cursor.blockFormat();
+	format.setIndent(format.indent() - 1);
+	cursor.setBlockFormat(format);
+	emit updateFormatActions();
+}
+
+/*****************************************************************************/
+
 void Stack::find() {
 	m_find_dialog->showFindMode();
 }
@@ -279,6 +318,33 @@ void Stack::findNext() {
 
 void Stack::findPrevious() {
 	m_find_dialog->findPrevious();
+}
+
+/*****************************************************************************/
+
+void Stack::increaseIndent() {
+	QTextCursor cursor = m_current_document->text()->textCursor();
+	QTextBlockFormat format = cursor.blockFormat();
+	format.setIndent(format.indent() + 1);
+	cursor.setBlockFormat(format);
+	emit updateFormatActions();
+}
+
+/*****************************************************************************/
+
+void Stack::makePlainText() {
+	if (QMessageBox::warning(window(), tr("Question"), tr("Remove all formatting from the current file?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+		return;
+	}
+	m_current_document->setRichText(false);
+	emit updateFormatActions();
+}
+
+/*****************************************************************************/
+
+void Stack::makeRichText() {
+	m_current_document->setRichText(true);
+	emit updateFormatActions();
 }
 
 /*****************************************************************************/
@@ -321,6 +387,48 @@ void Stack::saveAs() {
 
 void Stack::selectAll() {
 	m_current_document->text()->selectAll();
+}
+
+/*****************************************************************************/
+
+void Stack::setFontBold(bool bold) {
+	m_current_document->text()->setFontWeight(bold ? QFont::Bold : QFont::Normal);
+}
+
+/*****************************************************************************/
+
+void Stack::setFontItalic(bool italic) {
+	m_current_document->text()->setFontItalic(italic);
+}
+
+/*****************************************************************************/
+
+void Stack::setFontStrikeOut(bool strikeout) {
+	QTextCharFormat format;
+	format.setFontStrikeOut(strikeout);
+	m_current_document->text()->mergeCurrentCharFormat(format);
+}
+
+/*****************************************************************************/
+
+void Stack::setFontUnderline(bool underline) {
+	m_current_document->text()->setFontUnderline(underline);
+}
+
+/*****************************************************************************/
+
+void Stack::setFontSuperScript(bool super) {
+	QTextCharFormat format;
+	format.setVerticalAlignment(super ? QTextCharFormat::AlignSuperScript : QTextCharFormat::AlignNormal);
+	m_current_document->text()->mergeCurrentCharFormat(format);
+}
+
+/*****************************************************************************/
+
+void Stack::setFontSubScript(bool sub) {
+	QTextCharFormat format;
+	format.setVerticalAlignment(sub ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal);
+	m_current_document->text()->mergeCurrentCharFormat(format);
 }
 
 /*****************************************************************************/

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +59,7 @@ private slots:
 	void tabClosed(int index);
 	void updateClock();
 	void updateDetails();
+	void updateFormatActions();
 	void updateProgress();
 	void updateSave();
 
@@ -75,6 +76,10 @@ private:
 private:
 	QToolBar* m_toolbar;
 	QHash<QString, QAction*> m_actions;
+	QList<QAction*> m_format_actions;
+	QAction* m_plaintext_action;
+	QAction* m_richtext_action;
+	QString m_open_filter;
 
 	Stack* m_documents;
 	QTabBar* m_tabs;

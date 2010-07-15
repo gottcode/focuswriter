@@ -120,6 +120,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 
 	m_always_center->setChecked(m_preferences.alwaysCenter());
 	m_block_cursor->setChecked(m_preferences.blockCursor());
+	m_rich_text->setChecked(m_preferences.richText());
 	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
 
 	m_auto_save->setChecked(m_preferences.autoSave());
@@ -204,6 +205,7 @@ void PreferencesDialog::accept() {
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
+	m_preferences.setRichText(m_rich_text->isChecked());
 	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
@@ -555,11 +557,13 @@ QWidget* PreferencesDialog::initGeneralTab() {
 
 	m_always_center = new QCheckBox(tr("Always vertically center"), edit_group);
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
+	m_rich_text = new QCheckBox(tr("Default to rich text"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
 
 	QVBoxLayout* edit_layout = new QVBoxLayout(edit_group);
 	edit_layout->addWidget(m_always_center);
 	edit_layout->addWidget(m_block_cursor);
+	edit_layout->addWidget(m_rich_text);
 	edit_layout->addWidget(m_smooth_fonts);
 
 	// Create save options

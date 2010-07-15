@@ -71,15 +71,24 @@ signals:
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
 	void findNextAvailable(bool available);
+	void updateFormatActions();
 
 public slots:
+	void alignCenter();
+	void alignJustify();
+	void alignLeft();
+	void alignRight();
 	void autoSave();
 	void checkSpelling();
 	void cut();
 	void copy();
+	void decreaseIndent();
 	void find();
 	void findNext();
 	void findPrevious();
+	void increaseIndent();
+	void makePlainText();
+	void makeRichText();
 	void paste();
 	void print();
 	void redo();
@@ -87,6 +96,12 @@ public slots:
 	void save();
 	void saveAs();
 	void selectAll();
+	void setFontBold(bool bold);
+	void setFontItalic(bool italic);
+	void setFontStrikeOut(bool strikeout);
+	void setFontUnderline(bool underline);
+	void setFontSuperScript(bool super);
+	void setFontSubScript(bool sub);
 	void themeSelected(const Theme& theme);
 	void undo();
 	void setFooterVisible(bool visible);
