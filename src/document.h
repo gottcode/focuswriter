@@ -20,6 +20,7 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
+#include <QHash>
 #include <QTime>
 #include <QWidget>
 class QGridLayout;
@@ -91,6 +92,7 @@ public slots:
 
 signals:
 	void changed();
+	void changedName();
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
 
@@ -103,6 +105,7 @@ private slots:
 	void hideMouse();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);
+	void undoCommandAdded();
 	void updateWordCount(int position, int removed, int added);
 
 private:
@@ -115,6 +118,7 @@ private:
 
 private:
 	QString m_filename;
+	QHash<int, QString> m_old_filenames;
 	int m_index;
 	bool m_always_center;
 	bool m_block_cursor;

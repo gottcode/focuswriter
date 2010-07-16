@@ -49,6 +49,10 @@
 namespace {
 	QList<int> g_untitled_indexes = QList<int>() << 0;
 
+	bool isRichTextFile(const QString& filename) {
+		return filename.endsWith(QLatin1String(".fwr"));
+	}
+
 	// Text block statistics
 	class BlockStats : public QTextBlockUserData {
 	public:
@@ -141,7 +145,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
 		QFile file(filename);
-		m_rich_text = (QFileInfo(file).suffix().toLower() == QLatin1String("fwr"));
+		m_rich_text = isRichTextFile(filename.toLower());
 		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&file);
 			stream.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -199,6 +203,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
 
 	calculateWordCount();
+	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text, SIGNAL(textChanged()), this, SLOT(centerCursor()));
 }
@@ -458,21 +463,23 @@ void Document::setRichText(bool rich_text) {
 	m_rich_text = rich_text;
 	m_text->setAcceptRichText(m_rich_text);
 
+	m_old_filenames[m_text->document()->availableUndoSteps()] = m_filename;
 	if (!m_filename.isEmpty()) {
 		m_filename.clear();
 		findIndex();
 	}
 
-	m_text->setUndoRedoEnabled(false);
-	m_text->document()->setModified(false);
 	if (!m_rich_text) {
 		QTextCursor cursor(m_text->document());
+		cursor.beginEditBlock();
 		cursor.movePosition(QTextCursor::End, QTextCursor::KeepAnchor);
 		cursor.setBlockFormat(QTextBlockFormat());
 		cursor.setCharFormat(QTextCharFormat());
+		cursor.endEditBlock();
 	}
-	m_text->document()->setModified(true);
-	m_text->setUndoRedoEnabled(true);
+	m_old_filenames[m_text->document()->availableUndoSteps()] = QString();
+
+	emit changedName();
 }
 
 /*****************************************************************************/
@@ -575,7 +582,38 @@ void Document::scrollBarRangeChanged(int, int max) {
 
 /*****************************************************************************/
 
+void Document::undoCommandAdded() {
+	if (!m_old_filenames.isEmpty()) {
+		int steps = m_text->document()->availableUndoSteps();
+		QMutableHashIterator<int, QString> i(m_old_filenames);
+		while (i.hasNext()) {
+			i.next();
+			if (i.key() >= steps) {
+				i.remove();
+			}
+		}
+	}
+}
+
+/*****************************************************************************/
+
 void Document::updateWordCount(int position, int removed, int added) {
+	int steps = m_text->document()->availableUndoSteps();
+	if (m_old_filenames.contains(steps)) {
+		QString filename = m_old_filenames[steps];
+		if (m_filename != filename) {
+			m_filename = filename;
+			if (m_filename.isEmpty()) {
+				findIndex();
+			} else {
+				clearIndex();
+			}
+			m_rich_text = isRichTextFile(m_filename);
+			m_text->setAcceptRichText(m_rich_text);
+			emit changedName();
+		}
+	}
+
 	QTextBlock begin = m_text->document()->findBlock(position - removed);
 	if (!begin.isValid()) {
 		begin = m_text->document()->begin();
@@ -655,7 +693,7 @@ QString Document::fileFilter() const {
 	QString richtext = tr("FocusWriter Rich Text (*.fwr)");
 	QString all = tr("All Files (*)");
 	if (!m_filename.isEmpty()) {
-		if (m_filename.endsWith(".fwr")) {
+		if (isRichTextFile(m_filename)) {
 			return richtext;
 		} else if (m_filename.endsWith(".txt")) {
 			return plaintext;
@@ -690,6 +728,40 @@ void Document::updateSaveLocation() {
 	QString path = QFileInfo(m_filename).canonicalPath();
 	QSettings().setValue("Save/Location", path);
 	QDir::setCurrent(path);
+
+	if (!m_old_filenames.isEmpty()) {
+		QList<int> keys = m_old_filenames.keys();
+		qSort(keys);
+		int count = keys.count();
+
+		int steps = m_text->document()->availableUndoSteps();
+		int nearest_smaller = 0;
+		int nearest_larger = count - 1;
+		for (int i = 0; i < count; ++i) {
+			if (keys[i] <= steps) {
+				nearest_smaller = i;
+			}
+			if (keys[i] >= steps) {
+				nearest_larger = i;
+				break;
+			}
+		}
+
+		for (int i = nearest_smaller; i > -1; --i) {
+			if (isRichTextFile(m_old_filenames[i]) == m_rich_text) {
+				m_old_filenames[i] = m_filename;
+			} else {
+				break;
+			}
+		}
+		for (int i = nearest_larger; i < count; ++i) {
+			if (isRichTextFile(m_old_filenames[i]) == m_rich_text) {
+				m_old_filenames[i] = m_filename;
+			} else {
+				break;
+			}
+		}
+	}
 }
 
 /*****************************************************************************/

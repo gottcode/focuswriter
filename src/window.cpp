@@ -513,6 +513,8 @@ void Window::addDocument(const QString& filename) {
 	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
+	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
+	connect(document, SIGNAL(changedName()), this, SLOT(updateFormatActions()));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 	connect(document, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
 
