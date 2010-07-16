@@ -52,7 +52,6 @@ Preferences::Preferences()
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 
 	m_auto_save = settings.value("Save/Auto", true).toBool();
-	m_auto_append = settings.value("Save/Append", true).toBool();
 
 	m_toolbar_style = settings.value("Toolbar/Style", Qt::ToolButtonTextUnderIcon).toInt();
 	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace";
@@ -101,7 +100,6 @@ Preferences::~Preferences() {
 	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
 
 	settings.setValue("Save/Auto", m_auto_save);
-	settings.setValue("Save/Append", m_auto_append);
 
 	settings.setValue("Toolbar/Style", m_toolbar_style);
 	settings.setValue("Toolbar/Actions", m_toolbar_actions);
@@ -328,21 +326,8 @@ bool Preferences::autoSave() const {
 
 /*****************************************************************************/
 
-bool Preferences::autoAppend() const {
-	return m_auto_append;
-}
-
-/*****************************************************************************/
-
 void Preferences::setAutoSave(bool save) {
 	m_auto_save = save;
-	m_changed = true;
-}
-
-/*****************************************************************************/
-
-void Preferences::setAutoAppend(bool append) {
-	m_auto_append = append;
 	m_changed = true;
 }
 

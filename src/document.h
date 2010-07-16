@@ -110,14 +110,13 @@ private:
 	void clearIndex();
 	void findIndex();
 	QString fileFilter() const;
-	QString fileSuffix() const;
+	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
 
 private:
 	QString m_filename;
 	int m_index;
 	bool m_always_center;
-	bool m_auto_append;
 	bool m_block_cursor;
 	bool m_rich_text;
 

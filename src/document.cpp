@@ -106,7 +106,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 : QWidget(parent),
   m_index(0),
   m_always_center(false),
-  m_auto_append(true),
   m_rich_text(false),
   m_margin(50),
   m_character_count(0),
@@ -309,13 +308,10 @@ bool Document::save() {
 /*****************************************************************************/
 
 bool Document::saveAs() {
-	QString filename = QFileDialog::getSaveFileName(this, tr("Save File As"), QString(), fileFilter());
+	QString selected;
+	QString filename = QFileDialog::getSaveFileName(this, tr("Save File As"), m_filename, fileFilter(), &selected);
 	if (!filename.isEmpty()) {
-		QString suffix = fileSuffix();
-		if (m_auto_append && !filename.endsWith(suffix)) {
-			filename.append(suffix);
-		}
-		m_filename = filename;
+		m_filename = fileNameWithExtension(filename, selected);
 		clearIndex();
 		save();
 		updateSaveLocation();
@@ -332,12 +328,10 @@ bool Document::rename() {
 		return false;
 	}
 
-	QString filename = QFileDialog::getSaveFileName(this, tr("Rename File"), m_filename, fileFilter());
+	QString selected;
+	QString filename = QFileDialog::getSaveFileName(this, tr("Rename File"), m_filename, fileFilter(), &selected);
 	if (!filename.isEmpty()) {
-		QString suffix = fileSuffix();
-		if (m_auto_append && !filename.endsWith(suffix)) {
-			filename.append(suffix);
-		}
+		filename = fileNameWithExtension(filename, selected);
 		QFile::remove(filename);
 		QFile::rename(m_filename, filename);
 		m_filename = filename;
@@ -432,7 +426,6 @@ void Document::loadPreferences(const Preferences& preferences) {
 	m_accurate_wordcount = preferences.accurateWordcount();
 	calculateWordCount();
 
-	m_auto_append = preferences.autoAppend();
 	m_block_cursor = preferences.blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 	QFont font = m_text->font();
@@ -658,13 +651,37 @@ void Document::findIndex() {
 /*****************************************************************************/
 
 QString Document::fileFilter() const {
-	return m_rich_text ? tr("FocusWriter Rich Text (*.fwr)") : tr("Plain Text (*.txt);;All Files (*)");
+	QString plaintext = tr("Plain Text (*.txt);;All Files (*)");
+	QString richtext = tr("FocusWriter Rich Text (*.fwr)");
+	QString all = tr("All Files (*)");
+	if (!m_filename.isEmpty()) {
+		if (m_filename.endsWith(".fwr")) {
+			return richtext;
+		} else if (m_filename.endsWith(".txt")) {
+			return plaintext;
+		} else {
+			return all;
+		}
+	} else {
+		return m_rich_text ? richtext : plaintext;
+	}
 }
 
 /*****************************************************************************/
 
-QString Document::fileSuffix() const {
-	return m_rich_text ? QLatin1String(".fwr") : QLatin1String(".txt");
+QString Document::fileNameWithExtension(const QString& filename, const QString& filter) const {
+	QString suffix;
+	QRegExp exp("\\*(\\.\\w+)");
+	int index = exp.indexIn(filter);
+	if (index != -1) {
+		suffix = exp.cap(1);
+	}
+
+	QString result = filename;
+	if (!result.endsWith(suffix)) {
+		result.append(suffix);
+	}
+	return result;
 }
 
 /*****************************************************************************/
