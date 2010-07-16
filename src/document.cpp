@@ -47,7 +47,7 @@
 /*****************************************************************************/
 
 namespace {
-	static int g_untitled_indexes = 0;
+	QList<int> g_untitled_indexes = QList<int>() << 0;
 
 	// Text block statistics
 	class BlockStats : public QTextBlockUserData {
@@ -104,6 +104,7 @@ namespace {
 
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, QWidget* parent)
 : QWidget(parent),
+  m_index(0),
   m_always_center(false),
   m_auto_append(true),
   m_rich_text(false),
@@ -167,7 +168,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 		}
 	}
 	if (m_filename.isEmpty()) {
-		m_index = ++g_untitled_indexes;
+		findIndex();
 		unknown_rich_text = true;
 	}
 
@@ -206,6 +207,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 /*****************************************************************************/
 
 Document::~Document() {
+	clearIndex();
 }
 
 /*****************************************************************************/
@@ -314,6 +316,7 @@ bool Document::saveAs() {
 			filename.append(suffix);
 		}
 		m_filename = filename;
+		clearIndex();
 		save();
 		updateSaveLocation();
 		return true;
@@ -464,7 +467,7 @@ void Document::setRichText(bool rich_text) {
 
 	if (!m_filename.isEmpty()) {
 		m_filename.clear();
-		m_index = ++g_untitled_indexes;
+		findIndex();
 	}
 
 	m_text->setUndoRedoEnabled(false);
@@ -634,6 +637,22 @@ void Document::calculateWordCount() {
 		break;
 	}
 	m_page_count = qMax(1.0f, std::ceil(amount / m_page_amount));
+}
+
+/*****************************************************************************/
+
+void Document::clearIndex() {
+	if (m_index) {
+		g_untitled_indexes.removeAll(m_index);
+		m_index = 0;
+	}
+}
+
+/*****************************************************************************/
+
+void Document::findIndex() {
+	m_index = g_untitled_indexes.last() + 1;
+	g_untitled_indexes.append(m_index);
 }
 
 /*****************************************************************************/

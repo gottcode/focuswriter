@@ -277,7 +277,13 @@ void Window::openDocument() {
 	QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), QString(), m_open_filter);
 	if (!filename.isEmpty()) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
+		Document* document = m_documents->currentDocument();
+		int index = (document->index() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
 		addDocument(filename);
+		if (index != -1) {
+			m_tabs->setCurrentIndex(index);
+			closeDocument();
+		}
 		QApplication::restoreOverrideCursor();
 	}
 }

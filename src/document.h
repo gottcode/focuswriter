@@ -107,6 +107,8 @@ private slots:
 
 private:
 	void calculateWordCount();
+	void clearIndex();
+	void findIndex();
 	QString fileFilter() const;
 	QString fileSuffix() const;
 	void updateSaveLocation();
