@@ -95,6 +95,7 @@ signals:
 	void changedName();
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
+	void indentChanged(bool indented);
 
 protected:
 	virtual void mouseMoveEvent(QMouseEvent* event);
@@ -102,6 +103,7 @@ protected:
 	virtual void wheelEvent(QWheelEvent* event);
 
 private slots:
+	void cursorPositionChanged();
 	void hideMouse();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);

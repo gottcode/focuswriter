@@ -206,6 +206,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text, SIGNAL(textChanged()), this, SLOT(centerCursor()));
+	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 }
 
 /*****************************************************************************/
@@ -550,6 +551,12 @@ void Document::wheelEvent(QWheelEvent* event) {
 		QApplication::sendEvent(m_scrollbar, event);
 	}
 	return QWidget::wheelEvent(event);
+}
+
+/*****************************************************************************/
+
+void Document::cursorPositionChanged() {
+	emit indentChanged(m_text->textCursor().blockFormat().indent());
 }
 
 /*****************************************************************************/

@@ -181,12 +181,13 @@ Stack::~Stack() {
 /*****************************************************************************/
 
 void Stack::addDocument(Document* document) {
+	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
 	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
 	connect(document->text(), SIGNAL(copyAvailable(bool)), this, SIGNAL(copyAvailable(bool)));
 	connect(document->text(), SIGNAL(redoAvailable(bool)), this, SIGNAL(redoAvailable(bool)));
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
-	connect(document->text(), SIGNAL(cursorPositionChanged()), this, SIGNAL(updateFormatActions()));
+	connect(document->text(), SIGNAL(currentCharFormatChanged(const QTextCharFormat&)), this, SIGNAL(updateFormatActions()));
 
 	document->setBackground(m_background);
 	m_documents.append(document);
@@ -337,14 +338,12 @@ void Stack::makePlainText() {
 		return;
 	}
 	m_current_document->setRichText(false);
-	emit updateFormatActions();
 }
 
 /*****************************************************************************/
 
 void Stack::makeRichText() {
 	m_current_document->setRichText(true);
-	emit updateFormatActions();
 }
 
 /*****************************************************************************/

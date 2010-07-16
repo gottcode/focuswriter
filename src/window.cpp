@@ -514,9 +514,9 @@ void Window::addDocument(const QString& filename) {
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
-	connect(document, SIGNAL(changedName()), this, SLOT(updateFormatActions()));
-	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 	connect(document, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
+	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
+	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	m_documents->addDocument(document);
 
