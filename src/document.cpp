@@ -315,7 +315,7 @@ bool Document::save() {
 
 bool Document::saveAs() {
 	QString selected;
-	QString filename = QFileDialog::getSaveFileName(this, tr("Save File As"), m_filename, fileFilter(), &selected);
+	QString filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), m_filename, fileFilter(), &selected);
 	if (!filename.isEmpty()) {
 		m_filename = fileNameWithExtension(filename, selected);
 		clearIndex();
@@ -335,7 +335,7 @@ bool Document::rename() {
 	}
 
 	QString selected;
-	QString filename = QFileDialog::getSaveFileName(this, tr("Rename File"), m_filename, fileFilter(), &selected);
+	QString filename = QFileDialog::getSaveFileName(window(), tr("Rename File"), m_filename, fileFilter(), &selected);
 	if (!filename.isEmpty()) {
 		filename = fileNameWithExtension(filename, selected);
 		QFile::remove(filename);

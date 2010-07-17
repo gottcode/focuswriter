@@ -274,7 +274,7 @@ void Window::newDocument() {
 /*****************************************************************************/
 
 void Window::openDocument() {
-	QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), QString(), m_open_filter);
+	QString filename = QFileDialog::getOpenFileName(window(), tr("Open File"), QString(), m_open_filter);
 	if (!filename.isEmpty()) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
 		Document* document = m_documents->currentDocument();
