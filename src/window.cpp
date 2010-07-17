@@ -510,6 +510,13 @@ void Window::updateSave() {
 /*****************************************************************************/
 
 void Window::addDocument(const QString& filename) {
+	for (int i = 0; i < m_documents->count(); ++i) {
+		if (m_documents->document(i)->filename() == filename) {
+			m_tabs->setCurrentIndex(i);
+			return;
+		}
+	}
+
 	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));

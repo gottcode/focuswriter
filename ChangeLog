@@ -1,4 +1,5 @@
 2010-07-17 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Allowed opening the same document twice.
 	* FIXED: Save dialog was permanently stealing mouse focus.
 
 2010-07-16 Graeme Gott <graeme@gottcode.org>
