@@ -223,90 +223,89 @@ bool Document::save() {
 	settings.setValue("Progress/Words", m_current_wordcount);
 	settings.setValue("Progress/Time", m_current_time);
 
-	// Write file to disk
-	if (!m_filename.isEmpty()) {
-		QFile file(m_filename);
-		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			if (!m_rich_text) {
-				stream << m_text->toPlainText();
-			} else {
-				stream << QLatin1String("FWR1\n"
-										"<html>\n"
-										"<head>\n"
-										"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n"
-										"<style type=\"text/css\">\n"
-										"p { margin: 0px; text-indent: 0px; white-space: pre-wrap; -qt-block-indent: 0; }\n"
-										"</style>\n"
-										"</head>\n"
-										"<body>\n");
-				for (QTextBlock block = m_text->document()->begin(); block.isValid(); block = block.next()) {
+	if (m_filename.isEmpty()) {
+		return saveAs();
+	}
 
-					stream << QLatin1String("<p");
-					QTextBlockFormat block_format = block.blockFormat();
-					Qt::Alignment align = block_format.alignment();
-					if (align & Qt::AlignCenter) {
-						stream << QLatin1String(" align=\"center\"");
-					} else if (align & Qt::AlignRight) {
-						stream << QLatin1String(" align=\"right\"");
-					} else if (align & Qt::AlignJustify) {
-						stream << QLatin1String(" align=\"justify\"");
-					}
+	// Write file to disk
+	QFile file(m_filename);
+	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec(QTextCodec::codecForName("UTF-8"));
+		if (!m_rich_text) {
+			stream << m_text->toPlainText();
+		} else {
+			stream << QLatin1String("FWR1\n"
+									"<html>\n"
+									"<head>\n"
+									"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n"
+									"<style type=\"text/css\">\n"
+									"p { margin: 0px; text-indent: 0px; white-space: pre-wrap; -qt-block-indent: 0; }\n"
+									"</style>\n"
+									"</head>\n"
+									"<body>\n");
+			for (QTextBlock block = m_text->document()->begin(); block.isValid(); block = block.next()) {
+
+				stream << QLatin1String("<p");
+				QTextBlockFormat block_format = block.blockFormat();
+				Qt::Alignment align = block_format.alignment();
+				if (align & Qt::AlignCenter) {
+					stream << QLatin1String(" align=\"center\"");
+				} else if (align & Qt::AlignRight) {
+					stream << QLatin1String(" align=\"right\"");
+				} else if (align & Qt::AlignJustify) {
+					stream << QLatin1String(" align=\"justify\"");
+				}
+				QString style;
+				if (block_format.indent() > 0) {
+					style += QString(" -qt-block-indent: %1;").arg(block_format.indent());
+				}
+				if (block.begin() == block.end()) {
+					style += QLatin1String(" -qt-paragraph-type: empty;");
+				}
+				if (!style.isEmpty()) {
+					stream << QLatin1String(" style=\"") << style.trimmed() << QLatin1Char('"');
+				}
+				stream << QLatin1Char('>');
+
+				for (QTextBlock::iterator iter = block.begin(); iter != block.end(); ++iter) {
+					QTextFragment fragment = iter.fragment();
+					QTextCharFormat char_format = fragment.charFormat();
+					QString text = fragment.text();
+					text.replace(QLatin1String("&"), QLatin1String("&amp;"));
+					text.replace(QLatin1String("<"), QLatin1String("&lt;"));
+					text.replace(QLatin1String(">"), QLatin1String("&gt;"));
 					QString style;
-					if (block_format.indent() > 0) {
-						style += QString(" -qt-block-indent: %1;").arg(block_format.indent());
+					if (char_format.fontWeight() == QFont::Bold) {
+						style += QLatin1String(" font-weight: bold;");
 					}
-					if (block.begin() == block.end()) {
-						style += QLatin1String(" -qt-paragraph-type: empty;");
+					if (char_format.fontItalic()) {
+						style += QLatin1String(" font-style: italic;");
+					}
+					if (char_format.fontUnderline()) {
+						style += QLatin1String(" text-decoration: underline;");
+					}
+					if (char_format.fontStrikeOut()) {
+						style += QLatin1String(" text-decoration: line-through;");
+					}
+					if (char_format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
+						style += QLatin1String(" vertical-align: super;");
+					} else if (char_format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
+						style += QLatin1String(" vertical-align: sub;");
 					}
 					if (!style.isEmpty()) {
-						stream << QLatin1String(" style=\"") << style.trimmed() << QLatin1Char('"');
+						stream << QLatin1String("<span style=\"") << style.trimmed() << QLatin1String("\">") << text << QLatin1String("</span>");
+					} else {
+						stream << text;
 					}
-					stream << QLatin1Char('>');
-
-					for (QTextBlock::iterator iter = block.begin(); iter != block.end(); ++iter) {
-						QTextFragment fragment = iter.fragment();
-						QTextCharFormat char_format = fragment.charFormat();
-						QString text = fragment.text();
-						text.replace(QLatin1String("&"), QLatin1String("&amp;"));
-						text.replace(QLatin1String("<"), QLatin1String("&lt;"));
-						text.replace(QLatin1String(">"), QLatin1String("&gt;"));
-						QString style;
-						if (char_format.fontWeight() == QFont::Bold) {
-							style += QLatin1String(" font-weight: bold;");
-						}
-						if (char_format.fontItalic()) {
-							style += QLatin1String(" font-style: italic;");
-						}
-						if (char_format.fontUnderline()) {
-							style += QLatin1String(" text-decoration: underline;");
-						}
-						if (char_format.fontStrikeOut()) {
-							style += QLatin1String(" text-decoration: line-through;");
-						}
-						if (char_format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
-							style += QLatin1String(" vertical-align: super;");
-						} else if (char_format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
-							style += QLatin1String(" vertical-align: sub;");
-						}
-						if (!style.isEmpty()) {
-							stream << QLatin1String("<span style=\"") << style.trimmed() << QLatin1String("\">") << text << QLatin1String("</span>");
-						} else {
-							stream << text;
-						}
-					}
-
-					stream << QLatin1String("</p>\n");
 				}
-				stream << QLatin1String("</body>\n</html>");
+
+				stream << QLatin1String("</p>\n");
 			}
-		}
-	} else {
-		if (!saveAs()) {
-			return false;
+			stream << QLatin1String("</body>\n</html>");
 		}
 	}
+
 	m_text->document()->setModified(false);
 	return true;
 }
@@ -321,6 +320,8 @@ bool Document::saveAs() {
 		clearIndex();
 		save();
 		updateSaveLocation();
+		m_text->document()->setModified(false);
+		emit changedName();
 		return true;
 	} else {
 		return false;
@@ -342,6 +343,8 @@ bool Document::rename() {
 		QFile::rename(m_filename, filename);
 		m_filename = filename;
 		updateSaveLocation();
+		m_text->document()->setModified(false);
+		emit changedName();
 		return true;
 	} else {
 		return false;

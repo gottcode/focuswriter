@@ -1,3 +1,6 @@
+2010-07-18 Graeme Gott <graeme@gottcode.org>
+	* FIXED: File name was not updated in interface when changed.
+
 2010-07-17 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Allowed opening the same document twice.
 	* FIXED: Save dialog was permanently stealing mouse focus.
