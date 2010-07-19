@@ -64,7 +64,7 @@ private slots:
 	void updateSave();
 
 private:
-	void addDocument(const QString& filename = QString());
+	void addDocument(const QString& filename = QString(), int position = -1);
 	bool saveDocument(int index);
 	void loadPreferences(const Preferences& preferences);
 	void hideInterface();
@@ -97,6 +97,7 @@ private:
 
 	bool m_fullscreen;
 	bool m_auto_save;
+	bool m_save_positions;
 	int m_goal_type;
 	int m_time_goal;
 	int m_wordcount_goal;

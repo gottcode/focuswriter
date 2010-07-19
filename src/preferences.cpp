@@ -52,6 +52,7 @@ Preferences::Preferences()
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 
 	m_auto_save = settings.value("Save/Auto", true).toBool();
+	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
 
 	m_toolbar_style = settings.value("Toolbar/Style", Qt::ToolButtonTextUnderIcon).toInt();
 	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace";
@@ -100,6 +101,7 @@ Preferences::~Preferences() {
 	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
 
 	settings.setValue("Save/Auto", m_auto_save);
+	settings.setValue("Save/RememberPositions", m_save_positions);
 
 	settings.setValue("Toolbar/Style", m_toolbar_style);
 	settings.setValue("Toolbar/Actions", m_toolbar_actions);
@@ -326,8 +328,21 @@ bool Preferences::autoSave() const {
 
 /*****************************************************************************/
 
+bool Preferences::savePositions() const {
+	return m_save_positions;
+}
+
+/*****************************************************************************/
+
 void Preferences::setAutoSave(bool save) {
 	m_auto_save = save;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setSavePositions(bool save) {
+	m_save_positions = save;
 	m_changed = true;
 }
 

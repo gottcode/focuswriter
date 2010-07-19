@@ -72,6 +72,7 @@ private:
 	QCheckBox* m_rich_text;
 	QCheckBox* m_smooth_fonts;
 	QCheckBox* m_auto_save;
+	QCheckBox* m_save_positions;
 
 	QCheckBox* m_show_characters;
 	QCheckBox* m_show_pages;

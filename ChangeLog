@@ -1,3 +1,6 @@
+2010-07-19 Graeme Gott <graeme@gottcode.org>
+	* Remember cursor position for open files.
+
 2010-07-18 Graeme Gott <graeme@gottcode.org>
 	* FIXED: File name was not updated in interface when changed.
 

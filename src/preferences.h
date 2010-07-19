@@ -66,7 +66,9 @@ public:
 	void setSmoothFonts(bool smooth);
 
 	bool autoSave() const;
+	bool savePositions() const;
 	void setAutoSave(bool save);
+	void setSavePositions(bool save);
 
 	int toolbarStyle() const;
 	QStringList toolbarActions() const;
@@ -105,6 +107,7 @@ private:
 	bool m_smooth_fonts;
 
 	bool m_auto_save;
+	bool m_save_positions;
 
 	int m_toolbar_style;
 	QStringList m_toolbar_actions;

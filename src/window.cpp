@@ -54,6 +54,7 @@ Window::Window()
   m_margin(0),
   m_fullscreen(true),
   m_auto_save(true),
+  m_save_positions(true),
   m_goal_type(0),
   m_time_goal(0),
   m_wordcount_goal(0),
@@ -188,15 +189,17 @@ Window::Window()
 
 	// Open previous documents
 	QStringList files = QApplication::arguments();
+	QStringList positions;
 	files.removeFirst();
 	if (files.isEmpty()) {
 		files = settings.value("Save/Current").toStringList();
+		positions = settings.value("Save/Positions").toStringList();
 		if (files.isEmpty()) {
 			files.append(QString());
 		}
 	}
-	foreach (const QString& file, files) {
-		addDocument(file);
+	for (int i = 0; i < files.count(); ++i) {
+		addDocument(files.at(i), positions.value(i, "-1").toInt());
 	}
 	m_tabs->setCurrentIndex(settings.value("Save/Active", 0).toInt());
 	QApplication::restoreOverrideCursor();
@@ -220,12 +223,14 @@ void Window::closeEvent(QCloseEvent* event) {
 	}
 
 	QStringList files;
+	QStringList positions;
 	int index = m_tabs->currentIndex();
 	for (int i = 0; i < m_documents->count(); ++i) {
 		Document* document = m_documents->document(i);
 		QString filename = document->filename();
 		if (!filename.isEmpty()) {
 			files.append(filename);
+			positions.append(QString::number(document->text()->textCursor().position()));
 		}
 
 		m_tabs->setCurrentIndex(i);
@@ -239,6 +244,7 @@ void Window::closeEvent(QCloseEvent* event) {
 
 	QSettings settings;
 	settings.setValue("Save/Current", files);
+	settings.setValue("Save/Positions", positions);
 	settings.setValue("Save/Active", m_tabs->currentIndex());
 
 	event->accept();
@@ -509,7 +515,7 @@ void Window::updateSave() {
 
 /*****************************************************************************/
 
-void Window::addDocument(const QString& filename) {
+void Window::addDocument(const QString& filename, int position) {
 	for (int i = 0; i < m_documents->count(); ++i) {
 		if (m_documents->document(i)->filename() == filename) {
 			m_tabs->setCurrentIndex(i);
@@ -531,7 +537,14 @@ void Window::addDocument(const QString& filename) {
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
-	document->text()->verticalScrollBar()->triggerAction(QAbstractSlider::SliderToMaximum);
+	// Restore cursor position
+	if (m_save_positions && position != -1) {
+		QTextCursor cursor = document->text()->textCursor();
+		cursor.setPosition(position);
+		document->text()->setTextCursor(cursor);
+	} else {
+		document->text()->verticalScrollBar()->triggerAction(QAbstractSlider::SliderToMaximum);
+	}
 	document->centerCursor();
 }
 
@@ -571,6 +584,7 @@ void Window::loadPreferences(const Preferences& preferences) {
 	} else {
 		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 	}
+	m_save_positions = preferences.savePositions();
 
 	QString plaintext = tr("Plain Text (*.txt)");
 	QString richtext = tr("FocusWriter Rich Text (*.fwr)");

@@ -124,6 +124,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
 
 	m_auto_save->setChecked(m_preferences.autoSave());
+	m_save_positions->setChecked(m_preferences.savePositions());
 
 	int style = m_toolbar_style->findData(m_preferences.toolbarStyle());
 	if (style == -1) {
@@ -208,6 +209,7 @@ void PreferencesDialog::accept() {
 	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
+	m_preferences.setSavePositions(m_save_positions->isChecked());
 
 	m_preferences.setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
@@ -568,9 +570,11 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);
 
 	m_auto_save = new QCheckBox(tr("Automatically save changes"), save_group);
+	m_save_positions = new QCheckBox(tr("Remember cursor position"), save_group);
 
 	QVBoxLayout* save_layout = new QVBoxLayout(save_group);
 	save_layout->addWidget(m_auto_save);
+	save_layout->addWidget(m_save_positions);
 
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
