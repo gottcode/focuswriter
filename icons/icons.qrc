@@ -7,6 +7,8 @@
 
 	<file alias="icons/hicolor/16x16/actions/arrow-right.png">oxygen/16x16/arrow-right.png</file>
 	<file alias="icons/hicolor/16x16/actions/arrow-up.png">oxygen/16x16/arrow-up.png</file>
+	<file alias="icons/hicolor/16x16/actions/folder.png">oxygen/16x16/folder.png</file>
+	<file alias="icons/hicolor/16x16/actions/folder-open.png">oxygen/16x16/folder-open.png</file>
 	<file alias="icons/hicolor/16x16/actions/window-close.png">oxygen/16x16/window-close.png</file>
 
 	<file alias="icons/hicolor/22x22/actions/application-exit.png">oxygen/22x22/application-exit.png</file>
@@ -44,6 +46,7 @@
 	<file alias="icons/hicolor/22x22/actions/go-up.png">oxygen/22x22/go-up.png</file>
 	<file alias="icons/hicolor/22x22/actions/help-about.png">oxygen/22x22/help-about.png</file>
 	<file alias="icons/hicolor/22x22/actions/tools-check-spelling.png">oxygen/22x22/tools-check-spelling.png</file>
+	<file alias="icons/hicolor/22x22/actions/view-choose.png">oxygen/22x22/view-choose.png</file>
 	<file alias="icons/hicolor/22x22/actions/view-fullscreen.png">oxygen/22x22/view-fullscreen.png</file>
 	<file alias="icons/hicolor/22x22/actions/window-close.png">oxygen/22x22/window-close.png</file>
 </qresource>

@@ -1,3 +1,6 @@
+2010-07-31 Graeme Gott <graeme@gottcode.org>
+	* Add session management.
+
 2010-07-19 Graeme Gott <graeme@gottcode.org>
 	* Remember cursor position for open files.
 

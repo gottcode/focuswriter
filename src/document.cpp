@@ -106,7 +106,7 @@ namespace {
 
 /*****************************************************************************/
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, QWidget* parent)
+Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, const QString& theme, QWidget* parent)
 : QWidget(parent),
   m_index(0),
   m_always_center(false),
@@ -200,7 +200,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setAcceptRichText(m_rich_text);
 	loadPreferences(preferences);
 	setAutoFillBackground(true);
-	loadTheme(Theme(QSettings().value("ThemeManager/Theme").toString()));
+	loadTheme(theme);
 
 	calculateWordCount();
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));

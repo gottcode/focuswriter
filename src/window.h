@@ -24,9 +24,11 @@
 #include <QMainWindow>
 class QAction;
 class QLabel;
+class QSettings;
 class QTabBar;
 class QToolBar;
 class Preferences;
+class SessionManager;
 class Stack;
 class TimerManager;
 
@@ -34,6 +36,9 @@ class Window : public QMainWindow {
 	Q_OBJECT
 public:
 	Window();
+
+	void addDocuments(const QStringList& files, const QStringList& positions = QStringList(), int active = 0);
+	bool closeDocuments(QSettings* session = 0);
 
 protected:
 	virtual bool event(QEvent* event);
@@ -83,6 +88,7 @@ private:
 
 	Stack* m_documents;
 	QTabBar* m_tabs;
+	SessionManager* m_sessions;
 	TimerManager* m_timers;
 	int m_margin;
 

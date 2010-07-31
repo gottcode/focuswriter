@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,9 @@
 
 #include "theme.h"
 
+#include "session.h"
+
+#include <QDir>
 #include <QFile>
 #include <QSettings>
 #include <QUrl>
@@ -117,10 +120,21 @@ QString Theme::name() const {
 /*****************************************************************************/
 
 void Theme::setName(const QString& name) {
-	QFile::remove(filePath(m_name));
-	QFile::remove(iconPath(m_name));
-	m_name = name;
-	m_changed = true;
+	if (m_name != name) {
+		QStringList files = QDir(Session::path(), "*.session").entryList(QDir::Files);
+		files.prepend("");
+		foreach (const QString& file, files) {
+			Session session(file);
+			if (session.theme() == m_name) {
+				session.setTheme(name);
+			}
+		}
+
+		QFile::remove(filePath(m_name));
+		QFile::remove(iconPath(m_name));
+		m_name = name;
+		m_changed = true;
+	}
 }
 
 /*****************************************************************************/

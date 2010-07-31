@@ -35,8 +35,9 @@
 
 /*****************************************************************************/
 
-ThemeManager::ThemeManager(QWidget* parent)
-: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint) {
+ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
+: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+m_settings(settings) {
 	setWindowTitle(tr("Themes"));
 
 	// Add themes list
@@ -55,7 +56,7 @@ ThemeManager::ThemeManager(QWidget* parent)
 	foreach (const QString& theme, themes) {
 		addItem(QUrl::fromPercentEncoding(QFileInfo(theme).baseName().toUtf8()));
 	}
-	QList<QListWidgetItem*> items = m_themes->findItems(QSettings().value("ThemeManager/Theme").toString(), Qt::MatchExactly);
+	QList<QListWidgetItem*> items = m_themes->findItems(m_settings.value("ThemeManager/Theme").toString(), Qt::MatchExactly);
 	if (!items.isEmpty()) {
 		m_themes->setCurrentItem(items.first());
 	}
@@ -93,23 +94,18 @@ ThemeManager::ThemeManager(QWidget* parent)
 	layout->addLayout(buttons_layout);
 
 	// Restore size
-	resize(QSettings().value("ThemeManager/Size", QSize(630, 450)).toSize());
-}
-
-/*****************************************************************************/
-
-void ThemeManager::accept() {
-	QList<QListWidgetItem*> items = m_themes->selectedItems();
-	if (!items.isEmpty()) {
-		QSettings().setValue("ThemeManager/Theme", items.first()->text());
-	}
-	QDialog::accept();
+	resize(m_settings.value("ThemeManager/Size", QSize(630, 450)).toSize());
 }
 
 /*****************************************************************************/
 
 void ThemeManager::hideEvent(QHideEvent* event) {
-	QSettings().setValue("ThemeManager/Size", size());
+	QList<QListWidgetItem*> items = m_themes->selectedItems();
+	QString selected = !items.isEmpty() ? items.first()->text() : QString();
+	if (!selected.isEmpty()) {
+		m_settings.setValue("ThemeManager/Theme", selected);
+	}
+	m_settings.setValue("ThemeManager/Size", size());
 	QDialog::hideEvent(event);
 }
 
@@ -147,7 +143,7 @@ void ThemeManager::modifyTheme() {
 	}
 	if (name == item->text()) {
 		item->setIcon(QIcon(Theme::iconPath(name)));
-		emit themeSelected(Theme(name));
+		emit themeSelected(name);
 	} else {
 		delete item;
 		item = 0;
@@ -175,8 +171,7 @@ void ThemeManager::removeTheme() {
 
 void ThemeManager::currentThemeChanged(QListWidgetItem* current) {
 	if (current) {
-		Theme theme(current->text());
-		emit themeSelected(theme);
+		emit themeSelected(current->text());
 	}
 }
 

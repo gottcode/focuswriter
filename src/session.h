@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,38 +17,40 @@
  *
  ***********************************************************************/
 
-#ifndef THEME_MANAGER_H
-#define THEME_MANAGER_H
+#ifndef SESSION_H
+#define SESSION_H
 
-#include <QDialog>
-class QListWidget;
-class QListWidgetItem;
+#include <QtCore/QCoreApplication>
+#include <QtCore/QStringList>
 class QSettings;
-class Theme;
 
-class ThemeManager : public QDialog {
-	Q_OBJECT
+class Session
+{
+	Q_DECLARE_TR_FUNCTIONS(Session);
 public:
-	ThemeManager(QSettings& settings, QWidget* parent = 0);
+	Session(const QString& name);
+	~Session();
 
-signals:
-	void themeSelected(const Theme& theme);
+	int active() const;
+	QSettings* data() const;
+	QStringList files() const;
+	QString name() const;
+	QStringList positions() const;
+	QString theme() const;
 
-protected:
-	virtual void hideEvent(QHideEvent* event);
+	void setName(const QString& name);
+	void setTheme(const QString& theme);
 
-private slots:
-	void addTheme();
-	void modifyTheme();
-	void removeTheme();
-	void currentThemeChanged(QListWidgetItem* current);
+	static QString path();
+	static QString pathFromName(const QString& name);
+	static QString pathToName(const QString& path);
+	static void setPath(const QString& path);
 
 private:
-	void addItem(const QString& name);
-
-private:
-	QListWidget* m_themes;
-	QSettings& m_settings;
+	QSettings* m_data;
+	QString m_name;
+	bool m_default;
+	static QString m_path;
 };
 
 #endif

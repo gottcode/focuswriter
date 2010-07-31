@@ -18,6 +18,7 @@
  ***********************************************************************/
 
 #include "dictionary.h"
+#include "session.h"
 #include "theme.h"
 #include "window.h"
 
@@ -97,6 +98,12 @@ int main(int argc, char** argv) {
 		dir.mkpath(path);
 	}
 	dir.setPath(path);
+
+	// Set sessions path
+	if (!dir.exists("Sessions")) {
+		dir.mkdir("Sessions");
+	}
+	Session::setPath(dir.absoluteFilePath("Sessions"));
 
 	// Set themes path
 	if (!dir.exists("Themes")) {

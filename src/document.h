@@ -34,7 +34,7 @@ class Theme;
 class Document : public QWidget {
 	Q_OBJECT
 public:
-	Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, QWidget* parent = 0);
+	Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, const QString& theme, QWidget* parent = 0);
 	~Document();
 
 	QString filename() const {

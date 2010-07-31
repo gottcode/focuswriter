@@ -22,6 +22,8 @@
 #include "document.h"
 #include "preferences.h"
 #include "preferences_dialog.h"
+#include "session.h"
+#include "session_manager.h"
 #include "stack.h"
 #include "theme.h"
 #include "theme_manager.h"
@@ -85,8 +87,10 @@ Window::Window()
 
 	// Create documents
 	m_documents = new Stack(this);
+	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
+	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
 
 	// Set up menubar and toolbar
 	initMenuBar();
@@ -173,7 +177,7 @@ Window::Window()
 	// Load settings
 	Preferences preferences;
 	loadPreferences(preferences);
-	m_documents->themeSelected(Theme(settings.value("ThemeManager/Theme").toString()));
+	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
 
 	// Restore window geometry
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
@@ -188,21 +192,70 @@ Window::Window()
 	m_tabs->blockSignals(false);
 
 	// Open previous documents
-	QStringList files = QApplication::arguments();
+	QString session = settings.value("SessionManager/Session").toString();
+	QStringList files = QApplication::arguments().mid(1);
+	if (!files.isEmpty()) {
+		session.clear();
+		settings.setValue("Save/Current", files);
+		settings.setValue("Save/Positions", QStringList());
+		settings.setValue("Save/Active", 0);
+	}
+	m_sessions->setCurrent(session);
+	QApplication::restoreOverrideCursor();
+}
+
+/*****************************************************************************/
+
+void Window::addDocuments(const QStringList& files, const QStringList& positions, int active) {
+	if (!files.isEmpty()) {
+		for (int i = 0; i < files.count(); ++i) {
+			addDocument(files.at(i), positions.value(i, "-1").toInt());
+		}
+	} else {
+		newDocument();
+	}
+	m_tabs->setCurrentIndex(active);
+}
+
+/*****************************************************************************/
+
+bool Window::closeDocuments(QSettings* session) {
+	if (m_documents->count() == 0) {
+		return true;
+	}
+
+	// Save files
+	int active = m_tabs->currentIndex();
+	QStringList files;
 	QStringList positions;
-	files.removeFirst();
-	if (files.isEmpty()) {
-		files = settings.value("Save/Current").toStringList();
-		positions = settings.value("Save/Positions").toStringList();
-		if (files.isEmpty()) {
-			files.append(QString());
+	for (int i = 0; i < m_documents->count(); ++i) {
+		Document* document = m_documents->document(i);
+		QString filename = document->filename();
+		if (!filename.isEmpty()) {
+			files.append(filename);
+			positions.append(QString::number(document->text()->textCursor().position()));
+		}
+
+		m_tabs->setCurrentIndex(i);
+		if (!saveDocument(i)) {
+			m_tabs->setCurrentIndex(active);
+			return false;
 		}
 	}
-	for (int i = 0; i < files.count(); ++i) {
-		addDocument(files.at(i), positions.value(i, "-1").toInt());
+
+	// Store current files
+	session->setValue("Save/Current", files);
+	session->setValue("Save/Positions", positions);
+	session->setValue("Save/Active", active);
+
+	// Close files
+	int count = m_documents->count();
+	for (int i = 0; i < count; ++i) {
+		m_documents->removeDocument(0);
+		m_tabs->removeTab(0);
 	}
-	m_tabs->setCurrentIndex(settings.value("Save/Active", 0).toInt());
-	QApplication::restoreOverrideCursor();
+
+	return true;
 }
 
 /*****************************************************************************/
@@ -217,37 +270,10 @@ bool Window::event(QEvent* event) {
 /*****************************************************************************/
 
 void Window::closeEvent(QCloseEvent* event) {
-	if (!m_timers->cancelEditing()) {
+	if (!m_timers->cancelEditing() || !m_sessions->closeCurrent()) {
 		event->ignore();
 		return;
 	}
-
-	QStringList files;
-	QStringList positions;
-	int index = m_tabs->currentIndex();
-	for (int i = 0; i < m_documents->count(); ++i) {
-		Document* document = m_documents->document(i);
-		QString filename = document->filename();
-		if (!filename.isEmpty()) {
-			files.append(filename);
-			positions.append(QString::number(document->text()->textCursor().position()));
-		}
-
-		m_tabs->setCurrentIndex(i);
-		if (!saveDocument(i)) {
-			event->ignore();
-			m_tabs->setCurrentIndex(index);
-			return;
-		}
-	}
-	m_tabs->setCurrentIndex(index);
-
-	QSettings settings;
-	settings.setValue("Save/Current", files);
-	settings.setValue("Save/Positions", positions);
-	settings.setValue("Save/Active", m_tabs->currentIndex());
-
-	event->accept();
 	QMainWindow::closeEvent(event);
 }
 
@@ -381,7 +407,7 @@ void Window::toggleToolbar(bool visible) {
 /*****************************************************************************/
 
 void Window::themeClicked() {
-	ThemeManager manager(this);
+	ThemeManager manager(*m_sessions->current()->data(), this);
 	connect(&manager, SIGNAL(themeSelected(const Theme&)), m_documents, SLOT(themeSelected(const Theme&)));
 	manager.exec();
 }
@@ -414,6 +440,9 @@ void Window::aboutClicked() {
 /*****************************************************************************/
 
 void Window::tabClicked(int index) {
+	if (m_documents->count() == 0) {
+		return;
+	}
 	m_documents->setCurrentDocument(index);
 	updateDetails();
 	updateSave();
@@ -516,14 +545,16 @@ void Window::updateSave() {
 /*****************************************************************************/
 
 void Window::addDocument(const QString& filename, int position) {
-	for (int i = 0; i < m_documents->count(); ++i) {
-		if (m_documents->document(i)->filename() == filename) {
-			m_tabs->setCurrentIndex(i);
-			return;
+	if (!filename.isEmpty()) {
+		for (int i = 0; i < m_documents->count(); ++i) {
+			if (m_documents->document(i)->filename() == filename) {
+				m_tabs->setCurrentIndex(i);
+				return;
+			}
 		}
 	}
 
-	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, this);
+	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, m_sessions->current()->theme(), this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
@@ -683,6 +714,10 @@ void Window::initMenuBar() {
 	m_actions["Rename"] = file_menu->addAction(tr("&Rename..."), this, SLOT(renameDocument()));
 	m_actions["Rename"]->setEnabled(false);
 	m_actions["SaveAll"] = file_menu->addAction(tr("Save A&ll"), this, SLOT(saveAllDocuments()));
+	file_menu->addSeparator();
+	file_menu->addMenu(m_sessions->menu());
+	m_actions["ManageSessions"] = new QAction(QIcon::fromTheme("view-choose"), tr("Manage Sessions"), this);
+	connect(m_actions["ManageSessions"], SIGNAL(triggered()), m_sessions, SLOT(exec()));
 	file_menu->addSeparator();
 	m_actions["Print"] = file_menu->addAction(tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
 	file_menu->addSeparator();

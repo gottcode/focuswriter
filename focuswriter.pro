@@ -65,6 +65,8 @@ HEADERS += src/alert.h \
 	src/image_button.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
+	src/session.h \
+	src/session_manager.h \
 	src/spell_checker.h \
 	src/stack.h \
 	src/theme.h \
@@ -87,6 +89,8 @@ SOURCES += src/alert.cpp \
 	src/main.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
+	src/session.cpp \
+	src/session_manager.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/theme.cpp \
