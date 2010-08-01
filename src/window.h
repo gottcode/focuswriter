@@ -75,8 +75,7 @@ private:
 	void hideInterface();
 	void updateMargin();
 	void updateTab(int index);
-	void initMenuBar();
-	void initToolBar();
+	void initMenus();
 
 private:
 	QToolBar* m_toolbar;

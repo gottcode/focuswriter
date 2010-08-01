@@ -392,7 +392,7 @@ void SessionManager::updateList(const QString& selected)
 	}
 
 	m_sessions_menu->addSeparator();
-	m_sessions_menu->addAction(tr("&Manage..."), this, SLOT(exec()));
+	m_sessions_menu->addAction(tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+M"));
 }
 
 //-----------------------------------------------------------------------------
