@@ -63,6 +63,7 @@ HEADERS += src/alert.h \
 	src/find_dialog.h \
 	src/highlighter.h \
 	src/image_button.h \
+	src/load_screen.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
 	src/session.h \
@@ -86,6 +87,7 @@ SOURCES += src/alert.cpp \
 	src/find_dialog.cpp \
 	src/highlighter.cpp \
 	src/image_button.cpp \
+	src/load_screen.cpp \
 	src/main.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \

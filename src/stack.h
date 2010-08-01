@@ -26,6 +26,7 @@ class QStackedLayout;
 class AlertLayer;
 class Document;
 class FindDialog;
+class LoadScreen;
 class Theme;
 
 class Stack : public QWidget {
@@ -38,6 +39,10 @@ public:
 
 	AlertLayer* alerts() const {
 		return m_alerts;
+	}
+
+	LoadScreen* loadScreen() const {
+		return m_load_screen;
 	}
 
 	int count() const {
@@ -118,6 +123,7 @@ private:
 	void updateDocumentBackgrounds();
 
 private:
+	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
 	QWidget* m_contents;
 	QGridLayout* m_layout;

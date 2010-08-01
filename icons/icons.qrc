@@ -1,6 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 	<file>focuswriter.png</file>
+	<file>load.png</file>
 	<file>shadow.png</file>
 
 	<file alias="icons/hicolor/index.theme">oxygen/index.theme</file>

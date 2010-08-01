@@ -20,6 +20,7 @@
 #include "window.h"
 
 #include "document.h"
+#include "load_screen.h"
 #include "preferences.h"
 #include "preferences_dialog.h"
 #include "session.h"
@@ -177,7 +178,6 @@ Window::Window()
 	layout->addWidget(m_footer);
 
 	// Load current daily progress
-	QApplication::setOverrideCursor(Qt::WaitCursor);
 	QSettings settings;
 	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
 		settings.remove("Progress");
@@ -214,12 +214,13 @@ Window::Window()
 		settings.setValue("Save/Active", 0);
 	}
 	m_sessions->setCurrent(session);
-	QApplication::restoreOverrideCursor();
 }
 
 /*****************************************************************************/
 
 void Window::addDocuments(const QStringList& files, const QStringList& positions, int active) {
+	m_documents->loadScreen()->startStep("");
+
 	if (!files.isEmpty()) {
 		for (int i = 0; i < files.count(); ++i) {
 			addDocument(files.at(i), positions.value(i, "-1").toInt());
@@ -228,6 +229,8 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 		newDocument();
 	}
 	m_tabs->setCurrentIndex(active);
+
+	m_documents->loadScreen()->finishStep();
 }
 
 /*****************************************************************************/
@@ -321,7 +324,6 @@ void Window::newDocument() {
 void Window::openDocument() {
 	QString filename = QFileDialog::getOpenFileName(window(), tr("Open File"), QString(), m_open_filter);
 	if (!filename.isEmpty()) {
-		QApplication::setOverrideCursor(Qt::WaitCursor);
 		Document* document = m_documents->currentDocument();
 		int index = (document->index() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
 		addDocument(filename);
@@ -329,7 +331,6 @@ void Window::openDocument() {
 			m_tabs->setCurrentIndex(index);
 			closeDocument();
 		}
-		QApplication::restoreOverrideCursor();
 	}
 }
 
@@ -567,6 +568,11 @@ void Window::addDocument(const QString& filename, int position) {
 		}
 	}
 
+	bool show_load = !filename.isEmpty() && (QFileInfo(filename).size() > 100000 || m_documents->loadScreen()->isVisible());
+	if (show_load) {
+		m_documents->loadScreen()->startStep(tr("Opening %1").arg(filename));
+	}
+
 	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_margin, m_sessions->current()->theme(), this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
@@ -589,6 +595,10 @@ void Window::addDocument(const QString& filename, int position) {
 	int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
+
+	if (show_load) {
+		m_documents->loadScreen()->finishStep();
+	}
 }
 
 /*****************************************************************************/

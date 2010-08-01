@@ -144,11 +144,9 @@ void SessionManager::setCurrent(const QString& session)
 	}
 
 	// Open session
-	QApplication::setOverrideCursor(Qt::WaitCursor);
 	m_session = new Session(session);
 	emit themeChanged(m_session->theme());
 	m_window->addDocuments(m_session->files(), m_session->positions(), m_session->active());
-	QApplication::restoreOverrideCursor();
 
 	// Save session name
 	if (!session.isEmpty()) {
