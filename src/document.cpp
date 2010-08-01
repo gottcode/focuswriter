@@ -106,7 +106,7 @@ namespace {
 
 /*****************************************************************************/
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, const QString& theme, QWidget* parent)
+Document::Document(const QString& filename, int& current_wordcount, int& current_time, int margin, const QString& theme, QWidget* parent)
 : QWidget(parent),
   m_index(0),
   m_always_center(false),
@@ -123,7 +123,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
   m_current_wordcount(current_wordcount),
   m_current_time(current_time) {
 	setMouseTracking(true);
-	resize(size);
 
 	m_hide_timer = new QTimer(this);
 	m_hide_timer->setInterval(5000);
@@ -134,7 +133,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text = new QTextEdit(this);
 	m_text->installEventFilter(this);
 	m_text->setTabStopWidth(50);
-	m_text->setMinimumHeight(500);
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->viewport()->setMouseTracking(true);
@@ -176,13 +174,13 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 
 	// Set up scroll bar
-	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
 	m_scrollbar->setVisible(false);
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
+	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 
 	// Lay out window
 	m_layout = new QGridLayout(this);
@@ -410,7 +408,7 @@ void Document::loadTheme(const Theme& theme) {
 			break;
 	};
 
-	centerCursor();
+	centerCursor(true);
 	m_text->document()->blockSignals(false);
 }
 
@@ -509,10 +507,10 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 
 /*****************************************************************************/
 
-void Document::centerCursor() {
+void Document::centerCursor(bool force) {
 	QRect cursor = m_text->cursorRect();
-	QRect viewport = m_text->viewport()->rect();
-	if (m_always_center || !viewport.contains(cursor, true)) {
+	QRect viewport = m_text->rect();
+	if (force || m_always_center || !viewport.contains(cursor, true)) {
 		QPoint offset = viewport.center() - cursor.center();
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
 		scrollbar->setValue(scrollbar->value() - offset.y());
@@ -544,6 +542,13 @@ void Document::paintEvent(QPaintEvent* event) {
 		painter.drawPixmap(event->rect(), m_background, event->rect());
 	}
 	painter.end();
+}
+
+/*****************************************************************************/
+
+void Document::resizeEvent(QResizeEvent* event) {
+	centerCursor(true);
+	QWidget::resizeEvent(event);
 }
 
 /*****************************************************************************/
@@ -586,8 +591,9 @@ void Document::scrollBarActionTriggered(int action) {
 
 void Document::scrollBarRangeChanged(int, int max) {
 	m_scrollbar->blockSignals(true);
-	m_scrollbar->setMaximum(max + m_text->viewport()->height());
+	m_scrollbar->setMaximum(max + m_text->height());
 	m_scrollbar->blockSignals(false);
+	centerCursor(max == 0);
 }
 
 /*****************************************************************************/

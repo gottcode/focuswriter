@@ -20,6 +20,7 @@
 #include "spell_checker.h"
 
 #include "dictionary.h"
+#include "document.h"
 
 #include <QAction>
 #include <QDialogButtonBox>
@@ -50,6 +51,10 @@ void SpellChecker::checkDocument(QTextEdit* document) {
 
 void SpellChecker::reject() {
 	m_document->setTextCursor(m_start_cursor);
+	Document* document = qobject_cast<Document*>(m_document->parentWidget());
+	if (document) {
+		document->centerCursor(true);
+	}
 	QDialog::reject();
 }
 

@@ -34,7 +34,7 @@ class Theme;
 class Document : public QWidget {
 	Q_OBJECT
 public:
-	Document(const QString& filename, int& current_wordcount, int& current_time, const QSize& size, int margin, const QString& theme, QWidget* parent = 0);
+	Document(const QString& filename, int& current_wordcount, int& current_time, int margin, const QString& theme, QWidget* parent = 0);
 	~Document();
 
 	QString filename() const {
@@ -88,7 +88,7 @@ public:
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 
 public slots:
-	void centerCursor();
+	void centerCursor(bool force = false);
 
 signals:
 	void changed();
@@ -100,6 +100,7 @@ signals:
 protected:
 	virtual void mouseMoveEvent(QMouseEvent* event);
 	virtual void paintEvent(QPaintEvent* event);
+	virtual void resizeEvent(QResizeEvent* event);
 	virtual void wheelEvent(QWheelEvent* event);
 
 private slots:

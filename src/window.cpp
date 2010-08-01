@@ -567,7 +567,7 @@ void Window::addDocument(const QString& filename, int position) {
 		}
 	}
 
-	Document* document = new Document(filename, m_current_wordcount, m_current_time, size(), m_margin, m_sessions->current()->theme(), this);
+	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_margin, m_sessions->current()->theme(), this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
@@ -575,21 +575,20 @@ void Window::addDocument(const QString& filename, int position) {
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
+	// Restore cursor position
+	QTextCursor cursor = document->text()->textCursor();
+	if (m_save_positions && position != -1) {
+		cursor.setPosition(position);
+	} else {
+		cursor.movePosition(QTextCursor::End);
+	}
+	document->text()->setTextCursor(cursor);
+
 	m_documents->addDocument(document);
 
 	int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
-
-	// Restore cursor position
-	if (m_save_positions && position != -1) {
-		QTextCursor cursor = document->text()->textCursor();
-		cursor.setPosition(position);
-		document->text()->setTextCursor(cursor);
-	} else {
-		document->text()->verticalScrollBar()->triggerAction(QAbstractSlider::SliderToMaximum);
-	}
-	document->centerCursor();
 }
 
 /*****************************************************************************/

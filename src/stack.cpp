@@ -146,7 +146,6 @@ Stack::Stack(QWidget* parent)
 	m_contents = new QWidget(this);
 
 	m_documents_layout = new QStackedLayout(m_contents);
-	m_documents_layout->setStackingMode(QStackedLayout::StackAll);
 
 	m_alerts = new AlertLayer(this);
 
