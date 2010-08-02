@@ -14,6 +14,13 @@ cp -pf README "$APP/"
 cp -Rpf "$BUNDLE" "$APP/"
 echo 'Done'
 
+# Copy icons
+echo -n 'Copying icons... '
+ICONS="$APP/$BUNDLE/Contents/Resources/icons"
+mkdir $ICONS
+cp -Rf icons/oxygen/hicolor $ICONS
+echo 'Done'
+
 # Copy dictionary
 echo -n 'Copying English dictionary... '
 DICTIONARIES="$APP/$BUNDLE/Contents/Resources/Dictionaries"

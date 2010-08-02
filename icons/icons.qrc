@@ -3,52 +3,5 @@
 	<file>focuswriter.png</file>
 	<file>load.png</file>
 	<file>shadow.png</file>
-
-	<file alias="icons/hicolor/index.theme">oxygen/index.theme</file>
-
-	<file alias="icons/hicolor/16x16/actions/arrow-right.png">oxygen/16x16/arrow-right.png</file>
-	<file alias="icons/hicolor/16x16/actions/arrow-up.png">oxygen/16x16/arrow-up.png</file>
-	<file alias="icons/hicolor/16x16/actions/folder.png">oxygen/16x16/folder.png</file>
-	<file alias="icons/hicolor/16x16/actions/folder-open.png">oxygen/16x16/folder-open.png</file>
-	<file alias="icons/hicolor/16x16/actions/window-close.png">oxygen/16x16/window-close.png</file>
-
-	<file alias="icons/hicolor/22x22/actions/application-exit.png">oxygen/22x22/application-exit.png</file>
-	<file alias="icons/hicolor/22x22/actions/applications-graphics.png">oxygen/22x22/applications-graphics.png</file>
-	<file alias="icons/hicolor/22x22/actions/chronometer.png">oxygen/22x22/chronometer.png</file>
-	<file alias="icons/hicolor/22x22/actions/configure.png">oxygen/22x22/configure.png</file>
-	<file alias="icons/hicolor/22x22/actions/document-new.png">oxygen/22x22/document-new.png</file>
-	<file alias="icons/hicolor/22x22/actions/document-open.png">oxygen/22x22/document-open.png</file>
-	<file alias="icons/hicolor/22x22/actions/document-print.png">oxygen/22x22/document-print.png</file>
-	<file alias="icons/hicolor/22x22/actions/document-save-all.png">oxygen/22x22/document-save-all.png</file>
-	<file alias="icons/hicolor/22x22/actions/document-save-as.png">oxygen/22x22/document-save-as.png</file>
-	<file alias="icons/hicolor/22x22/actions/document-save.png">oxygen/22x22/document-save.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-copy.png">oxygen/22x22/edit-copy.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-cut.png">oxygen/22x22/edit-cut.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-find.png">oxygen/22x22/edit-find.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-find-replace.png">oxygen/22x22/edit-find-replace.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-paste.png">oxygen/22x22/edit-paste.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-redo.png">oxygen/22x22/edit-redo.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-rename.png">oxygen/22x22/edit-rename.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-select-all.png">oxygen/22x22/edit-select-all.png</file>
-	<file alias="icons/hicolor/22x22/actions/edit-undo.png">oxygen/22x22/edit-undo.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-indent-less.png">oxygen/22x22/format-indent-less.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-indent-more.png">oxygen/22x22/format-indent-more.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-justify-center.png">oxygen/22x22/format-justify-center.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-justify-fill.png">oxygen/22x22/format-justify-fill.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-justify-left.png">oxygen/22x22/format-justify-left.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-justify-right.png">oxygen/22x22/format-justify-right.png</file>
-	<file alias="icons/hicolor/22x22/actions//format-text-bold.png">oxygen/22x22/format-text-bold.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-text-italic.png">oxygen/22x22/format-text-italic.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-text-strikethrough.png">oxygen/22x22/format-text-strikethrough.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-text-subscript.png">oxygen/22x22/format-text-subscript.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-text-superscript.png">oxygen/22x22/format-text-superscript.png</file>
-	<file alias="icons/hicolor/22x22/actions/format-text-underline.png">oxygen/22x22/format-text-underline.png</file>
-	<file alias="icons/hicolor/22x22/actions/go-down.png">oxygen/22x22/go-down.png</file>
-	<file alias="icons/hicolor/22x22/actions/go-up.png">oxygen/22x22/go-up.png</file>
-	<file alias="icons/hicolor/22x22/actions/help-about.png">oxygen/22x22/help-about.png</file>
-	<file alias="icons/hicolor/22x22/actions/tools-check-spelling.png">oxygen/22x22/tools-check-spelling.png</file>
-	<file alias="icons/hicolor/22x22/actions/view-choose.png">oxygen/22x22/view-choose.png</file>
-	<file alias="icons/hicolor/22x22/actions/view-fullscreen.png">oxygen/22x22/view-fullscreen.png</file>
-	<file alias="icons/hicolor/22x22/actions/window-close.png">oxygen/22x22/window-close.png</file>
 </qresource>
 </RCC>

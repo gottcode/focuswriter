@@ -40,6 +40,11 @@ int main(int argc, char** argv) {
 	app.setAttribute(Qt::AA_DontShowIconsInMenus);
 	QString appdir = app.applicationDirPath();
 
+	QStringList paths = QIcon::themeSearchPaths();
+	paths.prepend(appdir + "/../share/focuswriter/icons");
+	paths.prepend(appdir + "/icons/oxygen");
+	QIcon::setThemeSearchPaths(paths);
+
 	QTranslator qt_translator;
 	qt_translator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 	app.installTranslator(&qt_translator);

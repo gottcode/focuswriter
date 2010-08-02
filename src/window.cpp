@@ -82,10 +82,6 @@ Window::Window()
 	setWindowIcon(QIcon(":/focuswriter.png"));
 
 	// Set up icons
-	QStringList paths = QIcon::themeSearchPaths();
-	paths.removeAll(":/icons");
-	paths.prepend(":/icons");
-	QIcon::setThemeSearchPaths(paths);
 	if (QIcon::themeName().isEmpty()) {
 		QIcon::setThemeName("hicolor");
 		setIconSize(QSize(22,22));
@@ -816,7 +812,7 @@ void Window::initMenus() {
 	m_actions["Replace"] = tools_menu->addAction(QIcon::fromTheme("edit-find-replace"), tr("&Replace..."), m_documents, SLOT(replace()), keyBinding(QKeySequence::Replace, tr("Ctrl+R")));
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
-	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("chronometer"), tr("&Timers..."), m_timers, SLOT(show()));
+	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment"), tr("&Timers..."), m_timers, SLOT(show()));
 
 	// Create settings menu
 	QMenu* settings_menu = menuBar()->addMenu(tr("&Settings"));
@@ -831,7 +827,7 @@ void Window::initMenus() {
 	m_actions["Fullscreen"]->setCheckable(true);
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
-	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("configure"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
+	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));

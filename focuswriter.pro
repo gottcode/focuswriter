@@ -123,6 +123,9 @@ unix: !macx {
 	icon.files = icons/focuswriter.png
 	icon.path = $$PREFIX/share/icons/hicolor/48x48/apps
 
+	icons.files = icons/oxygen/hicolor/*
+	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
+
 	desktop.files = icons/focuswriter.desktop
 	desktop.path = $$PREFIX/share/applications/
 
@@ -134,5 +137,5 @@ unix: !macx {
 		}
 	}
 
-	INSTALLS += target icon desktop
+	INSTALLS += target icon desktop icons
 }

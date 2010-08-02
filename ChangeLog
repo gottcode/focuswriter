@@ -1,3 +1,6 @@
+2010-08-02 Graeme Gott <graeme@gottcode.org>
+	* Move icons out of executable.
+
 2010-08-01 Graeme Gott <graeme@gottcode.org>
 	* Improve handling of fullscreen.
 	* Add load screen.
