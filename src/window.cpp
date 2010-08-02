@@ -417,6 +417,13 @@ void Window::toggleToolbar(bool visible) {
 
 /*****************************************************************************/
 
+void Window::toggleMenuIcons(bool visible) {
+	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !visible);
+	QSettings().setValue("Window/MenuIcons", visible);
+}
+
+/*****************************************************************************/
+
 void Window::themeClicked() {
 	ThemeManager manager(*m_sessions->current()->data(), this);
 	connect(&manager, SIGNAL(themeSelected(const Theme&)), m_documents, SLOT(themeSelected(const Theme&)));
@@ -672,6 +679,8 @@ void Window::loadPreferences(const Preferences& preferences) {
 	if (m_documents->count() > 0) {
 		updateDetails();
 	}
+
+	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 }
 
 /*****************************************************************************/
@@ -819,6 +828,9 @@ void Window::initMenus() {
 	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
+	action = settings_menu->addAction(tr("Show &Menu Icons"), this, SLOT(toggleMenuIcons(bool)));
+	action->setCheckable(true);
+	action->setChecked(QSettings().value("Window/MenuIcons", false).toBool());
 	settings_menu->addSeparator();
 	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
 #ifdef Q_OS_MAC

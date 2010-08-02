@@ -56,6 +56,7 @@ private slots:
 	void previousDocument();
 	void toggleFullscreen();
 	void toggleToolbar(bool visible);
+	void toggleMenuIcons(bool visible);
 	void themeClicked();
 	void preferencesClicked();
 	void aboutClicked();

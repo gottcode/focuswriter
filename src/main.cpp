@@ -37,7 +37,6 @@ int main(int argc, char** argv) {
 	app.setApplicationVersion("1.2.2");
 	app.setOrganizationDomain("gottcode.org");
 	app.setOrganizationName("GottCode");
-	app.setAttribute(Qt::AA_DontShowIconsInMenus);
 	QString appdir = app.applicationDirPath();
 
 	QStringList paths = QIcon::themeSearchPaths();
