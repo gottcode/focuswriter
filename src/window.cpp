@@ -193,9 +193,11 @@ Window::Window()
 	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
 
 	// Restore window geometry
+	setMinimumSize(640, 480);
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
 	toggleFullscreen();
+	show();
 
 	// Update margin
 	m_tabs->blockSignals(true);
@@ -289,6 +291,9 @@ void Window::closeEvent(QCloseEvent* event) {
 	if (!m_timers->cancelEditing() || !m_sessions->closeCurrent()) {
 		event->ignore();
 		return;
+	}
+	if (!m_fullscreen) {
+		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
 	QMainWindow::closeEvent(event);
 }
@@ -399,15 +404,11 @@ void Window::toggleFullscreen() {
 	QSettings().setValue("Window/Fullscreen", m_fullscreen);
 
 	if (m_fullscreen) {
-		showFullScreen();
-		m_actions["Fullscreen"]->setText(tr("Leave Fullscreen"));
+		setWindowState(windowState() | Qt::WindowFullScreen);
 	} else {
-		showNormal();
-		m_actions["Fullscreen"]->setText(tr("Fullscreen"));
+		setWindowState(windowState() & ~Qt::WindowFullScreen);
 	}
-	QApplication::processEvents();
-	raise();
-	activateWindow();
+	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 }
 
 /*****************************************************************************/
@@ -827,6 +828,7 @@ void Window::initMenus() {
 #ifdef Q_OS_MAC
 	m_actions["Fullscreen"]->setShortcut(tr("Esc"));
 #endif
+	m_actions["Fullscreen"]->setCheckable(true);
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("configure"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
