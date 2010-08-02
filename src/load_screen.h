@@ -21,6 +21,8 @@
 #define LOAD_SCREEN_H
 
 #include <QtGui/QLabel>
+class QGraphicsOpacityEffect;
+class QTimeLine;
 
 class LoadScreen : public QLabel
 {
@@ -31,9 +33,15 @@ public:
 	void startStep(const QString& step);
 	void finishStep();
 
+protected:
+	virtual void hideEvent(QHideEvent* event);
+	virtual void showEvent(QShowEvent* event);
+
 private:
 	QList<QString> m_steps;
 	QLabel* m_text;
+	QGraphicsOpacityEffect* m_hide_effect;
+	QTimeLine* m_hide_timer;
 };
 
 #endif

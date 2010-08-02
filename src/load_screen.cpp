@@ -19,7 +19,10 @@
 
 #include "load_screen.h"
 
+#include <QtCore/QTimeLine>
+
 #include <QtGui/QApplication>
+#include <QtGui/QGraphicsOpacityEffect>
 #include <QtGui/QVBoxLayout>
 
 //-----------------------------------------------------------------------------
@@ -40,6 +43,15 @@ LoadScreen::LoadScreen(QWidget* parent)
 	layout->setMargin(0);
 	layout->addStretch();
 	layout->addWidget(m_text, 0, Qt::AlignCenter);
+
+	m_hide_effect = new QGraphicsOpacityEffect(this);
+	m_hide_effect->setOpacity(1.0);
+	setGraphicsEffect(m_hide_effect);
+
+	m_hide_timer = new QTimeLine(240, this);
+	m_hide_timer->setDirection(QTimeLine::Backward);
+	connect(m_hide_timer, SIGNAL(valueChanged(qreal)), m_hide_effect, SLOT(setOpacity(qreal)));
+	connect(m_hide_timer, SIGNAL(finished()), this, SLOT(hide()));
 }
 
 //-----------------------------------------------------------------------------
@@ -49,8 +61,13 @@ void LoadScreen::startStep(const QString& step)
 	m_text->setText(step);
 	m_text->setVisible(!step.isEmpty());
 	m_steps.append(step);
+
+	if (m_hide_timer->state() != QTimeLine::NotRunning) {
+		m_hide_timer->stop();
+	}
+	m_hide_effect->setOpacity(1.0);
+
 	show();
-	QApplication::setOverrideCursor(Qt::WaitCursor);
 	QApplication::processEvents();
 }
 
@@ -58,7 +75,6 @@ void LoadScreen::startStep(const QString& step)
 
 void LoadScreen::finishStep()
 {
-	QApplication::restoreOverrideCursor();
 	m_steps.removeFirst();
 	if (!m_steps.isEmpty()) {
 		QString step = m_steps.first();
@@ -66,9 +82,24 @@ void LoadScreen::finishStep()
 		m_text->setVisible(!step.isEmpty());
 		QApplication::processEvents();
 	} else {
-		m_text->clear();
-		hide();
+		m_hide_timer->start();
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void LoadScreen::hideEvent(QHideEvent* event)
+{
+	QApplication::restoreOverrideCursor();
+	QLabel::hideEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void LoadScreen::showEvent(QShowEvent* event)
+{
+	QApplication::setOverrideCursor(Qt::WaitCursor);
+	QLabel::showEvent(event);
 }
 
 //-----------------------------------------------------------------------------
