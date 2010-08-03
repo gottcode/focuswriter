@@ -113,14 +113,12 @@ public slots:
 	void setHeaderVisible(bool visible);
 
 protected:
+	virtual void paintEvent(QPaintEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
 	void updateBackground();
 	void updateMask();
-
-private:
-	void updateDocumentBackgrounds();
 
 private:
 	LoadScreen* m_load_screen;

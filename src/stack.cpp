@@ -144,6 +144,8 @@ Stack::Stack(QWidget* parent)
   m_header_margin(0),
   m_footer_visible(0),
   m_header_visible(0) {
+	setAutoFillBackground(true);
+
 	m_contents = new QStackedWidget(this);
 
 	m_alerts = new AlertLayer(this);
@@ -190,7 +192,6 @@ void Stack::addDocument(Document* document) {
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
 	connect(document->text(), SIGNAL(currentCharFormatChanged(const QTextCharFormat&)), this, SIGNAL(updateFormatActions()));
 
-	document->setBackground(m_background);
 	m_documents.append(document);
 	m_contents->addWidget(document);
 
@@ -475,9 +476,18 @@ void Stack::setHeaderVisible(bool visible) {
 
 /*****************************************************************************/
 
+void Stack::paintEvent(QPaintEvent* event) {
+	QPainter painter(this);
+	if (!m_background.isNull()) {
+		painter.drawPixmap(event->rect(), m_background, event->rect());
+	}
+	painter.end();
+}
+
+/*****************************************************************************/
+
 void Stack::resizeEvent(QResizeEvent* event) {
 	m_background = QPixmap();
-	updateDocumentBackgrounds();
 	updateMask();
 	m_resize_timer->start();
 	QWidget::resizeEvent(event);
@@ -491,15 +501,7 @@ void Stack::updateBackground() {
 		m_background = QPixmap();
 		background_loader.create(m_background_position, m_background_path, this);
 	}
-	updateDocumentBackgrounds();
-}
-
-/*****************************************************************************/
-
-void Stack::updateDocumentBackgrounds() {
-	foreach (Document* document, m_documents) {
-		document->setBackground(m_background);
-	}
+	update();
 }
 
 /*****************************************************************************/

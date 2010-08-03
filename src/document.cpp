@@ -197,7 +197,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 	m_text->setAcceptRichText(m_rich_text);
 	loadPreferences(preferences);
-	setAutoFillBackground(true);
 	loadTheme(theme);
 
 	calculateWordCount();
@@ -444,13 +443,6 @@ void Document::loadPreferences(const Preferences& preferences) {
 
 /*****************************************************************************/
 
-void Document::setBackground(const QPixmap& background) {
-	m_background = background;
-	update();
-}
-
-/*****************************************************************************/
-
 void Document::setMargin(int margin) {
 	m_margin = margin;
 	m_layout->setColumnMinimumWidth(0, m_margin);
@@ -532,16 +524,6 @@ void Document::mouseMoveEvent(QMouseEvent* event) {
 	emit footerVisible(footer_visible);
 
 	return QWidget::mouseMoveEvent(event);
-}
-
-/*****************************************************************************/
-
-void Document::paintEvent(QPaintEvent* event) {
-	QPainter painter(this);
-	if (!m_background.isNull()) {
-		painter.drawPixmap(event->rect(), m_background, event->rect());
-	}
-	painter.end();
 }
 
 /*****************************************************************************/
