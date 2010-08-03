@@ -140,11 +140,13 @@ Stack::Stack(QWidget* parent)
 : QWidget(parent),
   m_current_document(0),
   m_background_position(0),
+  m_margin(0),
   m_footer_margin(0),
   m_header_margin(0),
   m_footer_visible(0),
   m_header_visible(0) {
 	setAutoFillBackground(true);
+	setMouseTracking(true);
 
 	m_contents = new QStackedWidget(this);
 
@@ -157,16 +159,17 @@ Stack::Stack(QWidget* parent)
 
 	m_layout = new QGridLayout(this);
 	m_layout->setMargin(0);
-	m_layout->setRowStretch(1, 1);
-	m_layout->setColumnStretch(1, 2);
-	m_layout->setColumnStretch(2, 1);
-	m_layout->setRowMinimumHeight(0, 6);
-	m_layout->setRowMinimumHeight(3, 6);
-	m_layout->setColumnMinimumWidth(0, 6);
-	m_layout->setColumnMinimumWidth(3, 6);
-	m_layout->addWidget(m_contents, 0, 0, 4, 4);
-	m_layout->addWidget(m_alerts, 2, 2);
-	m_layout->addWidget(m_load_screen, 0, 0, 4, 4);
+	m_layout->setSpacing(0);
+	m_layout->setRowMinimumHeight(1, 6);
+	m_layout->setRowMinimumHeight(4, 6);
+	m_layout->setRowStretch(2, 1);
+	m_layout->setColumnMinimumWidth(1, 6);
+	m_layout->setColumnMinimumWidth(4, 6);
+	m_layout->setColumnStretch(2, 2);
+	m_layout->setColumnStretch(3, 1);
+	m_layout->addWidget(m_contents, 1, 0, 4, 6);
+	m_layout->addWidget(m_alerts, 3, 3);
+	m_layout->addWidget(m_load_screen, 0, 0, 6, 6);
 
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);
@@ -229,16 +232,16 @@ void Stack::setCurrentDocument(int index) {
 /*****************************************************************************/
 
 void Stack::setMargins(int footer, int header) {
+	m_margin = qMax(footer, header);
 	m_footer_margin = footer;
 	m_header_margin = header;
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
 	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
 
-	int margin = qMax(m_footer_margin, m_header_margin) + 6;
-	m_layout->setRowMinimumHeight(0, margin);
-	m_layout->setRowMinimumHeight(3, margin);
-	m_layout->setColumnMinimumWidth(0, margin);
-	m_layout->setColumnMinimumWidth(3, margin);
+	m_layout->setRowMinimumHeight(0, m_margin);
+	m_layout->setRowMinimumHeight(5, m_margin);
+	m_layout->setColumnMinimumWidth(0, m_margin);
+	m_layout->setColumnMinimumWidth(5, m_margin);
 
 	updateMask();
 }
@@ -476,6 +479,22 @@ void Stack::setHeaderVisible(bool visible) {
 
 /*****************************************************************************/
 
+void Stack::mouseMoveEvent(QMouseEvent* event) {
+	if (m_load_screen->isVisible()) {
+		return;
+	}
+	bool header_visible = event->pos().y() <= m_margin;
+	bool footer_visible = event->pos().y() >= (height() - m_margin);
+	emit footerVisible(footer_visible);
+	setHeaderVisible(header_visible);
+	setFooterVisible(footer_visible);
+	if (m_current_document && (header_visible || footer_visible)) {
+		m_current_document->setScrollBarVisible(false);
+	}
+}
+
+/*****************************************************************************/
+
 void Stack::paintEvent(QPaintEvent* event) {
 	QPainter painter(this);
 	if (!m_background.isNull()) {
@@ -508,11 +527,6 @@ void Stack::updateBackground() {
 
 void Stack::updateMask() {
 	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
-	m_contents->setMask(mask());
-	foreach (Document* document, m_documents) {
-		document->setMask(mask());
-	}
-	update();
 }
 
 /*****************************************************************************/

@@ -73,6 +73,7 @@ signals:
 	void copyAvailable(bool);
 	void redoAvailable(bool);
 	void undoAvailable(bool);
+	void footerVisible(bool);
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
 	void findNextAvailable(bool available);
@@ -113,6 +114,7 @@ public slots:
 	void setHeaderVisible(bool visible);
 
 protected:
+	virtual void mouseMoveEvent(QMouseEvent* event);
 	virtual void paintEvent(QPaintEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 
@@ -135,6 +137,7 @@ private:
 	QString m_background_path;
 	QTimer* m_resize_timer;
 
+	int m_margin;
 	int m_footer_margin;
 	int m_header_margin;
 	int m_footer_visible;

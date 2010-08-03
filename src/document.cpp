@@ -186,8 +186,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_layout = new QGridLayout(this);
 	m_layout->setSpacing(0);
 	m_layout->setMargin(0);
-	m_layout->addWidget(m_text, 1, 1);
-	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
+	m_layout->addWidget(m_text, 0, 1);
+	m_layout->addWidget(m_scrollbar, 0, 2, Qt::AlignRight);
 	setMargin(margin);
 
 	// Load settings
@@ -447,8 +447,6 @@ void Document::setMargin(int margin) {
 	m_margin = margin;
 	m_layout->setColumnMinimumWidth(0, m_margin);
 	m_layout->setColumnMinimumWidth(2, m_margin);
-	m_layout->setRowMinimumHeight(0, m_margin);
-	m_layout->setRowMinimumHeight(2, m_margin);
 }
 
 /*****************************************************************************/
@@ -517,11 +515,9 @@ void Document::mouseMoveEvent(QMouseEvent* event) {
 	m_hide_timer->start();
 
 	const QPoint& point = mapFromGlobal(event->globalPos());
-	bool header_visible = point.y() <= m_margin;
-	bool footer_visible = point.y() >= (height() - m_margin);
-	m_scrollbar->setVisible(point.x() >= (width() - m_margin) && !header_visible && !footer_visible);
-	emit headerVisible(header_visible);
-	emit footerVisible(footer_visible);
+	emit headerVisible(false);
+	emit footerVisible(false);
+	m_scrollbar->setVisible(point.x() >= (width() - m_margin));
 
 	return QWidget::mouseMoveEvent(event);
 }
