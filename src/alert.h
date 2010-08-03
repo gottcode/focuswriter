@@ -24,7 +24,6 @@
 class QLabel;
 class QTimeLine;
 class QToolButton;
-class QVBoxLayout;
 
 class Alert : public QWidget
 {
@@ -50,8 +49,8 @@ private slots:
 private:
 	QToolButton* m_expander;
 	QLabel* m_text;
-	QList<QLabel*> m_details;
-	QVBoxLayout* m_details_layout;
+	QString m_short_text;
+	QString m_long_text;
 	QTimeLine* m_fade_timer;
 	bool m_expanded;
 	bool m_under_mouse;

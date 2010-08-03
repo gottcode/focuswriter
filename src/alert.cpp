@@ -21,7 +21,7 @@
 
 #include <QEvent>
 #include <QGraphicsOpacityEffect>
-#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QPainter>
 #include <QTimeLine>
@@ -34,7 +34,7 @@ Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
 	m_expanded(true),
 	m_under_mouse(false)
 {
-	setAttribute(Qt::WA_NoSystemBackground);
+	setAttribute(Qt::WA_TranslucentBackground);
 	setStyleSheet("QLabel { color: white } Alert { color: white; background-color: black }");
 
 	if (parent) {
@@ -55,21 +55,15 @@ Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
 	close->setAutoRaise(true);
 	close->setIconSize(QSize(16,16));
 	close->setIcon(QIcon::fromTheme("window-close"));
-	close->setToolTip(tr("Ctrl+D"));
+	close->setToolTip(tr("Close (Ctrl+D)"));
 	connect(close, SIGNAL(clicked()), this, SLOT(fadeOut()));
 
-	m_details_layout = new QVBoxLayout;
-
-	QGridLayout* layout = new QGridLayout(this);
+	QHBoxLayout* layout = new QHBoxLayout(this);
 	layout->setMargin(7);
-	layout->setSpacing(0);
-	layout->setColumnMinimumWidth(1, 6);
-	layout->setColumnMinimumWidth(3, 6);
-	layout->setColumnStretch(2, 1);
-	layout->addWidget(m_expander, 0, 0, 2, 1, Qt::AlignHCenter | Qt::AlignBottom);
-	layout->addWidget(m_text, 0, 2);
-	layout->addWidget(close, 0, 4, Qt::AlignHCenter | Qt::AlignTop);
-	layout->addLayout(m_details_layout, 1, 2);
+	layout->setSpacing(6);
+	layout->addWidget(m_expander, 0, Qt::AlignHCenter | Qt::AlignBottom);
+	layout->addWidget(m_text, 1);
+	layout->addWidget(close, 0, Qt::AlignHCenter | Qt::AlignTop);
 
 	setText(text, details);
 	expanderToggled();
@@ -95,19 +89,11 @@ void Alert::fadeIn()
 
 void Alert::setText(const QString& text, const QStringList& details)
 {
-	qDeleteAll(m_details);
-	m_details.clear();
+	m_short_text = "<p>" + text + "</p>";
+	m_long_text = "<p>" + text + "<br><small>" + details.join("<br>") + "</small></p>";
 
-	m_text->setText(text);
-
-	foreach (const QString& detail, details) {
-		QLabel* label = new QLabel("<small>" + detail + "</small>", this);
-		label->setTextInteractionFlags(Qt::TextSelectableByMouse);
-		label->setWordWrap(true);
-		m_details.append(label);
-		m_details_layout->addWidget(label);
-	}
-	m_expander->setVisible(!m_details.isEmpty());
+	m_text->setText(m_short_text);
+	m_expander->setVisible(!details.isEmpty());
 }
 
 //-----------------------------------------------------------------------------
@@ -157,9 +143,14 @@ void Alert::paintEvent(QPaintEvent* event)
 void Alert::expanderToggled()
 {
 	m_expanded = !m_expanded;
-	m_expander->setIcon(QIcon::fromTheme(m_expanded ? "arrow-up" : "arrow-right"));
-	foreach (QLabel* detail, m_details) {
-		detail->setVisible(m_expanded);
+	if (m_expanded) {
+		m_expander->setIcon(QIcon::fromTheme("arrow-up"));
+		m_expander->setToolTip(tr("Collapse"));
+		m_text->setText(m_long_text);
+	} else {
+		m_expander->setIcon(QIcon::fromTheme("arrow-right"));
+		m_expander->setToolTip(tr("Expand"));
+		m_text->setText(m_short_text);
 	}
 }
 
