@@ -144,7 +144,7 @@ void SessionManager::setCurrent(const QString& session)
 	}
 
 	// Open session
-	m_session = new Session(session);
+	m_session = new Session(!session.isEmpty() ? session : tr("Default"));
 	emit themeChanged(m_session->theme());
 	m_window->addDocuments(m_session->files(), m_session->positions(), m_session->active());
 
@@ -365,18 +365,19 @@ void SessionManager::updateList(const QString& selected)
 	m_sessions_list->clear();
 
 	QStringList files = QDir(Session::path(), "*.session").entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
-	files.removeAll(tr("Default") + ".session");
 	files.prepend(tr("Default"));
-	foreach (const QString& file, files) {
-		QString name = Session::pathToName(file);
-		QString data = !file.isEmpty() ? name : "";
+	for (int i = 0; i < files.count(); ++i) {
+		QString name = Session::pathToName(files.at(i));
+		if ((name == tr("Default")) && (i > 0)) {
+			continue;
+		}
 
 		QAction* action = m_sessions_menu->addAction(name);
-		action->setData(data);
+		action->setData(name);
 		action->setCheckable(true);
 		m_sessions_actions->addAction(action);
 		QListWidgetItem* item = new QListWidgetItem(QIcon::fromTheme("folder"), name, m_sessions_list);
-		item->setData(Qt::UserRole, data);
+		item->setData(Qt::UserRole, name);
 
 		if (name == m_session->name()) {
 			action->setChecked(true);

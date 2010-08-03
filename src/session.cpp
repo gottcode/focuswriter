@@ -32,12 +32,11 @@ QString Session::m_path;
 
 Session::Session(const QString& name)
 	: m_name(name),
-	m_default(name.isEmpty())
+	m_default(name == tr("Default"))
 {
 	if (!m_default) {
 		m_data = new QSettings(pathFromName(m_name), QSettings::IniFormat);
 	} else {
-		m_name = tr("Default");
 		m_data = new QSettings;
 	}
 }

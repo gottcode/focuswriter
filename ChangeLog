@@ -1,3 +1,6 @@
+2010-08-03 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Default session was ignored.
+
 2010-08-02 Graeme Gott <graeme@gottcode.org>
 	* Add option for icons in menus.
 	* Move icons out of executable.
