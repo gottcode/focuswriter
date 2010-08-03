@@ -22,7 +22,7 @@
 
 #include <QWidget>
 class QGridLayout;
-class QStackedLayout;
+class QStackedWidget;
 class AlertLayer;
 class Document;
 class FindDialog;
@@ -125,11 +125,10 @@ private:
 private:
 	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
-	QWidget* m_contents;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
 
-	QStackedLayout* m_documents_layout;
+	QStackedWidget* m_contents;
 	QList<Document*> m_documents;
 	Document* m_current_document;
 

@@ -32,7 +32,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QPlainTextEdit>
-#include <QStackedLayout>
+#include <QStackedWidget>
 #include <QTextCursor>
 #include <QThread>
 #include <QTimer>
@@ -144,9 +144,7 @@ Stack::Stack(QWidget* parent)
   m_header_margin(0),
   m_footer_visible(0),
   m_header_visible(0) {
-	m_contents = new QWidget(this);
-
-	m_documents_layout = new QStackedLayout(m_contents);
+	m_contents = new QStackedWidget(this);
 
 	m_alerts = new AlertLayer(this);
 
@@ -194,7 +192,7 @@ void Stack::addDocument(Document* document) {
 
 	document->setBackground(m_background);
 	m_documents.append(document);
-	m_documents_layout->addWidget(document);
+	m_contents->addWidget(document);
 
 	emit documentAdded(document);
 	emit updateFormatActions();
@@ -210,7 +208,7 @@ void Stack::moveDocument(int from, int to) {
 
 void Stack::removeDocument(int index) {
 	Document* document = m_documents.takeAt(index);
-	m_documents_layout->removeWidget(document);
+	m_contents->removeWidget(document);
 	emit documentRemoved(document);
 	document->deleteLater();
 }
@@ -219,7 +217,7 @@ void Stack::removeDocument(int index) {
 
 void Stack::setCurrentDocument(int index) {
 	m_current_document = m_documents[index];
-	m_documents_layout->setCurrentWidget(m_current_document);
+	m_contents->setCurrentWidget(m_current_document);
 
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
