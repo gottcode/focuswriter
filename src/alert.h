@@ -22,6 +22,7 @@
 
 #include <QWidget>
 class QLabel;
+class QTimeLine;
 class QToolButton;
 class QVBoxLayout;
 
@@ -31,6 +32,7 @@ class Alert : public QWidget
 public:
 	Alert(const QString& text, const QStringList& details, QWidget* parent);
 
+	void fadeIn();
 	void setText(const QString& text, const QStringList& details);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
@@ -42,12 +44,15 @@ protected:
 
 private slots:
 	void expanderToggled();
+	void fadeInFinished();
+	void fadeOut();
 
 private:
 	QToolButton* m_expander;
 	QLabel* m_text;
 	QList<QLabel*> m_details;
 	QVBoxLayout* m_details_layout;
+	QTimeLine* m_fade_timer;
 	bool m_expanded;
 	bool m_under_mouse;
 };

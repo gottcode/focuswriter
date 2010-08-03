@@ -20,9 +20,11 @@
 #include "alert.h"
 
 #include <QEvent>
+#include <QGraphicsOpacityEffect>
 #include <QGridLayout>
 #include <QLabel>
 #include <QPainter>
+#include <QTimeLine>
 #include <QToolButton>
 
 //-----------------------------------------------------------------------------
@@ -32,6 +34,7 @@ Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
 	m_expanded(true),
 	m_under_mouse(false)
 {
+	setAttribute(Qt::WA_NoSystemBackground);
 	setStyleSheet("QLabel { color: white } Alert { color: white; background-color: black }");
 
 	if (parent) {
@@ -53,7 +56,7 @@ Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
 	close->setIconSize(QSize(16,16));
 	close->setIcon(QIcon::fromTheme("window-close"));
 	close->setToolTip(tr("Ctrl+D"));
-	connect(close, SIGNAL(clicked()), this, SLOT(deleteLater()));
+	connect(close, SIGNAL(clicked()), this, SLOT(fadeOut()));
 
 	m_details_layout = new QVBoxLayout;
 
@@ -70,6 +73,22 @@ Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
 
 	setText(text, details);
 	expanderToggled();
+
+	QGraphicsOpacityEffect* fade_effect = new QGraphicsOpacityEffect(this);
+	fade_effect->setOpacity(0.0);
+	setGraphicsEffect(fade_effect);
+
+	m_fade_timer = new QTimeLine(240, this);
+	connect(m_fade_timer, SIGNAL(valueChanged(qreal)), fade_effect, SLOT(setOpacity(qreal)));
+}
+
+//-----------------------------------------------------------------------------
+
+void Alert::fadeIn()
+{
+	setAttribute(Qt::WA_TransparentForMouseEvents);
+	connect(m_fade_timer, SIGNAL(finished()), this, SLOT(fadeInFinished()));
+	m_fade_timer->start();
 }
 
 //-----------------------------------------------------------------------------
@@ -142,6 +161,24 @@ void Alert::expanderToggled()
 	foreach (QLabel* detail, m_details) {
 		detail->setVisible(m_expanded);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Alert::fadeInFinished()
+{
+	setAttribute(Qt::WA_TransparentForMouseEvents, false);
+	disconnect(m_fade_timer, SIGNAL(finished()), this, SLOT(fadeInFinished()));
+}
+
+//-----------------------------------------------------------------------------
+
+void Alert::fadeOut()
+{
+	setAttribute(Qt::WA_TransparentForMouseEvents);
+	m_fade_timer->setDirection(QTimeLine::Backward);
+	connect(m_fade_timer, SIGNAL(finished()), this, SLOT(deleteLater()));
+	m_fade_timer->start();
 }
 
 //-----------------------------------------------------------------------------

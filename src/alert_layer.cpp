@@ -43,6 +43,7 @@ void AlertLayer::addAlert(const QString& text, const QStringList& details)
 	m_alerts.append(alert);
 	m_alerts_layout->addWidget(alert);
 	connect(alert, SIGNAL(destroyed(QObject*)), this, SLOT(alertDestroyed(QObject*)));
+	alert->fadeIn();
 }
 
 //-----------------------------------------------------------------------------
