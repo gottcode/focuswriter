@@ -746,6 +746,8 @@ void Window::initMenus() {
 	file_menu->addMenu(m_sessions->menu());
 	m_actions["ManageSessions"] = new QAction(QIcon::fromTheme("view-choose"), tr("Manage Sessions"), this);
 	connect(m_actions["ManageSessions"], SIGNAL(triggered()), m_sessions, SLOT(exec()));
+	m_actions["NewSession"] = new QAction(QIcon::fromTheme("window-new"), tr("New Session"), this);
+	connect(m_actions["NewSession"], SIGNAL(triggered()), m_sessions, SLOT(newSession()));
 	file_menu->addSeparator();
 	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
 	file_menu->addSeparator();

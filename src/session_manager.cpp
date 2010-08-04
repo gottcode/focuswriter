@@ -160,14 +160,6 @@ void SessionManager::setCurrent(const QString& session)
 
 //-----------------------------------------------------------------------------
 
-void SessionManager::hideEvent(QHideEvent* event)
-{
-	QSettings().setValue("SessionManager/Size", size());
-	QDialog::hideEvent(event);
-}
-
-//-----------------------------------------------------------------------------
-
 void SessionManager::newSession()
 {
 	// Fetch session name
@@ -178,9 +170,12 @@ void SessionManager::newSession()
 	QString theme = m_session->theme();
 
 	// Close open documents
+	bool visible = isVisible();
 	hide();
 	if (!closeCurrent()) {
-		show();
+		if (visible) {
+			show();
+		}
 		return;
 	}
 	accept();
@@ -192,6 +187,14 @@ void SessionManager::newSession()
 		session.setValue("ThemeManager/Size", QSettings().value("ThemeManager/Size"));
 	}
 	setCurrent(name);
+}
+
+//-----------------------------------------------------------------------------
+
+void SessionManager::hideEvent(QHideEvent* event)
+{
+	QSettings().setValue("SessionManager/Size", size());
+	QDialog::hideEvent(event);
 }
 
 //-----------------------------------------------------------------------------
@@ -340,10 +343,11 @@ QListWidgetItem* SessionManager::selectedSession(bool prevent_default)
 
 QString SessionManager::getSessionName(const QString& title, const QString& session)
 {
+	QWidget* window = isVisible() ? this : parentWidget()->window();
 	QString name = session;
 	forever {
 		bool ok;
-		name = QInputDialog::getText(window(), title, tr("Session name:"), QLineEdit::Normal, name, &ok);
+		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok);
 		if (!ok) {
 			return QString();
 		}
@@ -351,7 +355,7 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 		if (name != tr("Default") && !QFile::exists(Session::pathFromName(name))) {
 			break;
 		} else {
-			QMessageBox::information(window(), tr("Sorry"), tr("The requested session name is already in use."));
+			QMessageBox::information(window, tr("Sorry"), tr("The requested session name is already in use."));
 		}
 	}
 	return name;
@@ -391,7 +395,8 @@ void SessionManager::updateList(const QString& selected)
 	}
 
 	m_sessions_menu->addSeparator();
-	m_sessions_menu->addAction(tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+M"));
+	m_sessions_menu->addAction(QIcon::fromTheme("window-new"), tr("&New..."), this, SLOT(newSession()), tr("Ctrl+Shift+N"));
+	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+M"));
 }
 
 //-----------------------------------------------------------------------------

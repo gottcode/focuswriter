@@ -43,6 +43,9 @@ public:
 	bool closeCurrent();
 	void setCurrent(const QString& session);
 
+public slots:
+	void newSession();
+
 signals:
 	void themeChanged(const Theme& theme);
 
@@ -50,7 +53,6 @@ protected:
 	virtual void hideEvent(QHideEvent* event);
 
 private slots:
-	void newSession();
 	void renameSession();
 	void cloneSession();
 	void deleteSession();
