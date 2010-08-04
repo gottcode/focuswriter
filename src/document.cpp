@@ -174,6 +174,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 
 	// Set up scroll bar
+	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
