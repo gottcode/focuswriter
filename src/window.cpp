@@ -218,7 +218,13 @@ Window::Window()
 /*****************************************************************************/
 
 void Window::addDocuments(const QStringList& files, const QStringList& positions, int active) {
-	m_documents->loadScreen()->startStep("");
+	m_documents->setHeaderVisible(false);
+	m_documents->setFooterVisible(false);
+
+	bool show_load = files.count() > 1 || m_documents->loadScreen()->isVisible();
+	if (show_load) {
+		m_documents->loadScreen()->startStep("");
+	}
 
 	if (!files.isEmpty()) {
 		for (int i = 0; i < files.count(); ++i) {
@@ -229,7 +235,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	}
 	m_tabs->setCurrentIndex(active);
 
-	m_documents->loadScreen()->finishStep();
+	if (show_load) {
+		m_documents->loadScreen()->finishStep();
+	}
 }
 
 /*****************************************************************************/
@@ -324,11 +332,11 @@ void Window::newDocument() {
 /*****************************************************************************/
 
 void Window::openDocument() {
-	QString filename = QFileDialog::getOpenFileName(window(), tr("Open File"), QString(), m_open_filter);
-	if (!filename.isEmpty()) {
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), m_open_filter);
+	if (!filenames.isEmpty()) {
 		Document* document = m_documents->currentDocument();
 		int index = (document->index() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
-		addDocument(filename);
+		addDocuments(filenames, QStringList(), m_tabs->count() + filenames.count());
 		if (index != -1) {
 			m_tabs->setCurrentIndex(index);
 			closeDocument();
