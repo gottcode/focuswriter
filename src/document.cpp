@@ -381,12 +381,16 @@ void Document::loadTheme(const Theme& theme) {
 	p.setColor(QPalette::Highlight, theme.textColor());
 	p.setColor(QPalette::HighlightedText, theme.foregroundColor());
 	m_text->setPalette(p);
-	m_highlighter->setMisspelledColor(theme.misspelledColor());
+	if (m_highlighter->misspelledColor() != theme.misspelledColor()) {
+		m_highlighter->setMisspelledColor(theme.misspelledColor());
+	}
 
 	// Update text
 	QFont font = theme.textFont();
 	font.setStyleStrategy(m_text->font().styleStrategy());
-	m_text->setFont(font);
+	if (m_text->font() != font) {
+		m_text->setFont(font);
+	}
 	m_text->setFixedWidth(theme.foregroundWidth());
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 

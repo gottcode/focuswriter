@@ -23,6 +23,8 @@
 
 #include <QDir>
 #include <QFile>
+#include <QImageReader>
+#include <QPainter>
 #include <QSettings>
 #include <QUrl>
 
@@ -85,6 +87,38 @@ Theme::~Theme() {
 	settings.setValue("Text/Color", m_text_color.name());
 	settings.setValue("Text/Font", m_text_font.toString());
 	settings.setValue("Text/Misspelled", m_misspelled_color.name());
+}
+
+/*****************************************************************************/
+
+QImage Theme::renderBackground(const QString& filename, int type, const QColor& background, const QSize& size) {
+	QImage image(size, QImage::Format_RGB32);
+	image.fill(background.rgb());
+
+	QPainter painter(&image);
+	if (type > 1) {
+		QImageReader source(filename);
+		QSize scaled = source.size();
+		switch (type) {
+		case 3:
+			scaled.scale(size, Qt::IgnoreAspectRatio);
+			break;
+		case 4:
+			scaled.scale(size, Qt::KeepAspectRatio);
+			break;
+		case 5:
+			scaled.scale(size, Qt::KeepAspectRatioByExpanding);
+			break;
+		default:
+			break;
+		}
+		source.setScaledSize(scaled);
+		painter.drawImage((size.width() - scaled.width()) / 2, (size.height() - scaled.height()) / 2, source.read());
+	} else if (type == 1) {
+		painter.fillRect(image.rect(), QImage(filename));
+	}
+	painter.end();
+	return image;
 }
 
 /*****************************************************************************/

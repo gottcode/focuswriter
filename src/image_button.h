@@ -27,16 +27,12 @@ class ImageButton : public QPushButton {
 public:
 	ImageButton(QWidget* parent = 0);
 
-	QImage image() const {
-		return m_image;
-	}
-
 	QString toString() const {
 		return m_path;
 	}
 
 signals:
-	void changed(const QImage& image);
+	void changed(const QString& path);
 
 public slots:
 	void setImage(const QString& path);
@@ -47,7 +43,6 @@ private slots:
 
 private:
 	QString m_path;
-	QImage m_image;
 };
 
 #endif

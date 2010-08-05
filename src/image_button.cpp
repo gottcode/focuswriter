@@ -35,28 +35,33 @@ ImageButton::ImageButton(QWidget* parent)
 /*****************************************************************************/
 
 void ImageButton::setImage(const QString& path) {
-	m_path = path;
-	m_image.load(path);
+	if (!path.isEmpty()) {
+		m_path = path;
 
-	if (m_image.width() > 100 || m_image.height() > 100) {
-		QImage icon = m_image.scaled(QSize(100, 100), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-		setIcon(QPixmap::fromImage(icon));
+		QImageReader source(path);
+		QSize size = source.size();
+		if (size.width() > 100 || size.height() > 100) {
+			size.scale(100, 100, Qt::KeepAspectRatio);
+			source.setScaledSize(size);
+		}
+		setIcon(QPixmap::fromImage(source.read(), Qt::AutoColor | Qt::AvoidDither));
+
+		emit changed(m_path);
+	} else {
+		unsetImage();
 	}
-
-	emit changed(m_image);
 }
 
 /*****************************************************************************/
 
 void ImageButton::unsetImage() {
 	m_path.clear();
-	m_image = QImage();
 
 	QPixmap icon(100,100);
 	icon.fill(Qt::transparent);
 	setIcon(icon);
 
-	emit changed(m_image);
+	emit changed(m_path);
 }
 
 /*****************************************************************************/

@@ -70,7 +70,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_background_image = new ImageButton(tab);
 	m_background_image->setImage(m_theme.backgroundImage());
-	connect(m_background_image, SIGNAL(changed(const QImage&)), this, SLOT(renderPreview()));
+	connect(m_background_image, SIGNAL(changed(const QString&)), this, SLOT(renderPreview()));
 
 	QPushButton* clear_image = new QPushButton(tr("Remove"), this);
 	connect(clear_image, SIGNAL(clicked()), m_background_image, SLOT(unsetImage()));
@@ -234,38 +234,10 @@ void ThemeDialog::renderPreview() {
 		painter.setClipRect(0, 0, 200, 150);
 
 		int type = m_background_type->currentIndex();
-		QImage source = m_background_image->image();
 
 		// Draw background
-		if (type != 1 || source.isNull()) {
-			painter.fillRect(preview.rect(), m_background_color->color());
-		} else {
-			painter.fillRect(preview.rect(), QPixmap::fromImage(m_background_image->image()));
-		}
-
-		// Draw background image
-		if (type != 1 && !source.isNull()) {
-			QSize size(200, 150);
-			switch (type) {
-			case 2:
-				source = source.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-				break;
-			case 3:
-				source = source.scaled(size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-				break;
-			case 4:
-				source = source.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-				break;
-			case 5:
-				source = source.scaled(size, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-				break;
-			default:
-				break;
-			}
-			if (type > 1) {
-				painter.drawImage(QPoint(99, 74) - source.rect().center(), source);
-			}
-		}
+		QImage background = Theme::renderBackground(m_background_image->toString(), type, m_background_color->color(), QSize(200, 150));
+		painter.drawImage(QPoint(99, 74) - background.rect().center(), background);
 
 		// Draw foreground
 		QColor color = m_foreground_color->color();

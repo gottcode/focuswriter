@@ -23,6 +23,8 @@
 #include <QColor>
 #include <QCoreApplication>
 #include <QFont>
+class QImage;
+class QSize;
 
 class Theme {
 	Q_DECLARE_TR_FUNCTIONS(Theme);
@@ -31,6 +33,7 @@ public:
 	Theme(const QString& name = QString());
 	~Theme();
 
+	static QImage renderBackground(const QString& filename, int type, const QColor& background, const QSize& size);
 	static QString path();
 	static QString filePath(const QString& theme);
 	static QString iconPath(const QString& theme);

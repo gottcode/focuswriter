@@ -58,8 +58,6 @@ namespace {
 		};
 		QList<File> m_files;
 		QMutex m_file_mutex;
-		QImage m_source;
-		QString m_source_path;
 		QImage m_image;
 		QMutex m_image_mutex;
 	} background_loader;
@@ -93,39 +91,10 @@ namespace {
 			m_files.clear();
 			m_file_mutex.unlock();
 
-			QSize size = file.rect.size();
-			QImage scaled = QImage(size, QImage::Format_RGB32);
-			if (m_source_path != file.image_path) {
-				m_source_path = file.image_path;
-				m_source.load(m_source_path);
-			}
-
-			QImage background;
-			switch (file.position) {
-			case 2:
-				background = m_source;
-				break;
-			case 3:
-				background = m_source.scaled(size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-				break;
-			case 4:
-				background = m_source.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-				break;
-			case 5:
-				background = m_source.scaled(size, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-				break;
-			default:
-				break;
-			}
-
-			QPainter painter(&scaled);
-			painter.fillRect(file.rect, file.palette.brush(QPalette::Window));
-			if (file.position > 1) {
-				painter.drawImage(file.rect.center() - background.rect().center(), background);
-			}
+			QImage image = Theme::renderBackground(file.image_path, file.position, file.palette.color(QPalette::Window), file.rect.size());
 
 			m_image_mutex.lock();
-			m_image = scaled;
+			m_image = image;
 			m_image_mutex.unlock();
 
 			m_file_mutex.lock();
@@ -442,11 +411,7 @@ void Stack::themeSelected(const Theme& theme) {
 	m_background_path = theme.backgroundImage();
 
 	QPalette p = palette();
-	if (m_background_position != 1) {
-		p.setColor(QPalette::Window, theme.backgroundColor().rgb());
-	} else {
-		p.setBrush(QPalette::Window, QImage(m_background_path));
-	}
+	p.setColor(QPalette::Window, theme.backgroundColor().rgb());
 	setPalette(p);
 
 	background_loader.reset();

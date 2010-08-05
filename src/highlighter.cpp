@@ -45,8 +45,14 @@ Highlighter::Highlighter(QTextEdit* text)
 
 /*****************************************************************************/
 
-bool Highlighter::enabled() {
+bool Highlighter::enabled() const {
 	return m_enabled;
+}
+
+/*****************************************************************************/
+
+QColor Highlighter::misspelledColor() const {
+	return m_misspelled;
 }
 
 /*****************************************************************************/
