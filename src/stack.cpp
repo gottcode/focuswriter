@@ -114,7 +114,6 @@ Stack::Stack(QWidget* parent)
   m_header_margin(0),
   m_footer_visible(0),
   m_header_visible(0) {
-	setAutoFillBackground(true);
 	setMouseTracking(true);
 
 	m_contents = new QStackedWidget(this);
@@ -484,6 +483,11 @@ void Stack::updateBackground() {
 	if ((m_background.isNull() || m_background.size() != size()) && isVisible()) {
 		m_background = QPixmap();
 		background_loader.create(m_background_position, m_background_path, this);
+		setAttribute(Qt::WA_NoSystemBackground, false);
+		setAutoFillBackground(true);
+	} else {
+		setAttribute(Qt::WA_NoSystemBackground, true);
+		setAutoFillBackground(false);
 	}
 	update();
 }
