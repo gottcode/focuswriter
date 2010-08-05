@@ -414,6 +414,8 @@ void Stack::themeSelected(const Theme& theme) {
 	setPalette(p);
 
 	background_loader.reset();
+	m_background = QPixmap();
+	m_background_old = QPixmap();
 	updateBackground();
 
 	foreach (Document* document, m_documents) {
@@ -470,9 +472,16 @@ void Stack::paintEvent(QPaintEvent* event) {
 /*****************************************************************************/
 
 void Stack::resizeEvent(QResizeEvent* event) {
-	m_background = QPixmap();
 	updateMask();
-	m_resize_timer->start();
+	if (!m_background_old.isNull() && m_background_old.size() == size()) {
+		qSwap(m_background, m_background_old);
+	} else {
+		if (!m_background.isNull()) {
+			m_background_old = m_background;
+			m_background = QPixmap();
+		}
+		m_resize_timer->start();
+	}
 	QWidget::resizeEvent(event);
 }
 
