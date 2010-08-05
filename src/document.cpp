@@ -505,7 +505,7 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 void Document::centerCursor(bool force) {
 	QRect cursor = m_text->cursorRect();
 	QRect viewport = m_text->rect();
-	if (force || m_always_center || !viewport.contains(cursor, true)) {
+	if (force || m_always_center || (cursor.bottom() >= viewport.bottom()) || (cursor.top() <= viewport.top())) {
 		QPoint offset = viewport.center() - cursor.center();
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
 		scrollbar->setValue(scrollbar->value() - offset.y());
