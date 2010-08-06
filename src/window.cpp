@@ -337,6 +337,9 @@ void Window::newDocument() {
 void Window::openDocument() {
 	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), m_open_filter);
 	if (!filenames.isEmpty()) {
+		while (QApplication::activeWindow() != this) {
+			QApplication::processEvents();
+		}
 		Document* document = m_documents->currentDocument();
 		int index = (document->index() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
 		addDocuments(filenames, QStringList(), m_tabs->count() + filenames.count());
