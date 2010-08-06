@@ -146,7 +146,7 @@ void SessionManager::setCurrent(const QString& session)
 	// Open session
 	m_session = new Session(!session.isEmpty() ? session : tr("Default"));
 	emit themeChanged(m_session->theme());
-	m_window->addDocuments(m_session->files(), m_session->positions(), m_session->active());
+	m_window->addDocuments(m_session->files(), m_session->positions(), m_session->active(), true);
 
 	// Save session name
 	if (!session.isEmpty()) {

@@ -22,7 +22,7 @@
 
 #include <QtGui/QLabel>
 class QGraphicsOpacityEffect;
-class QTimeLine;
+class QTimer;
 
 class LoadScreen : public QLabel
 {
@@ -30,18 +30,20 @@ class LoadScreen : public QLabel
 public:
 	LoadScreen(QWidget* parent);
 
-	void startStep(const QString& step);
-	void finishStep();
+	void setText(const QString& step);
+	void finish();
 
 protected:
 	virtual void hideEvent(QHideEvent* event);
 	virtual void showEvent(QShowEvent* event);
 
+private slots:
+	void fade();
+
 private:
-	QList<QString> m_steps;
 	QLabel* m_text;
 	QGraphicsOpacityEffect* m_hide_effect;
-	QTimeLine* m_hide_timer;
+	QTimer* m_hide_timer;
 };
 
 #endif

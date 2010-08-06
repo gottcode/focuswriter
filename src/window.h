@@ -27,6 +27,7 @@ class QLabel;
 class QSettings;
 class QTabBar;
 class QToolBar;
+class LoadScreen;
 class Preferences;
 class SessionManager;
 class Stack;
@@ -37,7 +38,7 @@ class Window : public QMainWindow {
 public:
 	Window();
 
-	void addDocuments(const QStringList& files, const QStringList& positions = QStringList(), int active = 0);
+	void addDocuments(const QStringList& files, const QStringList& positions = QStringList(), int active = 0, bool show_load = false);
 	bool closeDocuments(QSettings* session = 0);
 
 protected:
@@ -86,6 +87,7 @@ private:
 	QAction* m_richtext_action;
 	QString m_open_filter;
 
+	LoadScreen* m_load_screen;
 	Stack* m_documents;
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;

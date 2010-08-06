@@ -19,7 +19,7 @@
 
 #include "load_screen.h"
 
-#include <QtCore/QTimeLine>
+#include <QtCore/QTimer>
 
 #include <QtGui/QApplication>
 #include <QtGui/QGraphicsOpacityEffect>
@@ -48,21 +48,19 @@ LoadScreen::LoadScreen(QWidget* parent)
 	m_hide_effect->setOpacity(1.0);
 	setGraphicsEffect(m_hide_effect);
 
-	m_hide_timer = new QTimeLine(240, this);
-	m_hide_timer->setDirection(QTimeLine::Backward);
-	connect(m_hide_timer, SIGNAL(valueChanged(qreal)), m_hide_effect, SLOT(setOpacity(qreal)));
-	connect(m_hide_timer, SIGNAL(finished()), this, SLOT(hide()));
+	m_hide_timer = new QTimer(this);
+	m_hide_timer->setInterval(30);
+	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(fade()));
 }
 
 //-----------------------------------------------------------------------------
 
-void LoadScreen::startStep(const QString& step)
+void LoadScreen::setText(const QString& step)
 {
 	m_text->setText(step);
 	m_text->setVisible(!step.isEmpty());
-	m_steps.append(step);
 
-	if (m_hide_timer->state() != QTimeLine::NotRunning) {
+	if (m_hide_timer->isActive()) {
 		m_hide_timer->stop();
 	}
 	m_hide_effect->setOpacity(1.0);
@@ -73,17 +71,10 @@ void LoadScreen::startStep(const QString& step)
 
 //-----------------------------------------------------------------------------
 
-void LoadScreen::finishStep()
+void LoadScreen::finish()
 {
-	m_steps.removeFirst();
-	if (!m_steps.isEmpty()) {
-		QString step = m_steps.first();
-		m_text->setText(step);
-		m_text->setVisible(!step.isEmpty());
-		QApplication::processEvents();
-	} else {
-		m_hide_timer->start();
-	}
+	m_hide_effect->setOpacity(1.0);
+	m_hide_timer->start();
 }
 
 //-----------------------------------------------------------------------------
@@ -100,6 +91,17 @@ void LoadScreen::showEvent(QShowEvent* event)
 {
 	QApplication::setOverrideCursor(Qt::WaitCursor);
 	QLabel::showEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void LoadScreen::fade()
+{
+	m_hide_effect->setOpacity(m_hide_effect->opacity() - 0.2);
+	if (m_hide_effect->opacity() <= 0.01) {
+		m_hide_timer->stop();
+		hide();
+	}
 }
 
 //-----------------------------------------------------------------------------

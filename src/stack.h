@@ -26,7 +26,6 @@ class QStackedWidget;
 class AlertLayer;
 class Document;
 class FindDialog;
-class LoadScreen;
 class Theme;
 
 class Stack : public QWidget {
@@ -39,10 +38,6 @@ public:
 
 	AlertLayer* alerts() const {
 		return m_alerts;
-	}
-
-	LoadScreen* loadScreen() const {
-		return m_load_screen;
 	}
 
 	int count() const {
@@ -68,6 +63,8 @@ public:
 	void setCurrentDocument(int index);
 
 	void setMargins(int footer, int header);
+
+	void waitForThemeBackground();
 
 signals:
 	void copyAvailable(bool);
@@ -123,7 +120,6 @@ private slots:
 	void updateMask();
 
 private:
-	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;

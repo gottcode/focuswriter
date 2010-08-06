@@ -100,6 +100,7 @@ Window::Window()
 	m_documents = new Stack(this);
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
+	m_load_screen = new LoadScreen(this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
 	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
@@ -217,13 +218,13 @@ Window::Window()
 
 /*****************************************************************************/
 
-void Window::addDocuments(const QStringList& files, const QStringList& positions, int active) {
+void Window::addDocuments(const QStringList& files, const QStringList& positions, int active, bool show_load) {
 	m_documents->setHeaderVisible(false);
 	m_documents->setFooterVisible(false);
 
-	bool show_load = files.count() > 1 || m_documents->loadScreen()->isVisible();
+	show_load = show_load || ((files.count() > 1) && !m_load_screen->isVisible());
 	if (show_load) {
-		m_documents->loadScreen()->startStep("");
+		m_load_screen->setText("");
 	}
 
 	if (!files.isEmpty()) {
@@ -236,7 +237,8 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	m_tabs->setCurrentIndex(active);
 
 	if (show_load) {
-		m_documents->loadScreen()->finishStep();
+		m_documents->waitForThemeBackground();
+		m_load_screen->finish();
 	}
 }
 
@@ -318,6 +320,7 @@ void Window::resizeEvent(QResizeEvent* event) {
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
+	m_load_screen->resize(size());
 	m_documents->resize(size());
 	QMainWindow::resizeEvent(event);
 }
@@ -581,9 +584,14 @@ void Window::addDocument(const QString& filename, int position) {
 		}
 	}
 
-	bool show_load = !filename.isEmpty() && (QFileInfo(filename).size() > 100000 || m_documents->loadScreen()->isVisible());
-	if (show_load) {
-		m_documents->loadScreen()->startStep(tr("Opening %1").arg(filename));
+	bool show_load = false;
+	show_load = !filename.isEmpty() && !m_load_screen->isVisible() && (QFileInfo(filename).size() > 100000);
+	if (m_load_screen->isVisible() || show_load) {
+		if (!filename.isEmpty()) {
+			m_load_screen->setText(tr("Opening %1").arg(filename));
+		} else {
+			m_load_screen->setText("");
+		}
 	}
 
 	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_margin, m_sessions->current()->theme(), this);
@@ -609,7 +617,7 @@ void Window::addDocument(const QString& filename, int position) {
 	m_tabs->setCurrentIndex(index);
 
 	if (show_load) {
-		m_documents->loadScreen()->finishStep();
+		m_load_screen->finish();
 	}
 }
 
