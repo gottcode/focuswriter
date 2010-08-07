@@ -41,6 +41,8 @@ private slots:
 	void addTheme();
 	void modifyTheme();
 	void removeTheme();
+	void importTheme();
+	void exportTheme();
 	void currentThemeChanged(QListWidgetItem* current);
 
 private:

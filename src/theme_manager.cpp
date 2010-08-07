@@ -24,12 +24,15 @@
 
 #include <QDir>
 #include <QFile>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QHBoxLayout>
+#include <QInputDialog>
 #include <QListWidget>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
+#include <QTemporaryFile>
 #include <QUrl>
 #include <QVBoxLayout>
 
@@ -76,6 +79,14 @@ m_settings(settings) {
 	remove_button->setAutoDefault(false);
 	connect(remove_button, SIGNAL(clicked()), this, SLOT(removeTheme()));
 
+	QPushButton* import_button = new QPushButton(tr("Import"), this);
+	import_button->setAutoDefault(false);
+	connect(import_button, SIGNAL(clicked()), this, SLOT(importTheme()));
+
+	QPushButton* export_button = new QPushButton(tr("Export"), this);
+	export_button->setAutoDefault(false);
+	connect(export_button, SIGNAL(clicked()), this, SLOT(exportTheme()));
+
 	QPushButton* close_button = new QPushButton(tr("Close"), this);
 	close_button->setAutoDefault(false);
 	connect(close_button, SIGNAL(clicked()), this, SLOT(accept()));
@@ -86,6 +97,9 @@ m_settings(settings) {
 	buttons_layout->addWidget(add_button);
 	buttons_layout->addWidget(edit_button);
 	buttons_layout->addWidget(remove_button);
+	buttons_layout->addSpacing(import_button->sizeHint().height());
+	buttons_layout->addWidget(import_button);
+	buttons_layout->addWidget(export_button);
 	buttons_layout->addStretch();
 	buttons_layout->addWidget(close_button);
 
@@ -164,6 +178,89 @@ void ThemeManager::removeTheme() {
 		QFile::remove(Theme::iconPath(item->text()));
 		delete item;
 		item = 0;
+	}
+}
+
+/*****************************************************************************/
+
+void ThemeManager::importTheme() {
+	// Find file to import
+	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), QDir::homePath(), tr("Themes (*.theme)"));
+	if (filename.isEmpty()) {
+		return;
+	}
+
+	// Find theme name
+	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).baseName().toUtf8());
+	while (QFile::exists(Theme::filePath(name))) {
+		bool ok;
+		name = QInputDialog::getText(this, tr("Sorry"), tr("A theme already exists with that name. Please enter a new name:"), QLineEdit::Normal, name, &ok);
+		if (!ok) {
+			return;
+		}
+	}
+
+	// Copy theme file
+	QString theme_filename = Theme::filePath(name);
+	QFile::copy(filename, theme_filename);
+
+	// Extract and use background image
+	QSettings settings(theme_filename, QSettings::IniFormat);
+	QByteArray data = QByteArray::fromBase64(settings.value("Data/Image").toByteArray());
+	QString image_file = settings.value("Background/ImageFile").toString();
+	settings.remove("Background/ImageFile");
+	settings.remove("Data/Image");
+	settings.sync();
+
+	if (!data.isEmpty()) {
+		QTemporaryFile file(QDir::tempPath() + "/XXXXXX-" + image_file);
+		if (file.open()) {
+			file.write(data);
+			file.close();
+		}
+
+		Theme theme(name);
+		theme.setBackgroundImage(file.fileName());
+	}
+
+	settings.sync();
+	settings.remove("Background/Image");
+
+	addItem(name);
+}
+
+/*****************************************************************************/
+
+void ThemeManager::exportTheme() {
+	QListWidgetItem* item = m_themes->currentItem();
+	if (!item) {
+		return;
+	}
+
+	// Find export file name
+	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), QDir::homePath() + "/" + item->text() + ".theme", tr("Themes (*.theme)"));
+	if (filename.isEmpty()) {
+		return;
+	}
+	if (!filename.endsWith(".theme")) {
+		filename += ".theme";
+	}
+
+	// Copy theme
+	QFile::remove(filename);
+	QFile::copy(Theme::filePath(item->text()), filename);
+
+	// Store image in export file
+	QSettings settings(filename, QSettings::IniFormat);
+	settings.remove("Background/Image");
+
+	QString image = settings.value("Background/ImageFile").toString();
+	if (!image.isEmpty()) {
+		QFile file(Theme::path() + "/Images/" + image);
+		if (file.open(QFile::ReadOnly)) {
+			settings.setValue("Data/Image", file.readAll().toBase64());
+			file.close();
+		}
 	}
 }
 
