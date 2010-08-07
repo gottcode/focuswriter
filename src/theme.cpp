@@ -21,12 +21,68 @@
 
 #include "session.h"
 
+#include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
 #include <QImageReader>
 #include <QPainter>
 #include <QSettings>
 #include <QUrl>
+
+/*****************************************************************************/
+
+namespace {
+	bool compareFiles(const QString& filename1, const QString& filename2) {
+		// Compare sizes
+		QFile file1(filename1);
+		QFile file2(filename2);
+		if (file1.size() != file2.size()) {
+			return false;
+		}
+
+		// Compare contents
+		bool equal = true;
+		if (file1.open(QFile::ReadOnly) && file2.open(QFile::ReadOnly)) {
+			while (!file1.atEnd()) {
+				if (file1.read(1000) != file2.read(1000)) {
+					equal = false;
+					break;
+				}
+			}
+			file1.close();
+			file2.close();
+		} else {
+			equal = false;
+		}
+		return equal;
+	}
+
+	QString copyImage(const QString& image) {
+		// Check if already copied
+		QDir images(Theme::path() + "/Images/");
+		QStringList filenames = images.entryList(QDir::Files);
+		foreach (const QString& filename, filenames) {
+			if (compareFiles(image, images.filePath(filename))) {
+				return filename;
+			}
+		}
+
+		// Find file name
+		QString base = QCryptographicHash::hash(image.toUtf8(), QCryptographicHash::Sha1).toHex();
+		QString suffix = QFileInfo(image).suffix().toLower();
+		QString filename = QString("%1.%2").arg(base, suffix);
+
+		// Handle file name collisions
+		int id = 0;
+		while (images.exists(filename)) {
+			id++;
+			filename = QString("%1-%2.%3").arg(base).arg(id).arg(suffix);
+		}
+
+		QFile::copy(image, images.filePath(filename));
+		return filename;
+	}
+}
 
 /*****************************************************************************/
 
@@ -49,7 +105,12 @@ Theme::Theme(const QString& name)
 	// Load background settings
 	m_background_type = settings.value("Background/Type", 0).toInt();
 	m_background_color = settings.value("Background/Color", "#cccccc").toString();
-	m_background_image = settings.value("Background/Image").toString();
+	m_background_path = settings.value("Background/Image").toString();
+	m_background_image = settings.value("Background/ImageFile").toString();
+	if (!m_background_path.isEmpty() && m_background_image.isEmpty()) {
+		m_background_image = copyImage(m_background_path);
+		m_changed = true;
+	}
 
 	// Load foreground settings
 	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
@@ -75,7 +136,10 @@ Theme::~Theme() {
 	// Store background settings
 	settings.setValue("Background/Type", m_background_type);
 	settings.setValue("Background/Color", m_background_color.name());
-	settings.setValue("Background/Image", m_background_image);
+	if (!m_background_path.isEmpty()) {
+		settings.setValue("Background/Image", m_background_path);
+	}
+	settings.setValue("Background/ImageFile", m_background_image);
 
 	// Store foreground settings
 	settings.setValue("Foreground/Color", m_foreground_color.name());
@@ -87,6 +151,37 @@ Theme::~Theme() {
 	settings.setValue("Text/Color", m_text_color.name());
 	settings.setValue("Text/Font", m_text_font.toString());
 	settings.setValue("Text/Misspelled", m_misspelled_color.name());
+}
+
+/*****************************************************************************/
+
+void Theme::copyBackgrounds() {
+	QDir dir(path() + "/Images");
+	QStringList images;
+
+	// Copy images
+	QStringList themes = QDir(path(), "*.theme").entryList(QDir::Files);
+	foreach (const QString& theme, themes) {
+		QSettings settings(path() + "/" + theme, QSettings::IniFormat);
+		QString background_path = settings.value("Background/Image").toString();
+		QString background_image = settings.value("Background/ImageFile").toString();
+		if (background_path.isEmpty() && background_image.isEmpty()) {
+			continue;
+		}
+		if (!background_path.isEmpty() && (background_image.isEmpty() || !dir.exists(background_image))) {
+			background_image = copyImage(background_path);
+			settings.setValue("Background/ImageFile", background_image);
+		}
+		images.append(background_image);
+	}
+
+	// Delete unused images
+	QStringList files = dir.entryList(QDir::Files);
+	foreach (const QString& file, files) {
+		if (!images.contains(file)) {
+			QFile::remove(path() + "/Images/" + file);
+		}
+	}
 }
 
 /*****************************************************************************/
@@ -186,7 +281,13 @@ QColor Theme::backgroundColor() const {
 /*****************************************************************************/
 
 QString Theme::backgroundImage() const {
-	return m_background_image;
+	return path() + "/Images/" + m_background_image;
+}
+
+/*****************************************************************************/
+
+QString Theme::backgroundPath() const {
+	return m_background_path;
 }
 
 /*****************************************************************************/
@@ -206,8 +307,15 @@ void Theme::setBackgroundColor(const QColor& color) {
 /*****************************************************************************/
 
 void Theme::setBackgroundImage(const QString& path) {
-	m_background_image = path;
-	m_changed = true;
+	if (m_background_path != path) {
+		m_background_path = path;
+		if (!m_background_path.isEmpty()) {
+			m_background_image = copyImage(m_background_path);
+		} else {
+			m_background_image.clear();
+		}
+		m_changed = true;
+	}
 }
 
 /*****************************************************************************/

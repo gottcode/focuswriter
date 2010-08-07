@@ -19,6 +19,7 @@
 
 #include "image_button.h"
 
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QImageReader>
 
@@ -34,11 +35,10 @@ ImageButton::ImageButton(QWidget* parent)
 
 /*****************************************************************************/
 
-void ImageButton::setImage(const QString& path) {
-	if (!path.isEmpty()) {
-		m_path = path;
-
-		QImageReader source(path);
+void ImageButton::setImage(const QString& image, const QString& path) {
+	QImageReader source(image);
+	if (source.canRead()) {
+		m_image = image;
 		QSize size = source.size();
 		if (size.width() > 100 || size.height() > 100) {
 			size.scale(100, 100, Qt::KeepAspectRatio);
@@ -46,6 +46,7 @@ void ImageButton::setImage(const QString& path) {
 		}
 		setIcon(QPixmap::fromImage(source.read(), Qt::AutoColor | Qt::AvoidDither));
 
+		m_path = (!path.isEmpty() && QImageReader(path).canRead()) ? path : QString();
 		emit changed(m_path);
 	} else {
 		unsetImage();
@@ -55,6 +56,7 @@ void ImageButton::setImage(const QString& path) {
 /*****************************************************************************/
 
 void ImageButton::unsetImage() {
+	m_image.clear();
 	m_path.clear();
 
 	QPixmap icon(100,100);
@@ -72,9 +74,10 @@ void ImageButton::onClicked() {
 	foreach (QByteArray type, formats) {
 		filters.append("*." + type);
 	}
-	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), m_path, tr("Images(%1)").arg(filters.join(" ")));
+	QString path = !m_path.isEmpty() ? m_path : QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
+	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")));
 	if (!image.isEmpty()) {
-		setImage(image);
+		setImage(image, image);
 	}
 }
 

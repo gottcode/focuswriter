@@ -33,6 +33,7 @@ public:
 	Theme(const QString& name = QString());
 	~Theme();
 
+	static void copyBackgrounds();
 	static QImage renderBackground(const QString& filename, int type, const QColor& background, const QSize& size);
 	static QString path();
 	static QString filePath(const QString& theme);
@@ -46,6 +47,7 @@ public:
 	int backgroundType() const;
 	QColor backgroundColor() const;
 	QString backgroundImage() const;
+	QString backgroundPath() const;
 
 	void setBackgroundType(int type);
 	void setBackgroundColor(const QColor& color);
@@ -77,6 +79,7 @@ private:
 
 	int m_background_type;
 	QColor m_background_color;
+	QString m_background_path;
 	QString m_background_image;
 
 	QColor m_foreground_color;

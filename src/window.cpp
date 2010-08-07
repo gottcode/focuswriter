@@ -197,6 +197,10 @@ Window::Window()
 	toggleFullscreen();
 	show();
 
+	// Update themes
+	m_load_screen->setText("Updating Themes");
+	Theme::copyBackgrounds();
+
 	// Update margin
 	m_tabs->blockSignals(true);
 	m_tabs->addTab(tr("Untitled"));

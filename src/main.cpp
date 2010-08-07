@@ -117,6 +117,9 @@ int main(int argc, char** argv) {
 			dir.mkdir("Themes");
 		}
 	}
+	if (!dir.exists("Themes/Images")) {
+		dir.mkdir("Themes/Images");
+	}
 	Theme::setPath(dir.absoluteFilePath("Themes"));
 
 	// Set dictionary paths

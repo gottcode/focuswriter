@@ -69,7 +69,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_background_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
 
 	m_background_image = new ImageButton(tab);
-	m_background_image->setImage(m_theme.backgroundImage());
+	m_background_image->setImage(m_theme.backgroundImage(), m_theme.backgroundPath());
 	connect(m_background_image, SIGNAL(changed(const QString&)), this, SLOT(renderPreview()));
 
 	QPushButton* clear_image = new QPushButton(tr("Remove"), this);
@@ -236,7 +236,7 @@ void ThemeDialog::renderPreview() {
 		int type = m_background_type->currentIndex();
 
 		// Draw background
-		QImage background = Theme::renderBackground(m_background_image->toString(), type, m_background_color->color(), QSize(200, 150));
+		QImage background = Theme::renderBackground(m_background_image->image(), type, m_background_color->color(), QSize(200, 150));
 		painter.drawImage(QPoint(99, 74) - background.rect().center(), background);
 
 		// Draw foreground
