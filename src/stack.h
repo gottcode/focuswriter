@@ -105,6 +105,8 @@ public slots:
 	void setFontUnderline(bool underline);
 	void setFontSuperScript(bool super);
 	void setFontSubScript(bool sub);
+	void setTextDirectionLTR();
+	void setTextDirectionRTL();
 	void themeSelected(const Theme& theme);
 	void undo();
 	void setFooterVisible(bool visible);

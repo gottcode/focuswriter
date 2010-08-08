@@ -32,6 +32,7 @@
 #include <QPaintEvent>
 #include <QPlainTextEdit>
 #include <QStackedWidget>
+#include <QTextBlock>
 #include <QTextCursor>
 #include <QThread>
 #include <QTimer>
@@ -234,13 +235,13 @@ void Stack::alignJustify() {
 /*****************************************************************************/
 
 void Stack::alignLeft() {
-	m_current_document->text()->setAlignment(Qt::AlignLeft);
+	m_current_document->text()->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
 }
 
 /*****************************************************************************/
 
 void Stack::alignRight() {
-	m_current_document->text()->setAlignment(Qt::AlignRight);
+	m_current_document->text()->setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
 }
 
 /*****************************************************************************/
@@ -406,6 +407,26 @@ void Stack::setFontSubScript(bool sub) {
 	QTextCharFormat format;
 	format.setVerticalAlignment(sub ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal);
 	m_current_document->text()->mergeCurrentCharFormat(format);
+}
+
+/*****************************************************************************/
+
+void Stack::setTextDirectionLTR() {
+	if (m_current_document) {
+		QTextBlockFormat format = m_current_document->text()->textCursor().blockFormat();
+		format.setLayoutDirection(Qt::LeftToRight);
+		m_current_document->text()->textCursor().mergeBlockFormat(format);
+	}
+}
+
+/*****************************************************************************/
+
+void Stack::setTextDirectionRTL() {
+	if (m_current_document) {
+		QTextBlockFormat format = m_current_document->text()->textCursor().blockFormat();
+		format.setLayoutDirection(Qt::RightToLeft);
+		m_current_document->text()->textCursor().mergeBlockFormat(format);
+	}
 }
 
 /*****************************************************************************/

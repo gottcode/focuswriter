@@ -95,6 +95,7 @@ signals:
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
 	void indentChanged(bool indented);
+	void alignmentChanged();
 
 protected:
 	virtual void mouseMoveEvent(QMouseEvent* event);

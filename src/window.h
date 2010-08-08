@@ -67,6 +67,7 @@ private slots:
 	void updateClock();
 	void updateDetails();
 	void updateFormatActions();
+	void updateFormatAlignmentActions();
 	void updateProgress();
 	void updateSave();
 

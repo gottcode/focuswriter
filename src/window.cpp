@@ -334,6 +334,13 @@ void Window::resizeEvent(QResizeEvent* event) {
 void Window::newDocument() {
 	addDocument();
 	m_actions["Rename"]->setEnabled(false);
+	if (m_documents->currentDocument()->isRichText()) {
+		if (!QApplication::isRightToLeft()) {
+			m_actions["FormatDirectionLTR"]->setChecked(true);
+		} else {
+			m_actions["FormatDirectionRTL"]->setChecked(true);
+		}
+	}
 }
 
 /*****************************************************************************/
@@ -483,6 +490,7 @@ void Window::tabClicked(int index) {
 	m_documents->setCurrentDocument(index);
 	updateDetails();
 	updateSave();
+	updateFormatAlignmentActions();
 	m_documents->currentDocument()->text()->setFocus();
 }
 
@@ -544,6 +552,21 @@ void Window::updateFormatActions() {
 	m_actions["FormatUnderline"]->setChecked(format.fontUnderline());
 	m_actions["FormatSuperScript"]->setChecked(format.verticalAlignment() == QTextCharFormat::AlignSuperScript);
 	m_actions["FormatSubScript"]->setChecked(format.verticalAlignment() == QTextCharFormat::AlignSubScript);
+}
+
+/*****************************************************************************/
+
+void Window::updateFormatAlignmentActions() {
+	Document* document = m_documents->currentDocument();
+	if (!document) {
+		return;
+	}
+
+	if (document->text()->textCursor().blockFormat().layoutDirection() == Qt::LeftToRight) {
+		m_actions["FormatDirectionLTR"]->setChecked(true);
+	} else {
+		m_actions["FormatDirectionRTL"]->setChecked(true);
+	}
 
 	Qt::Alignment alignment = document->text()->alignment();
 	if (alignment & Qt::AlignLeft) {
@@ -606,6 +629,7 @@ void Window::addDocument(const QString& filename, int position) {
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
+	connect(document, SIGNAL(alignmentChanged()), this, SLOT(updateFormatAlignmentActions()));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Restore cursor position
@@ -798,6 +822,7 @@ void Window::initMenus() {
 
 	// Create format menu
 	QMenu* format_menu = menuBar()->addMenu(tr("&Format"));
+
 	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, SLOT(setFontBold(bool)), QKeySequence::Bold);
 	m_actions["FormatBold"]->setCheckable(true);
 	m_actions["FormatItalic"] = format_menu->addAction(QIcon::fromTheme("format-text-italic"), tr("&Italic"), m_documents, SLOT(setFontItalic(bool)), QKeySequence::Italic);
@@ -806,11 +831,11 @@ void Window::initMenus() {
 	m_actions["FormatUnderline"]->setCheckable(true);
 	m_actions["FormatStrikeOut"] = format_menu->addAction(QIcon::fromTheme("format-text-strikethrough"), tr("Stri&kethrough"), m_documents, SLOT(setFontStrikeOut(bool)), tr("Ctrl+K"));
 	m_actions["FormatStrikeOut"]->setCheckable(true);
-	format_menu->addSeparator();
 	m_actions["FormatSuperScript"] = format_menu->addAction(QIcon::fromTheme("format-text-superscript"), tr("Sup&erscript"), m_documents, SLOT(setFontSuperScript(bool)), tr("Ctrl+^"));
 	m_actions["FormatSuperScript"]->setCheckable(true);
 	m_actions["FormatSubScript"] = format_menu->addAction(QIcon::fromTheme("format-text-subscript"), tr("&Subscript"), m_documents, SLOT(setFontSubScript(bool)), tr("Ctrl+_"));
 	m_actions["FormatSubScript"]->setCheckable(true);
+
 	format_menu->addSeparator();
 	m_actions["FormatAlignLeft"] = format_menu->addAction(QIcon::fromTheme("format-justify-left"), tr("Align &Left"), m_documents, SLOT(alignLeft()), tr("Ctrl+{"));
 	m_actions["FormatAlignLeft"]->setCheckable(true);
@@ -818,7 +843,7 @@ void Window::initMenus() {
 	m_actions["FormatAlignCenter"]->setCheckable(true);
 	m_actions["FormatAlignRight"] = format_menu->addAction(QIcon::fromTheme("format-justify-right"), tr("Align &Right"), m_documents, SLOT(alignRight()), tr("Ctrl+}"));
 	m_actions["FormatAlignRight"]->setCheckable(true);
-	m_actions["FormatAlignJustify"] = format_menu->addAction(QIcon::fromTheme("format-justify-fill"), tr("&Align Block"), m_documents, SLOT(alignJustify()), tr("Ctrl+J"));
+	m_actions["FormatAlignJustify"] = format_menu->addAction(QIcon::fromTheme("format-justify-fill"), tr("Align &Justify"), m_documents, SLOT(alignJustify()), tr("Ctrl+J"));
 	m_actions["FormatAlignJustify"]->setCheckable(true);
 	QActionGroup* alignment = new QActionGroup(this);
 	alignment->addAction(m_actions["FormatAlignLeft"]);
@@ -826,12 +851,24 @@ void Window::initMenus() {
 	alignment->addAction(m_actions["FormatAlignRight"]);
 	alignment->addAction(m_actions["FormatAlignJustify"]);
 	m_actions["FormatAlignLeft"]->setChecked(true);
+
 	format_menu->addSeparator();
 	m_actions["FormatIndentDecrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-less"), tr("&Decrease Indent"), m_documents, SLOT(decreaseIndent()), tr("Ctrl+<"));
 	m_actions["FormatIndentIncrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-more"), tr("I&ncrease Indent"), m_documents, SLOT(increaseIndent()), tr("Ctrl+>"));
+
 	format_menu->addSeparator();
-	m_plaintext_action = format_menu->addAction(tr("&Make Plain Text"), m_documents, SLOT(makePlainText()), tr("Ctrl+Shift+T"));
-	m_richtext_action = format_menu->addAction(tr("&Make Rich Text"), m_documents, SLOT(makeRichText()), tr("Ctrl+Shift+T"));
+	m_actions["FormatDirectionLTR"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-ltr"), tr("Left to Right Block"), m_documents, SLOT(setTextDirectionLTR()));
+	m_actions["FormatDirectionLTR"]->setCheckable(true);
+	m_actions["FormatDirectionRTL"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-rtl"), tr("Right to Left Block"), m_documents, SLOT(setTextDirectionRTL()));
+	m_actions["FormatDirectionRTL"]->setCheckable(true);
+	QActionGroup* direction = new QActionGroup(this);
+	direction->addAction(m_actions["FormatDirectionLTR"]);
+	direction->addAction(m_actions["FormatDirectionRTL"]);
+	m_actions["FormatDirectionLTR"]->setChecked(true);
+
+	format_menu->addSeparator();
+	m_plaintext_action = format_menu->addAction(tr("&Make Plain Text"), m_documents, SLOT(makePlainText()));
+	m_richtext_action = format_menu->addAction(tr("&Make Rich Text"), m_documents, SLOT(makeRichText()));
 	m_richtext_action->setVisible(false);
 
 	// Create tools menu

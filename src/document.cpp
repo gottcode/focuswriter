@@ -246,11 +246,17 @@ bool Document::save() {
 
 				stream << QLatin1String("<p");
 				QTextBlockFormat block_format = block.blockFormat();
+				bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+				if (rtl) {
+					stream << QLatin1String(" dir=\"rtl\"");
+				}
 				Qt::Alignment align = block_format.alignment();
-				if (align & Qt::AlignCenter) {
-					stream << QLatin1String(" align=\"center\"");
+				if (rtl && (align & Qt::AlignLeft)) {
+					stream << QLatin1String(" align=\"left\"");
 				} else if (align & Qt::AlignRight) {
 					stream << QLatin1String(" align=\"right\"");
+				} else if (align & Qt::AlignCenter) {
+					stream << QLatin1String(" align=\"center\"");
 				} else if (align & Qt::AlignJustify) {
 					stream << QLatin1String(" align=\"justify\"");
 				}
@@ -522,7 +528,7 @@ void Document::mouseMoveEvent(QMouseEvent* event) {
 	const QPoint& point = mapFromGlobal(event->globalPos());
 	emit headerVisible(false);
 	emit footerVisible(false);
-	m_scrollbar->setVisible(point.x() >= (width() - m_margin));
+	m_scrollbar->setVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - m_margin)) : (point.x() <= m_margin));
 
 	return QWidget::mouseMoveEvent(event);
 }
@@ -548,6 +554,7 @@ void Document::wheelEvent(QWheelEvent* event) {
 
 void Document::cursorPositionChanged() {
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
+	emit alignmentChanged();
 }
 
 /*****************************************************************************/
