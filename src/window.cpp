@@ -647,6 +647,8 @@ void Window::addDocument(const QString& filename, int position) {
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
+	document->centerCursor(true);
+
 	if (show_load) {
 		m_load_screen->finish();
 	}
