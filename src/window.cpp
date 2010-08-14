@@ -231,14 +231,26 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 		m_load_screen->setText("");
 	}
 
+	QStringList missing;
 	if (!files.isEmpty()) {
 		for (int i = 0; i < files.count(); ++i) {
 			addDocument(files.at(i), positions.value(i, "-1").toInt());
+			int index = m_documents->currentIndex();
+			if (files.at(i) != m_documents->currentDocument()->filename()) {
+				missing.append(files.at(i));
+				m_documents->removeDocument(index);
+				m_tabs->removeTab(index);
+			}
 		}
-	} else {
+	}
+	if (files.isEmpty() || missing.count() == files.count()) {
 		newDocument();
 	}
 	m_tabs->setCurrentIndex(active);
+
+	if (!missing.isEmpty()) {
+		QMessageBox::warning(this, tr("Sorry"), tr("The following files could not be opened:\n\n%1").arg(missing.join("\n")));
+	}
 
 	if (show_load) {
 		m_documents->waitForThemeBackground();
@@ -634,7 +646,7 @@ void Window::addDocument(const QString& filename, int position) {
 
 	// Restore cursor position
 	QTextCursor cursor = document->text()->textCursor();
-	if (m_save_positions && position != -1) {
+	if (m_save_positions && position != -1 && !document->index()) {
 		cursor.setPosition(position);
 	} else {
 		cursor.movePosition(QTextCursor::End);

@@ -152,9 +152,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 			if (m_rich_text) {
 				if (stream.readLine() == "FWR1") {
 					m_text->setHtml(stream.readAll());
-				} else {
-					QMessageBox::information(parent->window(), tr("Sorry"), tr("Unable to read FocusWriter Rich Text file."));
-					error = true;
 				}
 			} else {
 				m_text->setPlainText(stream.readAll());
