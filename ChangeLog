@@ -1,3 +1,6 @@
+2010-08-14 Graeme Gott <graeme@gottcode.org>
+	* Prompt for filename when changing file type.
+
 2010-08-08 Graeme Gott <graeme@gottcode.org>
 	* Add RTL support.
 

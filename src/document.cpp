@@ -318,7 +318,7 @@ bool Document::save() {
 
 bool Document::saveAs() {
 	QString selected;
-	QString filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), m_filename, fileFilter(), &selected);
+	QString filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), m_filename, fileFilter(m_filename), &selected);
 	if (!filename.isEmpty()) {
 		m_filename = fileNameWithExtension(filename, selected);
 		clearIndex();
@@ -340,7 +340,7 @@ bool Document::rename() {
 	}
 
 	QString selected;
-	QString filename = QFileDialog::getSaveFileName(window(), tr("Rename File"), m_filename, fileFilter(), &selected);
+	QString filename = QFileDialog::getSaveFileName(window(), tr("Rename File"), m_filename, fileFilter(m_filename), &selected);
 	if (!filename.isEmpty()) {
 		filename = fileNameWithExtension(filename, selected);
 		QFile::remove(filename);
@@ -463,25 +463,45 @@ void Document::setMargin(int margin) {
 /*****************************************************************************/
 
 void Document::setRichText(bool rich_text) {
+	// Set file type
 	m_rich_text = rich_text;
 	m_text->setAcceptRichText(m_rich_text);
 
+	// Get new file name
 	m_old_filenames[m_text->document()->availableUndoSteps()] = m_filename;
 	if (!m_filename.isEmpty()) {
-		m_filename.clear();
-		findIndex();
+		QString filename = m_filename;
+		int suffix_index = filename.lastIndexOf(QChar('.'));
+		int file_index = filename.lastIndexOf(QChar('/'));
+		if (suffix_index > file_index) {
+			filename.chop(filename.length() - suffix_index);
+		}
+		filename.append(m_rich_text ? ".fwr" : ".txt");
+		QString selected;
+		m_filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), filename, fileFilter(filename), &selected);
+		if (!m_filename.isEmpty()) {
+			m_filename = fileNameWithExtension(m_filename, selected);
+			clearIndex();
+		} else {
+			findIndex();
+		}
 	}
 
-	if (!m_rich_text) {
-		QTextCursor cursor(m_text->document());
-		cursor.beginEditBlock();
-		cursor.movePosition(QTextCursor::End, QTextCursor::KeepAnchor);
-		cursor.setBlockFormat(QTextBlockFormat());
-		cursor.setCharFormat(QTextCharFormat());
-		cursor.endEditBlock();
-	}
-	m_old_filenames[m_text->document()->availableUndoSteps()] = QString();
+	// Always remove formatting to have something to undo
+	QTextCursor cursor(m_text->document());
+	cursor.beginEditBlock();
+	cursor.movePosition(QTextCursor::End, QTextCursor::KeepAnchor);
+	cursor.setBlockFormat(QTextBlockFormat());
+	cursor.setCharFormat(QTextCharFormat());
+	cursor.endEditBlock();
+	m_old_filenames[m_text->document()->availableUndoSteps()] = m_filename;
 
+	// Save file
+	if (!m_filename.isEmpty()) {
+		save();
+		updateSaveLocation();
+		m_text->document()->setModified(false);
+	}
 	emit changedName();
 }
 
@@ -694,14 +714,14 @@ void Document::findIndex() {
 
 /*****************************************************************************/
 
-QString Document::fileFilter() const {
+QString Document::fileFilter(const QString& filename) const {
 	QString plaintext = tr("Plain Text (*.txt);;All Files (*)");
 	QString richtext = tr("FocusWriter Rich Text (*.fwr)");
 	QString all = tr("All Files (*)");
-	if (!m_filename.isEmpty()) {
-		if (isRichTextFile(m_filename)) {
+	if (!filename.isEmpty()) {
+		if (isRichTextFile(filename)) {
 			return richtext;
-		} else if (m_filename.endsWith(".txt")) {
+		} else if (filename.endsWith(".txt")) {
 			return plaintext;
 		} else {
 			return all;

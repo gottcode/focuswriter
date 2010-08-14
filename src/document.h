@@ -114,7 +114,7 @@ private:
 	void calculateWordCount();
 	void clearIndex();
 	void findIndex();
-	QString fileFilter() const;
+	QString fileFilter(const QString& filename) const;
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
 
