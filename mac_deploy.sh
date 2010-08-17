@@ -25,12 +25,12 @@ echo 'Done'
 echo -n 'Copying English dictionary... '
 DICTIONARIES="$APP/$BUNDLE/Contents/Resources/Dictionaries"
 mkdir $DICTIONARIES
-cp -f hunspell/en_US/en_US.aff $DICTIONARIES
-cp -f hunspell/en_US/en_US.dic $DICTIONARIES
+cp -f dict/en_US.aff $DICTIONARIES
+cp -f dict/en_US.dic $DICTIONARIES
 echo 'Done'
 
-# Copy Qt frameworks
-echo -n 'Copying Qt frameworks and plugins... '
+# Copy frameworks and plugins
+echo -n 'Copying frameworks and plugins... '
 macdeployqt "$APP/$BUNDLE"
 echo 'Done'
 

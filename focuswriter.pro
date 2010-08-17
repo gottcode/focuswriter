@@ -17,30 +17,12 @@ unix: !macx {
 }
 
 # Include hunspell
-isEmpty(USE_SYSTEM_HUNSPELL) {
-	unix: !macx {
-		USE_SYSTEM_HUNSPELL = "yes"
-	}
-} else {
-	contains(USE_SYSTEM_HUNSPELL, "no") {
-		USE_SYSTEM_HUNSPELL = ""
-	}
-}
-isEmpty(USE_SYSTEM_HUNSPELL) {
-	QMAKE_CXXFLAGS += -Ihunspell
-	win32 {
-		QMAKE_CXXFLAGS += -DHUNSPELL_STATIC
-	}
-	SOURCES += hunspell/affentry.cxx \
-		hunspell/affixmgr.cxx \
-		hunspell/csutil.cxx \
-		hunspell/filemgr.cxx \
-		hunspell/hashmgr.cxx \
-		hunspell/hunspell.cxx \
-		hunspell/hunzip.cxx \
-		hunspell/phonet.cxx \
-		hunspell/replist.cxx \
-		hunspell/suggestmgr.cxx
+macx {
+	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers
+	LIBS += -framework hunspell
+} else:win32 {
+	INCLUDEPATH += hunspell
+	LIBS += hunspell/hunspell1.dll
 } else {
 	QMAKE_CXXFLAGS += $$system(pkg-config --cflags hunspell)
 	LIBS += $$system(pkg-config --libs hunspell)
@@ -128,14 +110,6 @@ unix: !macx {
 
 	desktop.files = icons/focuswriter.desktop
 	desktop.path = $$PREFIX/share/applications/
-
-	isEmpty(USE_SYSTEM_HUNSPELL) {
-		!exists( $$PREFIX/share/hunspell/en_US.aff ) {
-			dictionary.files = hunspell/en_US/*
-			dictionary.path = $$PREFIX/share/hunspell/
-			INSTALLS += dictionary
-		}
-	}
 
 	INSTALLS += target icon desktop icons
 }

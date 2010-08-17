@@ -18,8 +18,11 @@ XCOPY /Q /S /Y icons\oxygen\hicolor %ICONS% >nul
 ECHO Copying English dictionary
 SET DICTIONARIES=%APP%\Dictionaries
 MKDIR %DICTIONARIES%
-COPY hunspell\en_US\en_US.aff %DICTIONARIES% >nul
-COPY hunspell\en_US\en_US.dic %DICTIONARIES% >nul
+COPY dict\en_US.aff %DICTIONARIES% >nul
+COPY dict\en_US.dic %DICTIONARIES% >nul
+
+ECHO Copying hunspell library
+COPY hunspell\hunspell1.dll %APP% >nul
 
 ECHO Copying Qt libraries
 COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul

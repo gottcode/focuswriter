@@ -58,8 +58,9 @@ int main(int argc, char** argv) {
 	QFileInfo portable(appdir + "/../../../Data");
 	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
 
+	locations.append(QDir::homePath() + "/Library/Spelling");
+	locations.append("/Library/Spelling");
 	locations.append(appdir + "/../Resources/Dictionaries");
-	locations.append("/Library/Application Support/GottCode/FocusWriter/Dictionaries");
 #elif defined(Q_OS_UNIX)
 	QFileInfo portable(appdir + "/Data");
 	QString path = qgetenv("XDG_DATA_HOME");

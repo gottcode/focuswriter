@@ -1,3 +1,6 @@
+2010-08-17 Graeme Gott <graeme@gottcode.org>
+	* Make hunspell an external dependency.
+
 2010-08-14 Graeme Gott <graeme@gottcode.org>
 	* Inform user when unable to open files.
 	* Prompt for filename when changing file type.
