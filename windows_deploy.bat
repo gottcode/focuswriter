@@ -24,6 +24,9 @@ COPY dict\en_US.dic %DICTIONARIES% >nul
 ECHO Copying hunspell library
 COPY hunspell\hunspell1.dll %APP% >nul
 
+ECHO Copying libzip library
+COPY libzip\libzip0.dll %APP% >nul
+
 ECHO Copying Qt libraries
 COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul
 COPY %QTDIR%\bin\mingwm10.dll %APP% >nul

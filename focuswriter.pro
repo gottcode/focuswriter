@@ -16,24 +16,15 @@ unix: !macx {
 	TARGET = FocusWriter
 }
 
-# Include hunspell
 macx {
-	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers
-	LIBS += -framework hunspell
+	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
+	LIBS += -framework hunspell -framework libzip
 } else:win32 {
-	INCLUDEPATH += hunspell
-	LIBS += hunspell/hunspell1.dll
+	INCLUDEPATH += hunspell libzip
+	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll
 } else {
-	QMAKE_CXXFLAGS += $$system(pkg-config --cflags hunspell)
-	LIBS += $$system(pkg-config --libs hunspell)
-}
-
-# Include minizip
-SOURCES += minizip/ioapi.c \
-	minizip/unzip.c \
-	minizip/zip.c
-macx {
-	LIBS += -lz
+	QMAKE_CXXFLAGS += $$system(pkg-config --cflags hunspell libzip)
+	LIBS += $$system(pkg-config --libs hunspell libzip)
 }
 
 HEADERS += src/alert.h \

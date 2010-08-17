@@ -40,15 +40,15 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 
-#include "../minizip/unzip.h"
+#include <zip.h>
 
 /*****************************************************************************/
 
 namespace {
 	QString languageName(const QString& language) {
-		QLocale locale(language);
+		QLocale locale(language.left(5));
 		QString name = QLocale::languageToString(locale.language());
-		if ((locale.country() != QLocale::AnyCountry) && (language.length() == 5)) {
+		if (locale.country() != QLocale::AnyCountry) {
 			name += " (" + QLocale::countryToString(locale.country()) + ")";
 		}
 		return name;
@@ -329,49 +329,31 @@ void PreferencesDialog::addLanguage() {
 	}
 
 	// File lists
-	QHash<QString, uLong> aff_files;
-	QHash<QString, uLong> dic_files;
-	QHash<QString, uLong> files;
+	QHash<QString, int> aff_files;
+	QHash<QString, int> dic_files;
+	QHash<QString, int> files;
 	QStringList dictionaries;
 
 	// Open archive
-	unzFile archive = unzOpen(path.toUtf8().data());
-	bool archive_file_open = false;
+	zip* archive = zip_open(path.toUtf8().data(), 0, 0);
 	if (!archive) {
-		QMessageBox::warning(this, tr("Error"), tr("Unable to open archive."));
+		QMessageBox::warning(this, tr("Sorry"), tr("Unable to open archive."));
 		return;
 	}
 
 	try {
 		// List files
-		unz_global_info info;
-		if (unzGetGlobalInfo(archive, &info) != UNZ_OK) {
+		int count = zip_get_num_files(archive);
+		if (count == -1) {
 			throw tr("Unable to read archive metadata.");
 		}
-		if ((info.number_entry > 0) && unzGoToFirstFile(archive) != UNZ_OK) {
-			throw tr("Unable to access first file.");
-		}
-		for (uLong i = 0; i < info.number_entry; ++i) {
-			unz_file_info entry;
-			if (unzGetCurrentFileInfo(archive, &entry, 0, 0, 0, 0, 0, 0) != UNZ_OK) {
-				throw tr("Unable to read file metadata.");
-			}
-
-			// Read file name
-			QByteArray buffer(entry.size_filename, 0);
-			if (unzGetCurrentFileInfo(archive, 0, buffer.data(), entry.size_filename, 0, 0, 0, 0) != UNZ_OK) {
-				throw tr("Unable to read file metadata.");
-			}
-			QString name = (entry.flag & 2048) ? QString::fromUtf8(buffer) : QString::fromAscii(buffer);
-
-			// Store file details
+		for (int i = 0; i < count; ++i) {
+			QString name = QString::fromUtf8(zip_get_name(archive, i, 0));
 			if (name.endsWith(".aff")) {
-				aff_files[name] = entry.uncompressed_size;
+				aff_files[name] = i;
 			} else if (name.endsWith(".dic")) {
-				dic_files[name] = entry.uncompressed_size;
+				dic_files[name] = i;
 			}
-
-			unzGoToNextFile(archive);
 		}
 
 		// Find dictionary files
@@ -391,32 +373,27 @@ void PreferencesDialog::addLanguage() {
 		QDir dir(Dictionary::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
-		QHashIterator<QString, uLong> i(files);
+		QHashIterator<QString, int> i(files);
 		while (i.hasNext()) {
 			i.next();
 
-			if (unzLocateFile(archive, i.key().toUtf8().constData(), 0) != UNZ_OK) {
-				throw tr("Unable to locate file '%1'.").arg(i.key());
-			}
-			if (unzOpenCurrentFile(archive) != UNZ_OK) {
-				throw tr("Unable to open file '%1'.").arg(i.key());
-			}
-
-			archive_file_open = true;
-			QByteArray buffer(i.value(), 0);
-			if (unzReadCurrentFile(archive, buffer.data(), buffer.size()) > -1) {
-				QFile file(install + i.key().section('/', -1));
-				if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-					file.write(buffer);
-					file.close();
+			QFile file(install + i.key().section('/', -1));
+			if (file.open(QIODevice::WriteOnly)) {
+				zip_file* zfile = zip_fopen_index(archive, i.value(), 0);
+				if (zfile == 0) {
+					throw tr("Unable to open file '%1'.").arg(i.key());
 				}
-			} else {
-				throw tr("Unable to read file '%1'.").arg(i.key());
-			}
-			archive_file_open = false;
 
-			if (unzCloseCurrentFile(archive) != UNZ_OK) {
-				throw tr("Unable to close file '%1'.").arg(i.key());
+				char buffer[8192];
+				int len;
+				while ((len = zip_fread(zfile, &buffer, sizeof(buffer))) > 0) {
+					file.write(buffer, len);
+				}
+				file.close();
+
+				if (zip_fclose(zfile) != 0) {
+					throw tr("Unable to close file '%1'.").arg(i.key());
+				}
 			}
 		}
 
@@ -449,14 +426,11 @@ void PreferencesDialog::addLanguage() {
 	}
 
 	catch (QString error) {
-		QMessageBox::warning(this, tr("Error"), error);
+		QMessageBox::warning(this, tr("Sorry"), error);
 	}
 
 	// Close archive
-	if (archive_file_open) {
-		unzCloseCurrentFile(archive);
-	}
-	unzClose(archive);
+	zip_close(archive);
 }
 
 /*****************************************************************************/
