@@ -106,12 +106,11 @@ namespace {
 
 /*****************************************************************************/
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, int margin, const QString& theme, QWidget* parent)
+Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QString& theme, QWidget* parent)
 : QWidget(parent),
   m_index(0),
   m_always_center(false),
   m_rich_text(false),
-  m_margin(50),
   m_character_count(0),
   m_page_count(0),
   m_paragraph_count(0),
@@ -186,7 +185,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_layout->setMargin(0);
 	m_layout->addWidget(m_text, 0, 1);
 	m_layout->addWidget(m_scrollbar, 0, 2, Qt::AlignRight);
-	setMargin(margin);
 
 	// Load settings
 	Preferences preferences;
@@ -387,7 +385,7 @@ void Document::loadTheme(const Theme& theme) {
 			.arg(theme.textColor().name())
 			.arg(theme.textColor().name())
 			.arg(theme.foregroundColor().name())
-			.arg(qBound(0, theme.foregroundPadding(), 100))
+			.arg(theme.foregroundPadding())
 	);
 	if (m_highlighter->misspelledColor() != theme.misspelledColor()) {
 		m_highlighter->setMisspelledColor(theme.misspelledColor());
@@ -402,6 +400,9 @@ void Document::loadTheme(const Theme& theme) {
 	m_text->setFixedWidth(theme.foregroundWidth());
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 
+	int margin = theme.foregroundMargin();
+	m_layout->setColumnMinimumWidth(0, margin);
+	m_layout->setColumnMinimumWidth(2, margin);
 	switch (theme.foregroundPosition()) {
 		case 0:
 			m_layout->setColumnStretch(0, 0);
@@ -452,14 +453,6 @@ void Document::loadPreferences(const Preferences& preferences) {
 	m_text->setFont(font);
 
 	m_highlighter->setEnabled(preferences.highlightMisspelled());
-}
-
-/*****************************************************************************/
-
-void Document::setMargin(int margin) {
-	m_margin = margin;
-	m_layout->setColumnMinimumWidth(0, m_margin);
-	m_layout->setColumnMinimumWidth(2, m_margin);
 }
 
 /*****************************************************************************/
@@ -547,10 +540,11 @@ void Document::mouseMoveEvent(QMouseEvent* event) {
 	unsetCursor();
 	m_hide_timer->start();
 
-	const QPoint& point = mapFromGlobal(event->globalPos());
 	emit headerVisible(false);
 	emit footerVisible(false);
-	m_scrollbar->setVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - m_margin)) : (point.x() <= m_margin));
+	const QPoint& point = mapFromGlobal(event->globalPos());
+	int margin = m_scrollbar->sizeHint().width();
+	m_scrollbar->setVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - margin)) : (point.x() <= margin));
 
 	return QWidget::mouseMoveEvent(event);
 }

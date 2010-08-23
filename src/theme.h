@@ -56,12 +56,14 @@ public:
 	// Foreground settings
 	QColor foregroundColor() const;
 	int foregroundWidth() const;
+	int foregroundMargin() const;
 	int foregroundPadding() const;
 	int foregroundOpacity() const;
 	int foregroundPosition() const;
 
 	void setForegroundColor(const QColor& color);
 	void setForegroundWidth(int width);
+	void setForegroundMargin(int margin);
 	void setForegroundPadding(int padding);
 	void setForegroundOpacity(int opacity);
 	void setForegroundPosition(int position);
@@ -86,6 +88,7 @@ private:
 
 	QColor m_foreground_color;
 	int m_foreground_width;
+	int m_foreground_margin;
 	int m_foreground_padding;
 	int m_foreground_opacity;
 	int m_foreground_position;

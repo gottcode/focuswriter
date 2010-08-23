@@ -68,7 +68,6 @@ namespace
 
 Window::Window()
 : m_toolbar(0),
-  m_margin(0),
   m_fullscreen(true),
   m_auto_save(true),
   m_save_positions(true),
@@ -636,7 +635,7 @@ void Window::addDocument(const QString& filename, int position) {
 		}
 	}
 
-	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_margin, m_sessions->current()->theme(), this);
+	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_sessions->current()->theme(), this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
@@ -764,11 +763,6 @@ void Window::updateMargin() {
 		header = menuBar()->mapToParent(menuBar()->rect().bottomLeft()).y() + 1;
 	}
 	int footer = m_footer->sizeHint().height();
-	m_margin = qMax(header, footer);
-
-	for (int i = 0; i < m_documents->count(); ++i) {
-		m_documents->document(i)->setMargin(m_margin);
-	}
 	m_documents->setMargins(footer, header);
 }
 

@@ -93,7 +93,6 @@ private:
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;
 	TimerManager* m_timers;
-	int m_margin;
 
 	QWidget* m_footer;
 	QLabel* m_character_label;

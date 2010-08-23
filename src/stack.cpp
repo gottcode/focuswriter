@@ -197,17 +197,10 @@ void Stack::setCurrentDocument(int index) {
 /*****************************************************************************/
 
 void Stack::setMargins(int footer, int header) {
-	m_margin = qMax(footer, header);
 	m_footer_margin = footer;
 	m_header_margin = header;
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
 	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
-
-	m_layout->setRowMinimumHeight(0, m_margin);
-	m_layout->setRowMinimumHeight(5, m_margin);
-	m_layout->setColumnMinimumWidth(0, m_margin);
-	m_layout->setColumnMinimumWidth(5, m_margin);
-
 	updateMask();
 }
 
@@ -444,6 +437,12 @@ void Stack::themeSelected(const Theme& theme) {
 	m_background_old = QPixmap();
 	updateBackground();
 
+	m_margin = theme.foregroundMargin();
+	m_layout->setRowMinimumHeight(0, m_margin);
+	m_layout->setRowMinimumHeight(5, m_margin);
+	m_layout->setColumnMinimumWidth(0, m_margin);
+	m_layout->setColumnMinimumWidth(5, m_margin);
+
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme);
 	}
@@ -472,8 +471,8 @@ void Stack::setHeaderVisible(bool visible) {
 /*****************************************************************************/
 
 void Stack::mouseMoveEvent(QMouseEvent* event) {
-	bool header_visible = event->pos().y() <= m_margin;
-	bool footer_visible = event->pos().y() >= (height() - m_margin);
+	bool header_visible = event->pos().y() <= m_header_margin;
+	bool footer_visible = event->pos().y() >= (height() - m_footer_margin);
 	emit footerVisible(footer_visible);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
@@ -528,6 +527,22 @@ void Stack::updateBackground() {
 
 void Stack::updateMask() {
 	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
+
+	int top = 0;
+	if (m_header_visible) {
+		top = (m_header_margin > m_margin) ? (m_header_margin - m_margin) : 0;
+	}
+	int bottom = 0;
+	if (m_footer_visible) {
+		bottom = (m_footer_margin > m_margin) ? (m_footer_margin - m_margin) : 0;
+	}
+	QRect mask = m_contents->rect().adjusted(0, top, 0, -bottom);
+	m_contents->setMask(mask);
+	foreach (Document* document, m_documents) {
+		document->setMask(mask);
+		document->text()->setMask(mask);
+		document->text()->viewport()->setMask(mask);
+	}
 }
 
 /*****************************************************************************/
