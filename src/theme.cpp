@@ -115,6 +115,7 @@ Theme::Theme(const QString& name)
 	// Load foreground settings
 	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
 	m_foreground_width = settings.value("Foreground/Width", 700).toInt();
+	m_foreground_padding = settings.value("Foreground/Padding", 0).toInt();
 	m_foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
 	m_foreground_position = settings.value("Foreground/Position", 1).toInt();
 
@@ -144,6 +145,7 @@ Theme::~Theme() {
 	// Store foreground settings
 	settings.setValue("Foreground/Color", m_foreground_color.name());
 	settings.setValue("Foreground/Width", m_foreground_width);
+	settings.setValue("Foreground/Padding", m_foreground_padding);
 	settings.setValue("Foreground/Opacity", m_foreground_opacity);
 	settings.setValue("Foreground/Position", m_foreground_position);
 
@@ -332,6 +334,12 @@ int Theme::foregroundWidth() const {
 
 /*****************************************************************************/
 
+int Theme::foregroundPadding() const {
+	return m_foreground_padding;
+}
+
+/*****************************************************************************/
+
 int Theme::foregroundOpacity() const {
 	return m_foreground_opacity;
 }
@@ -353,6 +361,13 @@ void Theme::setForegroundColor(const QColor& color) {
 
 void Theme::setForegroundWidth(int width) {
 	m_foreground_width = width;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Theme::setForegroundPadding(int padding) {
+	m_foreground_padding = padding;
 	m_changed = true;
 }
 

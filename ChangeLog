@@ -1,3 +1,6 @@
+2010-08-23 Graeme Gott <graeme@gottcode.org>
+	* Add text padding to themes.
+
 2010-08-17 Graeme Gott <graeme@gottcode.org>
 	* Replace minizip with libzip.
 	* Make hunspell an external dependency.

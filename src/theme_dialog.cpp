@@ -108,6 +108,11 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width->setRange(500, 2000);
 	m_foreground_width->setValue(m_theme.foregroundWidth());
 
+	m_foreground_padding = new QSpinBox(tab);
+	m_foreground_padding->setSuffix(tr(" pixels"));
+	m_foreground_padding->setRange(0, 100);
+	m_foreground_padding->setValue(m_theme.foregroundPadding());
+
 	m_foreground_position = new QComboBox(tab);
 	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Middle") << tr("Right"));
 	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
@@ -117,8 +122,9 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	foreground_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
 	foreground_layout->setLabelAlignment(Qt::AlignRight);
 	foreground_layout->addRow(tr("Color:"), m_foreground_color);
-	foreground_layout->addRow(tr("Width:"), m_foreground_width);
 	foreground_layout->addRow(tr("Opacity:"), m_foreground_opacity);
+	foreground_layout->addRow(tr("Width:"), m_foreground_width);
+	foreground_layout->addRow(tr("Padding:"), m_foreground_padding);
 	foreground_layout->addRow(tr("Position:"), m_foreground_position);
 
 
@@ -202,6 +208,7 @@ void ThemeDialog::accept() {
 
 	m_theme.setForegroundColor(m_foreground_color->color());
 	m_theme.setForegroundWidth(m_foreground_width->value());
+	m_theme.setForegroundPadding(m_foreground_padding->value());
 	m_theme.setForegroundOpacity(m_foreground_opacity->value());
 	m_theme.setForegroundPosition(m_foreground_position->currentIndex());
 

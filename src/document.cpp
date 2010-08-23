@@ -376,14 +376,19 @@ void Document::loadTheme(const Theme& theme) {
 	m_text->document()->blockSignals(true);
 
 	// Update colors
-	QPalette p = m_text->palette();
 	QColor color = theme.foregroundColor();
 	color.setAlpha(theme.foregroundOpacity() * 2.55f);
-	p.setColor(QPalette::Base, color);
-	p.setColor(QPalette::Text, theme.textColor());
-	p.setColor(QPalette::Highlight, theme.textColor());
-	p.setColor(QPalette::HighlightedText, theme.foregroundColor());
-	m_text->setPalette(p);
+	m_text->setStyleSheet(
+		QString("QTextEdit { background: rgba(%1, %2, %3, %4); color: %5; selection-background-color: %6; selection-color: %7; padding: %8px; }")
+			.arg(color.red())
+			.arg(color.green())
+			.arg(color.blue())
+			.arg(color.alpha())
+			.arg(theme.textColor().name())
+			.arg(theme.textColor().name())
+			.arg(theme.foregroundColor().name())
+			.arg(qBound(0, theme.foregroundPadding(), 100))
+	);
 	if (m_highlighter->misspelledColor() != theme.misspelledColor()) {
 		m_highlighter->setMisspelledColor(theme.misspelledColor());
 	}

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,6 +63,7 @@ private:
 
 	ColorButton* m_foreground_color;
 	QSpinBox* m_foreground_width;
+	QSpinBox* m_foreground_padding;
 	QSpinBox* m_foreground_opacity;
 	QComboBox* m_foreground_position;
 

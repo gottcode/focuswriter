@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,11 +56,13 @@ public:
 	// Foreground settings
 	QColor foregroundColor() const;
 	int foregroundWidth() const;
+	int foregroundPadding() const;
 	int foregroundOpacity() const;
 	int foregroundPosition() const;
 
 	void setForegroundColor(const QColor& color);
 	void setForegroundWidth(int width);
+	void setForegroundPadding(int padding);
 	void setForegroundOpacity(int opacity);
 	void setForegroundPosition(int position);
 
@@ -84,6 +86,7 @@ private:
 
 	QColor m_foreground_color;
 	int m_foreground_width;
+	int m_foreground_padding;
 	int m_foreground_opacity;
 	int m_foreground_position;
 
