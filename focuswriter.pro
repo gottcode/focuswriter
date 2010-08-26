@@ -49,7 +49,10 @@ HEADERS += src/alert.h \
 	src/timer.h \
 	src/timer_display.h \
 	src/timer_manager.h \
-	src/window.h
+	src/window.h \
+	src/rtf/reader.h \
+	src/rtf/tokenizer.h \
+	src/rtf/writer.h
 
 SOURCES += src/alert.cpp \
 	src/alert_layer.cpp \
@@ -74,7 +77,10 @@ SOURCES += src/alert.cpp \
 	src/timer.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
-	src/window.cpp
+	src/window.cpp \
+	src/rtf/reader.cpp \
+	src/rtf/tokenizer.cpp \
+	src/rtf/writer.cpp
 
 TRANSLATIONS = translations/focuswriter_fr.ts translations/focuswriter_pt.ts
 

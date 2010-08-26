@@ -704,7 +704,7 @@ void Window::loadPreferences(const Preferences& preferences) {
 	m_save_positions = preferences.savePositions();
 
 	QString plaintext = tr("Plain Text (*.txt)");
-	QString richtext = tr("FocusWriter Rich Text (*.fwr)");
+	QString richtext = tr("Rich Text (*.rtf)");
 	QString all = tr("All Files (*)");
 	m_open_filter = preferences.richText() ? (richtext + ";;" + plaintext+ ";;" + all) : (plaintext + ";;" + richtext+ ";;" + all);
 

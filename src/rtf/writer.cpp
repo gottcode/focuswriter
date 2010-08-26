@@ -1,0 +1,167 @@
+/***********************************************************************
+ *
+ * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ ***********************************************************************/
+
+#include "writer.h"
+
+#include <QFile>
+#include <QTextBlock>
+#include <QTextCodec>
+#include <QTextEdit>
+
+RTF::Writer::Writer()
+	: m_codec(0)
+{
+	setCodec(QTextCodec::codecForLocale());
+}
+
+void RTF::Writer::setCodec(QTextCodec* codec)
+{
+	if (codec == 0) {
+		return;
+	}
+	m_codec = codec;
+
+	if (codec->mibEnum() == 2009) {
+		m_header = "{\\rtf1\\pca\\ansicpg850\n\n";
+	} else if (codec->mibEnum() == 2011) {
+		m_header = "{\\rtf1\\pc\\ansicpg437\n\n";
+	} else if (codec->mibEnum() == 2027) {
+		m_header = "{\\rtf1\\mac\\ansicpg10000\n\n";
+	} else {
+		QByteArray codepage;
+		QList<QByteArray> aliases = codec->aliases();
+		foreach (const QByteArray& alias, aliases) {
+			if (alias.startsWith("CP") || alias.startsWith("cp")) {
+				codepage = alias;
+				break;
+			}
+		}
+		if (!codepage.isEmpty()) {
+			m_header = "{\\rtf1\\ansi\\ansicpg" + codepage.mid(2) + "\n\n";
+		} else {
+			setCodec(QTextCodec::codecForName("CP1252"));
+		}
+	}
+}
+
+void RTF::Writer::write(const QString& filename, QTextEdit* text)
+{
+	if (m_codec == 0) {
+		return;
+	}
+	QFile file(filename);
+	if (!file.open(QFile::WriteOnly | QFile::Text)) {
+		return;
+	}
+
+	file.write(m_header);
+
+	for (QTextBlock block = text->document()->begin(); block.isValid(); block = block.next()) {
+		QByteArray par("{\\pard\\plain");
+		QTextBlockFormat block_format = block.blockFormat();
+		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+		if (rtl) {
+			par += "\\rtlpar";
+		}
+		Qt::Alignment align = block_format.alignment();
+		if (rtl && (align & Qt::AlignLeft)) {
+			par += "\\ql";
+		} else if (align & Qt::AlignRight) {
+			par += "\\qr";
+		} else if (align & Qt::AlignCenter) {
+			par += "\\qc";
+		} else if (align & Qt::AlignJustify) {
+			par += "\\qj";
+		}
+		if (block_format.indent() > 0) {
+			par += "\\li" + QByteArray::number(block_format.indent() * 720);
+		}
+		file.write(par);
+
+		if (block.begin() != block.end()) {
+			file.write(" ");
+			for (QTextBlock::iterator iter = block.begin(); iter != block.end(); ++iter) {
+				QTextFragment fragment = iter.fragment();
+				QTextCharFormat char_format = fragment.charFormat();
+				QByteArray style;
+				if (char_format.fontWeight() == QFont::Bold) {
+					style += "\\b";
+				}
+				if (char_format.fontItalic()) {
+					style += "\\i";
+				}
+				if (char_format.fontUnderline()) {
+					style += "\\ul";
+				}
+				if (char_format.fontStrikeOut()) {
+					style += "\\strike";
+				}
+				if (char_format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
+					style += "\\super";
+				} else if (char_format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
+					style += "\\sub";
+				}
+
+				if (!style.isEmpty()) {
+					file.write("{");
+					file.write(style);
+					file.write(" ");
+					file.write(fromUnicode(fragment.text()));
+					file.write("}");
+				} else {
+					file.write(fromUnicode(fragment.text()));
+				}
+			}
+		}
+
+		file.write("\\par}\n");
+	}
+
+	file.write("\n}");
+	file.close();
+}
+
+QByteArray RTF::Writer::fromUnicode(const QString& string) const
+{
+	QString data = string;
+	data.replace(QChar('\\'), QLatin1String("\\\\"));
+	data.replace(QChar('{'), QLatin1String("\\{"));
+	data.replace(QChar('}'), QLatin1String("\\}"));
+	data.replace(QChar('\t'), QLatin1String("\\tab "));
+
+	QByteArray bytes;
+
+	int start = 0;
+	for (int i = 0; i < data.length(); ++i) {
+		if (!m_codec->canEncode(data.at(i))) {
+			QStringRef ref(&data, start, i - start);
+			bytes += m_codec->fromUnicode(ref.constData(), ref.length());
+
+			bytes += "\\u" + QByteArray::number(data.at(i).unicode()) + "?";
+			start = i + 1;
+		}
+	}
+
+	if (start < data.length()) {
+		QStringRef ref(&data, start, data.length() - start);
+		bytes += m_codec->fromUnicode(ref.constData(), ref.length());
+	}
+
+	return bytes;
+}

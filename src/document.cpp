@@ -23,6 +23,8 @@
 #include "preferences.h"
 #include "spell_checker.h"
 #include "theme.h"
+#include "rtf/reader.h"
+#include "rtf/writer.h"
 
 #include <QApplication>
 #include <QDir>
@@ -50,7 +52,7 @@ namespace {
 	QList<int> g_untitled_indexes = QList<int>() << 0;
 
 	bool isRichTextFile(const QString& filename) {
-		return filename.endsWith(QLatin1String(".fwr"));
+		return filename.endsWith(QLatin1String(".rtf"));
 	}
 
 	// Text block statistics
@@ -141,28 +143,26 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	// Open file
 	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
-		QFile file(filename);
 		m_rich_text = isRichTextFile(filename.toLower());
-		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+		m_filename = QFileInfo(filename).canonicalFilePath();
+		updateSaveLocation();
 
-			bool error = false;
-			if (m_rich_text) {
-				if (stream.readLine() == "FWR1") {
-					m_text->setHtml(stream.readAll());
-				}
-			} else {
+		if (!m_rich_text) {
+			QFile file(filename);
+			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+				QTextStream stream(&file);
+				stream.setCodec(QTextCodec::codecForName("UTF-8"));
 				m_text->setPlainText(stream.readAll());
+				file.close();
 			}
-			m_text->document()->setModified(false);
-			file.close();
-
-			if (!error) {
-				m_filename = QFileInfo(file).canonicalFilePath();
-				updateSaveLocation();
+		} else {
+			RTF::Reader reader;
+			reader.read(filename, m_text);
+			if (reader.hasError()) {
+				QMessageBox::warning(this, tr("Sorry"), tr("The following error occured reading '%1':\n\n%2").arg(filename, reader.errorString()));
 			}
 		}
+		m_text->document()->setModified(false);
 	}
 	if (m_filename.isEmpty()) {
 		findIndex();
@@ -221,88 +221,17 @@ bool Document::save() {
 	}
 
 	// Write file to disk
-	QFile file(m_filename);
-	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-		QTextStream stream(&file);
-		stream.setCodec(QTextCodec::codecForName("UTF-8"));
-		if (!m_rich_text) {
+	if (!m_rich_text) {
+		QFile file(m_filename);
+		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
 			stream << m_text->toPlainText();
-		} else {
-			stream << QLatin1String("FWR1\n"
-									"<html>\n"
-									"<head>\n"
-									"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n"
-									"<style type=\"text/css\">\n"
-									"p { margin: 0px; text-indent: 0px; white-space: pre-wrap; -qt-block-indent: 0; }\n"
-									"</style>\n"
-									"</head>\n"
-									"<body>\n");
-			for (QTextBlock block = m_text->document()->begin(); block.isValid(); block = block.next()) {
-
-				stream << QLatin1String("<p");
-				QTextBlockFormat block_format = block.blockFormat();
-				bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
-				if (rtl) {
-					stream << QLatin1String(" dir=\"rtl\"");
-				}
-				Qt::Alignment align = block_format.alignment();
-				if (rtl && (align & Qt::AlignLeft)) {
-					stream << QLatin1String(" align=\"left\"");
-				} else if (align & Qt::AlignRight) {
-					stream << QLatin1String(" align=\"right\"");
-				} else if (align & Qt::AlignCenter) {
-					stream << QLatin1String(" align=\"center\"");
-				} else if (align & Qt::AlignJustify) {
-					stream << QLatin1String(" align=\"justify\"");
-				}
-				QString style;
-				if (block_format.indent() > 0) {
-					style += QString(" -qt-block-indent: %1;").arg(block_format.indent());
-				}
-				if (block.begin() == block.end()) {
-					style += QLatin1String(" -qt-paragraph-type: empty;");
-				}
-				if (!style.isEmpty()) {
-					stream << QLatin1String(" style=\"") << style.trimmed() << QLatin1Char('"');
-				}
-				stream << QLatin1Char('>');
-
-				for (QTextBlock::iterator iter = block.begin(); iter != block.end(); ++iter) {
-					QTextFragment fragment = iter.fragment();
-					QTextCharFormat char_format = fragment.charFormat();
-					QString text = fragment.text();
-					text.replace(QLatin1String("&"), QLatin1String("&amp;"));
-					text.replace(QLatin1String("<"), QLatin1String("&lt;"));
-					text.replace(QLatin1String(">"), QLatin1String("&gt;"));
-					QString style;
-					if (char_format.fontWeight() == QFont::Bold) {
-						style += QLatin1String(" font-weight: bold;");
-					}
-					if (char_format.fontItalic()) {
-						style += QLatin1String(" font-style: italic;");
-					}
-					if (char_format.fontUnderline()) {
-						style += QLatin1String(" text-decoration: underline;");
-					}
-					if (char_format.fontStrikeOut()) {
-						style += QLatin1String(" text-decoration: line-through;");
-					}
-					if (char_format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
-						style += QLatin1String(" vertical-align: super;");
-					} else if (char_format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
-						style += QLatin1String(" vertical-align: sub;");
-					}
-					if (!style.isEmpty()) {
-						stream << QLatin1String("<span style=\"") << style.trimmed() << QLatin1String("\">") << text << QLatin1String("</span>");
-					} else {
-						stream << text;
-					}
-				}
-
-				stream << QLatin1String("</p>\n");
-			}
-			stream << QLatin1String("</body>\n</html>");
+			file.close();
 		}
+	} else {
+		RTF::Writer writer;
+		writer.write(m_filename, m_text);
 	}
 
 	m_text->document()->setModified(false);
@@ -471,7 +400,7 @@ void Document::setRichText(bool rich_text) {
 		if (suffix_index > file_index) {
 			filename.chop(filename.length() - suffix_index);
 		}
-		filename.append(m_rich_text ? ".fwr" : ".txt");
+		filename.append(m_rich_text ? ".rtf" : ".txt");
 		QString selected;
 		m_filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), filename, fileFilter(filename), &selected);
 		if (!m_filename.isEmpty()) {
@@ -712,7 +641,7 @@ void Document::findIndex() {
 
 QString Document::fileFilter(const QString& filename) const {
 	QString plaintext = tr("Plain Text (*.txt);;All Files (*)");
-	QString richtext = tr("FocusWriter Rich Text (*.fwr)");
+	QString richtext = tr("Rich Text (*.rtf)");
 	QString all = tr("All Files (*)");
 	if (!filename.isEmpty()) {
 		if (isRichTextFile(filename)) {

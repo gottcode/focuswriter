@@ -1,3 +1,6 @@
+2010-08-26 Graeme Gott <graeme@gottcode.org>
+	* Switch to using RTF for rich text files.
+
 2010-08-23 Graeme Gott <graeme@gottcode.org>
 	* Add text margin to themes.
 	* Add text padding to themes.
