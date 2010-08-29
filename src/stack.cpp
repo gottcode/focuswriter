@@ -446,6 +446,8 @@ void Stack::themeSelected(const Theme& theme) {
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme);
 	}
+
+	window()->setMinimumWidth((m_margin * 2) + theme.foregroundWidth());
 }
 
 /*****************************************************************************/
@@ -503,6 +505,7 @@ void Stack::resizeEvent(QResizeEvent* event) {
 			m_background = QPixmap();
 		}
 		m_resize_timer->start();
+		updateBackground();
 	}
 	QWidget::resizeEvent(event);
 }

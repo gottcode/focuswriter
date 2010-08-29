@@ -1,3 +1,7 @@
+2010-08-29 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Window background was visible during resize.
+	* FIXED: Window could be made smaller than theme.
+
 2010-08-26 Graeme Gott <graeme@gottcode.org>
 	* Switch to using RTF for rich text files.
 
