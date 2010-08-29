@@ -1,5 +1,6 @@
 OpenOffice.org Hunspell en_US dictionary
-2007-08-29 release
+2010-03-09 release
+
 --
 This dictionary is based on a subset of the original
 English wordlist created by Kevin Atkinson for Pspell 
@@ -12,6 +13,13 @@ such is covered by his BSD license.
 Thanks to both authors for there wonderful work.
 
 ChangeLog
+
+2010-03-09 (nemeth AT OOo)
+  - UTF-8 encoded dictionary:
+       - fix em-dash problem of OOo 3.2 by BREAK
+       - suggesting words with typographical apostrophes
+       - recognizing words with Unicode f ligatures
+  - add phonetic suggestion (Copyright (C) 2000 Björn Jacke, see the end of the file)
 
 2007-08-29 nemeth AT OOo
 
