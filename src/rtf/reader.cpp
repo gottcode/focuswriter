@@ -139,7 +139,8 @@ RTF::Reader::Reader()
 		functions["*"] = Function(&Reader::ignoreGroup);
 	}
 
-	m_state.ignore = false;
+	m_state.ignore_control_word = false;
+	m_state.ignore_text = false;
 	m_state.skip = 1;
 	m_state.active_codepage = 0;
 
@@ -174,7 +175,7 @@ void RTF::Reader::read(const QString& filename, QTextEdit* text)
 		if (m_token.type() == StartGroupToken) {
 			pushState();
 		} else {
-			throw tr("Not at RTF file.");
+			throw tr("Not a supported RTF file.");
 		}
 		m_token.readNext();
 		if (m_token.type() != ControlWordToken || m_token.text() != "rtf" || m_token.value() != 1) {
@@ -189,12 +190,12 @@ void RTF::Reader::read(const QString& filename, QTextEdit* text)
 				pushState();
 			} else if (m_token.type() == EndGroupToken) {
 				popState();
-			} else if (!m_state.ignore) {
-				if (m_token.type() == ControlWordToken) {
-					if (functions.contains(m_token.text())) {
-						functions[m_token.text()].call(this, m_token);
-					}
-				} else if (m_token.type() == TextToken) {
+			} else if (m_token.type() == ControlWordToken) {
+				if (!m_state.ignore_control_word && functions.contains(m_token.text())) {
+					functions[m_token.text()].call(this, m_token);
+				}
+			} else if (m_token.type() == TextToken) {
+				if (!m_state.ignore_text) {
 					m_text->textCursor().insertText(m_codec->toUnicode(m_token.text()));
 				}
 			}
@@ -211,7 +212,8 @@ void RTF::Reader::read(const QString& filename, QTextEdit* text)
 
 void RTF::Reader::ignoreGroup(qint32)
 {
-	m_state.ignore = true;
+	m_state.ignore_control_word = true;
+	m_state.ignore_text = true;
 }
 
 void RTF::Reader::insertBlock(qint32)
@@ -264,7 +266,7 @@ void RTF::Reader::pushState()
 void RTF::Reader::popState()
 {
 	if (m_states.isEmpty()) {
-		throw tr("Mismatch in number of group starts and ends.");
+		return;
 	}
 	m_state = m_states.pop();
 	QTextCursor cursor = m_text->textCursor();
@@ -385,7 +387,9 @@ void RTF::Reader::setFont(qint32 value)
 void RTF::Reader::setFontCodepage(qint32 value)
 {
 	if (m_state.active_codepage >= m_codepages.count()) {
-		throw tr("Attempted to set codepage of unknown font.");
+		m_state.ignore_control_word = true;
+		m_state.ignore_text = true;
+		return;
 	}
 
 	QTextCodec* codec = QTextCodec::codecForName("CP" + QByteArray::number(value));
@@ -393,17 +397,20 @@ void RTF::Reader::setFontCodepage(qint32 value)
 		m_codepages[m_state.active_codepage] = codec;
 		m_codec = codec;
 	}
-	m_state.ignore = true;
+	m_state.ignore_control_word = true;
+	m_state.ignore_text = true;
 }
 
 void RTF::Reader::setFontCharset(qint32 value)
 {
 	if (m_state.active_codepage >= m_codepages.count()) {
-		throw tr("Attempted to set charset of unknown font.");
+		m_state.ignore_text = true;
+		return;
 	}
 
 	if (m_codepages[m_state.active_codepage] != 0) {
 		m_codec = m_codepages[m_state.active_codepage];
+		m_state.ignore_text = true;
 		return;
 	}
 
@@ -435,5 +442,5 @@ void RTF::Reader::setFontCharset(qint32 value)
 		m_codepages[m_state.active_codepage] = codec;
 		m_codec = codec;
 	}
-	m_state.ignore = true;
+	m_state.ignore_text = true;
 }

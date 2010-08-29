@@ -159,7 +159,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 			RTF::Reader reader;
 			reader.read(filename, m_text);
 			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), tr("The following error occured reading '%1':\n\n%2").arg(filename, reader.errorString()));
+				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
 			}
 		}
 		m_text->document()->setModified(false);

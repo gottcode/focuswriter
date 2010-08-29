@@ -74,7 +74,8 @@ namespace RTF
 		{
 			QTextBlockFormat block_format;
 			QTextCharFormat char_format;
-			bool ignore;
+			bool ignore_control_word;
+			bool ignore_text;
 			int skip;
 			int active_codepage;
 		};
