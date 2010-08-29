@@ -25,6 +25,7 @@
 #include "preferences_dialog.h"
 #include "session.h"
 #include "session_manager.h"
+#include "smart_quotes.h"
 #include "stack.h"
 #include "theme.h"
 #include "theme_manager.h"
@@ -694,7 +695,7 @@ bool Window::saveDocument(int index) {
 
 /*****************************************************************************/
 
-void Window::loadPreferences(const Preferences& preferences) {
+void Window::loadPreferences(Preferences& preferences) {
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
 		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
@@ -707,6 +708,8 @@ void Window::loadPreferences(const Preferences& preferences) {
 	QString richtext = tr("Rich Text (*.rtf)");
 	QString all = tr("All Files (*)");
 	m_open_filter = preferences.richText() ? (richtext + ";;" + plaintext+ ";;" + all) : (plaintext + ";;" + richtext+ ";;" + all);
+
+	SmartQuotes::loadPreferences(preferences);
 
 	m_character_label->setVisible(preferences.showCharacters());
 	m_page_label->setVisible(preferences.showPages());
@@ -739,6 +742,9 @@ void Window::loadPreferences(const Preferences& preferences) {
 	if (m_documents->count() > 0) {
 		updateDetails();
 	}
+
+	m_replace_document_quotes->setEnabled(preferences.smartQuotes());
+	m_replace_selection_quotes->setEnabled(preferences.smartQuotes());
 
 	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 }
@@ -889,6 +895,10 @@ void Window::initMenus() {
 	m_actions["FindPrevious"]->setEnabled(false);
 	connect(m_documents, SIGNAL(findNextAvailable(bool)), m_actions["FindPrevious"], SLOT(setEnabled(bool)));
 	m_actions["Replace"] = tools_menu->addAction(QIcon::fromTheme("edit-find-replace"), tr("&Replace..."), m_documents, SLOT(replace()), keyBinding(QKeySequence::Replace, tr("Ctrl+R")));
+	tools_menu->addSeparator();
+	QMenu* quotes_menu = tools_menu->addMenu(tr("Smart &Quotes"));
+	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, SLOT(updateSmartQuotes()));
+	m_replace_selection_quotes = quotes_menu->addAction(tr("Update &Selection"), m_documents, SLOT(updateSmartQuotesSelection()));
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment"), tr("&Timers..."), m_timers, SLOT(show()));

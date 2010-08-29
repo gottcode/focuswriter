@@ -22,6 +22,7 @@
 #include "alert_layer.h"
 #include "document.h"
 #include "find_dialog.h"
+#include "smart_quotes.h"
 #include "theme.h"
 
 #include <QGridLayout>
@@ -454,6 +455,20 @@ void Stack::themeSelected(const Theme& theme) {
 
 void Stack::undo() {
 	m_current_document->text()->undo();
+}
+
+/*****************************************************************************/
+
+void Stack::updateSmartQuotes() {
+	SmartQuotes::replace(m_current_document->text(), 0, m_current_document->text()->document()->characterCount());
+	m_current_document->centerCursor(true);
+}
+
+/*****************************************************************************/
+
+void Stack::updateSmartQuotesSelection() {
+	QTextCursor cursor = m_current_document->text()->textCursor();
+	SmartQuotes::replace(m_current_document->text(), cursor.selectionStart(), cursor.selectionEnd());
 }
 
 /*****************************************************************************/

@@ -50,6 +50,9 @@ Preferences::Preferences()
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
 	m_rich_text = settings.value("Edit/RichText", false).toBool();
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
+	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
+	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
+	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
 
 	m_auto_save = settings.value("Save/Auto", true).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
@@ -99,6 +102,9 @@ Preferences::~Preferences() {
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
 	settings.setValue("Edit/RichText", m_rich_text);
 	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
+	settings.setValue("Edit/SmartQuotes", m_smart_quotes);
+	settings.setValue("Edit/SmartDoubleQuotes", m_double_quotes);
+	settings.setValue("Edit/SmartSingleQuotes", m_single_quotes);
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/RememberPositions", m_save_positions);
@@ -294,6 +300,24 @@ bool Preferences::smoothFonts() const {
 
 /*****************************************************************************/
 
+bool Preferences::smartQuotes() const {
+	return m_smart_quotes;
+}
+
+/*****************************************************************************/
+
+int Preferences::doubleQuotes() const {
+	return m_double_quotes;
+}
+
+/*****************************************************************************/
+
+int Preferences::singleQuotes() const {
+	return m_single_quotes;
+}
+
+/*****************************************************************************/
+
 void Preferences::setAlwaysCenter(bool center) {
 	m_always_center = center;
 	m_changed = true;
@@ -317,6 +341,27 @@ void Preferences::setRichText(bool rich) {
 
 void Preferences::setSmoothFonts(bool smooth) {
 	m_smooth_fonts = smooth;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setSmartQuotes(bool quotes) {
+	m_smart_quotes = quotes;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setDoubleQuotes(int quotes) {
+	m_double_quotes = quotes;
+	m_changed = true;
+}
+
+/*****************************************************************************/
+
+void Preferences::setSingleQuotes(int quotes) {
+	m_single_quotes = quotes;
 	m_changed = true;
 }
 

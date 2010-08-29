@@ -60,10 +60,16 @@ public:
 	bool blockCursor() const;
 	bool richText() const;
 	bool smoothFonts() const;
+	bool smartQuotes() const;
+	int doubleQuotes() const;
+	int singleQuotes() const;
 	void setAlwaysCenter(bool center);
 	void setBlockCursor(bool block);
 	void setRichText(bool rich);
 	void setSmoothFonts(bool smooth);
+	void setSmartQuotes(bool quotes);
+	void setDoubleQuotes(int quotes);
+	void setSingleQuotes(int quotes);
 
 	bool autoSave() const;
 	bool savePositions() const;
@@ -105,6 +111,9 @@ private:
 	bool m_block_cursor;
 	bool m_rich_text;
 	bool m_smooth_fonts;
+	bool m_smart_quotes;
+	int m_double_quotes;
+	int m_single_quotes;
 
 	bool m_auto_save;
 	bool m_save_positions;

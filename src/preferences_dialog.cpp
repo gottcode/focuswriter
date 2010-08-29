@@ -21,6 +21,7 @@
 
 #include "dictionary.h"
 #include "preferences.h"
+#include "smart_quotes.h"
 
 #include <QAction>
 #include <QCheckBox>
@@ -68,6 +69,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	tabs->addTab(initStatisticsTab(), tr("Statistics"));
 	tabs->addTab(initToolbarTab(), tr("Toolbar"));
 	tabs->addTab(initSpellingTab(), tr("Spell Checking"));
+	tabs->setUsesScrollButtons(false);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
 	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
@@ -122,6 +124,9 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_block_cursor->setChecked(m_preferences.blockCursor());
 	m_rich_text->setChecked(m_preferences.richText());
 	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
+	m_smart_quotes->setChecked(m_preferences.smartQuotes());
+	m_double_quotes->setCurrentIndex(m_preferences.doubleQuotes());
+	m_single_quotes->setCurrentIndex(m_preferences.singleQuotes());
 
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_save_positions->setChecked(m_preferences.savePositions());
@@ -207,6 +212,9 @@ void PreferencesDialog::accept() {
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
 	m_preferences.setRichText(m_rich_text->isChecked());
 	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
+	m_preferences.setSmartQuotes(m_smart_quotes->isChecked());
+	m_preferences.setDoubleQuotes(m_double_quotes->currentIndex());
+	m_preferences.setSingleQuotes(m_single_quotes->currentIndex());
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
 	m_preferences.setSavePositions(m_save_positions->isChecked());
@@ -534,11 +542,33 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	m_rich_text = new QCheckBox(tr("Default to rich text"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
 
+	m_smart_quotes = new QCheckBox(tr("Smart quotes:"), edit_group);
+	m_double_quotes = new QComboBox(edit_group);
+	m_double_quotes->setEnabled(false);
+	m_single_quotes = new QComboBox(edit_group);
+	m_single_quotes->setEnabled(false);
+	int count = SmartQuotes::count();
+	for (int i = 0; i < count; ++i) {
+		m_double_quotes->addItem(SmartQuotes::quoteString(tr("Double"), i));
+		m_single_quotes->addItem(SmartQuotes::quoteString(tr("Single"), i));
+	}
+	m_double_quotes->setMaxVisibleItems(count);
+	m_single_quotes->setMaxVisibleItems(count);
+	connect(m_smart_quotes, SIGNAL(toggled(bool)), m_double_quotes, SLOT(setEnabled(bool)));
+	connect(m_smart_quotes, SIGNAL(toggled(bool)), m_single_quotes, SLOT(setEnabled(bool)));
+
+	QHBoxLayout* quotes_layout = new QHBoxLayout;
+	quotes_layout->addWidget(m_smart_quotes);
+	quotes_layout->addWidget(m_double_quotes);
+	quotes_layout->addWidget(m_single_quotes);
+	quotes_layout->addStretch();
+
 	QVBoxLayout* edit_layout = new QVBoxLayout(edit_group);
 	edit_layout->addWidget(m_always_center);
 	edit_layout->addWidget(m_block_cursor);
 	edit_layout->addWidget(m_rich_text);
 	edit_layout->addWidget(m_smooth_fonts);
+	edit_layout->addLayout(quotes_layout);
 
 	// Create save options
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);

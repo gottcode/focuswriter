@@ -21,6 +21,7 @@
 
 #include "highlighter.h"
 #include "preferences.h"
+#include "smart_quotes.h"
 #include "spell_checker.h"
 #include "theme.h"
 #include "rtf/reader.h"
@@ -226,6 +227,7 @@ bool Document::save() {
 		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 			QTextStream stream(&file);
 			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setGenerateByteOrderMark(true);
 			stream << m_text->toPlainText();
 			file.close();
 		}
@@ -446,6 +448,9 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 			m_current_time += msecs;
 		}
 		emit changed();
+		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
+			return true;
+		}
 	}
 	return QWidget::eventFilter(watched, event);
 }

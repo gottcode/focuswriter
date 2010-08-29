@@ -109,6 +109,8 @@ public slots:
 	void setTextDirectionRTL();
 	void themeSelected(const Theme& theme);
 	void undo();
+	void updateSmartQuotes();
+	void updateSmartQuotesSelection();
 	void setFooterVisible(bool visible);
 	void setHeaderVisible(bool visible);
 

@@ -74,7 +74,7 @@ private slots:
 private:
 	void addDocument(const QString& filename = QString(), int position = -1);
 	bool saveDocument(int index);
-	void loadPreferences(const Preferences& preferences);
+	void loadPreferences(Preferences& preferences);
 	void hideInterface();
 	void updateMargin();
 	void updateTab(int index);
@@ -86,6 +86,8 @@ private:
 	QList<QAction*> m_format_actions;
 	QAction* m_plaintext_action;
 	QAction* m_richtext_action;
+	QAction* m_replace_document_quotes;
+	QAction* m_replace_selection_quotes;
 	QString m_open_filter;
 
 	LoadScreen* m_load_screen;
