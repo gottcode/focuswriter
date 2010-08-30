@@ -1,4 +1,5 @@
 2010-08-29 Graeme Gott <graeme@gottcode.org>
+	* Only save preferences and themes when they change.
 	* Add smart quotes.
 	* Replace provided English dictionary.
 	* FIXED: Window background was visible during resize.

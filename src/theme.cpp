@@ -91,8 +91,7 @@ QString Theme::m_path;
 /*****************************************************************************/
 
 Theme::Theme(const QString& name)
-: m_name(name),
-  m_changed(false) {
+: m_name(name) {
 	if (m_name.isEmpty()) {
 		int count = 0;
 		do {
@@ -108,8 +107,7 @@ Theme::Theme(const QString& name)
 	m_background_path = settings.value("Background/Image").toString();
 	m_background_image = settings.value("Background/ImageFile").toString();
 	if (!m_background_path.isEmpty() && m_background_image.isEmpty()) {
-		m_background_image = copyImage(m_background_path);
-		m_changed = true;
+		setValue(m_background_image, copyImage(m_background_path));
 	}
 
 	// Load foreground settings
@@ -129,7 +127,7 @@ Theme::Theme(const QString& name)
 /*****************************************************************************/
 
 Theme::~Theme() {
-	if (!m_changed) {
+	if (!isChanged()) {
 		return;
 	}
 
@@ -265,8 +263,7 @@ void Theme::setName(const QString& name) {
 
 		QFile::remove(filePath(m_name));
 		QFile::remove(iconPath(m_name));
-		m_name = name;
-		m_changed = true;
+		setValue(m_name, name);
 	}
 }
 
@@ -297,28 +294,25 @@ QString Theme::backgroundPath() const {
 /*****************************************************************************/
 
 void Theme::setBackgroundType(int type) {
-	m_background_type = type;
-	m_changed = true;
+	setValue(m_background_type, type);
 }
 
 /*****************************************************************************/
 
 void Theme::setBackgroundColor(const QColor& color) {
-	m_background_color = color;
-	m_changed = true;
+	setValue(m_background_color, color);
 }
 
 /*****************************************************************************/
 
 void Theme::setBackgroundImage(const QString& path) {
 	if (m_background_path != path) {
-		m_background_path = path;
+		setValue(m_background_path, path);
 		if (!m_background_path.isEmpty()) {
 			m_background_image = copyImage(m_background_path);
 		} else {
 			m_background_image.clear();
 		}
-		m_changed = true;
 	}
 }
 
@@ -361,43 +355,37 @@ int Theme::foregroundPosition() const {
 /*****************************************************************************/
 
 void Theme::setForegroundColor(const QColor& color) {
-	m_foreground_color = color;
-	m_changed = true;
+	setValue(m_foreground_color, color);
 }
 
 /*****************************************************************************/
 
 void Theme::setForegroundWidth(int width) {
-	m_foreground_width = width;
-	m_changed = true;
+	setValue(m_foreground_width, width);
 }
 
 /*****************************************************************************/
 
 void Theme::setForegroundMargin(int margin) {
-	m_foreground_margin = margin;
-	m_changed = true;
+	setValue(m_foreground_margin, margin);
 }
 
 /*****************************************************************************/
 
 void Theme::setForegroundPadding(int padding) {
-	m_foreground_padding = padding;
-	m_changed = true;
+	setValue(m_foreground_padding, padding);
 }
 
 /*****************************************************************************/
 
 void Theme::setForegroundOpacity(int opacity) {
-	m_foreground_opacity = opacity;
-	m_changed = true;
+	setValue(m_foreground_opacity, opacity);
 }
 
 /*****************************************************************************/
 
 void Theme::setForegroundPosition(int position) {
-	m_foreground_position = position;
-	m_changed = true;
+	setValue(m_foreground_position, position);
 }
 
 /*****************************************************************************/
@@ -421,22 +409,19 @@ QColor Theme::misspelledColor() const {
 /*****************************************************************************/
 
 void Theme::setTextColor(const QColor& color) {
-	m_text_color = color;
-	m_changed = true;
+	setValue(m_text_color, color);
 }
 
 /*****************************************************************************/
 
 void Theme::setTextFont(const QFont& font) {
-	m_text_font = font;
-	m_changed = true;
+	setValue(m_text_font, font);
 }
 
 /*****************************************************************************/
 
 void Theme::setMisspelledColor(const QColor& color) {
-	m_misspelled_color = color;
-	m_changed = true;
+	setValue(m_misspelled_color, color);
 }
 
 /*****************************************************************************/

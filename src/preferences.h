@@ -20,10 +20,12 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QStringList>
+#include "settings_file.h"
 class Dictionary;
 
-class Preferences {
+#include <QStringList>
+
+class Preferences : public SettingsFile {
 public:
 	Preferences();
 	~Preferences();
@@ -126,8 +128,6 @@ private:
 	bool m_ignore_numbers;
 	QString m_language;
 	Dictionary* m_dictionary;
-
-	bool m_changed;
 };
 
 #endif

@@ -26,8 +26,7 @@
 
 /*****************************************************************************/
 
-Preferences::Preferences()
-: m_changed(false) {
+Preferences::Preferences() {
 	QSettings settings;
 
 	m_goal_type = settings.value("Goal/Type", 1).toInt();
@@ -67,6 +66,10 @@ Preferences::Preferences()
 	m_language = settings.value("Spelling/Language", QLocale::system().name()).toString();
 
 	m_dictionary = new Dictionary;
+	QStringList languages = m_dictionary->availableLanguages();
+	if (!languages.isEmpty() && !languages.contains(m_language)) {
+		setLanguage(languages.first());
+	}
 	m_dictionary->setLanguage(m_language);
 	m_dictionary->setIgnoreNumbers(m_ignore_numbers);
 	m_dictionary->setIgnoreUppercase(m_ignore_uppercase);
@@ -76,7 +79,7 @@ Preferences::Preferences()
 
 Preferences::~Preferences() {
 	delete m_dictionary;
-	if (!m_changed) {
+	if (!isChanged()) {
 		return;
 	}
 
@@ -139,22 +142,19 @@ int Preferences::goalWords() const {
 /*****************************************************************************/
 
 void Preferences::setGoalType(int goal) {
-	m_goal_type = goal;
-	m_changed = true;
+	setValue(m_goal_type, goal);
 }
 
 /*****************************************************************************/
 
 void Preferences::setGoalMinutes(int goal) {
-	m_goal_minutes = goal;
-	m_changed = true;
+	setValue(m_goal_minutes, goal);
 }
 
 /*****************************************************************************/
 
 void Preferences::setGoalWords(int goal) {
-	m_goal_words = goal;
-	m_changed = true;
+	setValue(m_goal_words, goal);
 }
 
 /*****************************************************************************/
@@ -184,29 +184,25 @@ bool Preferences::showWords() const {
 /*****************************************************************************/
 
 void Preferences::setShowCharacters(bool show) {
-	m_show_characters = show;
-	m_changed = true;
+	setValue(m_show_characters, show);
 }
 
 /*****************************************************************************/
 
 void Preferences::setShowPages(bool show) {
-	m_show_pages = show;
-	m_changed = true;
+	setValue(m_show_pages, show);
 }
 
 /*****************************************************************************/
 
 void Preferences::setShowParagraphs(bool show) {
-	m_show_paragraphs = show;
-	m_changed = true;
+	setValue(m_show_paragraphs, show);
 }
 
 /*****************************************************************************/
 
 void Preferences::setShowWords(bool show) {
-	m_show_words = show;
-	m_changed = true;
+	setValue(m_show_words, show);
 }
 
 /*****************************************************************************/
@@ -236,29 +232,25 @@ int Preferences::pageWords() const {
 /*****************************************************************************/
 
 void Preferences::setPageType(int type) {
-	m_page_type = type;
-	m_changed = true;
+	setValue(m_page_type, type);
 }
 
 /*****************************************************************************/
 
 void Preferences::setPageCharacters(int characters) {
-	m_page_characters = characters;
-	m_changed = true;
+	setValue(m_page_characters, characters);
 }
 
 /*****************************************************************************/
 
 void Preferences::setPageParagraphs(int paragraphs) {
-	m_page_paragraphs = paragraphs;
-	m_changed = true;
+	setValue(m_page_paragraphs, paragraphs);
 }
 
 /*****************************************************************************/
 
 void Preferences::setPageWords(int words) {
-	m_page_words = words;
-	m_changed = true;
+	setValue(m_page_words, words);
 }
 
 /*****************************************************************************/
@@ -270,8 +262,7 @@ bool Preferences::accurateWordcount() const {
 /*****************************************************************************/
 
 void Preferences::setAccurateWordcount(bool accurate) {
-	m_accurate_wordcount = accurate;
-	m_changed = true;
+	setValue(m_accurate_wordcount, accurate);
 }
 
 /*****************************************************************************/
@@ -319,50 +310,43 @@ int Preferences::singleQuotes() const {
 /*****************************************************************************/
 
 void Preferences::setAlwaysCenter(bool center) {
-	m_always_center = center;
-	m_changed = true;
+	setValue(m_always_center, center);
 }
 
 /*****************************************************************************/
 
 void Preferences::setBlockCursor(bool block) {
-	m_block_cursor = block;
-	m_changed = true;
+	setValue(m_block_cursor, block);
 }
 
 /*****************************************************************************/
 
 void Preferences::setRichText(bool rich) {
-	m_rich_text = rich;
-	m_changed = true;
+	setValue(m_rich_text, rich);
 }
 
 /*****************************************************************************/
 
 void Preferences::setSmoothFonts(bool smooth) {
-	m_smooth_fonts = smooth;
-	m_changed = true;
+	setValue(m_smooth_fonts, smooth);
 }
 
 /*****************************************************************************/
 
 void Preferences::setSmartQuotes(bool quotes) {
-	m_smart_quotes = quotes;
-	m_changed = true;
+	setValue(m_smart_quotes, quotes);
 }
 
 /*****************************************************************************/
 
 void Preferences::setDoubleQuotes(int quotes) {
-	m_double_quotes = quotes;
-	m_changed = true;
+	setValue(m_double_quotes, quotes);
 }
 
 /*****************************************************************************/
 
 void Preferences::setSingleQuotes(int quotes) {
-	m_single_quotes = quotes;
-	m_changed = true;
+	setValue(m_single_quotes, quotes);
 }
 
 /*****************************************************************************/
@@ -380,15 +364,13 @@ bool Preferences::savePositions() const {
 /*****************************************************************************/
 
 void Preferences::setAutoSave(bool save) {
-	m_auto_save = save;
-	m_changed = true;
+	setValue(m_auto_save, save);
 }
 
 /*****************************************************************************/
 
 void Preferences::setSavePositions(bool save) {
-	m_save_positions = save;
-	m_changed = true;
+	setValue(m_save_positions, save);
 }
 
 /*****************************************************************************/
@@ -406,15 +388,13 @@ QStringList Preferences::toolbarActions() const {
 /*****************************************************************************/
 
 void Preferences::setToolbarStyle(int style) {
-	m_toolbar_style = style;
-	m_changed = true;
+	setValue(m_toolbar_style, style);
 }
 
 /*****************************************************************************/
 
 void Preferences::setToolbarActions(const QStringList& actions) {
-	m_toolbar_actions = actions;
-	m_changed = true;
+	setValue(m_toolbar_actions, actions);
 }
 
 /*****************************************************************************/
@@ -444,29 +424,25 @@ QString Preferences::language() const {
 /*****************************************************************************/
 
 void Preferences::setHighlightMisspelled(bool highlight) {
-	m_highlight_misspelled = highlight;
-	m_changed = true;
+	setValue(m_highlight_misspelled, highlight);
 }
 
 /*****************************************************************************/
 
 void Preferences::setIgnoreWordsWithNumbers(bool ignore) {
-	m_ignore_numbers = ignore;
-	m_changed = true;
+	setValue(m_ignore_numbers, ignore);
 }
 
 /*****************************************************************************/
 
 void Preferences::setIgnoreUppercaseWords(bool ignore) {
-	m_ignore_uppercase = ignore;
-	m_changed = true;
+	setValue(m_ignore_uppercase, ignore);
 }
 
 /*****************************************************************************/
 
 void Preferences::setLanguage(const QString& language) {
-	m_language = language;
-	m_changed = true;
+	setValue(m_language, language);
 }
 
 /*****************************************************************************/

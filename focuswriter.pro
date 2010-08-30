@@ -41,6 +41,7 @@ HEADERS += src/alert.h \
 	src/preferences_dialog.h \
 	src/session.h \
 	src/session_manager.h \
+	src/settings_file.h \
 	src/smart_quotes.h \
 	src/spell_checker.h \
 	src/stack.h \

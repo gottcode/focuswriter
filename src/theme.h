@@ -20,13 +20,15 @@
 #ifndef THEME_H
 #define THEME_H
 
+#include "settings_file.h"
+
 #include <QColor>
 #include <QCoreApplication>
 #include <QFont>
 class QImage;
 class QSize;
 
-class Theme {
+class Theme : public SettingsFile {
 	Q_DECLARE_TR_FUNCTIONS(Theme);
 
 public:
@@ -96,8 +98,6 @@ private:
 	QColor m_text_color;
 	QFont m_text_font;
 	QColor m_misspelled_color;
-
-	bool m_changed;
 };
 
 #endif
