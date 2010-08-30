@@ -48,8 +48,22 @@ int main(int argc, char** argv) {
 	qt_translator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 	app.installTranslator(&qt_translator);
 
+	paths.clear();
+	paths.append(appdir + "/translations/");
+	paths.append(appdir + "/../share/focuswriter/translations/");
+	paths.append(appdir + "/../Resources/translations");
+	QString translator_path;
+	foreach (const QString& path, paths) {
+		if (QFile::exists(path)) {
+			translator_path = path;
+			break;
+		}
+	}
+
 	QTranslator translator;
-	translator.load(":/focuswriter_" + QLocale::system().name());
+	if (!translator.load("focuswriter_" + QLocale::system().name(), translator_path)) {
+		translator.load("focuswriter_en", translator_path);
+	}
 	app.installTranslator(&translator);
 
 	// Find data paths

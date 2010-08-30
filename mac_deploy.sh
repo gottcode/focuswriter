@@ -14,6 +14,13 @@ cp -pf README "$APP/"
 cp -Rpf "$BUNDLE" "$APP/"
 echo 'Done'
 
+# Copy translations
+echo -n 'Copying translations... '
+TRANSLATIONS=$APP/$BUNDLE/Contents/Resources/translations
+mkdir $TRANSLATIONS
+cp -Rf translations/*.qm $TRANSLATIONS
+echo 'Done'
+
 # Copy icons
 echo -n 'Copying icons... '
 ICONS="$APP/$BUNDLE/Contents/Resources/icons"
@@ -25,8 +32,7 @@ echo 'Done'
 echo -n 'Copying English dictionary... '
 DICTIONARIES="$APP/$BUNDLE/Contents/Resources/Dictionaries"
 mkdir $DICTIONARIES
-cp -f dict/en_US.aff $DICTIONARIES
-cp -f dict/en_US.dic $DICTIONARIES
+cp -f dict/* $DICTIONARIES
 echo 'Done'
 
 # Copy frameworks and plugins

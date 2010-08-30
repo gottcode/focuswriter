@@ -10,6 +10,11 @@ TYPE README | FIND "" /V > %APP%\README.txt
 COPY release\%APP%.exe %APP% >nul
 strip %APP%\%APP%.exe
 
+ECHO Copying translations
+SET TRANSLATIONS=%APP%\translations
+MKDIR %TRANSLATIONS%
+COPY translations\*.qm %TRANSLATIONS% >nul
+
 ECHO Copying icons
 SET ICONS=%APP%\icons\hicolor
 MKDIR %ICONS%
@@ -18,8 +23,7 @@ XCOPY /Q /S /Y icons\oxygen\hicolor %ICONS% >nul
 ECHO Copying English dictionary
 SET DICTIONARIES=%APP%\Dictionaries
 MKDIR %DICTIONARIES%
-COPY dict\en_US.aff %DICTIONARIES% >nul
-COPY dict\en_US.dic %DICTIONARIES% >nul
+COPY dict\* %DICTIONARIES% >nul
 
 ECHO Copying hunspell library
 COPY hunspell\hunspell1.dll %APP% >nul

@@ -85,9 +85,9 @@ SOURCES += src/alert.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp
 
-TRANSLATIONS = translations/focuswriter_fr.ts translations/focuswriter_pt.ts
+TRANSLATIONS = translations/focuswriter_en.ts translations/focuswriter_fr.ts translations/focuswriter_pt.ts
 
-RESOURCES = icons/icons.qrc translations/translations.qrc
+RESOURCES = icons/icons.qrc
 macx {
 	ICON = icons/focuswriter.icns
 }
@@ -111,5 +111,8 @@ unix: !macx {
 	desktop.files = icons/focuswriter.desktop
 	desktop.path = $$PREFIX/share/applications/
 
-	INSTALLS += target icon desktop icons
+	qm.files = translations/*.qm
+	qm.path = $$PREFIX/share/focuswriter/translations
+
+	INSTALLS += target icon desktop icons qm
 }
