@@ -81,11 +81,10 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 	connect(m_new_button, SIGNAL(clicked()), this, SLOT(newTimer()));
 
 	m_recent_timers = new QMenu(this);
+	m_recent_button = buttons->addButton(tr("Recent"), QDialogButtonBox::ActionRole);
+	m_recent_button->setMenu(m_recent_timers);
 	setupRecentMenu();
 	connect(m_recent_timers, SIGNAL(triggered(QAction*)), this, SLOT(recentTimer(QAction*)));
-
-	QPushButton* recent_button = buttons->addButton(tr("Recent"), QDialogButtonBox::ActionRole);
-	recent_button->setMenu(m_recent_timers);
 
 	// Lay out window
 	QVBoxLayout* layout = new QVBoxLayout(this);
@@ -200,7 +199,9 @@ void TimerManager::recentTimer(QAction* action)
 
 void TimerManager::recentTimerMenuRequested(const QPoint& pos)
 {
-	m_recent_timers->popup(m_display->mapToGlobal(pos));
+	if (!m_recent_timers->isEmpty()) {
+		m_recent_timers->popup(m_display->mapToGlobal(pos));
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -332,6 +333,8 @@ void TimerManager::setupRecentMenu()
 	foreach (QAction* action, end_timers) {
 		m_recent_timers->addAction(action);
 	}
+
+	m_recent_button->setEnabled(!m_recent_timers->isEmpty());
 }
 
 //-----------------------------------------------------------------------------

@@ -76,6 +76,7 @@ private:
 	QScrollArea* m_timers_area;
 
 	QPushButton* m_new_button;
+	QPushButton* m_recent_button;
 	QMenu* m_recent_timers;
 };
 

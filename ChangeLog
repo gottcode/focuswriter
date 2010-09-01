@@ -1,3 +1,6 @@
+2010-09-01 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could open empty recent timers menu.
+
 2010-08-29 Graeme Gott <graeme@gottcode.org>
 	* Only save preferences and themes when they change.
 	* Add smart quotes.
