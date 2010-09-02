@@ -60,6 +60,7 @@ private:
 	QComboBox* m_background_type;
 	ColorButton* m_background_color;
 	ImageButton* m_background_image;
+	QPushButton* m_clear_image;
 
 	ColorButton* m_foreground_color;
 	QSpinBox* m_foreground_width;

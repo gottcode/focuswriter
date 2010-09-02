@@ -72,13 +72,13 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_background_image->setImage(m_theme.backgroundImage(), m_theme.backgroundPath());
 	connect(m_background_image, SIGNAL(changed(const QString&)), this, SLOT(renderPreview()));
 
-	QPushButton* clear_image = new QPushButton(tr("Remove"), this);
-	connect(clear_image, SIGNAL(clicked()), m_background_image, SLOT(unsetImage()));
+	m_clear_image = new QPushButton(tr("Remove"), this);
+	connect(m_clear_image, SIGNAL(clicked()), m_background_image, SLOT(unsetImage()));
 
 	QVBoxLayout* image_layout = new QVBoxLayout;
 	image_layout->setSpacing(0);
 	image_layout->addWidget(m_background_image);
-	image_layout->addWidget(clear_image);
+	image_layout->addWidget(m_clear_image);
 
 	QFormLayout* background_layout = new QFormLayout(tab);
 	background_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
@@ -248,6 +248,8 @@ void ThemeDialog::renderPreview() {
 		painter.setClipRect(0, 0, 200, 150);
 
 		int type = m_background_type->currentIndex();
+		m_background_image->setEnabled(type > 0);
+		m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
 
 		// Draw background
 		QImage background = Theme::renderBackground(m_background_image->image(), type, m_background_color->color(), QSize(200, 150));
