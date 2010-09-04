@@ -236,7 +236,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 		for (int i = 0; i < files.count(); ++i) {
 			addDocument(files.at(i), positions.value(i, "-1").toInt());
 			int index = m_documents->currentIndex();
-			if (files.at(i) != m_documents->currentDocument()->filename()) {
+			if (m_documents->currentDocument()->index() > 0) {
 				missing.append(files.at(i));
 				m_documents->removeDocument(index);
 				m_tabs->removeTab(index);
