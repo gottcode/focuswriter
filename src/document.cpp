@@ -107,6 +107,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 				m_text->setUndoRedoEnabled(false);
 				while (!stream.atEnd()) {
 					m_text->insertPlainText(stream.read(8192));
+					QApplication::processEvents();
 				}
 				m_text->setUndoRedoEnabled(true);
 				file.close();

@@ -24,6 +24,7 @@
 
 #include "tokenizer.h"
 
+#include <QApplication>
 #include <QIODevice>
 
 RTF::Tokenizer::Tokenizer()
@@ -134,13 +135,9 @@ void RTF::Tokenizer::readNext()
 		m_type = TextToken;
 		while (c != '\\' && c != '{' && c != '}' && c != '\n' && c != '\r') {
 			m_text.append(c);
-			++m_position;
-			if (m_position == m_buffer.size()) {
-				break;
-			}
-			c = m_buffer.at(m_position);
+			c = next();
 		}
-		--m_position;
+		m_position--;
 	}
 }
 
@@ -160,6 +157,7 @@ char RTF::Tokenizer::next()
 		}
 		m_buffer.resize(size);
 		m_position = 0;
+		QApplication::processEvents();
 	}
 	return m_buffer.at(m_position);
 }
