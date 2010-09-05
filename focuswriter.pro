@@ -29,6 +29,7 @@ macx {
 
 HEADERS += src/alert.h \
 	src/alert_layer.h \
+	src/block_stats.h \
 	src/color_button.h \
 	src/deltas.h \
 	src/dictionary.h \
@@ -45,6 +46,7 @@ HEADERS += src/alert.h \
 	src/smart_quotes.h \
 	src/spell_checker.h \
 	src/stack.h \
+	src/stats.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
@@ -58,6 +60,7 @@ HEADERS += src/alert.h \
 
 SOURCES += src/alert.cpp \
 	src/alert_layer.cpp \
+	src/block_stats.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
 	src/dictionary.cpp \
@@ -74,6 +77,7 @@ SOURCES += src/alert.cpp \
 	src/smart_quotes.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
+	src/stats.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \

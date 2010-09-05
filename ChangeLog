@@ -1,3 +1,6 @@
+2010-09-05 Graeme Gott <graeme@gottcode.org>
+	* Speed up word count.
+
 2010-09-04 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Could not open symlinked files.
 

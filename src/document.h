@@ -20,6 +20,11 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
+#include "stats.h"
+class Highlighter;
+class Preferences;
+class Theme;
+
 #include <QHash>
 #include <QTime>
 #include <QWidget>
@@ -27,9 +32,6 @@ class QGridLayout;
 class QScrollBar;
 class QTextEdit;
 class QTimer;
-class Highlighter;
-class Preferences;
-class Theme;
 
 class Document : public QWidget {
 	Q_OBJECT
@@ -50,23 +52,23 @@ public:
 	}
 
 	int characterCount() const {
-		return m_character_count - m_space_count;
+		return m_document_stats.characterCount();
 	}
 
 	int characterAndSpaceCount() const {
-		return m_character_count;
+		return m_document_stats.characterAndSpaceCount();
 	}
 
 	int pageCount() const {
-		return m_page_count;
+		return m_document_stats.pageCount();
 	}
 
 	int paragraphCount() const {
-		return m_paragraph_count;
+		return m_document_stats.paragraphCount();
 	}
 
 	int wordCount() const {
-		return m_wordcount;
+		return m_document_stats.wordCount();
 	}
 
 	QTextEdit* text() const {
@@ -132,11 +134,10 @@ private:
 	QScrollBar* m_scrollbar;
 	Highlighter* m_highlighter;
 
-	int m_character_count;
-	int m_page_count;
-	int m_paragraph_count;
-	int m_space_count;
-	int m_wordcount;
+	Stats m_document_stats;
+	Stats m_cached_stats;
+	int m_cached_block_count;
+	int m_cached_current_block;
 
 	int m_page_type;
 	float m_page_amount;

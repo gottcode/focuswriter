@@ -19,6 +19,7 @@
 
 #include "document.h"
 
+#include "block_stats.h"
 #include "highlighter.h"
 #include "preferences.h"
 #include "smart_quotes.h"
@@ -55,56 +56,6 @@ namespace {
 	bool isRichTextFile(const QString& filename) {
 		return filename.endsWith(QLatin1String(".rtf"));
 	}
-
-	// Text block statistics
-	class BlockStats : public QTextBlockUserData {
-	public:
-		BlockStats(const QString& text) : m_characters(0), m_spaces(0), m_words(0) {
-			update(text);
-		}
-
-		bool isEmpty() const {
-			return m_words == 0;
-		}
-
-		int characterCount() const {
-			return m_characters;
-		}
-
-		int spaceCount() const {
-			return m_spaces;
-		}
-
-		int wordCount() const {
-			return m_words;
-		}
-
-		void update(const QString& text);
-
-	private:
-		int m_characters;
-		int m_spaces;
-		int m_words;
-	};
-
-	void BlockStats::update(const QString& text) {
-		m_characters = text.length();
-		m_spaces = 0;
-		m_words = 0;
-		int index = -1;
-		for (int i = 0; i < m_characters; ++i) {
-			const QChar& c = text[i];
-			if (c.isLetterOrNumber()) {
-				if (index == -1) {
-					index = i;
-					m_words++;
-				}
-			} else if (c != 0x0027 && c != 0x2019) {
-				index = -1;
-				m_spaces += c.isSpace();
-			}
-		}
-	}
 }
 
 /*****************************************************************************/
@@ -114,11 +65,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
   m_index(0),
   m_always_center(false),
   m_rich_text(false),
-  m_character_count(0),
-  m_page_count(0),
-  m_paragraph_count(0),
-  m_space_count(0),
-  m_wordcount(0),
+  m_cached_block_count(-1),
+  m_cached_current_block(-1),
   m_page_type(0),
   m_page_amount(0),
   m_accurate_wordcount(true),
@@ -153,7 +101,12 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 				QTextStream stream(&file);
 				stream.setCodec(QTextCodec::codecForName("UTF-8"));
-				m_text->setPlainText(stream.readAll());
+				stream.setAutoDetectUnicode(true);
+				m_text->setUndoRedoEnabled(false);
+				while (!stream.atEnd()) {
+					m_text->insertPlainText(stream.read(8192));
+				}
+				m_text->setUndoRedoEnabled(true);
 				file.close();
 			}
 		} else {
@@ -570,6 +523,14 @@ void Document::updateWordCount(int position, int removed, int added) {
 		}
 	}
 
+	int block_count = m_text->document()->blockCount();
+	int current_block = m_text->textCursor().blockNumber();
+	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
+		m_cached_block_count = block_count;
+		m_cached_current_block = current_block;
+		m_cached_stats.clear();
+	}
+
 	QTextBlock begin = m_text->document()->findBlock(position - removed);
 	if (!begin.isValid()) {
 		begin = m_text->document()->begin();
@@ -584,46 +545,35 @@ void Document::updateWordCount(int position, int removed, int added) {
 		}
 	}
 
-	int words = m_wordcount;
+	int words = m_document_stats.wordCount();
 	calculateWordCount();
-	m_current_wordcount += (m_wordcount - words);
+	m_current_wordcount += (m_document_stats.wordCount() - words);
 	emit changed();
 }
 
 /*****************************************************************************/
 
 void Document::calculateWordCount() {
-	m_character_count = 0;
-	m_paragraph_count = 0;
-	m_space_count = 0;
-	m_wordcount = 0;
-	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
-		if (!i.userData()) {
-			i.setUserData(new BlockStats(i.text()));
+	if (!m_cached_stats.isValid()) {
+		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
+			if (!i.userData()) {
+				i.setUserData(new BlockStats(i.text()));
+			}
+			if (i.blockNumber() != m_cached_current_block) {
+				m_cached_stats.append(static_cast<BlockStats*>(i.userData()));
+			}
 		}
-		BlockStats* stats = static_cast<BlockStats*>(i.userData());
-		m_character_count += stats->characterCount();
-		m_paragraph_count += !stats->isEmpty();
-		m_space_count += stats->spaceCount();
-		m_wordcount += stats->wordCount();
-	}
-	if (!m_accurate_wordcount) {
-		m_wordcount = std::ceil(m_character_count / 6.0f);
 	}
 
-	float amount = 0;
-	switch (m_page_type) {
-	case 1:
-		amount = m_paragraph_count;
-		break;
-	case 2:
-		amount = m_wordcount;
-		break;
-	default:
-		amount = m_character_count;
-		break;
+	m_document_stats = m_cached_stats;
+	QTextBlockUserData* data = m_text->document()->findBlockByNumber(m_cached_current_block).userData();
+	if (data) {
+		m_document_stats.append(static_cast<BlockStats*>(data));
 	}
-	m_page_count = qMax(1.0f, std::ceil(amount / m_page_amount));
+	if (!m_accurate_wordcount) {
+		m_document_stats.calculateEstimatedWordCount();
+	}
+	m_document_stats.calculatePageCount(m_page_type, m_page_amount);
 }
 
 /*****************************************************************************/
