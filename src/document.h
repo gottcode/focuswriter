@@ -52,23 +52,23 @@ public:
 	}
 
 	int characterCount() const {
-		return m_document_stats.characterCount();
+		return m_stats->characterCount();
 	}
 
 	int characterAndSpaceCount() const {
-		return m_document_stats.characterAndSpaceCount();
+		return m_stats->characterAndSpaceCount();
 	}
 
 	int pageCount() const {
-		return m_document_stats.pageCount();
+		return m_stats->pageCount();
 	}
 
 	int paragraphCount() const {
-		return m_document_stats.paragraphCount();
+		return m_stats->paragraphCount();
 	}
 
 	int wordCount() const {
-		return m_document_stats.wordCount();
+		return m_stats->wordCount();
 	}
 
 	QTextEdit* text() const {
@@ -108,6 +108,7 @@ private slots:
 	void hideMouse();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);
+	void selectionChanged();
 	void undoCommandAdded();
 	void updateWordCount(int position, int removed, int added);
 
@@ -134,7 +135,9 @@ private:
 	QScrollBar* m_scrollbar;
 	Highlighter* m_highlighter;
 
+	Stats* m_stats;
 	Stats m_document_stats;
+	Stats m_selected_stats;
 	Stats m_cached_stats;
 	int m_cached_block_count;
 	int m_cached_current_block;

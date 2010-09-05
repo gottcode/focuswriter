@@ -74,6 +74,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
   m_current_time(current_time) {
 	setMouseTracking(true);
 
+	m_stats = &m_document_stats;
+
 	m_hide_timer = new QTimer(this);
 	m_hide_timer->setInterval(5000);
 	m_hide_timer->setSingleShot(true);
@@ -154,6 +156,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text, SIGNAL(textChanged()), this, SLOT(centerCursor()));
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 }
 
 /*****************************************************************************/
@@ -487,6 +490,28 @@ void Document::scrollBarRangeChanged(int, int max) {
 	m_scrollbar->setMaximum(max + m_text->height());
 	m_scrollbar->blockSignals(false);
 	centerCursor(max == 0);
+}
+
+/*****************************************************************************/
+
+void Document::selectionChanged() {
+	m_selected_stats.clear();
+	if (m_text->textCursor().hasSelection()) {
+		BlockStats temp("");
+		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
+		foreach (const QString& string, selection) {
+			temp.update(string);
+			m_selected_stats.append(&temp);
+		}
+		if (!m_accurate_wordcount) {
+			m_selected_stats.calculateEstimatedWordCount();
+		}
+		m_selected_stats.calculatePageCount(m_page_type, m_page_amount);
+		m_stats = &m_selected_stats;
+	} else {
+		m_stats = &m_document_stats;
+	}
+	emit changed();
 }
 
 /*****************************************************************************/
