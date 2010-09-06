@@ -307,7 +307,8 @@ void Stack::increaseIndent() {
 /*****************************************************************************/
 
 void Stack::makePlainText() {
-	if (QMessageBox::warning(window(), tr("Question"), tr("Remove all formatting from the current file?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+	if (!m_current_document->text()->document()->isEmpty()
+		&& QMessageBox::warning(window(), tr("Question"), tr("Remove all formatting from the current file?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 		return;
 	}
 	m_current_document->setRichText(false);
