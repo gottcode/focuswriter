@@ -1,3 +1,6 @@
+2010-09-06 Graeme Gott <graeme@gottcode.org>
+	* Improve RTF conversion from unicode.
+
 2010-09-05 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Warned about losing formatting of empty files.
 	* Show selected statistics.

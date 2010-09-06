@@ -139,29 +139,52 @@ void RTF::Writer::write(const QString& filename, QTextEdit* text)
 
 QByteArray RTF::Writer::fromUnicode(const QString& string) const
 {
-	QString data = string;
-	data.replace(QChar('\\'), QLatin1String("\\\\"));
-	data.replace(QChar('{'), QLatin1String("\\{"));
-	data.replace(QChar('}'), QLatin1String("\\}"));
-	data.replace(QChar('\t'), QLatin1String("\\tab "));
+	QByteArray text;
 
-	QByteArray bytes;
+	QByteArray encoded;
+	QTextCodec::ConverterState state;
+	state.flags = QTextCodec::ConvertInvalidToNull;
 
-	int start = 0;
-	for (int i = 0; i < data.length(); ++i) {
-		if (!m_codec->canEncode(data.at(i))) {
-			QStringRef ref(&data, start, i - start);
-			bytes += m_codec->fromUnicode(ref.constData(), ref.length());
-
-			bytes += "\\u" + QByteArray::number(data.at(i).unicode()) + "?";
-			start = i + 1;
+	QString::const_iterator end = string.constEnd();
+	for (QString::const_iterator i = string.constBegin(); i != end; ++i) {
+		switch (i->unicode()) {
+		case '\t': text += "\\tab "; break;
+		case '\\': text += "\\\\"; break;
+		case '{': text += "\\{"; break;
+		case '}': text += "\\}"; break;
+		case 0x00a0: text += "\\~"; break;
+		case 0x00ad: text += "\\-"; break;
+		case 0x00b7: text += "\\|"; break;
+		case 0x2002: text += "\\enspace "; break;
+		case 0x2003: text += "\\emspace "; break;
+		case 0x2004: text += "\\qmspace "; break;
+		case 0x200c: text += "\\zwnj "; break;
+		case 0x200d: text += "\\zwj "; break;
+		case 0x200e: text += "\\ltrmark "; break;
+		case 0x200f: text += "\\rtlmark "; break;
+		case 0x2011: text += "\\_"; break;
+		case 0x2013: text += "\\endash "; break;
+		case 0x2014: text += "\\emdash "; break;
+		case 0x2018: text += "\\lquote "; break;
+		case 0x2019: text += "\\rquote "; break;
+		case 0x201c: text += "\\ldblquote "; break;
+		case 0x201d: text += "\\rdblquote "; break;
+		case 0x2022: text += "\\bullet "; break;
+		default:
+			encoded = m_codec->fromUnicode(i, 1, &state);
+			if (state.invalidChars == 0) {
+				if (encoded.count() == 1 && encoded.at(0) >= 0) {
+					text += encoded;
+				} else {
+					for (int j = 0; j < encoded.count(); ++j) {
+						text += "\\'" + QByteArray::number(static_cast<unsigned char>(encoded.at(j)), 16);
+					}
+				}
+			} else {
+				text += "\\u" + QByteArray::number(i->unicode()) + "?";
+			}
 		}
 	}
 
-	if (start < data.length()) {
-		QStringRef ref(&data, start, data.length() - start);
-		bytes += m_codec->fromUnicode(ref.constData(), ref.length());
-	}
-
-	return bytes;
+	return text;
 }
