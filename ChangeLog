@@ -1,4 +1,5 @@
 2010-09-06 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Created empty tabs for unreadable files.
 	* Improve RTF conversion from unicode.
 
 2010-09-05 Graeme Gott <graeme@gottcode.org>

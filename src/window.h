@@ -72,7 +72,7 @@ private slots:
 	void updateSave();
 
 private:
-	void addDocument(const QString& filename = QString(), int position = -1);
+	bool addDocument(const QString& filename = QString(), int position = -1);
 	bool saveDocument(int index);
 	void loadPreferences(Preferences& preferences);
 	void hideInterface();

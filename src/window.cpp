@@ -232,18 +232,17 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	}
 
 	QStringList missing;
-	if (!files.isEmpty()) {
-		for (int i = 0; i < files.count(); ++i) {
-			addDocument(files.at(i), positions.value(i, "-1").toInt());
+	for (int i = 0; i < files.count(); ++i) {
+		if (!addDocument(files.at(i), positions.value(i, "-1").toInt())) {
+			missing.append(files.at(i));
+		} else if (m_documents->currentDocument()->index() > 0) {
 			int index = m_documents->currentIndex();
-			if (m_documents->currentDocument()->index() > 0) {
-				missing.append(files.at(i));
-				m_documents->removeDocument(index);
-				m_tabs->removeTab(index);
-			}
+			missing.append(files.at(i));
+			m_documents->removeDocument(index);
+			m_tabs->removeTab(index);
 		}
 	}
-	if (files.isEmpty() || missing.count() == files.count()) {
+	if (m_documents->count() == 0) {
 		newDocument();
 	}
 	m_tabs->setCurrentIndex(active);
@@ -616,18 +615,27 @@ void Window::updateSave() {
 
 /*****************************************************************************/
 
-void Window::addDocument(const QString& filename, int position) {
+bool Window::addDocument(const QString& filename, int position) {
+	QFileInfo info(filename);
 	if (!filename.isEmpty()) {
+		// Check if already open
+		QString canonical_filename = info.canonicalFilePath();
 		for (int i = 0; i < m_documents->count(); ++i) {
-			if (m_documents->document(i)->filename() == filename) {
+			if (m_documents->document(i)->filename() == canonical_filename) {
 				m_tabs->setCurrentIndex(i);
-				return;
+				return true;
 			}
+		}
+
+		// Check if unreadable
+		if (!info.exists() || !info.isReadable()) {
+			return false;
 		}
 	}
 
+	// Show filename in load screen
 	bool show_load = false;
-	show_load = !filename.isEmpty() && !m_load_screen->isVisible() && (QFileInfo(filename).size() > 100000);
+	show_load = !filename.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
 	if (m_load_screen->isVisible() || show_load) {
 		if (!filename.isEmpty()) {
 			m_load_screen->setText(tr("Opening %1").arg(filename));
@@ -636,6 +644,7 @@ void Window::addDocument(const QString& filename, int position) {
 		}
 	}
 
+	// Create document
 	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_sessions->current()->theme(), this);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
@@ -653,17 +662,18 @@ void Window::addDocument(const QString& filename, int position) {
 	}
 	document->text()->setTextCursor(cursor);
 
+	// Add tab for document
 	m_documents->addDocument(document);
-
+	document->centerCursor(true);
 	int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
-	document->centerCursor(true);
-
 	if (show_load) {
 		m_load_screen->finish();
 	}
+
+	return true;
 }
 
 /*****************************************************************************/
