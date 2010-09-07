@@ -119,6 +119,7 @@ private:
 	QString fileFilter(const QString& filename) const;
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
+	void updateSaveName();
 
 private:
 	QString m_filename;

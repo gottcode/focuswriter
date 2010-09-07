@@ -1,4 +1,5 @@
 2010-09-06 Graeme Gott <graeme@gottcode.org>
+	* Track filenames separately from save location.
 	* FIXED: Created empty tabs for unreadable files.
 	* Improve RTF conversion from unicode.
 

@@ -96,7 +96,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	if (!filename.isEmpty()) {
 		m_rich_text = isRichTextFile(filename.toLower());
 		m_filename = QFileInfo(filename).canonicalFilePath();
-		updateSaveLocation();
+		updateSaveName();
 
 		if (!m_rich_text) {
 			QFile file(filename);
@@ -382,7 +382,7 @@ void Document::setRichText(bool rich_text) {
 	// Save file
 	if (!m_filename.isEmpty()) {
 		save();
-		updateSaveLocation();
+		updateSaveName();
 		m_text->document()->setModified(false);
 	}
 	emit changedName();
@@ -660,7 +660,12 @@ void Document::updateSaveLocation() {
 	QString path = QFileInfo(m_filename).canonicalPath();
 	QSettings().setValue("Save/Location", path);
 	QDir::setCurrent(path);
+	updateSaveName();
+}
 
+/*****************************************************************************/
+
+void Document::updateSaveName() {
 	if (!m_old_filenames.isEmpty()) {
 		QList<int> keys = m_old_filenames.keys();
 		qSort(keys);
