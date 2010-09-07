@@ -165,7 +165,7 @@ int main(int argc, char** argv) {
 		settings.remove("Page");
 
 		theme.setTextColor(settings.value("Text/Color", "#000000").toString());
-		theme.setTextFont(settings.value("Text/Font").toString());
+		theme.setTextFont(settings.value("Text/Font").value<QFont>());
 		settings.remove("Text");
 
 		settings.setValue("ThemeManager/Theme", theme.name());

@@ -93,11 +93,13 @@ QString Theme::m_path;
 Theme::Theme(const QString& name)
 : m_name(name) {
 	if (m_name.isEmpty()) {
+		QString untitled;
 		int count = 0;
 		do {
 			count++;
-			m_name = tr("Untitled %1").arg(count);
-		} while (QFile::exists(filePath(m_name)));
+			untitled = tr("Untitled %1").arg(count);
+		} while (QFile::exists(filePath(untitled)));
+		setValue(m_name, untitled);
 	}
 	QSettings settings(filePath(m_name), QSettings::IniFormat);
 

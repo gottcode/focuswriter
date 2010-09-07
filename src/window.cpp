@@ -193,6 +193,7 @@ Window::Window()
 
 	// Restore window geometry
 	setMinimumSize(640, 480);
+	resize(800, 600);
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
 	toggleFullscreen();
