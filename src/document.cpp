@@ -96,7 +96,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	if (!filename.isEmpty()) {
 		m_rich_text = isRichTextFile(filename.toLower());
 		m_filename = QFileInfo(filename).canonicalFilePath();
-		updateSaveName();
+		updateState();
 
 		if (!m_rich_text) {
 			QFile file(filename);
@@ -346,12 +346,8 @@ void Document::loadPreferences(const Preferences& preferences) {
 /*****************************************************************************/
 
 void Document::setRichText(bool rich_text) {
-	// Set file type
-	m_rich_text = rich_text;
-	m_text->setAcceptRichText(m_rich_text);
-
 	// Get new file name
-	m_old_filenames[m_text->document()->availableUndoSteps()] = m_filename;
+	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
 	if (!m_filename.isEmpty()) {
 		QString filename = m_filename;
 		int suffix_index = filename.lastIndexOf(QChar('.'));
@@ -359,7 +355,7 @@ void Document::setRichText(bool rich_text) {
 		if (suffix_index > file_index) {
 			filename.chop(filename.length() - suffix_index);
 		}
-		filename.append(m_rich_text ? ".rtf" : ".txt");
+		filename.append(rich_text ? ".rtf" : ".txt");
 		QString selected;
 		m_filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), filename, fileFilter(filename), &selected);
 		if (!m_filename.isEmpty()) {
@@ -370,6 +366,10 @@ void Document::setRichText(bool rich_text) {
 		}
 	}
 
+	// Set file type
+	m_rich_text = rich_text;
+	m_text->setAcceptRichText(m_rich_text);
+
 	// Always remove formatting to have something to undo
 	QTextCursor cursor(m_text->document());
 	cursor.beginEditBlock();
@@ -377,15 +377,16 @@ void Document::setRichText(bool rich_text) {
 	cursor.setBlockFormat(QTextBlockFormat());
 	cursor.setCharFormat(QTextCharFormat());
 	cursor.endEditBlock();
-	m_old_filenames[m_text->document()->availableUndoSteps()] = m_filename;
+	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
 
 	// Save file
 	if (!m_filename.isEmpty()) {
 		save();
-		updateSaveName();
+		updateState();
 		m_text->document()->setModified(false);
 	}
 	emit changedName();
+	emit formattingEnabled(m_rich_text);
 }
 
 /*****************************************************************************/
@@ -404,7 +405,6 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 		if (msecs < 30000) {
 			m_current_time += msecs;
 		}
-		emit changed();
 		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
 			return true;
 		}
@@ -518,9 +518,9 @@ void Document::selectionChanged() {
 /*****************************************************************************/
 
 void Document::undoCommandAdded() {
-	if (!m_old_filenames.isEmpty()) {
+	if (!m_old_states.isEmpty()) {
 		int steps = m_text->document()->availableUndoSteps();
-		QMutableHashIterator<int, QString> i(m_old_filenames);
+		QMutableHashIterator<int, QPair<QString, bool> > i(m_old_states);
 		while (i.hasNext()) {
 			i.next();
 			if (i.key() >= steps) {
@@ -534,18 +534,21 @@ void Document::undoCommandAdded() {
 
 void Document::updateWordCount(int position, int removed, int added) {
 	int steps = m_text->document()->availableUndoSteps();
-	if (m_old_filenames.contains(steps)) {
-		QString filename = m_old_filenames[steps];
-		if (m_filename != filename) {
-			m_filename = filename;
+	if (m_old_states.contains(steps)) {
+		const QPair<QString, bool>& state = m_old_states[steps];
+		if (m_filename != state.first) {
+			m_filename = state.first;
 			if (m_filename.isEmpty()) {
 				findIndex();
 			} else {
 				clearIndex();
 			}
-			m_rich_text = isRichTextFile(m_filename);
-			m_text->setAcceptRichText(m_rich_text);
 			emit changedName();
+		}
+		if (m_rich_text != state.second) {
+			m_rich_text = state.second;
+			m_text->setAcceptRichText(m_rich_text);
+			emit formattingEnabled(m_rich_text);
 		}
 	}
 
@@ -660,14 +663,14 @@ void Document::updateSaveLocation() {
 	QString path = QFileInfo(m_filename).canonicalPath();
 	QSettings().setValue("Save/Location", path);
 	QDir::setCurrent(path);
-	updateSaveName();
+	updateState();
 }
 
 /*****************************************************************************/
 
-void Document::updateSaveName() {
-	if (!m_old_filenames.isEmpty()) {
-		QList<int> keys = m_old_filenames.keys();
+void Document::updateState() {
+	if (!m_old_states.isEmpty()) {
+		QList<int> keys = m_old_states.keys();
 		qSort(keys);
 		int count = keys.count();
 
@@ -685,15 +688,15 @@ void Document::updateSaveName() {
 		}
 
 		for (int i = nearest_smaller; i > -1; --i) {
-			if (isRichTextFile(m_old_filenames[i]) == m_rich_text) {
-				m_old_filenames[i] = m_filename;
+			if (m_old_states[i].second == m_rich_text) {
+				m_old_states[i].first = m_filename;
 			} else {
 				break;
 			}
 		}
 		for (int i = nearest_larger; i < count; ++i) {
-			if (isRichTextFile(m_old_filenames[i]) == m_rich_text) {
-				m_old_filenames[i] = m_filename;
+			if (m_old_states[i].second == m_rich_text) {
+				m_old_states[i].first = m_filename;
 			} else {
 				break;
 			}

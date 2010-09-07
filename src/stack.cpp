@@ -154,6 +154,7 @@ Stack::~Stack() {
 
 void Stack::addDocument(Document* document) {
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
+	connect(document, SIGNAL(formattingEnabled(bool)), this, SIGNAL(formattingEnabled(bool)));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
 	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
 	connect(document->text(), SIGNAL(copyAvailable(bool)), this, SIGNAL(copyAvailable(bool)));
@@ -165,6 +166,7 @@ void Stack::addDocument(Document* document) {
 	m_contents->addWidget(document);
 
 	emit documentAdded(document);
+	emit formattingEnabled(document->isRichText());
 	emit updateFormatActions();
 }
 
@@ -192,6 +194,7 @@ void Stack::setCurrentDocument(int index) {
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
 	emit undoAvailable(m_current_document->text()->document()->isUndoAvailable());
+	emit formattingEnabled(m_current_document->isRichText());
 	emit updateFormatActions();
 }
 

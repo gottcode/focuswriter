@@ -55,6 +55,7 @@ private slots:
 	void closeDocument();
 	void nextDocument();
 	void previousDocument();
+	void setFormattingEnabled(bool enabled);
 	void toggleFullscreen();
 	void toggleToolbar(bool visible);
 	void toggleMenuIcons(bool visible);

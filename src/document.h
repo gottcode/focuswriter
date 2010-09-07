@@ -95,6 +95,7 @@ signals:
 	void changedName();
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
+	void formattingEnabled(bool enabled);
 	void indentChanged(bool indented);
 	void alignmentChanged();
 
@@ -119,11 +120,11 @@ private:
 	QString fileFilter(const QString& filename) const;
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
-	void updateSaveName();
+	void updateState();
 
 private:
 	QString m_filename;
-	QHash<int, QString> m_old_filenames;
+	QHash<int, QPair<QString, bool> > m_old_states;
 	int m_index;
 	bool m_always_center;
 	bool m_block_cursor;

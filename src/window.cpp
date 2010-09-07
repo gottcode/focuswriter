@@ -102,6 +102,7 @@ Window::Window()
 	m_timers = new TimerManager(m_documents, this);
 	m_load_screen = new LoadScreen(this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
+	connect(m_documents, SIGNAL(formattingEnabled(bool)), this, SLOT(setFormattingEnabled(bool)));
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
 	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
 
@@ -432,6 +433,21 @@ void Window::previousDocument() {
 
 /*****************************************************************************/
 
+void Window::setFormattingEnabled(bool enabled) {
+	foreach (QAction* action, m_format_actions) {
+		action->setEnabled(enabled);
+	}
+	if (enabled) {
+		m_richtext_action->setVisible(false);
+		m_plaintext_action->setVisible(true);
+	} else {
+		m_plaintext_action->setVisible(false);
+		m_richtext_action->setVisible(true);
+	}
+}
+
+/*****************************************************************************/
+
 void Window::toggleFullscreen() {
 	m_fullscreen = !m_fullscreen;
 	QSettings().setValue("Window/Fullscreen", m_fullscreen);
@@ -543,17 +559,6 @@ void Window::updateFormatActions() {
 		return;
 	}
 
-	bool enabled = document->isRichText();
-	foreach (QAction* action, m_format_actions) {
-		action->setEnabled(enabled);
-	}
-	if (enabled) {
-		m_richtext_action->setVisible(false);
-		m_plaintext_action->setVisible(true);
-	} else {
-		m_plaintext_action->setVisible(false);
-		m_richtext_action->setVisible(true);
-	}
 	m_actions["FormatIndentDecrease"]->setEnabled(document->text()->textCursor().blockFormat().indent() > 0);
 
 	QTextCharFormat format = document->text()->currentCharFormat();
