@@ -68,7 +68,8 @@ Preferences::Preferences() {
 	m_dictionary = new Dictionary;
 	QStringList languages = m_dictionary->availableLanguages();
 	if (!languages.isEmpty() && !languages.contains(m_language)) {
-		setLanguage(languages.first());
+		int close = languages.indexOf(QRegExp(m_language.left(2) + ".*"));
+		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
 	}
 	m_dictionary->setLanguage(m_language);
 	m_dictionary->setIgnoreNumbers(m_ignore_numbers);

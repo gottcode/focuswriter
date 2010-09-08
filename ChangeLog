@@ -1,4 +1,5 @@
 2010-09-07 Graeme Gott <graeme@gottcode.org>
+	* Fallback to closest dictionary.
 	* FIXED: Default theme font was incorrect.
 	* Refactor code for enabling formatting actions.
 
