@@ -51,7 +51,7 @@
 #include <QTimer>
 #include <QToolBar>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 namespace
 {
@@ -65,18 +65,19 @@ namespace
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 Window::Window()
-: m_toolbar(0),
-  m_fullscreen(true),
-  m_auto_save(true),
-  m_save_positions(true),
-  m_goal_type(0),
-  m_time_goal(0),
-  m_wordcount_goal(0),
-  m_current_time(0),
-  m_current_wordcount(0) {
+	: m_toolbar(0),
+	m_fullscreen(true),
+	m_auto_save(true),
+	m_save_positions(true),
+	m_goal_type(0),
+	m_time_goal(0),
+	m_wordcount_goal(0),
+	m_current_time(0),
+	m_current_wordcount(0)
+{
 	setAttribute(Qt::WA_DeleteOnClose);
 	setContextMenuPolicy(Qt::NoContextMenu);
 	setWindowIcon(QIcon(":/focuswriter.png"));
@@ -222,9 +223,10 @@ Window::Window()
 	m_sessions->setCurrent(session);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::addDocuments(const QStringList& files, const QStringList& positions, int active, bool show_load) {
+void Window::addDocuments(const QStringList& files, const QStringList& positions, int active, bool show_load)
+{
 	m_documents->setHeaderVisible(false);
 	m_documents->setFooterVisible(false);
 
@@ -237,7 +239,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	for (int i = 0; i < files.count(); ++i) {
 		if (!addDocument(files.at(i), positions.value(i, "-1").toInt())) {
 			missing.append(files.at(i));
-		} else if (m_documents->currentDocument()->index() > 0) {
+		} else if (m_documents->currentDocument()->untitledIndex() > 0) {
 			int index = m_documents->currentIndex();
 			missing.append(files.at(i));
 			m_documents->removeDocument(index);
@@ -259,9 +261,10 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Window::closeDocuments(QSettings* session) {
+bool Window::closeDocuments(QSettings* session)
+{
 	if (m_documents->count() == 0) {
 		return true;
 	}
@@ -300,18 +303,20 @@ bool Window::closeDocuments(QSettings* session) {
 	return true;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Window::event(QEvent* event) {
+bool Window::event(QEvent* event)
+{
 	if (event->type() == QEvent::WindowBlocked) {
 		hideInterface();
 	}
 	return QMainWindow::event(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::closeEvent(QCloseEvent* event) {
+void Window::closeEvent(QCloseEvent* event)
+{
 	if (!m_timers->cancelEditing() || !m_sessions->closeCurrent()) {
 		event->ignore();
 		return;
@@ -322,18 +327,20 @@ void Window::closeEvent(QCloseEvent* event) {
 	QMainWindow::closeEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::leaveEvent(QEvent* event) {
+void Window::leaveEvent(QEvent* event)
+{
 	if (qApp->activePopupWidget() == 0) {
 		hideInterface();
 	}
 	QMainWindow::leaveEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::resizeEvent(QResizeEvent* event) {
+void Window::resizeEvent(QResizeEvent* event)
+{
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
@@ -342,9 +349,10 @@ void Window::resizeEvent(QResizeEvent* event) {
 	QMainWindow::resizeEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::newDocument() {
+void Window::newDocument()
+{
 	addDocument();
 	m_actions["Rename"]->setEnabled(false);
 	if (m_documents->currentDocument()->isRichText()) {
@@ -356,16 +364,17 @@ void Window::newDocument() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::openDocument() {
+void Window::openDocument()
+{
 	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), m_open_filter);
 	if (!filenames.isEmpty()) {
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();
 		}
 		Document* document = m_documents->currentDocument();
-		int index = (document->index() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
+		int index = (document->untitledIndex() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
 		addDocuments(filenames, QStringList(), m_tabs->count() + filenames.count());
 		if (index != -1) {
 			m_tabs->setCurrentIndex(index);
@@ -374,17 +383,19 @@ void Window::openDocument() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::renameDocument() {
+void Window::renameDocument()
+{
 	if (m_documents->currentDocument()->rename()) {
 		updateTab(m_documents->currentIndex());
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::saveAllDocuments() {
+void Window::saveAllDocuments()
+{
 	int index = m_tabs->currentIndex();
 	for (int i = 0; i < m_documents->count(); ++i) {
 		Document* document = m_documents->document(i);
@@ -398,9 +409,10 @@ void Window::saveAllDocuments() {
 	m_tabs->setCurrentIndex(index);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::closeDocument() {
+void Window::closeDocument()
+{
 	int index = m_documents->currentIndex();
 	if (!saveDocument(index)) {
 		return;
@@ -412,9 +424,10 @@ void Window::closeDocument() {
 	m_tabs->removeTab(index);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::nextDocument() {
+void Window::nextDocument()
+{
 	int index = m_tabs->currentIndex() + 1;
 	if (index >= m_tabs->count()) {
 		index = 0;
@@ -422,9 +435,10 @@ void Window::nextDocument() {
 	m_tabs->setCurrentIndex(index);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::previousDocument() {
+void Window::previousDocument()
+{
 	int index = m_tabs->currentIndex() - 1;
 	if (index < 0) {
 		index = m_tabs->count() - 1;
@@ -432,9 +446,10 @@ void Window::previousDocument() {
 	m_tabs->setCurrentIndex(index);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::setFormattingEnabled(bool enabled) {
+void Window::setFormattingEnabled(bool enabled)
+{
 	foreach (QAction* action, m_format_actions) {
 		action->setEnabled(enabled);
 	}
@@ -447,9 +462,10 @@ void Window::setFormattingEnabled(bool enabled) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::toggleFullscreen() {
+void Window::toggleFullscreen()
+{
 	m_fullscreen = !m_fullscreen;
 	QSettings().setValue("Window/Fullscreen", m_fullscreen);
 
@@ -461,32 +477,36 @@ void Window::toggleFullscreen() {
 	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::toggleToolbar(bool visible) {
+void Window::toggleToolbar(bool visible)
+{
 	m_toolbar->setVisible(visible);
 	QSettings().setValue("Toolbar/Shown", visible);
 	updateMargin();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::toggleMenuIcons(bool visible) {
+void Window::toggleMenuIcons(bool visible)
+{
 	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !visible);
 	QSettings().setValue("Window/MenuIcons", visible);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::themeClicked() {
+void Window::themeClicked()
+{
 	ThemeManager manager(*m_sessions->current()->data(), this);
 	connect(&manager, SIGNAL(themeSelected(const Theme&)), m_documents, SLOT(themeSelected(const Theme&)));
 	manager.exec();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::preferencesClicked() {
+void Window::preferencesClicked()
+{
 	Preferences preferences;
 	PreferencesDialog dialog(preferences, this);
 	if (dialog.exec() == QDialog::Accepted) {
@@ -494,9 +514,10 @@ void Window::preferencesClicked() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::aboutClicked() {
+void Window::aboutClicked()
+{
 	QMessageBox::about(this, tr("About FocusWriter"), tr(
 		"<p><center><big><b>FocusWriter %1</b></big><br/>"
 		"A simple fullscreen word processor<br/>"
@@ -509,9 +530,10 @@ void Window::aboutClicked() {
 	).arg(QApplication::applicationVersion()));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::tabClicked(int index) {
+void Window::tabClicked(int index)
+{
 	if (m_documents->count() == 0) {
 		return;
 	}
@@ -522,29 +544,33 @@ void Window::tabClicked(int index) {
 	m_documents->currentDocument()->text()->setFocus();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::tabClosed(int index) {
+void Window::tabClosed(int index)
+{
 	m_tabs->setCurrentIndex(index);
 	closeDocument();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::tabMoved(int from, int to) {
+void Window::tabMoved(int from, int to)
+{
 	m_documents->moveDocument(from, to);
 	m_documents->setCurrentDocument(m_tabs->currentIndex());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateClock() {
+void Window::updateClock()
+{
 	m_clock_label->setText(QTime::currentTime().toString(Qt::DefaultLocaleShortDate));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateDetails() {
+void Window::updateDetails()
+{
 	Document* document = m_documents->currentDocument();
 	m_character_label->setText(tr("Characters: %L1 / %L2").arg(document->characterCount()).arg(document->characterAndSpaceCount()));
 	m_page_label->setText(tr("Pages: %L1").arg(document->pageCount()));
@@ -552,9 +578,10 @@ void Window::updateDetails() {
 	m_wordcount_label->setText(tr("Words: %L1").arg(document->wordCount()));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateFormatActions() {
+void Window::updateFormatActions()
+{
 	Document* document = m_documents->currentDocument();
 	if (!document) {
 		return;
@@ -571,9 +598,10 @@ void Window::updateFormatActions() {
 	m_actions["FormatSubScript"]->setChecked(format.verticalAlignment() == QTextCharFormat::AlignSubScript);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateFormatAlignmentActions() {
+void Window::updateFormatAlignmentActions()
+{
 	Document* document = m_documents->currentDocument();
 	if (!document) {
 		return;
@@ -597,9 +625,10 @@ void Window::updateFormatAlignmentActions() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateProgress() {
+void Window::updateProgress()
+{
 	int progress = 0;
 	if (m_goal_type == 1) {
 		progress = (m_current_time * 100) / (m_time_goal * 60000);
@@ -609,9 +638,10 @@ void Window::updateProgress() {
 	m_progress_label->setText(tr("%1% of daily goal").arg(progress));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateSave() {
+void Window::updateSave()
+{
 	m_actions["Save"]->setEnabled(m_documents->currentDocument()->text()->document()->isModified());
 	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->filename().isEmpty());
 	for (int i = 0; i < m_documents->count(); ++i) {
@@ -619,9 +649,10 @@ void Window::updateSave() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Window::addDocument(const QString& filename, int position) {
+bool Window::addDocument(const QString& filename, int position)
+{
 	QFileInfo info(filename);
 	if (!filename.isEmpty()) {
 		// Check if already open
@@ -661,7 +692,7 @@ bool Window::addDocument(const QString& filename, int position) {
 
 	// Restore cursor position
 	QTextCursor cursor = document->text()->textCursor();
-	if (m_save_positions && position != -1 && !document->index()) {
+	if (m_save_positions && position != -1 && !document->untitledIndex()) {
 		cursor.setPosition(position);
 	} else {
 		cursor.movePosition(QTextCursor::End);
@@ -682,9 +713,10 @@ bool Window::addDocument(const QString& filename, int position) {
 	return true;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Window::saveDocument(int index) {
+bool Window::saveDocument(int index)
+{
 	Document* document = m_documents->document(index);
 	if (!document->text()->document()->isModified()) {
 		return true;
@@ -709,9 +741,10 @@ bool Window::saveDocument(int index) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::loadPreferences(Preferences& preferences) {
+void Window::loadPreferences(Preferences& preferences)
+{
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
 		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
@@ -765,9 +798,10 @@ void Window::loadPreferences(Preferences& preferences) {
 	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::hideInterface() {
+void Window::hideInterface()
+{
 	m_documents->setFooterVisible(false);
 	m_documents->setHeaderVisible(false);
 	for (int i = 0; i < m_documents->count(); ++i) {
@@ -775,9 +809,10 @@ void Window::hideInterface() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateMargin() {
+void Window::updateMargin()
+{
 	int header = 0;
 	if (m_toolbar->isVisible()) {
 		header = m_toolbar->mapToParent(m_toolbar->rect().bottomLeft()).y() + 1;
@@ -788,13 +823,14 @@ void Window::updateMargin() {
 	m_documents->setMargins(footer, header);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::updateTab(int index) {
+void Window::updateTab(int index)
+{
 	Document* document = m_documents->document(index);
 	QString filename = document->filename();
 	if (filename.isEmpty()) {
-		filename = tr("(Untitled %1)").arg(document->index());
+		filename = tr("(Untitled %1)").arg(document->untitledIndex());
 	}
 	bool modified = document->text()->document()->isModified();
 	m_tabs->setTabText(index, QFileInfo(filename).fileName() + (modified ? "*" : ""));
@@ -805,9 +841,10 @@ void Window::updateTab(int index) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Window::initMenus() {
+void Window::initMenus()
+{
 	// Create file menu
 	QMenu* file_menu = menuBar()->addMenu(tr("&File"));
 	m_actions["New"] = file_menu->addAction(QIcon::fromTheme("document-new"), tr("&New"), this, SLOT(newDocument()), QKeySequence::New);
@@ -956,4 +993,4 @@ void Window::initMenus() {
 	addActions(m_actions.values());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

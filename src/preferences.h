@@ -25,7 +25,8 @@ class Dictionary;
 
 #include <QStringList>
 
-class Preferences : public SettingsFile {
+class Preferences : public SettingsFile
+{
 public:
 	Preferences();
 	~Preferences();

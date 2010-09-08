@@ -35,11 +35,12 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
-: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-  m_theme(theme) {
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_theme(theme)
+{
 	setWindowTitle(tr("Modify Theme"));
 
 	// Create name edit
@@ -195,17 +196,19 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	layout->addWidget(buttons);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeDialog::createPreview(const QString& name) {
+void ThemeDialog::createPreview(const QString& name)
+{
 	Theme theme(name);
 	ThemeDialog dialog(theme);
 	dialog.savePreview();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeDialog::accept() {
+void ThemeDialog::accept()
+{
 	m_theme.setName(m_name->text());
 
 	m_theme.setBackgroundType(m_background_type->currentIndex());
@@ -228,9 +231,10 @@ void ThemeDialog::accept() {
 	QDialog::accept();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeDialog::checkNameAvailable() {
+void ThemeDialog::checkNameAvailable()
+{
 	QString name = m_name->text();
 	bool empty = name.isEmpty();
 	bool changed = (name != m_theme.name());
@@ -238,9 +242,10 @@ void ThemeDialog::checkNameAvailable() {
 	m_ok->setEnabled(!changed || (!empty && !exists));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeDialog::renderPreview() {
+void ThemeDialog::renderPreview()
+{
 	QPixmap preview(":/shadow.png");
 	{
 		QPainter painter(&preview);
@@ -268,10 +273,11 @@ void ThemeDialog::renderPreview() {
 	m_preview->setPixmap(preview);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeDialog::savePreview() {
+void ThemeDialog::savePreview()
+{
 	m_preview->pixmap()->save(Theme::iconPath(m_theme.name()));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

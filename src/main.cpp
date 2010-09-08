@@ -31,7 +31,8 @@
 #include <QSettings>
 #include <QTranslator>
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
 	QApplication app(argc, argv);
 	app.setApplicationName("FocusWriter");
 	app.setApplicationVersion("1.2.2");

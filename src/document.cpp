@@ -46,32 +46,33 @@
 #include <QTextStream>
 #include <QTimer>
 
-#include <cmath>
+//-----------------------------------------------------------------------------
 
-/*****************************************************************************/
-
-namespace {
+namespace
+{
 	QList<int> g_untitled_indexes = QList<int>() << 0;
 
-	bool isRichTextFile(const QString& filename) {
+	bool isRichTextFile(const QString& filename)
+	{
 		return filename.endsWith(QLatin1String(".rtf"));
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QString& theme, QWidget* parent)
-: QWidget(parent),
-  m_index(0),
-  m_always_center(false),
-  m_rich_text(false),
-  m_cached_block_count(-1),
-  m_cached_current_block(-1),
-  m_page_type(0),
-  m_page_amount(0),
-  m_accurate_wordcount(true),
-  m_current_wordcount(current_wordcount),
-  m_current_time(current_time) {
+	: QWidget(parent),
+	m_index(0),
+	m_always_center(false),
+	m_rich_text(false),
+	m_cached_block_count(-1),
+	m_cached_current_block(-1),
+	m_page_type(0),
+	m_page_amount(0),
+	m_accurate_wordcount(true),
+	m_current_wordcount(current_wordcount),
+	m_current_time(current_time)
+{
 	setMouseTracking(true);
 
 	m_stats = &m_document_stats;
@@ -160,15 +161,17 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-Document::~Document() {
+Document::~Document()
+{
 	clearIndex();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Document::save() {
+bool Document::save()
+{
 	// Save progress
 	QSettings settings;
 	settings.setValue("Progress/Words", m_current_wordcount);
@@ -197,9 +200,10 @@ bool Document::save() {
 	return true;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Document::saveAs() {
+bool Document::saveAs()
+{
 	QString selected;
 	QString filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), m_filename, fileFilter(m_filename), &selected);
 	if (!filename.isEmpty()) {
@@ -215,9 +219,10 @@ bool Document::saveAs() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Document::rename() {
+bool Document::rename()
+{
 	if (m_filename.isEmpty()) {
 		return false;
 	}
@@ -238,15 +243,17 @@ bool Document::rename() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::checkSpelling() {
+void Document::checkSpelling()
+{
 	SpellChecker::checkDocument(m_text);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::print() {
+void Document::print()
+{
 	QPrinter printer;
 	printer.setPageSize(QPrinter::Letter);
 	printer.setPageMargins(0.5, 0.5, 0.5, 0.5, QPrinter::Inch);
@@ -256,9 +263,10 @@ void Document::print() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::loadTheme(const Theme& theme) {
+void Document::loadTheme(const Theme& theme)
+{
 	m_text->document()->blockSignals(true);
 
 	// Update colors
@@ -313,9 +321,10 @@ void Document::loadTheme(const Theme& theme) {
 	m_text->document()->blockSignals(false);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::loadPreferences(const Preferences& preferences) {
+void Document::loadPreferences(const Preferences& preferences)
+{
 	m_always_center = preferences.alwaysCenter();
 
 	m_page_type = preferences.pageType();
@@ -343,9 +352,10 @@ void Document::loadPreferences(const Preferences& preferences) {
 	m_highlighter->setEnabled(preferences.highlightMisspelled());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::setRichText(bool rich_text) {
+void Document::setRichText(bool rich_text)
+{
 	// Get new file name
 	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
 	if (!m_filename.isEmpty()) {
@@ -389,15 +399,17 @@ void Document::setRichText(bool rich_text) {
 	emit formattingEnabled(m_rich_text);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::setScrollBarVisible(bool visible) {
+void Document::setScrollBarVisible(bool visible)
+{
 	m_scrollbar->setVisible(visible);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Document::eventFilter(QObject* watched, QEvent* event) {
+bool Document::eventFilter(QObject* watched, QEvent* event)
+{
 	if (event->type() == QEvent::MouseMove) {
 		mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (event->type() == QEvent::KeyPress && watched == m_text) {
@@ -412,9 +424,10 @@ bool Document::eventFilter(QObject* watched, QEvent* event) {
 	return QWidget::eventFilter(watched, event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::centerCursor(bool force) {
+void Document::centerCursor(bool force)
+{
 	QRect cursor = m_text->cursorRect();
 	QRect viewport = m_text->rect();
 	if (force || m_always_center || (cursor.bottom() >= viewport.bottom()) || (cursor.top() <= viewport.top())) {
@@ -424,9 +437,10 @@ void Document::centerCursor(bool force) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::mouseMoveEvent(QMouseEvent* event) {
+void Document::mouseMoveEvent(QMouseEvent* event)
+{
 	m_text->viewport()->setCursor(Qt::IBeamCursor);
 	unsetCursor();
 	m_hide_timer->start();
@@ -440,16 +454,18 @@ void Document::mouseMoveEvent(QMouseEvent* event) {
 	return QWidget::mouseMoveEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::resizeEvent(QResizeEvent* event) {
+void Document::resizeEvent(QResizeEvent* event)
+{
 	centerCursor(true);
 	QWidget::resizeEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::wheelEvent(QWheelEvent* event) {
+void Document::wheelEvent(QWheelEvent* event)
+{
 	int delta = event->delta();
 	if ( (delta > 0 && m_scrollbar->value() > m_scrollbar->minimum()) || (delta < 0 && m_scrollbar->value() < m_scrollbar->maximum()) ) {
 		QApplication::sendEvent(m_scrollbar, event);
@@ -457,16 +473,18 @@ void Document::wheelEvent(QWheelEvent* event) {
 	return QWidget::wheelEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::cursorPositionChanged() {
+void Document::cursorPositionChanged()
+{
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
 	emit alignmentChanged();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::hideMouse() {
+void Document::hideMouse()
+{
 	QWidget* widget = QApplication::widgetAt(QCursor::pos());
 	if (m_text->viewport()->hasFocus() && (widget == m_text->viewport() || widget == this)) {
 		m_text->viewport()->setCursor(Qt::BlankCursor);
@@ -474,9 +492,10 @@ void Document::hideMouse() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::scrollBarActionTriggered(int action) {
+void Document::scrollBarActionTriggered(int action)
+{
 	if (action == QAbstractSlider::SliderToMinimum) {
 		m_text->moveCursor(QTextCursor::Start);
 	} else if (action == QAbstractSlider::SliderToMaximum) {
@@ -484,18 +503,20 @@ void Document::scrollBarActionTriggered(int action) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::scrollBarRangeChanged(int, int max) {
+void Document::scrollBarRangeChanged(int, int max)
+{
 	m_scrollbar->blockSignals(true);
 	m_scrollbar->setMaximum(max + m_text->height());
 	m_scrollbar->blockSignals(false);
 	centerCursor(max == 0);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::selectionChanged() {
+void Document::selectionChanged()
+{
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
 		BlockStats temp("");
@@ -515,9 +536,10 @@ void Document::selectionChanged() {
 	emit changed();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::undoCommandAdded() {
+void Document::undoCommandAdded()
+{
 	if (!m_old_states.isEmpty()) {
 		int steps = m_text->document()->availableUndoSteps();
 		QMutableHashIterator<int, QPair<QString, bool> > i(m_old_states);
@@ -530,9 +552,10 @@ void Document::undoCommandAdded() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::updateWordCount(int position, int removed, int added) {
+void Document::updateWordCount(int position, int removed, int added)
+{
 	int steps = m_text->document()->availableUndoSteps();
 	if (m_old_states.contains(steps)) {
 		const QPair<QString, bool>& state = m_old_states[steps];
@@ -580,9 +603,10 @@ void Document::updateWordCount(int position, int removed, int added) {
 	emit changed();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::calculateWordCount() {
+void Document::calculateWordCount()
+{
 	if (!m_cached_stats.isValid()) {
 		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 			if (!i.userData()) {
@@ -605,25 +629,28 @@ void Document::calculateWordCount() {
 	m_document_stats.calculatePageCount(m_page_type, m_page_amount);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::clearIndex() {
+void Document::clearIndex()
+{
 	if (m_index) {
 		g_untitled_indexes.removeAll(m_index);
 		m_index = 0;
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::findIndex() {
+void Document::findIndex()
+{
 	m_index = g_untitled_indexes.last() + 1;
 	g_untitled_indexes.append(m_index);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Document::fileFilter(const QString& filename) const {
+QString Document::fileFilter(const QString& filename) const
+{
 	QString plaintext = tr("Plain Text (*.txt);;All Files (*)");
 	QString richtext = tr("Rich Text (*.rtf)");
 	QString all = tr("All Files (*)");
@@ -640,9 +667,10 @@ QString Document::fileFilter(const QString& filename) const {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Document::fileNameWithExtension(const QString& filename, const QString& filter) const {
+QString Document::fileNameWithExtension(const QString& filename, const QString& filter) const
+{
 	QString suffix;
 	QRegExp exp("\\*(\\.\\w+)");
 	int index = exp.indexIn(filter);
@@ -657,18 +685,20 @@ QString Document::fileNameWithExtension(const QString& filename, const QString& 
 	return result;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::updateSaveLocation() {
+void Document::updateSaveLocation()
+{
 	QString path = QFileInfo(m_filename).canonicalPath();
 	QSettings().setValue("Save/Location", path);
 	QDir::setCurrent(path);
 	updateState();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Document::updateState() {
+void Document::updateState()
+{
 	if (!m_old_states.isEmpty()) {
 		QList<int> keys = m_old_states.keys();
 		qSort(keys);
@@ -704,4 +734,4 @@ void Document::updateState() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

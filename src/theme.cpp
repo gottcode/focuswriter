@@ -29,10 +29,12 @@
 #include <QSettings>
 #include <QUrl>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-namespace {
-	bool compareFiles(const QString& filename1, const QString& filename2) {
+namespace
+{
+	bool compareFiles(const QString& filename1, const QString& filename2)
+	{
 		// Compare sizes
 		QFile file1(filename1);
 		QFile file2(filename2);
@@ -57,7 +59,8 @@ namespace {
 		return equal;
 	}
 
-	QString copyImage(const QString& image) {
+	QString copyImage(const QString& image)
+	{
 		// Check if already copied
 		QDir images(Theme::path() + "/Images/");
 		QStringList filenames = images.entryList(QDir::Files);
@@ -84,14 +87,15 @@ namespace {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 QString Theme::m_path;
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 Theme::Theme(const QString& name)
-: m_name(name) {
+	: m_name(name)
+{
 	if (m_name.isEmpty()) {
 		QString untitled;
 		int count = 0;
@@ -126,9 +130,10 @@ Theme::Theme(const QString& name)
 	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-Theme::~Theme() {
+Theme::~Theme()
+{
 	if (!isChanged()) {
 		return;
 	}
@@ -157,9 +162,10 @@ Theme::~Theme() {
 	settings.setValue("Text/Misspelled", m_misspelled_color.name());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::copyBackgrounds() {
+void Theme::copyBackgrounds()
+{
 	QDir dir(path() + "/Images");
 	QStringList images;
 
@@ -188,9 +194,10 @@ void Theme::copyBackgrounds() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QImage Theme::renderBackground(const QString& filename, int type, const QColor& background, const QSize& size) {
+QImage Theme::renderBackground(const QString& filename, int type, const QColor& background, const QSize& size)
+{
 	QImage image(size, QImage::Format_RGB32);
 	image.fill(background.rgb());
 
@@ -220,39 +227,45 @@ QImage Theme::renderBackground(const QString& filename, int type, const QColor& 
 	return image;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Theme::path() {
+QString Theme::path()
+{
 	return m_path;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Theme::filePath(const QString& theme) {
+QString Theme::filePath(const QString& theme)
+{
 	return path() + "/" + QUrl::toPercentEncoding(theme, " ") + ".theme";
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Theme::iconPath(const QString& theme) {
+QString Theme::iconPath(const QString& theme)
+{
 	return path() + "/" + QUrl::toPercentEncoding(theme, " ") + ".png";
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setPath(const QString& path) {
+void Theme::setPath(const QString& path)
+{
 	m_path = path;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Theme::name() const {
+QString Theme::name() const
+{
 	return m_name;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setName(const QString& name) {
+void Theme::setName(const QString& name)
+{
 	if (m_name != name) {
 		QStringList files = QDir(Session::path(), "*.session").entryList(QDir::Files);
 		files.prepend("");
@@ -269,45 +282,52 @@ void Theme::setName(const QString& name) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Theme::backgroundType() const {
+int Theme::backgroundType() const
+{
 	return m_background_type;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QColor Theme::backgroundColor() const {
+QColor Theme::backgroundColor() const
+{
 	return m_background_color;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Theme::backgroundImage() const {
+QString Theme::backgroundImage() const
+{
 	return path() + "/Images/" + m_background_image;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Theme::backgroundPath() const {
+QString Theme::backgroundPath() const
+{
 	return m_background_path;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setBackgroundType(int type) {
+void Theme::setBackgroundType(int type)
+{
 	setValue(m_background_type, type);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setBackgroundColor(const QColor& color) {
+void Theme::setBackgroundColor(const QColor& color)
+{
 	setValue(m_background_color, color);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setBackgroundImage(const QString& path) {
+void Theme::setBackgroundImage(const QString& path)
+{
 	if (m_background_path != path) {
 		setValue(m_background_path, path);
 		if (!m_background_path.isEmpty()) {
@@ -318,112 +338,130 @@ void Theme::setBackgroundImage(const QString& path) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QColor Theme::foregroundColor() const {
+QColor Theme::foregroundColor() const
+{
 	return m_foreground_color;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Theme::foregroundWidth() const {
+int Theme::foregroundWidth() const
+{
 	return m_foreground_width;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Theme::foregroundMargin() const {
+int Theme::foregroundMargin() const
+{
 	return m_foreground_margin;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Theme::foregroundPadding() const {
+int Theme::foregroundPadding() const
+{
 	return m_foreground_padding;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Theme::foregroundOpacity() const {
+int Theme::foregroundOpacity() const
+{
 	return m_foreground_opacity;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Theme::foregroundPosition() const {
+int Theme::foregroundPosition() const
+{
 	return m_foreground_position;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setForegroundColor(const QColor& color) {
+void Theme::setForegroundColor(const QColor& color)
+{
 	setValue(m_foreground_color, color);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setForegroundWidth(int width) {
+void Theme::setForegroundWidth(int width)
+{
 	setValue(m_foreground_width, width);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setForegroundMargin(int margin) {
+void Theme::setForegroundMargin(int margin)
+{
 	setValue(m_foreground_margin, margin);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setForegroundPadding(int padding) {
+void Theme::setForegroundPadding(int padding)
+{
 	setValue(m_foreground_padding, padding);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setForegroundOpacity(int opacity) {
+void Theme::setForegroundOpacity(int opacity)
+{
 	setValue(m_foreground_opacity, opacity);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setForegroundPosition(int position) {
+void Theme::setForegroundPosition(int position)
+{
 	setValue(m_foreground_position, position);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QColor Theme::textColor() const {
+QColor Theme::textColor() const
+{
 	return m_text_color;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QFont Theme::textFont() const {
+QFont Theme::textFont() const
+{
 	return m_text_font;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QColor Theme::misspelledColor() const {
+QColor Theme::misspelledColor() const
+{
 	return m_misspelled_color;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setTextColor(const QColor& color) {
+void Theme::setTextColor(const QColor& color)
+{
 	setValue(m_text_color, color);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setTextFont(const QFont& font) {
+void Theme::setTextFont(const QFont& font)
+{
 	setValue(m_text_font, font);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Theme::setMisspelledColor(const QColor& color) {
+void Theme::setMisspelledColor(const QColor& color)
+{
 	setValue(m_misspelled_color, color);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

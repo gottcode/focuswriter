@@ -24,9 +24,10 @@
 #include <QLocale>
 #include <QSettings>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-Preferences::Preferences() {
+Preferences::Preferences()
+{
 	QSettings settings;
 
 	m_goal_type = settings.value("Goal/Type", 1).toInt();
@@ -76,9 +77,10 @@ Preferences::Preferences() {
 	m_dictionary->setIgnoreUppercase(m_ignore_uppercase);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-Preferences::~Preferences() {
+Preferences::~Preferences()
+{
 	delete m_dictionary;
 	if (!isChanged()) {
 		return;
@@ -122,328 +124,382 @@ Preferences::~Preferences() {
 	settings.setValue("Spelling/Language", m_language);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::goalType() const {
+int Preferences::goalType() const
+{
 	return m_goal_type;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::goalMinutes() const {
+int Preferences::goalMinutes() const
+{
 	return m_goal_minutes;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::goalWords() const {
+int Preferences::goalWords() const
+{
 	return m_goal_words;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setGoalType(int goal) {
+void Preferences::setGoalType(int goal)
+{
 	setValue(m_goal_type, goal);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setGoalMinutes(int goal) {
+void Preferences::setGoalMinutes(int goal)
+{
 	setValue(m_goal_minutes, goal);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setGoalWords(int goal) {
+void Preferences::setGoalWords(int goal)
+{
 	setValue(m_goal_words, goal);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::showCharacters() const {
+bool Preferences::showCharacters() const
+{
 	return m_show_characters;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::showPages() const {
+bool Preferences::showPages() const
+{
 	return m_show_pages;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::showParagraphs() const {
+bool Preferences::showParagraphs() const
+{
 	return m_show_paragraphs;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::showWords() const {
+bool Preferences::showWords() const
+{
 	return m_show_words;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setShowCharacters(bool show) {
+void Preferences::setShowCharacters(bool show)
+{
 	setValue(m_show_characters, show);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setShowPages(bool show) {
+void Preferences::setShowPages(bool show)
+{
 	setValue(m_show_pages, show);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setShowParagraphs(bool show) {
+void Preferences::setShowParagraphs(bool show)
+{
 	setValue(m_show_paragraphs, show);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setShowWords(bool show) {
+void Preferences::setShowWords(bool show)
+{
 	setValue(m_show_words, show);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::pageType() const {
+int Preferences::pageType() const
+{
 	return m_page_type;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::pageCharacters() const {
+int Preferences::pageCharacters() const
+{
 	return m_page_characters;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::pageParagraphs() const {
+int Preferences::pageParagraphs() const
+{
 	return m_page_paragraphs;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::pageWords() const {
+int Preferences::pageWords() const
+{
 	return m_page_words;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setPageType(int type) {
+void Preferences::setPageType(int type)
+{
 	setValue(m_page_type, type);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setPageCharacters(int characters) {
+void Preferences::setPageCharacters(int characters)
+{
 	setValue(m_page_characters, characters);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setPageParagraphs(int paragraphs) {
+void Preferences::setPageParagraphs(int paragraphs)
+{
 	setValue(m_page_paragraphs, paragraphs);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setPageWords(int words) {
+void Preferences::setPageWords(int words)
+{
 	setValue(m_page_words, words);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::accurateWordcount() const {
+bool Preferences::accurateWordcount() const
+{
 	return m_accurate_wordcount;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setAccurateWordcount(bool accurate) {
+void Preferences::setAccurateWordcount(bool accurate)
+{
 	setValue(m_accurate_wordcount, accurate);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::alwaysCenter() const {
+bool Preferences::alwaysCenter() const
+{
 	return m_always_center;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::blockCursor() const {
+bool Preferences::blockCursor() const
+{
 	return m_block_cursor;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::richText() const {
+bool Preferences::richText() const
+{
 	return m_rich_text;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::smoothFonts() const {
+bool Preferences::smoothFonts() const
+{
 	return m_smooth_fonts;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::smartQuotes() const {
+bool Preferences::smartQuotes() const
+{
 	return m_smart_quotes;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::doubleQuotes() const {
+int Preferences::doubleQuotes() const
+{
 	return m_double_quotes;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::singleQuotes() const {
+int Preferences::singleQuotes() const
+{
 	return m_single_quotes;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setAlwaysCenter(bool center) {
+void Preferences::setAlwaysCenter(bool center)
+{
 	setValue(m_always_center, center);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setBlockCursor(bool block) {
+void Preferences::setBlockCursor(bool block)
+{
 	setValue(m_block_cursor, block);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setRichText(bool rich) {
+void Preferences::setRichText(bool rich)
+{
 	setValue(m_rich_text, rich);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setSmoothFonts(bool smooth) {
+void Preferences::setSmoothFonts(bool smooth)
+{
 	setValue(m_smooth_fonts, smooth);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setSmartQuotes(bool quotes) {
+void Preferences::setSmartQuotes(bool quotes)
+{
 	setValue(m_smart_quotes, quotes);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setDoubleQuotes(int quotes) {
+void Preferences::setDoubleQuotes(int quotes)
+{
 	setValue(m_double_quotes, quotes);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setSingleQuotes(int quotes) {
+void Preferences::setSingleQuotes(int quotes)
+{
 	setValue(m_single_quotes, quotes);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::autoSave() const {
+bool Preferences::autoSave() const
+{
 	return m_auto_save;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::savePositions() const {
+bool Preferences::savePositions() const
+{
 	return m_save_positions;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setAutoSave(bool save) {
+void Preferences::setAutoSave(bool save)
+{
 	setValue(m_auto_save, save);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setSavePositions(bool save) {
+void Preferences::setSavePositions(bool save)
+{
 	setValue(m_save_positions, save);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-int Preferences::toolbarStyle() const {
+int Preferences::toolbarStyle() const
+{
 	return m_toolbar_style;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QStringList Preferences::toolbarActions() const {
+QStringList Preferences::toolbarActions() const
+{
 	return m_toolbar_actions;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setToolbarStyle(int style) {
+void Preferences::setToolbarStyle(int style)
+{
 	setValue(m_toolbar_style, style);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setToolbarActions(const QStringList& actions) {
+void Preferences::setToolbarActions(const QStringList& actions)
+{
 	setValue(m_toolbar_actions, actions);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::highlightMisspelled() const {
+bool Preferences::highlightMisspelled() const
+{
 	return m_highlight_misspelled;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::ignoredWordsWithNumbers() const {
+bool Preferences::ignoredWordsWithNumbers() const
+{
 	return m_ignore_numbers;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Preferences::ignoredUppercaseWords() const {
+bool Preferences::ignoredUppercaseWords() const
+{
 	return m_ignore_uppercase;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Preferences::language() const {
+QString Preferences::language() const
+{
 	return m_language;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setHighlightMisspelled(bool highlight) {
+void Preferences::setHighlightMisspelled(bool highlight)
+{
 	setValue(m_highlight_misspelled, highlight);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setIgnoreWordsWithNumbers(bool ignore) {
+void Preferences::setIgnoreWordsWithNumbers(bool ignore)
+{
 	setValue(m_ignore_numbers, ignore);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setIgnoreUppercaseWords(bool ignore) {
+void Preferences::setIgnoreUppercaseWords(bool ignore)
+{
 	setValue(m_ignore_uppercase, ignore);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Preferences::setLanguage(const QString& language) {
+void Preferences::setLanguage(const QString& language)
+{
 	setValue(m_language, language);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

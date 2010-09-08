@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +20,15 @@
 #ifndef HIGHLIGHTER_H
 #define HIGHLIGHTER_H
 
+class Dictionary;
+
 #include <QSyntaxHighlighter>
 #include <QTextCursor>
 class QAction;
 class QTextEdit;
-class Dictionary;
 
-class Highlighter : public QSyntaxHighlighter {
+class Highlighter : public QSyntaxHighlighter
+{
 	Q_OBJECT
 
 public:

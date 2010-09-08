@@ -20,6 +20,12 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+class LoadScreen;
+class Preferences;
+class SessionManager;
+class Stack;
+class TimerManager;
+
 #include <QHash>
 #include <QMainWindow>
 class QAction;
@@ -27,14 +33,11 @@ class QLabel;
 class QSettings;
 class QTabBar;
 class QToolBar;
-class LoadScreen;
-class Preferences;
-class SessionManager;
-class Stack;
-class TimerManager;
 
-class Window : public QMainWindow {
+class Window : public QMainWindow
+{
 	Q_OBJECT
+
 public:
 	Window();
 

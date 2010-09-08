@@ -20,14 +20,16 @@
 #ifndef ALERT_LAYER_H
 #define ALERT_LAYER_H
 
+class Alert;
+
 #include <QList>
 #include <QWidget>
 class QVBoxLayout;
-class Alert;
 
 class AlertLayer : public QWidget
 {
 	Q_OBJECT
+
 public:
 	AlertLayer(QWidget* parent);
 

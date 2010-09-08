@@ -28,9 +28,10 @@
 
 #include <hunspell.hxx>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-namespace {
+namespace
+{
 	QList<Dictionary*> f_instances;
 	Hunspell* f_dictionary = 0;
 	QTextCodec* f_codec = 0;
@@ -41,42 +42,48 @@ namespace {
 	bool f_ignore_uppercase = true;
 	bool f_ignore_numbers = true;
 
-	bool compareWords(const QString& s1, const QString& s2) {
+	bool compareWords(const QString& s1, const QString& s2)
+	{
 		return s1.localeAwareCompare(s2) < 0;
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 Dictionary::Dictionary(QObject* parent)
-: QObject(parent) {
+	: QObject(parent)
+{
 	increment();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 Dictionary::Dictionary(const Dictionary& dictionary)
-: QObject(dictionary.parent()) {
+	: QObject(dictionary.parent())
+{
 	increment();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-Dictionary& Dictionary::operator=(const Dictionary& dictionary) {
+Dictionary& Dictionary::operator=(const Dictionary& dictionary)
+{
 	setParent(dictionary.parent());
 	increment();
 	return *this;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-Dictionary::~Dictionary() {
+Dictionary::~Dictionary()
+{
 	decrement();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::add(const QString& word) {
+void Dictionary::add(const QString& word)
+{
 	QStringList words = personal();
 	words.append(word);
 	setPersonal(words);
@@ -85,9 +92,10 @@ void Dictionary::add(const QString& word) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QStringRef Dictionary::check(const QString& string, int start_at) const {
+QStringRef Dictionary::check(const QString& string, int start_at) const
+{
 	if (!f_dictionary) {
 		return QStringRef();
 	}
@@ -157,9 +165,10 @@ QStringRef Dictionary::check(const QString& string, int start_at) const {
 	return QStringRef();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QStringList Dictionary::suggestions(const QString& word) const {
+QStringList Dictionary::suggestions(const QString& word) const
+{
 	QStringList result;
 	if (!f_dictionary) {
 		return result;
@@ -176,9 +185,10 @@ QStringList Dictionary::suggestions(const QString& word) const {
 	return result;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QStringList Dictionary::availableLanguages() {
+QStringList Dictionary::availableLanguages()
+{
 	QStringList result;
 	QStringList locations = QDir::searchPaths("dict");
 	QListIterator<QString> i(locations);
@@ -199,33 +209,38 @@ QStringList Dictionary::availableLanguages() {
 	return result;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Dictionary::language() {
+QString Dictionary::language()
+{
 	return f_language;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QStringList Dictionary::personal() {
+QStringList Dictionary::personal()
+{
 	return f_personal;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::setIgnoreNumbers(bool ignore) {
+void Dictionary::setIgnoreNumbers(bool ignore)
+{
 	f_ignore_numbers = ignore;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::setIgnoreUppercase(bool ignore) {
+void Dictionary::setIgnoreUppercase(bool ignore)
+{
 	f_ignore_uppercase = ignore;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::setLanguage(const QString& language) {
+void Dictionary::setLanguage(const QString& language)
+{
 	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
 	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
 	if (language.isEmpty() || aff.isEmpty() || dic.isEmpty() || language == f_language) {
@@ -252,9 +267,10 @@ void Dictionary::setLanguage(const QString& language) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::setPersonal(const QStringList& words) {
+void Dictionary::setPersonal(const QStringList& words)
+{
 	if (f_dictionary) {
 		foreach (const QString& word, f_personal) {
 			f_dictionary->remove(f_codec->fromUnicode(word).constData());
@@ -284,21 +300,24 @@ void Dictionary::setPersonal(const QStringList& words) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString Dictionary::path() {
+QString Dictionary::path()
+{
 	return f_path;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::setPath(const QString& path) {
+void Dictionary::setPath(const QString& path)
+{
 	f_path = path;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::increment() {
+void Dictionary::increment()
+{
 	f_ref_count++;
 	f_instances.append(this);
 	if (f_personal.isEmpty()) {
@@ -316,9 +335,10 @@ void Dictionary::increment() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Dictionary::decrement() {
+void Dictionary::decrement()
+{
 	f_ref_count--;
 	f_instances.removeOne(this);
 	if (f_ref_count <= 0) {
@@ -328,4 +348,4 @@ void Dictionary::decrement() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

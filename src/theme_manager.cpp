@@ -36,11 +36,12 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
-: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-m_settings(settings) {
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_settings(settings)
+{
 	setWindowTitle(tr("Themes"));
 
 	// Add themes list
@@ -111,9 +112,10 @@ m_settings(settings) {
 	resize(m_settings.value("ThemeManager/Size", QSize(630, 450)).toSize());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::hideEvent(QHideEvent* event) {
+void ThemeManager::hideEvent(QHideEvent* event)
+{
 	QList<QListWidgetItem*> items = m_themes->selectedItems();
 	QString selected = !items.isEmpty() ? items.first()->text() : QString();
 	if (!selected.isEmpty()) {
@@ -123,9 +125,10 @@ void ThemeManager::hideEvent(QHideEvent* event) {
 	QDialog::hideEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::addTheme() {
+void ThemeManager::addTheme()
+{
 	QString name;
 	{
 		Theme theme;
@@ -138,9 +141,10 @@ void ThemeManager::addTheme() {
 	addItem(name);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::modifyTheme() {
+void ThemeManager::modifyTheme()
+{
 	QListWidgetItem* item = m_themes->currentItem();
 	if (!item) {
 		return;
@@ -165,9 +169,10 @@ void ThemeManager::modifyTheme() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::removeTheme() {
+void ThemeManager::removeTheme()
+{
 	QListWidgetItem* item = m_themes->currentItem();
 	if (!item) {
 		return;
@@ -181,9 +186,10 @@ void ThemeManager::removeTheme() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::importTheme() {
+void ThemeManager::importTheme()
+{
 	// Find file to import
 	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), QDir::homePath(), tr("Themes (*.theme)"));
 	if (filename.isEmpty()) {
@@ -229,9 +235,10 @@ void ThemeManager::importTheme() {
 	addItem(name);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::exportTheme() {
+void ThemeManager::exportTheme()
+{
 	QListWidgetItem* item = m_themes->currentItem();
 	if (!item) {
 		return;
@@ -264,17 +271,19 @@ void ThemeManager::exportTheme() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::currentThemeChanged(QListWidgetItem* current) {
+void ThemeManager::currentThemeChanged(QListWidgetItem* current)
+{
 	if (current) {
 		emit themeSelected(current->text());
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ThemeManager::addItem(const QString& name) {
+void ThemeManager::addItem(const QString& name)
+{
 	QString icon = Theme::iconPath(name);
 	if (!QFile::exists(icon)) {
 		ThemeDialog::createPreview(name);
@@ -283,4 +292,4 @@ void ThemeManager::addItem(const QString& name) {
 	m_themes->setCurrentItem(item);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

@@ -24,7 +24,7 @@ class Session;
 class Theme;
 class Window;
 
-#include <QtGui/QDialog>
+#include <QDialog>
 class QActionGroup;
 class QListWidget;
 class QListWidgetItem;
@@ -33,6 +33,7 @@ class QMenu;
 class SessionManager : public QDialog
 {
 	Q_OBJECT
+
 public:
 	SessionManager(Window* parent);
 	~SessionManager();

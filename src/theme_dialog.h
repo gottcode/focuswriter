@@ -20,6 +20,10 @@
 #ifndef THEME_DIALOG_H
 #define THEME_DIALOG_H
 
+class ColorButton;
+class ImageButton;
+class Theme;
+
 #include <QDialog>
 class QComboBox;
 class QFontComboBox;
@@ -28,12 +32,11 @@ class QLabel;
 class QLineEdit;
 class QPushButton;
 class QSpinBox;
-class ColorButton;
-class ImageButton;
-class Theme;
 
-class ThemeDialog : public QDialog {
+class ThemeDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
 	ThemeDialog(Theme& theme, QWidget* parent = 0);
 

@@ -31,6 +31,7 @@ class QRadioButton;
 class FindDialog : public QDialog
 {
 	Q_OBJECT
+
 public:
 	FindDialog(Stack* documents);
 

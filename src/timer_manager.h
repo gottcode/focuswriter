@@ -34,6 +34,7 @@ class QVBoxLayout;
 class TimerManager : public QDialog
 {
 	Q_OBJECT
+
 public:
 	TimerManager(Stack* documents, QWidget* parent = 0);
 

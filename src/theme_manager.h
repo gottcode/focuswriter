@@ -20,14 +20,17 @@
 #ifndef THEME_MANAGER_H
 #define THEME_MANAGER_H
 
+class Theme;
+
 #include <QDialog>
 class QListWidget;
 class QListWidgetItem;
 class QSettings;
-class Theme;
 
-class ThemeManager : public QDialog {
+class ThemeManager : public QDialog
+{
 	Q_OBJECT
+
 public:
 	ThemeManager(QSettings& settings, QWidget* parent = 0);
 

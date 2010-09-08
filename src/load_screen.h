@@ -20,13 +20,14 @@
 #ifndef LOAD_SCREEN_H
 #define LOAD_SCREEN_H
 
-#include <QtGui/QLabel>
+#include <QLabel>
 class QGraphicsOpacityEffect;
 class QTimer;
 
 class LoadScreen : public QLabel
 {
 	Q_OBJECT
+
 public:
 	LoadScreen(QWidget* parent);
 

@@ -28,6 +28,7 @@ class QToolButton;
 class Alert : public QWidget
 {
 	Q_OBJECT
+
 public:
 	Alert(const QString& text, const QStringList& details, QWidget* parent);
 

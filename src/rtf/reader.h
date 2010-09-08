@@ -33,7 +33,8 @@ namespace RTF
 {
 	class Reader
 	{
-		Q_DECLARE_TR_FUNCTIONS(Reader);
+		Q_DECLARE_TR_FUNCTIONS(Reader)
+
 	public:
 		Reader();
 

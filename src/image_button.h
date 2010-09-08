@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,18 +22,15 @@
 
 #include <QPushButton>
 
-class ImageButton : public QPushButton {
+class ImageButton : public QPushButton
+{
 	Q_OBJECT
+
 public:
 	ImageButton(QWidget* parent = 0);
 
-	QString image() const {
-		return m_image;
-	}
-
-	QString toString() const {
-		return m_path;
-	}
+	QString image() const;
+	QString toString() const;
 
 signals:
 	void changed(const QString& path);
@@ -49,5 +46,13 @@ private:
 	QString m_image;
 	QString m_path;
 };
+
+inline QString ImageButton::image() const {
+	return m_image;
+}
+
+inline QString ImageButton::toString() const {
+	return m_path;
+}
 
 #endif

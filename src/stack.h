@@ -20,50 +20,35 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <QWidget>
-class QGridLayout;
-class QStackedWidget;
 class AlertLayer;
 class Document;
 class FindDialog;
 class Theme;
 
-class Stack : public QWidget {
+#include <QWidget>
+class QGridLayout;
+class QStackedWidget;
+
+class Stack : public QWidget
+{
 	Q_OBJECT
+
 public:
 	Stack(QWidget* parent = 0);
 	~Stack();
 
 	void addDocument(Document* document);
 
-	AlertLayer* alerts() const {
-		return m_alerts;
-	}
-
-	int count() const {
-		return m_documents.count();
-	}
-
-	Document* currentDocument() const {
-		return m_current_document;
-	}
-
-	int currentIndex() const {
-		return m_documents.indexOf(m_current_document);
-	}
-
-	Document* document(int index) const {
-		return m_documents[index];
-	}
+	AlertLayer* alerts() const;
+	int count() const;
+	Document* currentDocument() const;
+	int currentIndex() const;
+	Document* document(int index) const;
 
 	void moveDocument(int from, int to);
-
 	void removeDocument(int index);
-
 	void setCurrentDocument(int index);
-
 	void setMargins(int footer, int header);
-
 	void waitForThemeBackground();
 
 signals:
@@ -145,5 +130,25 @@ private:
 	int m_footer_visible;
 	int m_header_visible;
 };
+
+inline AlertLayer* Stack::alerts() const {
+	return m_alerts;
+}
+
+inline int Stack::count() const {
+	return m_documents.count();
+}
+
+inline Document* Stack::currentDocument() const {
+	return m_current_document;
+}
+
+inline int Stack::currentIndex() const {
+	return m_documents.indexOf(m_current_document);
+}
+
+inline Document* Stack::document(int index) const {
+	return m_documents[index];
+}
 
 #endif

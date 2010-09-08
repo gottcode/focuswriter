@@ -27,6 +27,8 @@
 #include <QApplication>
 #include <QIODevice>
 
+//-----------------------------------------------------------------------------
+
 RTF::Tokenizer::Tokenizer()
 	: m_device(0),
 	m_position(0),
@@ -37,10 +39,14 @@ RTF::Tokenizer::Tokenizer()
 	m_text.reserve(8192);
 }
 
+//-----------------------------------------------------------------------------
+
 bool RTF::Tokenizer::hasNext() const
 {
 	return (m_position < m_buffer.size() - 1) || !m_device->atEnd();
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Tokenizer::readNext()
 {
@@ -141,10 +147,14 @@ void RTF::Tokenizer::readNext()
 	}
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Tokenizer::setDevice(QIODevice* device)
 {
 	m_device = device;
 }
+
+//-----------------------------------------------------------------------------
 
 char RTF::Tokenizer::next()
 {
@@ -161,3 +171,5 @@ char RTF::Tokenizer::next()
 	}
 	return m_buffer.at(m_position);
 }
+
+//-----------------------------------------------------------------------------

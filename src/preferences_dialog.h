@@ -20,6 +20,9 @@
 #ifndef PREFERENCES_DIALOG_H
 #define PREFERENCES_DIALOG_H
 
+class Dictionary;
+class Preferences;
+
 #include <QDialog>
 class QCheckBox;
 class QComboBox;
@@ -28,11 +31,11 @@ class QListWidget;
 class QPushButton;
 class QRadioButton;
 class QSpinBox;
-class Dictionary;
-class Preferences;
 
-class PreferencesDialog : public QDialog {
+class PreferencesDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
 	PreferencesDialog(Preferences& preferences, QWidget* parent = 0);
 

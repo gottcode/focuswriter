@@ -19,11 +19,10 @@
 
 #include "load_screen.h"
 
-#include <QtCore/QTimer>
-
-#include <QtGui/QApplication>
-#include <QtGui/QGraphicsOpacityEffect>
-#include <QtGui/QVBoxLayout>
+#include <QApplication>
+#include <QGraphicsOpacityEffect>
+#include <QTimer>
+#include <QVBoxLayout>
 
 //-----------------------------------------------------------------------------
 

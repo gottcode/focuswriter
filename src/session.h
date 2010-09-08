@@ -20,13 +20,14 @@
 #ifndef SESSION_H
 #define SESSION_H
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QStringList>
+#include <QCoreApplication>
+#include <QStringList>
 class QSettings;
 
 class Session
 {
-	Q_DECLARE_TR_FUNCTIONS(Session);
+	Q_DECLARE_TR_FUNCTIONS(Session)
+
 public:
 	Session(const QString& name);
 	~Session();

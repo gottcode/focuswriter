@@ -29,6 +29,8 @@
 #include <QTextCodec>
 #include <QTextEdit>
 
+//-----------------------------------------------------------------------------
+
 namespace
 {
 	class Function
@@ -51,6 +53,8 @@ namespace
 	};
 	QHash<QByteArray, Function> functions;
 }
+
+//-----------------------------------------------------------------------------
 
 RTF::Reader::Reader()
 	: m_codec(0)
@@ -147,15 +151,21 @@ RTF::Reader::Reader()
 	setCodepage(1252);
 }
 
+//-----------------------------------------------------------------------------
+
 QString RTF::Reader::errorString() const
 {
 	return m_error;
 }
 
+//-----------------------------------------------------------------------------
+
 bool RTF::Reader::hasError() const
 {
 	return !m_error.isEmpty();
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::read(const QString& filename, QTextEdit* text)
 {
@@ -210,26 +220,36 @@ void RTF::Reader::read(const QString& filename, QTextEdit* text)
 	m_text->setUndoRedoEnabled(true);
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::ignoreGroup(qint32)
 {
 	m_state.ignore_control_word = true;
 	m_state.ignore_text = true;
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::insertBlock(qint32)
 {
 	m_text->textCursor().insertBlock();
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::insertHexSymbol(qint32)
 {
 	m_text->insertPlainText(m_codec->toUnicode(m_token.hex()));
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::insertSymbol(qint32 value)
 {
 	m_text->insertPlainText(QChar(value));
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::insertUnicodeSymbol(qint32 value)
 {
@@ -258,10 +278,14 @@ void RTF::Reader::insertUnicodeSymbol(qint32 value)
 	}
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::pushState()
 {
 	m_states.push(m_state);
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::popState()
 {
@@ -276,6 +300,8 @@ void RTF::Reader::popState()
 	setFont(m_state.active_codepage);
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::resetBlockFormatting(qint32)
 {
 	m_state.block_format = QTextBlockFormat();
@@ -283,6 +309,8 @@ void RTF::Reader::resetBlockFormatting(qint32)
 	cursor.setBlockFormat(m_state.block_format);
 	m_text->setTextCursor(cursor);
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::resetTextFormatting(qint32)
 {
@@ -292,11 +320,15 @@ void RTF::Reader::resetTextFormatting(qint32)
 	m_text->setTextCursor(cursor);
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::setBlockAlignment(qint32 value)
 {
 	m_state.block_format.setAlignment(Qt::Alignment(value));
 	m_text->textCursor().mergeBlockFormat(m_state.block_format);
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::setBlockDirection(qint32 value)
 {
@@ -309,11 +341,15 @@ void RTF::Reader::setBlockDirection(qint32 value)
 	m_text->textCursor().mergeBlockFormat(m_state.block_format);
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::setBlockIndent(qint32 value)
 {
 	m_state.block_format.setIndent(value / 720);
 	m_text->textCursor().mergeBlockFormat(m_state.block_format);
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::setTextBold(qint32 value)
 {
@@ -321,11 +357,15 @@ void RTF::Reader::setTextBold(qint32 value)
 	m_text->mergeCurrentCharFormat(m_state.char_format);
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::setTextItalic(qint32 value)
 {
 	m_state.char_format.setFontItalic(value);
 	m_text->mergeCurrentCharFormat(m_state.char_format);
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::setTextStrikeOut(qint32 value)
 {
@@ -333,11 +373,15 @@ void RTF::Reader::setTextStrikeOut(qint32 value)
 	m_text->mergeCurrentCharFormat(m_state.char_format);
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::setTextUnderline(qint32 value)
 {
 	m_state.char_format.setFontUnderline(value);
 	m_text->mergeCurrentCharFormat(m_state.char_format);
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::setTextVerticalAlignment(qint32 value)
 {
@@ -345,10 +389,14 @@ void RTF::Reader::setTextVerticalAlignment(qint32 value)
 	m_text->mergeCurrentCharFormat(m_state.char_format);
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::setSkipCharacters(qint32 value)
 {
 	m_state.skip = value;
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::setCodepage(qint32 value)
 {
@@ -359,6 +407,8 @@ void RTF::Reader::setCodepage(qint32 value)
 	}
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::setCodepageMac(qint32)
 {
 	QTextCodec* codec = QTextCodec::codecForName("Apple Roman");
@@ -367,6 +417,8 @@ void RTF::Reader::setCodepageMac(qint32)
 		m_codec = codec;
 	}
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::setFont(qint32 value)
 {
@@ -384,6 +436,8 @@ void RTF::Reader::setFont(qint32 value)
 	}
 }
 
+//-----------------------------------------------------------------------------
+
 void RTF::Reader::setFontCodepage(qint32 value)
 {
 	if (m_state.active_codepage >= m_codepages.count()) {
@@ -400,6 +454,8 @@ void RTF::Reader::setFontCodepage(qint32 value)
 	m_state.ignore_control_word = true;
 	m_state.ignore_text = true;
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Reader::setFontCharset(qint32 value)
 {
@@ -444,3 +500,5 @@ void RTF::Reader::setFontCharset(qint32 value)
 	}
 	m_state.ignore_text = true;
 }
+
+//-----------------------------------------------------------------------------

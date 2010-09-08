@@ -36,7 +36,8 @@ namespace RTF
 
 	class Tokenizer
 	{
-		Q_DECLARE_TR_FUNCTIONS(Tokenizer);
+		Q_DECLARE_TR_FUNCTIONS(Tokenizer)
+
 	public:
 		Tokenizer();
 

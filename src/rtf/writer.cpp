@@ -24,11 +24,15 @@
 #include <QTextCodec>
 #include <QTextEdit>
 
+//-----------------------------------------------------------------------------
+
 RTF::Writer::Writer()
 	: m_codec(0)
 {
 	setCodec(QTextCodec::codecForLocale());
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Writer::setCodec(QTextCodec* codec)
 {
@@ -59,6 +63,8 @@ void RTF::Writer::setCodec(QTextCodec* codec)
 		}
 	}
 }
+
+//-----------------------------------------------------------------------------
 
 void RTF::Writer::write(const QString& filename, QTextEdit* text)
 {
@@ -137,6 +143,8 @@ void RTF::Writer::write(const QString& filename, QTextEdit* text)
 	file.close();
 }
 
+//-----------------------------------------------------------------------------
+
 QByteArray RTF::Writer::fromUnicode(const QString& string) const
 {
 	QByteArray text;
@@ -188,3 +196,5 @@ QByteArray RTF::Writer::fromUnicode(const QString& string) const
 
 	return text;
 }
+
+//-----------------------------------------------------------------------------

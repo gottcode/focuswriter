@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
 #ifndef SPELL_H
 #define SPELL_H
 
+class Dictionary;
+
 #include <QDialog>
 #include <QTextCursor>
 class QAction;
@@ -27,9 +29,9 @@ class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
 class QTextEdit;
-class Dictionary;
 
-class SpellChecker : public QDialog {
+class SpellChecker : public QDialog
+{
 	Q_OBJECT
 
 public:

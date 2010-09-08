@@ -33,47 +33,23 @@ class QScrollBar;
 class QTextEdit;
 class QTimer;
 
-class Document : public QWidget {
+class Document : public QWidget
+{
 	Q_OBJECT
+
 public:
 	Document(const QString& filename, int& current_wordcount, int& current_time, const QString& theme, QWidget* parent = 0);
 	~Document();
 
-	QString filename() const {
-		return m_filename;
-	}
-
-	bool isRichText() const {
-		return m_rich_text;
-	}
-
-	int index() const {
-		return m_index;
-	}
-
-	int characterCount() const {
-		return m_stats->characterCount();
-	}
-
-	int characterAndSpaceCount() const {
-		return m_stats->characterAndSpaceCount();
-	}
-
-	int pageCount() const {
-		return m_stats->pageCount();
-	}
-
-	int paragraphCount() const {
-		return m_stats->paragraphCount();
-	}
-
-	int wordCount() const {
-		return m_stats->wordCount();
-	}
-
-	QTextEdit* text() const {
-		return m_text;
-	}
+	QString filename() const;
+	int untitledIndex() const;
+	bool isRichText() const;
+	int characterCount() const;
+	int characterAndSpaceCount() const;
+	int pageCount() const;
+	int paragraphCount() const;
+	int wordCount() const;
+	QTextEdit* text() const;
 
 	bool save();
 	bool saveAs();
@@ -156,5 +132,41 @@ private:
 	int& m_current_time;
 	int m_time_goal;
 };
+
+inline QString Document::filename() const {
+	return m_filename;
+}
+
+inline int Document::untitledIndex() const {
+	return m_index;
+}
+
+inline bool Document::isRichText() const {
+	return m_rich_text;
+}
+
+inline int Document::characterCount() const {
+	return m_stats->characterCount();
+}
+
+inline int Document::characterAndSpaceCount() const {
+	return m_stats->characterAndSpaceCount();
+}
+
+inline int Document::pageCount() const {
+	return m_stats->pageCount();
+}
+
+inline int Document::paragraphCount() const {
+	return m_stats->paragraphCount();
+}
+
+inline int Document::wordCount() const {
+	return m_stats->wordCount();
+}
+
+inline QTextEdit* Document::text() const {
+	return m_text;
+}
 
 #endif

@@ -29,6 +29,7 @@ class QTimer;
 class TimerDisplay : public QWidget
 {
 	Q_OBJECT
+
 public:
 	TimerDisplay(QList<Timer*>& timers, QWidget* parent = 0);
 

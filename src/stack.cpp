@@ -38,10 +38,12 @@
 #include <QThread>
 #include <QTimer>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-namespace {
-	class BackgroundLoader : public QThread {
+namespace
+{
+	class BackgroundLoader : public QThread
+	{
 	public:
 		void create(int position, const QString& image_path, QWidget* widget);
 		QPixmap pixmap();
@@ -63,7 +65,8 @@ namespace {
 		QMutex m_image_mutex;
 	} background_loader;
 
-	void BackgroundLoader::create(int position, const QString& image_path, QWidget* widget) {
+	void BackgroundLoader::create(int position, const QString& image_path, QWidget* widget)
+	{
 		File file = { position, image_path, widget->rect(), widget->palette() };
 
 		m_file_mutex.lock();
@@ -75,17 +78,20 @@ namespace {
 		}
 	}
 
-	QPixmap BackgroundLoader::pixmap() {
+	QPixmap BackgroundLoader::pixmap()
+	{
 		QMutexLocker locker(&m_image_mutex);
 		return QPixmap::fromImage(m_image, Qt::AutoColor | Qt::AvoidDither);
 	}
 
-	void BackgroundLoader::reset() {
+	void BackgroundLoader::reset()
+	{
 		QMutexLocker locker(&m_image_mutex);
 		m_image = QImage();
 	}
 
-	void BackgroundLoader::run() {
+	void BackgroundLoader::run()
+	{
 		m_file_mutex.lock();
 		do {
 			File file = m_files.takeLast();
@@ -104,17 +110,18 @@ namespace {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 Stack::Stack(QWidget* parent)
-: QWidget(parent),
-  m_current_document(0),
-  m_background_position(0),
-  m_margin(0),
-  m_footer_margin(0),
-  m_header_margin(0),
-  m_footer_visible(0),
-  m_header_visible(0) {
+	: QWidget(parent),
+	m_current_document(0),
+	m_background_position(0),
+	m_margin(0),
+	m_footer_margin(0),
+	m_header_margin(0),
+	m_footer_visible(0),
+	m_header_visible(0)
+{
 	setMouseTracking(true);
 
 	m_contents = new QStackedWidget(this);
@@ -144,15 +151,17 @@ Stack::Stack(QWidget* parent)
 	connect(&background_loader, SIGNAL(finished()), this, SLOT(updateBackground()));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-Stack::~Stack() {
+Stack::~Stack()
+{
 	background_loader.wait();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::addDocument(Document* document) {
+void Stack::addDocument(Document* document)
+{
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
 	connect(document, SIGNAL(formattingEnabled(bool)), this, SIGNAL(formattingEnabled(bool)));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
@@ -170,24 +179,27 @@ void Stack::addDocument(Document* document) {
 	emit updateFormatActions();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::moveDocument(int from, int to) {
+void Stack::moveDocument(int from, int to)
+{
 	m_documents.move(from, to);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::removeDocument(int index) {
+void Stack::removeDocument(int index)
+{
 	Document* document = m_documents.takeAt(index);
 	m_contents->removeWidget(document);
 	emit documentRemoved(document);
 	document->deleteLater();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setCurrentDocument(int index) {
+void Stack::setCurrentDocument(int index)
+{
 	m_current_document = m_documents[index];
 	m_contents->setCurrentWidget(m_current_document);
 
@@ -198,9 +210,10 @@ void Stack::setCurrentDocument(int index) {
 	emit updateFormatActions();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setMargins(int footer, int header) {
+void Stack::setMargins(int footer, int header)
+{
 	m_footer_margin = footer;
 	m_header_margin = header;
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
@@ -208,42 +221,48 @@ void Stack::setMargins(int footer, int header) {
 	updateMask();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::waitForThemeBackground() {
+void Stack::waitForThemeBackground()
+{
 	if (background_loader.isRunning()) {
 		background_loader.wait();
 		repaint();
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::alignCenter() {
+void Stack::alignCenter()
+{
 	m_current_document->text()->setAlignment(Qt::AlignCenter);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::alignJustify() {
+void Stack::alignJustify()
+{
 	m_current_document->text()->setAlignment(Qt::AlignJustify);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::alignLeft() {
+void Stack::alignLeft()
+{
 	m_current_document->text()->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::alignRight() {
+void Stack::alignRight()
+{
 	m_current_document->text()->setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::autoSave() {
+void Stack::autoSave()
+{
 	foreach (Document* document, m_documents) {
 		if (document->text()->document()->isModified() && !document->filename().isEmpty()) {
 			document->save();
@@ -251,27 +270,31 @@ void Stack::autoSave() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::checkSpelling() {
+void Stack::checkSpelling()
+{
 	m_current_document->checkSpelling();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::cut() {
+void Stack::cut()
+{
 	m_current_document->text()->cut();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::copy() {
+void Stack::copy()
+{
 	m_current_document->text()->copy();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::decreaseIndent() {
+void Stack::decreaseIndent()
+{
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(format.indent() - 1);
@@ -279,27 +302,31 @@ void Stack::decreaseIndent() {
 	emit updateFormatActions();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::find() {
+void Stack::find()
+{
 	m_find_dialog->showFindMode();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::findNext() {
+void Stack::findNext()
+{
 	m_find_dialog->findNext();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::findPrevious() {
+void Stack::findPrevious()
+{
 	m_find_dialog->findPrevious();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::increaseIndent() {
+void Stack::increaseIndent()
+{
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(format.indent() + 1);
@@ -307,9 +334,10 @@ void Stack::increaseIndent() {
 	emit updateFormatActions();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::makePlainText() {
+void Stack::makePlainText()
+{
 	if (!m_current_document->text()->document()->isEmpty()
 		&& QMessageBox::warning(window(), tr("Question"), tr("Remove all formatting from the current file?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 		return;
@@ -317,99 +345,114 @@ void Stack::makePlainText() {
 	m_current_document->setRichText(false);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::makeRichText() {
+void Stack::makeRichText()
+{
 	m_current_document->setRichText(true);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::paste() {
+void Stack::paste()
+{
 	m_current_document->text()->paste();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::print() {
+void Stack::print()
+{
 	m_current_document->print();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::redo() {
+void Stack::redo()
+{
 	m_current_document->text()->redo();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::replace() {
+void Stack::replace()
+{
 	m_find_dialog->showReplaceMode();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::save() {
+void Stack::save()
+{
 	m_current_document->save();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::saveAs() {
+void Stack::saveAs()
+{
 	m_current_document->saveAs();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::selectAll() {
+void Stack::selectAll()
+{
 	m_current_document->text()->selectAll();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setFontBold(bool bold) {
+void Stack::setFontBold(bool bold)
+{
 	m_current_document->text()->setFontWeight(bold ? QFont::Bold : QFont::Normal);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setFontItalic(bool italic) {
+void Stack::setFontItalic(bool italic)
+{
 	m_current_document->text()->setFontItalic(italic);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setFontStrikeOut(bool strikeout) {
+void Stack::setFontStrikeOut(bool strikeout)
+{
 	QTextCharFormat format;
 	format.setFontStrikeOut(strikeout);
 	m_current_document->text()->mergeCurrentCharFormat(format);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setFontUnderline(bool underline) {
+void Stack::setFontUnderline(bool underline)
+{
 	m_current_document->text()->setFontUnderline(underline);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setFontSuperScript(bool super) {
+void Stack::setFontSuperScript(bool super)
+{
 	QTextCharFormat format;
 	format.setVerticalAlignment(super ? QTextCharFormat::AlignSuperScript : QTextCharFormat::AlignNormal);
 	m_current_document->text()->mergeCurrentCharFormat(format);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setFontSubScript(bool sub) {
+void Stack::setFontSubScript(bool sub)
+{
 	QTextCharFormat format;
 	format.setVerticalAlignment(sub ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal);
 	m_current_document->text()->mergeCurrentCharFormat(format);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setTextDirectionLTR() {
+void Stack::setTextDirectionLTR()
+{
 	if (m_current_document) {
 		QTextBlockFormat format = m_current_document->text()->textCursor().blockFormat();
 		format.setLayoutDirection(Qt::LeftToRight);
@@ -417,9 +460,10 @@ void Stack::setTextDirectionLTR() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setTextDirectionRTL() {
+void Stack::setTextDirectionRTL()
+{
 	if (m_current_document) {
 		QTextBlockFormat format = m_current_document->text()->textCursor().blockFormat();
 		format.setLayoutDirection(Qt::RightToLeft);
@@ -427,9 +471,10 @@ void Stack::setTextDirectionRTL() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::themeSelected(const Theme& theme) {
+void Stack::themeSelected(const Theme& theme)
+{
 	m_background_position = theme.backgroundType();
 	m_background_path = theme.backgroundImage();
 
@@ -455,43 +500,49 @@ void Stack::themeSelected(const Theme& theme) {
 	window()->setMinimumWidth((m_margin * 2) + theme.foregroundWidth());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::undo() {
+void Stack::undo()
+{
 	m_current_document->text()->undo();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::updateSmartQuotes() {
+void Stack::updateSmartQuotes()
+{
 	SmartQuotes::replace(m_current_document->text(), 0, m_current_document->text()->document()->characterCount());
 	m_current_document->centerCursor(true);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::updateSmartQuotesSelection() {
+void Stack::updateSmartQuotesSelection()
+{
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	SmartQuotes::replace(m_current_document->text(), cursor.selectionStart(), cursor.selectionEnd());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setFooterVisible(bool visible) {
+void Stack::setFooterVisible(bool visible)
+{
 	m_footer_visible = visible * -m_footer_margin;
 	updateMask();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::setHeaderVisible(bool visible) {
+void Stack::setHeaderVisible(bool visible)
+{
 	m_header_visible = visible * m_header_margin;
 	updateMask();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::mouseMoveEvent(QMouseEvent* event) {
+void Stack::mouseMoveEvent(QMouseEvent* event)
+{
 	bool header_visible = event->pos().y() <= m_header_margin;
 	bool footer_visible = event->pos().y() >= (height() - m_footer_margin);
 	emit footerVisible(footer_visible);
@@ -502,9 +553,10 @@ void Stack::mouseMoveEvent(QMouseEvent* event) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::paintEvent(QPaintEvent* event) {
+void Stack::paintEvent(QPaintEvent* event)
+{
 	QPainter painter(this);
 	if (!m_background.isNull()) {
 		painter.drawPixmap(event->rect(), m_background, event->rect());
@@ -512,7 +564,7 @@ void Stack::paintEvent(QPaintEvent* event) {
 	painter.end();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 void Stack::resizeEvent(QResizeEvent* event) {
 	updateMask();
@@ -529,9 +581,10 @@ void Stack::resizeEvent(QResizeEvent* event) {
 	QWidget::resizeEvent(event);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::updateBackground() {
+void Stack::updateBackground()
+{
 	m_background = background_loader.pixmap();
 	if ((m_background.isNull() || m_background.size() != size()) && isVisible()) {
 		m_background = QPixmap();
@@ -545,9 +598,10 @@ void Stack::updateBackground() {
 	update();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Stack::updateMask() {
+void Stack::updateMask()
+{
 	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
 
 	int top = 0;
@@ -567,4 +621,4 @@ void Stack::updateMask() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

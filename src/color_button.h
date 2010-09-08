@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,15 +23,14 @@
 #include <QColor>
 #include <QPushButton>
 
-class ColorButton : public QPushButton {
+class ColorButton : public QPushButton
+{
 	Q_OBJECT
+
 public:
 	ColorButton(QWidget* parent = 0);
 
-	QColor color() const {
-		return m_color;
-	}
-
+	QColor color() const;
 	QString toString() const;
 
 signals:
@@ -46,5 +45,10 @@ private slots:
 private:
 	QColor m_color;
 };
+
+inline QColor ColorButton::color() const
+{
+	return m_color;
+}
 
 #endif

@@ -36,9 +36,10 @@
 #include <QTextBlock>
 #include <QTextEdit>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::checkDocument(QTextEdit* document) {
+void SpellChecker::checkDocument(QTextEdit* document)
+{
 	SpellChecker* checker = new SpellChecker(document);
 	checker->m_start_cursor = document->textCursor();
 	checker->m_cursor = checker->m_start_cursor;
@@ -47,9 +48,10 @@ void SpellChecker::checkDocument(QTextEdit* document) {
 	checker->check();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::reject() {
+void SpellChecker::reject()
+{
 	m_document->setTextCursor(m_start_cursor);
 	Document* document = qobject_cast<Document*>(m_document->parentWidget());
 	if (document) {
@@ -58,44 +60,50 @@ void SpellChecker::reject() {
 	QDialog::reject();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::suggestionChanged(QListWidgetItem* suggestion) {
+void SpellChecker::suggestionChanged(QListWidgetItem* suggestion)
+{
 	if (suggestion) {
 		m_suggestion->setText(suggestion->text());
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::add() {
+void SpellChecker::add()
+{
 	m_dictionary->add(m_word);
 	ignore();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::ignore() {
+void SpellChecker::ignore()
+{
 	check();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::ignoreAll() {
+void SpellChecker::ignoreAll()
+{
 	m_ignored.append(m_word);
 	ignore();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::change() {
+void SpellChecker::change()
+{
 	m_cursor.insertText(m_suggestion->text());
 	check();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::changeAll() {
+void SpellChecker::changeAll()
+{
 	QString replacement = m_suggestion->text();
 
 	QTextCursor cursor = m_cursor;
@@ -112,11 +120,12 @@ void SpellChecker::changeAll() {
 	check();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 SpellChecker::SpellChecker(QTextEdit* document)
-: QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-  m_document(document) {
+	: QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_document(document)
+{
 	setWindowTitle(tr("Check Spelling"));
 	setWindowModality(Qt::WindowModal);
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -173,9 +182,10 @@ SpellChecker::SpellChecker(QTextEdit* document)
 	layout->addWidget(buttons, 8, 3);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void SpellChecker::check() {
+void SpellChecker::check()
+{
 	setDisabled(true);
 	QProgressDialog wait_dialog(tr("Checking spelling..."), tr("Cancel"), 0, m_document->document()->characterCount(), this);
 	wait_dialog.setWindowTitle(tr("Please wait"));
@@ -248,4 +258,4 @@ void SpellChecker::check() {
 	reject();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

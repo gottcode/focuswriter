@@ -23,19 +23,21 @@
 #include <QFileDialog>
 #include <QImageReader>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 ImageButton::ImageButton(QWidget* parent)
-: QPushButton(parent) {
+	: QPushButton(parent)
+{
 	setAutoDefault(false);
 	setIconSize(QSize(100, 100));
 	unsetImage();
 	connect(this, SIGNAL(clicked()), this, SLOT(onClicked()));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ImageButton::setImage(const QString& image, const QString& path) {
+void ImageButton::setImage(const QString& image, const QString& path)
+{
 	QImageReader source(image);
 	if (source.canRead()) {
 		m_image = image;
@@ -53,9 +55,10 @@ void ImageButton::setImage(const QString& image, const QString& path) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ImageButton::unsetImage() {
+void ImageButton::unsetImage()
+{
 	m_image.clear();
 	m_path.clear();
 
@@ -66,9 +69,10 @@ void ImageButton::unsetImage() {
 	emit changed(m_path);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ImageButton::onClicked() {
+void ImageButton::onClicked()
+{
 	QStringList filters;
 	QList<QByteArray> formats = QImageReader::supportedImageFormats();
 	foreach (QByteArray type, formats) {
@@ -81,4 +85,4 @@ void ImageButton::onClicked() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

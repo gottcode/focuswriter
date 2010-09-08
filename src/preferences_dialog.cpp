@@ -43,10 +43,12 @@
 
 #include <zip.h>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-namespace {
-	QString languageName(const QString& language) {
+namespace
+{
+	QString languageName(const QString& language)
+	{
 		QLocale locale(language.left(5));
 		QString name = QLocale::languageToString(locale.language());
 		if (locale.country() != QLocale::AnyCountry) {
@@ -56,11 +58,12 @@ namespace {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
-: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-  m_preferences(preferences) {
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_preferences(preferences)
+{
 	setWindowTitle(tr("Preferences"));
 	m_dictionary = new Dictionary(this);
 
@@ -176,9 +179,10 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::accept() {
+void PreferencesDialog::accept()
+{
 	// Save settings
 	if (m_option_time->isChecked()) {
 		m_preferences.setGoalType(1);
@@ -273,9 +277,10 @@ void PreferencesDialog::accept() {
 	QDialog::accept();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::reject() {
+void PreferencesDialog::reject()
+{
 	QDir dir(Dictionary::path() + "/install/");
 	if (dir.exists()) {
 		QStringList files = dir.entryList(QDir::Files);
@@ -288,9 +293,10 @@ void PreferencesDialog::reject() {
 	QDialog::reject();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::moveActionUp() {
+void PreferencesDialog::moveActionUp()
+{
 	int from = m_toolbar_actions->currentRow();
 	int to = from - 1;
 	if (from > 0) {
@@ -299,9 +305,10 @@ void PreferencesDialog::moveActionUp() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::moveActionDown() {
+void PreferencesDialog::moveActionDown()
+{
 	int from = m_toolbar_actions->currentRow();
 	int to = from + 1;
 	if (to < m_toolbar_actions->count()) {
@@ -310,27 +317,30 @@ void PreferencesDialog::moveActionDown() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::addSeparatorAction() {
+void PreferencesDialog::addSeparatorAction()
+{
 	QListWidgetItem* item = new QListWidgetItem(QString(20, QChar('-')));
 	item->setCheckState(Qt::Checked);
 	item->setData(Qt::UserRole, "|");
 	m_toolbar_actions->insertItem(m_toolbar_actions->currentRow(), item);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::currentActionChanged(int action) {
+void PreferencesDialog::currentActionChanged(int action)
+{
 	if (action != -1) {
 		m_move_up_button->setEnabled(action > 0);
 		m_move_down_button->setEnabled((action + 1) < m_toolbar_actions->count());
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::addLanguage() {
+void PreferencesDialog::addLanguage()
+{
 	QString path = QFileDialog::getOpenFileName(this, tr("Select Dictionary"), QDir::homePath());
 	if (path.isEmpty()) {
 		return;
@@ -441,9 +451,10 @@ void PreferencesDialog::addLanguage() {
 	zip_close(archive);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::removeLanguage() {
+void PreferencesDialog::removeLanguage()
+{
 	int index = m_languages->currentIndex();
 	if (index == -1) {
 		return;
@@ -454,18 +465,20 @@ void PreferencesDialog::removeLanguage() {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::selectedLanguageChanged(int index) {
+void PreferencesDialog::selectedLanguageChanged(int index)
+{
 	if (index != -1) {
 		QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
 		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(Dictionary::path()));
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::addWord() {
+void PreferencesDialog::addWord()
+{
 	QString word = m_word->text();
 	m_word->clear();
 	int row;
@@ -477,29 +490,33 @@ void PreferencesDialog::addWord() {
 	m_personal_dictionary->insertItem(row, word);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::removeWord() {
+void PreferencesDialog::removeWord()
+{
 	delete m_personal_dictionary->selectedItems().first();
 	m_personal_dictionary->clearSelection();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::selectedWordChanged() {
+void PreferencesDialog::selectedWordChanged()
+{
 	m_remove_word_button->setDisabled(m_personal_dictionary->selectedItems().isEmpty());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void PreferencesDialog::wordEdited() {
+void PreferencesDialog::wordEdited()
+{
 	QString word = m_word->text();
 	m_add_word_button->setEnabled(!word.isEmpty() && m_personal_dictionary->findItems(word, Qt::MatchExactly).isEmpty());
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QWidget* PreferencesDialog::initGeneralTab() {
+QWidget* PreferencesDialog::initGeneralTab()
+{
 	QWidget* tab = new QWidget(this);
 
 	// Create goal options
@@ -590,9 +607,10 @@ QWidget* PreferencesDialog::initGeneralTab() {
 	return tab;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QWidget* PreferencesDialog::initStatisticsTab() {
+QWidget* PreferencesDialog::initStatisticsTab()
+{
 	QWidget* tab = new QWidget(this);
 
 	// Create statistics options
@@ -664,9 +682,10 @@ QWidget* PreferencesDialog::initStatisticsTab() {
 	return tab;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QWidget* PreferencesDialog::initToolbarTab() {
+QWidget* PreferencesDialog::initToolbarTab()
+{
 	QWidget* tab = new QWidget(this);
 
 	// Create style options
@@ -720,9 +739,10 @@ QWidget* PreferencesDialog::initToolbarTab() {
 	return tab;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QWidget* PreferencesDialog::initSpellingTab() {
+QWidget* PreferencesDialog::initSpellingTab()
+{
 	QWidget* tab = new QWidget(this);
 
 	// Create spelling options
@@ -801,4 +821,4 @@ QWidget* PreferencesDialog::initSpellingTab() {
 	return tab;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

@@ -28,13 +28,14 @@
 #include <QMenu>
 #include <QTextEdit>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 Highlighter::Highlighter(QTextEdit* text)
-: QSyntaxHighlighter(text->document()),
-  m_text(text),
-  m_enabled(true),
-  m_misspelled("#ff0000") {
+	: QSyntaxHighlighter(text->document()),
+	m_text(text),
+	m_enabled(true),
+	m_misspelled("#ff0000")
+{
 	m_dictionary = new Dictionary(this);
 	connect(m_dictionary, SIGNAL(changed()), this, SLOT(rehighlight()));
 
@@ -43,35 +44,40 @@ Highlighter::Highlighter(QTextEdit* text)
 	m_check_action = new QAction(tr("Check Spelling..."), this);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Highlighter::enabled() const {
+bool Highlighter::enabled() const
+{
 	return m_enabled;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QColor Highlighter::misspelledColor() const {
+QColor Highlighter::misspelledColor() const
+{
 	return m_misspelled;
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Highlighter::setEnabled(bool enabled) {
+void Highlighter::setEnabled(bool enabled)
+{
 	m_enabled = enabled;
 	rehighlight();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Highlighter::setMisspelledColor(const QColor& color) {
+void Highlighter::setMisspelledColor(const QColor& color)
+{
 	m_misspelled = color;
 	rehighlight();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-bool Highlighter::eventFilter(QObject* watched, QEvent* event) {
+bool Highlighter::eventFilter(QObject* watched, QEvent* event)
+{
 	if (watched != m_text->viewport() || event->type() != QEvent::ContextMenu || !m_enabled) {
 		return QSyntaxHighlighter::eventFilter(watched, event);
 	} else {
@@ -128,9 +134,10 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Highlighter::highlightBlock(const QString& text) {
+void Highlighter::highlightBlock(const QString& text)
+{
 	if (!m_enabled) {
 		return;
 	}
@@ -144,9 +151,10 @@ void Highlighter::highlightBlock(const QString& text) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void Highlighter::suggestion(QAction* action) {
+void Highlighter::suggestion(QAction* action)
+{
 	if (action == m_add_action) {
 		m_text->setTextCursor(m_start_cursor);
 		m_dictionary->add(m_word);
@@ -158,4 +166,4 @@ void Highlighter::suggestion(QAction* action) {
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

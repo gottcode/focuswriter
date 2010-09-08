@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008-2009 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,23 +23,26 @@
 #include <QPainter>
 #include <QPixmap>
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
 ColorButton::ColorButton(QWidget* parent)
-: QPushButton(parent) {
+	: QPushButton(parent)
+{
 	setAutoDefault(false);
 	connect(this, SIGNAL(clicked()), this, SLOT(onClicked()));
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-QString ColorButton::toString() const {
+QString ColorButton::toString() const
+{
 	return m_color.name();
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ColorButton::setColor(const QColor& color) {
+void ColorButton::setColor(const QColor& color)
+{
 	if (m_color == color) {
 		return;
 	}
@@ -60,13 +63,14 @@ void ColorButton::setColor(const QColor& color) {
 	emit changed(m_color);
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------
 
-void ColorButton::onClicked() {
+void ColorButton::onClicked()
+{
 	QColor color = QColorDialog::getColor(m_color, this);
 	if (color.isValid()) {
 		setColor(color);
 	}
 }
 
-/*****************************************************************************/
+//-----------------------------------------------------------------------------

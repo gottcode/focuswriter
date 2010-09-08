@@ -28,8 +28,9 @@
 class QImage;
 class QSize;
 
-class Theme : public SettingsFile {
-	Q_DECLARE_TR_FUNCTIONS(Theme);
+class Theme : public SettingsFile
+{
+	Q_DECLARE_TR_FUNCTIONS(Theme)
 
 public:
 	Theme(const QString& name = QString());
