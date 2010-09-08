@@ -69,7 +69,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 	}
 
 	QTextCursor cursor = text->textCursor();
-	QChar c = text->document()->characterAt(cursor.position() - 1);
+	QChar c = text->document()->characterAt(cursor.selectionStart() - 1);
 	if (!c.isSpace() && !c.isNull()) {
 		quote++;
 	}
