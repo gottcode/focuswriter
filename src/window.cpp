@@ -198,6 +198,7 @@ Window::Window()
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
 	toggleFullscreen();
+	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 	show();
 
 	// Update themes
@@ -474,7 +475,6 @@ void Window::toggleFullscreen()
 	} else {
 		setWindowState(windowState() & ~Qt::WindowFullScreen);
 	}
-	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 }
 
 //-----------------------------------------------------------------------------
@@ -968,8 +968,9 @@ void Window::initMenus()
 	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
 #ifdef Q_OS_MAC
 	m_actions["Fullscreen"]->setShortcut(tr("Esc"));
-#endif
+#else
 	m_actions["Fullscreen"]->setCheckable(true);
+#endif
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);

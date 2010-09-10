@@ -1,3 +1,6 @@
+2010-09-10 Graeme Gott <graeme@gottcode.org>
+	* Work around QToolBar bug on the Mac.
+
 2010-09-08 Graeme Gott <graeme@gottcode.org>
 	* Unify coding style.
 	* FIXED: Smart quotes didn't work with selections.
