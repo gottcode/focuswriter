@@ -61,6 +61,7 @@ signals:
 	void findNextAvailable(bool available);
 	void formattingEnabled(bool enabled);
 	void updateFormatActions();
+	void updateFormatAlignmentActions();
 
 public slots:
 	void alignCenter();

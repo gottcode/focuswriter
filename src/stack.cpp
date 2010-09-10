@@ -162,6 +162,7 @@ Stack::~Stack()
 
 void Stack::addDocument(Document* document)
 {
+	connect(document, SIGNAL(alignmentChanged()), this, SIGNAL(updateFormatAlignmentActions()));
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
 	connect(document, SIGNAL(formattingEnabled(bool)), this, SIGNAL(formattingEnabled(bool)));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
@@ -454,9 +455,12 @@ void Stack::setFontSubScript(bool sub)
 void Stack::setTextDirectionLTR()
 {
 	if (m_current_document) {
-		QTextBlockFormat format = m_current_document->text()->textCursor().blockFormat();
+		QTextCursor cursor = m_current_document->text()->textCursor();
+		QTextBlockFormat format = cursor.blockFormat();
 		format.setLayoutDirection(Qt::LeftToRight);
-		m_current_document->text()->textCursor().mergeBlockFormat(format);
+		format.setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
+		cursor.mergeBlockFormat(format);
+		emit updateFormatAlignmentActions();
 	}
 }
 
@@ -465,9 +469,12 @@ void Stack::setTextDirectionLTR()
 void Stack::setTextDirectionRTL()
 {
 	if (m_current_document) {
-		QTextBlockFormat format = m_current_document->text()->textCursor().blockFormat();
+		QTextCursor cursor = m_current_document->text()->textCursor();
+		QTextBlockFormat format = cursor.blockFormat();
 		format.setLayoutDirection(Qt::RightToLeft);
-		m_current_document->text()->textCursor().mergeBlockFormat(format);
+		format.setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
+		cursor.mergeBlockFormat(format);
+		emit updateFormatAlignmentActions();
 	}
 }
 

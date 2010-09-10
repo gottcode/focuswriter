@@ -105,6 +105,7 @@ Window::Window()
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
 	connect(m_documents, SIGNAL(formattingEnabled(bool)), this, SLOT(setFormattingEnabled(bool)));
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
+	connect(m_documents, SIGNAL(updateFormatAlignmentActions()), this, SLOT(updateFormatAlignmentActions()));
 	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
 
 	// Set up menubar and toolbar
@@ -357,7 +358,7 @@ void Window::newDocument()
 	addDocument();
 	m_actions["Rename"]->setEnabled(false);
 	if (m_documents->currentDocument()->isRichText()) {
-		if (!QApplication::isRightToLeft()) {
+		if (QApplication::isLeftToRight()) {
 			m_actions["FormatDirectionLTR"]->setChecked(true);
 		} else {
 			m_actions["FormatDirectionRTL"]->setChecked(true);
@@ -609,8 +610,10 @@ void Window::updateFormatAlignmentActions()
 
 	if (document->text()->textCursor().blockFormat().layoutDirection() == Qt::LeftToRight) {
 		m_actions["FormatDirectionLTR"]->setChecked(true);
-	} else {
+	} else if (document->text()->textCursor().blockFormat().layoutDirection() == Qt::RightToLeft) {
 		m_actions["FormatDirectionRTL"]->setChecked(true);
+	} else {
+		m_actions[QApplication::isLeftToRight() ? "FormatDirectionLTR" : "FormatDirectionRTL"]->setChecked(true);
 	}
 
 	Qt::Alignment alignment = document->text()->alignment();
@@ -687,7 +690,6 @@ bool Window::addDocument(const QString& filename, int position)
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
-	connect(document, SIGNAL(alignmentChanged()), this, SLOT(updateFormatAlignmentActions()));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Restore cursor position

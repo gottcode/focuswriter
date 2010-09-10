@@ -179,6 +179,7 @@ void RTF::Reader::read(const QString& filename, QTextEdit* text)
 		m_text = text;
 		m_text->setUndoRedoEnabled(false);
 		m_token.setDevice(&file);
+		setBlockDirection(Qt::LeftToRight);
 
 		// Check file type
 		m_token.readNext();
