@@ -146,14 +146,14 @@ SpellChecker::SpellChecker(QTextEdit* document)
 	connect(ignore_all_button, SIGNAL(clicked()), this, SLOT(ignoreAll()));
 
 	m_suggestion = new QLineEdit(this);
-	m_suggestions = new QListWidget(this);
-	connect(m_suggestions, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(suggestionChanged(QListWidgetItem*)));
 	QPushButton* change_button = new QPushButton(tr("Change"), this);
 	change_button->setAutoDefault(false);
 	connect(change_button, SIGNAL(clicked()), this, SLOT(change()));
 	QPushButton* change_all_button = new QPushButton(tr("Change All"), this);
 	change_all_button->setAutoDefault(false);
 	connect(change_all_button, SIGNAL(clicked()), this, SLOT(changeAll()));
+	m_suggestions = new QListWidget(this);
+	connect(m_suggestions, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(suggestionChanged(QListWidgetItem*)));
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
 	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
@@ -248,6 +248,7 @@ void SpellChecker::check()
 
 			// Stop checking words
 			m_document->setTextCursor(m_cursor);
+			m_suggestion->setFocus();
 			return;
 		}
 	}

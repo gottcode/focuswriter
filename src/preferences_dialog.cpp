@@ -616,10 +616,10 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	// Create statistics options
 	QGroupBox* counts_group = new QGroupBox(tr("Contents"), tab);
 
-	m_show_characters = new QCheckBox(tr("Character count"), counts_group);
+	m_show_words = new QCheckBox(tr("Word count"), counts_group);
 	m_show_pages = new QCheckBox(tr("Page count"), counts_group);
 	m_show_paragraphs = new QCheckBox(tr("Paragraph count"), counts_group);
-	m_show_words = new QCheckBox(tr("Word count"), counts_group);
+	m_show_characters = new QCheckBox(tr("Character count"), counts_group);
 
 	QVBoxLayout* counts_layout = new QVBoxLayout(counts_group);
 	counts_layout->addWidget(m_show_words);
@@ -761,15 +761,15 @@ QWidget* PreferencesDialog::initSpellingTab()
 	// Create language selection
 	QGroupBox* languages_group = new QGroupBox(tr("Language"), tab);
 
+	m_languages = new QComboBox(languages_group);
+	connect(m_languages, SIGNAL(currentIndexChanged(int)), this, SLOT(selectedLanguageChanged(int)));
+
 	m_add_language_button = new QPushButton(tr("Add"), languages_group);
 	m_add_language_button->setAutoDefault(false);
 	connect(m_add_language_button, SIGNAL(clicked()), this, SLOT(addLanguage()));
 	m_remove_language_button = new QPushButton(tr("Remove"), languages_group);
 	m_remove_language_button->setAutoDefault(false);
 	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
-
-	m_languages = new QComboBox(languages_group);
-	connect(m_languages, SIGNAL(currentIndexChanged(int)), this, SLOT(selectedLanguageChanged(int)));
 
 	QStringList languages = m_dictionary->availableLanguages();
 	foreach (const QString& language, languages) {
@@ -789,6 +789,11 @@ QWidget* PreferencesDialog::initSpellingTab()
 	m_word = new QLineEdit(personal_dictionary_group);
 	connect(m_word, SIGNAL(textChanged(const QString&)), this, SLOT(wordEdited()));
 
+	m_add_word_button = new QPushButton(tr("Add"), personal_dictionary_group);
+	m_add_word_button->setAutoDefault(false);
+	m_add_word_button->setDisabled(true);
+	connect(m_add_word_button, SIGNAL(clicked()), this, SLOT(addWord()));
+
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
 	QStringList words = m_dictionary->personal();
 	foreach (const QString& word, words) {
@@ -796,10 +801,6 @@ QWidget* PreferencesDialog::initSpellingTab()
 	}
 	connect(m_personal_dictionary, SIGNAL(itemSelectionChanged()), this, SLOT(selectedWordChanged()));
 
-	m_add_word_button = new QPushButton(tr("Add"), personal_dictionary_group);
-	m_add_word_button->setAutoDefault(false);
-	m_add_word_button->setDisabled(true);
-	connect(m_add_word_button, SIGNAL(clicked()), this, SLOT(addWord()));
 	m_remove_word_button = new QPushButton(tr("Remove"), personal_dictionary_group);
 	m_remove_word_button->setAutoDefault(false);
 	m_remove_word_button->setDisabled(true);

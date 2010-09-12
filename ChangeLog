@@ -1,3 +1,6 @@
+2010-09-12 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Tab focus was incorrect in some dialogs.
+
 2010-09-10 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Text direction was broken with Qt 4.7.
 	* Work around QToolBar bug on the Mac.
