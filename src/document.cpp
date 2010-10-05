@@ -466,10 +466,14 @@ void Document::resizeEvent(QResizeEvent* event)
 
 void Document::wheelEvent(QWheelEvent* event)
 {
-	int delta = event->delta();
-	if ( (delta > 0 && m_scrollbar->value() > m_scrollbar->minimum()) || (delta < 0 && m_scrollbar->value() < m_scrollbar->maximum()) ) {
-		QApplication::sendEvent(m_scrollbar, event);
+	if (event->spontaneous()) {
+		if (event->orientation() == Qt::Vertical) {
+			QApplication::sendEvent(m_scrollbar, event);
+		} else {
+			QApplication::sendEvent(m_text->horizontalScrollBar(), event);
+		}
 	}
+	event->ignore();
 	return QWidget::wheelEvent(event);
 }
 
