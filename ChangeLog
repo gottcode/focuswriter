@@ -1,4 +1,5 @@
 2010-10-05 Graeme Gott <graeme@gottcode.org>
+	* FIXED: The C locale was assumed to be UTF-8.
 	* FIXED: New documents were always centered.
 
 2010-09-22 Graeme Gott <graeme@gottcode.org>

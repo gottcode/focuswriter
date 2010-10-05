@@ -353,7 +353,7 @@ void PreferencesDialog::addLanguage()
 	QStringList dictionaries;
 
 	// Open archive
-	zip* archive = zip_open(path.toUtf8().data(), 0, 0);
+	zip* archive = zip_open(QFile::encodeName(path).constData(), 0, 0);
 	if (!archive) {
 		QMessageBox::warning(this, tr("Sorry"), tr("Unable to open archive."));
 		return;

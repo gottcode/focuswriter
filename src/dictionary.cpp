@@ -249,7 +249,7 @@ void Dictionary::setLanguage(const QString& language)
 	f_language = language;
 
 	delete f_dictionary;
-	f_dictionary = new Hunspell(aff.toUtf8().data(), dic.toUtf8().data());
+	f_dictionary = new Hunspell(QFile::encodeName(aff).constData(), QFile::encodeName(dic).constData());
 	f_codec = QTextCodec::codecForName(f_dictionary->get_dic_encoding());
 
 	if (f_codec) {
