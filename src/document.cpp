@@ -510,7 +510,7 @@ void Document::scrollBarRangeChanged(int, int max)
 	m_scrollbar->blockSignals(true);
 	m_scrollbar->setMaximum(max + m_text->height());
 	m_scrollbar->blockSignals(false);
-	centerCursor(max == 0);
+	centerCursor();
 }
 
 //-----------------------------------------------------------------------------
