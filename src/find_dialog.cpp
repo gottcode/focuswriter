@@ -169,9 +169,8 @@ void FindDialog::replace()
 	if (QString::compare(cursor.selectedText(), text, cs) == 0) {
 		cursor.insertText(m_replace_string->text());
 		document->setTextCursor(cursor);
-	} else {
-		find();
 	}
+	find();
 }
 
 //-----------------------------------------------------------------------------
