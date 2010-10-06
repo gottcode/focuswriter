@@ -1,3 +1,6 @@
+2010-10-06 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Text indents were different sizes.
+
 2010-10-05 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Sometimes segfaulted when scrolling.
 	* FIXED: The C locale was assumed to be UTF-8.

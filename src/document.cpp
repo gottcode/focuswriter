@@ -86,6 +86,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text = new QTextEdit(this);
 	m_text->installEventFilter(this);
 	m_text->setTabStopWidth(50);
+	m_text->document()->setIndentWidth(50);
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->viewport()->setMouseTracking(true);
