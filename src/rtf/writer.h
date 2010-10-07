@@ -33,7 +33,7 @@ namespace RTF
 		Writer();
 
 		void setCodec(QTextCodec* codec);
-		void write(const QString& filename, QTextEdit* text);
+		bool write(const QString& filename, QTextEdit* text);
 
 	private:
 		QByteArray fromUnicode(const QString& string) const;

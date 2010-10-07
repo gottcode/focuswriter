@@ -183,6 +183,7 @@ bool Document::save()
 	}
 
 	// Write file to disk
+	bool saved = true;
 	if (!m_rich_text) {
 		QFile file(m_filename);
 		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -190,11 +191,19 @@ bool Document::save()
 			stream.setCodec(QTextCodec::codecForName("UTF-8"));
 			stream.setGenerateByteOrderMark(true);
 			stream << m_text->toPlainText();
+			saved = (file.error() == QFile::NoError);
 			file.close();
+		} else {
+			saved = false;
 		}
 	} else {
 		RTF::Writer writer;
-		writer.write(m_filename, m_text);
+		saved = writer.write(m_filename, m_text);
+	}
+
+	if (!saved) {
+		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save the file '%1'.").arg(m_filename));
+		return false;
 	}
 
 	m_text->document()->setModified(false);

@@ -66,14 +66,14 @@ void RTF::Writer::setCodec(QTextCodec* codec)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Writer::write(const QString& filename, QTextEdit* text)
+bool RTF::Writer::write(const QString& filename, QTextEdit* text)
 {
 	if (m_codec == 0) {
-		return;
+		return false;
 	}
 	QFile file(filename);
 	if (!file.open(QFile::WriteOnly | QFile::Text)) {
-		return;
+		return false;
 	}
 
 	file.write(m_header);
@@ -140,7 +140,9 @@ void RTF::Writer::write(const QString& filename, QTextEdit* text)
 	}
 
 	file.write("\n}");
+	bool saved = (file.error() == QFile::NoError);
 	file.close();
+	return saved;
 }
 
 //-----------------------------------------------------------------------------
