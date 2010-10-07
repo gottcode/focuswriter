@@ -126,6 +126,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	if (m_filename.isEmpty()) {
 		findIndex();
 		unknown_rich_text = true;
+	} else {
+		m_text->setReadOnly(!QFileInfo(m_filename).isWritable());
 	}
 
 	// Set up scroll bar
@@ -171,6 +173,13 @@ Document::~Document()
 
 //-----------------------------------------------------------------------------
 
+bool Document::isReadOnly() const
+{
+	return m_text->isReadOnly();
+}
+
+//-----------------------------------------------------------------------------
+
 bool Document::save()
 {
 	// Save progress
@@ -180,6 +189,14 @@ bool Document::save()
 
 	if (m_filename.isEmpty()) {
 		return saveAs();
+	}
+
+	// Make read-only files writable
+	if (m_text->isReadOnly()) {
+		QFile file(m_filename);
+		if (file.exists() && !QFileInfo(file).isWritable()) {
+			file.setPermissions(file.permissions() | QFile::WriteOwner | QFile::WriteUser);
+		}
 	}
 
 	// Write file to disk
@@ -221,6 +238,7 @@ bool Document::saveAs()
 		clearIndex();
 		save();
 		updateSaveLocation();
+		m_text->setReadOnly(false);
 		m_text->document()->setModified(false);
 		emit changedName();
 		return true;

@@ -43,6 +43,7 @@ public:
 
 	QString filename() const;
 	int untitledIndex() const;
+	bool isReadOnly() const;
 	bool isRichText() const;
 	int characterCount() const;
 	int characterAndSpaceCount() const;

@@ -708,6 +708,11 @@ bool Window::addDocument(const QString& filename, int position)
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
+	// Inform user about read-only documents
+	if (document->isReadOnly()) {
+		QMessageBox::information(window(), tr("Note"), tr("The file '%1' was opened Read-Only.").arg(filename));
+	}
+
 	if (show_load) {
 		m_load_screen->finish();
 	}
@@ -831,14 +836,15 @@ void Window::updateTab(int index)
 {
 	Document* document = m_documents->document(index);
 	QString filename = document->filename();
+	QString readonly = document->isReadOnly() ? tr(" (Read-Only)") : "";
 	if (filename.isEmpty()) {
 		filename = tr("(Untitled %1)").arg(document->untitledIndex());
 	}
 	bool modified = document->text()->document()->isModified();
-	m_tabs->setTabText(index, QFileInfo(filename).fileName() + (modified ? "*" : ""));
+	m_tabs->setTabText(index, QFileInfo(filename).fileName() + (modified ? "*" : "") + readonly);
 	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(filename));
 	if (document == m_documents->currentDocument()) {
-		setWindowFilePath(filename);
+		setWindowFilePath(filename + readonly);
 		setWindowModified(modified);
 	}
 }
