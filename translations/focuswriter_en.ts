@@ -4,7 +4,7 @@
 <context>
     <name>FindDialog</name>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="208"/>
+        <location filename="../src/find_dialog.cpp" line="207"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>Replace %n instance?</numerusform>

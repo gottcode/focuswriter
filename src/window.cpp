@@ -836,15 +836,18 @@ void Window::updateTab(int index)
 {
 	Document* document = m_documents->document(index);
 	QString filename = document->filename();
-	QString readonly = document->isReadOnly() ? tr(" (Read-Only)") : "";
-	if (filename.isEmpty()) {
-		filename = tr("(Untitled %1)").arg(document->untitledIndex());
+	QString name = QFileInfo(filename).fileName();
+	if (name.isEmpty()) {
+		name = tr("(Untitled %1)").arg(document->untitledIndex());
+	}
+	if (document->isReadOnly()) {
+		name = tr("%1 (Read-Only)").arg(name);
 	}
 	bool modified = document->text()->document()->isModified();
-	m_tabs->setTabText(index, QFileInfo(filename).fileName() + (modified ? "*" : "") + readonly);
+	m_tabs->setTabText(index, name + (modified ? "*" : ""));
 	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(filename));
 	if (document == m_documents->currentDocument()) {
-		setWindowFilePath(filename + readonly);
+		setWindowFilePath(name);
 		setWindowModified(modified);
 	}
 }
@@ -932,9 +935,9 @@ void Window::initMenus()
 	m_actions["FormatIndentIncrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-more"), tr("I&ncrease Indent"), m_documents, SLOT(increaseIndent()), tr("Ctrl+>"));
 
 	format_menu->addSeparator();
-	m_actions["FormatDirectionLTR"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-ltr"), tr("Left to Right Block"), m_documents, SLOT(setTextDirectionLTR()));
+	m_actions["FormatDirectionLTR"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-ltr"), tr("Le&ft to Right Block"), m_documents, SLOT(setTextDirectionLTR()));
 	m_actions["FormatDirectionLTR"]->setCheckable(true);
-	m_actions["FormatDirectionRTL"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-rtl"), tr("Right to Left Block"), m_documents, SLOT(setTextDirectionRTL()));
+	m_actions["FormatDirectionRTL"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-rtl"), tr("Ri&ght to Left Block"), m_documents, SLOT(setTextDirectionRTL()));
 	m_actions["FormatDirectionRTL"]->setCheckable(true);
 	QActionGroup* direction = new QActionGroup(this);
 	direction->addAction(m_actions["FormatDirectionLTR"]);
