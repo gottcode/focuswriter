@@ -1,3 +1,6 @@
+2010-10-12 Luis Osa <luis.osa.gdc@googlemail.com>
+	* Add Spanish translation.
+
 2010-10-07 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Did not handle opening Read-Only files.
 	* FIXED: Did not prompt when there was an error saving files.
