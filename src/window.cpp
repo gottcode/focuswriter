@@ -731,8 +731,7 @@ bool Window::saveDocument(int index)
 
 	// Auto-save document
 	if (m_auto_save && document->text()->document()->isModified() && !document->filename().isEmpty()) {
-		document->save();
-		return true;
+		return document->save();
 	}
 
 	// Prompt about saving changes
