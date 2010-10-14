@@ -191,14 +191,6 @@ bool Document::save()
 		return saveAs();
 	}
 
-	// Make read-only files writable
-	if (m_text->isReadOnly()) {
-		QFile file(m_filename);
-		if (file.exists() && !QFileInfo(file).isWritable()) {
-			file.setPermissions(file.permissions() | QFile::WriteOwner | QFile::WriteUser);
-		}
-	}
-
 	// Write file to disk
 	bool saved = true;
 	if (!m_rich_text) {
@@ -219,7 +211,7 @@ bool Document::save()
 	}
 
 	if (!saved) {
-		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save the file '%1'.").arg(m_filename));
+		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save '%1'.").arg(m_filename));
 		return false;
 	}
 
@@ -234,7 +226,12 @@ bool Document::saveAs()
 	QString selected;
 	QString filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), m_filename, fileFilter(m_filename), &selected);
 	if (!filename.isEmpty()) {
-		m_filename = fileNameWithExtension(filename, selected);
+		filename = fileNameWithExtension(filename, selected);
+		if (QFile::exists(filename) && !QFile::remove(filename)) {
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(filename));
+			return false;
+		}
+		m_filename = filename;
 		clearIndex();
 		save();
 		updateSaveLocation();
@@ -259,8 +256,14 @@ bool Document::rename()
 	QString filename = QFileDialog::getSaveFileName(window(), tr("Rename File"), m_filename, fileFilter(m_filename), &selected);
 	if (!filename.isEmpty()) {
 		filename = fileNameWithExtension(filename, selected);
-		QFile::remove(filename);
-		QFile::rename(m_filename, filename);
+		if (QFile::exists(filename) && !QFile::remove(filename)) {
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(filename));
+			return false;
+		}
+		if (!QFile::rename(m_filename, filename)) {
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(m_filename));
+			return false;
+		}
 		m_filename = filename;
 		updateSaveLocation();
 		m_text->document()->setModified(false);
@@ -377,7 +380,7 @@ void Document::loadPreferences(const Preferences& preferences)
 	font.setStyleStrategy(preferences.smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
 	m_text->setFont(font);
 
-	m_highlighter->setEnabled(preferences.highlightMisspelled());
+	m_highlighter->setEnabled(!isReadOnly() ? preferences.highlightMisspelled() : false);
 }
 
 //-----------------------------------------------------------------------------

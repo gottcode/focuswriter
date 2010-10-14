@@ -1,4 +1,5 @@
 2010-10-14 Graeme Gott <graeme@gottcode.org>
+	* Prevent modifying Read-Only files.
 	* FIXED: Closed even when unable to save files.
 
 2010-10-12 Luis Osa <luis.osa.gdc@googlemail.com>

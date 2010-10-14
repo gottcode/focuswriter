@@ -238,6 +238,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	}
 
 	QStringList missing;
+	QStringList readonly;
 	for (int i = 0; i < files.count(); ++i) {
 		if (!addDocument(files.at(i), positions.value(i, "-1").toInt())) {
 			missing.append(files.at(i));
@@ -246,6 +247,8 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 			missing.append(files.at(i));
 			m_documents->removeDocument(index);
 			m_tabs->removeTab(index);
+		} else if (m_documents->currentDocument()->isReadOnly()) {
+			readonly.append(files.at(i));
 		}
 	}
 	if (m_documents->count() == 0) {
@@ -255,6 +258,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 
 	if (!missing.isEmpty()) {
 		QMessageBox::warning(this, tr("Sorry"), tr("The following files could not be opened:\n\n%1").arg(missing.join("\n")));
+	}
+	if (!readonly.isEmpty()) {
+		QMessageBox::information(this, tr("Note"), tr("The following files were opened Read-Only:\n\n%1").arg(readonly.join("\n")));
 	}
 
 	if (show_load) {
@@ -538,6 +544,7 @@ void Window::tabClicked(int index)
 	if (m_documents->count() == 0) {
 		return;
 	}
+	updateWriteState(index);
 	m_documents->setCurrentDocument(index);
 	updateDetails();
 	updateSave();
@@ -588,7 +595,7 @@ void Window::updateFormatActions()
 		return;
 	}
 
-	m_actions["FormatIndentDecrease"]->setEnabled(document->text()->textCursor().blockFormat().indent() > 0);
+	m_actions["FormatIndentDecrease"]->setEnabled(!document->isReadOnly() && document->text()->textCursor().blockFormat().indent() > 0);
 
 	QTextCharFormat format = document->text()->currentCharFormat();
 	m_actions["FormatBold"]->setChecked(format.fontWeight() == QFont::Bold);
@@ -707,11 +714,6 @@ bool Window::addDocument(const QString& filename, int position)
 	int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
-
-	// Inform user about read-only documents
-	if (document->isReadOnly()) {
-		QMessageBox::information(window(), tr("Note"), tr("The file '%1' was opened Read-Only.").arg(filename));
-	}
 
 	if (show_load) {
 		m_load_screen->finish();
@@ -848,7 +850,36 @@ void Window::updateTab(int index)
 	if (document == m_documents->currentDocument()) {
 		setWindowFilePath(name);
 		setWindowModified(modified);
+		updateWriteState(index);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::updateWriteState(int index)
+{
+	Document* document = m_documents->document(index);
+
+	bool writable = !document->isReadOnly();
+	m_actions["Paste"]->setEnabled(writable);
+	m_actions["Replace"]->setEnabled(writable);
+	m_actions["CheckSpelling"]->setEnabled(writable);
+	if (writable) {
+		connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
+	} else {
+		disconnect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
+		m_actions["Cut"]->setEnabled(false);
+	}
+
+	writable &= document->isRichText();
+	m_plaintext_action->setEnabled(writable);
+	m_richtext_action->setEnabled(writable);
+	m_replace_document_quotes->setEnabled(writable);
+	m_replace_selection_quotes->setEnabled(writable);
+	foreach (QAction* action, m_format_actions) {
+		action->setEnabled(writable);
+	}
+	m_actions["FormatIndentDecrease"]->setEnabled(writable && document->text()->textCursor().blockFormat().indent() > 0);
 }
 
 //-----------------------------------------------------------------------------

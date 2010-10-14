@@ -82,6 +82,7 @@ private:
 	void hideInterface();
 	void updateMargin();
 	void updateTab(int index);
+	void updateWriteState(int index);
 	void initMenus();
 
 private:
