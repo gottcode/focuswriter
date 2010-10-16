@@ -36,6 +36,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QScrollArea>
 #include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
@@ -55,6 +56,15 @@ namespace
 			name += " (" + QLocale::countryToString(locale.country()) + ")";
 		}
 		return name;
+	}
+
+	QWidget* makeScrollable(QWidget* tab)
+	{
+		QScrollArea* area = new QScrollArea(tab->parentWidget());
+		area->setFrameStyle(QFrame::NoFrame);
+		area->setWidget(tab);
+		area->setWidgetResizable(true);
+		return area;
 	}
 }
 
@@ -604,7 +614,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	layout->addWidget(save_group);
 	layout->addStretch();
 
-	return tab;
+	return makeScrollable(tab);
 }
 
 //-----------------------------------------------------------------------------
@@ -679,7 +689,7 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	layout->addWidget(wordcount_group);
 	layout->addStretch();
 
-	return tab;
+	return makeScrollable(tab);
 }
 
 //-----------------------------------------------------------------------------
@@ -736,7 +746,7 @@ QWidget* PreferencesDialog::initToolbarTab()
 	layout->addWidget(style_group);
 	layout->addWidget(actions_group);
 
-	return tab;
+	return makeScrollable(tab);
 }
 
 //-----------------------------------------------------------------------------
@@ -819,7 +829,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	layout->addWidget(languages_group);
 	layout->addWidget(personal_dictionary_group);
 
-	return tab;
+	return makeScrollable(tab);
 }
 
 //-----------------------------------------------------------------------------

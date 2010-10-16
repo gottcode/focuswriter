@@ -1,3 +1,6 @@
+2010-10-15 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Preferences dialog was too big for small screens.
+
 2010-10-14 Graeme Gott <graeme@gottcode.org>
 	* Prevent modifying Read-Only files.
 	* FIXED: Closed even when unable to save files.
