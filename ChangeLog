@@ -1,3 +1,6 @@
+2010-10-16 Graeme Gott <graeme@gottcode.org>
+	* Open files dropped on main window.
+
 2010-10-15 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Preferences dialog was too big for small screens.
 

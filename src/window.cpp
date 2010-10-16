@@ -50,6 +50,7 @@
 #include <QTabBar>
 #include <QTimer>
 #include <QToolBar>
+#include <QUrl>
 
 //-----------------------------------------------------------------------------
 
@@ -78,6 +79,7 @@ Window::Window()
 	m_current_time(0),
 	m_current_wordcount(0)
 {
+	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
 	setContextMenuPolicy(Qt::NoContextMenu);
 	setWindowIcon(QIcon(":/focuswriter.png"));
@@ -309,6 +311,29 @@ bool Window::closeDocuments(QSettings* session)
 	}
 
 	return true;
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::dragEnterEvent(QDragEnterEvent* event)
+{
+	if (event->mimeData()->hasUrls()) {
+		event->acceptProposedAction();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::dropEvent(QDropEvent* event)
+{
+	if (event->mimeData()->hasUrls()) {
+		QStringList files;
+		foreach (QUrl url, event->mimeData()->urls()) {
+			files.append(url.toLocalFile());
+		}
+		addDocuments(files, QStringList(), m_documents->count());
+		event->acceptProposedAction();
+	}
 }
 
 //-----------------------------------------------------------------------------

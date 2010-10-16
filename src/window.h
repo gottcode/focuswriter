@@ -45,6 +45,8 @@ public:
 	bool closeDocuments(QSettings* session = 0);
 
 protected:
+	virtual void dragEnterEvent(QDragEnterEvent* event);
+	virtual void dropEvent(QDropEvent* event);
 	virtual bool event(QEvent* event);
 	virtual void closeEvent(QCloseEvent* event);
 	virtual void leaveEvent(QEvent* event);
