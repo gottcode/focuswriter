@@ -231,9 +231,12 @@ bool Document::saveAs()
 			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(filename));
 			return false;
 		}
-		m_filename = filename;
+		qSwap(m_filename, filename);
+		if (!save()) {
+			m_filename = filename;
+			return false;
+		}
 		clearIndex();
-		save();
 		updateSaveLocation();
 		m_text->setReadOnly(false);
 		m_text->document()->setModified(false);

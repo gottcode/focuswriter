@@ -1,3 +1,6 @@
+2010-10-17 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Save As completed even if saving failed.
+
 2010-10-16 Graeme Gott <graeme@gottcode.org>
 	* Open files dropped on main window.
 
