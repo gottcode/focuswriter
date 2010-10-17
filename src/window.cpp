@@ -234,7 +234,28 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	m_documents->setHeaderVisible(false);
 	m_documents->setFooterVisible(false);
 
-	show_load = show_load || ((files.count() > 1) && !m_load_screen->isVisible());
+	static const QStringList suffixes = QStringList()
+		<< "abw" << "awt" << "zabw"
+		<< "doc" << "dot"
+		<< "docx" << "docm" << "dotx" << "dotm"
+		<< "kwd"
+		<< "odt" << "ott"
+		<< "wpd";
+	QList<int> skip;
+	for (int i = 0; i < files.count(); ++i) {
+		if (suffixes.contains(QFileInfo(files.at(i)).suffix())) {
+			skip += i;
+		}
+	}
+	if (!skip.isEmpty()) {
+		QString skipped = tr("The following files are unsupported and will not be opened:\n");
+		foreach (int i, skip) {
+			skipped += "\n" + files.at(i);
+		}
+		QMessageBox::warning(this, tr("Sorry"), skipped);
+	}
+
+	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_load_screen->isVisible());
 	if (show_load) {
 		m_load_screen->setText("");
 	}
@@ -242,7 +263,10 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	QStringList missing;
 	QStringList readonly;
 	for (int i = 0; i < files.count(); ++i) {
-		if (!addDocument(files.at(i), positions.value(i, "-1").toInt())) {
+		if (!skip.isEmpty() && skip.first() == i) {
+			skip.removeFirst();
+			continue;
+		} else if (!addDocument(files.at(i), positions.value(i, "-1").toInt())) {
 			missing.append(files.at(i));
 		} else if (m_documents->currentDocument()->untitledIndex() > 0) {
 			int index = m_documents->currentIndex();
@@ -401,7 +425,7 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), m_open_filter);
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), tr("Text Files (*.txt *.text *.rtf);;All Files (*)"));
 	if (!filenames.isEmpty()) {
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();
@@ -785,11 +809,6 @@ void Window::loadPreferences(Preferences& preferences)
 		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 	}
 	m_save_positions = preferences.savePositions();
-
-	QString plaintext = tr("Plain Text (*.txt)");
-	QString richtext = tr("Rich Text (*.rtf)");
-	QString all = tr("All Files (*)");
-	m_open_filter = preferences.richText() ? (richtext + ";;" + plaintext+ ";;" + all) : (plaintext + ";;" + richtext+ ";;" + all);
 
 	SmartQuotes::loadPreferences(preferences);
 

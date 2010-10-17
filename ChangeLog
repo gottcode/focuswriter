@@ -1,4 +1,5 @@
 2010-10-17 Graeme Gott <graeme@gottcode.org>
+	* Prevent opening unsupported files.
 	* FIXED: Save As completed even if saving failed.
 
 2010-10-16 Graeme Gott <graeme@gottcode.org>

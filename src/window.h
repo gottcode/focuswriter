@@ -95,7 +95,6 @@ private:
 	QAction* m_richtext_action;
 	QAction* m_replace_document_quotes;
 	QAction* m_replace_selection_quotes;
-	QString m_open_filter;
 
 	LoadScreen* m_load_screen;
 	Stack* m_documents;
