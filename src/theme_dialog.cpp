@@ -149,10 +149,17 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_font_names, SIGNAL(activated(int)), this, SLOT(renderPreview()));
 
 	m_font_sizes = new QComboBox(tab);
-	foreach (int size, QFontDatabase::standardSizes()) {
-		m_font_sizes->addItem(QString::number(size), size);
+	QList<int> font_sizes = QFontDatabase::standardSizes();
+	int font_size = QFontInfo(m_theme.textFont()).pointSize();
+	int index = 0;
+	for (int i = 0; i < font_sizes.count(); ++i) {
+		int size = font_sizes.at(i);
+		if (size <= font_size) {
+			index = i;
+		}
+		m_font_sizes->addItem(QString::number(size));
 	}
-	m_font_sizes->setCurrentIndex(m_font_sizes->findData(m_theme.textFont().pointSize()));
+	m_font_sizes->setCurrentIndex(index);
 	connect(m_font_sizes, SIGNAL(activated(int)), this, SLOT(renderPreview()));
 
 	m_misspelled_color = new ColorButton(tab);
