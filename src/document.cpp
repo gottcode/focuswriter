@@ -85,6 +85,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	// Set up text area
 	m_text = new QTextEdit(this);
 	m_text->installEventFilter(this);
+	m_text->setMouseTracking(true);
 	m_text->setTabStopWidth(50);
 	m_text->document()->setIndentWidth(50);
 	m_text->setFrameStyle(QFrame::NoFrame);

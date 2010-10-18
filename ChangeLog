@@ -1,3 +1,6 @@
+2010-10-18 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Panels were visible when mouse was over padding.
+
 2010-10-17 Graeme Gott <graeme@gottcode.org>
 	* Prevent opening unsupported files.
 	* FIXED: Save As completed even if saving failed.
