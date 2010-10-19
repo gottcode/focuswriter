@@ -1,3 +1,6 @@
+2010-10-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Informed user of Read-Only status of already open files.
+
 2010-10-18 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Crashed if preview image was not created.
 	* FIXED: Font size was not always listed.

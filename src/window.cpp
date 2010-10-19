@@ -262,6 +262,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 
 	QStringList missing;
 	QStringList readonly;
+	int open_files = m_documents->count();
 	for (int i = 0; i < files.count(); ++i) {
 		if (!skip.isEmpty() && skip.first() == i) {
 			skip.removeFirst();
@@ -273,9 +274,10 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 			missing.append(files.at(i));
 			m_documents->removeDocument(index);
 			m_tabs->removeTab(index);
-		} else if (m_documents->currentDocument()->isReadOnly()) {
+		} else if (m_documents->currentDocument()->isReadOnly() && m_documents->count() > open_files) {
 			readonly.append(files.at(i));
 		}
+		open_files = m_documents->count();
 	}
 	if (m_documents->count() == 0) {
 		newDocument();
