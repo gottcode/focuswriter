@@ -1,4 +1,5 @@
 2010-10-18 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Crashed if preview image was not created.
 	* FIXED: Font size was not always listed.
 	* FIXED: Panels were visible when mouse was over padding.
 

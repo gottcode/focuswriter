@@ -284,7 +284,11 @@ void ThemeDialog::renderPreview()
 
 void ThemeDialog::savePreview()
 {
-	m_preview->pixmap()->save(Theme::iconPath(m_theme.name()));
+	if (m_preview->pixmap()) {
+		m_preview->pixmap()->save(Theme::iconPath(m_theme.name()));
+	} else {
+		qWarning("Theme preview was not created.");
+	}
 }
 
 //-----------------------------------------------------------------------------
