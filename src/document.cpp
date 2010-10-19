@@ -480,9 +480,11 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 	unsetCursor();
 	m_hide_timer->start();
 
-	emit headerVisible(false);
-	emit footerVisible(false);
 	const QPoint& point = mapFromGlobal(event->globalPos());
+	if (rect().contains(point)) {
+		emit headerVisible(false);
+		emit footerVisible(false);
+	}
 	int margin = m_scrollbar->sizeHint().width();
 	m_scrollbar->setVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - margin)) : (point.x() <= margin));
 
