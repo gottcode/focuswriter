@@ -140,6 +140,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_smart_quotes->setChecked(m_preferences.smartQuotes());
 	m_double_quotes->setCurrentIndex(m_preferences.doubleQuotes());
 	m_single_quotes->setCurrentIndex(m_preferences.singleQuotes());
+	m_typewriter_sounds->setChecked(m_preferences.typewriterSounds());
 
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_save_positions->setChecked(m_preferences.savePositions());
@@ -229,6 +230,7 @@ void PreferencesDialog::accept()
 	m_preferences.setSmartQuotes(m_smart_quotes->isChecked());
 	m_preferences.setDoubleQuotes(m_double_quotes->currentIndex());
 	m_preferences.setSingleQuotes(m_single_quotes->currentIndex());
+	m_preferences.setTypewriterSounds(m_typewriter_sounds->isChecked());
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
 	m_preferences.setSavePositions(m_save_positions->isChecked());
@@ -568,6 +570,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
 	m_rich_text = new QCheckBox(tr("Default to rich text"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
+	m_typewriter_sounds = new QCheckBox(tr("Typewriter sounds"), edit_group);
 
 	m_smart_quotes = new QCheckBox(tr("Smart quotes:"), edit_group);
 	m_double_quotes = new QComboBox(edit_group);
@@ -596,6 +599,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	edit_layout->addWidget(m_rich_text);
 	edit_layout->addWidget(m_smooth_fonts);
 	edit_layout->addLayout(quotes_layout);
+	edit_layout->addWidget(m_typewriter_sounds);
 
 	// Create save options
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);

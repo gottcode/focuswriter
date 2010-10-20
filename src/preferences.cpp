@@ -53,6 +53,7 @@ Preferences::Preferences()
 	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
 	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
 	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
+	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", true).toBool();
 
 	m_auto_save = settings.value("Save/Auto", true).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
@@ -111,6 +112,7 @@ Preferences::~Preferences()
 	settings.setValue("Edit/SmartQuotes", m_smart_quotes);
 	settings.setValue("Edit/SmartDoubleQuotes", m_double_quotes);
 	settings.setValue("Edit/SmartSingleQuotes", m_single_quotes);
+	settings.setValue("Edit/TypewriterSounds", m_typewriter_sounds);
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/RememberPositions", m_save_positions);
@@ -343,6 +345,13 @@ int Preferences::singleQuotes() const
 
 //-----------------------------------------------------------------------------
 
+bool Preferences::typewriterSounds() const
+{
+	return m_typewriter_sounds;
+}
+
+//-----------------------------------------------------------------------------
+
 void Preferences::setAlwaysCenter(bool center)
 {
 	setValue(m_always_center, center);
@@ -388,6 +397,13 @@ void Preferences::setDoubleQuotes(int quotes)
 void Preferences::setSingleQuotes(int quotes)
 {
 	setValue(m_single_quotes, quotes);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setTypewriterSounds(bool sounds)
+{
+	setValue(m_typewriter_sounds, sounds);
 }
 
 //-----------------------------------------------------------------------------

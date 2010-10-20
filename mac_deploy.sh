@@ -28,11 +28,18 @@ mkdir $ICONS
 cp -Rf icons/oxygen/hicolor $ICONS
 echo 'Done'
 
-# Copy dictionary
-echo -n 'Copying English dictionary... '
+# Copy dictionaries
+echo -n 'Copying dictionaries... '
 DICTIONARIES="$APP/$BUNDLE/Contents/Resources/Dictionaries"
 mkdir $DICTIONARIES
 cp -f dict/* $DICTIONARIES
+echo 'Done'
+
+# Copy sounds
+echo -n 'Copying sounds... '
+SOUNDS="$APP/$BUNDLE/Contents/Resources/sounds"
+mkdir $SOUNDS
+cp -Rf sounds/* $SOUNDS
 echo 'Done'
 
 # Copy frameworks and plugins

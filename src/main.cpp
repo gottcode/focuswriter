@@ -19,6 +19,7 @@
 
 #include "dictionary.h"
 #include "session.h"
+#include "sound.h"
 #include "theme.h"
 #include "window.h"
 
@@ -66,6 +67,17 @@ int main(int argc, char** argv)
 		translator.load("focuswriter_en", translator_path);
 	}
 	app.installTranslator(&translator);
+
+	paths.clear();
+	paths.append(appdir + "/sounds/");
+	paths.append(appdir + "/../share/focuswriter/sounds/");
+	paths.append(appdir + "/../Resources/sounds");
+	foreach (const QString& path, paths) {
+		if (QFile::exists(path)) {
+			Sound::setPath(path);
+			break;
+		}
+	}
 
 	// Find data paths
 	QStringList locations;

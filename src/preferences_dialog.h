@@ -77,6 +77,7 @@ private:
 	QCheckBox* m_smart_quotes;
 	QComboBox* m_double_quotes;
 	QComboBox* m_single_quotes;
+	QCheckBox* m_typewriter_sounds;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_save_positions;
 

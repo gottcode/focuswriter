@@ -20,13 +20,21 @@ SET ICONS=%APP%\icons\hicolor
 MKDIR %ICONS%
 XCOPY /Q /S /Y icons\oxygen\hicolor %ICONS% >nul
 
-ECHO Copying English dictionary
+ECHO Copying dictionaries
 SET DICTIONARIES=%APP%\Dictionaries
 MKDIR %DICTIONARIES%
 COPY dict\* %DICTIONARIES% >nul
 
+ECHO Copying sounds
+SET SOUNDS=%APP%\sounds
+MKDIR %SOUNDS%
+COPY sounds\* %SOUNDS% >nul
+
 ECHO Copying hunspell library
 COPY hunspell\hunspell1.dll %APP% >nul
+
+ECHO Copying libao library
+COPY libao\libao-4.dll %APP% >nul
 
 ECHO Copying libzip library
 COPY libzip\libzip0.dll %APP% >nul

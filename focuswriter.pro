@@ -17,14 +17,21 @@ unix: !macx {
 }
 
 macx {
-	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
+	INCLUDEPATH += src/qsound /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework hunspell -framework libzip
+	HEADERS += src/qsound/sound.h
+	SOURCES += src/qsound/sound.cpp
 } else:win32 {
-	INCLUDEPATH += hunspell libzip
-	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll
+	INCLUDEPATH += src/ao hunspell libao libzip
+	LIBS += ./hunspell/hunspell1.dll ./libao/libao-4.dll ./libzip/libzip0.dll
+	HEADERS += src/ao/sound.h
+	SOURCES += src/ao/sound.cpp
 } else {
-	QMAKE_CXXFLAGS += $$system(pkg-config --cflags hunspell libzip)
-	LIBS += $$system(pkg-config --libs hunspell libzip)
+	INCLUDEPATH += src/ao
+	QMAKE_CXXFLAGS += $$system(pkg-config --cflags ao hunspell libzip)
+	LIBS += $$system(pkg-config --libs ao hunspell libzip)
+	HEADERS += src/ao/sound.h
+	SOURCES += src/ao/sound.cpp
 }
 
 HEADERS += src/alert.h \
@@ -118,5 +125,8 @@ unix: !macx {
 	qm.files = translations/*.qm
 	qm.path = $$PREFIX/share/focuswriter/translations
 
-	INSTALLS += target icon desktop icons qm
+	sounds.files = sounds/*
+	sounds.path = $$PREFIX/share/focuswriter/sounds
+
+	INSTALLS += target icon desktop icons qm sounds
 }

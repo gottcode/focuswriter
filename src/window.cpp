@@ -26,6 +26,7 @@
 #include "session.h"
 #include "session_manager.h"
 #include "smart_quotes.h"
+#include "sound.h"
 #include "stack.h"
 #include "theme.h"
 #include "theme_manager.h"
@@ -71,6 +72,7 @@ namespace
 Window::Window()
 	: m_toolbar(0),
 	m_fullscreen(true),
+	m_typewriter_sounds(true),
 	m_auto_save(true),
 	m_save_positions(true),
 	m_goal_type(0),
@@ -207,6 +209,11 @@ Window::Window()
 	// Update themes
 	m_load_screen->setText(tr("Loading themes"));
 	Theme::copyBackgrounds();
+
+	// Load sounds
+	m_load_screen->setText(tr("Loading sounds"));
+	m_key_sound = new Sound("keyany.wav", this);
+	m_enter_key_sound = new Sound("keyenter.wav", this);
 
 	// Update margin
 	m_tabs->blockSignals(true);
@@ -591,6 +598,19 @@ void Window::aboutClicked()
 
 //-----------------------------------------------------------------------------
 
+void Window::keyPressed(int key)
+{
+	if (m_typewriter_sounds) {
+		if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+			m_enter_key_sound->play();
+		} else if (key != Qt::Key_Control && key != Qt::Key_Shift) {
+			m_key_sound->play();
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::tabClicked(int index)
 {
 	if (m_documents->count() == 0) {
@@ -749,6 +769,7 @@ bool Window::addDocument(const QString& filename, int position)
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
+	connect(document, SIGNAL(keyPressed(int)), this, SLOT(keyPressed(int)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Restore cursor position
@@ -805,6 +826,8 @@ bool Window::saveDocument(int index)
 
 void Window::loadPreferences(Preferences& preferences)
 {
+	m_typewriter_sounds = preferences.typewriterSounds();
+
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
 		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));

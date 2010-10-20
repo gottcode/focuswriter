@@ -23,6 +23,7 @@
 class LoadScreen;
 class Preferences;
 class SessionManager;
+class Sound;
 class Stack;
 class TimerManager;
 
@@ -67,6 +68,7 @@ private slots:
 	void themeClicked();
 	void preferencesClicked();
 	void aboutClicked();
+	void keyPressed(int key);
 	void tabClicked(int index);
 	void tabMoved(int from, int to);
 	void tabClosed(int index);
@@ -101,6 +103,8 @@ private:
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;
 	TimerManager* m_timers;
+	Sound* m_key_sound;
+	Sound* m_enter_key_sound;
 
 	QWidget* m_footer;
 	QLabel* m_character_label;
@@ -112,6 +116,7 @@ private:
 	QTimer* m_clock_timer;
 
 	bool m_fullscreen;
+	bool m_typewriter_sounds;
 	bool m_auto_save;
 	bool m_save_positions;
 	int m_goal_type;

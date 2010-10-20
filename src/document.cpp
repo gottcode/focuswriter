@@ -452,7 +452,9 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 		if (msecs < 30000) {
 			m_current_time += msecs;
 		}
-		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
+		QKeyEvent* key_event = static_cast<QKeyEvent*>(event);
+		emit keyPressed(key_event->key());
+		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, key_event)) {
 			return true;
 		}
 	}

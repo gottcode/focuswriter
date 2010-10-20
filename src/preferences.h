@@ -66,6 +66,7 @@ public:
 	bool smartQuotes() const;
 	int doubleQuotes() const;
 	int singleQuotes() const;
+	bool typewriterSounds() const;
 	void setAlwaysCenter(bool center);
 	void setBlockCursor(bool block);
 	void setRichText(bool rich);
@@ -73,6 +74,7 @@ public:
 	void setSmartQuotes(bool quotes);
 	void setDoubleQuotes(int quotes);
 	void setSingleQuotes(int quotes);
+	void setTypewriterSounds(bool sounds);
 
 	bool autoSave() const;
 	bool savePositions() const;
@@ -117,6 +119,7 @@ private:
 	bool m_smart_quotes;
 	int m_double_quotes;
 	int m_single_quotes;
+	bool m_typewriter_sounds;
 
 	bool m_auto_save;
 	bool m_save_positions;
