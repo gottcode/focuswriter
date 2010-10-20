@@ -1,3 +1,6 @@
+2010-10-20 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not switch to rich text.
+
 2010-10-19 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Informed user of Read-Only status of already open files.
 

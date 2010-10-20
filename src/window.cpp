@@ -513,6 +513,7 @@ void Window::setFormattingEnabled(bool enabled)
 		action->setEnabled(enabled);
 	}
 	if (enabled) {
+		m_actions["FormatIndentDecrease"]->setEnabled(false);
 		m_richtext_action->setVisible(false);
 		m_plaintext_action->setVisible(true);
 	} else {
@@ -916,10 +917,10 @@ void Window::updateWriteState(int index)
 		disconnect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
 		m_actions["Cut"]->setEnabled(false);
 	}
+	m_richtext_action->setEnabled(writable);
 
 	writable &= document->isRichText();
 	m_plaintext_action->setEnabled(writable);
-	m_richtext_action->setEnabled(writable);
 	m_replace_document_quotes->setEnabled(writable);
 	m_replace_selection_quotes->setEnabled(writable);
 	foreach (QAction* action, m_format_actions) {
