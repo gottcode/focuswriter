@@ -205,7 +205,7 @@ Window::Window()
 	show();
 
 	// Update themes
-	m_load_screen->setText("Updating Themes");
+	m_load_screen->setText(tr("Loading themes"));
 	Theme::copyBackgrounds();
 
 	// Update margin
@@ -975,7 +975,7 @@ void Window::initMenus()
 	m_actions["SelectAll"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &All"), m_documents, SLOT(selectAll()), QKeySequence::SelectAll);
 
 	// Create format menu
-	QMenu* format_menu = menuBar()->addMenu(tr("&Format"));
+	QMenu* format_menu = menuBar()->addMenu(tr("Fo&rmat"));
 
 	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, SLOT(setFontBold(bool)), QKeySequence::Bold);
 	m_actions["FormatBold"]->setCheckable(true);
