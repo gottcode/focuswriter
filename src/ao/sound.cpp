@@ -121,6 +121,8 @@ Sound::Sound(const QString& filename, QObject* parent)
 	}
 
 	// Read header
+	memset(&m_format, 0, sizeof(m_format));
+
 	Header header;
 	if (file.read(reinterpret_cast<char*>(&header), sizeof(Header)) != sizeof(Header)) {
 		qWarning("Unable to read audio file header.");
@@ -144,7 +146,6 @@ Sound::Sound(const QString& filename, QObject* parent)
 	m_format.bits = qFromLittleEndian<quint16>(header.bits_per_sample);
 	m_format.rate = qFromLittleEndian<quint32>(header.sample_rate);
 	m_format.channels = qFromLittleEndian<quint16>(header.num_channels);
-	m_format.matrix = 0;
 
 	// Read data
 	m_data = file.read(header.data_size);
