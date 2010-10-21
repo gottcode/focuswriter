@@ -148,6 +148,7 @@ Sound::Sound(const QString& filename, QObject* parent)
 	m_format.channels = qFromLittleEndian<quint16>(header.num_channels);
 
 	// Read data
+	header.data_size = qFromLittleEndian<quint32>(header.data_size);
 	m_data = file.read(header.data_size);
 	file.close();
 	if (static_cast<quint32>(m_data.size()) != header.data_size) {
