@@ -1,3 +1,6 @@
+2010-10-21 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not update smart quotes for plain text files.
+
 2010-10-20 Graeme Gott <graeme@gottcode.org>
 	* Add typewriter sound effects.
 	* FIXED: Could not switch to rich text.
