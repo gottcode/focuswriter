@@ -611,12 +611,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="97"/>
+        <location filename="../src/smart_quotes.cpp" line="101"/>
         <source>Replacing quotation marks...</source>
         <translation>A substituir as aspas...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="98"/>
+        <location filename="../src/smart_quotes.cpp" line="102"/>
         <source>Please Wait</source>
         <translation>Espere por favor</translation>
     </message>

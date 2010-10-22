@@ -61,6 +61,10 @@ const size_t SmartQuotes::m_quotes_list_count = sizeof(m_quotes_list) / sizeof(Q
 
 bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 {
+	if (key->modifiers() & Qt::ControlModifier) {
+		return false;
+	}
+
 	int quote = 2;
 	if (key->key() == Qt::Key_QuoteDbl) {
 		quote = 0;
