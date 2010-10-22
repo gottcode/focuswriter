@@ -320,7 +320,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="573"/>
         <source>Typewriter sounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Odgłosy maszyny do pisania</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="575"/>
@@ -830,12 +830,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="133"/>
         <source>Margin:</source>
-        <translation>Margines:</translation>
+        <translation>Margines zewnętrzny:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="134"/>
         <source>Padding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Margines wewnętrzny:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="135"/>
@@ -1122,7 +1122,7 @@
     <message>
         <location filename="../src/window.cpp" line="214"/>
         <source>Loading sounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie dźwięków</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="220"/>
