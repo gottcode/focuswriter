@@ -41,7 +41,7 @@
     <message>
         <location filename="../src/document.cpp" line="215"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;enregistrer « %1 ».</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="228"/>
@@ -53,12 +53,12 @@
         <location filename="../src/document.cpp" line="232"/>
         <location filename="../src/document.cpp" line="264"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;écraser « %1 ».</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="268"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de renommer le fichier « %1 ».</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="697"/>
@@ -370,7 +370,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="573"/>
         <source>Typewriter sounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Sons de machine à écrire</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="575"/>
@@ -1099,14 +1099,17 @@
         <location filename="../src/window.cpp" line="258"/>
         <source>The following files are unsupported and will not be opened:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Les fichiers suivants ne sont pas supportés et ne seront pas ouverts :
+</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="298"/>
         <source>The following files were opened Read-Only:
 
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Les fichiers suivants ont été ouverts en lecture seule :
+
+%1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="437"/>
@@ -1116,7 +1119,7 @@
     <message>
         <location filename="../src/window.cpp" line="437"/>
         <source>Text Files (*.txt *.text *.rtf);;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers texte (*.txt *.text *.rtf);;Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="587"/>
@@ -1182,17 +1185,17 @@
     <message>
         <location filename="../src/window.cpp" line="298"/>
         <source>Note</source>
-        <translation type="unfinished"></translation>
+        <translation>Note</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="210"/>
         <source>Loading themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement des thèmes</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="214"/>
         <source>Loading sounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement des sons</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="813"/>
@@ -1212,7 +1215,7 @@
     <message>
         <location filename="../src/window.cpp" line="915"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (lecture seule)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="960"/>
