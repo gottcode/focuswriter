@@ -100,7 +100,8 @@ TRANSLATIONS = translations/focuswriter_en.ts \
 	translations/focuswriter_es.ts \
 	translations/focuswriter_fr.ts \
 	translations/focuswriter_pl.ts \
-	translations/focuswriter_pt.ts
+	translations/focuswriter_pt.ts \
+	translations/focuswriter_pt_BR.ts
 
 RESOURCES = icons/icons.qrc
 macx {
