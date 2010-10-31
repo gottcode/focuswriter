@@ -19,6 +19,8 @@
 
 #include "dictionary.h"
 
+#include "smart_quotes.h"
+
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -85,7 +87,7 @@ Dictionary::~Dictionary()
 void Dictionary::add(const QString& word)
 {
 	QStringList words = personal();
-	if (words.contains(word)) {
+	if (words.contains(SmartQuotes::revert(word))) {
 		return;
 	}
 	words.append(word);
@@ -288,7 +290,7 @@ void Dictionary::setPersonal(const QStringList& words)
 		}
 	}
 
-	f_personal = words;
+	f_personal = SmartQuotes::revert(words);
 	qSort(f_personal.begin(), f_personal.end(), compareWords);
 
 	QFile file(f_path + "/personal");

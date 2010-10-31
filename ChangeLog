@@ -1,4 +1,5 @@
 2010-10-31 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not add words with smart quotes to personal dictionary.
 	* FIXED: Could add word to personal dictionary multiple times.
 	* FIXED: Played typewriter sounds for non-printing keys.
 	* FIXED: Did not center for themes with padding.

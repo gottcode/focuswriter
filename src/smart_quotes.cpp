@@ -136,6 +136,30 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 
 //-----------------------------------------------------------------------------
 
+QString SmartQuotes::revert(const QString& string)
+{
+	QString result = string;
+	result.replace(m_quotes[0], QLatin1Char('"'));
+	result.replace(m_quotes[1], QLatin1Char('"'));
+	result.replace(m_quotes[2], QLatin1Char('\''));
+	result.replace(m_quotes[3], QLatin1Char('\''));
+	return result;
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList SmartQuotes::revert(const QStringList& strings)
+{
+	QStringList result = strings;
+	result.replaceInStrings(QString(m_quotes[0]), "\"");
+	result.replaceInStrings(QString(m_quotes[1]), "\"");
+	result.replaceInStrings(QString(m_quotes[2]), "'");
+	result.replaceInStrings(QString(m_quotes[3]), "'");
+	return result;
+}
+
+//-----------------------------------------------------------------------------
+
 QString SmartQuotes::quoteString(const QString& string, size_t index)
 {
 	QString result = string;
