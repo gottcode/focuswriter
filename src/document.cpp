@@ -453,7 +453,9 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 			m_current_time += msecs;
 		}
 		QKeyEvent* key_event = static_cast<QKeyEvent*>(event);
-		emit keyPressed(key_event->key());
+		if (!key_event->text().isEmpty()) {
+			emit keyPressed(key_event->key());
+		}
 		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, key_event)) {
 			return true;
 		}
