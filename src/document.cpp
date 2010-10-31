@@ -466,7 +466,7 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 void Document::centerCursor(bool force)
 {
 	QRect cursor = m_text->cursorRect();
-	QRect viewport = m_text->rect();
+	QRect viewport = m_text->viewport()->rect();
 	if (force || m_always_center || (cursor.bottom() >= viewport.bottom()) || (cursor.top() <= viewport.top())) {
 		QPoint offset = viewport.center() - cursor.center();
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
@@ -551,7 +551,7 @@ void Document::scrollBarActionTriggered(int action)
 void Document::scrollBarRangeChanged(int, int max)
 {
 	m_scrollbar->blockSignals(true);
-	m_scrollbar->setMaximum(max + m_text->height());
+	m_scrollbar->setMaximum(max + m_text->viewport()->height());
 	m_scrollbar->blockSignals(false);
 	centerCursor();
 }

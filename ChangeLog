@@ -1,3 +1,6 @@
+2010-10-31 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not center for themes with padding.
+
 2010-10-29 Graeme Gott <graeme@gottcode.org>
 	* Use compressed dictionaries.
 
