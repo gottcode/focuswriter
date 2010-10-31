@@ -66,17 +66,17 @@
         <translation>Não foi possível renomear &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="697"/>
+        <location filename="../src/document.cpp" line="699"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texto plano (*.txt);;Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="698"/>
+        <location filename="../src/document.cpp" line="700"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto formatado (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="699"/>
+        <location filename="../src/document.cpp" line="701"/>
         <source>All Files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
@@ -604,8 +604,8 @@
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="399"/>
-        <source>Ctrl+M</source>
-        <translation>Ctrl+M</translation>
+        <source>Ctrl+Shift+M</source>
+        <translation>Ctrl+Shift+M</translation>
     </message>
 </context>
 <context>
@@ -1537,27 +1537,37 @@
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1086"/>
+        <location filename="../src/window.cpp" line="1085"/>
+        <source>Ctrl+M</source>
+        <translation>Ctrl+M</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1085"/>
+        <source>M&amp;inimize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1087"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Temas...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1087"/>
+        <location filename="../src/window.cpp" line="1088"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Preferências...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1090"/>
+        <location filename="../src/window.cpp" line="1091"/>
         <source>&amp;Help</source>
         <translation>A&amp;juda</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1091"/>
+        <location filename="../src/window.cpp" line="1092"/>
         <source>&amp;About</source>
         <translation>&amp;Sobre</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1092"/>
+        <location filename="../src/window.cpp" line="1093"/>
         <source>About &amp;Qt</source>
         <translation>Sobre o &amp;Qt</translation>
     </message>

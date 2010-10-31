@@ -396,7 +396,7 @@ void SessionManager::updateList(const QString& selected)
 
 	m_sessions_menu->addSeparator();
 	m_sessions_menu->addAction(QIcon::fromTheme("window-new"), tr("&New..."), this, SLOT(newSession()), tr("Ctrl+Shift+N"));
-	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+M"));
+	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+Shift+M"));
 }
 
 //-----------------------------------------------------------------------------
