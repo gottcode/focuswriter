@@ -85,6 +85,9 @@ Dictionary::~Dictionary()
 void Dictionary::add(const QString& word)
 {
 	QStringList words = personal();
+	if (words.contains(word)) {
+		return;
+	}
 	words.append(word);
 	setPersonal(words);
 	foreach (Dictionary* dictionary, f_instances) {
