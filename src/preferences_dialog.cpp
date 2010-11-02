@@ -539,6 +539,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_option_time = new QRadioButton(tr("Minutes:"), goals_group);
 
 	m_time = new QSpinBox(goals_group);
+	m_time->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_time->setRange(5, 1440);
 	m_time->setSingleStep(5);
 
@@ -550,6 +551,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_option_wordcount = new QRadioButton(tr("Words:"), goals_group);
 
 	m_wordcount = new QSpinBox(goals_group);
+	m_wordcount->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_wordcount->setRange(100, 100000);
 	m_wordcount->setSingleStep(100);
 
@@ -646,6 +648,7 @@ QWidget* PreferencesDialog::initStatisticsTab()
 
 	m_option_characters = new QRadioButton(tr("Characters:"), page_group);
 	m_page_characters = new QSpinBox(page_group);
+	m_page_characters->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_page_characters->setRange(500, 10000);
 	m_page_characters->setSingleStep(250);
 	QHBoxLayout* characters_layout = new QHBoxLayout;
@@ -655,6 +658,7 @@ QWidget* PreferencesDialog::initStatisticsTab()
 
 	m_option_paragraphs = new QRadioButton(tr("Paragraphs:"), page_group);
 	m_page_paragraphs = new QSpinBox(page_group);
+	m_page_paragraphs->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_page_paragraphs->setRange(1, 100);
 	m_page_paragraphs->setSingleStep(1);
 	QHBoxLayout* paragraphs_layout = new QHBoxLayout;
@@ -664,6 +668,7 @@ QWidget* PreferencesDialog::initStatisticsTab()
 
 	m_option_words = new QRadioButton(tr("Words:"), page_group);
 	m_page_words = new QSpinBox(page_group);
+	m_page_words->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_page_words->setRange(100, 2000);
 	m_page_words->setSingleStep(50);
 	QHBoxLayout* words_layout = new QHBoxLayout;

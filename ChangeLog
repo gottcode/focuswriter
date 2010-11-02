@@ -1,3 +1,6 @@
+2010-11-02 Graeme Gott <graeme@gottcode.org>
+	* Use nearest spinbox values.
+
 2010-10-31 Graeme Gott <graeme@gottcode.org>
 	* Add minimize window action.
 	* FIXED: Could not add words with smart quotes to personal dictionary.
