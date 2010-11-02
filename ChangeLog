@@ -1,4 +1,5 @@
 2010-11-02 Graeme Gott <graeme@gottcode.org>
+	* Allow text to use full width.
 	* Use nearest spinbox values.
 
 2010-10-31 Graeme Gott <graeme@gottcode.org>

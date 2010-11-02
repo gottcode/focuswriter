@@ -122,7 +122,7 @@ Theme::Theme(const QString& name)
 	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 2000);
 	m_foreground_margin = qBound(0, settings.value("Foreground/Margin", 65).toInt(), 250);
 	m_foreground_padding = qBound(0, settings.value("Foreground/Padding", 0).toInt(), 250);
-	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 2);
+	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 3);
 
 	// Load text settings
 	m_text_color = settings.value("Text/Color", "#000000").toString();

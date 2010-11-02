@@ -328,13 +328,15 @@ void Document::loadTheme(const Theme& theme)
 	if (m_text->font() != font) {
 		m_text->setFont(font);
 	}
-	m_text->setFixedWidth(theme.foregroundWidth());
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
-	switch (theme.foregroundPosition()) {
+	if (theme.foregroundPosition() < 3) {
+		m_text->setFixedWidth(theme.foregroundWidth());
+
+		switch (theme.foregroundPosition()) {
 		case 0:
 			m_layout->setColumnStretch(0, 0);
 			m_layout->setColumnStretch(2, 1);
@@ -350,7 +352,14 @@ void Document::loadTheme(const Theme& theme)
 			m_layout->setColumnStretch(0, 1);
 			m_layout->setColumnStretch(2, 1);
 			break;
-	};
+		};
+	} else {
+		m_text->setMinimumWidth(theme.foregroundWidth());
+		m_text->setMaximumWidth(maximumSize().height());
+
+		m_layout->setColumnStretch(0, 0);
+		m_layout->setColumnStretch(2, 0);
+	}
 
 	centerCursor(true);
 	m_text->document()->blockSignals(false);

@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="228"/>
-        <location filename="../src/document.cpp" line="405"/>
+        <location filename="../src/document.cpp" line="414"/>
         <source>Save File As</source>
         <translation>Zapisz plik jako</translation>
     </message>
@@ -66,17 +66,17 @@
         <translation>Nie można zmienić nazwy pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="699"/>
+        <location filename="../src/document.cpp" line="708"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Zwykły tekst (*.txt);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="700"/>
+        <location filename="../src/document.cpp" line="709"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Tekst z formatowaniem (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="701"/>
+        <location filename="../src/document.cpp" line="710"/>
         <source>All Files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
@@ -287,73 +287,73 @@
         <translation>Minuty:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="550"/>
-        <location filename="../src/preferences_dialog.cpp" line="665"/>
+        <location filename="../src/preferences_dialog.cpp" line="551"/>
+        <location filename="../src/preferences_dialog.cpp" line="669"/>
         <source>Words:</source>
         <translation>Słowa:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="567"/>
+        <location filename="../src/preferences_dialog.cpp" line="569"/>
         <source>Editing</source>
         <translation>Edycja</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="569"/>
+        <location filename="../src/preferences_dialog.cpp" line="571"/>
         <source>Always vertically center</source>
         <translation>Zawsze wyśrodkuj w pionie</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="570"/>
+        <location filename="../src/preferences_dialog.cpp" line="572"/>
         <source>Block insertion cursor</source>
         <translation>Kursor blokowy</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="571"/>
+        <location filename="../src/preferences_dialog.cpp" line="573"/>
         <source>Default to rich text</source>
         <translation>Domyślnie stosuj tekst z formatowaniem</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="572"/>
+        <location filename="../src/preferences_dialog.cpp" line="574"/>
         <source>Smooth fonts</source>
         <translation>Wygładzone czcionki</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="573"/>
+        <location filename="../src/preferences_dialog.cpp" line="575"/>
         <source>Typewriter sounds</source>
         <translation>Odgłosy maszyny do pisania</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="575"/>
+        <location filename="../src/preferences_dialog.cpp" line="577"/>
         <source>Smart quotes:</source>
         <translation>Sprytne cudzysłowy:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="582"/>
+        <location filename="../src/preferences_dialog.cpp" line="584"/>
         <source>Double</source>
         <translation>Podwójne</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="583"/>
+        <location filename="../src/preferences_dialog.cpp" line="585"/>
         <source>Single</source>
         <translation>Pojedyncze</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="605"/>
+        <location filename="../src/preferences_dialog.cpp" line="607"/>
         <source>Saving</source>
         <translation>Zapisywanie</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="607"/>
+        <location filename="../src/preferences_dialog.cpp" line="609"/>
         <source>Automatically save changes</source>
         <translation>Automatycznie zapisuj zmiany</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="608"/>
+        <location filename="../src/preferences_dialog.cpp" line="610"/>
         <source>Remember cursor position</source>
         <translation>Pamiętaj pozycję kursora</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="631"/>
+        <location filename="../src/preferences_dialog.cpp" line="633"/>
         <source>Contents</source>
         <translation variants="yes">
             <lengthvariant>Treść</lengthvariant>
@@ -361,141 +361,141 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="633"/>
+        <location filename="../src/preferences_dialog.cpp" line="635"/>
         <source>Word count</source>
         <translation>Licznik słów</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="634"/>
+        <location filename="../src/preferences_dialog.cpp" line="636"/>
         <source>Page count</source>
         <translation>Licznik stron</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="635"/>
+        <location filename="../src/preferences_dialog.cpp" line="637"/>
         <source>Paragraph count</source>
         <translation>Licznik akapitów</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="636"/>
+        <location filename="../src/preferences_dialog.cpp" line="638"/>
         <source>Character count</source>
         <translation>Licznik znaków</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="645"/>
+        <location filename="../src/preferences_dialog.cpp" line="647"/>
         <source>Page Size</source>
         <translation>Rozmiar strony</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="647"/>
+        <location filename="../src/preferences_dialog.cpp" line="649"/>
         <source>Characters:</source>
         <translation>Znaki:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="656"/>
+        <location filename="../src/preferences_dialog.cpp" line="659"/>
         <source>Paragraphs:</source>
         <translation>Akapity:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="680"/>
+        <location filename="../src/preferences_dialog.cpp" line="685"/>
         <source>Word Count Algorithm</source>
         <translation>Algorytm zliczania słów</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="682"/>
+        <location filename="../src/preferences_dialog.cpp" line="687"/>
         <source>Detect word boundaries</source>
         <translatorcomment>słów albo wyrazów</translatorcomment>
         <translation>Wykrywaj granice słów</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="683"/>
+        <location filename="../src/preferences_dialog.cpp" line="688"/>
         <source>Divide character count by six</source>
         <translation>Dziel liczbę znaków przez sześć</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="706"/>
+        <location filename="../src/preferences_dialog.cpp" line="711"/>
         <source>Style</source>
         <translation>Styl</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="709"/>
+        <location filename="../src/preferences_dialog.cpp" line="714"/>
         <source>Icons Only</source>
         <translation>Tylko ikony</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="710"/>
+        <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Text Only</source>
         <translation>Tylko tekst</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="711"/>
+        <location filename="../src/preferences_dialog.cpp" line="716"/>
         <source>Text Alongside Icons</source>
         <translation>Tekst obok ikon</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="712"/>
+        <location filename="../src/preferences_dialog.cpp" line="717"/>
         <source>Text Under Icons</source>
         <translation>Tekst pod ikonami</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="716"/>
+        <location filename="../src/preferences_dialog.cpp" line="721"/>
         <source>Text Position:</source>
         <translation>Położenie tekstu:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="719"/>
+        <location filename="../src/preferences_dialog.cpp" line="724"/>
         <source>Actions</source>
         <translatorcomment>A może jednak akcje?</translatorcomment>
         <translation>Działania</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="732"/>
+        <location filename="../src/preferences_dialog.cpp" line="737"/>
         <source>Move Up</source>
         <translation>Przesuń w górę</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="734"/>
+        <location filename="../src/preferences_dialog.cpp" line="739"/>
         <source>Move Down</source>
         <translation>Przesuń w dół</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="736"/>
+        <location filename="../src/preferences_dialog.cpp" line="741"/>
         <source>Add Separator</source>
         <translation>Dodaj odstęp</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="765"/>
+        <location filename="../src/preferences_dialog.cpp" line="770"/>
         <source>Check spelling as you type</source>
         <translation>Sprawdzaj pisownię podczas pisania</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="766"/>
+        <location filename="../src/preferences_dialog.cpp" line="771"/>
         <source>Ignore words in UPPERCASE</source>
         <translation>Ignoruj słowa pisane WIELKIMI LITERAMI</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="767"/>
+        <location filename="../src/preferences_dialog.cpp" line="772"/>
         <source>Ignore words with numbers</source>
         <translation>Ignoruj słowa z liczbami</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="776"/>
+        <location filename="../src/preferences_dialog.cpp" line="781"/>
         <source>Language</source>
         <translation>Język</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="781"/>
-        <location filename="../src/preferences_dialog.cpp" line="806"/>
+        <location filename="../src/preferences_dialog.cpp" line="786"/>
+        <location filename="../src/preferences_dialog.cpp" line="811"/>
         <source>Add</source>
         <translation>Dodaj</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="784"/>
-        <location filename="../src/preferences_dialog.cpp" line="818"/>
+        <location filename="../src/preferences_dialog.cpp" line="789"/>
+        <location filename="../src/preferences_dialog.cpp" line="823"/>
         <source>Remove</source>
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="801"/>
+        <location filename="../src/preferences_dialog.cpp" line="806"/>
         <source>Personal Dictionary</source>
         <translation>Osobisty słownik</translation>
     </message>
@@ -755,6 +755,7 @@
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="64"/>
+        <location filename="../src/theme_dialog.cpp" line="127"/>
         <source>Stretched</source>
         <translation>Rozciągnięte</translation>
     </message>
@@ -780,8 +781,8 @@
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="89"/>
-        <location filename="../src/theme_dialog.cpp" line="130"/>
-        <location filename="../src/theme_dialog.cpp" line="177"/>
+        <location filename="../src/theme_dialog.cpp" line="134"/>
+        <location filename="../src/theme_dialog.cpp" line="181"/>
         <source>Color:</source>
         <translation>Kolor:</translation>
     </message>
@@ -796,69 +797,69 @@
         <translation>Pierwszy plan</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="108"/>
-        <location filename="../src/theme_dialog.cpp" line="113"/>
-        <location filename="../src/theme_dialog.cpp" line="118"/>
+        <location filename="../src/theme_dialog.cpp" line="110"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
+        <location filename="../src/theme_dialog.cpp" line="122"/>
         <source> pixels</source>
         <translation> pikseli</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="123"/>
+        <location filename="../src/theme_dialog.cpp" line="127"/>
         <source>Left</source>
         <translation>Po lewej</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="123"/>
+        <location filename="../src/theme_dialog.cpp" line="127"/>
         <source>Middle</source>
         <translation>Na środku</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="123"/>
+        <location filename="../src/theme_dialog.cpp" line="127"/>
         <source>Right</source>
         <translation>Po prawej</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="131"/>
+        <location filename="../src/theme_dialog.cpp" line="135"/>
         <source>Opacity:</source>
         <translation>Nieprzezroczystość:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="132"/>
+        <location filename="../src/theme_dialog.cpp" line="136"/>
         <source>Width:</source>
         <translation>Szerokość:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="133"/>
+        <location filename="../src/theme_dialog.cpp" line="137"/>
         <source>Margin:</source>
         <translation>Margines zewnętrzny:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="134"/>
+        <location filename="../src/theme_dialog.cpp" line="138"/>
         <source>Padding:</source>
         <translation>Margines wewnętrzny:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="135"/>
+        <location filename="../src/theme_dialog.cpp" line="139"/>
         <source>Position:</source>
         <translation>Położenie:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="140"/>
+        <location filename="../src/theme_dialog.cpp" line="144"/>
         <source>Text</source>
         <translation>Tekst</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="178"/>
+        <location filename="../src/theme_dialog.cpp" line="182"/>
         <source>Font:</source>
         <translation>Czcionka:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="179"/>
+        <location filename="../src/theme_dialog.cpp" line="183"/>
         <source>Misspelled:</source>
         <translation>Błędne wyrazy:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="278"/>
+        <location filename="../src/theme_dialog.cpp" line="282"/>
         <source>The quick brown fox jumps over the lazy dog</source>
         <translation variants="yes">
             <lengthvariant>Pchnąć w tę łódź jeża lub ośm skrzyń fig</lengthvariant>

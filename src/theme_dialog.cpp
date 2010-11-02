@@ -124,7 +124,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_padding->setValue(m_theme.foregroundPadding());
 
 	m_foreground_position = new QComboBox(tab);
-	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Middle") << tr("Right"));
+	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Middle") << tr("Right") << tr("Stretched"));
 	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
 
 	QFormLayout* foreground_layout = new QFormLayout(tab);
