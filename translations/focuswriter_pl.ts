@@ -325,7 +325,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="577"/>
         <source>Smart quotes:</source>
-        <translation>Sprytne cudzysłowy:</translation>
+        <translation>Eleganckie cudzysłowy:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="584"/>
@@ -1502,7 +1502,7 @@
     <message>
         <location filename="../src/window.cpp" line="1063"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Sprytne &amp;cudzysłowy</translation>
+        <translation>Eleganckie &amp;cudzysłowy</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1064"/>
@@ -1567,7 +1567,7 @@
     <message>
         <location filename="../src/window.cpp" line="1085"/>
         <source>M&amp;inimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizu&amp;j</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1087"/>
