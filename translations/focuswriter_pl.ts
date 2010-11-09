@@ -66,17 +66,17 @@
         <translation>Nie można zmienić nazwy pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="708"/>
+        <location filename="../src/document.cpp" line="709"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Zwykły tekst (*.txt);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="709"/>
+        <location filename="../src/document.cpp" line="710"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Tekst z formatowaniem (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="710"/>
+        <location filename="../src/document.cpp" line="711"/>
         <source>All Files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
@@ -514,6 +514,11 @@
     <name>Session</name>
     <message>
         <location filename="../src/session.cpp" line="35"/>
+        <location filename="../src/session.cpp" line="42"/>
+        <location filename="../src/session_manager.cpp" line="147"/>
+        <location filename="../src/session_manager.cpp" line="355"/>
+        <location filename="../src/session_manager.cpp" line="372"/>
+        <location filename="../src/session_manager.cpp" line="375"/>
         <source>Default</source>
         <translation>Domyślna</translation>
     </message>
@@ -554,14 +559,6 @@
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
         <translation>Przełącz na</translation>
-    </message>
-    <message>
-        <location filename="../src/session_manager.cpp" line="147"/>
-        <location filename="../src/session_manager.cpp" line="355"/>
-        <location filename="../src/session_manager.cpp" line="372"/>
-        <location filename="../src/session_manager.cpp" line="375"/>
-        <source>Default</source>
-        <translation>Domyślna</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="166"/>

@@ -61,17 +61,17 @@
         <translation>Não foi possível alterar o nome « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="708"/>
+        <location filename="../src/document.cpp" line="709"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texto simples (*.txt);;Todos os ficheiros (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="709"/>
+        <location filename="../src/document.cpp" line="710"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto rico &apos;*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="710"/>
+        <location filename="../src/document.cpp" line="711"/>
         <source>All Files (*)</source>
         <translation>Todos os ficheiros (*)</translation>
     </message>
@@ -498,8 +498,13 @@
     <name>Session</name>
     <message>
         <location filename="../src/session.cpp" line="35"/>
+        <location filename="../src/session.cpp" line="42"/>
+        <location filename="../src/session_manager.cpp" line="147"/>
+        <location filename="../src/session_manager.cpp" line="355"/>
+        <location filename="../src/session_manager.cpp" line="372"/>
+        <location filename="../src/session_manager.cpp" line="375"/>
         <source>Default</source>
-        <translation>Por defeito</translation>
+        <translation>Sessão predefinida</translation>
     </message>
 </context>
 <context>
@@ -538,14 +543,6 @@
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
         <translation>Abrir a sessão</translation>
-    </message>
-    <message>
-        <location filename="../src/session_manager.cpp" line="147"/>
-        <location filename="../src/session_manager.cpp" line="355"/>
-        <location filename="../src/session_manager.cpp" line="372"/>
-        <location filename="../src/session_manager.cpp" line="375"/>
-        <source>Default</source>
-        <translation>Sessão predefinida</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="166"/>
