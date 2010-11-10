@@ -58,17 +58,19 @@ public:
 
 	// Foreground settings
 	QColor foregroundColor() const;
+	int foregroundOpacity() const;
 	int foregroundWidth() const;
+	int foregroundRounding() const;
 	int foregroundMargin() const;
 	int foregroundPadding() const;
-	int foregroundOpacity() const;
 	int foregroundPosition() const;
 
 	void setForegroundColor(const QColor& color);
+	void setForegroundOpacity(int opacity);
 	void setForegroundWidth(int width);
+	void setForegroundRounding(int rounding);
 	void setForegroundMargin(int margin);
 	void setForegroundPadding(int padding);
-	void setForegroundOpacity(int opacity);
 	void setForegroundPosition(int position);
 
 	// Text settings
@@ -90,10 +92,11 @@ private:
 	QString m_background_image;
 
 	QColor m_foreground_color;
+	int m_foreground_opacity;
 	int m_foreground_width;
+	int m_foreground_rounding;
 	int m_foreground_margin;
 	int m_foreground_padding;
-	int m_foreground_opacity;
 	int m_foreground_position;
 
 	QColor m_text_color;

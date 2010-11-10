@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="228"/>
-        <location filename="../src/document.cpp" line="414"/>
+        <location filename="../src/document.cpp" line="415"/>
         <source>Save File As</source>
         <translation>Salvar como</translation>
     </message>
@@ -736,7 +736,7 @@
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="64"/>
-        <location filename="../src/theme_dialog.cpp" line="127"/>
+        <location filename="../src/theme_dialog.cpp" line="133"/>
         <source>Stretched</source>
         <translation>Esticado</translation>
     </message>
@@ -762,8 +762,8 @@
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="89"/>
-        <location filename="../src/theme_dialog.cpp" line="134"/>
-        <location filename="../src/theme_dialog.cpp" line="181"/>
+        <location filename="../src/theme_dialog.cpp" line="140"/>
+        <location filename="../src/theme_dialog.cpp" line="188"/>
         <source>Color:</source>
         <translation>Cor:</translation>
     </message>
@@ -781,66 +781,72 @@
         <location filename="../src/theme_dialog.cpp" line="110"/>
         <location filename="../src/theme_dialog.cpp" line="116"/>
         <location filename="../src/theme_dialog.cpp" line="122"/>
+        <location filename="../src/theme_dialog.cpp" line="128"/>
         <source> pixels</source>
         <translation> pixels</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="127"/>
+        <location filename="../src/theme_dialog.cpp" line="133"/>
         <source>Left</source>
         <translation>Esquerda</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="127"/>
+        <location filename="../src/theme_dialog.cpp" line="133"/>
         <source>Middle</source>
         <translation>Centro</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="127"/>
+        <location filename="../src/theme_dialog.cpp" line="133"/>
         <source>Right</source>
         <translation>Direita</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="135"/>
+        <location filename="../src/theme_dialog.cpp" line="141"/>
         <source>Opacity:</source>
         <translation>Opacidade:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="136"/>
+        <location filename="../src/theme_dialog.cpp" line="142"/>
         <source>Width:</source>
         <translation>Largura:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="137"/>
+        <location filename="../src/theme_dialog.cpp" line="143"/>
+        <source>Rounding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="144"/>
         <source>Margin:</source>
         <translation>Margem:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="138"/>
+        <location filename="../src/theme_dialog.cpp" line="145"/>
         <source>Padding:</source>
         <translation>Espaçamento:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="139"/>
+        <location filename="../src/theme_dialog.cpp" line="146"/>
         <source>Position:</source>
         <translation>Posição:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="144"/>
+        <location filename="../src/theme_dialog.cpp" line="151"/>
         <source>Text</source>
         <translation>Texto</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="182"/>
+        <location filename="../src/theme_dialog.cpp" line="189"/>
         <source>Font:</source>
         <translation>Fonte:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="183"/>
+        <location filename="../src/theme_dialog.cpp" line="190"/>
         <source>Misspelled:</source>
         <translation>Erros:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="282"/>
+        <location filename="../src/theme_dialog.cpp" line="293"/>
         <source>The quick brown fox jumps over the lazy dog</source>
         <translation>Um pequeno jabuti xereta viu dez cegonhas felizes</translation>
     </message>

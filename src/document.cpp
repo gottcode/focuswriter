@@ -308,7 +308,7 @@ void Document::loadTheme(const Theme& theme)
 	QColor color = theme.foregroundColor();
 	color.setAlpha(theme.foregroundOpacity() * 2.55f);
 	m_text->setStyleSheet(
-		QString("QTextEdit { background: rgba(%1, %2, %3, %4); color: %5; selection-background-color: %6; selection-color: %7; padding: %8px; }")
+		QString("QTextEdit { background: rgba(%1, %2, %3, %4); color: %5; selection-background-color: %6; selection-color: %7; padding: %8px; border-radius: %9px; }")
 			.arg(color.red())
 			.arg(color.green())
 			.arg(color.blue())
@@ -317,6 +317,7 @@ void Document::loadTheme(const Theme& theme)
 			.arg(theme.textColor().name())
 			.arg(theme.foregroundColor().name())
 			.arg(theme.foregroundPadding())
+			.arg(theme.foregroundRounding())
 	);
 	if (m_highlighter->misspelledColor() != theme.misspelledColor()) {
 		m_highlighter->setMisspelledColor(theme.misspelledColor());
