@@ -1,4 +1,4 @@
-Makefile
-build
-focuswriter
-*~
+/Makefile
+/build
+/focuswriter
+/icons/focuswriter.xpm
