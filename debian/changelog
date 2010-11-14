@@ -1,0 +1,6 @@
+focuswriter (1.3.1-1) unstable; urgency=low
+
+  * Initial release for Debian, based on Ubuntu packaging (closes: #580763)
+  * Packaging updated from Ubuntu debian, thanks to Graeme Gott
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 14 Nov 2010 15:53:39 +0000

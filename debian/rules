@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/qmake.mk
+
+QMAKE = qmake-qt4
+DEB_QMAKE_ARGS = PREFIX=/usr
+
+update-config:: icons/focuswriter.xpm
+
+icons/focuswriter.xpm:
+	convert -resize 32x32 icons/focuswriter.png icons/focuswriter.xpm
+
+reverse-config::
+	rm -f icons/focuswriter.xpm
