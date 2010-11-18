@@ -2,6 +2,7 @@ Source: focuswriter
 Section: editors
 Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
+Uploaders: Graeme Gott <graeme@gottcode.org>
 Build-Depends: cdbs, debhelper (>= 8), imagemagick, libqt4-dev, libao-dev, libhunspell-dev, libzip-dev, pkg-config
 Suggests: hunspell-dictionary, myspell-dictionary
 Standards-Version: 3.9.1
