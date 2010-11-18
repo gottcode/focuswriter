@@ -13,11 +13,11 @@ Package: focuswriter
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A fullscreen, distraction-free writing program
- A fullscreen writing program where you can customize your
- environment by changing the font, colors, and background image
- to add ambiance as you type. FocusWriter features an on-the-fly
- updating wordcount, optional auto-save, optional daily goals,
- and toolbars that hide away to allow you to focus more clearly.
- Additionally, when you open the program your current work in
- progress will automatically load and position you at the end
- of your document, so that you can immediately jump back in.
+ Focuswriter is a fullscreen writing program designed to be
+ distraction free.  You can customize your environment by changing the
+ font, colors, and background image to add ambiance.  FocusWriter
+ features an on-the-fly updating wordcount, optional auto-save,
+ optional daily goals, and toolbars that hide away to allow you to
+ focus more clearly.  Additionally, when you open the program your
+ current work in progress will automatically load and position you at
+ the end of your document, so that you can immediately jump back in.
