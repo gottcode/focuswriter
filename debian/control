@@ -4,7 +4,6 @@ Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
 Build-Depends: cdbs, debhelper (>= 8), imagemagick, libqt4-dev, libao-dev, libhunspell-dev, libzip-dev, pkg-config
-Suggests: hunspell-dictionary, myspell-dictionary
 Standards-Version: 3.9.1
 Homepage: http://gottcode.org/focuswriter/
 Vcs-Git: git://git.debian.org/collab-maint/focuswriter.git
@@ -13,6 +12,7 @@ Vcs-Browser: http://git.debian.org/?p=collab-maint/focuswriter.git;a=summary
 Package: focuswriter
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: hunspell-dictionary, myspell-dictionary
 Description: A fullscreen, distraction-free writing program
  Focuswriter is a fullscreen writing program designed to be
  distraction free.  You can customize your environment by changing the
