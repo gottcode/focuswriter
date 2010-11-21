@@ -305,6 +305,7 @@ void Document::loadTheme(const Theme& theme)
 	m_text->document()->blockSignals(true);
 
 	// Update colors
+	QString contrast = (qGray(theme.textColor().rgb()) > 127) ? "black" : "white";
 	QColor color = theme.foregroundColor();
 	color.setAlpha(theme.foregroundOpacity() * 2.55f);
 	m_text->setStyleSheet(
@@ -315,7 +316,7 @@ void Document::loadTheme(const Theme& theme)
 			.arg(color.alpha())
 			.arg(theme.textColor().name())
 			.arg(theme.textColor().name())
-			.arg(theme.foregroundColor().name())
+			.arg(contrast)
 			.arg(theme.foregroundPadding())
 			.arg(theme.foregroundRounding())
 	);
