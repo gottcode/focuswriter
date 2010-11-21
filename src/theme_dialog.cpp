@@ -103,6 +103,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_opacity->setSuffix("%");
 	m_foreground_opacity->setRange(0, 100);
 	m_foreground_opacity->setValue(m_theme.foregroundOpacity());
+	m_foreground_opacity->setToolTip(tr("Opacity"));
 	connect(m_foreground_opacity, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_foreground_width = new QSpinBox(tab);
@@ -110,6 +111,11 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width->setSuffix(tr(" pixels"));
 	m_foreground_width->setRange(500, 2000);
 	m_foreground_width->setValue(m_theme.foregroundWidth());
+
+	m_foreground_position = new QComboBox(tab);
+	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
+	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
+	m_foreground_position->setToolTip(tr("Position"));
 
 	m_foreground_rounding = new QSpinBox(tab);
 	m_foreground_rounding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
@@ -129,21 +135,25 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_padding->setRange(0, 250);
 	m_foreground_padding->setValue(m_theme.foregroundPadding());
 
-	m_foreground_position = new QComboBox(tab);
-	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Middle") << tr("Right") << tr("Stretched"));
-	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
+	QHBoxLayout* color_layout = new QHBoxLayout;
+	color_layout->setMargin(0);
+	color_layout->addWidget(m_foreground_color);
+	color_layout->addWidget(m_foreground_opacity);
+
+	QHBoxLayout* size_layout = new QHBoxLayout;
+	size_layout->setMargin(0);
+	size_layout->addWidget(m_foreground_width);
+	size_layout->addWidget(m_foreground_position);
 
 	QFormLayout* foreground_layout = new QFormLayout(tab);
 	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	foreground_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
 	foreground_layout->setLabelAlignment(Qt::AlignRight);
-	foreground_layout->addRow(tr("Color:"), m_foreground_color);
-	foreground_layout->addRow(tr("Opacity:"), m_foreground_opacity);
-	foreground_layout->addRow(tr("Width:"), m_foreground_width);
+	foreground_layout->addRow(tr("Color:"), color_layout);
+	foreground_layout->addRow(tr("Size:"), size_layout);
 	foreground_layout->addRow(tr("Rounding:"), m_foreground_rounding);
 	foreground_layout->addRow(tr("Margin:"), m_foreground_margin);
 	foreground_layout->addRow(tr("Padding:"), m_foreground_padding);
-	foreground_layout->addRow(tr("Position:"), m_foreground_position);
 
 
 	// Create text group

@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="228"/>
-        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="416"/>
         <source>Save File As</source>
         <translation>Salvar como</translation>
     </message>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="43"/>
         <source>Search for:</source>
-        <translation>Buscar:</translation>
+        <translation>Buscar :</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
@@ -375,7 +375,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="577"/>
         <source>Smart quotes:</source>
-        <translation>Comillas tipográficas:</translation>
+        <translation>Comillas tipográficas :</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="584"/>
@@ -572,7 +572,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="350"/>
         <source>Session name:</source>
-        <translation>Nombre de la sesión:</translation>
+        <translation>Nombre de la sesión :</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="358"/>
@@ -731,12 +731,13 @@
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="64"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Centered</source>
         <translation>Centrado</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="64"/>
-        <location filename="../src/theme_dialog.cpp" line="133"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Stretched</source>
         <translation>Estirado</translation>
     </message>
@@ -762,8 +763,8 @@
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="89"/>
-        <location filename="../src/theme_dialog.cpp" line="140"/>
-        <location filename="../src/theme_dialog.cpp" line="188"/>
+        <location filename="../src/theme_dialog.cpp" line="152"/>
+        <location filename="../src/theme_dialog.cpp" line="198"/>
         <source>Color:</source>
         <translation>Color :</translation>
     </message>
@@ -778,75 +779,70 @@
         <translation>Primer plano</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="110"/>
-        <location filename="../src/theme_dialog.cpp" line="116"/>
+        <location filename="../src/theme_dialog.cpp" line="106"/>
+        <source>Opacity</source>
+        <translation>Opacidad</translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="111"/>
         <location filename="../src/theme_dialog.cpp" line="122"/>
         <location filename="../src/theme_dialog.cpp" line="128"/>
+        <location filename="../src/theme_dialog.cpp" line="134"/>
         <source> pixels</source>
         <translation> pixels</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="133"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Left</source>
         <translation>Izquierda</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="133"/>
-        <source>Middle</source>
-        <translation>Centro</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="133"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Right</source>
         <translation>Derecha</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="142"/>
-        <source>Width:</source>
-        <translation>Anchura :</translation>
+        <location filename="../src/theme_dialog.cpp" line="118"/>
+        <source>Position</source>
+        <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="141"/>
-        <source>Opacity:</source>
-        <translation>Opacidad :</translation>
+        <location filename="../src/theme_dialog.cpp" line="153"/>
+        <source>Size:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="143"/>
+        <location filename="../src/theme_dialog.cpp" line="154"/>
         <source>Rounding:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="144"/>
+        <location filename="../src/theme_dialog.cpp" line="155"/>
         <source>Margin:</source>
-        <translation>Margen:</translation>
+        <translation>Margen :</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="145"/>
+        <location filename="../src/theme_dialog.cpp" line="156"/>
         <source>Padding:</source>
-        <translation>Relleno:</translation>
+        <translation>Relleno :</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="146"/>
-        <source>Position:</source>
-        <translation>Posición :</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="151"/>
+        <location filename="../src/theme_dialog.cpp" line="161"/>
         <source>Text</source>
         <translation>Texto</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="189"/>
+        <location filename="../src/theme_dialog.cpp" line="199"/>
         <source>Font:</source>
         <translation>Fuente :</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="190"/>
+        <location filename="../src/theme_dialog.cpp" line="200"/>
         <source>Misspelled:</source>
         <translation>Faltas ortográficas :</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="293"/>
+        <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>The quick brown fox jumps over the lazy dog</source>
         <translation>El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja</translation>
     </message>
@@ -917,7 +913,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="203"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Ya existe un tema con ese nombre. Por favor, introduzca un nombre nuevo:</translation>
+        <translation>Ya existe un tema con ese nombre. Por favor, introduzca un nombre nuevo :</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="248"/>
@@ -945,22 +941,22 @@
     <message>
         <location filename="../src/timer.cpp" line="354"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Palabras:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Palabras :&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Páginas:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Páginas :&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Párrafos:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Párrafos :&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Caracteres:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;Caracteres :&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="401"/>
@@ -975,12 +971,12 @@
     <message>
         <location filename="../src/timer.cpp" line="405"/>
         <source>Delay:</source>
-        <translation>Retraso:</translation>
+        <translation>Retraso :</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="408"/>
         <source>Time:</source>
-        <translation>Tiempo:</translation>
+        <translation>Tiempo :</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="417"/>
@@ -1000,7 +996,7 @@
     <message>
         <location filename="../src/timer.cpp" line="447"/>
         <source>Memo:</source>
-        <translation>Memorándum:</translation>
+        <translation>Memorándum :</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="458"/>
@@ -1103,14 +1099,14 @@
         <location filename="../src/window.cpp" line="258"/>
         <source>The following files are unsupported and will not be opened:
 </source>
-        <translation>Los siguientes tipos de archivos no son compatibles y no serán abiertos:</translation>
+        <translation>Los siguientes tipos de archivos no son compatibles y no serán abiertos :</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="298"/>
         <source>The following files were opened Read-Only:
 
 %1</source>
-        <translation>Los siguentes archivos se abrieron en modo de solo lectura:
+        <translation>Los siguentes archivos se abrieron en modo de solo lectura :
 
 %1</translation>
     </message>
@@ -1176,7 +1172,7 @@
         <source>The following files could not be opened:
 
 %1</source>
-        <translation>Los siguientes archivos no pudieron ser abiertos::
+        <translation>Los siguientes archivos no pudieron ser abiertos :
 
 %1</translation>
     </message>
