@@ -1,3 +1,6 @@
+2010-11-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Portuguese translation had incorrect file extension.
+
 2010-11-21 Graeme Gott <graeme@gottcode.org>
 	* Rearrange theme foreground options.
 	* Use contrast color for highlighted text.

@@ -68,7 +68,7 @@
     <message>
         <location filename="../src/document.cpp" line="710"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>Texto rico &apos;*.rtf)</translation>
+        <translation>Texto rico (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="711"/>
