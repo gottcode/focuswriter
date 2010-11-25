@@ -1154,7 +1154,7 @@
     <message>
         <location filename="../src/window.cpp" line="437"/>
         <source>Text Files (*.txt *.text *.rtf);;All Files (*)</source>
-        <translation>Arquivos de texto (*.txt);;Todos os arquivos (*)</translation>
+        <translation>Arquivos de texto (*.txt *.text *.rtf);;Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="587"/>

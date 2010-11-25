@@ -1,4 +1,5 @@
 2010-11-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Brazilian Portuguese translation could not open all files.
 	* FIXED: Portuguese translation had incorrect file extension.
 
 2010-11-21 Graeme Gott <graeme@gottcode.org>
