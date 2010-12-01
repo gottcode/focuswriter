@@ -1,3 +1,9 @@
+2010-12-01 Graeme Gott <graeme@gottcode.org>
+	* Add Czech dictionary.
+
+2010-12-01 Pavel Fric <pavelfric@seznam.cz>
+	* Add Czech translation.
+
 2010-11-26 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Did not inform user when archives have no dictionaries.
 

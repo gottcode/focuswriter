@@ -96,7 +96,8 @@ SOURCES += src/alert.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp
 
-TRANSLATIONS = translations/focuswriter_en.ts \
+TRANSLATIONS = translations/focuswriter_cs.ts \
+	translations/focuswriter_en.ts \
 	translations/focuswriter_es.ts \
 	translations/focuswriter_fr.ts \
 	translations/focuswriter_pl.ts \
