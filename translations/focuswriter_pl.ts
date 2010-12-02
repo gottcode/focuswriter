@@ -247,7 +247,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="404"/>
         <source>The archive does contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiwum nie zawiera prawidłowego słownika.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="419"/>
@@ -825,7 +825,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="153"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wielkość:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="116"/>
@@ -835,7 +835,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="154"/>
         <source>Rounding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaokrąglenie krawędzi:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="155"/>
