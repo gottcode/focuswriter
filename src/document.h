@@ -21,6 +21,7 @@
 #define DOCUMENT_H
 
 #include "stats.h"
+class Dictionary;
 class Highlighter;
 class Preferences;
 class Theme;
@@ -87,6 +88,7 @@ private slots:
 	void hideMouse();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);
+	void dictionaryChanged();
 	void selectionChanged();
 	void undoCommandAdded();
 	void updateWordCount(int position, int removed, int added);
@@ -113,6 +115,7 @@ private:
 	QGridLayout* m_layout;
 	QTextEdit* m_text;
 	QScrollBar* m_scrollbar;
+	Dictionary* m_dictionary;
 	Highlighter* m_highlighter;
 
 	Stats* m_stats;

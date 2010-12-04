@@ -20,6 +20,7 @@
 #include "document.h"
 
 #include "block_stats.h"
+#include "dictionary.h"
 #include "highlighter.h"
 #include "preferences.h"
 #include "smart_quotes.h"
@@ -92,7 +93,9 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
-	m_highlighter = new Highlighter(m_text);
+	m_dictionary = new Dictionary(this);
+	m_highlighter = new Highlighter(m_text, m_dictionary);
+	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
 	// Open file
 	bool unknown_rich_text = false;
@@ -572,14 +575,26 @@ void Document::scrollBarRangeChanged(int, int max)
 
 //-----------------------------------------------------------------------------
 
+void Document::dictionaryChanged()
+{
+	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
+		if (i.userData()) {
+			static_cast<BlockStats*>(i.userData())->checkSpelling(i.text(), m_dictionary);
+		}
+	}
+	m_highlighter->rehighlight();
+}
+
+//-----------------------------------------------------------------------------
+
 void Document::selectionChanged()
 {
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
-		BlockStats temp("");
+		BlockStats temp("", 0);
 		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
 		foreach (const QString& string, selection) {
-			temp.update(string);
+			temp.update(string, 0);
 			m_selected_stats.append(&temp);
 		}
 		if (!m_accurate_wordcount) {
@@ -650,7 +665,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 	for (QTextBlock i = begin; i != end; i = i.next()) {
 		if (i.userData()) {
-			static_cast<BlockStats*>(i.userData())->update(i.text());
+			static_cast<BlockStats*>(i.userData())->update(i.text(), m_dictionary);
 		}
 	}
 
@@ -667,7 +682,7 @@ void Document::calculateWordCount()
 	if (!m_cached_stats.isValid()) {
 		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 			if (!i.userData()) {
-				i.setUserData(new BlockStats(i.text()));
+				i.setUserData(new BlockStats(i.text(), m_dictionary));
 			}
 			if (i.blockNumber() != m_cached_current_block) {
 				m_cached_stats.append(static_cast<BlockStats*>(i.userData()));
