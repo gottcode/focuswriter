@@ -610,6 +610,7 @@ void Stack::updateBackground()
 void Stack::updateMask()
 {
 	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
+	raise();
 
 	int top = 0;
 	if (m_header_visible) {

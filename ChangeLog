@@ -1,3 +1,6 @@
+2010-12-05 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Toolbar outline stayed visible when it was expanded.
+
 2010-12-04 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Automatic spellchecking highlighted current word.
 
