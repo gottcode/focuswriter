@@ -505,8 +505,6 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 	}
 	int margin = m_scrollbar->sizeHint().width();
 	m_scrollbar->setVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - margin)) : (point.x() <= margin));
-
-	return QWidget::mouseMoveEvent(event);
 }
 
 //-----------------------------------------------------------------------------
