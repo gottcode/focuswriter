@@ -1092,6 +1092,16 @@ void Window::initMenus()
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
 	m_actions["AboutQt"] = help_menu->addAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), qApp, SLOT(aboutQt()));
 
+	// Always show menubar
+#ifndef Q_OS_MAC
+	connect(file_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(edit_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(format_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(tools_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(settings_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(help_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+#endif
+
 	// Enable toolbar management in preferences dialog
 	QHashIterator<QString, QAction*> i(m_actions);
 	while (i.hasNext()) {

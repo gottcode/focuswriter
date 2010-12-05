@@ -99,7 +99,7 @@ public slots:
 	void updateSmartQuotes();
 	void updateSmartQuotesSelection();
 	void setFooterVisible(bool visible);
-	void setHeaderVisible(bool visible);
+	void setHeaderVisible(bool visible = true);
 
 protected:
 	virtual void mouseMoveEvent(QMouseEvent* event);
