@@ -555,6 +555,14 @@ void Stack::setHeaderVisible(bool visible)
 
 //-----------------------------------------------------------------------------
 
+void Stack::showHeader()
+{
+	QPoint point = mapFromGlobal(QCursor::pos());
+	setHeaderVisible(window()->rect().contains(point) && point.y() <= m_header_margin);
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::mouseMoveEvent(QMouseEvent* event)
 {
 	bool header_visible = event->pos().y() <= m_header_margin;

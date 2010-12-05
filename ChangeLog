@@ -1,4 +1,5 @@
 2010-12-05 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Header stayed visible when menus closed.
 	* FIXED: Could not select text where header is shown.
 	* Only apply mask to stack and not to documents.
 	* FIXED: Header wasn't shown when menus were shown by keyboard shortcuts.

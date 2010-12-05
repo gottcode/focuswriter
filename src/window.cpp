@@ -1100,6 +1100,13 @@ void Window::initMenus()
 	connect(tools_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
 	connect(settings_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
 	connect(help_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+
+	connect(file_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(edit_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(format_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(tools_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(settings_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(help_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
 #endif
 
 	// Enable toolbar management in preferences dialog
