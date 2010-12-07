@@ -1,3 +1,6 @@
+2010-12-07 Graeme Gott <graeme@gottcode.org>
+	* Always bring interface to front.
+
 2010-12-05 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Header stayed visible when menus closed.
 	* FIXED: Could not select text where header is shown.

@@ -56,6 +56,7 @@ signals:
 	void redoAvailable(bool);
 	void undoAvailable(bool);
 	void footerVisible(bool);
+	void headerVisible(bool);
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
 	void findNextAvailable(bool available);

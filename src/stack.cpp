@@ -536,9 +536,9 @@ void Stack::setFooterVisible(bool visible)
 {
 	int footer_visible = visible * -m_footer_margin;
 	if (m_footer_visible != footer_visible) {
+		emit footerVisible(visible);
 		m_footer_visible = footer_visible;
 		updateMask();
-		emit footerVisible(visible);
 	}
 }
 
@@ -548,6 +548,7 @@ void Stack::setHeaderVisible(bool visible)
 {
 	int header_visible = visible * m_header_margin;
 	if (m_header_visible != header_visible) {
+		emit headerVisible(visible);
 		m_header_visible = header_visible;
 		updateMask();
 	}
@@ -624,7 +625,9 @@ void Stack::updateBackground()
 void Stack::updateMask()
 {
 	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
-	raise();
+	if (!m_header_visible && !m_footer_visible) {
+		raise();
+	}
 
 	bool transparent = m_header_visible || m_footer_visible;
 	m_contents->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);

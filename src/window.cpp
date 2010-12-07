@@ -149,6 +149,11 @@ Window::Window()
 	new QShortcut(QKeySequence::NextChild, this, SLOT(nextDocument()));
 	new QShortcut(QKeySequence::PreviousChild, this, SLOT(previousDocument()));
 
+	// Always bring interface to front
+	connect(m_documents, SIGNAL(headerVisible(bool)), menuBar(), SLOT(raise()));
+	connect(m_documents, SIGNAL(headerVisible(bool)), m_toolbar, SLOT(raise()));
+	connect(m_documents, SIGNAL(footerVisible(bool)), m_footer, SLOT(raise()));
+
 	// Lay out details
 	QHBoxLayout* clock_layout = new QHBoxLayout;
 	clock_layout->setMargin(0);
