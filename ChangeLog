@@ -1,4 +1,5 @@
 2010-12-07 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Was recentering when backspacing at end of document.
 	* Always bring interface to front.
 
 2010-12-05 Graeme Gott <graeme@gottcode.org>

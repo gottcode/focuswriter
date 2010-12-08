@@ -163,7 +163,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	calculateWordCount();
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-	connect(m_text, SIGNAL(textChanged()), this, SLOT(centerCursor()));
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 }
@@ -483,7 +482,7 @@ void Document::centerCursor(bool force)
 {
 	QRect cursor = m_text->cursorRect();
 	QRect viewport = m_text->viewport()->rect();
-	if (force || m_always_center || (cursor.bottom() >= viewport.bottom()) || (cursor.top() <= viewport.top())) {
+	if (force || m_always_center || (cursor.top() >= viewport.bottom()) || (cursor.bottom() <= viewport.top())) {
 		QPoint offset = viewport.center() - cursor.center();
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
 		scrollbar->setValue(scrollbar->value() - offset.y());
@@ -537,6 +536,7 @@ void Document::cursorPositionChanged()
 {
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
 	emit alignmentChanged();
+	centerCursor();
 }
 
 //-----------------------------------------------------------------------------
@@ -568,7 +568,6 @@ void Document::scrollBarRangeChanged(int, int max)
 	m_scrollbar->blockSignals(true);
 	m_scrollbar->setMaximum(max + m_text->viewport()->height());
 	m_scrollbar->blockSignals(false);
-	centerCursor();
 }
 
 //-----------------------------------------------------------------------------
