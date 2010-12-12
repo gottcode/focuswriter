@@ -58,6 +58,9 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 	display_texts.insert("pt", tr("Portuguese"));
 	display_texts.insert("pt_BR", tr("Brazilian Portuguese"));
 	foreach (const QString& translation, translations) {
+		if (translation.startsWith("qt")) {
+			continue;
+		}
 		QString display = display_texts.value(translation);
 		if (display.isEmpty()) {
 			QLocale locale(translation);
@@ -103,15 +106,21 @@ void LocaleDialog::loadTranslator()
 	// Find current locale
 	m_current = QSettings().value("Locale/Language", QLocale::system().name()).toString();
 	QStringList translations = findTranslations();
-	if (translations.indexOf(m_current) == -1) {
+	if (!translations.contains(m_current)) {
 		m_current = m_current.left(2);
-		if (translations.indexOf(m_current) == -1) {
+		if (!translations.contains(m_current)) {
 			m_current = "en_US";
 		}
 	}
 	QLocale::setDefault(m_current);
 
 	// Load translators
+	if (translations.contains("qt_" + m_current) || translations.contains("qt_" + m_current.left(2))) {
+		static QTranslator local_qt_translator;
+		local_qt_translator.load("qt_" + m_current, m_path);
+		QCoreApplication::installTranslator(&local_qt_translator);
+	}
+
 	static QTranslator qt_translator;
 	qt_translator.load("qt_" + m_current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 	QCoreApplication::installTranslator(&qt_translator);

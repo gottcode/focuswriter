@@ -230,12 +230,12 @@
         <translation>Portugais Brésilien</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="145"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Note</source>
         <translation>Note</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="145"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
