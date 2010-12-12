@@ -246,7 +246,7 @@ void SmartQuotes::loadPreferences(Preferences& preferences)
 	};
 	const size_t default_quotes_count = sizeof(default_quotes) / sizeof(DefaultQuotes);
 
-	QLocale locale = QLocale::system();
+	QLocale locale;
 	double_index = 0;
 	single_index = 1;
 	for (size_t i = 0; i < default_quotes_count; ++i) {

@@ -18,6 +18,7 @@
  ***********************************************************************/
 
 #include "dictionary.h"
+#include "locale_dialog.h"
 #include "session.h"
 #include "sound.h"
 #include "theme.h"
@@ -27,10 +28,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QLibraryInfo>
-#include <QLocale>
 #include <QSettings>
-#include <QTranslator>
 
 int main(int argc, char** argv)
 {
@@ -45,28 +43,6 @@ int main(int argc, char** argv)
 	paths.prepend(appdir + "/../share/focuswriter/icons");
 	paths.prepend(appdir + "/icons/oxygen");
 	QIcon::setThemeSearchPaths(paths);
-
-	QTranslator qt_translator;
-	qt_translator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-	app.installTranslator(&qt_translator);
-
-	paths.clear();
-	paths.append(appdir + "/translations/");
-	paths.append(appdir + "/../share/focuswriter/translations/");
-	paths.append(appdir + "/../Resources/translations");
-	QString translator_path;
-	foreach (const QString& path, paths) {
-		if (QFile::exists(path)) {
-			translator_path = path;
-			break;
-		}
-	}
-
-	QTranslator translator;
-	if (!translator.load("focuswriter_" + QLocale::system().name(), translator_path)) {
-		translator.load("focuswriter_en", translator_path);
-	}
-	app.installTranslator(&translator);
 
 	paths.clear();
 	paths.append(appdir + "/sounds/");
@@ -123,6 +99,9 @@ int main(int argc, char** argv)
 		QSettings::setDefaultFormat(QSettings::IniFormat);
 		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, path + "/Settings");
 	}
+
+	// Load application language
+	LocaleDialog::loadTranslator();
 
 	// Create base data path
 	QDir dir;

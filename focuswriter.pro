@@ -45,6 +45,7 @@ HEADERS += src/alert.h \
 	src/highlighter.h \
 	src/image_button.h \
 	src/load_screen.h \
+	src/locale_dialog.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
 	src/session.h \
@@ -76,6 +77,7 @@ SOURCES += src/alert.cpp \
 	src/highlighter.cpp \
 	src/image_button.cpp \
 	src/load_screen.cpp \
+	src/locale_dialog.cpp \
 	src/main.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
@@ -96,13 +98,13 @@ SOURCES += src/alert.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp
 
-TRANSLATIONS = translations/focuswriter_cs.ts \
-	translations/focuswriter_en.ts \
-	translations/focuswriter_es.ts \
-	translations/focuswriter_fr.ts \
-	translations/focuswriter_pl.ts \
-	translations/focuswriter_pt.ts \
-	translations/focuswriter_pt_BR.ts
+TRANSLATIONS = translations/cs.ts \
+	translations/en_US.ts \
+	translations/es.ts \
+	translations/fr.ts \
+	translations/pl.ts \
+	translations/pt.ts \
+	translations/pt_BR.ts
 
 RESOURCES = icons/icons.qrc
 macx {

@@ -65,7 +65,7 @@ Preferences::Preferences()
 	m_highlight_misspelled = settings.value("Spelling/HighlightMisspelled", true).toBool();
 	m_ignore_numbers = settings.value("Spelling/IgnoreNumbers", true).toBool();
 	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
-	m_language = settings.value("Spelling/Language", QLocale::system().name()).toString();
+	m_language = settings.value("Spelling/Language", QLocale().name()).toString();
 
 	m_dictionary = new Dictionary;
 	QStringList languages = m_dictionary->availableLanguages();

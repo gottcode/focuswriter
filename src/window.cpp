@@ -21,6 +21,7 @@
 
 #include "document.h"
 #include "load_screen.h"
+#include "locale_dialog.h"
 #include "preferences.h"
 #include "preferences_dialog.h"
 #include "session.h"
@@ -603,6 +604,14 @@ void Window::aboutClicked()
 
 //-----------------------------------------------------------------------------
 
+void Window::setLocaleClicked()
+{
+	LocaleDialog dialog(this);
+	dialog.exec();
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::keyPressed(int key)
 {
 	if (m_typewriter_sounds) {
@@ -1090,6 +1099,8 @@ void Window::initMenus()
 	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, SLOT(showMinimized()), tr("Ctrl+M"));
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
+	settings_menu->addSeparator();
+	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, SLOT(setLocaleClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
 
 	// Create help menu

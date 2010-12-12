@@ -1,3 +1,6 @@
+2010-12-12 Graeme Gott <graeme@gottcode.org>
+	* Add changing the program language.
+
 2010-12-07 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Was recentering when backspacing at end of document.
 	* Always bring interface to front.

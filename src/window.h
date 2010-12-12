@@ -68,6 +68,7 @@ private slots:
 	void themeClicked();
 	void preferencesClicked();
 	void aboutClicked();
+	void setLocaleClicked();
 	void keyPressed(int key);
 	void tabClicked(int index);
 	void tabMoved(int from, int to);
