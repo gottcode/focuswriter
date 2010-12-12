@@ -54,9 +54,6 @@ COPY %QTDIR%\plugins\imageformats\qmng4.dll %APP%\imageformats >nul
 COPY %QTDIR%\plugins\imageformats\qsvg4.dll %APP%\imageformats >nul
 COPY %QTDIR%\plugins\imageformats\qtiff4.dll %APP%\imageformats >nul
 
-ECHO Packing files
-upx --lzma --best %APP%\*.exe %APP%\*.dll %APP%\imageformats\*.dll >nul
-
 ECHO Creating compressed file
 CD %APP%
 7z a %APP%_%VERSION%.zip * >nul
