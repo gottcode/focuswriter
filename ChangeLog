@@ -1,4 +1,5 @@
 2010-12-14 Graeme Gott <graeme@gottcode.org>
+	* Fixed regression where it no longer centered opened documents.
 	* Fixed incorrect error string.
 
 2010-12-12 Graeme Gott <graeme@gottcode.org>

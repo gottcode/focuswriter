@@ -786,6 +786,12 @@ bool Window::addDocument(const QString& filename, int position)
 	connect(document, SIGNAL(keyPressed(int)), this, SLOT(keyPressed(int)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
+	// Add tab for document
+	m_documents->addDocument(document);
+	int index = m_tabs->addTab(tr("Untitled"));
+	updateTab(index);
+	m_tabs->setCurrentIndex(index);
+
 	// Restore cursor position
 	QTextCursor cursor = document->text()->textCursor();
 	if (m_save_positions && position != -1 && !document->untitledIndex()) {
@@ -794,13 +800,7 @@ bool Window::addDocument(const QString& filename, int position)
 		cursor.movePosition(QTextCursor::End);
 	}
 	document->text()->setTextCursor(cursor);
-
-	// Add tab for document
-	m_documents->addDocument(document);
 	document->centerCursor(true);
-	int index = m_tabs->addTab(tr("Untitled"));
-	updateTab(index);
-	m_tabs->setCurrentIndex(index);
 
 	if (show_load) {
 		m_load_screen->finish();

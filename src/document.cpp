@@ -482,7 +482,7 @@ void Document::centerCursor(bool force)
 {
 	QRect cursor = m_text->cursorRect();
 	QRect viewport = m_text->viewport()->rect();
-	if (force || m_always_center || (cursor.top() >= viewport.bottom()) || (cursor.bottom() <= viewport.top())) {
+	if (force || m_always_center || (cursor.bottom() >= viewport.bottom()) || (cursor.top() <= viewport.top())) {
 		QPoint offset = viewport.center() - cursor.center();
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
 		scrollbar->setValue(scrollbar->value() - offset.y());
