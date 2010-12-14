@@ -192,7 +192,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="48"/>
         <source>Select application language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o idioma do programa:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, reinicie o programa para que as alterações no idioma tenham efeito.</translation>
     </message>
 </context>
 <context>
@@ -291,7 +291,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="404"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não contém um dicionário utilizável.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="419"/>
@@ -862,7 +862,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="153"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="116"/>
@@ -872,7 +872,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="154"/>
         <source>Rounding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aproximação:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="155"/>
@@ -1602,7 +1602,7 @@
     <message>
         <location filename="../src/window.cpp" line="1099"/>
         <source>M&amp;inimize</source>
-        <translation type="unfinished"></translation>
+        <translation>M&amp;inimizar</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1101"/>
@@ -1622,7 +1622,7 @@
     <message>
         <location filename="../src/window.cpp" line="1103"/>
         <source>Application &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Idioma do programa...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1108"/>
