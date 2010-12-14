@@ -273,6 +273,11 @@
         <translation>Choisir le dictionnaire</translation>
     </message>
     <message>
+        <location filename="../src/preferences_dialog.cpp" line="404"/>
+        <source>The archive does not contain a usable dictionary.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/preferences_dialog.cpp" line="450"/>
         <location filename="../src/preferences_dialog.cpp" line="479"/>
         <source>Question</source>
@@ -394,11 +399,6 @@
         <location filename="../src/preferences_dialog.cpp" line="378"/>
         <source>Unable to read archive metadata.</source>
         <translation>Impossible de lire les métadonnées de l&apos;archive.</translation>
-    </message>
-    <message>
-        <location filename="../src/preferences_dialog.cpp" line="404"/>
-        <source>The archive does contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="419"/>

@@ -290,7 +290,7 @@
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="404"/>
-        <source>The archive does contain a usable dictionary.</source>
+        <source>The archive does not contain a usable dictionary.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -1,3 +1,6 @@
+2010-12-14 Graeme Gott <graeme@gottcode.org>
+	* Fixed incorrect error string.
+
 2010-12-12 Graeme Gott <graeme@gottcode.org>
 	* Add changing the program language.
 

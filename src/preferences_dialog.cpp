@@ -401,7 +401,7 @@ void PreferencesDialog::addLanguage()
 
 		// Check for dictionaries
 		if (dictionaries.isEmpty()) {
-			throw tr("The archive does contain a usable dictionary.");
+			throw tr("The archive does not contain a usable dictionary.");
 		}
 
 		// Extract files
