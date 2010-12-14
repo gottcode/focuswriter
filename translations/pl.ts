@@ -107,18 +107,12 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Search up</source>
-        <translation variants="yes">
-            <lengthvariant>Znajdź poprzedni</lengthvariant>
-            <lengthvariant>Szukaj w górę</lengthvariant>
-        </translation>
+        <translation>Znajdź poprzedni</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Search down</source>
-        <translation variants="yes">
-            <lengthvariant>Znajdź następny</lengthvariant>
-            <lengthvariant>Szukaj w dół</lengthvariant>
-        </translation>
+        <translation>Znajdź następny</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="60"/>
@@ -201,7 +195,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="48"/>
         <source>Select application language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz język aplikacji:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
@@ -246,7 +240,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmiany zostaną uwzględnione przy następnym uruchomieniu programu.</translation>
     </message>
 </context>
 <context>
@@ -298,13 +292,9 @@
         <translation>Nie można odczytać metadanych archiwum.</translation>
     </message>
     <message>
-        <source>The archive does contain a usable dictionary.</source>
-        <translation type="obsolete">Archiwum nie zawiera prawidłowego słownika.</translation>
-    </message>
-    <message>
         <location filename="../src/preferences_dialog.cpp" line="404"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiwum nie zawiera prawidłowego słownika.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="419"/>
@@ -417,10 +407,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="638"/>
         <source>Contents</source>
-        <translation variants="yes">
-            <lengthvariant>Treść</lengthvariant>
-            <lengthvariant>Zawartość</lengthvariant>
-        </translation>
+        <translation>Treść</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="640"/>
@@ -922,10 +909,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation variants="yes">
-            <lengthvariant>Pchnąć w tę łódź jeża lub ośm skrzyń fig</lengthvariant>
-            <lengthvariant>Pójdźże, kiń tę chmurność w głąb flaszy!</lengthvariant>
-        </translation>
+        <translation>Pchnąć w tę łódź jeża lub ośm skrzyń fig</translation>
     </message>
 </context>
 <context>
@@ -1648,7 +1632,7 @@
     <message>
         <location filename="../src/window.cpp" line="1103"/>
         <source>Application &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zmiana języka aplikacji...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1108"/>
