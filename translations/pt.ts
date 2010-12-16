@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_PT" sourcelanguage="en">
+<TS version="2.0" language="pt" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -192,7 +192,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="48"/>
         <source>Select application language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar a língua do programa:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor reinicie o programa para a mudança da língua do programa ser aplicada.</translation>
     </message>
 </context>
 <context>
@@ -275,7 +275,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="404"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não contem nenhum dicionário utilizável.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="450"/>
@@ -867,12 +867,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="153"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="154"/>
         <source>Rounding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arredondamento:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="155"/>
@@ -1603,7 +1603,7 @@
     <message>
         <location filename="../src/window.cpp" line="1099"/>
         <source>M&amp;inimize</source>
-        <translation type="unfinished"></translation>
+        <translation>M&amp;inimizar</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1101"/>
@@ -1623,7 +1623,7 @@
     <message>
         <location filename="../src/window.cpp" line="1103"/>
         <source>Application &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Língua do programa...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1108"/>
