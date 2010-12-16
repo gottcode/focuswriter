@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs_CZ" sourcelanguage="en">
+<TS version="2.0" language="cs" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="48"/>
         <source>Select application language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat jazyk programu:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
@@ -239,7 +239,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spusťte, prosí, tento program znovu, aby se změna jazyka projevila.</translation>
     </message>
 </context>
 <context>
@@ -291,13 +291,9 @@
         <translation>Nelze přečíst metadata archivu.</translation>
     </message>
     <message>
-        <source>The archive does contain a usable dictionary.</source>
-        <translation type="obsolete">Archiv neobsahuje použitelný slovník.</translation>
-    </message>
-    <message>
         <location filename="../src/preferences_dialog.cpp" line="404"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv neobsahuje použitelný slovník.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="419"/>
@@ -1634,7 +1630,7 @@
     <message>
         <location filename="../src/window.cpp" line="1103"/>
         <source>Application &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk &amp;programu...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1108"/>
