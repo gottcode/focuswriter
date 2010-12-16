@@ -87,17 +87,15 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text = new QTextEdit(this);
 	m_text->installEventFilter(this);
 	m_text->setMouseTracking(true);
-	m_text->setTabStopWidth(50);
-	m_text->document()->setIndentWidth(50);
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
-	m_dictionary = new Dictionary(this);
-	m_highlighter = new Highlighter(m_text, m_dictionary);
-	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
-	// Open file
+	QTextDocument* document = new QTextDocument(m_text);
+	document->setUndoRedoEnabled(false);
+
+	// Read file
 	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
 		m_rich_text = isRichTextFile(filename.toLower());
@@ -110,23 +108,34 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 				QTextStream stream(&file);
 				stream.setCodec(QTextCodec::codecForName("UTF-8"));
 				stream.setAutoDetectUnicode(true);
-				m_text->setUndoRedoEnabled(false);
+
+				QTextCursor cursor(document);
 				while (!stream.atEnd()) {
-					m_text->insertPlainText(stream.read(8192));
+					cursor.insertText(stream.read(8192));
 					QApplication::processEvents();
 				}
-				m_text->setUndoRedoEnabled(true);
 				file.close();
 			}
 		} else {
 			RTF::Reader reader;
-			reader.read(filename, m_text);
+			reader.read(filename, document);
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
 			}
 		}
-		m_text->document()->setModified(false);
 	}
+
+	// Set text area contents
+	document->setUndoRedoEnabled(true);
+	document->setModified(false);
+	m_text->setDocument(document);
+	m_text->setTabStopWidth(50);
+	document->setIndentWidth(50);
+
+	m_dictionary = new Dictionary(this);
+	m_highlighter = new Highlighter(m_text, m_dictionary);
+	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
+
 	if (m_filename.isEmpty()) {
 		findIndex();
 		unknown_rich_text = true;

@@ -1,3 +1,6 @@
+2010-12-16 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Statistics and centering were broken for large documents.
+
 2010-12-16 Jérôme Borme <jerome.borme@gmail.com>
 	* Update French translation.
 	* Update Portuguese translation.

@@ -26,6 +26,7 @@
 #include <QStack>
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
+#include <QTextCursor>
 class QString;
 class QTextEdit;
 
@@ -41,7 +42,7 @@ namespace RTF
 		QString errorString() const;
 		bool hasError() const;
 
-		void read(const QString& filename, QTextEdit* text);
+		void read(const QString& filename, QTextDocument* text);
 
 	private:
 		void ignoreGroup(qint32);
@@ -89,7 +90,8 @@ namespace RTF
 
 		QString m_error;
 
-		QTextEdit* m_text;
+		QTextDocument* m_text;
+		QTextCursor m_cursor;
 	};
 }
 

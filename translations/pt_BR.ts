@@ -30,53 +30,53 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="125"/>
-        <location filename="../src/document.cpp" line="217"/>
-        <location filename="../src/document.cpp" line="234"/>
-        <location filename="../src/document.cpp" line="266"/>
-        <location filename="../src/document.cpp" line="270"/>
+        <location filename="../src/document.cpp" line="123"/>
+        <location filename="../src/document.cpp" line="226"/>
+        <location filename="../src/document.cpp" line="243"/>
+        <location filename="../src/document.cpp" line="275"/>
+        <location filename="../src/document.cpp" line="279"/>
         <source>Sorry</source>
         <translation>Desculpe</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="217"/>
+        <location filename="../src/document.cpp" line="226"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Não foi possível salvar &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="230"/>
-        <location filename="../src/document.cpp" line="418"/>
+        <location filename="../src/document.cpp" line="239"/>
+        <location filename="../src/document.cpp" line="427"/>
         <source>Save File As</source>
         <translation>Salvar como</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="234"/>
-        <location filename="../src/document.cpp" line="266"/>
+        <location filename="../src/document.cpp" line="243"/>
+        <location filename="../src/document.cpp" line="275"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Não foi possível sobrescrever &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="262"/>
+        <location filename="../src/document.cpp" line="271"/>
         <source>Rename File</source>
         <translation>Renomear arquivo</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="270"/>
+        <location filename="../src/document.cpp" line="279"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Não foi possível renomear &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="723"/>
+        <location filename="../src/document.cpp" line="732"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texto plano (*.txt);;Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="724"/>
+        <location filename="../src/document.cpp" line="733"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto formatado (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="725"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>All Files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
@@ -546,8 +546,8 @@
 <context>
     <name>Reader</name>
     <message>
-        <location filename="../src/rtf/reader.cpp" line="189"/>
-        <location filename="../src/rtf/reader.cpp" line="193"/>
+        <location filename="../src/rtf/reader.cpp" line="192"/>
+        <location filename="../src/rtf/reader.cpp" line="196"/>
         <source>Not a supported RTF file.</source>
         <translation>Não é um arquivo RTF suportado.</translation>
     </message>

@@ -167,17 +167,20 @@ bool RTF::Reader::hasError() const
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::read(const QString& filename, QTextEdit* text)
+void RTF::Reader::read(const QString& filename, QTextDocument* text)
 {
 	try {
 		// Open file
 		m_text = 0;
+		if (!m_cursor.isNull()) {
+			m_cursor = QTextCursor();
+		}
 		QFile file(filename);
 		if (!file.open(QFile::ReadOnly)) {
 			return;
 		}
 		m_text = text;
-		m_text->setUndoRedoEnabled(false);
+		m_cursor = QTextCursor(m_text);
 		m_token.setDevice(&file);
 		setBlockDirection(Qt::LeftToRight);
 
@@ -207,18 +210,17 @@ void RTF::Reader::read(const QString& filename, QTextEdit* text)
 				}
 			} else if (m_token.type() == TextToken) {
 				if (!m_state.ignore_text) {
-					m_text->textCursor().insertText(m_codec->toUnicode(m_token.text()));
+					m_cursor.insertText(m_codec->toUnicode(m_token.text()));
 				}
 			}
 		}
 		file.close();
 
 		// Remove empty block at end of file
-		m_text->textCursor().deletePreviousChar();
+		m_cursor.deletePreviousChar();
 	} catch (const QString& error) {
 		m_error = error;
 	}
-	m_text->setUndoRedoEnabled(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -233,28 +235,28 @@ void RTF::Reader::ignoreGroup(qint32)
 
 void RTF::Reader::insertBlock(qint32)
 {
-	m_text->textCursor().insertBlock();
+	m_cursor.insertBlock();
 }
 
 //-----------------------------------------------------------------------------
 
 void RTF::Reader::insertHexSymbol(qint32)
 {
-	m_text->insertPlainText(m_codec->toUnicode(m_token.hex()));
+	m_cursor.insertText(m_codec->toUnicode(m_token.hex()));
 }
 
 //-----------------------------------------------------------------------------
 
 void RTF::Reader::insertSymbol(qint32 value)
 {
-	m_text->insertPlainText(QChar(value));
+	m_cursor.insertText(QChar(value));
 }
 
 //-----------------------------------------------------------------------------
 
 void RTF::Reader::insertUnicodeSymbol(qint32 value)
 {
-	m_text->insertPlainText(QChar(value));
+	m_cursor.insertText(QChar(value));
 
 	for (int i = m_state.skip; i > 0;) {
 		m_token.readNext();
@@ -262,7 +264,7 @@ void RTF::Reader::insertUnicodeSymbol(qint32 value)
 		if (m_token.type() == TextToken) {
 			int len = m_token.text().count();
 			if (len > i) {
-				m_text->textCursor().insertText(m_codec->toUnicode(m_token.text().mid(i)));
+				m_cursor.insertText(m_codec->toUnicode(m_token.text().mid(i)));
 				break;
 			} else {
 				i -= len;
@@ -294,10 +296,8 @@ void RTF::Reader::popState()
 		return;
 	}
 	m_state = m_states.pop();
-	QTextCursor cursor = m_text->textCursor();
-	cursor.mergeBlockFormat(m_state.block_format);
-	cursor.setCharFormat(m_state.char_format);
-	m_text->setTextCursor(cursor);
+	m_cursor.mergeBlockFormat(m_state.block_format);
+	m_cursor.setCharFormat(m_state.char_format);
 	setFont(m_state.active_codepage);
 }
 
@@ -306,9 +306,7 @@ void RTF::Reader::popState()
 void RTF::Reader::resetBlockFormatting(qint32)
 {
 	m_state.block_format = QTextBlockFormat();
-	QTextCursor cursor = m_text->textCursor();
-	cursor.setBlockFormat(m_state.block_format);
-	m_text->setTextCursor(cursor);
+	m_cursor.setBlockFormat(m_state.block_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -316,9 +314,7 @@ void RTF::Reader::resetBlockFormatting(qint32)
 void RTF::Reader::resetTextFormatting(qint32)
 {
 	m_state.char_format = QTextCharFormat();
-	QTextCursor cursor = m_text->textCursor();
-	cursor.setCharFormat(m_state.char_format);
-	m_text->setTextCursor(cursor);
+	m_cursor.setCharFormat(m_state.char_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -326,7 +322,7 @@ void RTF::Reader::resetTextFormatting(qint32)
 void RTF::Reader::setBlockAlignment(qint32 value)
 {
 	m_state.block_format.setAlignment(Qt::Alignment(value));
-	m_text->textCursor().mergeBlockFormat(m_state.block_format);
+	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -339,7 +335,7 @@ void RTF::Reader::setBlockDirection(qint32 value)
 		alignment |= Qt::AlignAbsolute;
 		m_state.block_format.setAlignment(alignment);
 	}
-	m_text->textCursor().mergeBlockFormat(m_state.block_format);
+	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -347,7 +343,7 @@ void RTF::Reader::setBlockDirection(qint32 value)
 void RTF::Reader::setBlockIndent(qint32 value)
 {
 	m_state.block_format.setIndent(value / 720);
-	m_text->textCursor().mergeBlockFormat(m_state.block_format);
+	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -355,7 +351,7 @@ void RTF::Reader::setBlockIndent(qint32 value)
 void RTF::Reader::setTextBold(qint32 value)
 {
 	m_state.char_format.setFontWeight(value ? QFont::Bold : QFont::Normal);
-	m_text->mergeCurrentCharFormat(m_state.char_format);
+	m_cursor.mergeCharFormat(m_state.char_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -363,7 +359,7 @@ void RTF::Reader::setTextBold(qint32 value)
 void RTF::Reader::setTextItalic(qint32 value)
 {
 	m_state.char_format.setFontItalic(value);
-	m_text->mergeCurrentCharFormat(m_state.char_format);
+	m_cursor.mergeCharFormat(m_state.char_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -371,7 +367,7 @@ void RTF::Reader::setTextItalic(qint32 value)
 void RTF::Reader::setTextStrikeOut(qint32 value)
 {
 	m_state.char_format.setFontStrikeOut(value);
-	m_text->mergeCurrentCharFormat(m_state.char_format);
+	m_cursor.mergeCharFormat(m_state.char_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -379,7 +375,7 @@ void RTF::Reader::setTextStrikeOut(qint32 value)
 void RTF::Reader::setTextUnderline(qint32 value)
 {
 	m_state.char_format.setFontUnderline(value);
-	m_text->mergeCurrentCharFormat(m_state.char_format);
+	m_cursor.mergeCharFormat(m_state.char_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -387,7 +383,7 @@ void RTF::Reader::setTextUnderline(qint32 value)
 void RTF::Reader::setTextVerticalAlignment(qint32 value)
 {
 	m_state.char_format.setVerticalAlignment(QTextCharFormat::VerticalAlignment(value));
-	m_text->mergeCurrentCharFormat(m_state.char_format);
+	m_cursor.mergeCharFormat(m_state.char_format);
 }
 
 //-----------------------------------------------------------------------------

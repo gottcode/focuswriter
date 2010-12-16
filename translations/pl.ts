@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL" sourcelanguage="en">
+<TS version="2.0" language="pl" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -30,53 +30,53 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="125"/>
-        <location filename="../src/document.cpp" line="217"/>
-        <location filename="../src/document.cpp" line="234"/>
-        <location filename="../src/document.cpp" line="266"/>
-        <location filename="../src/document.cpp" line="270"/>
+        <location filename="../src/document.cpp" line="123"/>
+        <location filename="../src/document.cpp" line="226"/>
+        <location filename="../src/document.cpp" line="243"/>
+        <location filename="../src/document.cpp" line="275"/>
+        <location filename="../src/document.cpp" line="279"/>
         <source>Sorry</source>
         <translation>Przepraszam</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="217"/>
+        <location filename="../src/document.cpp" line="226"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Nie można zapisać pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="230"/>
-        <location filename="../src/document.cpp" line="418"/>
+        <location filename="../src/document.cpp" line="239"/>
+        <location filename="../src/document.cpp" line="427"/>
         <source>Save File As</source>
         <translation>Zapisz plik jako</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="234"/>
-        <location filename="../src/document.cpp" line="266"/>
+        <location filename="../src/document.cpp" line="243"/>
+        <location filename="../src/document.cpp" line="275"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Nie można nadpisać pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="262"/>
+        <location filename="../src/document.cpp" line="271"/>
         <source>Rename File</source>
         <translation>Zmień nazwę pliku</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="270"/>
+        <location filename="../src/document.cpp" line="279"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Nie można zmienić nazwy pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="723"/>
+        <location filename="../src/document.cpp" line="732"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Zwykły tekst (*.txt);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="724"/>
+        <location filename="../src/document.cpp" line="733"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Tekst z formatowaniem (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="725"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>All Files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
@@ -552,8 +552,8 @@
 <context>
     <name>Reader</name>
     <message>
-        <location filename="../src/rtf/reader.cpp" line="189"/>
-        <location filename="../src/rtf/reader.cpp" line="193"/>
+        <location filename="../src/rtf/reader.cpp" line="192"/>
+        <location filename="../src/rtf/reader.cpp" line="196"/>
         <source>Not a supported RTF file.</source>
         <translatorcomment>Sztywne niestety</translatorcomment>
         <translation>To nie jest obsługiwany plik RTF.</translation>
