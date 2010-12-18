@@ -66,17 +66,17 @@
         <translation>Não foi possível renomear &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="732"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texto plano (*.txt);;Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="733"/>
+        <location filename="../src/document.cpp" line="735"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto formatado (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="734"/>
+        <location filename="../src/document.cpp" line="736"/>
         <source>All Files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>

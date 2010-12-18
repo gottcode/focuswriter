@@ -545,7 +545,9 @@ void Document::cursorPositionChanged()
 {
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
 	emit alignmentChanged();
-	centerCursor();
+	if (QApplication::mouseButtons() == Qt::NoButton) {
+		centerCursor();
+	}
 }
 
 //-----------------------------------------------------------------------------

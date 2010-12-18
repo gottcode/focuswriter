@@ -61,17 +61,17 @@
         <translation>Não foi possível alterar o nome « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="732"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texto simples (*.txt);;Todos os ficheiros (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="733"/>
+        <location filename="../src/document.cpp" line="735"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto rico (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="734"/>
+        <location filename="../src/document.cpp" line="736"/>
         <source>All Files (*)</source>
         <translation>Todos os ficheiros (*)</translation>
     </message>

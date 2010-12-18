@@ -66,17 +66,17 @@
         <translation>Nelze přejmenovat &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="732"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Prostý text (*.txt);;všechny soubory (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="733"/>
+        <location filename="../src/document.cpp" line="735"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Text s formátováním (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="734"/>
+        <location filename="../src/document.cpp" line="736"/>
         <source>All Files (*)</source>
         <translation>Všechny soubory (*)</translation>
     </message>

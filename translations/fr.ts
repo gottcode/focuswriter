@@ -61,17 +61,17 @@
         <translation>Impossible de renommer le fichier « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="732"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texte brut (*.txt);;Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="733"/>
+        <location filename="../src/document.cpp" line="735"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texte enrichi (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="734"/>
+        <location filename="../src/document.cpp" line="736"/>
         <source>All Files (*)</source>
         <translation>Tous les fichiers (*)</translation>
     </message>
