@@ -1,3 +1,6 @@
+2010-12-26 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Ubuntu panels appeared when find dialog was shown.
+
 2010-12-17 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Jumped while selecting text and scrolling.
 
