@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 {
 	QApplication app(argc, argv);
 	app.setApplicationName("FocusWriter");
-	app.setApplicationVersion("1.3.1");
+	app.setApplicationVersion("1.3.2");
 	app.setOrganizationDomain("gottcode.org");
 	app.setOrganizationName("GottCode");
 	QString appdir = app.applicationDirPath();
