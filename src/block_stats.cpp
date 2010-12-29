@@ -19,19 +19,36 @@
 
 #include "block_stats.h"
 
+#include "dictionary.h"
+
 //-----------------------------------------------------------------------------
 
-BlockStats::BlockStats(const QString& text)
+BlockStats::BlockStats(const QString& text, Dictionary* dictionary)
 	: m_characters(0),
 	m_spaces(0),
 	m_words(0)
 {
-	update(text);
+	update(text, dictionary);
 }
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::update(const QString& text)
+void BlockStats::checkSpelling(const QString& text, Dictionary* dictionary)
+{
+	m_misspelled.clear();
+	if (text.isEmpty() || !dictionary) {
+		return;
+	}
+
+	QStringRef word;
+	while ((word = dictionary->check(text, word.position() + word.length())).isNull() == false) {
+		m_misspelled.append(word);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void BlockStats::update(const QString& text, Dictionary* dictionary)
 {
 	m_characters = text.length();
 	m_spaces = 0;
@@ -51,6 +68,8 @@ void BlockStats::update(const QString& text)
 			word = false;
 		}
 	}
+
+	checkSpelling(text, dictionary);
 }
 
 //-----------------------------------------------------------------------------

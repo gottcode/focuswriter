@@ -37,6 +37,8 @@ public:
 
 	static bool insert(QTextEdit* text, QKeyEvent* key);
 	static void replace(QTextEdit* text, int start, int end);
+	static QString revert(const QString& string);
+	static QStringList revert(const QStringList& strings);
 	static QString quoteString(const QString& string, size_t index);
 
 	static void loadPreferences(Preferences& preferences);

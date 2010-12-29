@@ -28,7 +28,6 @@
 #include <QCloseEvent>
 #include <QDialogButtonBox>
 #include <QLabel>
-#include <QLocale>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPushButton>

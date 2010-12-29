@@ -34,10 +34,13 @@ Session::Session(const QString& name)
 	: m_name(name),
 	m_default(name == tr("Default"))
 {
-	if (!m_default) {
-		m_data = new QSettings(pathFromName(m_name), QSettings::IniFormat);
+	QString path = pathFromName(m_name);
+	if (QFile::exists(path)) {
+		m_data = new QSettings(path, QSettings::IniFormat);
 	} else {
 		m_data = new QSettings;
+		m_name = tr("Default");
+		m_default = true;
 	}
 }
 

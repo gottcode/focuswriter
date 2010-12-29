@@ -19,6 +19,8 @@
 
 #include "dictionary.h"
 
+#include "smart_quotes.h"
+
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -85,6 +87,9 @@ Dictionary::~Dictionary()
 void Dictionary::add(const QString& word)
 {
 	QStringList words = personal();
+	if (words.contains(SmartQuotes::revert(word))) {
+		return;
+	}
 	words.append(word);
 	setPersonal(words);
 	foreach (Dictionary* dictionary, f_instances) {
@@ -195,10 +200,10 @@ QStringList Dictionary::availableLanguages()
 	while (i.hasNext()) {
 		QDir dir(i.next());
 
-		QStringList dic_files = dir.entryList(QStringList() << "*.dic", QDir::Files, QDir::Name | QDir::IgnoreCase);
-		dic_files.replaceInStrings(".dic", "");
-		QStringList aff_files = dir.entryList(QStringList() << "*.aff", QDir::Files);
-		aff_files.replaceInStrings(".aff", "");
+		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
+		dic_files.replaceInStrings(QRegExp("\\.dic.*"), "");
+		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
+		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
 
 		foreach (const QString& language, dic_files) {
 			if (aff_files.contains(language) && !result.contains(language)) {
@@ -242,7 +247,15 @@ void Dictionary::setIgnoreUppercase(bool ignore)
 void Dictionary::setLanguage(const QString& language)
 {
 	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
+	if (aff.isEmpty()) {
+		aff = QFileInfo("dict:" + language + ".aff.hz").canonicalFilePath();
+		aff.chop(3);
+	}
 	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
+	if (dic.isEmpty()) {
+		dic = QFileInfo("dict:" + language + ".dic.hz").canonicalFilePath();
+		dic.chop(3);
+	}
 	if (language.isEmpty() || aff.isEmpty() || dic.isEmpty() || language == f_language) {
 		return;
 	}
@@ -277,7 +290,7 @@ void Dictionary::setPersonal(const QStringList& words)
 		}
 	}
 
-	f_personal = words;
+	f_personal = SmartQuotes::revert(words);
 	qSort(f_personal.begin(), f_personal.end(), compareWords);
 
 	QFile file(f_path + "/personal");

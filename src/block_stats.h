@@ -19,22 +19,27 @@
 
 #include <QTextBlockUserData>
 
+class Dictionary;
+
 class BlockStats : public QTextBlockUserData
 {
 public:
-	BlockStats(const QString& text);
+	BlockStats(const QString& text, Dictionary* dictionary);
 
 	bool isEmpty() const;
 	int characterCount() const;
 	int spaceCount() const;
 	int wordCount() const;
+	QVector<QStringRef> misspelled() const;
 
-	void update(const QString& text);
+	void checkSpelling(const QString& text, Dictionary* dictionary);
+	void update(const QString& text, Dictionary* dictionary);
 
 private:
 	int m_characters;
 	int m_spaces;
 	int m_words;
+	QVector<QStringRef> m_misspelled;
 };
 
 inline bool BlockStats::isEmpty() const
@@ -55,4 +60,9 @@ inline int BlockStats::spaceCount() const
 inline int BlockStats::wordCount() const
 {
 	return m_words;
+}
+
+inline QVector<QStringRef> BlockStats::misspelled() const
+{
+	return m_misspelled;
 }

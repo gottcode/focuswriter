@@ -120,9 +120,10 @@ Theme::Theme(const QString& name)
 	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
 	m_foreground_opacity = qBound(0, settings.value("Foreground/Opacity", 100).toInt(), 100);
 	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 2000);
+	m_foreground_rounding = qBound(0, settings.value("Foreground/Rounding", 0).toInt(), 100);
 	m_foreground_margin = qBound(0, settings.value("Foreground/Margin", 65).toInt(), 250);
 	m_foreground_padding = qBound(0, settings.value("Foreground/Padding", 0).toInt(), 250);
-	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 2);
+	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 3);
 
 	// Load text settings
 	m_text_color = settings.value("Text/Color", "#000000").toString();
@@ -150,10 +151,11 @@ Theme::~Theme()
 
 	// Store foreground settings
 	settings.setValue("Foreground/Color", m_foreground_color.name());
+	settings.setValue("Foreground/Opacity", m_foreground_opacity);
 	settings.setValue("Foreground/Width", m_foreground_width);
+	settings.setValue("Foreground/Rounding", m_foreground_rounding);
 	settings.setValue("Foreground/Margin", m_foreground_margin);
 	settings.setValue("Foreground/Padding", m_foreground_padding);
-	settings.setValue("Foreground/Opacity", m_foreground_opacity);
 	settings.setValue("Foreground/Position", m_foreground_position);
 
 	// Store text settings
@@ -347,9 +349,24 @@ QColor Theme::foregroundColor() const
 
 //-----------------------------------------------------------------------------
 
+int Theme::foregroundOpacity() const
+{
+	return m_foreground_opacity;
+}
+
+
+//-----------------------------------------------------------------------------
+
 int Theme::foregroundWidth() const
 {
 	return m_foreground_width;
+}
+
+//-----------------------------------------------------------------------------
+
+int Theme::foregroundRounding() const
+{
+	return m_foreground_rounding;
 }
 
 //-----------------------------------------------------------------------------
@@ -368,13 +385,6 @@ int Theme::foregroundPadding() const
 
 //-----------------------------------------------------------------------------
 
-int Theme::foregroundOpacity() const
-{
-	return m_foreground_opacity;
-}
-
-//-----------------------------------------------------------------------------
-
 int Theme::foregroundPosition() const
 {
 	return m_foreground_position;
@@ -389,9 +399,23 @@ void Theme::setForegroundColor(const QColor& color)
 
 //-----------------------------------------------------------------------------
 
+void Theme::setForegroundOpacity(int opacity)
+{
+	setValue(m_foreground_opacity, opacity);
+}
+
+//-----------------------------------------------------------------------------
+
 void Theme::setForegroundWidth(int width)
 {
 	setValue(m_foreground_width, width);
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setForegroundRounding(int rounding)
+{
+	setValue(m_foreground_rounding, rounding);
 }
 
 //-----------------------------------------------------------------------------
@@ -406,13 +430,6 @@ void Theme::setForegroundMargin(int margin)
 void Theme::setForegroundPadding(int padding)
 {
 	setValue(m_foreground_padding, padding);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundOpacity(int opacity)
-{
-	setValue(m_foreground_opacity, opacity);
 }
 
 //-----------------------------------------------------------------------------

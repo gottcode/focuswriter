@@ -99,40 +99,61 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_foreground_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
 
 	m_foreground_opacity = new QSpinBox(tab);
+	m_foreground_opacity->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_opacity->setSuffix("%");
 	m_foreground_opacity->setRange(0, 100);
 	m_foreground_opacity->setValue(m_theme.foregroundOpacity());
+	m_foreground_opacity->setToolTip(tr("Opacity"));
 	connect(m_foreground_opacity, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_foreground_width = new QSpinBox(tab);
+	m_foreground_width->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_width->setSuffix(tr(" pixels"));
 	m_foreground_width->setRange(500, 2000);
 	m_foreground_width->setValue(m_theme.foregroundWidth());
 
+	m_foreground_position = new QComboBox(tab);
+	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
+	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
+	m_foreground_position->setToolTip(tr("Position"));
+
+	m_foreground_rounding = new QSpinBox(tab);
+	m_foreground_rounding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_foreground_rounding->setSuffix(tr(" pixels"));
+	m_foreground_rounding->setRange(0, 100);
+	m_foreground_rounding->setValue(m_theme.foregroundRounding());
+
 	m_foreground_margin = new QSpinBox(tab);
+	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_margin->setSuffix(tr(" pixels"));
 	m_foreground_margin->setRange(10, 250);
 	m_foreground_margin->setValue(m_theme.foregroundMargin());
 
 	m_foreground_padding = new QSpinBox(tab);
+	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_padding->setSuffix(tr(" pixels"));
 	m_foreground_padding->setRange(0, 250);
 	m_foreground_padding->setValue(m_theme.foregroundPadding());
 
-	m_foreground_position = new QComboBox(tab);
-	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Middle") << tr("Right"));
-	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
+	QHBoxLayout* color_layout = new QHBoxLayout;
+	color_layout->setMargin(0);
+	color_layout->addWidget(m_foreground_color);
+	color_layout->addWidget(m_foreground_opacity);
+
+	QHBoxLayout* size_layout = new QHBoxLayout;
+	size_layout->setMargin(0);
+	size_layout->addWidget(m_foreground_width);
+	size_layout->addWidget(m_foreground_position);
 
 	QFormLayout* foreground_layout = new QFormLayout(tab);
 	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	foreground_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
 	foreground_layout->setLabelAlignment(Qt::AlignRight);
-	foreground_layout->addRow(tr("Color:"), m_foreground_color);
-	foreground_layout->addRow(tr("Opacity:"), m_foreground_opacity);
-	foreground_layout->addRow(tr("Width:"), m_foreground_width);
+	foreground_layout->addRow(tr("Color:"), color_layout);
+	foreground_layout->addRow(tr("Size:"), size_layout);
+	foreground_layout->addRow(tr("Rounding:"), m_foreground_rounding);
 	foreground_layout->addRow(tr("Margin:"), m_foreground_margin);
 	foreground_layout->addRow(tr("Padding:"), m_foreground_padding);
-	foreground_layout->addRow(tr("Position:"), m_foreground_position);
 
 
 	// Create text group
@@ -223,10 +244,11 @@ void ThemeDialog::accept()
 	m_theme.setBackgroundImage(m_background_image->toString());
 
 	m_theme.setForegroundColor(m_foreground_color->color());
+	m_theme.setForegroundOpacity(m_foreground_opacity->value());
 	m_theme.setForegroundWidth(m_foreground_width->value());
+	m_theme.setForegroundRounding(m_foreground_rounding->value());
 	m_theme.setForegroundMargin(m_foreground_margin->value());
 	m_theme.setForegroundPadding(m_foreground_padding->value());
-	m_theme.setForegroundOpacity(m_foreground_opacity->value());
 	m_theme.setForegroundPosition(m_foreground_position->currentIndex());
 
 	m_theme.setTextColor(m_text_color->color());
@@ -270,7 +292,10 @@ void ThemeDialog::renderPreview()
 		// Draw foreground
 		QColor color = m_foreground_color->color();
 		color.setAlpha(m_foreground_opacity->value() * 2.55f);
-		painter.fillRect(QRect(20, 20, 160, 110), color);
+		painter.setRenderHint(QPainter::Antialiasing);
+		painter.setBrush(color);
+		painter.setPen(Qt::NoPen);
+		painter.drawRoundedRect(QRect(20, 20, 160, 110), m_foreground_rounding->value(), m_foreground_rounding->value());
 
 		// Draw text
 		painter.setPen(m_text_color->color());

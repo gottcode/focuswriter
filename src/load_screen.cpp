@@ -65,6 +65,7 @@ void LoadScreen::setText(const QString& step)
 	m_hide_effect->setOpacity(1.0);
 
 	show();
+	raise();
 	QApplication::processEvents();
 }
 

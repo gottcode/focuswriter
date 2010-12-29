@@ -56,6 +56,7 @@ signals:
 	void redoAvailable(bool);
 	void undoAvailable(bool);
 	void footerVisible(bool);
+	void headerVisible(bool);
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
 	void findNextAvailable(bool available);
@@ -99,7 +100,8 @@ public slots:
 	void updateSmartQuotes();
 	void updateSmartQuotesSelection();
 	void setFooterVisible(bool visible);
-	void setHeaderVisible(bool visible);
+	void setHeaderVisible(bool visible = true);
+	void showHeader();
 
 protected:
 	virtual void mouseMoveEvent(QMouseEvent* event);

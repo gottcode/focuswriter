@@ -144,7 +144,7 @@ void SessionManager::setCurrent(const QString& session)
 	}
 
 	// Open session
-	m_session = new Session(!session.isEmpty() ? session : tr("Default"));
+	m_session = new Session(!session.isEmpty() ? session : Session::tr("Default"));
 	emit themeChanged(m_session->theme());
 	m_window->addDocuments(m_session->files(), m_session->positions(), m_session->active(), true);
 
@@ -352,7 +352,7 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 			return QString();
 		}
 
-		if (name != tr("Default") && !QFile::exists(Session::pathFromName(name))) {
+		if (name != Session::tr("Default") && !QFile::exists(Session::pathFromName(name))) {
 			break;
 		} else {
 			QMessageBox::information(window, tr("Sorry"), tr("The requested session name is already in use."));
@@ -369,10 +369,10 @@ void SessionManager::updateList(const QString& selected)
 	m_sessions_list->clear();
 
 	QStringList files = QDir(Session::path(), "*.session").entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
-	files.prepend(tr("Default"));
+	files.prepend(Session::tr("Default"));
 	for (int i = 0; i < files.count(); ++i) {
 		QString name = Session::pathToName(files.at(i));
-		if ((name == tr("Default")) && (i > 0)) {
+		if ((name == Session::tr("Default")) && (i > 0)) {
 			continue;
 		}
 
@@ -396,7 +396,7 @@ void SessionManager::updateList(const QString& selected)
 
 	m_sessions_menu->addSeparator();
 	m_sessions_menu->addAction(QIcon::fromTheme("window-new"), tr("&New..."), this, SLOT(newSession()), tr("Ctrl+Shift+N"));
-	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+M"));
+	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+Shift+M"));
 }
 
 //-----------------------------------------------------------------------------

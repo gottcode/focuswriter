@@ -279,7 +279,6 @@ void FindDialog::showMode(bool replace)
 	m_find_string->setFocus();
 
 	show();
-	raise();
 	activateWindow();
 }
 

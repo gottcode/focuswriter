@@ -21,6 +21,7 @@
 
 #include "document.h"
 #include "load_screen.h"
+#include "locale_dialog.h"
 #include "preferences.h"
 #include "preferences_dialog.h"
 #include "session.h"
@@ -148,6 +149,11 @@ Window::Window()
 	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
 	new QShortcut(QKeySequence::NextChild, this, SLOT(nextDocument()));
 	new QShortcut(QKeySequence::PreviousChild, this, SLOT(previousDocument()));
+
+	// Always bring interface to front
+	connect(m_documents, SIGNAL(headerVisible(bool)), menuBar(), SLOT(raise()));
+	connect(m_documents, SIGNAL(headerVisible(bool)), m_toolbar, SLOT(raise()));
+	connect(m_documents, SIGNAL(footerVisible(bool)), m_footer, SLOT(raise()));
 
 	// Lay out details
 	QHBoxLayout* clock_layout = new QHBoxLayout;
@@ -598,6 +604,14 @@ void Window::aboutClicked()
 
 //-----------------------------------------------------------------------------
 
+void Window::setLocaleClicked()
+{
+	LocaleDialog dialog(this);
+	dialog.exec();
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::keyPressed(int key)
 {
 	if (m_typewriter_sounds) {
@@ -772,6 +786,12 @@ bool Window::addDocument(const QString& filename, int position)
 	connect(document, SIGNAL(keyPressed(int)), this, SLOT(keyPressed(int)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
+	// Add tab for document
+	m_documents->addDocument(document);
+	int index = m_tabs->addTab(tr("Untitled"));
+	updateTab(index);
+	m_tabs->setCurrentIndex(index);
+
 	// Restore cursor position
 	QTextCursor cursor = document->text()->textCursor();
 	if (m_save_positions && position != -1 && !document->untitledIndex()) {
@@ -780,13 +800,7 @@ bool Window::addDocument(const QString& filename, int position)
 		cursor.movePosition(QTextCursor::End);
 	}
 	document->text()->setTextCursor(cursor);
-
-	// Add tab for document
-	m_documents->addDocument(document);
 	document->centerCursor(true);
-	int index = m_tabs->addTab(tr("Untitled"));
-	updateTab(index);
-	m_tabs->setCurrentIndex(index);
 
 	if (show_load) {
 		m_load_screen->finish();
@@ -1082,14 +1096,34 @@ void Window::initMenus()
 #else
 	m_actions["Fullscreen"]->setCheckable(true);
 #endif
+	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, SLOT(showMinimized()), tr("Ctrl+M"));
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
+	settings_menu->addSeparator();
+	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, SLOT(setLocaleClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
 	m_actions["AboutQt"] = help_menu->addAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), qApp, SLOT(aboutQt()));
+
+	// Always show menubar
+#ifndef Q_OS_MAC
+	connect(file_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(edit_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(format_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(tools_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(settings_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(help_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+
+	connect(file_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(edit_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(format_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(tools_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(settings_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(help_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+#endif
 
 	// Enable toolbar management in preferences dialog
 	QHashIterator<QString, QAction*> i(m_actions);

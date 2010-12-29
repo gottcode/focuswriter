@@ -1,3 +1,92 @@
+2010-12-28 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.3.2.
+
+2010-12-26 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Ubuntu panels appeared when find dialog was shown.
+
+2010-12-17 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Jumped while selecting text and scrolling.
+
+2010-12-16 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Statistics and centering were broken for large documents.
+
+2010-12-16 Jérôme Borme <jerome.borme@gmail.com>
+	* Update French translation.
+	* Update Portuguese translation.
+
+2010-12-16 Pavel Fric <pavelfric@seznam.cz>
+	* Update Czech translation.
+
+2010-12-14 Jakub Kowalski <jakowalski@gmail.com>
+	* Update Polish translation.
+
+2010-12-14 Márcio Massula Jr. <marciomassulajr@gmail.com>
+	* Update Brazilian Portuguese translation.
+
+2010-12-14 Graeme Gott <graeme@gottcode.org>
+	* Fixed regression where it no longer centered opened documents.
+	* Fixed incorrect error string.
+
+2010-12-12 Graeme Gott <graeme@gottcode.org>
+	* Add changing the program language.
+
+2010-12-07 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Was recentering when backspacing at end of document.
+	* Always bring interface to front.
+
+2010-12-05 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Header stayed visible when menus closed.
+	* FIXED: Could not select text where header is shown.
+	* Only apply mask to stack and not to documents.
+	* FIXED: Header wasn't shown when menus were shown by keyboard shortcuts.
+	* FIXED: Toolbar outline stayed visible when it was expanded.
+
+2010-12-04 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Automatic spellchecking highlighted current word.
+
+2010-12-02 Jakub Kowalski <jakowalski@gmail.com>
+	* Update Polish translation.
+
+2010-12-01 Graeme Gott <graeme@gottcode.org>
+	* Add Czech dictionary.
+
+2010-12-01 Pavel Fric <pavelfric@seznam.cz>
+	* Add Czech translation.
+
+2010-11-26 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not inform user when archives have no dictionaries.
+
+2010-11-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Brazilian Portuguese translation could not open all files.
+	* FIXED: Portuguese translation had incorrect file extension.
+
+2010-11-21 Graeme Gott <graeme@gottcode.org>
+	* Rearrange theme foreground options.
+	* Use contrast color for highlighted text.
+
+2010-11-09 Graeme Gott <graeme@gottcode.org>
+	* Add rounded corners to themes.
+
+2010-11-08 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not scroll over padding.
+
+2010-11-04 Jakub Kowalski <jakowalski@gmail.com>
+	* Update Polish translation.
+
+2010-11-02 Graeme Gott <graeme@gottcode.org>
+	* Allow text to use full width.
+	* Use nearest spinbox values.
+
+2010-10-31 Graeme Gott <graeme@gottcode.org>
+	* Add minimize window action.
+	* FIXED: Could not add words with smart quotes to personal dictionary.
+	* FIXED: Could add word to personal dictionary multiple times.
+	* FIXED: Played typewriter sounds for non-printing keys.
+	* FIXED: Did not center for themes with padding.
+
+2010-10-29 Graeme Gott <graeme@gottcode.org>
+	* Use compressed dictionaries.
+
 2010-10-28 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.3.1.
 

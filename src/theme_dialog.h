@@ -66,10 +66,11 @@ private:
 	QPushButton* m_clear_image;
 
 	ColorButton* m_foreground_color;
+	QSpinBox* m_foreground_opacity;
 	QSpinBox* m_foreground_width;
+	QSpinBox* m_foreground_rounding;
 	QSpinBox* m_foreground_margin;
 	QSpinBox* m_foreground_padding;
-	QSpinBox* m_foreground_opacity;
 	QComboBox* m_foreground_position;
 
 	ColorButton* m_text_color;

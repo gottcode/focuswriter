@@ -32,7 +32,7 @@ class Highlighter : public QSyntaxHighlighter
 	Q_OBJECT
 
 public:
-	Highlighter(QTextEdit* text);
+	Highlighter(QTextEdit* text, Dictionary* dictionary);
 
 	bool enabled() const;
 	QColor misspelledColor() const;
@@ -43,6 +43,7 @@ public:
 	virtual void highlightBlock(const QString& text);
 
 private slots:
+	void cursorPositionChanged();
 	void suggestion(QAction* action);
 
 private:
@@ -53,6 +54,7 @@ private:
 	bool m_enabled;
 	QColor m_misspelled;
 	QString m_word;
+	QTextBlock m_current;
 
 	QAction* m_add_action;
 	QAction* m_check_action;

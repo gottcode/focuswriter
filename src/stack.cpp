@@ -534,16 +534,32 @@ void Stack::updateSmartQuotesSelection()
 
 void Stack::setFooterVisible(bool visible)
 {
-	m_footer_visible = visible * -m_footer_margin;
-	updateMask();
+	int footer_visible = visible * -m_footer_margin;
+	if (m_footer_visible != footer_visible) {
+		emit footerVisible(visible);
+		m_footer_visible = footer_visible;
+		updateMask();
+	}
 }
 
 //-----------------------------------------------------------------------------
 
 void Stack::setHeaderVisible(bool visible)
 {
-	m_header_visible = visible * m_header_margin;
-	updateMask();
+	int header_visible = visible * m_header_margin;
+	if (m_header_visible != header_visible) {
+		emit headerVisible(visible);
+		m_header_visible = header_visible;
+		updateMask();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::showHeader()
+{
+	QPoint point = mapFromGlobal(QCursor::pos());
+	setHeaderVisible(window()->rect().contains(point) && point.y() <= m_header_margin);
 }
 
 //-----------------------------------------------------------------------------
@@ -552,7 +568,6 @@ void Stack::mouseMoveEvent(QMouseEvent* event)
 {
 	bool header_visible = event->pos().y() <= m_header_margin;
 	bool footer_visible = event->pos().y() >= (height() - m_footer_margin);
-	emit footerVisible(footer_visible);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
 	if (m_current_document && (header_visible || footer_visible)) {
@@ -610,22 +625,13 @@ void Stack::updateBackground()
 void Stack::updateMask()
 {
 	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
+	if (!m_header_visible && !m_footer_visible) {
+		raise();
+	}
 
-	int top = 0;
-	if (m_header_visible) {
-		top = (m_header_margin > m_margin) ? (m_header_margin - m_margin) : 0;
-	}
-	int bottom = 0;
-	if (m_footer_visible) {
-		bottom = (m_footer_margin > m_margin) ? (m_footer_margin - m_margin) : 0;
-	}
-	QRect mask = m_contents->rect().adjusted(0, top, 0, -bottom);
-	m_contents->setMask(mask);
-	foreach (Document* document, m_documents) {
-		document->setMask(mask);
-		document->text()->setMask(mask);
-		document->text()->viewport()->setMask(mask);
-	}
+	bool transparent = m_header_visible || m_footer_visible;
+	m_contents->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
+	m_alerts->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
 }
 
 //-----------------------------------------------------------------------------
