@@ -101,6 +101,7 @@ SOURCES += src/alert.cpp \
 TRANSLATIONS = translations/cs.ts \
 	translations/en_US.ts \
 	translations/es.ts \
+	translations/es_MX.ts \
 	translations/fr.ts \
 	translations/pl.ts \
 	translations/pt.ts \
