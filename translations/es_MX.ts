@@ -211,31 +211,36 @@
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="56"/>
+        <source>Mexican Spanish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/locale_dialog.cpp" line="57"/>
         <source>French</source>
         <translation>Francés</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="57"/>
+        <location filename="../src/locale_dialog.cpp" line="58"/>
         <source>Polish</source>
         <translation>Polaco</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="58"/>
+        <location filename="../src/locale_dialog.cpp" line="59"/>
         <source>Portuguese</source>
         <translation>Portugués</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="59"/>
+        <location filename="../src/locale_dialog.cpp" line="60"/>
         <source>Brazilian Portuguese</source>
         <translation>Portugués Brazileño</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="154"/>
+        <location filename="../src/locale_dialog.cpp" line="155"/>
         <source>Note</source>
         <translation>Nota</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="154"/>
+        <location filename="../src/locale_dialog.cpp" line="155"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Por favor reinicie esta aplicación para que los cambios de idioma se realicen.</translation>
     </message>
