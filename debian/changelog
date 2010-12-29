@@ -1,3 +1,9 @@
+focuswriter (1.3.2-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 28 Dec 2010 19:39:14 -0500
+
 focuswriter (1.3.1-1) unstable; urgency=low
 
   * Initial release for Debian, based on Ubuntu packaging (closes: #580763)
