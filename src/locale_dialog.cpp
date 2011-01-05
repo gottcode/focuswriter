@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,6 +51,7 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 	QStringList translations = findTranslations();
 	QHash<QString, QString> display_texts;
 	display_texts.insert("cs", tr("Czech"));
+	display_texts.insert("de", tr("German"));
 	display_texts.insert("en_US", tr("American English"));
 	display_texts.insert("es", tr("Spanish"));
 	display_texts.insert("es_MX", tr("Mexican Spanish"));

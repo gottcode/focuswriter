@@ -99,6 +99,7 @@ SOURCES += src/alert.cpp \
 	src/rtf/writer.cpp
 
 TRANSLATIONS = translations/cs.ts \
+	translations/de.ts \
 	translations/en_US.ts \
 	translations/es.ts \
 	translations/es_MX.ts \

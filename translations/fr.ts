@@ -201,46 +201,51 @@
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="54"/>
+        <source>German</source>
+        <translation>Allemand</translation>
+    </message>
+    <message>
+        <location filename="../src/locale_dialog.cpp" line="55"/>
         <source>American English</source>
         <translation>Anglais américain</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="55"/>
+        <location filename="../src/locale_dialog.cpp" line="56"/>
         <source>Spanish</source>
         <translation>Espagnol</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="56"/>
+        <location filename="../src/locale_dialog.cpp" line="57"/>
         <source>Mexican Spanish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="57"/>
+        <location filename="../src/locale_dialog.cpp" line="58"/>
         <source>French</source>
         <translation>Français</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="58"/>
+        <location filename="../src/locale_dialog.cpp" line="59"/>
         <source>Polish</source>
         <translation>Polonais</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="59"/>
+        <location filename="../src/locale_dialog.cpp" line="60"/>
         <source>Portuguese</source>
         <translation>Portugais</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="60"/>
+        <location filename="../src/locale_dialog.cpp" line="61"/>
         <source>Brazilian Portuguese</source>
         <translation>Portugais Brésilien</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="155"/>
+        <location filename="../src/locale_dialog.cpp" line="156"/>
         <source>Note</source>
         <translation>Note</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="155"/>
+        <location filename="../src/locale_dialog.cpp" line="156"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Veuillez redémarrer le programme pour que le changement de langue prenne effet.</translation>
     </message>
