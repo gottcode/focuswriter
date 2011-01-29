@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,8 @@ Highlighter::Highlighter(QTextEdit* text, Dictionary* dictionary)
 	m_dictionary(dictionary),
 	m_text(text),
 	m_enabled(true),
-	m_misspelled("#ff0000")
+	m_misspelled("#ff0000"),
+	m_changed(false)
 {
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 
@@ -159,10 +160,12 @@ void Highlighter::highlightBlock(const QString& text)
 	for (int i = 0; i < words.count(); ++i) {
 		const QStringRef& word = words.at(i);
 		int delta = cursor - word.position();
-		if (delta < 0 || delta > word.length()) {
+		if (!m_changed || (delta < 0 || delta > word.length())) {
 			setFormat(word.position(), word.length(), error);
 		}
 	}
+
+	m_changed = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -177,6 +180,7 @@ void Highlighter::cursorPositionChanged()
 		m_current = current;
 	}
 	rehighlightBlock(m_current);
+	m_changed = false;
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,6 +55,7 @@ private:
 	QColor m_misspelled;
 	QString m_word;
 	QTextBlock m_current;
+	bool m_changed;
 
 	QAction* m_add_action;
 	QAction* m_check_action;
