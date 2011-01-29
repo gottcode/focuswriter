@@ -905,12 +905,7 @@ void Window::hideInterface()
 
 void Window::updateMargin()
 {
-	int header = 0;
-	if (m_toolbar->isVisible()) {
-		header = m_toolbar->mapToParent(m_toolbar->rect().bottomLeft()).y() + 1;
-	} else if (menuBar()->window() == this) {
-		header = menuBar()->mapToParent(menuBar()->rect().bottomLeft()).y() + 1;
-	}
+	int header = centralWidget()->mapToParent(QPoint(0,0)).y();
 	int footer = m_footer->sizeHint().height();
 	m_documents->setMargins(footer, header);
 }
