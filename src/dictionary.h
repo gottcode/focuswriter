@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@
 
 #include <QObject>
 #include <QStringList>
+#include <QSharedPointer>
+class DictionaryPrivate;
 
 class Dictionary : public QObject
 {
@@ -29,31 +31,31 @@ class Dictionary : public QObject
 
 public:
 	Dictionary(QObject* parent = 0);
-	Dictionary(const Dictionary& dictionary);
-	Dictionary& operator=(const Dictionary& dictionary);
+	Dictionary(const QString& language, QObject* parent = 0);
 	~Dictionary();
 
-	void add(const QString& word);
 	QStringRef check(const QString& string, int start_at = 0) const;
 	QStringList suggestions(const QString& word) const;
 
-	QStringList availableLanguages();
-	QString language();
-	QStringList personal();
 	void setLanguage(const QString& language);
-	void setIgnoreNumbers(bool ignore);
-	void setIgnoreUppercase(bool ignore);
-	void setPersonal(const QStringList& words);
 
+	static QStringList availableLanguages();
+	static QString defaultLanguage();
 	static QString path();
+	static QStringList personal();
+
+	static void add(const QString& word);
+	static void setDefaultLanguage(const QString& language);
+	static void setIgnoreNumbers(bool ignore);
+	static void setIgnoreUppercase(bool ignore);
 	static void setPath(const QString& path);
+	static void setPersonal(const QStringList& words);
 
 signals:
 	void changed();
 
 private:
-	void increment();
-	void decrement();
+	QSharedPointer<DictionaryPrivate> d;
 };
 
 #endif

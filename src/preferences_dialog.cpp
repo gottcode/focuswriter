@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,6 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_preferences(preferences)
 {
 	setWindowTitle(tr("Preferences"));
-	m_dictionary = new Dictionary(this);
 
 	QTabWidget* tabs = new QTabWidget(this);
 	tabs->addTab(initGeneralTab(), tr("General"));
@@ -275,16 +274,16 @@ void PreferencesDialog::accept()
 	} else {
 		m_preferences.setLanguage(QString());
 	}
-	m_dictionary->setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
-	m_dictionary->setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
-	m_dictionary->setLanguage(m_preferences.language());
+	Dictionary::setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
+	Dictionary::setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
+	Dictionary::setDefaultLanguage(m_preferences.language());
 
 	// Save personal dictionary
 	QStringList words;
 	for (int i = 0; i < m_personal_dictionary->count(); ++i) {
 		words.append(m_personal_dictionary->item(i)->text());
 	}
-	m_dictionary->setPersonal(words);
+	Dictionary::setPersonal(words);
 
 	QDialog::accept();
 }
@@ -795,7 +794,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	m_remove_language_button->setAutoDefault(false);
 	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
 
-	QStringList languages = m_dictionary->availableLanguages();
+	QStringList languages = Dictionary::availableLanguages();
 	foreach (const QString& language, languages) {
 		m_languages->addItem(languageName(language), language);
 	}
@@ -819,7 +818,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	connect(m_add_word_button, SIGNAL(clicked()), this, SLOT(addWord()));
 
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
-	QStringList words = m_dictionary->personal();
+	QStringList words = Dictionary::personal();
 	foreach (const QString& word, words) {
 		m_personal_dictionary->addItem(word);
 	}

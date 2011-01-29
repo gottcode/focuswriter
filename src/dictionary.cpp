@@ -27,17 +27,33 @@
 #include <QHash>
 #include <QTextCodec>
 #include <QTextStream>
+#include <QWeakPointer>
 
 #include <hunspell.hxx>
 
 //-----------------------------------------------------------------------------
 
+class DictionaryPrivate
+{
+public:
+	DictionaryPrivate(const QString& language);
+	~DictionaryPrivate();
+
+	QStringRef check(const QString& string, int start_at = 0) const;
+	QStringList suggestions(const QString& word) const;
+
+	void addPersonal();
+	void removePersonal();
+
+private:
+	Hunspell* m_dictionary;
+	QTextCodec* m_codec;
+};
+
 namespace
 {
 	QList<Dictionary*> f_instances;
-	Hunspell* f_dictionary = 0;
-	QTextCodec* f_codec = 0;
-	int f_ref_count = 0;
+	QHash<QString, QWeakPointer<DictionaryPrivate> > f_dictionaries;
 	QString f_path;
 	QString f_language;
 	QStringList f_personal;
@@ -55,31 +71,38 @@ namespace
 Dictionary::Dictionary(QObject* parent)
 	: QObject(parent)
 {
-	increment();
+	f_instances.append(this);
+	setLanguage(QString());
 }
 
 //-----------------------------------------------------------------------------
 
-Dictionary::Dictionary(const Dictionary& dictionary)
-	: QObject(dictionary.parent())
+Dictionary::Dictionary(const QString& language, QObject* parent)
+	: QObject(parent)
 {
-	increment();
-}
-
-//-----------------------------------------------------------------------------
-
-Dictionary& Dictionary::operator=(const Dictionary& dictionary)
-{
-	setParent(dictionary.parent());
-	increment();
-	return *this;
+	f_instances.append(this);
+	setLanguage(language);
 }
 
 //-----------------------------------------------------------------------------
 
 Dictionary::~Dictionary()
 {
-	decrement();
+	f_instances.removeAll(this);
+}
+
+//-----------------------------------------------------------------------------
+
+QStringRef Dictionary::check(const QString& string, int start_at) const
+{
+	return d->check(string, start_at);
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList Dictionary::suggestions(const QString& word) const
+{
+	return d->suggestions(word);
 }
 
 //-----------------------------------------------------------------------------
@@ -99,9 +122,200 @@ void Dictionary::add(const QString& word)
 
 //-----------------------------------------------------------------------------
 
-QStringRef Dictionary::check(const QString& string, int start_at) const
+void Dictionary::setLanguage(const QString& language)
 {
-	if (!f_dictionary) {
+	QString l = !language.isEmpty() ? language : f_language;
+	d = f_dictionaries[l];
+	if (d.isNull()) {
+		d = QSharedPointer<DictionaryPrivate>(new DictionaryPrivate(l));
+		f_dictionaries[l] = d;
+	}
+	emit changed();
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList Dictionary::availableLanguages()
+{
+	QStringList result;
+	QStringList locations = QDir::searchPaths("dict");
+	QListIterator<QString> i(locations);
+	while (i.hasNext()) {
+		QDir dir(i.next());
+
+		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
+		dic_files.replaceInStrings(QRegExp("\\.dic.*"), "");
+		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
+		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
+
+		foreach (const QString& language, dic_files) {
+			if (aff_files.contains(language) && !result.contains(language)) {
+				result.append(language);
+			}
+		}
+	}
+	return result;
+}
+
+//-----------------------------------------------------------------------------
+
+QString Dictionary::defaultLanguage()
+{
+	return f_language;
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList Dictionary::personal()
+{
+	return f_personal;
+}
+
+//-----------------------------------------------------------------------------
+
+void Dictionary::setDefaultLanguage(const QString& language)
+{
+	if (language == f_language) {
+		return;
+	}
+	f_language = language;
+
+	QSharedPointer<DictionaryPrivate> d = f_dictionaries[f_language];
+	foreach (Dictionary* dictionary, f_instances) {
+		if (dictionary->d == d) {
+			emit dictionary->changed();
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Dictionary::setIgnoreNumbers(bool ignore)
+{
+	f_ignore_numbers = ignore;
+}
+
+//-----------------------------------------------------------------------------
+
+void Dictionary::setIgnoreUppercase(bool ignore)
+{
+	f_ignore_uppercase = ignore;
+}
+
+//-----------------------------------------------------------------------------
+
+void Dictionary::setPersonal(const QStringList& words)
+{
+	// Check if new
+	QStringList personal = SmartQuotes::revert(words);
+	qSort(personal.begin(), personal.end(), compareWords);
+	if (personal == f_personal) {
+		return;
+	}
+
+	// Remove current personal dictionary
+	QList<QWeakPointer<DictionaryPrivate> > dictionaries = f_dictionaries.values();
+	foreach (QSharedPointer<DictionaryPrivate> dictionary, dictionaries) {
+		if (!dictionary.isNull()) {
+			dictionary->removePersonal();
+		}
+	}
+
+	// Update and store personal dictionary
+	f_personal = personal;
+	QFile file(f_path + "/personal");
+	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec(QTextCodec::codecForName("UTF-8"));
+		foreach (const QString& word, f_personal) {
+			stream << word << "\n";
+		}
+	}
+
+	// Add personal dictionary
+	foreach (QSharedPointer<DictionaryPrivate> dictionary, dictionaries) {
+		if (!dictionary.isNull()) {
+			dictionary->addPersonal();
+		}
+	}
+
+	// Re-check documents
+	foreach (Dictionary* dictionary, f_instances) {
+		emit dictionary->changed();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+QString Dictionary::path()
+{
+	return f_path;
+}
+
+//-----------------------------------------------------------------------------
+
+void Dictionary::setPath(const QString& path)
+{
+	f_path = path;
+}
+
+//-----------------------------------------------------------------------------
+
+DictionaryPrivate::DictionaryPrivate(const QString& language)
+	: m_dictionary(0),
+	m_codec(0)
+{
+	// Find dictionary files
+	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
+	if (aff.isEmpty()) {
+		aff = QFileInfo("dict:" + language + ".aff.hz").canonicalFilePath();
+		aff.chop(3);
+	}
+	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
+	if (dic.isEmpty()) {
+		dic = QFileInfo("dict:" + language + ".dic.hz").canonicalFilePath();
+		dic.chop(3);
+	}
+	if (language.isEmpty() || aff.isEmpty() || dic.isEmpty()) {
+		return;
+	}
+
+	// Create dictionary
+	m_dictionary = new Hunspell(QFile::encodeName(aff).constData(), QFile::encodeName(dic).constData());
+	m_codec = QTextCodec::codecForName(m_dictionary->get_dic_encoding());
+	if (!m_codec) {
+		delete m_dictionary;
+		m_dictionary = 0;
+		return;
+	}
+
+	// Add personal dictionary
+	if (f_personal.isEmpty()) {
+		QFile file(f_path + "/personal");
+		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			while (!stream.atEnd()) {
+				f_personal.append(stream.readLine());
+			}
+			qSort(f_personal.begin(), f_personal.end(), compareWords);
+		}
+	}
+	addPersonal();
+}
+
+//-----------------------------------------------------------------------------
+
+DictionaryPrivate::~DictionaryPrivate()
+{
+	delete m_dictionary;
+}
+
+//-----------------------------------------------------------------------------
+
+QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
+{
+	if (!m_dictionary) {
 		return QStringRef();
 	}
 
@@ -159,7 +373,7 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 				QStringRef check(&string, index, length);
 				QString word = check.toString();
 				word.replace(QChar(0x2019), QLatin1Char('\''));
-				if (!f_dictionary->spell(f_codec->fromUnicode(word).constData())) {
+				if (!m_dictionary->spell(m_codec->fromUnicode(word).constData())) {
 					return check;
 				}
 			}
@@ -174,194 +388,45 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 
 //-----------------------------------------------------------------------------
 
-QStringList Dictionary::suggestions(const QString& word) const
+QStringList DictionaryPrivate::suggestions(const QString& word) const
 {
 	QStringList result;
-	if (!f_dictionary) {
+	if (!m_dictionary) {
 		return result;
 	}
 
 	char** suggestions = 0;
-	int count = f_dictionary->suggest(&suggestions, f_codec->fromUnicode(word).constData());
+	int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(word).constData());
 	if (suggestions != 0) {
 		for (int i = 0; i < count; ++i) {
-			QString word = f_codec->toUnicode(suggestions[i]);
+			QString word = m_codec->toUnicode(suggestions[i]);
 			SmartQuotes::replace(word);
 			result.append(word);
 		}
-		f_dictionary->free_list(&suggestions, count);
+		m_dictionary->free_list(&suggestions, count);
 	}
 	return result;
 }
 
 //-----------------------------------------------------------------------------
 
-QStringList Dictionary::availableLanguages()
+void DictionaryPrivate::addPersonal()
 {
-	QStringList result;
-	QStringList locations = QDir::searchPaths("dict");
-	QListIterator<QString> i(locations);
-	while (i.hasNext()) {
-		QDir dir(i.next());
-
-		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
-		dic_files.replaceInStrings(QRegExp("\\.dic.*"), "");
-		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
-		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
-
-		foreach (const QString& language, dic_files) {
-			if (aff_files.contains(language) && !result.contains(language)) {
-				result.append(language);
-			}
-		}
-	}
-	return result;
-}
-
-//-----------------------------------------------------------------------------
-
-QString Dictionary::language()
-{
-	return f_language;
-}
-
-//-----------------------------------------------------------------------------
-
-QStringList Dictionary::personal()
-{
-	return f_personal;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setIgnoreNumbers(bool ignore)
-{
-	f_ignore_numbers = ignore;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setIgnoreUppercase(bool ignore)
-{
-	f_ignore_uppercase = ignore;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setLanguage(const QString& language)
-{
-	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
-	if (aff.isEmpty()) {
-		aff = QFileInfo("dict:" + language + ".aff.hz").canonicalFilePath();
-		aff.chop(3);
-	}
-	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
-	if (dic.isEmpty()) {
-		dic = QFileInfo("dict:" + language + ".dic.hz").canonicalFilePath();
-		dic.chop(3);
-	}
-	if (language.isEmpty() || aff.isEmpty() || dic.isEmpty() || language == f_language) {
-		return;
-	}
-	f_language = language;
-
-	delete f_dictionary;
-	f_dictionary = new Hunspell(QFile::encodeName(aff).constData(), QFile::encodeName(dic).constData());
-	f_codec = QTextCodec::codecForName(f_dictionary->get_dic_encoding());
-
-	if (f_codec) {
-		QStringList words = personal();
-		foreach (const QString& word, words) {
-			f_dictionary->add(f_codec->fromUnicode(word).constData());
-		}
-	} else {
-		delete f_dictionary;
-		f_dictionary = 0;
-	}
-
-	foreach (Dictionary* dictionary, f_instances) {
-		emit dictionary->changed();
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setPersonal(const QStringList& words)
-{
-	if (f_dictionary) {
+	if (m_dictionary) {
 		foreach (const QString& word, f_personal) {
-			f_dictionary->remove(f_codec->fromUnicode(word).constData());
+			m_dictionary->add(m_codec->fromUnicode(word).constData());
 		}
 	}
+}
 
-	f_personal = SmartQuotes::revert(words);
-	qSort(f_personal.begin(), f_personal.end(), compareWords);
+//-----------------------------------------------------------------------------
 
-	QFile file(f_path + "/personal");
-	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-		QTextStream stream(&file);
-		stream.setCodec(QTextCodec::codecForName("UTF-8"));
+void DictionaryPrivate::removePersonal()
+{
+	if (m_dictionary) {
 		foreach (const QString& word, f_personal) {
-			stream << word << "\n";
+			m_dictionary->remove(m_codec->fromUnicode(word).constData());
 		}
-	}
-
-	if (f_dictionary) {
-		foreach (const QString& word, f_personal) {
-			f_dictionary->add(f_codec->fromUnicode(word).constData());
-		}
-	}
-
-	foreach (Dictionary* dictionary, f_instances) {
-		emit dictionary->changed();
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-QString Dictionary::path()
-{
-	return f_path;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setPath(const QString& path)
-{
-	f_path = path;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::increment()
-{
-	f_ref_count++;
-	f_instances.append(this);
-	if (f_personal.isEmpty()) {
-		QStringList words;
-		QFile file(f_path + "/personal");
-		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			while (!stream.atEnd()) {
-				words.append(stream.readLine());
-			}
-			qSort(f_personal.begin(), f_personal.end(), compareWords);
-			f_personal = words;
-		}
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::decrement()
-{
-	f_ref_count--;
-	f_instances.removeOne(this);
-	if (f_ref_count <= 0) {
-		f_ref_count = 0;
-		delete f_dictionary;
-		f_dictionary = 0;
 	}
 }
 

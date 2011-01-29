@@ -1,4 +1,5 @@
 2011-01-29 Graeme Gott <graeme@gottcode.org>
+	* Allow for multiple dictionaries to be loaded.
 	* Leave misspelled highlight when only moving cursor.
 	* Always ignore smart apostrophes when spellchecking.
 

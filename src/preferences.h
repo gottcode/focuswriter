@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@
 #define PREFERENCES_H
 
 #include "settings_file.h"
-class Dictionary;
 
 #include <QStringList>
 
@@ -131,7 +130,6 @@ private:
 	bool m_ignore_uppercase;
 	bool m_ignore_numbers;
 	QString m_language;
-	Dictionary* m_dictionary;
 };
 
 #endif
