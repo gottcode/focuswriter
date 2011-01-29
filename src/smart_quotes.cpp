@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -132,6 +132,33 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 		progress.setValue(i);
 	}
 	cursor.endEditBlock();
+}
+
+//-----------------------------------------------------------------------------
+
+void SmartQuotes::replace(QString& string)
+{
+	QChar previous;
+	int count = string.length();
+	for (int i = 0; i < count; ++i) {
+		QCharRef c = string[i];
+		int quote = 2;
+		if (c == '"') {
+			quote = 0;
+		} else if (c != '\'') {
+			previous = c;
+			continue;
+		}
+
+		if (!previous.isSpace() && !previous.isNull()) {
+			quote++;
+		}
+		previous = c;
+
+		if (c != m_quotes[quote]) {
+			c = m_quotes[quote];
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

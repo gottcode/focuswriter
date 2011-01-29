@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -157,7 +157,9 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 		if (word || (i == count && index != -1)) {
 			if (!uppercase && !(number && f_ignore_numbers)) {
 				QStringRef check(&string, index, length);
-				if (!f_dictionary->spell(f_codec->fromUnicode(check.toString()).constData())) {
+				QString word = check.toString();
+				word.replace(QChar(0x2019), QLatin1Char('\''));
+				if (!f_dictionary->spell(f_codec->fromUnicode(word).constData())) {
 					return check;
 				}
 			}
@@ -183,7 +185,9 @@ QStringList Dictionary::suggestions(const QString& word) const
 	int count = f_dictionary->suggest(&suggestions, f_codec->fromUnicode(word).constData());
 	if (suggestions != 0) {
 		for (int i = 0; i < count; ++i) {
-			result.append(f_codec->toUnicode(suggestions[i]));
+			QString word = f_codec->toUnicode(suggestions[i]);
+			SmartQuotes::replace(word);
+			result.append(word);
 		}
 		f_dictionary->free_list(&suggestions, count);
 	}

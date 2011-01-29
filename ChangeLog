@@ -1,3 +1,6 @@
+2011-01-29 Graeme Gott <graeme@gottcode.org>
+	* Always ignore smart apostrophes when spellchecking.
+
 2011-01-05 Graeme Gott <graeme@gottcode.org>
 	* Add German dictionary.
 	* Add German translation.
