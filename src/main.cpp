@@ -163,11 +163,11 @@ int main(int argc, char** argv)
 		settings.setValue("ThemeManager/Theme", theme.name());
 	}
 
-	// Browse to documents
-	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());
-
 	// Create main window
 	new Window;
+
+	// Browse to documents after command-line specified documents have been loaded
+	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());
 
 	return app.exec();
 }
