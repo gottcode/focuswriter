@@ -990,6 +990,7 @@ void Window::initMenus()
 	file_menu->addSeparator();
 	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, SLOT(close()), keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
+	m_actions["Quit"]->setMenuRole(QAction::QuitRole);
 
 	// Create edit menu
 	QMenu* edit_menu = menuBar()->addMenu(tr("&Edit"));
@@ -1100,11 +1101,14 @@ void Window::initMenus()
 	settings_menu->addSeparator();
 	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, SLOT(setLocaleClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
+	m_actions["Preferences"]->setMenuRole(QAction::PreferencesRole);
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
+	m_actions["About"]->setMenuRole(QAction::AboutRole);
 	m_actions["AboutQt"] = help_menu->addAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), qApp, SLOT(aboutQt()));
+	m_actions["AboutQt"]->setMenuRole(QAction::AboutQtRole);
 
 	// Always show menubar
 #ifndef Q_OS_MAC
