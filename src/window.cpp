@@ -564,6 +564,9 @@ void Window::toggleMenuIcons(bool visible)
 {
 	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !visible);
 	QSettings().setValue("Window/MenuIcons", visible);
+#ifdef Q_OS_MAC
+	QMessageBox::information(this, tr("Note"), tr("Please restart this application for the change in menu icons to take effect."), QMessageBox::Ok);
+#endif
 }
 
 //-----------------------------------------------------------------------------
