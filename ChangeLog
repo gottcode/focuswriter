@@ -1,3 +1,6 @@
+2011-02-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Forgot new documents saved when closed.
+
 2011-01-29 Graeme Gott <graeme@gottcode.org>
 	* Allow for multiple dictionaries to be loaded.
 	* Leave misspelled highlight when only moving cursor.

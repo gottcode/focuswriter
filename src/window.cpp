@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -323,17 +323,17 @@ bool Window::closeDocuments(QSettings* session)
 	QStringList files;
 	QStringList positions;
 	for (int i = 0; i < m_documents->count(); ++i) {
+		m_tabs->setCurrentIndex(i);
+		if (!saveDocument(i)) {
+			m_tabs->setCurrentIndex(active);
+			return false;
+		}
+
 		Document* document = m_documents->document(i);
 		QString filename = document->filename();
 		if (!filename.isEmpty()) {
 			files.append(filename);
 			positions.append(QString::number(document->text()->textCursor().position()));
-		}
-
-		m_tabs->setCurrentIndex(i);
-		if (!saveDocument(i)) {
-			m_tabs->setCurrentIndex(active);
-			return false;
 		}
 	}
 
