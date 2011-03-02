@@ -1284,7 +1284,7 @@
     <message>
         <location filename="../src/window.cpp" line="830"/>
         <source>Save changes?</source>
-        <translation>Enrefistrer les changements ?</translation>
+        <translation>Enregistrer les changements ?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="924"/>
@@ -1414,7 +1414,7 @@
     <message>
         <location filename="../src/window.cpp" line="1021"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Sous-ligner</translation>
+        <translation>&amp;Souligner</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1023"/>
