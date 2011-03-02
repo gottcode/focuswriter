@@ -106,7 +106,8 @@ TRANSLATIONS = translations/cs.ts \
 	translations/fr.ts \
 	translations/pl.ts \
 	translations/pt.ts \
-	translations/pt_BR.ts
+	translations/pt_BR.ts \
+	translations/ru.ts
 
 RESOURCES = icons/icons.qrc
 macx {

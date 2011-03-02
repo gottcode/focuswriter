@@ -59,6 +59,7 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 	display_texts.insert("pl", tr("Polish"));
 	display_texts.insert("pt", tr("Portuguese"));
 	display_texts.insert("pt_BR", tr("Brazilian Portuguese"));
+	display_texts.insert("ru", tr("Russian"));
 	foreach (const QString& translation, translations) {
 		if (translation.startsWith("qt")) {
 			continue;
