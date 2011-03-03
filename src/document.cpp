@@ -331,9 +331,7 @@ void Document::loadTheme(const Theme& theme)
 			.arg(theme.foregroundPadding())
 			.arg(theme.foregroundRounding())
 	);
-	if (m_highlighter->misspelledColor() != theme.misspelledColor()) {
-		m_highlighter->setMisspelledColor(theme.misspelledColor());
-	}
+	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update text
 	QFont font = theme.textFont();

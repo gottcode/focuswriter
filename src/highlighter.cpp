@@ -32,7 +32,7 @@
 //-----------------------------------------------------------------------------
 
 Highlighter::Highlighter(QTextEdit* text, Dictionary* dictionary)
-	: QSyntaxHighlighter(text->document()),
+	: QSyntaxHighlighter(text),
 	m_dictionary(dictionary),
 	m_text(text),
 	m_enabled(true),
@@ -48,32 +48,24 @@ Highlighter::Highlighter(QTextEdit* text, Dictionary* dictionary)
 
 //-----------------------------------------------------------------------------
 
-bool Highlighter::enabled() const
-{
-	return m_enabled;
-}
-
-//-----------------------------------------------------------------------------
-
-QColor Highlighter::misspelledColor() const
-{
-	return m_misspelled;
-}
-
-//-----------------------------------------------------------------------------
-
 void Highlighter::setEnabled(bool enabled)
 {
-	m_enabled = enabled;
-	rehighlight();
+	if (m_enabled != enabled) {
+		m_enabled = enabled;
+		rehighlight();
+	}
 }
 
 //-----------------------------------------------------------------------------
 
 void Highlighter::setMisspelledColor(const QColor& color)
 {
-	m_misspelled = color;
-	rehighlight();
+	if (m_misspelled != color) {
+		m_misspelled = color;
+		if (m_enabled) {
+			rehighlight();
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

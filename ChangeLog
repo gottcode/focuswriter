@@ -1,3 +1,6 @@
+2011-03-03 Graeme Gott <graeme@gottcode.org>
+	* Only rehighlight when highlighter is enabled.
+
 2011-03-02 Dmitriy Kodanev <dkodanev@gmail.com>
 	* Add Russian translation.
 

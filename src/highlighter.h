@@ -34,8 +34,6 @@ class Highlighter : public QSyntaxHighlighter
 public:
 	Highlighter(QTextEdit* text, Dictionary* dictionary);
 
-	bool enabled() const;
-	QColor misspelledColor() const;
 	void setEnabled(bool enabled);
 	void setMisspelledColor(const QColor& color);
 
