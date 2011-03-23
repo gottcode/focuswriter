@@ -115,14 +115,12 @@ void LocaleDialog::loadTranslator()
 	QLocale::setDefault(m_current);
 
 	// Load translators
-	if (translations.contains("qt_" + m_current) || translations.contains("qt_" + m_current.left(2))) {
-		static QTranslator local_qt_translator;
-		local_qt_translator.load("qt_" + m_current, m_path);
-		QCoreApplication::installTranslator(&local_qt_translator);
-	}
-
 	static QTranslator qt_translator;
-	qt_translator.load("qt_" + m_current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+	if (translations.contains("qt_" + m_current) || translations.contains("qt_" + m_current.left(2))) {
+		qt_translator.load("qt_" + m_current, m_path);
+	} else {
+		qt_translator.load("qt_" + m_current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+	}
 	QCoreApplication::installTranslator(&qt_translator);
 
 	static QTranslator translator;

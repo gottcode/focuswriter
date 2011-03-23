@@ -1,4 +1,5 @@
 2011-03-23 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Qt translations were not deployed on the Mac.
 	* FIXED: Word count issue with Persian/Farsi.
 	* Update Spanish translation.
 	* Change the way language names are loaded.
