@@ -41,13 +41,13 @@
     <message>
         <location filename="../src/document.cpp" line="226"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Imposible salvar &apos;%1&apos;.</translation>
+        <translation>Imposible guardar &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="239"/>
         <location filename="../src/document.cpp" line="425"/>
         <source>Save File As</source>
-        <translation>Salvar como</translation>
+        <translation>Guardar como</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="243"/>
@@ -297,7 +297,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="613"/>
         <source>Automatically save changes</source>
-        <translation>Salvar los cambios automáticamente</translation>
+        <translation>Guardar los cambios automáticamente</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="637"/>
@@ -1233,7 +1233,7 @@
     <message>
         <location filename="../src/window.cpp" line="830"/>
         <source>Save changes?</source>
-        <translation>¿Salvar los cambios?</translation>
+        <translation>¿Guardar los cambios?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="924"/>
@@ -1263,12 +1263,12 @@
     <message>
         <location filename="../src/window.cpp" line="976"/>
         <source>&amp;Save</source>
-        <translation>&amp;Salvar</translation>
+        <translation>&amp;Guardar</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="978"/>
         <source>Save &amp;As...</source>
-        <translation>Salvar c&amp;omo...</translation>
+        <translation>Guardar c&amp;omo...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="979"/>
@@ -1278,7 +1278,7 @@
     <message>
         <location filename="../src/window.cpp" line="981"/>
         <source>Save A&amp;ll</source>
-        <translation>Salvar &amp;todo</translation>
+        <translation>Guardar &amp;todo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="984"/>
