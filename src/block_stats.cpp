@@ -64,7 +64,7 @@ void BlockStats::update(const QString& text, Dictionary* dictionary)
 		} else if (i->isSpace()) {
 			word = false;
 			m_spaces++;
-		} else if (*i != 0x2019 && *i != 0x0027) {
+		} else if (*i != 0x2019 && *i != 0x0027 && i->category() != QChar::Other_Format) {
 			word = false;
 		}
 	}
