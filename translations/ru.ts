@@ -152,52 +152,12 @@
         <translation>Выберите язык приложения:</translation>
     </message>
     <message>
-        <source>Czech</source>
-        <translation>Чешский</translation>
-    </message>
-    <message>
-        <source>American English</source>
-        <translation>Английский (США)</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <translation>Испанский</translation>
-    </message>
-    <message>
-        <source>Mexican Spanish</source>
-        <translation>Испанский (Мексика)</translation>
-    </message>
-    <message>
-        <source>French</source>
-        <translation>Французский</translation>
-    </message>
-    <message>
-        <source>Polish</source>
-        <translation>Польский</translation>
-    </message>
-    <message>
-        <source>Portuguese</source>
-        <translation>Португальский</translation>
-    </message>
-    <message>
-        <source>Brazilian Portuguese</source>
-        <translation>Португальский (Бразилия)</translation>
-    </message>
-    <message>
         <source>Note</source>
         <translation>Информация</translation>
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Чтобы применить изменение языка, перезапустите программу.</translation>
-    </message>
-    <message>
-        <source>German</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Russian</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

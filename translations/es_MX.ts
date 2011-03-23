@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="239"/>
-        <location filename="../src/document.cpp" line="427"/>
+        <location filename="../src/document.cpp" line="425"/>
         <source>Save File As</source>
         <translation>Guardar archivo como</translation>
     </message>
@@ -66,17 +66,17 @@
         <translation>No se puede renombrar &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="734"/>
+        <location filename="../src/document.cpp" line="732"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Texto Plano (*.txt);;Todos los archivos (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="735"/>
+        <location filename="../src/document.cpp" line="733"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto Enriquecido (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="736"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>All Files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
@@ -169,7 +169,7 @@
         <translation>Checar ortografía...</translation>
     </message>
     <message>
-        <location filename="../src/highlighter.cpp" line="122"/>
+        <location filename="../src/highlighter.cpp" line="114"/>
         <source>(No suggestions found)</source>
         <translation>(No se encontraron sugerencias)</translation>
     </message>
@@ -195,62 +195,12 @@
         <translation>Seleccione idioma de la aplicación:</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="53"/>
-        <source>Czech</source>
-        <translation>Checo</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="54"/>
-        <source>German</source>
-        <translation>Alemán</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="55"/>
-        <source>American English</source>
-        <translation>Inglés Estadounidense</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="56"/>
-        <source>Spanish</source>
-        <translation>Español</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="57"/>
-        <source>Mexican Spanish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="58"/>
-        <source>French</source>
-        <translation>Francés</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="59"/>
-        <source>Polish</source>
-        <translation>Polaco</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="60"/>
-        <source>Portuguese</source>
-        <translation>Portugués</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="61"/>
-        <source>Brazilian Portuguese</source>
-        <translation>Portugués Brazileño</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="62"/>
-        <source>Russian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="157"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Note</source>
         <translation>Nota</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="157"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Por favor reinicie esta aplicación para que los cambios de idioma se realicen.</translation>
     </message>

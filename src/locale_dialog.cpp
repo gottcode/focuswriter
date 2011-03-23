@@ -50,16 +50,16 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 	m_translations = new QComboBox(this);
 	QStringList translations = findTranslations();
 	QHash<QString, QString> display_texts;
-	display_texts.insert("cs", tr("Czech"));
-	display_texts.insert("de", tr("German"));
-	display_texts.insert("en_US", tr("American English"));
-	display_texts.insert("es", tr("Spanish"));
-	display_texts.insert("es_MX", tr("Mexican Spanish"));
-	display_texts.insert("fr", tr("French"));
-	display_texts.insert("pl", tr("Polish"));
-	display_texts.insert("pt", tr("Portuguese"));
-	display_texts.insert("pt_BR", tr("Brazilian Portuguese"));
-	display_texts.insert("ru", tr("Russian"));
+	display_texts.insert("cs", QString::fromUtf8("\304\214esky (cs)"));
+	display_texts.insert("de", QLatin1String("Deutsch (de)"));
+	display_texts.insert("en_US", QLatin1String("English (en_US)"));
+	display_texts.insert("es", QString::fromUtf8("Espa\303\261ol (es)"));
+	display_texts.insert("es_MX", QString::fromUtf8("Espa\303\261ol (es_MX)"));
+	display_texts.insert("fr", QString::fromUtf8("Fran\303\247ais (fr)"));
+	display_texts.insert("pl", QLatin1String("Polski (pl)"));
+	display_texts.insert("pt", QString::fromUtf8("Portugu\303\252s (pt)"));
+	display_texts.insert("pt_BR", QString::fromUtf8("Portugu\303\252s (pt_BR)"));
+	display_texts.insert("ru", QString::fromUtf8("\320\240\321\203\321\201\321\201\320\272\320\270\320\271 (ru)"));
 	foreach (const QString& translation, translations) {
 		if (translation.startsWith("qt")) {
 			continue;
@@ -67,13 +67,10 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 		QString display = display_texts.value(translation);
 		if (display.isEmpty()) {
 			QLocale locale(translation);
-			QString country = QLocale::countryToString(locale.country());
-			QString language = QLocale::languageToString(locale.language());
-			display = (translation.length() == 2) ? language : QString("%1 (%2)").arg(language, country);
+			display = QString("%1 (%2)").arg(QLocale::languageToString(locale.language())).arg(translation);
 		}
 		m_translations->addItem(display, translation);
 	}
-	m_translations->model()->sort(0);
 	int index = qMax(0, m_translations->findData(m_current));
 	m_translations->setCurrentIndex(index);
 

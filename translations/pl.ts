@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="239"/>
-        <location filename="../src/document.cpp" line="427"/>
+        <location filename="../src/document.cpp" line="425"/>
         <source>Save File As</source>
         <translation>Zapisz plik jako</translation>
     </message>
@@ -66,17 +66,17 @@
         <translation>Nie można zmienić nazwy pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="734"/>
+        <location filename="../src/document.cpp" line="732"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Zwykły tekst (*.txt);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="735"/>
+        <location filename="../src/document.cpp" line="733"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Tekst z formatowaniem (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="736"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>All Files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
@@ -171,7 +171,7 @@
         <translation>Sprawdź pisownię...</translation>
     </message>
     <message>
-        <location filename="../src/highlighter.cpp" line="122"/>
+        <location filename="../src/highlighter.cpp" line="114"/>
         <source>(No suggestions found)</source>
         <translation>(Nie znaleziono propozycji)</translation>
     </message>
@@ -198,62 +198,12 @@
         <translation>Wybierz język aplikacji:</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="53"/>
-        <source>Czech</source>
-        <translation>Czeski</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="54"/>
-        <source>German</source>
-        <translation>Niemiecki</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="55"/>
-        <source>American English</source>
-        <translation>Angielski amerykański</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="56"/>
-        <source>Spanish</source>
-        <translation>Hiszpański</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="57"/>
-        <source>Mexican Spanish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="58"/>
-        <source>French</source>
-        <translation>Francuski</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="59"/>
-        <source>Polish</source>
-        <translation>Polski</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="60"/>
-        <source>Portuguese</source>
-        <translation>Portugalski</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="61"/>
-        <source>Brazilian Portuguese</source>
-        <translation>Portugalski (brazylijski)</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="62"/>
-        <source>Russian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="157"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Note</source>
         <translation>Informacja</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="157"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Zmiany zostaną uwzględnione przy następnym uruchomieniu programu.</translation>
     </message>

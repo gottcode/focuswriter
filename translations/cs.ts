@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="239"/>
-        <location filename="../src/document.cpp" line="427"/>
+        <location filename="../src/document.cpp" line="425"/>
         <source>Save File As</source>
         <translation>Uložit soubor jako</translation>
     </message>
@@ -66,17 +66,17 @@
         <translation>Nelze přejmenovat &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="734"/>
+        <location filename="../src/document.cpp" line="732"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
         <translation>Prostý text (*.txt);;všechny soubory (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="735"/>
+        <location filename="../src/document.cpp" line="733"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Text s formátováním (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="736"/>
+        <location filename="../src/document.cpp" line="734"/>
         <source>All Files (*)</source>
         <translation>Všechny soubory (*)</translation>
     </message>
@@ -171,7 +171,7 @@
         <translation>Ověření pravopisu...</translation>
     </message>
     <message>
-        <location filename="../src/highlighter.cpp" line="122"/>
+        <location filename="../src/highlighter.cpp" line="114"/>
         <source>(No suggestions found)</source>
         <translation>(Nebyly nalezeny žádné návrhy)</translation>
     </message>
@@ -197,62 +197,12 @@
         <translation>Vybrat jazyk programu:</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="53"/>
-        <source>Czech</source>
-        <translation>Český</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="54"/>
-        <source>German</source>
-        <translation>Německý</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="55"/>
-        <source>American English</source>
-        <translation>Americká angličtina</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="56"/>
-        <source>Spanish</source>
-        <translation>Španělský</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="57"/>
-        <source>Mexican Spanish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="58"/>
-        <source>French</source>
-        <translation>Francouzský</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="59"/>
-        <source>Polish</source>
-        <translation>Polský</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="60"/>
-        <source>Portuguese</source>
-        <translation>Portugalský</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="61"/>
-        <source>Brazilian Portuguese</source>
-        <translation>Portugalský (Brazílie)</translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="62"/>
-        <source>Russian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/locale_dialog.cpp" line="157"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Note</source>
         <translation>Notiz</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="157"/>
+        <location filename="../src/locale_dialog.cpp" line="154"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Spusťte, prosí, tento program znovu, aby se změna jazyka projevila.</translation>
     </message>
