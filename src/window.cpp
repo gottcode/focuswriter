@@ -39,6 +39,7 @@
 #include <QCloseEvent>
 #include <QDate>
 #include <QFileDialog>
+#include <QFileOpenEvent>
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
@@ -70,7 +71,7 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Window::Window()
+Window::Window(const QStringList& files)
 	: m_toolbar(0),
 	m_fullscreen(true),
 	m_typewriter_sounds(true),
@@ -230,7 +231,6 @@ Window::Window()
 
 	// Open previous documents
 	QString session = settings.value("SessionManager/Session").toString();
-	QStringList files = QApplication::arguments().mid(1);
 	if (!files.isEmpty()) {
 		session.clear();
 		settings.setValue("Save/Current", files);
@@ -295,7 +295,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	if (m_documents->count() == 0) {
 		newDocument();
 	}
-	m_tabs->setCurrentIndex(active);
+	m_tabs->setCurrentIndex((active != -1) ? active : (m_tabs->count() - 1));
 
 	if (!missing.isEmpty()) {
 		QMessageBox::warning(this, tr("Sorry"), tr("The following files could not be opened:\n\n%1").arg(missing.join("\n")));
@@ -370,7 +370,7 @@ void Window::dropEvent(QDropEvent* event)
 		foreach (QUrl url, event->mimeData()->urls()) {
 			files.append(url.toLocalFile());
 		}
-		addDocuments(files, QStringList(), m_documents->count());
+		addDocuments(files);
 		event->acceptProposedAction();
 	}
 }
@@ -447,7 +447,7 @@ void Window::openDocument()
 		}
 		Document* document = m_documents->currentDocument();
 		int index = (document->untitledIndex() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
-		addDocuments(filenames, QStringList(), m_tabs->count() + filenames.count());
+		addDocuments(filenames);
 		if (index != -1) {
 			m_tabs->setCurrentIndex(index);
 			closeDocument();

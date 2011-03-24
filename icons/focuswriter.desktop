@@ -1,9 +1,11 @@
 [Desktop Entry]
+Type=Application
 Name=FocusWriter
 GenericName=Fullscreen Word Processor
 Comment=Write stories without distractions
-Exec=focuswriter
 Icon=focuswriter
+TryExec=focuswriter
+Exec=focuswriter %F
 Terminal=false
-Type=Application
+MimeType=application/rtf;text/plain;text/rtf;
 Categories=Qt;Office;

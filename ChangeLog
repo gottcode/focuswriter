@@ -1,3 +1,6 @@
+2011-03-24 Graeme Gott <graeme@gottcode.org>
+	* Specify supported MIME types on Linux and the Mac.
+
 2011-03-23 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Qt translations were not deployed on the Mac.
 	* FIXED: Word count issue with Persian/Farsi.

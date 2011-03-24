@@ -9,8 +9,8 @@ echo -n 'Copying application bundle... '
 rm -f "${APP}_$VERSION.dmg"
 rm -Rf "$APP"
 mkdir "$APP"
-cp -pf COPYING "$APP/"
-cp -pf README "$APP/"
+cp -pf COPYING "$APP/COPYING.txt"
+cp -pf README "$APP/README.txt"
 cp -Rpf "$BUNDLE" "$APP/"
 echo 'Done'
 

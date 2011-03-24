@@ -40,9 +40,9 @@ class Window : public QMainWindow
 	Q_OBJECT
 
 public:
-	Window();
+	Window(const QStringList& files);
 
-	void addDocuments(const QStringList& files, const QStringList& positions = QStringList(), int active = 0, bool show_load = false);
+	void addDocuments(const QStringList& files, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	bool closeDocuments(QSettings* session = 0);
 
 protected:

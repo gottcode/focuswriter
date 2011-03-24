@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,15 +28,72 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QFileOpenEvent>
 #include <QSettings>
+#include <QStringList>
+
+//-----------------------------------------------------------------------------
+
+class Application : public QApplication
+{
+public:
+	Application(int& argc, char** argv);
+
+	void createWindow();
+
+protected:
+	virtual bool event(QEvent* e);
+
+private:
+	QStringList m_files;
+	Window* m_window;
+};
+
+//-----------------------------------------------------------------------------
+
+Application::Application(int& argc, char** argv)
+	: QApplication(argc, argv),
+	m_window(0)
+{
+	setApplicationName("FocusWriter");
+	setApplicationVersion("1.3.2.1");
+	setOrganizationDomain("gottcode.org");
+	setOrganizationName("GottCode");
+
+	m_files = arguments().mid(1);
+	processEvents();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::createWindow()
+{
+	m_window = new Window(m_files);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::event(QEvent* e)
+{
+	if (e->type() != QEvent::FileOpen) {
+		return QApplication::event(e);
+	} else {
+		QString file = static_cast<QFileOpenEvent*>(e)->file();
+		if (m_window) {
+			m_window->addDocuments(QStringList(file));
+		} else {
+			m_files.append(file);
+		}
+		e->accept();
+		return true;
+	}
+}
+
+//-----------------------------------------------------------------------------
 
 int main(int argc, char** argv)
 {
-	QApplication app(argc, argv);
-	app.setApplicationName("FocusWriter");
-	app.setApplicationVersion("1.3.2.1");
-	app.setOrganizationDomain("gottcode.org");
-	app.setOrganizationName("GottCode");
+	Application app(argc, argv);
 	QString appdir = app.applicationDirPath();
 
 	QStringList paths = QIcon::themeSearchPaths();
@@ -164,7 +221,7 @@ int main(int argc, char** argv)
 	}
 
 	// Create main window
-	new Window;
+	app.createWindow();
 
 	// Browse to documents after command-line specified documents have been loaded
 	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());
