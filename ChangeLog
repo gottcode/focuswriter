@@ -1,4 +1,5 @@
 2011-03-24 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Dropping files on main window pasted URLs in KDE.
 	* Always close unchanged empty file when opening a new file.
 	* Specify supported MIME types on Linux and the Mac.
 

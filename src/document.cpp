@@ -26,6 +26,7 @@
 #include "smart_quotes.h"
 #include "spell_checker.h"
 #include "theme.h"
+#include "window.h"
 #include "rtf/reader.h"
 #include "rtf/writer.h"
 
@@ -477,6 +478,11 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 			emit keyPressed(key_event->key());
 		}
 		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, key_event)) {
+			return true;
+		}
+	} else if (event->type() == QEvent::Drop) {
+		static_cast<Window*>(window())->addDocuments(static_cast<QDropEvent*>(event));
+		if (event->isAccepted()) {
 			return true;
 		}
 	}

@@ -326,6 +326,20 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 
 //-----------------------------------------------------------------------------
 
+void Window::addDocuments(QDropEvent* event)
+{
+	if (event->mimeData()->hasUrls()) {
+		QStringList files;
+		foreach (QUrl url, event->mimeData()->urls()) {
+			files.append(url.toLocalFile());
+		}
+		addDocuments(files);
+		event->acceptProposedAction();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 bool Window::closeDocuments(QSettings* session)
 {
 	if (m_documents->count() == 0) {
@@ -379,14 +393,7 @@ void Window::dragEnterEvent(QDragEnterEvent* event)
 
 void Window::dropEvent(QDropEvent* event)
 {
-	if (event->mimeData()->hasUrls()) {
-		QStringList files;
-		foreach (QUrl url, event->mimeData()->urls()) {
-			files.append(url.toLocalFile());
-		}
-		addDocuments(files);
-		event->acceptProposedAction();
-	}
+	addDocuments(event);
 }
 
 //-----------------------------------------------------------------------------
