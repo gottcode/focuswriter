@@ -273,6 +273,14 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 		m_load_screen->setText("");
 	}
 
+	int untitled_index = -1;
+	if (m_documents->count()) {
+		Document* document = m_documents->count() ? m_documents->currentDocument() : 0;
+		if (document->untitledIndex() && !document->text()->document()->isModified()) {
+			untitled_index = m_documents->currentIndex();
+		}
+	}
+
 	QStringList missing;
 	QStringList readonly;
 	int open_files = m_documents->count();
@@ -295,7 +303,13 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	if (m_documents->count() == 0) {
 		newDocument();
 	}
-	m_tabs->setCurrentIndex((active != -1) ? active : (m_tabs->count() - 1));
+
+	if (untitled_index == -1) {
+		m_tabs->setCurrentIndex((active != -1) ? active : (m_tabs->count() - 1));
+	} else {
+		m_tabs->setCurrentIndex(untitled_index);
+		closeDocument();
+	}
 
 	if (!missing.isEmpty()) {
 		QMessageBox::warning(this, tr("Sorry"), tr("The following files could not be opened:\n\n%1").arg(missing.join("\n")));
@@ -445,13 +459,7 @@ void Window::openDocument()
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();
 		}
-		Document* document = m_documents->currentDocument();
-		int index = (document->untitledIndex() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
 		addDocuments(filenames);
-		if (index != -1) {
-			m_tabs->setCurrentIndex(index);
-			closeDocument();
-		}
 	}
 }
 

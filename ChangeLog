@@ -1,4 +1,5 @@
 2011-03-24 Graeme Gott <graeme@gottcode.org>
+	* Always close unchanged empty file when opening a new file.
 	* Specify supported MIME types on Linux and the Mac.
 
 2011-03-23 Graeme Gott <graeme@gottcode.org>
