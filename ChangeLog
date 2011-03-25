@@ -1,3 +1,6 @@
+2011-03-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Wasn't switching to already opened document.
+
 2011-03-24 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Dropping files on main window pasted URLs in KDE.
 	* Always close unchanged empty file when opening a new file.

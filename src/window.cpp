@@ -274,7 +274,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	}
 
 	int untitled_index = -1;
+	int current_index = -1;
 	if (m_documents->count()) {
+		current_index = m_documents->currentIndex();
 		Document* document = m_documents->count() ? m_documents->currentDocument() : 0;
 		if (document->untitledIndex() && !document->text()->document()->isModified()) {
 			untitled_index = m_documents->currentIndex();
@@ -305,7 +307,11 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	}
 
 	if (untitled_index == -1) {
-		m_tabs->setCurrentIndex((active != -1) ? active : (m_tabs->count() - 1));
+		if (active != -1) {
+			m_tabs->setCurrentIndex(active);
+		} else if (m_documents->currentIndex() == current_index) {
+			m_tabs->setCurrentIndex(m_tabs->count() - 1);
+		}
 	} else {
 		m_tabs->setCurrentIndex(untitled_index);
 		closeDocument();
