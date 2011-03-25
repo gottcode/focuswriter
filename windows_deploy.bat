@@ -6,6 +6,7 @@ SET VERSION=1.3.2.1
 ECHO Copying executable
 MKDIR %APP%
 TYPE COPYING | FIND "" /V > %APP%\COPYING.txt
+TYPE CREDITS | FIND "" /V > %APP%\CREDITS.txt
 TYPE README | FIND "" /V > %APP%\README.txt
 COPY release\%APP%.exe %APP% >nul
 strip %APP%\%APP%.exe
