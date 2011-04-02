@@ -20,10 +20,7 @@
 #ifndef SOUND_H
 #define SOUND_H
 
-#include <QByteArray>
 #include <QObject>
-
-#include <ao/ao.h>
 
 class Sound : public QObject
 {
@@ -38,9 +35,7 @@ public:
 	static void setPath(const QString& path);
 
 private:
-	ao_sample_format m_format;
-	QByteArray m_data;
-	static QString m_path;
+	int m_id;
 };
 
 #endif

@@ -34,11 +34,12 @@ COPY sounds\* %SOUNDS% >nul
 ECHO Copying hunspell library
 COPY hunspell\hunspell1.dll %APP% >nul
 
-ECHO Copying libao library
-COPY libao\libao-4.dll %APP% >nul
-
 ECHO Copying libzip library
 COPY libzip\libzip0.dll %APP% >nul
+
+ECHO Copying SDL libraries
+COPY SDL\libSDL.dll %APP% >nul
+COPY SDL\libSDL_mixer.dll %APP% >nul
 
 ECHO Copying Qt libraries
 COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul

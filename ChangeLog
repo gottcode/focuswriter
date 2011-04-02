@@ -1,3 +1,6 @@
+2011-04-02 Graeme Gott <graeme@gottcode.org>
+	* Use SDL_mixer instead of libao.
+
 2011-03-25 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Wasn't switching to already opened document.
 

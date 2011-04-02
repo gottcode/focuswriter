@@ -23,5 +23,6 @@ Libraries
 ---------
 * Qt, http://qt.nokia.com/
 * hunspell, http://hunspell.sourceforge.net/
-* libao, http://www.xiph.org/ao/
 * libzip, http://www.nih.at/libzip/
+* SDL, http://www.libsdl.org/
+* SDL_mixer, http://www.libsdl.org/projects/SDL_mixer/
