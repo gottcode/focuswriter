@@ -1,3 +1,6 @@
+2011-04-08 Graeme Gott <graeme@gottcode.org>
+	* Rename base translation file.
+
 2011-04-02 Graeme Gott <graeme@gottcode.org>
 	* Use SDL_mixer instead of libao.
 

@@ -52,7 +52,7 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 	QHash<QString, QString> display_texts;
 	display_texts.insert("cs", QString::fromUtf8("\304\214esky (cs)"));
 	display_texts.insert("de", QLatin1String("Deutsch (de)"));
-	display_texts.insert("en_US", QLatin1String("English (en_US)"));
+	display_texts.insert("en", QLatin1String("English (en)"));
 	display_texts.insert("es", QString::fromUtf8("Espa\303\261ol (es)"));
 	display_texts.insert("es_MX", QString::fromUtf8("Espa\303\261ol (es_MX)"));
 	display_texts.insert("fr", QString::fromUtf8("Fran\303\247ais (fr)"));
