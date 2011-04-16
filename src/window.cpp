@@ -558,6 +558,22 @@ void Window::setFormattingEnabled(bool enabled)
 
 //-----------------------------------------------------------------------------
 
+void Window::minimize()
+{
+#ifdef Q_OS_MAC
+	if (m_fullscreen) {
+		toggleFullscreen();
+		show();
+		activateWindow();
+		raise();
+		qApp->processEvents();
+	}
+#endif
+	showMinimized();
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::toggleFullscreen()
 {
 	m_fullscreen = !m_fullscreen;
@@ -1116,7 +1132,7 @@ void Window::initMenus()
 #else
 	m_actions["Fullscreen"]->setCheckable(true);
 #endif
-	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, SLOT(showMinimized()), tr("Ctrl+M"));
+	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, SLOT(minimize()), tr("Ctrl+M"));
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
 	settings_menu->addSeparator();
