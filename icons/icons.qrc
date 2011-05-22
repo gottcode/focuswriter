@@ -1,7 +1,15 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-	<file>focuswriter.png</file>
 	<file>load.png</file>
 	<file>shadow.png</file>
+
+	<file>hicolor/256x256/apps/focuswriter.png</file>
+	<file>hicolor/128x128/apps/focuswriter.png</file>
+	<file>hicolor/64x64/apps/focuswriter.png</file>
+	<file>hicolor/48x48/apps/focuswriter.png</file>
+	<file>hicolor/32x32/apps/focuswriter.png</file>
+	<file>hicolor/24x24/apps/focuswriter.png</file>
+	<file>hicolor/22x22/apps/focuswriter.png</file>
+	<file>hicolor/16x16/apps/focuswriter.png</file>
 </qresource>
 </RCC>

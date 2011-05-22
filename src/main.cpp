@@ -59,6 +59,17 @@ Application::Application(int& argc, char** argv)
 	setApplicationVersion("1.3.2.1");
 	setOrganizationDomain("gottcode.org");
 	setOrganizationName("GottCode");
+	{
+		QIcon fallback(":/hicolor/256x256/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/128x128/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/64x64/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/48x48/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/32x32/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/24x24/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/22x22/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
+		setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
+	}
 
 	m_files = arguments().mid(1);
 	processEvents();

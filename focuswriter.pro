@@ -120,8 +120,11 @@ unix: !macx {
 
 	target.path = $$PREFIX/bin/
 
-	icon.files = icons/focuswriter.png
-	icon.path = $$PREFIX/share/icons/hicolor/48x48/apps
+	icon.files = icons/hicolor/*
+	icon.path = $$PREFIX/share/icons/hicolor/
+
+	pixmap.files = icons/focuswriter.xpm
+	pixmap.path = $$PREFIX/share/pixmaps/
 
 	icons.files = icons/oxygen/hicolor/*
 	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
@@ -135,5 +138,5 @@ unix: !macx {
 	sounds.files = sounds/*
 	sounds.path = $$PREFIX/share/focuswriter/sounds
 
-	INSTALLS += target icon desktop icons qm sounds
+	INSTALLS += target icon pixmap desktop icons qm sounds
 }

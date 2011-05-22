@@ -86,7 +86,6 @@ Window::Window(const QStringList& files)
 	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
 	setContextMenuPolicy(Qt::NoContextMenu);
-	setWindowIcon(QIcon(":/focuswriter.png"));
 
 	// Set up icons
 	if (QIcon::themeName().isEmpty()) {
