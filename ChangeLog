@@ -1,4 +1,5 @@
 2011-05-23 Graeme Gott <graeme@gottcode.org>
+	* Allow user to enter custom font sizes.
 	* FIXED: Could not access menubar while fullscreen in Unity.
 	* FIXED: Could not leave fullscreen in Unity.
 

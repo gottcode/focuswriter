@@ -24,6 +24,7 @@
 #include "theme.h"
 
 #include <QDialogButtonBox>
+#include <QDoubleValidator>
 #include <QFile>
 #include <QFontComboBox>
 #include <QFormLayout>
@@ -171,8 +172,9 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_font_names, SIGNAL(activated(int)), this, SLOT(renderPreview()));
 
 	m_font_sizes = new QComboBox(tab);
+	m_font_sizes->setEditable(true);
 	QList<int> font_sizes = QFontDatabase::standardSizes();
-	int font_size = QFontInfo(m_theme.textFont()).pointSize();
+	qreal font_size = m_theme.textFont().pointSizeF();
 	int index = 0;
 	for (int i = 0; i < font_sizes.count(); ++i) {
 		int size = font_sizes.at(i);
@@ -182,7 +184,9 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 		m_font_sizes->addItem(QString::number(size));
 	}
 	m_font_sizes->setCurrentIndex(index);
-	connect(m_font_sizes, SIGNAL(activated(int)), this, SLOT(renderPreview()));
+	m_font_sizes->setEditText(QString::number(font_size, 'f', 1));
+	m_font_sizes->setValidator(new QDoubleValidator(font_sizes.first(), font_sizes.last(), 1, m_font_sizes));
+	connect(m_font_sizes, SIGNAL(editTextChanged(const QString&)), this, SLOT(renderPreview()));
 
 	m_misspelled_color = new ColorButton(tab);
 	m_misspelled_color->setColor(m_theme.misspelledColor());
@@ -253,7 +257,9 @@ void ThemeDialog::accept()
 	m_theme.setForegroundPosition(m_foreground_position->currentIndex());
 
 	m_theme.setTextColor(m_text_color->color());
-	m_theme.setTextFont(QFont(m_font_names->currentFont().family(), m_font_sizes->currentText().toInt()));
+	QFont font = m_font_names->currentFont();
+	font.setPointSizeF(m_font_sizes->currentText().toDouble());
+	m_theme.setTextFont(font);
 	m_theme.setMisspelledColor(m_misspelled_color->color());
 
 	savePreview();
@@ -300,7 +306,9 @@ void ThemeDialog::renderPreview()
 
 		// Draw text
 		painter.setPen(m_text_color->color());
-		painter.setFont(QFont(m_font_names->currentFont().family(), m_font_sizes->currentText().toInt()));
+		QFont font = m_font_names->currentFont();
+		font.setPointSizeF(m_font_sizes->currentText().toDouble());
+		painter.setFont(font);
 		painter.drawText(QRect(23, 23, 154, 104), Qt::TextWordWrap, tr("The quick brown fox jumps over the lazy dog"));
 	}
 	m_preview->setPixmap(preview);
