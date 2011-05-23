@@ -207,10 +207,10 @@ Window::Window(const QStringList& files)
 	setMinimumSize(640, 480);
 	resize(800, 600);
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
+	show();
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
 	toggleFullscreen();
 	m_actions["Fullscreen"]->setChecked(m_fullscreen);
-	show();
 
 	// Update themes
 	m_load_screen->setText(tr("Loading themes"));
@@ -237,6 +237,10 @@ Window::Window(const QStringList& files)
 		settings.setValue("Save/Active", 0);
 	}
 	m_sessions->setCurrent(session);
+
+	// Bring to front
+	activateWindow();
+	raise();
 }
 
 //-----------------------------------------------------------------------------
@@ -562,10 +566,6 @@ void Window::minimize()
 #ifdef Q_OS_MAC
 	if (m_fullscreen) {
 		toggleFullscreen();
-		show();
-		activateWindow();
-		raise();
-		qApp->processEvents();
 	}
 #endif
 	showMinimized();
@@ -583,6 +583,10 @@ void Window::toggleFullscreen()
 	} else {
 		setWindowState(windowState() & ~Qt::WindowFullScreen);
 	}
+	show();
+	activateWindow();
+	raise();
+	QApplication::processEvents();
 }
 
 //-----------------------------------------------------------------------------

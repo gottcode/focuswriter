@@ -1,3 +1,6 @@
+2011-05-23 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not leave fullscreen in Unity.
+
 2011-05-22 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Closing the color picker does not return focus to theme dialogs.
 	* Replace icon and load image.
