@@ -70,6 +70,9 @@ Application::Application(int& argc, char** argv)
 		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
 		setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
 	}
+#ifndef Q_WS_MAC
+	setAttribute(Qt::AA_DontUseNativeMenuBar);
+#endif
 
 	m_files = arguments().mid(1);
 	processEvents();
