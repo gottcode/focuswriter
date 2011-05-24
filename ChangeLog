@@ -1,3 +1,6 @@
+2011-05-24 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Documents were sometimes displayed truncated.
+
 2011-05-23 Graeme Gott <graeme@gottcode.org>
 	* Allow user to enter custom font sizes.
 	* FIXED: Could not access menubar while fullscreen in Unity.

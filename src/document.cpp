@@ -135,6 +135,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	m_dictionary = new Dictionary(this);
 	m_highlighter = new Highlighter(m_text, m_dictionary);
+	m_highlighter->rehighlight();
 	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
 	if (m_filename.isEmpty()) {
