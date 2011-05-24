@@ -146,11 +146,10 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 
 	// Set up scroll bar
-	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
-	m_scrollbar->setVisible(false);
+	setScrollBarVisible(false);
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
 	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
@@ -460,7 +459,7 @@ void Document::setRichText(bool rich_text)
 
 void Document::setScrollBarVisible(bool visible)
 {
-	m_scrollbar->setVisible(visible);
+	m_scrollbar->setMask(visible ? m_scrollbar->rect() : QRect(0,0,1,1));
 }
 
 //-----------------------------------------------------------------------------
@@ -517,7 +516,7 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 		emit footerVisible(false);
 	}
 	int margin = m_scrollbar->sizeHint().width();
-	m_scrollbar->setVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - margin)) : (point.x() <= margin));
+	setScrollBarVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - margin)) : (point.x() <= margin));
 }
 
 //-----------------------------------------------------------------------------

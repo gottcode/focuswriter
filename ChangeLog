@@ -1,4 +1,5 @@
 2011-05-24 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Large documents were not centered.
 	* FIXED: Documents were sometimes displayed truncated.
 
 2011-05-23 Graeme Gott <graeme@gottcode.org>
