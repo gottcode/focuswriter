@@ -30,30 +30,42 @@
 //-----------------------------------------------------------------------------
 
 bool SmartQuotes::m_enabled = true;
-QChar SmartQuotes::m_quotes[4] = { 0x201c, 0x201d, 0x2018, 0x2019 };
+QString SmartQuotes::m_quotes[4] = { QChar(0x201c), QChar(0x201d), QChar(0x2018), QChar(0x2019) };
 const SmartQuotes::Quotes SmartQuotes::m_quotes_list[] = {
-	{ 0x201c, 0x201d },
-	{ 0x2018, 0x2019 },
-	{ 0x201e, 0x201c },
-	{ 0x201a, 0x2018 },
-	{ 0x201e, 0x201d },
-	{ 0x201a, 0x2019 },
-	{ 0x201c, 0x201e },
-	{ 0x2018, 0x201a },
-	{ 0x201d, 0x201d },
-	{ 0x2019, 0x2019 },
-	{ 0x201d, 0x201c },
-	{ 0x2019, 0x2018 },
-	{ 0x00ab, 0x00bb },
-	{ 0x2039, 0x203a },
-	{ 0x00bb, 0x00ab },
-	{ 0x203a, 0x2039 },
-	{ 0x00bb, 0x00bb },
-	{ 0x203a, 0x203a },
-	{ 0x300c, 0x300d },
-	{ 0x300e, 0x300f },
-	{ 0x0022, 0x0022 },
-	{ 0x0027, 0x0027 }
+	{ QChar(0x201c), QChar(0x201d) },
+	{ QChar(0x2018), QChar(0x2019) },
+	{ QChar(0x201e), QChar(0x201c) },
+	{ QChar(0x201a), QChar(0x2018) },
+	{ QChar(0x201e), QChar(0x201d) },
+	{ QChar(0x201a), QChar(0x2019) },
+	{ QChar(0x201c), QChar(0x201e) },
+	{ QChar(0x2018), QChar(0x201a) },
+	{ QChar(0x201d), QChar(0x201d) },
+	{ QChar(0x2019), QChar(0x2019) },
+	{ QChar(0x201d), QChar(0x201c) },
+	{ QChar(0x2019), QChar(0x2018) },
+	{ QChar(0x00ab), QChar(0x00bb) },
+	{ QChar(0x2039), QChar(0x203a) },
+	{ QChar(0x00bb), QChar(0x00ab) },
+	{ QChar(0x203a), QChar(0x2039) },
+	{ QChar(0x00bb), QChar(0x00bb) },
+	{ QChar(0x203a), QChar(0x203a) },
+	{ QChar(0x300c), QChar(0x300d) },
+	{ QChar(0x300e), QChar(0x300f) },
+	{ QChar(0x0022), QChar(0x0022) },
+	{ QChar(0x0027), QChar(0x0027) },
+	{ QLatin1String("``"), QLatin1String("''") },
+	{ QLatin1String("`"), QLatin1String("'") },
+	{ QLatin1String(",,"), QLatin1String("''") },
+	{ QLatin1String(","), QLatin1String("'") },
+	{ QLatin1String("``"), QLatin1String(",,") },
+	{ QLatin1String("`"), QLatin1String(",") },
+	{ QLatin1String("<<"), QLatin1String(">>") },
+	{ QLatin1String("<"), QLatin1String(">") },
+	{ QLatin1String(">>"), QLatin1String("<<") },
+	{ QLatin1String(">"), QLatin1String("<") },
+	{ QLatin1String(">>"), QLatin1String(">>") },
+	{ QLatin1String(">"), QLatin1String(">") }
 };
 const size_t SmartQuotes::m_quotes_list_count = sizeof(m_quotes_list) / sizeof(Quotes);
 
@@ -123,7 +135,7 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 		}
 		previous = c;
 
-		if (c != m_quotes[quote]) {
+		if (QString(c) != m_quotes[quote]) {
 			cursor.setPosition(i);
 			cursor.deleteChar();
 			cursor.insertText(m_quotes[quote]);
@@ -141,7 +153,7 @@ void SmartQuotes::replace(QString& string)
 	QChar previous;
 	int count = string.length();
 	for (int i = 0; i < count; ++i) {
-		QCharRef c = string[i];
+		QChar c = string.at(i);
 		int quote = 2;
 		if (c == '"') {
 			quote = 0;
@@ -155,8 +167,9 @@ void SmartQuotes::replace(QString& string)
 		}
 		previous = c;
 
-		if (c != m_quotes[quote]) {
-			c = m_quotes[quote];
+		if (QString(c) != m_quotes[quote]) {
+			string.replace(i, 1, m_quotes[quote]);
+			--i += m_quotes[quote].length();
 		}
 	}
 }
@@ -166,10 +179,10 @@ void SmartQuotes::replace(QString& string)
 QString SmartQuotes::revert(const QString& string)
 {
 	QString result = string;
-	result.replace(m_quotes[0], QLatin1Char('"'));
-	result.replace(m_quotes[1], QLatin1Char('"'));
-	result.replace(m_quotes[2], QLatin1Char('\''));
-	result.replace(m_quotes[3], QLatin1Char('\''));
+	result.replace(m_quotes[0], QLatin1String("\""));
+	result.replace(m_quotes[1], QLatin1String("\""));
+	result.replace(m_quotes[2], QLatin1String("'"));
+	result.replace(m_quotes[3], QLatin1String("'"));
 	return result;
 }
 
@@ -178,10 +191,10 @@ QString SmartQuotes::revert(const QString& string)
 QStringList SmartQuotes::revert(const QStringList& strings)
 {
 	QStringList result = strings;
-	result.replaceInStrings(QString(m_quotes[0]), "\"");
-	result.replaceInStrings(QString(m_quotes[1]), "\"");
-	result.replaceInStrings(QString(m_quotes[2]), "'");
-	result.replaceInStrings(QString(m_quotes[3]), "'");
+	result.replaceInStrings(m_quotes[0], QLatin1String("\""));
+	result.replaceInStrings(m_quotes[1], QLatin1String("\""));
+	result.replaceInStrings(m_quotes[2], QLatin1String("'"));
+	result.replaceInStrings(m_quotes[3], QLatin1String("'"));
 	return result;
 }
 

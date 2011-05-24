@@ -49,11 +49,11 @@ private:
 
 private:
 	static bool m_enabled;
-	static QChar m_quotes[4];
+	static QString m_quotes[4];
 
 	struct Quotes
 	{
-		const QChar left, right;
+		const QString left, right;
 	};
 	static const Quotes m_quotes_list[];
 	static const size_t m_quotes_list_count;
