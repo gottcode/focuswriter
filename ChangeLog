@@ -1,4 +1,5 @@
 2011-05-24 Graeme Gott <graeme@gottcode.org>
+	* Prevent interaction while loading documents.
 	* FIXED: Large documents were not centered.
 	* FIXED: Documents were sometimes displayed truncated.
 
