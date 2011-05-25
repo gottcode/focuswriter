@@ -821,7 +821,10 @@ bool Window::addDocument(const QString& filename, int position)
 	}
 
 	// Create document
-	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_sessions->current()->theme(), this);
+	Document* document = new Document(filename, m_current_wordcount, m_current_time, this);
+	m_documents->addDocument(document);
+	document->loadTheme(m_sessions->current()->theme());
+	document->loadFile(filename, m_save_positions ? position : -1);
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
@@ -830,20 +833,9 @@ bool Window::addDocument(const QString& filename, int position)
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Add tab for document
-	m_documents->addDocument(document);
 	int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
-
-	// Restore cursor position
-	QTextCursor cursor = document->text()->textCursor();
-	if (m_save_positions && position != -1 && !document->untitledIndex()) {
-		cursor.setPosition(position);
-	} else {
-		cursor.movePosition(QTextCursor::End);
-	}
-	document->text()->setTextCursor(cursor);
-	document->centerCursor(true);
 
 	if (show_load) {
 		m_load_screen->finish();

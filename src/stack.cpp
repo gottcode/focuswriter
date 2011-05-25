@@ -174,6 +174,7 @@ void Stack::addDocument(Document* document)
 
 	m_documents.append(document);
 	m_contents->addWidget(document);
+	m_contents->setCurrentWidget(document);
 
 	emit documentAdded(document);
 	emit formattingEnabled(document->isRichText());

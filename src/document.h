@@ -39,7 +39,7 @@ class Document : public QWidget
 	Q_OBJECT
 
 public:
-	Document(const QString& filename, int& current_wordcount, int& current_time, const QString& theme, QWidget* parent = 0);
+	Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent = 0);
 	~Document();
 
 	QString filename() const;
@@ -58,6 +58,7 @@ public:
 	bool rename();
 	void checkSpelling();
 	void print();
+	void loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void setRichText(bool rich_text);

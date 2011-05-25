@@ -62,7 +62,7 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QString& theme, QWidget* parent)
+Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
 	m_index(0),
 	m_always_center(false),
@@ -90,53 +90,26 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setMouseTracking(true);
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	m_text->setTabStopWidth(50);
+	m_text->document()->setIndentWidth(50);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
+	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
+	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 
-	QTextDocument* document = new QTextDocument(m_text);
-	document->setUndoRedoEnabled(false);
+	m_dictionary = new Dictionary(this);
+	m_highlighter = new Highlighter(m_text, m_dictionary);
+	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
-	// Read file
+	// Set filename
 	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
 		m_rich_text = isRichTextFile(filename.toLower());
 		m_filename = QFileInfo(filename).canonicalFilePath();
 		updateState();
-
-		if (!m_rich_text) {
-			QFile file(filename);
-			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-				QTextStream stream(&file);
-				stream.setCodec(QTextCodec::codecForName("UTF-8"));
-				stream.setAutoDetectUnicode(true);
-
-				QTextCursor cursor(document);
-				while (!stream.atEnd()) {
-					cursor.insertText(stream.read(8192));
-					QApplication::processEvents();
-				}
-				file.close();
-			}
-		} else {
-			RTF::Reader reader;
-			reader.read(filename, document);
-			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
-			}
-		}
 	}
-
-	// Set text area contents
-	document->setUndoRedoEnabled(true);
-	document->setModified(false);
-	m_text->setDocument(document);
-	m_text->setTabStopWidth(50);
-	document->setIndentWidth(50);
-
-	m_dictionary = new Dictionary(this);
-	m_highlighter = new Highlighter(m_text, m_dictionary);
-	m_highlighter->rehighlight();
-	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
 	if (m_filename.isEmpty()) {
 		findIndex();
@@ -152,7 +125,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	setScrollBarVisible(false);
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
-	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 
 	// Lay out window
 	m_layout = new QGridLayout(this);
@@ -168,13 +140,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 	m_text->setAcceptRichText(m_rich_text);
 	loadPreferences(preferences);
-	loadTheme(theme);
-
-	calculateWordCount();
-	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
-	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
-	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 }
 
 //-----------------------------------------------------------------------------
@@ -308,6 +273,64 @@ void Document::print()
 	if (dialog.exec() == QDialog::Accepted) {
 		m_text->print(&printer);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::loadFile(const QString& filename, int position)
+{
+	if (filename.isEmpty()) {
+		return;
+	}
+
+	// Load text area contents
+	QTextDocument* document = m_text->document();
+	m_text->blockSignals(true);
+	document->blockSignals(true);
+
+	document->setUndoRedoEnabled(false);
+	if (!m_rich_text) {
+		QFile file(filename);
+		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setAutoDetectUnicode(true);
+
+			QTextCursor cursor(document);
+			while (!stream.atEnd()) {
+				cursor.insertText(stream.read(8192));
+				QApplication::processEvents();
+			}
+			file.close();
+		}
+	} else {
+		RTF::Reader reader;
+		reader.read(filename, document);
+		if (reader.hasError()) {
+			QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+		}
+	}
+	document->setUndoRedoEnabled(true);
+	document->setModified(false);
+
+	document->blockSignals(false);
+	m_text->blockSignals(false);
+
+	// Restore cursor position
+	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
+	QTextCursor cursor = m_text->textCursor();
+	if (position != -1) {
+		cursor.setPosition(position);
+	} else {
+		cursor.movePosition(QTextCursor::End);
+	}
+	m_text->setTextCursor(cursor);
+	centerCursor(true);
+
+	// Update details
+	m_cached_stats.clear();
+	calculateWordCount();
+	m_highlighter->rehighlight();
 }
 
 //-----------------------------------------------------------------------------
