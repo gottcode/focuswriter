@@ -658,10 +658,10 @@ void Window::setLocaleClicked()
 void Window::keyPressed(int key)
 {
 	if (m_typewriter_sounds) {
-		if (key == Qt::Key_Enter || key == Qt::Key_Return) {
-			m_enter_key_sound->play();
-		} else if (key != Qt::Key_Control && key != Qt::Key_Shift) {
+		if (key != Qt::Key_Enter) {
 			m_key_sound->play();
+		} else {
+			m_enter_key_sound->play();
 		}
 	}
 }

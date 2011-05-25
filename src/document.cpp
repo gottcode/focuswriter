@@ -473,11 +473,7 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 		if (msecs < 30000) {
 			m_current_time += msecs;
 		}
-		QKeyEvent* key_event = static_cast<QKeyEvent*>(event);
-		if (!key_event->text().isEmpty()) {
-			emit keyPressed(key_event->key());
-		}
-		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, key_event)) {
+		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
 			return true;
 		}
 	} else if (event->type() == QEvent::Drop) {
@@ -660,6 +656,11 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 
 	int block_count = m_text->document()->blockCount();
+	if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
+		emit keyPressed(Qt::Key_Enter);
+	} else {
+		emit keyPressed(Qt::Key_Any);
+	}
 	int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
 		m_cached_block_count = block_count;
