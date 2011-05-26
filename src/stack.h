@@ -112,6 +112,7 @@ protected:
 private slots:
 	void updateBackground();
 	void updateMask();
+	void updateMapping();
 
 private:
 	AlertLayer* m_alerts;

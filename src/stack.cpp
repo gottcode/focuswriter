@@ -25,6 +25,7 @@
 #include "smart_quotes.h"
 #include "theme.h"
 
+#include <QFileInfo>
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QMutex>
@@ -34,7 +35,9 @@
 #include <QPlainTextEdit>
 #include <QStackedWidget>
 #include <QTextBlock>
+#include <QTextCodec>
 #include <QTextCursor>
+#include <QTextStream>
 #include <QThread>
 #include <QTimer>
 
@@ -164,6 +167,7 @@ void Stack::addDocument(Document* document)
 {
 	connect(document, SIGNAL(alignmentChanged()), this, SIGNAL(updateFormatAlignmentActions()));
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
+	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
 	connect(document, SIGNAL(formattingEnabled(bool)), this, SIGNAL(formattingEnabled(bool)));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
 	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
@@ -175,6 +179,7 @@ void Stack::addDocument(Document* document)
 	m_documents.append(document);
 	m_contents->addWidget(document);
 	m_contents->setCurrentWidget(document);
+	updateMapping();
 
 	emit documentAdded(document);
 	emit formattingEnabled(document->isRichText());
@@ -186,6 +191,7 @@ void Stack::addDocument(Document* document)
 void Stack::moveDocument(int from, int to)
 {
 	m_documents.move(from, to);
+	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -196,6 +202,7 @@ void Stack::removeDocument(int index)
 	m_contents->removeWidget(document);
 	emit documentRemoved(document);
 	document->deleteLater();
+	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -402,6 +409,7 @@ void Stack::replace()
 void Stack::save()
 {
 	m_current_document->save();
+	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -648,6 +656,21 @@ void Stack::updateMask()
 	bool transparent = m_header_visible || m_footer_visible;
 	m_contents->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
 	m_alerts->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::updateMapping()
+{
+	QFile file(Document::cachePath() + "/mapping");
+	if (file.open(QFile::WriteOnly | QFile::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec(QTextCodec::codecForName("UTF-8"));
+		stream.setGenerateByteOrderMark(true);
+		foreach (Document* document, m_documents) {
+			stream << QFileInfo(document->cacheFilename()).baseName() << " " << document->filename() << endl;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

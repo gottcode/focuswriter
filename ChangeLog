@@ -1,3 +1,6 @@
+2011-05-26 Graeme Gott <graeme@gottcode.org>
+	* Store map of temporary file cache filenames.
+
 2011-05-25 Graeme Gott <graeme@gottcode.org>
 	* Copy files to temporary file cache.
 	* Move file loading out of document constructor.
