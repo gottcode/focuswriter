@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ class Window : public QMainWindow
 public:
 	Window(const QStringList& files);
 
-	void addDocuments(const QStringList& files, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
+	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);
 	bool closeDocuments(QSettings* session = 0);
 
@@ -83,7 +83,7 @@ private slots:
 	void updateSave();
 
 private:
-	bool addDocument(const QString& filename = QString(), int position = -1);
+	bool addDocument(const QString& file = QString(), const QString& datafile = QString(), int position = -1);
 	bool saveDocument(int index);
 	void loadPreferences(Preferences& preferences);
 	void hideInterface();

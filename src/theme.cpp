@@ -31,34 +31,34 @@
 
 //-----------------------------------------------------------------------------
 
-namespace
+bool compareFiles(const QString& filename1, const QString& filename2)
 {
-	bool compareFiles(const QString& filename1, const QString& filename2)
-	{
-		// Compare sizes
-		QFile file1(filename1);
-		QFile file2(filename2);
-		if (file1.size() != file2.size()) {
-			return false;
-		}
-
-		// Compare contents
-		bool equal = true;
-		if (file1.open(QFile::ReadOnly) && file2.open(QFile::ReadOnly)) {
-			while (!file1.atEnd()) {
-				if (file1.read(1000) != file2.read(1000)) {
-					equal = false;
-					break;
-				}
-			}
-			file1.close();
-			file2.close();
-		} else {
-			equal = false;
-		}
-		return equal;
+	// Compare sizes
+	QFile file1(filename1);
+	QFile file2(filename2);
+	if (file1.size() != file2.size()) {
+		return false;
 	}
 
+	// Compare contents
+	bool equal = true;
+	if (file1.open(QFile::ReadOnly) && file2.open(QFile::ReadOnly)) {
+		while (!file1.atEnd()) {
+			if (file1.read(1000) != file2.read(1000)) {
+				equal = false;
+				break;
+			}
+		}
+		file1.close();
+		file2.close();
+	} else {
+		equal = false;
+	}
+	return equal;
+}
+
+namespace
+{
 	QString copyImage(const QString& image)
 	{
 		// Check if already copied

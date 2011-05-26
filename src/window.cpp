@@ -51,11 +51,15 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QTabBar>
+#include <QTextCodec>
+#include <QTextStream>
 #include <QTimer>
 #include <QToolBar>
 #include <QUrl>
 
 //-----------------------------------------------------------------------------
+
+extern bool compareFiles(const QString& filename1, const QString& filename2);
 
 namespace
 {
@@ -228,15 +232,94 @@ Window::Window(const QStringList& files)
 	m_tabs->removeTab(0);
 	m_tabs->blockSignals(false);
 
+	// Restore after crash
+	QStringList cachedfiles, datafiles;
+	QString cachepath;
+	QStringList entries = QDir(Document::cachePath()).entryList(QDir::Files);
+	if ((entries.count() > 1) && entries.contains("mapping")) {
+		// Find cachedir
+		QString date = QDate::currentDate().toString("yyyyMMdd");
+		int extra = 0;
+		QDir dir(QDir::cleanPath(Document::cachePath() + "/../"));
+		QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+		foreach (const QString& subdir, subdirs) {
+			if (subdir.startsWith(date)) {
+				extra = qMax(extra, subdir.mid(9).toInt() + 1);
+			}
+		}
+		cachepath = dir.absoluteFilePath(date + ((extra > 0) ? QString("-%1").arg(extra) : ""));
+
+		// Move cache out of the way
+		dir.rename("Files", cachepath);
+		dir.mkdir("Files");
+
+		// Read mapping of cached files
+		QFile file(cachepath + "/mapping");
+		if (file.open(QFile::ReadOnly | QFile::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setAutoDetectUnicode(true);
+
+			while (!stream.atEnd()) {
+				QString line = stream.readLine();
+				QString datafile = line.section(' ', 0, 0);
+				QString path = line.section(' ', 1);
+				if (!datafile.isEmpty()) {
+					cachedfiles.append(path);
+					datafiles.append(cachepath + "/" + datafile);
+				}
+			}
+			file.close();
+		}
+
+		// Ask if they want to use cached files
+		if (!cachedfiles.isEmpty()) {
+			QStringList files = cachedfiles;
+			int untitled = 1;
+			int count = files.count();
+			for (int i = 0; i < count; ++i) {
+				if (files.at(i).isEmpty()) {
+					files[i] = tr("(Untitled %1)").arg(untitled);
+					untitled++;
+				}
+			}
+			QApplication::restoreOverrideCursor();
+			m_load_screen->releaseKeyboard();
+			QMessageBox mbox(window());
+			mbox.setWindowTitle(tr("Warning"));
+			mbox.setText(tr("FocusWriter was not shut down cleanly."));
+			mbox.setInformativeText(tr("Restore from the emergency cache?"));
+			mbox.setDetailedText(files.join("\n"));
+			mbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+			mbox.setDefaultButton(QMessageBox::Yes);
+			mbox.setIcon(QMessageBox::Warning);
+			if (mbox.exec() == QMessageBox::No) {
+				cachedfiles.clear();
+				datafiles.clear();
+			}
+			QApplication::setOverrideCursor(Qt::WaitCursor);
+			m_load_screen->grabKeyboard();
+		}
+	}
+
 	// Open previous documents
 	QString session = settings.value("SessionManager/Session").toString();
-	if (!files.isEmpty()) {
+	if (cachedfiles.isEmpty() && !files.isEmpty()) {
 		session.clear();
 		settings.setValue("Save/Current", files);
 		settings.setValue("Save/Positions", QStringList());
 		settings.setValue("Save/Active", 0);
 	}
-	m_sessions->setCurrent(session);
+	m_sessions->setCurrent(session, cachedfiles, datafiles);
+
+	// Remove old cache
+	if (!cachepath.isEmpty()) {
+		QDir cachedir(cachepath);
+		if ((cachedir.count() == 3) && (cachedir.entryList(QDir::Files).first() == "mapping")) {
+			cachedir.remove("mapping");
+			cachedir.rmdir(cachepath);
+		}
+	}
 
 	// Bring to front
 	activateWindow();
@@ -245,7 +328,7 @@ Window::Window(const QStringList& files)
 
 //-----------------------------------------------------------------------------
 
-void Window::addDocuments(const QStringList& files, const QStringList& positions, int active, bool show_load)
+void Window::addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions, int active, bool show_load)
 {
 	m_documents->setHeaderVisible(false);
 	m_documents->setFooterVisible(false);
@@ -293,9 +376,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 		if (!skip.isEmpty() && skip.first() == i) {
 			skip.removeFirst();
 			continue;
-		} else if (!addDocument(files.at(i), positions.value(i, "-1").toInt())) {
+		} else if (!addDocument(files.at(i), datafiles.at(i), positions.value(i, "-1").toInt())) {
 			missing.append(files.at(i));
-		} else if (m_documents->currentDocument()->untitledIndex() > 0) {
+		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
 			int index = m_documents->currentIndex();
 			missing.append(files.at(i));
 			m_documents->removeDocument(index);
@@ -342,7 +425,7 @@ void Window::addDocuments(QDropEvent* event)
 		foreach (QUrl url, event->mimeData()->urls()) {
 			files.append(url.toLocalFile());
 		}
-		addDocuments(files);
+		addDocuments(files, files);
 		event->acceptProposedAction();
 	}
 }
@@ -475,7 +558,7 @@ void Window::openDocument()
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();
 		}
-		addDocuments(filenames);
+		addDocuments(filenames, filenames);
 	}
 }
 
@@ -790,10 +873,10 @@ void Window::updateSave()
 
 //-----------------------------------------------------------------------------
 
-bool Window::addDocument(const QString& filename, int position)
+bool Window::addDocument(const QString& file, const QString& datafile, int position)
 {
-	QFileInfo info(filename);
-	if (!filename.isEmpty()) {
+	QFileInfo info(file);
+	if (!file.isEmpty()) {
 		// Check if already open
 		QString canonical_filename = info.canonicalFilePath();
 		for (int i = 0; i < m_documents->count(); ++i) {
@@ -811,20 +894,51 @@ bool Window::addDocument(const QString& filename, int position)
 
 	// Show filename in load screen
 	bool show_load = false;
-	show_load = !filename.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
+	show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
 	if (m_load_screen->isVisible() || show_load) {
-		if (!filename.isEmpty()) {
-			m_load_screen->setText(tr("Opening %1").arg(filename));
+		if (!file.isEmpty()) {
+			m_load_screen->setText(tr("Opening %1").arg(file));
 		} else {
 			m_load_screen->setText("");
 		}
 	}
 
 	// Create document
-	Document* document = new Document(filename, m_current_wordcount, m_current_time, this);
+	QString path = file;
+	if (!file.isEmpty() && (datafile != file)) {
+		if (QFileInfo(datafile).lastModified() > QFileInfo(file).lastModified()) {
+			path = datafile;
+			position = -1;
+		} else {
+			if (m_load_screen->isVisible()) {
+				QApplication::restoreOverrideCursor();
+				m_load_screen->releaseKeyboard();
+			}
+			QMessageBox mbox(window());
+			mbox.setWindowTitle(tr("Warning"));
+			mbox.setText(tr("'%1' is newer than the cached copy.").arg(file));
+			mbox.setInformativeText(tr("Overwrite newer file?"));
+			mbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+			mbox.setDefaultButton(QMessageBox::No);
+			mbox.setIcon(QMessageBox::Warning);
+			if (mbox.exec() == QMessageBox::Yes) {
+				path = datafile;
+				position = -1;
+			}
+			if (m_load_screen->isVisible()) {
+				QApplication::setOverrideCursor(Qt::WaitCursor);
+				m_load_screen->grabKeyboard();
+			}
+		}
+	}
+	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
 	m_documents->addDocument(document);
 	document->loadTheme(m_sessions->current()->theme());
-	document->loadFile(filename, m_save_positions ? position : -1);
+	document->loadFile(datafile, m_save_positions ? position : -1);
+	if (datafile != file) {
+		document->text()->document()->setModified(!compareFiles(file, datafile));
+		QFile::remove(datafile);
+	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));

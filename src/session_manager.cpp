@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -136,7 +136,7 @@ bool SessionManager::closeCurrent()
 
 //-----------------------------------------------------------------------------
 
-void SessionManager::setCurrent(const QString& session)
+void SessionManager::setCurrent(const QString& session, const QStringList& files, const QStringList& datafiles)
 {
 	// Close open documents
 	if (!closeCurrent()) {
@@ -146,7 +146,11 @@ void SessionManager::setCurrent(const QString& session)
 	// Open session
 	m_session = new Session(!session.isEmpty() ? session : Session::tr("Default"));
 	emit themeChanged(m_session->theme());
-	m_window->addDocuments(m_session->files(), m_session->positions(), m_session->active(), true);
+	if (files.isEmpty()) {
+		m_window->addDocuments(m_session->files(), m_session->files(), m_session->positions(), m_session->active(), true);
+	} else {
+		m_window->addDocuments(files, datafiles, m_session->positions(), m_session->active(), true);
+	}
 
 	// Save session name
 	if (!session.isEmpty()) {

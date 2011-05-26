@@ -95,7 +95,7 @@ bool Application::event(QEvent* e)
 	} else {
 		QString file = static_cast<QFileOpenEvent*>(e)->file();
 		if (m_window) {
-			m_window->addDocuments(QStringList(file));
+			m_window->addDocuments(QStringList(file), QStringList(file));
 		} else {
 			m_files.append(file);
 		}

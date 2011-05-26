@@ -1,4 +1,5 @@
 2011-05-26 Graeme Gott <graeme@gottcode.org>
+	* Add restoring files from temporary cache.
 	* Store map of temporary file cache filenames.
 
 2011-05-25 Graeme Gott <graeme@gottcode.org>
