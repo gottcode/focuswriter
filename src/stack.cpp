@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -263,11 +263,26 @@ void Stack::alignRight()
 
 //-----------------------------------------------------------------------------
 
+void Stack::autoCache()
+{
+	foreach (Document* document, m_documents) {
+		if (document->text()->document()->isModified()) {
+			document->cache();
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::autoSave()
 {
 	foreach (Document* document, m_documents) {
-		if (document->text()->document()->isModified() && !document->filename().isEmpty()) {
-			document->save();
+		if (document->text()->document()->isModified()) {
+			if (!document->filename().isEmpty()) {
+				document->save();
+			} else {
+				document->cache();
+			}
 		}
 	}
 }

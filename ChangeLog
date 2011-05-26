@@ -1,4 +1,5 @@
 2011-05-25 Graeme Gott <graeme@gottcode.org>
+	* Copy files to temporary file cache.
 	* Move file loading out of document constructor.
 	* FIXED: No sound on characters inserted with "compose" key.
 

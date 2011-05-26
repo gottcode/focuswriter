@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,13 +66,9 @@ void RTF::Writer::setCodec(QTextCodec* codec)
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Writer::write(const QString& filename, QTextEdit* text)
+bool RTF::Writer::write(QFile& file, QTextEdit* text)
 {
 	if (m_codec == 0) {
-		return false;
-	}
-	QFile file(filename);
-	if (!file.open(QFile::WriteOnly | QFile::Text)) {
 		return false;
 	}
 
@@ -140,9 +136,7 @@ bool RTF::Writer::write(const QString& filename, QTextEdit* text)
 	}
 
 	file.write("\n}");
-	bool saved = (file.error() == QFile::NoError);
-	file.close();
-	return saved;
+	return true;
 }
 
 //-----------------------------------------------------------------------------

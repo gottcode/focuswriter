@@ -18,6 +18,7 @@
  ***********************************************************************/
 
 #include "dictionary.h"
+#include "document.h"
 #include "locale_dialog.h"
 #include "session.h"
 #include "sound.h"
@@ -180,6 +181,12 @@ int main(int argc, char** argv)
 		dir.mkpath(path);
 	}
 	dir.setPath(path);
+
+	// Create cache path
+	if (!dir.exists("Cache/Files")) {
+		dir.mkpath("Cache/Files");
+	}
+	Document::setCachePath(dir.filePath("Cache/Files"));
 
 	// Set sessions path
 	if (!dir.exists("Sessions")) {

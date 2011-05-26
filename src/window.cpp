@@ -879,9 +879,11 @@ void Window::loadPreferences(Preferences& preferences)
 
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
+		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 	} else {
 		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 	}
 	m_save_positions = preferences.savePositions();
 

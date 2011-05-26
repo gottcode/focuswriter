@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,6 +54,24 @@ namespace
 {
 	QList<int> g_untitled_indexes = QList<int>() << 0;
 
+	QString g_cache_path;
+
+	QString randomCacheFilename()
+	{
+		static time_t seed = 0;
+		if (seed == 0) {
+			seed = time(0);
+			qsrand(seed);
+		}
+
+		QString filename;
+		QDir dir(g_cache_path);
+		do {
+			filename = QString("fw_%1").arg(qrand(), 6, 36);
+		} while (dir.exists(filename));
+		return filename;
+	}
+
 	bool isRichTextFile(const QString& filename)
 	{
 		return filename.endsWith(QLatin1String(".rtf"));
@@ -64,6 +82,7 @@ namespace
 
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
+	m_cache_filename(randomCacheFilename()),
 	m_index(0),
 	m_always_center(false),
 	m_rich_text(false),
@@ -147,6 +166,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 Document::~Document()
 {
 	clearIndex();
+	QFile::remove(g_cache_path + m_cache_filename);
 }
 
 //-----------------------------------------------------------------------------
@@ -154,6 +174,13 @@ Document::~Document()
 bool Document::isReadOnly() const
 {
 	return m_text->isReadOnly();
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::cache()
+{
+	writeFile(g_cache_path + m_cache_filename);
 }
 
 //-----------------------------------------------------------------------------
@@ -170,22 +197,12 @@ bool Document::save()
 	}
 
 	// Write file to disk
-	bool saved = true;
-	if (!m_rich_text) {
-		QFile file(m_filename);
-		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream.setGenerateByteOrderMark(true);
-			stream << m_text->toPlainText();
-			saved = (file.error() == QFile::NoError);
-			file.close();
-		} else {
-			saved = false;
-		}
+	bool saved = writeFile(m_filename);
+	if (saved) {
+		QFile::remove(g_cache_path + m_cache_filename);
+		QFile::copy(m_filename, g_cache_path + m_cache_filename);
 	} else {
-		RTF::Writer writer;
-		saved = writer.write(m_filename, m_text);
+		cache();
 	}
 
 	if (!saved) {
@@ -282,6 +299,9 @@ void Document::loadFile(const QString& filename, int position)
 	if (filename.isEmpty()) {
 		return;
 	}
+
+	// Cache contents
+	QFile::copy(filename, g_cache_path + m_cache_filename);
 
 	// Load text area contents
 	QTextDocument* document = m_text->document();
@@ -506,6 +526,23 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 		}
 	}
 	return QWidget::eventFilter(watched, event);
+}
+
+//-----------------------------------------------------------------------------
+
+QString Document::cachePath()
+{
+	return g_cache_path;
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::setCachePath(const QString& path)
+{
+	g_cache_path = path;
+	if (!g_cache_path.endsWith(QLatin1Char('/'))) {
+		g_cache_path += QLatin1Char('/');
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -840,6 +877,30 @@ void Document::updateState()
 			}
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+bool Document::writeFile(const QString& filename)
+{
+	bool saved = true;
+	QFile file(filename);
+	if (file.open(QFile::WriteOnly | QFile::Text)) {
+		if (!m_rich_text) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setGenerateByteOrderMark(true);
+			stream << m_text->toPlainText();
+		} else {
+			RTF::Writer writer;
+			saved = writer.write(file, m_text);
+		}
+		saved = saved && (file.error() == QFile::NoError);
+		file.close();
+	} else {
+		saved = false;
+	}
+	return saved;
 }
 
 //-----------------------------------------------------------------------------
