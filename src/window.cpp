@@ -347,11 +347,18 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		}
 	}
 	if (!skip.isEmpty()) {
-		QString skipped = tr("The following files are unsupported and will not be opened:\n");
+		QStringList skipped;
 		foreach (int i, skip) {
-			skipped += "\n" + files.at(i);
+			skipped += files.at(i);
 		}
-		QMessageBox::warning(this, tr("Sorry"), skipped);
+		QMessageBox mbox(window());
+		mbox.setWindowTitle(tr("Sorry"));
+		mbox.setText(tr("Some files are unsupported and will not be opened."));
+		mbox.setDetailedText(skipped.join("\n"));
+		mbox.setStandardButtons(QMessageBox::Ok);
+		mbox.setDefaultButton(QMessageBox::Ok);
+		mbox.setIcon(QMessageBox::Warning);
+		mbox.exec();
 	}
 
 	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_load_screen->isVisible());
@@ -403,11 +410,34 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		closeDocument();
 	}
 
+	bool unset_keyboard = m_load_screen->isVisible() && (!missing.isEmpty() || !readonly.isEmpty());
+	if (unset_keyboard) {
+		QApplication::restoreOverrideCursor();
+		m_load_screen->releaseKeyboard();
+	}
 	if (!missing.isEmpty()) {
-		QMessageBox::warning(this, tr("Sorry"), tr("The following files could not be opened:\n\n%1").arg(missing.join("\n")));
+		QMessageBox mbox(window());
+		mbox.setWindowTitle(tr("Sorry"));
+		mbox.setText(tr("Some files could not be opened."));
+		mbox.setDetailedText(missing.join("\n"));
+		mbox.setStandardButtons(QMessageBox::Ok);
+		mbox.setDefaultButton(QMessageBox::Ok);
+		mbox.setIcon(QMessageBox::Warning);
+		mbox.exec();
 	}
 	if (!readonly.isEmpty()) {
-		QMessageBox::information(this, tr("Note"), tr("The following files were opened Read-Only:\n\n%1").arg(readonly.join("\n")));
+		QMessageBox mbox(window());
+		mbox.setWindowTitle(tr("Note"));
+		mbox.setText(tr("Some files were opened Read-Only."));
+		mbox.setDetailedText(readonly.join("\n"));
+		mbox.setStandardButtons(QMessageBox::Ok);
+		mbox.setDefaultButton(QMessageBox::Ok);
+		mbox.setIcon(QMessageBox::Information);
+		mbox.exec();
+	}
+	if (unset_keyboard) {
+		QApplication::setOverrideCursor(Qt::WaitCursor);
+		m_load_screen->grabKeyboard();
 	}
 
 	if (show_load) {

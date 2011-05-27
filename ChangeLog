@@ -1,3 +1,6 @@
+2011-05-27 Graeme Gott <graeme@gottcode.org>
+	* Improve dialogs that list files.
+
 2011-05-26 Graeme Gott <graeme@gottcode.org>
 	* Add restoring files from temporary cache.
 	* Store map of temporary file cache filenames.
