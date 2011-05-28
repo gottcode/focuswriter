@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,10 +30,10 @@ class Alert : public QWidget
 	Q_OBJECT
 
 public:
-	Alert(const QString& text, const QStringList& details, QWidget* parent);
+	Alert(const QPixmap& pixmap, const QString& text, const QStringList& details, QWidget* parent);
 
 	void fadeIn();
-	void setText(const QString& text, const QStringList& details);
+	void setText(const QPixmap& pixmap, const QString& text, const QStringList& details);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 
@@ -49,6 +49,7 @@ private slots:
 
 private:
 	QToolButton* m_expander;
+	QLabel* m_pixmap;
 	QLabel* m_text;
 	QString m_short_text;
 	QString m_long_text;

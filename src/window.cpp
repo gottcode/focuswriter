@@ -19,6 +19,7 @@
 
 #include "window.h"
 
+#include "alert_layer.h"
 #include "document.h"
 #include "load_screen.h"
 #include "locale_dialog.h"
@@ -50,6 +51,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QShortcut>
+#include <QStyle>
 #include <QTabBar>
 #include <QTextCodec>
 #include <QTextStream>
@@ -233,10 +235,14 @@ Window::Window(const QStringList& files)
 	m_tabs->blockSignals(false);
 
 	// Restore after crash
+	bool writable = QFileInfo(Document::cachePath()).isWritable() && QFileInfo(Document::cachePath() + "/../").isWritable();
+	if (!writable) {
+		m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Emergency cache is not writable."), QStringList());
+	}
 	QStringList cachedfiles, datafiles;
 	QString cachepath;
 	QStringList entries = QDir(Document::cachePath()).entryList(QDir::Files);
-	if ((entries.count() > 1) && entries.contains("mapping")) {
+	if (writable && (entries.count() > 1) && entries.contains("mapping")) {
 		// Find cachedir
 		QString date = QDate::currentDate().toString("yyyyMMdd");
 		int extra = 0;

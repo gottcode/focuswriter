@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 
 //-----------------------------------------------------------------------------
 
-Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
+Alert::Alert(const QPixmap& pixmap, const QString& text, const QStringList& details, QWidget* parent)
 	: QWidget(parent),
 	m_expanded(true),
 	m_under_mouse(false)
@@ -47,6 +47,9 @@ Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
 	m_expander->hide();
 	connect(m_expander, SIGNAL(clicked()), this, SLOT(expanderToggled()));
 
+	m_pixmap = new QLabel(this);
+	m_pixmap->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+
 	m_text = new QLabel(this);
 	m_text->setTextInteractionFlags(Qt::TextSelectableByMouse);
 	m_text->setWordWrap(true);
@@ -62,10 +65,11 @@ Alert::Alert(const QString& text, const QStringList& details, QWidget* parent)
 	layout->setMargin(7);
 	layout->setSpacing(6);
 	layout->addWidget(m_expander, 0, Qt::AlignHCenter | Qt::AlignBottom);
+	layout->addWidget(m_pixmap);
 	layout->addWidget(m_text, 1);
 	layout->addWidget(close, 0, Qt::AlignHCenter | Qt::AlignTop);
 
-	setText(text, details);
+	setText(pixmap, text, details);
 	expanderToggled();
 
 	QGraphicsOpacityEffect* fade_effect = new QGraphicsOpacityEffect(this);
@@ -87,8 +91,14 @@ void Alert::fadeIn()
 
 //-----------------------------------------------------------------------------
 
-void Alert::setText(const QString& text, const QStringList& details)
+void Alert::setText(const QPixmap& pixmap, const QString& text, const QStringList& details)
 {
+	if (!pixmap.isNull()) {
+		m_pixmap->setPixmap(pixmap);
+	} else {
+		m_pixmap->clear();
+	}
+
 	m_short_text = "<p>" + text + "</p>";
 	m_long_text = "<p>" + text + "<br><small>" + details.join("<br>") + "</small></p>";
 
