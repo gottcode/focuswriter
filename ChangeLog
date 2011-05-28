@@ -1,4 +1,5 @@
 2011-05-28 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Documents were visible when resizing window.
 	* Warn user if emergency cache is not writable.
 
 2011-05-27 Graeme Gott <graeme@gottcode.org>

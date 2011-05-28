@@ -22,6 +22,7 @@
 #include "alert_layer.h"
 #include "document.h"
 #include "find_dialog.h"
+#include "load_screen.h"
 #include "smart_quotes.h"
 #include "theme.h"
 
@@ -131,6 +132,8 @@ Stack::Stack(QWidget* parent)
 
 	m_alerts = new AlertLayer(this);
 
+	m_load_screen = new LoadScreen(this);
+
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
 
@@ -146,6 +149,7 @@ Stack::Stack(QWidget* parent)
 	m_layout->setColumnStretch(3, 1);
 	m_layout->addWidget(m_contents, 1, 0, 4, 6);
 	m_layout->addWidget(m_alerts, 3, 3);
+	m_layout->addWidget(m_load_screen, 0, 0, 6, 6);
 
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);

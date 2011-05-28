@@ -30,9 +30,7 @@ LoadScreen::LoadScreen(QWidget* parent)
 	: QLabel(parent)
 {
 	setCursor(Qt::WaitCursor);
-	setPixmap(QString(":/load.png"));
-	setAlignment(Qt::AlignCenter);
-	setStyleSheet("LoadScreen { background-color: #666666; }");
+	setStyleSheet("LoadScreen {background: #666 url(':/load.png') no-repeat center;}");
 
 	m_text = new QLabel(this);
 	m_text->hide();

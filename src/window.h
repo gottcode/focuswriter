@@ -20,7 +20,6 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-class LoadScreen;
 class Preferences;
 class SessionManager;
 class Sound;
@@ -101,7 +100,6 @@ private:
 	QAction* m_replace_document_quotes;
 	QAction* m_replace_selection_quotes;
 
-	LoadScreen* m_load_screen;
 	Stack* m_documents;
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;

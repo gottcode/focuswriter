@@ -113,7 +113,6 @@ Window::Window(const QStringList& files)
 	m_documents = new Stack(this);
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
-	m_load_screen = new LoadScreen(this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
 	connect(m_documents, SIGNAL(formattingEnabled(bool)), this, SLOT(setFormattingEnabled(bool)));
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
@@ -220,11 +219,11 @@ Window::Window(const QStringList& files)
 	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 
 	// Update themes
-	m_load_screen->setText(tr("Loading themes"));
+	m_documents->loadScreen()->setText(tr("Loading themes"));
 	Theme::copyBackgrounds();
 
 	// Load sounds
-	m_load_screen->setText(tr("Loading sounds"));
+	m_documents->loadScreen()->setText(tr("Loading sounds"));
 	m_key_sound = new Sound("keyany.wav", this);
 	m_enter_key_sound = new Sound("keyenter.wav", this);
 
@@ -290,8 +289,8 @@ Window::Window(const QStringList& files)
 					untitled++;
 				}
 			}
-			m_load_screen->setText("");
-			m_load_screen->releaseKeyboard();
+			m_documents->loadScreen()->setText("");
+			m_documents->loadScreen()->releaseKeyboard();
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
@@ -304,7 +303,7 @@ Window::Window(const QStringList& files)
 				cachedfiles.clear();
 				datafiles.clear();
 			}
-			m_load_screen->grabKeyboard();
+			m_documents->loadScreen()->grabKeyboard();
 		}
 	}
 
@@ -368,9 +367,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		mbox.exec();
 	}
 
-	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_load_screen->isVisible());
+	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_documents->loadScreen()->isVisible());
 	if (show_load) {
-		m_load_screen->setText("");
+		m_documents->loadScreen()->setText("");
 		setCursor(Qt::WaitCursor);
 	}
 
@@ -418,9 +417,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		closeDocument();
 	}
 
-	bool unset_keyboard = m_load_screen->isVisible() && (!missing.isEmpty() || !readonly.isEmpty());
+	bool unset_keyboard = m_documents->loadScreen()->isVisible() && (!missing.isEmpty() || !readonly.isEmpty());
 	if (unset_keyboard) {
-		m_load_screen->releaseKeyboard();
+		m_documents->loadScreen()->releaseKeyboard();
 	}
 	if (!missing.isEmpty()) {
 		QMessageBox mbox(window());
@@ -443,12 +442,12 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		mbox.exec();
 	}
 	if (unset_keyboard) {
-		m_load_screen->grabKeyboard();
+		m_documents->loadScreen()->grabKeyboard();
 	}
 
 	if (show_load) {
 		m_documents->waitForThemeBackground();
-		m_load_screen->finish();
+		m_documents->loadScreen()->finish();
 		unsetCursor();
 	}
 }
@@ -566,7 +565,6 @@ void Window::resizeEvent(QResizeEvent* event)
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
-	m_load_screen->resize(size());
 	m_documents->resize(size());
 	QMainWindow::resizeEvent(event);
 }
@@ -931,12 +929,12 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 
 	// Show filename in load screen
 	bool show_load = false;
-	show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
-	if (m_load_screen->isVisible() || show_load) {
+	show_load = !file.isEmpty() && !m_documents->loadScreen()->isVisible() && (info.size() > 100000);
+	if (m_documents->loadScreen()->isVisible() || show_load) {
 		if (!file.isEmpty()) {
-			m_load_screen->setText(tr("Opening %1").arg(file));
+			m_documents->loadScreen()->setText(tr("Opening %1").arg(file));
 		} else {
-			m_load_screen->setText("");
+			m_documents->loadScreen()->setText("");
 		}
 	}
 
@@ -947,8 +945,8 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 			path = datafile;
 			position = -1;
 		} else {
-			if (m_load_screen->isVisible()) {
-				m_load_screen->releaseKeyboard();
+			if (m_documents->loadScreen()->isVisible()) {
+				m_documents->loadScreen()->releaseKeyboard();
 			}
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
@@ -961,8 +959,8 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 				path = datafile;
 				position = -1;
 			}
-			if (m_load_screen->isVisible()) {
-				m_load_screen->grabKeyboard();
+			if (m_documents->loadScreen()->isVisible()) {
+				m_documents->loadScreen()->grabKeyboard();
 			}
 		}
 	}
@@ -987,7 +985,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	m_tabs->setCurrentIndex(index);
 
 	if (show_load) {
-		m_load_screen->finish();
+		m_documents->loadScreen()->finish();
 	}
 
 	return true;

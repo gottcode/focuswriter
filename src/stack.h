@@ -23,6 +23,7 @@
 class AlertLayer;
 class Document;
 class FindDialog;
+class LoadScreen;
 class Theme;
 
 #include <QWidget>
@@ -40,6 +41,8 @@ public:
 	void addDocument(Document* document);
 
 	AlertLayer* alerts() const;
+	LoadScreen* loadScreen() const;
+
 	int count() const;
 	Document* currentDocument() const;
 	int currentIndex() const;
@@ -115,6 +118,7 @@ private slots:
 	void updateMapping();
 
 private:
+	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
@@ -138,6 +142,10 @@ private:
 
 inline AlertLayer* Stack::alerts() const {
 	return m_alerts;
+}
+
+inline LoadScreen* Stack::loadScreen() const {
+	return m_load_screen;
 }
 
 inline int Stack::count() const {
