@@ -29,12 +29,14 @@
 LoadScreen::LoadScreen(QWidget* parent)
 	: QLabel(parent)
 {
+	setCursor(Qt::WaitCursor);
 	setPixmap(QString(":/load.png"));
 	setAlignment(Qt::AlignCenter);
 	setStyleSheet("LoadScreen { background-color: #666666; }");
 
 	m_text = new QLabel(this);
 	m_text->hide();
+	m_text->setCursor(Qt::WaitCursor);
 	m_text->setAlignment(Qt::AlignCenter);
 	m_text->setStyleSheet("QLabel {font-family:monospace; color: #d7d7d7; background-color: #1e1e1e; border-top-left-radius: 0.25em; border-top-right-radius: 0.25em; padding: 0.25em 0.5em;}");
 
@@ -81,7 +83,6 @@ void LoadScreen::finish()
 
 void LoadScreen::hideEvent(QHideEvent* event)
 {
-	QApplication::restoreOverrideCursor();
 	QLabel::hideEvent(event);
 	releaseKeyboard();
 }
@@ -90,7 +91,6 @@ void LoadScreen::hideEvent(QHideEvent* event)
 
 void LoadScreen::showEvent(QShowEvent* event)
 {
-	QApplication::setOverrideCursor(Qt::WaitCursor);
 	QLabel::showEvent(event);
 	grabKeyboard();
 }

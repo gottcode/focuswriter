@@ -92,6 +92,7 @@ Window::Window(const QStringList& files)
 	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
 	setContextMenuPolicy(Qt::NoContextMenu);
+	setCursor(Qt::WaitCursor);
 
 	// Set up icons
 	if (QIcon::themeName().isEmpty()) {
@@ -289,7 +290,7 @@ Window::Window(const QStringList& files)
 					untitled++;
 				}
 			}
-			QApplication::restoreOverrideCursor();
+			m_load_screen->setText("");
 			m_load_screen->releaseKeyboard();
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
@@ -303,7 +304,6 @@ Window::Window(const QStringList& files)
 				cachedfiles.clear();
 				datafiles.clear();
 			}
-			QApplication::setOverrideCursor(Qt::WaitCursor);
 			m_load_screen->grabKeyboard();
 		}
 	}
@@ -330,6 +330,7 @@ Window::Window(const QStringList& files)
 	// Bring to front
 	activateWindow();
 	raise();
+	unsetCursor();
 }
 
 //-----------------------------------------------------------------------------
@@ -370,6 +371,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_load_screen->isVisible());
 	if (show_load) {
 		m_load_screen->setText("");
+		setCursor(Qt::WaitCursor);
 	}
 
 	int untitled_index = -1;
@@ -418,7 +420,6 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 
 	bool unset_keyboard = m_load_screen->isVisible() && (!missing.isEmpty() || !readonly.isEmpty());
 	if (unset_keyboard) {
-		QApplication::restoreOverrideCursor();
 		m_load_screen->releaseKeyboard();
 	}
 	if (!missing.isEmpty()) {
@@ -442,13 +443,13 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		mbox.exec();
 	}
 	if (unset_keyboard) {
-		QApplication::setOverrideCursor(Qt::WaitCursor);
 		m_load_screen->grabKeyboard();
 	}
 
 	if (show_load) {
 		m_documents->waitForThemeBackground();
 		m_load_screen->finish();
+		unsetCursor();
 	}
 }
 
@@ -947,7 +948,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 			position = -1;
 		} else {
 			if (m_load_screen->isVisible()) {
-				QApplication::restoreOverrideCursor();
 				m_load_screen->releaseKeyboard();
 			}
 			QMessageBox mbox(window());
@@ -962,7 +962,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 				position = -1;
 			}
 			if (m_load_screen->isVisible()) {
-				QApplication::setOverrideCursor(Qt::WaitCursor);
 				m_load_screen->grabKeyboard();
 			}
 		}
