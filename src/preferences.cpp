@@ -55,7 +55,7 @@ Preferences::Preferences()
 	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
 	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", true).toBool();
 
-	m_auto_save = settings.value("Save/Auto", true).toBool();
+	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
 
 	m_toolbar_style = settings.value("Toolbar/Style", Qt::ToolButtonTextUnderIcon).toInt();
