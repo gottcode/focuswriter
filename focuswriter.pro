@@ -1,10 +1,11 @@
 TEMPLATE = app
 CONFIG += warn_on release
 macx {
-	# Uncomment the following line to compile on PowerPC Macs
+	QMAKE_INFO_PLIST = install/mac/Info.plist
+	CONFIG += x86_64
+	# Comment the above line and uncomment the following lines to compile Universal for 10.4+
 	# QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-	CONFIG += x86 ppc
-	QMAKE_INFO_PLIST=Info.plist
+	# CONFIG += x86 ppc
 }
 
 MOC_DIR = build
@@ -129,7 +130,7 @@ unix: !macx {
 	icons.files = icons/oxygen/hicolor/*
 	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
 
-	desktop.files = icons/focuswriter.desktop
+	desktop.files = install/unix/focuswriter.desktop
 	desktop.path = $$PREFIX/share/applications/
 
 	qm.files = translations/*.qm
