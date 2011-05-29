@@ -1,4 +1,5 @@
 2011-05-29 Graeme Gott <graeme@gottcode.org>
+	* Update locale dialog.
 	* Disable auto-save by default and rely on temporary cache instead.
 
 2011-05-28 Graeme Gott <graeme@gottcode.org>
