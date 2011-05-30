@@ -504,7 +504,12 @@ void Document::setRichText(bool rich_text)
 
 void Document::setScrollBarVisible(bool visible)
 {
-	m_scrollbar->setMask(visible ? m_scrollbar->rect() : QRect(0,0,1,1));
+	if (!visible) {
+		m_scrollbar->setMask(QRect(-1,-1,1,1));
+		update();
+	} else {
+		m_scrollbar->clearMask();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -573,8 +578,7 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 		emit headerVisible(false);
 		emit footerVisible(false);
 	}
-	int margin = m_scrollbar->sizeHint().width();
-	setScrollBarVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - margin)) : (point.x() <= margin));
+	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
 }
 
 //-----------------------------------------------------------------------------

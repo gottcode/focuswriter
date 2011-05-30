@@ -1,4 +1,5 @@
 2011-05-30 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Masked scrollbars still showed a pixel.
 	* FIXED: SDL_mixer was not loaded in most Linux distros.
 
 2011-05-29 Graeme Gott <graeme@gottcode.org>
