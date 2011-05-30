@@ -48,6 +48,8 @@
 #include <QTextStream>
 #include <QTimer>
 
+#include <ctime>
+
 //-----------------------------------------------------------------------------
 
 namespace

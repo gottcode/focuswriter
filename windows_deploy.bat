@@ -38,8 +38,8 @@ ECHO Copying libzip library
 COPY libzip\libzip0.dll %APP% >nul
 
 ECHO Copying SDL libraries
-COPY SDL\libSDL.dll %APP% >nul
-COPY SDL\libSDL_mixer.dll %APP% >nul
+COPY SDL\SDL.dll %APP% >nul
+COPY SDL\SDL_mixer.dll %APP% >nul
 
 ECHO Copying Qt libraries
 COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul
