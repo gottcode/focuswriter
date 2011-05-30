@@ -108,6 +108,9 @@ namespace
 	{
 		// Initialize SDL
 		QLibrary sdl_lib("SDL");
+		if (!sdl_lib.load()) {
+			sdl_lib.setFileNameAndVersion("SDL-1.2", "0");
+		}
 		sdl_Init = (func_SDL_Init) sdl_lib.resolve("SDL_Init");
 		sdl_Quit = (func_SDL_Quit) sdl_lib.resolve("SDL_Quit");
 		sdl_GetError = (func_SDL_GetError) sdl_lib.resolve("SDL_GetError");
@@ -123,6 +126,9 @@ namespace
 
 		// Initialize SDL_mixer
 		QLibrary mixer_lib("SDL_mixer");
+		if (!mixer_lib.load()) {
+			mixer_lib.setFileNameAndVersion("SDL_mixer-1.2", "0");
+		}
 		mix_OpenAudio = (func_Mix_OpenAudio) mixer_lib.resolve("Mix_OpenAudio");
 		mix_CloseAudio = (func_Mix_CloseAudio) mixer_lib.resolve("Mix_CloseAudio");
 		mix_LoadWAV_RW = (func_Mix_LoadWAV_RW) mixer_lib.resolve("Mix_LoadWAV_RW");
