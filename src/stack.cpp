@@ -246,6 +246,16 @@ void Stack::waitForThemeBackground()
 
 //-----------------------------------------------------------------------------
 
+bool Stack::eventFilter(QObject* watched, QEvent* event)
+{
+	if (event->type() == QEvent::MouseMove) {
+		mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	}
+	return QWidget::eventFilter(watched, event);
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::alignCenter()
 {
 	m_current_document->text()->setAlignment(Qt::AlignCenter);
@@ -594,8 +604,9 @@ void Stack::showHeader()
 
 void Stack::mouseMoveEvent(QMouseEvent* event)
 {
-	bool header_visible = event->pos().y() <= m_header_margin;
-	bool footer_visible = event->pos().y() >= (height() - m_footer_margin);
+	int y = mapFromGlobal(event->globalPos()).y();
+	bool header_visible = y <= m_header_margin;
+	bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
 	if (m_current_document && (header_visible || footer_visible)) {
@@ -652,14 +663,14 @@ void Stack::updateBackground()
 
 void Stack::updateMask()
 {
-	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
-	if (!m_header_visible && !m_footer_visible) {
+	if (m_header_visible || m_footer_visible) {
+		setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
+		setAttribute(Qt::WA_TransparentForMouseEvents, true);
+	} else {
+		clearMask();
+		setAttribute(Qt::WA_TransparentForMouseEvents, false);
 		raise();
 	}
-
-	bool transparent = m_header_visible || m_footer_visible;
-	m_contents->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
-	m_alerts->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
 }
 
 //-----------------------------------------------------------------------------

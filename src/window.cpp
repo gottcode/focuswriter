@@ -119,6 +119,9 @@ Window::Window(const QStringList& files)
 	connect(m_documents, SIGNAL(updateFormatAlignmentActions()), this, SLOT(updateFormatAlignmentActions()));
 	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
 
+	contents->setMouseTracking(true);
+	contents->installEventFilter(m_documents);
+
 	// Set up menubar and toolbar
 	initMenus();
 

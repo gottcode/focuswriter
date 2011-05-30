@@ -54,6 +54,8 @@ public:
 	void setMargins(int footer, int header);
 	void waitForThemeBackground();
 
+	virtual bool eventFilter(QObject* watched, QEvent* event);
+
 signals:
 	void copyAvailable(bool);
 	void redoAvailable(bool);
