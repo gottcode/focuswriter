@@ -67,6 +67,7 @@ public:
 	void setScrollBarVisible(bool visible);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
+	virtual void mouseMoveEvent(QMouseEvent* event);
 
 	static QString cachePath();
 	static void setCachePath(const QString& path);
@@ -85,7 +86,6 @@ signals:
 	void keyPressed(int key);
 
 protected:
-	virtual void mouseMoveEvent(QMouseEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 	virtual void wheelEvent(QWheelEvent* event);
 

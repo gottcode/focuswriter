@@ -143,6 +143,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
+	m_scrollbar->setMouseTracking(true);
+	m_scrollbar->installEventFilter(this);
 	setScrollBarVisible(false);
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
@@ -537,6 +539,22 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 
 //-----------------------------------------------------------------------------
 
+void Document::mouseMoveEvent(QMouseEvent* event)
+{
+	m_text->viewport()->setCursor(Qt::IBeamCursor);
+	unsetCursor();
+	m_hide_timer->start();
+
+	const QPoint& point = mapFromGlobal(event->globalPos());
+	if (rect().contains(point)) {
+		emit headerVisible(false);
+		emit footerVisible(false);
+	}
+	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
+}
+
+//-----------------------------------------------------------------------------
+
 QString Document::cachePath()
 {
 	return g_cache_path;
@@ -563,22 +581,6 @@ void Document::centerCursor(bool force)
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
 		scrollbar->setValue(scrollbar->value() - offset.y());
 	}
-}
-
-//-----------------------------------------------------------------------------
-
-void Document::mouseMoveEvent(QMouseEvent* event)
-{
-	m_text->viewport()->setCursor(Qt::IBeamCursor);
-	unsetCursor();
-	m_hide_timer->start();
-
-	const QPoint& point = mapFromGlobal(event->globalPos());
-	if (rect().contains(point)) {
-		emit headerVisible(false);
-		emit footerVisible(false);
-	}
-	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
 }
 
 //-----------------------------------------------------------------------------

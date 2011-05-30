@@ -609,8 +609,13 @@ void Stack::mouseMoveEvent(QMouseEvent* event)
 	bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
-	if (m_current_document && (header_visible || footer_visible)) {
-		m_current_document->setScrollBarVisible(false);
+
+	if (m_current_document) {
+		if (header_visible || footer_visible) {
+			m_current_document->setScrollBarVisible(false);
+		} else {
+			m_current_document->mouseMoveEvent(event);
+		}
 	}
 }
 
