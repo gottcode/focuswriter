@@ -31,18 +31,18 @@ echo 'Done'
 
 # Copy Qt translations
 echo -n 'Copying Qt translations... '
-for translation in $(ls translations | grep qm | cut -d'.' -f1)
+for translation in $(ls translations | grep qm | cut -d'.' -f1 | cut -d'_' -f2-)
 do
 	LPROJ="$APP/$BUNDLE/Contents/Resources/${translation}.lproj"
 	mkdir "$LPROJ"
 	sed "s/????/${translation}/" < 'install/mac/locversion.plist' > "${LPROJ}/locversion.plist"
 
-	QT_TRANSLATION="${QTDIR}/translations/qt_${translation}.qm"
+	QT_TRANSLATION="/Developer/Applications/Qt/translations/qt_${translation}.qm"
 	if [ -e "$QT_TRANSLATION" ]; then
 		cp -f "$QT_TRANSLATION" "$TRANSLATIONS"
 	fi
 
-	QT_TRANSLATION="${QTDIR}/translations/qt_${translation:0:2}.qm"
+	QT_TRANSLATION="/Developer/Applications/Qt/translations/qt_${translation:0:2}.qm"
 	if [ -e "$QT_TRANSLATION" ]; then
 		cp -f "$QT_TRANSLATION" "$TRANSLATIONS"
 	fi
