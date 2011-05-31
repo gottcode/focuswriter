@@ -95,16 +95,16 @@ SOURCES += src/alert.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp
 
-TRANSLATIONS = translations/cs.ts \
-	translations/de.ts \
-	translations/en.ts \
-	translations/es.ts \
-	translations/es_MX.ts \
-	translations/fr.ts \
-	translations/pl.ts \
-	translations/pt.ts \
-	translations/pt_BR.ts \
-	translations/ru.ts
+TRANSLATIONS = translations/focuswriter_cs.ts \
+	translations/focuswriter_de.ts \
+	translations/focuswriter_en.ts \
+	translations/focuswriter_es.ts \
+	translations/focuswriter_es_MX.ts \
+	translations/focuswriter_fr.ts \
+	translations/focuswriter_pl.ts \
+	translations/focuswriter_pt.ts \
+	translations/focuswriter_pt_BR.ts \
+	translations/focuswriter_ru.ts
 
 RESOURCES = icons/icons.qrc
 macx {

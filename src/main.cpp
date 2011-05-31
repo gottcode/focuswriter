@@ -173,7 +173,7 @@ int main(int argc, char** argv)
 	}
 
 	// Load application language
-	LocaleDialog::loadTranslator();
+	LocaleDialog::loadTranslator("focuswriter_");
 
 	// Create base data path
 	QDir dir;

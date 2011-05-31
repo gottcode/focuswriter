@@ -49,6 +49,7 @@ namespace
 			m_names["es_MX"] = QString::fromUtf8("Espa\303\261ol (M\303\251xico)");
 			m_names["fi"] = QLatin1String("Suomi");
 			m_names["fr"] = QString::fromUtf8("Fran\303\247ais");
+			m_names["he"] = QString::fromUtf8("\327\242\326\264\327\221\326\260\327\250\326\264\327\231\327\252");
 			m_names["it"] = QLatin1String("Italiano");
 			m_names["pl"] = QLatin1String("Polski");
 			m_names["pt"] = QString::fromUtf8("Portugu\303\252s");
@@ -85,6 +86,7 @@ namespace
 
 QString LocaleDialog::m_current;
 QString LocaleDialog::m_path;
+QString LocaleDialog::m_appname;
 
 //-----------------------------------------------------------------------------
 
@@ -97,11 +99,13 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 
 	m_translations = new QComboBox(this);
 	m_translations->addItem(tr("<System Language>"));
+	QString translation;
 	QStringList translations = findTranslations();
-	foreach (const QString& translation, translations) {
+	foreach (translation, translations) {
 		if (translation.startsWith("qt")) {
 			continue;
 		}
+		translation.remove(m_appname);
 		m_translations->addItem(LocaleNames::toString(translation), translation);
 	}
 	int index = qMax(0, m_translations->findData(m_current));
@@ -120,9 +124,10 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 
 //-----------------------------------------------------------------------------
 
-void LocaleDialog::loadTranslator()
+void LocaleDialog::loadTranslator(const QString& name)
 {
 	QString appdir = QCoreApplication::applicationDirPath();
+	m_appname = name;
 
 	// Find translator path
 	QStringList paths;
@@ -140,13 +145,17 @@ void LocaleDialog::loadTranslator()
 	m_current = QSettings().value("Locale/Language").toString();
 	QString current = !m_current.isEmpty() ? m_current : QLocale::system().name();
 	QStringList translations = findTranslations();
-	if (!translations.contains(current)) {
+	if (!translations.contains(m_appname + current)) {
 		current = current.left(2);
-		if (!translations.contains(current)) {
-			current = "en";
+		if (!translations.contains(m_appname + current)) {
+			current.clear();
 		}
 	}
-	QLocale::setDefault(current);
+	if (!current.isEmpty()) {
+		QLocale::setDefault(m_appname + current);
+	} else {
+		current = "en";
+	}
 
 	// Load translators
 	static QTranslator qt_translator;
@@ -158,7 +167,7 @@ void LocaleDialog::loadTranslator()
 	QCoreApplication::installTranslator(&qt_translator);
 
 	static QTranslator translator;
-	translator.load(current, m_path);
+	translator.load(m_appname + current, m_path);
 	QCoreApplication::installTranslator(&translator);
 }
 

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt" sourcelanguage="en">
+<TS version="2.0" language="ru" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="61"/>
         <source>Close (Ctrl+D)</source>
-        <translation>Fechar (Ctrl+D)</translation>
+        <translation>Закрыть (Ctrl+D)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="158"/>
         <source>Collapse</source>
-        <translation>Minimizar</translation>
+        <translation>Свернуть</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="162"/>
         <source>Expand</source>
-        <translation>Expandir</translation>
+        <translation>Развернуть</translation>
     </message>
 </context>
 <context>
@@ -30,55 +30,55 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="209"/>
-        <location filename="../src/document.cpp" line="226"/>
-        <location filename="../src/document.cpp" line="258"/>
-        <location filename="../src/document.cpp" line="262"/>
-        <location filename="../src/document.cpp" line="330"/>
+        <location filename="../src/document.cpp" line="216"/>
+        <location filename="../src/document.cpp" line="233"/>
+        <location filename="../src/document.cpp" line="265"/>
+        <location filename="../src/document.cpp" line="269"/>
+        <location filename="../src/document.cpp" line="337"/>
         <source>Sorry</source>
-        <translation>Desculpe</translation>
+        <translation>Простите</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="209"/>
+        <location filename="../src/document.cpp" line="216"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Não foi possível guardar «%1».</translation>
+        <translation>Невозможно сохранить &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="222"/>
-        <location filename="../src/document.cpp" line="469"/>
+        <location filename="../src/document.cpp" line="229"/>
+        <location filename="../src/document.cpp" line="476"/>
         <source>Save File As</source>
-        <translation>Guardar como</translation>
+        <translation>Сохранить как</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="226"/>
-        <location filename="../src/document.cpp" line="258"/>
+        <location filename="../src/document.cpp" line="233"/>
+        <location filename="../src/document.cpp" line="265"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Não foi possível substituir «%1».</translation>
+        <translation>Невозможно перезаписать &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="254"/>
+        <location filename="../src/document.cpp" line="261"/>
         <source>Rename File</source>
-        <translation>Alterar o nome do ficheiro</translation>
+        <translation>Переименовать файл</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="262"/>
+        <location filename="../src/document.cpp" line="269"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Não foi possível alterar o nome « %1 ».</translation>
+        <translation>Невозможно переименовать &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="799"/>
+        <location filename="../src/document.cpp" line="807"/>
         <source>Plain Text (*.txt);;All Files (*)</source>
-        <translation>Texto simples (*.txt);;Todos os ficheiros (*)</translation>
+        <translation>Простой текст (*.txt);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="800"/>
+        <location filename="../src/document.cpp" line="808"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>Texto rico (*.rtf)</translation>
+        <translation>Текст с форматированием (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="801"/>
+        <location filename="../src/document.cpp" line="809"/>
         <source>All Files (*)</source>
-        <translation>Todos os ficheiros (*)</translation>
+        <translation>Все файлы (*)</translation>
     </message>
 </context>
 <context>
@@ -86,74 +86,75 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="43"/>
         <source>Search for:</source>
-        <translation>Procurar por :</translation>
+        <translation>Найти:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Replace with:</source>
-        <translation>Substituir por :</translation>
+        <translation>Заменить:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Ignore case</source>
-        <translation>Ignorar a capitalização</translation>
+        <translation>Не учитывать регистр</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="50"/>
         <source>Whole words only</source>
-        <translation>Apenas palavras inteiras</translation>
+        <translation>Только слова целиком</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Search up</source>
-        <translation>Para trás</translation>
+        <translation>Найти выше</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Search down</source>
-        <translation>Para frente</translation>
+        <translation>Найти ниже</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="60"/>
         <location filename="../src/find_dialog.cpp" line="127"/>
         <source>Find</source>
-        <translation>Procurar</translation>
+        <translation>Найти</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <location filename="../src/find_dialog.cpp" line="135"/>
         <source>Replace</source>
-        <translation>Substituir</translation>
+        <translation>Заменить</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>Replace All</source>
-        <translation>Substituir tudo</translation>
+        <translation>Заменить все</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="207"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Substituir %n ocorrência ?</numerusform>
-            <numerusform>Substituir %n ocorrências ?</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="207"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="211"/>
         <location filename="../src/find_dialog.cpp" line="260"/>
         <source>Sorry</source>
-        <translation>Desculpe</translation>
+        <translation>Простите</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="211"/>
         <location filename="../src/find_dialog.cpp" line="260"/>
         <source>Phrase not found.</source>
-        <translation>A frase não foi encontrada.</translation>
+        <translation>Фраза не найдена.</translation>
     </message>
 </context>
 <context>
@@ -161,17 +162,17 @@
     <message>
         <location filename="../src/highlighter.cpp" line="45"/>
         <source>Add</source>
-        <translation>Adicionar</translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="46"/>
         <source>Check Spelling...</source>
-        <translation>Verificação ortográfica...</translation>
+        <translation>Проверить орфографию...</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="114"/>
         <source>(No suggestions found)</source>
-        <translation>(Nenhuma sugestão encontrada)</translation>
+        <translation>(Нет вариантов)</translation>
     </message>
 </context>
 <context>
@@ -179,35 +180,35 @@
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Open Image</source>
-        <translation>Seleccionar imagem</translation>
+        <translation>Открыть изображение</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Images(%1)</source>
-        <translation>Imagens(%1)</translation>
+        <translation>Изображения(%1)</translation>
     </message>
 </context>
 <context>
     <name>LocaleDialog</name>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="96"/>
+        <location filename="../src/locale_dialog.cpp" line="97"/>
         <source>Select application language:</source>
-        <translation>Seleccionar a língua do programa:</translation>
+        <translation>Выберите язык приложения:</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="99"/>
+        <location filename="../src/locale_dialog.cpp" line="100"/>
         <source>&lt;System Language&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="186"/>
+        <location filename="../src/locale_dialog.cpp" line="191"/>
         <source>Note</source>
-        <translation>Nota</translation>
+        <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="186"/>
+        <location filename="../src/locale_dialog.cpp" line="191"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Por favor reinicie o programa para a mudança da língua do programa ser aplicada.</translation>
+        <translation>Чтобы применить изменение языка, перезапустите программу.</translation>
     </message>
 </context>
 <context>
@@ -215,302 +216,302 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="77"/>
         <source>Preferences</source>
-        <translation>Definições</translation>
+        <translation>Параметры</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="80"/>
         <source>General</source>
-        <translation>Geral</translation>
+        <translation>Общие</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="81"/>
         <source>Statistics</source>
-        <translation>Estatísticas</translation>
+        <translation>Статистика</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="82"/>
         <source>Toolbar</source>
-        <translation>Barra de ferramentas</translation>
+        <translation>Панель инструментов</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="83"/>
         <source>Spell Checking</source>
-        <translation>Verificação ortográfica</translation>
+        <translation>Проверка орфографии</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="355"/>
         <source>Select Dictionary</source>
-        <translation>Selecionar o dicionário</translation>
+        <translation>Выберите словарь</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="369"/>
         <location filename="../src/preferences_dialog.cpp" line="463"/>
         <source>Sorry</source>
-        <translation>Desculpe</translation>
+        <translation>Простите</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="369"/>
         <source>Unable to open archive.</source>
-        <translation>Não foi possível abrir o arquivo.</translation>
+        <translation>Невозможно открыть архив.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="377"/>
         <source>Unable to read archive metadata.</source>
-        <translation>Não foi possível ler as metainformações do arquivo.</translation>
+        <translation>Невозможно прочесть метаданные архива.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="403"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>O arquivo não contem nenhum dicionário utilizável.</translation>
+        <translation>Архив не содержит правильного словаря.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="418"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Não foi possível abrir o ficheiro &apos;%1&apos;.</translation>
+        <translation>Невозможно открыть файл &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="429"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Não foi possível fechar o ficheiro &apos;%1&apos;.</translation>
+        <translation>Невозможно закрыть файл &apos;%1&apos;&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="449"/>
         <location filename="../src/preferences_dialog.cpp" line="478"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="449"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>O dicionário &quot;%1&quot; já existe. Deseja substituí-lo?</translation>
+        <translation>Словарь &quot;%1&quot; уже существует. Перезаписать его?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="478"/>
         <source>Remove current dictionary?</source>
-        <translation>Eliminar o dicionário actual?</translation>
+        <translation>Удалить текущий словарь?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="539"/>
         <source>Daily Goal</source>
-        <translation>Objectivo do dia</translation>
+        <translation>Дневная задача</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="541"/>
         <source>None</source>
-        <translation>Nenhum</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="543"/>
         <source>Minutes:</source>
-        <translation>Minutos:</translation>
+        <translation>Минут:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="555"/>
         <location filename="../src/preferences_dialog.cpp" line="673"/>
         <source>Words:</source>
-        <translation>Palavras:</translation>
+        <translation>Слов:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="573"/>
         <source>Editing</source>
-        <translation>Edição</translation>
+        <translation>Редактирование</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="575"/>
         <source>Always vertically center</source>
-        <translation>Sempre centrar na vertical</translation>
+        <translation>Всегда центрировать по вертикали</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="576"/>
         <source>Block insertion cursor</source>
-        <translation>Cursor de bloco</translation>
+        <translation>Прямоугольный курсор</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="577"/>
         <source>Default to rich text</source>
-        <translation>Usar o formato de texto rico por defeito</translation>
+        <translation>По умолчанию текст с форматированием</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="578"/>
         <source>Smooth fonts</source>
-        <translation>Tipos de letra suavizados</translation>
+        <translation>Сглаживать шрифты</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="579"/>
         <source>Typewriter sounds</source>
-        <translation>Ruidos de máquina de escrever</translation>
+        <translation>Звук пишущей машинки</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="581"/>
         <source>Smart quotes:</source>
-        <translation>Aspas curvas e angulares :</translation>
+        <translation>Особые кавычки:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="588"/>
         <source>Double</source>
-        <translation>Duplas</translation>
+        <translation>Двойные</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="589"/>
         <source>Single</source>
-        <translation>Simples</translation>
+        <translation>Одинарные</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="611"/>
         <source>Saving</source>
-        <translation>Gravação</translation>
+        <translation>Сохранение</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="613"/>
         <source>Automatically save changes</source>
-        <translation>Gravar automaticamente as alterações</translation>
+        <translation>Автоматически сохранять изменения</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="614"/>
         <source>Remember cursor position</source>
-        <translation>Memorizar a posição do cursor</translation>
+        <translation>Запоминать позицию курсора</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="637"/>
         <source>Contents</source>
-        <translation>Conteúdo</translation>
+        <translation>Содержание</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="639"/>
         <source>Word count</source>
-        <translation>Número de palavras</translation>
+        <translation>Количество слов</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="640"/>
         <source>Page count</source>
-        <translation>Número de páginas</translation>
+        <translation>Количество страниц</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="641"/>
         <source>Paragraph count</source>
-        <translation>Número de parágrafos</translation>
+        <translation>Количество абзацев</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="642"/>
         <source>Character count</source>
-        <translation>Número de caracteres</translation>
+        <translation>Количество символов</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="651"/>
         <source>Page Size</source>
-        <translation>Tamanho da página</translation>
+        <translation>Размер страницы</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="653"/>
         <source>Characters:</source>
-        <translation>Caracteres:</translation>
+        <translation>Символов:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="663"/>
         <source>Paragraphs:</source>
-        <translation>Parágrafos:</translation>
+        <translation>Абзацев:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="689"/>
         <source>Word Count Algorithm</source>
-        <translation>Algoritmo de contagem das palavras</translation>
+        <translation>Алгоритм подсчёта слов</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="691"/>
         <source>Detect word boundaries</source>
-        <translation>Detectar o fim das palavras</translation>
+        <translation>Определять границы слов</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="692"/>
         <source>Divide character count by six</source>
-        <translation>Dividir o número de caracteres por seis</translation>
+        <translation>Делить количество символов на шесть</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Style</source>
-        <translation>Estilo</translation>
+        <translation>Стиль</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="718"/>
         <source>Icons Only</source>
-        <translation>Apenas o ícone</translation>
+        <translation>Только значки</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="719"/>
         <source>Text Only</source>
-        <translation>Apenas o texto</translation>
+        <translation>Только текст</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="720"/>
         <source>Text Alongside Icons</source>
-        <translation>Texto ao lado do ícone</translation>
+        <translation>Текст рядом со значками</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="721"/>
         <source>Text Under Icons</source>
-        <translation>Texto por baixo do ícone</translation>
+        <translation>Текст под значками</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Text Position:</source>
-        <translation>Posição do texto:</translation>
+        <translation>Положение текста:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="728"/>
         <source>Actions</source>
-        <translation>Acções</translation>
+        <translation>Действия</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="741"/>
         <source>Move Up</source>
-        <translation>Subir</translation>
+        <translation>Переместить вверх</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="743"/>
         <source>Move Down</source>
-        <translation>Descer</translation>
+        <translation>Переместить вниз</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="745"/>
         <source>Add Separator</source>
-        <translation>Adicionar um separador</translation>
+        <translation>Добавить разделитель</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="774"/>
         <source>Check spelling as you type</source>
-        <translation>Verificar ortografia ao escrever</translation>
+        <translation>Проверять орфографию при вводе</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="775"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ignorar palavras em MAIÚSCULAS</translation>
+        <translation>Пропускать слова, написанные ПРОПИСНЫМИ буквами</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="776"/>
         <source>Ignore words with numbers</source>
-        <translation>Ignorar palavras com números</translation>
+        <translation>Пропускать слова с цифрами</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="785"/>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation>Язык</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="790"/>
         <location filename="../src/preferences_dialog.cpp" line="815"/>
         <source>Add</source>
-        <translation>Adicionar</translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="793"/>
         <location filename="../src/preferences_dialog.cpp" line="827"/>
         <source>Remove</source>
-        <translation>Eliminar</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="810"/>
         <source>Personal Dictionary</source>
-        <translation>Dicionário definido pelo utilizador</translation>
+        <translation>Пользовательский словарь</translation>
     </message>
 </context>
 <context>
@@ -519,7 +520,7 @@
         <location filename="../src/rtf/reader.cpp" line="192"/>
         <location filename="../src/rtf/reader.cpp" line="196"/>
         <source>Not a supported RTF file.</source>
-        <translation>Formato de texto rico RTF não reconhecido.</translation>
+        <translation>Неподдерживаемый файл RTF.</translation>
     </message>
 </context>
 <context>
@@ -532,7 +533,7 @@
         <location filename="../src/session_manager.cpp" line="376"/>
         <location filename="../src/session_manager.cpp" line="379"/>
         <source>Default</source>
-        <translation>Sessão predefinida</translation>
+        <translation>По умолчанию</translation>
     </message>
 </context>
 <context>
@@ -540,82 +541,82 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Organizar as sessões</translation>
+        <translation>Управление сеансами</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>S&amp;essões</translation>
+        <translation>С&amp;еансы</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Novo</translation>
+        <translation>Новый</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
         <source>Rename</source>
-        <translation>Alterar o nome</translation>
+        <translation>Переименовать</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>Clonar</translation>
+        <translation>Клонировать</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
         <source>Delete</source>
-        <translation>Apagar</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Abrir a sessão</translation>
+        <translation>Переключиться на</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
         <source>New Session</source>
-        <translation>Nova sessão</translation>
+        <translation>Новый сеанс</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>Clonar a sessão</translation>
+        <translation>Клонировать сеанс</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
         <source>Rename Session</source>
-        <translation>Alterar o nome da dessão</translation>
+        <translation>Переименовать сеанс</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>Apagar a sessão selecionada ?</translation>
+        <translation>Удалить выбранный сеанс?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="354"/>
         <source>Session name:</source>
-        <translation>Nome da sessão :</translation>
+        <translation>Название сеанса:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
         <source>Sorry</source>
-        <translation>Desculpe</translation>
+        <translation>Простите</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
         <source>The requested session name is already in use.</source>
-        <translation>O nome entrado já está a ser utilizado.</translation>
+        <translation>Заданное имя сеанса уже используется.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
         <source>&amp;New...</source>
-        <translation>&amp;Nova...</translation>
+        <translation>&amp;Новый...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
@@ -625,7 +626,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
         <source>&amp;Manage...</source>
-        <translation>&amp;Gerir...</translation>
+        <translation>&amp;Управление...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
@@ -638,12 +639,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="113"/>
         <source>Replacing quotation marks...</source>
-        <translation>A substituir as aspas...</translation>
+        <translation>Замена кавычек...</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="114"/>
         <source>Please Wait</source>
-        <translation>Espere por favor</translation>
+        <translation>Пожалуйста, подождите</translation>
     </message>
 </context>
 <context>
@@ -651,75 +652,75 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="129"/>
         <source>Check Spelling</source>
-        <translation>Verificação da ortografia</translation>
+        <translation>Проверка орфографии</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>Add</source>
-        <translation>Adicionar</translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>Ignore</source>
-        <translation>Ignorar</translation>
+        <translation>Пропустить</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>Ignore All</source>
-        <translation>Ignorar todas</translation>
+        <translation>Пропустить все</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>Change</source>
-        <translation>Alterar</translation>
+        <translation>Заменить</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>Change All</source>
-        <translation>Alterar todas</translation>
+        <translation>Заменить все</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
         <source>Not in dictionary:</source>
-        <translation>Não consta do dicionário:</translation>
+        <translation>Нет в словаре:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="175"/>
         <source>Change to:</source>
-        <translation>Alterar por:</translation>
+        <translation>Заменить на:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>Verificação da ortografia...</translation>
+        <translation>Проверяется орфография...</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>Anular</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>Espere por favor</translation>
+        <translation>Пожалуйста, подождите</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="258"/>
         <source>Spell check complete.</source>
-        <translation>Verificação da ortografia concluída.</translation>
+        <translation>Проверка орфографии завершена.</translation>
     </message>
 </context>
 <context>
     <name>Stack</name>
     <message>
-        <location filename="../src/stack.cpp" line="370"/>
+        <location filename="../src/stack.cpp" line="380"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
-        <location filename="../src/stack.cpp" line="370"/>
+        <location filename="../src/stack.cpp" line="380"/>
         <source>Remove all formatting from the current file?</source>
-        <translation>Apagar todas as formatações do ficheiro em utilzação ?</translation>
+        <translation>Удалить форматирование из текущего файла?</translation>
     </message>
 </context>
 <context>
@@ -727,7 +728,7 @@
     <message>
         <location filename="../src/theme.cpp" line="104"/>
         <source>Untitled %1</source>
-        <translation>Sem título %1</translation>
+        <translation>Безымянная %1</translation>
     </message>
 </context>
 <context>
@@ -735,81 +736,81 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="45"/>
         <source>Modify Theme</source>
-        <translation>Alterar o tema</translation>
+        <translation>Изменение темы</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="55"/>
         <source>Name:</source>
-        <translation>Nome:</translation>
+        <translation>Название:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="63"/>
         <source>Background</source>
-        <translation>Fundo</translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>No Image</source>
-        <translation>Sem imagem</translation>
+        <translation>Нет изображения</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>Tiled</source>
-        <translation>Em mosaico</translation>
+        <translation>Замостить</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Centered</source>
-        <translation>Centrado</translation>
+        <translation>Центрировать</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Stretched</source>
-        <translation>Esticada</translation>
+        <translation>По ширине</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>Scaled</source>
-        <translation>Ampliada</translation>
+        <translation>Масштабировать</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>Zoomed</source>
-        <translation>Ampliada e cortada</translation>
+        <translation>Приблизить</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="78"/>
         <source>Remove</source>
-        <translation>Eliminar a imagem</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="90"/>
         <source>Type:</source>
-        <translation>Tipo:</translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="91"/>
         <location filename="../src/theme_dialog.cpp" line="154"/>
         <location filename="../src/theme_dialog.cpp" line="203"/>
         <source>Color:</source>
-        <translation>Cor:</translation>
+        <translation>Цвет:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="92"/>
         <source>Image:</source>
-        <translation>Imagem:</translation>
+        <translation>Иображение:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="97"/>
         <source>Foreground</source>
-        <translation>Primeiro plano</translation>
+        <translation>Передний план</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="108"/>
         <source>Opacity</source>
-        <translation>Opacidade</translation>
+        <translation>Непрозрачность</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
@@ -817,62 +818,62 @@
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <source> pixels</source>
-        <translation> píxeis</translation>
+        <translation> пикселей</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Left</source>
-        <translation>Esquerda</translation>
+        <translation>Слева</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Right</source>
-        <translation>Direita</translation>
+        <translation>Справа</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="120"/>
         <source>Position</source>
-        <translation>Posição</translation>
+        <translation>Положение</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="155"/>
         <source>Size:</source>
-        <translation>Tamanho:</translation>
+        <translation>Размер:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="156"/>
         <source>Rounding:</source>
-        <translation>Arredondamento:</translation>
+        <translation>Закругление:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="157"/>
         <source>Margin:</source>
-        <translation>Margem :</translation>
+        <translation>Поля снаружи:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="158"/>
         <source>Padding:</source>
-        <translation>Espaçamento :</translation>
+        <translation>Поля внутри:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="163"/>
         <source>Text</source>
-        <translation>Texto</translation>
+        <translation>Текст</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="204"/>
         <source>Font:</source>
-        <translation>Tipo de letra:</translation>
+        <translation>Шрифт:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="205"/>
         <source>Misspelled:</source>
-        <translation>Erros:</translation>
+        <translation>Ошибки:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="312"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Um pequeno jabuti xereta viu dez cegonhas felizes</translation>
+        <translation>Съешь же ещё этих мягких французских булок да выпей чаю</translation>
     </message>
 </context>
 <context>
@@ -880,73 +881,73 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="45"/>
         <source>Themes</source>
-        <translation>Temas</translation>
+        <translation>Темы</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="71"/>
         <source>Add</source>
-        <translation>Adicionar</translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="75"/>
         <source>Modify</source>
-        <translation>Alterar</translation>
+        <translation>Изменить</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="79"/>
         <source>Remove</source>
-        <translation>Eliminar</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="83"/>
         <source>Import</source>
-        <translation>Importar</translation>
+        <translation>Импорт</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="87"/>
         <source>Export</source>
-        <translation>Exportar</translation>
+        <translation>Экспорт</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="91"/>
         <source>Close</source>
-        <translation>Fechar</translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="181"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="181"/>
         <source>Remove selected theme?</source>
-        <translation>Eliminar o tema seleccionado?</translation>
+        <translation>Удалить выбранную тему?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Import Theme</source>
-        <translation>Importar um tema</translation>
+        <translation>Импортировать тему</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="194"/>
         <location filename="../src/theme_manager.cpp" line="248"/>
         <source>Themes (*.theme)</source>
-        <translation>Temas (*.theme)</translation>
+        <translation>Темы (*.theme)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="203"/>
         <source>Sorry</source>
-        <translation>Desculpe</translation>
+        <translation>Простите</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="203"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Um outro tema com o mesmo nome já existe. Entre por favor um outro nome :</translation>
+        <translation>Тема с таким названием уже существует. Выберите другое название:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="248"/>
         <source>Export Theme</source>
-        <translation>Exportar o tema</translation>
+        <translation>Экспортировать тему</translation>
     </message>
 </context>
 <context>
@@ -959,52 +960,52 @@
     <message>
         <location filename="../src/timer.cpp" line="339"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="339"/>
         <source>Delete timer?</source>
-        <translation>Apagar o cronómetro ?</translation>
+        <translation>Удалить таймер?</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="354"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Palavras :&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Слов:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Páginas :&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Страниц:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Parágrafos :&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Абзацев:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Caracteres :&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;Символов:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="401"/>
         <source>Set Delay</source>
-        <translation>Ajustar a duração</translation>
+        <translation>Установить интервал</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Time</source>
-        <translation>Acertar a hora</translation>
+        <translation>Установить время</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="405"/>
         <source>Delay:</source>
-        <translation>Tempo de espera:</translation>
+        <translation>Интервал:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="408"/>
         <source>Time:</source>
-        <translation>Hora :</translation>
+        <translation>Время:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="417"/>
@@ -1014,27 +1015,27 @@
     <message>
         <location filename="../src/timer.cpp" line="430"/>
         <source>Alarm</source>
-        <translation>Alerta</translation>
+        <translation>Будильник</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="443"/>
         <source>Type:</source>
-        <translation>Tipo:</translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="447"/>
         <source>Memo:</source>
-        <translation>Nota :</translation>
+        <translation>Сообщение:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="458"/>
         <source>Edit</source>
-        <translation>Alterar</translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="460"/>
         <source>Delete</source>
-        <translation>Apagar</translation>
+        <translation>Удалить</translation>
     </message>
 </context>
 <context>
@@ -1047,7 +1048,7 @@
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>Nenhum cronómetro acionado</translation>
+        <translation>Таймер не включён</translation>
     </message>
 </context>
 <context>
@@ -1055,27 +1056,27 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>Cronómetros</translation>
+        <translation>Таймеры</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>Novo</translation>
+        <translation>Новый</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation>Recente</translation>
+        <translation>Недавний</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>Cancelar a edição dos cronómetros ?</translation>
+        <translation>Отменить редактирование таймеров?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1093,545 +1094,545 @@
     <message>
         <location filename="../src/rtf/tokenizer.cpp" line="166"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Fim do ficheiro inesperada.</translation>
+        <translation>Неожиданно достигнут конец файла.</translation>
     </message>
 </context>
 <context>
     <name>Window</name>
     <message>
-        <location filename="../src/window.cpp" line="128"/>
-        <source>Words: 0</source>
-        <translation>Palavras: 0</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="129"/>
-        <source>Pages: 0</source>
-        <translation>Páginas: 0</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="130"/>
-        <source>Paragraphs: 0</source>
-        <translation>Parágrafos: 0</translation>
-    </message>
-    <message>
         <location filename="../src/window.cpp" line="131"/>
-        <source>Characters: 0</source>
-        <translation>Caracteres: 0</translation>
+        <source>Words: 0</source>
+        <translation>Слов: 0</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="132"/>
+        <source>Pages: 0</source>
+        <translation>Страниц: 0</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="133"/>
+        <source>Paragraphs: 0</source>
+        <translation>Абзацев: 0</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="134"/>
+        <source>Characters: 0</source>
+        <translation>Символов: 0</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="135"/>
         <source>0% of daily goal</source>
-        <translation>0% do objectivo do dia</translation>
+        <translation>0% дневной задачи</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="222"/>
+        <location filename="../src/window.cpp" line="225"/>
         <source>Loading themes</source>
-        <translation>Carregamento dos temas</translation>
+        <translation>Загружаются темы</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="226"/>
+        <location filename="../src/window.cpp" line="229"/>
         <source>Loading sounds</source>
-        <translation>Carregamentos dos efeitos sonoros</translation>
+        <translation>Загружаются звуки</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="232"/>
-        <location filename="../src/window.cpp" line="983"/>
+        <location filename="../src/window.cpp" line="235"/>
+        <location filename="../src/window.cpp" line="986"/>
         <source>Untitled</source>
-        <translation>Sem título</translation>
+        <translation>Безымянный</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="361"/>
-        <location filename="../src/window.cpp" line="426"/>
+        <location filename="../src/window.cpp" line="364"/>
+        <location filename="../src/window.cpp" line="429"/>
         <source>Sorry</source>
-        <translation>Desculpe</translation>
+        <translation>Простите</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="436"/>
-        <location filename="../src/window.cpp" line="726"/>
+        <location filename="../src/window.cpp" line="439"/>
+        <location filename="../src/window.cpp" line="729"/>
         <source>Note</source>
-        <translation>Nota</translation>
+        <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="591"/>
+        <location filename="../src/window.cpp" line="594"/>
         <source>Open File</source>
-        <translation>Abrir um ficheiro</translation>
+        <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="591"/>
+        <location filename="../src/window.cpp" line="594"/>
         <source>Text Files (*.txt *.text *.rtf);;All Files (*)</source>
-        <translation>Ficheiros de texto (*.txt *.text *.rtf);;Todos os ficheiros (*)</translation>
+        <translation>Текстовые файлы (*.txt *.text *.rtf);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="726"/>
+        <location filename="../src/window.cpp" line="729"/>
         <source>Please restart this application for the change in menu icons to take effect.</source>
-        <translation>A mudança de ícones de menu será aplicada só quando o programa for iniciado de novo.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="754"/>
+        <location filename="../src/window.cpp" line="757"/>
         <source>About FocusWriter</source>
-        <translation>Acerca de FocusWriter</translation>
+        <translation>О программе FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="754"/>
+        <location filename="../src/window.cpp" line="757"/>
         <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Um processador de texto simples de ecrã completo&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Distribuido sob licença &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Contém &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; para a verificação ortográfica&lt;br/&gt;&lt;small&gt;Disponibilizado sob licença &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Inclui ícones originários do tema de ícones &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Disponibilizado sob licença &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="830"/>
-        <source>Characters: %L1 / %L2</source>
-        <translation>Caracteres: %L1 / %L2</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="831"/>
-        <source>Pages: %L1</source>
-        <translation>Páginas: %L1</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="832"/>
-        <source>Paragraphs: %L1</source>
-        <translation>Parágrafos: %L1</translation>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Простой полноэкранный текстовый процессор&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Распространяется по лицензии &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Использует &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; для проверки орфографии&lt;br/&gt;&lt;small&gt;Применяется лицензия &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Использует значки из темы &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Применяется лицензия &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="833"/>
+        <source>Characters: %L1 / %L2</source>
+        <translation>Символов: %L1 / %L2</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="834"/>
+        <source>Pages: %L1</source>
+        <translation>Страниц: %L1</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="835"/>
+        <source>Paragraphs: %L1</source>
+        <translation>Абзацев: %L1</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="836"/>
         <source>Words: %L1</source>
-        <translation>Palávras: %L1</translation>
+        <translation>Слов: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="895"/>
+        <location filename="../src/window.cpp" line="898"/>
         <source>%1% of daily goal</source>
-        <translation>%1% do objectivo do dia</translation>
+        <translation>%1% дневной задачи</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="935"/>
+        <location filename="../src/window.cpp" line="938"/>
         <source>Opening %1</source>
-        <translation>A abrir %1</translation>
+        <translation>Открывается %1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1009"/>
+        <location filename="../src/window.cpp" line="1012"/>
         <source>Question</source>
-        <translation>Pergunta</translation>
+        <translation>Вопрос</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1009"/>
+        <location filename="../src/window.cpp" line="1012"/>
         <source>Save changes?</source>
-        <translation>Guardar alterações?</translation>
+        <translation>Сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="288"/>
-        <location filename="../src/window.cpp" line="1105"/>
+        <location filename="../src/window.cpp" line="291"/>
+        <location filename="../src/window.cpp" line="1108"/>
         <source>(Untitled %1)</source>
-        <translation>(Sem título %1)</translation>
+        <translation>(Безымянный %1)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="240"/>
+        <location filename="../src/window.cpp" line="243"/>
         <source>Emergency cache is not writable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="295"/>
-        <location filename="../src/window.cpp" line="952"/>
+        <location filename="../src/window.cpp" line="298"/>
+        <location filename="../src/window.cpp" line="955"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="296"/>
+        <location filename="../src/window.cpp" line="299"/>
         <source>FocusWriter was not shut down cleanly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="297"/>
+        <location filename="../src/window.cpp" line="300"/>
         <source>Restore from the emergency cache?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="362"/>
+        <location filename="../src/window.cpp" line="365"/>
         <source>Some files are unsupported and will not be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="427"/>
+        <location filename="../src/window.cpp" line="430"/>
         <source>Some files could not be opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="437"/>
+        <location filename="../src/window.cpp" line="440"/>
         <source>Some files were opened Read-Only.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="953"/>
+        <location filename="../src/window.cpp" line="956"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="954"/>
+        <location filename="../src/window.cpp" line="957"/>
         <source>Overwrite newer file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1108"/>
+        <location filename="../src/window.cpp" line="1111"/>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (apenas para leitura)</translation>
+        <translation>%1 (Только для чтения)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1153"/>
+        <location filename="../src/window.cpp" line="1156"/>
         <source>&amp;File</source>
-        <translation>&amp;Ficheiro</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1154"/>
-        <source>&amp;New</source>
-        <translation>&amp;Novo</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1155"/>
-        <source>&amp;Open...</source>
-        <translation>&amp;Abrir...</translation>
+        <translation>&amp;Файл</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1157"/>
-        <source>&amp;Save</source>
-        <translation>&amp;Guardar</translation>
+        <source>&amp;New</source>
+        <translation>&amp;Новый</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1159"/>
-        <source>Save &amp;As...</source>
-        <translation>Guardar &amp;como...</translation>
+        <location filename="../src/window.cpp" line="1158"/>
+        <source>&amp;Open...</source>
+        <translation>&amp;Открыть...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1160"/>
-        <source>&amp;Rename...</source>
-        <translation>&amp;Mudar o nome...</translation>
+        <source>&amp;Save</source>
+        <translation>&amp;Сохранить</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1162"/>
-        <source>Save A&amp;ll</source>
-        <translation>Gravar tud&amp;o</translation>
+        <source>Save &amp;As...</source>
+        <translation>Сохранить &amp;как...</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1163"/>
+        <source>&amp;Rename...</source>
+        <translation>П&amp;ереименовать...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1165"/>
-        <source>Manage Sessions</source>
-        <translation>Organizar as sessões</translation>
+        <source>Save A&amp;ll</source>
+        <translation>Сохранить вс&amp;ё</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1167"/>
-        <source>New Session</source>
-        <translation>Nova sessão</translation>
+        <location filename="../src/window.cpp" line="1168"/>
+        <source>Manage Sessions</source>
+        <translation>Управление сеансами</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1170"/>
+        <source>New Session</source>
+        <translation>Новый сеанс</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1173"/>
         <source>&amp;Print...</source>
-        <translation>Im&amp;primir...</translation>
+        <translation>&amp;Печать...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1172"/>
+        <location filename="../src/window.cpp" line="1175"/>
         <source>&amp;Close</source>
-        <translation>Fec&amp;har</translation>
+        <translation>З&amp;акрыть</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1173"/>
+        <location filename="../src/window.cpp" line="1176"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Sair</translation>
+        <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1173"/>
+        <location filename="../src/window.cpp" line="1176"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1177"/>
+        <location filename="../src/window.cpp" line="1180"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Editar</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1178"/>
-        <source>&amp;Undo</source>
-        <translation>A&amp;nular</translation>
+        <translation>&amp;Редактировать</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1181"/>
-        <source>&amp;Redo</source>
-        <translation>&amp;Restaurar</translation>
+        <source>&amp;Undo</source>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1185"/>
-        <source>Cu&amp;t</source>
-        <translation>C&amp;ortar</translation>
+        <location filename="../src/window.cpp" line="1184"/>
+        <source>&amp;Redo</source>
+        <translation>Пов&amp;торить</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1188"/>
-        <source>&amp;Copy</source>
-        <translation>&amp;Copiar</translation>
+        <source>Cu&amp;t</source>
+        <translation>Вы&amp;резать</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1191"/>
-        <source>&amp;Paste</source>
-        <translation>Co&amp;lar</translation>
+        <source>&amp;Copy</source>
+        <translation>&amp;Копировать</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1193"/>
-        <source>Select &amp;All</source>
-        <translation>Seleccionar &amp;tudo</translation>
+        <location filename="../src/window.cpp" line="1194"/>
+        <source>&amp;Paste</source>
+        <translation>Вс&amp;тавить</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1196"/>
+        <source>Select &amp;All</source>
+        <translation>&amp;Выбрать всё</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1199"/>
         <source>Fo&amp;rmat</source>
-        <translation>Fo&amp;rmato</translation>
+        <translation>Ф&amp;ормат</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1198"/>
+        <location filename="../src/window.cpp" line="1201"/>
         <source>&amp;Bold</source>
-        <translation>Ne&amp;grito</translation>
+        <translation>Полу&amp;жирный</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1200"/>
+        <location filename="../src/window.cpp" line="1203"/>
         <source>&amp;Italic</source>
-        <translation>&amp;Itálico</translation>
+        <translation>&amp;Курсив</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1202"/>
+        <location filename="../src/window.cpp" line="1205"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Sublinhar</translation>
+        <translation>Под&amp;чёркнутый</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1204"/>
+        <location filename="../src/window.cpp" line="1207"/>
         <source>Stri&amp;kethrough</source>
-        <translation>&amp;Rasurar</translation>
+        <translation>&amp;Зачёркнутый</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1204"/>
+        <location filename="../src/window.cpp" line="1207"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1206"/>
+        <location filename="../src/window.cpp" line="1209"/>
         <source>Sup&amp;erscript</source>
-        <translation>&amp;Expoente</translation>
+        <translation>&amp;Надстрочный индекс</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1206"/>
+        <location filename="../src/window.cpp" line="1209"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1208"/>
+        <location filename="../src/window.cpp" line="1211"/>
         <source>&amp;Subscript</source>
-        <translation>Í&amp;ndice</translation>
+        <translation>П&amp;одстрочный индекс</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1208"/>
+        <location filename="../src/window.cpp" line="1211"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1212"/>
+        <location filename="../src/window.cpp" line="1215"/>
         <source>Align &amp;Left</source>
-        <translation>&amp;Alinhar à esquerda</translation>
+        <translation>По &amp;левому краю</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1212"/>
+        <location filename="../src/window.cpp" line="1215"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1214"/>
+        <location filename="../src/window.cpp" line="1217"/>
         <source>Align &amp;Center</source>
-        <translation>Alinhar ao &amp;centro</translation>
+        <translation>По &amp;центру</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1214"/>
+        <location filename="../src/window.cpp" line="1217"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1216"/>
+        <location filename="../src/window.cpp" line="1219"/>
         <source>Align &amp;Right</source>
-        <translation>Alinhar à &amp;direita</translation>
+        <translation>По &amp;правому краю</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1216"/>
+        <location filename="../src/window.cpp" line="1219"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1218"/>
+        <location filename="../src/window.cpp" line="1221"/>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Justificado</translation>
+        <translation>По &amp;ширине</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1218"/>
+        <location filename="../src/window.cpp" line="1221"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1228"/>
+        <location filename="../src/window.cpp" line="1231"/>
         <source>&amp;Decrease Indent</source>
-        <translation>Rem&amp;over a indentação</translation>
+        <translation>У&amp;меньшить отступ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1228"/>
+        <location filename="../src/window.cpp" line="1231"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1229"/>
+        <location filename="../src/window.cpp" line="1232"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Inden&amp;tar</translation>
+        <translation>У&amp;величить отступ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1229"/>
+        <location filename="../src/window.cpp" line="1232"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1232"/>
+        <location filename="../src/window.cpp" line="1235"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>&amp;Bloco de escrita da esquerda para a direita</translation>
+        <translation>Фрагмент слева напр&amp;аво</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1234"/>
+        <location filename="../src/window.cpp" line="1237"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>B&amp;loco de escrita da direita para a esquerda</translation>
+        <translation>Фрагмент справа нал&amp;ево</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1242"/>
+        <location filename="../src/window.cpp" line="1245"/>
         <source>&amp;Make Plain Text</source>
-        <translation>Converter em texto si&amp;mples</translation>
+        <translation>Заменить на п&amp;ростой текст</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1243"/>
+        <location filename="../src/window.cpp" line="1246"/>
         <source>&amp;Make Rich Text</source>
-        <translation>Converter em texto ric&amp;o</translation>
+        <translation>Заменить на текст с &amp;форматированием</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1247"/>
+        <location filename="../src/window.cpp" line="1250"/>
         <source>&amp;Tools</source>
-        <translation>Ferra&amp;mentas</translation>
+        <translation>&amp;Инструменты</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1248"/>
+        <location filename="../src/window.cpp" line="1251"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Procurar...</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1249"/>
-        <source>Find &amp;Next</source>
-        <translation>Procurar se&amp;guinte</translation>
+        <translation>&amp;Найти...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1252"/>
+        <source>Find &amp;Next</source>
+        <translation>Найти следующ&amp;ий</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1255"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Procurar &amp;anterior</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1255"/>
-        <source>&amp;Replace...</source>
-        <translation>&amp;Substituir...</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1255"/>
-        <source>Ctrl+R</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1257"/>
-        <source>Smart &amp;Quotes</source>
-        <translation>&amp;Aspas curvas e angulares</translation>
+        <translation>Найти пред&amp;ыдущий</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1258"/>
+        <source>&amp;Replace...</source>
+        <translation>За&amp;менить...</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1258"/>
+        <source>Ctrl+R</source>
+        <translation>Ctrl+R</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1260"/>
+        <source>Smart &amp;Quotes</source>
+        <translation>Особые кавы&amp;чки</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1261"/>
         <source>Update &amp;Document</source>
-        <translation>Actualizar &amp;documento</translation>
+        <translation>Обновить &amp;документ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1259"/>
+        <location filename="../src/window.cpp" line="1262"/>
         <source>Update &amp;Selection</source>
-        <translation>Actualizar a &amp;selecção</translation>
+        <translation>Обновить &amp;выделенное</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1261"/>
+        <location filename="../src/window.cpp" line="1264"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Ortografia...</translation>
+        <translation>Ор&amp;фография...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1261"/>
+        <location filename="../src/window.cpp" line="1264"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1262"/>
-        <source>&amp;Timers...</source>
-        <translation>C&amp;ronómetros...</translation>
-    </message>
-    <message>
         <location filename="../src/window.cpp" line="1265"/>
-        <source>&amp;Settings</source>
-        <translation>&amp;Configuração</translation>
+        <source>&amp;Timers...</source>
+        <translation>&amp;Таймеры...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1266"/>
-        <source>Show &amp;Toolbar</source>
-        <translation>Mostrar a &amp;barra de ferramentas</translation>
+        <location filename="../src/window.cpp" line="1268"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Параметры</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1269"/>
+        <source>Show &amp;Toolbar</source>
+        <translation>Показать панель &amp;инструментов</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1272"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>&amp;Mostrar os ícones no menu</translation>
+        <translation>Показать значки мен&amp;ю</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1273"/>
+        <location filename="../src/window.cpp" line="1276"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Ecrã completo</translation>
+        <translation>Полно&amp;экранный режим</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1273"/>
+        <location filename="../src/window.cpp" line="1276"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1275"/>
+        <location filename="../src/window.cpp" line="1278"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1279"/>
+        <location filename="../src/window.cpp" line="1282"/>
         <source>M&amp;inimize</source>
-        <translation>M&amp;inimizar</translation>
+        <translation>Сверн&amp;уть</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1279"/>
+        <location filename="../src/window.cpp" line="1282"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1281"/>
-        <source>&amp;Themes...</source>
-        <translation>&amp;Temas...</translation>
-    </message>
-    <message>
         <location filename="../src/window.cpp" line="1284"/>
+        <source>&amp;Themes...</source>
+        <translation>&amp;Темы...</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1287"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Definições...</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1288"/>
-        <source>&amp;Help</source>
-        <translation>A&amp;juda</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1283"/>
-        <source>Application &amp;Language...</source>
-        <translation>&amp;Língua do programa...</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1289"/>
-        <source>&amp;About</source>
-        <translation>&amp;Acerca</translation>
+        <translation>Пара&amp;метры...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1291"/>
+        <source>&amp;Help</source>
+        <translation>Спр&amp;авка</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1286"/>
+        <source>Application &amp;Language...</source>
+        <translation>&amp;Язык приложения...</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1292"/>
+        <source>&amp;About</source>
+        <translation>&amp;О программе</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1294"/>
         <source>About &amp;Qt</source>
-        <translation>Acerca de &amp;Qt</translation>
+        <translation>Информация о &amp;Qt</translation>
     </message>
 </context>
 </TS>
