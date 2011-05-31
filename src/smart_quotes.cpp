@@ -120,6 +120,7 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 	QTextCursor cursor(text->document());
 	cursor.beginEditBlock();
 	QChar previous = text->document()->characterAt(start - 1);
+	int length = 0;
 	for (int i = start; i < end; ++i) {
 		QChar c = text->document()->characterAt(i);
 		int quote = 2;
@@ -139,6 +140,9 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 			cursor.setPosition(i);
 			cursor.deleteChar();
 			cursor.insertText(m_quotes[quote]);
+			length = m_quotes[quote].length() - 1;
+			i += length;
+			end += length;
 		}
 
 		progress.setValue(i);
@@ -151,8 +155,9 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 void SmartQuotes::replace(QString& string)
 {
 	QChar previous;
-	int count = string.length();
-	for (int i = 0; i < count; ++i) {
+	int end = string.length();
+	int length = 0;
+	for (int i = 0; i < end; ++i) {
 		QChar c = string.at(i);
 		int quote = 2;
 		if (c == '"') {
@@ -169,7 +174,9 @@ void SmartQuotes::replace(QString& string)
 
 		if (QString(c) != m_quotes[quote]) {
 			string.replace(i, 1, m_quotes[quote]);
-			--i += m_quotes[quote].length();
+			length = m_quotes[quote].length() - 1;
+			i += length;
+			end += length;
 		}
 	}
 }
