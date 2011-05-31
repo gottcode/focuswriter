@@ -127,6 +127,7 @@ Window::Window(const QStringList& files)
 
 	// Set up details
 	m_footer = new QWidget(contents);
+	m_footer->hide();
 	QWidget* details = new QWidget(m_footer);
 	m_wordcount_label = new QLabel(tr("Words: 0"), details);
 	m_page_label = new QLabel(tr("Pages: 0"), details);
@@ -330,6 +331,7 @@ Window::Window(const QStringList& files)
 	}
 
 	// Bring to front
+	m_footer->show();
 	activateWindow();
 	raise();
 	unsetCursor();
