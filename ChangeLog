@@ -1,4 +1,5 @@
 2011-05-31 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Load screen text was not always monospaced.
 	* FIXED: Replacing quotes with LaTex quotes did not update all quotes.
 	* Rename translation files.
 	* FIXED: Could not scroll over background in Qt/Cocoa.
