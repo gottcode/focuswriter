@@ -114,6 +114,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->setTabStopWidth(50);
 	m_text->document()->setIndentWidth(50);
+	m_text->horizontalScrollBar()->setAttribute(Qt::WA_NoMousePropagation);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
@@ -142,6 +143,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	// Set up scroll bar
 	m_scrollbar = m_text->verticalScrollBar();
+	m_scrollbar->setAttribute(Qt::WA_NoMousePropagation);
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
 	m_scrollbar->setMouseTracking(true);
@@ -596,16 +598,13 @@ void Document::resizeEvent(QResizeEvent* event)
 
 void Document::wheelEvent(QWheelEvent* event)
 {
-	static QWheelEvent* prev_event = 0;
-	if (prev_event == event) {
-		if (event->orientation() == Qt::Vertical) {
-			QApplication::sendEvent(m_scrollbar, event);
-		} else {
-			QApplication::sendEvent(m_text->horizontalScrollBar(), event);
-		}
+	if (event->orientation() == Qt::Vertical) {
+		QApplication::sendEvent(m_scrollbar, event);
+	} else {
+		QApplication::sendEvent(m_text->horizontalScrollBar(), event);
 	}
-	prev_event = event;
 	event->ignore();
+	QWidget::wheelEvent(event);
 }
 
 //-----------------------------------------------------------------------------

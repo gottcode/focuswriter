@@ -1,3 +1,6 @@
+2011-05-31 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not scroll over background in Qt/Cocoa.
+
 2011-05-30 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Regression where text did not fill text area.
 	* FIXED: Scrollbar did not disappear when mousing into header.
