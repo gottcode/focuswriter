@@ -1,4 +1,5 @@
 2011-05-30 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Regression where text did not fill text area.
 	* FIXED: Scrollbar did not disappear when mousing into header.
 	* FIXED: Could not interact with tabs in Qt/Cocoa.
 	* FIXED: Masked scrollbars still showed a pixel.
