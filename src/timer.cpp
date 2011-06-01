@@ -421,7 +421,7 @@ void Timer::init()
 	connect(m_delay_edit, SIGNAL(timeChanged(const QTime&)), this, SLOT(delayChanged(const QTime&)));
 
 	m_end_edit = new QTimeEdit(time_edits);
-	m_end_edit->setDisplayFormat(QLocale().timeFormat(QLocale::LongFormat));
+	m_end_edit->setDisplayFormat(QLocale().timeFormat(QLocale::LongFormat).contains("AP", Qt::CaseInsensitive) ? "h:mm:ss AP" : "HH:mm:ss");
 	m_end_edit->setCurrentSection(QDateTimeEdit::MinuteSection);
 	m_end_edit->setWrapping(true);
 	time_edits->addWidget(m_end_edit);

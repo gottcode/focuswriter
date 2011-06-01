@@ -152,7 +152,7 @@ void LocaleDialog::loadTranslator(const QString& name)
 		}
 	}
 	if (!current.isEmpty()) {
-		QLocale::setDefault(m_appname + current);
+		QLocale::setDefault(current);
 	} else {
 		current = "en";
 	}

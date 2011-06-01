@@ -1,3 +1,6 @@
+2011-06-01 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not type in timer time edit.
+
 2011-05-31 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Incorrect background color for preferences tabs.
 	* FIXED: Document details were visible through load screen.
