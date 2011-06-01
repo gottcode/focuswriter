@@ -723,9 +723,6 @@ void Window::toggleMenuIcons(bool visible)
 {
 	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !visible);
 	QSettings().setValue("Window/MenuIcons", visible);
-#ifdef Q_OS_MAC
-	QMessageBox::information(this, tr("Note"), tr("Please restart this application for the change in menu icons to take effect."), QMessageBox::Ok);
-#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -1280,9 +1277,11 @@ void Window::initMenus()
 	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
+#ifndef Q_OS_MAC
 	action = settings_menu->addAction(tr("Show &Menu Icons"), this, SLOT(toggleMenuIcons(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Window/MenuIcons", false).toBool());
+#endif
 	settings_menu->addSeparator();
 	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
 #ifdef Q_OS_MAC

@@ -1,4 +1,5 @@
 2011-06-01 Graeme Gott <graeme@gottcode.org>
+	* Remove menu icons option on the Mac.
 	* Only load typewriter sounds if they are enabled.
 	* Remember size of preferences dialog.
 	* FIXED: Played sound effects when text was removed.
