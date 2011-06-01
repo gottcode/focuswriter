@@ -64,6 +64,12 @@ namespace
 		area->setFrameStyle(QFrame::NoFrame);
 		area->setWidget(tab);
 		area->setWidgetResizable(true);
+
+		area->setBackgroundRole(QPalette::Link);
+		QPalette p = area->palette();
+		p.setColor(area->backgroundRole(), Qt::transparent);
+		area->setPalette(p);
+
 		return area;
 	}
 }
