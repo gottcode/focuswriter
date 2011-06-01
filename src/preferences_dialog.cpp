@@ -193,6 +193,15 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	if (index != -1) {
 		m_languages->setCurrentIndex(index);
 	}
+
+	resize(QSettings().value("Preferences/Size", QSize(490, 550)).toSize());
+}
+
+//-----------------------------------------------------------------------------
+
+PreferencesDialog::~PreferencesDialog()
+{
+	QSettings().setValue("Preferences/Size", size());
 }
 
 //-----------------------------------------------------------------------------
