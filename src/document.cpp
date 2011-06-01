@@ -724,10 +724,12 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 
 	int block_count = m_text->document()->blockCount();
-	if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
-		emit keyPressed(Qt::Key_Enter);
-	} else {
-		emit keyPressed(Qt::Key_Any);
+	if (added) {
+		if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
+			emit keyPressed(Qt::Key_Enter);
+		} else {
+			emit keyPressed(Qt::Key_Any);
+		}
 	}
 	int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
