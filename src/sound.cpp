@@ -200,7 +200,7 @@ Sound::Sound(const QString& filename, QObject* parent)
 		m_id = f_chunks.count();
 		f_chunks.append(chunk);
 		f_ids[filename] = m_id;
-	} else {
+	} else if (QSound::isAvailable()) {
 		m_id = f_sounds.count();
 		QSound* sound = new QSound(f_path + "/" + filename);
 		f_sounds.append(QList<QSound*>() << sound);
@@ -249,24 +249,26 @@ Sound::~Sound()
 
 void Sound::play()
 {
-	if (f_sdl_loaded) {
-		if ((m_id != -1) && (mix_PlayChannel(-1, f_chunks.at(m_id), 0) == -1)) {
-			qWarning("Unable to play WAV file: %s", mix_GetError());
-		}
-	} else {
-		QSound* sound = 0;
-		QList<QSound*>& sounds = f_sounds[m_id];
-		int count = sounds.count();
-		for (int i = 0; i < count; ++i) {
-			if (sounds.at(i)->isFinished()) {
-				sound = sounds.at(i);
+	if (isValid()) {
+		if (f_sdl_loaded) {
+			if (mix_PlayChannel(-1, f_chunks.at(m_id), 0) == -1) {
+				qWarning("Unable to play WAV file: %s", mix_GetError());
 			}
+		} else {
+			QSound* sound = 0;
+			QList<QSound*>& sounds = f_sounds[m_id];
+			int count = sounds.count();
+			for (int i = 0; i < count; ++i) {
+				if (sounds.at(i)->isFinished()) {
+					sound = sounds.at(i);
+				}
+			}
+			if (sound == 0) {
+				sound = new QSound(sounds.first()->fileName());
+				sounds.append(sound);
+			}
+			sound->play();
 		}
-		if (sound == 0) {
-			sound = new QSound(sounds.first()->fileName());
-			sounds.append(sound);
-		}
-		sound->play();
 	}
 }
 

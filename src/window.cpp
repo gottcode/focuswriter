@@ -79,6 +79,8 @@ namespace
 
 Window::Window(const QStringList& files)
 	: m_toolbar(0),
+	m_key_sound(0),
+	m_enter_key_sound(0),
 	m_fullscreen(true),
 	m_typewriter_sounds(true),
 	m_auto_save(true),
@@ -127,7 +129,6 @@ Window::Window(const QStringList& files)
 
 	// Set up details
 	m_footer = new QWidget(contents);
-	m_footer->hide();
 	QWidget* details = new QWidget(m_footer);
 	m_wordcount_label = new QLabel(tr("Words: 0"), details);
 	m_page_label = new QLabel(tr("Pages: 0"), details);
@@ -208,11 +209,6 @@ Window::Window(const QStringList& files)
 	m_current_time = settings.value("Progress/Time", 0).toInt();
 	updateProgress();
 
-	// Load settings
-	Preferences preferences;
-	loadPreferences(preferences);
-	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
-
 	// Restore window geometry
 	setMinimumSize(640, 480);
 	resize(800, 600);
@@ -222,14 +218,15 @@ Window::Window(const QStringList& files)
 	toggleFullscreen();
 	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 
-	// Update themes
-	m_documents->loadScreen()->setText(tr("Loading themes"));
-	Theme::copyBackgrounds();
+	// Load settings
+	m_documents->loadScreen()->setText(tr("Loading settings"));
+	Preferences preferences;
+	loadPreferences(preferences);
 
-	// Load sounds
-	m_documents->loadScreen()->setText(tr("Loading sounds"));
-	m_key_sound = new Sound("keyany.wav", this);
-	m_enter_key_sound = new Sound("keyenter.wav", this);
+	// Update and load theme
+	m_documents->loadScreen()->setText(tr("Loading themes"));
+	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
+	Theme::copyBackgrounds();
 
 	// Update margin
 	m_tabs->blockSignals(true);
@@ -331,7 +328,6 @@ Window::Window(const QStringList& files)
 	}
 
 	// Bring to front
-	m_footer->show();
 	activateWindow();
 	raise();
 	unsetCursor();
@@ -1028,6 +1024,21 @@ bool Window::saveDocument(int index)
 void Window::loadPreferences(Preferences& preferences)
 {
 	m_typewriter_sounds = preferences.typewriterSounds();
+	if (m_typewriter_sounds && (!m_key_sound || !m_enter_key_sound)) {
+		if (m_documents->loadScreen()->isVisible()) {
+			m_documents->loadScreen()->setText(tr("Loading sounds"));
+		}
+		m_key_sound = new Sound("keyany.wav", this);
+		m_enter_key_sound = new Sound("keyenter.wav", this);
+
+		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
+			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Unable to load typewriter sounds."), QStringList());
+			delete m_key_sound;
+			delete m_enter_key_sound;
+			m_key_sound = m_enter_key_sound = 0;
+			preferences.setTypewriterSounds(false);
+		}
+	}
 
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
@@ -1075,8 +1086,6 @@ void Window::loadPreferences(Preferences& preferences)
 
 	m_replace_document_quotes->setEnabled(preferences.smartQuotes());
 	m_replace_selection_quotes->setEnabled(preferences.smartQuotes());
-
-	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 }
 
 //-----------------------------------------------------------------------------

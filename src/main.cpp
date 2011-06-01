@@ -83,6 +83,7 @@ Application::Application(int& argc, char** argv)
 
 void Application::createWindow()
 {
+	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 	m_window = new Window(m_files);
 }
 

@@ -53,7 +53,7 @@ Preferences::Preferences()
 	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
 	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
 	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
-	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", true).toBool();
+	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", false).toBool();
 
 	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();

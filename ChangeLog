@@ -1,4 +1,5 @@
 2011-06-01 Graeme Gott <graeme@gottcode.org>
+	* Only load typewriter sounds if they are enabled.
 	* Remember size of preferences dialog.
 	* FIXED: Played sound effects when text was removed.
 	* FIXED: Could not type in timer time edit.

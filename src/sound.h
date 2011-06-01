@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ public:
 	Sound& operator=(const Sound& sound);
 	~Sound();
 
+	bool isValid() const;
 	void play();
 
 	static void setPath(const QString& path);
@@ -37,5 +38,10 @@ public:
 private:
 	int m_id;
 };
+
+inline bool Sound::isValid() const
+{
+	return m_id != -1;
+}
 
 #endif
