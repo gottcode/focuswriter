@@ -35,7 +35,7 @@ for translation in $(ls translations | grep qm | cut -d'.' -f1 | cut -d'_' -f2-)
 do
 	LPROJ="$APP/$BUNDLE/Contents/Resources/${translation}.lproj"
 	mkdir "$LPROJ"
-	sed "s/????/${translation}/" < 'install/mac/locversion.plist' > "${LPROJ}/locversion.plist"
+	sed "s/????/${translation}/" < 'resources/mac/locversion.plist' > "${LPROJ}/locversion.plist"
 
 	QT_TRANSLATION="/Developer/Applications/Qt/translations/qt_${translation}.qm"
 	if [ -e "$QT_TRANSLATION" ]; then
@@ -53,21 +53,21 @@ echo 'Done'
 echo -n 'Copying icons... '
 ICONS="$APP/$BUNDLE/Contents/Resources/icons"
 mkdir "$ICONS"
-cp -Rpf icons/oxygen/hicolor "$ICONS"
+cp -Rpf resources/images/icons/oxygen/hicolor "$ICONS"
 echo 'Done'
 
 # Copy dictionaries
 echo -n 'Copying dictionaries... '
 DICTIONARIES="$APP/$BUNDLE/Contents/Resources/Dictionaries"
 mkdir "$DICTIONARIES"
-cp -pf dict/* "$DICTIONARIES"
+cp -pf resources/dict/* "$DICTIONARIES"
 echo 'Done'
 
 # Copy sounds
 echo -n 'Copying sounds... '
 SOUNDS="$APP/$BUNDLE/Contents/Resources/sounds"
 mkdir "$SOUNDS"
-cp -Rpf sounds/* "$SOUNDS"
+cp -Rpf resources/sounds/* "$SOUNDS"
 echo 'Done'
 
 # Copy frameworks and plugins
@@ -93,7 +93,7 @@ echo '
 # Copy background
 echo -n 'Copying background... '
 mkdir "${APP}/.background"
-cp 'install/mac/background.png' "${APP}/.background/background.png"
+cp 'resources/mac/background.png' "${APP}/.background/background.png"
 echo 'Done'
 
 # Create disk image

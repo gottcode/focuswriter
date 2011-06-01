@@ -1,8 +1,8 @@
 This is a Portuguese dictionary for myspell:
 
-Copyright (C) 2006  Jose Joao de Almeida <jj@di.uminho.pt> , 
+Copyright (C) 2006  Jose Joao de Almeida <jj@di.uminho.pt> ,
 	Rui Vilela <ruivilela@di.uminho.pt> ,
-	Alberto Simıes <ambs@di.uminho.pt>
+	Alberto Sim√µes <ambs@di.uminho.pt>
 
 Dep. Informatica, Universidade do Minho
 Portugal
@@ -44,7 +44,7 @@ Portugal
 #    must display the following acknowledgement:
 #      This product includes software developed by the University of
 #      California, Berkeley and its contributors.
-# 4. Neither the name of the authors mentioned above, nor 
+# 4. Neither the name of the authors mentioned above, nor
 #    the names of its contributors
 #    may be used to endorse or promote products derived from this software
 #    without specific prior written permission.
@@ -63,10 +63,10 @@ Portugal
 
 ########################################
 
-To install : 
+To install :
     Find a suitable application that uses myspell dictionaries like
     openoffice, mozilla, thunderbird. Use the program dictionary
-    application (if it has) for installing the dictionaries. 
+    application (if it has) for installing the dictionaries.
     For openoffice, you should make sure that the dictionary.lst
     file has the following line:
 	  DICT pt PT pt_PT

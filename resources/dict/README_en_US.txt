@@ -11,7 +11,7 @@ OOo Issue 48060 - add numbers with affixes by COMPOUNDRULE (1st, 111th, 1990s et
 New REP items (better suggestions for accented words and a few mistakes)
 OOo Issue 63541 - remove *dessicated, *dessication
 
-László Németh <nemeth at OO.o>
+LÃ¡szlÃ³ NÃ©meth <nemeth at OO.o>
 
 Original license:
 
@@ -25,7 +25,7 @@ dictionary in SCOWL, SVN revision 74.
 The NOSUGGEST flag was added to certain taboo words.  While I made an
 honest attempt to flag the strongest taboo words with the NOSUGGEST
 flag, I MAKE NO GUARANTEE THAT I FLAGGED EVERY POSSIBLE TABOO WORD.
-The list was originally derived from N�meth L�szl�, however I removed
+The list was originally derived from Németh László, however I removed
 some words which, while being considered taboo by some dictionaries,
 are not really considered swear words in today's society.
 
@@ -236,7 +236,7 @@ were not found anywhere else.
 Accent information was taken from UKACD.
 
 My VARCON package was used to create the American, British, and
-Canadian word list. 
+Canadian word list.
 
 Since the original word lists used used in the VARCON package came
 from the Ispell distribution they are under the Ispell copyright:

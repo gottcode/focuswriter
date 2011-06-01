@@ -19,17 +19,17 @@ COPY translations\*.qm %TRANSLATIONS% >nul
 ECHO Copying icons
 SET ICONS=%APP%\icons\hicolor
 MKDIR %ICONS%
-XCOPY /Q /S /Y icons\oxygen\hicolor %ICONS% >nul
+XCOPY /Q /S /Y resources\images\icons\oxygen\hicolor %ICONS% >nul
 
 ECHO Copying dictionaries
 SET DICTIONARIES=%APP%\Dictionaries
 MKDIR %DICTIONARIES%
-COPY dict\* %DICTIONARIES% >nul
+COPY resources\dict\* %DICTIONARIES% >nul
 
 ECHO Copying sounds
 SET SOUNDS=%APP%\sounds
 MKDIR %SOUNDS%
-COPY sounds\* %SOUNDS% >nul
+COPY resources\sounds\* %SOUNDS% >nul
 
 ECHO Copying hunspell library
 COPY hunspell\hunspell1.dll %APP% >nul

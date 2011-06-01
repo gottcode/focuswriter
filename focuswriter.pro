@@ -1,7 +1,7 @@
 TEMPLATE = app
 CONFIG += warn_on release
 macx {
-	QMAKE_INFO_PLIST = install/mac/Info.plist
+	QMAKE_INFO_PLIST = resources/mac/Info.plist
 	CONFIG += x86_64
 	# Comment the above line and uncomment the following lines to compile Universal for 10.4+
 	# QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
@@ -106,12 +106,12 @@ TRANSLATIONS = translations/focuswriter_cs.ts \
 	translations/focuswriter_pt_BR.ts \
 	translations/focuswriter_ru.ts
 
-RESOURCES = icons/icons.qrc
+RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
 macx {
-	ICON = icons/focuswriter.icns
+	ICON = resources/mac/focuswriter.icns
 }
 win32 {
-	RC_FILE = icons/icon.rc
+	RC_FILE = resources/windows/icon.rc
 }
 
 unix: !macx {
@@ -121,22 +121,22 @@ unix: !macx {
 
 	target.path = $$PREFIX/bin/
 
-	icon.files = icons/hicolor/*
+	icon.files = resources/images/icons/hicolor/*
 	icon.path = $$PREFIX/share/icons/hicolor/
 
-	pixmap.files = icons/focuswriter.xpm
+	pixmap.files = resources/unix/focuswriter.xpm
 	pixmap.path = $$PREFIX/share/pixmaps/
 
-	icons.files = icons/oxygen/hicolor/*
+	icons.files = resources/images/icons/oxygen/hicolor/*
 	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
 
-	desktop.files = install/unix/focuswriter.desktop
+	desktop.files = resources/unix/focuswriter.desktop
 	desktop.path = $$PREFIX/share/applications/
 
 	qm.files = translations/*.qm
 	qm.path = $$PREFIX/share/focuswriter/translations
 
-	sounds.files = sounds/*
+	sounds.files = resources/sounds/*
 	sounds.path = $$PREFIX/share/focuswriter/sounds
 
 	INSTALLS += target icon pixmap desktop icons qm sounds
