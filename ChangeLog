@@ -1,3 +1,6 @@
+2011-06-02 Graeme Gott <graeme@gottcode.org>
+	* Read from and write to QIODevices.
+
 2011-06-02 Pavel Fric <pavelfric@seznam.cz>
 	* Update Czech translation.
 

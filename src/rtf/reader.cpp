@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * Derived in part from KWord's rtfimport.cpp
  *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
@@ -167,7 +167,7 @@ bool RTF::Reader::hasError() const
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::read(const QString& filename, QTextDocument* text)
+void RTF::Reader::read(QIODevice* device, QTextDocument* text)
 {
 	try {
 		// Open file
@@ -175,13 +175,9 @@ void RTF::Reader::read(const QString& filename, QTextDocument* text)
 		if (!m_cursor.isNull()) {
 			m_cursor = QTextCursor();
 		}
-		QFile file(filename);
-		if (!file.open(QFile::ReadOnly)) {
-			return;
-		}
 		m_text = text;
 		m_cursor = QTextCursor(m_text);
-		m_token.setDevice(&file);
+		m_token.setDevice(device);
 		setBlockDirection(Qt::LeftToRight);
 
 		// Check file type
@@ -214,7 +210,6 @@ void RTF::Reader::read(const QString& filename, QTextDocument* text)
 				}
 			}
 		}
-		file.close();
 
 		// Remove empty block at end of file
 		m_cursor.deletePreviousChar();

@@ -22,9 +22,9 @@
 
 #include <QByteArray>
 #include <QString>
-class QFile;
+class QIODevice;
 class QTextCodec;
-class QTextEdit;
+class QTextDocument;
 
 namespace RTF
 {
@@ -34,7 +34,7 @@ namespace RTF
 		Writer();
 
 		void setCodec(QTextCodec* codec);
-		bool write(QFile& file, QTextEdit* text);
+		bool write(QIODevice* device, QTextDocument* text);
 
 	private:
 		QByteArray fromUnicode(const QString& string) const;

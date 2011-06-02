@@ -331,10 +331,14 @@ void Document::loadFile(const QString& filename, int position)
 			file.close();
 		}
 	} else {
-		RTF::Reader reader;
-		reader.read(filename, document);
-		if (reader.hasError()) {
-			QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+		QFile file(filename);
+		if (file.open(QIODevice::ReadOnly)) {
+			RTF::Reader reader;
+			reader.read(&file, document);
+			file.close();
+			if (reader.hasError()) {
+				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+			}
 		}
 	}
 	document->setUndoRedoEnabled(true);
@@ -893,22 +897,25 @@ void Document::updateState()
 
 bool Document::writeFile(const QString& filename)
 {
-	bool saved = true;
+	bool saved = false;
 	QFile file(filename);
-	if (file.open(QFile::WriteOnly | QFile::Text)) {
-		if (!m_rich_text) {
+	if (!m_rich_text) {
+		if (file.open(QFile::WriteOnly | QFile::Text)) {
 			QTextStream stream(&file);
 			stream.setCodec(QTextCodec::codecForName("UTF-8"));
 			stream.setGenerateByteOrderMark(true);
 			stream << m_text->toPlainText();
-		} else {
-			RTF::Writer writer;
-			saved = writer.write(file, m_text);
+			saved = true;
 		}
+	} else {
+		if (file.open(QFile::WriteOnly)) {
+			RTF::Writer writer;
+			saved = writer.write(&file, m_text->document());
+		}
+	}
+	if (file.isOpen()) {
 		saved = saved && (file.error() == QFile::NoError);
 		file.close();
-	} else {
-		saved = false;
 	}
 	return saved;
 }
