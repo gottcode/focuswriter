@@ -21,6 +21,9 @@ unix: !macx {
 macx {
 	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework hunspell -framework libzip
+
+	HEADERS += src/rtf/converter.h
+	SOURCES += src/rtf/converter.cpp
 } else:win32 {
 	INCLUDEPATH += hunspell libzip
 	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll

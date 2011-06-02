@@ -25,6 +25,10 @@
 #include "theme.h"
 #include "window.h"
 
+#ifdef Q_OS_MAC
+#include "rtf/converter.h"
+#endif
+
 #include <QApplication>
 #include <QDir>
 #include <QFile>
@@ -73,6 +77,10 @@ Application::Application(int& argc, char** argv)
 	}
 #ifndef Q_WS_MAC
 	setAttribute(Qt::AA_DontUseNativeMenuBar);
+	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
+#else
+	setAttribute(Qt::AA_DontShowIconsInMenus, true);
+	new RTF::Converter;
 #endif
 
 	m_files = arguments().mid(1);
@@ -83,11 +91,6 @@ Application::Application(int& argc, char** argv)
 
 void Application::createWindow()
 {
-#ifdef Q_OS_MAC
-	setAttribute(Qt::AA_DontShowIconsInMenus, true);
-#else
-	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
-#endif
 	m_window = new Window(m_files);
 }
 

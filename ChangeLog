@@ -1,4 +1,5 @@
 2011-06-02 Graeme Gott <graeme@gottcode.org>
+	* Handle drag-and-drop RTF on the Mac.
 	* Read from and write to QIODevices.
 
 2011-06-02 Pavel Fric <pavelfric@seznam.cz>
