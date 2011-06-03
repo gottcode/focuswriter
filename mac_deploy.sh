@@ -82,13 +82,10 @@ rm -Rf "$APP/$BUNDLE/Contents/Frameworks/QtXmlPatterns.framework"
 rm -Rf "$APP/$BUNDLE/Contents/PlugIns/qmltooling"
 echo 'Done'
 
-# Create alias to Applications folder
-echo -n 'Creating Applications alias... '
-echo '
-	tell application "Finder"
-		make new alias file to POSIX file "/Applications" at POSIX file "'${PWD}/${APP}'" with properties {name:"Applications"}
-	end tell
-' | osascript
+# Create link to Applications folder
+echo -n 'Creating Applications link... '
+ln -s '/Applications' "${APP}/Applications"
+echo 'Done'
 
 # Copy background
 echo -n 'Copying background... '
