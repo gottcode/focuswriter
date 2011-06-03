@@ -45,6 +45,7 @@ namespace RTF
 		void read(QIODevice* device, QTextDocument* text);
 
 	private:
+		void endBlock(qint32);
 		void ignoreGroup(qint32);
 		void insertBlock(qint32);
 		void insertHexSymbol(qint32);
@@ -71,6 +72,7 @@ namespace RTF
 
 	private:
 		Tokenizer m_token;
+		bool m_in_block;
 
 		struct State
 		{

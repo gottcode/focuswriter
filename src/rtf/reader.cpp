@@ -57,7 +57,8 @@ namespace
 //-----------------------------------------------------------------------------
 
 RTF::Reader::Reader()
-	: m_codec(0)
+	: m_in_block(true),
+	m_codec(0)
 {
 	if (functions.isEmpty()) {
 		functions["\\"] = Function(&Reader::insertSymbol, '\\');
@@ -88,7 +89,7 @@ RTF::Reader::Reader()
 		functions["\'"] = Function(&Reader::insertHexSymbol);
 		functions["u"] = Function(&Reader::insertUnicodeSymbol);
 		functions["uc"] = Function(&Reader::setSkipCharacters);
-		functions["par"] = Function(&Reader::insertBlock);
+		functions["par"] = Function(&Reader::endBlock);
 		functions["\n"] = Function(&Reader::insertBlock);
 		functions["\r"] = Function(&Reader::insertBlock);
 
@@ -177,6 +178,7 @@ void RTF::Reader::read(QIODevice* device, QTextDocument* text)
 		}
 		m_text = text;
 		m_cursor = QTextCursor(m_text);
+		m_cursor.movePosition(QTextCursor::End);
 		m_token.setDevice(device);
 		setBlockDirection(Qt::LeftToRight);
 
@@ -196,6 +198,11 @@ void RTF::Reader::read(QIODevice* device, QTextDocument* text)
 		while (!m_states.isEmpty() && m_token.hasNext()) {
 			m_token.readNext();
 
+			if ((m_token.type() != EndGroupToken) && !m_in_block) {
+				m_cursor.insertBlock();
+				m_in_block = true;
+			}
+
 			if (m_token.type() == StartGroupToken) {
 				pushState();
 			} else if (m_token.type() == EndGroupToken) {
@@ -210,12 +217,16 @@ void RTF::Reader::read(QIODevice* device, QTextDocument* text)
 				}
 			}
 		}
-
-		// Remove empty block at end of file
-		m_cursor.deletePreviousChar();
 	} catch (const QString& error) {
 		m_error = error;
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void RTF::Reader::endBlock(qint32)
+{
+	m_in_block = false;
 }
 
 //-----------------------------------------------------------------------------

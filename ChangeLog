@@ -1,3 +1,6 @@
+2011-06-03 Graeme Gott <graeme@gottcode.org>
+	 * FIXED: Incorrectly handled paragraph end in RTF.
+
 2011-06-02 Graeme Gott <graeme@gottcode.org>
 	* Handle drag-and-drop RTF on the Mac.
 	* Read from and write to QIODevices.
