@@ -703,6 +703,7 @@ void Window::toggleFullscreen()
 		setWindowState(windowState() & ~Qt::WindowFullScreen);
 	}
 	show();
+	QApplication::processEvents();
 	activateWindow();
 	raise();
 	QApplication::processEvents();
