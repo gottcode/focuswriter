@@ -1,4 +1,5 @@
 2011-06-04 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Cancelling adding a theme did not work.
 	* Use smooth font sizes list.
 	* FIXED: Font size always show decimal.
 	* Set default font to Times New Roman.
