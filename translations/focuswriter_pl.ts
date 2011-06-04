@@ -198,7 +198,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="101"/>
         <source>&lt;System Language&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Język systemowy&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="195"/>
@@ -1220,58 +1220,58 @@
     <message>
         <location filename="../src/window.cpp" line="222"/>
         <source>Loading settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie ustawień</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="241"/>
         <source>Emergency cache is not writable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor awaryjny nie jest zapisywalny.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="296"/>
         <location filename="../src/window.cpp" line="950"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostrzeżenie</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="297"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Program FocusWriter nie został zamknięty prawidłowo.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="298"/>
         <source>Restore from the emergency cache?</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywrócić z bufora awaryjnego?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="363"/>
         <source>Some files are unsupported and will not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niektóre pliki nie są obsługiwane i nie zostaną otwarte.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="428"/>
         <source>Some files could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niektórych plików nie można otworzyć.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="438"/>
         <source>Some files were opened Read-Only.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niektóre pliki zostały otwarte tylko do odczytu.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="951"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; jest nowszy niż zachowana kopia.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="952"/>
         <source>Overwrite newer file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nadpisać nowszy plik?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1032"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można załadować odgłosów maszyny do pisania.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1119"/>
