@@ -173,8 +173,9 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_font_sizes = new QComboBox(tab);
 	m_font_sizes->setEditable(true);
+	m_font_sizes->setMinimumContentsLength(3);
 	QList<int> font_sizes = QFontDatabase::standardSizes();
-	qreal font_size = m_theme.textFont().pointSizeF();
+	qreal font_size = qRound(m_theme.textFont().pointSizeF() * 10.0) * 0.1;
 	int index = 0;
 	for (int i = 0; i < font_sizes.count(); ++i) {
 		int size = font_sizes.at(i);
@@ -184,7 +185,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 		m_font_sizes->addItem(QString::number(size));
 	}
 	m_font_sizes->setCurrentIndex(index);
-	m_font_sizes->setEditText(QString::number(font_size, 'f', 1));
+	m_font_sizes->setEditText(QString::number(font_size));
 	m_font_sizes->setValidator(new QDoubleValidator(font_sizes.first(), font_sizes.last(), 1, m_font_sizes));
 	connect(m_font_sizes, SIGNAL(editTextChanged(const QString&)), this, SLOT(renderPreview()));
 
