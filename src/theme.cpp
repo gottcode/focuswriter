@@ -127,7 +127,7 @@ Theme::Theme(const QString& name)
 
 	// Load text settings
 	m_text_color = settings.value("Text/Color", "#000000").toString();
-	m_text_font.fromString(settings.value("Text/Font", QFont().toString()).toString());
+	m_text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
 	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
 }
 

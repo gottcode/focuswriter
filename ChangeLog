@@ -1,3 +1,6 @@
+2011-06-04 Graeme Gott <graeme@gottcode.org>
+	* Set default font to Times New Roman.
+
 2011-06-03 Graeme Gott <graeme@gottcode.org>
 	 * FIXED: Incorrectly handled paragraph end in RTF.
 
