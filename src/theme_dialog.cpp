@@ -169,25 +169,14 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_font_names = new QFontComboBox(tab);
 	m_font_names->setEditable(false);
 	m_font_names->setCurrentFont(m_theme.textFont());
+	connect(m_font_names, SIGNAL(activated(int)), this, SLOT(fontChanged()));
 	connect(m_font_names, SIGNAL(activated(int)), this, SLOT(renderPreview()));
 
 	m_font_sizes = new QComboBox(tab);
 	m_font_sizes->setEditable(true);
 	m_font_sizes->setMinimumContentsLength(3);
-	QList<int> font_sizes = QFontDatabase::standardSizes();
-	qreal font_size = qRound(m_theme.textFont().pointSizeF() * 10.0) * 0.1;
-	int index = 0;
-	for (int i = 0; i < font_sizes.count(); ++i) {
-		int size = font_sizes.at(i);
-		if (size <= font_size) {
-			index = i;
-		}
-		m_font_sizes->addItem(QString::number(size));
-	}
-	m_font_sizes->setCurrentIndex(index);
-	m_font_sizes->setEditText(QString::number(font_size));
-	m_font_sizes->setValidator(new QDoubleValidator(font_sizes.first(), font_sizes.last(), 1, m_font_sizes));
 	connect(m_font_sizes, SIGNAL(editTextChanged(const QString&)), this, SLOT(renderPreview()));
+	fontChanged();
 
 	m_misspelled_color = new ColorButton(tab);
 	m_misspelled_color->setColor(m_theme.misspelledColor());
@@ -277,6 +266,38 @@ void ThemeDialog::checkNameAvailable()
 	bool changed = (name != m_theme.name());
 	bool exists = QFile::exists(Theme::filePath(name));
 	m_ok->setEnabled(!changed || (!empty && !exists));
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::fontChanged()
+{
+	QFontDatabase db;
+
+	QFont font = m_font_names->currentFont();
+	QList<int> font_sizes = db.smoothSizes(font.family(), QString());
+	if (font_sizes.isEmpty()) {
+		font_sizes = db.standardSizes();
+	}
+	qreal font_size = m_font_sizes->currentText().toDouble();
+	if (font_size < 0.1) {
+		font_size = qRound(m_theme.textFont().pointSizeF() * 10.0) * 0.1;
+	}
+
+	m_font_sizes->blockSignals(true);
+	m_font_sizes->clear();
+	int index = 0;
+	for (int i = 0; i < font_sizes.count(); ++i) {
+		int size = font_sizes.at(i);
+		if (size <= font_size) {
+			index = i;
+		}
+		m_font_sizes->addItem(QString::number(size));
+	}
+	m_font_sizes->setCurrentIndex(index);
+	m_font_sizes->setEditText(QString::number(font_size));
+	m_font_sizes->setValidator(new QDoubleValidator(font_sizes.first(), font_sizes.last(), 1, m_font_sizes));
+	m_font_sizes->blockSignals(false);
 }
 
 //-----------------------------------------------------------------------------

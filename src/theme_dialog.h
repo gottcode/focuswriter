@@ -47,6 +47,7 @@ public slots:
 
 private slots:
 	void checkNameAvailable();
+	void fontChanged();
 	void renderPreview();
 
 private:
