@@ -1,4 +1,5 @@
 2011-06-06 Graeme Gott <graeme@gottcode.org>
+	* Move background caching into background loading thread.
 	* Allow users to always set background image.
 
 2011-06-04 Jakub Kowalski <jakowalski@gmail.com>

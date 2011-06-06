@@ -61,17 +61,25 @@ namespace
 			int position;
 			QString image_path;
 			QRect rect;
-			QPalette palette;
+			QColor color;
 		};
 		QList<File> m_files;
 		QMutex m_file_mutex;
+
+		struct CacheFile {
+			File file;
+			QImage image;
+			bool operator==(const CacheFile& other);
+		};
+		QList<CacheFile> m_cache;
+
 		QImage m_image;
 		QMutex m_image_mutex;
 	} background_loader;
 
 	void BackgroundLoader::create(int position, const QString& image_path, QWidget* widget)
 	{
-		File file = { position, image_path, widget->rect(), widget->palette() };
+		File file = { position, image_path, widget->rect(), widget->palette().color(QPalette::Window) };
 
 		m_file_mutex.lock();
 		m_files.append(file);
@@ -102,15 +110,33 @@ namespace
 			m_files.clear();
 			m_file_mutex.unlock();
 
-			QImage image = Theme::renderBackground(file.image_path, file.position, file.palette.color(QPalette::Window), file.rect.size());
+			CacheFile cache_file = { file, QImage() };
+			int index = m_cache.indexOf(cache_file);
+			if (index != -1) {
+				cache_file = m_cache.at(index);
+			} else {
+				cache_file.image = Theme::renderBackground(file.image_path, file.position, file.color, file.rect.size());
+				m_cache.prepend(cache_file);
+				while (m_cache.size() > 10) {
+					m_cache.removeLast();
+				}
+			}
 
 			m_image_mutex.lock();
-			m_image = image;
+			m_image = cache_file.image;
 			m_image_mutex.unlock();
 
 			m_file_mutex.lock();
 		} while (!m_files.isEmpty());
 		m_file_mutex.unlock();
+	}
+
+	bool BackgroundLoader::CacheFile::operator==(const CacheFile& other)
+	{
+		return (file.image_path == other.file.image_path)
+			&& (file.color == other.file.color)
+			&& (file.position == other.file.position)
+			&& (file.rect == other.file.rect);
 	}
 }
 
@@ -529,7 +555,6 @@ void Stack::themeSelected(const Theme& theme)
 
 	background_loader.reset();
 	m_background = QPixmap();
-	m_background_old = QPixmap();
 	updateBackground();
 
 	m_margin = theme.foregroundMargin();
@@ -632,18 +657,12 @@ void Stack::paintEvent(QPaintEvent* event)
 
 //-----------------------------------------------------------------------------
 
-void Stack::resizeEvent(QResizeEvent* event) {
+void Stack::resizeEvent(QResizeEvent* event)
+{
 	updateMask();
-	if (!m_background_old.isNull() && m_background_old.size() == size()) {
-		qSwap(m_background, m_background_old);
-	} else {
-		if (!m_background.isNull()) {
-			m_background_old = m_background;
-			m_background = QPixmap();
-		}
-		m_resize_timer->start();
-		updateBackground();
-	}
+	m_background = QPixmap();
+	m_resize_timer->start();
+	updateBackground();
 	QWidget::resizeEvent(event);
 }
 
