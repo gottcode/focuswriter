@@ -21,8 +21,10 @@
 
 #include "dictionary.h"
 
+#include <QApplication>
 #include <QLocale>
 #include <QSettings>
+#include <QStyle>
 
 //-----------------------------------------------------------------------------
 
@@ -58,8 +60,8 @@ Preferences::Preferences()
 	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
 
-	m_toolbar_style = settings.value("Toolbar/Style", Qt::ToolButtonTextUnderIcon).toInt();
-	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace";
+	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
+	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace" << "|" << "Themes";
 	m_toolbar_actions = settings.value("Toolbar/Actions", m_toolbar_actions).toStringList();
 
 	m_highlight_misspelled = settings.value("Spelling/HighlightMisspelled", true).toBool();
