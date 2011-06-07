@@ -1,3 +1,6 @@
+2011-06-07 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Timers action didn't always use theme icon.
+
 2011-06-06 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Did not follow toolbar style by default.
 	* Move background caching into background loading thread.
