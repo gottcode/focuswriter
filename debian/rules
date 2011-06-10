@@ -6,10 +6,12 @@ include /usr/share/cdbs/1/class/qmake.mk
 QMAKE = qmake-qt4
 DEB_QMAKE_ARGS = PREFIX=/usr
 
-update-config:: icons/focuswriter.xpm
+ICON_DIR = resources/images/icons/hicolor/32x32/apps
 
-icons/focuswriter.xpm:
-	convert -resize 32x32 icons/focuswriter.png icons/focuswriter.xpm
+update-config:: $(ICON_DIR)/focuswriter.xpm
+
+$(ICON_DIR)/focuswriter.xpm: $(ICON_DIR)/focuswriter.png
+	convert -resize 32x32 $(ICON_DIR)/focuswriter.png $(ICON_DIR)/focuswriter.xpm
 
 reverse-config::
-	rm -f icons/focuswriter.xpm
+	rm -f $(ICON_DIR)/focuswriter.xpm
