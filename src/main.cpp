@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,25 +18,105 @@
  ***********************************************************************/
 
 #include "dictionary.h"
+#include "document.h"
 #include "locale_dialog.h"
 #include "session.h"
 #include "sound.h"
 #include "theme.h"
 #include "window.h"
 
+#ifdef Q_OS_MAC
+#include "rtf/converter.h"
+#endif
+
 #include <QApplication>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QFileOpenEvent>
 #include <QSettings>
+#include <QStringList>
+
+//-----------------------------------------------------------------------------
+
+class Application : public QApplication
+{
+public:
+	Application(int& argc, char** argv);
+
+	void createWindow();
+
+protected:
+	virtual bool event(QEvent* e);
+
+private:
+	QStringList m_files;
+	Window* m_window;
+};
+
+//-----------------------------------------------------------------------------
+
+Application::Application(int& argc, char** argv)
+	: QApplication(argc, argv),
+	m_window(0)
+{
+	setApplicationName("FocusWriter");
+	setApplicationVersion("1.3.2.1");
+	setOrganizationDomain("gottcode.org");
+	setOrganizationName("GottCode");
+	{
+		QIcon fallback(":/hicolor/256x256/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/128x128/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/64x64/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/48x48/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/32x32/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/24x24/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/22x22/apps/focuswriter.png");
+		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
+		setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
+	}
+#ifndef Q_WS_MAC
+	setAttribute(Qt::AA_DontUseNativeMenuBar);
+	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
+#else
+	setAttribute(Qt::AA_DontShowIconsInMenus, true);
+	new RTF::Converter;
+#endif
+
+	m_files = arguments().mid(1);
+	processEvents();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::createWindow()
+{
+	m_window = new Window(m_files);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::event(QEvent* e)
+{
+	if (e->type() != QEvent::FileOpen) {
+		return QApplication::event(e);
+	} else {
+		QString file = static_cast<QFileOpenEvent*>(e)->file();
+		if (m_window) {
+			m_window->addDocuments(QStringList(file), QStringList(file));
+		} else {
+			m_files.append(file);
+		}
+		e->accept();
+		return true;
+	}
+}
+
+//-----------------------------------------------------------------------------
 
 int main(int argc, char** argv)
 {
-	QApplication app(argc, argv);
-	app.setApplicationName("FocusWriter");
-	app.setApplicationVersion("1.3.2.1");
-	app.setOrganizationDomain("gottcode.org");
-	app.setOrganizationName("GottCode");
+	Application app(argc, argv);
 	QString appdir = app.applicationDirPath();
 
 	QStringList paths = QIcon::themeSearchPaths();
@@ -101,7 +181,7 @@ int main(int argc, char** argv)
 	}
 
 	// Load application language
-	LocaleDialog::loadTranslator();
+	LocaleDialog::loadTranslator("focuswriter_");
 
 	// Create base data path
 	QDir dir;
@@ -109,6 +189,12 @@ int main(int argc, char** argv)
 		dir.mkpath(path);
 	}
 	dir.setPath(path);
+
+	// Create cache path
+	if (!dir.exists("Cache/Files")) {
+		dir.mkpath("Cache/Files");
+	}
+	Document::setCachePath(dir.filePath("Cache/Files"));
 
 	// Set sessions path
 	if (!dir.exists("Sessions")) {
@@ -157,17 +243,17 @@ int main(int argc, char** argv)
 		settings.remove("Page");
 
 		theme.setTextColor(settings.value("Text/Color", "#000000").toString());
-		theme.setTextFont(settings.value("Text/Font").value<QFont>());
+		theme.setTextFont(settings.value("Text/Font", QFont("Times New Roman").toString()).value<QFont>());
 		settings.remove("Text");
 
 		settings.setValue("ThemeManager/Theme", theme.name());
 	}
 
-	// Browse to documents
-	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());
-
 	// Create main window
-	new Window;
+	app.createWindow();
+
+	// Browse to documents after command-line specified documents have been loaded
+	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());
 
 	return app.exec();
 }

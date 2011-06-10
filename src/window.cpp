@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 
 #include "window.h"
 
+#include "alert_layer.h"
 #include "document.h"
 #include "load_screen.h"
 #include "locale_dialog.h"
@@ -39,6 +40,7 @@
 #include <QCloseEvent>
 #include <QDate>
 #include <QFileDialog>
+#include <QFileOpenEvent>
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
@@ -49,12 +51,17 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QShortcut>
+#include <QStyle>
 #include <QTabBar>
+#include <QTextCodec>
+#include <QTextStream>
 #include <QTimer>
 #include <QToolBar>
 #include <QUrl>
 
 //-----------------------------------------------------------------------------
+
+extern bool compareFiles(const QString& filename1, const QString& filename2);
 
 namespace
 {
@@ -70,8 +77,10 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Window::Window()
+Window::Window(const QStringList& files)
 	: m_toolbar(0),
+	m_key_sound(0),
+	m_enter_key_sound(0),
 	m_fullscreen(true),
 	m_typewriter_sounds(true),
 	m_auto_save(true),
@@ -85,7 +94,7 @@ Window::Window()
 	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
 	setContextMenuPolicy(Qt::NoContextMenu);
-	setWindowIcon(QIcon(":/focuswriter.png"));
+	setCursor(Qt::WaitCursor);
 
 	// Set up icons
 	if (QIcon::themeName().isEmpty()) {
@@ -106,12 +115,14 @@ Window::Window()
 	m_documents = new Stack(this);
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
-	m_load_screen = new LoadScreen(this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
 	connect(m_documents, SIGNAL(formattingEnabled(bool)), this, SLOT(setFormattingEnabled(bool)));
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
 	connect(m_documents, SIGNAL(updateFormatAlignmentActions()), this, SLOT(updateFormatAlignmentActions()));
 	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
+
+	contents->setMouseTracking(true);
+	contents->installEventFilter(m_documents);
 
 	// Set up menubar and toolbar
 	initMenus();
@@ -198,28 +209,24 @@ Window::Window()
 	m_current_time = settings.value("Progress/Time", 0).toInt();
 	updateProgress();
 
-	// Load settings
-	Preferences preferences;
-	loadPreferences(preferences);
-	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
-
 	// Restore window geometry
 	setMinimumSize(640, 480);
 	resize(800, 600);
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
+	show();
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
 	toggleFullscreen();
 	m_actions["Fullscreen"]->setChecked(m_fullscreen);
-	show();
 
-	// Update themes
-	m_load_screen->setText(tr("Loading themes"));
+	// Load settings
+	m_documents->loadScreen()->setText(tr("Loading settings"));
+	Preferences preferences;
+	loadPreferences(preferences);
+
+	// Update and load theme
+	m_documents->loadScreen()->setText(tr("Loading themes"));
+	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
 	Theme::copyBackgrounds();
-
-	// Load sounds
-	m_load_screen->setText(tr("Loading sounds"));
-	m_key_sound = new Sound("keyany.wav", this);
-	m_enter_key_sound = new Sound("keyenter.wav", this);
 
 	// Update margin
 	m_tabs->blockSignals(true);
@@ -228,21 +235,107 @@ Window::Window()
 	m_tabs->removeTab(0);
 	m_tabs->blockSignals(false);
 
+	// Restore after crash
+	bool writable = QFileInfo(Document::cachePath()).isWritable() && QFileInfo(Document::cachePath() + "/../").isWritable();
+	if (!writable) {
+		m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Emergency cache is not writable."), QStringList());
+	}
+	QStringList cachedfiles, datafiles;
+	QString cachepath;
+	QStringList entries = QDir(Document::cachePath()).entryList(QDir::Files);
+	if (writable && (entries.count() > 1) && entries.contains("mapping")) {
+		// Find cachedir
+		QString date = QDate::currentDate().toString("yyyyMMdd");
+		int extra = 0;
+		QDir dir(QDir::cleanPath(Document::cachePath() + "/../"));
+		QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+		foreach (const QString& subdir, subdirs) {
+			if (subdir.startsWith(date)) {
+				extra = qMax(extra, subdir.mid(9).toInt() + 1);
+			}
+		}
+		cachepath = dir.absoluteFilePath(date + ((extra > 0) ? QString("-%1").arg(extra) : ""));
+
+		// Move cache out of the way
+		dir.rename("Files", cachepath);
+		dir.mkdir("Files");
+
+		// Read mapping of cached files
+		QFile file(cachepath + "/mapping");
+		if (file.open(QFile::ReadOnly | QFile::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setAutoDetectUnicode(true);
+
+			while (!stream.atEnd()) {
+				QString line = stream.readLine();
+				QString datafile = line.section(' ', 0, 0);
+				QString path = line.section(' ', 1);
+				if (!datafile.isEmpty()) {
+					cachedfiles.append(path);
+					datafiles.append(cachepath + "/" + datafile);
+				}
+			}
+			file.close();
+		}
+
+		// Ask if they want to use cached files
+		if (!cachedfiles.isEmpty()) {
+			QStringList files = cachedfiles;
+			int untitled = 1;
+			int count = files.count();
+			for (int i = 0; i < count; ++i) {
+				if (files.at(i).isEmpty()) {
+					files[i] = tr("(Untitled %1)").arg(untitled);
+					untitled++;
+				}
+			}
+			m_documents->loadScreen()->setText("");
+			m_documents->loadScreen()->releaseKeyboard();
+			QMessageBox mbox(window());
+			mbox.setWindowTitle(tr("Warning"));
+			mbox.setText(tr("FocusWriter was not shut down cleanly."));
+			mbox.setInformativeText(tr("Restore from the emergency cache?"));
+			mbox.setDetailedText(files.join("\n"));
+			mbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+			mbox.setDefaultButton(QMessageBox::Yes);
+			mbox.setIcon(QMessageBox::Warning);
+			if (mbox.exec() == QMessageBox::No) {
+				cachedfiles.clear();
+				datafiles.clear();
+			}
+			m_documents->loadScreen()->grabKeyboard();
+		}
+	}
+
 	// Open previous documents
 	QString session = settings.value("SessionManager/Session").toString();
-	QStringList files = QApplication::arguments().mid(1);
-	if (!files.isEmpty()) {
+	if (cachedfiles.isEmpty() && !files.isEmpty()) {
 		session.clear();
 		settings.setValue("Save/Current", files);
 		settings.setValue("Save/Positions", QStringList());
 		settings.setValue("Save/Active", 0);
 	}
-	m_sessions->setCurrent(session);
+	m_sessions->setCurrent(session, cachedfiles, datafiles);
+
+	// Remove old cache
+	if (!cachepath.isEmpty()) {
+		QDir cachedir(cachepath);
+		if ((cachedir.count() == 3) && (cachedir.entryList(QDir::Files).first() == "mapping")) {
+			cachedir.remove("mapping");
+			cachedir.rmdir(cachepath);
+		}
+	}
+
+	// Bring to front
+	activateWindow();
+	raise();
+	unsetCursor();
 }
 
 //-----------------------------------------------------------------------------
 
-void Window::addDocuments(const QStringList& files, const QStringList& positions, int active, bool show_load)
+void Window::addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions, int active, bool show_load)
 {
 	m_documents->setHeaderVisible(false);
 	m_documents->setFooterVisible(false);
@@ -261,16 +354,34 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 		}
 	}
 	if (!skip.isEmpty()) {
-		QString skipped = tr("The following files are unsupported and will not be opened:\n");
+		QStringList skipped;
 		foreach (int i, skip) {
-			skipped += "\n" + files.at(i);
+			skipped += files.at(i);
 		}
-		QMessageBox::warning(this, tr("Sorry"), skipped);
+		QMessageBox mbox(window());
+		mbox.setWindowTitle(tr("Sorry"));
+		mbox.setText(tr("Some files are unsupported and will not be opened."));
+		mbox.setDetailedText(skipped.join("\n"));
+		mbox.setStandardButtons(QMessageBox::Ok);
+		mbox.setDefaultButton(QMessageBox::Ok);
+		mbox.setIcon(QMessageBox::Warning);
+		mbox.exec();
 	}
 
-	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_load_screen->isVisible());
+	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_documents->loadScreen()->isVisible());
 	if (show_load) {
-		m_load_screen->setText("");
+		m_documents->loadScreen()->setText("");
+		setCursor(Qt::WaitCursor);
+	}
+
+	int untitled_index = -1;
+	int current_index = -1;
+	if (m_documents->count()) {
+		current_index = m_documents->currentIndex();
+		Document* document = m_documents->count() ? m_documents->currentDocument() : 0;
+		if (document->untitledIndex() && !document->text()->document()->isModified()) {
+			untitled_index = m_documents->currentIndex();
+		}
 	}
 
 	QStringList missing;
@@ -280,9 +391,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 		if (!skip.isEmpty() && skip.first() == i) {
 			skip.removeFirst();
 			continue;
-		} else if (!addDocument(files.at(i), positions.value(i, "-1").toInt())) {
+		} else if (!addDocument(files.at(i), datafiles.at(i), positions.value(i, "-1").toInt())) {
 			missing.append(files.at(i));
-		} else if (m_documents->currentDocument()->untitledIndex() > 0) {
+		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
 			int index = m_documents->currentIndex();
 			missing.append(files.at(i));
 			m_documents->removeDocument(index);
@@ -295,18 +406,64 @@ void Window::addDocuments(const QStringList& files, const QStringList& positions
 	if (m_documents->count() == 0) {
 		newDocument();
 	}
-	m_tabs->setCurrentIndex(active);
 
+	if (untitled_index == -1) {
+		if (active != -1) {
+			m_tabs->setCurrentIndex(active);
+		} else if (m_documents->currentIndex() == current_index) {
+			m_tabs->setCurrentIndex(m_tabs->count() - 1);
+		}
+	} else {
+		m_tabs->setCurrentIndex(untitled_index);
+		closeDocument();
+	}
+
+	bool unset_keyboard = m_documents->loadScreen()->isVisible() && (!missing.isEmpty() || !readonly.isEmpty());
+	if (unset_keyboard) {
+		m_documents->loadScreen()->releaseKeyboard();
+	}
 	if (!missing.isEmpty()) {
-		QMessageBox::warning(this, tr("Sorry"), tr("The following files could not be opened:\n\n%1").arg(missing.join("\n")));
+		QMessageBox mbox(window());
+		mbox.setWindowTitle(tr("Sorry"));
+		mbox.setText(tr("Some files could not be opened."));
+		mbox.setDetailedText(missing.join("\n"));
+		mbox.setStandardButtons(QMessageBox::Ok);
+		mbox.setDefaultButton(QMessageBox::Ok);
+		mbox.setIcon(QMessageBox::Warning);
+		mbox.exec();
 	}
 	if (!readonly.isEmpty()) {
-		QMessageBox::information(this, tr("Note"), tr("The following files were opened Read-Only:\n\n%1").arg(readonly.join("\n")));
+		QMessageBox mbox(window());
+		mbox.setWindowTitle(tr("Note"));
+		mbox.setText(tr("Some files were opened Read-Only."));
+		mbox.setDetailedText(readonly.join("\n"));
+		mbox.setStandardButtons(QMessageBox::Ok);
+		mbox.setDefaultButton(QMessageBox::Ok);
+		mbox.setIcon(QMessageBox::Information);
+		mbox.exec();
+	}
+	if (unset_keyboard) {
+		m_documents->loadScreen()->grabKeyboard();
 	}
 
 	if (show_load) {
 		m_documents->waitForThemeBackground();
-		m_load_screen->finish();
+		m_documents->loadScreen()->finish();
+		unsetCursor();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::addDocuments(QDropEvent* event)
+{
+	if (event->mimeData()->hasUrls()) {
+		QStringList files;
+		foreach (QUrl url, event->mimeData()->urls()) {
+			files.append(url.toLocalFile());
+		}
+		addDocuments(files, files);
+		event->acceptProposedAction();
 	}
 }
 
@@ -323,17 +480,17 @@ bool Window::closeDocuments(QSettings* session)
 	QStringList files;
 	QStringList positions;
 	for (int i = 0; i < m_documents->count(); ++i) {
+		m_tabs->setCurrentIndex(i);
+		if (!saveDocument(i)) {
+			m_tabs->setCurrentIndex(active);
+			return false;
+		}
+
 		Document* document = m_documents->document(i);
 		QString filename = document->filename();
 		if (!filename.isEmpty()) {
 			files.append(filename);
 			positions.append(QString::number(document->text()->textCursor().position()));
-		}
-
-		m_tabs->setCurrentIndex(i);
-		if (!saveDocument(i)) {
-			m_tabs->setCurrentIndex(active);
-			return false;
 		}
 	}
 
@@ -365,14 +522,7 @@ void Window::dragEnterEvent(QDragEnterEvent* event)
 
 void Window::dropEvent(QDropEvent* event)
 {
-	if (event->mimeData()->hasUrls()) {
-		QStringList files;
-		foreach (QUrl url, event->mimeData()->urls()) {
-			files.append(url.toLocalFile());
-		}
-		addDocuments(files, QStringList(), m_documents->count());
-		event->acceptProposedAction();
-	}
+	addDocuments(event);
 }
 
 //-----------------------------------------------------------------------------
@@ -416,7 +566,6 @@ void Window::resizeEvent(QResizeEvent* event)
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
-	m_load_screen->resize(size());
 	m_documents->resize(size());
 	QMainWindow::resizeEvent(event);
 }
@@ -445,13 +594,7 @@ void Window::openDocument()
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();
 		}
-		Document* document = m_documents->currentDocument();
-		int index = (document->untitledIndex() && !document->text()->document()->isModified()) ? m_documents->currentIndex() : -1;
-		addDocuments(filenames, QStringList(), m_tabs->count() + filenames.count());
-		if (index != -1) {
-			m_tabs->setCurrentIndex(index);
-			closeDocument();
-		}
+		addDocuments(filenames, filenames);
 	}
 }
 
@@ -537,6 +680,18 @@ void Window::setFormattingEnabled(bool enabled)
 
 //-----------------------------------------------------------------------------
 
+void Window::minimize()
+{
+#ifdef Q_OS_MAC
+	if (m_fullscreen) {
+		toggleFullscreen();
+	}
+#endif
+	showMinimized();
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::toggleFullscreen()
 {
 	m_fullscreen = !m_fullscreen;
@@ -547,6 +702,11 @@ void Window::toggleFullscreen()
 	} else {
 		setWindowState(windowState() & ~Qt::WindowFullScreen);
 	}
+	show();
+	QApplication::processEvents();
+	activateWindow();
+	raise();
+	QApplication::processEvents();
 }
 
 //-----------------------------------------------------------------------------
@@ -615,10 +775,10 @@ void Window::setLocaleClicked()
 void Window::keyPressed(int key)
 {
 	if (m_typewriter_sounds) {
-		if (key == Qt::Key_Enter || key == Qt::Key_Return) {
-			m_enter_key_sound->play();
-		} else if (key != Qt::Key_Control && key != Qt::Key_Shift) {
+		if (key != Qt::Key_Enter) {
 			m_key_sound->play();
+		} else {
+			m_enter_key_sound->play();
 		}
 	}
 }
@@ -747,10 +907,10 @@ void Window::updateSave()
 
 //-----------------------------------------------------------------------------
 
-bool Window::addDocument(const QString& filename, int position)
+bool Window::addDocument(const QString& file, const QString& datafile, int position)
 {
-	QFileInfo info(filename);
-	if (!filename.isEmpty()) {
+	QFileInfo info(file);
+	if (!file.isEmpty()) {
 		// Check if already open
 		QString canonical_filename = info.canonicalFilePath();
 		for (int i = 0; i < m_documents->count(); ++i) {
@@ -768,17 +928,49 @@ bool Window::addDocument(const QString& filename, int position)
 
 	// Show filename in load screen
 	bool show_load = false;
-	show_load = !filename.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
-	if (m_load_screen->isVisible() || show_load) {
-		if (!filename.isEmpty()) {
-			m_load_screen->setText(tr("Opening %1").arg(filename));
+	show_load = !file.isEmpty() && !m_documents->loadScreen()->isVisible() && (info.size() > 100000);
+	if (m_documents->loadScreen()->isVisible() || show_load) {
+		if (!file.isEmpty()) {
+			m_documents->loadScreen()->setText(tr("Opening %1").arg(file));
 		} else {
-			m_load_screen->setText("");
+			m_documents->loadScreen()->setText("");
 		}
 	}
 
 	// Create document
-	Document* document = new Document(filename, m_current_wordcount, m_current_time, m_sessions->current()->theme(), this);
+	QString path = file;
+	if (!file.isEmpty() && (datafile != file)) {
+		if (QFileInfo(datafile).lastModified() > QFileInfo(file).lastModified()) {
+			path = datafile;
+			position = -1;
+		} else {
+			if (m_documents->loadScreen()->isVisible()) {
+				m_documents->loadScreen()->releaseKeyboard();
+			}
+			QMessageBox mbox(window());
+			mbox.setWindowTitle(tr("Warning"));
+			mbox.setText(tr("'%1' is newer than the cached copy.").arg(file));
+			mbox.setInformativeText(tr("Overwrite newer file?"));
+			mbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+			mbox.setDefaultButton(QMessageBox::No);
+			mbox.setIcon(QMessageBox::Warning);
+			if (mbox.exec() == QMessageBox::Yes) {
+				path = datafile;
+				position = -1;
+			}
+			if (m_documents->loadScreen()->isVisible()) {
+				m_documents->loadScreen()->grabKeyboard();
+			}
+		}
+	}
+	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
+	m_documents->addDocument(document);
+	document->loadTheme(m_sessions->current()->theme());
+	document->loadFile(datafile, m_save_positions ? position : -1);
+	if (datafile != file) {
+		document->text()->document()->setModified(!compareFiles(file, datafile));
+		QFile::remove(datafile);
+	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
@@ -787,23 +979,12 @@ bool Window::addDocument(const QString& filename, int position)
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Add tab for document
-	m_documents->addDocument(document);
 	int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
-	// Restore cursor position
-	QTextCursor cursor = document->text()->textCursor();
-	if (m_save_positions && position != -1 && !document->untitledIndex()) {
-		cursor.setPosition(position);
-	} else {
-		cursor.movePosition(QTextCursor::End);
-	}
-	document->text()->setTextCursor(cursor);
-	document->centerCursor(true);
-
 	if (show_load) {
-		m_load_screen->finish();
+		m_documents->loadScreen()->finish();
 	}
 
 	return true;
@@ -841,12 +1022,29 @@ bool Window::saveDocument(int index)
 void Window::loadPreferences(Preferences& preferences)
 {
 	m_typewriter_sounds = preferences.typewriterSounds();
+	if (m_typewriter_sounds && (!m_key_sound || !m_enter_key_sound)) {
+		if (m_documents->loadScreen()->isVisible()) {
+			m_documents->loadScreen()->setText(tr("Loading sounds"));
+		}
+		m_key_sound = new Sound("keyany.wav", this);
+		m_enter_key_sound = new Sound("keyenter.wav", this);
+
+		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
+			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Unable to load typewriter sounds."), QStringList());
+			delete m_key_sound;
+			delete m_enter_key_sound;
+			m_key_sound = m_enter_key_sound = 0;
+			preferences.setTypewriterSounds(false);
+		}
+	}
 
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
+		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 	} else {
 		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 	}
 	m_save_positions = preferences.savePositions();
 
@@ -886,8 +1084,6 @@ void Window::loadPreferences(Preferences& preferences)
 
 	m_replace_document_quotes->setEnabled(preferences.smartQuotes());
 	m_replace_selection_quotes->setEnabled(preferences.smartQuotes());
-
-	QApplication::setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 }
 
 //-----------------------------------------------------------------------------
@@ -905,12 +1101,7 @@ void Window::hideInterface()
 
 void Window::updateMargin()
 {
-	int header = 0;
-	if (m_toolbar->isVisible()) {
-		header = m_toolbar->mapToParent(m_toolbar->rect().bottomLeft()).y() + 1;
-	} else if (menuBar()->window() == this) {
-		header = menuBar()->mapToParent(menuBar()->rect().bottomLeft()).y() + 1;
-	}
+	int header = centralWidget()->mapToParent(QPoint(0,0)).y();
 	int footer = m_footer->sizeHint().height();
 	m_documents->setMargins(footer, header);
 }
@@ -992,6 +1183,7 @@ void Window::initMenus()
 	file_menu->addSeparator();
 	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, SLOT(close()), keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
+	m_actions["Quit"]->setMenuRole(QAction::QuitRole);
 
 	// Create edit menu
 	QMenu* edit_menu = menuBar()->addMenu(tr("&Edit"));
@@ -1086,9 +1278,11 @@ void Window::initMenus()
 	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
+#ifndef Q_OS_MAC
 	action = settings_menu->addAction(tr("Show &Menu Icons"), this, SLOT(toggleMenuIcons(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Window/MenuIcons", false).toBool());
+#endif
 	settings_menu->addSeparator();
 	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
 #ifdef Q_OS_MAC
@@ -1096,17 +1290,20 @@ void Window::initMenus()
 #else
 	m_actions["Fullscreen"]->setCheckable(true);
 #endif
-	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, SLOT(showMinimized()), tr("Ctrl+M"));
+	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, SLOT(minimize()), tr("Ctrl+M"));
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
 	settings_menu->addSeparator();
 	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, SLOT(setLocaleClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
+	m_actions["Preferences"]->setMenuRole(QAction::PreferencesRole);
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
+	m_actions["About"]->setMenuRole(QAction::AboutRole);
 	m_actions["AboutQt"] = help_menu->addAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), qApp, SLOT(aboutQt()));
+	m_actions["AboutQt"]->setMenuRole(QAction::AboutQtRole);
 
 	// Always show menubar
 #ifndef Q_OS_MAC

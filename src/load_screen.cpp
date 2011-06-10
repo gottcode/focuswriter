@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,14 +29,14 @@
 LoadScreen::LoadScreen(QWidget* parent)
 	: QLabel(parent)
 {
-	setPixmap(QString(":/load.png"));
-	setAlignment(Qt::AlignCenter);
-	setStyleSheet("LoadScreen { background-color: #666666; }");
+	setCursor(Qt::WaitCursor);
+	setStyleSheet("LoadScreen {background: #666 url(':/load.png') no-repeat center;}");
 
 	m_text = new QLabel(this);
 	m_text->hide();
+	m_text->setCursor(Qt::WaitCursor);
 	m_text->setAlignment(Qt::AlignCenter);
-	m_text->setStyleSheet("QLabel {color: black; background-color: #aaaaaa; border-top-left-radius: 0.25em; border-top-right-radius: 0.25em; padding: 0.25em; }");
+	m_text->setStyleSheet("QLabel {color: #d7d7d7; background-color: #1e1e1e; border-top-left-radius: 0.25em; border-top-right-radius: 0.25em; padding: 0.25em 0.5em;}");
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->setMargin(0);
@@ -56,7 +56,7 @@ LoadScreen::LoadScreen(QWidget* parent)
 
 void LoadScreen::setText(const QString& step)
 {
-	m_text->setText(step);
+	m_text->setText("<pre>" + step + "</pre>");
 	m_text->setVisible(!step.isEmpty());
 
 	if (m_hide_timer->isActive()) {
@@ -81,16 +81,16 @@ void LoadScreen::finish()
 
 void LoadScreen::hideEvent(QHideEvent* event)
 {
-	QApplication::restoreOverrideCursor();
 	QLabel::hideEvent(event);
+	releaseKeyboard();
 }
 
 //-----------------------------------------------------------------------------
 
 void LoadScreen::showEvent(QShowEvent* event)
 {
-	QApplication::setOverrideCursor(Qt::WaitCursor);
 	QLabel::showEvent(event);
+	grabKeyboard();
 }
 
 //-----------------------------------------------------------------------------

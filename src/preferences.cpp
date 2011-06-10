@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,9 +53,9 @@ Preferences::Preferences()
 	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
 	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
 	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
-	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", true).toBool();
+	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", false).toBool();
 
-	m_auto_save = settings.value("Save/Auto", true).toBool();
+	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
 
 	m_toolbar_style = settings.value("Toolbar/Style", Qt::ToolButtonTextUnderIcon).toInt();
@@ -67,22 +67,20 @@ Preferences::Preferences()
 	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
 	m_language = settings.value("Spelling/Language", QLocale().name()).toString();
 
-	m_dictionary = new Dictionary;
-	QStringList languages = m_dictionary->availableLanguages();
+	QStringList languages = Dictionary::availableLanguages();
 	if (!languages.isEmpty() && !languages.contains(m_language)) {
 		int close = languages.indexOf(QRegExp(m_language.left(2) + ".*"));
 		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
 	}
-	m_dictionary->setLanguage(m_language);
-	m_dictionary->setIgnoreNumbers(m_ignore_numbers);
-	m_dictionary->setIgnoreUppercase(m_ignore_uppercase);
+	Dictionary::setDefaultLanguage(m_language);
+	Dictionary::setIgnoreNumbers(m_ignore_numbers);
+	Dictionary::setIgnoreUppercase(m_ignore_uppercase);
 }
 
 //-----------------------------------------------------------------------------
 
 Preferences::~Preferences()
 {
-	delete m_dictionary;
 	if (!isChanged()) {
 		return;
 	}

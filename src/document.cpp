@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #include "smart_quotes.h"
 #include "spell_checker.h"
 #include "theme.h"
+#include "window.h"
 #include "rtf/reader.h"
 #include "rtf/writer.h"
 
@@ -47,11 +48,31 @@
 #include <QTextStream>
 #include <QTimer>
 
+#include <ctime>
+
 //-----------------------------------------------------------------------------
 
 namespace
 {
 	QList<int> g_untitled_indexes = QList<int>() << 0;
+
+	QString g_cache_path;
+
+	QString randomCacheFilename()
+	{
+		static time_t seed = 0;
+		if (seed == 0) {
+			seed = time(0);
+			qsrand(seed);
+		}
+
+		QString filename;
+		QDir dir(g_cache_path);
+		do {
+			filename = QString("fw_%1").arg(qrand(), 6, 36);
+		} while (dir.exists(filename));
+		return filename;
+	}
 
 	bool isRichTextFile(const QString& filename)
 	{
@@ -61,8 +82,9 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, const QString& theme, QWidget* parent)
+Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
+	m_cache_filename(randomCacheFilename()),
 	m_index(0),
 	m_always_center(false),
 	m_rich_text(false),
@@ -89,52 +111,28 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setMouseTracking(true);
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	m_text->setTabStopWidth(50);
+	m_text->document()->setIndentWidth(50);
+	m_text->horizontalScrollBar()->setAttribute(Qt::WA_NoMousePropagation);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
+	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
+	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 
-	QTextDocument* document = new QTextDocument(m_text);
-	document->setUndoRedoEnabled(false);
+	m_dictionary = new Dictionary(this);
+	m_highlighter = new Highlighter(m_text, m_dictionary);
+	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
-	// Read file
+	// Set filename
 	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
 		m_rich_text = isRichTextFile(filename.toLower());
 		m_filename = QFileInfo(filename).canonicalFilePath();
 		updateState();
-
-		if (!m_rich_text) {
-			QFile file(filename);
-			if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-				QTextStream stream(&file);
-				stream.setCodec(QTextCodec::codecForName("UTF-8"));
-				stream.setAutoDetectUnicode(true);
-
-				QTextCursor cursor(document);
-				while (!stream.atEnd()) {
-					cursor.insertText(stream.read(8192));
-					QApplication::processEvents();
-				}
-				file.close();
-			}
-		} else {
-			RTF::Reader reader;
-			reader.read(filename, document);
-			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
-			}
-		}
 	}
-
-	// Set text area contents
-	document->setUndoRedoEnabled(true);
-	document->setModified(false);
-	m_text->setDocument(document);
-	m_text->setTabStopWidth(50);
-	document->setIndentWidth(50);
-
-	m_dictionary = new Dictionary(this);
-	m_highlighter = new Highlighter(m_text, m_dictionary);
-	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
 	if (m_filename.isEmpty()) {
 		findIndex();
@@ -144,14 +142,15 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 
 	// Set up scroll bar
-	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_scrollbar = m_text->verticalScrollBar();
+	m_scrollbar->setAttribute(Qt::WA_NoMousePropagation);
 	m_scrollbar->setPalette(QApplication::palette());
 	m_scrollbar->setAutoFillBackground(true);
-	m_scrollbar->setVisible(false);
+	m_scrollbar->setMouseTracking(true);
+	m_scrollbar->installEventFilter(this);
+	setScrollBarVisible(false);
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
-	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 
 	// Lay out window
 	m_layout = new QGridLayout(this);
@@ -167,13 +166,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 	m_text->setAcceptRichText(m_rich_text);
 	loadPreferences(preferences);
-	loadTheme(theme);
-
-	calculateWordCount();
-	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
-	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
-	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 }
 
 //-----------------------------------------------------------------------------
@@ -181,6 +173,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 Document::~Document()
 {
 	clearIndex();
+	QFile::remove(g_cache_path + m_cache_filename);
 }
 
 //-----------------------------------------------------------------------------
@@ -188,6 +181,13 @@ Document::~Document()
 bool Document::isReadOnly() const
 {
 	return m_text->isReadOnly();
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::cache()
+{
+	writeFile(g_cache_path + m_cache_filename);
 }
 
 //-----------------------------------------------------------------------------
@@ -204,22 +204,12 @@ bool Document::save()
 	}
 
 	// Write file to disk
-	bool saved = true;
-	if (!m_rich_text) {
-		QFile file(m_filename);
-		if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream.setGenerateByteOrderMark(true);
-			stream << m_text->toPlainText();
-			saved = (file.error() == QFile::NoError);
-			file.close();
-		} else {
-			saved = false;
-		}
+	bool saved = writeFile(m_filename);
+	if (saved) {
+		QFile::remove(g_cache_path + m_cache_filename);
+		QFile::copy(m_filename, g_cache_path + m_cache_filename);
 	} else {
-		RTF::Writer writer;
-		saved = writer.write(m_filename, m_text);
+		cache();
 	}
 
 	if (!saved) {
@@ -311,6 +301,71 @@ void Document::print()
 
 //-----------------------------------------------------------------------------
 
+void Document::loadFile(const QString& filename, int position)
+{
+	if (filename.isEmpty()) {
+		return;
+	}
+
+	// Cache contents
+	QFile::copy(filename, g_cache_path + m_cache_filename);
+
+	// Load text area contents
+	QTextDocument* document = m_text->document();
+	m_text->blockSignals(true);
+	document->blockSignals(true);
+
+	document->setUndoRedoEnabled(false);
+	if (!m_rich_text) {
+		QFile file(filename);
+		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setAutoDetectUnicode(true);
+
+			QTextCursor cursor(document);
+			while (!stream.atEnd()) {
+				cursor.insertText(stream.read(8192));
+				QApplication::processEvents();
+			}
+			file.close();
+		}
+	} else {
+		QFile file(filename);
+		if (file.open(QIODevice::ReadOnly)) {
+			RTF::Reader reader;
+			reader.read(&file, document);
+			file.close();
+			if (reader.hasError()) {
+				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+			}
+		}
+	}
+	document->setUndoRedoEnabled(true);
+	document->setModified(false);
+
+	document->blockSignals(false);
+	m_text->blockSignals(false);
+
+	// Restore cursor position
+	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
+	QTextCursor cursor = m_text->textCursor();
+	if (position != -1) {
+		cursor.setPosition(position);
+	} else {
+		cursor.movePosition(QTextCursor::End);
+	}
+	m_text->setTextCursor(cursor);
+	centerCursor(true);
+
+	// Update details
+	m_cached_stats.clear();
+	calculateWordCount();
+	m_highlighter->rehighlight();
+}
+
+//-----------------------------------------------------------------------------
+
 void Document::loadTheme(const Theme& theme)
 {
 	m_text->document()->blockSignals(true);
@@ -331,9 +386,7 @@ void Document::loadTheme(const Theme& theme)
 			.arg(theme.foregroundPadding())
 			.arg(theme.foregroundRounding())
 	);
-	if (m_highlighter->misspelledColor() != theme.misspelledColor()) {
-		m_highlighter->setMisspelledColor(theme.misspelledColor());
-	}
+	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update text
 	QFont font = theme.textFont();
@@ -460,7 +513,12 @@ void Document::setRichText(bool rich_text)
 
 void Document::setScrollBarVisible(bool visible)
 {
-	m_scrollbar->setVisible(visible);
+	if (!visible) {
+		m_scrollbar->setMask(QRect(-1,-1,1,1));
+		update();
+	} else {
+		m_scrollbar->clearMask();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -474,15 +532,49 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 		if (msecs < 30000) {
 			m_current_time += msecs;
 		}
-		QKeyEvent* key_event = static_cast<QKeyEvent*>(event);
-		if (!key_event->text().isEmpty()) {
-			emit keyPressed(key_event->key());
+		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
+			return true;
 		}
-		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, key_event)) {
+	} else if (event->type() == QEvent::Drop) {
+		static_cast<Window*>(window())->addDocuments(static_cast<QDropEvent*>(event));
+		if (event->isAccepted()) {
 			return true;
 		}
 	}
 	return QWidget::eventFilter(watched, event);
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::mouseMoveEvent(QMouseEvent* event)
+{
+	m_text->viewport()->setCursor(Qt::IBeamCursor);
+	unsetCursor();
+	m_hide_timer->start();
+
+	const QPoint& point = mapFromGlobal(event->globalPos());
+	if (rect().contains(point)) {
+		emit headerVisible(false);
+		emit footerVisible(false);
+	}
+	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
+}
+
+//-----------------------------------------------------------------------------
+
+QString Document::cachePath()
+{
+	return g_cache_path;
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::setCachePath(const QString& path)
+{
+	g_cache_path = path;
+	if (!g_cache_path.endsWith(QLatin1Char('/'))) {
+		g_cache_path += QLatin1Char('/');
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -500,23 +592,6 @@ void Document::centerCursor(bool force)
 
 //-----------------------------------------------------------------------------
 
-void Document::mouseMoveEvent(QMouseEvent* event)
-{
-	m_text->viewport()->setCursor(Qt::IBeamCursor);
-	unsetCursor();
-	m_hide_timer->start();
-
-	const QPoint& point = mapFromGlobal(event->globalPos());
-	if (rect().contains(point)) {
-		emit headerVisible(false);
-		emit footerVisible(false);
-	}
-	int margin = m_scrollbar->sizeHint().width();
-	m_scrollbar->setVisible(!QApplication::isRightToLeft() ? (point.x() >= (width() - margin)) : (point.x() <= margin));
-}
-
-//-----------------------------------------------------------------------------
-
 void Document::resizeEvent(QResizeEvent* event)
 {
 	centerCursor(true);
@@ -527,16 +602,13 @@ void Document::resizeEvent(QResizeEvent* event)
 
 void Document::wheelEvent(QWheelEvent* event)
 {
-	static QWheelEvent* prev_event = 0;
-	if (prev_event == event) {
-		if (event->orientation() == Qt::Vertical) {
-			QApplication::sendEvent(m_scrollbar, event);
-		} else {
-			QApplication::sendEvent(m_text->horizontalScrollBar(), event);
-		}
+	if (event->orientation() == Qt::Vertical) {
+		QApplication::sendEvent(m_scrollbar, event);
+	} else {
+		QApplication::sendEvent(m_text->horizontalScrollBar(), event);
 	}
-	prev_event = event;
 	event->ignore();
+	QWidget::wheelEvent(event);
 }
 
 //-----------------------------------------------------------------------------
@@ -656,6 +728,13 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 
 	int block_count = m_text->document()->blockCount();
+	if (added) {
+		if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
+			emit keyPressed(Qt::Key_Enter);
+		} else {
+			emit keyPressed(Qt::Key_Any);
+		}
+	}
 	int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
 		m_cached_block_count = block_count;
@@ -812,6 +891,33 @@ void Document::updateState()
 			}
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+bool Document::writeFile(const QString& filename)
+{
+	bool saved = false;
+	QFile file(filename);
+	if (!m_rich_text) {
+		if (file.open(QFile::WriteOnly | QFile::Text)) {
+			QTextStream stream(&file);
+			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setGenerateByteOrderMark(true);
+			stream << m_text->toPlainText();
+			saved = true;
+		}
+	} else {
+		if (file.open(QFile::WriteOnly)) {
+			RTF::Writer writer;
+			saved = writer.write(&file, m_text->document());
+		}
+	}
+	if (file.isOpen()) {
+		saved = saved && (file.error() == QFile::NoError);
+		file.close();
+	}
+	return saved;
 }
 
 //-----------------------------------------------------------------------------

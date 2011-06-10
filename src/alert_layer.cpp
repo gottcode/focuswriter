@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,9 +37,9 @@ AlertLayer::AlertLayer(QWidget* parent)
 
 //-----------------------------------------------------------------------------
 
-void AlertLayer::addAlert(const QString& text, const QStringList& details)
+void AlertLayer::addAlert(const QPixmap& pixmap, const QString& text, const QStringList& details)
 {
-	Alert* alert = new Alert(text, details, this);
+	Alert* alert = new Alert(pixmap, text, details, this);
 	m_alerts.append(alert);
 	m_alerts_layout->addWidget(alert);
 	connect(alert, SIGNAL(destroyed(QObject*)), this, SLOT(alertDestroyed(QObject*)));

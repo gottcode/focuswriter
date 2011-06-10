@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +22,11 @@
 #include "alert_layer.h"
 #include "document.h"
 #include "find_dialog.h"
+#include "load_screen.h"
 #include "smart_quotes.h"
 #include "theme.h"
 
+#include <QFileInfo>
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QMutex>
@@ -34,7 +36,9 @@
 #include <QPlainTextEdit>
 #include <QStackedWidget>
 #include <QTextBlock>
+#include <QTextCodec>
 #include <QTextCursor>
+#include <QTextStream>
 #include <QThread>
 #include <QTimer>
 
@@ -128,6 +132,8 @@ Stack::Stack(QWidget* parent)
 
 	m_alerts = new AlertLayer(this);
 
+	m_load_screen = new LoadScreen(this);
+
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
 
@@ -143,6 +149,7 @@ Stack::Stack(QWidget* parent)
 	m_layout->setColumnStretch(3, 1);
 	m_layout->addWidget(m_contents, 1, 0, 4, 6);
 	m_layout->addWidget(m_alerts, 3, 3);
+	m_layout->addWidget(m_load_screen, 0, 0, 6, 6);
 
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);
@@ -164,6 +171,7 @@ void Stack::addDocument(Document* document)
 {
 	connect(document, SIGNAL(alignmentChanged()), this, SIGNAL(updateFormatAlignmentActions()));
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
+	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
 	connect(document, SIGNAL(formattingEnabled(bool)), this, SIGNAL(formattingEnabled(bool)));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
 	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
@@ -174,6 +182,8 @@ void Stack::addDocument(Document* document)
 
 	m_documents.append(document);
 	m_contents->addWidget(document);
+	m_contents->setCurrentWidget(document);
+	updateMapping();
 
 	emit documentAdded(document);
 	emit formattingEnabled(document->isRichText());
@@ -185,6 +195,7 @@ void Stack::addDocument(Document* document)
 void Stack::moveDocument(int from, int to)
 {
 	m_documents.move(from, to);
+	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -195,6 +206,7 @@ void Stack::removeDocument(int index)
 	m_contents->removeWidget(document);
 	emit documentRemoved(document);
 	document->deleteLater();
+	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -234,6 +246,16 @@ void Stack::waitForThemeBackground()
 
 //-----------------------------------------------------------------------------
 
+bool Stack::eventFilter(QObject* watched, QEvent* event)
+{
+	if (event->type() == QEvent::MouseMove) {
+		mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	}
+	return QWidget::eventFilter(watched, event);
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::alignCenter()
 {
 	m_current_document->text()->setAlignment(Qt::AlignCenter);
@@ -262,11 +284,26 @@ void Stack::alignRight()
 
 //-----------------------------------------------------------------------------
 
+void Stack::autoCache()
+{
+	foreach (Document* document, m_documents) {
+		if (document->text()->document()->isModified()) {
+			document->cache();
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::autoSave()
 {
 	foreach (Document* document, m_documents) {
-		if (document->text()->document()->isModified() && !document->filename().isEmpty()) {
-			document->save();
+		if (document->text()->document()->isModified()) {
+			if (!document->filename().isEmpty()) {
+				document->save();
+			} else {
+				document->cache();
+			}
 		}
 	}
 }
@@ -386,6 +423,7 @@ void Stack::replace()
 void Stack::save()
 {
 	m_current_document->save();
+	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -566,12 +604,18 @@ void Stack::showHeader()
 
 void Stack::mouseMoveEvent(QMouseEvent* event)
 {
-	bool header_visible = event->pos().y() <= m_header_margin;
-	bool footer_visible = event->pos().y() >= (height() - m_footer_margin);
+	int y = mapFromGlobal(event->globalPos()).y();
+	bool header_visible = y <= m_header_margin;
+	bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
-	if (m_current_document && (header_visible || footer_visible)) {
-		m_current_document->setScrollBarVisible(false);
+
+	if (m_current_document) {
+		if (header_visible || footer_visible) {
+			m_current_document->setScrollBarVisible(false);
+		} else {
+			m_current_document->mouseMoveEvent(event);
+		}
 	}
 }
 
@@ -624,14 +668,29 @@ void Stack::updateBackground()
 
 void Stack::updateMask()
 {
-	setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
-	if (!m_header_visible && !m_footer_visible) {
+	if (m_header_visible || m_footer_visible) {
+		setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
+		setAttribute(Qt::WA_TransparentForMouseEvents, true);
+	} else {
+		clearMask();
+		setAttribute(Qt::WA_TransparentForMouseEvents, false);
 		raise();
 	}
+}
 
-	bool transparent = m_header_visible || m_footer_visible;
-	m_contents->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
-	m_alerts->setAttribute(Qt::WA_TransparentForMouseEvents, transparent);
+//-----------------------------------------------------------------------------
+
+void Stack::updateMapping()
+{
+	QFile file(Document::cachePath() + "/mapping");
+	if (file.open(QFile::WriteOnly | QFile::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec(QTextCodec::codecForName("UTF-8"));
+		stream.setGenerateByteOrderMark(true);
+		foreach (Document* document, m_documents) {
+			stream << QFileInfo(document->cacheFilename()).baseName() << " " << document->filename() << endl;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

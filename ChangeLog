@@ -1,3 +1,121 @@
+2011-06-04 Jakub Kowalski <jakowalski@gmail.com>
+	* Update Polish translation.
+
+2011-06-04 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not raise to front in GNOME2.
+	* FIXED: Cancelling adding a theme did not work.
+	* Use smooth font sizes list.
+	* FIXED: Font size always show decimal.
+	* Set default font to Times New Roman.
+
+2011-06-03 Graeme Gott <graeme@gottcode.org>
+	 * FIXED: Incorrectly handled paragraph end in RTF.
+
+2011-06-02 Graeme Gott <graeme@gottcode.org>
+	* Handle drag-and-drop RTF on the Mac.
+	* Read from and write to QIODevices.
+
+2011-06-02 Pavel Fric <pavelfric@seznam.cz>
+	* Update Czech translation.
+
+2011-06-01 Graeme Gott <graeme@gottcode.org>
+	* Remove menu icons option on the Mac.
+	* Only load typewriter sounds if they are enabled.
+	* Remember size of preferences dialog.
+	* FIXED: Played sound effects when text was removed.
+	* FIXED: Could not type in timer time edit.
+
+2011-05-31 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Incorrect background color for preferences tabs.
+	* FIXED: Document details were visible through load screen.
+	* FIXED: Load screen text was not always monospaced.
+	* FIXED: Replacing quotes with LaTex quotes did not update all quotes.
+	* Rename translation files.
+	* FIXED: Could not scroll over background in Qt/Cocoa.
+
+2011-05-30 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Regression where text did not fill text area.
+	* FIXED: Scrollbar did not disappear when mousing into header.
+	* FIXED: Could not interact with tabs in Qt/Cocoa.
+	* FIXED: Masked scrollbars still showed a pixel.
+	* FIXED: SDL_mixer was not loaded in most Linux distros.
+
+2011-05-29 Graeme Gott <graeme@gottcode.org>
+	* Update locale dialog.
+	* Disable auto-save by default and rely on temporary cache instead.
+
+2011-05-28 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Documents were visible when resizing window.
+	* Warn user if emergency cache is not writable.
+
+2011-05-27 Graeme Gott <graeme@gottcode.org>
+	* Improve dialogs that list files.
+
+2011-05-26 Graeme Gott <graeme@gottcode.org>
+	* Add restoring files from temporary cache.
+	* Store map of temporary file cache filenames.
+
+2011-05-25 Graeme Gott <graeme@gottcode.org>
+	* Copy files to temporary file cache.
+	* Move file loading out of document constructor.
+	* FIXED: No sound on characters inserted with "compose" key.
+
+2011-05-24 Graeme Gott <graeme@gottcode.org>
+	* Add support for LaTeX smart quotes.
+	* Prevent interaction while loading documents.
+	* FIXED: Large documents were not centered.
+	* FIXED: Documents were sometimes displayed truncated.
+
+2011-05-23 Graeme Gott <graeme@gottcode.org>
+	* Allow user to enter custom font sizes.
+	* FIXED: Could not access menubar while fullscreen in Unity.
+	* FIXED: Could not leave fullscreen in Unity.
+
+2011-05-22 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Closing the color picker does not return focus to theme dialogs.
+	* Replace icon and load image.
+
+2011-04-16 Graeme Gott <graeme@gottcode.org>
+	* Unset fullscreen when minimizing on the mac.
+
+2011-04-08 Graeme Gott <graeme@gottcode.org>
+	* Rename base translation file.
+
+2011-04-02 Graeme Gott <graeme@gottcode.org>
+	* Use SDL_mixer instead of libao.
+
+2011-03-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Wasn't switching to already opened document.
+
+2011-03-24 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Dropping files on main window pasted URLs in KDE.
+	* Always close unchanged empty file when opening a new file.
+	* Specify supported MIME types on Linux and the Mac.
+
+2011-03-23 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Qt translations were not deployed on the Mac.
+	* FIXED: Word count issue with Persian/Farsi.
+	* Update Spanish translation.
+	* Change the way language names are loaded.
+
+2011-03-03 Graeme Gott <graeme@gottcode.org>
+	* Only rehighlight when highlighter is enabled.
+
+2011-03-02 Dmitriy Kodanev <dkodanev@gmail.com>
+	* Add Russian translation.
+
+2011-02-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Forgot new documents saved when closed.
+
+2011-01-29 Graeme Gott <graeme@gottcode.org>
+	* Allow for multiple dictionaries to be loaded.
+	* Leave misspelled highlight when only moving cursor.
+	* Always ignore smart apostrophes when spellchecking.
+
+2011-01-05 Graeme Gott <graeme@gottcode.org>
+	* Add German dictionary.
+	* Add German translation.
+
 2010-12-29 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.3.2.1.
 	* FIXED: Crashed when typing.

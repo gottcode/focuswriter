@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,9 +42,10 @@ namespace RTF
 		QString errorString() const;
 		bool hasError() const;
 
-		void read(const QString& filename, QTextDocument* text);
+		void read(QIODevice* device, QTextDocument* text);
 
 	private:
+		void endBlock(qint32);
 		void ignoreGroup(qint32);
 		void insertBlock(qint32);
 		void insertHexSymbol(qint32);
@@ -71,6 +72,7 @@ namespace RTF
 
 	private:
 		Tokenizer m_token;
+		bool m_in_block;
 
 		struct State
 		{

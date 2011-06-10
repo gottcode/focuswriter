@@ -1,9 +1,11 @@
 TEMPLATE = app
 CONFIG += warn_on release
 macx {
-	# Uncomment the following line to compile on PowerPC Macs
+	QMAKE_INFO_PLIST = resources/mac/Info.plist
+	CONFIG += x86_64
+	# Comment the above line and uncomment the following lines to compile Universal for 10.4+
 	# QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-	CONFIG += x86 ppc
+	# CONFIG += x86 ppc
 }
 
 MOC_DIR = build
@@ -17,21 +19,17 @@ unix: !macx {
 }
 
 macx {
-	INCLUDEPATH += src/qsound /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
+	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework hunspell -framework libzip
-	HEADERS += src/qsound/sound.h
-	SOURCES += src/qsound/sound.cpp
+
+	HEADERS += src/rtf/converter.h
+	SOURCES += src/rtf/converter.cpp
 } else:win32 {
-	INCLUDEPATH += src/ao hunspell libao libzip
-	LIBS += ./hunspell/hunspell1.dll ./libao/libao-4.dll ./libzip/libzip0.dll
-	HEADERS += src/ao/sound.h
-	SOURCES += src/ao/sound.cpp
+	INCLUDEPATH += hunspell libzip
+	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll
 } else {
-	INCLUDEPATH += src/ao
-	QMAKE_CXXFLAGS += $$system(pkg-config --cflags ao hunspell libzip)
-	LIBS += $$system(pkg-config --libs ao hunspell libzip)
-	HEADERS += src/ao/sound.h
-	SOURCES += src/ao/sound.cpp
+	CONFIG += link_pkgconfig
+	PKGCONFIG += hunspell libzip
 }
 
 HEADERS += src/alert.h \
@@ -52,6 +50,7 @@ HEADERS += src/alert.h \
 	src/session_manager.h \
 	src/settings_file.h \
 	src/smart_quotes.h \
+	src/sound.h \
 	src/spell_checker.h \
 	src/stack.h \
 	src/stats.h \
@@ -84,6 +83,7 @@ SOURCES += src/alert.cpp \
 	src/session.cpp \
 	src/session_manager.cpp \
 	src/smart_quotes.cpp \
+	src/sound.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/stats.cpp \
@@ -98,21 +98,23 @@ SOURCES += src/alert.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp
 
-TRANSLATIONS = translations/cs.ts \
-	translations/en_US.ts \
-	translations/es.ts \
-	translations/es_MX.ts \
-	translations/fr.ts \
-	translations/pl.ts \
-	translations/pt.ts \
-	translations/pt_BR.ts
+TRANSLATIONS = translations/focuswriter_cs.ts \
+	translations/focuswriter_de.ts \
+	translations/focuswriter_en.ts \
+	translations/focuswriter_es.ts \
+	translations/focuswriter_es_MX.ts \
+	translations/focuswriter_fr.ts \
+	translations/focuswriter_pl.ts \
+	translations/focuswriter_pt.ts \
+	translations/focuswriter_pt_BR.ts \
+	translations/focuswriter_ru.ts
 
-RESOURCES = icons/icons.qrc
+RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
 macx {
-	ICON = icons/focuswriter.icns
+	ICON = resources/mac/focuswriter.icns
 }
 win32 {
-	RC_FILE = icons/icon.rc
+	RC_FILE = resources/windows/icon.rc
 }
 
 unix: !macx {
@@ -122,20 +124,23 @@ unix: !macx {
 
 	target.path = $$PREFIX/bin/
 
-	icon.files = icons/focuswriter.png
-	icon.path = $$PREFIX/share/icons/hicolor/48x48/apps
+	icon.files = resources/images/icons/hicolor/*
+	icon.path = $$PREFIX/share/icons/hicolor/
 
-	icons.files = icons/oxygen/hicolor/*
+	pixmap.files = resources/unix/focuswriter.xpm
+	pixmap.path = $$PREFIX/share/pixmaps/
+
+	icons.files = resources/images/icons/oxygen/hicolor/*
 	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
 
-	desktop.files = icons/focuswriter.desktop
+	desktop.files = resources/unix/focuswriter.desktop
 	desktop.path = $$PREFIX/share/applications/
 
 	qm.files = translations/*.qm
 	qm.path = $$PREFIX/share/focuswriter/translations
 
-	sounds.files = sounds/*
+	sounds.files = resources/sounds/*
 	sounds.path = $$PREFIX/share/focuswriter/sounds
 
-	INSTALLS += target icon desktop icons qm sounds
+	INSTALLS += target icon pixmap desktop icons qm sounds
 }

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #ifndef PREFERENCES_DIALOG_H
 #define PREFERENCES_DIALOG_H
 
-class Dictionary;
 class Preferences;
 
 #include <QDialog>
@@ -38,6 +37,7 @@ class PreferencesDialog : public QDialog
 
 public:
 	PreferencesDialog(Preferences& preferences, QWidget* parent = 0);
+	~PreferencesDialog();
 
 public slots:
 	virtual void accept();
@@ -99,7 +99,6 @@ private:
 	QPushButton* m_move_up_button;
 	QPushButton* m_move_down_button;
 
-	Dictionary* m_dictionary;
 	QCheckBox* m_highlight_misspelled;
 	QCheckBox* m_ignore_uppercase;
 	QCheckBox* m_ignore_numbers;

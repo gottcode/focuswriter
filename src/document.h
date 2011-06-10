@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,9 +39,10 @@ class Document : public QWidget
 	Q_OBJECT
 
 public:
-	Document(const QString& filename, int& current_wordcount, int& current_time, const QString& theme, QWidget* parent = 0);
+	Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent = 0);
 	~Document();
 
+	QString cacheFilename() const;
 	QString filename() const;
 	int untitledIndex() const;
 	bool isReadOnly() const;
@@ -53,17 +54,23 @@ public:
 	int wordCount() const;
 	QTextEdit* text() const;
 
+	void cache();
 	bool save();
 	bool saveAs();
 	bool rename();
 	void checkSpelling();
 	void print();
+	void loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
+	virtual void mouseMoveEvent(QMouseEvent* event);
+
+	static QString cachePath();
+	static void setCachePath(const QString& path);
 
 public slots:
 	void centerCursor(bool force = false);
@@ -79,7 +86,6 @@ signals:
 	void keyPressed(int key);
 
 protected:
-	virtual void mouseMoveEvent(QMouseEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 	virtual void wheelEvent(QWheelEvent* event);
 
@@ -101,9 +107,11 @@ private:
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
 	void updateState();
+	bool writeFile(const QString& filename);
 
 private:
 	QString m_filename;
+	QString m_cache_filename;
 	QHash<int, QPair<QString, bool> > m_old_states;
 	int m_index;
 	bool m_always_center;
@@ -137,6 +145,10 @@ private:
 	int& m_current_time;
 	int m_time_goal;
 };
+
+inline QString Document::cacheFilename() const {
+	return m_cache_filename;
+}
 
 inline QString Document::filename() const {
 	return m_filename;

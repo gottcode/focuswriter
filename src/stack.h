@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 class AlertLayer;
 class Document;
 class FindDialog;
+class LoadScreen;
 class Theme;
 
 #include <QWidget>
@@ -40,6 +41,8 @@ public:
 	void addDocument(Document* document);
 
 	AlertLayer* alerts() const;
+	LoadScreen* loadScreen() const;
+
 	int count() const;
 	Document* currentDocument() const;
 	int currentIndex() const;
@@ -50,6 +53,8 @@ public:
 	void setCurrentDocument(int index);
 	void setMargins(int footer, int header);
 	void waitForThemeBackground();
+
+	virtual bool eventFilter(QObject* watched, QEvent* event);
 
 signals:
 	void copyAvailable(bool);
@@ -69,6 +74,7 @@ public slots:
 	void alignJustify();
 	void alignLeft();
 	void alignRight();
+	void autoCache();
 	void autoSave();
 	void checkSpelling();
 	void cut();
@@ -111,8 +117,10 @@ protected:
 private slots:
 	void updateBackground();
 	void updateMask();
+	void updateMapping();
 
 private:
+	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
@@ -136,6 +144,10 @@ private:
 
 inline AlertLayer* Stack::alerts() const {
 	return m_alerts;
+}
+
+inline LoadScreen* Stack::loadScreen() const {
+	return m_load_screen;
 }
 
 inline int Stack::count() const {

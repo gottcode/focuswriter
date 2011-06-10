@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,10 @@
 
 #include "writer.h"
 
-#include <QFile>
+#include <QIODevice>
 #include <QTextBlock>
 #include <QTextCodec>
-#include <QTextEdit>
+#include <QTextDocument>
 
 //-----------------------------------------------------------------------------
 
@@ -66,19 +66,15 @@ void RTF::Writer::setCodec(QTextCodec* codec)
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Writer::write(const QString& filename, QTextEdit* text)
+bool RTF::Writer::write(QIODevice* device, QTextDocument* text)
 {
 	if (m_codec == 0) {
 		return false;
 	}
-	QFile file(filename);
-	if (!file.open(QFile::WriteOnly | QFile::Text)) {
-		return false;
-	}
 
-	file.write(m_header);
+	device->write(m_header);
 
-	for (QTextBlock block = text->document()->begin(); block.isValid(); block = block.next()) {
+	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
 		QByteArray par("{\\pard\\plain");
 		QTextBlockFormat block_format = block.blockFormat();
 		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
@@ -98,10 +94,10 @@ bool RTF::Writer::write(const QString& filename, QTextEdit* text)
 		if (block_format.indent() > 0) {
 			par += "\\li" + QByteArray::number(block_format.indent() * 720);
 		}
-		file.write(par);
+		device->write(par);
 
 		if (block.begin() != block.end()) {
-			file.write(" ");
+			device->write(" ");
 			for (QTextBlock::iterator iter = block.begin(); iter != block.end(); ++iter) {
 				QTextFragment fragment = iter.fragment();
 				QTextCharFormat char_format = fragment.charFormat();
@@ -125,24 +121,18 @@ bool RTF::Writer::write(const QString& filename, QTextEdit* text)
 				}
 
 				if (!style.isEmpty()) {
-					file.write("{");
-					file.write(style);
-					file.write(" ");
-					file.write(fromUnicode(fragment.text()));
-					file.write("}");
+					device->write("{" + style + " " + fromUnicode(fragment.text()) + "}");
 				} else {
-					file.write(fromUnicode(fragment.text()));
+					device->write(fromUnicode(fragment.text()));
 				}
 			}
 		}
 
-		file.write("\\par}\n");
+		device->write("\\par}\n");
 	}
 
-	file.write("\n}");
-	bool saved = (file.error() == QFile::NoError);
-	file.close();
-	return saved;
+	device->write("\n}");
+	return true;
 }
 
 //-----------------------------------------------------------------------------
