@@ -91,7 +91,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Replace with:</source>
-        <translation>Заменить:</translation>
+        <translation>Заменить на:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="49"/>
@@ -134,9 +134,9 @@
         <location filename="../src/find_dialog.cpp" line="207"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Заменить %n совпадение?</numerusform>
+            <numerusform>Заменить %n совпадения?</numerusform>
+            <numerusform>Заменить %n совпадений?</numerusform>
         </translation>
     </message>
     <message>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="101"/>
         <source>&lt;System Language&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Язык системы&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="195"/>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="195"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Чтобы применить изменение языка, перезапустите программу.</translation>
+        <translation>Перезапустите программу, чтобы применить изменение языка.</translation>
     </message>
 </context>
 <context>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="444"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Невозможно закрыть файл &apos;%1&apos;&apos;.</translation>
+        <translation>Невозможно закрыть файл &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="464"/>
@@ -329,7 +329,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="592"/>
         <source>Default to rich text</source>
-        <translation>По умолчанию текст с форматированием</translation>
+        <translation>Включить форматирование текста по умолчанию</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="593"/>
@@ -344,7 +344,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="596"/>
         <source>Smart quotes:</source>
-        <translation>Особые кавычки:</translation>
+        <translation>Заменять кавычки:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="603"/>
@@ -571,7 +571,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Переключиться на</translation>
+        <translation>Переключиться</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
@@ -667,7 +667,7 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>Ignore All</source>
-        <translation>Пропустить все</translation>
+        <translation>Пропустить всё</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
@@ -677,7 +677,7 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>Change All</source>
-        <translation>Заменить все</translation>
+        <translation>Заменить всё</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -990,12 +990,12 @@
     <message>
         <location filename="../src/timer.cpp" line="401"/>
         <source>Set Delay</source>
-        <translation>Установить интервал</translation>
+        <translation>Интервал</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Time</source>
-        <translation>Установить время</translation>
+        <translation>Заданное время</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="405"/>
@@ -1122,7 +1122,7 @@
     <message>
         <location filename="../src/window.cpp" line="137"/>
         <source>0% of daily goal</source>
-        <translation>0% дневной задачи</translation>
+        <translation>0% от дневной задачи</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="227"/>
@@ -1169,7 +1169,7 @@
     <message>
         <location filename="../src/window.cpp" line="752"/>
         <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Простой полноэкранный текстовый процессор&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Распространяется по лицензии &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Использует &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; для проверки орфографии&lt;br/&gt;&lt;small&gt;Применяется лицензия &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Использует значки из темы &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Применяется лицензия &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Простой полноэкранный текстовый процессор&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-2010 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Распространяется по лицензии &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Использует &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; для проверки орфографии&lt;br/&gt;&lt;small&gt;Используется согласно лицензии &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Использует значки из темы &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Используются согласно лицензии &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="828"/>
@@ -1194,7 +1194,7 @@
     <message>
         <location filename="../src/window.cpp" line="893"/>
         <source>%1% of daily goal</source>
-        <translation>%1% дневной задачи</translation>
+        <translation>%1% от дневной задачи</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="933"/>
@@ -1220,58 +1220,58 @@
     <message>
         <location filename="../src/window.cpp" line="222"/>
         <source>Loading settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Загружаются настройки</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="241"/>
         <source>Emergency cache is not writable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Резервная память недоступна для записи.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="296"/>
         <location filename="../src/window.cpp" line="950"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Внимание</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="297"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Работа приложения не была завершена правильно.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="298"/>
         <source>Restore from the emergency cache?</source>
-        <translation type="unfinished"></translation>
+        <translation>Восстановить открытые файлы из резервной памяти?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="363"/>
         <source>Some files are unsupported and will not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоторые файлы не поддерживаются программой и не будут открыты.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="428"/>
         <source>Some files could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось открыть некоторые файлы.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="438"/>
         <source>Some files were opened Read-Only.</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоторые файлы были открыты только для чтения.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="951"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; новее резервной копии.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="952"/>
         <source>Overwrite newer file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Заменить новую версию резервной копией?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1032"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удаётся загрузить звук пишущей машинки.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1119"/>
@@ -1346,7 +1346,7 @@
     <message>
         <location filename="../src/window.cpp" line="1188"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Редактировать</translation>
+        <translation>&amp;Правка</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1189"/>
@@ -1541,17 +1541,17 @@
     <message>
         <location filename="../src/window.cpp" line="1268"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Особые кавы&amp;чки</translation>
+        <translation>Заменить кавы&amp;чки</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1269"/>
         <source>Update &amp;Document</source>
-        <translation>Обновить &amp;документ</translation>
+        <translation>Во всём &amp;документе</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1270"/>
         <source>Update &amp;Selection</source>
-        <translation>Обновить &amp;выделенное</translation>
+        <translation>В &amp;выделенном</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1272"/>
