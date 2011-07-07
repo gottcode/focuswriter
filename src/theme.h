@@ -77,10 +77,12 @@ public:
 	QColor textColor() const;
 	QFont textFont() const;
 	QColor misspelledColor() const;
+	QColor blurredTextColor() const;
 
 	void setTextColor(const QColor& color);
 	void setTextFont(const QFont& font);
 	void setMisspelledColor(const QColor& color);
+	void setBlurredTextColor(const QColor& color);
 
 private:
 	static QString m_path;
@@ -102,6 +104,7 @@ private:
 	QColor m_text_color;
 	QFont m_text_font;
 	QColor m_misspelled_color;
+	QColor m_blurred_text_color;
 };
 
 #endif

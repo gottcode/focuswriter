@@ -25,6 +25,7 @@
 #include "load_screen.h"
 #include "smart_quotes.h"
 #include "theme.h"
+#include "focusmode.h"
 
 #include <QFileInfo>
 #include <QGridLayout>
@@ -340,6 +341,22 @@ void Stack::checkSpelling()
 {
 	m_current_document->checkSpelling();
 }
+
+//-----------------------------------------------------------------------------
+
+void Stack::focusMode_(int level)
+{
+    if(level == 0) {
+        m_current_document->fMode()->setEnabled(false);
+    }
+    else {
+        m_current_document->fMode()->setEnabled(true);
+    }
+}
+
+void Stack::focusMode1() { focusMode_(1); }
+void Stack::focusMode2() { focusMode_(2); }
+void Stack::focusMode0() { focusMode_(0); }
 
 //-----------------------------------------------------------------------------
 

@@ -129,6 +129,7 @@ Theme::Theme(const QString& name)
 	m_text_color = settings.value("Text/Color", "#000000").toString();
 	m_text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
 	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
+	m_blurred_text_color = settings.value("Text/Color", "#666666").toString();
 }
 
 //-----------------------------------------------------------------------------
@@ -162,6 +163,7 @@ Theme::~Theme()
 	settings.setValue("Text/Color", m_text_color.name());
 	settings.setValue("Text/Font", m_text_font.toString());
 	settings.setValue("Text/Misspelled", m_misspelled_color.name());
+	settings.setValue("Text/Color", m_blurred_text_color.name());
 }
 
 //-----------------------------------------------------------------------------
@@ -462,6 +464,13 @@ QColor Theme::misspelledColor() const
 
 //-----------------------------------------------------------------------------
 
+QColor Theme::blurredTextColor() const
+{
+	return m_blurred_text_color;
+}
+
+//-----------------------------------------------------------------------------
+
 void Theme::setTextColor(const QColor& color)
 {
 	setValue(m_text_color, color);
@@ -479,6 +488,11 @@ void Theme::setTextFont(const QFont& font)
 void Theme::setMisspelledColor(const QColor& color)
 {
 	setValue(m_misspelled_color, color);
+}
+
+void Theme::setBlurredTextColor(const QColor& color)
+{
+    setValue(m_blurred_text_color, color);
 }
 
 //-----------------------------------------------------------------------------

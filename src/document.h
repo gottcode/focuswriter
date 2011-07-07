@@ -23,6 +23,7 @@
 #include "stats.h"
 class Dictionary;
 class Highlighter;
+class FocusMode;
 class Preferences;
 class Theme;
 
@@ -53,6 +54,7 @@ public:
 	int paragraphCount() const;
 	int wordCount() const;
 	QTextEdit* text() const;
+	FocusMode* fMode() const;
 
 	void cache();
 	bool save();
@@ -125,6 +127,7 @@ private:
 	QScrollBar* m_scrollbar;
 	Dictionary* m_dictionary;
 	Highlighter* m_highlighter;
+	FocusMode* m_focusmode;
 
 	Stats* m_stats;
 	Stats m_document_stats;
@@ -184,6 +187,10 @@ inline int Document::wordCount() const {
 
 inline QTextEdit* Document::text() const {
 	return m_text;
+}
+
+inline FocusMode* Document::fMode() const {
+    return m_focusmode;
 }
 
 #endif

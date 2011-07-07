@@ -1270,6 +1270,11 @@ void Window::initMenus()
 	QMenu* quotes_menu = tools_menu->addMenu(tr("Smart &Quotes"));
 	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, SLOT(updateSmartQuotes()));
 	m_replace_selection_quotes = quotes_menu->addAction(tr("Update &Selection"), m_documents, SLOT(updateSmartQuotesSelection()));
+	QMenu* focus_menu = tools_menu->addMenu(tr("Focus"));
+	m_focusmode_1 = focus_menu->addAction(tr("Narrow focus"), m_documents, SLOT(focusMode1()), QKeySequence(Qt::CTRL+Qt::Key_1));
+	m_focusmode_2 = focus_menu->addAction(tr("Broader focus"), m_documents, SLOT(focusMode2()), QKeySequence(Qt::CTRL+Qt::Key_2));
+	m_focusmode_0 = focus_menu->addAction(tr("No focus"), m_documents, SLOT(focusMode0()), QKeySequence(Qt::CTRL+Qt::Key_0));
+
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, SLOT(show()));
