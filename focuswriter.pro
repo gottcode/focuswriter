@@ -100,6 +100,7 @@ SOURCES += src/alert.cpp \
 
 TRANSLATIONS = translations/focuswriter_cs.ts \
 	translations/focuswriter_de.ts \
+	translations/focuswriter_el.ts \
 	translations/focuswriter_en.ts \
 	translations/focuswriter_es.ts \
 	translations/focuswriter_es_MX.ts \
