@@ -80,6 +80,7 @@ public slots:
     void focusMode_(int level);
     void focusMode1();
     void focusMode2();
+    void focusMode3();
     void focusMode0();
 	void cut();
 	void copy();

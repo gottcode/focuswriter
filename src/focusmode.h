@@ -34,19 +34,20 @@ class FocusMode : public QSyntaxHighlighter
 public:
 	FocusMode(QTextEdit* text);
 	void setBlurredTextColor(const QColor& color);
-	void setEnabled(bool enabled);
+	void setLevel(const int level);
 
 private slots:
+    void carefulRehighlight();
 	void cursorPositionChanged();
 	virtual void highlightBlock(const QString& text);
-	void reFocusVisually();
+	bool isADelimiter(const QChar ch);
 
 private:
 	Dictionary* m_dictionary;
 	QTextEdit* m_text;
 	QTextCursor m_cursor;
 	QTextCursor m_start_cursor;
-	bool m_enabled;
+	int m_level;
 	QColor m_blurred_text;
 	QString m_word;
 	QTextBlock m_current;

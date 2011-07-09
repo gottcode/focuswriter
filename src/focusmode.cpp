@@ -32,7 +32,7 @@
 FocusMode::FocusMode(QTextEdit* text)
 	: QSyntaxHighlighter(text),
 	m_text(text),
-	m_enabled(true),
+	m_level(0),
 	m_blurred_text("#666666"),
 	m_changed(false)
 {
@@ -41,13 +41,11 @@ FocusMode::FocusMode(QTextEdit* text)
 
 //-----------------------------------------------------------------------------
 
-void FocusMode::setEnabled(bool enabled)
+void FocusMode::setLevel(const int level)
 {
-	if (m_enabled != enabled) {
-		m_enabled = enabled;
-		if(enabled) printf("FocusMode on\n");
-		if(!enabled) printf("FocusMode off\n");
-		rehighlight();
+	if (m_level != level) {
+		m_level = level;
+		carefulRehighlight();
 	}
 }
 
@@ -57,10 +55,25 @@ void FocusMode::setBlurredTextColor(const QColor& color)
 {
 	if (m_blurred_text != color) {
 		m_blurred_text = color;
-		if (m_enabled) {
-			rehighlight();
+		if (m_level) {
+			carefulRehighlight();
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void FocusMode::carefulRehighlight() {
+    QTextDocument *doc = m_text->document();
+    QTextBlock block = doc->begin();
+
+    while(block.isValid()) {
+        m_current = block;
+        rehighlightBlock(block);
+        block = block.next();
+    }
+
+    m_current = m_text->textCursor().block();
 }
 
 //-----------------------------------------------------------------------------
@@ -83,18 +96,19 @@ void FocusMode::cursorPositionChanged()
 
 void FocusMode::highlightBlock(const QString& text)
 {
-	if (!m_enabled) {
+	if (!m_level) {
 		return;
 	}
 
 	QTextCharFormat format;
+	// TODO FIXME
 	//format.setForeground(m_blurred_text);
 	format.setForeground(QColor::fromRgb(66, 66, 66, 128));
 
     int absolutePosition = m_text->textCursor().position();
     int inBlockPosition  = absolutePosition - m_text->textCursor().block().position();
 
-	if(inBlockPosition == 0) {
+	if(inBlockPosition == 0 || m_current != m_text->textCursor().block()) {
 	    setFormat(0, text.length(), format);
 	    return;
 	}
@@ -104,11 +118,14 @@ void FocusMode::highlightBlock(const QString& text)
     // see inBlockPosition above.
     int delta = -1;
     if(inBlockPosition > 0) {
+        int sentences = m_level;
         for(delta = inBlockPosition - 1; delta >= 0; delta--) {
             QChar ch = text.at(delta);
-            printf("Char: [%d][%c]\n", delta, ch.toAscii());
-            if(!ch.isLetterOrNumber() && !ch.isSpace()) {
-                break;
+//                printf("<- Char: [%d][%c]\n", delta, ch.toAscii());
+            if(isADelimiter(ch)) {
+                if(sentences != 3 && --sentences < 1) {
+                    break;
+                }
             }
         }
         ++ delta;
@@ -121,11 +138,14 @@ void FocusMode::highlightBlock(const QString& text)
     delta = l;
 
     if(inBlockPosition < l) {
-        for(delta = inBlockPosition + 1; delta <= l; delta++) {
+        int sentences = m_level;
+        for(delta = inBlockPosition; delta <= l; delta++) {
             QChar ch = text.at(delta);
-            printf("Char: [%d][%c]\n", delta, ch.toAscii());
-            if(!ch.isLetterOrNumber() && !ch.isSpace()) {
-                break;
+//                printf("-> Char: [%d][%c]\n", delta, ch.toAscii());
+            if(isADelimiter(ch)) {
+                if(sentences != 3 && --sentences < 1) {
+                    break;
+                }
             }
         }
         ++ delta;
@@ -136,6 +156,16 @@ void FocusMode::highlightBlock(const QString& text)
 
 //-----------------------------------------------------------------------------
 
-void FocusMode::reFocusVisually()
+/*
+ * Considered delimiters:
+ * ! . ; ?
+ * Clearly not considered delimiters:
+ * , - / : _ { | }
+ * Ignored due to ignorance (how fitting):
+ * all other candidates.
+ */
+bool FocusMode::isADelimiter(const QChar ch)
 {
+    ushort u = ch.unicode();
+    return (u == 0x0021 || u == 0x002E || u == 0x003B || u == 0x003F);
 }

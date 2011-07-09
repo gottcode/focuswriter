@@ -346,16 +346,12 @@ void Stack::checkSpelling()
 
 void Stack::focusMode_(int level)
 {
-    if(level == 0) {
-        m_current_document->fMode()->setEnabled(false);
-    }
-    else {
-        m_current_document->fMode()->setEnabled(true);
-    }
+    m_current_document->fMode()->setLevel(level);
 }
 
 void Stack::focusMode1() { focusMode_(1); }
 void Stack::focusMode2() { focusMode_(2); }
+void Stack::focusMode3() { focusMode_(3); }
 void Stack::focusMode0() { focusMode_(0); }
 
 //-----------------------------------------------------------------------------

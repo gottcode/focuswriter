@@ -1273,6 +1273,7 @@ void Window::initMenus()
 	QMenu* focus_menu = tools_menu->addMenu(tr("Focus"));
 	m_focusmode_1 = focus_menu->addAction(tr("Narrow focus"), m_documents, SLOT(focusMode1()), QKeySequence(Qt::CTRL+Qt::Key_1));
 	m_focusmode_2 = focus_menu->addAction(tr("Broader focus"), m_documents, SLOT(focusMode2()), QKeySequence(Qt::CTRL+Qt::Key_2));
+	m_focusmode_3 = focus_menu->addAction(tr("Paragraph focus"), m_documents, SLOT(focusMode3()), QKeySequence(Qt::CTRL+Qt::Key_3));
 	m_focusmode_0 = focus_menu->addAction(tr("No focus"), m_documents, SLOT(focusMode0()), QKeySequence(Qt::CTRL+Qt::Key_0));
 
 	tools_menu->addSeparator();

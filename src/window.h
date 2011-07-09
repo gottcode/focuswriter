@@ -101,6 +101,7 @@ private:
 	QAction* m_replace_selection_quotes;
 	QAction* m_focusmode_1;
 	QAction* m_focusmode_2;
+    QAction* m_focusmode_3;
 	QAction* m_focusmode_0;
 
 	Stack* m_documents;

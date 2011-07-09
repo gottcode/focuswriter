@@ -463,7 +463,7 @@ void Document::loadPreferences(const Preferences& preferences)
 	m_text->setFont(font);
 
 	m_highlighter->setEnabled(!isReadOnly() ? preferences.highlightMisspelled() : false);
-	m_focusmode->setEnabled(false);
+	m_focusmode->setLevel(0);
 }
 
 //-----------------------------------------------------------------------------
