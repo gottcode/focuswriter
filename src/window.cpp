@@ -1034,6 +1034,7 @@ void Window::loadPreferences(Preferences& preferences)
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
+			m_typewriter_sounds = false;
 			preferences.setTypewriterSounds(false);
 		}
 	}

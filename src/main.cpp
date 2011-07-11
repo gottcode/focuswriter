@@ -121,7 +121,7 @@ int main(int argc, char** argv)
 
 	QStringList paths = QIcon::themeSearchPaths();
 	paths.prepend(appdir + "/../share/focuswriter/icons");
-	paths.prepend(appdir + "/icons/oxygen");
+	paths.prepend(appdir + "/icons");
 	QIcon::setThemeSearchPaths(paths);
 
 	paths.clear();
