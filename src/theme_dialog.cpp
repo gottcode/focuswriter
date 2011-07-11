@@ -197,7 +197,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	text_layout->addRow(tr("Color:"), m_text_color);
 	text_layout->addRow(tr("Font:"), font_layout);
 	text_layout->addRow(tr("Misspelled:"), m_misspelled_color);
-	text_layout->addRow(tr("Blurredz:"), m_blurred_text_color);
+	text_layout->addRow(tr("Blurred:"), m_blurred_text_color);
 
 
 	// Create preview

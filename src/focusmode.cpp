@@ -101,9 +101,8 @@ void FocusMode::highlightBlock(const QString& text)
 	}
 
 	QTextCharFormat format;
-	// TODO FIXME
-	//format.setForeground(m_blurred_text);
-	format.setForeground(QColor::fromRgb(66, 66, 66, 128));
+	format.setForeground(m_blurred_text);
+	// A nice default value...just for reference: format.setForeground(QColor::fromRgb(66, 66, 66, 128));
 
     int absolutePosition = m_text->textCursor().position();
     int inBlockPosition  = absolutePosition - m_text->textCursor().block().position();
