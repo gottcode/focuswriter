@@ -40,6 +40,7 @@ HEADERS += src/alert.h \
 	src/dictionary.h \
 	src/document.h \
 	src/find_dialog.h \
+	src/focusmode.h \
 	src/highlighter.h \
 	src/image_button.h \
 	src/load_screen.h \
@@ -73,6 +74,7 @@ SOURCES += src/alert.cpp \
 	src/dictionary.cpp \
 	src/document.cpp \
 	src/find_dialog.cpp \
+	src/focusmode.cpp \
 	src/highlighter.cpp \
 	src/image_button.cpp \
 	src/load_screen.cpp \
