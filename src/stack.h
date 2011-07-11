@@ -130,7 +130,6 @@ private:
 	Document* m_current_document;
 
 	QPixmap m_background;
-	QPixmap m_background_old;
 	int m_background_position;
 	QString m_background_path;
 	QTimer* m_resize_timer;

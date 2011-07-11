@@ -1,3 +1,30 @@
+2011-06-27 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.3.3.
+
+2011-06-15 Márcio Massula Jr. <marciomassulajr@gmail.com>
+	* Update Brazilian Portuguese translation.
+
+2011-06-12 Danila Evstifeyev
+	* Update Russian translation.
+
+2011-06-11 Israel Buitrón <israel.buitron@gmail.com>
+	* Update Mexican Spanish translation.
+
+2011-06-08 Jérôme Borme <jerome.borme@gmail.com>
+	* Update French translation.
+	* Update Portuguese translation.
+
+2011-06-08 Dennis Peteranderl
+	* Update German translation.
+
+2011-06-07 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Timers action didn't always use theme icon.
+
+2011-06-06 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not follow toolbar style by default.
+	* Move background caching into background loading thread.
+	* Allow users to always set background image.
+
 2011-06-04 Jakub Kowalski <jakowalski@gmail.com>
 	* Update Polish translation.
 
