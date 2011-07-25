@@ -335,6 +335,7 @@ void Document::loadFile(const QString& filename, int position)
 		if (file.open(QIODevice::ReadOnly)) {
 			RTF::Reader reader;
 			reader.read(&file, document);
+			m_codepage = reader.codePage();
 			file.close();
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
@@ -909,7 +910,10 @@ bool Document::writeFile(const QString& filename)
 		}
 	} else {
 		if (file.open(QFile::WriteOnly)) {
-			RTF::Writer writer;
+			RTF::Writer writer(m_codepage);
+			if (m_codepage.isEmpty()) {
+				m_codepage = writer.codePage();
+			}
 			saved = writer.write(&file, m_text->document());
 		}
 	}

@@ -1,4 +1,5 @@
 2011-07-25 Graeme Gott <graeme@gottcode.org>
+	* Remember code page when reading RTF.
 	* Redesign detection of code page for writing RTF.
 
 2011-07-06 Epameinondas Soufleros

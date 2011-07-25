@@ -52,6 +52,25 @@ namespace
 		qint32 m_value;
 	};
 	QHash<QByteArray, Function> functions;
+
+	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = 0)
+	{
+		QByteArray name = "CP" + QByteArray::number(value);
+		QByteArray codec;
+		if (value == 932) {
+			codec = "Shift-JIS";
+		} else if (value == 10000) {
+			codec = "Apple Roman";
+		} else if (value == 65001) {
+			codec = "UTF-8";
+		} else {
+			codec = name;
+		}
+		if (codepage) {
+			*codepage = name;
+		}
+		return QTextCodec::codecForName(codec);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -128,7 +147,7 @@ RTF::Reader::Reader()
 
 		functions["ansicpg"] = Function(&Reader::setCodepage);
 		functions["ansi"] = Function(&Reader::setCodepage, 1252);
-		functions["mac"] = Function(&Reader::setCodepageMac);
+		functions["mac"] = Function(&Reader::setCodepage, 10000);
 		functions["pc"] = Function(&Reader::setCodepage, 850);
 		functions["pca"] = Function(&Reader::setCodepage, 850);
 
@@ -150,6 +169,13 @@ RTF::Reader::Reader()
 	m_state.active_codepage = 0;
 
 	setCodepage(1252);
+}
+
+//-----------------------------------------------------------------------------
+
+QByteArray RTF::Reader::codePage() const
+{
+	return m_codepage_name;
 }
 
 //-----------------------------------------------------------------------------
@@ -403,21 +429,12 @@ void RTF::Reader::setSkipCharacters(qint32 value)
 
 void RTF::Reader::setCodepage(qint32 value)
 {
-	QTextCodec* codec = QTextCodec::codecForName("CP" + QByteArray::number(value));
+	QByteArray codepage;
+	QTextCodec* codec = codecForCodePage(value, &codepage);
 	if (codec != 0) {
 		m_codepage = codec;
 		m_codec = codec;
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void RTF::Reader::setCodepageMac(qint32)
-{
-	QTextCodec* codec = QTextCodec::codecForName("Apple Roman");
-	if (codec != 0) {
-		m_codepage = codec;
-		m_codec = codec;
+		m_codepage_name = codepage;
 	}
 }
 
@@ -449,7 +466,7 @@ void RTF::Reader::setFontCodepage(qint32 value)
 		return;
 	}
 
-	QTextCodec* codec = QTextCodec::codecForName("CP" + QByteArray::number(value));
+	QTextCodec* codec = codecForCodePage(value);
 	if (codec != 0) {
 		m_codepages[m_state.active_codepage] = codec;
 		m_codec = codec;
