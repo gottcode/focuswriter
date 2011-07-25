@@ -158,6 +158,7 @@ RTF::Reader::Reader()
 
 		functions["filetbl"] = Function(&Reader::ignoreGroup);
 		functions["colortbl"] = Function(&Reader::ignoreGroup);
+		functions["fonttbl"] = Function(&Reader::ignoreText);
 		functions["stylesheet"] = Function(&Reader::ignoreGroup);
 		functions["info"] = Function(&Reader::ignoreGroup);
 		functions["*"] = Function(&Reader::ignoreGroup);
@@ -260,6 +261,13 @@ void RTF::Reader::endBlock(qint32)
 void RTF::Reader::ignoreGroup(qint32)
 {
 	m_state.ignore_control_word = true;
+	m_state.ignore_text = true;
+}
+
+//-----------------------------------------------------------------------------
+
+void RTF::Reader::ignoreText(qint32)
+{
 	m_state.ignore_text = true;
 }
 

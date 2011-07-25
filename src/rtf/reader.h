@@ -48,6 +48,7 @@ namespace RTF
 	private:
 		void endBlock(qint32);
 		void ignoreGroup(qint32);
+		void ignoreText(qint32);
 		void insertBlock(qint32);
 		void insertHexSymbol(qint32);
 		void insertSymbol(qint32 value);
