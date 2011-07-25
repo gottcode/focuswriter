@@ -83,6 +83,8 @@ Application::Application(int& argc, char** argv)
 	new RTF::Converter;
 #endif
 
+	qputenv("UNICODEMAP_JP", "cp932");
+
 	m_files = arguments().mid(1);
 	processEvents();
 }
