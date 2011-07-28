@@ -25,18 +25,19 @@
 class Sound : public QObject
 {
 public:
-	Sound(const QString& filename, QObject* parent = 0);
-	Sound(const Sound& sound);
-	Sound& operator=(const Sound& sound);
+	Sound(int name, const QString& filename, QObject* parent = 0);
 	~Sound();
 
 	bool isValid() const;
 	void play();
 
+	static void play(int name);
+	static void setEnabled(bool enabled);
 	static void setPath(const QString& path);
 
 private:
 	int m_id;
+	int m_name;
 };
 
 inline bool Sound::isValid() const

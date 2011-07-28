@@ -70,7 +70,6 @@ private slots:
 	void preferencesClicked();
 	void aboutClicked();
 	void setLocaleClicked();
-	void keyPressed(int key);
 	void tabClicked(int index);
 	void tabMoved(int from, int to);
 	void tabClosed(int index);
@@ -117,7 +116,6 @@ private:
 	QTimer* m_clock_timer;
 
 	bool m_fullscreen;
-	bool m_typewriter_sounds;
 	bool m_auto_save;
 	bool m_save_positions;
 	int m_goal_type;

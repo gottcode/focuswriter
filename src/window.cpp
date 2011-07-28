@@ -82,7 +82,6 @@ Window::Window(const QStringList& files)
 	m_key_sound(0),
 	m_enter_key_sound(0),
 	m_fullscreen(true),
-	m_typewriter_sounds(true),
 	m_auto_save(true),
 	m_save_positions(true),
 	m_goal_type(0),
@@ -772,19 +771,6 @@ void Window::setLocaleClicked()
 
 //-----------------------------------------------------------------------------
 
-void Window::keyPressed(int key)
-{
-	if (m_typewriter_sounds) {
-		if (key != Qt::Key_Enter) {
-			m_key_sound->play();
-		} else {
-			m_enter_key_sound->play();
-		}
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 void Window::tabClicked(int index)
 {
 	if (m_documents->count() == 0) {
@@ -975,7 +961,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
-	connect(document, SIGNAL(keyPressed(int)), this, SLOT(keyPressed(int)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Add tab for document
@@ -1021,23 +1006,22 @@ bool Window::saveDocument(int index)
 
 void Window::loadPreferences(Preferences& preferences)
 {
-	m_typewriter_sounds = preferences.typewriterSounds();
-	if (m_typewriter_sounds && (!m_key_sound || !m_enter_key_sound)) {
+	if (preferences.typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
 		if (m_documents->loadScreen()->isVisible()) {
 			m_documents->loadScreen()->setText(tr("Loading sounds"));
 		}
-		m_key_sound = new Sound("keyany.wav", this);
-		m_enter_key_sound = new Sound("keyenter.wav", this);
+		m_key_sound = new Sound(Qt::Key_Any, "keyany.wav", this);
+		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
 
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
 			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Unable to load typewriter sounds."), QStringList());
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
-			m_typewriter_sounds = false;
 			preferences.setTypewriterSounds(false);
 		}
 	}
+	Sound::setEnabled(preferences.typewriterSounds());
 
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {

@@ -24,6 +24,7 @@
 #include "highlighter.h"
 #include "preferences.h"
 #include "smart_quotes.h"
+#include "sound.h"
 #include "spell_checker.h"
 #include "theme.h"
 #include "window.h"
@@ -731,9 +732,9 @@ void Document::updateWordCount(int position, int removed, int added)
 	int block_count = m_text->document()->blockCount();
 	if (added) {
 		if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
-			emit keyPressed(Qt::Key_Enter);
+			Sound::play(Qt::Key_Enter);
 		} else {
-			emit keyPressed(Qt::Key_Any);
+			Sound::play(Qt::Key_Any);
 		}
 	}
 	int current_block = m_text->textCursor().blockNumber();

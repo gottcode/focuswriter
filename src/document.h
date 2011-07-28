@@ -83,7 +83,6 @@ signals:
 	void formattingEnabled(bool enabled);
 	void indentChanged(bool indented);
 	void alignmentChanged();
-	void keyPressed(int key);
 
 protected:
 	virtual void resizeEvent(QResizeEvent* event);
