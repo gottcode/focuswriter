@@ -418,14 +418,14 @@ void Timer::init()
 	m_delay_edit->setCurrentSection(QDateTimeEdit::MinuteSection);
 	m_delay_edit->setWrapping(true);
 	time_edits->addWidget(m_delay_edit);
-	connect(m_delay_edit, SIGNAL(timeChanged(const QTime&)), this, SLOT(delayChanged(const QTime&)));
+	connect(m_delay_edit, SIGNAL(timeChanged(QTime)), this, SLOT(delayChanged(QTime)));
 
 	m_end_edit = new QTimeEdit(time_edits);
 	m_end_edit->setDisplayFormat(QLocale().timeFormat(QLocale::LongFormat).contains("AP", Qt::CaseInsensitive) ? "h:mm:ss AP" : "HH:mm:ss");
 	m_end_edit->setCurrentSection(QDateTimeEdit::MinuteSection);
 	m_end_edit->setWrapping(true);
 	time_edits->addWidget(m_end_edit);
-	connect(m_end_edit, SIGNAL(timeChanged(const QTime&)), this, SLOT(endChanged(const QTime&)));
+	connect(m_end_edit, SIGNAL(timeChanged(QTime)), this, SLOT(endChanged(QTime)));
 
 	m_memo_edit = new QLineEdit(tr("Alarm"), m_edit);
 	m_memo_edit->setMaxLength(140);

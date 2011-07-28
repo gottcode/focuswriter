@@ -204,7 +204,7 @@ void Stack::addDocument(Document* document)
 	connect(document->text(), SIGNAL(copyAvailable(bool)), this, SIGNAL(copyAvailable(bool)));
 	connect(document->text(), SIGNAL(redoAvailable(bool)), this, SIGNAL(redoAvailable(bool)));
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
-	connect(document->text(), SIGNAL(currentCharFormatChanged(const QTextCharFormat&)), this, SIGNAL(updateFormatActions()));
+	connect(document->text(), SIGNAL(currentCharFormatChanged(QTextCharFormat)), this, SIGNAL(updateFormatActions()));
 
 	m_documents.append(document);
 	m_contents->addWidget(document);

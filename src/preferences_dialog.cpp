@@ -825,7 +825,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	QGroupBox* personal_dictionary_group = new QGroupBox(tr("Personal Dictionary"), tab);
 
 	m_word = new QLineEdit(personal_dictionary_group);
-	connect(m_word, SIGNAL(textChanged(const QString&)), this, SLOT(wordEdited()));
+	connect(m_word, SIGNAL(textChanged(QString)), this, SLOT(wordEdited()));
 
 	m_add_word_button = new QPushButton(tr("Add"), personal_dictionary_group);
 	m_add_word_button->setAutoDefault(false);

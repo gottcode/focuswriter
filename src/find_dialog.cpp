@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ FindDialog::FindDialog(Stack* documents)
 	m_find_string = new QLineEdit(this);
 	m_replace_label = new QLabel(tr("Replace with:"), this);
 	m_replace_string = new QLineEdit(this);
-	connect(m_find_string, SIGNAL(textChanged(const QString&)), this, SLOT(findChanged(const QString&)));
+	connect(m_find_string, SIGNAL(textChanged(QString)), this, SLOT(findChanged(QString)));
 
 	m_ignore_case = new QCheckBox(tr("Ignore case"), this);
 	m_whole_words = new QCheckBox(tr("Whole words only"), this);

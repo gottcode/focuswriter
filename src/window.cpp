@@ -731,7 +731,7 @@ void Window::toggleMenuIcons(bool visible)
 void Window::themeClicked()
 {
 	ThemeManager manager(*m_sessions->current()->data(), this);
-	connect(&manager, SIGNAL(themeSelected(const Theme&)), m_documents, SLOT(themeSelected(const Theme&)));
+	connect(&manager, SIGNAL(themeSelected(Theme)), m_documents, SLOT(themeSelected(Theme)));
 	manager.exec();
 }
 
