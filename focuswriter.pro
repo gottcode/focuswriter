@@ -44,6 +44,7 @@ HEADERS += src/alert.h \
 	src/image_button.h \
 	src/load_screen.h \
 	src/locale_dialog.h \
+	src/odt_reader.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
 	src/session.h \
@@ -78,6 +79,7 @@ SOURCES += src/alert.cpp \
 	src/load_screen.cpp \
 	src/locale_dialog.cpp \
 	src/main.cpp \
+	src/odt_reader.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
 	src/session.cpp \

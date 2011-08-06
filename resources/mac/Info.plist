@@ -46,6 +46,16 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>odt</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>OpenDocument Text document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>txt</string>
 				<string>text</string>
 				<string>*</string>

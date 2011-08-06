@@ -344,7 +344,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		<< "doc" << "dot"
 		<< "docx" << "docm" << "dotx" << "dotm"
 		<< "kwd"
-		<< "odt" << "ott"
+		<< "ott"
 		<< "wpd";
 	QList<int> skip;
 	for (int i = 0; i < files.count(); ++i) {
@@ -588,7 +588,7 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), tr("Text Files (*.txt *.text *.rtf);;All Files (*)"));
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), tr("Text Files (%1);;All Files (*)").arg("*.txt *.text *.odt *.rtf"));
 	if (!filenames.isEmpty()) {
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();

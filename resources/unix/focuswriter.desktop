@@ -7,5 +7,5 @@ Icon=focuswriter
 TryExec=focuswriter
 Exec=focuswriter %F
 Terminal=false
-MimeType=application/rtf;text/plain;text/rtf;
+MimeType=application/rtf;application/vnd.oasis.opendocument.text;text/plain;text/rtf;
 Categories=Qt;Office;WordProcessor;

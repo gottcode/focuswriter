@@ -22,6 +22,7 @@
 #include "block_stats.h"
 #include "dictionary.h"
 #include "highlighter.h"
+#include "odt_reader.h"
 #include "preferences.h"
 #include "smart_quotes.h"
 #include "sound.h"
@@ -45,6 +46,7 @@
 #include <QSettings>
 #include <QTextBlock>
 #include <QTextCodec>
+#include <QTextDocumentWriter>
 #include <QTextEdit>
 #include <QTextStream>
 #include <QTimer>
@@ -73,11 +75,6 @@ namespace
 			filename = QString("fw_%1").arg(qrand(), 6, 36);
 		} while (dir.exists(filename));
 		return filename;
-	}
-
-	bool isRichTextFile(const QString& filename)
-	{
-		return filename.endsWith(QLatin1String(".rtf"));
 	}
 }
 
@@ -130,7 +127,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	// Set filename
 	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
-		m_rich_text = isRichTextFile(filename.toLower());
+		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+		m_rich_text = (suffix == "odt") || (suffix == "rtf");
 		m_filename = QFileInfo(filename).canonicalFilePath();
 		updateState();
 	}
@@ -332,14 +330,22 @@ void Document::loadFile(const QString& filename, int position)
 			file.close();
 		}
 	} else {
-		QFile file(filename);
-		if (file.open(QIODevice::ReadOnly)) {
-			RTF::Reader reader;
-			reader.read(&file, document);
-			m_codepage = reader.codePage();
-			file.close();
+		if (filename.endsWith(".odt")) {
+			ODT::Reader reader;
+			reader.read(filename, document);
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+			}
+		} else if (filename.endsWith(".rtf")) {
+			QFile file(filename);
+			if (file.open(QIODevice::ReadOnly)) {
+				RTF::Reader reader;
+				reader.read(&file, document);
+				m_codepage = reader.codePage();
+				file.close();
+				if (reader.hasError()) {
+					QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				}
 			}
 		}
 	}
@@ -812,19 +818,23 @@ void Document::findIndex()
 
 QString Document::fileFilter(const QString& filename) const
 {
-	QString plaintext = tr("Plain Text (*.txt);;All Files (*)");
+	QString plaintext = tr("Plain Text (*.txt)");
+	QString opendocumenttext = tr("OpenDocument Text (*.odt)");
 	QString richtext = tr("Rich Text (*.rtf)");
 	QString all = tr("All Files (*)");
 	if (!filename.isEmpty()) {
-		if (isRichTextFile(filename)) {
-			return richtext;
-		} else if (filename.endsWith(".txt")) {
-			return plaintext;
+		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+		if (suffix == "odt") {
+			return opendocumenttext + ";;" + richtext;
+		} else if (suffix == "rtf") {
+			return richtext + ";;" + opendocumenttext;
+		} else if (suffix == "txt") {
+			return plaintext + ";;" + all;
 		} else {
 			return all;
 		}
 	} else {
-		return m_rich_text ? richtext : plaintext;
+		return m_rich_text ? (richtext + ";;" + opendocumenttext) : plaintext;
 	}
 }
 
@@ -911,11 +921,17 @@ bool Document::writeFile(const QString& filename)
 		}
 	} else {
 		if (file.open(QFile::WriteOnly)) {
-			RTF::Writer writer(m_codepage);
-			if (m_codepage.isEmpty()) {
-				m_codepage = writer.codePage();
+			QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+			if (suffix == "odt") {
+				QTextDocumentWriter writer(&file, "ODT");
+				saved = writer.write(m_text->document());
+			} else if (suffix == "rtf") {
+				RTF::Writer writer(m_codepage);
+				if (m_codepage.isEmpty()) {
+					m_codepage = writer.codePage();
+				}
+				saved = writer.write(&file, m_text->document());
 			}
-			saved = writer.write(&file, m_text->document());
 		}
 	}
 	if (file.isOpen()) {
