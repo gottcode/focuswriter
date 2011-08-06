@@ -382,7 +382,7 @@ void RTF::Reader::setBlockDirection(qint32 value)
 
 void RTF::Reader::setBlockIndent(qint32 value)
 {
-	m_state.block_format.setIndent(value / 720);
+	m_state.block_format.setIndent(value / 15);
 	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 

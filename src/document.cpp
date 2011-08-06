@@ -113,8 +113,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_text->setTabStopWidth(50);
-	m_text->document()->setIndentWidth(50);
+	m_text->setTabStopWidth(48);
+	m_text->document()->setIndentWidth(1);
 	m_text->horizontalScrollBar()->setAttribute(Qt::WA_NoMousePropagation);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);

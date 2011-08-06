@@ -361,7 +361,7 @@ void Stack::decreaseIndent()
 {
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
-	format.setIndent(format.indent() - 1);
+	format.setIndent(qMax(0, format.indent() - 48));
 	cursor.setBlockFormat(format);
 	emit updateFormatActions();
 }
@@ -393,7 +393,7 @@ void Stack::increaseIndent()
 {
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
-	format.setIndent(format.indent() + 1);
+	format.setIndent(format.indent() + 48);
 	cursor.setBlockFormat(format);
 	emit updateFormatActions();
 }
