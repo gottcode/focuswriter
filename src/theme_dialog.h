@@ -79,6 +79,7 @@ private:
 	QFontComboBox* m_font_names;
 	QComboBox* m_font_sizes;
 	ColorButton* m_misspelled_color;
+	ColorButton* m_blurred_text_color;
 };
 
 #endif

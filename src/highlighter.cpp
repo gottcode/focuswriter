@@ -28,6 +28,7 @@
 #include <QEvent>
 #include <QMenu>
 #include <QTextEdit>
+#include <stdio.h>
 
 //-----------------------------------------------------------------------------
 

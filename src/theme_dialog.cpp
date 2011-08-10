@@ -182,6 +182,10 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_misspelled_color->setColor(m_theme.misspelledColor());
 	connect(m_misspelled_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
+	m_blurred_text_color = new ColorButton(tab);
+	m_blurred_text_color->setColor(m_theme.blurredTextColor());
+	connect(m_blurred_text_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
+
 	QHBoxLayout* font_layout = new QHBoxLayout;
 	font_layout->addWidget(m_font_names);
 	font_layout->addWidget(m_font_sizes);
@@ -193,6 +197,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	text_layout->addRow(tr("Color:"), m_text_color);
 	text_layout->addRow(tr("Font:"), font_layout);
 	text_layout->addRow(tr("Misspelled:"), m_misspelled_color);
+	text_layout->addRow(tr("Blurred:"), m_blurred_text_color);
 
 
 	// Create preview
@@ -251,6 +256,7 @@ void ThemeDialog::accept()
 	font.setPointSizeF(m_font_sizes->currentText().toDouble());
 	m_theme.setTextFont(font);
 	m_theme.setMisspelledColor(m_misspelled_color->color());
+	m_theme.setBlurredTextColor(m_blurred_text_color->color());
 
 	savePreview();
 
@@ -345,6 +351,11 @@ void ThemeDialog::renderPreview()
 		font.setPointSizeF(m_font_sizes->currentText().toDouble());
 		painter.setFont(font);
 		painter.drawText(QRect(23, 23, 154, 104), Qt::TextWordWrap, tr("The quick brown fox jumps over the lazy dog"));
+
+		// Draw blurred text
+		painter.setPen(m_blurred_text_color->color());
+		painter.setFont(font);
+		painter.drawText(QRect(23, 63, 154, 104), Qt::TextWordWrap, tr("and some other less important stuff"));
 	}
 	m_preview->setPixmap(preview);
 }
