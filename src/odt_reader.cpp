@@ -56,6 +56,7 @@ void ODT::Reader::read(const QString& filename, QTextDocument* text)
 	m_in_block = text->blockCount();
 	m_cursor = QTextCursor(text);
 	m_cursor.movePosition(QTextCursor::End);
+	m_cursor.beginEditBlock();
 
 	// Open archive
 	zip* archive = zip_open(QFile::encodeName(m_filename).constData(), 0, 0);
@@ -98,6 +99,7 @@ void ODT::Reader::read(const QString& filename, QTextDocument* text)
 	catch (QString error) {
 		m_error = error;
 	}
+	m_cursor.endEditBlock();
 
 	// Close archive
 	zip_close(archive);

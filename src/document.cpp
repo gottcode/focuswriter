@@ -323,10 +323,12 @@ void Document::loadFile(const QString& filename, int position)
 			stream.setAutoDetectUnicode(true);
 
 			QTextCursor cursor(document);
+			cursor.beginEditBlock();
 			while (!stream.atEnd()) {
 				cursor.insertText(stream.read(8192));
 				QApplication::processEvents();
 			}
+			cursor.endEditBlock();
 			file.close();
 		}
 	} else {

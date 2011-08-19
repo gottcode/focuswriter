@@ -206,6 +206,7 @@ void RTF::Reader::read(QIODevice* device, QTextDocument* text)
 		m_text = text;
 		m_cursor = QTextCursor(m_text);
 		m_cursor.movePosition(QTextCursor::End);
+		m_cursor.beginEditBlock();
 		m_token.setDevice(device);
 		setBlockDirection(Qt::LeftToRight);
 
@@ -247,6 +248,7 @@ void RTF::Reader::read(QIODevice* device, QTextDocument* text)
 	} catch (const QString& error) {
 		m_error = error;
 	}
+	m_cursor.endEditBlock();
 }
 
 //-----------------------------------------------------------------------------
