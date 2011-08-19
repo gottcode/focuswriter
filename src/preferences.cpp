@@ -36,12 +36,12 @@ Preferences::Preferences()
 	m_goal_minutes = settings.value("Goal/Minutes", 30).toInt();
 	m_goal_words = settings.value("Goal/Words", 1000).toInt();
 
-	m_show_characters = settings.value("Stats/ShowCharacters", true).toBool();
-	m_show_pages = settings.value("Stats/ShowPages", true).toBool();
-	m_show_paragraphs = settings.value("Stats/ShowParagraphs", true).toBool();
+	m_show_characters = settings.value("Stats/ShowCharacters", false).toBool();
+	m_show_pages = settings.value("Stats/ShowPages", false).toBool();
+	m_show_paragraphs = settings.value("Stats/ShowParagraphs", false).toBool();
 	m_show_words = settings.value("Stats/ShowWords", true).toBool();
 
-	m_page_type = settings.value("Stats/PageSizeType", 0).toInt();
+	m_page_type = settings.value("Stats/PageSizeType", 2).toInt();
 	m_page_characters = settings.value("Stats/CharactersPerPage", 1500).toInt();
 	m_page_paragraphs = settings.value("Stats/ParagraphsPerPage", 5).toInt();
 	m_page_words = settings.value("Stats/WordsPerPage", 250).toInt();
@@ -50,7 +50,7 @@ Preferences::Preferences()
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
-	m_rich_text = settings.value("Edit/RichText", false).toBool();
+	m_rich_text = settings.value("Edit/RichText", true).toBool();
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
 	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
