@@ -752,13 +752,13 @@ void Window::aboutClicked()
 	QMessageBox::about(this, tr("About FocusWriter"), tr(
 		"<p><center><big><b>FocusWriter %1</b></big><br/>"
 		"A simple fullscreen word processor<br/>"
-		"<small>Copyright &copy; 2008-2010 Graeme Gott</small><br/>"
+		"<small>Copyright &copy; 2008-%2 Graeme Gott</small><br/>"
 		"<small>Released under the <a href=\"http://www.gnu.org/licenses/gpl.html\">GPL 3</a> license</small></center></p>"
 		"<p><center>Uses <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> for spell checking<br/>"
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small></center></p>"
 		"<p><center>Uses icons from the <a href=\"http://www.oxygen-icons.org/\">Oxygen</a> icon theme<br/>"
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small></center></p>"
-	).arg(QApplication::applicationVersion()));
+	).arg(QApplication::applicationVersion()).arg("2011"));
 }
 
 //-----------------------------------------------------------------------------
