@@ -45,7 +45,6 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QTextBlock>
-#include <QTextCodec>
 #include <QTextDocumentWriter>
 #include <QTextEdit>
 #include <QTextStream>
@@ -319,7 +318,7 @@ void Document::loadFile(const QString& filename, int position)
 		QFile file(filename);
 		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setCodec("UTF-8");
 			stream.setAutoDetectUnicode(true);
 
 			QTextCursor cursor(document);
@@ -913,17 +912,19 @@ bool Document::writeFile(const QString& filename)
 {
 	bool saved = false;
 	QFile file(filename);
+	QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
 	if (!m_rich_text) {
 		if (file.open(QFile::WriteOnly | QFile::Text)) {
 			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream.setGenerateByteOrderMark(true);
+			stream.setCodec("UTF-8");
+			if (suffix == "txt") {
+				stream.setGenerateByteOrderMark(true);
+			}
 			stream << m_text->toPlainText();
 			saved = true;
 		}
 	} else {
 		if (file.open(QFile::WriteOnly)) {
-			QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
 			if (suffix == "odt") {
 				QTextDocumentWriter writer(&file, "ODT");
 				saved = writer.write(m_text->document());
