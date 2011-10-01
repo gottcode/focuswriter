@@ -13,7 +13,7 @@ Package: focuswriter
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: hunspell-dictionary, myspell-dictionary
-Description: A fullscreen, distraction-free writing program
+Description: Fullscreen distraction-free writing program
  Focuswriter is a fullscreen writing program designed to be
  distraction free.  You can customize your environment by changing the
  font, colors, and background image to add ambiance.  FocusWriter
