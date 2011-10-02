@@ -1,3 +1,6 @@
+2011-10-02 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not load file stats when loading file.
+
 2011-08-19 Graeme Gott <graeme@gottcode.org>
 	* Speed up file loading.
 

@@ -949,10 +949,10 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 			}
 		}
 	}
-	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
+	Document* document = new Document(m_current_wordcount, m_current_time, this);
 	m_documents->addDocument(document);
 	document->loadTheme(m_sessions->current()->theme());
-	document->loadFile(datafile, m_save_positions ? position : -1);
+	document->loadFile(file, datafile, m_save_positions ? position : -1);
 	if (datafile != file) {
 		document->text()->document()->setModified(!compareFiles(file, datafile));
 		QFile::remove(datafile);
