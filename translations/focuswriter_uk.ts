@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs" sourcelanguage="en">
+<TS version="2.0" language="uk" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="61"/>
         <source>Close (Ctrl+D)</source>
-        <translation>Zavřít (Ctrl+D)</translation>
+        <translation>Закрити (Ctrl+D)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="158"/>
         <source>Collapse</source>
-        <translation>Složit</translation>
+        <translation>Згорнути</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="162"/>
         <source>Expand</source>
-        <translation>Rozbalit</translation>
+        <translation>Розгорнути</translation>
     </message>
 </context>
 <context>
@@ -37,54 +37,54 @@
         <location filename="../src/document.cpp" line="339"/>
         <location filename="../src/document.cpp" line="349"/>
         <source>Sorry</source>
-        <translation>Promiňte</translation>
+        <translation>На жаль</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="190"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Nelze uložit &apos;%1&apos;.</translation>
+        <translation>Не вдалось зберегти &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="203"/>
         <location filename="../src/document.cpp" line="493"/>
         <source>Save File As</source>
-        <translation>Uložit soubor jako</translation>
+        <translation>Зберегти файл як</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="207"/>
         <location filename="../src/document.cpp" line="239"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Nelze přepsat &apos;%1&apos;.</translation>
+        <translation>Не вдалось перезаписати &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="235"/>
         <source>Rename File</source>
-        <translation>Přejmenovat soubor</translation>
+        <translation>Перейменувати файл</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="243"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Nelze přejmenovat &apos;%1&apos;.</translation>
+        <translation>Не вдалось перейменувати &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="826"/>
         <source>Plain Text (*.txt)</source>
-        <translation>Prostý text (*.txt)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="827"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation>OpenDocument Text (*.odt)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="828"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>Text s formátováním (*.rtf)</translation>
+        <translation>Форматований текст (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="829"/>
         <source>All Files (*)</source>
-        <translation>Všechny soubory (*)</translation>
+        <translation>Всі файли (*)</translation>
     </message>
 </context>
 <context>
@@ -92,75 +92,75 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="43"/>
         <source>Search for:</source>
-        <translation>Hledat:</translation>
+        <translation>Знайти:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Replace with:</source>
-        <translation>Nahradit:</translation>
+        <translation>Замінити на:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Ignore case</source>
-        <translation>Nevšímat si velikosti písmen</translation>
+        <translation>Ігнорувати регістр</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="50"/>
         <source>Whole words only</source>
-        <translation>Pouze celá slova</translation>
+        <translation>Лише повні слова</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Search up</source>
-        <translation>Hledat nahoru</translation>
+        <translation>Пошук уверх</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Search down</source>
-        <translation>Hledat dolů</translation>
+        <translation>Пошук вниз</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="60"/>
         <location filename="../src/find_dialog.cpp" line="127"/>
         <source>Find</source>
-        <translation>Najít</translation>
+        <translation>Знайти</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <location filename="../src/find_dialog.cpp" line="135"/>
         <source>Replace</source>
-        <translation>Nahradit</translation>
+        <translation>Замінити</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>Replace All</source>
-        <translation>Nahradit vše</translation>
+        <translation>Замінити все</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="207"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Nahradit jeden případ?</numerusform>
-            <numerusform>Nahradit %n případy?</numerusform>
-            <numerusform>Nahradit %n případů?</numerusform>
+            <numerusform>Замінити %n примірник?</numerusform>
+            <numerusform>Замінити %n примірники?</numerusform>
+            <numerusform>Замінити %n примірників?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="207"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запит</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="211"/>
         <location filename="../src/find_dialog.cpp" line="260"/>
         <source>Sorry</source>
-        <translation>Promiňte</translation>
+        <translation>На жаль</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="211"/>
         <location filename="../src/find_dialog.cpp" line="260"/>
         <source>Phrase not found.</source>
-        <translation>Slovní spojení nebylo nenalezeno.</translation>
+        <translation>Фраза не знайдена.</translation>
     </message>
 </context>
 <context>
@@ -168,17 +168,17 @@
     <message>
         <location filename="../src/highlighter.cpp" line="45"/>
         <source>Add</source>
-        <translation>Přidat</translation>
+        <translation>Додати</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="46"/>
         <source>Check Spelling...</source>
-        <translation>Ověření pravopisu...</translation>
+        <translation>Перевірка правопису...</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="114"/>
         <source>(No suggestions found)</source>
-        <translation>(Nebyly nalezeny žádné návrhy)</translation>
+        <translation>(Пропозицій не знайдено)</translation>
     </message>
 </context>
 <context>
@@ -186,12 +186,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Open Image</source>
-        <translation>Otevřít obrázek</translation>
+        <translation>Відкрити зображення</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Images(%1)</source>
-        <translation>Obrázky (%1)</translation>
+        <translation>Зображень(%1)</translation>
     </message>
 </context>
 <context>
@@ -199,22 +199,22 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="99"/>
         <source>Select application language:</source>
-        <translation>Vybrat jazyk programu:</translation>
+        <translation>Виберіть мову програми:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="102"/>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Jazyk systému&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="196"/>
         <source>Note</source>
-        <translation>Poznámka</translation>
+        <translation>Примітка</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="196"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Spusťte program znovu, aby se změna jazyka projevila.</translation>
+        <translation>Перезапустіть програму, щоб зміна мови набрала чинності.</translation>
     </message>
 </context>
 <context>
@@ -222,302 +222,302 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="83"/>
         <source>Preferences</source>
-        <translation>Nastavení</translation>
+        <translation>Параметри</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="86"/>
         <source>General</source>
-        <translation>Obecné</translation>
+        <translation>Загальне</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="87"/>
         <source>Statistics</source>
-        <translation>Statistika</translation>
+        <translation>Статистика</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="88"/>
         <source>Toolbar</source>
-        <translation>Nástrojový pruh</translation>
+        <translation>Панель інструментів</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="89"/>
         <source>Spell Checking</source>
-        <translation>Ověření správného psaní</translation>
+        <translation>Перевірка правопису</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="370"/>
         <source>Select Dictionary</source>
-        <translation>Vybrat slovník</translation>
+        <translation>Вибрати словник</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="384"/>
         <location filename="../src/preferences_dialog.cpp" line="478"/>
         <source>Sorry</source>
-        <translation>Promiňte</translation>
+        <translation>На жаль</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="384"/>
         <source>Unable to open archive.</source>
-        <translation>Nelze otevřít archiv.</translation>
+        <translation>Не вдалось відкрити архів.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="392"/>
         <source>Unable to read archive metadata.</source>
-        <translation>Nelze přečíst metadata archivu.</translation>
+        <translation>Не вдалось прочитати метадані архіву.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="418"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Archiv neobsahuje použitelný slovník.</translation>
+        <translation>Архів не містить придатного словника.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="433"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Nelze otevřít soubor &apos;%1&apos;.</translation>
+        <translation>Не вдалось відкрити файл &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="444"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Nelze zavřít soubor &apos;%1&apos;.</translation>
+        <translation>Не вдалось закрити файл &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="464"/>
         <location filename="../src/preferences_dialog.cpp" line="493"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запитання</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="464"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Slovník &quot;%1&quot; již existuje. Chcete jej nahradit?</translation>
+        <translation>Словник &quot;%1&quot; вже є. Хочете замінити його?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="493"/>
         <source>Remove current dictionary?</source>
-        <translation>Odstranit současný slovník?</translation>
+        <translation>Вилучити чинний словник?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="554"/>
         <source>Daily Goal</source>
-        <translation>Denní cíl</translation>
+        <translation>Щоденні завдання</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="556"/>
         <source>None</source>
-        <translation>Žádný</translation>
+        <translation>Немає</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>Minutes:</source>
-        <translation>Minuty:</translation>
+        <translation>Хвилин:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="570"/>
         <location filename="../src/preferences_dialog.cpp" line="688"/>
         <source>Words:</source>
-        <translation>Slova:</translation>
+        <translation>Слів:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="588"/>
         <source>Editing</source>
-        <translation>Úpravy</translation>
+        <translation>Редагування</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="590"/>
         <source>Always vertically center</source>
-        <translation>Umístit vždy svisle do středu</translation>
+        <translation>Завжди центрувати вертикально</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="591"/>
         <source>Block insertion cursor</source>
-        <translation>Ukazovátko vkládání bloku</translation>
+        <translation>Блокувати курсор вставки</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="592"/>
         <source>Default to rich text</source>
-        <translation>Jako výchozí text s formátováním</translation>
+        <translation>Типово форматований текст</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="593"/>
         <source>Smooth fonts</source>
-        <translation>Vyhlazená písma</translation>
+        <translation>Згладжені шрифти</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="594"/>
         <source>Typewriter sounds</source>
-        <translation>Zvuky psacího stroje</translation>
+        <translation>Звуки друкарської машинки</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="596"/>
         <source>Smart quotes:</source>
-        <translation>Chytré uvozovky:</translation>
+        <translation>Прямі лапки:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="603"/>
         <source>Double</source>
-        <translation>dvojité</translation>
+        <translation>Подвійні</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="604"/>
         <source>Single</source>
-        <translation>jednoduché</translation>
+        <translation>Одинарні</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="626"/>
         <source>Saving</source>
-        <translation>Ukládání</translation>
+        <translation>Збереження</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="628"/>
         <source>Automatically save changes</source>
-        <translation>Automaticky uložit změny</translation>
+        <translation>Зміни зберігати автоматично</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="629"/>
         <source>Remember cursor position</source>
-        <translation>Zapamatovat si polohu ukazovátka</translation>
+        <translation>Пам&apos;ятати позицію курсору</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="652"/>
         <source>Contents</source>
-        <translation>Obsah</translation>
+        <translation>Вміст</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="654"/>
         <source>Word count</source>
-        <translation>Počet slov</translation>
+        <translation>Кількість слів</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="655"/>
         <source>Page count</source>
-        <translation>Počet stran</translation>
+        <translation>Кількість сторінок</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="656"/>
         <source>Paragraph count</source>
-        <translation>Počet odstavců</translation>
+        <translation>Кількість абзаців</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="657"/>
         <source>Character count</source>
-        <translation>Počet znaků</translation>
+        <translation>Кількість символів</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="666"/>
         <source>Page Size</source>
-        <translation>Velikost strany</translation>
+        <translation>Розмір сторінки</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="668"/>
         <source>Characters:</source>
-        <translation>Znaky:</translation>
+        <translation>Символів:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>Paragraphs:</source>
-        <translation>Odstavce:</translation>
+        <translation>Абзаців:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="704"/>
         <source>Word Count Algorithm</source>
-        <translation>Algoritmus pro počítání slov</translation>
+        <translation>Алгоритм підрахунку слів</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="706"/>
         <source>Detect word boundaries</source>
-        <translation>Zjistit hranice slov</translation>
+        <translation>Визначати межі слова</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="707"/>
         <source>Divide character count by six</source>
-        <translation>Vydělit počet znaků šesti</translation>
+        <translation>Ділити кількість символів на шість</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="730"/>
         <source>Style</source>
-        <translation>Styl</translation>
+        <translation>Стиль</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="733"/>
         <source>Icons Only</source>
-        <translation>Pouze ikony</translation>
+        <translation>Лише значки</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="734"/>
         <source>Text Only</source>
-        <translation>Pouze text</translation>
+        <translation>Лише текст</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="735"/>
         <source>Text Alongside Icons</source>
-        <translation>Text vedle ikon</translation>
+        <translation>Текст біля значків</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="736"/>
         <source>Text Under Icons</source>
-        <translation>Text pod ikonami</translation>
+        <translation>Текст під значками</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="740"/>
         <source>Text Position:</source>
-        <translation>Poloha textu:</translation>
+        <translation>Розташування тексту:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="743"/>
         <source>Actions</source>
-        <translation>Činnosti</translation>
+        <translation>Дії</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
         <source>Move Up</source>
-        <translation>Posunout nahoru</translation>
+        <translation>Перемістити уверх</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="758"/>
         <source>Move Down</source>
-        <translation>Posunout dolů</translation>
+        <translation>Перемістити вниз</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="760"/>
         <source>Add Separator</source>
-        <translation>Přidat oddělovač</translation>
+        <translation>Додати розділювач</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="789"/>
         <source>Check spelling as you type</source>
-        <translation>Ověřování pravopisu během psaní</translation>
+        <translation>Перевіряти правопис під час введення</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="790"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Nevšímat si slov psaných VELKÝMI PÍSMENY</translation>
+        <translation>Ігнорувати слова у ВЕРХНЬОМУ регістрі</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="791"/>
         <source>Ignore words with numbers</source>
-        <translation>Nevšímat si slov s čísly</translation>
+        <translation>Ігнорувати слова з цифрами</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="800"/>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation>Мова</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
         <location filename="../src/preferences_dialog.cpp" line="830"/>
         <source>Add</source>
-        <translation>Přidat</translation>
+        <translation>Додати</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="808"/>
         <location filename="../src/preferences_dialog.cpp" line="842"/>
         <source>Remove</source>
-        <translation>Odstranit</translation>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="825"/>
         <source>Personal Dictionary</source>
-        <translation>Osobní slovník</translation>
+        <translation>Особистий словник</translation>
     </message>
 </context>
 <context>
@@ -526,22 +526,22 @@
         <location filename="../src/rtf/reader.cpp" line="218"/>
         <location filename="../src/rtf/reader.cpp" line="222"/>
         <source>Not a supported RTF file.</source>
-        <translation>To nie jest obsługiwany plik RTF.</translation>
+        <translation>Не підтримуваний файл RTF.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
         <source>Unable to open archive.</source>
-        <translation>Nelze otevřít archiv.</translation>
+        <translation type="unfinished">Не вдалось відкрити архів.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Nelze otevřít soubor &apos;%1&apos;.</translation>
+        <translation type="unfinished">Не вдалось відкрити файл &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Nelze zavřít soubor &apos;%1&apos;.</translation>
+        <translation type="unfinished">Не вдалось закрити файл &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -554,7 +554,7 @@
         <location filename="../src/session_manager.cpp" line="376"/>
         <location filename="../src/session_manager.cpp" line="379"/>
         <source>Default</source>
-        <translation>Výchozí</translation>
+        <translation>Типово</translation>
     </message>
 </context>
 <context>
@@ -562,82 +562,82 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Spravovat sezení</translation>
+        <translation>Керування сеансами</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>S&amp;ezení</translation>
+        <translation>С&amp;анси</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Nové</translation>
+        <translation>Новий</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
         <source>Rename</source>
-        <translation>Přejmenovat</translation>
+        <translation>Перейменувати</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>Klonovat</translation>
+        <translation>Клонувати</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
         <source>Delete</source>
-        <translation>Smazat</translation>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Přepnout na</translation>
+        <translation>Перейти</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
         <source>New Session</source>
-        <translation>Nové sezení</translation>
+        <translation>Новий сеанс</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>Klonovat sezení</translation>
+        <translation>Клонувати сеанс</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
         <source>Rename Session</source>
-        <translation>Přejmenovat sezení</translation>
+        <translation>Перейменувати сеанс</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запит</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>Smazat vybrané sezení?</translation>
+        <translation>Вилучити вибраний сеанс?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="354"/>
         <source>Session name:</source>
-        <translation>Název sezení:</translation>
+        <translation>Назва сеансу:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
         <source>Sorry</source>
-        <translation>Promiňte</translation>
+        <translation>На жаль</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
         <source>The requested session name is already in use.</source>
-        <translation>Požadovaný název sezení se již používá.</translation>
+        <translation>Така назва сеансу вже є.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
         <source>&amp;New...</source>
-        <translation>&amp;Nové...</translation>
+        <translation>&amp;Новий ...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
@@ -647,7 +647,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
         <source>&amp;Manage...</source>
-        <translation>&amp;Spravovat...</translation>
+        <translation>&amp;Керування...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
@@ -660,12 +660,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="113"/>
         <source>Replacing quotation marks...</source>
-        <translation>Nahrazují se uvozovky...</translation>
+        <translation>Заміна лапок...</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="114"/>
         <source>Please Wait</source>
-        <translation>Počkejte, prosím</translation>
+        <translation>Будь ласка, зачекайте</translation>
     </message>
 </context>
 <context>
@@ -673,62 +673,62 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="129"/>
         <source>Check Spelling</source>
-        <translation>Ověření pravopisu</translation>
+        <translation>Перевірка правопису</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>Add</source>
-        <translation>Přidat</translation>
+        <translation>Додати</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>Ignore</source>
-        <translation>Nevšímat si</translation>
+        <translation>Пропустити</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>Ignore All</source>
-        <translation>Přehlížet vše</translation>
+        <translation>Пропустити все</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>Change</source>
-        <translation>Změnit</translation>
+        <translation>Замінити</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>Change All</source>
-        <translation>Změnit vše</translation>
+        <translation>Замінити все</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
         <source>Not in dictionary:</source>
-        <translation>Ne ve slovníku:</translation>
+        <translation>Немає в словнику:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="175"/>
         <source>Change to:</source>
-        <translation>Změnit na:</translation>
+        <translation>Змінити на:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>Ověřuje se pravopis...</translation>
+        <translation>Перевірка правопису ...</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>Počkejte, prosím</translation>
+        <translation>Будь ласка, зачекайте</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="258"/>
         <source>Spell check complete.</source>
-        <translation>Ověření správného psaní je hotovo.</translation>
+        <translation>Перевірку правопису завершено.</translation>
     </message>
 </context>
 <context>
@@ -736,12 +736,12 @@
     <message>
         <location filename="../src/stack.cpp" line="406"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запит</translation>
     </message>
     <message>
         <location filename="../src/stack.cpp" line="406"/>
         <source>Remove all formatting from the current file?</source>
-        <translation>Odstranit veškeré formátování z nynějšího souboru?</translation>
+        <translation>Вилучити форматування з цього файла?</translation>
     </message>
 </context>
 <context>
@@ -749,7 +749,7 @@
     <message>
         <location filename="../src/theme.cpp" line="104"/>
         <source>Untitled %1</source>
-        <translation>Bez názvu %1</translation>
+        <translation>Без назви %1</translation>
     </message>
 </context>
 <context>
@@ -757,81 +757,81 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="45"/>
         <source>Modify Theme</source>
-        <translation>Upravit podobu</translation>
+        <translation>Змінити тему</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="55"/>
         <source>Name:</source>
-        <translation>Název:</translation>
+        <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="63"/>
         <source>Background</source>
-        <translation>Pozadí</translation>
+        <translation>Фон</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>No Image</source>
-        <translation>Žádný obrázek</translation>
+        <translation>Немає зображення</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>Tiled</source>
-        <translation>Vydlážděno</translation>
+        <translation>Замостити</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Centered</source>
-        <translation>Vystředěno</translation>
+        <translation>По центру</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Stretched</source>
-        <translation>Roztaženo</translation>
+        <translation>Розтягнути</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>Scaled</source>
-        <translation>Změněno měřítko</translation>
+        <translation>Масштабувати</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="66"/>
         <source>Zoomed</source>
-        <translation>Přiblíženo</translation>
+        <translation>Наблизити</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="78"/>
         <source>Remove</source>
-        <translation>Odstranit</translation>
+        <translation>Віддалити</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="90"/>
         <source>Type:</source>
-        <translation>Typ:</translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="91"/>
         <location filename="../src/theme_dialog.cpp" line="154"/>
         <location filename="../src/theme_dialog.cpp" line="193"/>
         <source>Color:</source>
-        <translation>Barva:</translation>
+        <translation>Колір:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="92"/>
         <source>Image:</source>
-        <translation>Obrázek:</translation>
+        <translation>Зображення:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="97"/>
         <source>Foreground</source>
-        <translation>Popředí</translation>
+        <translation>Передній план</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="108"/>
         <source>Opacity</source>
-        <translation>Neprůhlednost</translation>
+        <translation>Непрозорість</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
@@ -839,62 +839,62 @@
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <source> pixels</source>
-        <translation> pixelů</translation>
+        <translation> пікселів</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Left</source>
-        <translation>Zarovnáno vlevo</translation>
+        <translation>Ліворуч</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Right</source>
-        <translation>Zarovnáno vpravo</translation>
+        <translation>Праворуч</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="120"/>
         <source>Position</source>
-        <translation>Poloha</translation>
+        <translation>Позиція</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="155"/>
         <source>Size:</source>
-        <translation>Šířka:</translation>
+        <translation>Розмір:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="156"/>
         <source>Rounding:</source>
-        <translation>Zaoblení:</translation>
+        <translation>Заокруглення:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="157"/>
         <source>Margin:</source>
-        <translation>Okraj:</translation>
+        <translation>Зовнішні краї:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="158"/>
         <source>Padding:</source>
-        <translation>Odstup:</translation>
+        <translation>Заповнення:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="163"/>
         <source>Text</source>
-        <translation>Text</translation>
+        <translation>Текст</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="194"/>
         <source>Font:</source>
-        <translation>Písmo:</translation>
+        <translation>Шрифт:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="195"/>
         <source>Misspelled:</source>
-        <translation>Špatně napsáno:</translation>
+        <translation>З помилкою:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="347"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Šourající se ježek něco říká žluté včelce</translation>
+        <translation>Жебракують філософи при ґанку церкви в Гадячі, ще й шатро їхнє п’яне знаємо</translation>
     </message>
 </context>
 <context>
@@ -902,73 +902,73 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="45"/>
         <source>Themes</source>
-        <translation>Podoby</translation>
+        <translation>Теми</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="71"/>
         <source>Add</source>
-        <translation>Přidat</translation>
+        <translation>Додати</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="75"/>
         <source>Modify</source>
-        <translation>Pozměnit</translation>
+        <translation>Змінити</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="79"/>
         <source>Remove</source>
-        <translation>Odstranit</translation>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="83"/>
         <source>Import</source>
-        <translation>Zavést</translation>
+        <translation>Імпортувати</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="87"/>
         <source>Export</source>
-        <translation>Vyvést</translation>
+        <translation>Експортувати</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="91"/>
         <source>Close</source>
-        <translation>Zavřít</translation>
+        <translation>Закрити</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="181"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запитання</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="181"/>
         <source>Remove selected theme?</source>
-        <translation>Odstranit vybranou podobu?</translation>
+        <translation>Вилучити вибрану тему?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Import Theme</source>
-        <translation>Zavést podobu</translation>
+        <translation>Імпортувати тему</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="194"/>
         <location filename="../src/theme_manager.cpp" line="248"/>
         <source>Themes (*.theme)</source>
-        <translation>Podoby (*.theme)</translation>
+        <translation>Теми (*.theme)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="203"/>
         <source>Sorry</source>
-        <translation>Promiňte</translation>
+        <translation>На жаль</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="203"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Podoba s tímto názvem již existuje. Zadejte, prosím, nový název:</translation>
+        <translation>Тема з такою назвою вже є. Введіть нову назву:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="248"/>
         <source>Export Theme</source>
-        <translation>Vyvést podobu</translation>
+        <translation>Експортувати тему</translation>
     </message>
 </context>
 <context>
@@ -981,52 +981,52 @@
     <message>
         <location filename="../src/timer.cpp" line="339"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запитання</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="339"/>
         <source>Delete timer?</source>
-        <translation>Smazat časomíru?</translation>
+        <translation>Вилучити таймер?</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="354"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Slova:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Слів:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Strany:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Сторінок:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Odstavce:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Абзаців:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Znaky:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;Символів:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="401"/>
         <source>Set Delay</source>
-        <translation>Nastavit zpoždění</translation>
+        <translation>Затримка</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Time</source>
-        <translation>Nastavit čas</translation>
+        <translation>Час</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="405"/>
         <source>Delay:</source>
-        <translation>Zpoždění:</translation>
+        <translation>Затримка:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="408"/>
         <source>Time:</source>
-        <translation>Čas:</translation>
+        <translation>Час:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="417"/>
@@ -1036,27 +1036,27 @@
     <message>
         <location filename="../src/timer.cpp" line="430"/>
         <source>Alarm</source>
-        <translation>Budík</translation>
+        <translation>Сигнал</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="443"/>
         <source>Type:</source>
-        <translation>Typ:</translation>
+        <translation>Тип:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="447"/>
         <source>Memo:</source>
-        <translation>Zpráva:</translation>
+        <translation>Для довідки:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="458"/>
         <source>Edit</source>
-        <translation>Upravit</translation>
+        <translation>Змінити</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="460"/>
         <source>Delete</source>
-        <translation>Smazat</translation>
+        <translation>Вилучити</translation>
     </message>
 </context>
 <context>
@@ -1069,7 +1069,7 @@
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>Neběží žádná časomíra</translation>
+        <translation>Таймери не працюють</translation>
     </message>
 </context>
 <context>
@@ -1077,27 +1077,27 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>Časomíry</translation>
+        <translation>Таймери</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>Nová</translation>
+        <translation>Новий</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation>Naposledy použitá</translation>
+        <translation>Останні</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запитання</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>Zrušit časomíry pro úpravy?</translation>
+        <translation>Скасувати змінені таймери?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1115,7 +1115,7 @@
     <message>
         <location filename="../src/rtf/tokenizer.cpp" line="166"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Niespodziewanie osiągnięto koniec pliku.</translation>
+        <translation>Несподівано завершився файл.</translation>
     </message>
 </context>
 <context>
@@ -1123,241 +1123,241 @@
     <message>
         <location filename="../src/window.cpp" line="132"/>
         <source>Words: 0</source>
-        <translation>Slova: 0</translation>
+        <translation>Слів: 0</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="133"/>
         <source>Pages: 0</source>
-        <translation>Strany: 0</translation>
+        <translation>Сторінок: 0</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="134"/>
         <source>Paragraphs: 0</source>
-        <translation>Odstavce: 0</translation>
+        <translation>Абзаців: 0</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="135"/>
         <source>Characters: 0</source>
-        <translation>Znaky: 0</translation>
+        <translation>Символів: 0</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="136"/>
         <source>0% of daily goal</source>
-        <translation>0% z denního cíle</translation>
+        <translation>0% щоденного завдання</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="226"/>
         <source>Loading themes</source>
-        <translation>Nahrávají se podoby</translation>
+        <translation>Завантаження тем</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1011"/>
         <source>Loading sounds</source>
-        <translation>Nahrávají se zvuky</translation>
+        <translation>Завантаження звуків</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="232"/>
         <location filename="../src/window.cpp" line="967"/>
         <source>Untitled</source>
-        <translation>Bez názvu</translation>
+        <translation>Без назви</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="361"/>
         <location filename="../src/window.cpp" line="426"/>
         <source>Sorry</source>
-        <translation>Promiňte</translation>
+        <translation>На жаль</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="436"/>
         <source>Note</source>
-        <translation>Notiz</translation>
+        <translation>Примітка</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="591"/>
         <source>Open File</source>
-        <translation>Otevřít soubor</translation>
+        <translation>Відкрити файл</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="752"/>
         <source>About FocusWriter</source>
-        <translation>O programu FocusWriter</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="752"/>
-        <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Jednoduchý celoobrazovkový textový editor&lt;br/&gt;&lt;small&gt;Autorské právo &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Vydáno pod povolením &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Používá &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Použito pod povolením &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Používá ikony z &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; téma ikon&lt;br/&gt;&lt;small&gt;Použito pod povolením &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>Про FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="815"/>
         <source>Characters: %L1 / %L2</source>
-        <translation>Znaky: %L1 / %L2</translation>
+        <translation>Символів: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="816"/>
         <source>Pages: %L1</source>
-        <translation>Strany: %L1</translation>
+        <translation>Сторінок: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="817"/>
         <source>Paragraphs: %L1</source>
-        <translation>Odstavce: %L1</translation>
+        <translation>Абзаців: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="818"/>
         <source>Words: %L1</source>
-        <translation>Slova: %L1</translation>
+        <translation>Слів: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="880"/>
         <source>%1% of daily goal</source>
-        <translation>%1% z denního cíle</translation>
+        <translation>%1% щоденного завдання</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="920"/>
         <source>Opening %1</source>
-        <translation>Otevírá se %1</translation>
+        <translation>Відкривання %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="993"/>
         <source>Question</source>
-        <translation>Otázka</translation>
+        <translation>Запитання</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="993"/>
         <source>Save changes?</source>
-        <translation>Uložit změny?</translation>
+        <translation>Зберегти зміни?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="288"/>
         <location filename="../src/window.cpp" line="1102"/>
         <source>(Untitled %1)</source>
-        <translation>(Bez názvu %1)</translation>
+        <translation>(Без назви %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="221"/>
         <source>Loading settings</source>
-        <translation>Nahrávají se nastavení</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="240"/>
         <source>Emergency cache is not writable.</source>
-        <translation>Pohotovostní vyrovnávací paměť není zapisovatelná</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="295"/>
         <location filename="../src/window.cpp" line="937"/>
         <source>Warning</source>
-        <translation>Varování</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="296"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter nebyl vypnut čistě.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="297"/>
         <source>Restore from the emergency cache?</source>
-        <translation>Obnovit z pohotovostní vyrovnávací paměti?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="362"/>
         <source>Some files are unsupported and will not be opened.</source>
-        <translation>Některé soubory nejsou podporovány a nebudou otevřeny.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="427"/>
         <source>Some files could not be opened.</source>
-        <translation>Některé soubory se nepodařilo otevřít.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="437"/>
         <source>Some files were opened Read-Only.</source>
-        <translation>Některé soubory byly otevřeny pouze pro čtení.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="591"/>
         <source>Text Files (%1);;All Files (*)</source>
-        <translation>Textové soubory (%1);;Všechny soubory (*)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="752"/>
+        <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="938"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; je novější než kopie ve vyrovnávací paměti.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="939"/>
         <source>Overwrite newer file?</source>
-        <translation>Přepsat novější soubor?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1017"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Nelze nahrát zvuky psacího stroje.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1105"/>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (Pouze pro čtení)</translation>
+        <translation>%1 (Лише для читання)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1150"/>
         <source>&amp;File</source>
-        <translation>&amp;Soubor</translation>
+        <translation>&amp;Файл</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1151"/>
         <source>&amp;New</source>
-        <translation>&amp;Nový</translation>
+        <translation>&amp;Новий</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1152"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Otevřít...</translation>
+        <translation>&amp;Відкрити...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1154"/>
         <source>&amp;Save</source>
-        <translation>&amp;Uložit</translation>
+        <translation>&amp;Зберегти</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1156"/>
         <source>Save &amp;As...</source>
-        <translation>Uložit &amp;jako...</translation>
+        <translation>Зберегти &amp;як...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1157"/>
         <source>&amp;Rename...</source>
-        <translation>Pře&amp;jmenovat...</translation>
+        <translation>&amp;Перейменувати...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1159"/>
         <source>Save A&amp;ll</source>
-        <translation>U&amp;ložit vše</translation>
+        <translation>Зберегти вс&amp;е</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1162"/>
         <source>Manage Sessions</source>
-        <translation>Spravovat sezení</translation>
+        <translation>Керування сеансами</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1164"/>
         <source>New Session</source>
-        <translation>Nové sezení</translation>
+        <translation>Новий сеанс</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1167"/>
         <source>&amp;Print...</source>
-        <translation>&amp;Tisk...</translation>
+        <translation>&amp;Друк...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1169"/>
         <source>&amp;Close</source>
-        <translation>&amp;Zavřít</translation>
+        <translation>За&amp;крити</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1170"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Ukončit</translation>
+        <translation>В&amp;ийти</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1170"/>
@@ -1367,62 +1367,62 @@
     <message>
         <location filename="../src/window.cpp" line="1174"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Úpravy</translation>
+        <translation>&amp;Змінити</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1175"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Zpět</translation>
+        <translation>&amp;Повернути</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1178"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Znovu</translation>
+        <translation>Пов&amp;торити</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1182"/>
         <source>Cu&amp;t</source>
-        <translation>Vyj&amp;mout</translation>
+        <translation>Виріза&amp;ти</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1185"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopírovat</translation>
+        <translation>Копі&amp;ювати</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1188"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Vložit</translation>
+        <translation>В&amp;ставити</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1190"/>
         <source>Select &amp;All</source>
-        <translation>Vybrat &amp;vše</translation>
+        <translation>Вибрати &amp;все</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1193"/>
         <source>Fo&amp;rmat</source>
-        <translation>&amp;Formát</translation>
+        <translation>&amp;Формат</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1195"/>
         <source>&amp;Bold</source>
-        <translation>&amp;Tučné</translation>
+        <translation>&amp;Напівжирний</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1197"/>
         <source>&amp;Italic</source>
-        <translation>&amp;Kurzíva</translation>
+        <translation>&amp;Курсив</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1199"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Podtržení</translation>
+        <translation>&amp;Підкреслений</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1201"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Přeškr&amp;tnutí</translation>
+        <translation>&amp;Закреслений</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1201"/>
@@ -1432,7 +1432,7 @@
     <message>
         <location filename="../src/window.cpp" line="1203"/>
         <source>Sup&amp;erscript</source>
-        <translation>&amp;Horní index</translation>
+        <translation>Верхній &amp;індекс</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1203"/>
@@ -1442,7 +1442,7 @@
     <message>
         <location filename="../src/window.cpp" line="1205"/>
         <source>&amp;Subscript</source>
-        <translation>&amp;Dolní index</translation>
+        <translation>Ни&amp;жній індекс</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1205"/>
@@ -1452,7 +1452,7 @@
     <message>
         <location filename="../src/window.cpp" line="1209"/>
         <source>Align &amp;Left</source>
-        <translation>Zarovnat &amp;vlevo</translation>
+        <translation>По &amp;лівому краю</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1209"/>
@@ -1462,7 +1462,7 @@
     <message>
         <location filename="../src/window.cpp" line="1211"/>
         <source>Align &amp;Center</source>
-        <translation>Zarovnat na &amp;střed</translation>
+        <translation>По &amp;центру</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1211"/>
@@ -1472,7 +1472,7 @@
     <message>
         <location filename="../src/window.cpp" line="1213"/>
         <source>Align &amp;Right</source>
-        <translation>Zarovnat vp&amp;ravo</translation>
+        <translation>По пр&amp;авому краю</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1213"/>
@@ -1482,7 +1482,7 @@
     <message>
         <location filename="../src/window.cpp" line="1215"/>
         <source>Align &amp;Justify</source>
-        <translation>Zarovnat do &amp;bloku</translation>
+        <translation>По &amp;ширині</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1215"/>
@@ -1492,7 +1492,7 @@
     <message>
         <location filename="../src/window.cpp" line="1225"/>
         <source>&amp;Decrease Indent</source>
-        <translation>Z&amp;menšit odsazení</translation>
+        <translation>&amp;Зменшити відступ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1225"/>
@@ -1502,7 +1502,7 @@
     <message>
         <location filename="../src/window.cpp" line="1226"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Zvětš&amp;it odsazení</translation>
+        <translation>З&amp;більшити відступ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1226"/>
@@ -1512,47 +1512,47 @@
     <message>
         <location filename="../src/window.cpp" line="1229"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Blok zl&amp;eva doprava</translation>
+        <translation>Фрагмент зліва напр&amp;аво</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1231"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Blok z&amp;prava doleva</translation>
+        <translation>Фрагмент справа нал&amp;іво</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1239"/>
         <source>&amp;Make Plain Text</source>
-        <translation>&amp;Udělat prostý text</translation>
+        <translation>Замінити на п&amp;ростий текст</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1240"/>
         <source>&amp;Make Rich Text</source>
-        <translation>&amp;Udělat text s formátováním</translation>
+        <translation>Замінити на &amp;форматований текст</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1244"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Nástroje</translation>
+        <translation>&amp;Інструменти</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1245"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Hledat...</translation>
+        <translation>&amp;Знайти...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1246"/>
         <source>Find &amp;Next</source>
-        <translation>Najít &amp;další</translation>
+        <translation>Знайти нас&amp;тупний</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1249"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Najít &amp;předchozí</translation>
+        <translation>Знайти п&amp;опередній</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1252"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;Nahradit...</translation>
+        <translation>За&amp;мінити...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1252"/>
@@ -1562,22 +1562,22 @@
     <message>
         <location filename="../src/window.cpp" line="1254"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Chytré &amp;uvozovky</translation>
+        <translation>Прямі &amp;лапки</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1255"/>
         <source>Update &amp;Document</source>
-        <translation>Obnovit &amp;dokument</translation>
+        <translation>Оновити &amp;документ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1256"/>
         <source>Update &amp;Selection</source>
-        <translation>Obnovit &amp;výběr</translation>
+        <translation>Оновити &amp;виділене</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1258"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Pravopis...</translation>
+        <translation>&amp;Перевірка правопису...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1258"/>
@@ -1587,27 +1587,27 @@
     <message>
         <location filename="../src/window.cpp" line="1259"/>
         <source>&amp;Timers...</source>
-        <translation>Časo&amp;míry...</translation>
+        <translation>&amp;Таймери...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1262"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Nastavení</translation>
+        <translation>&amp;Налаштування</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1263"/>
         <source>Show &amp;Toolbar</source>
-        <translation>Ukázat ná&amp;strojový pruh</translation>
+        <translation>Показати панель &amp;інструментів</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1267"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Ukázat &amp;nabídkové ikony</translation>
+        <translation>Показати значки мен&amp;ю</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1272"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Celá obrazovka</translation>
+        <translation>Н&amp;а повний екран</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1272"/>
@@ -1622,7 +1622,7 @@
     <message>
         <location filename="../src/window.cpp" line="1278"/>
         <source>M&amp;inimize</source>
-        <translation>&amp;Minimalizovat</translation>
+        <translation>&amp;Згорнути</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1278"/>
@@ -1632,32 +1632,32 @@
     <message>
         <location filename="../src/window.cpp" line="1280"/>
         <source>&amp;Themes...</source>
-        <translation>&amp;Podoby...</translation>
+        <translation>&amp;Теми...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1283"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Nastavení...</translation>
+        <translation>Пара&amp;метри...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1287"/>
         <source>&amp;Help</source>
-        <translation>&amp;Nápověda</translation>
+        <translation>&amp;Довідка</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1282"/>
         <source>Application &amp;Language...</source>
-        <translation>Jazyk &amp;programu...</translation>
+        <translation>Мова &amp;програми...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1288"/>
         <source>&amp;About</source>
-        <translation>&amp;O programu</translation>
+        <translation>&amp;Про програму</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1290"/>
         <source>About &amp;Qt</source>
-        <translation>O &amp;Qt</translation>
+        <translation>Про &amp;Qt</translation>
     </message>
 </context>
 </TS>

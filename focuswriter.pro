@@ -106,11 +106,14 @@ TRANSLATIONS = translations/focuswriter_cs.ts \
 	translations/focuswriter_en.ts \
 	translations/focuswriter_es.ts \
 	translations/focuswriter_es_MX.ts \
+	translations/focuswriter_fi.ts \
 	translations/focuswriter_fr.ts \
+	translations/focuswriter_it.ts \
 	translations/focuswriter_pl.ts \
 	translations/focuswriter_pt.ts \
 	translations/focuswriter_pt_BR.ts \
-	translations/focuswriter_ru.ts
+	translations/focuswriter_ru.ts \
+	translations/focuswriter_uk.ts
 
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
 macx {

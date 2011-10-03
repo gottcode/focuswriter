@@ -30,59 +30,59 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="215"/>
-        <location filename="../src/document.cpp" line="232"/>
-        <location filename="../src/document.cpp" line="264"/>
-        <location filename="../src/document.cpp" line="268"/>
+        <location filename="../src/document.cpp" line="190"/>
+        <location filename="../src/document.cpp" line="207"/>
+        <location filename="../src/document.cpp" line="239"/>
+        <location filename="../src/document.cpp" line="243"/>
         <location filename="../src/document.cpp" line="339"/>
         <location filename="../src/document.cpp" line="349"/>
         <source>Sorry</source>
         <translation>Désolé</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="215"/>
+        <location filename="../src/document.cpp" line="190"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Impossible d&apos;enregistrer « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="228"/>
-        <location filename="../src/document.cpp" line="490"/>
+        <location filename="../src/document.cpp" line="203"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Save File As</source>
         <translation>Enregistrer sous</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="232"/>
-        <location filename="../src/document.cpp" line="264"/>
+        <location filename="../src/document.cpp" line="207"/>
+        <location filename="../src/document.cpp" line="239"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Impossible d&apos;écraser « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="260"/>
+        <location filename="../src/document.cpp" line="235"/>
         <source>Rename File</source>
         <translation>Renommer le fichier</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="268"/>
+        <location filename="../src/document.cpp" line="243"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Impossible de renommer le fichier « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="823"/>
+        <location filename="../src/document.cpp" line="826"/>
         <source>Plain Text (*.txt)</source>
         <translation>Texte brut (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="824"/>
+        <location filename="../src/document.cpp" line="827"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="825"/>
+        <location filename="../src/document.cpp" line="828"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texte enrichi (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="826"/>
+        <location filename="../src/document.cpp" line="829"/>
         <source>All Files (*)</source>
         <translation>Tous les fichiers (*)</translation>
     </message>
