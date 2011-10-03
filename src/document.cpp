@@ -460,7 +460,9 @@ void Document::loadPreferences(const Preferences& preferences)
 	}
 
 	m_accurate_wordcount = preferences.accurateWordcount();
-	calculateWordCount();
+	if (m_cached_block_count != -1) {
+		calculateWordCount();
+	}
 
 	m_block_cursor = preferences.blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
