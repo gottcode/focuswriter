@@ -293,7 +293,12 @@ void Document::print()
 	printer.setPageMargins(0.5, 0.5, 0.5, 0.5, QPrinter::Inch);
 	QPrintDialog dialog(&printer, this);
 	if (dialog.exec() == QDialog::Accepted) {
+		bool enabled = m_highlighter->enabled();
+		m_highlighter->setEnabled(false);
 		m_text->print(&printer);
+		if (enabled) {
+			m_highlighter->setEnabled(true);
+		}
 	}
 }
 

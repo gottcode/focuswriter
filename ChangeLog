@@ -1,4 +1,5 @@
 2011-10-03 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Printed spellchecking highlights.
 	* FIXED: Did not load file stats when loading file.
 
 2011-08-19 Graeme Gott <graeme@gottcode.org>
