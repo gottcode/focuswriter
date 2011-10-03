@@ -79,7 +79,7 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Document::Document(int& current_wordcount, int& current_time, QWidget* parent)
+Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
 	m_cache_filename(randomCacheFilename()),
 	m_index(0),
@@ -123,6 +123,22 @@ Document::Document(int& current_wordcount, int& current_time, QWidget* parent)
 	m_highlighter = new Highlighter(m_text, m_dictionary);
 	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
+	// Set filename
+	bool unknown_rich_text = false;
+	if (!filename.isEmpty()) {
+		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+		m_rich_text = (suffix == "odt") || (suffix == "rtf");
+		m_filename = QFileInfo(filename).canonicalFilePath();
+		updateState();
+	}
+
+	if (m_filename.isEmpty()) {
+		findIndex();
+		unknown_rich_text = true;
+	} else {
+		m_text->setReadOnly(!QFileInfo(m_filename).isWritable());
+	}
+
 	// Set up scroll bar
 	m_scrollbar = m_text->verticalScrollBar();
 	m_scrollbar->setAttribute(Qt::WA_NoMousePropagation);
@@ -140,6 +156,14 @@ Document::Document(int& current_wordcount, int& current_time, QWidget* parent)
 	m_layout->setMargin(0);
 	m_layout->addWidget(m_text, 0, 1);
 	m_layout->addWidget(m_scrollbar, 0, 2, Qt::AlignRight);
+
+	// Load settings
+	Preferences preferences;
+	if (unknown_rich_text) {
+		m_rich_text = preferences.richText();
+	}
+	m_text->setAcceptRichText(m_rich_text);
+	loadPreferences(preferences);
 }
 
 //-----------------------------------------------------------------------------
@@ -275,39 +299,14 @@ void Document::print()
 
 //-----------------------------------------------------------------------------
 
-void Document::loadFile(const QString& filename, const QString& datafile, int position)
+void Document::loadFile(const QString& filename, int position)
 {
-	// Set filename
-	bool unknown_rich_text = false;
-	if (!filename.isEmpty()) {
-		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
-		m_rich_text = (suffix == "odt") || (suffix == "rtf");
-		m_filename = QFileInfo(filename).canonicalFilePath();
-		updateState();
-	}
-
-	if (m_filename.isEmpty()) {
-		findIndex();
-		unknown_rich_text = true;
-	} else {
-		m_text->setReadOnly(!QFileInfo(m_filename).isWritable());
-	}
-
-	// Load rich text settings
-	Preferences preferences;
-	if (unknown_rich_text) {
-		m_rich_text = preferences.richText();
-	}
-	m_text->setAcceptRichText(m_rich_text);
-
-	// Early exit out for empty files
-	if (datafile.isEmpty()) {
-		loadPreferences(preferences);
+	if (filename.isEmpty()) {
 		return;
 	}
 
 	// Cache contents
-	QFile::copy(datafile, g_cache_path + m_cache_filename);
+	QFile::copy(filename, g_cache_path + m_cache_filename);
 
 	// Load text area contents
 	QTextDocument* document = m_text->document();
@@ -316,7 +315,7 @@ void Document::loadFile(const QString& filename, const QString& datafile, int po
 
 	document->setUndoRedoEnabled(false);
 	if (!m_rich_text) {
-		QFile file(datafile);
+		QFile file(filename);
 		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&file);
 			stream.setCodec("UTF-8");
@@ -332,14 +331,14 @@ void Document::loadFile(const QString& filename, const QString& datafile, int po
 			file.close();
 		}
 	} else {
-		if (datafile.endsWith(".odt")) {
+		if (filename.endsWith(".odt")) {
 			ODT::Reader reader;
-			reader.read(datafile, document);
+			reader.read(filename, document);
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
 			}
-		} else if (datafile.endsWith(".rtf")) {
-			QFile file(datafile);
+		} else if (filename.endsWith(".rtf")) {
+			QFile file(filename);
 			if (file.open(QIODevice::ReadOnly)) {
 				RTF::Reader reader;
 				reader.read(&file, document);
@@ -367,9 +366,6 @@ void Document::loadFile(const QString& filename, const QString& datafile, int po
 	}
 	m_text->setTextCursor(cursor);
 	centerCursor(true);
-
-	// Load settings
-	loadPreferences(preferences);
 
 	// Update details
 	m_cached_stats.clear();
