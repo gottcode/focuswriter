@@ -39,6 +39,7 @@
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDate>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileOpenEvent>
 #include <QGridLayout>
@@ -588,12 +589,21 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), tr("Text Files (%1);;All Files (*)").arg("*.txt *.text *.odt *.rtf"));
+	static QString oldpath = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+	QString path = m_documents->currentDocument()->filename();
+	if (!path.isEmpty()) {
+		path = QFileInfo(path).dir().path();
+	} else {
+		path = oldpath;
+	}
+
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, tr("Text Files (%1);;All Files (*)").arg("*.txt *.text *.odt *.rtf"));
 	if (!filenames.isEmpty()) {
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();
 		}
 		addDocuments(filenames, filenames);
+		oldpath = QFileInfo(filenames.last()).dir().path();
 	}
 }
 

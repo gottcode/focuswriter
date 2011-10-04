@@ -1,3 +1,6 @@
+2011-10-04 Graeme Gott <graeme@gottcode.org>
+	* Improve open dialog start location.
+
 2011-10-03 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Printed spellchecking highlights.
 	* FIXED: Did not load file stats when loading file.
