@@ -307,6 +307,7 @@ void Document::print()
 void Document::loadFile(const QString& filename, int position)
 {
 	if (filename.isEmpty()) {
+		scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 		return;
 	}
 

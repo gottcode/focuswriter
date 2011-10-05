@@ -1,4 +1,5 @@
 2011-10-04 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Always vertically center did not work with new documents.
 	* Create default theme when launched.
 	* Improve open dialog start location.
 
