@@ -1,3 +1,6 @@
+2011-10-05 Graeme Gott <graeme@gottcode.org>
+	* Add support for copying RTF.
+
 2011-10-04 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Always vertically center did not work with new documents.
 	* Create default theme when launched.

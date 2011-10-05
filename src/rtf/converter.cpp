@@ -19,11 +19,7 @@
 
 #include "converter.h"
 
-#include "reader.h"
-#include "writer.h"
-
 #include <QBuffer>
-#include <QTextDocument>
 
 //-----------------------------------------------------------------------------
 
@@ -41,18 +37,7 @@ QList<QByteArray> RTF::Converter::convertFromMime(const QString &mime, QVariant 
 		return result;
 	}
 
-	// Parse HTML
-	QTextDocument document;
-	document.setHtml(data.toString());
-
-	// Convert to RTF
-	QByteArray rtf;
-	QBuffer buffer(&rtf);
-	buffer.open(QIODevice::WriteOnly);
-	RTF::Writer writer;
-	writer.write(&buffer, &document);
-
-	result.append(rtf);
+	result += data.toByteArray();
 	return result;
 }
 
@@ -64,18 +49,12 @@ QVariant RTF::Converter::convertToMime(const QString &mime, QList<QByteArray> da
 		return QVariant();
 	}
 
-	// Parse RTF
-	RTF::Reader reader;
-	QTextDocument document;
+	QByteArray result;
 	int count = data.count();
 	for (int i = 0; i < count; ++i) {
-		QBuffer buffer(&data[i]);
-		buffer.open(QIODevice::ReadOnly);
-		reader.read(&buffer, &document);
+		result += data[i];
 	}
-
-	// Convert to HTML
-	return document.toHtml();
+	return result;
 }
 
 //-----------------------------------------------------------------------------
@@ -89,7 +68,7 @@ QString RTF::Converter::convertorName()
 
 QString RTF::Converter::flavorFor(const QString &mime)
 {
-	if (mime == QLatin1String("text/html")) {
+	if (mime == QLatin1String("text/rtf")) {
 		return QLatin1String("public.rtf");
 	}
 	return QString();
@@ -100,7 +79,7 @@ QString RTF::Converter::flavorFor(const QString &mime)
 QString RTF::Converter::mimeFor(QString flavor)
 {
 	if (flavor == QLatin1String("public.rtf")) {
-		return QLatin1String("text/html");
+		return QLatin1String("text/rtf");
 	}
 	return QString();
 }

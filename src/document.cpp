@@ -33,6 +33,7 @@
 #include "rtf/writer.h"
 
 #include <QApplication>
+#include <QBuffer>
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
@@ -75,6 +76,64 @@ namespace
 		} while (dir.exists(filename));
 		return filename;
 	}
+
+	class TextEdit : public QTextEdit
+	{
+	public:
+		TextEdit(QWidget* parent = 0)
+			: QTextEdit(parent)
+		{
+		}
+
+	protected:
+		virtual bool canInsertFromMimeData(const QMimeData* source) const;
+		virtual QMimeData* createMimeDataFromSelection() const;
+		virtual void insertFromMimeData(const QMimeData* source);
+	};
+
+	bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
+	{
+		return QTextEdit::canInsertFromMimeData(source) || (source->hasFormat(QLatin1String("text/rtf")) && acceptRichText());
+	}
+
+	QMimeData* TextEdit::createMimeDataFromSelection() const
+	{
+		QMimeData* mime = QTextEdit::createMimeDataFromSelection();
+
+		// Parse HTML
+		QTextDocument document;
+		if (mime->hasHtml()) {
+			document.setHtml(mime->html());
+		} else {
+			document.setPlainText(mime->text());
+		}
+
+		// Convert to RTF
+		RTF::Writer writer;
+		QBuffer buffer;
+		buffer.open(QIODevice::WriteOnly);
+		writer.write(&buffer, &document);
+		buffer.close();
+		mime->setData(QLatin1String("text/rtf"), buffer.data());
+
+		return mime;
+	}
+
+	void TextEdit::insertFromMimeData(const QMimeData* source)
+	{
+		if (isReadOnly()) {
+			return;
+		}
+		if (source->hasFormat(QLatin1String("text/rtf")) && acceptRichText()) {
+			RTF::Reader reader;
+			QByteArray data = source->data(QLatin1String("text/rtf"));
+			QBuffer buffer(&data);
+			buffer.open(QIODevice::ReadOnly);
+			reader.read(&buffer, textCursor());
+		} else {
+			QTextEdit::insertFromMimeData(source);
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -103,7 +162,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(hideMouse()));
 
 	// Set up text area
-	m_text = new QTextEdit(this);
+	m_text = new TextEdit(this);
 	m_text->installEventFilter(this);
 	m_text->setMouseTracking(true);
 	m_text->setFrameStyle(QFrame::NoFrame);
@@ -347,7 +406,9 @@ void Document::loadFile(const QString& filename, int position)
 			QFile file(filename);
 			if (file.open(QIODevice::ReadOnly)) {
 				RTF::Reader reader;
-				reader.read(&file, document);
+				QTextCursor cursor(document);
+				cursor.movePosition(QTextCursor::End);
+				reader.read(&file, cursor);
 				m_codepage = reader.codePage();
 				file.close();
 				if (reader.hasError()) {

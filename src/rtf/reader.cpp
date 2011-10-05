@@ -195,17 +195,11 @@ bool RTF::Reader::hasError() const
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::read(QIODevice* device, QTextDocument* text)
+void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
 {
 	try {
 		// Open file
-		m_text = 0;
-		if (!m_cursor.isNull()) {
-			m_cursor = QTextCursor();
-		}
-		m_text = text;
-		m_cursor = QTextCursor(m_text);
-		m_cursor.movePosition(QTextCursor::End);
+		m_cursor = cursor;
 		m_cursor.beginEditBlock();
 		m_token.setDevice(device);
 		setBlockDirection(Qt::LeftToRight);

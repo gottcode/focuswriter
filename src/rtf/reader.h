@@ -43,7 +43,7 @@ namespace RTF
 		QString errorString() const;
 		bool hasError() const;
 
-		void read(QIODevice* device, QTextDocument* text);
+		void read(QIODevice* device, const QTextCursor& cursor);
 
 	private:
 		void endBlock(qint32);
@@ -94,7 +94,6 @@ namespace RTF
 
 		QString m_error;
 
-		QTextDocument* m_text;
 		QTextCursor m_cursor;
 	};
 }
