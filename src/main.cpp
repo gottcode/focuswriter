@@ -233,19 +233,20 @@ int main(int argc, char** argv)
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
 		QSettings settings;
 		Theme theme;
+		theme.setName(Session::tr("Default"));
 
-		theme.setBackgroundType(settings.value("Background/Position", 0).toInt());
-		theme.setBackgroundColor(settings.value("Background/Color", "#cccccc").toString());
+		theme.setBackgroundType(settings.value("Background/Position", theme.backgroundType()).toInt());
+		theme.setBackgroundColor(settings.value("Background/Color", theme.backgroundColor()).toString());
 		theme.setBackgroundImage(settings.value("Background/Image").toString());
 		settings.remove("Background");
 
-		theme.setForegroundColor(settings.value("Page/Color", "#cccccc").toString());
-		theme.setForegroundWidth(settings.value("Page/Width", 700).toInt());
-		theme.setForegroundOpacity(settings.value("Page/Opacity", 100).toInt());
+		theme.setForegroundColor(settings.value("Page/Color", theme.foregroundColor()).toString());
+		theme.setForegroundWidth(settings.value("Page/Width", theme.foregroundWidth()).toInt());
+		theme.setForegroundOpacity(settings.value("Page/Opacity", theme.foregroundOpacity()).toInt());
 		settings.remove("Page");
 
-		theme.setTextColor(settings.value("Text/Color", "#000000").toString());
-		theme.setTextFont(settings.value("Text/Font", QFont("Times New Roman").toString()).value<QFont>());
+		theme.setTextColor(settings.value("Text/Color", theme.textColor()).toString());
+		theme.setTextFont(settings.value("Text/Font", theme.textFont()).value<QFont>());
 		settings.remove("Text");
 
 		settings.setValue("ThemeManager/Theme", theme.name());
