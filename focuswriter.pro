@@ -22,11 +22,14 @@ macx {
 	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework hunspell -framework libzip
 
-	HEADERS += src/rtf/converter.h
-	SOURCES += src/rtf/converter.cpp
+	HEADERS += src/rtf/clipboard_mac.h
+	SOURCES += src/rtf/clipboard_mac.cpp
 } else:win32 {
 	INCLUDEPATH += hunspell libzip
-	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll
+	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
+
+	HEADERS += src/rtf/clipboard_windows.h
+	SOURCES += src/rtf/clipboard_windows.cpp
 } else {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell libzip

@@ -17,20 +17,20 @@
  *
  ***********************************************************************/
 
-#include "converter.h"
+#include "clipboard_mac.h"
 
 #include <QBuffer>
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Converter::canConvert(const QString &mime, QString flavor)
+bool RTF::Clipboard::canConvert(const QString &mime, QString flavor)
 {
 	return flavorFor(mime) == flavor;
 }
 
 //-----------------------------------------------------------------------------
 
-QList<QByteArray> RTF::Converter::convertFromMime(const QString &mime, QVariant data, QString flavor)
+QList<QByteArray> RTF::Clipboard::convertFromMime(const QString &mime, QVariant data, QString flavor)
 {
 	QList<QByteArray> result;
 	if (!canConvert(mime, flavor)) {
@@ -43,7 +43,7 @@ QList<QByteArray> RTF::Converter::convertFromMime(const QString &mime, QVariant 
 
 //-----------------------------------------------------------------------------
 
-QVariant RTF::Converter::convertToMime(const QString &mime, QList<QByteArray> data, QString flavor)
+QVariant RTF::Clipboard::convertToMime(const QString &mime, QList<QByteArray> data, QString flavor)
 {
 	if (!canConvert(mime, flavor)) {
 		return QVariant();
@@ -59,14 +59,14 @@ QVariant RTF::Converter::convertToMime(const QString &mime, QList<QByteArray> da
 
 //-----------------------------------------------------------------------------
 
-QString RTF::Converter::convertorName()
+QString RTF::Clipboard::convertorName()
 {
 	return QLatin1String("RichText");
 }
 
 //-----------------------------------------------------------------------------
 
-QString RTF::Converter::flavorFor(const QString &mime)
+QString RTF::Clipboard::flavorFor(const QString &mime)
 {
 	if (mime == QLatin1String("text/rtf")) {
 		return QLatin1String("public.rtf");
@@ -76,7 +76,7 @@ QString RTF::Converter::flavorFor(const QString &mime)
 
 //-----------------------------------------------------------------------------
 
-QString RTF::Converter::mimeFor(QString flavor)
+QString RTF::Clipboard::mimeFor(QString flavor)
 {
 	if (flavor == QLatin1String("public.rtf")) {
 		return QLatin1String("text/rtf");

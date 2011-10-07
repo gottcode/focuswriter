@@ -26,7 +26,7 @@
 #include <QTextCodec>
 #include <QTextDocument>
 
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WIN32
 #include <windows.h>
 #endif
 
@@ -35,7 +35,7 @@
 namespace
 {
 
-#ifndef Q_OS_WIN
+#ifndef Q_OS_WIN32
 
 QHash<QLocale::Language, QByteArray> mapCodePages()
 {

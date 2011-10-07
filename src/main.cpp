@@ -26,7 +26,10 @@
 #include "window.h"
 
 #ifdef Q_OS_MAC
-#include "rtf/converter.h"
+#include "rtf/clipboard_mac.h"
+#endif
+#ifdef Q_OS_WIN32
+#include "rtf/clipboard_windows.h"
 #endif
 
 #include <QApplication>
@@ -75,12 +78,16 @@ Application::Application(int& argc, char** argv)
 		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
 		setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
 	}
+
 #ifndef Q_WS_MAC
 	setAttribute(Qt::AA_DontUseNativeMenuBar);
 	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 #else
 	setAttribute(Qt::AA_DontShowIconsInMenus, true);
-	new RTF::Converter;
+#endif
+
+# if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
+	new RTF::Clipboard;
 #endif
 
 	qputenv("UNICODEMAP_JP", "cp932");
