@@ -89,6 +89,9 @@ namespace
 		virtual bool canInsertFromMimeData(const QMimeData* source) const;
 		virtual QMimeData* createMimeDataFromSelection() const;
 		virtual void insertFromMimeData(const QMimeData* source);
+
+	private:
+		QByteArray mimeToRtf(const QMimeData* source) const;
 	};
 
 	bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
@@ -99,23 +102,7 @@ namespace
 	QMimeData* TextEdit::createMimeDataFromSelection() const
 	{
 		QMimeData* mime = QTextEdit::createMimeDataFromSelection();
-
-		// Parse HTML
-		QTextDocument document;
-		if (mime->hasHtml()) {
-			document.setHtml(mime->html());
-		} else {
-			document.setPlainText(mime->text());
-		}
-
-		// Convert to RTF
-		RTF::Writer writer;
-		QBuffer buffer;
-		buffer.open(QIODevice::WriteOnly);
-		writer.write(&buffer, &document, false);
-		buffer.close();
-		mime->setData(QLatin1String("text/rtf"), buffer.data());
-
+		mime->setData(QLatin1String("text/rtf"), mimeToRtf(mime));
 		return mime;
 	}
 
@@ -124,15 +111,46 @@ namespace
 		if (isReadOnly()) {
 			return;
 		}
-		if (source->hasFormat(QLatin1String("text/rtf")) && acceptRichText()) {
+
+		if (acceptRichText()) {
+			QByteArray richtext;
+			if (source->hasFormat(QLatin1String("text/rtf"))) {
+				richtext = source->data(QLatin1String("text/rtf"));
+			} else if (source->hasHtml()) {
+				richtext = mimeToRtf(source);
+			} else {
+				QTextEdit::insertFromMimeData(source);
+				return;
+			}
+
 			RTF::Reader reader;
-			QByteArray data = source->data(QLatin1String("text/rtf"));
-			QBuffer buffer(&data);
+			QBuffer buffer(&richtext);
 			buffer.open(QIODevice::ReadOnly);
 			reader.read(&buffer, textCursor());
+			buffer.close();
 		} else {
 			QTextEdit::insertFromMimeData(source);
 		}
+	}
+
+	QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
+	{
+		// Parse HTML
+		QTextDocument document;
+		if (source->hasHtml()) {
+			document.setHtml(source->html());
+		} else {
+			document.setPlainText(source->text());
+		}
+
+		// Convert to RTF
+		RTF::Writer writer;
+		QBuffer buffer;
+		buffer.open(QIODevice::WriteOnly);
+		writer.write(&buffer, &document, false);
+		buffer.close();
+
+		return buffer.data();
 	}
 }
 
