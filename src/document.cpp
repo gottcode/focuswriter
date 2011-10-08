@@ -112,7 +112,7 @@ namespace
 		RTF::Writer writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
-		writer.write(&buffer, &document);
+		writer.write(&buffer, &document, false);
 		buffer.close();
 		mime->setData(QLatin1String("text/rtf"), buffer.data());
 

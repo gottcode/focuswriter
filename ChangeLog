@@ -1,3 +1,6 @@
+2011-10-08 Graeme Gott <graeme@gottcode.org>
+	* Remove extra newlines from RTF.
+
 2011-10-06 Graeme Gott <graeme@gottcode.org>
 	* Add Windows support for copying RTF.
 

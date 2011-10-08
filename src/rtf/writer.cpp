@@ -232,17 +232,17 @@ RTF::Writer::Writer(const QByteArray& codepage)
 
 	// Create header
 	switch (m_codec->mibEnum()) {
-	case -168: m_header = "{\\rtf1\\mac\\ansicpg10000\n\n"; break;
-	case 17: m_header = "{\\rtf1\\ansi\\ansicpg932\n\n"; break;
-	case 106: m_header = "{\\rtf1\\ansi\\ansicpg65001\n\n"; break;
-	case 2009: m_header = "{\\rtf1\\pca\\ansicpg850\n\n"; break;
-	default: m_header = "{\\rtf1\\ansi\\ansicpg" + m_codepage.mid(2) + "\n\n"; break;
+	case -168: m_header = "{\\rtf1\\mac\\ansicpg10000\n"; break;
+	case 17: m_header = "{\\rtf1\\ansi\\ansicpg932\n"; break;
+	case 106: m_header = "{\\rtf1\\ansi\\ansicpg65001\n"; break;
+	case 2009: m_header = "{\\rtf1\\pca\\ansicpg850\n"; break;
+	default: m_header = "{\\rtf1\\ansi\\ansicpg" + m_codepage.mid(2) + "\n"; break;
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Writer::write(QIODevice* device, QTextDocument* text)
+bool RTF::Writer::write(QIODevice* device, QTextDocument* text, bool full)
 {
 	if (m_codec == 0) {
 		return false;
@@ -274,7 +274,7 @@ bool RTF::Writer::write(QIODevice* device, QTextDocument* text)
 
 		if (block.begin() != block.end()) {
 			device->write(" ");
-			for (QTextBlock::iterator iter = block.begin(); iter != block.end(); ++iter) {
+			for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
 				QTextFragment fragment = iter.fragment();
 				QTextCharFormat char_format = fragment.charFormat();
 				QByteArray style;
@@ -304,10 +304,14 @@ bool RTF::Writer::write(QIODevice* device, QTextDocument* text)
 			}
 		}
 
-		device->write("\\par}\n");
+		if (full || block.next().isValid()) {
+			device->write("\\par}\n");
+		} else {
+			device->write("}");
+		}
 	}
 
-	device->write("\n}");
+	device->write("}");
 	return true;
 }
 

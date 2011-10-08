@@ -35,7 +35,7 @@ namespace RTF
 
 		QByteArray codePage() const;
 
-		bool write(QIODevice* device, QTextDocument* text);
+		bool write(QIODevice* device, QTextDocument* text, bool full = true);
 
 	private:
 		void setCodec(QTextCodec* codec);
