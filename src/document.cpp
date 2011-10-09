@@ -388,6 +388,9 @@ void Document::loadFile(const QString& filename, int position)
 		return;
 	}
 
+	bool enabled = m_highlighter->enabled();
+	m_highlighter->setEnabled(false);
+
 	// Cache contents
 	QFile::copy(filename, g_cache_path + m_cache_filename);
 
@@ -455,7 +458,9 @@ void Document::loadFile(const QString& filename, int position)
 	// Update details
 	m_cached_stats.clear();
 	calculateWordCount();
-	m_highlighter->rehighlight();
+	if (enabled) {
+		m_highlighter->setEnabled(true);
+	}
 }
 
 //-----------------------------------------------------------------------------
