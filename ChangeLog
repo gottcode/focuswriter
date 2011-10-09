@@ -1,3 +1,6 @@
+2011-10-09 Graeme Gott <graeme@gottcode.org>
+	* Add Swedish translation.
+
 2011-10-08 Graeme Gott <graeme@gottcode.org>
 	* Pass pasted HTML through RTF parser.
 	* Remove extra newlines from RTF.

@@ -116,6 +116,7 @@ TRANSLATIONS = translations/focuswriter_cs.ts \
 	translations/focuswriter_pt.ts \
 	translations/focuswriter_pt_BR.ts \
 	translations/focuswriter_ru.ts \
+	translations/focuswriter_sv.ts \
 	translations/focuswriter_uk.ts
 
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc

@@ -56,6 +56,7 @@ namespace
 			m_names["pt"] = QString::fromUtf8("Portugu\303\252s");
 			m_names["pt_BR"] = QString::fromUtf8("Portugu\303\252s (Brasil)");
 			m_names["ru"] = QString::fromUtf8("\320\240\321\203\321\201\321\201\320\272\320\270\320\271");
+			m_names["sv"] = QLatin1String("Svenska");
 			m_names["uk"] = QString::fromUtf8("\320\243\320\272\321\200\320\260\321\227\320\275\321\201\321\214\320\272\320\260");
 			m_names["uk_UA"] = QString::fromUtf8("\320\243\320\272\321\200\320\260\321\227\320\275\321\201\321\214\320\272\320\260 (\320\243\320\272\321\200\320\260\321\227\320\275\320\260)");
 		}
