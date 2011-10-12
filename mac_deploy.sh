@@ -31,7 +31,7 @@ echo 'Done'
 
 # Copy Qt translations
 echo -n 'Copying Qt translations... '
-for translation in $(ls translations | grep qm | cut -d'.' -f1 | cut -d'_' -f2-)
+for translation in $(ls translations | grep qm | cut -d'.' -f1 | cut -d'_' -f2- | uniq)
 do
 	LPROJ="$APP/$BUNDLE/Contents/Resources/${translation}.lproj"
 	mkdir "$LPROJ"
@@ -106,6 +106,7 @@ echo '
 			open
 
 			tell container window
+				set the bounds to {400, 100, 949, 458}
 				set current view to icon view
 				set toolbar visible to false
 				set statusbar visible to true
