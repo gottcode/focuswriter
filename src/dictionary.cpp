@@ -124,7 +124,8 @@ void Dictionary::add(const QString& word)
 
 void Dictionary::setLanguage(const QString& language)
 {
-	QString l = !language.isEmpty() ? language : f_language;
+	m_default = language.isEmpty();
+	QString l = !m_default ? language : f_language;
 	d = f_dictionaries[l];
 	if (d.isNull()) {
 		d = QSharedPointer<DictionaryPrivate>(new DictionaryPrivate(l));
@@ -179,7 +180,6 @@ void Dictionary::setDefaultLanguage(const QString& language)
 		return;
 	}
 
-	QSharedPointer<DictionaryPrivate> previous = f_dictionaries[f_language];
 	f_language = language;
 	QSharedPointer<DictionaryPrivate> next = f_dictionaries[f_language];
 	if (next.isNull()) {
@@ -188,7 +188,7 @@ void Dictionary::setDefaultLanguage(const QString& language)
 	}
 
 	foreach (Dictionary* dictionary, f_instances) {
-		if (dictionary->d == previous) {
+		if (dictionary->m_default) {
 			dictionary->d = next;
 			emit dictionary->changed();
 		}

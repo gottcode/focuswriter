@@ -55,6 +55,7 @@ signals:
 	void changed();
 
 private:
+	bool m_default;
 	QSharedPointer<DictionaryPrivate> d;
 };
 
