@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 	m_display = new TimerDisplay(m_timers, this);
 	m_display->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(m_display, SIGNAL(clicked()), this, SLOT(toggleVisibility()));
-	connect(m_display, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(recentTimerMenuRequested(const QPoint&)));
+	connect(m_display, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(recentTimerMenuRequested(QPoint)));
 
 	// Create clock
 	m_clock_label = new QLabel(this);

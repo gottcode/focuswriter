@@ -39,6 +39,7 @@
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDate>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileOpenEvent>
 #include <QGridLayout>
@@ -82,7 +83,6 @@ Window::Window(const QStringList& files)
 	m_key_sound(0),
 	m_enter_key_sound(0),
 	m_fullscreen(true),
-	m_typewriter_sounds(true),
 	m_auto_save(true),
 	m_save_positions(true),
 	m_goal_type(0),
@@ -345,7 +345,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		<< "doc" << "dot"
 		<< "docx" << "docm" << "dotx" << "dotm"
 		<< "kwd"
-		<< "odt" << "ott"
+		<< "ott"
 		<< "wpd";
 	QList<int> skip;
 	for (int i = 0; i < files.count(); ++i) {
@@ -589,12 +589,21 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), QString(), tr("Text Files (*.txt *.text *.rtf);;All Files (*)"));
+	static QString oldpath = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+	QString path = m_documents->currentDocument()->filename();
+	if (!path.isEmpty()) {
+		path = QFileInfo(path).dir().path();
+	} else {
+		path = oldpath;
+	}
+
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, tr("Text Files (%1);;All Files (*)").arg("*.txt *.text *.odt *.rtf"));
 	if (!filenames.isEmpty()) {
 		while (QApplication::activeWindow() != this) {
 			QApplication::processEvents();
 		}
 		addDocuments(filenames, filenames);
+		oldpath = QFileInfo(filenames.last()).dir().path();
 	}
 }
 
@@ -731,7 +740,7 @@ void Window::toggleMenuIcons(bool visible)
 void Window::themeClicked()
 {
 	ThemeManager manager(*m_sessions->current()->data(), this);
-	connect(&manager, SIGNAL(themeSelected(const Theme&)), m_documents, SLOT(themeSelected(const Theme&)));
+	connect(&manager, SIGNAL(themeSelected(Theme)), m_documents, SLOT(themeSelected(Theme)));
 	manager.exec();
 }
 
@@ -753,13 +762,13 @@ void Window::aboutClicked()
 	QMessageBox::about(this, tr("About FocusWriter"), tr(
 		"<p><center><big><b>FocusWriter %1</b></big><br/>"
 		"A simple fullscreen word processor<br/>"
-		"<small>Copyright &copy; 2008-2010 Graeme Gott</small><br/>"
+		"<small>Copyright &copy; 2008-%2 Graeme Gott</small><br/>"
 		"<small>Released under the <a href=\"http://www.gnu.org/licenses/gpl.html\">GPL 3</a> license</small></center></p>"
 		"<p><center>Uses <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> for spell checking<br/>"
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small></center></p>"
 		"<p><center>Uses icons from the <a href=\"http://www.oxygen-icons.org/\">Oxygen</a> icon theme<br/>"
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small></center></p>"
-	).arg(QApplication::applicationVersion()));
+	).arg(QApplication::applicationVersion()).arg("2011"));
 }
 
 //-----------------------------------------------------------------------------
@@ -768,19 +777,6 @@ void Window::setLocaleClicked()
 {
 	LocaleDialog dialog(this);
 	dialog.exec();
-}
-
-//-----------------------------------------------------------------------------
-
-void Window::keyPressed(int key)
-{
-	if (m_typewriter_sounds) {
-		if (key != Qt::Key_Enter) {
-			m_key_sound->play();
-		} else {
-			m_enter_key_sound->play();
-		}
-	}
 }
 
 //-----------------------------------------------------------------------------
@@ -975,7 +971,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
-	connect(document, SIGNAL(keyPressed(int)), this, SLOT(keyPressed(int)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Add tab for document
@@ -1021,23 +1016,22 @@ bool Window::saveDocument(int index)
 
 void Window::loadPreferences(Preferences& preferences)
 {
-	m_typewriter_sounds = preferences.typewriterSounds();
-	if (m_typewriter_sounds && (!m_key_sound || !m_enter_key_sound)) {
+	if (preferences.typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
 		if (m_documents->loadScreen()->isVisible()) {
 			m_documents->loadScreen()->setText(tr("Loading sounds"));
 		}
-		m_key_sound = new Sound("keyany.wav", this);
-		m_enter_key_sound = new Sound("keyenter.wav", this);
+		m_key_sound = new Sound(Qt::Key_Any, "keyany.wav", this);
+		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
 
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
 			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Unable to load typewriter sounds."), QStringList());
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
-			m_typewriter_sounds = false;
 			preferences.setTypewriterSounds(false);
 		}
 	}
+	Sound::setEnabled(preferences.typewriterSounds());
 
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {

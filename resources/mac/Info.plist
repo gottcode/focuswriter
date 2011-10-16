@@ -15,9 +15,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>org.gottcode.FocusWriter</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3.3</string>
+	<string>1.3.4</string>
 	<key>CFBundleVersion</key>
-	<string>1.3.3</string>
+	<string>1.3.4</string>
 	<key>CFBundleName</key>
 	<string>FocusWriter</string>
 
@@ -40,6 +40,16 @@
 			<array>
 				<string>RTF </string>
 			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>odt</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>OpenDocument Text document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>

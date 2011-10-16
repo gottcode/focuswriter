@@ -173,13 +173,19 @@ namespace
 	QString f_path;
 	int f_total_sounds = 0;
 	QHash<QString, int> f_ids;
+
+
+	// Shared sound objects
+	bool f_enabled = false;
+	QHash<int, Sound*> f_sound_objects;
 }
 
 //-----------------------------------------------------------------------------
 
-Sound::Sound(const QString& filename, QObject* parent)
+Sound::Sound(int name, const QString& filename, QObject* parent)
 	: QObject(parent),
-	  m_id(-1)
+	  m_id(-1),
+	  m_name(name)
 {
 	if (f_total_sounds > 0) {
 		f_total_sounds++;
@@ -206,30 +212,15 @@ Sound::Sound(const QString& filename, QObject* parent)
 		f_sounds.append(QList<QSound*>() << sound);
 		f_ids[filename] = m_id;
 	}
-}
 
-//-----------------------------------------------------------------------------
-
-Sound::Sound(const Sound& sound)
-	: QObject(sound.parent())
-{
-	f_total_sounds++;
-	m_id = sound.m_id;
-}
-
-//-----------------------------------------------------------------------------
-
-Sound& Sound::operator=(const Sound& sound)
-{
-	f_total_sounds++;
-	m_id = sound.m_id;
-	return *this;
+	f_sound_objects[m_name] = this;
 }
 
 //-----------------------------------------------------------------------------
 
 Sound::~Sound()
 {
+	f_sound_objects[m_name] = 0;
 	f_total_sounds--;
 	if (f_total_sounds == 0) {
 		if (f_sdl_loaded) {
@@ -270,6 +261,25 @@ void Sound::play()
 			sound->play();
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Sound::play(int name)
+{
+	if (f_enabled) {
+		Sound* sound = f_sound_objects.value(name);
+		if (sound) {
+			sound->play();
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Sound::setEnabled(bool enabled)
+{
+	f_enabled = enabled;
 }
 
 //-----------------------------------------------------------------------------

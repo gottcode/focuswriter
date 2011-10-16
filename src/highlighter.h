@@ -34,6 +34,7 @@ class Highlighter : public QSyntaxHighlighter
 public:
 	Highlighter(QTextEdit* text, Dictionary* dictionary);
 
+	bool enabled() const;
 	void setEnabled(bool enabled);
 	void setMisspelledColor(const QColor& color);
 
@@ -58,5 +59,10 @@ private:
 	QAction* m_add_action;
 	QAction* m_check_action;
 };
+
+inline bool Highlighter::enabled() const
+{
+	return m_enabled;
+}
 
 #endif

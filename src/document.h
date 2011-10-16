@@ -83,7 +83,6 @@ signals:
 	void formattingEnabled(bool enabled);
 	void indentChanged(bool indented);
 	void alignmentChanged();
-	void keyPressed(int key);
 
 protected:
 	virtual void resizeEvent(QResizeEvent* event);
@@ -112,6 +111,7 @@ private:
 private:
 	QString m_filename;
 	QString m_cache_filename;
+	QByteArray m_codepage;
 	QHash<int, QPair<QString, bool> > m_old_states;
 	int m_index;
 	bool m_always_center;

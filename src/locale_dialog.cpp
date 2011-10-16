@@ -44,6 +44,7 @@ namespace
 			m_names["ca"] = QString::fromUtf8("Catal\303\240");
 			m_names["cs"] = QString::fromUtf8("\304\214esky");
 			m_names["de"] = QLatin1String("Deutsch");
+			m_names["el"] = QString::fromUtf8("\316\225\316\273\316\273\316\267\316\275\316\271\316\272\316\254");
 			m_names["en"] = QLatin1String("English");
 			m_names["es"] = QString::fromUtf8("Espa\303\261ol");
 			m_names["es_MX"] = QString::fromUtf8("Espa\303\261ol (M\303\251xico)");
@@ -55,6 +56,7 @@ namespace
 			m_names["pt"] = QString::fromUtf8("Portugu\303\252s");
 			m_names["pt_BR"] = QString::fromUtf8("Portugu\303\252s (Brasil)");
 			m_names["ru"] = QString::fromUtf8("\320\240\321\203\321\201\321\201\320\272\320\270\320\271");
+			m_names["sv"] = QLatin1String("Svenska");
 			m_names["uk"] = QString::fromUtf8("\320\243\320\272\321\200\320\260\321\227\320\275\321\201\321\214\320\272\320\260");
 			m_names["uk_UA"] = QString::fromUtf8("\320\243\320\272\321\200\320\260\321\227\320\275\321\201\321\214\320\272\320\260 (\320\243\320\272\321\200\320\260\321\227\320\275\320\260)");
 		}

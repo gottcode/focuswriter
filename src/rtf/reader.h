@@ -39,14 +39,16 @@ namespace RTF
 	public:
 		Reader();
 
+		QByteArray codePage() const;
 		QString errorString() const;
 		bool hasError() const;
 
-		void read(QIODevice* device, QTextDocument* text);
+		void read(QIODevice* device, const QTextCursor& cursor);
 
 	private:
 		void endBlock(qint32);
 		void ignoreGroup(qint32);
+		void ignoreText(qint32);
 		void insertBlock(qint32);
 		void insertHexSymbol(qint32);
 		void insertSymbol(qint32 value);
@@ -65,7 +67,6 @@ namespace RTF
 		void setTextVerticalAlignment(qint32 value);
 		void setSkipCharacters(qint32 value);
 		void setCodepage(qint32 value);
-		void setCodepageMac(qint32);
 		void setFont(qint32 value);
 		void setFontCharset(qint32 value);
 		void setFontCodepage(qint32 value);
@@ -89,10 +90,10 @@ namespace RTF
 		QTextCodec* m_codec;
 		QTextCodec* m_codepage;
 		QVector<QTextCodec*> m_codepages;
+		QByteArray m_codepage_name;
 
 		QString m_error;
 
-		QTextDocument* m_text;
 		QTextCursor m_cursor;
 	};
 }

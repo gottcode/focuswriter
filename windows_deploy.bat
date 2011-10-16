@@ -1,7 +1,7 @@
 @ECHO OFF
 
 SET APP=FocusWriter
-SET VERSION=1.3.3
+SET VERSION=1.3.4
 
 ECHO Copying executable
 MKDIR %APP%
@@ -15,6 +15,7 @@ ECHO Copying translations
 SET TRANSLATIONS=%APP%\translations
 MKDIR %TRANSLATIONS%
 COPY translations\*.qm %TRANSLATIONS% >nul
+COPY %QTDIR%\translations\qt_*.qm %TRANSLATIONS% >nul
 
 ECHO Copying icons
 SET ICONS=%APP%\icons\hicolor

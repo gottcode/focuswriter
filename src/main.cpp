@@ -26,7 +26,10 @@
 #include "window.h"
 
 #ifdef Q_OS_MAC
-#include "rtf/converter.h"
+#include "rtf/clipboard_mac.h"
+#endif
+#ifdef Q_OS_WIN32
+#include "rtf/clipboard_windows.h"
 #endif
 
 #include <QApplication>
@@ -61,7 +64,7 @@ Application::Application(int& argc, char** argv)
 	m_window(0)
 {
 	setApplicationName("FocusWriter");
-	setApplicationVersion("1.3.3");
+	setApplicationVersion("1.3.4");
 	setOrganizationDomain("gottcode.org");
 	setOrganizationName("GottCode");
 	{
@@ -75,13 +78,19 @@ Application::Application(int& argc, char** argv)
 		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
 		setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
 	}
+
 #ifndef Q_WS_MAC
 	setAttribute(Qt::AA_DontUseNativeMenuBar);
 	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 #else
 	setAttribute(Qt::AA_DontShowIconsInMenus, true);
-	new RTF::Converter;
 #endif
+
+# if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
+	new RTF::Clipboard;
+#endif
+
+	qputenv("UNICODEMAP_JP", "cp932");
 
 	m_files = arguments().mid(1);
 	processEvents();
@@ -231,19 +240,20 @@ int main(int argc, char** argv)
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
 		QSettings settings;
 		Theme theme;
+		theme.setName(Session::tr("Default"));
 
-		theme.setBackgroundType(settings.value("Background/Position", 0).toInt());
-		theme.setBackgroundColor(settings.value("Background/Color", "#cccccc").toString());
+		theme.setBackgroundType(settings.value("Background/Position", theme.backgroundType()).toInt());
+		theme.setBackgroundColor(settings.value("Background/Color", theme.backgroundColor()).toString());
 		theme.setBackgroundImage(settings.value("Background/Image").toString());
 		settings.remove("Background");
 
-		theme.setForegroundColor(settings.value("Page/Color", "#cccccc").toString());
-		theme.setForegroundWidth(settings.value("Page/Width", 700).toInt());
-		theme.setForegroundOpacity(settings.value("Page/Opacity", 100).toInt());
+		theme.setForegroundColor(settings.value("Page/Color", theme.foregroundColor()).toString());
+		theme.setForegroundWidth(settings.value("Page/Width", theme.foregroundWidth()).toInt());
+		theme.setForegroundOpacity(settings.value("Page/Opacity", theme.foregroundOpacity()).toInt());
 		settings.remove("Page");
 
-		theme.setTextColor(settings.value("Text/Color", "#000000").toString());
-		theme.setTextFont(settings.value("Text/Font", QFont("Times New Roman").toString()).value<QFont>());
+		theme.setTextColor(settings.value("Text/Color", theme.textColor()).toString());
+		theme.setTextFont(settings.value("Text/Font", theme.textFont()).value<QFont>());
 		settings.remove("Text");
 
 		settings.setValue("ThemeManager/Theme", theme.name());

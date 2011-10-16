@@ -17,79 +17,58 @@
  *
  ***********************************************************************/
 
-#include "converter.h"
-
-#include "reader.h"
-#include "writer.h"
+#include "clipboard_mac.h"
 
 #include <QBuffer>
-#include <QTextDocument>
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Converter::canConvert(const QString &mime, QString flavor)
+bool RTF::Clipboard::canConvert(const QString &mime, QString flavor)
 {
 	return flavorFor(mime) == flavor;
 }
 
 //-----------------------------------------------------------------------------
 
-QList<QByteArray> RTF::Converter::convertFromMime(const QString &mime, QVariant data, QString flavor)
+QList<QByteArray> RTF::Clipboard::convertFromMime(const QString &mime, QVariant data, QString flavor)
 {
 	QList<QByteArray> result;
 	if (!canConvert(mime, flavor)) {
 		return result;
 	}
 
-	// Parse HTML
-	QTextDocument document;
-	document.setHtml(data.toString());
-
-	// Convert to RTF
-	QByteArray rtf;
-	QBuffer buffer(&rtf);
-	buffer.open(QIODevice::WriteOnly);
-	RTF::Writer writer;
-	writer.write(&buffer, &document);
-
-	result.append(rtf);
+	result += data.toByteArray();
 	return result;
 }
 
 //-----------------------------------------------------------------------------
 
-QVariant RTF::Converter::convertToMime(const QString &mime, QList<QByteArray> data, QString flavor)
+QVariant RTF::Clipboard::convertToMime(const QString &mime, QList<QByteArray> data, QString flavor)
 {
 	if (!canConvert(mime, flavor)) {
 		return QVariant();
 	}
 
-	// Parse RTF
-	RTF::Reader reader;
-	QTextDocument document;
+	QByteArray result;
 	int count = data.count();
 	for (int i = 0; i < count; ++i) {
-		QBuffer buffer(&data[i]);
-		buffer.open(QIODevice::ReadOnly);
-		reader.read(&buffer, &document);
+		result += data[i];
 	}
-
-	// Convert to HTML
-	return document.toHtml();
+	return result;
 }
 
 //-----------------------------------------------------------------------------
 
-QString RTF::Converter::convertorName()
+QString RTF::Clipboard::convertorName()
 {
 	return QLatin1String("RichText");
 }
 
 //-----------------------------------------------------------------------------
 
-QString RTF::Converter::flavorFor(const QString &mime)
+QString RTF::Clipboard::flavorFor(const QString &mime)
 {
-	if (mime == QLatin1String("text/html")) {
+	if (mime == QLatin1String("text/rtf")) {
 		return QLatin1String("public.rtf");
 	}
 	return QString();
@@ -97,10 +76,10 @@ QString RTF::Converter::flavorFor(const QString &mime)
 
 //-----------------------------------------------------------------------------
 
-QString RTF::Converter::mimeFor(QString flavor)
+QString RTF::Clipboard::mimeFor(QString flavor)
 {
 	if (flavor == QLatin1String("public.rtf")) {
-		return QLatin1String("text/html");
+		return QLatin1String("text/rtf");
 	}
 	return QString();
 }

@@ -52,6 +52,25 @@ namespace
 		qint32 m_value;
 	};
 	QHash<QByteArray, Function> functions;
+
+	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = 0)
+	{
+		QByteArray name = "CP" + QByteArray::number(value);
+		QByteArray codec;
+		if (value == 932) {
+			codec = "Shift-JIS";
+		} else if (value == 10000) {
+			codec = "Apple Roman";
+		} else if (value == 65001) {
+			codec = "UTF-8";
+		} else {
+			codec = name;
+		}
+		if (codepage) {
+			*codepage = name;
+		}
+		return QTextCodec::codecForName(codec);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -128,7 +147,7 @@ RTF::Reader::Reader()
 
 		functions["ansicpg"] = Function(&Reader::setCodepage);
 		functions["ansi"] = Function(&Reader::setCodepage, 1252);
-		functions["mac"] = Function(&Reader::setCodepageMac);
+		functions["mac"] = Function(&Reader::setCodepage, 10000);
 		functions["pc"] = Function(&Reader::setCodepage, 850);
 		functions["pca"] = Function(&Reader::setCodepage, 850);
 
@@ -139,6 +158,7 @@ RTF::Reader::Reader()
 
 		functions["filetbl"] = Function(&Reader::ignoreGroup);
 		functions["colortbl"] = Function(&Reader::ignoreGroup);
+		functions["fonttbl"] = Function(&Reader::ignoreText);
 		functions["stylesheet"] = Function(&Reader::ignoreGroup);
 		functions["info"] = Function(&Reader::ignoreGroup);
 		functions["*"] = Function(&Reader::ignoreGroup);
@@ -150,6 +170,13 @@ RTF::Reader::Reader()
 	m_state.active_codepage = 0;
 
 	setCodepage(1252);
+}
+
+//-----------------------------------------------------------------------------
+
+QByteArray RTF::Reader::codePage() const
+{
+	return m_codepage_name;
 }
 
 //-----------------------------------------------------------------------------
@@ -168,17 +195,12 @@ bool RTF::Reader::hasError() const
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::read(QIODevice* device, QTextDocument* text)
+void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
 {
 	try {
 		// Open file
-		m_text = 0;
-		if (!m_cursor.isNull()) {
-			m_cursor = QTextCursor();
-		}
-		m_text = text;
-		m_cursor = QTextCursor(m_text);
-		m_cursor.movePosition(QTextCursor::End);
+		m_cursor = cursor;
+		m_cursor.beginEditBlock();
 		m_token.setDevice(device);
 		setBlockDirection(Qt::LeftToRight);
 
@@ -220,6 +242,7 @@ void RTF::Reader::read(QIODevice* device, QTextDocument* text)
 	} catch (const QString& error) {
 		m_error = error;
 	}
+	m_cursor.endEditBlock();
 }
 
 //-----------------------------------------------------------------------------
@@ -234,6 +257,13 @@ void RTF::Reader::endBlock(qint32)
 void RTF::Reader::ignoreGroup(qint32)
 {
 	m_state.ignore_control_word = true;
+	m_state.ignore_text = true;
+}
+
+//-----------------------------------------------------------------------------
+
+void RTF::Reader::ignoreText(qint32)
+{
 	m_state.ignore_text = true;
 }
 
@@ -348,7 +378,7 @@ void RTF::Reader::setBlockDirection(qint32 value)
 
 void RTF::Reader::setBlockIndent(qint32 value)
 {
-	m_state.block_format.setIndent(value / 720);
+	m_state.block_format.setIndent(value / 15);
 	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 
@@ -403,21 +433,12 @@ void RTF::Reader::setSkipCharacters(qint32 value)
 
 void RTF::Reader::setCodepage(qint32 value)
 {
-	QTextCodec* codec = QTextCodec::codecForName("CP" + QByteArray::number(value));
+	QByteArray codepage;
+	QTextCodec* codec = codecForCodePage(value, &codepage);
 	if (codec != 0) {
 		m_codepage = codec;
 		m_codec = codec;
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void RTF::Reader::setCodepageMac(qint32)
-{
-	QTextCodec* codec = QTextCodec::codecForName("Apple Roman");
-	if (codec != 0) {
-		m_codepage = codec;
-		m_codec = codec;
+		m_codepage_name = codepage;
 	}
 }
 
@@ -449,7 +470,7 @@ void RTF::Reader::setFontCodepage(qint32 value)
 		return;
 	}
 
-	QTextCodec* codec = QTextCodec::codecForName("CP" + QByteArray::number(value));
+	QTextCodec* codec = codecForCodePage(value);
 	if (codec != 0) {
 		m_codepages[m_state.active_codepage] = codec;
 		m_codec = codec;

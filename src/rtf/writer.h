@@ -31,18 +31,26 @@ namespace RTF
 	class Writer
 	{
 	public:
-		Writer();
+		Writer(const QByteArray& codepage = QByteArray());
 
-		void setCodec(QTextCodec* codec);
-		bool write(QIODevice* device, QTextDocument* text);
+		QByteArray codePage() const;
+
+		bool write(QIODevice* device, QTextDocument* text, bool full = true);
 
 	private:
+		void setCodec(QTextCodec* codec);
 		QByteArray fromUnicode(const QString& string) const;
 
 	private:
+		QByteArray m_codepage;
 		QTextCodec* m_codec;
 		QByteArray m_header;
 	};
+}
+
+inline QByteArray RTF::Writer::codePage() const
+{
+	return m_codepage;
 }
 
 #endif

@@ -22,8 +22,10 @@
 #include "block_stats.h"
 #include "dictionary.h"
 #include "highlighter.h"
+#include "odt_reader.h"
 #include "preferences.h"
 #include "smart_quotes.h"
+#include "sound.h"
 #include "spell_checker.h"
 #include "theme.h"
 #include "window.h"
@@ -31,6 +33,7 @@
 #include "rtf/writer.h"
 
 #include <QApplication>
+#include <QBuffer>
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
@@ -43,7 +46,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QTextBlock>
-#include <QTextCodec>
+#include <QTextDocumentWriter>
 #include <QTextEdit>
 #include <QTextStream>
 #include <QTimer>
@@ -74,9 +77,80 @@ namespace
 		return filename;
 	}
 
-	bool isRichTextFile(const QString& filename)
+	class TextEdit : public QTextEdit
 	{
-		return filename.endsWith(QLatin1String(".rtf"));
+	public:
+		TextEdit(QWidget* parent = 0)
+			: QTextEdit(parent)
+		{
+		}
+
+	protected:
+		virtual bool canInsertFromMimeData(const QMimeData* source) const;
+		virtual QMimeData* createMimeDataFromSelection() const;
+		virtual void insertFromMimeData(const QMimeData* source);
+
+	private:
+		QByteArray mimeToRtf(const QMimeData* source) const;
+	};
+
+	bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
+	{
+		return QTextEdit::canInsertFromMimeData(source) || (source->hasFormat(QLatin1String("text/rtf")) && acceptRichText());
+	}
+
+	QMimeData* TextEdit::createMimeDataFromSelection() const
+	{
+		QMimeData* mime = QTextEdit::createMimeDataFromSelection();
+		mime->setData(QLatin1String("text/rtf"), mimeToRtf(mime));
+		return mime;
+	}
+
+	void TextEdit::insertFromMimeData(const QMimeData* source)
+	{
+		if (isReadOnly()) {
+			return;
+		}
+
+		if (acceptRichText()) {
+			QByteArray richtext;
+			if (source->hasFormat(QLatin1String("text/rtf"))) {
+				richtext = source->data(QLatin1String("text/rtf"));
+			} else if (source->hasHtml()) {
+				richtext = mimeToRtf(source);
+			} else {
+				QTextEdit::insertFromMimeData(source);
+				return;
+			}
+
+			RTF::Reader reader;
+			QBuffer buffer(&richtext);
+			buffer.open(QIODevice::ReadOnly);
+			reader.read(&buffer, textCursor());
+			buffer.close();
+		} else {
+			QTextEdit::insertFromMimeData(source);
+		}
+	}
+
+	QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
+	{
+		// Parse HTML
+		QTextDocument document;
+		if (source->hasHtml()) {
+			document.setHtml(source->html());
+		} else {
+			document.setPlainText(source->text());
+		}
+
+		// Convert to RTF
+		RTF::Writer writer;
+		QBuffer buffer;
+		buffer.open(QIODevice::WriteOnly);
+		writer.write(&buffer, &document, false);
+		buffer.close();
+
+		return buffer.data();
 	}
 }
 
@@ -106,14 +180,14 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(hideMouse()));
 
 	// Set up text area
-	m_text = new QTextEdit(this);
+	m_text = new TextEdit(this);
 	m_text->installEventFilter(this);
 	m_text->setMouseTracking(true);
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_text->setTabStopWidth(50);
-	m_text->document()->setIndentWidth(50);
+	m_text->setTabStopWidth(48);
+	m_text->document()->setIndentWidth(1);
 	m_text->horizontalScrollBar()->setAttribute(Qt::WA_NoMousePropagation);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
@@ -129,7 +203,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	// Set filename
 	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
-		m_rich_text = isRichTextFile(filename.toLower());
+		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+		m_rich_text = (suffix == "odt") || (suffix == "rtf");
 		m_filename = QFileInfo(filename).canonicalFilePath();
 		updateState();
 	}
@@ -295,7 +370,12 @@ void Document::print()
 	printer.setPageMargins(0.5, 0.5, 0.5, 0.5, QPrinter::Inch);
 	QPrintDialog dialog(&printer, this);
 	if (dialog.exec() == QDialog::Accepted) {
+		bool enabled = m_highlighter->enabled();
+		m_highlighter->setEnabled(false);
 		m_text->print(&printer);
+		if (enabled) {
+			m_highlighter->setEnabled(true);
+		}
 	}
 }
 
@@ -304,8 +384,12 @@ void Document::print()
 void Document::loadFile(const QString& filename, int position)
 {
 	if (filename.isEmpty()) {
+		scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 		return;
 	}
+
+	bool enabled = m_highlighter->enabled();
+	m_highlighter->setEnabled(false);
 
 	// Cache contents
 	QFile::copy(filename, g_cache_path + m_cache_filename);
@@ -320,24 +404,37 @@ void Document::loadFile(const QString& filename, int position)
 		QFile file(filename);
 		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
+			stream.setCodec("UTF-8");
 			stream.setAutoDetectUnicode(true);
 
 			QTextCursor cursor(document);
+			cursor.beginEditBlock();
 			while (!stream.atEnd()) {
 				cursor.insertText(stream.read(8192));
 				QApplication::processEvents();
 			}
+			cursor.endEditBlock();
 			file.close();
 		}
 	} else {
-		QFile file(filename);
-		if (file.open(QIODevice::ReadOnly)) {
-			RTF::Reader reader;
-			reader.read(&file, document);
-			file.close();
+		if (filename.endsWith(".odt")) {
+			ODT::Reader reader;
+			reader.read(filename, document);
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+			}
+		} else if (filename.endsWith(".rtf")) {
+			QFile file(filename);
+			if (file.open(QIODevice::ReadOnly)) {
+				RTF::Reader reader;
+				QTextCursor cursor(document);
+				cursor.movePosition(QTextCursor::End);
+				reader.read(&file, cursor);
+				m_codepage = reader.codePage();
+				file.close();
+				if (reader.hasError()) {
+					QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				}
 			}
 		}
 	}
@@ -361,7 +458,9 @@ void Document::loadFile(const QString& filename, int position)
 	// Update details
 	m_cached_stats.clear();
 	calculateWordCount();
-	m_highlighter->rehighlight();
+	if (enabled) {
+		m_highlighter->setEnabled(true);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -451,7 +550,9 @@ void Document::loadPreferences(const Preferences& preferences)
 	}
 
 	m_accurate_wordcount = preferences.accurateWordcount();
-	calculateWordCount();
+	if (m_cached_block_count != -1) {
+		calculateWordCount();
+	}
 
 	m_block_cursor = preferences.blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
@@ -730,9 +831,9 @@ void Document::updateWordCount(int position, int removed, int added)
 	int block_count = m_text->document()->blockCount();
 	if (added) {
 		if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
-			emit keyPressed(Qt::Key_Enter);
+			Sound::play(Qt::Key_Enter);
 		} else {
-			emit keyPressed(Qt::Key_Any);
+			Sound::play(Qt::Key_Any);
 		}
 	}
 	int current_block = m_text->textCursor().blockNumber();
@@ -810,19 +911,23 @@ void Document::findIndex()
 
 QString Document::fileFilter(const QString& filename) const
 {
-	QString plaintext = tr("Plain Text (*.txt);;All Files (*)");
+	QString plaintext = tr("Plain Text (*.txt)");
+	QString opendocumenttext = tr("OpenDocument Text (*.odt)");
 	QString richtext = tr("Rich Text (*.rtf)");
 	QString all = tr("All Files (*)");
 	if (!filename.isEmpty()) {
-		if (isRichTextFile(filename)) {
-			return richtext;
-		} else if (filename.endsWith(".txt")) {
-			return plaintext;
+		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+		if (suffix == "odt") {
+			return opendocumenttext + ";;" + richtext;
+		} else if (suffix == "rtf") {
+			return richtext + ";;" + opendocumenttext;
+		} else if (suffix == "txt") {
+			return plaintext + ";;" + all;
 		} else {
 			return all;
 		}
 	} else {
-		return m_rich_text ? richtext : plaintext;
+		return m_rich_text ? (richtext + ";;" + opendocumenttext) : plaintext;
 	}
 }
 
@@ -899,18 +1004,29 @@ bool Document::writeFile(const QString& filename)
 {
 	bool saved = false;
 	QFile file(filename);
+	QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
 	if (!m_rich_text) {
 		if (file.open(QFile::WriteOnly | QFile::Text)) {
 			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream.setGenerateByteOrderMark(true);
+			stream.setCodec("UTF-8");
+			if (suffix == "txt") {
+				stream.setGenerateByteOrderMark(true);
+			}
 			stream << m_text->toPlainText();
 			saved = true;
 		}
 	} else {
 		if (file.open(QFile::WriteOnly)) {
-			RTF::Writer writer;
-			saved = writer.write(&file, m_text->document());
+			if (suffix == "odt") {
+				QTextDocumentWriter writer(&file, "ODT");
+				saved = writer.write(m_text->document());
+			} else if (suffix == "rtf") {
+				RTF::Writer writer(m_codepage);
+				if (m_codepage.isEmpty()) {
+					m_codepage = writer.codePage();
+				}
+				saved = writer.write(&file, m_text->document());
+			}
 		}
 	}
 	if (file.isOpen()) {

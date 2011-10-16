@@ -48,7 +48,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	// Create name edit
 	m_name = new QLineEdit(this);
 	m_name->setText(m_theme.name());
-	connect(m_name, SIGNAL(textChanged(const QString&)), this, SLOT(checkNameAvailable()));
+	connect(m_name, SIGNAL(textChanged(QString)), this, SLOT(checkNameAvailable()));
 
 	QHBoxLayout* name_layout = new QHBoxLayout;
 	name_layout->setMargin(0);
@@ -69,11 +69,11 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_background_color = new ColorButton(tab);
 	m_background_color->setColor(m_theme.backgroundColor());
-	connect(m_background_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
+	connect(m_background_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
 	m_background_image = new ImageButton(tab);
 	m_background_image->setImage(m_theme.backgroundImage(), m_theme.backgroundPath());
-	connect(m_background_image, SIGNAL(changed(const QString&)), this, SLOT(imageChanged()));
+	connect(m_background_image, SIGNAL(changed(QString)), this, SLOT(imageChanged()));
 
 	m_clear_image = new QPushButton(tr("Remove"), this);
 	connect(m_clear_image, SIGNAL(clicked()), m_background_image, SLOT(unsetImage()));
@@ -98,7 +98,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_foreground_color = new ColorButton(tab);
 	m_foreground_color->setColor(m_theme.foregroundColor());
-	connect(m_foreground_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
+	connect(m_foreground_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
 	m_foreground_opacity = new QSpinBox(tab);
 	m_foreground_opacity->setCorrectionMode(QSpinBox::CorrectToNearestValue);
@@ -164,7 +164,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_text_color = new ColorButton(tab);
 	m_text_color->setColor(m_theme.textColor());
-	connect(m_text_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
+	connect(m_text_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
 	m_font_names = new QFontComboBox(tab);
 	m_font_names->setEditable(false);
@@ -175,12 +175,12 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_font_sizes = new QComboBox(tab);
 	m_font_sizes->setEditable(true);
 	m_font_sizes->setMinimumContentsLength(3);
-	connect(m_font_sizes, SIGNAL(editTextChanged(const QString&)), this, SLOT(renderPreview()));
+	connect(m_font_sizes, SIGNAL(editTextChanged(QString)), this, SLOT(renderPreview()));
 	fontChanged();
 
 	m_misspelled_color = new ColorButton(tab);
 	m_misspelled_color->setColor(m_theme.misspelledColor());
-	connect(m_misspelled_color, SIGNAL(changed(const QColor&)), this, SLOT(renderPreview()));
+	connect(m_misspelled_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
 	QHBoxLayout* font_layout = new QHBoxLayout;
 	font_layout->addWidget(m_font_names);

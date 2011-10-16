@@ -22,11 +22,14 @@ macx {
 	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework hunspell -framework libzip
 
-	HEADERS += src/rtf/converter.h
-	SOURCES += src/rtf/converter.cpp
+	HEADERS += src/rtf/clipboard_mac.h
+	SOURCES += src/rtf/clipboard_mac.cpp
 } else:win32 {
 	INCLUDEPATH += hunspell libzip
-	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll
+	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
+
+	HEADERS += src/rtf/clipboard_windows.h
+	SOURCES += src/rtf/clipboard_windows.cpp
 } else {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell libzip
@@ -44,6 +47,7 @@ HEADERS += src/alert.h \
 	src/image_button.h \
 	src/load_screen.h \
 	src/locale_dialog.h \
+	src/odt_reader.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
 	src/session.h \
@@ -78,6 +82,7 @@ SOURCES += src/alert.cpp \
 	src/load_screen.cpp \
 	src/locale_dialog.cpp \
 	src/main.cpp \
+	src/odt_reader.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
 	src/session.cpp \
@@ -100,14 +105,19 @@ SOURCES += src/alert.cpp \
 
 TRANSLATIONS = translations/focuswriter_cs.ts \
 	translations/focuswriter_de.ts \
+	translations/focuswriter_el.ts \
 	translations/focuswriter_en.ts \
 	translations/focuswriter_es.ts \
 	translations/focuswriter_es_MX.ts \
+	translations/focuswriter_fi.ts \
 	translations/focuswriter_fr.ts \
+	translations/focuswriter_it.ts \
 	translations/focuswriter_pl.ts \
 	translations/focuswriter_pt.ts \
 	translations/focuswriter_pt_BR.ts \
-	translations/focuswriter_ru.ts
+	translations/focuswriter_ru.ts \
+	translations/focuswriter_sv.ts \
+	translations/focuswriter_uk.ts
 
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
 macx {

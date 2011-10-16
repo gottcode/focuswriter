@@ -1,3 +1,49 @@
+2011-10-16 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.3.4.
+
+2011-10-13 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Regression - changing dictionary required restart.
+
+2011-10-09 Graeme Gott <graeme@gottcode.org>
+	* Add Swedish translation.
+
+2011-10-08 Graeme Gott <graeme@gottcode.org>
+	* Pass pasted HTML through RTF parser.
+	* Remove extra newlines from RTF.
+
+2011-10-06 Graeme Gott <graeme@gottcode.org>
+	* Add Windows support for copying RTF.
+
+2011-10-05 Graeme Gott <graeme@gottcode.org>
+	* Add support for copying RTF.
+
+2011-10-04 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Always vertically center did not work with new documents.
+	* Create default theme when launched.
+	* Improve open dialog start location.
+
+2011-10-03 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Printed spellchecking highlights.
+	* FIXED: Did not load file stats when loading file.
+
+2011-08-19 Graeme Gott <graeme@gottcode.org>
+	* Speed up file loading.
+
+2011-08-06 Graeme Gott <graeme@gottcode.org>
+	* Add basic OpenDocument text support.
+	* Switch to a 96 DPI indent.
+
+2011-07-28 Graeme Gott <graeme@gottcode.org>
+	* Make sound effects play immediately.
+
+2011-07-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Font names were sometimes inserted at head of document.
+	* Remember code page when reading RTF.
+	* Redesign detection of code page for writing RTF.
+
+2011-07-06 Epameinondas Soufleros
+	* Add Greek translation.
+
 2011-07-02 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Crashed when typing after alert for no sound effects.
 

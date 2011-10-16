@@ -17,27 +17,33 @@
  *
  ***********************************************************************/
 
-#ifndef RTF_CONVERTER_H
-#define RTF_CONVERTER_H
+#ifndef RTF_CLIPBOARD_WINDOWS_H
+#define RTF_CLIPBOARD_WINDOWS_H
 
-#include <QMacPasteboardMime>
+#include <QWindowsMime>
+#include <QVector>
+
+#include <windows.h>
 
 namespace RTF
 {
-	class Converter : public QMacPasteboardMime
+	class Clipboard : public QWindowsMime
 	{
 	public:
-		Converter()
-			: QMacPasteboardMime(MIME_ALL)
-		{
-		}
+		Clipboard();
 
-		virtual bool canConvert(const QString &mime, QString flavor);
-		virtual QList<QByteArray> convertFromMime(const QString &mime, QVariant data, QString flavor);
-		virtual QVariant convertToMime(const QString &mime, QList<QByteArray> data, QString flavor);
-		virtual QString convertorName();
-		virtual QString flavorFor(const QString &mime);
-		virtual QString mimeFor(QString flavor);
+		virtual bool canConvertFromMime(const FORMATETC& format, const QMimeData* mime_data) const;
+		virtual bool canConvertToMime(const QString& mime_type, IDataObject* data_obj) const;
+		virtual bool convertFromMime(const FORMATETC& format, const QMimeData* mime_data, STGMEDIUM* storage_medium) const;
+		virtual QVariant convertToMime(const QString& mime, IDataObject* data_obj, QVariant::Type preferred_type) const;
+		virtual QVector<FORMATETC> formatsForMime(const QString& mime_type, const QMimeData* mime_data) const;
+		virtual QString mimeForFormat(const FORMATETC& format) const;
+
+	private:
+		FORMATETC initFormat() const;
+
+	private:
+		int CF_RTF;
 	};
 }
 
