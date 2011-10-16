@@ -1,3 +1,9 @@
+focuswriter (1.3.4-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 16 Oct 2011 18:11:31 +0100
+
 focuswriter (1.3.3-2) unstable; urgency=low
 
   * single debian patch source option (closes: #643117)
