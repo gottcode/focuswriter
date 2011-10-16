@@ -68,7 +68,6 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Afrikaans] = "CP1252";
 	codepages[QLocale::Basque] = "CP1252";
 	codepages[QLocale::Breton] = "CP1252";
-	codepages[QLocale::CentralMoroccoTamazight] = "CP1252";
 	codepages[QLocale::Corsican] = "CP1252";
 	codepages[QLocale::Danish] = "CP1252";
 	codepages[QLocale::Dutch] = "CP1252";
@@ -89,11 +88,9 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Irish] = "CP1252";
 	codepages[QLocale::Italian] = "CP1252";
 	codepages[QLocale::Kinyarwanda] = "CP1252";
-	codepages[QLocale::LowGerman] = "CP1252";
 	codepages[QLocale::Malay] = "CP1252";
 	codepages[QLocale::Norwegian] = "CP1252";
 	codepages[QLocale::NorwegianNynorsk] = "CP1252";
-	codepages[QLocale::NorthernSami] = "CP1252";
 	codepages[QLocale::Occitan] = "CP1252";
 	codepages[QLocale::Portuguese] = "CP1252";
 	codepages[QLocale::RhaetoRomance] = "CP1252";
@@ -103,7 +100,6 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Spanish] = "CP1252";
 	codepages[QLocale::Swahili] = "CP1252";
 	codepages[QLocale::Swedish] = "CP1252";
-	codepages[QLocale::SwissGerman] = "CP1252";
 	codepages[QLocale::Tagalog] = "CP1252";
 	codepages[QLocale::Welsh] = "CP1252";
 	codepages[QLocale::Wolof] = "CP1252";
@@ -123,6 +119,12 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Latvian] = "CP1257";
 	codepages[QLocale::Lithuanian] = "CP1257";
 	codepages[QLocale::Vietnamese] = "CP1258";
+#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
+	codepages[QLocale::CentralMoroccoTamazight] = "CP1252";
+	codepages[QLocale::LowGerman] = "CP1252";
+	codepages[QLocale::NorthernSami] = "CP1252";
+	codepages[QLocale::SwissGerman] = "CP1252";
+#endif
 	return codepages;
 }
 
