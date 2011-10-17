@@ -37,37 +37,16 @@ do
 	mkdir "$LPROJ"
 	sed "s/????/${translation}/" < 'resources/mac/locversion.plist' > "${LPROJ}/locversion.plist"
 
-	QT_TRANSLATION="/Developer/Applications/Qt/translations/qt_${translation}.qm"
+	QT_TRANSLATION="${QTDIR}/translations/qt_${translation}.qm"
 	if [ -e "$QT_TRANSLATION" ]; then
 		cp -f "$QT_TRANSLATION" "$TRANSLATIONS"
 	fi
 
-	QT_TRANSLATION="/Developer/Applications/Qt/translations/qt_${translation:0:2}.qm"
+	QT_TRANSLATION="${QTDIR}/translations/qt_${translation:0:2}.qm"
 	if [ -e "$QT_TRANSLATION" ]; then
 		cp -f "$QT_TRANSLATION" "$TRANSLATIONS"
 	fi
 done
-echo 'Done'
-
-# Copy icons
-echo -n 'Copying icons... '
-ICONS="$APP/$BUNDLE/Contents/Resources/icons"
-mkdir "$ICONS"
-cp -Rpf resources/images/icons/oxygen/hicolor "$ICONS"
-echo 'Done'
-
-# Copy dictionaries
-echo -n 'Copying dictionaries... '
-DICTIONARIES="$APP/$BUNDLE/Contents/Resources/Dictionaries"
-mkdir "$DICTIONARIES"
-cp -pf resources/dict/* "$DICTIONARIES"
-echo 'Done'
-
-# Copy sounds
-echo -n 'Copying sounds... '
-SOUNDS="$APP/$BUNDLE/Contents/Resources/sounds"
-mkdir "$SOUNDS"
-cp -Rpf resources/sounds/* "$SOUNDS"
 echo 'Done'
 
 # Copy frameworks and plugins
