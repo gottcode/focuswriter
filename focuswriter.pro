@@ -150,7 +150,7 @@ unix: !macx {
 	icon.files = resources/images/icons/hicolor/*
 	icon.path = $$PREFIX/share/icons/hicolor/
 
-	pixmap.files = resources/unix/focuswriter.xpm
+	pixmap.files = resources/unix/focuswriter_32.xpm
 	pixmap.path = $$PREFIX/share/pixmaps/
 
 	icons.files = resources/images/icons/oxygen/hicolor/*
