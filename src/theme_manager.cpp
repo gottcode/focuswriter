@@ -19,6 +19,7 @@
 
 #include "theme_manager.h"
 
+#include "gzip.h"
 #include "theme.h"
 #include "theme_dialog.h"
 
@@ -206,9 +207,16 @@ void ThemeManager::importTheme()
 		}
 	}
 
-	// Copy theme file
+	// Uncompress theme
 	QString theme_filename = Theme::filePath(name);
-	QFile::copy(filename, theme_filename);
+	QByteArray theme = gunzip(filename);
+	{
+		QFile file(theme_filename);
+		if (file.open(QFile::WriteOnly)) {
+			file.write(theme);
+			file.close();
+		}
+	}
 
 	// Extract and use background image
 	QSettings settings(theme_filename, QSettings::IniFormat);
@@ -258,17 +266,22 @@ void ThemeManager::exportTheme()
 	QFile::copy(Theme::filePath(item->text()), filename);
 
 	// Store image in export file
-	QSettings settings(filename, QSettings::IniFormat);
-	settings.remove("Background/Image");
+	{
+		QSettings settings(filename, QSettings::IniFormat);
+		settings.remove("Background/Image");
 
-	QString image = settings.value("Background/ImageFile").toString();
-	if (!image.isEmpty()) {
-		QFile file(Theme::path() + "/Images/" + image);
-		if (file.open(QFile::ReadOnly)) {
-			settings.setValue("Data/Image", file.readAll().toBase64());
-			file.close();
+		QString image = settings.value("Background/ImageFile").toString();
+		if (!image.isEmpty()) {
+			QFile file(Theme::path() + "/Images/" + image);
+			if (file.open(QFile::ReadOnly)) {
+				settings.setValue("Data/Image", file.readAll().toBase64());
+				file.close();
+			}
 		}
 	}
+
+	// Compress theme
+	gzip(filename);
 }
 
 //-----------------------------------------------------------------------------
