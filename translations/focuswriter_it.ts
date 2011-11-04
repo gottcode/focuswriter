@@ -900,73 +900,77 @@
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/theme_manager.cpp" line="45"/>
+        <location filename="../src/theme_manager.cpp" line="46"/>
         <source>Themes</source>
         <translation>Temi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="71"/>
+        <location filename="../src/theme_manager.cpp" line="72"/>
         <source>Add</source>
         <translation>Aggiungi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="75"/>
+        <location filename="../src/theme_manager.cpp" line="76"/>
         <source>Modify</source>
         <translation>Modifica</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="79"/>
+        <location filename="../src/theme_manager.cpp" line="80"/>
         <source>Remove</source>
         <translation>Rimuovi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="83"/>
+        <location filename="../src/theme_manager.cpp" line="84"/>
         <source>Import</source>
         <translation>Importa</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="87"/>
+        <location filename="../src/theme_manager.cpp" line="88"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="91"/>
+        <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Close</source>
         <translation>Chiudi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="181"/>
+        <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Question</source>
         <translation>Domanda</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="181"/>
+        <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Remove selected theme?</source>
         <translation>Rimuovere il tema scelto?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="194"/>
+        <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Import Theme</source>
         <translation>Importa Tema</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="194"/>
-        <location filename="../src/theme_manager.cpp" line="248"/>
-        <source>Themes (*.theme)</source>
-        <translation>I temi (*.theme)</translation>
+        <location filename="../src/theme_manager.cpp" line="195"/>
+        <source>Themes (*.fwtz *.theme)</source>
+        <translation>I temi (*.fwtz *.theme)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="203"/>
+        <location filename="../src/theme_manager.cpp" line="256"/>
+        <source>Themes (*.fwtz)</source>
+        <translation>I temi (*.fwtz)</translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="204"/>
         <source>Sorry</source>
         <translation>Spiacente</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="203"/>
+        <location filename="../src/theme_manager.cpp" line="204"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
         <translation>Esiste già un tema con quel nome. Si prega di inserire un nuovo nome:</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="248"/>
+        <location filename="../src/theme_manager.cpp" line="256"/>
         <source>Export Theme</source>
         <translation>Esporta Tema</translation>
     </message>

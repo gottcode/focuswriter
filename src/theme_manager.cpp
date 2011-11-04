@@ -192,7 +192,7 @@ void ThemeManager::removeTheme()
 void ThemeManager::importTheme()
 {
 	// Find file to import
-	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), QDir::homePath(), tr("Themes (*.theme)"));
+	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), QDir::homePath(), tr("Themes (*.fwtz *.theme)"));
 	if (filename.isEmpty()) {
 		return;
 	}
@@ -253,12 +253,12 @@ void ThemeManager::exportTheme()
 	}
 
 	// Find export file name
-	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), QDir::homePath() + "/" + item->text() + ".theme", tr("Themes (*.theme)"));
+	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), QDir::homePath() + "/" + item->text() + ".fwtz", tr("Themes (*.fwtz)"));
 	if (filename.isEmpty()) {
 		return;
 	}
-	if (!filename.endsWith(".theme")) {
-		filename += ".theme";
+	if (!filename.endsWith(".fwtz")) {
+		filename += ".fwtz";
 	}
 
 	// Copy theme
