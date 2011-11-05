@@ -301,18 +301,24 @@ void ODT::Reader::readBodyText()
 
 void ODT::Reader::readParagraph()
 {
-	// Create paragraph
-	if (!m_in_block) {
-		m_cursor.insertBlock();
-		m_in_block = true;
-	}
+	QTextBlockFormat block_format;
+	QTextCharFormat char_format;
 
 	// Style paragraph
 	QXmlStreamAttributes attributes = m_xml.attributes();
 	if (attributes.hasAttribute(QLatin1String("text:style-name"))) {
 		const Style& style = m_styles[0][attributes.value(QLatin1String("text:style-name")).toString()];
-		m_cursor.mergeBlockFormat(style.block_format);
-		m_cursor.mergeBlockCharFormat(style.char_format);
+		block_format = style.block_format;
+		char_format = style.char_format;
+	}
+
+	// Create paragraph
+	if (!m_in_block) {
+		m_cursor.insertBlock(block_format, char_format);
+		m_in_block = true;
+	} else {
+		m_cursor.mergeBlockFormat(block_format);
+		m_cursor.mergeBlockCharFormat(char_format);
 	}
 
 	// Read paragraph text

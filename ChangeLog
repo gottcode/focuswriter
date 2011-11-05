@@ -1,4 +1,5 @@
 2011-11-05 Graeme Gott <graeme@gottcode.org>
+	* FIXED: ODT block settings were not respected.
 	* FIXED: RTF block settings were not respected.
 
 2011-11-04 Graeme Gott <graeme@gottcode.org>
