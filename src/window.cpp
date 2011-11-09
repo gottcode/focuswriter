@@ -599,9 +599,6 @@ void Window::openDocument()
 
 	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, tr("Text Files (%1);;All Files (*)").arg("*.txt *.text *.odt *.rtf"));
 	if (!filenames.isEmpty()) {
-		while (QApplication::activeWindow() != this) {
-			QApplication::processEvents();
-		}
 		addDocuments(filenames, filenames);
 		oldpath = QFileInfo(filenames.last()).dir().path();
 	}

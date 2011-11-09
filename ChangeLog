@@ -1,4 +1,5 @@
 2011-11-09 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Sometimes did not display opened documents immediately.
 	* Update translations.
 
 2011-11-05 Graeme Gott <graeme@gottcode.org>
