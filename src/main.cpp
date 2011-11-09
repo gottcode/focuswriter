@@ -64,7 +64,7 @@ Application::Application(int& argc, char** argv)
 	m_window(0)
 {
 	setApplicationName("FocusWriter");
-	setApplicationVersion("1.3.4.1");
+	setApplicationVersion("1.3.5");
 	setOrganizationDomain("gottcode.org");
 	setOrganizationName("GottCode");
 	{
