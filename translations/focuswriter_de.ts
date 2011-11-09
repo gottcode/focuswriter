@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/document.cpp" line="915"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Text (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="916"/>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="87"/>
         <source>Statistics</source>
-        <translation>Statisiken</translation>
+        <translation>Statistiken</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="88"/>
@@ -1187,11 +1187,6 @@
         <translation>Über FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="762"/>
-        <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Ein einfacher Vollbild-Texteditor &lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Herausgegeben unter der &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; Lizenz&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Für die Rechtschreibprüfung wird &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; benutzt&lt;br/&gt;&lt;small&gt;Unter Verwendung der &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; Lizenz&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Die Symbole entststammen dem &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; Symbol-Thema&lt;br/&gt;&lt;small&gt;Unter Verwendung der&lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; Lizenz&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
-    </message>
-    <message>
         <location filename="../src/window.cpp" line="825"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Zeichen: %L1 / %L2</translation>
@@ -1282,6 +1277,11 @@
         <location filename="../src/window.cpp" line="600"/>
         <source>Text Files (%1);;All Files (*)</source>
         <translation>Text-Dateien (%1);;Alle Dateien (*)</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="762"/>
+        <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Ein einfacher Vollbild-Texteditor &lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Herausgegeben unter der &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; Lizenz&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Für die Rechtschreibprüfung wird &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; benutzt&lt;br/&gt;&lt;small&gt;Unter Verwendung der &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; Lizenz&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Die Symbole entststammen dem &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; Symbol-Thema&lt;br/&gt;&lt;small&gt;Unter Verwendung der&lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; Lizenz&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="948"/>

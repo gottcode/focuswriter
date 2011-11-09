@@ -530,17 +530,17 @@
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Impossibile aprire archivio.</translation>
+        <translation>Impossibile aprire archivio.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation type="unfinished">Impossibile aprire il file &apos;%1&apos;.</translation>
+        <translation>Impossibile aprire il file &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation type="unfinished">Impossibile chiudere il file &apos;%1&apos;</translation>
+        <translation>Impossibile chiudere il file &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
