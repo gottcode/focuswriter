@@ -6,12 +6,6 @@ include /usr/share/cdbs/1/class/qmake.mk
 QMAKE = qmake-qt4
 DEB_QMAKE_ARGS = PREFIX=/usr
 
-ICON_DIR = resources/images/icons/hicolor/32x32/apps
-
-update-config:: $(ICON_DIR)/focuswriter.xpm
-
-$(ICON_DIR)/focuswriter.xpm: $(ICON_DIR)/focuswriter.png
-	convert -resize 32x32 $(ICON_DIR)/focuswriter.png $(ICON_DIR)/focuswriter.xpm
-
-reverse-config::
-	rm -f $(ICON_DIR)/focuswriter.xpm
+install/focuswriter::
+	cd debian/focuswriter/usr/share/pixmaps/ \
+	 && mv focuswriter_32.xpm focuswriter.xpm
