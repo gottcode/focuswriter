@@ -8,6 +8,10 @@ macx {
 	# CONFIG += x86 ppc
 }
 
+!win32 {
+	LIBS += -lz
+}
+
 MOC_DIR = build
 OBJECTS_DIR = build
 RCC_DIR = build
@@ -43,6 +47,7 @@ HEADERS += src/alert.h \
 	src/dictionary.h \
 	src/document.h \
 	src/find_dialog.h \
+	src/gzip.h \
 	src/highlighter.h \
 	src/image_button.h \
 	src/load_screen.h \
@@ -77,6 +82,7 @@ SOURCES += src/alert.cpp \
 	src/dictionary.cpp \
 	src/document.cpp \
 	src/find_dialog.cpp \
+	src/gzip.cpp \
 	src/highlighter.cpp \
 	src/image_button.cpp \
 	src/load_screen.cpp \
@@ -150,7 +156,7 @@ unix: !macx {
 	icon.files = resources/images/icons/hicolor/*
 	icon.path = $$PREFIX/share/icons/hicolor/
 
-	pixmap.files = resources/unix/focuswriter.xpm
+	pixmap.files = resources/unix/focuswriter_32.xpm
 	pixmap.path = $$PREFIX/share/pixmaps/
 
 	icons.files = resources/images/icons/oxygen/hicolor/*

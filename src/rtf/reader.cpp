@@ -109,8 +109,8 @@ RTF::Reader::Reader()
 		functions["u"] = Function(&Reader::insertUnicodeSymbol);
 		functions["uc"] = Function(&Reader::setSkipCharacters);
 		functions["par"] = Function(&Reader::endBlock);
-		functions["\n"] = Function(&Reader::insertBlock);
-		functions["\r"] = Function(&Reader::insertBlock);
+		functions["\n"] = Function(&Reader::endBlock);
+		functions["\r"] = Function(&Reader::endBlock);
 
 		functions["pard"] = Function(&Reader::resetBlockFormatting);
 		functions["plain"] = Function(&Reader::resetTextFormatting);
@@ -221,7 +221,7 @@ void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
 			m_token.readNext();
 
 			if ((m_token.type() != EndGroupToken) && !m_in_block) {
-				m_cursor.insertBlock();
+				m_cursor.insertBlock(m_state.block_format);
 				m_in_block = true;
 			}
 
@@ -265,13 +265,6 @@ void RTF::Reader::ignoreGroup(qint32)
 void RTF::Reader::ignoreText(qint32)
 {
 	m_state.ignore_text = true;
-}
-
-//-----------------------------------------------------------------------------
-
-void RTF::Reader::insertBlock(qint32)
-{
-	m_cursor.insertBlock();
 }
 
 //-----------------------------------------------------------------------------
@@ -332,7 +325,6 @@ void RTF::Reader::popState()
 		return;
 	}
 	m_state = m_states.pop();
-	m_cursor.mergeBlockFormat(m_state.block_format);
 	m_cursor.setCharFormat(m_state.char_format);
 	setFont(m_state.active_codepage);
 }

@@ -19,6 +19,7 @@
 
 #include "theme_manager.h"
 
+#include "gzip.h"
 #include "theme.h"
 #include "theme_dialog.h"
 
@@ -191,7 +192,7 @@ void ThemeManager::removeTheme()
 void ThemeManager::importTheme()
 {
 	// Find file to import
-	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), QDir::homePath(), tr("Themes (*.theme)"));
+	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), QDir::homePath(), tr("Themes (*.fwtz *.theme)"));
 	if (filename.isEmpty()) {
 		return;
 	}
@@ -206,9 +207,16 @@ void ThemeManager::importTheme()
 		}
 	}
 
-	// Copy theme file
+	// Uncompress theme
 	QString theme_filename = Theme::filePath(name);
-	QFile::copy(filename, theme_filename);
+	QByteArray theme = gunzip(filename);
+	{
+		QFile file(theme_filename);
+		if (file.open(QFile::WriteOnly)) {
+			file.write(theme);
+			file.close();
+		}
+	}
 
 	// Extract and use background image
 	QSettings settings(theme_filename, QSettings::IniFormat);
@@ -245,12 +253,12 @@ void ThemeManager::exportTheme()
 	}
 
 	// Find export file name
-	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), QDir::homePath() + "/" + item->text() + ".theme", tr("Themes (*.theme)"));
+	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), QDir::homePath() + "/" + item->text() + ".fwtz", tr("Themes (*.fwtz)"));
 	if (filename.isEmpty()) {
 		return;
 	}
-	if (!filename.endsWith(".theme")) {
-		filename += ".theme";
+	if (!filename.endsWith(".fwtz")) {
+		filename += ".fwtz";
 	}
 
 	// Copy theme
@@ -258,17 +266,22 @@ void ThemeManager::exportTheme()
 	QFile::copy(Theme::filePath(item->text()), filename);
 
 	// Store image in export file
-	QSettings settings(filename, QSettings::IniFormat);
-	settings.remove("Background/Image");
+	{
+		QSettings settings(filename, QSettings::IniFormat);
+		settings.remove("Background/Image");
 
-	QString image = settings.value("Background/ImageFile").toString();
-	if (!image.isEmpty()) {
-		QFile file(Theme::path() + "/Images/" + image);
-		if (file.open(QFile::ReadOnly)) {
-			settings.setValue("Data/Image", file.readAll().toBase64());
-			file.close();
+		QString image = settings.value("Background/ImageFile").toString();
+		if (!image.isEmpty()) {
+			QFile file(Theme::path() + "/Images/" + image);
+			if (file.open(QFile::ReadOnly)) {
+				settings.setValue("Data/Image", file.readAll().toBase64());
+				file.close();
+			}
 		}
 	}
+
+	// Compress theme
+	gzip(filename);
 }
 
 //-----------------------------------------------------------------------------
