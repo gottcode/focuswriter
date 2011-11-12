@@ -1,3 +1,9 @@
+focuswriter (1.3.5+git.a0b47c53-1) unstable; urgency=low
+
+  * use new upstream scalable icon
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sat, 12 Nov 2011 22:40:14 +0000
+
 focuswriter (1.3.5-2) unstable; urgency=low
 
   * use upstream xpm icon
