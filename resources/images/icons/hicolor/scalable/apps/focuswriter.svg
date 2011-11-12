@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="512"
+   height="512"
+   id="svg2">
+  <title
+     id="title3007">FocusWriter icon</title>
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3784">
+      <stop
+         id="stop3786"
+         style="stop-color:#777777;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3788"
+         style="stop-color:#dddddd;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3755">
+      <stop
+         id="stop3757"
+         style="stop-color:#eeeeee;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3759"
+         style="stop-color:#555555;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <radialGradient
+       cx="256"
+       cy="75"
+       r="362"
+       fx="256"
+       fy="75"
+       id="gradient1"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop7"
+         style="stop-color:#646464;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop9"
+         style="stop-color:#000000;stop-opacity:1"
+         offset="1" />
+    </radialGradient>
+    <linearGradient
+       x1="38"
+       y1="294"
+       x2="518"
+       y2="294"
+       id="linearGradient4594"
+       xlink:href="#linearGradient3755"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="-189"
+       y1="364"
+       x2="259"
+       y2="364"
+       id="linearGradient4596"
+       xlink:href="#linearGradient3784"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       cx="256"
+       cy="75"
+       r="362"
+       fx="256"
+       fy="75"
+       id="radialGradient4598"
+       xlink:href="#gradient1"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4081">
+      <feGaussianBlur
+         stdDeviation="1.2"
+         id="feGaussianBlur4083" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       id="filter4003">
+      <feGaussianBlur
+         stdDeviation="4.2"
+         id="feGaussianBlur4005" />
+    </filter>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>FocusWriter icon</dc:title>
+        <dc:date>2011-11-11</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Graeme Gott</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license
+           rdf:resource="http://www.gnu.org/licenses/gpl-3.0.txt" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-540.3622)"
+     id="layer1"
+     style="display:inline">
+    <g
+       transform="matrix(10.66662,0,0,10.66662,-23.99902,497.69724)"
+       id="g12"
+       style="fill:#d7d7d7;fill-opacity:1;stroke:#d7d7d7;stroke-width:1;stroke-linecap:square;stroke-linejoin:bevel;stroke-opacity:1" />
+    <path
+       d="m 518,294 a 240,240 0 1 1 -480,0 240,240 0 1 1 480,0 z"
+       transform="matrix(0,1,-1,0,549.99795,518.36445)"
+       id="path4063"
+       style="fill:#000000;fill-opacity:0.37647059;stroke:none;filter:url(#filter4081)" />
+    <path
+       d="m 518,294 a 240,240 0 1 1 -480,0 240,240 0 1 1 480,0 z"
+       transform="matrix(0,1,-1,0,549.99795,518.36445)"
+       id="path2985"
+       style="fill:url(#linearGradient4594);fill-opacity:1;stroke:none" />
+    <path
+       d="m 259,364 a 224,224 0 1 1 -448,0 224,224 0 1 1 448,0 z"
+       transform="matrix(0,1,-1,0,619.99808,761.36484)"
+       id="path3782"
+       style="fill:url(#linearGradient4596);fill-opacity:1;stroke:none" />
+    <ellipse
+       cx="256"
+       cy="256"
+       rx="181"
+       ry="181"
+       transform="matrix(1.0018501,0,0,1.0018501,-0.473615,539.88876)"
+       id="ellipse11"
+       style="fill:url(#radialGradient4598);stroke:#1e1e1e;stroke-width:10.64705944;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  </g>
+  <g
+     id="layer3">
+    <path
+       d="m 320,152 0,24 -96,0 0,64 88,0 0,24 -88,0 0,96 -32,0 0,-208"
+       id="path3981"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline;filter:url(#filter4003)" />
+    <path
+       d="m 320,152 0,24 -96,0 0,64 88,0 0,24 -88,0 0,96 -32,0 0,-208"
+       id="path16-8"
+       style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline" />
+  </g>
+</svg>
