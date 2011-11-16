@@ -1356,12 +1356,12 @@
     <message>
         <location filename="../src/window.cpp" line="1179"/>
         <source>&amp;Close</source>
-        <translation>&amp;Beenden</translation>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1180"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Abbrechen</translation>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1180"/>
