@@ -553,7 +553,7 @@ void Window::closeEvent(QCloseEvent* event)
 
 void Window::leaveEvent(QEvent* event)
 {
-	if (qApp->activePopupWidget() == 0) {
+	if ((qApp->activePopupWidget() == 0) && !m_fullscreen) {
 		hideInterface();
 	}
 	QMainWindow::leaveEvent(event);
