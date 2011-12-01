@@ -1,3 +1,6 @@
+2011-11-30 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not correctly handle multi-byte characters in RTF.
+
 2011-11-27 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Interface was incorrectly hidden while fullscreen.
 

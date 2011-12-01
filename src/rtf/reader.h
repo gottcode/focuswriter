@@ -29,6 +29,7 @@
 #include <QTextCursor>
 class QString;
 class QTextEdit;
+class QTextDecoder;
 
 namespace RTF
 {
@@ -38,6 +39,7 @@ namespace RTF
 
 	public:
 		Reader();
+		~Reader();
 
 		QByteArray codePage() const;
 		QString errorString() const;
@@ -69,6 +71,7 @@ namespace RTF
 		void setFont(qint32 value);
 		void setFontCharset(qint32 value);
 		void setFontCodepage(qint32 value);
+		void setCodec(QTextCodec* codec);
 
 	private:
 		Tokenizer m_token;
@@ -87,6 +90,7 @@ namespace RTF
 		State m_state;
 
 		QTextCodec* m_codec;
+		QTextDecoder* m_decoder;
 		QTextCodec* m_codepage;
 		QVector<QTextCodec*> m_codepages;
 		QByteArray m_codepage_name;
