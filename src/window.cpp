@@ -291,7 +291,6 @@ Window::Window(const QStringList& files)
 				}
 			}
 			m_documents->loadScreen()->setText("");
-			m_documents->loadScreen()->releaseKeyboard();
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
@@ -304,7 +303,6 @@ Window::Window(const QStringList& files)
 				cachedfiles.clear();
 				datafiles.clear();
 			}
-			m_documents->loadScreen()->grabKeyboard();
 		}
 	}
 
@@ -418,10 +416,6 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		closeDocument();
 	}
 
-	bool unset_keyboard = m_documents->loadScreen()->isVisible() && (!missing.isEmpty() || !readonly.isEmpty());
-	if (unset_keyboard) {
-		m_documents->loadScreen()->releaseKeyboard();
-	}
 	if (!missing.isEmpty()) {
 		QMessageBox mbox(window());
 		mbox.setWindowTitle(tr("Sorry"));
@@ -441,9 +435,6 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		mbox.setDefaultButton(QMessageBox::Ok);
 		mbox.setIcon(QMessageBox::Information);
 		mbox.exec();
-	}
-	if (unset_keyboard) {
-		m_documents->loadScreen()->grabKeyboard();
 	}
 
 	if (show_load) {
@@ -553,7 +544,7 @@ void Window::closeEvent(QCloseEvent* event)
 
 void Window::leaveEvent(QEvent* event)
 {
-	if (qApp->activePopupWidget() == 0) {
+	if ((qApp->activePopupWidget() == 0) && !m_fullscreen) {
 		hideInterface();
 	}
 	QMainWindow::leaveEvent(event);
@@ -937,9 +928,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 			path = datafile;
 			position = -1;
 		} else {
-			if (m_documents->loadScreen()->isVisible()) {
-				m_documents->loadScreen()->releaseKeyboard();
-			}
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("'%1' is newer than the cached copy.").arg(file));
@@ -950,9 +938,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 			if (mbox.exec() == QMessageBox::Yes) {
 				path = datafile;
 				position = -1;
-			}
-			if (m_documents->loadScreen()->isVisible()) {
-				m_documents->loadScreen()->grabKeyboard();
 			}
 		}
 	}

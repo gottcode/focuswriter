@@ -1,3 +1,25 @@
+2011-12-04 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.3.5.1.
+	* Add Greek dictionary.
+
+2011-12-01 Graeme Gott <graeme@gottcode.org>
+	* Don't grab keyboard.
+
+2011-11-30 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not correctly handle multi-byte characters in RTF.
+
+2011-11-27 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Interface was incorrectly hidden while fullscreen.
+
+2011-11-16 Dennis Peteranderl
+	* Update German translation.
+
+2011-11-15 Graeme Gott <graeme@gottcode.org>
+	* Add Dutch dictionary.
+
+2011-11-15 Robert Borst
+	* Add Dutch translation.
+
 2011-11-12 Graeme Gott <graeme@gottcode.org>
 	* Add scalable icon.
 

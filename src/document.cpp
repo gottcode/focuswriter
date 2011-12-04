@@ -212,8 +212,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	if (m_filename.isEmpty()) {
 		findIndex();
 		unknown_rich_text = true;
-	} else {
-		m_text->setReadOnly(!QFileInfo(m_filename).isWritable());
 	}
 
 	// Set up scroll bar
@@ -241,6 +239,9 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	}
 	m_text->setAcceptRichText(m_rich_text);
 	loadPreferences(preferences);
+
+	// Make it read-only until content is loaded
+	m_text->setReadOnly(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -384,6 +385,7 @@ void Document::print()
 void Document::loadFile(const QString& filename, int position)
 {
 	if (filename.isEmpty()) {
+		m_text->setReadOnly(false);
 		scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 		return;
 	}
@@ -443,6 +445,8 @@ void Document::loadFile(const QString& filename, int position)
 
 	document->blockSignals(false);
 	m_text->blockSignals(false);
+
+	m_text->setReadOnly(!QFileInfo(m_filename).isWritable());
 
 	// Restore cursor position
 	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());

@@ -118,6 +118,7 @@ TRANSLATIONS = translations/focuswriter_cs.ts \
 	translations/focuswriter_fi.ts \
 	translations/focuswriter_fr.ts \
 	translations/focuswriter_it.ts \
+	translations/focuswriter_nl.ts \
 	translations/focuswriter_pl.ts \
 	translations/focuswriter_pt.ts \
 	translations/focuswriter_pt_BR.ts \

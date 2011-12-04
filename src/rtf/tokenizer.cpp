@@ -117,21 +117,6 @@ void RTF::Tokenizer::readNext()
 			hex[0] = next();
 			hex[1] = next();
 			m_hex.append(hex.toInt(0, 16));
-			forever {
-				c = next();
-				if (c != '\\') {
-					m_position--;
-					break;
-				}
-				c = next();
-				if (c != '\'') {
-					m_position -= 2;
-					break;
-				}
-				hex[0] = next();
-				hex[1] = next();
-				m_hex.append(hex.toInt(0, 16));
-			}
 		} else {
 			// Read escaped character
 			m_text.append(c);
