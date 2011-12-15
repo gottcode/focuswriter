@@ -81,7 +81,6 @@ Application::Application(int& argc, char** argv)
 
 #ifndef Q_WS_MAC
 	setAttribute(Qt::AA_DontUseNativeMenuBar);
-	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 #else
 	setAttribute(Qt::AA_DontShowIconsInMenus, true);
 #endif
@@ -100,6 +99,9 @@ Application::Application(int& argc, char** argv)
 
 void Application::createWindow()
 {
+#ifndef Q_WS_MAC
+	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
+#endif
 	m_window = new Window(m_files);
 }
 
