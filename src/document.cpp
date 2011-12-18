@@ -193,8 +193,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->viewport()->installEventFilter(this);
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
-	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
-	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 
 	m_dictionary = new Dictionary(this);
 	m_highlighter = new Highlighter(m_text, m_dictionary);
@@ -386,7 +384,13 @@ void Document::loadFile(const QString& filename, int position)
 {
 	if (filename.isEmpty()) {
 		m_text->setReadOnly(false);
+
 		scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
+
+		calculateWordCount();
+		connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
+		connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+
 		return;
 	}
 
@@ -465,6 +469,8 @@ void Document::loadFile(const QString& filename, int position)
 	if (enabled) {
 		m_highlighter->setEnabled(true);
 	}
+	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
+	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
 }
 
 //-----------------------------------------------------------------------------
