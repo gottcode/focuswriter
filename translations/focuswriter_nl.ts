@@ -414,7 +414,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>Paragraphs:</source>
-        <translation>Paragraven:</translation>
+        <translation>Paragrafen:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="704"/>
@@ -902,7 +902,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="46"/>
         <source>Themes</source>
-        <translation>Thema's</translation>
+        <translation>Thema&apos;s</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="72"/>
@@ -952,12 +952,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Themes (*.fwtz *.theme)</source>
-        <translation>Thema's (*.fwtz *.theme)</translation>
+        <translation>Thema&apos;s (*.fwtz *.theme)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="256"/>
         <source>Themes (*.fwtz)</source>
-        <translation>Thema's (*.fwtz)</translation>
+        <translation>Thema&apos;s (*.fwtz)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
@@ -1000,12 +1000,12 @@
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;pagina's:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;pagina&apos;s:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;paragraven:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;paragrafen:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
@@ -1132,12 +1132,12 @@
     <message>
         <location filename="../src/window.cpp" line="134"/>
         <source>Pages: 0</source>
-        <translation>Pagina's: 0</translation>
+        <translation>Pagina&apos;s: 0</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="135"/>
         <source>Paragraphs: 0</source>
-        <translation>Paragraven: 0</translation>
+        <translation>Paragrafen: 0</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="136"/>
@@ -1194,12 +1194,12 @@
     <message>
         <location filename="../src/window.cpp" line="826"/>
         <source>Pages: %L1</source>
-        <translation>Pagina's: %L1</translation>
+        <translation>Pagina&apos;s: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="827"/>
         <source>Paragraphs: %L1</source>
-        <translation>Paragraven: %L1</translation>
+        <translation>Paragrafen: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="828"/>
@@ -1321,7 +1321,7 @@
     <message>
         <location filename="../src/window.cpp" line="1164"/>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>Op&amp;slaan</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1166"/>
@@ -1351,17 +1351,17 @@
     <message>
         <location filename="../src/window.cpp" line="1177"/>
         <source>&amp;Print...</source>
-        <translation>&amp;Afdrukken...</translation>
+        <translation>A&amp;fdrukken...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1179"/>
         <source>&amp;Close</source>
-        <translation>&amp;Afsluiten</translation>
+        <translation>Afsl&amp;uiten</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1180"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Stoppen</translation>
+        <translation>S&amp;toppen</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1180"/>
@@ -1446,7 +1446,7 @@
     <message>
         <location filename="../src/window.cpp" line="1215"/>
         <source>&amp;Subscript</source>
-        <translation>&amp;Subscript</translation>
+        <translation>Su&amp;bscript</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1215"/>
@@ -1546,7 +1546,7 @@
     <message>
         <location filename="../src/window.cpp" line="1256"/>
         <source>Find &amp;Next</source>
-        <translation>&amp;Volgende</translation>
+        <translation>Volge&amp;nde</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1259"/>
@@ -1556,7 +1556,7 @@
     <message>
         <location filename="../src/window.cpp" line="1262"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;Vervang...</translation>
+        <translation>Ve&amp;rvang...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1262"/>
@@ -1581,7 +1581,7 @@
     <message>
         <location filename="../src/window.cpp" line="1268"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Spellingscontrole...</translation>
+        <translation>Spellings&amp;controle...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1268"/>
@@ -1626,7 +1626,7 @@
     <message>
         <location filename="../src/window.cpp" line="1288"/>
         <source>M&amp;inimize</source>
-        <translation>M&amp;inimaliseren</translation>
+        <translation>Mi&amp;nimaliseren</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1288"/>
@@ -1636,7 +1636,7 @@
     <message>
         <location filename="../src/window.cpp" line="1290"/>
         <source>&amp;Themes...</source>
-        <translation>&amp;Thema's...</translation>
+        <translation>&amp;Thema&apos;s...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1293"/>
