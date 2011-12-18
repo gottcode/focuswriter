@@ -819,6 +819,7 @@ void Document::undoCommandAdded()
 
 void Document::updateWordCount(int position, int removed, int added)
 {
+	// Change filename and rich text status if necessary because of undo/redo
 	int steps = m_text->document()->availableUndoSteps();
 	if (m_old_states.contains(steps)) {
 		const QPair<QString, bool>& state = m_old_states[steps];
@@ -838,6 +839,7 @@ void Document::updateWordCount(int position, int removed, int added)
 		}
 	}
 
+	// Play a sound on keypress
 	int block_count = m_text->document()->blockCount();
 	if (added) {
 		if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
@@ -846,13 +848,14 @@ void Document::updateWordCount(int position, int removed, int added)
 			Sound::play(Qt::Key_Any);
 		}
 	}
+
+	// Clear cached stats if amount of blocks or current block has changed
 	int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
-		m_cached_block_count = block_count;
-		m_cached_current_block = current_block;
 		m_cached_stats.clear();
 	}
 
+	// Update stats of blocks that were modified
 	QTextBlock begin = m_text->document()->findBlock(position - removed);
 	if (!begin.isValid()) {
 		begin = m_text->document()->begin();
@@ -867,6 +870,7 @@ void Document::updateWordCount(int position, int removed, int added)
 		}
 	}
 
+	// Update document stats and daily word count
 	int words = m_document_stats.wordCount();
 	calculateWordCount();
 	m_current_wordcount += (m_document_stats.wordCount() - words);
@@ -877,7 +881,11 @@ void Document::updateWordCount(int position, int removed, int added)
 
 void Document::calculateWordCount()
 {
+	// Cache stats of the blocks other than the current block
 	if (!m_cached_stats.isValid()) {
+		m_cached_block_count = m_text->document()->blockCount();
+		m_cached_current_block = m_text->textCursor().blockNumber();
+
 		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 			if (!i.userData()) {
 				i.setUserData(new BlockStats(i.text(), m_dictionary));
@@ -888,6 +896,7 @@ void Document::calculateWordCount()
 		}
 	}
 
+	// Determine document stats by adding cached stats to current block stats
 	m_document_stats = m_cached_stats;
 	QTextBlockUserData* data = m_text->document()->findBlockByNumber(m_cached_current_block).userData();
 	if (data) {
