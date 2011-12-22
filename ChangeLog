@@ -1,3 +1,6 @@
+2011-12-21 Aarni
+	* Update Finnish translation.
+
 2011-12-18 Graeme Gott <graeme@gottcode.org>
 	* Only start monitoring word count changes after loading contents.
 	* Sync translations with Transifex.
