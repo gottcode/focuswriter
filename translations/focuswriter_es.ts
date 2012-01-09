@@ -288,7 +288,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="464"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>El diccionario &quot;%1&quot; ya existe. ¿Desea reemplazarlo?</translation>
+        <translation>El diccionario &quot;%1&quot;. ya existe. ¿Desea reemplazarlo?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="493"/>
@@ -454,7 +454,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="736"/>
         <source>Text Under Icons</source>
-        <translation>Texto bajo los iconos</translation>
+        <translation>Texto debajo de los iconos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="740"/>
@@ -525,7 +525,7 @@
         <location filename="../src/rtf/reader.cpp" line="212"/>
         <location filename="../src/rtf/reader.cpp" line="216"/>
         <source>Not a supported RTF file.</source>
-        <translation>No es un fichero RTF compatible.</translation>
+        <translation>No es un archivo RTF compatible.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
@@ -535,12 +535,12 @@
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>No se puede abrir el archivo &apos;%1&apos;.</translation>
+        <translation>No se puede abrir el archivo &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>No se puede cerrar el archivo &apos;%1&apos;.</translation>
+        <translation>No se puede cerrar el archivo &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -554,7 +554,7 @@
         <location filename="../src/session_manager.cpp" line="376"/>
         <location filename="../src/session_manager.cpp" line="379"/>
         <source>Default</source>
-        <translation>Por defecto</translation>
+        <translation>Predeterminada</translation>
     </message>
 </context>
 <context>
@@ -572,7 +572,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Nuevo</translation>
+        <translation>Nueva</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
@@ -617,7 +617,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>¿Desea eliminar sesión seleccionada?</translation>
+        <translation>¿Desea eliminar la sesión seleccionada?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="354"/>
@@ -637,7 +637,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
         <source>&amp;New...</source>
-        <translation>&amp;Nuevo...</translation>
+        <translation>&amp;Nueva...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
@@ -894,7 +894,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="347"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja</translation>
+        <translation>El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja.</translation>
     </message>
 </context>
 <context>
@@ -1073,7 +1073,7 @@
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>No hay ningún cronómetro activado</translation>
+        <translation>No hay ninguna alarma activada</translation>
     </message>
 </context>
 <context>
@@ -1081,12 +1081,12 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>Cronómetros</translation>
+        <translation>Alarmas</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>Nuevo</translation>
+        <translation>Nueva</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
@@ -1096,12 +1096,12 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation>Confirmación</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>¿Desea dejar de editar los cronómetros?</translation>
+        <translation>¿Desea cancelar la edición de las alarmas?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1147,7 +1147,7 @@
     <message>
         <location filename="../src/window.cpp" line="137"/>
         <source>0% of daily goal</source>
-        <translation>0 % del objetivo diario</translation>
+        <translation>0% del objetivo diario</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="227"/>
@@ -1169,7 +1169,7 @@
         <location filename="../src/window.cpp" line="362"/>
         <location filename="../src/window.cpp" line="427"/>
         <source>Sorry</source>
-        <translation>Lo sentimos</translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="437"/>
@@ -1209,7 +1209,7 @@
     <message>
         <location filename="../src/window.cpp" line="890"/>
         <source>%1% of daily goal</source>
-        <translation>%1 % del objetivo diario</translation>
+        <translation>%1% del objetivo diario</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="930"/>
@@ -1219,7 +1219,7 @@
     <message>
         <location filename="../src/window.cpp" line="1003"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation>Confirmación</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1003"/>
@@ -1281,12 +1281,12 @@
     <message>
         <location filename="../src/window.cpp" line="762"/>
         <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Un procesador de textos simple a pantalla completa&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Publicado con licencia &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; &lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Usa &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; para la revisión ortográfica&lt;br/&gt;&lt;small&gt;Usado bajo la licencia &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; &lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Iconos del tema &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; &lt;br/&gt;&lt;small&gt;Usados bajo la licencia &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; &lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Un procesador de textos simple a pantalla completa&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Publicado según la licencia &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; &lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt; Revisión ortográfica con &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Usado según la licencia &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; &lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Iconos del tema &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; &lt;br/&gt;&lt;small&gt;Usados según la licencia &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; &lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="948"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; es más reciente que la copia en caché.</translation>
+        <translation>&quot;%1&quot; es más reciente que la copia en caché.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="949"/>
@@ -1316,7 +1316,7 @@
     <message>
         <location filename="../src/window.cpp" line="1162"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Abrir...</translation>
+        <translation>A&amp;brir...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1164"/>
@@ -1356,7 +1356,7 @@
     <message>
         <location filename="../src/window.cpp" line="1179"/>
         <source>&amp;Close</source>
-        <translation>&amp;Cerrar</translation>
+        <translation>Ce&amp;rrar</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1180"/>
@@ -1406,7 +1406,7 @@
     <message>
         <location filename="../src/window.cpp" line="1203"/>
         <source>Fo&amp;rmat</source>
-        <translation>Fo&amp;rmato</translation>
+        <translation>&amp;Formato</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1205"/>
@@ -1516,12 +1516,12 @@
     <message>
         <location filename="../src/window.cpp" line="1239"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Bl&amp;oque de izquierda a derecha</translation>
+        <translation>Escribir de &amp;izquierda a derecha</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1241"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Blo&amp;que de derecha a izquierda</translation>
+        <translation>Escri&amp;bir de derecha a izquierda</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1249"/>
@@ -1581,7 +1581,7 @@
     <message>
         <location filename="../src/window.cpp" line="1268"/>
         <source>&amp;Spelling...</source>
-        <translation>Orto&amp;grafía...</translation>
+        <translation>&amp;Ortografía...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1268"/>
@@ -1591,7 +1591,7 @@
     <message>
         <location filename="../src/window.cpp" line="1269"/>
         <source>&amp;Timers...</source>
-        <translation>&amp;Cronómetros...</translation>
+        <translation>&amp;Alarmas...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1272"/>
@@ -1626,7 +1626,7 @@
     <message>
         <location filename="../src/window.cpp" line="1288"/>
         <source>M&amp;inimize</source>
-        <translation>M&amp;inimizar</translation>
+        <translation>Mi&amp;nimizar</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1288"/>
@@ -1651,17 +1651,17 @@
     <message>
         <location filename="../src/window.cpp" line="1292"/>
         <source>Application &amp;Language...</source>
-        <translation>Idioma de la &amp;Aplicación...</translation>
+        <translation>Idioma de la &amp;aplicación...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1298"/>
         <source>&amp;About</source>
-        <translation>&amp;Acerca</translation>
+        <translation>A&amp;cerca</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1300"/>
         <source>About &amp;Qt</source>
-        <translation>Acerca de &amp;Qt</translation>
+        <translation>Ac&amp;erca de Qt</translation>
     </message>
 </context>
 </TS>
