@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -756,7 +756,7 @@ void Window::aboutClicked()
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small></center></p>"
 		"<p><center>Uses icons from the <a href=\"http://www.oxygen-icons.org/\">Oxygen</a> icon theme<br/>"
 		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small></center></p>"
-	).arg(QApplication::applicationVersion()).arg("2011"));
+	).arg(QApplication::applicationVersion()).arg("2012"));
 }
 
 //-----------------------------------------------------------------------------
