@@ -1,3 +1,23 @@
+2012-01-16 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.3.5.2.
+
+2012-01-09 Verónica Jiménez
+	* Update Spanish translation.
+
+2011-12-21 Aarni
+	* Update Finnish translation.
+
+2011-12-18 Graeme Gott <graeme@gottcode.org>
+	* Only start monitoring word count changes after loading contents.
+	* Sync translations with Transifex.
+	* Add Hungarian dictionary.
+
+2011-12-17 Zoltán Adamek
+	* Add Hungarian translation.
+
+2011-12-15 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not handle loading menu icons correctly.
+
 2011-12-04 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.3.5.1.
 	* Add Greek dictionary.

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ Application::Application(int& argc, char** argv)
 	m_window(0)
 {
 	setApplicationName("FocusWriter");
-	setApplicationVersion("1.3.5.1");
+	setApplicationVersion("1.3.5.2");
 	setOrganizationDomain("gottcode.org");
 	setOrganizationName("GottCode");
 	{
@@ -81,7 +81,6 @@ Application::Application(int& argc, char** argv)
 
 #ifndef Q_WS_MAC
 	setAttribute(Qt::AA_DontUseNativeMenuBar);
-	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
 #else
 	setAttribute(Qt::AA_DontShowIconsInMenus, true);
 #endif
@@ -100,6 +99,9 @@ Application::Application(int& argc, char** argv)
 
 void Application::createWindow()
 {
+#ifndef Q_WS_MAC
+	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
+#endif
 	m_window = new Window(m_files);
 }
 

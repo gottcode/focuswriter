@@ -51,6 +51,7 @@ namespace
 			m_names["fi"] = QLatin1String("Suomi");
 			m_names["fr"] = QString::fromUtf8("Fran\303\247ais");
 			m_names["he"] = QString::fromUtf8("\327\242\326\264\327\221\326\260\327\250\326\264\327\231\327\252");
+			m_names["hu"] = QLatin1String("Magyar");
 			m_names["it"] = QLatin1String("Italiano");
 			m_names["nl"] = QLatin1String("Nederlands");
 			m_names["pl"] = QLatin1String("Polski");

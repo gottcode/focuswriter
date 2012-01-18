@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/document.cpp" line="915"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Κείμενο OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="916"/>
