@@ -2,6 +2,7 @@
 Type=Application
 Name=FocusWriter
 GenericName=Fullscreen Word Processor
+GenericName[de]=Vollbild-Textverarbeitung
 Comment=Write without distractions
 Icon=focuswriter
 TryExec=focuswriter
