@@ -582,7 +582,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>Clonar</translation>
+        <translation>Duplicar</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
@@ -602,7 +602,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>Clonar sesión</translation>
+        <translation>Duplicar sesión</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
