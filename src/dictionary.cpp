@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -329,9 +329,9 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 	int index = -1;
 	int length = 0;
 	int chars = 1;
-	bool number = false;
-	bool uppercase = f_ignore_uppercase;
-	bool word = false;
+	bool is_number = false;
+	bool is_uppercase = f_ignore_uppercase;
+	bool is_word = false;
 
 	int count = string.length() - 1;
 	for (int i = start_at; i <= count; ++i) {
@@ -340,10 +340,10 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 			case QChar::Number_DecimalDigit:
 			case QChar::Number_Letter:
 			case QChar::Number_Other:
-				number = true;
+				is_number = f_ignore_numbers;
 				goto Letter;
 			case QChar::Letter_Lowercase:
-				uppercase = false;
+				is_uppercase = false;
 				Letter:
 			case QChar::Letter_Uppercase:
 			case QChar::Letter_Titlecase:
@@ -370,13 +370,13 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 
 			default:
 				if (index != -1) {
-					word = true;
+					is_word = true;
 				}
 				break;
 		}
 
-		if (word || (i == count && index != -1)) {
-			if (!uppercase && !(number && f_ignore_numbers)) {
+		if (is_word || (i == count && index != -1)) {
+			if (!is_uppercase && !is_number) {
 				QStringRef check(&string, index, length);
 				QString word = check.toString();
 				word.replace(QChar(0x2019), QLatin1Char('\''));
@@ -385,9 +385,9 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 				}
 			}
 			index = -1;
-			word = false;
-			number = false;
-			uppercase = f_ignore_uppercase;
+			is_word = false;
+			is_number = false;
+			is_uppercase = f_ignore_uppercase;
 		}
 	}
 	return QStringRef();
