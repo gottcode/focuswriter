@@ -19,257 +19,19 @@
 
 #include "dictionary.h"
 
+#include "dictionary_manager.h"
 #include "smart_quotes.h"
 
-#include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QHash>
 #include <QTextCodec>
-#include <QTextStream>
-#include <QWeakPointer>
 
 #include <hunspell.hxx>
 
 //-----------------------------------------------------------------------------
 
-class DictionaryPrivate
-{
-public:
-	DictionaryPrivate(const QString& language);
-	~DictionaryPrivate();
-
-	QStringRef check(const QString& string, int start_at = 0) const;
-	QStringList suggestions(const QString& word) const;
-
-	void addPersonal();
-	void removePersonal();
-
-private:
-	Hunspell* m_dictionary;
-	QTextCodec* m_codec;
-};
-
-namespace
-{
-	QList<Dictionary*> f_instances;
-	QHash<QString, QWeakPointer<DictionaryPrivate> > f_dictionaries;
-	QString f_path;
-	QString f_language;
-	QStringList f_personal;
-	bool f_ignore_uppercase = true;
-	bool f_ignore_numbers = true;
-
-	bool compareWords(const QString& s1, const QString& s2)
-	{
-		return s1.localeAwareCompare(s2) < 0;
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-Dictionary::Dictionary(QObject* parent)
-	: QObject(parent)
-{
-	f_instances.append(this);
-	setLanguage(QString());
-}
-
-//-----------------------------------------------------------------------------
-
-Dictionary::Dictionary(const QString& language, QObject* parent)
-	: QObject(parent)
-{
-	f_instances.append(this);
-	setLanguage(language);
-}
-
-//-----------------------------------------------------------------------------
-
-Dictionary::~Dictionary()
-{
-	f_instances.removeAll(this);
-}
-
-//-----------------------------------------------------------------------------
-
-QStringRef Dictionary::check(const QString& string, int start_at) const
-{
-	return d->check(string, start_at);
-}
-
-//-----------------------------------------------------------------------------
-
-QStringList Dictionary::suggestions(const QString& word) const
-{
-	return d->suggestions(word);
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::add(const QString& word)
-{
-	QStringList words = personal();
-	if (words.contains(SmartQuotes::revert(word))) {
-		return;
-	}
-	words.append(word);
-	setPersonal(words);
-	foreach (Dictionary* dictionary, f_instances) {
-		emit dictionary->changed();
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setLanguage(const QString& language)
-{
-	m_default = language.isEmpty();
-	QString l = !m_default ? language : f_language;
-	d = f_dictionaries[l];
-	if (d.isNull()) {
-		d = QSharedPointer<DictionaryPrivate>(new DictionaryPrivate(l));
-		f_dictionaries[l] = d;
-	}
-	emit changed();
-}
-
-//-----------------------------------------------------------------------------
-
-QStringList Dictionary::availableLanguages()
-{
-	QStringList result;
-	QStringList locations = QDir::searchPaths("dict");
-	QListIterator<QString> i(locations);
-	while (i.hasNext()) {
-		QDir dir(i.next());
-
-		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
-		dic_files.replaceInStrings(QRegExp("\\.dic.*"), "");
-		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
-		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
-
-		foreach (const QString& language, dic_files) {
-			if (aff_files.contains(language) && !result.contains(language)) {
-				result.append(language);
-			}
-		}
-	}
-	return result;
-}
-
-//-----------------------------------------------------------------------------
-
-QString Dictionary::defaultLanguage()
-{
-	return f_language;
-}
-
-//-----------------------------------------------------------------------------
-
-QStringList Dictionary::personal()
-{
-	return f_personal;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setDefaultLanguage(const QString& language)
-{
-	if (language == f_language) {
-		return;
-	}
-
-	f_language = language;
-	QSharedPointer<DictionaryPrivate> next = f_dictionaries[f_language];
-	if (next.isNull()) {
-		next = QSharedPointer<DictionaryPrivate>(new DictionaryPrivate(f_language));
-		f_dictionaries[f_language] = next;
-	}
-
-	foreach (Dictionary* dictionary, f_instances) {
-		if (dictionary->m_default) {
-			dictionary->d = next;
-			emit dictionary->changed();
-		}
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setIgnoreNumbers(bool ignore)
-{
-	f_ignore_numbers = ignore;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setIgnoreUppercase(bool ignore)
-{
-	f_ignore_uppercase = ignore;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setPersonal(const QStringList& words)
-{
-	// Check if new
-	QStringList personal = SmartQuotes::revert(words);
-	qSort(personal.begin(), personal.end(), compareWords);
-	if (personal == f_personal) {
-		return;
-	}
-
-	// Remove current personal dictionary
-	QList<QWeakPointer<DictionaryPrivate> > dictionaries = f_dictionaries.values();
-	foreach (QSharedPointer<DictionaryPrivate> dictionary, dictionaries) {
-		if (!dictionary.isNull()) {
-			dictionary->removePersonal();
-		}
-	}
-
-	// Update and store personal dictionary
-	f_personal = personal;
-	QFile file(f_path + "/personal");
-	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-		QTextStream stream(&file);
-		stream.setCodec(QTextCodec::codecForName("UTF-8"));
-		foreach (const QString& word, f_personal) {
-			stream << word << "\n";
-		}
-	}
-
-	// Add personal dictionary
-	foreach (QSharedPointer<DictionaryPrivate> dictionary, dictionaries) {
-		if (!dictionary.isNull()) {
-			dictionary->addPersonal();
-		}
-	}
-
-	// Re-check documents
-	foreach (Dictionary* dictionary, f_instances) {
-		emit dictionary->changed();
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-QString Dictionary::path()
-{
-	return f_path;
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setPath(const QString& path)
-{
-	f_path = path;
-}
-
-//-----------------------------------------------------------------------------
-
-DictionaryPrivate::DictionaryPrivate(const QString& language)
-	: m_dictionary(0),
+Dictionary::Dictionary(const QString& language) :
+	m_dictionary(0),
 	m_codec(0)
 {
 	// Find dictionary files
@@ -297,30 +59,19 @@ DictionaryPrivate::DictionaryPrivate(const QString& language)
 	}
 
 	// Add personal dictionary
-	if (f_personal.isEmpty()) {
-		QFile file(f_path + "/personal");
-		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			while (!stream.atEnd()) {
-				f_personal.append(stream.readLine());
-			}
-			qSort(f_personal.begin(), f_personal.end(), compareWords);
-		}
-	}
 	addPersonal();
 }
 
 //-----------------------------------------------------------------------------
 
-DictionaryPrivate::~DictionaryPrivate()
+Dictionary::~Dictionary()
 {
 	delete m_dictionary;
 }
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
+QStringRef Dictionary::check(const QString& string, int start_at) const
 {
 	if (!m_dictionary) {
 		return QStringRef();
@@ -330,7 +81,7 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 	int length = 0;
 	int chars = 1;
 	bool is_number = false;
-	bool is_uppercase = f_ignore_uppercase;
+	bool is_uppercase = DictionaryManager::instance().ignoreUppercase();
 	bool is_word = false;
 
 	int count = string.length() - 1;
@@ -340,7 +91,7 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 			case QChar::Number_DecimalDigit:
 			case QChar::Number_Letter:
 			case QChar::Number_Other:
-				is_number = f_ignore_numbers;
+				is_number = DictionaryManager::instance().ignoreNumbers();
 				goto Letter;
 			case QChar::Letter_Lowercase:
 				is_uppercase = false;
@@ -387,7 +138,7 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 			index = -1;
 			is_word = false;
 			is_number = false;
-			is_uppercase = f_ignore_uppercase;
+			is_uppercase = DictionaryManager::instance().ignoreUppercase();
 		}
 	}
 	return QStringRef();
@@ -395,19 +146,24 @@ QStringRef DictionaryPrivate::check(const QString& string, int start_at) const
 
 //-----------------------------------------------------------------------------
 
-QStringList DictionaryPrivate::suggestions(const QString& word) const
+QStringList Dictionary::suggestions(const QString& word) const
 {
 	QStringList result;
 	if (!m_dictionary) {
 		return result;
 	}
 
+	QString check = word;
+	check.replace(QChar(0x2019), QLatin1Char('\''));
+
 	char** suggestions = 0;
-	int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(word).constData());
+	int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(check).constData());
 	if (suggestions != 0) {
 		for (int i = 0; i < count; ++i) {
 			QString word = m_codec->toUnicode(suggestions[i]);
-			SmartQuotes::replace(word);
+			if (SmartQuotes::isEnabled()) {
+				SmartQuotes::replace(word);
+			}
 			result.append(word);
 		}
 		m_dictionary->free_list(&suggestions, count);
@@ -417,10 +173,11 @@ QStringList DictionaryPrivate::suggestions(const QString& word) const
 
 //-----------------------------------------------------------------------------
 
-void DictionaryPrivate::addPersonal()
+void Dictionary::addPersonal()
 {
 	if (m_dictionary) {
-		foreach (const QString& word, f_personal) {
+		QStringList personal = DictionaryManager::instance().personal();
+		foreach (const QString& word, personal) {
 			m_dictionary->add(m_codec->fromUnicode(word).constData());
 		}
 	}
@@ -428,10 +185,11 @@ void DictionaryPrivate::addPersonal()
 
 //-----------------------------------------------------------------------------
 
-void DictionaryPrivate::removePersonal()
+void Dictionary::removePersonal()
 {
 	if (m_dictionary) {
-		foreach (const QString& word, f_personal) {
+		QStringList personal = DictionaryManager::instance().personal();
+		foreach (const QString& word, personal) {
 			m_dictionary->remove(m_codec->fromUnicode(word).constData());
 		}
 	}

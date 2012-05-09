@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #include "spell_checker.h"
 
 #include "dictionary.h"
+#include "dictionary_manager.h"
 #include "document.h"
 
 #include <QAction>
@@ -73,7 +74,7 @@ void SpellChecker::suggestionChanged(QListWidgetItem* suggestion)
 
 void SpellChecker::add()
 {
-	m_dictionary->add(m_word);
+	DictionaryManager::instance().add(m_word);
 	ignore();
 }
 
@@ -129,7 +130,7 @@ SpellChecker::SpellChecker(QTextEdit* document)
 	setWindowTitle(tr("Check Spelling"));
 	setWindowModality(Qt::WindowModal);
 	setAttribute(Qt::WA_DeleteOnClose);
-	m_dictionary = new Dictionary(this);
+	m_dictionary = DictionaryManager::instance().requestDictionary();
 
 	// Create widgets
 	m_context = new QTextEdit(this);
@@ -202,7 +203,7 @@ void SpellChecker::check()
 
 		// Check current line
 		QTextBlock block = m_cursor.block();
-		QStringRef word =  m_dictionary->check(block.text(), m_cursor.position() - block.position());
+		QStringRef word =  (*m_dictionary)->check(block.text(), m_cursor.position() - block.position());
 		if (word.isNull()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);
@@ -238,7 +239,7 @@ void SpellChecker::check()
 			// Show suggestions
 			m_suggestion->clear();
 			m_suggestions->clear();
-			QStringList words = m_dictionary->suggestions(m_word);
+			QStringList words = (*m_dictionary)->suggestions(m_word);
 			if (!words.isEmpty()) {
 				foreach (const QString& word, words) {
 					m_suggestions->addItem(word);

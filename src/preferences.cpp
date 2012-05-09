@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 #include "preferences.h"
 
-#include "dictionary.h"
+#include "dictionary_manager.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -69,14 +69,14 @@ Preferences::Preferences()
 	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
 	m_language = settings.value("Spelling/Language", QLocale().name()).toString();
 
-	QStringList languages = Dictionary::availableLanguages();
+	QStringList languages = DictionaryManager::instance().availableDictionaries();
 	if (!languages.isEmpty() && !languages.contains(m_language)) {
 		int close = languages.indexOf(QRegExp(m_language.left(2) + ".*"));
 		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
 	}
-	Dictionary::setDefaultLanguage(m_language);
-	Dictionary::setIgnoreNumbers(m_ignore_numbers);
-	Dictionary::setIgnoreUppercase(m_ignore_uppercase);
+	DictionaryManager::instance().setDefaultLanguage(m_language);
+	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
+	DictionaryManager::instance().setIgnoreUppercase(m_ignore_uppercase);
 }
 
 //-----------------------------------------------------------------------------

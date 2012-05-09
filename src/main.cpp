@@ -17,7 +17,7 @@
  *
  ***********************************************************************/
 
-#include "dictionary.h"
+#include "dictionary_manager.h"
 #include "document.h"
 #include "locale_dialog.h"
 #include "session.h"
@@ -234,8 +234,8 @@ int main(int argc, char** argv)
 			dir.mkdir("Dictionaries");
 		}
 	}
-	Dictionary::setPath(dir.absoluteFilePath("Dictionaries"));
-	locations.prepend(Dictionary::path());
+	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
+	locations.prepend(DictionaryManager::path());
 	QDir::setSearchPaths("dict", locations);
 
 	// Create theme from old settings

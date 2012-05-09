@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 #include "preferences_dialog.h"
 
-#include "dictionary.h"
+#include "dictionary_manager.h"
 #include "preferences.h"
 #include "smart_quotes.h"
 
@@ -268,7 +268,7 @@ void PreferencesDialog::accept()
 	}
 
 	// Install languages
-	QString path = Dictionary::path() + "/install/";
+	QString path = DictionaryManager::path() + "/install/";
 	QDir dir(path);
 	QStringList files = dir.entryList(QDir::Files);
 	foreach (const QString& file, files) {
@@ -289,16 +289,16 @@ void PreferencesDialog::accept()
 	} else {
 		m_preferences.setLanguage(QString());
 	}
-	Dictionary::setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
-	Dictionary::setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
-	Dictionary::setDefaultLanguage(m_preferences.language());
+	DictionaryManager::instance().setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
+	DictionaryManager::instance().setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
+	DictionaryManager::instance().setDefaultLanguage(m_preferences.language());
 
 	// Save personal dictionary
 	QStringList words;
 	for (int i = 0; i < m_personal_dictionary->count(); ++i) {
 		words.append(m_personal_dictionary->item(i)->text());
 	}
-	Dictionary::setPersonal(words);
+	DictionaryManager::instance().setPersonal(words);
 
 	QDialog::accept();
 }
@@ -307,7 +307,7 @@ void PreferencesDialog::accept()
 
 void PreferencesDialog::reject()
 {
-	QDir dir(Dictionary::path() + "/install/");
+	QDir dir(DictionaryManager::path() + "/install/");
 	if (dir.exists()) {
 		QStringList files = dir.entryList(QDir::Files);
 		foreach (const QString& file, files) {
@@ -419,7 +419,7 @@ void PreferencesDialog::addLanguage()
 		}
 
 		// Extract files
-		QDir dir(Dictionary::path());
+		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
 		QHashIterator<QString, int> i(files);
@@ -447,8 +447,8 @@ void PreferencesDialog::addLanguage()
 		}
 
 		// Add to language selection
-		QString dictionary_path = Dictionary::path() + "/install/";
-		QString dictionary_new_path = Dictionary::path() + "/";
+		QString dictionary_path = DictionaryManager::path() + "/install/";
+		QString dictionary_new_path = DictionaryManager::path() + "/";
 		foreach (const QString& dictionary, dictionaries) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
@@ -502,7 +502,7 @@ void PreferencesDialog::selectedLanguageChanged(int index)
 {
 	if (index != -1) {
 		QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
-		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(Dictionary::path()));
+		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(DictionaryManager::path()));
 	}
 }
 
@@ -809,7 +809,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	m_remove_language_button->setAutoDefault(false);
 	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
 
-	QStringList languages = Dictionary::availableLanguages();
+	QStringList languages = DictionaryManager::instance().availableDictionaries();
 	foreach (const QString& language, languages) {
 		m_languages->addItem(languageName(language), language);
 	}
@@ -833,7 +833,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	connect(m_add_word_button, SIGNAL(clicked()), this, SLOT(addWord()));
 
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
-	QStringList words = Dictionary::personal();
+	QStringList words = DictionaryManager::instance().personal();
 	foreach (const QString& word, words) {
 		m_personal_dictionary->addItem(word);
 	}

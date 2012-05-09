@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include "block_stats.h"
 #include "dictionary.h"
+#include "dictionary_manager.h"
 #include "highlighter.h"
 #include "odt_reader.h"
 #include "preferences.h"
@@ -194,9 +195,9 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 
-	m_dictionary = new Dictionary(this);
+	m_dictionary = DictionaryManager::instance().requestDictionary();
 	m_highlighter = new Highlighter(m_text, m_dictionary);
-	connect(m_dictionary, SIGNAL(changed()), this, SLOT(dictionaryChanged()));
+	connect(&DictionaryManager::instance(), SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
 	// Set filename
 	bool unknown_rich_text = false;

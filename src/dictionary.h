@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,43 +20,28 @@
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 
-#include <QObject>
-#include <QStringList>
-#include <QSharedPointer>
-class DictionaryPrivate;
+class Hunspell;
 
-class Dictionary : public QObject
+class QString;
+class QStringList;
+class QStringRef;
+class QTextCodec;
+
+class Dictionary
 {
-	Q_OBJECT
-
 public:
-	Dictionary(QObject* parent = 0);
-	Dictionary(const QString& language, QObject* parent = 0);
+	Dictionary(const QString& language);
 	~Dictionary();
 
-	QStringRef check(const QString& string, int start_at = 0) const;
+	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
-	void setLanguage(const QString& language);
-
-	static QStringList availableLanguages();
-	static QString defaultLanguage();
-	static QString path();
-	static QStringList personal();
-
-	static void add(const QString& word);
-	static void setDefaultLanguage(const QString& language);
-	static void setIgnoreNumbers(bool ignore);
-	static void setIgnoreUppercase(bool ignore);
-	static void setPath(const QString& path);
-	static void setPersonal(const QStringList& words);
-
-signals:
-	void changed();
+	void addPersonal();
+	void removePersonal();
 
 private:
-	bool m_default;
-	QSharedPointer<DictionaryPrivate> d;
+	Hunspell* m_dictionary;
+	QTextCodec* m_codec;
 };
 
 #endif

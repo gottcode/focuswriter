@@ -123,7 +123,7 @@ private:
 	QGridLayout* m_layout;
 	QTextEdit* m_text;
 	QScrollBar* m_scrollbar;
-	Dictionary* m_dictionary;
+	Dictionary** m_dictionary;
 	Highlighter* m_highlighter;
 
 	Stats* m_stats;
