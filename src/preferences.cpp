@@ -19,6 +19,7 @@
 
 #include "preferences.h"
 
+#include "dictionary.h"
 #include "dictionary_manager.h"
 
 #include <QApplication>
@@ -75,8 +76,8 @@ Preferences::Preferences()
 		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
 	}
 	DictionaryManager::instance().setDefaultLanguage(m_language);
-	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
-	DictionaryManager::instance().setIgnoreUppercase(m_ignore_uppercase);
+	Dictionary::setIgnoreNumbers(m_ignore_numbers);
+	Dictionary::setIgnoreUppercase(m_ignore_uppercase);
 }
 
 //-----------------------------------------------------------------------------

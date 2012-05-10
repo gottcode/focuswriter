@@ -45,6 +45,7 @@ HEADERS += src/alert.h \
 	src/color_button.h \
 	src/deltas.h \
 	src/dictionary.h \
+	src/dictionary_data.h \
 	src/dictionary_manager.h \
 	src/document.h \
 	src/find_dialog.h \
@@ -81,6 +82,7 @@ SOURCES += src/alert.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
 	src/dictionary.cpp \
+	src/dictionary_data.cpp \
 	src/dictionary_manager.cpp \
 	src/document.cpp \
 	src/find_dialog.cpp \

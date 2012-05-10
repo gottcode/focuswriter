@@ -24,7 +24,7 @@ class Dictionary;
 class BlockStats : public QTextBlockUserData
 {
 public:
-	BlockStats(const QString& text, Dictionary** dictionary);
+	BlockStats(const QString& text, Dictionary* dictionary);
 
 	bool isEmpty() const;
 	int characterCount() const;
@@ -32,8 +32,8 @@ public:
 	int wordCount() const;
 	QVector<QStringRef> misspelled() const;
 
-	void checkSpelling(const QString& text, Dictionary** dictionary);
-	void update(const QString& text, Dictionary** dictionary);
+	void checkSpelling(const QString& text, Dictionary* dictionary);
+	void update(const QString& text, Dictionary* dictionary);
 
 private:
 	int m_characters;

@@ -20,6 +20,7 @@
 #include "dictionary_manager.h"
 
 #include "dictionary.h"
+#include "dictionary_data.h"
 #include "smart_quotes.h"
 
 #include <QDir>
@@ -84,20 +85,17 @@ void DictionaryManager::add(const QString& word)
 
 //-----------------------------------------------------------------------------
 
-Dictionary** DictionaryManager::requestDictionary(const QString& language)
+Dictionary DictionaryManager::requestDictionary(const QString& language)
 {
 	if (language.isEmpty()) {
 		// Fetch shared default dictionary
 		if (!m_default_dictionary) {
-			m_default_dictionary = new Dictionary(m_default_language);
+			m_default_dictionary = *requestDictionaryData(m_default_language);
 		}
 		return &m_default_dictionary;
 	} else {
 		// Fetch specific dictionary
-		if (!m_dictionaries.contains(language)) {
-			m_dictionaries[language] = new Dictionary(language);
-		}
-		return &m_dictionaries[language];
+		return requestDictionaryData(language);
 	}
 }
 
@@ -108,32 +106,12 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 	if (language == m_default_language) {
 		return;
 	}
-	m_default_language = language;
 
-	// Change pointer for default dictionary
-	Dictionary* dictionary = m_dictionaries[m_default_language];
-	if (!dictionary) {
-		dictionary = new Dictionary(m_default_language);
-		m_dictionaries[m_default_language] = dictionary;
-	}
-	m_default_dictionary = dictionary;
+	m_default_language = language;
+	m_default_dictionary = *requestDictionaryData(m_default_language);
 
 	// Re-check documents
 	emit changed();
-}
-
-//-----------------------------------------------------------------------------
-
-void DictionaryManager::setIgnoreNumbers(bool ignore)
-{
-	m_ignore_numbers = ignore;
-}
-
-//-----------------------------------------------------------------------------
-
-void DictionaryManager::setIgnoreUppercase(bool ignore)
-{
-	m_ignore_uppercase = ignore;
 }
 
 //-----------------------------------------------------------------------------
@@ -155,8 +133,8 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	}
 
 	// Remove current personal dictionary
-	foreach (Dictionary* dictionary, m_dictionaries) {
-		dictionary->removePersonal();
+	foreach (DictionaryData* dictionary, m_dictionaries) {
+		dictionary->removeFromSession(m_personal);
 	}
 
 	// Update and store personal dictionary
@@ -171,8 +149,8 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	}
 
 	// Add personal dictionary
-	foreach (Dictionary* dictionary, m_dictionaries) {
-		dictionary->addPersonal();
+	foreach (DictionaryData* dictionary, m_dictionaries) {
+		dictionary->addToSession(m_personal);
 	}
 
 	// Re-check documents
@@ -181,9 +159,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-DictionaryManager::DictionaryManager() :
-	m_ignore_numbers(false),
-	m_ignore_uppercase(true)
+DictionaryManager::DictionaryManager()
 {
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
@@ -201,9 +177,22 @@ DictionaryManager::DictionaryManager() :
 
 DictionaryManager::~DictionaryManager()
 {
-	foreach (Dictionary* dictionary, m_dictionaries) {
+	foreach (DictionaryData* dictionary, m_dictionaries) {
 		delete dictionary;
 	}
+	m_dictionaries.clear();
+}
+
+//-----------------------------------------------------------------------------
+
+DictionaryData** DictionaryManager::requestDictionaryData(const QString& language)
+{
+	if (!m_dictionaries.contains(language)) {
+		DictionaryData* dictionary = new DictionaryData(language);
+		dictionary->addToSession(m_personal);
+		m_dictionaries[language] = dictionary;
+	}
+	return &m_dictionaries[language];
 }
 
 //-----------------------------------------------------------------------------

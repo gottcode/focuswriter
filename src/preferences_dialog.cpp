@@ -19,6 +19,7 @@
 
 #include "preferences_dialog.h"
 
+#include "dictionary.h"
 #include "dictionary_manager.h"
 #include "preferences.h"
 #include "smart_quotes.h"
@@ -289,8 +290,8 @@ void PreferencesDialog::accept()
 	} else {
 		m_preferences.setLanguage(QString());
 	}
-	DictionaryManager::instance().setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
-	DictionaryManager::instance().setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
+	Dictionary::setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
+	Dictionary::setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
 	DictionaryManager::instance().setDefaultLanguage(m_preferences.language());
 
 	// Save personal dictionary

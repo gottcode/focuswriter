@@ -21,6 +21,7 @@
 #define DICTIONARY_MANAGER_H
 
 class Dictionary;
+class DictionaryData;
 
 #include <QHash>
 #include <QObject>
@@ -35,15 +36,11 @@ public:
 
 	QStringList availableDictionaries() const;
 	QString defaultLanguage() const;
-	bool ignoreNumbers() const;
-	bool ignoreUppercase() const;
 	QStringList personal() const;
 
 	void add(const QString& word);
-	Dictionary** requestDictionary(const QString& language = QString());
+	Dictionary requestDictionary(const QString& language = QString());
 	void setDefaultLanguage(const QString& language);
-	void setIgnoreNumbers(bool ignore);
-	void setIgnoreUppercase(bool ignore);
 	void setPersonal(const QStringList& words);
 
 	static QString path();
@@ -56,14 +53,14 @@ private:
 	DictionaryManager();
 	~DictionaryManager();
 
+	DictionaryData** requestDictionaryData(const QString& language);
+
 private:
-	QHash<QString, Dictionary*> m_dictionaries;
-	Dictionary* m_default_dictionary;
+	QHash<QString, DictionaryData*> m_dictionaries;
+	DictionaryData* m_default_dictionary;
 
 	QString m_default_language;
 	QStringList m_personal;
-	bool m_ignore_numbers;
-	bool m_ignore_uppercase;
 
 	static QString m_path;
 };
@@ -71,16 +68,6 @@ private:
 inline QString DictionaryManager::defaultLanguage() const
 {
 	return m_default_language;
-}
-
-inline bool DictionaryManager::ignoreNumbers() const
-{
-	return m_ignore_numbers;
-}
-
-inline bool DictionaryManager::ignoreUppercase() const
-{
-	return m_ignore_uppercase;
 }
 
 inline QString DictionaryManager::path()

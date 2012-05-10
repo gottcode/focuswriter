@@ -20,28 +20,27 @@
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 
-class Hunspell;
+class DictionaryData;
 
 class QString;
 class QStringList;
 class QStringRef;
-class QTextCodec;
 
 class Dictionary
 {
 public:
-	Dictionary(const QString& language);
-	~Dictionary();
+	Dictionary(DictionaryData** data = 0);
 
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
-	void addPersonal();
-	void removePersonal();
+	void addWord(const QString& word);
+
+	static void setIgnoreNumbers(bool ignore);
+	static void setIgnoreUppercase(bool ignore);
 
 private:
-	Hunspell* m_dictionary;
-	QTextCodec* m_codec;
+	DictionaryData** d;
 };
 
 #endif

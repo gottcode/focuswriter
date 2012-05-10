@@ -20,7 +20,6 @@
 #include "spell_checker.h"
 
 #include "dictionary.h"
-#include "dictionary_manager.h"
 #include "document.h"
 
 #include <QAction>
@@ -39,9 +38,9 @@
 
 //-----------------------------------------------------------------------------
 
-void SpellChecker::checkDocument(QTextEdit* document)
+void SpellChecker::checkDocument(QTextEdit* document, Dictionary& dictionary)
 {
-	SpellChecker* checker = new SpellChecker(document);
+	SpellChecker* checker = new SpellChecker(document, dictionary);
 	checker->m_start_cursor = document->textCursor();
 	checker->m_cursor = checker->m_start_cursor;
 	checker->m_cursor.movePosition(QTextCursor::Start);
@@ -74,7 +73,7 @@ void SpellChecker::suggestionChanged(QListWidgetItem* suggestion)
 
 void SpellChecker::add()
 {
-	DictionaryManager::instance().add(m_word);
+	m_dictionary.addWord(m_word);
 	ignore();
 }
 
@@ -123,14 +122,14 @@ void SpellChecker::changeAll()
 
 //-----------------------------------------------------------------------------
 
-SpellChecker::SpellChecker(QTextEdit* document)
-	: QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+SpellChecker::SpellChecker(QTextEdit* document, Dictionary& dictionary) :
+	QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_dictionary(dictionary),
 	m_document(document)
 {
 	setWindowTitle(tr("Check Spelling"));
 	setWindowModality(Qt::WindowModal);
 	setAttribute(Qt::WA_DeleteOnClose);
-	m_dictionary = DictionaryManager::instance().requestDictionary();
 
 	// Create widgets
 	m_context = new QTextEdit(this);
@@ -203,7 +202,7 @@ void SpellChecker::check()
 
 		// Check current line
 		QTextBlock block = m_cursor.block();
-		QStringRef word =  (*m_dictionary)->check(block.text(), m_cursor.position() - block.position());
+		QStringRef word =  m_dictionary.check(block.text(), m_cursor.position() - block.position());
 		if (word.isNull()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);
@@ -239,7 +238,7 @@ void SpellChecker::check()
 			// Show suggestions
 			m_suggestion->clear();
 			m_suggestions->clear();
-			QStringList words = (*m_dictionary)->suggestions(m_word);
+			QStringList words = m_dictionary.suggestions(m_word);
 			if (!words.isEmpty()) {
 				foreach (const QString& word, words) {
 					m_suggestions->addItem(word);

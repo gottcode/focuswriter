@@ -17,52 +17,41 @@
  *
  ***********************************************************************/
 
-#ifndef HIGHLIGHTER_H
-#define HIGHLIGHTER_H
+#ifndef DICTIONARY_DATA_H
+#define DICTIONARY_DATA_H
 
-class Dictionary;
+class Hunspell;
 
-#include <QSyntaxHighlighter>
-#include <QTextCursor>
-class QAction;
-class QTextEdit;
+class QString;
+class QStringList;
+class QStringRef;
+class QTextCodec;
 
-class Highlighter : public QSyntaxHighlighter
+class DictionaryData
 {
-	Q_OBJECT
-
 public:
-	Highlighter(QTextEdit* text, Dictionary& dictionary);
+	DictionaryData(const QString& language);
+	~DictionaryData();
 
-	bool enabled() const;
-	void setEnabled(bool enabled);
-	void setMisspelledColor(const QColor& color);
+	Hunspell* dictionary() const;
+	QTextCodec* codec() const;
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
-	virtual void highlightBlock(const QString& text);
-
-private slots:
-	void cursorPositionChanged();
-	void suggestion(QAction* action);
+	void addToSession(const QStringList& words);
+	void removeFromSession(const QStringList& words);
 
 private:
-	Dictionary& m_dictionary;
-	QTextEdit* m_text;
-	QTextCursor m_cursor;
-	QTextCursor m_start_cursor;
-	bool m_enabled;
-	QColor m_misspelled;
-	QString m_word;
-	QTextBlock m_current;
-	bool m_changed;
-
-	QAction* m_add_action;
-	QAction* m_check_action;
+	Hunspell* m_dictionary;
+	QTextCodec* m_codec;
 };
 
-inline bool Highlighter::enabled() const
+inline Hunspell* DictionaryData::dictionary() const
 {
-	return m_enabled;
+	return m_dictionary;
+}
+
+inline QTextCodec* DictionaryData::codec() const
+{
+	return m_codec;
 }
 
 #endif

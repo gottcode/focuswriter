@@ -20,8 +20,8 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
+#include "dictionary.h"
 #include "stats.h"
-class Dictionary;
 class Highlighter;
 class Preferences;
 class Theme;
@@ -123,7 +123,7 @@ private:
 	QGridLayout* m_layout;
 	QTextEdit* m_text;
 	QScrollBar* m_scrollbar;
-	Dictionary** m_dictionary;
+	Dictionary m_dictionary;
 	Highlighter* m_highlighter;
 
 	Stats* m_stats;

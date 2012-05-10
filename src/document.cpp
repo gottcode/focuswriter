@@ -20,7 +20,6 @@
 #include "document.h"
 
 #include "block_stats.h"
-#include "dictionary.h"
 #include "dictionary_manager.h"
 #include "highlighter.h"
 #include "odt_reader.h"
@@ -358,7 +357,7 @@ bool Document::rename()
 
 void Document::checkSpelling()
 {
-	SpellChecker::checkDocument(m_text);
+	SpellChecker::checkDocument(m_text, m_dictionary);
 }
 
 //-----------------------------------------------------------------------------
@@ -771,7 +770,7 @@ void Document::dictionaryChanged()
 {
 	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 		if (i.userData()) {
-			static_cast<BlockStats*>(i.userData())->checkSpelling(i.text(), m_dictionary);
+			static_cast<BlockStats*>(i.userData())->checkSpelling(i.text(), &m_dictionary);
 		}
 	}
 	m_highlighter->rehighlight();
@@ -867,7 +866,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 	for (QTextBlock i = begin; i != end; i = i.next()) {
 		if (i.userData()) {
-			static_cast<BlockStats*>(i.userData())->update(i.text(), m_dictionary);
+			static_cast<BlockStats*>(i.userData())->update(i.text(), &m_dictionary);
 		}
 	}
 
@@ -889,7 +888,7 @@ void Document::calculateWordCount()
 
 		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 			if (!i.userData()) {
-				i.setUserData(new BlockStats(i.text(), m_dictionary));
+				i.setUserData(new BlockStats(i.text(), &m_dictionary));
 			}
 			if (i.blockNumber() != m_cached_current_block) {
 				m_cached_stats.append(static_cast<BlockStats*>(i.userData()));

@@ -21,7 +21,6 @@
 
 #include "block_stats.h"
 #include "dictionary.h"
-#include "dictionary_manager.h"
 #include "spell_checker.h"
 
 #include <QAction>
@@ -32,7 +31,7 @@
 
 //-----------------------------------------------------------------------------
 
-Highlighter::Highlighter(QTextEdit* text, Dictionary** dictionary)
+Highlighter::Highlighter(QTextEdit* text, Dictionary& dictionary)
 	: QSyntaxHighlighter(text),
 	m_dictionary(dictionary),
 	m_text(text),
@@ -106,7 +105,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 			// List suggestions in context menu
 			QMenu* menu = new QMenu;
-			QStringList guesses = (*m_dictionary)->suggestions(m_word);
+			QStringList guesses = m_dictionary.suggestions(m_word);
 			if (!guesses.isEmpty()) {
 				foreach (const QString& guess, guesses) {
 					menu->addAction(guess);
@@ -141,7 +140,7 @@ void Highlighter::highlightBlock(const QString& text)
 	int cursor = m_text->textCursor().position() - currentBlock().position();
 	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
 	if (!stats) {
-		stats = new BlockStats(text, m_dictionary);
+		stats = new BlockStats(text, &m_dictionary);
 		setCurrentBlockUserData(stats);
 	}
 
@@ -182,10 +181,10 @@ void Highlighter::suggestion(QAction* action)
 {
 	if (action == m_add_action) {
 		m_text->setTextCursor(m_start_cursor);
-		DictionaryManager::instance().add(m_word);
+		m_dictionary.addWord(m_word);
 	} else if (action == m_check_action) {
 		m_text->setTextCursor(m_start_cursor);
-		SpellChecker::checkDocument(m_text);
+		SpellChecker::checkDocument(m_text, m_dictionary);
 	} else {
 		m_cursor.insertText(action->text());
 	}

@@ -23,7 +23,7 @@
 
 //-----------------------------------------------------------------------------
 
-BlockStats::BlockStats(const QString& text, Dictionary** dictionary)
+BlockStats::BlockStats(const QString& text, Dictionary* dictionary)
 	: m_characters(0),
 	m_spaces(0),
 	m_words(0)
@@ -33,22 +33,22 @@ BlockStats::BlockStats(const QString& text, Dictionary** dictionary)
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::checkSpelling(const QString& text, Dictionary** dictionary)
+void BlockStats::checkSpelling(const QString& text, Dictionary* dictionary)
 {
 	m_misspelled.clear();
-	if (text.isEmpty() || !dictionary || !*dictionary) {
+	if (text.isEmpty() || !dictionary) {
 		return;
 	}
 
 	QStringRef word;
-	while ((word = (*dictionary)->check(text, word.position() + word.length())).isNull() == false) {
+	while ((word = dictionary->check(text, word.position() + word.length())).isNull() == false) {
 		m_misspelled.append(word);
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::update(const QString& text, Dictionary** dictionary)
+void BlockStats::update(const QString& text, Dictionary* dictionary)
 {
 	m_characters = text.length();
 	m_spaces = 0;
