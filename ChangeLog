@@ -1,4 +1,5 @@
 2012-05-10 Graeme Gott <graeme@gottcode.org>
+	* Switch to enchant from hunspell.
 	* Add a wrapper class for the dictionary.
 
 2012-05-09 Graeme Gott <graeme@gottcode.org>

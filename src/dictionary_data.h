@@ -20,7 +20,7 @@
 #ifndef DICTIONARY_DATA_H
 #define DICTIONARY_DATA_H
 
-class Hunspell;
+#include <enchant.h>
 
 class QString;
 class QStringList;
@@ -30,28 +30,22 @@ class QTextCodec;
 class DictionaryData
 {
 public:
-	DictionaryData(const QString& language);
+	DictionaryData(EnchantBroker* broker, const QString& language);
 	~DictionaryData();
 
-	Hunspell* dictionary() const;
-	QTextCodec* codec() const;
+	EnchantDict* dictionary() const;
 
 	void addToSession(const QStringList& words);
 	void removeFromSession(const QStringList& words);
 
 private:
-	Hunspell* m_dictionary;
-	QTextCodec* m_codec;
+	EnchantBroker* m_broker;
+	EnchantDict* m_dictionary;
 };
 
-inline Hunspell* DictionaryData::dictionary() const
+inline EnchantDict* DictionaryData::dictionary() const
 {
 	return m_dictionary;
-}
-
-inline QTextCodec* DictionaryData::codec() const
-{
-	return m_codec;
 }
 
 #endif

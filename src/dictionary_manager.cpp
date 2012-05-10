@@ -35,6 +35,18 @@ namespace
 	{
 		return s1.localeAwareCompare(s2) < 0;
 	}
+
+	QStringList f_languages;
+	void foundLanguage(const char* const lang, const char* const provider_name, const char* const provider_desc , const char* const provider_file, void*)
+	{
+		Q_UNUSED(provider_name)
+		Q_UNUSED(provider_desc)
+		Q_UNUSED(provider_file)
+		QString language = QString::fromUtf8(lang);
+		if (!f_languages.contains(language)) {
+			f_languages.append(language);
+		}
+	}
 }
 
 QString DictionaryManager::m_path;
@@ -51,24 +63,9 @@ DictionaryManager& DictionaryManager::instance()
 
 QStringList DictionaryManager::availableDictionaries() const
 {
-	QStringList result;
-	QStringList locations = QDir::searchPaths("dict");
-	QListIterator<QString> i(locations);
-	while (i.hasNext()) {
-		QDir dir(i.next());
-
-		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
-		dic_files.replaceInStrings(QRegExp("\\.dic.*"), "");
-		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
-		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
-
-		foreach (const QString& language, dic_files) {
-			if (aff_files.contains(language) && !result.contains(language)) {
-				result.append(language);
-			}
-		}
-	}
-	return result;
+	f_languages.clear();
+	enchant_broker_list_dicts(m_broker, &foundLanguage, 0);
+	return f_languages;
 }
 
 //-----------------------------------------------------------------------------
@@ -159,8 +156,26 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-DictionaryManager::DictionaryManager()
+DictionaryManager::DictionaryManager() :
+	m_broker(enchant_broker_init())
 {
+	// Set paths for hunspell/myspell dictionaries
+	QByteArray paths;
+#ifdef Q_OS_WIN32
+	char sep = ';';
+#else
+	char sep = ':';
+#endif
+	QStringList locations = QDir::searchPaths("dict");
+	int count = locations.count();
+	for (int i = 0; i < count; ++i) {
+		paths += QFile::encodeName(locations.at(i));
+		if (i < (count - 1)) {
+			paths += sep;
+		}
+	}
+	enchant_broker_set_param(m_broker, "enchant.myspell.dictionary.path", paths.constData());
+
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -181,6 +196,8 @@ DictionaryManager::~DictionaryManager()
 		delete dictionary;
 	}
 	m_dictionaries.clear();
+
+	enchant_broker_free(m_broker);
 }
 
 //-----------------------------------------------------------------------------
@@ -188,7 +205,7 @@ DictionaryManager::~DictionaryManager()
 DictionaryData** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		DictionaryData* dictionary = new DictionaryData(language);
+		DictionaryData* dictionary = new DictionaryData(m_broker, language);
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;
 	}

@@ -23,6 +23,8 @@
 class Dictionary;
 class DictionaryData;
 
+#include <enchant.h>
+
 #include <QHash>
 #include <QObject>
 #include <QStringList>
@@ -56,6 +58,8 @@ private:
 	DictionaryData** requestDictionaryData(const QString& language);
 
 private:
+	EnchantBroker* m_broker;
+
 	QHash<QString, DictionaryData*> m_dictionaries;
 	DictionaryData* m_default_dictionary;
 

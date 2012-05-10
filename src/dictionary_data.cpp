@@ -24,35 +24,16 @@
 #include <QStringList>
 #include <QTextCodec>
 
-#include <hunspell.hxx>
-
 //-----------------------------------------------------------------------------
 
-DictionaryData::DictionaryData(const QString& language) :
-	m_dictionary(0),
-	m_codec(0)
+DictionaryData::DictionaryData(EnchantBroker* broker, const QString& language) :
+	m_broker(broker),
+	m_dictionary(0)
 {
-	// Find dictionary files
-	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
-	if (aff.isEmpty()) {
-		aff = QFileInfo("dict:" + language + ".aff.hz").canonicalFilePath();
-		aff.chop(3);
-	}
-	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
-	if (dic.isEmpty()) {
-		dic = QFileInfo("dict:" + language + ".dic.hz").canonicalFilePath();
-		dic.chop(3);
-	}
-	if (language.isEmpty() || aff.isEmpty() || dic.isEmpty()) {
-		return;
-	}
-
 	// Create dictionary
-	m_dictionary = new Hunspell(QFile::encodeName(aff).constData(), QFile::encodeName(dic).constData());
-	m_codec = QTextCodec::codecForName(m_dictionary->get_dic_encoding());
-	if (!m_codec) {
-		delete m_dictionary;
-		m_dictionary = 0;
+	m_dictionary = enchant_broker_request_dict(m_broker, language.toUtf8().constData());
+	if (!m_dictionary) {
+		qWarning("enchant broker error: %s", enchant_broker_get_error(m_broker));
 		return;
 	}
 }
@@ -61,7 +42,9 @@ DictionaryData::DictionaryData(const QString& language) :
 
 DictionaryData::~DictionaryData()
 {
-	delete m_dictionary;
+	if (m_dictionary) {
+		enchant_broker_free_dict(m_broker, m_dictionary);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -70,7 +53,8 @@ void DictionaryData::addToSession(const QStringList& words)
 {
 	if (m_dictionary) {
 		foreach (const QString& word, words) {
-			m_dictionary->add(m_codec->fromUnicode(word).constData());
+			QByteArray word_utf8 = word.toUtf8();
+			enchant_dict_add_to_session(m_dictionary, word_utf8.constData(), word_utf8.length());
 		}
 	}
 }
@@ -81,7 +65,8 @@ void DictionaryData::removeFromSession(const QStringList& words)
 {
 	if (m_dictionary) {
 		foreach (const QString& word, words) {
-			m_dictionary->remove(m_codec->fromUnicode(word).constData());
+			QByteArray word_utf8 = word.toUtf8();
+			enchant_dict_remove_from_session(m_dictionary, word_utf8.constData(), word_utf8.length());
 		}
 	}
 }

@@ -23,20 +23,20 @@ unix: !macx {
 }
 
 macx {
-	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
-	LIBS += -framework hunspell -framework libzip
+	INCLUDEPATH += /Library/Frameworks/enchant.framework/Headers /Library/Frameworks/libzip.framework/Headers
+	LIBS += -framework enchant -framework libzip
 
 	HEADERS += src/rtf/clipboard_mac.h
 	SOURCES += src/rtf/clipboard_mac.cpp
 } else:win32 {
-	INCLUDEPATH += hunspell libzip
-	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
+	INCLUDEPATH += enchant libzip
+	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
 
 	HEADERS += src/rtf/clipboard_windows.h
 	SOURCES += src/rtf/clipboard_windows.cpp
 } else {
 	CONFIG += link_pkgconfig
-	PKGCONFIG += hunspell libzip
+	PKGCONFIG += enchant libzip
 }
 
 HEADERS += src/alert.h \
