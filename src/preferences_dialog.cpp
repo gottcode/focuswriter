@@ -20,6 +20,7 @@
 #include "preferences_dialog.h"
 
 #include "dictionary.h"
+#include "locale_dialog.h"
 #include "preferences.h"
 #include "smart_quotes.h"
 
@@ -48,16 +49,6 @@
 
 namespace
 {
-	QString languageName(const QString& language)
-	{
-		QLocale locale(language.left(5));
-		QString name = QLocale::languageToString(locale.language());
-		if (locale.country() != QLocale::AnyCountry) {
-			name += " (" + QLocale::countryToString(locale.country()) + ")";
-		}
-		return name;
-	}
-
 	QWidget* makeScrollable(QWidget* tab)
 	{
 		QScrollArea* area = new QScrollArea(tab->parentWidget());
@@ -452,7 +443,7 @@ void PreferencesDialog::addLanguage()
 		foreach (const QString& dictionary, dictionaries) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
-			QString name = languageName(language);
+			QString name = LocaleDialog::languageName(language);
 
 			// Prompt user about replacing duplicate languages
 			QString aff_file = dictionary_path + dictionary + ".aff";
@@ -811,7 +802,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 
 	QStringList languages = Dictionary::availableLanguages();
 	foreach (const QString& language, languages) {
-		m_languages->addItem(languageName(language), language);
+		m_languages->addItem(LocaleDialog::languageName(language), language);
 	}
 	m_languages->model()->sort(0);
 
