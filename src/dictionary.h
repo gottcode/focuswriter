@@ -22,6 +22,7 @@
 
 class DictionaryData;
 
+#include <QList>
 class QString;
 class QStringList;
 class QStringRef;
@@ -31,7 +32,7 @@ class Dictionary
 public:
 	Dictionary(DictionaryData** data = 0);
 
-	QStringRef check(const QString& string, int start_at) const;
+	QList<QStringRef> check(const QString& string) const;
 	QStringList suggestions(const QString& word) const;
 
 	void addWord(const QString& word);

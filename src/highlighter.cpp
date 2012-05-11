@@ -83,7 +83,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 		bool under_mouse = false;
 		QStringRef word;
-		QVector<QStringRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
+		QList<QStringRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
 		for (int i = 0; i < words.count(); ++i) {
 			word = words.at(i);
 			int delta = cursor - word.position();
@@ -148,7 +148,7 @@ void Highlighter::highlightBlock(const QString& text)
 	error.setUnderlineColor(m_misspelled);
 	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
-	QVector<QStringRef> words = stats->misspelled();
+	QList<QStringRef> words = stats->misspelled();
 	for (int i = 0; i < words.count(); ++i) {
 		const QStringRef& word = words.at(i);
 		int delta = cursor - word.position();

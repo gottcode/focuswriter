@@ -39,10 +39,11 @@ Dictionary::Dictionary(DictionaryData** data) :
 
 //-----------------------------------------------------------------------------
 
-QStringRef Dictionary::check(const QString& string, int start_at) const
+QList<QStringRef> Dictionary::check(const QString& string) const
 {
+	QList<QStringRef> misspelled;
 	if (!d) {
-		return QStringRef();
+		return misspelled;
 	}
 
 	int index = -1;
@@ -53,7 +54,7 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 	bool is_word = false;
 
 	int count = string.length() - 1;
-	for (int i = start_at; i <= count; ++i) {
+	for (int i = 0; i <= count; ++i) {
 		QChar c = string.at(i);
 		switch (c.category()) {
 			case QChar::Number_DecimalDigit:
@@ -101,7 +102,7 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 				word.replace(QChar(0x2019), QLatin1Char('\''));
 				QByteArray word_utf8 = word.toUtf8();
 				if (enchant_dict_check((*d)->dictionary(), word_utf8.constData(), word_utf8.length()) > 0) {
-					return check;
+					misspelled.append(check);
 				}
 			}
 			index = -1;
@@ -110,7 +111,8 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 			is_uppercase = f_ignore_uppercase;
 		}
 	}
-	return QStringRef();
+
+	return misspelled;
 }
 
 //-----------------------------------------------------------------------------

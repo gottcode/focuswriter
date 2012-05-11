@@ -39,11 +39,7 @@ void BlockStats::checkSpelling(const QString& text, Dictionary* dictionary)
 	if (text.isEmpty() || !dictionary) {
 		return;
 	}
-
-	QStringRef word;
-	while ((word = dictionary->check(text, word.position() + word.length())).isNull() == false) {
-		m_misspelled.append(word);
-	}
+	m_misspelled = dictionary->check(text);
 }
 
 //-----------------------------------------------------------------------------

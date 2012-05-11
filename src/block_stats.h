@@ -30,7 +30,7 @@ public:
 	int characterCount() const;
 	int spaceCount() const;
 	int wordCount() const;
-	QVector<QStringRef> misspelled() const;
+	QList<QStringRef> misspelled() const;
 
 	void checkSpelling(const QString& text, Dictionary* dictionary);
 	void update(const QString& text, Dictionary* dictionary);
@@ -39,7 +39,7 @@ private:
 	int m_characters;
 	int m_spaces;
 	int m_words;
-	QVector<QStringRef> m_misspelled;
+	QList<QStringRef> m_misspelled;
 };
 
 inline bool BlockStats::isEmpty() const
@@ -62,7 +62,7 @@ inline int BlockStats::wordCount() const
 	return m_words;
 }
 
-inline QVector<QStringRef> BlockStats::misspelled() const
+inline QList<QStringRef> BlockStats::misspelled() const
 {
 	return m_misspelled;
 }

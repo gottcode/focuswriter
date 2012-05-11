@@ -200,10 +200,10 @@ void SpellChecker::check()
 			reject();
 		}
 
-		// Check current line
+		// Check current paragraph
 		QTextBlock block = m_cursor.block();
-		QStringRef word =  m_dictionary.check(block.text(), m_cursor.position() - block.position());
-		if (word.isNull()) {
+		QList<QStringRef> misspelled = m_dictionary.check(block.text());
+		if (misspelled.isEmpty()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);
 				continue;
@@ -212,44 +212,46 @@ void SpellChecker::check()
 			}
 		}
 
-		// Select misspelled word
-		m_cursor.setPosition(word.position() + block.position());
-		m_cursor.setPosition(m_cursor.position() + word.length(), QTextCursor::KeepAnchor);
-		m_word = m_cursor.selectedText();
+		foreach (const QStringRef& word, misspelled) {
+			// Select misspelled word
+			m_cursor.setPosition(word.position() + block.position());
+			m_cursor.setPosition(m_cursor.position() + word.length(), QTextCursor::KeepAnchor);
+			m_word = m_cursor.selectedText();
 
-		if (!m_ignored.contains(m_word)) {
-			wait_dialog.close();
-			setEnabled(true);
+			if (!m_ignored.contains(m_word)) {
+				wait_dialog.close();
+				setEnabled(true);
 
-			// Show misspelled word in context
-			QTextCursor cursor = m_cursor;
-			cursor.movePosition(QTextCursor::PreviousWord, QTextCursor::MoveAnchor, 10);
-			int end = m_cursor.position() - cursor.position();
-			int start = end - m_word.length();
-			cursor.movePosition(QTextCursor::NextWord, QTextCursor::KeepAnchor, 21);
-			QString context = cursor.selectedText();
-			context.insert(end, "</span>");
-			context.insert(start, "<span style=\"color: red;\">");
-			context.replace("\n", "</p><p>");
-			context.replace("\t", "<span style=\"white-space: pre;\">\t</span>");
-			context = "<p>" + context + "</p>";
-			m_context->setHtml(context);
+				// Show misspelled word in context
+				QTextCursor cursor = m_cursor;
+				cursor.movePosition(QTextCursor::PreviousWord, QTextCursor::MoveAnchor, 10);
+				int end = m_cursor.position() - cursor.position();
+				int start = end - m_word.length();
+				cursor.movePosition(QTextCursor::NextWord, QTextCursor::KeepAnchor, 21);
+				QString context = cursor.selectedText();
+				context.insert(end, "</span>");
+				context.insert(start, "<span style=\"color: red;\">");
+				context.replace("\n", "</p><p>");
+				context.replace("\t", "<span style=\"white-space: pre;\">\t</span>");
+				context = "<p>" + context + "</p>";
+				m_context->setHtml(context);
 
-			// Show suggestions
-			m_suggestion->clear();
-			m_suggestions->clear();
-			QStringList words = m_dictionary.suggestions(m_word);
-			if (!words.isEmpty()) {
-				foreach (const QString& word, words) {
-					m_suggestions->addItem(word);
+				// Show suggestions
+				m_suggestion->clear();
+				m_suggestions->clear();
+				QStringList words = m_dictionary.suggestions(m_word);
+				if (!words.isEmpty()) {
+					foreach (const QString& word, words) {
+						m_suggestions->addItem(word);
+					}
+					m_suggestions->setCurrentRow(0);
 				}
-				m_suggestions->setCurrentRow(0);
-			}
 
-			// Stop checking words
-			m_document->setTextCursor(m_cursor);
-			m_suggestion->setFocus();
-			return;
+				// Stop checking words
+				m_document->setTextCursor(m_cursor);
+				m_suggestion->setFocus();
+				return;
+			}
 		}
 	}
 
