@@ -35,59 +35,6 @@
 
 //-----------------------------------------------------------------------------
 
-namespace
-{
-	class LocaleNames
-	{
-		LocaleNames()
-		{
-			m_names["ca"] = QString::fromUtf8("Catal\303\240");
-			m_names["cs"] = QString::fromUtf8("\304\214esky");
-			m_names["de"] = QLatin1String("Deutsch");
-			m_names["el"] = QString::fromUtf8("\316\225\316\273\316\273\316\267\316\275\316\271\316\272\316\254");
-			m_names["en"] = QLatin1String("English");
-			m_names["es"] = QString::fromUtf8("Espa\303\261ol");
-			m_names["es_MX"] = QString::fromUtf8("Espa\303\261ol (M\303\251xico)");
-			m_names["fi"] = QLatin1String("Suomi");
-			m_names["fr"] = QString::fromUtf8("Fran\303\247ais");
-			m_names["he"] = QString::fromUtf8("\327\242\326\264\327\221\326\260\327\250\326\264\327\231\327\252");
-			m_names["hu"] = QLatin1String("Magyar");
-			m_names["it"] = QLatin1String("Italiano");
-			m_names["nl"] = QLatin1String("Nederlands");
-			m_names["pl"] = QLatin1String("Polski");
-			m_names["pt"] = QString::fromUtf8("Portugu\303\252s");
-			m_names["pt_BR"] = QString::fromUtf8("Portugu\303\252s (Brasil)");
-			m_names["ru"] = QString::fromUtf8("\320\240\321\203\321\201\321\201\320\272\320\270\320\271");
-			m_names["sv"] = QLatin1String("Svenska");
-			m_names["uk"] = QString::fromUtf8("\320\243\320\272\321\200\320\260\321\227\320\275\321\201\321\214\320\272\320\260");
-			m_names["uk_UA"] = QString::fromUtf8("\320\243\320\272\321\200\320\260\321\227\320\275\321\201\321\214\320\272\320\260 (\320\243\320\272\321\200\320\260\321\227\320\275\320\260)");
-		}
-
-		QHash<QString, QString> m_names;
-
-	public:
-		static QString toString(const QString& name)
-		{
-			static LocaleNames locale_names;
-			QString locale_name = locale_names.m_names.value(name);
-			if (locale_name.isEmpty()) {
-				QLocale locale(name);
-				QString language = QLocale::languageToString(locale.language());
-				if (locale.country() != QLocale::AnyCountry) {
-					QString country = QLocale::countryToString(locale.country());
-					locale_name = QString("%1 (%2)").arg(language, country);
-				} else {
-					locale_name = language;
-				}
-				locale_names.m_names[name] = locale_name;
-			}
-			return locale_name;
-		}
-	};
-}
-
-//-----------------------------------------------------------------------------
-
 QString LocaleDialog::m_current;
 QString LocaleDialog::m_path;
 QString LocaleDialog::m_appname;
@@ -110,7 +57,7 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 			continue;
 		}
 		translation.remove(m_appname);
-		m_translations->addItem(LocaleNames::toString(translation), translation);
+		m_translations->addItem(languageName(translation), translation);
 	}
 	int index = qMax(0, m_translations->findData(m_current));
 	m_translations->setCurrentIndex(index);
@@ -173,6 +120,37 @@ void LocaleDialog::loadTranslator(const QString& name)
 	static QTranslator translator;
 	translator.load(m_appname + current, m_path);
 	QCoreApplication::installTranslator(&translator);
+}
+
+//-----------------------------------------------------------------------------
+
+QString LocaleDialog::languageName(const QString& language)
+{
+	QString lang_code = language.left(5);
+	QLocale locale(lang_code);
+	QString name;
+#if QT_VERSION >= 0x040800
+	if (lang_code.length() > 2) {
+		if (locale.name() == lang_code) {
+			name = locale.nativeLanguageName() + " (" + locale.nativeCountryName() + ")";
+		} else {
+			name = locale.nativeLanguageName() + " (" + language + ")";
+		}
+	} else {
+		name = locale.nativeLanguageName();
+	}
+#else
+	if (lang_code.length() > 2) {
+		if (locale.name() == lang_code) {
+			name = QLocale::languageToString(locale.language()) + " (" + QLocale::countryToString(locale.country()) + ")";
+		} else {
+			name = QLocale::languageToString(locale.language()) + " (" + language + ")";
+		}
+	} else {
+		name = QLocale::languageToString(locale.language());
+	}
+#endif
+	return name;
 }
 
 //-----------------------------------------------------------------------------
