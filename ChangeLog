@@ -1,3 +1,6 @@
+2012-05-11 Graeme Gott <graeme@gottcode.org>
+	* Remove dictionary data files.
+
 2012-05-10 Graeme Gott <graeme@gottcode.org>
 	* Switch to enchant from hunspell.
 	* Add a wrapper class for the dictionary.

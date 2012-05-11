@@ -143,13 +143,10 @@ macx {
 	ICONS.files = resources/images/icons/oxygen/hicolor
 	ICONS.path = Contents/Resources/icons
 
-	DICTIONARIES.files = resources/dict/
-	DICTIONARIES.path = Contents/Resources/Dictionaries
-
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	QMAKE_BUNDLE_DATA += ICONS DICTIONARIES SOUNDS
+	QMAKE_BUNDLE_DATA += ICONS SOUNDS
 }
 
 unix: !macx {
