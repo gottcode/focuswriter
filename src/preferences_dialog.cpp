@@ -781,6 +781,10 @@ QWidget* PreferencesDialog::initSpellingTab()
 	m_highlight_misspelled = new QCheckBox(tr("Check spelling as you type"), general_group);
 	m_ignore_uppercase = new QCheckBox(tr("Ignore words in UPPERCASE"), general_group);
 	m_ignore_numbers = new QCheckBox(tr("Ignore words with numbers"), general_group);
+#ifdef Q_OS_MAC
+	m_ignore_uppercase->hide();
+	m_ignore_numbers->hide();
+#endif
 
 	QVBoxLayout* general_group_layout = new QVBoxLayout(general_group);
 	general_group_layout->setMargin(0);
