@@ -115,6 +115,13 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 //-----------------------------------------------------------------------------
 
+QString DictionaryManager::installedPath()
+{
+	return QDir::homePath() + "/Library/Spelling/";
+}
+
+//-----------------------------------------------------------------------------
+
 void DictionaryManager::setPath(const QString& path)
 {
 	m_path = path;

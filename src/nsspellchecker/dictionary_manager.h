@@ -43,6 +43,7 @@ public:
 	void setDefaultLanguage(const QString& language);
 	void setPersonal(const QStringList& words);
 
+	static QString installedPath();
 	static QString path();
 	static void setPath(const QString& path);
 

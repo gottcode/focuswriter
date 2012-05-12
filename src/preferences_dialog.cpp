@@ -261,13 +261,12 @@ void PreferencesDialog::accept()
 
 	// Install languages
 	QString path = DictionaryManager::path() + "/install/";
+	QString new_path = DictionaryManager::installedPath() + "/";
 	QDir dir(path);
 	QStringList files = dir.entryList(QDir::Files);
 	foreach (const QString& file, files) {
-		QFile::remove(path + "/../" + file);
-		QString new_file = file;
-		new_file.replace(QChar('-'), QChar('_'));
-		QFile::rename(path + file, path + "/../" + new_file);
+		QFile::remove(new_path + file);
+		QFile::rename(path + file, new_path + file);
 	}
 	dir.cdUp();
 	dir.rmdir("install");
@@ -418,7 +417,9 @@ void PreferencesDialog::addLanguage()
 		while (i.hasNext()) {
 			i.next();
 
-			QFile file(install + i.key().section('/', -1));
+			QString filename = i.key().section('/', -1);
+			filename.replace(QChar('-'), QChar('_'));
+			QFile file(install + filename);
 			if (file.open(QIODevice::WriteOnly)) {
 				zip_file* zfile = zip_fopen_index(archive, i.value(), 0);
 				if (zfile == 0) {
@@ -440,7 +441,7 @@ void PreferencesDialog::addLanguage()
 
 		// Add to language selection
 		QString dictionary_path = DictionaryManager::path() + "/install/";
-		QString dictionary_new_path = DictionaryManager::path() + "/";
+		QString dictionary_new_path = DictionaryManager::installedPath() + "/";
 		foreach (const QString& dictionary, dictionaries) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
@@ -494,7 +495,7 @@ void PreferencesDialog::selectedLanguageChanged(int index)
 {
 	if (index != -1) {
 		QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
-		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(DictionaryManager::path()));
+		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(DictionaryManager::installedPath()));
 	}
 }
 

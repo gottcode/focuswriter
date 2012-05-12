@@ -151,10 +151,6 @@ int main(int argc, char** argv)
 #if defined(Q_OS_MAC)
 	QFileInfo portable(appdir + "/../../../Data");
 	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
-
-	locations.append(QDir::homePath() + "/Library/Spelling");
-	locations.append("/Library/Spelling");
-	locations.append(appdir + "/../Resources/Dictionaries");
 #elif defined(Q_OS_UNIX)
 	QFileInfo portable(appdir + "/Data");
 	QString path = qgetenv("XDG_DATA_HOME");
@@ -235,7 +231,7 @@ int main(int argc, char** argv)
 		}
 	}
 	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
-	locations.prepend(DictionaryManager::path());
+	locations.prepend(DictionaryManager::installedPath());
 	QDir::setSearchPaths("dict", locations);
 
 	// Create theme from old settings

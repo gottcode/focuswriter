@@ -1,3 +1,6 @@
+2012-05-12 Graeme Gott <graeme@gottcode.org>
+	* Install dictionaries to shared folder on the Mac.
+
 2012-05-11 Graeme Gott <graeme@gottcode.org>
 	* Use NSSpellChecker directly on the Mac.
 	* Use translated names for dictionaries.

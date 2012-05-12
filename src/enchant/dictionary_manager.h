@@ -45,6 +45,7 @@ public:
 	void setDefaultLanguage(const QString& language);
 	void setPersonal(const QStringList& words);
 
+	static QString installedPath();
 	static QString path();
 	static void setPath(const QString& path);
 
@@ -72,6 +73,11 @@ private:
 inline QString DictionaryManager::defaultLanguage() const
 {
 	return m_default_language;
+}
+
+inline QString DictionaryManager::installedPath()
+{
+	return m_path;
 }
 
 inline QString DictionaryManager::path()
