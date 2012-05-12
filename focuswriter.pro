@@ -3,9 +3,6 @@ CONFIG += warn_on release
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 	CONFIG += x86_64
-	# Comment the above line and uncomment the following lines to compile Universal for 10.4+
-	# QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-	# CONFIG += x86 ppc
 }
 
 !win32 {
@@ -23,20 +20,45 @@ unix: !macx {
 }
 
 macx {
-	INCLUDEPATH += /Library/Frameworks/enchant.framework/Headers /Library/Frameworks/libzip.framework/Headers
-	LIBS += -framework enchant -framework libzip
+	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
+	LIBS += -framework libzip -framework AppKit
 
-	HEADERS += src/rtf/clipboard_mac.h
+	HEADERS += src/rtf/clipboard_mac.h \
+		src/nsspellchecker/dictionary.h \
+		src/nsspellchecker/dictionary_data.h \
+		src/nsspellchecker/dictionary_manager.h
+
 	SOURCES += src/rtf/clipboard_mac.cpp
+
+	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary.mm \
+		src/nsspellchecker/dictionary_data.mm \
+		src/nsspellchecker/dictionary_manager.mm
 } else:win32 {
-	INCLUDEPATH += enchant libzip
+	INCLUDEPATH += enchant libzip src/enchant
 	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/rtf/clipboard_windows.h
-	SOURCES += src/rtf/clipboard_windows.cpp
+	HEADERS += src/rtf/clipboard_windows.h \
+		src/enchant/dictionary.h \
+		src/enchant/dictionary_data.h \
+		src/enchant/dictionary_manager.h
+
+	SOURCES += src/rtf/clipboard_windows.cpp \
+		src/enchant/dictionary.cpp \
+		src/enchant/dictionary_data.cpp \
+		src/enchant/dictionary_manager.cpp
 } else {
+	INCLUDEPATH += src/enchant
+
 	CONFIG += link_pkgconfig
 	PKGCONFIG += enchant libzip
+
+	HEADERS += src/enchant/dictionary.h \
+		src/enchant/dictionary_data.h \
+		src/enchant/dictionary_manager.h
+
+	SOURCES += src/enchant/dictionary.cpp \
+		src/enchant/dictionary_data.cpp \
+		src/enchant/dictionary_manager.cpp
 }
 
 HEADERS += src/alert.h \
@@ -44,9 +66,6 @@ HEADERS += src/alert.h \
 	src/block_stats.h \
 	src/color_button.h \
 	src/deltas.h \
-	src/dictionary.h \
-	src/dictionary_data.h \
-	src/dictionary_manager.h \
 	src/document.h \
 	src/find_dialog.h \
 	src/gzip.h \
@@ -81,9 +100,6 @@ SOURCES += src/alert.cpp \
 	src/block_stats.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
-	src/dictionary.cpp \
-	src/dictionary_data.cpp \
-	src/dictionary_manager.cpp \
 	src/document.cpp \
 	src/find_dialog.cpp \
 	src/gzip.cpp \

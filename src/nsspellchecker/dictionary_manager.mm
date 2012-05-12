@@ -21,11 +21,15 @@
 
 #include "dictionary.h"
 #include "dictionary_data.h"
-#include "smart_quotes.h"
+#include "../smart_quotes.h"
 
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
+
+#import <AppKit/NSSpellChecker.h>
+#import <Foundation/NSArray.h>
+#import <Foundation/NSAutoreleasePool.h>
 
 //-----------------------------------------------------------------------------
 
@@ -34,18 +38,6 @@ namespace
 	bool compareWords(const QString& s1, const QString& s2)
 	{
 		return s1.localeAwareCompare(s2) < 0;
-	}
-
-	QStringList f_languages;
-	void foundLanguage(const char* const lang, const char* const provider_name, const char* const provider_desc , const char* const provider_file, void*)
-	{
-		Q_UNUSED(provider_name)
-		Q_UNUSED(provider_desc)
-		Q_UNUSED(provider_file)
-		QString language = QString::fromUtf8(lang);
-		if (!f_languages.contains(language)) {
-			f_languages.append(language);
-		}
 	}
 }
 
@@ -63,9 +55,19 @@ DictionaryManager& DictionaryManager::instance()
 
 QStringList DictionaryManager::availableDictionaries() const
 {
-	f_languages.clear();
-	enchant_broker_list_dicts(m_broker, &foundLanguage, 0);
-	return f_languages;
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	QStringList languages;
+	const NSArray* array = [[NSSpellChecker sharedSpellChecker] availableLanguages];
+	if (array) {
+		for (unsigned int i = 0; i < [array count]; ++i) {
+			languages += QString::fromUtf8([[array objectAtIndex: i] UTF8String]);
+		}
+	}
+
+	[pool release];
+
+	return languages;
 }
 
 //-----------------------------------------------------------------------------
@@ -156,26 +158,8 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-DictionaryManager::DictionaryManager() :
-	m_broker(enchant_broker_init())
+DictionaryManager::DictionaryManager()
 {
-	// Set paths for hunspell/myspell dictionaries
-	QByteArray paths;
-#ifdef Q_OS_WIN32
-	char sep = ';';
-#else
-	char sep = ':';
-#endif
-	QStringList locations = QDir::searchPaths("dict");
-	int count = locations.count();
-	for (int i = 0; i < count; ++i) {
-		paths += QFile::encodeName(locations.at(i));
-		if (i < (count - 1)) {
-			paths += sep;
-		}
-	}
-	enchant_broker_set_param(m_broker, "enchant.myspell.dictionary.path", paths.constData());
-
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -196,8 +180,6 @@ DictionaryManager::~DictionaryManager()
 		delete dictionary;
 	}
 	m_dictionaries.clear();
-
-	enchant_broker_free(m_broker);
 }
 
 //-----------------------------------------------------------------------------
@@ -205,7 +187,7 @@ DictionaryManager::~DictionaryManager()
 DictionaryData** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		DictionaryData* dictionary = new DictionaryData(m_broker, language);
+		DictionaryData* dictionary = new DictionaryData(language);
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;
 	}

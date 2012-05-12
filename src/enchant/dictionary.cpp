@@ -21,7 +21,7 @@
 
 #include "dictionary_data.h"
 #include "dictionary_manager.h"
-#include "smart_quotes.h"
+#include "../smart_quotes.h"
 
 #include <QStringList>
 

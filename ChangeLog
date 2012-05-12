@@ -1,4 +1,5 @@
 2012-05-11 Graeme Gott <graeme@gottcode.org>
+	* Use NSSpellChecker directly on the Mac.
 	* Use translated names for dictionaries.
 	* Remove dictionary data files.
 
