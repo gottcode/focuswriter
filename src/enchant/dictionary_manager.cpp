@@ -159,7 +159,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 DictionaryManager::DictionaryManager() :
 	m_broker(enchant_broker_init())
 {
-	// Set paths for hunspell/myspell dictionaries
+	// Set paths for dictionaries
 	QByteArray paths;
 #ifdef Q_OS_WIN32
 	char sep = ';';
@@ -175,6 +175,7 @@ DictionaryManager::DictionaryManager() :
 		}
 	}
 	enchant_broker_set_param(m_broker, "enchant.myspell.dictionary.path", paths.constData());
+	enchant_broker_set_param(m_broker, "enchant.voikko.dictionary.path", QFile::encodeName(QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + "/Dictionaries/")));
 
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
