@@ -1,3 +1,6 @@
+2012-05-16 Graeme Gott <graeme@gottcode.org>
+	* FIXED: No suggestions for misspelled words on 10.5.
+
 2012-05-15 Graeme Gott <graeme@gottcode.org>
 	* Use modified voikko provider for enchant on Windows.
 
