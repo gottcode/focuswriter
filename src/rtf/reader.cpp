@@ -97,7 +97,7 @@ RTF::Reader::Reader()
 		functions["enspace"] = Function(&Reader::insertSymbol, 0x2002);
 		functions["ldblquote"] = Function(&Reader::insertSymbol, 0x201c);
 		functions["lquote"] = Function(&Reader::insertSymbol, 0x2018);
-		functions["line"] = Function(&Reader::insertSymbol, 0x000a);
+		functions["line"] = Function(&Reader::insertSymbol, 0x2028);
 		functions["ltrmark"] = Function(&Reader::insertSymbol, 0x200e);
 		functions["qmspace"] = Function(&Reader::insertSymbol, 0x2004);
 		functions["rdblquote"] = Function(&Reader::insertSymbol, 0x201d);

@@ -1,3 +1,6 @@
+2012-05-17 Graeme Gott <graeme@gottcode.org>
+	* Add reading and writing soft returns.
+
 2012-05-16 Graeme Gott <graeme@gottcode.org>
 	* FIXED: No suggestions for misspelled words on 10.5.
 

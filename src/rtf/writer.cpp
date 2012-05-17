@@ -352,6 +352,7 @@ QByteArray RTF::Writer::fromUnicode(const QString& string) const
 		case 0x201c: text += "\\ldblquote "; break;
 		case 0x201d: text += "\\rdblquote "; break;
 		case 0x2022: text += "\\bullet "; break;
+		case 0x2028: text += "\\line "; break;
 		default:
 			encoded = m_codec->fromUnicode(i, 1, &state);
 			if (state.invalidChars == 0) {

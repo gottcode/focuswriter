@@ -374,7 +374,7 @@ void ODT::Reader::readText()
 			} else if (m_xml.qualifiedName() == "text:tab") {
 				m_cursor.insertText(QLatin1String("\t"));
 			} else if (m_xml.qualifiedName() == "text:line-break") {
-				m_cursor.insertText(QLatin1String("\n"));
+				m_cursor.insertText(QChar(0x2028));
 			}
 		} else if (m_xml.isEndElement()) {
 			--depth;
