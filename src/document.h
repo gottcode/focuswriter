@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,6 +63,7 @@ public:
 	void loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
+	void setFocusMode(int focus_mode);
 	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);
 
@@ -102,6 +103,7 @@ private:
 	void calculateWordCount();
 	void clearIndex();
 	void findIndex();
+	void focusText();
 	QString fileFilter(const QString& filename) const;
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
@@ -118,6 +120,7 @@ private:
 	bool m_block_cursor;
 	bool m_rich_text;
 	bool m_loaded;
+	int m_focus_mode;
 
 	QTimer* m_hide_timer;
 
@@ -126,6 +129,7 @@ private:
 	QScrollBar* m_scrollbar;
 	Dictionary m_dictionary;
 	Highlighter* m_highlighter;
+	QColor m_text_color;
 
 	Stats* m_stats;
 	Stats m_document_stats;

@@ -534,6 +534,7 @@ void Window::closeEvent(QCloseEvent* event)
 		event->ignore();
 		return;
 	}
+	QSettings().setValue("Window/FocusedText", m_focus_actions->checkedAction()->data().toInt());
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
@@ -944,6 +945,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
 	m_documents->addDocument(document);
 	document->loadTheme(m_sessions->current()->theme());
+	document->setFocusMode(m_focus_actions->checkedAction()->data().toInt());
 	document->loadFile(datafile, m_save_positions ? position : -1);
 	if (datafile != file) {
 		document->text()->document()->setModified(!compareFiles(file, datafile));
@@ -1261,6 +1263,8 @@ void Window::initMenus()
 	action->setChecked(QSettings().value("Window/MenuIcons", false).toBool());
 #endif
 	settings_menu->addSeparator();
+	QMenu* focus_menu = settings_menu->addMenu(tr("F&ocused Text"));
+	settings_menu->addSeparator();
 	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
 #ifdef Q_OS_MAC
 	m_actions["Fullscreen"]->setShortcut(tr("Esc"));
@@ -1274,6 +1278,22 @@ void Window::initMenus()
 	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, SLOT(setLocaleClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
 	m_actions["Preferences"]->setMenuRole(QAction::PreferencesRole);
+
+	// Create focus sub-menu
+	QAction* focus_mode[4];
+	focus_mode[0] = focus_menu->addAction(tr("&All"));
+	focus_mode[1] = focus_menu->addAction(tr("&Narrow"));
+	focus_mode[2] = focus_menu->addAction(tr("&Broad"));
+	focus_mode[3] = focus_menu->addAction(tr("&Paragraph"));
+	m_focus_actions = new QActionGroup(this);
+	for (int i = 0; i < 4; ++i) {
+		focus_mode[i]->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + (Qt::Key_0 + i)));
+		focus_mode[i]->setCheckable(true);
+		focus_mode[i]->setData(i);
+		m_focus_actions->addAction(focus_mode[i]);
+	}
+	focus_mode[qBound(0, QSettings().value("Window/FocusedText").toInt(), 3)]->setChecked(true);
+	connect(m_focus_actions, SIGNAL(triggered(QAction*)), m_documents, SLOT(setFocusMode(QAction*)));
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));

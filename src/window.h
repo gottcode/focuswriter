@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ class TimerManager;
 #include <QHash>
 #include <QMainWindow>
 class QAction;
+class QActionGroup;
 class QLabel;
 class QSettings;
 class QTabBar;
@@ -98,6 +99,7 @@ private:
 	QAction* m_richtext_action;
 	QAction* m_replace_document_quotes;
 	QAction* m_replace_selection_quotes;
+	QActionGroup* m_focus_actions;
 
 	Stack* m_documents;
 	QTabBar* m_tabs;

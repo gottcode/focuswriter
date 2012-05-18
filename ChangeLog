@@ -1,4 +1,5 @@
 2012-05-18 Graeme Gott <graeme@gottcode.org>
+	* Add focused text options.
 	* Add options to theme dialog for setting spacings.
 	* Use theme spacings when creating document instances.
 	* Add line spacing and paragraph margins to theme.

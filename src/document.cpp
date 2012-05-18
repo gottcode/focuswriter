@@ -163,6 +163,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_always_center(false),
 	m_rich_text(false),
 	m_loaded(false),
+	m_focus_mode(0),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
 	m_page_type(0),
@@ -474,6 +475,10 @@ void Document::loadFile(const QString& filename, int position)
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
 	m_loaded = true;
+
+	if (m_focus_mode) {
+		focusText();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -486,13 +491,18 @@ void Document::loadTheme(const Theme& theme)
 	QString contrast = (qGray(theme.textColor().rgb()) > 127) ? "black" : "white";
 	QColor color = theme.foregroundColor();
 	color.setAlpha(theme.foregroundOpacity() * 2.55f);
+	m_text_color = theme.textColor();
+	m_text_color.setAlpha(255);
 	m_text->setStyleSheet(
-		QString("QTextEdit { background: rgba(%1, %2, %3, %4); color: %5; selection-background-color: %6; selection-color: %7; padding: %8px; border-radius: %9px; }")
+		QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
 			.arg(color.red())
 			.arg(color.green())
 			.arg(color.blue())
 			.arg(color.alpha())
-			.arg(theme.textColor().name())
+			.arg(m_text_color.red())
+			.arg(m_text_color.green())
+			.arg(m_text_color.blue())
+			.arg(m_text_color.alpha())
 			.arg(theme.textColor().name())
 			.arg(contrast)
 			.arg(theme.foregroundPadding())
@@ -586,6 +596,25 @@ void Document::loadPreferences(const Preferences& preferences)
 	m_text->setFont(font);
 
 	m_highlighter->setEnabled(!isReadOnly() ? preferences.highlightMisspelled() : false);
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::setFocusMode(int focus_mode)
+{
+	m_focus_mode = focus_mode;
+
+	QString style_sheet = m_text->styleSheet();
+	int end = style_sheet.lastIndexOf(QChar(')'));
+	int start = style_sheet.lastIndexOf(QChar(','), end);
+	style_sheet.replace(start + 1, end - start - 1, m_focus_mode ? "128" : "255");
+	m_text->setStyleSheet(style_sheet);
+
+	if (m_focus_mode) {
+		focusText();
+	} else {
+		m_text->setExtraSelections(QList<QTextEdit::ExtraSelection>());
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -741,6 +770,10 @@ void Document::wheelEvent(QWheelEvent* event)
 
 void Document::cursorPositionChanged()
 {
+	if (m_focus_mode) {
+		focusText();
+	}
+
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
 	emit alignmentChanged();
 	if (QApplication::mouseButtons() == Qt::NoButton) {
@@ -939,6 +972,39 @@ void Document::findIndex()
 {
 	m_index = g_untitled_indexes.last() + 1;
 	g_untitled_indexes.append(m_index);
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::focusText()
+{
+	QTextEdit::ExtraSelection selection;
+	selection.format.setForeground(m_text_color);
+	selection.cursor = m_text->textCursor();
+	switch (m_focus_mode) {
+	case 1: // Narrow, current line
+		selection.cursor.movePosition(QTextCursor::EndOfLine);
+		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+		break;
+
+	case 2: // Broad, current and line and previous two lines
+		selection.cursor.movePosition(QTextCursor::EndOfLine);
+		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor, 2);
+		break;
+
+	case 3: // Current paragraph
+		selection.cursor.movePosition(QTextCursor::EndOfBlock);
+		selection.cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+		break;
+
+	default:
+		break;
+	}
+
+	QList<QTextEdit::ExtraSelection> selections;
+	selections.append(selection);
+	m_text->setExtraSelections(selections);
 }
 
 //-----------------------------------------------------------------------------

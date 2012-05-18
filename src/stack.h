@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,6 +93,7 @@ public slots:
 	void save();
 	void saveAs();
 	void selectAll();
+	void setFocusMode(QAction* action);
 	void setFontBold(bool bold);
 	void setFontItalic(bool italic);
 	void setFontStrikeOut(bool strikeout);

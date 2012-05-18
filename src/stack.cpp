@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #include "smart_quotes.h"
 #include "theme.h"
 
+#include <QAction>
 #include <QFileInfo>
 #include <QGridLayout>
 #include <QMessageBox>
@@ -464,6 +465,16 @@ void Stack::saveAs()
 void Stack::selectAll()
 {
 	m_current_document->text()->selectAll();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::setFocusMode(QAction* action)
+{
+	int focus_mode = action->data().toInt();
+	foreach (Document* document, m_documents) {
+		document->setFocusMode(focus_mode);
+	}
 }
 
 //-----------------------------------------------------------------------------
