@@ -1,4 +1,5 @@
 2012-05-18 Graeme Gott <graeme@gottcode.org>
+	* Use theme spacings when creating document instances.
 	* Add line spacing and paragraph margins to theme.
 
 2012-05-17 Graeme Gott <graeme@gottcode.org>

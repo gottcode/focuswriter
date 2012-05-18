@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,6 +55,7 @@ void ODT::Reader::read(const QString& filename, QTextDocument* text)
 
 	m_in_block = text->blockCount();
 	m_cursor = QTextCursor(text);
+	m_block_format = m_cursor.blockFormat();
 	m_cursor.movePosition(QTextCursor::End);
 	m_cursor.beginEditBlock();
 
@@ -158,6 +159,9 @@ void ODT::Reader::readStyle()
 		return;
 	}
 
+	if (!m_styles[type].contains(name)) {
+		m_styles[type][name] = Style(m_block_format);
+	}
 	Style& style = m_styles[type][name];
 
 	QString parent_style = attributes.value(QLatin1String("style:parent-style-name")).toString();

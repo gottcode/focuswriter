@@ -162,6 +162,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_index(0),
 	m_always_center(false),
 	m_rich_text(false),
+	m_loaded(false),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
 	m_page_type(0),
@@ -390,6 +391,7 @@ void Document::loadFile(const QString& filename, int position)
 		calculateWordCount();
 		connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 		connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+		m_loaded = true;
 
 		return;
 	}
@@ -471,6 +473,7 @@ void Document::loadFile(const QString& filename, int position)
 	}
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	m_loaded = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -496,6 +499,18 @@ void Document::loadTheme(const Theme& theme)
 			.arg(theme.foregroundRounding())
 	);
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
+
+	// Update spacings
+	if (!m_loaded) {
+		QTextBlockFormat format = m_text->document()->begin().blockFormat();
+#if QT_VERSION >= 0x040800
+		format.setLineHeight(theme.lineSpacing(), QTextBlockFormat::ProportionalHeight);
+#endif
+		format.setTextIndent(48 * theme.indentFirstLine());
+		format.setTopMargin(theme.spacingAboveParagraph());
+		format.setBottomMargin(theme.spacingBelowParagraph());
+		m_text->textCursor().setBlockFormat(format);
+	}
 
 	// Update text
 	QFont font = theme.textFont();

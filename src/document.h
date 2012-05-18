@@ -117,6 +117,7 @@ private:
 	bool m_always_center;
 	bool m_block_cursor;
 	bool m_rich_text;
+	bool m_loaded;
 
 	QTimer* m_hide_timer;
 
