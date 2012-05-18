@@ -87,6 +87,7 @@ public slots:
 	void makePlainText();
 	void makeRichText();
 	void paste();
+	void pasteUnformatted();
 	void print();
 	void redo();
 	void replace();

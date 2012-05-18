@@ -27,6 +27,8 @@
 #include "theme.h"
 
 #include <QAction>
+#include <QApplication>
+#include <QClipboard>
 #include <QFileInfo>
 #include <QGridLayout>
 #include <QMessageBox>
@@ -422,6 +424,14 @@ void Stack::makeRichText()
 void Stack::paste()
 {
 	m_current_document->text()->paste();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::pasteUnformatted()
+{
+	QString text = QApplication::clipboard()->text(QClipboard::Clipboard);
+	m_current_document->text()->insertPlainText(text);
 }
 
 //-----------------------------------------------------------------------------
