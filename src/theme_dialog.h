@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ class ImageButton;
 class Theme;
 
 #include <QDialog>
+class QCheckBox;
 class QComboBox;
 class QFontComboBox;
 class QFrame;
@@ -49,6 +50,7 @@ private slots:
 	void checkNameAvailable();
 	void fontChanged();
 	void imageChanged();
+	void lineSpacingChanged(int index);
 	void renderPreview();
 
 private:
@@ -79,6 +81,12 @@ private:
 	QFontComboBox* m_font_names;
 	QComboBox* m_font_sizes;
 	ColorButton* m_misspelled_color;
+
+	QCheckBox* m_indent_first_line;
+	QComboBox* m_line_spacing_type;
+	QSpinBox* m_line_spacing;
+	QSpinBox* m_spacing_above_paragraph;
+	QSpinBox* m_spacing_below_paragraph;
 };
 
 #endif

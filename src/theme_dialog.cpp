@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,8 @@
 #include "image_button.h"
 #include "theme.h"
 
+#include <QCheckBox>
+#include <QComboBox>
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QFile>
@@ -195,6 +197,68 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	text_layout->addRow(tr("Misspelled:"), m_misspelled_color);
 
 
+	// Create spacing group
+	tab = new QWidget(this);
+	tabs->addTab(tab, tr("Spacings"));
+
+	QGroupBox* line_spacing = new QGroupBox(tr("Line Spacing"), tab);
+
+	m_line_spacing_type = new QComboBox(line_spacing);
+	m_line_spacing_type->setEditable(false);
+	m_line_spacing_type->addItems(QStringList() << tr("Single") << tr("1.5 Lines") << tr("Double") << tr("Proportional"));
+	m_line_spacing_type->setCurrentIndex(0);
+
+	m_line_spacing = new QSpinBox(line_spacing);
+	m_line_spacing->setSuffix(QLocale().percent());
+	m_line_spacing->setRange(100, 1000);
+	m_line_spacing->setValue(m_theme.lineSpacing());
+	m_line_spacing->setEnabled(false);
+
+	switch (m_theme.lineSpacing()) {
+	case 100: m_line_spacing_type->setCurrentIndex(0); break;
+	case 150: m_line_spacing_type->setCurrentIndex(1); break;
+	case 200: m_line_spacing_type->setCurrentIndex(2); break;
+	default: m_line_spacing->setEnabled(true); break;
+	}
+	connect(m_line_spacing_type, SIGNAL(currentIndexChanged(int)), this, SLOT(lineSpacingChanged(int)));
+
+	QGroupBox* paragraph_spacing = new QGroupBox(tr("Paragraph Spacing"), tab);
+
+	m_indent_first_line = new QCheckBox(tab);
+	m_indent_first_line->setChecked(m_theme.indentFirstLine());
+
+	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
+	m_spacing_above_paragraph->setRange(0, 1000);
+	m_spacing_above_paragraph->setValue(m_theme.spacingAboveParagraph());
+
+	m_spacing_below_paragraph = new QSpinBox(paragraph_spacing);
+	m_spacing_below_paragraph->setRange(0, 1000);
+	m_spacing_below_paragraph->setValue(m_theme.spacingBelowParagraph());
+
+	QHBoxLayout* line_spacing_layout = new QHBoxLayout(line_spacing);
+	line_spacing_layout->addWidget(m_line_spacing_type);
+	line_spacing_layout->addWidget(m_line_spacing);
+	line_spacing_layout->addStretch();
+
+	QFormLayout* paragraph_spacing_layout = new QFormLayout(paragraph_spacing);
+	paragraph_spacing_layout->addRow(tr("Indent First Line:"), m_indent_first_line);
+	paragraph_spacing_layout->addRow(tr("Pixels Above:"), m_spacing_above_paragraph);
+	paragraph_spacing_layout->addRow(tr("Pixels Below:"), m_spacing_below_paragraph);
+
+	QLabel* spacings_message = new QLabel("<i>" + tr("Please note that these settings will not take effect for each file until it is reloaded.") + "</i>", tab);
+	spacings_message->setWordWrap(true);
+
+	QVBoxLayout* spacing_layout = new QVBoxLayout(tab);
+	spacing_layout->addWidget(line_spacing);
+	spacing_layout->addWidget(paragraph_spacing);
+	spacing_layout->addStretch();
+	spacing_layout->addWidget(spacings_message);
+
+#if QT_VERSION < 0x040800
+	line_spacing->hide();
+#endif
+
+
 	// Create preview
 	m_preview = new QLabel(this);
 	m_preview->setAlignment(Qt::AlignCenter);
@@ -251,6 +315,11 @@ void ThemeDialog::accept()
 	font.setPointSizeF(m_font_sizes->currentText().toDouble());
 	m_theme.setTextFont(font);
 	m_theme.setMisspelledColor(m_misspelled_color->color());
+
+	m_theme.setIndentFirstLine(m_indent_first_line->isChecked());
+	m_theme.setLineSpacing(m_line_spacing->value());
+	m_theme.setSpacingAboveParagraph(m_spacing_above_paragraph->value());
+	m_theme.setSpacingBelowParagraph(m_spacing_below_paragraph->value());
 
 	savePreview();
 
@@ -312,6 +381,32 @@ void ThemeDialog::imageChanged()
 		m_background_type->setCurrentIndex(0);
 	}
 	renderPreview();
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::lineSpacingChanged(int index)
+{
+	switch (index) {
+	case 0:
+		m_line_spacing->setValue(100);
+		m_line_spacing->setEnabled(false);
+		break;
+
+	case 1:
+		m_line_spacing->setValue(150);
+		m_line_spacing->setEnabled(false);
+		break;
+
+	case 2:
+		m_line_spacing->setValue(200);
+		m_line_spacing->setEnabled(false);
+		break;
+
+	default:
+		m_line_spacing->setEnabled(true);
+		break;
+	}
 }
 
 //-----------------------------------------------------------------------------
