@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,6 +129,12 @@ Theme::Theme(const QString& name)
 	m_text_color = settings.value("Text/Color", "#000000").toString();
 	m_text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
 	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
+
+	// Load spacings
+	m_indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
+	m_line_spacing = qBound(100, settings.value("Spacings/LineSpacing", 100).toInt(), 1000);
+	m_paragraph_spacing_above = qBound(0, settings.value("Spacings/ParagraphAbove", 0).toInt(), 1000);
+	m_paragraph_spacing_below = qBound(0, settings.value("Spacings/ParagraphBelow", 0).toInt(), 1000);
 }
 
 //-----------------------------------------------------------------------------
@@ -162,6 +168,12 @@ Theme::~Theme()
 	settings.setValue("Text/Color", m_text_color.name());
 	settings.setValue("Text/Font", m_text_font.toString());
 	settings.setValue("Text/Misspelled", m_misspelled_color.name());
+
+	// Store spacings
+	settings.setValue("Spacings/IndentFirstLine", m_indent_first_line);
+	settings.setValue("Spacings/LineSpacing", m_line_spacing);
+	settings.setValue("Spacings/ParagraphAbove", m_paragraph_spacing_above);
+	settings.setValue("Spacings/ParagraphBelow", m_paragraph_spacing_below);
 }
 
 //-----------------------------------------------------------------------------
@@ -479,6 +491,62 @@ void Theme::setTextFont(const QFont& font)
 void Theme::setMisspelledColor(const QColor& color)
 {
 	setValue(m_misspelled_color, color);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Theme::indentFirstLine() const
+{
+	return m_indent_first_line;
+}
+
+//-----------------------------------------------------------------------------
+
+int Theme::lineSpacing() const
+{
+	return m_line_spacing;
+}
+
+//-----------------------------------------------------------------------------
+
+int Theme::spacingAboveParagraph() const
+{
+	return m_paragraph_spacing_above;
+}
+
+//-----------------------------------------------------------------------------
+
+int Theme::spacingBelowParagraph() const
+{
+	return m_paragraph_spacing_below;
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setIndentFirstLine(bool indent)
+{
+	setValue(m_indent_first_line, indent);
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setLineSpacing(int spacing)
+{
+	setValue(m_line_spacing, spacing);
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setSpacingAboveParagraph(int spacing)
+{
+	setValue(m_paragraph_spacing_above, spacing);
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setSpacingBelowParagraph(int spacing)
+{
+	setValue(m_paragraph_spacing_below, spacing);
 }
 
 //-----------------------------------------------------------------------------

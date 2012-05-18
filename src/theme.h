@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,6 +82,17 @@ public:
 	void setTextFont(const QFont& font);
 	void setMisspelledColor(const QColor& color);
 
+	// Spacing settings
+	bool indentFirstLine() const;
+	int lineSpacing() const;
+	int spacingAboveParagraph() const;
+	int spacingBelowParagraph() const;
+
+	void setIndentFirstLine(bool indent);
+	void setLineSpacing(int spacing);
+	void setSpacingAboveParagraph(int spacing);
+	void setSpacingBelowParagraph(int spacing);
+
 private:
 	static QString m_path;
 	QString m_name;
@@ -102,6 +113,11 @@ private:
 	QColor m_text_color;
 	QFont m_text_font;
 	QColor m_misspelled_color;
+
+	bool m_indent_first_line;
+	int m_line_spacing;
+	int m_paragraph_spacing_above;
+	int m_paragraph_spacing_below;
 };
 
 #endif
