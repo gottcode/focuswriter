@@ -30,59 +30,59 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="291"/>
-        <location filename="../src/document.cpp" line="308"/>
-        <location filename="../src/document.cpp" line="340"/>
-        <location filename="../src/document.cpp" line="344"/>
-        <location filename="../src/document.cpp" line="432"/>
-        <location filename="../src/document.cpp" line="444"/>
+        <location filename="../src/document.cpp" line="292"/>
+        <location filename="../src/document.cpp" line="309"/>
+        <location filename="../src/document.cpp" line="341"/>
+        <location filename="../src/document.cpp" line="345"/>
+        <location filename="../src/document.cpp" line="433"/>
+        <location filename="../src/document.cpp" line="445"/>
         <source>Sorry</source>
         <translation>Elnézést</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="291"/>
+        <location filename="../src/document.cpp" line="292"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Nem sikerült &apos;%1&apos; mentése.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="304"/>
-        <location filename="../src/document.cpp" line="606"/>
+        <location filename="../src/document.cpp" line="305"/>
+        <location filename="../src/document.cpp" line="635"/>
         <source>Save File As</source>
         <translation>Mentés másként</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="308"/>
-        <location filename="../src/document.cpp" line="340"/>
+        <location filename="../src/document.cpp" line="309"/>
+        <location filename="../src/document.cpp" line="341"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Nem sikerült &apos;%1&apos; felülírása.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="336"/>
+        <location filename="../src/document.cpp" line="337"/>
         <source>Rename File</source>
         <translation>Fájl átnevezése</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="344"/>
+        <location filename="../src/document.cpp" line="345"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Nem sikerült &apos;%1&apos; átnevezése.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="948"/>
+        <location filename="../src/document.cpp" line="1014"/>
         <source>Plain Text (*.txt)</source>
         <translation>Egyszerű szövegfájl (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="949"/>
+        <location filename="../src/document.cpp" line="1015"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument Text (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="950"/>
+        <location filename="../src/document.cpp" line="1016"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Formázott szöveg (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="951"/>
+        <location filename="../src/document.cpp" line="1017"/>
         <source>All Files (*)</source>
         <translation>Minden fájl (*)</translation>
     </message>
@@ -733,12 +733,12 @@
 <context>
     <name>Stack</name>
     <message>
-        <location filename="../src/stack.cpp" line="406"/>
+        <location filename="../src/stack.cpp" line="407"/>
         <source>Question</source>
         <translation>Kérdés</translation>
     </message>
     <message>
-        <location filename="../src/stack.cpp" line="406"/>
+        <location filename="../src/stack.cpp" line="407"/>
         <source>Remove all formatting from the current file?</source>
         <translation>Minden formázást eltávolítsunk a jelenlegi fájlból?</translation>
     </message>
@@ -1209,13 +1209,13 @@
         <translation>Témák betöltése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1003"/>
+        <location filename="../src/window.cpp" line="1005"/>
         <source>Loading sounds</source>
         <translation>Hangok betöltése</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="233"/>
-        <location filename="../src/window.cpp" line="959"/>
+        <location filename="../src/window.cpp" line="961"/>
         <source>Untitled</source>
         <translation>Névtelen</translation>
     </message>
@@ -1231,58 +1231,58 @@
         <translation>Jegyzet</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="591"/>
+        <location filename="../src/window.cpp" line="592"/>
         <source>Open File</source>
         <translation>Fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="750"/>
+        <location filename="../src/window.cpp" line="751"/>
         <source>About FocusWriter</source>
         <translation>A FocusWriter-ről</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="813"/>
+        <location filename="../src/window.cpp" line="814"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Karakter: %L1 / %L2</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="814"/>
+        <location filename="../src/window.cpp" line="815"/>
         <source>Pages: %L1</source>
         <translation>Oldal: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="815"/>
+        <location filename="../src/window.cpp" line="816"/>
         <source>Paragraphs: %L1</source>
         <translation>Bekezdés: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="816"/>
+        <location filename="../src/window.cpp" line="817"/>
         <source>Words: %L1</source>
         <translation>Szó: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="878"/>
+        <location filename="../src/window.cpp" line="879"/>
         <source>%1% of daily goal</source>
         <translation>A napi cél %1%-a</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="918"/>
+        <location filename="../src/window.cpp" line="919"/>
         <source>Opening %1</source>
         <translation>%1 megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="985"/>
+        <location filename="../src/window.cpp" line="987"/>
         <source>Question</source>
         <translation>Kérdés</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="985"/>
+        <location filename="../src/window.cpp" line="987"/>
         <source>Save changes?</source>
         <translation>Mentsük a változtatásokat?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="289"/>
-        <location filename="../src/window.cpp" line="1094"/>
+        <location filename="../src/window.cpp" line="1096"/>
         <source>(Untitled %1)</source>
         <translation>(Névtelen %1)</translation>
     </message>
@@ -1298,7 +1298,7 @@
     </message>
     <message>
         <location filename="../src/window.cpp" line="295"/>
-        <location filename="../src/window.cpp" line="932"/>
+        <location filename="../src/window.cpp" line="933"/>
         <source>Warning</source>
         <translation>Figyelmeztetés</translation>
     </message>
@@ -1328,392 +1328,417 @@
         <translation>Néhány fájl csak olvasható módon lett megnyitva.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="591"/>
+        <location filename="../src/window.cpp" line="592"/>
         <source>Text Files (%1);;All Files (*)</source>
         <translation>Szövegfájlok (%1);;Minden fájl (*)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="750"/>
+        <location filename="../src/window.cpp" line="751"/>
         <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Egyszerű, teljes képernyőn használható szövegszerkesztő&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Kiadva a &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; licensz alatt&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;A &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt;-t használjuk a helyesírás-ellenőrzéshez&lt;br/&gt;&lt;small&gt;&lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; licensz alatt&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Az &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; ikontémát használjuk&lt;br/&gt;&lt;small&gt;&lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; licensz alatt&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="933"/>
+        <location filename="../src/window.cpp" line="934"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; újabb, mint a gyorsítótárazott másolata.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="934"/>
+        <location filename="../src/window.cpp" line="935"/>
         <source>Overwrite newer file?</source>
         <translation>Felülírjuk az újabb fájlt?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1009"/>
+        <location filename="../src/window.cpp" line="1011"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>Nem sikerült az írógép-hangok betöltése.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1097"/>
+        <location filename="../src/window.cpp" line="1099"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Csak olvasható)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1142"/>
+        <location filename="../src/window.cpp" line="1144"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1143"/>
+        <location filename="../src/window.cpp" line="1145"/>
         <source>&amp;New</source>
         <translation>&amp;Új</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1144"/>
+        <location filename="../src/window.cpp" line="1146"/>
         <source>&amp;Open...</source>
         <translation>M&amp;egnyitás...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1146"/>
+        <location filename="../src/window.cpp" line="1148"/>
         <source>&amp;Save</source>
         <translation>&amp;Mentés</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1148"/>
+        <location filename="../src/window.cpp" line="1150"/>
         <source>Save &amp;As...</source>
         <translation>Mentés m&amp;ásként...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1149"/>
+        <location filename="../src/window.cpp" line="1151"/>
         <source>&amp;Rename...</source>
         <translation>Á&amp;tnevezés...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1151"/>
+        <location filename="../src/window.cpp" line="1153"/>
         <source>Save A&amp;ll</source>
         <translation>&amp;Összes mentése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1154"/>
+        <location filename="../src/window.cpp" line="1156"/>
         <source>Manage Sessions</source>
         <translation>Munkamenetek kezelése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1156"/>
+        <location filename="../src/window.cpp" line="1158"/>
         <source>New Session</source>
         <translation>Új munkamenet</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1159"/>
+        <location filename="../src/window.cpp" line="1161"/>
         <source>&amp;Print...</source>
         <translation>&amp;Nyomtatás...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1161"/>
+        <location filename="../src/window.cpp" line="1163"/>
         <source>&amp;Close</source>
         <translation>Be&amp;zárás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1162"/>
+        <location filename="../src/window.cpp" line="1164"/>
         <source>&amp;Quit</source>
         <translation>&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1162"/>
+        <location filename="../src/window.cpp" line="1164"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1166"/>
+        <location filename="../src/window.cpp" line="1168"/>
         <source>&amp;Edit</source>
         <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1167"/>
+        <location filename="../src/window.cpp" line="1169"/>
         <source>&amp;Undo</source>
         <translation>&amp;Visszavonás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1170"/>
+        <location filename="../src/window.cpp" line="1172"/>
         <source>&amp;Redo</source>
         <translation>&amp;Újra</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1174"/>
+        <location filename="../src/window.cpp" line="1176"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1177"/>
+        <location filename="../src/window.cpp" line="1179"/>
         <source>&amp;Copy</source>
         <translation>&amp;Másolás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1180"/>
+        <location filename="../src/window.cpp" line="1182"/>
         <source>&amp;Paste</source>
         <translation>&amp;Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1182"/>
+        <location filename="../src/window.cpp" line="1184"/>
         <source>Select &amp;All</source>
         <translation>&amp;Összes kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1185"/>
+        <location filename="../src/window.cpp" line="1187"/>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmázás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1187"/>
+        <location filename="../src/window.cpp" line="1189"/>
         <source>&amp;Bold</source>
         <translation>&amp;Vastag</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1189"/>
+        <location filename="../src/window.cpp" line="1191"/>
         <source>&amp;Italic</source>
         <translation>&amp;Dőlt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1191"/>
+        <location filename="../src/window.cpp" line="1193"/>
         <source>&amp;Underline</source>
         <translation>&amp;Aláhúzott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1193"/>
+        <location filename="../src/window.cpp" line="1195"/>
         <source>Stri&amp;kethrough</source>
         <translation>&amp;Áthúzott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1193"/>
+        <location filename="../src/window.cpp" line="1195"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1195"/>
+        <location filename="../src/window.cpp" line="1197"/>
         <source>Sup&amp;erscript</source>
         <translation>&amp;Felső index</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1195"/>
+        <location filename="../src/window.cpp" line="1197"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1197"/>
+        <location filename="../src/window.cpp" line="1199"/>
         <source>&amp;Subscript</source>
         <translation>A&amp;lsó index</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1197"/>
+        <location filename="../src/window.cpp" line="1199"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1201"/>
+        <location filename="../src/window.cpp" line="1203"/>
         <source>Align &amp;Left</source>
         <translation>&amp;Balra igazítás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1201"/>
+        <location filename="../src/window.cpp" line="1203"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1203"/>
+        <location filename="../src/window.cpp" line="1205"/>
         <source>Align &amp;Center</source>
         <translation>&amp;Középre igazítás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1203"/>
+        <location filename="../src/window.cpp" line="1205"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1205"/>
+        <location filename="../src/window.cpp" line="1207"/>
         <source>Align &amp;Right</source>
         <translation>&amp;Jobbra igazítás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1205"/>
+        <location filename="../src/window.cpp" line="1207"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1207"/>
+        <location filename="../src/window.cpp" line="1209"/>
         <source>Align &amp;Justify</source>
         <translation>&amp;Sorkizárt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1207"/>
+        <location filename="../src/window.cpp" line="1209"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1217"/>
+        <location filename="../src/window.cpp" line="1219"/>
         <source>&amp;Decrease Indent</source>
         <translation>Behúzás &amp;csökkentése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1217"/>
+        <location filename="../src/window.cpp" line="1219"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1218"/>
+        <location filename="../src/window.cpp" line="1220"/>
         <source>I&amp;ncrease Indent</source>
         <translation>Behúzás &amp;növelése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1218"/>
+        <location filename="../src/window.cpp" line="1220"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1221"/>
+        <location filename="../src/window.cpp" line="1223"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>Bal&amp;ról jobbra blokk</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1223"/>
+        <location filename="../src/window.cpp" line="1225"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Jobbr&amp;ól balra blokk</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1231"/>
+        <location filename="../src/window.cpp" line="1233"/>
         <source>&amp;Make Plain Text</source>
         <translation>&amp;Egyszerű szöveg</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1232"/>
+        <location filename="../src/window.cpp" line="1234"/>
         <source>&amp;Make Rich Text</source>
         <translation>For&amp;mázott szöveg</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1236"/>
+        <location filename="../src/window.cpp" line="1238"/>
         <source>&amp;Tools</source>
         <translation>&amp;Eszközök</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1237"/>
+        <location filename="../src/window.cpp" line="1239"/>
         <source>&amp;Find...</source>
         <translation>&amp;Keresés...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1238"/>
+        <location filename="../src/window.cpp" line="1240"/>
         <source>Find &amp;Next</source>
         <translation>K&amp;övetkező keresése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1241"/>
+        <location filename="../src/window.cpp" line="1243"/>
         <source>Find Pre&amp;vious</source>
         <translation>&amp;Előző keresése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1244"/>
+        <location filename="../src/window.cpp" line="1246"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Csere...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1244"/>
+        <location filename="../src/window.cpp" line="1246"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1246"/>
+        <location filename="../src/window.cpp" line="1248"/>
         <source>Smart &amp;Quotes</source>
         <translation>Intelligens &amp;idézőjelek</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1247"/>
+        <location filename="../src/window.cpp" line="1249"/>
         <source>Update &amp;Document</source>
         <translation>&amp;Dokumentum frissítése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1248"/>
+        <location filename="../src/window.cpp" line="1250"/>
         <source>Update &amp;Selection</source>
         <translation>&amp;Kijelölés frissítése</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1250"/>
+        <location filename="../src/window.cpp" line="1252"/>
         <source>&amp;Spelling...</source>
         <translation>&amp;Helyesírás...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1250"/>
+        <location filename="../src/window.cpp" line="1252"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1251"/>
+        <location filename="../src/window.cpp" line="1253"/>
         <source>&amp;Timers...</source>
         <translation>&amp;Stopperek...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1254"/>
+        <location filename="../src/window.cpp" line="1256"/>
         <source>&amp;Settings</source>
         <translation>&amp;Beállítások</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1255"/>
+        <location filename="../src/window.cpp" line="1257"/>
         <source>Show &amp;Toolbar</source>
         <translation>&amp;Eszköztár mutatása</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1259"/>
+        <location filename="../src/window.cpp" line="1261"/>
         <source>Show &amp;Menu Icons</source>
         <translation>&amp;Menü ikonok mutatása</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1264"/>
+        <location filename="../src/window.cpp" line="1266"/>
+        <source>F&amp;ocused Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1268"/>
         <source>&amp;Fullscreen</source>
         <translation>Teljes &amp;képernyő</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1264"/>
+        <location filename="../src/window.cpp" line="1268"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1266"/>
+        <location filename="../src/window.cpp" line="1270"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1270"/>
+        <location filename="../src/window.cpp" line="1274"/>
         <source>M&amp;inimize</source>
         <translation>M&amp;inimalizálás</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1270"/>
+        <location filename="../src/window.cpp" line="1274"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1272"/>
+        <location filename="../src/window.cpp" line="1276"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Témák...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1275"/>
+        <location filename="../src/window.cpp" line="1279"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Beállítások...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1279"/>
+        <location filename="../src/window.cpp" line="1284"/>
+        <source>&amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1285"/>
+        <source>&amp;Narrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1286"/>
+        <source>&amp;Broad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1287"/>
+        <source>&amp;Paragraph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1299"/>
         <source>&amp;Help</source>
         <translation>&amp;Segítség</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1274"/>
+        <location filename="../src/window.cpp" line="1278"/>
         <source>Application &amp;Language...</source>
         <translation>Alkalmazás &amp;nyelve...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1280"/>
+        <location filename="../src/window.cpp" line="1300"/>
         <source>&amp;About</source>
         <translation>&amp;Névjegy</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1282"/>
+        <location filename="../src/window.cpp" line="1302"/>
         <source>About &amp;Qt</source>
         <translation>A &amp;Qt-ról</translation>
     </message>

@@ -30,59 +30,59 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="291"/>
-        <location filename="../src/document.cpp" line="308"/>
-        <location filename="../src/document.cpp" line="340"/>
-        <location filename="../src/document.cpp" line="344"/>
-        <location filename="../src/document.cpp" line="432"/>
-        <location filename="../src/document.cpp" line="444"/>
+        <location filename="../src/document.cpp" line="292"/>
+        <location filename="../src/document.cpp" line="309"/>
+        <location filename="../src/document.cpp" line="341"/>
+        <location filename="../src/document.cpp" line="345"/>
+        <location filename="../src/document.cpp" line="433"/>
+        <location filename="../src/document.cpp" line="445"/>
         <source>Sorry</source>
         <translation>Λυπούμαστε</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="291"/>
+        <location filename="../src/document.cpp" line="292"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Δεν ήταν δυνατό να αποθηκευτεί το &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="304"/>
-        <location filename="../src/document.cpp" line="606"/>
+        <location filename="../src/document.cpp" line="305"/>
+        <location filename="../src/document.cpp" line="635"/>
         <source>Save File As</source>
         <translation>Αποθήκευση αρχείου ως</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="308"/>
-        <location filename="../src/document.cpp" line="340"/>
+        <location filename="../src/document.cpp" line="309"/>
+        <location filename="../src/document.cpp" line="341"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Δεν ήταν δυνατό να αντικατασταθεί το &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="336"/>
+        <location filename="../src/document.cpp" line="337"/>
         <source>Rename File</source>
         <translation>Μετονομασία αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="344"/>
+        <location filename="../src/document.cpp" line="345"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Δεν ήταν δυνατό να μετονομαστεί το &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="948"/>
+        <location filename="../src/document.cpp" line="1014"/>
         <source>Plain Text (*.txt)</source>
         <translation>Απλό κείμενο (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="949"/>
+        <location filename="../src/document.cpp" line="1015"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>Κείμενο OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="950"/>
+        <location filename="../src/document.cpp" line="1016"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Εμπλουτισμένο κείμενο (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="951"/>
+        <location filename="../src/document.cpp" line="1017"/>
         <source>All Files (*)</source>
         <translation>Όλα τα αρχεία (*)</translation>
     </message>
@@ -734,12 +734,12 @@
 <context>
     <name>Stack</name>
     <message>
-        <location filename="../src/stack.cpp" line="406"/>
+        <location filename="../src/stack.cpp" line="407"/>
         <source>Question</source>
         <translation>Ερώτηση</translation>
     </message>
     <message>
-        <location filename="../src/stack.cpp" line="406"/>
+        <location filename="../src/stack.cpp" line="407"/>
         <source>Remove all formatting from the current file?</source>
         <translation>Να αφαιρεθεί η μορφοποίηση από αυτό το αρχείο;</translation>
     </message>
@@ -1210,13 +1210,13 @@
         <translation>Φορτώνουν θέματα</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1003"/>
+        <location filename="../src/window.cpp" line="1005"/>
         <source>Loading sounds</source>
         <translation>Φορτώνουν ήχοι</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="233"/>
-        <location filename="../src/window.cpp" line="959"/>
+        <location filename="../src/window.cpp" line="961"/>
         <source>Untitled</source>
         <translation>Χωρίς τίτλο </translation>
     </message>
@@ -1232,58 +1232,58 @@
         <translation>Σημείωση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="591"/>
+        <location filename="../src/window.cpp" line="592"/>
         <source>Open File</source>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="750"/>
+        <location filename="../src/window.cpp" line="751"/>
         <source>About FocusWriter</source>
         <translation>Περί του FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="813"/>
+        <location filename="../src/window.cpp" line="814"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Χαρακτήρες: %L1 / %L2</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="814"/>
+        <location filename="../src/window.cpp" line="815"/>
         <source>Pages: %L1</source>
         <translation>Σελίδες: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="815"/>
+        <location filename="../src/window.cpp" line="816"/>
         <source>Paragraphs: %L1</source>
         <translation>Παράγραφοι: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="816"/>
+        <location filename="../src/window.cpp" line="817"/>
         <source>Words: %L1</source>
         <translation>Λέξεις: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="878"/>
+        <location filename="../src/window.cpp" line="879"/>
         <source>%1% of daily goal</source>
         <translation>%1% του ημερήσιου στόχου</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="918"/>
+        <location filename="../src/window.cpp" line="919"/>
         <source>Opening %1</source>
         <translation>Ανοίγει το %1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="985"/>
+        <location filename="../src/window.cpp" line="987"/>
         <source>Question</source>
         <translation>Ερώτηση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="985"/>
+        <location filename="../src/window.cpp" line="987"/>
         <source>Save changes?</source>
         <translation>Να αποθηκευτούν οι αλλαγές;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="289"/>
-        <location filename="../src/window.cpp" line="1094"/>
+        <location filename="../src/window.cpp" line="1096"/>
         <source>(Untitled %1)</source>
         <translation>(Χωρίς τίτλο %1)</translation>
     </message>
@@ -1299,7 +1299,7 @@
     </message>
     <message>
         <location filename="../src/window.cpp" line="295"/>
-        <location filename="../src/window.cpp" line="932"/>
+        <location filename="../src/window.cpp" line="933"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
     </message>
@@ -1329,392 +1329,417 @@
         <translation>Ορισμένα αρχεία ανοίχτηκαν ως μόνο για ανάγνωση.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="591"/>
+        <location filename="../src/window.cpp" line="592"/>
         <source>Text Files (%1);;All Files (*)</source>
         <translation>Αρχεία κειμένου (%1);;Όλα τα αρχεία (*)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="750"/>
+        <location filename="../src/window.cpp" line="751"/>
         <source>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;A simple fullscreen word processor&lt;br/&gt;&lt;small&gt;Copyright &amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Released under the &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt; for spell checking&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Uses icons from the &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt; icon theme&lt;br/&gt;&lt;small&gt;Used under the &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt; license&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;center&gt;&lt;big&gt;&lt;b&gt;FocusWriter %1&lt;/b&gt;&lt;/big&gt;&lt;br/&gt;Ένας απλός επεξεργαστής κειμένου σε πλήρη οθόνη&lt;br/&gt;&lt;small&gt;Copyright&amp;copy; 2008-%2 Graeme Gott&lt;/small&gt;&lt;br/&gt;&lt;small&gt;Κυκλοφορεί υπό την άδεια &lt;a href=&quot;http://www.gnu.org/licenses/gpl.html&quot;&gt;GPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Χρησιμοποιεί το &lt;a href=&quot;http://hunspell.sourceforge.net/&quot;&gt;Hunspell&lt;/a&gt;για τον ορθογραφικό έλεγχο&lt;br/&gt;&lt;small&gt;Χρησιμοποιείται υπό την άδεια &lt;a href=&quot;http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html&quot;&gt;LGPL 2.1&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;&lt;p&gt;&lt;center&gt;Χρησιμοποιεί εικονίδια από το θέμα εικονιδίων &lt;a href=&quot;http://www.oxygen-icons.org/&quot;&gt;Oxygen&lt;/a&gt;&lt;br/&gt;&lt;small&gt;Χρησιμοποιείται υπό την άδεια &lt;a href=&quot;http://www.gnu.org/licenses/lgpl.html&quot;&gt;LGPL 3&lt;/a&gt;&lt;/small&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="933"/>
+        <location filename="../src/window.cpp" line="934"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>Το &apos;%1&apos; είναι νεότερο από το αντίγραφο στην cache.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="934"/>
+        <location filename="../src/window.cpp" line="935"/>
         <source>Overwrite newer file?</source>
         <translation>Να αντικατασταθεί το νεότερο αρχείο;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1009"/>
+        <location filename="../src/window.cpp" line="1011"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>Δεν ήταν δυνατό να φορτώσουν οι ήχοι γραφομηχανής.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1097"/>
+        <location filename="../src/window.cpp" line="1099"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (μόνο για ανάγνωση)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1142"/>
+        <location filename="../src/window.cpp" line="1144"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1143"/>
+        <location filename="../src/window.cpp" line="1145"/>
         <source>&amp;New</source>
         <translation>&amp;Νέο</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1144"/>
+        <location filename="../src/window.cpp" line="1146"/>
         <source>&amp;Open...</source>
         <translation>Άν&amp;οιγμα...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1146"/>
+        <location filename="../src/window.cpp" line="1148"/>
         <source>&amp;Save</source>
         <translation>Αποθήκευ&amp;ση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1148"/>
+        <location filename="../src/window.cpp" line="1150"/>
         <source>Save &amp;As...</source>
         <translation>Αποθήκευση &amp;ως...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1149"/>
+        <location filename="../src/window.cpp" line="1151"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Μετονομασία...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1151"/>
+        <location filename="../src/window.cpp" line="1153"/>
         <source>Save A&amp;ll</source>
         <translation>Αποθήκευση ό&amp;λων</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1154"/>
+        <location filename="../src/window.cpp" line="1156"/>
         <source>Manage Sessions</source>
         <translation>Διαχείριση περιόδων λειτουργίας</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1156"/>
+        <location filename="../src/window.cpp" line="1158"/>
         <source>New Session</source>
         <translation>Νέα περίοδος λειτουργίας</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1159"/>
+        <location filename="../src/window.cpp" line="1161"/>
         <source>&amp;Print...</source>
         <translation>Εκτύ&amp;πωση...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1161"/>
+        <location filename="../src/window.cpp" line="1163"/>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1162"/>
+        <location filename="../src/window.cpp" line="1164"/>
         <source>&amp;Quit</source>
         <translation>Έξο&amp;δος</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1162"/>
+        <location filename="../src/window.cpp" line="1164"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1166"/>
+        <location filename="../src/window.cpp" line="1168"/>
         <source>&amp;Edit</source>
         <translation>&amp;Επεξεργασία</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1167"/>
+        <location filename="../src/window.cpp" line="1169"/>
         <source>&amp;Undo</source>
         <translation>&amp;Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1170"/>
+        <location filename="../src/window.cpp" line="1172"/>
         <source>&amp;Redo</source>
         <translation>Ε&amp;πανάληψη</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1174"/>
+        <location filename="../src/window.cpp" line="1176"/>
         <source>Cu&amp;t</source>
         <translation>Απο&amp;κοπή</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1177"/>
+        <location filename="../src/window.cpp" line="1179"/>
         <source>&amp;Copy</source>
         <translation>Αν&amp;τιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1180"/>
+        <location filename="../src/window.cpp" line="1182"/>
         <source>&amp;Paste</source>
         <translation>Επικό&amp;λληση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1182"/>
+        <location filename="../src/window.cpp" line="1184"/>
         <source>Select &amp;All</source>
         <translation>Επιλογή όλ&amp;ων</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1185"/>
+        <location filename="../src/window.cpp" line="1187"/>
         <source>Fo&amp;rmat</source>
         <translation>&amp;Μορφοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1187"/>
+        <location filename="../src/window.cpp" line="1189"/>
         <source>&amp;Bold</source>
         <translation>Έντ&amp;ονα</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1189"/>
+        <location filename="../src/window.cpp" line="1191"/>
         <source>&amp;Italic</source>
         <translation>&amp;Πλάγια</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1191"/>
+        <location filename="../src/window.cpp" line="1193"/>
         <source>&amp;Underline</source>
         <translation>&amp;Υπογραμμισμένα</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1193"/>
+        <location filename="../src/window.cpp" line="1195"/>
         <source>Stri&amp;kethrough</source>
         <translation>Διαγραμμέ&amp;να</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1193"/>
+        <location filename="../src/window.cpp" line="1195"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1195"/>
+        <location filename="../src/window.cpp" line="1197"/>
         <source>Sup&amp;erscript</source>
         <translation>&amp;Εκθέτης</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1195"/>
+        <location filename="../src/window.cpp" line="1197"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1197"/>
+        <location filename="../src/window.cpp" line="1199"/>
         <source>&amp;Subscript</source>
         <translation>Δεί&amp;κτης</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1197"/>
+        <location filename="../src/window.cpp" line="1199"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1201"/>
+        <location filename="../src/window.cpp" line="1203"/>
         <source>Align &amp;Left</source>
         <translation>Στοίχιση &amp;αριστερά</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1201"/>
+        <location filename="../src/window.cpp" line="1203"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1203"/>
+        <location filename="../src/window.cpp" line="1205"/>
         <source>Align &amp;Center</source>
         <translation>Στοίχιση στο κέν&amp;τρο</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1203"/>
+        <location filename="../src/window.cpp" line="1205"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1205"/>
+        <location filename="../src/window.cpp" line="1207"/>
         <source>Align &amp;Right</source>
         <translation>Στοίχιση &amp;δεξιά</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1205"/>
+        <location filename="../src/window.cpp" line="1207"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1207"/>
+        <location filename="../src/window.cpp" line="1209"/>
         <source>Align &amp;Justify</source>
         <translation>Πλήρης &amp;στοίχιση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1207"/>
+        <location filename="../src/window.cpp" line="1209"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1217"/>
+        <location filename="../src/window.cpp" line="1219"/>
         <source>&amp;Decrease Indent</source>
         <translation>Μεί&amp;ωση εσοχής</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1217"/>
+        <location filename="../src/window.cpp" line="1219"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1218"/>
+        <location filename="../src/window.cpp" line="1220"/>
         <source>I&amp;ncrease Indent</source>
         <translation>Αύ&amp;ξηση εσοχής</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1218"/>
+        <location filename="../src/window.cpp" line="1220"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1221"/>
+        <location filename="../src/window.cpp" line="1223"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>Δεξιόστ&amp;ροφη γραφή</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1223"/>
+        <location filename="../src/window.cpp" line="1225"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Αριστερόστρο&amp;φη γραφή</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1231"/>
+        <location filename="../src/window.cpp" line="1233"/>
         <source>&amp;Make Plain Text</source>
         <translation>Απ&amp;λό κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1232"/>
+        <location filename="../src/window.cpp" line="1234"/>
         <source>&amp;Make Rich Text</source>
         <translation>Εμπλουτ&amp;ισμένο κείμενο</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1236"/>
+        <location filename="../src/window.cpp" line="1238"/>
         <source>&amp;Tools</source>
         <translation>Εργα&amp;λεία</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1237"/>
+        <location filename="../src/window.cpp" line="1239"/>
         <source>&amp;Find...</source>
         <translation>Εύρε&amp;ση...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1238"/>
+        <location filename="../src/window.cpp" line="1240"/>
         <source>Find &amp;Next</source>
         <translation>Εύρεση &amp;επόμενου</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1241"/>
+        <location filename="../src/window.cpp" line="1243"/>
         <source>Find Pre&amp;vious</source>
         <translation>Εύρεση &amp;προηγούμενου</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1244"/>
+        <location filename="../src/window.cpp" line="1246"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Αντικατάσταση...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1244"/>
+        <location filename="../src/window.cpp" line="1246"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1246"/>
+        <location filename="../src/window.cpp" line="1248"/>
         <source>Smart &amp;Quotes</source>
         <translation>Έξυπνα εισαγ&amp;ωγικά</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1247"/>
+        <location filename="../src/window.cpp" line="1249"/>
         <source>Update &amp;Document</source>
         <translation>Ενη&amp;μέρωση εγγράφου</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1248"/>
+        <location filename="../src/window.cpp" line="1250"/>
         <source>Update &amp;Selection</source>
         <translation>Ε&amp;νημέρωση επιλογής</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1250"/>
+        <location filename="../src/window.cpp" line="1252"/>
         <source>&amp;Spelling...</source>
         <translation>Ορ&amp;θογραφία...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1250"/>
+        <location filename="../src/window.cpp" line="1252"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1251"/>
+        <location filename="../src/window.cpp" line="1253"/>
         <source>&amp;Timers...</source>
         <translation>Χρονόμε&amp;τρα...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1254"/>
+        <location filename="../src/window.cpp" line="1256"/>
         <source>&amp;Settings</source>
         <translation>&amp;Ρυθμίσεις</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1255"/>
+        <location filename="../src/window.cpp" line="1257"/>
         <source>Show &amp;Toolbar</source>
         <translation>Εμφάνιση γραμμής εργα&amp;λείων</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1259"/>
+        <location filename="../src/window.cpp" line="1261"/>
         <source>Show &amp;Menu Icons</source>
         <translation>Εμφάνιση εικονιδίων &amp;μενού</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1264"/>
+        <location filename="../src/window.cpp" line="1266"/>
+        <source>F&amp;ocused Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1268"/>
         <source>&amp;Fullscreen</source>
         <translation>Πλήρης οθό&amp;νη</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1264"/>
+        <location filename="../src/window.cpp" line="1268"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1266"/>
+        <location filename="../src/window.cpp" line="1270"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1270"/>
+        <location filename="../src/window.cpp" line="1274"/>
         <source>M&amp;inimize</source>
         <translation>Ελαχι&amp;στοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1270"/>
+        <location filename="../src/window.cpp" line="1274"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1272"/>
+        <location filename="../src/window.cpp" line="1276"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Θέματα...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1275"/>
+        <location filename="../src/window.cpp" line="1279"/>
         <source>&amp;Preferences...</source>
         <translation>Προ&amp;τιμήσεις...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1279"/>
+        <location filename="../src/window.cpp" line="1284"/>
+        <source>&amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1285"/>
+        <source>&amp;Narrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1286"/>
+        <source>&amp;Broad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1287"/>
+        <source>&amp;Paragraph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1299"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1274"/>
+        <location filename="../src/window.cpp" line="1278"/>
         <source>Application &amp;Language...</source>
         <translation>&amp;Γλώσσα εφαρμογής...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1280"/>
+        <location filename="../src/window.cpp" line="1300"/>
         <source>&amp;About</source>
         <translation>&amp;Ταυτότητα</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1282"/>
+        <location filename="../src/window.cpp" line="1302"/>
         <source>About &amp;Qt</source>
         <translation>&amp;Περί του Qt</translation>
     </message>
