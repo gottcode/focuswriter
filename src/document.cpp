@@ -990,7 +990,10 @@ void Document::focusText()
 	case 2: // Broad, current and line and previous two lines
 		selection.cursor.movePosition(QTextCursor::EndOfLine);
 		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
-		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor, 2);
+		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor);
+		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor);
+		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
 		break;
 
 	case 3: // Current paragraph
