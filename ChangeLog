@@ -1,3 +1,6 @@
+2012-05-18 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Inserting text resets alignment.
+
 2012-05-11 Graeme Gott <graeme@gottcode.org>
 	* Use translated names for dictionaries.
 
