@@ -208,7 +208,7 @@ void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
 {
 	try {
 		// Use theme spacings
-		m_block_format = cursor.document()->begin().blockFormat();
+		m_block_format = cursor.blockFormat();
 		m_state.block_format = m_block_format;
 
 		// Open file

@@ -253,26 +253,30 @@ bool RTF::Writer::write(QIODevice* device, QTextDocument* text, bool full)
 	device->write(m_header);
 
 	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
-		QByteArray par("{\\pard\\plain");
-		QTextBlockFormat block_format = block.blockFormat();
-		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
-		if (rtl) {
-			par += "\\rtlpar";
+		if (full) {
+			QByteArray par("{\\pard\\plain");
+			QTextBlockFormat block_format = block.blockFormat();
+			bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+			if (rtl) {
+				par += "\\rtlpar";
+			}
+			Qt::Alignment align = block_format.alignment();
+			if (rtl && (align & Qt::AlignLeft)) {
+				par += "\\ql";
+			} else if (align & Qt::AlignRight) {
+				par += "\\qr";
+			} else if (align & Qt::AlignCenter) {
+				par += "\\qc";
+			} else if (align & Qt::AlignJustify) {
+				par += "\\qj";
+			}
+			if (block_format.indent() > 0) {
+				par += "\\li" + QByteArray::number(block_format.indent() * 15);
+			}
+			device->write(par);
+		} else {
+			device->write("{");
 		}
-		Qt::Alignment align = block_format.alignment();
-		if (rtl && (align & Qt::AlignLeft)) {
-			par += "\\ql";
-		} else if (align & Qt::AlignRight) {
-			par += "\\qr";
-		} else if (align & Qt::AlignCenter) {
-			par += "\\qc";
-		} else if (align & Qt::AlignJustify) {
-			par += "\\qj";
-		}
-		if (block_format.indent() > 0) {
-			par += "\\li" + QByteArray::number(block_format.indent() * 15);
-		}
-		device->write(par);
 
 		if (block.begin() != block.end()) {
 			device->write(" ");
