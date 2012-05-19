@@ -502,13 +502,17 @@ void Document::loadTheme(const Theme& theme)
 			.arg(m_text_color.red())
 			.arg(m_text_color.green())
 			.arg(m_text_color.blue())
-			.arg(m_text_color.alpha())
+			.arg(m_focus_mode ? "128" : "255")
 			.arg(theme.textColor().name())
 			.arg(contrast)
 			.arg(theme.foregroundPadding())
 			.arg(theme.foregroundRounding())
 	);
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
+
+	if (m_focus_mode) {
+		focusText();
+	}
 
 	// Update spacings
 	if (!m_loaded) {
