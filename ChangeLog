@@ -1,3 +1,6 @@
+2012-05-23 Graeme Gott <graeme@gottcode.org>
+	* FIXED: New documents were always modified.
+
 2012-05-18 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Inserting text resets alignment.
 	* Add option to paste text without formatting.

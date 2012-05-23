@@ -523,7 +523,10 @@ void Document::loadTheme(const Theme& theme)
 		format.setTextIndent(48 * theme.indentFirstLine());
 		format.setTopMargin(theme.spacingAboveParagraph());
 		format.setBottomMargin(theme.spacingBelowParagraph());
+		m_text->setUndoRedoEnabled(false);
 		m_text->textCursor().setBlockFormat(format);
+		m_text->setUndoRedoEnabled(true);
+		m_text->document()->setModified(false);
 	}
 
 	// Update text
