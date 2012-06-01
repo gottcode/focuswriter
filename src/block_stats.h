@@ -17,6 +17,9 @@
  *
  ***********************************************************************/
 
+#ifndef BLOCK_STATS_H
+#define BLOCK_STATS_H
+
 #include <QTextBlockUserData>
 
 class Dictionary;
@@ -27,6 +30,7 @@ public:
 	BlockStats(const QString& text, Dictionary* dictionary);
 
 	bool isEmpty() const;
+	bool isScene() const;
 	int characterCount() const;
 	int spaceCount() const;
 	int wordCount() const;
@@ -35,16 +39,24 @@ public:
 	void checkSpelling(const QString& text, Dictionary* dictionary);
 	void update(const QString& text, Dictionary* dictionary);
 
+	static void setSceneDivider(const QString& divider);
+
 private:
 	int m_characters;
 	int m_spaces;
 	int m_words;
+	bool m_scene;
 	QList<QStringRef> m_misspelled;
 };
 
 inline bool BlockStats::isEmpty() const
 {
 	return m_words == 0;
+}
+
+inline bool BlockStats::isScene() const
+{
+	return m_scene;
 }
 
 inline int BlockStats::characterCount() const
@@ -66,3 +78,5 @@ inline QList<QStringRef> BlockStats::misspelled() const
 {
 	return m_misspelled;
 }
+
+#endif

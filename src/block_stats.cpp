@@ -23,10 +23,15 @@
 
 //-----------------------------------------------------------------------------
 
-BlockStats::BlockStats(const QString& text, Dictionary* dictionary)
-	: m_characters(0),
+static QString f_scene_divider = QLatin1String("##");
+
+//-----------------------------------------------------------------------------
+
+BlockStats::BlockStats(const QString& text, Dictionary* dictionary) :
+	m_characters(0),
 	m_spaces(0),
-	m_words(0)
+	m_words(0),
+	m_scene(false)
 {
 	update(text, dictionary);
 }
@@ -46,6 +51,10 @@ void BlockStats::checkSpelling(const QString& text, Dictionary* dictionary)
 
 void BlockStats::update(const QString& text, Dictionary* dictionary)
 {
+	// Determine if this is a scene
+	m_scene = dictionary && text.startsWith(f_scene_divider);
+
+	// Calculate stats
 	m_characters = text.length();
 	m_spaces = 0;
 	m_words = 0;
@@ -65,7 +74,16 @@ void BlockStats::update(const QString& text, Dictionary* dictionary)
 		}
 	}
 
+	// Update stored list of misspelled words
 	checkSpelling(text, dictionary);
+}
+
+//-----------------------------------------------------------------------------
+
+void BlockStats::setSceneDivider(const QString& divider)
+{
+	f_scene_divider = divider;
+	f_scene_divider.replace(QLatin1String("\\t"), QLatin1String("\t"));
 }
 
 //-----------------------------------------------------------------------------

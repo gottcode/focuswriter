@@ -46,6 +46,7 @@
 
 2012-06-01 Graeme Gott <graeme@gottcode.org>
 	* Make spacings take effect immediately.
+	* Add detecting scenes.
 
 2012-05-26 Morten Juhl-Johansen Zölde-Fejér <mjjzf@syntaktisk.dk>
 	* Add Danish translation.
