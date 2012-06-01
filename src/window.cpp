@@ -1282,9 +1282,9 @@ void Window::initMenus()
 
 	// Create focus sub-menu
 	QAction* focus_mode[4];
-	focus_mode[0] = focus_menu->addAction(tr("&All"));
-	focus_mode[1] = focus_menu->addAction(tr("&Narrow"));
-	focus_mode[2] = focus_menu->addAction(tr("&Broad"));
+	focus_mode[0] = focus_menu->addAction(tr("&Off"));
+	focus_mode[1] = focus_menu->addAction(tr("One &Line"));
+	focus_mode[2] = focus_menu->addAction(tr("&Three Lines"));
 	focus_mode[3] = focus_menu->addAction(tr("&Paragraph"));
 	m_focus_actions = new QActionGroup(this);
 	for (int i = 0; i < 4; ++i) {

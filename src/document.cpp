@@ -989,12 +989,12 @@ void Document::focusText()
 	selection.format.setForeground(m_text_color);
 	selection.cursor = m_text->textCursor();
 	switch (m_focus_mode) {
-	case 1: // Narrow, current line
+	case 1: // Current line
 		selection.cursor.movePosition(QTextCursor::EndOfLine);
 		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
 		break;
 
-	case 2: // Broad, current line and previous two lines
+	case 2: // Current line and previous two lines
 		selection.cursor.movePosition(QTextCursor::EndOfLine);
 		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor, 2);
 		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);

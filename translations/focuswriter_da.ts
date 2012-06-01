@@ -1743,19 +1743,16 @@
         <translation>&amp;Indstillinger...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1285"/>
         <source>&amp;All</source>
-        <translation>&amp;Alle</translation>
+        <translation type="obsolete">&amp;Alle</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1286"/>
         <source>&amp;Narrow</source>
-        <translation>&amp;Smal</translation>
+        <translation type="obsolete">&amp;Smal</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1287"/>
         <source>&amp;Broad</source>
-        <translation>&amp;Bred</translation>
+        <translation type="obsolete">&amp;Bred</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1288"/>
@@ -1771,6 +1768,21 @@
         <location filename="../src/window.cpp" line="1279"/>
         <source>Application &amp;Language...</source>
         <translation>Programmets &amp;sprog</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1285"/>
+        <source>&amp;Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1286"/>
+        <source>One &amp;Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1287"/>
+        <source>&amp;Three Lines</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1301"/>
