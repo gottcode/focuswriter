@@ -483,6 +483,13 @@ void Stack::selectAll()
 
 //-----------------------------------------------------------------------------
 
+void Stack::selectScene()
+{
+	m_current_document->selectScene();
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::setFocusMode(QAction* action)
 {
 	int focus_mode = action->data().toInt();

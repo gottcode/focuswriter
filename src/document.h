@@ -61,6 +61,7 @@ public:
 	bool rename();
 	void checkSpelling();
 	void print();
+	void selectScene();
 	bool loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);

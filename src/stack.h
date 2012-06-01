@@ -95,6 +95,7 @@ public slots:
 	void save();
 	void saveAs();
 	void selectAll();
+	void selectScene();
 	void setFocusMode(QAction* action);
 	void setFontBold(bool bold);
 	void setFontItalic(bool italic);

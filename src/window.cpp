@@ -1249,6 +1249,7 @@ void Window::initMenus()
 	m_actions["PasteUnformatted"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("Paste &Unformatted"), m_documents, SLOT(pasteUnformatted()), tr("Ctrl+Shift+V"));
 	edit_menu->addSeparator();
 	m_actions["SelectAll"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &All"), m_documents, SLOT(selectAll()), QKeySequence::SelectAll);
+	m_actions["SelectScene"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &Scene"), m_documents, SLOT(selectScene()), tr("Ctrl+Shift+A"));
 
 	// Create format menu
 	QMenu* format_menu = menuBar()->addMenu(tr("Fo&rmat"));
