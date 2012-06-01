@@ -245,14 +245,10 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	paragraph_spacing_layout->addRow(tr("Pixels Above:"), m_spacing_above_paragraph);
 	paragraph_spacing_layout->addRow(tr("Pixels Below:"), m_spacing_below_paragraph);
 
-	QLabel* spacings_message = new QLabel("<i>" + tr("Please note that these settings will not take effect for each file until it is reloaded.") + "</i>", tab);
-	spacings_message->setWordWrap(true);
-
 	QVBoxLayout* spacing_layout = new QVBoxLayout(tab);
 	spacing_layout->addWidget(line_spacing);
 	spacing_layout->addWidget(paragraph_spacing);
 	spacing_layout->addStretch();
-	spacing_layout->addWidget(spacings_message);
 
 #if QT_VERSION < 0x040800
 	line_spacing->hide();
