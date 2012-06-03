@@ -46,7 +46,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="305"/>
-        <location filename="../src/document.cpp" line="642"/>
+        <location filename="../src/document.cpp" line="650"/>
         <source>Save File As</source>
         <translation>Zapisz plik jako</translation>
     </message>
@@ -67,22 +67,22 @@
         <translation>Nie można zmienić nazwy pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1021"/>
+        <location filename="../src/document.cpp" line="1029"/>
         <source>Plain Text (*.txt)</source>
         <translation>Zwykły tekst (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1022"/>
+        <location filename="../src/document.cpp" line="1030"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>Dokument tekstowy OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1023"/>
+        <location filename="../src/document.cpp" line="1031"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Tekst z formatowaniem (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1024"/>
+        <location filename="../src/document.cpp" line="1032"/>
         <source>All Files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
@@ -121,20 +121,32 @@
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="60"/>
+        <source>&amp;Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/find_dialog.cpp" line="64"/>
+        <source>&amp;Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/find_dialog.cpp" line="68"/>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/find_dialog.cpp" line="127"/>
         <source>Find</source>
         <translation>Znajdź</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
         <location filename="../src/find_dialog.cpp" line="135"/>
         <source>Replace</source>
         <translation>Zastąp</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
         <source>Replace All</source>
-        <translation>Zastąp wszystkie</translation>
+        <translation type="obsolete">Zastąp wszystkie</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="207"/>
@@ -677,29 +689,49 @@
         <translation>Sprawdź pisownię</translation>
     </message>
     <message>
-        <location filename="../src/spell_checker.cpp" line="138"/>
         <source>Add</source>
-        <translation>Dodaj</translation>
+        <translation type="obsolete">Dodaj</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation type="obsolete">Ignoruj</translation>
+    </message>
+    <message>
+        <source>Ignore All</source>
+        <translation type="obsolete">Ignoruj wszystkie</translation>
+    </message>
+    <message>
+        <source>Change</source>
+        <translation type="obsolete">Zamień</translation>
+    </message>
+    <message>
+        <source>Change All</source>
+        <translation type="obsolete">Zamień wszystkie</translation>
+    </message>
+    <message>
+        <location filename="../src/spell_checker.cpp" line="138"/>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
-        <source>Ignore</source>
-        <translation>Ignoruj</translation>
+        <source>&amp;Ignore</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
-        <source>Ignore All</source>
-        <translation>Ignoruj wszystkie</translation>
+        <source>I&amp;gnore All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
-        <source>Change</source>
-        <translation>Zamień</translation>
+        <source>&amp;Change</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
-        <source>Change All</source>
-        <translation>Zamień wszystkie</translation>
+        <source>C&amp;hange All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -943,12 +975,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="248"/>
-        <source>Please note that these settings will not take effect for each file until it is reloaded.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="442"/>
+        <location filename="../src/theme_dialog.cpp" line="438"/>
         <source>The quick brown fox jumps over the lazy dog</source>
         <translation>Pchnąć w tę łódź jeża lub ośm skrzyń fig</translation>
     </message>

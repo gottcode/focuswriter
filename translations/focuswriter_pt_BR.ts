@@ -46,7 +46,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="305"/>
-        <location filename="../src/document.cpp" line="642"/>
+        <location filename="../src/document.cpp" line="650"/>
         <source>Save File As</source>
         <translation>Salvar como</translation>
     </message>
@@ -67,22 +67,22 @@
         <translation>Não foi possível renomear &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1021"/>
+        <location filename="../src/document.cpp" line="1029"/>
         <source>Plain Text (*.txt)</source>
         <translation>Texto plano (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1022"/>
+        <location filename="../src/document.cpp" line="1030"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1023"/>
+        <location filename="../src/document.cpp" line="1031"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto formatado (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1024"/>
+        <location filename="../src/document.cpp" line="1032"/>
         <source>All Files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
@@ -121,20 +121,32 @@
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="60"/>
+        <source>&amp;Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/find_dialog.cpp" line="64"/>
+        <source>&amp;Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/find_dialog.cpp" line="68"/>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/find_dialog.cpp" line="127"/>
         <source>Find</source>
         <translation>Localizar</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
         <location filename="../src/find_dialog.cpp" line="135"/>
         <source>Replace</source>
         <translation>Substituir</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
         <source>Replace All</source>
-        <translation>Sustituir tudos</translation>
+        <translation type="obsolete">Sustituir tudos</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="207"/>
@@ -676,29 +688,49 @@
         <translation>Verificar ortografia</translation>
     </message>
     <message>
-        <location filename="../src/spell_checker.cpp" line="138"/>
         <source>Add</source>
-        <translation>Adicionar</translation>
+        <translation type="obsolete">Adicionar</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation type="obsolete">Ignorar</translation>
+    </message>
+    <message>
+        <source>Ignore All</source>
+        <translation type="obsolete">Ignorar todos</translation>
+    </message>
+    <message>
+        <source>Change</source>
+        <translation type="obsolete">Alterar</translation>
+    </message>
+    <message>
+        <source>Change All</source>
+        <translation type="obsolete">Alterar todos</translation>
+    </message>
+    <message>
+        <location filename="../src/spell_checker.cpp" line="138"/>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
-        <source>Ignore</source>
-        <translation>Ignorar</translation>
+        <source>&amp;Ignore</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
-        <source>Ignore All</source>
-        <translation>Ignorar todos</translation>
+        <source>I&amp;gnore All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
-        <source>Change</source>
-        <translation>Alterar</translation>
+        <source>&amp;Change</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
-        <source>Change All</source>
-        <translation>Alterar todos</translation>
+        <source>C&amp;hange All</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -942,12 +974,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="248"/>
-        <source>Please note that these settings will not take effect for each file until it is reloaded.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="442"/>
+        <location filename="../src/theme_dialog.cpp" line="438"/>
         <source>The quick brown fox jumps over the lazy dog</source>
         <translation>Um pequeno jabuti xereta viu dez cegonhas felizes</translation>
     </message>

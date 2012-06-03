@@ -46,7 +46,7 @@
     </message>
     <message>
         <location filename="../src/document.cpp" line="305"/>
-        <location filename="../src/document.cpp" line="642"/>
+        <location filename="../src/document.cpp" line="650"/>
         <source>Save File As</source>
         <translation type="unfinished"></translation>
     </message>
@@ -67,22 +67,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1021"/>
+        <location filename="../src/document.cpp" line="1029"/>
         <source>Plain Text (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1022"/>
+        <location filename="../src/document.cpp" line="1030"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1023"/>
+        <location filename="../src/document.cpp" line="1031"/>
         <source>Rich Text (*.rtf)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1024"/>
+        <location filename="../src/document.cpp" line="1032"/>
         <source>All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -121,19 +121,27 @@
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="60"/>
+        <source>&amp;Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/find_dialog.cpp" line="64"/>
+        <source>&amp;Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/find_dialog.cpp" line="68"/>
+        <source>Replace &amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/find_dialog.cpp" line="127"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
         <location filename="../src/find_dialog.cpp" line="135"/>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
-        <source>Replace All</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -677,27 +685,27 @@
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
-        <source>Add</source>
+        <source>&amp;Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
-        <source>Ignore</source>
+        <source>&amp;Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
-        <source>Ignore All</source>
+        <source>I&amp;gnore All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
-        <source>Change</source>
+        <source>&amp;Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
-        <source>Change All</source>
+        <source>C&amp;hange All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -942,12 +950,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="248"/>
-        <source>Please note that these settings will not take effect for each file until it is reloaded.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="442"/>
+        <location filename="../src/theme_dialog.cpp" line="438"/>
         <source>The quick brown fox jumps over the lazy dog</source>
         <translation type="unfinished"></translation>
     </message>

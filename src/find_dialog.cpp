@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,15 +57,15 @@ FindDialog::FindDialog(Stack* documents)
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
 	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
 
-	m_find_button = buttons->addButton(tr("Find"), QDialogButtonBox::ActionRole);
+	m_find_button = buttons->addButton(tr("&Find"), QDialogButtonBox::ActionRole);
 	m_find_button->setEnabled(false);
 	connect(m_find_button, SIGNAL(clicked()), this, SLOT(find()));
 
-	m_replace_button = buttons->addButton(tr("Replace"), QDialogButtonBox::ActionRole);
+	m_replace_button = buttons->addButton(tr("&Replace"), QDialogButtonBox::ActionRole);
 	m_replace_button->setEnabled(false);
 	connect(m_replace_button, SIGNAL(clicked()), this, SLOT(replace()));
 
-	m_replace_all_button = buttons->addButton(tr("Replace All"), QDialogButtonBox::ActionRole);
+	m_replace_all_button = buttons->addButton(tr("Replace &All"), QDialogButtonBox::ActionRole);
 	m_replace_all_button->setEnabled(false);
 	connect(m_replace_all_button, SIGNAL(clicked()), this, SLOT(replaceAll()));
 

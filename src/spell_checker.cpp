@@ -135,21 +135,21 @@ SpellChecker::SpellChecker(QTextEdit* document, Dictionary& dictionary) :
 	m_context = new QTextEdit(this);
 	m_context->setReadOnly(true);
 	m_context->setTabStopWidth(50);
-	QPushButton* add_button = new QPushButton(tr("Add"), this);
+	QPushButton* add_button = new QPushButton(tr("&Add"), this);
 	add_button->setAutoDefault(false);
 	connect(add_button, SIGNAL(clicked()), this, SLOT(add()));
-	QPushButton* ignore_button = new QPushButton(tr("Ignore"), this);
+	QPushButton* ignore_button = new QPushButton(tr("&Ignore"), this);
 	ignore_button->setAutoDefault(false);
 	connect(ignore_button, SIGNAL(clicked()), this, SLOT(ignore()));
-	QPushButton* ignore_all_button = new QPushButton(tr("Ignore All"), this);
+	QPushButton* ignore_all_button = new QPushButton(tr("I&gnore All"), this);
 	ignore_all_button->setAutoDefault(false);
 	connect(ignore_all_button, SIGNAL(clicked()), this, SLOT(ignoreAll()));
 
 	m_suggestion = new QLineEdit(this);
-	QPushButton* change_button = new QPushButton(tr("Change"), this);
+	QPushButton* change_button = new QPushButton(tr("&Change"), this);
 	change_button->setAutoDefault(false);
 	connect(change_button, SIGNAL(clicked()), this, SLOT(change()));
-	QPushButton* change_all_button = new QPushButton(tr("Change All"), this);
+	QPushButton* change_all_button = new QPushButton(tr("C&hange All"), this);
 	change_all_button->setAutoDefault(false);
 	connect(change_all_button, SIGNAL(clicked()), this, SLOT(changeAll()));
 	m_suggestions = new QListWidget(this);
