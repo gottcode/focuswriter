@@ -52,6 +52,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QShortcut>
+#include <QSignalMapper>
 #include <QStyle>
 #include <QTabBar>
 #include <QTextCodec>
@@ -158,8 +159,19 @@ Window::Window(const QStringList& files)
 	connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabClicked(int)));
 	connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosed(int)));
 	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
+
+	// Set up tab navigation
 	new QShortcut(QKeySequence::NextChild, this, SLOT(nextDocument()));
 	new QShortcut(QKeySequence::PreviousChild, this, SLOT(previousDocument()));
+	new QShortcut(Qt::CTRL + Qt::Key_0, this, SLOT(firstDocument()));
+	new QShortcut(Qt::CTRL + Qt::Key_9, this, SLOT(lastDocument()));
+	QSignalMapper* mapper = new QSignalMapper(this);
+	for (int i = 1; i < 9 ; ++i) {
+		QShortcut* shortcut = new QShortcut(Qt::CTRL + Qt::Key_0 + i, this);
+		connect(shortcut, SIGNAL(activated()), mapper, SLOT(map()));
+		mapper->setMapping(shortcut, i - 1);
+	}
+	connect(mapper, SIGNAL(mapped(int)), m_tabs, SLOT(setCurrentIndex(int)));
 
 	// Always bring interface to front
 	connect(m_documents, SIGNAL(headerVisible(bool)), menuBar(), SLOT(raise()));
@@ -657,6 +669,20 @@ void Window::previousDocument()
 		index = m_tabs->count() - 1;
 	}
 	m_tabs->setCurrentIndex(index);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::firstDocument()
+{
+	m_tabs->setCurrentIndex(0);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::lastDocument()
+{
+	m_tabs->setCurrentIndex(m_tabs->count() - 1);
 }
 
 //-----------------------------------------------------------------------------

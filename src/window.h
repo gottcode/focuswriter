@@ -62,6 +62,8 @@ private slots:
 	void closeDocument();
 	void nextDocument();
 	void previousDocument();
+	void firstDocument();
+	void lastDocument();
 	void setFormattingEnabled(bool enabled);
 	void minimize();
 	void toggleFullscreen();
