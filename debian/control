@@ -3,12 +3,12 @@ Section: editors
 Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
-Build-Depends: cdbs, debhelper (>= 8),
+Build-Depends: cdbs, debhelper (>= 9),
 	       libqt4-dev,
 	       libhunspell-dev,
 	       libzip-dev,
 	       pkg-config
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Homepage: http://gottcode.org/focuswriter/
 Vcs-Git: git://git.debian.org/collab-maint/focuswriter.git
 Vcs-Browser: http://git.debian.org/?p=collab-maint/focuswriter.git;a=summary
