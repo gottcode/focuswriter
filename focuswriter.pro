@@ -163,8 +163,8 @@ win32 {
 }
 
 macx {
-	ICONS.files = resources/images/icons/oxygen/hicolor
-	ICONS.path = Contents/Resources/icons
+	ICONS.files = resources/images/icons/oxygen-icons/oxygen/
+	ICONS.path = Contents/Resources/icons/oxygen
 
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
@@ -185,8 +185,8 @@ unix: !macx {
 	pixmap.files = resources/unix/focuswriter_32.xpm
 	pixmap.path = $$PREFIX/share/pixmaps/
 
-	icons.files = resources/images/icons/oxygen/hicolor/*
-	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
+	icons.files = resources/images/icons/oxygen-icons/oxygen/*
+	icons.path = $$PREFIX/share/focuswriter/icons/oxygen
 
 	desktop.files = resources/unix/focuswriter.desktop
 	desktop.path = $$PREFIX/share/applications/
