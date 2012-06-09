@@ -76,7 +76,11 @@ Application::Application(int& argc, char** argv)
 		fallback.addFile(":/hicolor/24x24/apps/focuswriter.png");
 		fallback.addFile(":/hicolor/22x22/apps/focuswriter.png");
 		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
-		setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
+		if (!QIcon::themeName().isEmpty() && (QIcon::themeName() != "hicolor")) {
+			setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
+		} else {
+			setWindowIcon(fallback);
+		}
 	}
 
 #ifndef Q_WS_MAC
