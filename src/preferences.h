@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,6 +75,9 @@ public:
 	void setSingleQuotes(int quotes);
 	void setTypewriterSounds(bool sounds);
 
+	QString sceneDivider() const;
+	void setSceneDivider(const QString& divider);
+
 	bool autoSave() const;
 	bool savePositions() const;
 	void setAutoSave(bool save);
@@ -119,6 +122,8 @@ private:
 	int m_double_quotes;
 	int m_single_quotes;
 	bool m_typewriter_sounds;
+
+	QString m_scene_divider;
 
 	bool m_auto_save;
 	bool m_save_positions;

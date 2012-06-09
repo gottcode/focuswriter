@@ -41,6 +41,9 @@
 	* FIXED: Data was not always written to disk.
 	* FIXED: Was adding spaces before pasted rich text.
 
+2012-06-09 Graeme Gott <graeme@gottcode.org>
+	* Allow changing scene dividers.
+
 2012-06-03 Graeme Gott <graeme@gottcode.org>
 	* Add tab navigation by keyboard.
 
