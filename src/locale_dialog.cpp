@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,8 @@ QString LocaleDialog::m_appname;
 LocaleDialog::LocaleDialog(QWidget* parent)
 	: QDialog(parent, Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
-	setWindowTitle(QCoreApplication::applicationName());
+	QString title = parent ? parent->window()->windowTitle() : QString();
+	setWindowTitle(!title.isEmpty() ? title : QCoreApplication::applicationName());
 
 	QLabel* text = new QLabel(tr("Select application language:"), this);
 
@@ -138,6 +139,9 @@ QString LocaleDialog::languageName(const QString& language)
 		}
 	} else {
 		name = locale.nativeLanguageName();
+	}
+	if (locale.textDirection() == Qt::RightToLeft) {
+		name.prepend(QChar(0x202b));
 	}
 #else
 	if (lang_code.length() > 2) {
