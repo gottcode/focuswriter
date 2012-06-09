@@ -98,8 +98,8 @@ Window::Window(const QStringList& files)
 	setCursor(Qt::WaitCursor);
 
 	// Set up icons
-	if ((QIcon::themeName() == "hicolor") || QIcon::themeName().isEmpty()) {
-		QIcon::setThemeName("oxygen");
+	if (QIcon::themeName().isEmpty()) {
+		QIcon::setThemeName("hicolor");
 		setIconSize(QSize(22,22));
 	}
 

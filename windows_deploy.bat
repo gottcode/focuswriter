@@ -18,9 +18,9 @@ COPY translations\*.qm %TRANSLATIONS% >nul
 COPY %QTDIR%\translations\qt_*.qm %TRANSLATIONS% >nul
 
 ECHO Copying icons
-SET ICONS=%APP%\icons\oxygen
+SET ICONS=%APP%\icons\hicolor
 MKDIR %ICONS%
-XCOPY /Q /S /Y resources\images\icons\oxygen-icons\oxygen %ICONS% >nul
+XCOPY /Q /S /Y resources\images\icons\oxygen\hicolor %ICONS% >nul
 
 ECHO Copying dictionaries
 SET DICTIONARIES=%APP%\Dictionaries
