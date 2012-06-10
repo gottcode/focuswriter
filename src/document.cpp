@@ -51,6 +51,15 @@
 #include <QTextStream>
 #include <QTimer>
 
+#if defined(Q_OS_MAC)
+#include <sys/fcntl.h>
+#elif defined(Q_OS_UNIX)
+#include <unistd.h>
+#elif defined(Q_OS_WIN)
+#include <windows.h>
+#include <io.h>
+#endif
+
 #include <ctime>
 
 //-----------------------------------------------------------------------------
@@ -1022,7 +1031,7 @@ void Document::updateState()
 bool Document::writeFile(const QString& filename)
 {
 	bool saved = false;
-	QFile file(filename);
+	QFile file(filename + ".tmp");
 	QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
 	if (!m_rich_text) {
 		if (file.open(QFile::WriteOnly | QFile::Text)) {
@@ -1048,9 +1057,22 @@ bool Document::writeFile(const QString& filename)
 			}
 		}
 	}
+
 	if (file.isOpen()) {
-		saved = saved && (file.error() == QFile::NoError);
+#if defined(Q_OS_MAC)
+		saved &= (fcntl(file.handle(), F_FULLFSYNC, NULL) == 0);
+#elif defined(Q_OS_UNIX)
+		saved &= (fsync(file.handle()) == 0);
+#elif defined(Q_OS_WIN)
+		saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
+#endif
+		saved &= (file.error() == QFile::NoError);
 		file.close();
+	}
+
+	if (saved) {
+		QFile::remove(filename);
+		QFile::rename(filename + ".tmp", filename);
 	}
 	return saved;
 }
