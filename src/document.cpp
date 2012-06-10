@@ -435,13 +435,13 @@ void Document::loadFile(const QString& filename, int position)
 			file.close();
 		}
 	} else {
-		if (filename.endsWith(".odt")) {
+		if (m_filename.endsWith(".odt")) {
 			ODT::Reader reader;
 			reader.read(filename, document);
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
 			}
-		} else if (filename.endsWith(".rtf")) {
+		} else {
 			QFile file(filename);
 			if (file.open(QIODevice::ReadOnly)) {
 				RTF::Reader reader;
@@ -1128,7 +1128,7 @@ bool Document::writeFile(const QString& filename)
 {
 	bool saved = false;
 	QFile file(filename + ".tmp");
-	QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+	QString suffix = m_filename.section(QLatin1Char('.'), -1).toLower();
 	if (!m_rich_text) {
 		if (file.open(QFile::WriteOnly | QFile::Text)) {
 			QTextStream stream(&file);
@@ -1144,7 +1144,7 @@ bool Document::writeFile(const QString& filename)
 			if (suffix == "odt") {
 				QTextDocumentWriter writer(&file, "ODT");
 				saved = writer.write(m_text->document());
-			} else if (suffix == "rtf") {
+			} else {
 				RTF::Writer writer(m_codepage);
 				if (m_codepage.isEmpty()) {
 					m_codepage = writer.codePage();
