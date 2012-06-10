@@ -81,7 +81,7 @@ namespace
 		QString filename;
 		QDir dir(g_cache_path);
 		do {
-			filename = QString("fw_%1").arg(qrand(), 6, 36);
+			filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
 		} while (dir.exists(filename));
 		return filename;
 	}
