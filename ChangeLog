@@ -1,4 +1,5 @@
 2012-06-10 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Was not loading data from emergency cache files.
 	* FIXED: Emergency cache was not working for rich text.
 	* FIXED: Data was not always written to disk.
 	* FIXED: Was adding spaces before pasted rich text.
