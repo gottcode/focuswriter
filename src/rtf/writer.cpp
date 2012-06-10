@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -279,7 +279,9 @@ bool RTF::Writer::write(QIODevice* device, QTextDocument* text, bool full)
 		}
 
 		if (block.begin() != block.end()) {
-			device->write(" ");
+			if (full) {
+				device->write(" ");
+			}
 			for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
 				QTextFragment fragment = iter.fragment();
 				QTextCharFormat char_format = fragment.charFormat();
