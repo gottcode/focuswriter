@@ -168,6 +168,7 @@ namespace
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
 	m_cache_filename(randomCacheFilename()),
+	m_cache_outdated(false),
 	m_index(0),
 	m_always_center(false),
 	m_rich_text(false),
@@ -270,7 +271,10 @@ bool Document::isReadOnly() const
 
 void Document::cache()
 {
-	writeFile(g_cache_path + m_cache_filename);
+	if (m_cache_outdated) {
+		m_cache_outdated = false;
+		writeFile(g_cache_path + m_cache_filename);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -289,6 +293,7 @@ bool Document::save()
 	// Write file to disk
 	bool saved = writeFile(m_filename);
 	if (saved) {
+		m_cache_outdated = false;
 		QFile::remove(g_cache_path + m_cache_filename);
 		QFile::copy(m_filename, g_cache_path + m_cache_filename);
 	} else {
@@ -836,6 +841,8 @@ void Document::undoCommandAdded()
 
 void Document::updateWordCount(int position, int removed, int added)
 {
+	m_cache_outdated = true;
+
 	// Change filename and rich text status if necessary because of undo/redo
 	int steps = m_text->document()->availableUndoSteps();
 	if (m_old_states.contains(steps)) {
