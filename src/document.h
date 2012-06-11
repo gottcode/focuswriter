@@ -108,7 +108,6 @@ private:
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
 	void updateState();
-	bool writeFile(const QString& filename);
 
 private:
 	QString m_filename;

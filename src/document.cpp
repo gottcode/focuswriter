@@ -21,6 +21,7 @@
 
 #include "block_stats.h"
 #include "dictionary_manager.h"
+#include "document_writer.h"
 #include "highlighter.h"
 #include "odt_reader.h"
 #include "preferences.h"
@@ -46,19 +47,9 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QTextBlock>
-#include <QTextDocumentWriter>
 #include <QTextEdit>
 #include <QTextStream>
 #include <QTimer>
-
-#if defined(Q_OS_MAC)
-#include <sys/fcntl.h>
-#elif defined(Q_OS_UNIX)
-#include <unistd.h>
-#elif defined(Q_OS_WIN)
-#include <windows.h>
-#include <io.h>
-#endif
 
 #include <ctime>
 
@@ -274,7 +265,13 @@ void Document::cache()
 {
 	if (m_cache_outdated) {
 		m_cache_outdated = false;
-		writeFile(g_cache_path + m_cache_filename);
+		DocumentWriter writer;
+		writer.setFileName(g_cache_path + m_cache_filename);
+		writer.setType(m_filename.section(QLatin1Char('.'), -1));
+		writer.setRichText(m_rich_text);
+		writer.setCodePage(m_codepage);
+		writer.setDocument(m_text->document());
+		writer.write();
 	}
 }
 
@@ -292,7 +289,14 @@ bool Document::save()
 	}
 
 	// Write file to disk
-	bool saved = writeFile(m_filename);
+	DocumentWriter writer;
+	writer.setFileName(m_filename);
+	writer.setType(m_filename.section(QLatin1Char('.'), -1));
+	writer.setRichText(m_rich_text);
+	writer.setCodePage(m_codepage);
+	writer.setDocument(m_text->document());
+	bool saved = writer.write();
+	m_codepage = writer.codePage();
 	if (saved) {
 		m_cache_outdated = false;
 		QFile::remove(g_cache_path + m_cache_filename);
@@ -1132,57 +1136,6 @@ void Document::updateState()
 			}
 		}
 	}
-}
-
-//-----------------------------------------------------------------------------
-
-bool Document::writeFile(const QString& filename)
-{
-	bool saved = false;
-	QFile file(filename + ".tmp");
-	QString suffix = m_filename.section(QLatin1Char('.'), -1).toLower();
-	if (!m_rich_text) {
-		if (file.open(QFile::WriteOnly | QFile::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec("UTF-8");
-			if (suffix == "txt") {
-				stream.setGenerateByteOrderMark(true);
-			}
-			stream << m_text->toPlainText();
-			saved = true;
-		}
-	} else {
-		if (file.open(QFile::WriteOnly)) {
-			if (suffix == "odt") {
-				QTextDocumentWriter writer(&file, "ODT");
-				saved = writer.write(m_text->document());
-			} else {
-				RTF::Writer writer(m_codepage);
-				if (m_codepage.isEmpty()) {
-					m_codepage = writer.codePage();
-				}
-				saved = writer.write(&file, m_text->document());
-			}
-		}
-	}
-
-	if (file.isOpen()) {
-#if defined(Q_OS_MAC)
-		saved &= (fcntl(file.handle(), F_FULLFSYNC, NULL) == 0);
-#elif defined(Q_OS_UNIX)
-		saved &= (fsync(file.handle()) == 0);
-#elif defined(Q_OS_WIN)
-		saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
-#endif
-		saved &= (file.error() == QFile::NoError);
-		file.close();
-	}
-
-	if (saved) {
-		QFile::remove(filename);
-		QFile::rename(filename + ".tmp", filename);
-	}
-	return saved;
 }
 
 //-----------------------------------------------------------------------------

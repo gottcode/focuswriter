@@ -73,6 +73,7 @@ HEADERS += src/alert.h \
 	src/color_button.h \
 	src/deltas.h \
 	src/document.h \
+	src/document_writer.h \
 	src/find_dialog.h \
 	src/gzip.h \
 	src/highlighter.h \
@@ -107,6 +108,7 @@ SOURCES += src/alert.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
 	src/document.cpp \
+	src/document_writer.cpp \
 	src/find_dialog.cpp \
 	src/gzip.cpp \
 	src/highlighter.cpp \

@@ -1,4 +1,5 @@
 2012-06-11 Graeme Gott <graeme@gottcode.org>
+	* Move writing file out of document class.
 	* FIXED: Saved cache files more frequently than necessary.
 	* FIXED: Displayed paths did not use native separators.
 
