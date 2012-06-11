@@ -285,12 +285,14 @@ Window::Window(const QStringList& command_line_files)
 
 		// Ask if they want to use cached files
 		if (!files.isEmpty()) {
-			QStringList filenames = files;
+			QStringList filenames;
 			int untitled = 1;
-			int count = filenames.count();
+			int count = files.count();
 			for (int i = 0; i < count; ++i) {
-				if (filenames.at(i).isEmpty()) {
-					filenames[i] = tr("(Untitled %1)").arg(untitled);
+				if (!files.at(i).isEmpty()) {
+					filenames.append(QDir::toNativeSeparators(files.at(i)));
+				} else {
+					filenames.append(tr("(Untitled %1)").arg(untitled));
 					untitled++;
 				}
 			}
@@ -360,7 +362,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	if (!skip.isEmpty()) {
 		QStringList skipped;
 		foreach (int i, skip) {
-			skipped += files.at(i);
+			skipped += QDir::toNativeSeparators(files.at(i));
 		}
 		QMessageBox mbox(window());
 		mbox.setWindowTitle(tr("Sorry"));
@@ -396,14 +398,14 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			skip.removeFirst();
 			continue;
 		} else if (!addDocument(files.at(i), datafiles.at(i), positions.value(i, "-1").toInt())) {
-			missing.append(files.at(i));
+			missing.append(QDir::toNativeSeparators(files.at(i)));
 		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
 			int index = m_documents->currentIndex();
-			missing.append(files.at(i));
+			missing.append(QDir::toNativeSeparators(files.at(i)));
 			m_documents->removeDocument(index);
 			m_tabs->removeTab(index);
 		} else if (m_documents->currentDocument()->isReadOnly() && m_documents->count() > open_files) {
-			readonly.append(files.at(i));
+			readonly.append(QDir::toNativeSeparators(files.at(i)));
 		}
 		open_files = m_documents->count();
 	}

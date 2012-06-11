@@ -296,7 +296,7 @@ bool Document::save()
 	}
 
 	if (!saved) {
-		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save '%1'.").arg(m_filename));
+		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save '%1'.").arg(QDir::toNativeSeparators(m_filename)));
 		return false;
 	}
 
@@ -313,7 +313,7 @@ bool Document::saveAs()
 	if (!filename.isEmpty()) {
 		filename = fileNameWithExtension(filename, selected);
 		if (QFile::exists(filename) && !QFile::remove(filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(filename));
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 			return false;
 		}
 		qSwap(m_filename, filename);
@@ -345,11 +345,11 @@ bool Document::rename()
 	if (!filename.isEmpty()) {
 		filename = fileNameWithExtension(filename, selected);
 		if (QFile::exists(filename) && !QFile::remove(filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(filename));
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 			return false;
 		}
 		if (!QFile::rename(m_filename, filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(m_filename));
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(QDir::toNativeSeparators(m_filename)));
 			return false;
 		}
 		m_filename = filename;

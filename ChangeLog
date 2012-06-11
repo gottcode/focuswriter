@@ -1,3 +1,6 @@
+2012-06-11 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Displayed paths did not use native separators.
+
 2012-06-10 Graeme Gott <graeme@gottcode.org>
 	* Increase cache interval to 10 minutes.
 	* Load original file when unable to load cached file.
