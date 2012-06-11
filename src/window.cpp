@@ -79,7 +79,7 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Window::Window(const QStringList& files)
+Window::Window(const QStringList& command_line_files)
 	: m_toolbar(0),
 	m_key_sound(0),
 	m_enter_key_sound(0),
@@ -256,7 +256,7 @@ Window::Window(const QStringList& files)
 	if (!writable) {
 		m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Emergency cache is not writable."), QStringList());
 	}
-	QStringList cachedfiles, datafiles;
+	QStringList files, datafiles;
 	QString cachepath;
 	QStringList entries = QDir(Document::cachePath()).entryList(QDir::Files);
 	if (writable && (entries.count() > 1) && entries.contains("mapping")) {
@@ -288,7 +288,7 @@ Window::Window(const QStringList& files)
 				QString datafile = line.section(' ', 0, 0);
 				QString path = line.section(' ', 1);
 				if (!datafile.isEmpty()) {
-					cachedfiles.append(path);
+					files.append(path);
 					datafiles.append(cachepath + "/" + datafile);
 				}
 			}
@@ -296,13 +296,13 @@ Window::Window(const QStringList& files)
 		}
 
 		// Ask if they want to use cached files
-		if (!cachedfiles.isEmpty()) {
-			QStringList files = cachedfiles;
+		if (!files.isEmpty()) {
+			QStringList filenames = files;
 			int untitled = 1;
-			int count = files.count();
+			int count = filenames.count();
 			for (int i = 0; i < count; ++i) {
-				if (files.at(i).isEmpty()) {
-					files[i] = tr("(Untitled %1)").arg(untitled);
+				if (filenames.at(i).isEmpty()) {
+					filenames[i] = tr("(Untitled %1)").arg(untitled);
 					untitled++;
 				}
 			}
@@ -311,12 +311,12 @@ Window::Window(const QStringList& files)
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
 			mbox.setInformativeText(tr("Restore from the emergency cache?"));
-			mbox.setDetailedText(files.join("\n"));
+			mbox.setDetailedText(filenames.join("\n"));
 			mbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
 			mbox.setDefaultButton(QMessageBox::Yes);
 			mbox.setIcon(QMessageBox::Warning);
 			if (mbox.exec() == QMessageBox::No) {
-				cachedfiles.clear();
+				files.clear();
 				datafiles.clear();
 			}
 		}
@@ -324,13 +324,13 @@ Window::Window(const QStringList& files)
 
 	// Open previous documents
 	QString session = settings.value("SessionManager/Session").toString();
-	if (cachedfiles.isEmpty() && !files.isEmpty()) {
+	if (files.isEmpty() && !command_line_files.isEmpty()) {
 		session.clear();
-		settings.setValue("Save/Current", files);
+		settings.setValue("Save/Current", command_line_files);
 		settings.setValue("Save/Positions", QStringList());
 		settings.setValue("Save/Active", 0);
 	}
-	m_sessions->setCurrent(session, cachedfiles, datafiles);
+	m_sessions->setCurrent(session, files, datafiles);
 
 	// Remove old cache
 	if (!cachepath.isEmpty()) {
