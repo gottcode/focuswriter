@@ -118,6 +118,7 @@ private:
 	QLabel* m_progress_label;
 	QLabel* m_clock_label;
 	QTimer* m_clock_timer;
+	QTimer* m_save_timer;
 
 	bool m_fullscreen;
 	bool m_auto_save;
