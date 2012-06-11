@@ -60,7 +60,7 @@ public:
 	bool rename();
 	void checkSpelling();
 	void print();
-	void loadFile(const QString& filename, int position);
+	bool loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void setRichText(bool rich_text);
