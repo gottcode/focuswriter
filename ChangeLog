@@ -1,4 +1,5 @@
 2012-06-10 Graeme Gott <graeme@gottcode.org>
+	* Load original file when unable to load cached file.
 	* FIXED: Crashed when loading empty RTF files.
 	* FIXED: Emergency cache files could have broken names.
 	* FIXED: Was not loading data from emergency cache files.

@@ -171,7 +171,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_index(0),
 	m_always_center(false),
 	m_rich_text(false),
-	m_loaded(false),
 	m_focus_mode(0),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
@@ -391,8 +390,10 @@ void Document::print()
 
 //-----------------------------------------------------------------------------
 
-void Document::loadFile(const QString& filename, int position)
+bool Document::loadFile(const QString& filename, int position)
 {
+	bool loaded = true;
+
 	if (filename.isEmpty()) {
 		m_text->setReadOnly(false);
 
@@ -401,9 +402,8 @@ void Document::loadFile(const QString& filename, int position)
 		calculateWordCount();
 		connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 		connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
-		m_loaded = true;
 
-		return;
+		return loaded;
 	}
 
 	bool enabled = m_highlighter->enabled();
@@ -440,6 +440,8 @@ void Document::loadFile(const QString& filename, int position)
 			reader.read(filename, document);
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				loaded = false;
+				position = -1;
 			}
 		} else {
 			QFile file(filename);
@@ -452,6 +454,8 @@ void Document::loadFile(const QString& filename, int position)
 				file.close();
 				if (reader.hasError()) {
 					QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+					loaded = false;
+					position = -1;
 				}
 			}
 		}
@@ -483,11 +487,12 @@ void Document::loadFile(const QString& filename, int position)
 	}
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
-	m_loaded = true;
 
 	if (m_focus_mode) {
 		focusText();
 	}
+
+	return loaded;
 }
 
 //-----------------------------------------------------------------------------

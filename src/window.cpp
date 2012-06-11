@@ -972,10 +972,13 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	m_documents->addDocument(document);
 	document->loadTheme(m_sessions->current()->theme());
 	document->setFocusMode(m_focus_actions->checkedAction()->data().toInt());
-	document->loadFile(path, m_save_positions ? position : -1);
-	if (datafile != file) {
-		document->text()->document()->setModified(!compareFiles(file, datafile));
-		QFile::remove(datafile);
+	if (document->loadFile(path, m_save_positions ? position : -1)) {
+		if (datafile != file) {
+			document->text()->document()->setModified(!compareFiles(file, datafile));
+			QFile::remove(datafile);
+		}
+	} else {
+		document->loadFile(file, m_save_positions ? position : -1);
 	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));

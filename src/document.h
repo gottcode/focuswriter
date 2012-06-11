@@ -60,7 +60,7 @@ public:
 	bool rename();
 	void checkSpelling();
 	void print();
-	void loadFile(const QString& filename, int position);
+	bool loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void setFocusMode(int focus_mode);
@@ -119,7 +119,6 @@ private:
 	bool m_always_center;
 	bool m_block_cursor;
 	bool m_rich_text;
-	bool m_loaded;
 	int m_focus_mode;
 
 	QTimer* m_hide_timer;
