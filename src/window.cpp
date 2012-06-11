@@ -127,6 +127,10 @@ Window::Window(const QStringList& files)
 	// Set up menubar and toolbar
 	initMenus();
 
+	// Set up cache timer
+	m_save_timer = new QTimer(this);
+	m_save_timer->setInterval(600000);
+
 	// Set up details
 	m_footer = new QWidget(contents);
 	QWidget* details = new QWidget(m_footer);
@@ -329,6 +333,8 @@ Window::Window(const QStringList& files)
 	activateWindow();
 	raise();
 	unsetCursor();
+
+	m_save_timer->start();
 }
 
 //-----------------------------------------------------------------------------
@@ -1020,11 +1026,11 @@ void Window::loadPreferences(Preferences& preferences)
 
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
-		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
-		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
+		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 	} else {
-		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
-		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
+		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 	}
 	m_save_positions = preferences.savePositions();
 
