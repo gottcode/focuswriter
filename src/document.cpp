@@ -273,7 +273,7 @@ void Document::cache()
 {
 	if (m_cache_outdated) {
 		m_cache_outdated = false;
-		writeFile(g_cache_path + m_cache_filename);
+		writeFile(g_cache_path + m_cache_filename, false);
 	}
 }
 
@@ -291,7 +291,7 @@ bool Document::save()
 	}
 
 	// Write file to disk
-	bool saved = writeFile(m_filename);
+	bool saved = writeFile(m_filename, true);
 	if (saved) {
 		m_cache_outdated = false;
 		QFile::remove(g_cache_path + m_cache_filename);
@@ -1043,7 +1043,7 @@ void Document::updateState()
 
 //-----------------------------------------------------------------------------
 
-bool Document::writeFile(const QString& filename)
+bool Document::writeFile(const QString& filename, bool sync)
 {
 	bool saved = false;
 	QFile file(filename + ".tmp");
@@ -1074,13 +1074,15 @@ bool Document::writeFile(const QString& filename)
 	}
 
 	if (file.isOpen()) {
+		if (sync) {
 #if defined(Q_OS_MAC)
-		saved &= (fcntl(file.handle(), F_FULLFSYNC, NULL) == 0);
+			saved &= (fcntl(file.handle(), F_FULLFSYNC, NULL) == 0);
 #elif defined(Q_OS_UNIX)
-		saved &= (fsync(file.handle()) == 0);
+			saved &= (fsync(file.handle()) == 0);
 #elif defined(Q_OS_WIN)
-		saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
+			saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
 #endif
+		}
 		saved &= (file.error() == QFile::NoError);
 		file.close();
 	}
