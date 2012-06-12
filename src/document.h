@@ -22,6 +22,7 @@
 
 #include "dictionary.h"
 #include "stats.h"
+class DocumentWriter;
 class Highlighter;
 class Preferences;
 class Theme;
@@ -77,6 +78,8 @@ public slots:
 	void centerCursor(bool force = false);
 
 signals:
+	void cacheFile(DocumentWriter* file);
+	void removeCacheFile(const QString& file);
 	void changed();
 	void changedName();
 	void footerVisible(bool visible);

@@ -20,6 +20,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+class DocumentCache;
 class Preferences;
 class SessionManager;
 class Sound;
@@ -41,6 +42,7 @@ class Window : public QMainWindow
 
 public:
 	Window(const QStringList& command_line_files);
+	~Window();
 
 	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);
@@ -104,6 +106,8 @@ private:
 	QActionGroup* m_focus_actions;
 
 	Stack* m_documents;
+	DocumentCache* m_document_cache;
+	QThread* m_document_cache_thread;
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;
 	TimerManager* m_timers;

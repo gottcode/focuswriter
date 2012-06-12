@@ -249,7 +249,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 Document::~Document()
 {
 	clearIndex();
-	QFile::remove(g_cache_path + m_cache_filename);
+	emit removeCacheFile(g_cache_path + m_cache_filename);
 }
 
 //-----------------------------------------------------------------------------
@@ -265,13 +265,13 @@ void Document::cache()
 {
 	if (m_cache_outdated) {
 		m_cache_outdated = false;
-		DocumentWriter writer;
-		writer.setFileName(g_cache_path + m_cache_filename);
-		writer.setType(m_filename.section(QLatin1Char('.'), -1));
-		writer.setRichText(m_rich_text);
-		writer.setCodePage(m_codepage);
-		writer.setDocument(m_text->document());
-		writer.write();
+		DocumentWriter* writer = new DocumentWriter;
+		writer->setFileName(g_cache_path + m_cache_filename);
+		writer->setType(m_filename.section(QLatin1Char('.'), -1));
+		writer->setRichText(m_rich_text);
+		writer->setCodePage(m_codepage);
+		writer->setDocument(m_text->document()->clone());
+		emit cacheFile(writer);
 	}
 }
 

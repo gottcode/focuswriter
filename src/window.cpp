@@ -21,6 +21,7 @@
 
 #include "alert_layer.h"
 #include "document.h"
+#include "document_cache.h"
 #include "load_screen.h"
 #include "locale_dialog.h"
 #include "preferences.h"
@@ -57,6 +58,7 @@
 #include <QTabBar>
 #include <QTextCodec>
 #include <QTextStream>
+#include <QThread>
 #include <QTimer>
 #include <QToolBar>
 #include <QUrl>
@@ -111,6 +113,12 @@ Window::Window(const QStringList& command_line_files)
 	addToolBar(m_toolbar);
 	QWidget* contents = new QWidget(this);
 	setCentralWidget(contents);
+
+	// Set up thread for caching documents
+	m_document_cache = new DocumentCache;
+	m_document_cache_thread = new QThread(this);
+	m_document_cache->moveToThread(m_document_cache_thread);
+	m_document_cache_thread->start();
 
 	// Create documents
 	m_documents = new Stack(this);
@@ -349,6 +357,15 @@ Window::Window(const QStringList& command_line_files)
 	unsetCursor();
 
 	m_save_timer->start();
+}
+
+//-----------------------------------------------------------------------------
+
+Window::~Window()
+{
+	m_document_cache_thread->quit();
+	m_document_cache_thread->wait();
+	delete m_document_cache;
 }
 
 //-----------------------------------------------------------------------------
@@ -993,6 +1010,8 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
+	connect(document, SIGNAL(cacheFile(DocumentWriter*)), m_document_cache, SLOT(cacheFile(DocumentWriter*)));
+	connect(document, SIGNAL(removeCacheFile(QString)), m_document_cache, SLOT(removeCacheFile(QString)));
 
 	// Add tab for document
 	int index = m_tabs->addTab(tr("Untitled"));
