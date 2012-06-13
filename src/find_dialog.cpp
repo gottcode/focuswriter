@@ -48,6 +48,8 @@ FindDialog::FindDialog(Stack* documents)
 
 	m_ignore_case = new QCheckBox(tr("Ignore case"), this);
 	m_whole_words = new QCheckBox(tr("Whole words only"), this);
+	m_regular_expressions = new QCheckBox(tr("Regular expressions"), this);
+	connect(m_regular_expressions, SIGNAL(toggled(bool)), m_whole_words, SLOT(setDisabled(bool)));
 
 	m_search_backwards = new QRadioButton(tr("Search up"), this);
 	QRadioButton* search_forwards = new QRadioButton(tr("Search down"), this);
@@ -83,15 +85,17 @@ FindDialog::FindDialog(Stack* documents)
 	layout->addWidget(m_replace_string, 1, 1, 1, 2);
 	layout->addWidget(m_ignore_case, 2, 1);
 	layout->addWidget(m_whole_words, 3, 1);
+	layout->addWidget(m_regular_expressions, 4, 1);
 	layout->addWidget(m_search_backwards, 2, 2);
 	layout->addWidget(search_forwards, 3, 2);
-	layout->addWidget(buttons, 4, 0, 1, 3);
+	layout->addWidget(buttons, 5, 0, 1, 3);
 	setFixedWidth(sizeHint().width());
 
 	// Load settings
 	QSettings settings;
 	m_ignore_case->setChecked(!settings.value("FindDialog/CaseSensitive", false).toBool());
 	m_whole_words->setChecked(settings.value("FindDialog/WholeWords", false).toBool());
+	m_regular_expressions->setChecked(settings.value("FindDialog/RegularExpressions", false).toBool());
 	m_search_backwards->setChecked(settings.value("FindDialog/SearchBackwards", false).toBool());
 }
 
@@ -116,6 +120,7 @@ void FindDialog::reject()
 	QSettings settings;
 	settings.setValue("FindDialog/CaseSensitive", !m_ignore_case->isChecked());
 	settings.setValue("FindDialog/WholeWords", m_whole_words->isChecked());
+	settings.setValue("FindDialog/RegularExpressions", m_regular_expressions->isChecked());
 	settings.setValue("FindDialog/SearchBackwards", m_search_backwards->isChecked());
 	QDialog::reject();
 }
@@ -166,10 +171,21 @@ void FindDialog::replace()
 	QTextEdit* document = m_documents->currentDocument()->text();
 	QTextCursor cursor = document->textCursor();
 	Qt::CaseSensitivity cs = m_ignore_case->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive;
-	if (QString::compare(cursor.selectedText(), text, cs) == 0) {
-		cursor.insertText(m_replace_string->text());
-		document->setTextCursor(cursor);
+	if (!m_regular_expressions->isChecked()) {
+		if (QString::compare(cursor.selectedText(), text, cs) == 0) {
+			cursor.insertText(m_replace_string->text());
+			document->setTextCursor(cursor);
+		}
+	} else {
+		QRegExp regex(text, cs, QRegExp::RegExp2);
+		QString match = cursor.selectedText();
+		if (regex.exactMatch(match)) {
+			match.replace(regex, m_replace_string->text());
+			cursor.insertText(match);
+			document->setTextCursor(cursor);
+		}
 	}
+
 	find();
 }
 
@@ -181,6 +197,7 @@ void FindDialog::replaceAll()
 	if (text.isEmpty()) {
 		return;
 	}
+	QRegExp regex(text, !m_ignore_case->isChecked() ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp2);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {
@@ -195,12 +212,23 @@ void FindDialog::replaceAll()
 	QTextEdit* document = m_documents->currentDocument()->text();
 	QTextCursor cursor = document->textCursor();
 	cursor.movePosition(QTextCursor::Start);
-	forever {
-		cursor = document->document()->find(text, cursor, flags);
-		if (!cursor.isNull()) {
-			found++;
-		} else {
-			break;
+	if (!m_regular_expressions->isChecked()) {
+		forever {
+			cursor = document->document()->find(text, cursor, flags);
+			if (!cursor.isNull()) {
+				found++;
+			} else {
+				break;
+			}
+		}
+	} else {
+		forever {
+			cursor = document->document()->find(regex, cursor, flags);
+			if (!cursor.isNull()) {
+				found++;
+			} else {
+				break;
+			}
 		}
 	}
 	if (found) {
@@ -214,13 +242,27 @@ void FindDialog::replaceAll()
 
 	// Replace instances
 	QTextCursor start_cursor = document->textCursor();
-	forever {
-		cursor = document->document()->find(text, cursor, flags);
-		if (!cursor.isNull()) {
-			cursor.insertText(m_replace_string->text());
-			document->setTextCursor(cursor);
-		} else {
-			break;
+	if (!m_regular_expressions->isChecked()) {
+		forever {
+			cursor = document->document()->find(text, cursor, flags);
+			if (!cursor.isNull()) {
+				cursor.insertText(m_replace_string->text());
+				document->setTextCursor(cursor);
+			} else {
+				break;
+			}
+		}
+	} else {
+		forever {
+			cursor = document->document()->find(regex, cursor, flags);
+			if (!cursor.isNull()) {
+				QString match = cursor.selectedText();
+				match.replace(regex, m_replace_string->text());
+				cursor.insertText(match);
+				document->setTextCursor(cursor);
+			} else {
+				break;
+			}
 		}
 	}
 	document->setTextCursor(start_cursor);
@@ -234,6 +276,7 @@ void FindDialog::find(bool backwards)
 	if (text.isEmpty()) {
 		return;
 	}
+	QRegExp regex(text, !m_ignore_case->isChecked() ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp2);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {
@@ -247,11 +290,20 @@ void FindDialog::find(bool backwards)
 	}
 
 	QTextEdit* document = m_documents->currentDocument()->text();
-	QTextCursor cursor = document->document()->find(text, document->textCursor(), flags);
+	QTextCursor cursor = document->textCursor();
+	if (!m_regular_expressions->isChecked()) {
+		cursor = document->document()->find(text, cursor, flags);
+	} else {
+		cursor = document->document()->find(regex, cursor, flags);
+	}
 	if (cursor.isNull()) {
 		cursor = document->textCursor();
 		cursor.movePosition(!backwards ? QTextCursor::Start : QTextCursor::End);
-		cursor = document->document()->find(text, cursor, flags);
+		if (!m_regular_expressions->isChecked()) {
+			cursor = document->document()->find(text, cursor, flags);
+		} else {
+			cursor = document->document()->find(regex, cursor, flags);
+		}
 	}
 
 	if (!cursor.isNull()) {
@@ -271,10 +323,12 @@ void FindDialog::showMode(bool replace)
 	m_replace_all_button->setVisible(replace);
 	setFixedHeight(sizeHint().height());
 
-	QString text = m_documents->currentDocument()->text()->textCursor().selectedText().trimmed();
-	text.remove(0, text.lastIndexOf(QChar(0x2029)) + 1);
-	if (!text.isEmpty()) {
-		m_find_string->setText(text);
+	if (!m_regular_expressions->isChecked()) {
+		QString text = m_documents->currentDocument()->text()->textCursor().selectedText().trimmed();
+		text.remove(0, text.lastIndexOf(QChar(0x2029)) + 1);
+		if (!text.isEmpty()) {
+			m_find_string->setText(text);
+		}
 	}
 	m_find_string->setFocus();
 

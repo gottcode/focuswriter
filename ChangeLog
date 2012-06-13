@@ -1,3 +1,6 @@
+2012-06-13 Graeme Gott <graeme@gottcode.org>
+	* Add support for finding regular expressions.
+
 2012-06-11 Graeme Gott <graeme@gottcode.org>
 	* Add background thread for caching files.
 	* Move writing file out of document class.
