@@ -99,8 +99,8 @@ bool DocumentWriter::write()
 	}
 
 	if (saved) {
-		QFile::remove(m_filename);
-		QFile::rename(m_filename + ".tmp", m_filename);
+		saved &= QFile::remove(m_filename);
+		saved &= QFile::rename(m_filename + ".tmp", m_filename);
 	}
 	return saved;
 }
