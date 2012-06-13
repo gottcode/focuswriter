@@ -48,6 +48,9 @@ public:
 	void addDocuments(QDropEvent* event);
 	bool closeDocuments(QSettings* session = 0);
 
+public slots:
+	void addDocuments(const QString& documents);
+
 protected:
 	virtual void dragEnterEvent(QDragEnterEvent* event);
 	virtual void dropEvent(QDropEvent* event);

@@ -47,15 +47,24 @@ COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul
 COPY %QTDIR%\bin\mingwm10.dll %APP% >nul
 COPY %QTDIR%\bin\QtCore4.dll %APP% >nul
 COPY %QTDIR%\bin\QtGui4.dll %APP% >nul
+COPY %QTDIR%\bin\QtNetwork4.dll %APP% >nul
 
-ECHO Copying Qt image plugins
+ECHO Copying Qt plugins
+MKDIR %APP%\accessible
+XCOPY /Q /S /Y %QTDIR%\plugins\accessible %APP%\accessible >nul
+DEL %APP%\accessible\*d4.dll >nul
+
+MKDIR %APP%\bearer
+XCOPY /Q /S /Y %QTDIR%\plugins\bearer %APP%\bearer >nul
+DEL %APP%\bearer\*d4.dll >nul
+
+MKDIR %APP%\codecs
+XCOPY /Q /S /Y %QTDIR%\plugins\codecs %APP%\codecs >nul
+DEL %APP%\codecs\*d4.dll >nul
+
 MKDIR %APP%\imageformats
-COPY %QTDIR%\plugins\imageformats\qgif4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qico4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qjpeg4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qmng4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qsvg4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qtiff4.dll %APP%\imageformats >nul
+XCOPY /Q /S /Y %QTDIR%\plugins\imageformats %APP%\imageformats >nul
+DEL %APP%\imageformats\*d4.dll >nul
 
 ECHO Creating compressed file
 CD %APP%

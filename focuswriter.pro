@@ -25,6 +25,15 @@ unix: !macx {
 	TARGET = FocusWriter
 }
 
+# Add Qt single use application
+INCLUDEPATH += src/qtsingleapplication
+DEPENDPATH += src/qtsingleapplication
+SOURCES += src/qtsingleapplication/qtsingleapplication.cpp \
+	src/qtsingleapplication/qtlocalpeer.cpp
+HEADERS += src/qtsingleapplication/qtsingleapplication.h \
+	src/qtsingleapplication/qtlocalpeer.h
+QT *= network
+
 macx {
 	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
@@ -68,6 +77,7 @@ macx {
 }
 
 HEADERS += src/alert.h \
+	src/application.h \
 	src/alert_layer.h \
 	src/block_stats.h \
 	src/color_button.h \
@@ -104,6 +114,7 @@ HEADERS += src/alert.h \
 	src/rtf/writer.h
 
 SOURCES += src/alert.cpp \
+	src/application.cpp \
 	src/alert_layer.cpp \
 	src/block_stats.cpp \
 	src/color_button.cpp \

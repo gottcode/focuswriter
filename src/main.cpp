@@ -17,121 +17,28 @@
  *
  ***********************************************************************/
 
+#include "application.h"
 #include "dictionary_manager.h"
 #include "document.h"
 #include "locale_dialog.h"
 #include "session.h"
 #include "sound.h"
 #include "theme.h"
-#include "window.h"
 
-#ifdef Q_OS_MAC
-#include "rtf/clipboard_mac.h"
-#endif
-#ifdef Q_OS_WIN32
-#include "rtf/clipboard_windows.h"
-#endif
-
-#include <QApplication>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QFileOpenEvent>
+#include <QIcon>
 #include <QSettings>
 #include <QStringList>
-
-//-----------------------------------------------------------------------------
-
-class Application : public QApplication
-{
-public:
-	Application(int& argc, char** argv);
-
-	void createWindow();
-
-protected:
-	virtual bool event(QEvent* e);
-
-private:
-	QStringList m_files;
-	Window* m_window;
-};
-
-//-----------------------------------------------------------------------------
-
-Application::Application(int& argc, char** argv)
-	: QApplication(argc, argv),
-	m_window(0)
-{
-	setApplicationName("FocusWriter");
-	setApplicationVersion(VERSIONSTR);
-	setOrganizationDomain("gottcode.org");
-	setOrganizationName("GottCode");
-	{
-		QIcon fallback(":/hicolor/256x256/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/128x128/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/64x64/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/48x48/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/32x32/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/24x24/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/22x22/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
-		if (!QIcon::themeName().isEmpty() && (QIcon::themeName() != "hicolor")) {
-			setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
-		} else {
-			setWindowIcon(fallback);
-		}
-	}
-
-#ifndef Q_WS_MAC
-	setAttribute(Qt::AA_DontUseNativeMenuBar);
-#else
-	setAttribute(Qt::AA_DontShowIconsInMenus, true);
-#endif
-
-# if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
-	new RTF::Clipboard;
-#endif
-
-	qputenv("UNICODEMAP_JP", "cp932");
-
-	m_files = arguments().mid(1);
-	processEvents();
-}
-
-//-----------------------------------------------------------------------------
-
-void Application::createWindow()
-{
-#ifndef Q_WS_MAC
-	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
-#endif
-	m_window = new Window(m_files);
-}
-
-//-----------------------------------------------------------------------------
-
-bool Application::event(QEvent* e)
-{
-	if (e->type() != QEvent::FileOpen) {
-		return QApplication::event(e);
-	} else {
-		QString file = static_cast<QFileOpenEvent*>(e)->file();
-		if (m_window) {
-			m_window->addDocuments(QStringList(file), QStringList(file));
-		} else {
-			m_files.append(file);
-		}
-		e->accept();
-		return true;
-	}
-}
-
-//-----------------------------------------------------------------------------
 
 int main(int argc, char** argv)
 {
 	Application app(argc, argv);
+	if (app.isRunning()) {
+		app.sendMessage(app.files().join(QLatin1String("\n")));
+		return 0;
+	}
 	QString appdir = app.applicationDirPath();
 
 	QStringList paths = QIcon::themeSearchPaths();
@@ -262,7 +169,9 @@ int main(int argc, char** argv)
 	}
 
 	// Create main window
-	app.createWindow();
+	if (!app.createWindow()) {
+		return 0;
+	}
 
 	// Browse to documents after command-line specified documents have been loaded
 	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());

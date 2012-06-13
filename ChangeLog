@@ -1,4 +1,5 @@
 2012-06-13 Graeme Gott <graeme@gottcode.org>
+	* Only allow a single instance to run.
 	* Add support for finding regular expressions.
 
 2012-06-11 Graeme Gott <graeme@gottcode.org>

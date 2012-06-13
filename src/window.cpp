@@ -539,6 +539,16 @@ bool Window::closeDocuments(QSettings* session)
 
 //-----------------------------------------------------------------------------
 
+void Window::addDocuments(const QString& documents)
+{
+	QStringList files = documents.split(QLatin1String("\n"), QString::SkipEmptyParts);
+	if (!files.isEmpty()) {
+		addDocuments(files, files);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::dragEnterEvent(QDragEnterEvent* event)
 {
 	if (event->mimeData()->hasUrls()) {
