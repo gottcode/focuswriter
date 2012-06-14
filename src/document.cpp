@@ -937,6 +937,11 @@ void Document::updateWordCount(int position, int removed, int added)
 		}
 	}
 
+	// Focus text if it is brought onto the current line
+	if (m_focus_mode && removed && !added) {
+		focusText();
+	}
+
 	// Clear cached stats if amount of blocks or current block has changed
 	int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {

@@ -1,4 +1,5 @@
 2012-06-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Text brought onto current line was not focused.
 	* FIXED: Replace all could not be reverted with a single undo.
 
 2012-06-13 Graeme Gott <graeme@gottcode.org>
