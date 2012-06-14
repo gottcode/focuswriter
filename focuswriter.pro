@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += warn_on release
+CONFIG += warn_on
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 	CONFIG += x86_64

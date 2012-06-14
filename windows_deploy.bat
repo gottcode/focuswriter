@@ -32,8 +32,9 @@ SET SOUNDS=%APP%\sounds
 MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
-ECHO Copying hunspell library
-COPY hunspell\hunspell1.dll %APP% >nul
+ECHO Copying enchant library
+XCOPY /Q /S /Y enchant %APP% >nul
+DEL %APP%\enchant.h >nul
 
 ECHO Copying libzip library
 COPY libzip\libzip0.dll %APP% >nul
