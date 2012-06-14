@@ -242,6 +242,7 @@ void FindDialog::replaceAll()
 
 	// Replace instances
 	QTextCursor start_cursor = document->textCursor();
+	start_cursor.beginEditBlock();
 	if (!m_regular_expressions->isChecked()) {
 		forever {
 			cursor = document->document()->find(text, cursor, flags);
@@ -265,6 +266,7 @@ void FindDialog::replaceAll()
 			}
 		}
 	}
+	start_cursor.endEditBlock();
 	document->setTextCursor(start_cursor);
 }
 

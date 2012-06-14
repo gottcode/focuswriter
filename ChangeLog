@@ -1,3 +1,6 @@
+2012-06-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Replace all could not be reverted with a single undo.
+
 2012-06-13 Graeme Gott <graeme@gottcode.org>
 	* Only allow a single instance to run.
 	* Add support for finding regular expressions.
