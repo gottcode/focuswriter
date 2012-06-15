@@ -94,6 +94,7 @@ protected:
 
 private slots:
 	void cursorPositionChanged();
+	void focusText();
 	void hideMouse();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);
@@ -106,7 +107,6 @@ private:
 	void calculateWordCount();
 	void clearIndex();
 	void findIndex();
-	void focusText();
 	QString fileFilter(const QString& filename) const;
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();

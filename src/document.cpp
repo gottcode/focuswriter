@@ -649,8 +649,10 @@ void Document::setFocusMode(int focus_mode)
 	m_text->setStyleSheet(style_sheet);
 
 	if (m_focus_mode) {
+		connect(m_text, SIGNAL(textChanged()), this, SLOT(focusText()));
 		focusText();
 	} else {
+		disconnect(m_text, SIGNAL(textChanged()), this, SLOT(focusText()));
 		m_text->setExtraSelections(QList<QTextEdit::ExtraSelection>());
 	}
 }
@@ -808,15 +810,45 @@ void Document::wheelEvent(QWheelEvent* event)
 
 void Document::cursorPositionChanged()
 {
-	if (m_focus_mode) {
-		focusText();
-	}
-
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
 	emit alignmentChanged();
 	if (QApplication::mouseButtons() == Qt::NoButton) {
 		centerCursor();
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::focusText()
+{
+	QTextEdit::ExtraSelection selection;
+	selection.format.setForeground(m_text_color);
+	selection.cursor = m_text->textCursor();
+
+	switch (m_focus_mode) {
+	case 1: // Current line
+		selection.cursor.movePosition(QTextCursor::EndOfLine);
+		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+		break;
+
+	case 2: // Current line and previous two lines
+		selection.cursor.movePosition(QTextCursor::EndOfLine);
+		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor, 2);
+		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+		break;
+
+	case 3: // Current paragraph
+		selection.cursor.movePosition(QTextCursor::EndOfBlock);
+		selection.cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
+		break;
+
+	default:
+		break;
+	}
+
+	QList<QTextEdit::ExtraSelection> selections;
+	selections.append(selection);
+	m_text->setExtraSelections(selections);
 }
 
 //-----------------------------------------------------------------------------
@@ -937,11 +969,6 @@ void Document::updateWordCount(int position, int removed, int added)
 		}
 	}
 
-	// Focus text if it is brought onto the current line
-	if (m_focus_mode && removed && !added) {
-		focusText();
-	}
-
 	// Clear cached stats if amount of blocks or current block has changed
 	int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
@@ -1017,39 +1044,6 @@ void Document::findIndex()
 {
 	m_index = g_untitled_indexes.last() + 1;
 	g_untitled_indexes.append(m_index);
-}
-
-//-----------------------------------------------------------------------------
-
-void Document::focusText()
-{
-	QTextEdit::ExtraSelection selection;
-	selection.format.setForeground(m_text_color);
-	selection.cursor = m_text->textCursor();
-	switch (m_focus_mode) {
-	case 1: // Current line
-		selection.cursor.movePosition(QTextCursor::EndOfLine);
-		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
-		break;
-
-	case 2: // Current line and previous two lines
-		selection.cursor.movePosition(QTextCursor::EndOfLine);
-		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor, 2);
-		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
-		break;
-
-	case 3: // Current paragraph
-		selection.cursor.movePosition(QTextCursor::EndOfBlock);
-		selection.cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
-		break;
-
-	default:
-		break;
-	}
-
-	QList<QTextEdit::ExtraSelection> selections;
-	selections.append(selection);
-	m_text->setExtraSelections(selections);
 }
 
 //-----------------------------------------------------------------------------
