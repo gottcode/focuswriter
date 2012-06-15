@@ -45,6 +45,10 @@ public slots:
 signals:
 	void findNextAvailable(bool available);
 
+protected:
+	void moveEvent(QMoveEvent* event);
+	void showEvent(QShowEvent* event);
+
 private slots:
 	void find();
 	void findChanged(const QString& text);
@@ -70,6 +74,8 @@ private:
 	QPushButton* m_find_button;
 	QPushButton* m_replace_button;
 	QPushButton* m_replace_all_button;
+
+	QPoint m_position;
 };
 
 #endif

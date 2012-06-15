@@ -22,7 +22,9 @@
 #include "document.h"
 #include "stack.h"
 
+#include <QApplication>
 #include <QCheckBox>
+#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QGridLayout>
 #include <QLabel>
@@ -139,6 +141,27 @@ void FindDialog::showReplaceMode()
 {
 	setWindowTitle(tr("Replace"));
 	showMode(true);
+}
+
+//-----------------------------------------------------------------------------
+
+void FindDialog::moveEvent(QMoveEvent* event)
+{
+	m_position = pos();
+	QDialog::moveEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void FindDialog::showEvent(QShowEvent* event)
+{
+	if (!m_position.isNull()) {
+		QRect rect(m_position, sizeHint());
+		if (QApplication::desktop()->availableGeometry(this).contains(rect)) {
+			move(m_position);
+		}
+	}
+	QDialog::showEvent(event);
 }
 
 //-----------------------------------------------------------------------------
