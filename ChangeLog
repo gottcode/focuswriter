@@ -1,3 +1,6 @@
+2012-06-15 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Line spacings were broken at first on Windows.
+
 2012-06-14 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Text brought onto current line was not focused.
 	* FIXED: Replace all could not be reverted with a single undo.
