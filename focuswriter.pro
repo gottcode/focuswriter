@@ -150,7 +150,8 @@ SOURCES += src/alert.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp
 
-TRANSLATIONS = translations/focuswriter_cs.ts \
+TRANSLATIONS = translations/focuswriter_ca.ts \
+	translations/focuswriter_cs.ts \
 	translations/focuswriter_da.ts \
 	translations/focuswriter_de.ts \
 	translations/focuswriter_el.ts \
@@ -161,6 +162,7 @@ TRANSLATIONS = translations/focuswriter_cs.ts \
 	translations/focuswriter_fr.ts \
 	translations/focuswriter_hu.ts \
 	translations/focuswriter_it.ts \
+	translations/focuswriter_ja.ts \
 	translations/focuswriter_nl.ts \
 	translations/focuswriter_pl.ts \
 	translations/focuswriter_pt.ts \
