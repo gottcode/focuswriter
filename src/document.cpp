@@ -25,6 +25,7 @@
 #include "highlighter.h"
 #include "odt_reader.h"
 #include "preferences.h"
+#include "scene_model.h"
 #include "smart_quotes.h"
 #include "sound.h"
 #include "spell_checker.h"
@@ -197,6 +198,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 
+	m_scene_model = new SceneModel(m_text, this);
+
 	m_dictionary = DictionaryManager::instance().requestDictionary();
 	m_highlighter = new Highlighter(m_text, m_dictionary);
 	connect(&DictionaryManager::instance(), SIGNAL(changed()), this, SLOT(dictionaryChanged()));
@@ -249,6 +252,8 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 Document::~Document()
 {
+	m_scene_model->clear();
+
 	clearIndex();
 	emit removeCacheFile(g_cache_path + m_cache_filename);
 }
@@ -955,10 +960,10 @@ void Document::selectionChanged()
 {
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
-		BlockStats temp("", 0);
+		BlockStats temp(-1, "", 0, 0);
 		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
 		foreach (const QString& string, selection) {
-			temp.update(string, 0);
+			temp.update(-1, string, 0);
 			m_selected_stats.append(&temp);
 		}
 		if (!m_accurate_wordcount) {
@@ -1041,7 +1046,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 	for (QTextBlock i = begin; i != end; i = i.next()) {
 		if (i.userData()) {
-			static_cast<BlockStats*>(i.userData())->update(i.text(), &m_dictionary);
+			static_cast<BlockStats*>(i.userData())->update(i.blockNumber(), i.text(), &m_dictionary);
 		}
 	}
 
@@ -1063,7 +1068,7 @@ void Document::calculateWordCount()
 
 		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 			if (!i.userData()) {
-				i.setUserData(new BlockStats(i.text(), &m_dictionary));
+				i.setUserData(new BlockStats(i.blockNumber(), i.text(), &m_dictionary, m_scene_model));
 			}
 			if (i.blockNumber() != m_cached_current_block) {
 				m_cached_stats.append(static_cast<BlockStats*>(i.userData()));

@@ -20,14 +20,16 @@
 #ifndef BLOCK_STATS_H
 #define BLOCK_STATS_H
 
-#include <QTextBlockUserData>
-
 class Dictionary;
+class SceneModel;
+
+#include <QTextBlockUserData>
 
 class BlockStats : public QTextBlockUserData
 {
 public:
-	BlockStats(const QString& text, Dictionary* dictionary);
+	BlockStats(int block_number, const QString& text, Dictionary* dictionary, SceneModel* scene_model);
+	~BlockStats();
 
 	bool isEmpty() const;
 	bool isScene() const;
@@ -37,7 +39,7 @@ public:
 	QList<QStringRef> misspelled() const;
 
 	void checkSpelling(const QString& text, Dictionary* dictionary);
-	void update(const QString& text, Dictionary* dictionary);
+	void update(int block_number, const QString& text, Dictionary* dictionary);
 
 	static void setSceneDivider(const QString& divider);
 
@@ -46,6 +48,7 @@ private:
 	int m_spaces;
 	int m_words;
 	bool m_scene;
+	SceneModel* m_scene_model;
 	QList<QStringRef> m_misspelled;
 };
 

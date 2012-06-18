@@ -133,21 +133,18 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 void Highlighter::highlightBlock(const QString& text)
 {
-	if (!m_enabled) {
-		return;
-	}
+	Q_UNUSED(text)
 
-	int cursor = m_text->textCursor().position() - currentBlock().position();
 	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
-	if (!stats) {
-		stats = new BlockStats(text, &m_dictionary);
-		setCurrentBlockUserData(stats);
+	if (!m_enabled || !stats) {
+		return;
 	}
 
 	QTextCharFormat error;
 	error.setUnderlineColor(m_misspelled);
 	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
+	int cursor = m_text->textCursor().position() - currentBlock().position();
 	QList<QStringRef> words = stats->misspelled();
 	for (int i = 0; i < words.count(); ++i) {
 		const QStringRef& word = words.at(i);

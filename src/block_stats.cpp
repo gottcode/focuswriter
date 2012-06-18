@@ -20,6 +20,7 @@
 #include "block_stats.h"
 
 #include "dictionary.h"
+#include "scene_model.h"
 
 //-----------------------------------------------------------------------------
 
@@ -27,13 +28,24 @@ static QString f_scene_divider = QLatin1String("##");
 
 //-----------------------------------------------------------------------------
 
-BlockStats::BlockStats(const QString& text, Dictionary* dictionary) :
+BlockStats::BlockStats(int block_number, const QString& text, Dictionary* dictionary, SceneModel* scene_model) :
 	m_characters(0),
 	m_spaces(0),
 	m_words(0),
-	m_scene(false)
+	m_scene(false),
+	m_scene_model(scene_model)
 {
-	update(text, dictionary);
+	update(block_number, text, dictionary);
+}
+
+//-----------------------------------------------------------------------------
+
+BlockStats::~BlockStats()
+{
+	if (m_scene) {
+		Q_ASSERT(m_scene_model != 0);
+		m_scene_model->removeScene(this);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -49,10 +61,23 @@ void BlockStats::checkSpelling(const QString& text, Dictionary* dictionary)
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::update(const QString& text, Dictionary* dictionary)
+void BlockStats::update(int block_number, const QString& text, Dictionary* dictionary)
 {
 	// Determine if this is a scene
-	m_scene = dictionary && text.startsWith(f_scene_divider);
+	if (m_scene_model) {
+		bool was_scene = m_scene;
+		m_scene = text.startsWith(f_scene_divider);
+		if (m_scene) {
+			QString scene_text = text.mid(f_scene_divider.length()).trimmed();
+			if (was_scene) {
+				m_scene_model->updateScene(this, scene_text);
+			} else {
+				m_scene_model->addScene(this, block_number, scene_text);
+			}
+		} else if (was_scene) {
+			m_scene_model->removeScene(this);
+		}
+	}
 
 	// Calculate stats
 	m_characters = text.length();

@@ -25,6 +25,7 @@
 class DocumentWriter;
 class Highlighter;
 class Preferences;
+class SceneModel;
 class Theme;
 
 #include <QHash>
@@ -131,6 +132,7 @@ private:
 	QGridLayout* m_layout;
 	QTextEdit* m_text;
 	QScrollBar* m_scrollbar;
+	SceneModel* m_scene_model;
 	Dictionary m_dictionary;
 	Highlighter* m_highlighter;
 	QColor m_text_color;
