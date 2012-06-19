@@ -21,8 +21,10 @@
 
 #include "block_stats.h"
 
+#include <QMimeData>
 #include <QTextBlock>
 #include <QTextCursor>
+#include <QTextDocumentFragment>
 #include <QTextEdit>
 
 //-----------------------------------------------------------------------------
@@ -31,6 +33,7 @@ SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
 	QAbstractListModel(parent),
 	m_document(document)
 {
+	setSupportedDragActions(Qt::MoveAction);
 }
 
 //-----------------------------------------------------------------------------
@@ -154,9 +157,136 @@ QVariant SceneModel::data(const QModelIndex& index, int role) const
 
 //-----------------------------------------------------------------------------
 
+Qt::ItemFlags SceneModel::flags(const QModelIndex& index) const
+{
+	return QAbstractListModel::flags(index) | (!index.isValid() ? Qt::ItemIsDropEnabled : Qt::ItemIsDragEnabled);
+}
+
+//-----------------------------------------------------------------------------
+
+QMimeData* SceneModel::mimeData(const QModelIndexList& indexes) const
+{
+	// Encode list of scenes
+	QByteArray bytes;
+	QDataStream stream(&bytes, QIODevice::WriteOnly);
+	QList<int> scenes;
+	foreach (const QModelIndex& index, indexes) {
+		scenes += index.row();
+	}
+	stream << scenes;
+
+	// Return mime data object containing list
+	QMimeData* data = new QMimeData();
+	data->setData(mimeTypes().first(), bytes);
+	return data;
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList SceneModel::mimeTypes() const
+{
+	return QStringList() << QLatin1String("application/x-fwscenelist");
+}
+
+//-----------------------------------------------------------------------------
+
 int SceneModel::rowCount(const QModelIndex& parent) const
 {
 	return !parent.isValid() ? m_scenes.count() : 0;
+}
+
+//-----------------------------------------------------------------------------
+
+Qt::DropActions SceneModel::supportedDropActions() const
+{
+	return Qt::MoveAction;
+}
+
+//-----------------------------------------------------------------------------
+
+bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
+{
+	QString format = mimeTypes().first();
+	if (!data || !data->hasFormat(format) || (action != Qt::MoveAction) || (column > 0) || parent.isValid()) {
+		return false;
+	}
+
+	// Decode list of scenes
+	QByteArray bytes = data->data(format);
+	QDataStream stream(&bytes, QIODevice::ReadOnly);
+	QList<int> scenes;
+	stream >> scenes;
+	if (scenes.isEmpty()) {
+		return true;
+	}
+	qSort(scenes);
+
+	// Don't allow scenes to be dropped on themselves
+	if ((scenes.first() == row) || ((scenes.first() + 1) == row)) {
+		return true;
+	}
+
+	// Copy text fragments of scenes
+	QTextCursor cursor = m_document->textCursor();
+	QList<QTextDocumentFragment> fragments;
+	foreach (int scene, scenes) {
+		selectScene(m_scenes.at(scene), cursor);
+		fragments += cursor.selection();
+	}
+
+	// Find location in document to insert text fragments
+	int position = 0;
+	if ((row < m_scenes.size()) && (row > -1)) {
+		const Scene& scene = m_scenes.at(row);
+		QTextBlock block = m_document->document()->begin();
+		if (block.userData() != scene.stats) {
+			while (block.isValid()) {
+				position = block.position();
+				if (block.userData() == scene.stats) {
+					break;
+				}
+				block = block.next();
+			}
+		}
+	} else {
+		cursor.movePosition(QTextCursor::End);
+		if (cursor.block().text().length()) {
+			cursor.insertBlock();
+		}
+		position = cursor.position();
+	}
+
+	// Start edit block by moving to start of dragged scenes
+	cursor = m_document->textCursor();
+	cursor.beginEditBlock();
+	cursor.setPosition(position);
+
+	// Insert text fragments; will indirectly create scenes
+	foreach (const QTextDocumentFragment& fragment, fragments) {
+		cursor.insertFragment(fragment);
+		if (!cursor.atBlockStart()) {
+			cursor.insertBlock();
+		}
+	}
+
+	// Delete original fragments; will indirectly delete scenes
+	int delta = 0;
+	for (int i = scenes.count() - 1; i >= 0; --i) {
+		selectScene(m_scenes.at(scenes.at(i)), cursor);
+		delta += cursor.position();
+		cursor.removeSelectedText();
+		delta -= cursor.position();
+	}
+
+	// End edit block by moving to start of dropped scenes
+	if (row > scenes.first()) {
+		position -= delta;
+	}
+	cursor.setPosition(position);
+	cursor.endEditBlock();
+	m_document->setTextCursor(cursor);
+
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -171,6 +301,38 @@ int SceneModel::findSceneByStats(BlockStats* stats) const
 		}
 	}
 	return pos;
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
+{
+	// Select first block of scene
+	int position = 0;
+	QTextBlock block = cursor.document()->begin();
+	if (block.userData() != scene.stats) {
+		while (block.isValid()) {
+			position = block.position();
+			if (block.userData() == scene.stats) {
+				break;
+			}
+			block = block.next();
+		}
+	}
+	cursor.setPosition(position);
+	cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
+
+	// Select to last block of scene
+	cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
+	block = cursor.block();
+	while (block.isValid()) {
+		if (block.userData() && static_cast<BlockStats*>(block.userData())->isScene()) {
+			break;
+		}
+		block = block.next();
+		cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
+		cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
+	}
 }
 
 //-----------------------------------------------------------------------------

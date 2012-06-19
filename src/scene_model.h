@@ -49,10 +49,17 @@ public:
 	void clear();
 
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+	Qt::ItemFlags flags(const QModelIndex& index) const;
+	QMimeData* mimeData(const QModelIndexList& indexes) const;
+	QStringList mimeTypes() const;
 	int rowCount(const QModelIndex& parent) const;
+	Qt::DropActions supportedDropActions() const;
+
+	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
 
 private:
 	int findSceneByStats(BlockStats* stats) const;
+	void selectScene(const Scene& scene, QTextCursor& cursor) const;
 
 private:
 	QList<Scene> m_scenes;
