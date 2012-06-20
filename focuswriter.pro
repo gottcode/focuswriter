@@ -94,6 +94,7 @@ HEADERS += src/alert.h \
 	src/odt_reader.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
+	src/scene_list.h \
 	src/scene_model.h \
 	src/session.h \
 	src/session_manager.h \
@@ -136,6 +137,7 @@ SOURCES += src/alert.cpp \
 	src/odt_reader.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
+	src/scene_list.cpp \
 	src/scene_model.cpp \
 	src/session.cpp \
 	src/session_manager.cpp \

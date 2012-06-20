@@ -24,6 +24,7 @@ class AlertLayer;
 class Document;
 class FindDialog;
 class LoadScreen;
+class SceneList;
 class SymbolsDialog;
 class Theme;
 
@@ -128,6 +129,7 @@ private slots:
 private:
 	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
+	SceneList* m_scenes;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
 	SymbolsDialog* m_symbols_dialog;

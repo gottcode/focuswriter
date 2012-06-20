@@ -54,6 +54,7 @@ public:
 	int pageCount() const;
 	int paragraphCount() const;
 	int wordCount() const;
+	SceneModel* sceneModel() const;
 	QTextEdit* text() const;
 
 	void cache();
@@ -191,6 +192,10 @@ inline int Document::paragraphCount() const {
 
 inline int Document::wordCount() const {
 	return m_stats->wordCount();
+}
+
+inline SceneModel* Document::sceneModel() const {
+	return m_scene_model;
 }
 
 inline QTextEdit* Document::text() const {

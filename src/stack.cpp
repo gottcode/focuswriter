@@ -23,6 +23,7 @@
 #include "document.h"
 #include "find_dialog.h"
 #include "load_screen.h"
+#include "scene_list.h"
 #include "smart_quotes.h"
 #include "symbols_dialog.h"
 #include "theme.h"
@@ -162,6 +163,8 @@ Stack::Stack(QWidget* parent)
 
 	m_alerts = new AlertLayer(this);
 
+	m_scenes = new SceneList(this);
+
 	m_load_screen = new LoadScreen(this);
 
 	m_find_dialog = new FindDialog(this);
@@ -178,9 +181,11 @@ Stack::Stack(QWidget* parent)
 	m_layout->setRowStretch(2, 1);
 	m_layout->setColumnMinimumWidth(1, 6);
 	m_layout->setColumnMinimumWidth(4, 6);
-	m_layout->setColumnStretch(2, 2);
+	m_layout->setColumnStretch(1, 1);
+	m_layout->setColumnStretch(2, 1);
 	m_layout->setColumnStretch(3, 1);
 	m_layout->addWidget(m_contents, 1, 0, 4, 6);
+	m_layout->addWidget(m_scenes, 1, 0, 4, 2);
 	m_layout->addWidget(m_alerts, 3, 3);
 	m_layout->addWidget(m_load_screen, 0, 0, 6, 6);
 
@@ -248,6 +253,7 @@ void Stack::setCurrentDocument(int index)
 {
 	m_current_document = m_documents[index];
 	m_contents->setCurrentWidget(m_current_document);
+	m_scenes->setDocument(m_current_document);
 
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
