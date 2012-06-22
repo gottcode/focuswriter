@@ -188,12 +188,18 @@ void SceneList::hideScenes()
 	if (m_document) {
 		m_document->text()->setFocus();
 	}
+
+	if (!rect().contains(mapFromGlobal(QCursor::pos()))) {
+		setMask(QRect(-1,-1,1,1));
+	}
 }
 
 //-----------------------------------------------------------------------------
 
 void SceneList::showScenes()
 {
+	clearMask();
+
 	m_hide_button->show();
 	m_scenes->show();
 	m_filter->show();

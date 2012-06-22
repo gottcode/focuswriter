@@ -164,6 +164,7 @@ Stack::Stack(QWidget* parent)
 	m_alerts = new AlertLayer(this);
 
 	m_scenes = new SceneList(this);
+	setScenesVisible(false);
 
 	m_load_screen = new LoadScreen(this);
 
@@ -207,12 +208,14 @@ Stack::~Stack()
 
 void Stack::addDocument(Document* document)
 {
+	document->setSceneList(m_scenes);
 	connect(document, SIGNAL(alignmentChanged()), this, SIGNAL(updateFormatAlignmentActions()));
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
 	connect(document, SIGNAL(formattingEnabled(bool)), this, SIGNAL(formattingEnabled(bool)));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
 	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
+	connect(document, SIGNAL(scenesVisible(bool)), this, SLOT(setScenesVisible(bool)));
 	connect(document->text(), SIGNAL(copyAvailable(bool)), this, SIGNAL(copyAvailable(bool)));
 	connect(document->text(), SIGNAL(redoAvailable(bool)), this, SIGNAL(redoAvailable(bool)));
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
@@ -668,6 +671,18 @@ void Stack::setHeaderVisible(bool visible)
 
 //-----------------------------------------------------------------------------
 
+void Stack::setScenesVisible(bool visible)
+{
+	if (!visible && !m_scenes->scenesVisible()) {
+		m_scenes->setMask(QRect(-1,-1,1,1));
+		update();
+	} else {
+		m_scenes->clearMask();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::showHeader()
 {
 	QPoint point = mapFromGlobal(QCursor::pos());
@@ -683,6 +698,7 @@ void Stack::mouseMoveEvent(QMouseEvent* event)
 	bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
+	setScenesVisible(false);
 
 	if (m_current_document) {
 		if (header_visible || footer_visible) {

@@ -25,6 +25,7 @@
 #include "highlighter.h"
 #include "odt_reader.h"
 #include "preferences.h"
+#include "scene_list.h"
 #include "scene_model.h"
 #include "smart_quotes.h"
 #include "sound.h"
@@ -166,6 +167,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_rich_text(false),
 	m_spacings_loaded(false),
 	m_focus_mode(0),
+	m_scene_list(0),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
 	m_page_type(0),
@@ -778,6 +780,13 @@ void Document::setScrollBarVisible(bool visible)
 
 //-----------------------------------------------------------------------------
 
+void Document::setSceneList(SceneList* scene_list)
+{
+	m_scene_list = scene_list;
+}
+
+//-----------------------------------------------------------------------------
+
 bool Document::eventFilter(QObject* watched, QEvent* event)
 {
 	if (event->type() == QEvent::MouseMove) {
@@ -811,6 +820,10 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 	if (rect().contains(point)) {
 		emit headerVisible(false);
 		emit footerVisible(false);
+	}
+	if (m_scene_list && !m_scene_list->scenesVisible()) {
+		int sidebar_region = qMin(m_scene_list->width(), m_layout->cellRect(0,0).width());
+		emit scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
 	}
 	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
 }

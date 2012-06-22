@@ -113,6 +113,7 @@ public slots:
 	void updateSmartQuotesSelection();
 	void setFooterVisible(bool visible);
 	void setHeaderVisible(bool visible = true);
+	void setScenesVisible(bool visible);
 	void showHeader();
 
 protected:

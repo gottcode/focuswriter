@@ -1137,6 +1137,7 @@ void Window::hideInterface()
 {
 	m_documents->setFooterVisible(false);
 	m_documents->setHeaderVisible(false);
+	m_documents->setScenesVisible(false);
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->setScrollBarVisible(false);
 	}

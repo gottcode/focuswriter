@@ -25,6 +25,7 @@
 class DocumentWriter;
 class Highlighter;
 class Preferences;
+class SceneList;
 class SceneModel;
 class Theme;
 
@@ -70,6 +71,7 @@ public:
 	void setFocusMode(int focus_mode);
 	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);
+	void setSceneList(SceneList* scene_list);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 	virtual void mouseMoveEvent(QMouseEvent* event);
@@ -87,6 +89,7 @@ signals:
 	void changedName();
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
+	void scenesVisible(bool visible);
 	void formattingEnabled(bool enabled);
 	void indentChanged(bool indented);
 	void alignmentChanged();
@@ -133,6 +136,7 @@ private:
 	QGridLayout* m_layout;
 	QTextEdit* m_text;
 	QScrollBar* m_scrollbar;
+	SceneList* m_scene_list;
 	SceneModel* m_scene_model;
 	Dictionary m_dictionary;
 	Highlighter* m_highlighter;
