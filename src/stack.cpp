@@ -186,7 +186,7 @@ Stack::Stack(QWidget* parent)
 	m_layout->setColumnStretch(2, 1);
 	m_layout->setColumnStretch(3, 1);
 	m_layout->addWidget(m_contents, 1, 0, 4, 6);
-	m_layout->addWidget(m_scenes, 1, 0, 4, 2);
+	m_layout->addWidget(m_scenes, 1, 0, 4, 3);
 	m_layout->addWidget(m_alerts, 3, 3);
 	m_layout->addWidget(m_load_screen, 0, 0, 6, 6);
 

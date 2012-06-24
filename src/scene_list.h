@@ -35,12 +35,16 @@ class SceneList : public QFrame
 
 public:
 	SceneList(QWidget* parent = 0);
+	~SceneList();
 
 	bool scenesVisible() const;
 
 	void setDocument(Document* document);
 
 protected:
+	void mouseMoveEvent(QMouseEvent* event);
+	void mousePressEvent(QMouseEvent* event);
+	void mouseReleaseEvent(QMouseEvent* event);
 	void resizeEvent(QResizeEvent* event);
 
 private slots:
@@ -54,8 +58,13 @@ private:
 	QListView* m_scenes;
 	QLineEdit* m_filter;
 	QToolButton* m_hide_button;
+	QFrame* m_resizer;
 	QSortFilterProxyModel* m_filter_model;
 	Document* m_document;
+
+	int m_width;
+	QPoint m_mouse_current;
+	bool m_resizing;
 };
 
 #endif
