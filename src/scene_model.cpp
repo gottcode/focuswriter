@@ -34,6 +34,7 @@ SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
 	m_document(document)
 {
 	setSupportedDragActions(Qt::MoveAction);
+	connect(m_document->document(), SIGNAL(blockCountChanged(int)), this, SLOT(invalidateScenes()));
 }
 
 //-----------------------------------------------------------------------------
@@ -81,9 +82,12 @@ void SceneModel::addScene(BlockStats* stats, int block_number, const QString& te
 
 	// Insert scene
 	beginInsertRows(QModelIndex(), pos, pos);
-	Scene scene = { stats, text };
+	Scene scene = { stats, text, QString(), block_number, true };
 	m_scenes.insert(pos, scene);
 	endInsertRows();
+
+	// Make sure to update values
+	invalidateScenes();
 }
 
 //-----------------------------------------------------------------------------
@@ -100,6 +104,9 @@ void SceneModel::removeScene(BlockStats* stats)
 	beginRemoveRows(QModelIndex(), pos, pos);
 	m_scenes.removeAt(pos);
 	endRemoveRows();
+
+	// Make sure to update values
+	invalidateScenes();
 }
 
 //-----------------------------------------------------------------------------
@@ -114,6 +121,36 @@ void SceneModel::updateScene(BlockStats* stats, const QString& text)
 
 	// Modify scene
 	m_scenes[pos].text = text;
+	QModelIndex i = index(pos);
+	emit dataChanged(i, i);
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneModel::updateScene(int block_number)
+{
+	// Find first scene above block_number
+	BlockStats* stats = 0;
+	QTextBlock block = m_document->document()->findBlockByNumber(block_number);
+	while (block.isValid()) {
+		stats = static_cast<BlockStats*>(block.userData());
+		if (stats && stats->isScene()) {
+			break;
+		}
+		block = block.previous();
+	}
+	if (!stats || !stats->isScene()) {
+		return;
+	}
+
+	// Find scene containing stats
+	int pos = findSceneByStats(stats);
+	if (pos == -1) {
+		return;
+	}
+
+	// Modify scene
+	m_scenes[pos].outdated = true;
 	QModelIndex i = index(pos);
 	emit dataChanged(i, i);
 }
@@ -139,16 +176,41 @@ QVariant SceneModel::data(const QModelIndex& index, int role) const
 
 	if (index.row() < m_scenes.count()) {
 		Scene scene = m_scenes.at(index.row());
-		if (role == Qt::DisplayRole) {
-			result = scene.text;
-		} else if (role == Qt::UserRole) {
+
+		// Make sure the scene data is up-to-date
+		if (scene.outdated) {
+			scene.outdated = false;
+			scene.block_number = -1;
+
+			QStringList lines;
 			QTextBlock block = m_document->document()->begin();
 			while (block.isValid()) {
-				if (block.userData() == scene.stats) {
-					result = block.blockNumber();
+				BlockStats* stats = static_cast<BlockStats*>(block.userData());
+				if (stats == scene.stats) {
+					scene.block_number = block.blockNumber();
+					lines += scene.text;
+				} else if (!lines.isEmpty()) {
+					if (stats && stats->isScene()) {
+						break;
+					} else {
+						QString line = block.text().trimmed();
+						if (!line.isEmpty()) {
+							lines += line;
+						}
+						if (lines.count() == 3) {
+							break;
+						}
+					}
 				}
 				block = block.next();
 			}
+			scene.display = lines.join(QLatin1String("\n")).trimmed();
+		}
+
+		if (role == Qt::DisplayRole) {
+			result = scene.display;
+		} else if (role == Qt::UserRole) {
+			result = scene.block_number;
 		}
 	}
 
@@ -238,8 +300,11 @@ bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int 
 	int position = 0;
 	if ((row < m_scenes.size()) && (row > -1)) {
 		const Scene& scene = m_scenes.at(row);
-		QTextBlock block = m_document->document()->begin();
-		if (block.userData() != scene.stats) {
+		QTextBlock block = m_document->document()->findBlockByNumber(scene.block_number);
+		if (block.userData() == scene.stats) {
+			position = block.position();
+		} else {
+			block = m_document->document()->begin();
 			while (block.isValid()) {
 				position = block.position();
 				if (block.userData() == scene.stats) {
@@ -291,6 +356,21 @@ bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int 
 
 //-----------------------------------------------------------------------------
 
+void SceneModel::invalidateScenes()
+{
+	int count = m_scenes.count();
+	if (count == 0) {
+		return;
+	}
+
+	for (int i = 0; i < count; ++i) {
+		m_scenes[i].outdated = true;
+	}
+	emit dataChanged(index(0), index(count - 1));
+}
+
+//-----------------------------------------------------------------------------
+
 int SceneModel::findSceneByStats(BlockStats* stats) const
 {
 	int pos = -1;
@@ -308,9 +388,10 @@ int SceneModel::findSceneByStats(BlockStats* stats) const
 void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
 {
 	// Select first block of scene
-	int position = 0;
-	QTextBlock block = cursor.document()->begin();
+	QTextBlock block = cursor.document()->findBlockByNumber(scene.block_number);
+	int position = block.position();
 	if (block.userData() != scene.stats) {
+		block = cursor.document()->begin();
 		while (block.isValid()) {
 			position = block.position();
 			if (block.userData() == scene.stats) {

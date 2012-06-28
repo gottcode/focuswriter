@@ -76,6 +76,8 @@ void BlockStats::update(int block_number, const QString& text, Dictionary* dicti
 			}
 		} else if (was_scene) {
 			m_scene_model->removeScene(this);
+		} else {
+			m_scene_model->updateScene(block_number);
 		}
 	}
 

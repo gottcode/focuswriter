@@ -35,6 +35,9 @@ class SceneModel : public QAbstractListModel
 	{
 		BlockStats* stats;
 		QString text;
+		QString display;
+		int block_number;
+		bool outdated;
 	};
 
 public:
@@ -45,6 +48,7 @@ public:
 	void addScene(BlockStats* stats, int block_number, const QString& text);
 	void removeScene(BlockStats* stats);
 	void updateScene(BlockStats* stats, const QString& text);
+	void updateScene(int block_number);
 
 	void clear();
 
@@ -56,6 +60,9 @@ public:
 	Qt::DropActions supportedDropActions() const;
 
 	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
+
+private slots:
+	void invalidateScenes();
 
 private:
 	int findSceneByStats(BlockStats* stats) const;
