@@ -19,9 +19,9 @@
 
 #include "preferences.h"
 
-#include "block_stats.h"
 #include "dictionary.h"
 #include "dictionary_manager.h"
+#include "scene_model.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -60,7 +60,7 @@ Preferences::Preferences()
 	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", false).toBool();
 
 	m_scene_divider = settings.value("SceneList/Divider", QLatin1String("##")).toString();
-	BlockStats::setSceneDivider(m_scene_divider);
+	SceneModel::setSceneDivider(m_scene_divider);
 
 	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();

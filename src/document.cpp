@@ -973,10 +973,10 @@ void Document::selectionChanged()
 {
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
-		BlockStats temp(-1, "", 0, 0);
+		BlockStats temp(0);
 		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
 		foreach (const QString& string, selection) {
-			temp.update(-1, string, 0);
+			temp.update(string, 0);
 			m_selected_stats.append(&temp);
 		}
 		if (!m_accurate_wordcount) {
@@ -1057,10 +1057,16 @@ void Document::updateWordCount(int position, int removed, int added)
 	if (end.isValid()) {
 		end = end.next();
 	}
+	BlockStats* stats = 0;
 	for (QTextBlock i = begin; i != end; i = i.next()) {
-		if (i.userData()) {
-			static_cast<BlockStats*>(i.userData())->update(i.blockNumber(), i.text(), &m_dictionary);
+		stats = static_cast<BlockStats*>(i.userData());
+		if (!stats) {
+			stats = new BlockStats(m_scene_model);
+			i.setUserData(stats);
+			m_cached_stats.clear();
 		}
+		stats->update(i.text(), &m_dictionary);
+		m_scene_model->updateScene(stats, i.blockNumber(), i.text());
 	}
 
 	// Update document stats and daily word count
@@ -1079,9 +1085,13 @@ void Document::calculateWordCount()
 		m_cached_block_count = m_text->document()->blockCount();
 		m_cached_current_block = m_text->textCursor().blockNumber();
 
+		BlockStats* stats = 0;
 		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 			if (!i.userData()) {
-				i.setUserData(new BlockStats(i.blockNumber(), i.text(), &m_dictionary, m_scene_model));
+				stats = new BlockStats(m_scene_model);
+				i.setUserData(stats);
+				stats->update(i.text(), &m_dictionary);
+				m_scene_model->updateScene(stats, i.blockNumber(), i.text());
 			}
 			if (i.blockNumber() != m_cached_current_block) {
 				m_cached_stats.append(static_cast<BlockStats*>(i.userData()));

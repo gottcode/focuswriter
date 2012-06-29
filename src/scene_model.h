@@ -47,6 +47,7 @@ public:
 
 	void addScene(BlockStats* stats, int block_number, const QString& text);
 	void removeScene(BlockStats* stats);
+	void updateScene(BlockStats* stats, int block_number, const QString& text);
 	void updateScene(BlockStats* stats, const QString& text);
 	void updateScene(int block_number);
 
@@ -60,6 +61,8 @@ public:
 	Qt::DropActions supportedDropActions() const;
 
 	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
+
+	static void setSceneDivider(const QString& divider);
 
 private slots:
 	void invalidateScenes();

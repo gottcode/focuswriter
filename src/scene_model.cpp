@@ -29,6 +29,10 @@
 
 //-----------------------------------------------------------------------------
 
+static QString f_scene_divider = QLatin1String("##");
+
+//-----------------------------------------------------------------------------
+
 SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
 	QAbstractListModel(parent),
 	m_document(document)
@@ -67,7 +71,7 @@ void SceneModel::addScene(BlockStats* stats, int block_number, const QString& te
 {
 	// Find previous scene in document
 	BlockStats *before = 0, *check = 0;
-	QTextBlock block = m_document->document()->findBlockByNumber(block_number);
+	QTextBlock block = m_document->document()->findBlockByNumber(block_number).previous();
 	while (block.isValid()) {
 		check = static_cast<BlockStats*>(block.userData());
 		if (check && check->isScene()) {
@@ -107,6 +111,26 @@ void SceneModel::removeScene(BlockStats* stats)
 
 	// Make sure to update values
 	invalidateScenes();
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneModel::updateScene(BlockStats* stats, int block_number, const QString& text)
+{
+	bool was_scene = stats->isScene();
+	stats->setScene(text.startsWith(f_scene_divider));
+	if (stats->isScene()) {
+		QString scene_text = text.mid(f_scene_divider.length()).trimmed();
+		if (was_scene) {
+			updateScene(stats, scene_text);
+		} else {
+			addScene(stats, block_number, scene_text);
+		}
+	} else if (was_scene) {
+		removeScene(stats);
+	} else {
+		updateScene(block_number);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -352,6 +376,14 @@ bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int 
 	m_document->setTextCursor(cursor);
 
 	return true;
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneModel::setSceneDivider(const QString& divider)
+{
+	f_scene_divider = divider;
+	f_scene_divider.replace(QLatin1String("\\t"), QLatin1String("\t"));
 }
 
 //-----------------------------------------------------------------------------

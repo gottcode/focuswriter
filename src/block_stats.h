@@ -28,7 +28,7 @@ class SceneModel;
 class BlockStats : public QTextBlockUserData
 {
 public:
-	BlockStats(int block_number, const QString& text, Dictionary* dictionary, SceneModel* scene_model);
+	BlockStats(SceneModel* scene_model);
 	~BlockStats();
 
 	bool isEmpty() const;
@@ -39,9 +39,8 @@ public:
 	QList<QStringRef> misspelled() const;
 
 	void checkSpelling(const QString& text, Dictionary* dictionary);
-	void update(int block_number, const QString& text, Dictionary* dictionary);
-
-	static void setSceneDivider(const QString& divider);
+	void setScene(bool scene);
+	void update(const QString& text, Dictionary* dictionary);
 
 private:
 	int m_characters;
@@ -80,6 +79,11 @@ inline int BlockStats::wordCount() const
 inline QList<QStringRef> BlockStats::misspelled() const
 {
 	return m_misspelled;
+}
+
+inline void BlockStats::setScene(bool scene)
+{
+	m_scene = scene;
 }
 
 #endif

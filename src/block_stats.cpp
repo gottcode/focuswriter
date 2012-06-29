@@ -24,18 +24,13 @@
 
 //-----------------------------------------------------------------------------
 
-static QString f_scene_divider = QLatin1String("##");
-
-//-----------------------------------------------------------------------------
-
-BlockStats::BlockStats(int block_number, const QString& text, Dictionary* dictionary, SceneModel* scene_model) :
+BlockStats::BlockStats(SceneModel* scene_model) :
 	m_characters(0),
 	m_spaces(0),
 	m_words(0),
 	m_scene(false),
 	m_scene_model(scene_model)
 {
-	update(block_number, text, dictionary);
 }
 
 //-----------------------------------------------------------------------------
@@ -61,26 +56,8 @@ void BlockStats::checkSpelling(const QString& text, Dictionary* dictionary)
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::update(int block_number, const QString& text, Dictionary* dictionary)
+void BlockStats::update(const QString& text, Dictionary* dictionary)
 {
-	// Determine if this is a scene
-	if (m_scene_model) {
-		bool was_scene = m_scene;
-		m_scene = text.startsWith(f_scene_divider);
-		if (m_scene) {
-			QString scene_text = text.mid(f_scene_divider.length()).trimmed();
-			if (was_scene) {
-				m_scene_model->updateScene(this, scene_text);
-			} else {
-				m_scene_model->addScene(this, block_number, scene_text);
-			}
-		} else if (was_scene) {
-			m_scene_model->removeScene(this);
-		} else {
-			m_scene_model->updateScene(block_number);
-		}
-	}
-
 	// Calculate stats
 	m_characters = text.length();
 	m_spaces = 0;
@@ -103,14 +80,6 @@ void BlockStats::update(int block_number, const QString& text, Dictionary* dicti
 
 	// Update stored list of misspelled words
 	checkSpelling(text, dictionary);
-}
-
-//-----------------------------------------------------------------------------
-
-void BlockStats::setSceneDivider(const QString& divider)
-{
-	f_scene_divider = divider;
-	f_scene_divider.replace(QLatin1String("\\t"), QLatin1String("\t"));
 }
 
 //-----------------------------------------------------------------------------
