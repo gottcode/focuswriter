@@ -14,6 +14,7 @@
 	* Add widget to edit a shortcut.
 
 2012-06-29 Graeme Gott <graeme@gottcode.org>
+	* Make first paragraph always be a scene.
 	* Move detecting scenes into scene model.
 
 2012-06-28 Graeme Gott <graeme@gottcode.org>

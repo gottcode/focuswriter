@@ -118,9 +118,10 @@ void SceneModel::removeScene(BlockStats* stats)
 void SceneModel::updateScene(BlockStats* stats, int block_number, const QString& text)
 {
 	bool was_scene = stats->isScene();
-	stats->setScene(text.startsWith(f_scene_divider));
+	bool is_scene = text.startsWith(f_scene_divider);
+	stats->setScene(is_scene || (block_number == 0));
 	if (stats->isScene()) {
-		QString scene_text = text.mid(f_scene_divider.length()).trimmed();
+		QString scene_text = is_scene ? text.mid(f_scene_divider.length()).trimmed() : text;
 		if (was_scene) {
 			updateScene(stats, scene_text);
 		} else {
