@@ -425,6 +425,7 @@ QString Preferences::sceneDivider() const
 void Preferences::setSceneDivider(const QString& divider)
 {
 	setValue(m_scene_divider, divider);
+	SceneModel::setSceneDivider(m_scene_divider);
 }
 
 //-----------------------------------------------------------------------------

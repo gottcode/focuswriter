@@ -30,6 +30,7 @@
 //-----------------------------------------------------------------------------
 
 static QString f_scene_divider = QLatin1String("##");
+static QList<SceneModel*> f_scene_models;
 
 //-----------------------------------------------------------------------------
 
@@ -39,6 +40,15 @@ SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
 {
 	setSupportedDragActions(Qt::MoveAction);
 	connect(m_document->document(), SIGNAL(blockCountChanged(int)), this, SLOT(invalidateScenes()));
+
+	f_scene_models.append(this);
+}
+
+//-----------------------------------------------------------------------------
+
+SceneModel::~SceneModel()
+{
+	f_scene_models.removeAll(this);
 }
 
 //-----------------------------------------------------------------------------
@@ -383,8 +393,16 @@ bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int 
 
 void SceneModel::setSceneDivider(const QString& divider)
 {
+	if (f_scene_divider == divider) {
+		return;
+	}
+
 	f_scene_divider = divider;
 	f_scene_divider.replace(QLatin1String("\\t"), QLatin1String("\t"));
+
+	foreach (SceneModel* model, f_scene_models) {
+		model->resetScenes();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -414,6 +432,25 @@ int SceneModel::findSceneByStats(BlockStats* stats) const
 		}
 	}
 	return pos;
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneModel::resetScenes()
+{
+	// Remove all current scenes
+	clear();
+
+	// Check all blocks for new scenes
+	QTextBlock block = m_document->document()->begin();
+	while (block.isValid()) {
+		BlockStats* stats = static_cast<BlockStats*>(block.userData());
+		if (stats) {
+			stats->setScene(false);
+			updateScene(stats, block.blockNumber(), block.text());
+		}
+		block = block.next();
+	}
 }
 
 //-----------------------------------------------------------------------------

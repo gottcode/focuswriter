@@ -42,6 +42,7 @@ class SceneModel : public QAbstractListModel
 
 public:
 	SceneModel(QTextEdit* document, QObject* parent = 0);
+	~SceneModel();
 
 	QModelIndex findScene(const QTextCursor& cursor) const;
 
@@ -69,6 +70,7 @@ private slots:
 
 private:
 	int findSceneByStats(BlockStats* stats) const;
+	void resetScenes();
 	void selectScene(const Scene& scene, QTextCursor& cursor) const;
 
 private:
