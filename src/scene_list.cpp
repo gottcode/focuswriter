@@ -29,6 +29,7 @@
 #include <QListView>
 #include <QMouseEvent>
 #include <QSettings>
+#include <QShortcut>
 #include <QSortFilterProxyModel>
 #include <QStyledItemDelegate>
 #include <QTextBlock>
@@ -80,6 +81,8 @@ SceneList::SceneList(QWidget* parent) :
 	setFrameStyle(QFrame::Panel | QFrame::Raised);
 	setAutoFillBackground(true);
 	setPalette(QApplication::palette());
+	new QShortcut(tr("Ctrl+Shift+Down"), this, SLOT(moveScenesDown()));
+	new QShortcut(tr("Ctrl+Shift+Up"), this, SLOT(moveScenesUp()));
 
 	// Create button to show scenes
 	m_show_button = new QToolButton(this);
@@ -279,6 +282,20 @@ void SceneList::showScenes()
 
 //-----------------------------------------------------------------------------
 
+void SceneList::moveScenesDown()
+{
+	moveSelectedScenes(1);
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::moveScenesUp()
+{
+	moveSelectedScenes(-1);
+}
+
+//-----------------------------------------------------------------------------
+
 void SceneList::sceneSelected(const QModelIndex& index)
 {
 	if (!m_document) {
@@ -307,6 +324,34 @@ void SceneList::setFilter(const QString& filter)
 		m_scenes->setDragEnabled(false);
 		m_scenes->setSelectionMode(QAbstractItemView::SingleSelection);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::moveSelectedScenes(int movement)
+{
+	// Find scenes to move
+	QModelIndexList indexes = m_filter_model->mapSelectionToSource(m_scenes->selectionModel()->selection()).indexes();
+	if (indexes.isEmpty()) {
+		return;
+	}
+
+	// Find target row
+	int first_row = INT_MAX;
+	int last_row = 0;
+	int index_row = 0;
+	for (int i = 0, count = indexes.count(); i < count; ++i) {
+		index_row = indexes.at(i).row();
+		first_row = qMin(first_row, index_row);
+		last_row = qMax(last_row, index_row);
+	}
+	int row = qMax(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
+
+	// Move scenes by faking a drag and drop operation
+	QAbstractItemModel* scene_model = m_filter_model->sourceModel();
+	QMimeData* data = scene_model->mimeData(indexes);
+	scene_model->dropMimeData(data, Qt::MoveAction, row, 0, QModelIndex());
+	delete data;
 }
 
 //-----------------------------------------------------------------------------

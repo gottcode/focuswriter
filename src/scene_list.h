@@ -50,8 +50,13 @@ protected:
 private slots:
 	void hideScenes();
 	void showScenes();
+	void moveScenesDown();
+	void moveScenesUp();
 	void sceneSelected(const QModelIndex& index);
 	void setFilter(const QString& filter);
+
+private:
+	void moveSelectedScenes(int movement);
 
 private:
 	QToolButton* m_show_button;
