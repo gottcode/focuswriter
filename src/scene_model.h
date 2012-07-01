@@ -60,6 +60,9 @@ public:
 
 	static void setSceneDivider(const QString& divider);
 
+public slots:
+	void selectScene();
+
 private slots:
 	void invalidateScenes();
 

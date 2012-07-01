@@ -24,6 +24,7 @@
 #include "find_dialog.h"
 #include "load_screen.h"
 #include "scene_list.h"
+#include "scene_model.h"
 #include "smart_quotes.h"
 #include "symbols_dialog.h"
 #include "theme.h"
@@ -494,7 +495,7 @@ void Stack::selectAll()
 
 void Stack::selectScene()
 {
-	m_current_document->selectScene();
+	m_current_document->sceneModel()->selectScene();
 }
 
 //-----------------------------------------------------------------------------

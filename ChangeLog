@@ -13,6 +13,9 @@
 2012-07-03 Graeme Gott <graeme@gottcode.org>
 	* Add widget to edit a shortcut.
 
+2012-07-01 Graeme Gott <graeme@gottcode.org>
+	* Move selecting scenes into scene model.
+
 2012-06-29 Graeme Gott <graeme@gottcode.org>
 	* Add keyboard shortcuts for moving scenes.
 	* FIXED: Scene dividers did not update until program restart.

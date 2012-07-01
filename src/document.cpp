@@ -407,41 +407,6 @@ void Document::print()
 
 //-----------------------------------------------------------------------------
 
-void Document::selectScene()
-{
-	QTextCursor cursor = m_text->textCursor();
-	cursor.clearSelection();
-
-	// Select to first block of scene
-	cursor.movePosition(QTextCursor::StartOfBlock);
-	QTextBlock block = cursor.block();
-	while (block.isValid()) {
-		if (block.userData() && static_cast<BlockStats*>(block.userData())->isScene()) {
-			break;
-		}
-		block = block.previous();
-		cursor.movePosition(QTextCursor::StartOfBlock);
-		cursor.movePosition(QTextCursor::PreviousBlock);
-	}
-	cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
-
-	// Select to last block of scene
-	cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
-	block = cursor.block();
-	while (block.isValid()) {
-		if (block.userData() && static_cast<BlockStats*>(block.userData())->isScene()) {
-			break;
-		}
-		block = block.next();
-		cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
-		cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
-	}
-
-	m_text->setTextCursor(cursor);
-}
-
-//-----------------------------------------------------------------------------
-
 bool Document::loadFile(const QString& filename, int position)
 {
 	bool loaded = true;
