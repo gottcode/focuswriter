@@ -24,6 +24,7 @@ class BlockStats;
 
 #include <QAbstractListModel>
 #include <QList>
+class QTextBlock;
 class QTextCursor;
 class QTextEdit;
 
@@ -45,23 +46,17 @@ public:
 	~SceneModel();
 
 	QModelIndex findScene(const QTextCursor& cursor) const;
-
-	void addScene(BlockStats* stats, int block_number, const QString& text);
 	void removeScene(BlockStats* stats);
-	void updateScene(BlockStats* stats, int block_number, const QString& text);
-	void updateScene(BlockStats* stats, const QString& text);
-	void updateScene(int block_number);
-
-	void clear();
+	void removeAllScenes();
+	void updateScene(BlockStats* stats, const QTextBlock& block);
 
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
 	Qt::ItemFlags flags(const QModelIndex& index) const;
 	QMimeData* mimeData(const QModelIndexList& indexes) const;
 	QStringList mimeTypes() const;
 	int rowCount(const QModelIndex& parent) const;
 	Qt::DropActions supportedDropActions() const;
-
-	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
 
 	static void setSceneDivider(const QString& divider);
 
@@ -69,9 +64,12 @@ private slots:
 	void invalidateScenes();
 
 private:
+	void addScene(BlockStats* stats, const QTextBlock& block, const QString& text);
 	int findSceneByStats(BlockStats* stats) const;
 	void resetScenes();
 	void selectScene(const Scene& scene, QTextCursor& cursor) const;
+	void updateScene(BlockStats* stats, const QString& text);
+	void updateScene(const QTextBlock& block);
 
 private:
 	QList<Scene> m_scenes;

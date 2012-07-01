@@ -254,7 +254,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 Document::~Document()
 {
-	m_scene_model->clear();
+	m_scene_model->removeAllScenes();
 
 	clearIndex();
 	emit removeCacheFile(g_cache_path + m_cache_filename);
@@ -1066,7 +1066,7 @@ void Document::updateWordCount(int position, int removed, int added)
 			m_cached_stats.clear();
 		}
 		stats->update(i.text(), &m_dictionary);
-		m_scene_model->updateScene(stats, i.blockNumber(), i.text());
+		m_scene_model->updateScene(stats, i);
 	}
 
 	// Update document stats and daily word count
@@ -1091,7 +1091,7 @@ void Document::calculateWordCount()
 				stats = new BlockStats(m_scene_model);
 				i.setUserData(stats);
 				stats->update(i.text(), &m_dictionary);
-				m_scene_model->updateScene(stats, i.blockNumber(), i.text());
+				m_scene_model->updateScene(stats, i);
 			}
 			if (i.blockNumber() != m_cached_current_block) {
 				m_cached_stats.append(static_cast<BlockStats*>(i.userData()));
