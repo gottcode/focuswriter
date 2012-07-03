@@ -97,6 +97,7 @@ HEADERS += src/alert.h \
 	src/session.h \
 	src/session_manager.h \
 	src/settings_file.h \
+	src/shortcut_edit.h \
 	src/smart_quotes.h \
 	src/sound.h \
 	src/spell_checker.h \
@@ -134,6 +135,7 @@ SOURCES += src/alert.cpp \
 	src/preferences_dialog.cpp \
 	src/session.cpp \
 	src/session_manager.cpp \
+	src/shortcut_edit.cpp \
 	src/smart_quotes.cpp \
 	src/sound.cpp \
 	src/spell_checker.cpp \

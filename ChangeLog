@@ -1,3 +1,6 @@
+2012-07-03 Graeme Gott <graeme@gottcode.org>
+	* Add widget to edit a shortcut.
+
 2012-06-15 Graeme Gott <graeme@gottcode.org>
 	* Remember find dialog position while program is running.
 	* FIXED: Line spacings were broken at first on Windows.
