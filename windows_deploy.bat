@@ -32,6 +32,9 @@ SET SOUNDS=%APP%\sounds
 MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
+ECHO Copying symbols
+COPY resources\symbols\symbols.dat %APP% >nul
+
 ECHO Copying enchant library
 XCOPY /Q /S /Y enchant %APP% >nul
 DEL %APP%\enchant.h >nul

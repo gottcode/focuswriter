@@ -23,6 +23,7 @@
 #include "locale_dialog.h"
 #include "session.h"
 #include "sound.h"
+#include "symbols_model.h"
 #include "theme.h"
 
 #include <QDir>
@@ -41,11 +42,13 @@ int main(int argc, char** argv)
 	}
 	QString appdir = app.applicationDirPath();
 
+	// Set locations of fallback icons
 	QStringList paths = QIcon::themeSearchPaths();
 	paths.prepend(appdir + "/../share/focuswriter/icons");
 	paths.prepend(appdir + "/icons");
 	QIcon::setThemeSearchPaths(paths);
 
+	// Find sounds
 	paths.clear();
 	paths.append(appdir + "/sounds/");
 	paths.append(appdir + "/../share/focuswriter/sounds/");
@@ -53,6 +56,18 @@ int main(int argc, char** argv)
 	foreach (const QString& path, paths) {
 		if (QFile::exists(path)) {
 			Sound::setPath(path);
+			break;
+		}
+	}
+
+	// Find unicode names
+	paths.clear();
+	paths.append(appdir + "/symbols.dat");
+	paths.append(appdir + "/../share/focuswriter/symbols.dat");
+	paths.append(appdir + "/../Resources/symbols.dat");
+	foreach (const QString& path, paths) {
+		if (QFile::exists(path)) {
+			SymbolsModel::setData(path);
 			break;
 		}
 	}

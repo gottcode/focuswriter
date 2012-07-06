@@ -103,6 +103,7 @@ HEADERS += src/alert.h \
 	src/spell_checker.h \
 	src/stack.h \
 	src/stats.h \
+	src/symbols_model.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
@@ -141,6 +142,7 @@ SOURCES += src/alert.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/stats.cpp \
+	src/symbols_model.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \
@@ -188,7 +190,10 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	QMAKE_BUNDLE_DATA += ICONS SOUNDS
+	SYMBOLS.files = resources/symbols/symbols.dat
+	SYMBOLS.path = Contents/Resources
+
+	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
 }
 
 unix: !macx {
@@ -216,5 +221,8 @@ unix: !macx {
 	sounds.files = resources/sounds/*
 	sounds.path = $$PREFIX/share/focuswriter/sounds
 
-	INSTALLS += target icon pixmap desktop icons qm sounds
+	symbols.files = resources/symbols/symbols.dat
+	symbols.path = $$PREFIX/share/focuswriter
+
+	INSTALLS += target icon pixmap desktop icons qm sounds symbols
 }
