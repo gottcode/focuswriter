@@ -24,6 +24,7 @@
 #include "find_dialog.h"
 #include "load_screen.h"
 #include "smart_quotes.h"
+#include "symbols_dialog.h"
 #include "theme.h"
 
 #include <QAction>
@@ -165,6 +166,9 @@ Stack::Stack(QWidget* parent)
 
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
+
+	m_symbols_dialog = new SymbolsDialog(this);
+	connect(m_symbols_dialog, SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 
 	m_layout = new QGridLayout(this);
 	m_layout->setMargin(0);
@@ -565,6 +569,15 @@ void Stack::setTextDirectionRTL()
 
 //-----------------------------------------------------------------------------
 
+void Stack::showSymbols()
+{
+	m_symbols_dialog->show();
+	m_symbols_dialog->raise();
+	m_symbols_dialog->activateWindow();
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::themeSelected(const Theme& theme)
 {
 	m_background_position = theme.backgroundType();
@@ -685,6 +698,13 @@ void Stack::resizeEvent(QResizeEvent* event)
 	m_resize_timer->start();
 	updateBackground();
 	QWidget::resizeEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::insertSymbol(const QString& text)
+{
+	m_current_document->text()->insertPlainText(text);
 }
 
 //-----------------------------------------------------------------------------

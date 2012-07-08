@@ -103,6 +103,7 @@ HEADERS += src/alert.h \
 	src/spell_checker.h \
 	src/stack.h \
 	src/stats.h \
+	src/symbols_dialog.h \
 	src/symbols_model.h \
 	src/theme.h \
 	src/theme_dialog.h \
@@ -142,6 +143,7 @@ SOURCES += src/alert.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/stats.cpp \
+	src/symbols_dialog.cpp \
 	src/symbols_model.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \

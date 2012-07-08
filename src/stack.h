@@ -24,6 +24,7 @@ class AlertLayer;
 class Document;
 class FindDialog;
 class LoadScreen;
+class SymbolsDialog;
 class Theme;
 
 #include <QWidget>
@@ -103,6 +104,7 @@ public slots:
 	void setFontSubScript(bool sub);
 	void setTextDirectionLTR();
 	void setTextDirectionRTL();
+	void showSymbols();
 	void themeSelected(const Theme& theme);
 	void undo();
 	void updateSmartQuotes();
@@ -117,6 +119,7 @@ protected:
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
+	void insertSymbol(const QString& text);
 	void updateBackground();
 	void updateMask();
 	void updateMapping();
@@ -126,6 +129,7 @@ private:
 	AlertLayer* m_alerts;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
+	SymbolsDialog* m_symbols_dialog;
 
 	QStackedWidget* m_contents;
 	QList<Document*> m_documents;
