@@ -20,14 +20,17 @@
 #ifndef SYMBOLS_DIALOG_H
 #define SYMBOLS_DIALOG_H
 
+class ShortcutEdit;
 class SymbolsModel;
 
 #include <QDialog>
+#include <QHash>
 class QComboBox;
 class QLabel;
 class QListWidget;
 class QListWidgetItem;
 class QModelIndex;
+class QShortcut;
 class QSplitter;
 class QTableView;
 class QTableWidget;
@@ -55,8 +58,11 @@ private slots:
 	void showGroup(int group);
 	void symbolClicked(const QModelIndex& symbol);
 	void recentSymbolClicked(QTableWidgetItem* symbol);
+	void shortcutActivated();
+	void shortcutChanged();
 
 private:
+	void addShortcut(quint32 unicode, const QKeySequence& sequence);
 	bool selectSymbol(quint32 unicode);
 	void saveSettings();
 
@@ -69,11 +75,15 @@ private:
 	QList<QListWidget*> m_filters;
 	QTableView* m_view;
 
+	ShortcutEdit* m_symbol_shortcut;
 	class ElideLabel;
 	ElideLabel* m_symbol_name;
 	QLabel* m_symbol_code;
 
 	QTableWidget* m_recent;
+
+	QHash<quint32, QShortcut*> m_shortcuts;
+	QHash<QObject*, QString> m_shortcuts_text;
 };
 
 #endif
