@@ -26,6 +26,8 @@ class SymbolsModel;
 #include <QDialog>
 #include <QHash>
 class QComboBox;
+class QGraphicsView;
+class QGraphicsSimpleTextItem;
 class QLabel;
 class QListWidget;
 class QListWidgetItem;
@@ -42,6 +44,8 @@ class SymbolsDialog : public QDialog
 
 public:
 	SymbolsDialog(QWidget* parent = 0);
+
+	void setPreviewFont(const QFont& font);
 
 signals:
 	void insertText(const QString& text);
@@ -75,6 +79,8 @@ private:
 	QList<QListWidget*> m_filters;
 	QTableView* m_view;
 
+	QGraphicsView* m_symbol_preview;
+	QGraphicsSimpleTextItem* m_symbol_preview_item;
 	ShortcutEdit* m_symbol_shortcut;
 	class ElideLabel;
 	ElideLabel* m_symbol_name;

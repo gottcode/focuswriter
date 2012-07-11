@@ -597,6 +597,8 @@ void Stack::themeSelected(const Theme& theme)
 	m_layout->setColumnMinimumWidth(0, m_margin);
 	m_layout->setColumnMinimumWidth(5, m_margin);
 
+	m_symbols_dialog->setPreviewFont(theme.textFont());
+
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme);
 	}

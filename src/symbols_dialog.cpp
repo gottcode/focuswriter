@@ -24,6 +24,9 @@
 
 #include <QComboBox>
 #include <QDialogButtonBox>
+#include <QGraphicsScene>
+#include <QGraphicsSimpleTextItem>
+#include <QGraphicsView>
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
@@ -175,6 +178,16 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	// Create details widgets
 	QGroupBox* details_group = new QGroupBox(tr("Details"), this);
 
+	QGraphicsScene* scene = new QGraphicsScene(this);
+	scene->setBackgroundBrush(palette().base());
+	m_symbol_preview_item = new QGraphicsSimpleTextItem(0, scene);
+	m_symbol_preview_item->setBrush(palette().text());
+	m_symbol_preview = new QGraphicsView(scene, details_group);
+	m_symbol_preview->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	m_symbol_preview->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	int size = fontMetrics().height() * 4;
+	m_symbol_preview->setFixedSize(size, size);
+
 	m_symbol_shortcut = new ShortcutEdit(details_group);
 	connect(m_symbol_shortcut, SIGNAL(changed()), this, SLOT(shortcutChanged()));
 
@@ -183,12 +196,15 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	m_symbol_code = new QLabel(details_group);
 
 	QGridLayout* details_layout = new QGridLayout(details_group);
-	details_layout->setColumnStretch(1, 1);
-	details_layout->addWidget(new QLabel(ShortcutEdit::tr("Shortcut:"), details_group), 0, 0, 1, 1, Qt::AlignRight | Qt::AlignVCenter);
-	details_layout->addWidget(m_symbol_shortcut, 0, 1, 1, 3);
-	details_layout->addWidget(new QLabel(tr("Name:"), details_group), 1, 0, 1, 1, Qt::AlignRight | Qt::AlignVCenter);
-	details_layout->addWidget(m_symbol_name, 1, 1);
-	details_layout->addWidget(m_symbol_code, 1, 2);
+	details_layout->setColumnStretch(2, 1);
+	details_layout->setRowStretch(0, 1);
+	details_layout->setRowStretch(3, 1);
+	details_layout->addWidget(m_symbol_preview, 0, 0, 4, 1, Qt::AlignCenter);
+	details_layout->addWidget(new QLabel(ShortcutEdit::tr("Shortcut:"), details_group), 1, 1, 1, 1, Qt::AlignRight | Qt::AlignVCenter);
+	details_layout->addWidget(m_symbol_shortcut, 1, 2, 1, 3);
+	details_layout->addWidget(new QLabel(tr("Name:"), details_group), 2, 1, 1, 1, Qt::AlignRight | Qt::AlignVCenter);
+	details_layout->addWidget(m_symbol_name, 2, 2);
+	details_layout->addWidget(m_symbol_code, 2, 3);
 
 	// Create buttons
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
@@ -258,6 +274,15 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 
 //-----------------------------------------------------------------------------
 
+void SymbolsDialog::setPreviewFont(const QFont& font)
+{
+	QFontMetrics metrics(font);
+	m_symbol_preview_item->setFont(font);
+	m_symbol_preview->fitInView(0, 0, metrics.height() * 1.5, metrics.height() * 1.5, Qt::KeepAspectRatio);
+}
+
+//-----------------------------------------------------------------------------
+
 void SymbolsDialog::accept()
 {
 	QModelIndex symbol = m_view->currentIndex();
@@ -305,6 +330,10 @@ void SymbolsDialog::reject()
 
 void SymbolsDialog::showEvent(QShowEvent* event)
 {
+	QFontMetrics metrics(m_symbol_preview_item->font());
+	float size = metrics.height() * 1.5f;
+	m_symbol_preview->fitInView(0, 0, size, size);
+
 	m_view->setFocus();
 	QDialog::showEvent(event);
 }
@@ -358,6 +387,8 @@ void SymbolsDialog::symbolClicked(const QModelIndex& symbol)
 		// Show symbol details
 		quint32 unicode = symbol.internalId();
 		QString name = m_model->symbolName(unicode);
+		m_symbol_preview_item->setText(symbol.data(Qt::DisplayRole).toString());
+		m_symbol_preview->setSceneRect(m_symbol_preview_item->boundingRect());
 		m_symbol_name->setText(name);
 		m_symbol_name->setToolTip(name);
 		m_symbol_code->setText(QString("<tt>U+%1</tt>").arg(unicode, 4, 16, QLatin1Char('0')).toUpper());
