@@ -1366,7 +1366,7 @@
     <message>
         <location filename="../src/window.cpp" line="1173"/>
         <source>Ctrl+Q</source>
-        <translation>Strg+A</translation>
+        <translation>Strg+Q</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1177"/>
