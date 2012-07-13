@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguläre Ausrücke</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
@@ -127,17 +127,17 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Suchen</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ersetzen</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Alle Ersetzen</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
@@ -559,7 +559,7 @@
 <context>
     <name>Session</name>
     <message>
-        <location filename="../src/main.cpp" line="152"/>
+        <location filename="../src/main.cpp" line="167"/>
         <location filename="../src/session.cpp" line="35"/>
         <location filename="../src/session.cpp" line="42"/>
         <location filename="../src/session_manager.cpp" line="147"/>
@@ -669,6 +669,24 @@
     </message>
 </context>
 <context>
+    <name>ShortcutEdit</name>
+    <message>
+        <location filename="../src/shortcut_edit.cpp" line="36"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/shortcut_edit.cpp" line="39"/>
+        <source>Reset to Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/symbols_dialog.cpp" line="203"/>
+        <source>Shortcut:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SmartQuote</name>
     <message>
         <location filename="../src/smart_quotes.cpp" line="113"/>
@@ -691,27 +709,27 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ignorieren</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle I&amp;gnorieren</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ändern</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Ä&amp;ndern</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -747,14 +765,60 @@
 <context>
     <name>Stack</name>
     <message>
-        <location filename="../src/stack.cpp" line="409"/>
+        <location filename="../src/stack.cpp" line="413"/>
         <source>Question</source>
         <translation>Frage</translation>
     </message>
     <message>
-        <location filename="../src/stack.cpp" line="409"/>
+        <location filename="../src/stack.cpp" line="413"/>
         <source>Remove all formatting from the current file?</source>
         <translation>Alle Formatierungen im vorliegenden Text entfernen?</translation>
+    </message>
+</context>
+<context>
+    <name>SymbolsDialog</name>
+    <message>
+        <location filename="../src/symbols_dialog.cpp" line="96"/>
+        <source>Symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/symbols_dialog.cpp" line="103"/>
+        <source>Recently used symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/symbols_dialog.cpp" line="126"/>
+        <source>All symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/symbols_dialog.cpp" line="179"/>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/symbols_dialog.cpp" line="205"/>
+        <source>Name:</source>
+        <translation type="unfinished">Name:</translation>
+    </message>
+    <message>
+        <location filename="../src/symbols_dialog.cpp" line="215"/>
+        <source>Insert</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SymbolsModel</name>
+    <message>
+        <location filename="../src/symbols_model.cpp" line="91"/>
+        <source>Blocks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/symbols_model.cpp" line="91"/>
+        <source>Scripts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -907,52 +971,52 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="202"/>
         <source>Spacings</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstände</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="204"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeilenabstand</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="208"/>
         <source>Single</source>
-        <translation type="unfinished">Einfach</translation>
+        <translation>Einzeilig</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="208"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1,5zeilig</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="208"/>
         <source>Double</source>
-        <translation type="unfinished">Doppelt</translation>
+        <translation>Zweizeilig</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="208"/>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation>Proportional</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="225"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Absatzabstände</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="244"/>
         <source>Indent First Line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erste Zeile Einrücken:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="245"/>
         <source>Pixels Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel darüber:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="246"/>
         <source>Pixels Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel darunter:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="438"/>
@@ -1252,32 +1316,32 @@
     <message>
         <location filename="../src/window.cpp" line="815"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="816"/>
         <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfache Vollbild Textverarbeitung</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="817"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="818"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Herausgegeben unter der &lt;a href=%1&gt;GPL 3&lt;/a&gt; Lizenz</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="819"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Symbole entstammen dem &lt;a href=%1&gt;Oxygen&lt;/a&gt; Symbol-Thema</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="820"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Unter Verwendung der &lt;a href=%1&gt;LGPL 3&lt;/a&gt; Lizenz</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="875"/>
@@ -1454,7 +1518,7 @@
     <message>
         <location filename="../src/window.cpp" line="1230"/>
         <source>Ctrl+Q</source>
-        <translation>Strg+A</translation>
+        <translation>Strg+Q</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1234"/>
@@ -1489,12 +1553,12 @@
     <message>
         <location filename="../src/window.cpp" line="1249"/>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rohtext einfügen</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1249"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Strg+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1251"/>
@@ -1692,97 +1756,102 @@
         <translation>&amp;Wecker...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1323"/>
+        <location filename="../src/window.cpp" line="1321"/>
+        <source>S&amp;ymbols...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1324"/>
         <source>&amp;Settings</source>
         <translation>&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1325"/>
         <source>Show &amp;Toolbar</source>
         <translation>&amp;Symbolleiste zeigen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1329"/>
         <source>Show &amp;Menu Icons</source>
         <translation>&amp;Menu Icons anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1333"/>
+        <location filename="../src/window.cpp" line="1334"/>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hervorgehobener Text</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Vollbild</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1338"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>M&amp;inimize</source>
         <translation>M&amp;inimieren</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>Ctrl+M</source>
         <translation>Strg+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Designs...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1346"/>
+        <location filename="../src/window.cpp" line="1347"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Voreinstellungen...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1354"/>
+        <location filename="../src/window.cpp" line="1355"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Absatz</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1366"/>
+        <location filename="../src/window.cpp" line="1367"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1345"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>Application &amp;Language...</source>
         <translation>&amp;Sprache...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1351"/>
-        <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/window.cpp" line="1352"/>
-        <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Off</source>
+        <translation>&amp;Aus</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1353"/>
-        <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <source>One &amp;Line</source>
+        <translation>Eine Zeile</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1367"/>
+        <location filename="../src/window.cpp" line="1354"/>
+        <source>&amp;Three Lines</source>
+        <translation>Drei Zeilen</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1368"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1369"/>
+        <location filename="../src/window.cpp" line="1370"/>
         <source>About &amp;Qt</source>
         <translation>Über &amp;Qt</translation>
     </message>
