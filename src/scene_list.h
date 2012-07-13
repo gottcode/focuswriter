@@ -53,6 +53,7 @@ private slots:
 	void moveScenesDown();
 	void moveScenesUp();
 	void sceneSelected(const QModelIndex& index);
+	void selectCurrentScene();
 	void setFilter(const QString& filter);
 
 private:

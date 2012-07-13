@@ -168,19 +168,20 @@ bool SceneList::scenesVisible() const
 
 void SceneList::setDocument(Document* document)
 {
+	if (m_document) {
+		disconnect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+	}
 	m_document = 0;
 
 	m_scenes->clearSelection();
 	m_filter->clear();
 	m_filter_model->setSourceModel(document->sceneModel());
 
-	QModelIndex index = document->sceneModel()->findScene(document->text()->textCursor());
-	if (index.isValid()) {
-		index = m_filter_model->mapFromSource(index);
-		m_scenes->setCurrentIndex(index);
-	}
-
 	m_document = document;
+	if (m_document) {
+		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+		selectCurrentScene();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -309,6 +310,24 @@ void SceneList::sceneSelected(const QModelIndex& index)
 		cursor.setPosition(block.position());
 		m_document->text()->setTextCursor(cursor);
 		m_document->centerCursor(true);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::selectCurrentScene()
+{
+	if (!m_document) {
+		return;
+	}
+
+	QModelIndex index = m_document->sceneModel()->findScene(m_document->text()->textCursor());
+	if (index.isValid()) {
+		index = m_filter_model->mapFromSource(index);
+		m_scenes->selectionModel()->blockSignals(true);
+		m_scenes->clearSelection();
+		m_scenes->setCurrentIndex(index);
+		m_scenes->selectionModel()->blockSignals(false);
 	}
 }
 
