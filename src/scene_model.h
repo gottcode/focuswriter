@@ -49,6 +49,7 @@ public:
 	void removeScene(BlockStats* stats);
 	void removeAllScenes();
 	void updateScene(BlockStats* stats, const QTextBlock& block);
+	void setUpdatesBlocked(bool blocked);
 
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
 	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
@@ -77,6 +78,7 @@ private:
 private:
 	QList<Scene> m_scenes;
 	QTextEdit* m_document;
+	int m_updates;
 };
 
 #endif

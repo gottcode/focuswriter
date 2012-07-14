@@ -178,7 +178,8 @@ void SceneList::setDocument(Document* document)
 	m_filter_model->setSourceModel(document->sceneModel());
 
 	m_document = document;
-	if (m_document) {
+	if (m_document && scenesVisible()) {
+		m_document->sceneModel()->setUpdatesBlocked(false);
 		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
 		selectCurrentScene();
 	}
@@ -241,6 +242,11 @@ void SceneList::resizeEvent(QResizeEvent* event)
 
 void SceneList::hideScenes()
 {
+	if (m_document) {
+		m_document->sceneModel()->setUpdatesBlocked(true);
+		disconnect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+	}
+
 	m_show_button->show();
 
 	m_hide_button->hide();
@@ -278,6 +284,12 @@ void SceneList::showScenes()
 	setMinimumWidth(qRound(1.5 * logicalDpiX()));
 	setMaximumWidth(m_width);
 
+	if (m_document) {
+		m_document->sceneModel()->setUpdatesBlocked(false);
+		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+		selectCurrentScene();
+	}
+
 	m_scenes->setFocus();
 }
 
@@ -299,7 +311,7 @@ void SceneList::moveScenesUp()
 
 void SceneList::sceneSelected(const QModelIndex& index)
 {
-	if (!m_document) {
+	if (!m_document || !scenesVisible()) {
 		return;
 	}
 
@@ -317,7 +329,7 @@ void SceneList::sceneSelected(const QModelIndex& index)
 
 void SceneList::selectCurrentScene()
 {
-	if (!m_document) {
+	if (!m_document || !scenesVisible()) {
 		return;
 	}
 
@@ -327,6 +339,7 @@ void SceneList::selectCurrentScene()
 		m_scenes->selectionModel()->blockSignals(true);
 		m_scenes->clearSelection();
 		m_scenes->setCurrentIndex(index);
+		m_scenes->scrollTo(index);
 		m_scenes->selectionModel()->blockSignals(false);
 	}
 }

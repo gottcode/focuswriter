@@ -36,7 +36,8 @@ static QList<SceneModel*> f_scene_models;
 
 SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
 	QAbstractListModel(parent),
-	m_document(document)
+	m_document(document),
+	m_updates(0)
 {
 	setSupportedDragActions(Qt::MoveAction);
 	connect(m_document->document(), SIGNAL(blockCountChanged(int)), this, SLOT(invalidateScenes()));
@@ -111,11 +112,18 @@ void SceneModel::removeAllScenes()
 
 void SceneModel::updateScene(BlockStats* stats, const QTextBlock& block)
 {
+	// Flag scenes out-of-date
+	if (m_updates < 1) {
+		m_updates = -1;
+		return;
+	}
+
 	QString text = block.text();
 	bool was_scene = stats->isScene();
 	bool is_scene = text.startsWith(f_scene_divider);
 	stats->setScene(is_scene || (block.blockNumber() == 0));
 	if (stats->isScene()) {
+		// Add or update scene divider block
 		text = is_scene ? text.mid(f_scene_divider.length()).trimmed() : text;
 		if (was_scene) {
 			updateScene(stats, text);
@@ -127,6 +135,16 @@ void SceneModel::updateScene(BlockStats* stats, const QTextBlock& block)
 	} else {
 		updateScene(block);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneModel::setUpdatesBlocked(bool blocked)
+{
+	if (!blocked) {
+		resetScenes();
+	}
+	m_updates = !blocked;
 }
 
 //-----------------------------------------------------------------------------
@@ -335,6 +353,11 @@ void SceneModel::setSceneDivider(const QString& divider)
 
 void SceneModel::selectScene()
 {
+	// Make sure scenes are up-to-date
+	if (m_updates == -1) {
+		resetScenes();
+	}
+
 	QTextCursor cursor = m_document->textCursor();
 	cursor.clearSelection();
 
@@ -432,14 +455,36 @@ void SceneModel::resetScenes()
 	removeAllScenes();
 
 	// Check all blocks for new scenes
+	QList<Scene> scenes;
 	QTextBlock block = m_document->document()->begin();
 	while (block.isValid()) {
 		BlockStats* stats = static_cast<BlockStats*>(block.userData());
 		if (stats) {
-			stats->setScene(false);
-			updateScene(stats, block);
+			// Check if block is a scene
+			QString text = block.text();
+			bool is_scene = text.startsWith(f_scene_divider);
+			stats->setScene(is_scene || (block.blockNumber() == 0));
+
+			// Add scene
+			if (stats->isScene()) {
+				text = is_scene ? text.mid(f_scene_divider.length()).trimmed() : text;
+				Scene scene = { stats, text, QString(), block.blockNumber(), true };
+				scenes += scene;
+			}
 		}
 		block = block.next();
+	}
+
+	// Add all found scenes
+	if (!scenes.isEmpty()) {
+		beginInsertRows(QModelIndex(), 0, scenes.count() - 1);
+		m_scenes = scenes;
+		endInsertRows();
+	}
+
+	// Remove out-of-date flag
+	if (m_updates == -1) {
+		m_updates = 0;
 	}
 }
 
