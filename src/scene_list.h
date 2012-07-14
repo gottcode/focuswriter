@@ -41,6 +41,10 @@ public:
 
 	void setDocument(Document* document);
 
+public slots:
+	void hideScenes();
+	void showScenes();
+
 protected:
 	void mouseMoveEvent(QMouseEvent* event);
 	void mousePressEvent(QMouseEvent* event);
@@ -48,8 +52,6 @@ protected:
 	void resizeEvent(QResizeEvent* event);
 
 private slots:
-	void hideScenes();
-	void showScenes();
 	void moveScenesDown();
 	void moveScenesUp();
 	void sceneSelected(const QModelIndex& index);

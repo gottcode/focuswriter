@@ -187,59 +187,6 @@ void SceneList::setDocument(Document* document)
 
 //-----------------------------------------------------------------------------
 
-void SceneList::mouseMoveEvent(QMouseEvent* event)
-{
-	if (m_resizing) {
-		int delta = event->pos().x() - m_mouse_current.x();
-		m_mouse_current = event->pos();
-
-		m_width += delta;
-		m_width = qMax(minimumWidth(), m_width);
-		setMaximumWidth(m_width);
-
-		event->accept();
-	} else {
-		QFrame::mouseMoveEvent(event);
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void SceneList::mousePressEvent(QMouseEvent* event)
-{
-	if (scenesVisible() &&
-			(event->button() == Qt::LeftButton) &&
-			(event->pos().x() >= m_resizer->mapToParent(m_resizer->rect().topLeft()).x())) {
-		m_width = width();
-		m_mouse_current = event->pos();
-		m_resizing = true;
-
-		event->accept();
-	} else {
-		QFrame::mousePressEvent(event);
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void SceneList::mouseReleaseEvent(QMouseEvent* event)
-{
-	if (event->button() == Qt::LeftButton) {
-		m_resizing = false;
-	}
-	QFrame::mouseReleaseEvent(event);
-}
-
-//-----------------------------------------------------------------------------
-
-void SceneList::resizeEvent(QResizeEvent* event)
-{
-	m_scenes->scrollTo(m_scenes->currentIndex());
-	QFrame::resizeEvent(event);
-}
-
-//-----------------------------------------------------------------------------
-
 void SceneList::hideScenes()
 {
 	if (m_document) {
@@ -291,6 +238,59 @@ void SceneList::showScenes()
 	}
 
 	m_scenes->setFocus();
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::mouseMoveEvent(QMouseEvent* event)
+{
+	if (m_resizing) {
+		int delta = event->pos().x() - m_mouse_current.x();
+		m_mouse_current = event->pos();
+
+		m_width += delta;
+		m_width = qMax(minimumWidth(), m_width);
+		setMaximumWidth(m_width);
+
+		event->accept();
+	} else {
+		QFrame::mouseMoveEvent(event);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::mousePressEvent(QMouseEvent* event)
+{
+	if (scenesVisible() &&
+			(event->button() == Qt::LeftButton) &&
+			(event->pos().x() >= m_resizer->mapToParent(m_resizer->rect().topLeft()).x())) {
+		m_width = width();
+		m_mouse_current = event->pos();
+		m_resizing = true;
+
+		event->accept();
+	} else {
+		QFrame::mousePressEvent(event);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::mouseReleaseEvent(QMouseEvent* event)
+{
+	if (event->button() == Qt::LeftButton) {
+		m_resizing = false;
+	}
+	QFrame::mouseReleaseEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::resizeEvent(QResizeEvent* event)
+{
+	m_scenes->scrollTo(m_scenes->currentIndex());
+	QFrame::resizeEvent(event);
 }
 
 //-----------------------------------------------------------------------------

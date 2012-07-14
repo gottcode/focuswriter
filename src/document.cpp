@@ -769,6 +769,8 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 		if (event->isAccepted()) {
 			return true;
 		}
+	} else if (event->type() == QEvent::MouseButtonPress) {
+		m_scene_list->hideScenes();
 	}
 	return QWidget::eventFilter(watched, event);
 }
@@ -821,6 +823,14 @@ void Document::centerCursor(bool force)
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
 		scrollbar->setValue(scrollbar->value() - offset.y());
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::mousePressEvent(QMouseEvent* event)
+{
+	m_scene_list->hideScenes();
+	QWidget::mousePressEvent(event);
 }
 
 //-----------------------------------------------------------------------------
