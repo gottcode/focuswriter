@@ -30,59 +30,59 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="310"/>
-        <location filename="../src/document.cpp" line="327"/>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="363"/>
-        <location filename="../src/document.cpp" line="452"/>
-        <location filename="../src/document.cpp" line="466"/>
+        <location filename="../src/document.cpp" line="317"/>
+        <location filename="../src/document.cpp" line="334"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="370"/>
+        <location filename="../src/document.cpp" line="459"/>
+        <location filename="../src/document.cpp" line="473"/>
         <source>Sorry</source>
         <translation>Tyvärr</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="310"/>
+        <location filename="../src/document.cpp" line="317"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Kunde inte spara &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="323"/>
-        <location filename="../src/document.cpp" line="695"/>
+        <location filename="../src/document.cpp" line="330"/>
+        <location filename="../src/document.cpp" line="702"/>
         <source>Save File As</source>
         <translation>Spara fil som</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="327"/>
-        <location filename="../src/document.cpp" line="359"/>
+        <location filename="../src/document.cpp" line="334"/>
+        <location filename="../src/document.cpp" line="366"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Kunde inte skriva över &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="355"/>
+        <location filename="../src/document.cpp" line="362"/>
         <source>Rename File</source>
         <translation>Byt namn på fil</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="363"/>
+        <location filename="../src/document.cpp" line="370"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Kunde inte byta namn på filen &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1073"/>
+        <location filename="../src/document.cpp" line="1111"/>
         <source>Plain Text (*.txt)</source>
         <translation>Vanlig text (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1074"/>
+        <location filename="../src/document.cpp" line="1112"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument-text (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1075"/>
+        <location filename="../src/document.cpp" line="1113"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1076"/>
+        <location filename="../src/document.cpp" line="1114"/>
         <source>All Files (*)</source>
         <translation>Alla filer (*)</translation>
     </message>
@@ -257,277 +257,287 @@
         <translation>Stavningskontroll</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="361"/>
+        <location filename="../src/preferences_dialog.cpp" line="365"/>
         <source>Select Dictionary</source>
         <translation>Välj ordbok</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="375"/>
-        <location filename="../src/preferences_dialog.cpp" line="471"/>
+        <location filename="../src/preferences_dialog.cpp" line="379"/>
+        <location filename="../src/preferences_dialog.cpp" line="475"/>
         <source>Sorry</source>
         <translation>Tyvärr</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="375"/>
+        <location filename="../src/preferences_dialog.cpp" line="379"/>
         <source>Unable to open archive.</source>
         <translation>Kunde inte öppna arkivet.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="383"/>
+        <location filename="../src/preferences_dialog.cpp" line="387"/>
         <source>Unable to read archive metadata.</source>
         <translation>Kunde inte läsa arkivets metadata.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="409"/>
+        <location filename="../src/preferences_dialog.cpp" line="413"/>
         <source>The archive does not contain a usable dictionary.</source>
         <translation>Arkivet innehåller ingen användbar ordbok.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="426"/>
+        <location filename="../src/preferences_dialog.cpp" line="430"/>
         <source>Unable to open file &apos;%1&apos;.</source>
         <translation>Kunde inte öppna filen &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="437"/>
+        <location filename="../src/preferences_dialog.cpp" line="441"/>
         <source>Unable to close file &apos;%1&apos;.</source>
         <translation>Kunde inte stänga filen &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="457"/>
-        <location filename="../src/preferences_dialog.cpp" line="486"/>
+        <location filename="../src/preferences_dialog.cpp" line="461"/>
+        <location filename="../src/preferences_dialog.cpp" line="490"/>
         <source>Question</source>
         <translation>Fråga</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="457"/>
+        <location filename="../src/preferences_dialog.cpp" line="461"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
         <translation>Ordboken &quot;%1&quot; finns redan. Vill du ersätta den?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="486"/>
+        <location filename="../src/preferences_dialog.cpp" line="490"/>
         <source>Remove current dictionary?</source>
         <translation>Ta bort aktuell ordbok?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="547"/>
+        <location filename="../src/preferences_dialog.cpp" line="551"/>
         <source>Daily Goal</source>
         <translation>Dagligt mål</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="549"/>
+        <location filename="../src/preferences_dialog.cpp" line="553"/>
         <source>None</source>
         <translation>Inget</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="551"/>
+        <location filename="../src/preferences_dialog.cpp" line="555"/>
         <source>Minutes:</source>
         <translation>Minuter:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="563"/>
-        <location filename="../src/preferences_dialog.cpp" line="681"/>
+        <location filename="../src/preferences_dialog.cpp" line="567"/>
+        <location filename="../src/preferences_dialog.cpp" line="696"/>
         <source>Words:</source>
         <translation>Ord:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="581"/>
+        <location filename="../src/preferences_dialog.cpp" line="585"/>
         <source>Editing</source>
         <translation>Redigering</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="583"/>
+        <location filename="../src/preferences_dialog.cpp" line="587"/>
         <source>Always vertically center</source>
         <translation>Centrera alltid vertikalt</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="584"/>
+        <location filename="../src/preferences_dialog.cpp" line="588"/>
         <source>Block insertion cursor</source>
         <translation>Blockmarkör för infogning</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="585"/>
+        <location filename="../src/preferences_dialog.cpp" line="589"/>
         <source>Default to rich text</source>
         <translation>Rich text är standard</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="586"/>
+        <location filename="../src/preferences_dialog.cpp" line="590"/>
         <source>Smooth fonts</source>
         <translation>Mjuka typsnitt</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="587"/>
+        <location filename="../src/preferences_dialog.cpp" line="591"/>
         <source>Typewriter sounds</source>
         <translation>Skrivmaskinsljud</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="589"/>
+        <location filename="../src/preferences_dialog.cpp" line="593"/>
         <source>Smart quotes:</source>
         <translation>Smarta citationstecken:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="596"/>
+        <location filename="../src/preferences_dialog.cpp" line="600"/>
         <source>Double</source>
         <translation>Dubbel</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="597"/>
+        <location filename="../src/preferences_dialog.cpp" line="601"/>
         <source>Single</source>
         <translation>Enkel</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="619"/>
+        <location filename="../src/preferences_dialog.cpp" line="623"/>
+        <source>Scenes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/preferences_dialog.cpp" line="630"/>
+        <source>Divider:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/preferences_dialog.cpp" line="633"/>
         <source>Saving</source>
         <translation>Spara</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="621"/>
+        <location filename="../src/preferences_dialog.cpp" line="635"/>
         <source>Automatically save changes</source>
         <translation>Spara automatiskt ändringar</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="622"/>
+        <location filename="../src/preferences_dialog.cpp" line="636"/>
         <source>Remember cursor position</source>
         <translation>Kom ihåg markörposition</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="645"/>
+        <location filename="../src/preferences_dialog.cpp" line="660"/>
         <source>Contents</source>
         <translation>Innehåll</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="647"/>
+        <location filename="../src/preferences_dialog.cpp" line="662"/>
         <source>Word count</source>
         <translation>Antal ord</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="648"/>
+        <location filename="../src/preferences_dialog.cpp" line="663"/>
         <source>Page count</source>
         <translation>Antal sidor</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="649"/>
+        <location filename="../src/preferences_dialog.cpp" line="664"/>
         <source>Paragraph count</source>
         <translation>Antal stycken</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="650"/>
+        <location filename="../src/preferences_dialog.cpp" line="665"/>
         <source>Character count</source>
         <translation>Antal tecken</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="659"/>
+        <location filename="../src/preferences_dialog.cpp" line="674"/>
         <source>Page Size</source>
         <translation>Sidstorlek</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="661"/>
+        <location filename="../src/preferences_dialog.cpp" line="676"/>
         <source>Characters:</source>
         <translation>Tecken:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="671"/>
+        <location filename="../src/preferences_dialog.cpp" line="686"/>
         <source>Paragraphs:</source>
         <translation>Stycken:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="697"/>
+        <location filename="../src/preferences_dialog.cpp" line="712"/>
         <source>Word Count Algorithm</source>
         <translation>Algoritm för ordantal</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="699"/>
+        <location filename="../src/preferences_dialog.cpp" line="714"/>
         <source>Detect word boundaries</source>
         <translation>Identifiera ordgränser</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="700"/>
+        <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Divide character count by six</source>
         <translation>Dela teckenantal med sex</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="723"/>
+        <location filename="../src/preferences_dialog.cpp" line="738"/>
         <source>Style</source>
         <translation>Stil</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="726"/>
+        <location filename="../src/preferences_dialog.cpp" line="741"/>
         <source>Icons Only</source>
         <translation>Endast ikoner</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="727"/>
+        <location filename="../src/preferences_dialog.cpp" line="742"/>
         <source>Text Only</source>
         <translation>Endast text</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="728"/>
+        <location filename="../src/preferences_dialog.cpp" line="743"/>
         <source>Text Alongside Icons</source>
         <translation>Text bredvid ikoner</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="729"/>
+        <location filename="../src/preferences_dialog.cpp" line="744"/>
         <source>Text Under Icons</source>
         <translation>Text under ikoner</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="733"/>
+        <location filename="../src/preferences_dialog.cpp" line="748"/>
         <source>Text Position:</source>
         <translation>Textposition:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="736"/>
+        <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>Actions</source>
         <translation>Åtgärder</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="749"/>
+        <location filename="../src/preferences_dialog.cpp" line="764"/>
         <source>Move Up</source>
         <translation>Flytta uppåt</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="751"/>
+        <location filename="../src/preferences_dialog.cpp" line="766"/>
         <source>Move Down</source>
         <translation>Flytta nedåt</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="753"/>
+        <location filename="../src/preferences_dialog.cpp" line="768"/>
         <source>Add Separator</source>
         <translation>Lägg till avgränsare</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="782"/>
+        <location filename="../src/preferences_dialog.cpp" line="797"/>
         <source>Check spelling as you type</source>
         <translation>Kontrollera stavning när du skriver</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="783"/>
+        <location filename="../src/preferences_dialog.cpp" line="798"/>
         <source>Ignore words in UPPERCASE</source>
         <translation>Ignorera ord med VERSALER</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="784"/>
+        <location filename="../src/preferences_dialog.cpp" line="799"/>
         <source>Ignore words with numbers</source>
         <translation>Ignorera ord med siffror</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="797"/>
+        <location filename="../src/preferences_dialog.cpp" line="812"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="802"/>
-        <location filename="../src/preferences_dialog.cpp" line="827"/>
+        <location filename="../src/preferences_dialog.cpp" line="817"/>
+        <location filename="../src/preferences_dialog.cpp" line="842"/>
         <source>Add</source>
         <translation>Lägg till</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="805"/>
-        <location filename="../src/preferences_dialog.cpp" line="839"/>
+        <location filename="../src/preferences_dialog.cpp" line="820"/>
+        <location filename="../src/preferences_dialog.cpp" line="854"/>
         <source>Remove</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="822"/>
+        <location filename="../src/preferences_dialog.cpp" line="837"/>
         <source>Personal Dictionary</source>
         <translation>Personlig ordbok</translation>
     </message>
@@ -554,6 +564,45 @@
         <location filename="../src/odt_reader.cpp" line="90"/>
         <source>Unable to close file &apos;%1&apos;.</source>
         <translation>Kunde inte stänga filen &quot;%1&quot;.</translation>
+    </message>
+</context>
+<context>
+    <name>SceneList</name>
+    <message>
+        <location filename="../src/scene_list.cpp" line="84"/>
+        <source>Ctrl+Shift+Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scene_list.cpp" line="85"/>
+        <source>Ctrl+Shift+Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scene_list.cpp" line="89"/>
+        <location filename="../src/scene_list.cpp" line="98"/>
+        <source>Shift+F4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scene_list.cpp" line="90"/>
+        <source>Show scene list (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scene_list.cpp" line="99"/>
+        <source>Hide scene list (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scene_list.cpp" line="128"/>
+        <source>Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/scene_list.cpp" line="136"/>
+        <source>Resize scene list</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -765,12 +814,12 @@
 <context>
     <name>Stack</name>
     <message>
-        <location filename="../src/stack.cpp" line="413"/>
+        <location filename="../src/stack.cpp" line="423"/>
         <source>Question</source>
         <translation>Fråga</translation>
     </message>
     <message>
-        <location filename="../src/stack.cpp" line="413"/>
+        <location filename="../src/stack.cpp" line="423"/>
         <source>Remove all formatting from the current file?</source>
         <translation>Ta bort all formatering från den aktuella filen?</translation>
     </message>
@@ -1385,7 +1434,7 @@
     </message>
     <message>
         <location filename="../src/window.cpp" line="315"/>
-        <location filename="../src/window.cpp" line="1162"/>
+        <location filename="../src/window.cpp" line="1163"/>
         <source>(Untitled %1)</source>
         <translation>(Namnlös %1)</translation>
     </message>
@@ -1451,407 +1500,417 @@
         <translation>Kunde inte läsa in skrivmaskinsljud.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1165"/>
+        <location filename="../src/window.cpp" line="1166"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (skrivskyddad)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1210"/>
+        <location filename="../src/window.cpp" line="1211"/>
         <source>&amp;File</source>
         <translation>&amp;Arkiv</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1211"/>
+        <location filename="../src/window.cpp" line="1212"/>
         <source>&amp;New</source>
         <translation>&amp;Nytt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1212"/>
+        <location filename="../src/window.cpp" line="1213"/>
         <source>&amp;Open...</source>
         <translation>&amp;Öppna...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1214"/>
+        <location filename="../src/window.cpp" line="1215"/>
         <source>&amp;Save</source>
         <translation>&amp;Spara</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1216"/>
+        <location filename="../src/window.cpp" line="1217"/>
         <source>Save &amp;As...</source>
         <translation>Spara so&amp;m...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1217"/>
+        <location filename="../src/window.cpp" line="1218"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Byt namn...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1219"/>
+        <location filename="../src/window.cpp" line="1220"/>
         <source>Save A&amp;ll</source>
         <translation>Spara a&amp;lla</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1222"/>
+        <location filename="../src/window.cpp" line="1223"/>
         <source>Manage Sessions</source>
         <translation>Hantera sessioner</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1224"/>
+        <location filename="../src/window.cpp" line="1225"/>
         <source>New Session</source>
         <translation>Ny session</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1227"/>
+        <location filename="../src/window.cpp" line="1228"/>
         <source>&amp;Print...</source>
         <translation>Skriv &amp;ut...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1229"/>
+        <location filename="../src/window.cpp" line="1230"/>
         <source>&amp;Close</source>
         <translation>S&amp;täng</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1230"/>
+        <location filename="../src/window.cpp" line="1231"/>
         <source>&amp;Quit</source>
         <translation>A&amp;vsluta</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1230"/>
+        <location filename="../src/window.cpp" line="1231"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1234"/>
+        <location filename="../src/window.cpp" line="1235"/>
         <source>&amp;Edit</source>
         <translation>R&amp;edigera</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1235"/>
+        <location filename="../src/window.cpp" line="1236"/>
         <source>&amp;Undo</source>
         <translation>&amp;Ångra</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1238"/>
+        <location filename="../src/window.cpp" line="1239"/>
         <source>&amp;Redo</source>
         <translation>&amp;Gör om</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1242"/>
+        <location filename="../src/window.cpp" line="1243"/>
         <source>Cu&amp;t</source>
         <translation>Klipp &amp;ut</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1245"/>
+        <location filename="../src/window.cpp" line="1246"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopiera</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1248"/>
+        <location filename="../src/window.cpp" line="1249"/>
         <source>&amp;Paste</source>
         <translation>Klistra &amp;in</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1249"/>
+        <location filename="../src/window.cpp" line="1250"/>
         <source>Paste &amp;Unformatted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1249"/>
+        <location filename="../src/window.cpp" line="1250"/>
         <source>Ctrl+Shift+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1251"/>
+        <location filename="../src/window.cpp" line="1252"/>
         <source>Select &amp;All</source>
         <translation>Markera &amp;allt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1254"/>
+        <location filename="../src/window.cpp" line="1253"/>
+        <source>Select &amp;Scene</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1253"/>
+        <source>Ctrl+Shift+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1256"/>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmatera</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1256"/>
+        <location filename="../src/window.cpp" line="1258"/>
         <source>&amp;Bold</source>
         <translation>&amp;Fet</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1258"/>
+        <location filename="../src/window.cpp" line="1260"/>
         <source>&amp;Italic</source>
         <translation>&amp;Kursiv</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1260"/>
+        <location filename="../src/window.cpp" line="1262"/>
         <source>&amp;Underline</source>
         <translation>&amp;Understruken</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1262"/>
+        <location filename="../src/window.cpp" line="1264"/>
         <source>Stri&amp;kethrough</source>
         <translation>G&amp;enomstruken</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1262"/>
+        <location filename="../src/window.cpp" line="1264"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1264"/>
+        <location filename="../src/window.cpp" line="1266"/>
         <source>Sup&amp;erscript</source>
         <translation>Upphö&amp;jd</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1264"/>
+        <location filename="../src/window.cpp" line="1266"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1266"/>
+        <location filename="../src/window.cpp" line="1268"/>
         <source>&amp;Subscript</source>
         <translation>Nedsän&amp;kt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1266"/>
+        <location filename="../src/window.cpp" line="1268"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1270"/>
+        <location filename="../src/window.cpp" line="1272"/>
         <source>Align &amp;Left</source>
         <translation>Justera &amp;vänster</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1270"/>
+        <location filename="../src/window.cpp" line="1272"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1272"/>
+        <location filename="../src/window.cpp" line="1274"/>
         <source>Align &amp;Center</source>
         <translation>Justera &amp;mitten</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1272"/>
+        <location filename="../src/window.cpp" line="1274"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1274"/>
+        <location filename="../src/window.cpp" line="1276"/>
         <source>Align &amp;Right</source>
         <translation>Justera &amp;höger</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1274"/>
+        <location filename="../src/window.cpp" line="1276"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1276"/>
+        <location filename="../src/window.cpp" line="1278"/>
         <source>Align &amp;Justify</source>
         <translation>&amp;Justera</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1276"/>
+        <location filename="../src/window.cpp" line="1278"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1286"/>
+        <location filename="../src/window.cpp" line="1288"/>
         <source>&amp;Decrease Indent</source>
         <translation>&amp;Minska indragning</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1286"/>
+        <location filename="../src/window.cpp" line="1288"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1287"/>
+        <location filename="../src/window.cpp" line="1289"/>
         <source>I&amp;ncrease Indent</source>
         <translation>Öka in&amp;dragning</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1287"/>
+        <location filename="../src/window.cpp" line="1289"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1290"/>
+        <location filename="../src/window.cpp" line="1292"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>Vänster till &amp;högerblock</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1292"/>
+        <location filename="../src/window.cpp" line="1294"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Höger till &amp;vänsterblock</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1300"/>
+        <location filename="../src/window.cpp" line="1302"/>
         <source>&amp;Make Plain Text</source>
         <translation>&amp;Gör till vanlig text</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1301"/>
+        <location filename="../src/window.cpp" line="1303"/>
         <source>&amp;Make Rich Text</source>
         <translation>&amp;Gör till rich text</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1305"/>
+        <location filename="../src/window.cpp" line="1307"/>
         <source>&amp;Tools</source>
         <translation>Ver&amp;ktyg</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1306"/>
+        <location filename="../src/window.cpp" line="1308"/>
         <source>&amp;Find...</source>
         <translation>&amp;Sök...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1307"/>
+        <location filename="../src/window.cpp" line="1309"/>
         <source>Find &amp;Next</source>
         <translation>Sök &amp;nästa</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1310"/>
+        <location filename="../src/window.cpp" line="1312"/>
         <source>Find Pre&amp;vious</source>
         <translation>Sök &amp;föregående</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1313"/>
+        <location filename="../src/window.cpp" line="1315"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Ersätt...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1313"/>
+        <location filename="../src/window.cpp" line="1315"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1315"/>
+        <location filename="../src/window.cpp" line="1317"/>
         <source>Smart &amp;Quotes</source>
         <translation>Smarta &amp;citationstecken</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1316"/>
+        <location filename="../src/window.cpp" line="1318"/>
         <source>Update &amp;Document</source>
         <translation>Uppdatera &amp;dokument</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1317"/>
+        <location filename="../src/window.cpp" line="1319"/>
         <source>Update &amp;Selection</source>
         <translation>Uppdatera &amp;markering</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1319"/>
+        <location filename="../src/window.cpp" line="1321"/>
         <source>&amp;Spelling...</source>
         <translation>Sta&amp;vning...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1319"/>
+        <location filename="../src/window.cpp" line="1321"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1320"/>
+        <location filename="../src/window.cpp" line="1322"/>
         <source>&amp;Timers...</source>
         <translation>&amp;Tidtagare...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1323"/>
         <source>S&amp;ymbols...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1326"/>
         <source>&amp;Settings</source>
         <translation>&amp;Inställningar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1325"/>
+        <location filename="../src/window.cpp" line="1327"/>
         <source>Show &amp;Toolbar</source>
         <translation>Visa &amp;verktygsrad</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1329"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>Show &amp;Menu Icons</source>
         <translation>Visa &amp;menyikoner</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1334"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>F&amp;ocused Text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1336"/>
+        <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Helskärm</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1336"/>
+        <location filename="../src/window.cpp" line="1338"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1338"/>
+        <location filename="../src/window.cpp" line="1340"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1342"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>M&amp;inimize</source>
         <translation>Mi&amp;nimera</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1342"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1344"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Teman...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1349"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Inställningar...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1355"/>
+        <location filename="../src/window.cpp" line="1357"/>
         <source>&amp;Paragraph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1367"/>
+        <location filename="../src/window.cpp" line="1369"/>
         <source>&amp;Help</source>
         <translation>&amp;Hjälp</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1346"/>
+        <location filename="../src/window.cpp" line="1348"/>
         <source>Application &amp;Language...</source>
         <translation>Programs&amp;pråk...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1352"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>&amp;Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1353"/>
+        <location filename="../src/window.cpp" line="1355"/>
         <source>One &amp;Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1354"/>
+        <location filename="../src/window.cpp" line="1356"/>
         <source>&amp;Three Lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1368"/>
+        <location filename="../src/window.cpp" line="1370"/>
         <source>&amp;About</source>
         <translation>&amp;Om</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1370"/>
+        <location filename="../src/window.cpp" line="1372"/>
         <source>About &amp;Qt</source>
         <translation>Om &amp;Qt</translation>
     </message>
