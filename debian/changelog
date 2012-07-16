@@ -1,3 +1,11 @@
+focuswriter (1.3.6-2) unstable; urgency=low
+
+  * Stop using cdbs in debian/rules to fix hardening flags pass-through issue
+  * Merge post-release upstream translations
+  * Include documentation file CREDITS, and continue to include README
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 17 Jul 2012 11:32:40 +0200
+
 focuswriter (1.3.6-1) unstable; urgency=low
 
   * New upstream release
