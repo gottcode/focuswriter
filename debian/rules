@@ -1,11 +1,9 @@
 #!/usr/bin/make -f
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/qmake.mk
+%:
+	dh $@ --parallel
 
-QMAKE = qmake-qt4
-DEB_QMAKE_ARGS = PREFIX=/usr
-
-install/focuswriter::
+override_dh_auto_install:
+	dh_auto_install
 	cd debian/focuswriter/usr/share/pixmaps/ \
 	 && mv focuswriter_32.xpm focuswriter.xpm

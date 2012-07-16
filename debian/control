@@ -3,7 +3,7 @@ Section: editors
 Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
-Build-Depends: cdbs, debhelper (>= 9),
+Build-Depends: debhelper (>= 9),
 	       libqt4-dev,
 	       libhunspell-dev,
 	       libzip-dev,
