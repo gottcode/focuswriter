@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ public:
 	LocaleDialog(QWidget* parent = 0);
 
 	static void loadTranslator(const QString& appname);
+	static QString languageName(const QString& language);
 
 public slots:
 	virtual void accept();

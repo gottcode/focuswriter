@@ -51,6 +51,15 @@
 #include <QTextStream>
 #include <QTimer>
 
+#if defined(Q_OS_MAC)
+#include <sys/fcntl.h>
+#elif defined(Q_OS_UNIX)
+#include <unistd.h>
+#elif defined(Q_OS_WIN)
+#include <windows.h>
+#include <io.h>
+#endif
+
 #include <ctime>
 
 //-----------------------------------------------------------------------------
@@ -72,7 +81,7 @@ namespace
 		QString filename;
 		QDir dir(g_cache_path);
 		do {
-			filename = QString("fw_%1").arg(qrand(), 6, 36);
+			filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
 		} while (dir.exists(filename));
 		return filename;
 	}
@@ -159,6 +168,7 @@ namespace
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
 	m_cache_filename(randomCacheFilename()),
+	m_cache_outdated(false),
 	m_index(0),
 	m_always_center(false),
 	m_rich_text(false),
@@ -261,7 +271,10 @@ bool Document::isReadOnly() const
 
 void Document::cache()
 {
-	writeFile(g_cache_path + m_cache_filename);
+	if (m_cache_outdated) {
+		m_cache_outdated = false;
+		writeFile(g_cache_path + m_cache_filename, false);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -278,8 +291,9 @@ bool Document::save()
 	}
 
 	// Write file to disk
-	bool saved = writeFile(m_filename);
+	bool saved = writeFile(m_filename, true);
 	if (saved) {
+		m_cache_outdated = false;
 		QFile::remove(g_cache_path + m_cache_filename);
 		QFile::copy(m_filename, g_cache_path + m_cache_filename);
 	} else {
@@ -287,7 +301,7 @@ bool Document::save()
 	}
 
 	if (!saved) {
-		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save '%1'.").arg(m_filename));
+		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save '%1'.").arg(QDir::toNativeSeparators(m_filename)));
 		return false;
 	}
 
@@ -304,7 +318,7 @@ bool Document::saveAs()
 	if (!filename.isEmpty()) {
 		filename = fileNameWithExtension(filename, selected);
 		if (QFile::exists(filename) && !QFile::remove(filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(filename));
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 			return false;
 		}
 		qSwap(m_filename, filename);
@@ -336,11 +350,11 @@ bool Document::rename()
 	if (!filename.isEmpty()) {
 		filename = fileNameWithExtension(filename, selected);
 		if (QFile::exists(filename) && !QFile::remove(filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(filename));
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 			return false;
 		}
 		if (!QFile::rename(m_filename, filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(m_filename));
+			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(QDir::toNativeSeparators(m_filename)));
 			return false;
 		}
 		m_filename = filename;
@@ -380,8 +394,10 @@ void Document::print()
 
 //-----------------------------------------------------------------------------
 
-void Document::loadFile(const QString& filename, int position)
+bool Document::loadFile(const QString& filename, int position)
 {
+	bool loaded = true;
+
 	if (filename.isEmpty()) {
 		m_text->setReadOnly(false);
 
@@ -391,7 +407,7 @@ void Document::loadFile(const QString& filename, int position)
 		connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 		connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
 
-		return;
+		return loaded;
 	}
 
 	bool enabled = m_highlighter->enabled();
@@ -423,13 +439,15 @@ void Document::loadFile(const QString& filename, int position)
 			file.close();
 		}
 	} else {
-		if (filename.endsWith(".odt")) {
+		if (m_filename.endsWith(".odt")) {
 			ODT::Reader reader;
 			reader.read(filename, document);
 			if (reader.hasError()) {
 				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				loaded = false;
+				position = -1;
 			}
-		} else if (filename.endsWith(".rtf")) {
+		} else {
 			QFile file(filename);
 			if (file.open(QIODevice::ReadOnly)) {
 				RTF::Reader reader;
@@ -440,6 +458,8 @@ void Document::loadFile(const QString& filename, int position)
 				file.close();
 				if (reader.hasError()) {
 					QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+					loaded = false;
+					position = -1;
 				}
 			}
 		}
@@ -471,6 +491,8 @@ void Document::loadFile(const QString& filename, int position)
 	}
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+
+	return loaded;
 }
 
 //-----------------------------------------------------------------------------
@@ -819,6 +841,8 @@ void Document::undoCommandAdded()
 
 void Document::updateWordCount(int position, int removed, int added)
 {
+	m_cache_outdated = true;
+
 	// Change filename and rich text status if necessary because of undo/redo
 	int steps = m_text->document()->availableUndoSteps();
 	if (m_old_states.contains(steps)) {
@@ -1019,11 +1043,11 @@ void Document::updateState()
 
 //-----------------------------------------------------------------------------
 
-bool Document::writeFile(const QString& filename)
+bool Document::writeFile(const QString& filename, bool sync)
 {
 	bool saved = false;
-	QFile file(filename);
-	QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
+	QFile file(filename + ".tmp");
+	QString suffix = m_filename.section(QLatin1Char('.'), -1).toLower();
 	if (!m_rich_text) {
 		if (file.open(QFile::WriteOnly | QFile::Text)) {
 			QTextStream stream(&file);
@@ -1039,7 +1063,7 @@ bool Document::writeFile(const QString& filename)
 			if (suffix == "odt") {
 				QTextDocumentWriter writer(&file, "ODT");
 				saved = writer.write(m_text->document());
-			} else if (suffix == "rtf") {
+			} else {
 				RTF::Writer writer(m_codepage);
 				if (m_codepage.isEmpty()) {
 					m_codepage = writer.codePage();
@@ -1048,9 +1072,24 @@ bool Document::writeFile(const QString& filename)
 			}
 		}
 	}
+
 	if (file.isOpen()) {
-		saved = saved && (file.error() == QFile::NoError);
+		if (sync) {
+#if defined(Q_OS_MAC)
+			saved &= (fcntl(file.handle(), F_FULLFSYNC, NULL) == 0);
+#elif defined(Q_OS_UNIX)
+			saved &= (fsync(file.handle()) == 0);
+#elif defined(Q_OS_WIN)
+			saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
+#endif
+		}
+		saved &= (file.error() == QFile::NoError);
 		file.close();
+	}
+
+	if (saved) {
+		QFile::remove(filename);
+		QFile::rename(filename + ".tmp", filename);
 	}
 	return saved;
 }

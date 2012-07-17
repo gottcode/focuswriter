@@ -78,7 +78,7 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Window::Window(const QStringList& files)
+Window::Window(const QStringList& command_line_files)
 	: m_toolbar(0),
 	m_key_sound(0),
 	m_enter_key_sound(0),
@@ -126,6 +126,10 @@ Window::Window(const QStringList& files)
 
 	// Set up menubar and toolbar
 	initMenus();
+
+	// Set up cache timer
+	m_save_timer = new QTimer(this);
+	m_save_timer->setInterval(600000);
 
 	// Set up details
 	m_footer = new QWidget(contents);
@@ -240,7 +244,7 @@ Window::Window(const QStringList& files)
 	if (!writable) {
 		m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Emergency cache is not writable."), QStringList());
 	}
-	QStringList cachedfiles, datafiles;
+	QStringList files, datafiles;
 	QString cachepath;
 	QStringList entries = QDir(Document::cachePath()).entryList(QDir::Files);
 	if (writable && (entries.count() > 1) && entries.contains("mapping")) {
@@ -272,7 +276,7 @@ Window::Window(const QStringList& files)
 				QString datafile = line.section(' ', 0, 0);
 				QString path = line.section(' ', 1);
 				if (!datafile.isEmpty()) {
-					cachedfiles.append(path);
+					files.append(path);
 					datafiles.append(cachepath + "/" + datafile);
 				}
 			}
@@ -280,13 +284,15 @@ Window::Window(const QStringList& files)
 		}
 
 		// Ask if they want to use cached files
-		if (!cachedfiles.isEmpty()) {
-			QStringList files = cachedfiles;
+		if (!files.isEmpty()) {
+			QStringList filenames;
 			int untitled = 1;
 			int count = files.count();
 			for (int i = 0; i < count; ++i) {
-				if (files.at(i).isEmpty()) {
-					files[i] = tr("(Untitled %1)").arg(untitled);
+				if (!files.at(i).isEmpty()) {
+					filenames.append(QDir::toNativeSeparators(files.at(i)));
+				} else {
+					filenames.append(tr("(Untitled %1)").arg(untitled));
 					untitled++;
 				}
 			}
@@ -295,12 +301,12 @@ Window::Window(const QStringList& files)
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
 			mbox.setInformativeText(tr("Restore from the emergency cache?"));
-			mbox.setDetailedText(files.join("\n"));
+			mbox.setDetailedText(filenames.join("\n"));
 			mbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
 			mbox.setDefaultButton(QMessageBox::Yes);
 			mbox.setIcon(QMessageBox::Warning);
 			if (mbox.exec() == QMessageBox::No) {
-				cachedfiles.clear();
+				files.clear();
 				datafiles.clear();
 			}
 		}
@@ -308,13 +314,13 @@ Window::Window(const QStringList& files)
 
 	// Open previous documents
 	QString session = settings.value("SessionManager/Session").toString();
-	if (cachedfiles.isEmpty() && !files.isEmpty()) {
+	if (files.isEmpty() && !command_line_files.isEmpty()) {
 		session.clear();
-		settings.setValue("Save/Current", files);
+		settings.setValue("Save/Current", command_line_files);
 		settings.setValue("Save/Positions", QStringList());
 		settings.setValue("Save/Active", 0);
 	}
-	m_sessions->setCurrent(session, cachedfiles, datafiles);
+	m_sessions->setCurrent(session, files, datafiles);
 
 	// Remove old cache
 	if (!cachepath.isEmpty()) {
@@ -329,6 +335,8 @@ Window::Window(const QStringList& files)
 	activateWindow();
 	raise();
 	unsetCursor();
+
+	m_save_timer->start();
 }
 
 //-----------------------------------------------------------------------------
@@ -354,7 +362,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	if (!skip.isEmpty()) {
 		QStringList skipped;
 		foreach (int i, skip) {
-			skipped += files.at(i);
+			skipped += QDir::toNativeSeparators(files.at(i));
 		}
 		QMessageBox mbox(window());
 		mbox.setWindowTitle(tr("Sorry"));
@@ -390,14 +398,14 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			skip.removeFirst();
 			continue;
 		} else if (!addDocument(files.at(i), datafiles.at(i), positions.value(i, "-1").toInt())) {
-			missing.append(files.at(i));
+			missing.append(QDir::toNativeSeparators(files.at(i)));
 		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
 			int index = m_documents->currentIndex();
-			missing.append(files.at(i));
+			missing.append(QDir::toNativeSeparators(files.at(i)));
 			m_documents->removeDocument(index);
 			m_tabs->removeTab(index);
 		} else if (m_documents->currentDocument()->isReadOnly() && m_documents->count() > open_files) {
-			readonly.append(files.at(i));
+			readonly.append(QDir::toNativeSeparators(files.at(i)));
 		}
 		open_files = m_documents->count();
 	}
@@ -944,10 +952,13 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
 	m_documents->addDocument(document);
 	document->loadTheme(m_sessions->current()->theme());
-	document->loadFile(datafile, m_save_positions ? position : -1);
-	if (datafile != file) {
-		document->text()->document()->setModified(!compareFiles(file, datafile));
-		QFile::remove(datafile);
+	if (document->loadFile(path, m_save_positions ? position : -1)) {
+		if (datafile != file) {
+			document->text()->document()->setModified(!compareFiles(file, datafile));
+			QFile::remove(datafile);
+		}
+	} else {
+		document->loadFile(file, m_save_positions ? position : -1);
 	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
@@ -1017,11 +1028,11 @@ void Window::loadPreferences(Preferences& preferences)
 
 	m_auto_save = preferences.autoSave();
 	if (m_auto_save) {
-		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
-		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
+		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 	} else {
-		disconnect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
-		connect(m_clock_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
+		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
+		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 	}
 	m_save_positions = preferences.savePositions();
 

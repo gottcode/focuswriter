@@ -39,7 +39,7 @@ class Window : public QMainWindow
 	Q_OBJECT
 
 public:
-	Window(const QStringList& files);
+	Window(const QStringList& command_line_files);
 
 	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);
@@ -114,6 +114,7 @@ private:
 	QLabel* m_progress_label;
 	QLabel* m_clock_label;
 	QTimer* m_clock_timer;
+	QTimer* m_save_timer;
 
 	bool m_fullscreen;
 	bool m_auto_save;

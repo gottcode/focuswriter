@@ -60,7 +60,7 @@ public:
 	bool rename();
 	void checkSpelling();
 	void print();
-	void loadFile(const QString& filename, int position);
+	bool loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
 	void setRichText(bool rich_text);
@@ -106,11 +106,12 @@ private:
 	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
 	void updateSaveLocation();
 	void updateState();
-	bool writeFile(const QString& filename);
+	bool writeFile(const QString& filename, bool sync);
 
 private:
 	QString m_filename;
 	QString m_cache_filename;
+	bool m_cache_outdated;
 	QByteArray m_codepage;
 	QHash<int, QPair<QString, bool> > m_old_states;
 	int m_index;

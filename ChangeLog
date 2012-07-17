@@ -1,3 +1,30 @@
+2012-06-12 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.3.6.
+
+2012-06-11 Graeme Gott <graeme@gottcode.org>
+	* Only use fsync when saving files.
+	* FIXED: Saved cache files more frequently than necessary.
+	* FIXED: Displayed paths did not use native separators.
+
+2012-06-10 Graeme Gott <graeme@gottcode.org>
+	* Increase cache interval to 10 minutes.
+	* Load original file when unable to load cached file.
+	* FIXED: Crashed when loading empty RTF files.
+	* FIXED: Emergency cache files could have broken names.
+	* FIXED: Was not loading data from emergency cache files.
+	* FIXED: Emergency cache was not working for rich text.
+	* FIXED: Data was not always written to disk.
+	* FIXED: Was adding spaces before pasted rich text.
+
+2012-05-26 Morten Juhl-Johansen Zölde-Fejér <mjjzf@syntaktisk.dk>
+	* Add Danish translation.
+
+2012-05-18 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Inserting text resets alignment.
+
+2012-05-11 Graeme Gott <graeme@gottcode.org>
+	* Use translated names for dictionaries.
+
 2012-01-16 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.3.5.2.
 
