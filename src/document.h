@@ -62,6 +62,7 @@ public:
 	bool save();
 	bool saveAs();
 	bool rename();
+	void reload(bool prompt = true);
 	void checkSpelling();
 	void print();
 	bool loadFile(const QString& filename, int position);
@@ -86,6 +87,8 @@ signals:
 	void removeCacheFile(const QString& file);
 	void changed();
 	void changedName();
+	void loadStarted(const QString& path);
+	void loadFinished();
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
 	void scenesVisible(bool visible);

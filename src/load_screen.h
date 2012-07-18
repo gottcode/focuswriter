@@ -31,6 +31,7 @@ class LoadScreen : public QLabel
 public:
 	LoadScreen(QWidget* parent);
 
+public slots:
 	void setText(const QString& step);
 	void finish();
 

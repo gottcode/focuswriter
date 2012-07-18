@@ -92,6 +92,7 @@ public slots:
 	void pasteUnformatted();
 	void print();
 	void redo();
+	void reload();
 	void replace();
 	void save();
 	void saveAs();

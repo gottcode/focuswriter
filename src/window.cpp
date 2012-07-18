@@ -977,7 +977,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	show_load = !file.isEmpty() && !m_documents->loadScreen()->isVisible() && (info.size() > 100000);
 	if (m_documents->loadScreen()->isVisible() || show_load) {
 		if (!file.isEmpty()) {
-			m_documents->loadScreen()->setText(tr("Opening %1").arg(file));
+			m_documents->loadScreen()->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
 		} else {
 			m_documents->loadScreen()->setText("");
 		}
@@ -1031,6 +1031,11 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	if (show_load) {
 		m_documents->loadScreen()->finish();
 	}
+
+	// Allow documents to show load screen on reload
+	connect(document, SIGNAL(loadStarted(QString)), m_documents->loadScreen(), SLOT(setText(QString)));
+	connect(document, SIGNAL(loadFinished()), m_documents->loadScreen(), SLOT(finish()));
+	connect(document, SIGNAL(loadFinished()), this, SLOT(updateSave()));
 
 	return true;
 }
@@ -1211,6 +1216,7 @@ void Window::initMenus()
 	QMenu* file_menu = menuBar()->addMenu(tr("&File"));
 	m_actions["New"] = file_menu->addAction(QIcon::fromTheme("document-new"), tr("&New"), this, SLOT(newDocument()), QKeySequence::New);
 	m_actions["Open"] = file_menu->addAction(QIcon::fromTheme("document-open"), tr("&Open..."), this, SLOT(openDocument()), QKeySequence::Open);
+	m_actions["Reload"] = file_menu->addAction(QIcon::fromTheme("view-refresh"), tr("Reloa&d"), m_documents, SLOT(reload()), QKeySequence::Refresh);
 	file_menu->addSeparator();
 	m_actions["Save"] = file_menu->addAction(QIcon::fromTheme("document-save"), tr("&Save"), m_documents, SLOT(save()), QKeySequence::Save);
 	m_actions["Save"]->setEnabled(false);

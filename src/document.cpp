@@ -46,8 +46,10 @@
 #include <QPainter>
 #include <QPrintDialog>
 #include <QPrinter>
+#include <QPushButton>
 #include <QScrollBar>
 #include <QSettings>
+#include <QStyle>
 #include <QTextBlock>
 #include <QTextEdit>
 #include <QTextStream>
@@ -382,6 +384,44 @@ bool Document::rename()
 
 //-----------------------------------------------------------------------------
 
+void Document::reload(bool prompt)
+{
+	// Abort if there is no file to reload
+	if (m_index) {
+		return;
+	}
+
+	// Confirm that they do want to reload
+	if (prompt) {
+		QMessageBox mbox(window());
+		mbox.setIcon(QMessageBox::Question);
+		mbox.setWindowTitle(tr("Reload File"));
+		mbox.setText(tr("Reload the file %1 from disk?").arg("<i>" + QFileInfo(m_filename).fileName() + "</i>"));
+		mbox.setInformativeText(tr("All unsaved changes will be lost."));
+
+		QPushButton* reload_button = mbox.addButton(tr("Reload"), QMessageBox::AcceptRole);
+		if (reload_button->style()->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons)) {
+			reload_button->setIcon(reload_button->style()->standardIcon(QStyle::SP_BrowserReload));
+		}
+		mbox.addButton(QMessageBox::Cancel);
+		mbox.setDefaultButton(reload_button);
+
+		if (mbox.exec() == QMessageBox::Cancel) {
+			return;
+		}
+	}
+
+	// Reload file
+	emit loadStarted(Window::tr("Opening %1").arg(QDir::toNativeSeparators(m_filename)));
+	m_text->setReadOnly(true);
+	disconnect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
+	disconnect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	loadFile(m_filename, -1);
+	emit loadFinished();
+}
+
+//-----------------------------------------------------------------------------
+
 void Document::checkSpelling()
 {
 	SpellChecker::checkDocument(m_text, m_dictionary);
@@ -435,6 +475,7 @@ bool Document::loadFile(const QString& filename, int position)
 	document->blockSignals(true);
 
 	document->setUndoRedoEnabled(false);
+	document->clear();
 	if (!m_rich_text) {
 		QFile file(filename);
 		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {

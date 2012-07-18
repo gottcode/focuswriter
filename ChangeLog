@@ -1,3 +1,6 @@
+2012-07-18 Graeme Gott <graeme@gottcode.org>
+	* Add option to reload files.
+
 2012-07-14 Graeme Gott <graeme@gottcode.org>
 	* Auto-hide scene list when document is clicked on.
 	* Only update scene list when visible.

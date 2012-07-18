@@ -464,6 +464,13 @@ void Stack::redo()
 
 //-----------------------------------------------------------------------------
 
+void Stack::reload()
+{
+	m_current_document->reload();
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::replace()
 {
 	m_find_dialog->showReplaceMode();
