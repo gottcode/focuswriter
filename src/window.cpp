@@ -22,6 +22,7 @@
 #include "alert_layer.h"
 #include "document.h"
 #include "document_cache.h"
+#include "document_watcher.h"
 #include "load_screen.h"
 #include "locale_dialog.h"
 #include "preferences.h"
@@ -113,6 +114,11 @@ Window::Window(const QStringList& command_line_files)
 	addToolBar(m_toolbar);
 	QWidget* contents = new QWidget(this);
 	setCentralWidget(contents);
+
+	// Set up watcher for documents
+	m_document_watcher = new DocumentWatcher(this);
+	connect(m_document_watcher, SIGNAL(closeDocument(Document*)), this, SLOT(closeDocument(Document*)));
+	connect(m_document_watcher, SIGNAL(showDocument(Document*)), this, SLOT(showDocument(Document*)));
 
 	// Set up thread for caching documents
 	m_document_cache = new DocumentCache;
@@ -549,6 +555,16 @@ void Window::addDocuments(const QString& documents)
 
 //-----------------------------------------------------------------------------
 
+void Window::changeEvent(QEvent* event)
+{
+	if (isActiveWindow()) {
+		m_document_watcher->processUpdates();
+	}
+	QMainWindow::changeEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::dragEnterEvent(QDragEnterEvent* event)
 {
 	if (event->mimeData()->hasUrls()) {
@@ -677,11 +693,46 @@ void Window::closeDocument()
 	if (!saveDocument(index)) {
 		return;
 	}
+
 	if (m_documents->count() == 1) {
 		newDocument();
 	}
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::closeDocument(Document* document)
+{
+	int index = -1;
+	for (int i = 0; i < m_documents->count(); ++i) {
+		if (m_documents->document(i) == document) {
+			index = i;
+			break;
+		}
+	}
+	if (index == -1) {
+		return;
+	}
+
+	if (m_documents->count() == 1) {
+		newDocument();
+	}
+	m_documents->removeDocument(index);
+	m_tabs->removeTab(index);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::showDocument(Document* document)
+{
+	for (int i = 0; i < m_documents->count(); ++i) {
+		if (m_documents->document(i) == document) {
+			m_tabs->setCurrentIndex(i);
+			break;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

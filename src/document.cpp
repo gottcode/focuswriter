@@ -21,6 +21,7 @@
 
 #include "block_stats.h"
 #include "dictionary_manager.h"
+#include "document_watcher.h"
 #include "document_writer.h"
 #include "highlighter.h"
 #include "odt_reader.h"
@@ -299,6 +300,7 @@ bool Document::save()
 	}
 
 	// Write file to disk
+	DocumentWatcher::instance()->removeWatch(this);
 	DocumentWriter writer;
 	writer.setFileName(m_filename);
 	writer.setType(m_filename.section(QLatin1Char('.'), -1));
@@ -314,6 +316,7 @@ bool Document::save()
 	} else {
 		cache();
 	}
+	DocumentWatcher::instance()->addWatch(this);
 
 	if (!saved) {
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save '%1'.").arg(QDir::toNativeSeparators(m_filename)));
@@ -372,7 +375,9 @@ bool Document::rename()
 			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(QDir::toNativeSeparators(m_filename)));
 			return false;
 		}
+		DocumentWatcher::instance()->removeWatch(this);
 		m_filename = filename;
+		DocumentWatcher::instance()->addWatch(this);
 		updateSaveLocation();
 		m_text->document()->setModified(false);
 		emit changedName();
@@ -450,6 +455,7 @@ void Document::print()
 bool Document::loadFile(const QString& filename, int position)
 {
 	bool loaded = true;
+	DocumentWatcher::instance()->removeWatch(this);
 
 	if (filename.isEmpty()) {
 		m_text->setReadOnly(false);
@@ -550,6 +556,9 @@ bool Document::loadFile(const QString& filename, int position)
 		focusText();
 	}
 
+	if (loaded) {
+		DocumentWatcher::instance()->addWatch(this);
+	}
 	return loaded;
 }
 
@@ -740,9 +749,11 @@ void Document::setRichText(bool rich_text)
 		}
 		filename.append(rich_text ? ".rtf" : ".txt");
 		QString selected;
+		DocumentWatcher::instance()->removeWatch(this);
 		m_filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), filename, fileFilter(filename), &selected);
 		if (!m_filename.isEmpty()) {
 			m_filename = fileNameWithExtension(m_filename, selected);
+			DocumentWatcher::instance()->addWatch(this);
 			clearIndex();
 		} else {
 			findIndex();
@@ -1033,10 +1044,12 @@ void Document::updateWordCount(int position, int removed, int added)
 	if (m_old_states.contains(steps)) {
 		const QPair<QString, bool>& state = m_old_states[steps];
 		if (m_filename != state.first) {
+			DocumentWatcher::instance()->removeWatch(this);
 			m_filename = state.first;
 			if (m_filename.isEmpty()) {
 				findIndex();
 			} else {
+				DocumentWatcher::instance()->addWatch(this);
 				clearIndex();
 			}
 			emit changedName();

@@ -20,7 +20,9 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+class Document;
 class DocumentCache;
+class DocumentWatcher;
 class Preferences;
 class SessionManager;
 class Sound;
@@ -52,6 +54,7 @@ public slots:
 	void addDocuments(const QString& documents);
 
 protected:
+	virtual void changeEvent(QEvent* event);
 	virtual void dragEnterEvent(QDragEnterEvent* event);
 	virtual void dropEvent(QDropEvent* event);
 	virtual bool event(QEvent* event);
@@ -65,6 +68,8 @@ private slots:
 	void renameDocument();
 	void saveAllDocuments();
 	void closeDocument();
+	void closeDocument(Document* document);
+	void showDocument(Document* document);
 	void nextDocument();
 	void previousDocument();
 	void firstDocument();
@@ -110,6 +115,7 @@ private:
 
 	Stack* m_documents;
 	DocumentCache* m_document_cache;
+	DocumentWatcher* m_document_watcher;
 	QThread* m_document_cache_thread;
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;
