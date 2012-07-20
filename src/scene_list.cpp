@@ -27,6 +27,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QListView>
+#include <QMimeData>
 #include <QMouseEvent>
 #include <QSettings>
 #include <QShortcut>

@@ -1,4 +1,8 @@
 TEMPLATE = app
+greaterThan(QT_MAJOR_VERSION, 4) {
+	QT += widgets
+	QT += printsupport
+}
 CONFIG += warn_on
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
@@ -27,7 +31,6 @@ unix: !macx {
 
 # Add Qt single use application
 INCLUDEPATH += src/qtsingleapplication
-DEPENDPATH += src/qtsingleapplication
 SOURCES += src/qtsingleapplication/qtsingleapplication.cpp \
 	src/qtsingleapplication/qtlocalpeer.cpp
 HEADERS += src/qtsingleapplication/qtsingleapplication.h \

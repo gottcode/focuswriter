@@ -50,12 +50,12 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QPlainTextEdit>
 #include <QScrollBar>
 #include <QSettings>
 #include <QShortcut>
 #include <QSignalMapper>
-#include <QStyle>
 #include <QTabBar>
 #include <QTextCodec>
 #include <QTextStream>
@@ -268,7 +268,7 @@ Window::Window(const QStringList& command_line_files)
 	// Restore after crash
 	bool writable = QFileInfo(Document::cachePath()).isWritable() && QFileInfo(Document::cachePath() + "/../").isWritable();
 	if (!writable) {
-		m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Emergency cache is not writable."), QStringList());
+		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Emergency cache is not writable."), QStringList());
 	}
 	QStringList files, datafiles;
 	QString cachepath;

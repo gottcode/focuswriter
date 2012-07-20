@@ -43,6 +43,7 @@
 #include <QFileDialog>
 #include <QGridLayout>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPrintDialog>
@@ -592,38 +593,23 @@ void Document::loadTheme(const Theme& theme)
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update spacings
+	QTextBlockFormat format;
+#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
+	format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
+#endif
+	format.setTextIndent(48 * theme.indentFirstLine());
+	format.setTopMargin(theme.spacingAboveParagraph());
+	format.setBottomMargin(theme.spacingBelowParagraph());
 	if (m_spacings_loaded) {
 		for (int i = 0, count = m_text->document()->allFormats().count(); i < count; ++i) {
-			QTextFormat& format = m_text->document()->allFormats()[i];
-			if (format.isBlockFormat()) {
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
-				if (theme.lineSpacing() == 100) {
-					format.setProperty(QTextFormat::LineHeightType, QTextBlockFormat::SingleHeight);
-					format.setProperty(QTextFormat::LineHeight, 100.0);
-				} else {
-					format.setProperty(QTextFormat::LineHeightType, QTextBlockFormat::ProportionalHeight);
-					format.setProperty(QTextFormat::LineHeight, static_cast<double>(theme.lineSpacing()));
-				}
-#endif
-				format.setProperty(QTextFormat::TextIndent, 48.0 * theme.indentFirstLine());
-				format.setProperty(QTextFormat::BlockTopMargin, static_cast<double>(theme.spacingAboveParagraph()));
-				format.setProperty(QTextFormat::BlockBottomMargin, static_cast<double>(theme.spacingBelowParagraph()));
+			QTextFormat& f = m_text->document()->allFormats()[i];
+			if (f.isBlockFormat()) {
+				f.merge(format);
 			}
 		}
 	} else {
-		QTextBlockFormat format = m_text->document()->begin().blockFormat();
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
-		if (theme.lineSpacing() == 100) {
-			format.setLineHeight(100.0, QTextBlockFormat::SingleHeight);
-		} else {
-			format.setLineHeight(theme.lineSpacing(), QTextBlockFormat::ProportionalHeight);
-		}
-#endif
-		format.setTextIndent(48.0 * theme.indentFirstLine());
-		format.setTopMargin(theme.spacingAboveParagraph());
-		format.setBottomMargin(theme.spacingBelowParagraph());
 		m_text->setUndoRedoEnabled(false);
-		m_text->textCursor().setBlockFormat(format);
+		m_text->textCursor().mergeBlockFormat(format);
 		m_text->setUndoRedoEnabled(true);
 		m_text->document()->setModified(false);
 		m_spacings_loaded = true;
