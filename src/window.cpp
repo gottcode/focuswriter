@@ -399,14 +399,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		foreach (int i, skip) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
-		QMessageBox mbox(window());
-		mbox.setWindowTitle(tr("Sorry"));
-		mbox.setText(tr("Some files are unsupported and will not be opened."));
-		mbox.setDetailedText(skipped.join("\n"));
-		mbox.setStandardButtons(QMessageBox::Ok);
-		mbox.setDefaultButton(QMessageBox::Ok);
-		mbox.setIcon(QMessageBox::Warning);
-		mbox.exec();
+		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files were unsupported and could not be opened."), skipped);
 	}
 
 	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_documents->loadScreen()->isVisible());
@@ -460,24 +453,10 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	}
 
 	if (!missing.isEmpty()) {
-		QMessageBox mbox(window());
-		mbox.setWindowTitle(tr("Sorry"));
-		mbox.setText(tr("Some files could not be opened."));
-		mbox.setDetailedText(missing.join("\n"));
-		mbox.setStandardButtons(QMessageBox::Ok);
-		mbox.setDefaultButton(QMessageBox::Ok);
-		mbox.setIcon(QMessageBox::Warning);
-		mbox.exec();
+		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files could not be opened."), missing);
 	}
 	if (!readonly.isEmpty()) {
-		QMessageBox mbox(window());
-		mbox.setWindowTitle(tr("Note"));
-		mbox.setText(tr("Some files were opened Read-Only."));
-		mbox.setDetailedText(readonly.join("\n"));
-		mbox.setStandardButtons(QMessageBox::Ok);
-		mbox.setDefaultButton(QMessageBox::Ok);
-		mbox.setIcon(QMessageBox::Information);
-		mbox.exec();
+		m_documents->alerts()->addAlert(QMessageBox::Information, tr("Some files were opened Read-Only."), readonly);
 	}
 
 	if (show_load) {
@@ -1130,8 +1109,7 @@ void Window::loadPreferences(Preferences& preferences)
 		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
 
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
-			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32),
-				tr("Unable to load typewriter sounds."),
+			m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Unable to load typewriter sounds."),
 				QStringList(tr("Please make sure that SDL_mixer is installed.")));
 			delete m_key_sound;
 			delete m_enter_key_sound;

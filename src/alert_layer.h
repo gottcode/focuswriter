@@ -23,6 +23,7 @@
 class Alert;
 
 #include <QList>
+#include <QMessageBox>
 #include <QWidget>
 class QVBoxLayout;
 
@@ -34,6 +35,7 @@ public:
 	AlertLayer(QWidget* parent);
 
 	void addAlert(const QString& text, const QStringList& details);
+	void addAlert(QMessageBox::Icon icon, const QString& text, const QStringList& details);
 	void addAlert(const QPixmap& pixmap, const QString& text, const QStringList& details);
 
 private slots:
