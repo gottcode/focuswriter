@@ -1,4 +1,5 @@
 2012-07-20 Graeme Gott <graeme@gottcode.org>
+	* Warn about missing SDL_mixer.
 	* Remove use of QSound as fallback.
 
 2012-07-19 Graeme Gott <graeme@gottcode.org>

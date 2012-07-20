@@ -1130,7 +1130,9 @@ void Window::loadPreferences(Preferences& preferences)
 		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
 
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
-			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Unable to load typewriter sounds."), QStringList());
+			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32),
+				tr("Unable to load typewriter sounds."),
+				QStringList(tr("Please make sure that SDL_mixer is installed.")));
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
