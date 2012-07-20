@@ -149,11 +149,11 @@ Window::Window(const QStringList& command_line_files)
 	// Set up details
 	m_footer = new QWidget(contents);
 	QWidget* details = new QWidget(m_footer);
-	m_wordcount_label = new QLabel(tr("Words: 0"), details);
-	m_page_label = new QLabel(tr("Pages: 0"), details);
-	m_paragraph_label = new QLabel(tr("Paragraphs: 0"), details);
-	m_character_label = new QLabel(tr("Characters: 0"), details);
-	m_progress_label = new QLabel(tr("0% of daily goal"), details);
+	m_wordcount_label = new QLabel(tr("Words: %L1").arg(0), details);
+	m_page_label = new QLabel(tr("Pages: %L1").arg(0), details);
+	m_paragraph_label = new QLabel(tr("Paragraphs: %L1").arg(0), details);
+	m_character_label = new QLabel(tr("Characters: %L1 / %L2").arg(0).arg(0), details);
+	m_progress_label = new QLabel(tr("%1% of daily goal").arg(0), details);
 	m_clock_label = new QLabel(details);
 	updateClock();
 
