@@ -591,10 +591,6 @@ void Document::loadTheme(const Theme& theme)
 	);
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
-	if (m_focus_mode) {
-		focusText();
-	}
-
 	// Update spacings
 	if (m_spacings_loaded) {
 		for (int i = 0, count = m_text->document()->allFormats().count(); i < count; ++i) {
@@ -644,6 +640,10 @@ void Document::loadTheme(const Theme& theme)
 		QApplication::sendEvent(m_text, &e);
 	}
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+
+	if (m_focus_mode) {
+		focusText();
+	}
 
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);

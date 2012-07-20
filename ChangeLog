@@ -1,4 +1,5 @@
 2012-07-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Switching themes wasn't properly focusing text.
 	* FIXED: Line spacings were ignored on reload.
 	* Use ODT as default format.
 
