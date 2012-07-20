@@ -1178,7 +1178,7 @@ QString Document::fileFilter(const QString& filename) const
 			return all;
 		}
 	} else {
-		return m_rich_text ? (richtext + ";;" + opendocumenttext) : plaintext;
+		return m_rich_text ? (opendocumenttext + ";;" + richtext) : plaintext;
 	}
 }
 

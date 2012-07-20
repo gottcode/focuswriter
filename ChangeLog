@@ -1,3 +1,6 @@
+2012-07-19 Graeme Gott <graeme@gottcode.org>
+	* Use ODT as default format.
+
 2012-07-18 Graeme Gott <graeme@gottcode.org>
 	* Monitor files for changes.
 	* Add option to reload files.

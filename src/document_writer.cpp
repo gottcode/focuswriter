@@ -73,15 +73,15 @@ bool DocumentWriter::write()
 		}
 	} else {
 		if (file.open(QFile::WriteOnly)) {
-			if (m_type == "odt") {
-				QTextDocumentWriter writer(&file, "ODT");
-				saved = writer.write(m_document);
-			} else {
+			if (m_type == "rtf") {
 				RTF::Writer writer(m_codepage);
 				if (m_codepage.isEmpty()) {
 					m_codepage = writer.codePage();
 				}
 				saved = writer.write(&file, m_document);
+			} else {
+				QTextDocumentWriter writer(&file, "ODT");
+				saved = writer.write(m_document);
 			}
 		}
 	}
