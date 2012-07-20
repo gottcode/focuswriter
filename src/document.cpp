@@ -481,7 +481,6 @@ bool Document::loadFile(const QString& filename, int position)
 	document->blockSignals(true);
 
 	document->setUndoRedoEnabled(false);
-	document->clear();
 	if (!m_rich_text) {
 		QFile file(filename);
 		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -490,6 +489,7 @@ bool Document::loadFile(const QString& filename, int position)
 			stream.setAutoDetectUnicode(true);
 
 			QTextCursor cursor(document);
+			cursor.select(QTextCursor::Document);
 			cursor.beginEditBlock();
 			while (!stream.atEnd()) {
 				cursor.insertText(stream.read(8192));
@@ -512,7 +512,7 @@ bool Document::loadFile(const QString& filename, int position)
 			if (file.open(QIODevice::ReadOnly)) {
 				RTF::Reader reader;
 				QTextCursor cursor(document);
-				cursor.movePosition(QTextCursor::End);
+				cursor.select(QTextCursor::Document);
 				reader.read(&file, cursor);
 				m_codepage = reader.codePage();
 				file.close();
