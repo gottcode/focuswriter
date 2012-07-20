@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * SDL and SDL_mixer
  *  Copyright (C) 1997-2009 Sam Lantinga
@@ -25,7 +25,6 @@
 #include <QFile>
 #include <QHash>
 #include <QLibrary>
-#include <QSound>
 #include <QVector>
 
 //-----------------------------------------------------------------------------
@@ -35,13 +34,13 @@
 #  define SDLCALL __cdecl
 # elif defined(__OS2__)
 #  if defined (__GNUC__) && __GNUC__ < 4
-    /* Added support for GCC-EMX <v4.x */
-    /* this is needed for XFree86/OS2 developement */
-    /* F. Ambacher(anakor@snafu.de) 05.2008 */
+	/* Added support for GCC-EMX <v4.x */
+	/* this is needed for XFree86/OS2 developement */
+	/* F. Ambacher(anakor@snafu.de) 05.2008 */
 #   define SDLCALL _cdecl
 #  else
-    /* On other compilers on OS/2, we use the _System calling convention */
-    /* to be compatible with every compiler */
+	/* On other compilers on OS/2, we use the _System calling convention */
+	/* to be compatible with every compiler */
 #   define SDLCALL _System
 #  endif
 # else
@@ -107,14 +106,20 @@ namespace
 	void loadSDL()
 	{
 		// Initialize SDL
-		QLibrary sdl_lib("SDL");
-		if (!sdl_lib.load()) {
-			sdl_lib.setFileNameAndVersion("SDL-1.2", "0");
+		QLibrary mixer_lib("SDL2_mixer");
+		if (!mixer_lib.load()) {
+			mixer_lib.setFileName("SDL_mixer");
 		}
-		sdl_Init = (func_SDL_Init) sdl_lib.resolve("SDL_Init");
-		sdl_Quit = (func_SDL_Quit) sdl_lib.resolve("SDL_Quit");
-		sdl_GetError = (func_SDL_GetError) sdl_lib.resolve("SDL_GetError");
-		sdl_RWFromFile = (func_SDL_RWFromFile) sdl_lib.resolve("SDL_RWFromFile");
+		if (!mixer_lib.load()) {
+			mixer_lib.setFileNameAndVersion("SDL2_mixer-2.0", "0");
+		}
+		if (!mixer_lib.load()) {
+			mixer_lib.setFileNameAndVersion("SDL_mixer-1.2", "0");
+		}
+		sdl_Init = (func_SDL_Init) mixer_lib.resolve("SDL_Init");
+		sdl_Quit = (func_SDL_Quit) mixer_lib.resolve("SDL_Quit");
+		sdl_GetError = (func_SDL_GetError) mixer_lib.resolve("SDL_GetError");
+		sdl_RWFromFile = (func_SDL_RWFromFile) mixer_lib.resolve("SDL_RWFromFile");
 		if ((sdl_Init == 0) || (sdl_Quit == 0) || (sdl_GetError == 0) || (sdl_RWFromFile == 0)) {
 			qWarning("Unable to load SDL");
 			return;
@@ -125,10 +130,6 @@ namespace
 		}
 
 		// Initialize SDL_mixer
-		QLibrary mixer_lib("SDL_mixer");
-		if (!mixer_lib.load()) {
-			mixer_lib.setFileNameAndVersion("SDL_mixer-1.2", "0");
-		}
 		mix_OpenAudio = (func_Mix_OpenAudio) mixer_lib.resolve("Mix_OpenAudio");
 		mix_CloseAudio = (func_Mix_CloseAudio) mixer_lib.resolve("Mix_CloseAudio");
 		mix_LoadWAV_RW = (func_Mix_LoadWAV_RW) mixer_lib.resolve("Mix_LoadWAV_RW");
@@ -163,10 +164,6 @@ namespace
 
 		f_sdl_loaded = false;
 	}
-
-
-	// Shared fallback data
-	QList<QList<QSound*> > f_sounds;
 
 
 	// Shared data
@@ -206,11 +203,6 @@ Sound::Sound(int name, const QString& filename, QObject* parent)
 		m_id = f_chunks.count();
 		f_chunks.append(chunk);
 		f_ids[filename] = m_id;
-	} else if (QSound::isAvailable()) {
-		m_id = f_sounds.count();
-		QSound* sound = new QSound(f_path + "/" + filename);
-		f_sounds.append(QList<QSound*>() << sound);
-		f_ids[filename] = m_id;
 	}
 
 	f_sound_objects[m_name] = this;
@@ -225,12 +217,6 @@ Sound::~Sound()
 	if (f_total_sounds == 0) {
 		if (f_sdl_loaded) {
 			unloadSDL();
-		} else {
-			int count = f_sounds.count();
-			for (int i = 0; i < count; ++i) {
-				qDeleteAll(f_sounds[i]);
-			}
-			f_sounds.clear();
 		}
 		f_ids.clear();
 	}
@@ -240,26 +226,8 @@ Sound::~Sound()
 
 void Sound::play()
 {
-	if (isValid()) {
-		if (f_sdl_loaded) {
-			if (mix_PlayChannel(-1, f_chunks.at(m_id), 0) == -1) {
-				qWarning("Unable to play WAV file: %s", mix_GetError());
-			}
-		} else {
-			QSound* sound = 0;
-			QList<QSound*>& sounds = f_sounds[m_id];
-			int count = sounds.count();
-			for (int i = 0; i < count; ++i) {
-				if (sounds.at(i)->isFinished()) {
-					sound = sounds.at(i);
-				}
-			}
-			if (sound == 0) {
-				sound = new QSound(sounds.first()->fileName());
-				sounds.append(sound);
-			}
-			sound->play();
-		}
+	if (isValid() && (mix_PlayChannel(-1, f_chunks.at(m_id), 0) == -1)) {
+		qWarning("Unable to play WAV file: %s", mix_GetError());
 	}
 }
 

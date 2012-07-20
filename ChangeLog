@@ -1,3 +1,6 @@
+2012-07-20 Graeme Gott <graeme@gottcode.org>
+	* Remove use of QSound as fallback.
+
 2012-07-19 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Switching themes wasn't properly focusing text.
 	* FIXED: Line spacings were ignored on reload.
