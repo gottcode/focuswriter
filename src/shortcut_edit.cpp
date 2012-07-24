@@ -93,11 +93,6 @@ bool ShortcutEdit::eventFilter(QObject* watched, QEvent* event)
 			break;
 		}
 
-		// Prevent shortcuts from intefering with typing
-		if ((modifiers == Qt::NoModifier) && ((key < Qt::Key_F1) || (key > Qt::Key_F35)) && (key != Qt::Key_Escape)) {
-			return true;
-		}
-
 		// Only allow shift when it is not required for key of shortcut
 		if ((modifiers & Qt::ShiftModifier) && !key_event->text().isEmpty()) {
 			QChar c = key_event->text().at(0);
