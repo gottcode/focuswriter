@@ -64,7 +64,7 @@ bool ShortcutEdit::eventFilter(QObject* watched, QEvent* event)
 	if ((watched == m_edit) && (event->type() == QEvent::KeyPress)) {
 		QKeyEvent* key_event = static_cast<QKeyEvent*>(event);
 
-		Qt::KeyboardModifiers modifiers = key_event->modifiers();
+		Qt::KeyboardModifiers modifiers = key_event->modifiers() & (Qt::ShiftModifier | Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier);
 		int key = key_event->key();
 
 		switch (key) {
@@ -93,16 +93,25 @@ bool ShortcutEdit::eventFilter(QObject* watched, QEvent* event)
 			break;
 		}
 
-		// Only allow shift when it is not required for key of shortcut
+		// Add modifiers; only allow shift if it is not required for key of shortcut
 		if ((modifiers & Qt::ShiftModifier) && !key_event->text().isEmpty()) {
 			QChar c = key_event->text().at(0);
 			if (c.isPrint() && !c.isLetterOrNumber() && !c.isSpace()) {
-				modifiers &= ~Qt::ShiftModifier;
+				key |= Qt::SHIFT;
 			}
+		}
+		if (modifiers & Qt::ControlModifier) {
+			key |= Qt::CTRL;
+		}
+		if (modifiers & Qt::MetaModifier) {
+			key |= Qt::META;
+		}
+		if (modifiers & Qt::AltModifier) {
+			key |= Qt::ALT;
 		}
 
 		// Change shortcut
-		m_shortcut = QKeySequence(key | modifiers);
+		m_shortcut = QKeySequence(key);
 		setText();
 		emit changed();
 
