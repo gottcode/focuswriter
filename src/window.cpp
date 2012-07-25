@@ -19,6 +19,7 @@
 
 #include "window.h"
 
+#include "action_manager.h"
 #include "alert_layer.h"
 #include "document.h"
 #include "document_cache.h"
@@ -54,7 +55,6 @@
 #include <QPlainTextEdit>
 #include <QScrollBar>
 #include <QSettings>
-#include <QShortcut>
 #include <QSignalMapper>
 #include <QTabBar>
 #include <QTextCodec>
@@ -105,6 +105,9 @@ Window::Window(const QStringList& command_line_files)
 		QIcon::setThemeName("hicolor");
 		setIconSize(QSize(22,22));
 	}
+
+	// Create actions manager
+	new ActionManager(this);
 
 	// Create window contents first so they stack behind documents
 	menuBar();
@@ -179,15 +182,38 @@ Window::Window(const QStringList& command_line_files)
 	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
 
 	// Set up tab navigation
-	new QShortcut(QKeySequence::NextChild, this, SLOT(nextDocument()));
-	new QShortcut(QKeySequence::PreviousChild, this, SLOT(previousDocument()));
-	new QShortcut(Qt::CTRL + Qt::Key_0, this, SLOT(firstDocument()));
-	new QShortcut(Qt::CTRL + Qt::Key_9, this, SLOT(lastDocument()));
+	QAction* action = new QAction(tr("Switch to Next Document"), this);
+	action->setShortcut(QKeySequence::NextChild);
+	connect(action, SIGNAL(triggered()), this, SLOT(nextDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchNextDocument", action);
+
+	action = new QAction(tr("Switch to Previous Document"), this);
+	action->setShortcut(QKeySequence::PreviousChild);
+	connect(action, SIGNAL(triggered()), this, SLOT(previousDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchPreviousDocument", action);
+
+	action = new QAction(tr("Switch to First Document"), this);
+	action->setShortcut(Qt::CTRL + Qt::Key_1);
+	connect(action, SIGNAL(triggered()), this, SLOT(firstDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchFirstDocument", action);
+
+	action = new QAction(tr("Switch to Last Document"), this);
+	action->setShortcut(Qt::CTRL + Qt::Key_0);
+	connect(action, SIGNAL(triggered()), this, SLOT(lastDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchLastDocument", action);
+
 	QSignalMapper* mapper = new QSignalMapper(this);
-	for (int i = 1; i < 9 ; ++i) {
-		QShortcut* shortcut = new QShortcut(Qt::CTRL + Qt::Key_0 + i, this);
-		connect(shortcut, SIGNAL(activated()), mapper, SLOT(map()));
-		mapper->setMapping(shortcut, i - 1);
+	for (int i = 2; i < 10 ; ++i) {
+		action = new QAction(tr("Switch to Document %1").arg(i), this);
+		action->setShortcut(Qt::CTRL + Qt::Key_0 + i);
+		connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
+		mapper->setMapping(action, i - 1);
+		addAction(action);
+		ActionManager::instance()->addAction(QString("SwitchDocument%1").arg(i), action);
 	}
 	connect(mapper, SIGNAL(mapped(int)), m_tabs, SLOT(setCurrentIndex(int)));
 
@@ -1353,7 +1379,11 @@ void Window::initMenus()
 	tools_menu->addSeparator();
 	QMenu* quotes_menu = tools_menu->addMenu(tr("Smart &Quotes"));
 	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, SLOT(updateSmartQuotes()));
+	m_replace_document_quotes->setStatusTip("Update Document Smart Quotes");
+	ActionManager::instance()->addAction("SmartQuotesUpdateDocument", m_replace_document_quotes);
 	m_replace_selection_quotes = quotes_menu->addAction(tr("Update &Selection"), m_documents, SLOT(updateSmartQuotesSelection()));
+	m_replace_selection_quotes->setStatusTip("Update Selection Smart Quotes");
+	ActionManager::instance()->addAction("SmartQuotesUpdateSelection", m_replace_selection_quotes);
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, SLOT(show()));
@@ -1364,10 +1394,12 @@ void Window::initMenus()
 	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
+	ActionManager::instance()->addAction("ShowToolbar", action);
 #ifndef Q_OS_MAC
 	action = settings_menu->addAction(tr("Show &Menu Icons"), this, SLOT(toggleMenuIcons(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Window/MenuIcons", false).toBool());
+	ActionManager::instance()->addAction("ShowMenuIcons", action);
 #endif
 	settings_menu->addSeparator();
 	QMenu* focus_menu = settings_menu->addMenu(tr("F&ocused Text"));
@@ -1389,15 +1421,20 @@ void Window::initMenus()
 	// Create focus sub-menu
 	QAction* focus_mode[4];
 	focus_mode[0] = focus_menu->addAction(tr("&Off"));
+	focus_mode[0]->setStatusTip(tr("Focus Off"));
 	focus_mode[1] = focus_menu->addAction(tr("One &Line"));
+	focus_mode[1]->setStatusTip(tr("Focus One Line"));
 	focus_mode[2] = focus_menu->addAction(tr("&Three Lines"));
+	focus_mode[2]->setStatusTip(tr("Focus Three Lines"));
 	focus_mode[3] = focus_menu->addAction(tr("&Paragraph"));
+	focus_mode[3]->setStatusTip(tr("Focus Paragraph"));
 	m_focus_actions = new QActionGroup(this);
 	for (int i = 0; i < 4; ++i) {
 		focus_mode[i]->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + (Qt::Key_0 + i)));
 		focus_mode[i]->setCheckable(true);
 		focus_mode[i]->setData(i);
 		m_focus_actions->addAction(focus_mode[i]);
+		ActionManager::instance()->addAction(QString("FocusedText%1").arg(i), focus_mode[i]);
 	}
 	focus_mode[qBound(0, QSettings().value("Window/FocusedText").toInt(), 3)]->setChecked(true);
 	connect(m_focus_actions, SIGNAL(triggered(QAction*)), m_documents, SLOT(setFocusMode(QAction*)));
@@ -1436,6 +1473,9 @@ void Window::initMenus()
 		if (i.key().startsWith("Format")) {
 			m_format_actions.append(i.value());
 		}
+
+		// Load custom shortcut
+		ActionManager::instance()->addAction(i.key(), i.value());
 	}
 	addActions(m_actions.values());
 }

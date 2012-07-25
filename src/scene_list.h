@@ -57,6 +57,7 @@ private slots:
 	void sceneSelected(const QModelIndex& index);
 	void selectCurrentScene();
 	void setFilter(const QString& filter);
+	void updateShortcuts();
 
 private:
 	void moveSelectedScenes(int movement);

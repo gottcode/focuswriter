@@ -21,8 +21,11 @@
 #define PREFERENCES_DIALOG_H
 
 class Preferences;
+class ShortcutEdit;
 
 #include <QDialog>
+#include <QHash>
+#include <QKeySequence>
 class QCheckBox;
 class QComboBox;
 class QLineEdit;
@@ -30,6 +33,8 @@ class QListWidget;
 class QPushButton;
 class QRadioButton;
 class QSpinBox;
+class QTabWidget;
+class QTreeWidget;
 
 class PreferencesDialog : public QDialog
 {
@@ -55,15 +60,22 @@ private slots:
 	void removeWord();
 	void selectedWordChanged();
 	void wordEdited();
+	void selectedShortcutChanged();
+	void shortcutChanged();
+	void shortcutDoubleClicked();
 
 private:
+	void highlightShortcutConflicts();
 	QWidget* initGeneralTab();
 	QWidget* initStatisticsTab();
-	QWidget* initToolbarTab();
 	QWidget* initSpellingTab();
+	QWidget* initToolbarTab();
+	QWidget* initShortcutsTab();
 
 private:
 	Preferences& m_preferences;
+
+	QTabWidget* m_tabs;
 
 	QRadioButton* m_option_none;
 	QRadioButton* m_option_time;
@@ -95,11 +107,6 @@ private:
 	QRadioButton* m_option_accurate_wordcount;
 	QRadioButton* m_option_estimate_wordcount;
 
-	QComboBox* m_toolbar_style;
-	QListWidget* m_toolbar_actions;
-	QPushButton* m_move_up_button;
-	QPushButton* m_move_down_button;
-
 	QCheckBox* m_highlight_misspelled;
 	QCheckBox* m_ignore_uppercase;
 	QCheckBox* m_ignore_numbers;
@@ -111,6 +118,16 @@ private:
 	QPushButton* m_add_word_button;
 	QPushButton* m_remove_word_button;
 	QStringList m_uninstalled;
+
+	QComboBox* m_toolbar_style;
+	QListWidget* m_toolbar_actions;
+	QPushButton* m_move_up_button;
+	QPushButton* m_move_down_button;
+
+	QTreeWidget* m_shortcuts;
+	ShortcutEdit* m_shortcut_edit;
+	QHash<QString, QKeySequence> m_new_shortcuts;
+	bool m_shortcut_conflicts;
 };
 
 #endif

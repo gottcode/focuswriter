@@ -19,9 +19,11 @@
 
 #include "scene_list.h"
 
+#include "action_manager.h"
 #include "document.h"
 #include "scene_model.h"
 
+#include <QAction>
 #include <QApplication>
 #include <QGridLayout>
 #include <QLabel>
@@ -30,7 +32,6 @@
 #include <QMimeData>
 #include <QMouseEvent>
 #include <QSettings>
-#include <QShortcut>
 #include <QSortFilterProxyModel>
 #include <QStyledItemDelegate>
 #include <QTextBlock>
@@ -82,13 +83,22 @@ SceneList::SceneList(QWidget* parent) :
 	setFrameStyle(QFrame::Panel | QFrame::Raised);
 	setAutoFillBackground(true);
 	setPalette(QApplication::palette());
-	new QShortcut(tr("Ctrl+Shift+Down"), this, SLOT(moveScenesDown()));
-	new QShortcut(tr("Ctrl+Shift+Up"), this, SLOT(moveScenesUp()));
+
+	// Create actions for moving scenes
+	QAction* action = new QAction(tr("Move Scenes Down"), this);
+	action->setShortcut(tr("Ctrl+Shift+Down"));
+	connect(action, SIGNAL(triggered()), this, SLOT(moveScenesDown()));
+	addAction(action);
+	ActionManager::instance()->addAction("MoveScenesDown", action);
+
+	action = new QAction(tr("Move Scenes Up"), this);
+	action->setShortcut(tr("Ctrl+Shift+Up"));
+	connect(action, SIGNAL(triggered()), this, SLOT(moveScenesUp()));
+	addAction(action);
+	ActionManager::instance()->addAction("MoveScenesUp", action);
 
 	// Create button to show scenes
 	m_show_button = new QToolButton(this);
-	m_show_button->setShortcut(tr("Shift+F4"));
-	m_show_button->setToolTip(tr("Show scene list (%1)").arg(m_show_button->shortcut().toString(QKeySequence::NativeText)));
 	m_show_button->setAutoRaise(true);
 	m_show_button->setArrowType(Qt::RightArrow);
 	m_show_button->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
@@ -96,12 +106,17 @@ SceneList::SceneList(QWidget* parent) :
 
 	// Create button to hide scenes
 	m_hide_button = new QToolButton(this);
-	m_hide_button->setShortcut(tr("Shift+F4"));
-	m_hide_button->setToolTip(tr("Hide scene list (%1)").arg(m_hide_button->shortcut().toString(QKeySequence::NativeText)));
 	m_hide_button->setAutoRaise(true);
 	m_hide_button->setArrowType(Qt::LeftArrow);
 	m_hide_button->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
 	connect(m_hide_button, SIGNAL(clicked()), this, SLOT(hideScenes()));
+
+	// Create action for toggling scenes
+	action = new QAction(tr("Toggle Scene List"), this);
+	action->setShortcut(tr("Shift+F4"));
+	ActionManager::instance()->addAction("ToggleScenes", action);
+	connect(action, SIGNAL(changed()), this, SLOT(updateShortcuts()));
+	updateShortcuts();
 
 	// Create scene view
 	m_filter_model = new QSortFilterProxyModel(this);
@@ -357,6 +372,17 @@ void SceneList::setFilter(const QString& filter)
 		m_scenes->setDragEnabled(false);
 		m_scenes->setSelectionMode(QAbstractItemView::SingleSelection);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void SceneList::updateShortcuts()
+{
+	QKeySequence shortcut = ActionManager::instance()->action("ToggleScenes")->shortcut();
+	m_show_button->setShortcut(shortcut);
+	m_show_button->setToolTip(tr("Show scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
+	m_hide_button->setShortcut(shortcut);
+	m_hide_button->setToolTip(tr("Hide scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
 }
 
 //-----------------------------------------------------------------------------

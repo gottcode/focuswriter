@@ -19,10 +19,12 @@
 
 #include "preferences_dialog.h"
 
+#include "action_manager.h"
 #include "dictionary.h"
 #include "dictionary_manager.h"
 #include "locale_dialog.h"
 #include "preferences.h"
+#include "shortcut_edit.h"
 #include "smart_quotes.h"
 
 #include <QAction>
@@ -33,6 +35,8 @@
 #include <QFileDialog>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QHeaderView>
+#include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
 #include <QMessageBox>
@@ -42,6 +46,7 @@
 #include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
+#include <QTreeWidget>
 #include <QVBoxLayout>
 
 #include <zip.h>
@@ -68,25 +73,27 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_preferences(preferences)
+PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) :
+	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_preferences(preferences),
+	m_shortcut_conflicts(false)
 {
 	setWindowTitle(tr("Preferences"));
 
-	QTabWidget* tabs = new QTabWidget(this);
-	tabs->addTab(initGeneralTab(), tr("General"));
-	tabs->addTab(initStatisticsTab(), tr("Statistics"));
-	tabs->addTab(initToolbarTab(), tr("Toolbar"));
-	tabs->addTab(initSpellingTab(), tr("Spell Checking"));
-	tabs->setUsesScrollButtons(false);
+	m_tabs = new QTabWidget(this);
+	m_tabs->addTab(initGeneralTab(), tr("General"));
+	m_tabs->addTab(initStatisticsTab(), tr("Statistics"));
+	m_tabs->addTab(initSpellingTab(), tr("Spell Checking"));
+	m_tabs->addTab(initToolbarTab(), tr("Toolbar"));
+	m_tabs->addTab(initShortcutsTab(), tr("Shortcuts"));
+	m_tabs->setUsesScrollButtons(false);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
 	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
 	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
-	layout->addWidget(tabs);
+	layout->addWidget(m_tabs);
 	layout->addWidget(buttons);
 
 	// Load settings
@@ -144,6 +151,14 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_save_positions->setChecked(m_preferences.savePositions());
 
+	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
+	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
+	m_ignore_uppercase->setChecked(m_preferences.ignoredUppercaseWords());
+	int index = m_languages->findData(m_preferences.language());
+	if (index != -1) {
+		m_languages->setCurrentIndex(index);
+	}
+
 	int style = m_toolbar_style->findData(m_preferences.toolbarStyle());
 	if (style == -1) {
 		style = m_toolbar_style->findData(Qt::ToolButtonTextUnderIcon);
@@ -180,15 +195,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	}
 	m_toolbar_actions->setCurrentRow(0);
 
-	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
-	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
-	m_ignore_uppercase->setChecked(m_preferences.ignoredUppercaseWords());
-	int index = m_languages->findData(m_preferences.language());
-	if (index != -1) {
-		m_languages->setCurrentIndex(index);
-	}
-
-	resize(QSettings().value("Preferences/Size", QSize(490, 550)).toSize());
+	resize(QSettings().value("Preferences/Size", QSize(650, 560)).toSize());
 }
 
 //-----------------------------------------------------------------------------
@@ -202,6 +209,18 @@ PreferencesDialog::~PreferencesDialog()
 
 void PreferencesDialog::accept()
 {
+	// Confirm close even with shortcut conflicts
+	if (m_shortcut_conflicts) {
+		m_tabs->setCurrentIndex(4);
+		if (QMessageBox::question(this,
+				tr("Question"),
+				tr("One or more shortcuts conflict. Do you wish to proceed?"),
+				QMessageBox::Yes | QMessageBox::No,
+				QMessageBox::No) == QMessageBox::No) {
+			return;
+		}
+	}
+
 	// Save settings
 	if (m_option_time->isChecked()) {
 		m_preferences.setGoalType(1);
@@ -256,6 +275,8 @@ void PreferencesDialog::accept()
 		}
 	}
 	m_preferences.setToolbarActions(actions);
+
+	ActionManager::instance()->setShortcuts(m_new_shortcuts);
 
 	// Uninstall languages
 	foreach (const QString& language, m_uninstalled) {
@@ -543,6 +564,89 @@ void PreferencesDialog::wordEdited()
 
 //-----------------------------------------------------------------------------
 
+void PreferencesDialog::selectedShortcutChanged()
+{
+	m_shortcut_edit->setEnabled(m_shortcuts->currentItem() != 0);
+	if (!m_shortcuts->currentItem()) {
+		m_shortcut_edit->blockSignals(true);
+		m_shortcut_edit->setShortcut(QKeySequence(), QKeySequence());
+		m_shortcut_edit->blockSignals(false);
+		return;
+	}
+
+	// Set shortcut in editor
+	QString name = m_shortcuts->currentItem()->text(2);
+	QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+	m_shortcut_edit->blockSignals(true);
+	m_shortcut_edit->setShortcut(shortcut, ActionManager::instance()->defaultShortcut(name));
+	m_shortcut_edit->blockSignals(false);
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::shortcutChanged()
+{
+	if (!m_shortcuts->currentItem()) {
+		return;
+	}
+
+	// Find old shortcut
+	QString name = m_shortcuts->currentItem()->text(2);
+	QKeySequence old_shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+	QKeySequence shortcut = m_shortcut_edit->shortcut();
+	if (shortcut == old_shortcut) {
+		return;
+	}
+
+	// Update shortcut
+	m_new_shortcuts[name] = shortcut;
+	m_shortcuts->currentItem()->setText(1, shortcut.toString(QKeySequence::NativeText));
+	highlightShortcutConflicts();
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::shortcutDoubleClicked()
+{
+	m_shortcut_edit->setFocus();
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::highlightShortcutConflicts()
+{
+	m_shortcut_conflicts = false;
+	QFont conflict = font();
+	conflict.setBold(true);
+
+	QMap<QKeySequence, QTreeWidgetItem*> shortcuts;
+	for (int i = 0, count = m_shortcuts->topLevelItemCount(); i < count; ++i) {
+		// Reset font and highlight
+		QTreeWidgetItem* item = m_shortcuts->topLevelItem(i);
+		item->setForeground(1, palette().foreground());
+		item->setFont(1, font());
+
+		// Find shortcut
+		QString name = item->text(2);
+		QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+		if (shortcut.isEmpty()) {
+			continue;
+		}
+
+		// Highlight conflict
+		if (shortcuts.contains(shortcut)) {
+			m_shortcut_conflicts = true;
+			item->setForeground(1, Qt::red);
+			item->setFont(1,conflict);
+			shortcuts[shortcut]->setForeground(1, Qt::red);
+			shortcuts[shortcut]->setFont(1, conflict);
+		}
+		shortcuts[shortcut] = item;
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 QWidget* PreferencesDialog::initGeneralTab()
 {
 	QWidget* tab = new QWidget(this);
@@ -730,63 +834,6 @@ QWidget* PreferencesDialog::initStatisticsTab()
 
 //-----------------------------------------------------------------------------
 
-QWidget* PreferencesDialog::initToolbarTab()
-{
-	QWidget* tab = new QWidget(this);
-
-	// Create style options
-	QGroupBox* style_group = new QGroupBox(tr("Style"), tab);
-
-	m_toolbar_style = new QComboBox(style_group);
-	m_toolbar_style->addItem(tr("Icons Only"), Qt::ToolButtonIconOnly);
-	m_toolbar_style->addItem(tr("Text Only"), Qt::ToolButtonTextOnly);
-	m_toolbar_style->addItem(tr("Text Alongside Icons"), Qt::ToolButtonTextBesideIcon);
-	m_toolbar_style->addItem(tr("Text Under Icons"), Qt::ToolButtonTextUnderIcon);
-
-	// Lay out style options
-	QFormLayout* style_layout = new QFormLayout(style_group);
-	style_layout->addRow(tr("Text Position:"), m_toolbar_style);
-
-	// Create action options
-	QGroupBox* actions_group = new QGroupBox(tr("Actions"), tab);
-
-	m_toolbar_actions = new QListWidget(actions_group);
-	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
-	QList<QAction*> actions = parentWidget()->window()->actions();
-	foreach (QAction* action, actions) {
-		QListWidgetItem* item = new QListWidgetItem(action->icon(), action->iconText(), m_toolbar_actions);
-		item->setData(Qt::UserRole, action->data());
-		item->setCheckState(Qt::Unchecked);
-	}
-	m_toolbar_actions->sortItems();
-	connect(m_toolbar_actions, SIGNAL(currentRowChanged(int)), this, SLOT(currentActionChanged(int)));
-
-	m_move_up_button = new QPushButton(tr("Move Up"), actions_group);
-	connect(m_move_up_button, SIGNAL(clicked()), this, SLOT(moveActionUp()));
-	m_move_down_button = new QPushButton(tr("Move Down"), actions_group);
-	connect(m_move_down_button, SIGNAL(clicked()), this, SLOT(moveActionDown()));
-	QPushButton* add_separator_button = new QPushButton(tr("Add Separator"), actions_group);
-	connect(add_separator_button, SIGNAL(clicked()), this, SLOT(addSeparatorAction()));
-
-	// Lay out action options
-	QGridLayout* actions_layout = new QGridLayout(actions_group);
-	actions_layout->setRowStretch(0, 1);
-	actions_layout->setRowStretch(4, 1);
-	actions_layout->addWidget(m_toolbar_actions, 0, 0, 5, 1);
-	actions_layout->addWidget(m_move_up_button, 1, 1);
-	actions_layout->addWidget(m_move_down_button, 2, 1);
-	actions_layout->addWidget(add_separator_button, 3, 1);
-
-	// Lay out toolbar tab
-	QVBoxLayout* layout = new QVBoxLayout(tab);
-	layout->addWidget(style_group);
-	layout->addWidget(actions_group);
-
-	return makeScrollable(tab);
-}
-
-//-----------------------------------------------------------------------------
-
 QWidget* PreferencesDialog::initSpellingTab()
 {
 	QWidget* tab = new QWidget(this);
@@ -868,6 +915,126 @@ QWidget* PreferencesDialog::initSpellingTab()
 	layout->addWidget(general_group);
 	layout->addWidget(languages_group);
 	layout->addWidget(personal_dictionary_group);
+
+	return makeScrollable(tab);
+}
+
+//-----------------------------------------------------------------------------
+
+QWidget* PreferencesDialog::initToolbarTab()
+{
+	QWidget* tab = new QWidget(this);
+
+	// Create style options
+	QGroupBox* style_group = new QGroupBox(tr("Style"), tab);
+
+	m_toolbar_style = new QComboBox(style_group);
+	m_toolbar_style->addItem(tr("Icons Only"), Qt::ToolButtonIconOnly);
+	m_toolbar_style->addItem(tr("Text Only"), Qt::ToolButtonTextOnly);
+	m_toolbar_style->addItem(tr("Text Alongside Icons"), Qt::ToolButtonTextBesideIcon);
+	m_toolbar_style->addItem(tr("Text Under Icons"), Qt::ToolButtonTextUnderIcon);
+
+	// Lay out style options
+	QFormLayout* style_layout = new QFormLayout(style_group);
+	style_layout->addRow(tr("Text Position:"), m_toolbar_style);
+
+	// Create action options
+	QGroupBox* actions_group = new QGroupBox(tr("Actions"), tab);
+
+	m_toolbar_actions = new QListWidget(actions_group);
+	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
+	QList<QAction*> actions = parentWidget()->window()->actions();
+	foreach (QAction* action, actions) {
+		if (action->data().isNull()) {
+			continue;
+		}
+		QListWidgetItem* item = new QListWidgetItem(action->icon(), action->iconText(), m_toolbar_actions);
+		item->setData(Qt::UserRole, action->data());
+		item->setCheckState(Qt::Unchecked);
+	}
+	m_toolbar_actions->sortItems();
+	connect(m_toolbar_actions, SIGNAL(currentRowChanged(int)), this, SLOT(currentActionChanged(int)));
+
+	m_move_up_button = new QPushButton(tr("Move Up"), actions_group);
+	connect(m_move_up_button, SIGNAL(clicked()), this, SLOT(moveActionUp()));
+	m_move_down_button = new QPushButton(tr("Move Down"), actions_group);
+	connect(m_move_down_button, SIGNAL(clicked()), this, SLOT(moveActionDown()));
+	QPushButton* add_separator_button = new QPushButton(tr("Add Separator"), actions_group);
+	connect(add_separator_button, SIGNAL(clicked()), this, SLOT(addSeparatorAction()));
+
+	// Lay out action options
+	QGridLayout* actions_layout = new QGridLayout(actions_group);
+	actions_layout->setRowStretch(0, 1);
+	actions_layout->setRowStretch(4, 1);
+	actions_layout->addWidget(m_toolbar_actions, 0, 0, 5, 1);
+	actions_layout->addWidget(m_move_up_button, 1, 1);
+	actions_layout->addWidget(m_move_down_button, 2, 1);
+	actions_layout->addWidget(add_separator_button, 3, 1);
+
+	// Lay out toolbar tab
+	QVBoxLayout* layout = new QVBoxLayout(tab);
+	layout->addWidget(style_group);
+	layout->addWidget(actions_group);
+
+	return makeScrollable(tab);
+}
+
+//-----------------------------------------------------------------------------
+
+QWidget* PreferencesDialog::initShortcutsTab()
+{
+	QWidget* tab = new QWidget(this);
+
+	// Create shortcuts view
+	m_shortcuts = new QTreeWidget(tab);
+	m_shortcuts->setIconSize(QSize(16,16));
+	m_shortcuts->setDragDropMode(QAbstractItemView::NoDragDrop);
+	m_shortcuts->setItemsExpandable(false);
+	m_shortcuts->setRootIsDecorated(false);
+	m_shortcuts->setColumnCount(3);
+	m_shortcuts->setColumnHidden(2, true);
+	m_shortcuts->setHeaderLabels(QStringList() << tr("Command") << tr("Shortcut") << tr("Action"));
+	m_shortcuts->header()->setClickable(false);
+	m_shortcuts->header()->setMovable(false);
+	m_shortcuts->header()->setResizeMode(0, QHeaderView::ResizeToContents);
+	connect(m_shortcuts, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(shortcutDoubleClicked()));
+
+	// List shortcuts
+	QPixmap empty_icon(m_shortcuts->iconSize());
+	empty_icon.fill(Qt::transparent);
+	QList<QString> actions = ActionManager::instance()->actions();
+	foreach (const QString& name, actions) {
+		QAction* action = ActionManager::instance()->action(name);
+		QIcon icon = action->icon();
+		if (icon.isNull()) {
+			icon = empty_icon;
+		}
+		QString text = action->statusTip();
+		if (text.isEmpty()) {
+			text = action->text();
+		}
+		text.replace("&", "");
+		QStringList strings = QStringList() << text << action->shortcut().toString(QKeySequence::NativeText) << name;
+		QTreeWidgetItem* item = new QTreeWidgetItem(m_shortcuts, strings);
+		item->setIcon(0, icon);
+	}
+	m_shortcuts->sortByColumn(0, Qt::AscendingOrder);
+	connect(m_shortcuts, SIGNAL(itemSelectionChanged()), this, SLOT(selectedShortcutChanged()));
+
+	// Create editor
+	m_shortcut_edit = new ShortcutEdit(this);
+	connect(m_shortcut_edit, SIGNAL(changed()), this, SLOT(shortcutChanged()));
+
+	// Lay out shortcut tab
+	QGridLayout* layout = new QGridLayout(tab);
+	layout->setColumnStretch(1, 1);
+	layout->setRowStretch(0, 1);
+	layout->addWidget(m_shortcuts, 0, 0, 1, 2);
+	layout->addWidget(new QLabel(ShortcutEdit::tr("Shortcut:"), tab), 1, 0);
+	layout->addWidget(m_shortcut_edit, 1, 1);
+
+	m_shortcuts->setCurrentItem(m_shortcuts->topLevelItem(0));
+	highlightShortcutConflicts();
 
 	return makeScrollable(tab);
 }

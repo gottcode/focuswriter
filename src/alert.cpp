@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,9 @@
 
 #include "alert.h"
 
+#include "action_manager.h"
+
+#include <QAction>
 #include <QEvent>
 #include <QGraphicsOpacityEffect>
 #include <QHBoxLayout>
@@ -58,7 +61,7 @@ Alert::Alert(const QPixmap& pixmap, const QString& text, const QStringList& deta
 	close->setAutoRaise(true);
 	close->setIconSize(QSize(16,16));
 	close->setIcon(QIcon::fromTheme("window-close"));
-	close->setToolTip(tr("Close (Ctrl+D)"));
+	close->setToolTip(tr("Close (%1)").arg(ActionManager::instance()->action("DismissAlert")->shortcut().toString(QKeySequence::NativeText)));
 	connect(close, SIGNAL(clicked()), this, SLOT(fadeOut()));
 
 	QHBoxLayout* layout = new QHBoxLayout(this);

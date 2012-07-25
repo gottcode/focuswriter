@@ -1,3 +1,6 @@
+2012-07-25 Graeme Gott <graeme@gottcode.org>
+	* Add editable keyboard shortcuts.
+
 2012-07-20 Graeme Gott <graeme@gottcode.org>
 	* Make it compile with Qt 5.
 	* Use alerts for errors when loading files.

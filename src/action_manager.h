@@ -17,41 +17,57 @@
  *
  ***********************************************************************/
 
-#ifndef SHORTCUT_EDIT_H
-#define SHORTCUT_EDIT_H
+#ifndef ACTION_MANAGER_H
+#define ACTION_MANAGER_H
 
-#include <QWidget>
-class QLineEdit;
-class QPushButton;
+#include <QHash>
+#include <QKeySequence>
+#include <QObject>
+class QAction;
 
-class ShortcutEdit : public QWidget
+class ActionManager : public QObject
 {
 	Q_OBJECT
 
+	struct Action
+	{
+		QAction* action;
+		QKeySequence shortcut;
+		QKeySequence default_shortcut;
+	};
+
 public:
-	ShortcutEdit(QWidget* parent = 0);
+	ActionManager(QObject* parent = 0);
+	~ActionManager();
 
-	QKeySequence shortcut() const;
+	QList<QString> actions() const
+	{
+		return m_actions.keys();
+	}
 
-	bool eventFilter(QObject* watched, QEvent* event);
-	void setShortcut(const QKeySequence& shortcut);
-	void setShortcut(const QKeySequence& shortcut, const QKeySequence& default_shortcut);
+	QAction* action(const QString& name) const
+	{
+		return m_actions[name].action;
+	}
 
-signals:
-	void changed();
+	QKeySequence defaultShortcut(const QString& name) const
+	{
+		return m_actions[name].default_shortcut;
+	}
 
-public slots:
-	void clear();
-	void reset();
+	QKeySequence shortcut(const QString& name) const;
+
+	void addAction(const QString& name, QAction* action);
+	void setShortcuts(const QHash<QString, QKeySequence>& shortcuts);
+
+	static ActionManager* instance()
+	{
+		return m_instance;
+	}
 
 private:
-	void setText();
-
-private:
-	QKeySequence m_shortcut;
-	QKeySequence m_default_shortcut;
-	QLineEdit* m_edit;
-	QPushButton* m_reset_button;
+	QHash<QString, Action> m_actions;
+	static ActionManager* m_instance;
 };
 
 #endif

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,10 @@
 
 #include "alert_layer.h"
 
+#include "action_manager.h"
 #include "alert.h"
 
-#include <QShortcut>
+#include <QAction>
 #include <QStyle>
 #include <QVBoxLayout>
 
@@ -33,7 +34,12 @@ AlertLayer::AlertLayer(QWidget* parent)
 	setMaximumWidth(400);
 	m_alerts_layout = new QVBoxLayout(this);
 	m_alerts_layout->setMargin(0);
-	new QShortcut(tr("Ctrl+D"), this, SLOT(dismissAlert()));
+
+	QAction* action = new QAction(tr("Dismiss Alert"), this);
+	action->setShortcut(tr("Ctrl+D"));
+	connect(action, SIGNAL(triggered()), this, SLOT(dismissAlert()));
+	addAction(action);
+	ActionManager::instance()->addAction("DismissAlert", action);
 }
 
 //-----------------------------------------------------------------------------

@@ -394,9 +394,9 @@ void SymbolsDialog::symbolClicked(const QModelIndex& symbol)
 		m_symbol_code->setText(QString("<tt>U+%1</tt>").arg(unicode, 4, 16, QLatin1Char('0')).toUpper());
 
 		if (m_shortcuts.contains(unicode)) {
-			m_symbol_shortcut->setShortcut(m_shortcuts.value(unicode)->key(), QKeySequence());
+			m_symbol_shortcut->setShortcut(m_shortcuts.value(unicode)->key());
 		} else {
-			m_symbol_shortcut->setShortcut(QKeySequence(), QKeySequence());
+			m_symbol_shortcut->setShortcut(QKeySequence());
 		}
 
 		// Select symbol in recent list, and clear any other selections

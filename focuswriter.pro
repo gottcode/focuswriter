@@ -79,9 +79,10 @@ macx {
 		src/enchant/dictionary_manager.cpp
 }
 
-HEADERS += src/alert.h \
-	src/application.h \
+HEADERS += src/action_manager.h \
+	src/alert.h \
 	src/alert_layer.h \
+	src/application.h \
 	src/block_stats.h \
 	src/color_button.h \
 	src/deltas.h \
@@ -122,9 +123,10 @@ HEADERS += src/alert.h \
 	src/rtf/tokenizer.h \
 	src/rtf/writer.h
 
-SOURCES += src/alert.cpp \
-	src/application.cpp \
+SOURCES += src/action_manager.cpp \
+	src/alert.cpp \
 	src/alert_layer.cpp \
+	src/application.cpp \
 	src/block_stats.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \

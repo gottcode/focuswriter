@@ -123,11 +123,19 @@ bool ShortcutEdit::eventFilter(QObject* watched, QEvent* event)
 
 //-----------------------------------------------------------------------------
 
+void ShortcutEdit::setShortcut(const QKeySequence& shortcut)
+{
+	setShortcut(shortcut, QKeySequence());
+	m_reset_button->setHidden(true);
+}
+
+//-----------------------------------------------------------------------------
+
 void ShortcutEdit::setShortcut(const QKeySequence& shortcut, const QKeySequence& default_shortcut)
 {
 	m_shortcut = shortcut;
 	m_default_shortcut = default_shortcut;
-	m_reset_button->setHidden(m_default_shortcut.isEmpty());
+	m_reset_button->setHidden(false);
 	setText();
 }
 
