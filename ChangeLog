@@ -1,4 +1,5 @@
 2012-07-26 Graeme Gott <graeme@gottcode.org>
+	* Use file extension to determine format when loading.
 	* Use file extension to determine format when saving.
 	* Always allow rich text.
 

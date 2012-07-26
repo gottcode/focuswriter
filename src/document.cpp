@@ -479,7 +479,31 @@ bool Document::loadFile(const QString& filename, int position)
 	document->blockSignals(true);
 
 	document->setUndoRedoEnabled(false);
-	if (!m_rich_text) {
+	QString type = filename.section(QLatin1Char('.'), -1).toLower();
+	if (type == "odt") {
+		ODT::Reader reader;
+		reader.read(filename, document);
+		if (reader.hasError()) {
+			QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+			loaded = false;
+			position = -1;
+		}
+	} else if (type == "rtf") {
+		QFile file(filename);
+		if (file.open(QIODevice::ReadOnly)) {
+			RTF::Reader reader;
+			QTextCursor cursor(document);
+			cursor.select(QTextCursor::Document);
+			reader.read(&file, cursor);
+			m_codepage = reader.codePage();
+			file.close();
+			if (reader.hasError()) {
+				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				loaded = false;
+				position = -1;
+			}
+		}
+	} else {
 		QFile file(filename);
 		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&file);
@@ -495,31 +519,6 @@ bool Document::loadFile(const QString& filename, int position)
 			}
 			cursor.endEditBlock();
 			file.close();
-		}
-	} else {
-		if (m_filename.endsWith(".odt")) {
-			ODT::Reader reader;
-			reader.read(filename, document);
-			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
-				loaded = false;
-				position = -1;
-			}
-		} else {
-			QFile file(filename);
-			if (file.open(QIODevice::ReadOnly)) {
-				RTF::Reader reader;
-				QTextCursor cursor(document);
-				cursor.select(QTextCursor::Document);
-				reader.read(&file, cursor);
-				m_codepage = reader.codePage();
-				file.close();
-				if (reader.hasError()) {
-					QMessageBox::warning(this, tr("Sorry"), reader.errorString());
-					loaded = false;
-					position = -1;
-				}
-			}
 		}
 	}
 	document->setUndoRedoEnabled(true);
