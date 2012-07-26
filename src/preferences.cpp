@@ -52,7 +52,6 @@ Preferences::Preferences()
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
-	m_rich_text = settings.value("Edit/RichText", true).toBool();
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
 	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
@@ -112,7 +111,6 @@ Preferences::~Preferences()
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
-	settings.setValue("Edit/RichText", m_rich_text);
 	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
 	settings.setValue("Edit/SmartQuotes", m_smart_quotes);
 	settings.setValue("Edit/SmartDoubleQuotes", m_double_quotes);
@@ -317,13 +315,6 @@ bool Preferences::blockCursor() const
 
 //-----------------------------------------------------------------------------
 
-bool Preferences::richText() const
-{
-	return m_rich_text;
-}
-
-//-----------------------------------------------------------------------------
-
 bool Preferences::smoothFonts() const
 {
 	return m_smooth_fonts;
@@ -369,13 +360,6 @@ void Preferences::setAlwaysCenter(bool center)
 void Preferences::setBlockCursor(bool block)
 {
 	setValue(m_block_cursor, block);
-}
-
-//-----------------------------------------------------------------------------
-
-void Preferences::setRichText(bool rich)
-{
-	setValue(m_rich_text, rich);
 }
 
 //-----------------------------------------------------------------------------

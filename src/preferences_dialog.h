@@ -84,7 +84,6 @@ private:
 	QSpinBox* m_wordcount;
 	QCheckBox* m_always_center;
 	QCheckBox* m_block_cursor;
-	QCheckBox* m_rich_text;
 	QCheckBox* m_smooth_fonts;
 	QCheckBox* m_smart_quotes;
 	QComboBox* m_double_quotes;

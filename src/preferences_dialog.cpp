@@ -139,7 +139,6 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 
 	m_always_center->setChecked(m_preferences.alwaysCenter());
 	m_block_cursor->setChecked(m_preferences.blockCursor());
-	m_rich_text->setChecked(m_preferences.richText());
 	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
 	m_smart_quotes->setChecked(m_preferences.smartQuotes());
 	m_double_quotes->setCurrentIndex(m_preferences.doubleQuotes());
@@ -252,7 +251,6 @@ void PreferencesDialog::accept()
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
-	m_preferences.setRichText(m_rich_text->isChecked());
 	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
 	m_preferences.setSmartQuotes(m_smart_quotes->isChecked());
 	m_preferences.setDoubleQuotes(m_double_quotes->currentIndex());
@@ -690,7 +688,6 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	m_always_center = new QCheckBox(tr("Always vertically center"), edit_group);
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
-	m_rich_text = new QCheckBox(tr("Default to rich text"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
 	m_typewriter_sounds = new QCheckBox(tr("Typewriter sounds"), edit_group);
 
@@ -718,7 +715,6 @@ QWidget* PreferencesDialog::initGeneralTab()
 	QVBoxLayout* edit_layout = new QVBoxLayout(edit_group);
 	edit_layout->addWidget(m_always_center);
 	edit_layout->addWidget(m_block_cursor);
-	edit_layout->addWidget(m_rich_text);
 	edit_layout->addWidget(m_smooth_fonts);
 	edit_layout->addLayout(quotes_layout);
 	edit_layout->addWidget(m_typewriter_sounds);

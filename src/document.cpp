@@ -211,7 +211,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	connect(&DictionaryManager::instance(), SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
 	// Set filename
-	bool unknown_rich_text = false;
 	if (!filename.isEmpty()) {
 		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
 		m_rich_text = (suffix == "odt") || (suffix == "rtf");
@@ -221,7 +220,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	if (m_filename.isEmpty()) {
 		findIndex();
-		unknown_rich_text = true;
 	}
 
 	// Set up scroll bar
@@ -244,9 +242,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	// Load settings
 	Preferences preferences;
-	if (unknown_rich_text) {
-		m_rich_text = preferences.richText();
-	}
 	loadPreferences(preferences);
 
 	// Make it read-only until content is loaded
