@@ -38,7 +38,7 @@
 //-----------------------------------------------------------------------------
 
 DocumentWriter::DocumentWriter() :
-	m_rich_text(true),
+	m_type("odt"),
 	m_document(0)
 {
 }
@@ -61,7 +61,20 @@ bool DocumentWriter::write()
 
 	bool saved = false;
 	QFile file(m_filename + ".tmp");
-	if (!m_rich_text) {
+	if (m_type == "odt") {
+		if (file.open(QFile::WriteOnly)) {
+			QTextDocumentWriter writer(&file, "ODT");
+			saved = writer.write(m_document);
+		}
+	} else if (m_type == "rtf") {
+		if (file.open(QFile::WriteOnly)) {
+			RTF::Writer writer(m_codepage);
+			if (m_codepage.isEmpty()) {
+				m_codepage = writer.codePage();
+			}
+			saved = writer.write(&file, m_document);
+		}
+	} else {
 		if (file.open(QFile::WriteOnly | QFile::Text)) {
 			QTextStream stream(&file);
 			stream.setCodec("UTF-8");
@@ -70,19 +83,6 @@ bool DocumentWriter::write()
 			}
 			stream << m_document->toPlainText();
 			saved = true;
-		}
-	} else {
-		if (file.open(QFile::WriteOnly)) {
-			if (m_type == "rtf") {
-				RTF::Writer writer(m_codepage);
-				if (m_codepage.isEmpty()) {
-					m_codepage = writer.codePage();
-				}
-				saved = writer.write(&file, m_document);
-			} else {
-				QTextDocumentWriter writer(&file, "ODT");
-				saved = writer.write(m_document);
-			}
 		}
 	}
 

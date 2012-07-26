@@ -34,7 +34,6 @@ public:
 	void setCodePage(const QByteArray& codepage);
 	void setDocument(QTextDocument* document);
 	void setFileName(const QString& filename);
-	void setRichText(bool rich_text);
 	void setType(const QString& type);
 
 	bool write();
@@ -42,7 +41,6 @@ public:
 private:
 	QString m_filename;
 	QString m_type;
-	bool m_rich_text;
 	QByteArray m_codepage;
 	QTextDocument* m_document;
 };
@@ -65,11 +63,6 @@ inline void DocumentWriter::setDocument(QTextDocument* document)
 inline void DocumentWriter::setFileName(const QString& filename)
 {
 	m_filename = filename;
-}
-
-inline void DocumentWriter::setRichText(bool rich_text)
-{
-	m_rich_text = rich_text;
 }
 
 inline void DocumentWriter::setType(const QString& type)

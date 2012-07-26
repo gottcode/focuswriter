@@ -278,8 +278,7 @@ void Document::cache()
 		m_cache_outdated = false;
 		DocumentWriter* writer = new DocumentWriter;
 		writer->setFileName(g_cache_path + m_cache_filename);
-		writer->setType(m_filename.section(QLatin1Char('.'), -1));
-		writer->setRichText(m_rich_text);
+		writer->setType(!m_filename.isEmpty() ? m_filename.section(QLatin1Char('.'), -1) : "odt");
 		writer->setCodePage(m_codepage);
 		writer->setDocument(m_text->document()->clone());
 		emit cacheFile(writer);
@@ -304,7 +303,6 @@ bool Document::save()
 	DocumentWriter writer;
 	writer.setFileName(m_filename);
 	writer.setType(m_filename.section(QLatin1Char('.'), -1));
-	writer.setRichText(m_rich_text);
 	writer.setCodePage(m_codepage);
 	writer.setDocument(m_text->document());
 	bool saved = writer.write();
