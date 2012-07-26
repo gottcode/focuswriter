@@ -185,6 +185,7 @@ TRANSLATIONS = translations/focuswriter_ca.ts \
 	translations/focuswriter_pt.ts \
 	translations/focuswriter_pt_BR.ts \
 	translations/focuswriter_ru.ts \
+	translations/focuswriter_sk.ts \
 	translations/focuswriter_sv.ts \
 	translations/focuswriter_uk.ts
 
