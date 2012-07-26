@@ -1,4 +1,5 @@
 2012-07-26 Graeme Gott <graeme@gottcode.org>
+	* Allow any file to be saved in any format.
 	* Remove menu action for toggling rich text.
 	* Remove setting for defaulting to rich text.
 	* Use file extension to determine format when loading.

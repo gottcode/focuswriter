@@ -1111,23 +1111,20 @@ void Document::findIndex()
 
 QString Document::fileFilter(const QString& filename) const
 {
-	QString plaintext = tr("Plain Text (*.txt)");
 	QString opendocumenttext = tr("OpenDocument Text (*.odt)");
 	QString richtext = tr("Rich Text (*.rtf)");
+	QString plaintext = tr("Plain Text (*.txt)");
 	QString all = tr("All Files (*)");
-	if (!filename.isEmpty()) {
-		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
-		if (suffix == "odt") {
-			return opendocumenttext + ";;" + richtext;
-		} else if (suffix == "rtf") {
-			return richtext + ";;" + opendocumenttext;
-		} else if (suffix == "txt") {
-			return plaintext + ";;" + all;
-		} else {
-			return all;
-		}
+
+	QString type = filename.section(QLatin1Char('.'), -1).toLower();
+	if (filename.isEmpty() || (type == "odt")) {
+		return opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
+	} else if (type == "rtf") {
+		return richtext + ";;" + opendocumenttext + ";;" + plaintext + ";;" + all;
+	} else if (type == "txt") {
+		return plaintext + ";;" + opendocumenttext + ";;" + richtext + ";;" + all;
 	} else {
-		return m_rich_text ? (opendocumenttext + ";;" + richtext) : plaintext;
+		return all + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext;
 	}
 }
 
