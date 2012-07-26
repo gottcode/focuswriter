@@ -247,7 +247,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	if (unknown_rich_text) {
 		m_rich_text = preferences.richText();
 	}
-	m_text->setAcceptRichText(m_rich_text);
 	loadPreferences(preferences);
 
 	// Make it read-only until content is loaded
@@ -748,7 +747,6 @@ void Document::setRichText(bool rich_text)
 
 	// Set file type
 	m_rich_text = rich_text;
-	m_text->setAcceptRichText(m_rich_text);
 
 	// Always remove formatting to have something to undo
 	QTextCursor cursor(m_text->document());
@@ -766,7 +764,6 @@ void Document::setRichText(bool rich_text)
 		m_text->document()->setModified(false);
 	}
 	emit changedName();
-	emit formattingEnabled(m_rich_text);
 }
 
 //-----------------------------------------------------------------------------
@@ -1042,8 +1039,6 @@ void Document::updateWordCount(int position, int removed, int added)
 		}
 		if (m_rich_text != state.second) {
 			m_rich_text = state.second;
-			m_text->setAcceptRichText(m_rich_text);
-			emit formattingEnabled(m_rich_text);
 		}
 	}
 

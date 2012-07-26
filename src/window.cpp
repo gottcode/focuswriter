@@ -134,7 +134,6 @@ Window::Window(const QStringList& command_line_files)
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
-	connect(m_documents, SIGNAL(formattingEnabled(bool)), this, SLOT(setFormattingEnabled(bool)));
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
 	connect(m_documents, SIGNAL(updateFormatAlignmentActions()), this, SLOT(updateFormatAlignmentActions()));
 	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
@@ -778,23 +777,6 @@ void Window::lastDocument()
 
 //-----------------------------------------------------------------------------
 
-void Window::setFormattingEnabled(bool enabled)
-{
-	foreach (QAction* action, m_format_actions) {
-		action->setEnabled(enabled);
-	}
-	if (enabled) {
-		m_actions["FormatIndentDecrease"]->setEnabled(false);
-		m_richtext_action->setVisible(false);
-		m_plaintext_action->setVisible(true);
-	} else {
-		m_plaintext_action->setVisible(false);
-		m_richtext_action->setVisible(true);
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 void Window::minimize()
 {
 #ifdef Q_OS_MAC
@@ -1257,7 +1239,6 @@ void Window::updateWriteState(int index)
 	m_replace_document_quotes->setEnabled(writable);
 	m_replace_selection_quotes->setEnabled(writable);
 
-	writable &= document->isRichText();
 	m_plaintext_action->setEnabled(writable);
 	foreach (QAction* action, m_format_actions) {
 		action->setEnabled(writable);

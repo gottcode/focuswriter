@@ -67,7 +67,6 @@ signals:
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
 	void findNextAvailable(bool available);
-	void formattingEnabled(bool enabled);
 	void updateFormatActions();
 	void updateFormatAlignmentActions();
 

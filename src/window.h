@@ -74,7 +74,6 @@ private slots:
 	void previousDocument();
 	void firstDocument();
 	void lastDocument();
-	void setFormattingEnabled(bool enabled);
 	void minimize();
 	void toggleFullscreen();
 	void toggleToolbar(bool visible);
