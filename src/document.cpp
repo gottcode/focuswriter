@@ -289,7 +289,7 @@ bool Document::save()
 	settings.setValue("Progress/Words", m_current_wordcount);
 	settings.setValue("Progress/Time", m_current_time);
 
-	if (m_filename.isEmpty()) {
+	if (m_filename.isEmpty() || !processFileName(m_filename)) {
 		return saveAs();
 	}
 
@@ -324,60 +324,59 @@ bool Document::save()
 
 bool Document::saveAs()
 {
-	QString selected;
-	QString filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), m_filename, fileFilter(m_filename), &selected);
-	if (!filename.isEmpty()) {
-		filename = fileNameWithExtension(filename, selected);
-		if (QFile::exists(filename) && !QFile::remove(filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
-			return false;
-		}
-		qSwap(m_filename, filename);
-		if (!save()) {
-			m_filename = filename;
-			return false;
-		}
-		clearIndex();
-		updateSaveLocation();
-		m_text->setReadOnly(false);
-		m_text->document()->setModified(false);
-		emit changedName();
-		return true;
-	} else {
+	// Request new filename
+	QString filename = getSaveFileName(tr("Save File As"));
+	if (filename.isEmpty()) {
 		return false;
 	}
+
+	// Save file as new name
+	if (QFile::exists(filename) && !QFile::remove(filename)) {
+		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
+		return false;
+	}
+	qSwap(m_filename, filename);
+	if (!save()) {
+		m_filename = filename;
+		return false;
+	}
+	clearIndex();
+	updateSaveLocation();
+	m_text->setReadOnly(false);
+	m_text->document()->setModified(false);
+	emit changedName();
+	return true;
 }
 
 //-----------------------------------------------------------------------------
 
 bool Document::rename()
 {
+	// Request new filename
 	if (m_filename.isEmpty()) {
 		return false;
 	}
-
-	QString selected;
-	QString filename = QFileDialog::getSaveFileName(window(), tr("Rename File"), m_filename, fileFilter(m_filename), &selected);
-	if (!filename.isEmpty()) {
-		filename = fileNameWithExtension(filename, selected);
-		if (QFile::exists(filename) && !QFile::remove(filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
-			return false;
-		}
-		if (!QFile::rename(m_filename, filename)) {
-			QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(QDir::toNativeSeparators(m_filename)));
-			return false;
-		}
-		DocumentWatcher::instance()->removeWatch(this);
-		m_filename = filename;
-		DocumentWatcher::instance()->addWatch(this);
-		updateSaveLocation();
-		m_text->document()->setModified(false);
-		emit changedName();
-		return true;
-	} else {
+	QString filename = getSaveFileName(tr("Rename File"));
+	if (filename.isEmpty()) {
 		return false;
 	}
+
+	// Rename file
+	if (QFile::exists(filename) && !QFile::remove(filename)) {
+		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
+		return false;
+	}
+	if (!QFile::rename(m_filename, filename)) {
+		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(QDir::toNativeSeparators(m_filename)));
+		return false;
+	}
+	DocumentWatcher::instance()->removeWatch(this);
+	m_filename = filename;
+	DocumentWatcher::instance()->addWatch(this);
+	updateSaveLocation();
+	m_text->document()->setModified(false);
+	emit changedName();
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -1109,41 +1108,77 @@ void Document::findIndex()
 
 //-----------------------------------------------------------------------------
 
-QString Document::fileFilter(const QString& filename) const
+QString Document::getSaveFileName(const QString& title)
 {
-	QString opendocumenttext = tr("OpenDocument Text (*.odt)");
-	QString richtext = tr("Rich Text (*.rtf)");
-	QString plaintext = tr("Plain Text (*.txt)");
-	QString all = tr("All Files (*)");
+	// Determine filter
+	QString filter;
+	QString default_filter;
+	{
+		QString opendocumenttext = tr("OpenDocument Text (*.odt)");
+		QString richtext = tr("Rich Text (*.rtf)");
+		QString plaintext = tr("Plain Text (*.txt)");
+		QString all = tr("All Files (*)");
+		default_filter = opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
 
-	QString type = filename.section(QLatin1Char('.'), -1).toLower();
-	if (filename.isEmpty() || (type == "odt")) {
-		return opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
-	} else if (type == "rtf") {
-		return richtext + ";;" + opendocumenttext + ";;" + plaintext + ";;" + all;
-	} else if (type == "txt") {
-		return plaintext + ";;" + opendocumenttext + ";;" + richtext + ";;" + all;
-	} else {
-		return all + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext;
+		QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
+		if (type == "rtf") {
+			filter = richtext + ";;" + opendocumenttext + ";;" + plaintext + ";;" + all;
+		} else if ((type == "odt") || m_rich_text || m_filename.isEmpty()) {
+			filter = default_filter;
+		} else if (type == "txt") {
+			filter = plaintext + ";;" + opendocumenttext + ";;" + richtext + ";;" + all;
+		} else {
+			filter = all + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext;
+		}
 	}
+
+	// Prompt for filename
+	QString filename;
+	while (filename.isEmpty()) {
+		QString selected;
+		filename = QFileDialog::getSaveFileName(window(), title, m_filename, filter, &selected);
+		if (filename.isEmpty()) {
+			break;
+		}
+
+		// Append file extension
+		QString type;
+		QRegExp exp("\\*(\\.\\w+)");
+		int index = exp.indexIn(selected);
+		if (index != -1) {
+			type = exp.cap(1);
+		}
+		if (!filename.endsWith(type)) {
+			filename.append(type);
+		}
+
+		// Handle rich text in plain text file
+		if (!processFileName(filename)) {
+			filter = default_filter;
+			filename.clear();
+		}
+	}
+
+	return filename;
 }
 
 //-----------------------------------------------------------------------------
 
-QString Document::fileNameWithExtension(const QString& filename, const QString& filter) const
+bool Document::processFileName(const QString& filename)
 {
-	QString suffix;
-	QRegExp exp("\\*(\\.\\w+)");
-	int index = exp.indexIn(filter);
-	if (index != -1) {
-		suffix = exp.cap(1);
+	QString type = filename.section(QLatin1Char('.'), -1).toLower();
+	if (m_rich_text && (type != "odt") && (type != "rtf")) {
+		if (QMessageBox::question(window(),
+				tr("Question"),
+				tr("Saving as plain text will discard all formatting. Discard formatting?"),
+				QMessageBox::Yes | QMessageBox::No,
+				QMessageBox::No) == QMessageBox::No) {
+			return false;
+		} else {
+			setRichText(false);
+		}
 	}
-
-	QString result = filename;
-	if (!result.endsWith(suffix)) {
-		result.append(suffix);
-	}
-	return result;
+	return true;
 }
 
 //-----------------------------------------------------------------------------

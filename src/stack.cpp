@@ -298,6 +298,7 @@ bool Stack::eventFilter(QObject* watched, QEvent* event)
 
 void Stack::alignCenter()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignCenter);
 }
 
@@ -305,6 +306,7 @@ void Stack::alignCenter()
 
 void Stack::alignJustify()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignJustify);
 }
 
@@ -312,6 +314,7 @@ void Stack::alignJustify()
 
 void Stack::alignLeft()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
 }
 
@@ -319,6 +322,7 @@ void Stack::alignLeft()
 
 void Stack::alignRight()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
 }
 
@@ -373,6 +377,7 @@ void Stack::copy()
 
 void Stack::decreaseIndent()
 {
+	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(qMax(0, format.indent() - 48));
@@ -405,6 +410,7 @@ void Stack::findPrevious()
 
 void Stack::increaseIndent()
 {
+	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(format.indent() + 48);
@@ -498,6 +504,7 @@ void Stack::setFocusMode(QAction* action)
 
 void Stack::setFontBold(bool bold)
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setFontWeight(bold ? QFont::Bold : QFont::Normal);
 }
 
@@ -505,6 +512,7 @@ void Stack::setFontBold(bool bold)
 
 void Stack::setFontItalic(bool italic)
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setFontItalic(italic);
 }
 
@@ -512,6 +520,7 @@ void Stack::setFontItalic(bool italic)
 
 void Stack::setFontStrikeOut(bool strikeout)
 {
+	m_current_document->setRichText(true);
 	QTextCharFormat format;
 	format.setFontStrikeOut(strikeout);
 	m_current_document->text()->mergeCurrentCharFormat(format);
@@ -521,6 +530,7 @@ void Stack::setFontStrikeOut(bool strikeout)
 
 void Stack::setFontUnderline(bool underline)
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setFontUnderline(underline);
 }
 
@@ -528,6 +538,7 @@ void Stack::setFontUnderline(bool underline)
 
 void Stack::setFontSuperScript(bool super)
 {
+	m_current_document->setRichText(true);
 	QTextCharFormat format;
 	format.setVerticalAlignment(super ? QTextCharFormat::AlignSuperScript : QTextCharFormat::AlignNormal);
 	m_current_document->text()->mergeCurrentCharFormat(format);
@@ -537,6 +548,7 @@ void Stack::setFontSuperScript(bool super)
 
 void Stack::setFontSubScript(bool sub)
 {
+	m_current_document->setRichText(true);
 	QTextCharFormat format;
 	format.setVerticalAlignment(sub ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal);
 	m_current_document->text()->mergeCurrentCharFormat(format);
@@ -547,6 +559,7 @@ void Stack::setFontSubScript(bool sub)
 void Stack::setTextDirectionLTR()
 {
 	if (m_current_document) {
+		m_current_document->setRichText(true);
 		QTextCursor cursor = m_current_document->text()->textCursor();
 		QTextBlockFormat format = cursor.blockFormat();
 		format.setLayoutDirection(Qt::LeftToRight);
@@ -561,6 +574,7 @@ void Stack::setTextDirectionLTR()
 void Stack::setTextDirectionRTL()
 {
 	if (m_current_document) {
+		m_current_document->setRichText(true);
 		QTextCursor cursor = m_current_document->text()->textCursor();
 		QTextBlockFormat format = cursor.blockFormat();
 		format.setLayoutDirection(Qt::RightToLeft);
