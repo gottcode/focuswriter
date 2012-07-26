@@ -1235,11 +1235,9 @@ void Window::updateWriteState(int index)
 		disconnect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
 		m_actions["Cut"]->setEnabled(false);
 	}
-	m_richtext_action->setEnabled(writable);
 	m_replace_document_quotes->setEnabled(writable);
 	m_replace_selection_quotes->setEnabled(writable);
 
-	m_plaintext_action->setEnabled(writable);
 	foreach (QAction* action, m_format_actions) {
 		action->setEnabled(writable);
 	}
@@ -1341,11 +1339,6 @@ void Window::initMenus()
 	direction->addAction(m_actions["FormatDirectionLTR"]);
 	direction->addAction(m_actions["FormatDirectionRTL"]);
 	m_actions["FormatDirectionLTR"]->setChecked(true);
-
-	format_menu->addSeparator();
-	m_plaintext_action = format_menu->addAction(tr("&Make Plain Text"), m_documents, SLOT(makePlainText()));
-	m_richtext_action = format_menu->addAction(tr("&Make Rich Text"), m_documents, SLOT(makeRichText()));
-	m_richtext_action->setVisible(false);
 
 	// Create tools menu
 	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));

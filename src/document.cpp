@@ -715,27 +715,11 @@ void Document::setFocusMode(int focus_mode)
 
 void Document::setRichText(bool rich_text)
 {
-	// Get new file name
-	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
-	if (!m_filename.isEmpty()) {
-		QString filename = m_filename;
-		int suffix_index = filename.lastIndexOf(QChar('.'));
-		int file_index = filename.lastIndexOf(QChar('/'));
-		if (suffix_index > file_index) {
-			filename.chop(filename.length() - suffix_index);
-		}
-		filename.append(rich_text ? ".rtf" : ".txt");
-		QString selected;
-		DocumentWatcher::instance()->removeWatch(this);
-		m_filename = QFileDialog::getSaveFileName(window(), tr("Save File As"), filename, fileFilter(filename), &selected);
-		if (!m_filename.isEmpty()) {
-			m_filename = fileNameWithExtension(m_filename, selected);
-			DocumentWatcher::instance()->addWatch(this);
-			clearIndex();
-		} else {
-			findIndex();
-		}
+	if (m_rich_text == rich_text) {
+		return;
 	}
+
+	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
 
 	// Set file type
 	m_rich_text = rich_text;
@@ -748,14 +732,6 @@ void Document::setRichText(bool rich_text)
 	cursor.setCharFormat(QTextCharFormat());
 	cursor.endEditBlock();
 	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
-
-	// Save file
-	if (!m_filename.isEmpty()) {
-		save();
-		updateState();
-		m_text->document()->setModified(false);
-	}
-	emit changedName();
 }
 
 //-----------------------------------------------------------------------------

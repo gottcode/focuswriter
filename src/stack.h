@@ -85,8 +85,6 @@ public slots:
 	void findNext();
 	void findPrevious();
 	void increaseIndent();
-	void makePlainText();
-	void makeRichText();
 	void paste();
 	void pasteUnformatted();
 	void print();

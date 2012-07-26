@@ -106,8 +106,6 @@ private:
 	QToolBar* m_toolbar;
 	QHash<QString, QAction*> m_actions;
 	QList<QAction*> m_format_actions;
-	QAction* m_plaintext_action;
-	QAction* m_richtext_action;
 	QAction* m_replace_document_quotes;
 	QAction* m_replace_selection_quotes;
 	QActionGroup* m_focus_actions;

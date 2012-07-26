@@ -414,24 +414,6 @@ void Stack::increaseIndent()
 
 //-----------------------------------------------------------------------------
 
-void Stack::makePlainText()
-{
-	if (!m_current_document->text()->document()->isEmpty()
-		&& QMessageBox::warning(window(), tr("Question"), tr("Remove all formatting from the current file?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
-		return;
-	}
-	m_current_document->setRichText(false);
-}
-
-//-----------------------------------------------------------------------------
-
-void Stack::makeRichText()
-{
-	m_current_document->setRichText(true);
-}
-
-//-----------------------------------------------------------------------------
-
 void Stack::paste()
 {
 	m_current_document->text()->paste();
