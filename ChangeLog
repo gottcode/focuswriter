@@ -1,3 +1,6 @@
+2012-07-27 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Formatting of first paragraph was lost on reload.
+
 2012-07-26 Graeme Gott <graeme@gottcode.org>
 	* Warn when trying to save rich text in plain text file.
 	* Allow any file to be saved in any format.

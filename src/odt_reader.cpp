@@ -56,7 +56,6 @@ void ODT::Reader::read(const QString& filename, QTextDocument* text)
 	m_in_block = text->blockCount();
 	m_cursor = QTextCursor(text);
 	m_block_format = m_cursor.blockFormat();
-	m_cursor.select(QTextCursor::Document);
 	m_cursor.beginEditBlock();
 
 	// Open archive

@@ -473,6 +473,8 @@ bool Document::loadFile(const QString& filename, int position)
 	document->blockSignals(true);
 
 	document->setUndoRedoEnabled(false);
+	document->clear();
+	m_text->textCursor().mergeBlockFormat(m_block_format);
 	QString type = filename.section(QLatin1Char('.'), -1).toLower();
 	if (type == "odt") {
 		ODT::Reader reader;
@@ -487,7 +489,6 @@ bool Document::loadFile(const QString& filename, int position)
 		if (file.open(QIODevice::ReadOnly)) {
 			RTF::Reader reader;
 			QTextCursor cursor(document);
-			cursor.select(QTextCursor::Document);
 			reader.read(&file, cursor);
 			m_codepage = reader.codePage();
 			file.close();
@@ -505,7 +506,6 @@ bool Document::loadFile(const QString& filename, int position)
 			stream.setAutoDetectUnicode(true);
 
 			QTextCursor cursor(document);
-			cursor.select(QTextCursor::Document);
 			cursor.beginEditBlock();
 			while (!stream.atEnd()) {
 				cursor.insertText(stream.read(8192));
@@ -583,23 +583,23 @@ void Document::loadTheme(const Theme& theme)
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update spacings
-	QTextBlockFormat format;
+	m_block_format = QTextBlockFormat();
 #if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
-	format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
+	m_block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
 #endif
-	format.setTextIndent(48 * theme.indentFirstLine());
-	format.setTopMargin(theme.spacingAboveParagraph());
-	format.setBottomMargin(theme.spacingBelowParagraph());
+	m_block_format.setTextIndent(48 * theme.indentFirstLine());
+	m_block_format.setTopMargin(theme.spacingAboveParagraph());
+	m_block_format.setBottomMargin(theme.spacingBelowParagraph());
 	if (m_spacings_loaded) {
 		for (int i = 0, count = m_text->document()->allFormats().count(); i < count; ++i) {
 			QTextFormat& f = m_text->document()->allFormats()[i];
 			if (f.isBlockFormat()) {
-				f.merge(format);
+				f.merge(m_block_format);
 			}
 		}
 	} else {
 		m_text->setUndoRedoEnabled(false);
-		m_text->textCursor().mergeBlockFormat(format);
+		m_text->textCursor().mergeBlockFormat(m_block_format);
 		m_text->setUndoRedoEnabled(true);
 		m_text->document()->setModified(false);
 		m_spacings_loaded = true;
@@ -727,7 +727,7 @@ void Document::setRichText(bool rich_text)
 	QTextCursor cursor(m_text->document());
 	cursor.beginEditBlock();
 	cursor.movePosition(QTextCursor::End, QTextCursor::KeepAnchor);
-	cursor.setBlockFormat(QTextBlockFormat());
+	cursor.setBlockFormat(m_block_format);
 	cursor.setCharFormat(QTextCharFormat());
 	cursor.endEditBlock();
 	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);

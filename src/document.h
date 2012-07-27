@@ -30,6 +30,7 @@ class SceneModel;
 class Theme;
 
 #include <QHash>
+#include <QTextBlockFormat>
 #include <QTime>
 #include <QWidget>
 class QGridLayout;
@@ -132,6 +133,7 @@ private:
 	bool m_rich_text;
 	bool m_spacings_loaded;
 	int m_focus_mode;
+	QTextBlockFormat m_block_format;
 
 	QTimer* m_hide_timer;
 
