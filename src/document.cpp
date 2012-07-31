@@ -1166,18 +1166,24 @@ QString Document::getSaveFileName(const QString& title)
 
 bool Document::processFileName(const QString& filename)
 {
+	// Check if rich text status is the same
 	QString type = filename.section(QLatin1Char('.'), -1).toLower();
-	if (m_rich_text && (type != "odt") && (type != "rtf")) {
-		if (QMessageBox::question(window(),
-				tr("Question"),
-				tr("Saving as plain text will discard all formatting. Discard formatting?"),
-				QMessageBox::Yes | QMessageBox::No,
-				QMessageBox::No) == QMessageBox::No) {
-			return false;
-		} else {
-			setRichText(false);
-		}
+	bool rich_text = (type == "odt") || (type == "rtf");
+	if (m_rich_text == rich_text) {
+		return true;
 	}
+
+	// Confirm discarding rich text in plain text files
+	if (!rich_text && (QMessageBox::question(window(),
+			tr("Question"),
+			tr("Saving as plain text will discard all formatting. Discard formatting?"),
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No) == QMessageBox::No)) {
+		return false;
+	}
+
+	// Update rich text status
+	setRichText(rich_text);
 	return true;
 }
 
