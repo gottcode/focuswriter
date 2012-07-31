@@ -718,7 +718,7 @@ void Document::setRichText(bool rich_text)
 		return;
 	}
 
-	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
+	updateState();
 
 	// Set file type
 	m_rich_text = rich_text;
@@ -730,7 +730,7 @@ void Document::setRichText(bool rich_text)
 	cursor.setBlockFormat(m_block_format);
 	cursor.setCharFormat(QTextCharFormat());
 	cursor.endEditBlock();
-	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
+	updateState();
 }
 
 //-----------------------------------------------------------------------------
@@ -1189,45 +1189,60 @@ void Document::updateSaveLocation()
 	QSettings().setValue("Save/Location", path);
 	QDir::setCurrent(path);
 	updateState();
+	updateSaveName();
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::updateSaveName()
+{
+	// List undo states
+	if (m_old_states.isEmpty()) {
+		return;
+	}
+	QList<int> keys = m_old_states.keys();
+	qSort(keys);
+	int count = keys.count();
+
+	// Find undo states nearest to current
+	int steps = m_text->document()->availableUndoSteps();
+	int nearest_smaller = steps;
+	int nearest_larger = steps;
+	if (!keys.contains(steps)) {
+		nearest_smaller = 0;
+		nearest_larger = count - 1;
+		for (int i = 0; i < count; ++i) {
+			if (keys.at(i) < steps) {
+				nearest_smaller = i;
+			} else if (keys.at(i) > steps) {
+				nearest_larger = i;
+				break;
+			}
+		}
+	}
+
+	// Replace filename of states until the rich text status differs
+	for (int i = nearest_smaller; i > -1; --i) {
+		if (m_old_states[i].second == m_rich_text) {
+			m_old_states[i].first = m_filename;
+		} else {
+			break;
+		}
+	}
+	for (int i = nearest_larger; i < count; ++i) {
+		if (m_old_states[i].second == m_rich_text) {
+			m_old_states[i].first = m_filename;
+		} else {
+			break;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
 
 void Document::updateState()
 {
-	if (!m_old_states.isEmpty()) {
-		QList<int> keys = m_old_states.keys();
-		qSort(keys);
-		int count = keys.count();
-
-		int steps = m_text->document()->availableUndoSteps();
-		int nearest_smaller = 0;
-		int nearest_larger = count - 1;
-		for (int i = 0; i < count; ++i) {
-			if (keys[i] <= steps) {
-				nearest_smaller = i;
-			}
-			if (keys[i] >= steps) {
-				nearest_larger = i;
-				break;
-			}
-		}
-
-		for (int i = nearest_smaller; i > -1; --i) {
-			if (m_old_states[i].second == m_rich_text) {
-				m_old_states[i].first = m_filename;
-			} else {
-				break;
-			}
-		}
-		for (int i = nearest_larger; i < count; ++i) {
-			if (m_old_states[i].second == m_rich_text) {
-				m_old_states[i].first = m_filename;
-			} else {
-				break;
-			}
-		}
-	}
+	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
 }
 
 //-----------------------------------------------------------------------------

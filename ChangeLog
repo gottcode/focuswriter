@@ -1,3 +1,6 @@
+2012-07-31 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Filenames were incorrect after undo and redo.
+
 2012-07-27 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Formatting of first paragraph was lost on reload.
 

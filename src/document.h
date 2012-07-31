@@ -119,6 +119,7 @@ private:
 	QString getSaveFileName(const QString& title);
 	bool processFileName(const QString& filename);
 	void updateSaveLocation();
+	void updateSaveName();
 	void updateState();
 
 private:
