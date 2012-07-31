@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/document.cpp" line="958"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Текст формата OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="959"/>
