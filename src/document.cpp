@@ -1212,32 +1212,31 @@ void Document::updateSaveName()
 
 	// Find undo states nearest to current
 	int steps = m_text->document()->availableUndoSteps();
-	int nearest_smaller = steps;
-	int nearest_larger = steps;
-	if (!keys.contains(steps)) {
-		nearest_smaller = 0;
-		nearest_larger = count - 1;
-		for (int i = 0; i < count; ++i) {
-			if (keys.at(i) < steps) {
-				nearest_smaller = i;
-			} else if (keys.at(i) > steps) {
-				nearest_larger = i;
-				break;
-			}
+	int nearest_smaller = 0;
+	int nearest_larger = count - 1;
+	for (int i = 0; i < count; ++i) {
+		if (keys.at(i) <= steps) {
+			nearest_smaller = i;
+		}
+		if (keys.at(i) >= steps) {
+			nearest_larger = i;
+			break;
 		}
 	}
 
 	// Replace filename of states until the rich text status differs
 	for (int i = nearest_smaller; i > -1; --i) {
-		if (m_old_states[i].second == m_rich_text) {
-			m_old_states[i].first = m_filename;
+		QPair<QString, bool>& state = m_old_states[keys.at(i)];
+		if (state.second == m_rich_text) {
+			state.first = m_filename;
 		} else {
 			break;
 		}
 	}
 	for (int i = nearest_larger; i < count; ++i) {
-		if (m_old_states[i].second == m_rich_text) {
-			m_old_states[i].first = m_filename;
+		QPair<QString, bool>& state = m_old_states[keys.at(i)];
+		if (state.second == m_rich_text) {
+			state.first = m_filename;
 		} else {
 			break;
 		}
