@@ -210,7 +210,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_line_spacing = new QSpinBox(line_spacing);
 	m_line_spacing->setSuffix(QLocale().percent());
-	m_line_spacing->setRange(100, 1000);
+	m_line_spacing->setRange(85, 1000);
 	m_line_spacing->setValue(m_theme.lineSpacing());
 	m_line_spacing->setEnabled(false);
 

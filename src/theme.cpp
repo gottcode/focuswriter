@@ -132,7 +132,7 @@ Theme::Theme(const QString& name)
 
 	// Load spacings
 	m_indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
-	m_line_spacing = qBound(100, settings.value("Spacings/LineSpacing", 100).toInt(), 1000);
+	m_line_spacing = qBound(85, settings.value("Spacings/LineSpacing", 100).toInt(), 1000);
 	m_paragraph_spacing_above = qBound(0, settings.value("Spacings/ParagraphAbove", 0).toInt(), 1000);
 	m_paragraph_spacing_below = qBound(0, settings.value("Spacings/ParagraphBelow", 0).toInt(), 1000);
 }
