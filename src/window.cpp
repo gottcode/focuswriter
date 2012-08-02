@@ -394,8 +394,6 @@ Window::Window(const QStringList& command_line_files)
 
 Window::~Window()
 {
-	m_document_cache_thread->quit();
-	m_document_cache_thread->wait();
 	delete m_document_cache;
 }
 
@@ -597,14 +595,23 @@ bool Window::event(QEvent* event)
 
 void Window::closeEvent(QCloseEvent* event)
 {
+	// Confirm discarding any unsaved changes
 	if (!m_timers->cancelEditing() || !m_sessions->closeCurrent()) {
 		event->ignore();
 		return;
 	}
+
+	// Save window settings
 	QSettings().setValue("Window/FocusedText", m_focus_actions->checkedAction()->data().toInt());
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
+
+	// Stop cache thread while window is visible
+	setCursor(Qt::WaitCursor);
+	m_document_cache_thread->quit();
+	m_document_cache_thread->wait();
+
 	QMainWindow::closeEvent(event);
 }
 

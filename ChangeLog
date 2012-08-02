@@ -1,3 +1,6 @@
+2012-08-02 Graeme Gott <graeme@gottcode.org>
+	* Stop cache thread while window is visible.
+
 2012-07-31 Graeme Gott <graeme@gottcode.org>
 	* Switch to rich text if saving as ODT or RTF.
 	* FIXED: Filenames were incorrect after undo and redo.
