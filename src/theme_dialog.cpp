@@ -206,7 +206,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_line_spacing_type = new QComboBox(line_spacing);
 	m_line_spacing_type->setEditable(false);
 	m_line_spacing_type->addItems(QStringList() << tr("Single") << tr("1.5 Lines") << tr("Double") << tr("Proportional"));
-	m_line_spacing_type->setCurrentIndex(0);
+	m_line_spacing_type->setCurrentIndex(3);
 
 	m_line_spacing = new QSpinBox(line_spacing);
 	m_line_spacing->setSuffix(QLocale().percent());
