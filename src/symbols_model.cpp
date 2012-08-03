@@ -268,7 +268,8 @@ QModelIndex SymbolsModel::index(quint32 unicode) const
 
 QModelIndex SymbolsModel::index(int row, int column, const QModelIndex& parent) const
 {
-	return hasIndex(row, column, parent) ? createIndex(row, column, m_symbols.at((row * 16) + column)) : QModelIndex();
+	int pos = (row * 16) + column;
+	return (!parent.isValid() && (pos < m_symbols.count())) ? createIndex(row, column, m_symbols.at(pos)) : QModelIndex();
 }
 
 //-----------------------------------------------------------------------------
