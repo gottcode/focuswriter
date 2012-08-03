@@ -475,7 +475,7 @@ bool Document::loadFile(const QString& filename, int position)
 	document->setUndoRedoEnabled(false);
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
-	QString type = filename.section(QLatin1Char('.'), -1).toLower();
+	QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
 	if (type == "odt") {
 		ODT::Reader reader;
 		reader.read(filename, document);
