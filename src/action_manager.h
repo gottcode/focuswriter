@@ -24,6 +24,7 @@
 #include <QKeySequence>
 #include <QObject>
 class QAction;
+class QShortcut;
 
 class ActionManager : public QObject
 {
@@ -37,7 +38,7 @@ class ActionManager : public QObject
 	};
 
 public:
-	ActionManager(QObject* parent = 0);
+	ActionManager(QWidget* parent = 0);
 	~ActionManager();
 
 	QList<QString> actions() const
@@ -56,8 +57,10 @@ public:
 	}
 
 	QKeySequence shortcut(const QString& name) const;
+	QKeySequence shortcut(quint32 unicode);
 
 	void addAction(const QString& name, QAction* action);
+	void setShortcut(quint32 unicode, const QKeySequence& sequence);
 	void setShortcuts(const QHash<QString, QKeySequence>& shortcuts);
 
 	static ActionManager* instance()
@@ -65,8 +68,20 @@ public:
 		return m_instance;
 	}
 
+signals:
+	void insertText(const QString& text);
+
+private slots:
+	void symbolShortcutActivated();
+
 private:
+	void addShortcut(quint32 unicode, const QKeySequence& sequence);
+
+private:
+	QWidget* m_widget;
 	QHash<QString, Action> m_actions;
+	QHash<quint32, QShortcut*> m_symbol_shortcuts;
+	QHash<QObject*, QString> m_symbol_shortcuts_text;
 	static ActionManager* m_instance;
 };
 

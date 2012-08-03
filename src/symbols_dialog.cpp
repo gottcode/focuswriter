@@ -19,6 +19,7 @@
 
 #include "symbols_dialog.h"
 
+#include "action_manager.h"
 #include "shortcut_edit.h"
 #include "symbols_model.h"
 
@@ -36,7 +37,6 @@
 #include <QPainter>
 #include <QPushButton>
 #include <QSettings>
-#include <QShortcut>
 #include <QSplitter>
 #include <QTableView>
 #include <QTableWidget>
@@ -230,23 +230,6 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	m_contents->setSizes(QList<int>() << 200 << 550);
 	m_contents->restoreState(settings.value("SymbolsDialog/SplitterSizes").toByteArray());
 
-	// Load shortcuts
-	QVariantHash shortcuts;
-	shortcuts.insert("2014", "Ctrl+-");
-	shortcuts.insert("2022", "Ctrl+*");
-	shortcuts.insert("2026", "Ctrl+.");
-	shortcuts = settings.value("SymbolsDialog/Shortcuts", shortcuts).toHash();
-	QHashIterator<QString, QVariant> iter(shortcuts);
-	while (iter.hasNext()) {
-		iter.next();
-		bool ok = false;
-		quint32 unicode = iter.key().toUInt(&ok, 16);
-		QKeySequence shortcut = QKeySequence::fromString(iter.value().toString());
-		if (ok && !shortcut.isEmpty()) {
-			addShortcut(unicode, shortcut);
-		}
-	}
-
 	// Switch to last used tab
 	m_groups->setCurrentIndex(settings.value("SymbolsDialog/Group", 1).toInt());
 	showGroup(m_groups->currentIndex());
@@ -392,12 +375,7 @@ void SymbolsDialog::symbolClicked(const QModelIndex& symbol)
 		m_symbol_name->setText(name);
 		m_symbol_name->setToolTip(name);
 		m_symbol_code->setText(QString("<tt>U+%1</tt>").arg(unicode, 4, 16, QLatin1Char('0')).toUpper());
-
-		if (m_shortcuts.contains(unicode)) {
-			m_symbol_shortcut->setShortcut(m_shortcuts.value(unicode)->key());
-		} else {
-			m_symbol_shortcut->setShortcut(QKeySequence());
-		}
+		m_symbol_shortcut->setShortcut(ActionManager::instance()->shortcut(unicode));
 
 		// Select symbol in recent list, and clear any other selections
 		for (int i = 0, count = m_recent->columnCount(); i < count; ++i) {
@@ -425,42 +403,11 @@ void SymbolsDialog::recentSymbolClicked(QTableWidgetItem* symbol)
 
 //-----------------------------------------------------------------------------
 
-void SymbolsDialog::shortcutActivated()
-{
-	QObject* object = sender();
-	if (m_shortcuts_text.contains(object)) {
-		emit insertText(m_shortcuts_text.value(object));
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 void SymbolsDialog::shortcutChanged()
 {
 	quint32 unicode = m_view->currentIndex().internalId();
 	QKeySequence sequence = m_symbol_shortcut->shortcut();
-	if (!sequence.isEmpty()) {
-		if (m_shortcuts.contains(unicode)) {
-			m_shortcuts.value(unicode)->setKey(sequence);
-		} else {
-			addShortcut(unicode, sequence);
-		}
-	} else {
-		QShortcut* shortcut = m_shortcuts.value(unicode);
-		m_shortcuts.remove(unicode);
-		m_shortcuts_text.remove(shortcut);
-		delete shortcut;
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void SymbolsDialog::addShortcut(quint32 unicode, const QKeySequence& sequence)
-{
-	QShortcut* shortcut = new QShortcut(sequence, parentWidget()->window());
-	connect(shortcut, SIGNAL(activated()), this, SLOT(shortcutActivated()));
-	m_shortcuts[unicode] = shortcut;
-	m_shortcuts_text[shortcut] = QString::fromUcs4(&unicode, 1);
+	ActionManager::instance()->setShortcut(unicode, sequence);
 }
 
 //-----------------------------------------------------------------------------
@@ -521,13 +468,6 @@ void SymbolsDialog::saveSettings()
 	}
 	settings.setValue("SymbolsDialog/Recent", recent);
 	settings.setValue("SymbolsDialog/Current", m_view->currentIndex().internalId());
-	QVariantHash shortcuts;
-	QHashIterator<quint32, QShortcut*> iter(m_shortcuts);
-	while (iter.hasNext()) {
-		iter.next();
-		shortcuts.insert(QString::number(iter.key(), 16), iter.value()->key().toString());
-	}
-	settings.setValue("SymbolsDialog/Shortcuts", shortcuts);
 }
 
 //-----------------------------------------------------------------------------

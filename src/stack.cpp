@@ -19,6 +19,7 @@
 
 #include "stack.h"
 
+#include "action_manager.h"
 #include "alert_layer.h"
 #include "document.h"
 #include "find_dialog.h"
@@ -148,8 +149,9 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Stack::Stack(QWidget* parent)
-	: QWidget(parent),
+Stack::Stack(QWidget* parent) :
+	QWidget(parent),
+	m_symbols_dialog(0),
 	m_current_document(0),
 	m_background_position(0),
 	m_margin(0),
@@ -172,8 +174,7 @@ Stack::Stack(QWidget* parent)
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
 
-	m_symbols_dialog = new SymbolsDialog(this);
-	connect(m_symbols_dialog, SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
+	connect(ActionManager::instance(), SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 
 	m_layout = new QGridLayout(this);
 	m_layout->setMargin(0);
@@ -588,6 +589,16 @@ void Stack::setTextDirectionRTL()
 
 void Stack::showSymbols()
 {
+	// Load symbols dialog on demand
+	if (!m_symbols_dialog) {
+		window()->setCursor(Qt::WaitCursor);
+		m_symbols_dialog = new SymbolsDialog(this);
+		m_symbols_dialog->setPreviewFont(m_current_document->text()->font());
+		connect(m_symbols_dialog, SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
+		window()->unsetCursor();
+	}
+
+	// Show dialog
 	m_symbols_dialog->show();
 	m_symbols_dialog->raise();
 	m_symbols_dialog->activateWindow();
@@ -614,7 +625,9 @@ void Stack::themeSelected(const Theme& theme)
 	m_layout->setColumnMinimumWidth(0, m_margin);
 	m_layout->setColumnMinimumWidth(5, m_margin);
 
-	m_symbols_dialog->setPreviewFont(theme.textFont());
+	if (m_symbols_dialog) {
+		m_symbols_dialog->setPreviewFont(theme.textFont());
+	}
 
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme);
