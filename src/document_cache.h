@@ -30,6 +30,7 @@ class DocumentCache : public QObject
 
 public:
 	DocumentCache(QObject* parent = 0);
+	~DocumentCache();
 
 public slots:
 	void cacheFile(DocumentWriter* document);

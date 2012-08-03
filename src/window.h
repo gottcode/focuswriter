@@ -44,7 +44,6 @@ class Window : public QMainWindow
 
 public:
 	Window(const QStringList& command_line_files);
-	~Window();
 
 	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);

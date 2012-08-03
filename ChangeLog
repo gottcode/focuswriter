@@ -1,3 +1,6 @@
+2012-08-03 Graeme Gott <graeme@gottcode.org>
+	* Clear cache on successful exit.
+
 2012-08-02 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Line spacing combo was incorrect for non-default sizes.
 	* Reduce minimum line spacing.

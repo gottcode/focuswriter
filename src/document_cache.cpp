@@ -19,8 +19,10 @@
 
 #include "document_cache.h"
 
+#include "document.h"
 #include "document_writer.h"
 
+#include <QDir>
 #include <QFile>
 
 //-----------------------------------------------------------------------------
@@ -28,6 +30,18 @@
 DocumentCache::DocumentCache(QObject* parent) :
 	QObject(parent)
 {
+}
+
+//-----------------------------------------------------------------------------
+
+DocumentCache::~DocumentCache()
+{
+	// Empty cache
+	QDir dir(Document::cachePath());
+	QStringList files = dir.entryList(QDir::Files);
+	foreach (const QString& file, files) {
+		dir.remove(file);
+	}
 }
 
 //-----------------------------------------------------------------------------

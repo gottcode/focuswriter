@@ -392,13 +392,6 @@ Window::Window(const QStringList& command_line_files)
 
 //-----------------------------------------------------------------------------
 
-Window::~Window()
-{
-	delete m_document_cache;
-}
-
-//-----------------------------------------------------------------------------
-
 void Window::addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions, int active, bool show_load)
 {
 	m_documents->setHeaderVisible(false);
@@ -611,6 +604,8 @@ void Window::closeEvent(QCloseEvent* event)
 	setCursor(Qt::WaitCursor);
 	m_document_cache_thread->quit();
 	m_document_cache_thread->wait();
+	delete m_document_cache;
+	m_document_cache = 0;
 
 	QMainWindow::closeEvent(event);
 }
