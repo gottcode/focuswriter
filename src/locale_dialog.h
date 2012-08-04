@@ -30,7 +30,7 @@ class LocaleDialog : public QDialog
 public:
 	LocaleDialog(QWidget* parent = 0);
 
-	static void loadTranslator(const QString& appname);
+	static void loadTranslator(const QString& appname, const QStringList& datadirs = QStringList());
 	static QString languageName(const QString& language);
 
 public slots:

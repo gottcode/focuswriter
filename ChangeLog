@@ -1,3 +1,6 @@
+2012-08-04 Graeme Gott <graeme@gottcode.org>
+	* Change how data paths are handled.
+
 2012-08-03 Graeme Gott <graeme@gottcode.org>
 	* Split symbol shortcuts out of dialog.
 	* FIXED: Restoring from cache treated all files as plain text.

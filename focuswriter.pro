@@ -214,29 +214,36 @@ unix: !macx {
 	isEmpty(PREFIX) {
 		PREFIX = /usr/local
 	}
+	isEmpty(BINDIR) {
+		BINDIR = $$PREFIX/bin
+	}
+	isEmpty(DATADIR) {
+		DATADIR = $$PREFIX/share
+	}
+	DEFINES += DATADIR=\\\"$${DATADIR}/focuswriter\\\"
 
-	target.path = $$PREFIX/bin/
+	target.path = $$BINDIR
 
 	icon.files = resources/images/icons/hicolor/*
-	icon.path = $$PREFIX/share/icons/hicolor/
+	icon.path = $$DATADIR/icons/hicolor
 
 	pixmap.files = resources/unix/focuswriter_32.xpm
-	pixmap.path = $$PREFIX/share/pixmaps/
+	pixmap.path = $$DATADIR/pixmaps
 
 	icons.files = resources/images/icons/oxygen/hicolor/*
-	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
+	icons.path = $$DATADIR/focuswriter/icons/hicolor
 
 	desktop.files = resources/unix/focuswriter.desktop
-	desktop.path = $$PREFIX/share/applications/
+	desktop.path = $$DATADIR/applications/
 
 	qm.files = translations/*.qm
-	qm.path = $$PREFIX/share/focuswriter/translations
+	qm.path = $$DATADIR/focuswriter/translations
 
 	sounds.files = resources/sounds/*
-	sounds.path = $$PREFIX/share/focuswriter/sounds
+	sounds.path = $$DATADIR/focuswriter/sounds
 
 	symbols.files = resources/symbols/symbols.dat
-	symbols.path = $$PREFIX/share/focuswriter
+	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon pixmap desktop icons qm sounds symbols
 }

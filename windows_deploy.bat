@@ -23,7 +23,7 @@ MKDIR %ICONS%
 XCOPY /Q /S /Y resources\images\icons\oxygen\hicolor %ICONS% >nul
 
 ECHO Copying dictionaries
-SET DICTIONARIES=%APP%\Dictionaries
+SET DICTIONARIES=%APP%\dictionaries
 MKDIR %DICTIONARIES%
 COPY resources\dict\* %DICTIONARIES% >nul
 
