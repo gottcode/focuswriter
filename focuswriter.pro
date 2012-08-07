@@ -227,7 +227,7 @@ unix: !macx {
 	icon.files = resources/images/icons/hicolor/*
 	icon.path = $$DATADIR/icons/hicolor
 
-	pixmap.files = resources/unix/focuswriter_32.xpm
+	pixmap.files = resources/unix/focuswriter.xpm
 	pixmap.path = $$DATADIR/pixmaps
 
 	icons.files = resources/images/icons/oxygen/hicolor/*
