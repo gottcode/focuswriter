@@ -93,6 +93,7 @@ private slots:
 
 private:
 	bool addDocument(const QString& file = QString(), const QString& datafile = QString(), int position = -1);
+	void queueDocuments(const QStringList& files);
 	bool saveDocument(int index);
 	void loadPreferences(Preferences& preferences);
 	void hideInterface();
@@ -113,6 +114,9 @@ private:
 	DocumentCache* m_document_cache;
 	DocumentWatcher* m_document_watcher;
 	QThread* m_document_cache_thread;
+	QStringList m_queued_documents;
+	bool m_loading;
+
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;
 	TimerManager* m_timers;

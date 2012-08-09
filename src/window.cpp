@@ -82,8 +82,9 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Window::Window(const QStringList& command_line_files)
-	: m_toolbar(0),
+Window::Window(const QStringList& command_line_files) :
+	m_toolbar(0),
+	m_loading(false),
 	m_key_sound(0),
 	m_enter_key_sound(0),
 	m_fullscreen(true),
@@ -394,9 +395,13 @@ Window::Window(const QStringList& command_line_files)
 
 void Window::addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions, int active, bool show_load)
 {
+	m_loading = true;
+
+	// Hide interface
 	m_documents->setHeaderVisible(false);
 	m_documents->setFooterVisible(false);
 
+	// Skip loading files of unsupported formats
 	static const QStringList suffixes = QStringList()
 		<< "abw" << "awt" << "zabw"
 		<< "doc" << "dot"
@@ -406,7 +411,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		<< "wpd";
 	QList<int> skip;
 	for (int i = 0; i < files.count(); ++i) {
-		if (suffixes.contains(QFileInfo(files.at(i)).suffix())) {
+		if (suffixes.contains(QFileInfo(files.at(i)).suffix().toLower())) {
 			skip += i;
 		}
 	}
@@ -418,12 +423,14 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files were unsupported and could not be opened."), skipped);
 	}
 
-	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_documents->loadScreen()->isVisible());
+	// Show load screen if switching sessions or opening more than one file
+	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()));
 	if (show_load) {
 		m_documents->loadScreen()->setText("");
 		setCursor(Qt::WaitCursor);
 	}
 
+	// Remember current file and if it is untitled and unmodified
 	int untitled_index = -1;
 	int current_index = -1;
 	if (m_documents->count()) {
@@ -434,29 +441,38 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		}
 	}
 
+	// Read files
 	QStringList missing;
 	QStringList readonly;
 	int open_files = m_documents->count();
 	for (int i = 0; i < files.count(); ++i) {
-		if (!skip.isEmpty() && skip.first() == i) {
+		// Skip file known to be unsupported
+		if (!skip.isEmpty() && (skip.first() == i)) {
 			skip.removeFirst();
 			continue;
+		// Attempt to load file or datafile
 		} else if (!addDocument(files.at(i), datafiles.at(i), positions.value(i, "-1").toInt())) {
+			// Track if unable to open file
 			missing.append(QDir::toNativeSeparators(files.at(i)));
 		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
+			// Track if unable to read file
 			int index = m_documents->currentIndex();
 			missing.append(QDir::toNativeSeparators(files.at(i)));
 			m_documents->removeDocument(index);
 			m_tabs->removeTab(index);
-		} else if (m_documents->currentDocument()->isReadOnly() && m_documents->count() > open_files) {
+		} else if (m_documents->currentDocument()->isReadOnly() && (m_documents->count() > open_files)) {
+			// Track if file is read-only and not already open
 			readonly.append(QDir::toNativeSeparators(files.at(i)));
 		}
 		open_files = m_documents->count();
 	}
+
+	// Make sure that there is always at least one document
 	if (m_documents->count() == 0) {
 		newDocument();
 	}
 
+	// Switch to tab of active session file or of current file
 	if (untitled_index == -1) {
 		if (active != -1) {
 			m_tabs->setCurrentIndex(active);
@@ -464,10 +480,12 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			m_tabs->setCurrentIndex(m_tabs->count() - 1);
 		}
 	} else {
+		// Replace current tab if it is untitled and unmodified
 		m_tabs->setCurrentIndex(untitled_index);
 		closeDocument();
 	}
 
+	// Inform user about unopened and read-only files
 	if (!missing.isEmpty()) {
 		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files could not be opened."), missing);
 	}
@@ -475,11 +493,20 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		m_documents->alerts()->addAlert(QMessageBox::Information, tr("Some files were opened Read-Only."), readonly);
 	}
 
-	if (show_load) {
+	// Hide load screen
+	if (m_documents->loadScreen()->isVisible()) {
 		m_documents->waitForThemeBackground();
 		m_documents->loadScreen()->finish();
 		unsetCursor();
 	}
+
+	// Open any files queued during load
+	if (!m_queued_documents.isEmpty()) {
+		QStringList queued = m_queued_documents;
+		m_queued_documents.clear();
+		addDocuments(queued, queued);
+	}
+	m_loading = false;
 }
 
 //-----------------------------------------------------------------------------
@@ -491,7 +518,7 @@ void Window::addDocuments(QDropEvent* event)
 		foreach (QUrl url, event->mimeData()->urls()) {
 			files.append(url.toLocalFile());
 		}
-		addDocuments(files, files);
+		queueDocuments(files);
 		event->acceptProposedAction();
 	}
 }
@@ -544,7 +571,7 @@ void Window::addDocuments(const QString& documents)
 {
 	QStringList files = documents.split(QLatin1String("\n"), QString::SkipEmptyParts);
 	if (!files.isEmpty()) {
-		addDocuments(files, files);
+		queueDocuments(files);
 	}
 }
 
@@ -1078,6 +1105,17 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(loadFinished()), this, SLOT(updateSave()));
 
 	return true;
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::queueDocuments(const QStringList& files)
+{
+	if (m_loading) {
+		m_queued_documents += files;
+	} else {
+		addDocuments(files, files);
+	}
 }
 
 //-----------------------------------------------------------------------------
