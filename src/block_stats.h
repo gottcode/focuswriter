@@ -38,9 +38,9 @@ public:
 	int wordCount() const;
 	QList<QStringRef> misspelled() const;
 
-	void checkSpelling(const QString& text, Dictionary* dictionary);
+	QList<QStringRef> checkSpelling(const QString& text, const Dictionary& dictionary);
 	void setScene(bool scene);
-	void update(const QString& text, Dictionary* dictionary);
+	void update(const QString& text);
 
 private:
 	int m_characters;
@@ -49,6 +49,7 @@ private:
 	bool m_scene;
 	SceneModel* m_scene_model;
 	QList<QStringRef> m_misspelled;
+	bool m_checked;
 };
 
 inline bool BlockStats::isEmpty() const

@@ -29,7 +29,8 @@ BlockStats::BlockStats(SceneModel* scene_model) :
 	m_spaces(0),
 	m_words(0),
 	m_scene(false),
-	m_scene_model(scene_model)
+	m_scene_model(scene_model),
+	m_checked(true)
 {
 }
 
@@ -45,20 +46,23 @@ BlockStats::~BlockStats()
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::checkSpelling(const QString& text, Dictionary* dictionary)
+QList<QStringRef> BlockStats::checkSpelling(const QString& text, const Dictionary& dictionary)
 {
-	m_misspelled.clear();
-	if (text.isEmpty() || !dictionary) {
-		return;
+	if (!m_checked) {
+		m_misspelled.clear();
+		if (!text.isEmpty()) {
+			m_misspelled = dictionary.check(text);
+		}
+		m_checked = true;
 	}
-	m_misspelled = dictionary->check(text);
+	return m_misspelled;
 }
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::update(const QString& text, Dictionary* dictionary)
+void BlockStats::update(const QString& text)
 {
-	// Calculate stats
+	m_checked = false;
 	m_characters = text.length();
 	m_spaces = 0;
 	m_words = 0;
@@ -77,9 +81,6 @@ void BlockStats::update(const QString& text, Dictionary* dictionary)
 			word = false;
 		}
 	}
-
-	// Update stored list of misspelled words
-	checkSpelling(text, dictionary);
 }
 
 //-----------------------------------------------------------------------------

@@ -938,7 +938,7 @@ void Document::dictionaryChanged()
 {
 	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 		if (i.userData()) {
-			static_cast<BlockStats*>(i.userData())->checkSpelling(i.text(), &m_dictionary);
+			static_cast<BlockStats*>(i.userData())->update(i.text());
 		}
 	}
 	m_highlighter->rehighlight();
@@ -953,7 +953,7 @@ void Document::selectionChanged()
 		BlockStats temp(0);
 		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
 		foreach (const QString& string, selection) {
-			temp.update(string, 0);
+			temp.update(string);
 			m_selected_stats.append(&temp);
 		}
 		if (!m_accurate_wordcount) {
@@ -1042,7 +1042,7 @@ void Document::updateWordCount(int position, int removed, int added)
 			i.setUserData(stats);
 			m_cached_stats.clear();
 		}
-		stats->update(i.text(), &m_dictionary);
+		stats->update(i.text());
 		m_scene_model->updateScene(stats, i);
 	}
 
@@ -1067,7 +1067,7 @@ void Document::calculateWordCount()
 			if (!i.userData()) {
 				stats = new BlockStats(m_scene_model);
 				i.setUserData(stats);
-				stats->update(i.text(), &m_dictionary);
+				stats->update(i.text());
 				m_scene_model->updateScene(stats, i);
 			}
 			if (i.blockNumber() != m_cached_current_block) {
