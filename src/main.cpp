@@ -112,6 +112,10 @@ int main(int argc, char** argv)
 #else
 			QString oldpath = QDir::homePath() + "/Application Data/GottCode/FocusWriter/";
 #endif
+			QDir dir(userdir + "/../");
+			if (!dir.exists()) {
+				dir.mkpath(dir.absolutePath());
+			}
 			if (QFile::exists(oldpath)) {
 				QFile::rename(oldpath, userdir);
 			}
