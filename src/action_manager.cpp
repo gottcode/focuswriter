@@ -36,6 +36,13 @@ ActionManager::ActionManager(QWidget* parent) :
 {
 	m_instance = this;
 
+#ifdef Q_OS_MAC
+	// Override default shortcuts to prevent conflicts
+	m_actions["SwitchNextDocument"].shortcut = Qt::CTRL | Qt::Key_BracketRight;
+	m_actions["SwitchPreviousDocument"].shortcut = Qt::CTRL | Qt::Key_BracketLeft;
+	m_actions["Reload"].shortcut = Qt::Key_F5;
+#endif
+
 	// Load shortcuts
 	QSettings settings;
 	settings.beginGroup("Shortcuts");
