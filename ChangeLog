@@ -1,3 +1,6 @@
+2012-08-09 Graeme Gott <graeme@gottcode.org>
+	* Stop grabbing keyboard during load.
+
 2012-08-07 Graeme Gott <graeme@gottcode.org>
 	* Update Oxygen icons.
 

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@
 
 //-----------------------------------------------------------------------------
 
-LoadScreen::LoadScreen(QWidget* parent)
-	: QLabel(parent)
+LoadScreen::LoadScreen(QWidget* parent) :
+	QLabel(parent)
 {
 	setCursor(Qt::WaitCursor);
 	setStyleSheet("LoadScreen {background: #666 url(':/load.png') no-repeat center;}");
@@ -50,6 +50,24 @@ LoadScreen::LoadScreen(QWidget* parent)
 	m_hide_timer = new QTimer(this);
 	m_hide_timer->setInterval(30);
 	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(fade()));
+}
+
+//-----------------------------------------------------------------------------
+
+bool LoadScreen::eventFilter(QObject* watched, QEvent* event)
+{
+	switch (event->type()) {
+	case QEvent::KeyPress:
+	case QEvent::KeyRelease:
+	case QEvent::MouseButtonDblClick:
+	case QEvent::MouseButtonPress:
+	case QEvent::MouseButtonRelease:
+	case QEvent::Shortcut:
+	case QEvent::Wheel:
+		return true;
+	default:
+		return QLabel::eventFilter(watched, event);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -82,7 +100,7 @@ void LoadScreen::finish()
 void LoadScreen::hideEvent(QHideEvent* event)
 {
 	QLabel::hideEvent(event);
-	releaseKeyboard();
+	QApplication::instance()->removeEventFilter(this);
 }
 
 //-----------------------------------------------------------------------------
@@ -90,7 +108,7 @@ void LoadScreen::hideEvent(QHideEvent* event)
 void LoadScreen::showEvent(QShowEvent* event)
 {
 	QLabel::showEvent(event);
-	grabKeyboard();
+	QApplication::instance()->installEventFilter(this);
 }
 
 //-----------------------------------------------------------------------------
