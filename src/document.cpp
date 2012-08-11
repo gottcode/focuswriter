@@ -941,7 +941,7 @@ void Document::dictionaryChanged()
 			static_cast<BlockStats*>(i.userData())->update(i.text());
 		}
 	}
-	m_highlighter->rehighlight();
+	m_highlighter->updateSpelling();
 }
 
 //-----------------------------------------------------------------------------
@@ -1043,6 +1043,7 @@ void Document::updateWordCount(int position, int removed, int added)
 			m_cached_stats.clear();
 		}
 		stats->update(i.text());
+		stats->recheckSpelling();
 		m_scene_model->updateScene(stats, i);
 	}
 

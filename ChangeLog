@@ -1,3 +1,6 @@
+2012-08-11 Graeme Gott <graeme@gottcode.org>
+	* Check spelling in background.
+
 2012-08-09 Graeme Gott <graeme@gottcode.org>
 	* Only check spelling in highlighter.
 	* FIXED: Default shortcuts conflicted on the Mac.

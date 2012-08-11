@@ -28,6 +28,7 @@
 #include <QEvent>
 #include <QMenu>
 #include <QTextEdit>
+#include <QTimer>
 
 //-----------------------------------------------------------------------------
 
@@ -41,6 +42,11 @@ Highlighter::Highlighter(QTextEdit* text, Dictionary& dictionary)
 {
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 
+	m_spell_timer = new QTimer(this);
+	m_spell_timer->setInterval(10);
+	m_spell_timer->setSingleShot(true);
+	connect(m_spell_timer, SIGNAL(timeout()), this, SLOT(updateSpelling()));
+
 	m_text->viewport()->installEventFilter(this);
 	m_add_action = new QAction(tr("Add"), this);
 	m_check_action = new QAction(tr("Check Spelling..."), this);
@@ -52,7 +58,11 @@ void Highlighter::setEnabled(bool enabled)
 {
 	if (m_enabled != enabled) {
 		m_enabled = enabled;
-		rehighlight();
+		if (m_enabled) {
+			updateSpelling();
+		} else {
+			rehighlight();
+		}
 	}
 }
 
@@ -133,11 +143,12 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 void Highlighter::highlightBlock(const QString& text)
 {
-	Q_UNUSED(text)
-
 	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
-	if (!m_enabled || !stats) {
+	if (!m_enabled || !stats || (stats->spellingStatus() == BlockStats::Unchecked)) {
 		return;
+	}
+	if (stats->spellingStatus() == BlockStats::CheckSpelling) {
+		stats->checkSpelling(text, m_dictionary);
 	}
 
 	QTextCharFormat error;
@@ -145,7 +156,7 @@ void Highlighter::highlightBlock(const QString& text)
 	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
 	int cursor = m_text->textCursor().position() - currentBlock().position();
-	QList<QStringRef> words = stats->checkSpelling(text, m_dictionary);
+	QList<QStringRef> words = stats->misspelled();
 	for (int i = 0; i < words.count(); ++i) {
 		const QStringRef& word = words.at(i);
 		int delta = cursor - word.position();
@@ -155,6 +166,45 @@ void Highlighter::highlightBlock(const QString& text)
 	}
 
 	m_changed = true;
+}
+
+//-----------------------------------------------------------------------------
+
+void Highlighter::updateSpelling()
+{
+	if (!m_enabled) {
+		return;
+	}
+
+	QTextBlock block = m_text->textCursor().block();
+	bool found = false;
+
+	// Check first unchecked block at or after cursor
+	for (QTextBlock i = block; i.isValid(); i = i.next()) {
+		BlockStats* stats = static_cast<BlockStats*>(i.userData());
+		if (stats && (stats->spellingStatus() != BlockStats::Checked)) {
+			stats->checkSpelling(i.text(), m_dictionary);
+			rehighlightBlock(i);
+			found = true;
+			break;
+		}
+	}
+
+	// Check first unchecked block before cursor
+	for (QTextBlock i = block; i.isValid(); i = i.previous()) {
+		BlockStats* stats = static_cast<BlockStats*>(i.userData());
+		if (stats && (stats->spellingStatus() != BlockStats::Checked)) {
+			stats->checkSpelling(i.text(), m_dictionary);
+			rehighlightBlock(i);
+			found = true;
+			break;
+		}
+	}
+
+	// Repeat until all blocks have been checked
+	if (found) {
+		m_spell_timer->start();
+	}
 }
 
 //-----------------------------------------------------------------------------

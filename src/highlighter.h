@@ -26,6 +26,7 @@ class Dictionary;
 #include <QTextCursor>
 class QAction;
 class QTextEdit;
+class QTimer;
 
 class Highlighter : public QSyntaxHighlighter
 {
@@ -41,12 +42,16 @@ public:
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 	virtual void highlightBlock(const QString& text);
 
+public slots:
+	void updateSpelling();
+
 private slots:
 	void cursorPositionChanged();
 	void suggestion(QAction* action);
 
 private:
 	Dictionary& m_dictionary;
+	QTimer* m_spell_timer;
 	QTextEdit* m_text;
 	QTextCursor m_cursor;
 	QTextCursor m_start_cursor;

@@ -38,7 +38,16 @@ public:
 	int wordCount() const;
 	QList<QStringRef> misspelled() const;
 
-	QList<QStringRef> checkSpelling(const QString& text, const Dictionary& dictionary);
+	enum SpellCheckStatus
+	{
+		Unchecked,
+		Checked,
+		CheckSpelling
+	};
+	SpellCheckStatus spellingStatus() const;
+
+	void checkSpelling(const QString& text, const Dictionary& dictionary);
+	void recheckSpelling();
 	void setScene(bool scene);
 	void update(const QString& text);
 
@@ -49,7 +58,7 @@ private:
 	bool m_scene;
 	SceneModel* m_scene_model;
 	QList<QStringRef> m_misspelled;
-	bool m_checked;
+	SpellCheckStatus m_checked;
 };
 
 inline bool BlockStats::isEmpty() const
@@ -85,6 +94,16 @@ inline QList<QStringRef> BlockStats::misspelled() const
 inline void BlockStats::setScene(bool scene)
 {
 	m_scene = scene;
+}
+
+inline BlockStats::SpellCheckStatus BlockStats::spellingStatus() const
+{
+	return m_checked;
+}
+
+inline void BlockStats::recheckSpelling()
+{
+	m_checked = CheckSpelling;
 }
 
 #endif
