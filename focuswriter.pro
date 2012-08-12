@@ -50,7 +50,8 @@ macx {
 
 	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary.mm \
 		src/nsspellchecker/dictionary_data.mm \
-		src/nsspellchecker/dictionary_manager.mm
+		src/nsspellchecker/dictionary_manager.mm \
+		src/nssound/sound.mm
 } else:win32 {
 	INCLUDEPATH += enchant libzip src/enchant
 	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
@@ -63,7 +64,8 @@ macx {
 	SOURCES += src/rtf/clipboard_windows.cpp \
 		src/enchant/dictionary.cpp \
 		src/enchant/dictionary_data.cpp \
-		src/enchant/dictionary_manager.cpp
+		src/enchant/dictionary_manager.cpp \
+		src/sdl/sound.cpp
 } else {
 	INCLUDEPATH += src/enchant
 
@@ -76,7 +78,8 @@ macx {
 
 	SOURCES += src/enchant/dictionary.cpp \
 		src/enchant/dictionary_data.cpp \
-		src/enchant/dictionary_manager.cpp
+		src/enchant/dictionary_manager.cpp \
+		src/sdl/sound.cpp
 }
 
 HEADERS += src/action_manager.h \
@@ -150,7 +153,6 @@ SOURCES += src/action_manager.cpp \
 	src/session_manager.cpp \
 	src/shortcut_edit.cpp \
 	src/smart_quotes.cpp \
-	src/sound.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/stats.cpp \

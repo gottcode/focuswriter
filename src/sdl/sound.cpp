@@ -20,7 +20,7 @@
  *
  ***********************************************************************/
 
-#include "sound.h"
+#include "../sound.h"
 
 #include <QFile>
 #include <QHash>
@@ -98,10 +98,15 @@ namespace
 	inline int SDLCALL mix_PlayChannel(int channel, MixChunk* chunk, int loops) { return mix_PlayChannelTimed(channel, chunk, loops, -1); }
 
 
-	// Shared SDL data
+	// Shared data
+	QString f_path;
+	bool f_enabled = false;
 	bool f_sdl_loaded = false;
 
 	QVector<MixChunk*> f_chunks;
+	int f_total_sounds = 0;
+	QHash<QString, int> f_ids;
+	QHash<int, Sound*> f_sound_objects;
 
 	void loadSDL()
 	{
@@ -164,32 +169,19 @@ namespace
 
 		f_sdl_loaded = false;
 	}
-
-
-	// Shared data
-	QString f_path;
-	int f_total_sounds = 0;
-	QHash<QString, int> f_ids;
-
-
-	// Shared sound objects
-	bool f_enabled = false;
-	QHash<int, Sound*> f_sound_objects;
 }
 
 //-----------------------------------------------------------------------------
 
-Sound::Sound(int name, const QString& filename, QObject* parent)
-	: QObject(parent),
-	  m_id(-1),
-	  m_name(name)
+Sound::Sound(int name, const QString& filename, QObject* parent) :
+	QObject(parent),
+	m_id(-1),
+	m_name(name)
 {
-	if (f_total_sounds > 0) {
-		f_total_sounds++;
-	} else {
-		f_total_sounds = 1;
+	if (!f_sdl_loaded) {
 		loadSDL();
 	}
+	f_total_sounds++;
 
 	if (f_ids.contains(filename)) {
 		m_id = f_ids.value(filename);
@@ -224,21 +216,12 @@ Sound::~Sound()
 
 //-----------------------------------------------------------------------------
 
-void Sound::play()
-{
-	if (isValid() && (mix_PlayChannel(-1, f_chunks.at(m_id), 0) == -1)) {
-		qWarning("Unable to play WAV file: %s", mix_GetError());
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 void Sound::play(int name)
 {
 	if (f_enabled) {
 		Sound* sound = f_sound_objects.value(name);
-		if (sound) {
-			sound->play();
+		if (sound && sound->isValid() && (mix_PlayChannel(-1, f_chunks.at(sound->m_id), 0) == -1)) {
+			qWarning("Unable to play WAV file: %s", mix_GetError());
 		}
 	}
 }
