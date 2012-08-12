@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 	{
 		QStringList paths = QIcon::themeSearchPaths();
 		foreach (const QString& path, datadirs) {
-			paths.append(path + "/icons");
+			paths.prepend(path + "/icons");
 		}
 		QIcon::setThemeSearchPaths(paths);
 	}
