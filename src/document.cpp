@@ -366,13 +366,14 @@ bool Document::rename()
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 		return false;
 	}
+	DocumentWatcher::instance()->removeWatch(this);
 	if (!QFile::rename(m_filename, filename)) {
+		DocumentWatcher::instance()->addWatch(this);
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to rename '%1'.").arg(QDir::toNativeSeparators(m_filename)));
 		return false;
 	}
-	DocumentWatcher::instance()->removeWatch(this);
 	m_filename = filename;
-	DocumentWatcher::instance()->addWatch(this);
+	save();
 	updateSaveLocation();
 	m_text->document()->setModified(false);
 	emit changedName();
