@@ -468,6 +468,21 @@ bool Document::loadFile(const QString& filename, int position)
 	// Cache contents
 	QFile::copy(filename, g_cache_path + m_cache_filename);
 
+	// Determine file type from contents
+	QString type;
+	QFile file(filename);
+	if (file.open(QIODevice::ReadOnly)) {
+		if (file.peek(2) == "PK") {
+			file.seek(30);
+			if (file.read(47) == "mimetypeapplication/vnd.oasis.opendocument.text") {
+				type = "odt";
+			}
+			file.reset();
+		} else if (file.peek(5) == "{\\rtf") {
+			type = "rtf";
+		}
+	}
+
 	// Load text area contents
 	QTextDocument* document = m_text->document();
 	m_text->blockSignals(true);
@@ -476,18 +491,17 @@ bool Document::loadFile(const QString& filename, int position)
 	document->setUndoRedoEnabled(false);
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
-	QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
-	if (type == "odt") {
-		ODT::Reader reader;
-		reader.read(filename, document);
-		if (reader.hasError()) {
-			QMessageBox::warning(this, tr("Sorry"), reader.errorString());
-			loaded = false;
-			position = -1;
-		}
-	} else if (type == "rtf") {
-		QFile file(filename);
-		if (file.open(QIODevice::ReadOnly)) {
+	if (file.isOpen()) {
+		if (type == "odt") {
+			file.close();
+			ODT::Reader reader;
+			reader.read(filename, document);
+			if (reader.hasError()) {
+				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				loaded = false;
+				position = -1;
+			}
+		} else if (type == "rtf") {
 			RTF::Reader reader;
 			QTextCursor cursor(document);
 			reader.read(&file, cursor);
@@ -498,10 +512,8 @@ bool Document::loadFile(const QString& filename, int position)
 				loaded = false;
 				position = -1;
 			}
-		}
-	} else {
-		QFile file(filename);
-		if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		} else {
+			file.setTextModeEnabled(true);
 			QTextStream stream(&file);
 			stream.setCodec("UTF-8");
 			stream.setAutoDetectUnicode(true);
