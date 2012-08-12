@@ -1012,7 +1012,7 @@ void Window::updateProgress()
 void Window::updateSave()
 {
 	m_actions["Save"]->setEnabled(m_documents->currentDocument()->text()->document()->isModified());
-	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->filename().isEmpty());
+	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->isReadOnly() || m_documents->currentDocument()->filename().isEmpty());
 	for (int i = 0; i < m_documents->count(); ++i) {
 		updateTab(i);
 	}
