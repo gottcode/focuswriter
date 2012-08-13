@@ -351,7 +351,11 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 	QString name = session;
 	forever {
 		bool ok;
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok, 0, Qt::ImhNone);
+#else
+		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok);
+#endif
 		if (!ok) {
 			return QString();
 		}

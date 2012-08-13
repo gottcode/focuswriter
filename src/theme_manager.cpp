@@ -201,7 +201,11 @@ void ThemeManager::importTheme()
 	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).baseName().toUtf8());
 	while (QFile::exists(Theme::filePath(name))) {
 		bool ok;
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		name = QInputDialog::getText(this, tr("Sorry"), tr("A theme already exists with that name. Please enter a new name:"), QLineEdit::Normal, name, &ok, 0, Qt::ImhNone);
+#else
+		name = QInputDialog::getText(this, tr("Sorry"), tr("A theme already exists with that name. Please enter a new name:"), QLineEdit::Normal, name, &ok);
+#endif
 		if (!ok) {
 			return;
 		}
