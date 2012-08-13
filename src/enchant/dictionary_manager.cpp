@@ -27,6 +27,10 @@
 #include <QFile>
 #include <QTextStream>
 
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#endif
+
 //-----------------------------------------------------------------------------
 
 namespace
@@ -156,12 +160,26 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-DictionaryManager::DictionaryManager() :
-	m_broker(enchant_broker_init())
+DictionaryManager::DictionaryManager()
 {
-	// Set paths for dictionaries
+#ifdef Q_OS_WIN
+	// Add path for Voikko dictionary
+	{
+		QString path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + "/dictionaries/");
+#ifdef UNICODE
+		SetEnvironmentVariable(L"VOIKKO_DICTIONARY_PATH", path.toStdWString().c_str());
+#else
+		SetEnvironmentVariable("VOIKKO_DICTIONARY_PATH", path.toLocal8Bit());
+#endif
+	}
+#endif
+
+	// Create dictionary broker
+	m_broker = enchant_broker_init();
+
+	// Add paths for Hunspell dictionaries
 	QByteArray paths;
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 	char sep = ';';
 #else
 	char sep = ':';
@@ -169,13 +187,12 @@ DictionaryManager::DictionaryManager() :
 	QStringList locations = QDir::searchPaths("dict");
 	int count = locations.count();
 	for (int i = 0; i < count; ++i) {
-		paths += QFile::encodeName(locations.at(i));
+		paths += QFile::encodeName(QDir::toNativeSeparators(locations.at(i)));
 		if (i < (count - 1)) {
 			paths += sep;
 		}
 	}
 	enchant_broker_set_param(m_broker, "enchant.myspell.dictionary.path", paths.constData());
-	enchant_broker_set_param(m_broker, "enchant.voikko.dictionary.path", QFile::encodeName(QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + "/Dictionaries/")));
 
 	// Load personal dictionary
 	QFile file(m_path + "/personal");

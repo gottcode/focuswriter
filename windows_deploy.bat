@@ -25,7 +25,7 @@ XCOPY /Q /S /Y resources\images\icons\oxygen\hicolor %ICONS% >nul
 ECHO Copying dictionaries
 SET DICTIONARIES=%APP%\dictionaries
 MKDIR %DICTIONARIES%
-COPY resources\dict\* %DICTIONARIES% >nul
+XCOPY /Q /S /Y resources\dict %DICTIONARIES% >nul
 
 ECHO Copying sounds
 SET SOUNDS=%APP%\sounds
@@ -38,6 +38,9 @@ COPY resources\symbols\symbols.dat %APP% >nul
 ECHO Copying enchant library
 XCOPY /Q /S /Y enchant %APP% >nul
 DEL %APP%\enchant.h >nul
+
+ECHO Copying voikko library
+COPY voikko\libvoikko-1.dll %APP% >nul
 
 ECHO Copying libzip library
 COPY libzip\libzip0.dll %APP% >nul
@@ -72,7 +75,7 @@ DEL %APP%\imageformats\*d4.dll >nul
 
 ECHO Creating compressed file
 CD %APP%
-7z a %APP%_%VERSION%.zip * >nul
+7z a -mx=9 %APP%_%VERSION%.zip * >nul
 CD ..
 MOVE %APP%\%APP%_%VERSION%.zip . >nul
 

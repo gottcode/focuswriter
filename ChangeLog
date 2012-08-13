@@ -1,3 +1,6 @@
+2012-08-13 Graeme Gott <graeme@gottcode.org>
+	* Use built-in Voikko support for finding dictionaries.
+
 2012-08-12 Graeme Gott <graeme@gottcode.org>
 	* Use NSSound on the Mac.
 	* FIXED: Regression - fallback icons were not used.
