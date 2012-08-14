@@ -1,4 +1,5 @@
 2012-08-13 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Regression - Windows did not load SDL.
 	* Use built-in Voikko support for finding dictionaries.
 
 2012-08-12 Graeme Gott <graeme@gottcode.org>
