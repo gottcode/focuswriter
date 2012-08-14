@@ -215,11 +215,6 @@ bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int 
 	}
 	qSort(scenes);
 
-	// Don't allow scenes to be dropped on themselves
-	if ((scenes.first() == row) || ((scenes.first() + 1) == row)) {
-		return true;
-	}
-
 	// Copy text fragments of scenes
 	QTextCursor cursor = m_document->textCursor();
 	QList<QTextDocumentFragment> fragments;
@@ -522,7 +517,8 @@ void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
 	cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
 	block = cursor.block();
 	while (block.isValid()) {
-		if (block.userData() && static_cast<BlockStats*>(block.userData())->isScene()) {
+		if ((block.userData() && static_cast<BlockStats*>(block.userData())->isScene())
+				|| block.text().startsWith(f_scene_divider)) {
 			break;
 		}
 		block = block.next();
