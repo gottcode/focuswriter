@@ -1,4 +1,5 @@
 2012-08-14 Graeme Gott <graeme@gottcode.org>
+	* Stop faking drag-and-drop for moving scenes.
 	* FIXED: Dragging last scene deleted it.
 	* FIXED: Dragging top scene merged it with other scenes.
 

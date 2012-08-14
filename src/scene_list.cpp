@@ -394,6 +394,7 @@ void SceneList::moveSelectedScenes(int movement)
 	if (indexes.isEmpty()) {
 		return;
 	}
+	QList<int> scenes;
 
 	// Find target row
 	int first_row = INT_MAX;
@@ -403,14 +404,12 @@ void SceneList::moveSelectedScenes(int movement)
 		index_row = indexes.at(i).row();
 		first_row = qMin(first_row, index_row);
 		last_row = qMax(last_row, index_row);
+		scenes.append(index_row);
 	}
 	int row = qMax(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
 
-	// Move scenes by faking a drag and drop operation
-	QAbstractItemModel* scene_model = m_filter_model->sourceModel();
-	QMimeData* data = scene_model->mimeData(indexes);
-	scene_model->dropMimeData(data, Qt::MoveAction, row, 0, QModelIndex());
-	delete data;
+	// Move scenes
+	m_document->sceneModel()->moveScenes(scenes, row);
 }
 
 //-----------------------------------------------------------------------------
