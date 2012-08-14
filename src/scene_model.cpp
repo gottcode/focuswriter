@@ -258,12 +258,22 @@ bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int 
 	cursor.beginEditBlock();
 	cursor.setPosition(position);
 
+	// Make sure inserted text begins with divider
+	if (!fragments.first().toPlainText().startsWith(f_scene_divider)) {
+		cursor.insertText(f_scene_divider + "\n");
+	}
+
 	// Insert text fragments; will indirectly create scenes
 	foreach (const QTextDocumentFragment& fragment, fragments) {
 		cursor.insertFragment(fragment);
 		if (!cursor.atBlockStart()) {
 			cursor.insertBlock();
 		}
+	}
+
+	// Make sure inserted text ends with divider
+	if (!cursor.atEnd() && !cursor.block().text().startsWith(f_scene_divider)) {
+		cursor.insertText(f_scene_divider + "\n");
 	}
 
 	// Delete original fragments; will indirectly delete scenes

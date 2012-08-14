@@ -1,3 +1,6 @@
+2012-08-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Dragging top scene merged it with other scenes.
+
 2012-08-13 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Regression - Windows did not load SDL.
 	* Use built-in Voikko support for finding dictionaries.
