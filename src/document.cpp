@@ -1047,6 +1047,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	if (end.isValid()) {
 		end = end.next();
 	}
+	bool update_spelling = false;
 	BlockStats* stats = 0;
 	for (QTextBlock i = begin; i != end; i = i.next()) {
 		stats = static_cast<BlockStats*>(i.userData());
@@ -1054,10 +1055,14 @@ void Document::updateWordCount(int position, int removed, int added)
 			stats = new BlockStats(m_scene_model);
 			i.setUserData(stats);
 			m_cached_stats.clear();
+			update_spelling = true;
 		}
 		stats->update(i.text());
 		stats->recheckSpelling();
 		m_scene_model->updateScene(stats, i);
+	}
+	if (update_spelling) {
+		m_highlighter->updateSpelling();
 	}
 
 	// Update document stats and daily word count

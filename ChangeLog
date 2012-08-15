@@ -1,3 +1,6 @@
+2012-08-15 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not check spelling of pasted paragraphs.
+
 2012-08-14 Graeme Gott <graeme@gottcode.org>
 	* Stop faking drag-and-drop for moving scenes.
 	* FIXED: Dragging last scene deleted it.
