@@ -30,6 +30,7 @@ class SceneModel;
 class Theme;
 
 #include <QHash>
+#include <QMessageBox>
 #include <QTextBlockFormat>
 #include <QTime>
 #include <QWidget>
@@ -84,6 +85,7 @@ public slots:
 	void centerCursor(bool force = false);
 
 signals:
+	void alert(QMessageBox::Icon, const QString& text, const QStringList& details);
 	void cacheFile(DocumentWriter* file);
 	void removeCacheFile(const QString& file);
 	void changed();

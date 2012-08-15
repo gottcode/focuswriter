@@ -492,12 +492,13 @@ bool Document::loadFile(const QString& filename, int position)
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
 	if (file.isOpen()) {
+		QString error;
 		if (type == "odt") {
 			file.close();
 			ODT::Reader reader;
 			reader.read(filename, document);
 			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				error = reader.errorString();
 				loaded = false;
 				position = -1;
 			}
@@ -508,7 +509,7 @@ bool Document::loadFile(const QString& filename, int position)
 			m_codepage = reader.codePage();
 			file.close();
 			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				error = reader.errorString();
 				loaded = false;
 				position = -1;
 			}
@@ -526,6 +527,10 @@ bool Document::loadFile(const QString& filename, int position)
 			}
 			cursor.endEditBlock();
 			file.close();
+		}
+
+		if (!loaded) {
+			emit alert(QMessageBox::Warning, error, QStringList(filename));
 		}
 	}
 	document->setUndoRedoEnabled(true);
