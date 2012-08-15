@@ -1079,7 +1079,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 			document->text()->document()->setModified(!compareFiles(file, datafile));
 			QFile::remove(datafile);
 		}
-	} else {
+	} else if (path != file) {
 		document->loadFile(file, m_save_positions ? position : -1);
 	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
