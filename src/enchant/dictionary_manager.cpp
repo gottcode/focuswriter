@@ -164,14 +164,7 @@ DictionaryManager::DictionaryManager()
 {
 #ifdef Q_OS_WIN
 	// Add path for Voikko dictionary
-	{
-		QString path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + "/dictionaries/");
-#ifdef UNICODE
-		SetEnvironmentVariable(L"VOIKKO_DICTIONARY_PATH", path.toStdWString().c_str());
-#else
-		SetEnvironmentVariable("VOIKKO_DICTIONARY_PATH", path.toLocal8Bit());
-#endif
-	}
+	qputenv("VOIKKO_DICTIONARY_PATH", QFile::encodeName(QCoreApplication::applicationDirPath() + "/dictionaries/"));
 #endif
 
 	// Create dictionary broker

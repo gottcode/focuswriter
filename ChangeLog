@@ -1,3 +1,6 @@
+2012-08-16 Graeme Gott <graeme@gottcode.org>
+	* Stop distributing dictionaries on Windows.
+
 2012-08-15 Graeme Gott <graeme@gottcode.org>
 	* Base maximum width of alerts on pixel density.
 	* Close alert under mouse first.

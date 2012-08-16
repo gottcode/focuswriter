@@ -22,11 +22,6 @@ SET ICONS=%APP%\icons\hicolor
 MKDIR %ICONS%
 XCOPY /Q /S /Y resources\images\icons\oxygen\hicolor %ICONS% >nul
 
-ECHO Copying dictionaries
-SET DICTIONARIES=%APP%\dictionaries
-MKDIR %DICTIONARIES%
-XCOPY /Q /S /Y resources\dict %DICTIONARIES% >nul
-
 ECHO Copying sounds
 SET SOUNDS=%APP%\sounds
 MKDIR %SOUNDS%
