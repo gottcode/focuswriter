@@ -211,7 +211,7 @@ Stack::~Stack()
 void Stack::addDocument(Document* document)
 {
 	document->setSceneList(m_scenes);
-	connect(document, SIGNAL(alert(QMessageBox::Icon,QString,QStringList)), m_alerts, SLOT(addAlert(QMessageBox::Icon,QString,QStringList)));
+	connect(document, SIGNAL(alert(Alert*)), m_alerts, SLOT(addAlert(Alert*)));
 	connect(document, SIGNAL(alignmentChanged()), this, SIGNAL(updateFormatAlignmentActions()));
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));

@@ -20,6 +20,7 @@
 #include "window.h"
 
 #include "action_manager.h"
+#include "alert.h"
 #include "alert_layer.h"
 #include "document.h"
 #include "document_cache.h"
@@ -294,7 +295,7 @@ Window::Window(const QStringList& command_line_files) :
 	// Restore after crash
 	bool writable = QFileInfo(Document::cachePath()).isWritable() && QFileInfo(Document::cachePath() + "/../").isWritable();
 	if (!writable) {
-		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Emergency cache is not writable."), QStringList());
+		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Emergency cache is not writable."), QStringList(), true));
 	}
 	QStringList files, datafiles;
 	QString cachepath;
@@ -420,7 +421,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		foreach (int i, skip) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
-		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files were unsupported and could not be opened."), skipped);
+		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Some files were unsupported and could not be opened."), skipped, true));
 	}
 
 	// Show load screen if switching sessions or opening more than one file
@@ -487,10 +488,10 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 
 	// Inform user about unopened and read-only files
 	if (!missing.isEmpty()) {
-		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files could not be opened."), missing);
+		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Some files could not be opened."), missing, true));
 	}
 	if (!readonly.isEmpty()) {
-		m_documents->alerts()->addAlert(QMessageBox::Information, tr("Some files were opened Read-Only."), readonly);
+		m_documents->alerts()->addAlert(new Alert(Alert::Information, tr("Some files were opened Read-Only."), readonly, true));
 	}
 
 	// Hide load screen
@@ -1157,8 +1158,10 @@ void Window::loadPreferences(Preferences& preferences)
 		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
 
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
-			m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Unable to load typewriter sounds."),
-				QStringList(tr("Please make sure that SDL_mixer is installed.")));
+			m_documents->alerts()->addAlert(new Alert(Alert::Warning,
+				tr("Unable to load typewriter sounds."),
+				QStringList(tr("Please make sure that SDL_mixer is installed.")),
+				true));
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;

@@ -19,6 +19,7 @@
 
 #include "document.h"
 
+#include "alert.h"
 #include "block_stats.h"
 #include "dictionary_manager.h"
 #include "document_watcher.h"
@@ -530,7 +531,7 @@ bool Document::loadFile(const QString& filename, int position)
 		}
 
 		if (!loaded) {
-			emit alert(QMessageBox::Warning, error, QStringList(filename));
+			emit alert(new Alert(Alert::Warning, error, QStringList(filename), false));
 		}
 	}
 	document->setUndoRedoEnabled(true);
