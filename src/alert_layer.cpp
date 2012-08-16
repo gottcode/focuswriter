@@ -69,6 +69,12 @@ void AlertLayer::alertDestroyed(QObject* alert)
 void AlertLayer::dismissAlert()
 {
 	if (!m_alerts.isEmpty()) {
+		for (int i = 0; i < m_alerts.count(); ++i) {
+			if (m_alerts[i]->underMouse()) {
+				delete m_alerts.takeAt(i);
+				return;
+			}
+		}
 		delete m_alerts.takeAt(0);
 	}
 }

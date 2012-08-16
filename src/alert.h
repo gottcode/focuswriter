@@ -41,6 +41,8 @@ public:
 	Alert(QWidget* parent = 0);
 	Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent = 0);
 
+	bool underMouse() const;
+
 	void fadeIn();
 	void setExpandable(bool expandable);
 	void setIcon(Icon icon);
@@ -73,5 +75,10 @@ private:
 	bool m_always_expanded;
 	bool m_under_mouse;
 };
+
+inline bool Alert::underMouse() const
+{
+	return m_under_mouse;
+}
 
 #endif
