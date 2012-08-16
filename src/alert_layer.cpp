@@ -27,10 +27,10 @@
 
 //-----------------------------------------------------------------------------
 
-AlertLayer::AlertLayer(QWidget* parent)
-	: QWidget(parent)
+AlertLayer::AlertLayer(QWidget* parent) :
+	QWidget(parent)
 {
-	setMaximumWidth(400);
+	setMaximumWidth(4 * logicalDpiX());
 	m_alerts_layout = new QVBoxLayout(this);
 	m_alerts_layout->setMargin(0);
 
