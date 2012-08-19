@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,8 @@ class AlertLayer;
 class Document;
 class FindDialog;
 class LoadScreen;
+class SceneList;
+class SymbolsDialog;
 class Theme;
 
 #include <QWidget>
@@ -65,7 +67,6 @@ signals:
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
 	void findNextAvailable(bool available);
-	void formattingEnabled(bool enabled);
 	void updateFormatActions();
 	void updateFormatAlignmentActions();
 
@@ -84,15 +85,17 @@ public slots:
 	void findNext();
 	void findPrevious();
 	void increaseIndent();
-	void makePlainText();
-	void makeRichText();
 	void paste();
+	void pasteUnformatted();
 	void print();
 	void redo();
+	void reload();
 	void replace();
 	void save();
 	void saveAs();
 	void selectAll();
+	void selectScene();
+	void setFocusMode(QAction* action);
 	void setFontBold(bool bold);
 	void setFontItalic(bool italic);
 	void setFontStrikeOut(bool strikeout);
@@ -101,12 +104,14 @@ public slots:
 	void setFontSubScript(bool sub);
 	void setTextDirectionLTR();
 	void setTextDirectionRTL();
+	void showSymbols();
 	void themeSelected(const Theme& theme);
 	void undo();
 	void updateSmartQuotes();
 	void updateSmartQuotesSelection();
 	void setFooterVisible(bool visible);
 	void setHeaderVisible(bool visible = true);
+	void setScenesVisible(bool visible);
 	void showHeader();
 
 protected:
@@ -115,6 +120,7 @@ protected:
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
+	void insertSymbol(const QString& text);
 	void updateBackground();
 	void updateMask();
 	void updateMapping();
@@ -122,8 +128,10 @@ private slots:
 private:
 	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
+	SceneList* m_scenes;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
+	SymbolsDialog* m_symbols_dialog;
 
 	QStackedWidget* m_contents;
 	QList<Document*> m_documents;

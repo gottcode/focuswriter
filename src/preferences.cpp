@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
 #include "preferences.h"
 
 #include "dictionary.h"
+#include "dictionary_manager.h"
+#include "scene_model.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -50,12 +52,14 @@ Preferences::Preferences()
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
-	m_rich_text = settings.value("Edit/RichText", true).toBool();
 	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
 	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
 	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
 	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
 	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", false).toBool();
+
+	m_scene_divider = settings.value("SceneList/Divider", QLatin1String("##")).toString();
+	SceneModel::setSceneDivider(m_scene_divider);
 
 	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
@@ -69,12 +73,12 @@ Preferences::Preferences()
 	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
 	m_language = settings.value("Spelling/Language", QLocale().name()).toString();
 
-	QStringList languages = Dictionary::availableLanguages();
+	QStringList languages = DictionaryManager::instance().availableDictionaries();
 	if (!languages.isEmpty() && !languages.contains(m_language)) {
 		int close = languages.indexOf(QRegExp(m_language.left(2) + ".*"));
 		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
 	}
-	Dictionary::setDefaultLanguage(m_language);
+	DictionaryManager::instance().setDefaultLanguage(m_language);
 	Dictionary::setIgnoreNumbers(m_ignore_numbers);
 	Dictionary::setIgnoreUppercase(m_ignore_uppercase);
 }
@@ -107,12 +111,13 @@ Preferences::~Preferences()
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
-	settings.setValue("Edit/RichText", m_rich_text);
 	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
 	settings.setValue("Edit/SmartQuotes", m_smart_quotes);
 	settings.setValue("Edit/SmartDoubleQuotes", m_double_quotes);
 	settings.setValue("Edit/SmartSingleQuotes", m_single_quotes);
 	settings.setValue("Edit/TypewriterSounds", m_typewriter_sounds);
+
+	settings.setValue("SceneList/Divider", m_scene_divider);
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/RememberPositions", m_save_positions);
@@ -310,13 +315,6 @@ bool Preferences::blockCursor() const
 
 //-----------------------------------------------------------------------------
 
-bool Preferences::richText() const
-{
-	return m_rich_text;
-}
-
-//-----------------------------------------------------------------------------
-
 bool Preferences::smoothFonts() const
 {
 	return m_smooth_fonts;
@@ -366,13 +364,6 @@ void Preferences::setBlockCursor(bool block)
 
 //-----------------------------------------------------------------------------
 
-void Preferences::setRichText(bool rich)
-{
-	setValue(m_rich_text, rich);
-}
-
-//-----------------------------------------------------------------------------
-
 void Preferences::setSmoothFonts(bool smooth)
 {
 	setValue(m_smooth_fonts, smooth);
@@ -404,6 +395,21 @@ void Preferences::setSingleQuotes(int quotes)
 void Preferences::setTypewriterSounds(bool sounds)
 {
 	setValue(m_typewriter_sounds, sounds);
+}
+
+//-----------------------------------------------------------------------------
+
+QString Preferences::sceneDivider() const
+{
+	return m_scene_divider;
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setSceneDivider(const QString& divider)
+{
+	setValue(m_scene_divider, divider);
+	SceneModel::setSceneDivider(m_scene_divider);
 }
 
 //-----------------------------------------------------------------------------

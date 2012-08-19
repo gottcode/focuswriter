@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,20 @@
 
 #include "stack.h"
 
+#include "action_manager.h"
 #include "alert_layer.h"
 #include "document.h"
 #include "find_dialog.h"
 #include "load_screen.h"
+#include "scene_list.h"
+#include "scene_model.h"
 #include "smart_quotes.h"
+#include "symbols_dialog.h"
 #include "theme.h"
 
+#include <QAction>
+#include <QApplication>
+#include <QClipboard>
 #include <QFileInfo>
 #include <QGridLayout>
 #include <QMessageBox>
@@ -142,8 +149,9 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Stack::Stack(QWidget* parent)
-	: QWidget(parent),
+Stack::Stack(QWidget* parent) :
+	QWidget(parent),
+	m_symbols_dialog(0),
 	m_current_document(0),
 	m_background_position(0),
 	m_margin(0),
@@ -158,10 +166,15 @@ Stack::Stack(QWidget* parent)
 
 	m_alerts = new AlertLayer(this);
 
+	m_scenes = new SceneList(this);
+	setScenesVisible(false);
+
 	m_load_screen = new LoadScreen(this);
 
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
+
+	connect(ActionManager::instance(), SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 
 	m_layout = new QGridLayout(this);
 	m_layout->setMargin(0);
@@ -171,9 +184,11 @@ Stack::Stack(QWidget* parent)
 	m_layout->setRowStretch(2, 1);
 	m_layout->setColumnMinimumWidth(1, 6);
 	m_layout->setColumnMinimumWidth(4, 6);
-	m_layout->setColumnStretch(2, 2);
+	m_layout->setColumnStretch(1, 1);
+	m_layout->setColumnStretch(2, 1);
 	m_layout->setColumnStretch(3, 1);
 	m_layout->addWidget(m_contents, 1, 0, 4, 6);
+	m_layout->addWidget(m_scenes, 1, 0, 4, 3);
 	m_layout->addWidget(m_alerts, 3, 3);
 	m_layout->addWidget(m_load_screen, 0, 0, 6, 6);
 
@@ -195,12 +210,13 @@ Stack::~Stack()
 
 void Stack::addDocument(Document* document)
 {
+	document->setSceneList(m_scenes);
 	connect(document, SIGNAL(alignmentChanged()), this, SIGNAL(updateFormatAlignmentActions()));
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
-	connect(document, SIGNAL(formattingEnabled(bool)), this, SIGNAL(formattingEnabled(bool)));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
 	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
+	connect(document, SIGNAL(scenesVisible(bool)), this, SLOT(setScenesVisible(bool)));
 	connect(document->text(), SIGNAL(copyAvailable(bool)), this, SIGNAL(copyAvailable(bool)));
 	connect(document->text(), SIGNAL(redoAvailable(bool)), this, SIGNAL(redoAvailable(bool)));
 	connect(document->text(), SIGNAL(undoAvailable(bool)), this, SIGNAL(undoAvailable(bool)));
@@ -212,7 +228,6 @@ void Stack::addDocument(Document* document)
 	updateMapping();
 
 	emit documentAdded(document);
-	emit formattingEnabled(document->isRichText());
 	emit updateFormatActions();
 }
 
@@ -241,11 +256,11 @@ void Stack::setCurrentDocument(int index)
 {
 	m_current_document = m_documents[index];
 	m_contents->setCurrentWidget(m_current_document);
+	m_scenes->setDocument(m_current_document);
 
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
 	emit undoAvailable(m_current_document->text()->document()->isUndoAvailable());
-	emit formattingEnabled(m_current_document->isRichText());
 	emit updateFormatActions();
 }
 
@@ -284,6 +299,7 @@ bool Stack::eventFilter(QObject* watched, QEvent* event)
 
 void Stack::alignCenter()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignCenter);
 }
 
@@ -291,6 +307,7 @@ void Stack::alignCenter()
 
 void Stack::alignJustify()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignJustify);
 }
 
@@ -298,6 +315,7 @@ void Stack::alignJustify()
 
 void Stack::alignLeft()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
 }
 
@@ -305,6 +323,7 @@ void Stack::alignLeft()
 
 void Stack::alignRight()
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
 }
 
@@ -359,6 +378,7 @@ void Stack::copy()
 
 void Stack::decreaseIndent()
 {
+	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(qMax(0, format.indent() - 48));
@@ -391,6 +411,7 @@ void Stack::findPrevious()
 
 void Stack::increaseIndent()
 {
+	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(format.indent() + 48);
@@ -400,27 +421,17 @@ void Stack::increaseIndent()
 
 //-----------------------------------------------------------------------------
 
-void Stack::makePlainText()
-{
-	if (!m_current_document->text()->document()->isEmpty()
-		&& QMessageBox::warning(window(), tr("Question"), tr("Remove all formatting from the current file?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
-		return;
-	}
-	m_current_document->setRichText(false);
-}
-
-//-----------------------------------------------------------------------------
-
-void Stack::makeRichText()
-{
-	m_current_document->setRichText(true);
-}
-
-//-----------------------------------------------------------------------------
-
 void Stack::paste()
 {
 	m_current_document->text()->paste();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::pasteUnformatted()
+{
+	QString text = QApplication::clipboard()->text(QClipboard::Clipboard);
+	m_current_document->text()->insertPlainText(text);
 }
 
 //-----------------------------------------------------------------------------
@@ -435,6 +446,13 @@ void Stack::print()
 void Stack::redo()
 {
 	m_current_document->text()->redo();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::reload()
+{
+	m_current_document->reload();
 }
 
 //-----------------------------------------------------------------------------
@@ -468,8 +486,26 @@ void Stack::selectAll()
 
 //-----------------------------------------------------------------------------
 
+void Stack::selectScene()
+{
+	m_current_document->sceneModel()->selectScene();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::setFocusMode(QAction* action)
+{
+	int focus_mode = action->data().toInt();
+	foreach (Document* document, m_documents) {
+		document->setFocusMode(focus_mode);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::setFontBold(bool bold)
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setFontWeight(bold ? QFont::Bold : QFont::Normal);
 }
 
@@ -477,6 +513,7 @@ void Stack::setFontBold(bool bold)
 
 void Stack::setFontItalic(bool italic)
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setFontItalic(italic);
 }
 
@@ -484,6 +521,7 @@ void Stack::setFontItalic(bool italic)
 
 void Stack::setFontStrikeOut(bool strikeout)
 {
+	m_current_document->setRichText(true);
 	QTextCharFormat format;
 	format.setFontStrikeOut(strikeout);
 	m_current_document->text()->mergeCurrentCharFormat(format);
@@ -493,6 +531,7 @@ void Stack::setFontStrikeOut(bool strikeout)
 
 void Stack::setFontUnderline(bool underline)
 {
+	m_current_document->setRichText(true);
 	m_current_document->text()->setFontUnderline(underline);
 }
 
@@ -500,6 +539,7 @@ void Stack::setFontUnderline(bool underline)
 
 void Stack::setFontSuperScript(bool super)
 {
+	m_current_document->setRichText(true);
 	QTextCharFormat format;
 	format.setVerticalAlignment(super ? QTextCharFormat::AlignSuperScript : QTextCharFormat::AlignNormal);
 	m_current_document->text()->mergeCurrentCharFormat(format);
@@ -509,6 +549,7 @@ void Stack::setFontSuperScript(bool super)
 
 void Stack::setFontSubScript(bool sub)
 {
+	m_current_document->setRichText(true);
 	QTextCharFormat format;
 	format.setVerticalAlignment(sub ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal);
 	m_current_document->text()->mergeCurrentCharFormat(format);
@@ -519,6 +560,7 @@ void Stack::setFontSubScript(bool sub)
 void Stack::setTextDirectionLTR()
 {
 	if (m_current_document) {
+		m_current_document->setRichText(true);
 		QTextCursor cursor = m_current_document->text()->textCursor();
 		QTextBlockFormat format = cursor.blockFormat();
 		format.setLayoutDirection(Qt::LeftToRight);
@@ -533,6 +575,7 @@ void Stack::setTextDirectionLTR()
 void Stack::setTextDirectionRTL()
 {
 	if (m_current_document) {
+		m_current_document->setRichText(true);
 		QTextCursor cursor = m_current_document->text()->textCursor();
 		QTextBlockFormat format = cursor.blockFormat();
 		format.setLayoutDirection(Qt::RightToLeft);
@@ -540,6 +583,25 @@ void Stack::setTextDirectionRTL()
 		cursor.mergeBlockFormat(format);
 		emit updateFormatAlignmentActions();
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::showSymbols()
+{
+	// Load symbols dialog on demand
+	if (!m_symbols_dialog) {
+		window()->setCursor(Qt::WaitCursor);
+		m_symbols_dialog = new SymbolsDialog(this);
+		m_symbols_dialog->setPreviewFont(m_current_document->text()->font());
+		connect(m_symbols_dialog, SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
+		window()->unsetCursor();
+	}
+
+	// Show dialog
+	m_symbols_dialog->show();
+	m_symbols_dialog->raise();
+	m_symbols_dialog->activateWindow();
 }
 
 //-----------------------------------------------------------------------------
@@ -562,6 +624,10 @@ void Stack::themeSelected(const Theme& theme)
 	m_layout->setRowMinimumHeight(5, m_margin);
 	m_layout->setColumnMinimumWidth(0, m_margin);
 	m_layout->setColumnMinimumWidth(5, m_margin);
+
+	if (m_symbols_dialog) {
+		m_symbols_dialog->setPreviewFont(theme.textFont());
+	}
 
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme);
@@ -619,6 +685,18 @@ void Stack::setHeaderVisible(bool visible)
 
 //-----------------------------------------------------------------------------
 
+void Stack::setScenesVisible(bool visible)
+{
+	if (!visible && !m_scenes->scenesVisible()) {
+		m_scenes->setMask(QRect(-1,-1,1,1));
+		update();
+	} else {
+		m_scenes->clearMask();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::showHeader()
 {
 	QPoint point = mapFromGlobal(QCursor::pos());
@@ -634,6 +712,7 @@ void Stack::mouseMoveEvent(QMouseEvent* event)
 	bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
+	setScenesVisible(false);
 
 	if (m_current_document) {
 		if (header_visible || footer_visible) {
@@ -664,6 +743,13 @@ void Stack::resizeEvent(QResizeEvent* event)
 	m_resize_timer->start();
 	updateBackground();
 	QWidget::resizeEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::insertSymbol(const QString& text)
+{
+	m_current_document->text()->insertPlainText(text);
 }
 
 //-----------------------------------------------------------------------------

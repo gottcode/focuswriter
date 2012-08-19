@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,10 +28,11 @@
 #include <QEvent>
 #include <QMenu>
 #include <QTextEdit>
+#include <QTimer>
 
 //-----------------------------------------------------------------------------
 
-Highlighter::Highlighter(QTextEdit* text, Dictionary* dictionary)
+Highlighter::Highlighter(QTextEdit* text, Dictionary& dictionary)
 	: QSyntaxHighlighter(text),
 	m_dictionary(dictionary),
 	m_text(text),
@@ -40,6 +41,11 @@ Highlighter::Highlighter(QTextEdit* text, Dictionary* dictionary)
 	m_changed(false)
 {
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+
+	m_spell_timer = new QTimer(this);
+	m_spell_timer->setInterval(10);
+	m_spell_timer->setSingleShot(true);
+	connect(m_spell_timer, SIGNAL(timeout()), this, SLOT(updateSpelling()));
 
 	m_text->viewport()->installEventFilter(this);
 	m_add_action = new QAction(tr("Add"), this);
@@ -52,7 +58,11 @@ void Highlighter::setEnabled(bool enabled)
 {
 	if (m_enabled != enabled) {
 		m_enabled = enabled;
-		rehighlight();
+		if (m_enabled) {
+			updateSpelling();
+		} else {
+			rehighlight();
+		}
 	}
 }
 
@@ -83,7 +93,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 		bool under_mouse = false;
 		QStringRef word;
-		QVector<QStringRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
+		QList<QStringRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
 		for (int i = 0; i < words.count(); ++i) {
 			word = words.at(i);
 			int delta = cursor - word.position();
@@ -105,7 +115,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 			// List suggestions in context menu
 			QMenu* menu = new QMenu;
-			QStringList guesses = m_dictionary->suggestions(m_word);
+			QStringList guesses = m_dictionary.suggestions(m_word);
 			if (!guesses.isEmpty()) {
 				foreach (const QString& guess, guesses) {
 					menu->addAction(guess);
@@ -133,22 +143,20 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 void Highlighter::highlightBlock(const QString& text)
 {
-	if (!m_enabled) {
+	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
+	if (!m_enabled || !stats || (stats->spellingStatus() == BlockStats::Unchecked)) {
 		return;
 	}
-
-	int cursor = m_text->textCursor().position() - currentBlock().position();
-	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
-	if (!stats) {
-		stats = new BlockStats(text, m_dictionary);
-		setCurrentBlockUserData(stats);
+	if (stats->spellingStatus() == BlockStats::CheckSpelling) {
+		stats->checkSpelling(text, m_dictionary);
 	}
 
 	QTextCharFormat error;
 	error.setUnderlineColor(m_misspelled);
 	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
-	QVector<QStringRef> words = stats->misspelled();
+	int cursor = m_text->textCursor().position() - currentBlock().position();
+	QList<QStringRef> words = stats->misspelled();
 	for (int i = 0; i < words.count(); ++i) {
 		const QStringRef& word = words.at(i);
 		int delta = cursor - word.position();
@@ -158,6 +166,45 @@ void Highlighter::highlightBlock(const QString& text)
 	}
 
 	m_changed = true;
+}
+
+//-----------------------------------------------------------------------------
+
+void Highlighter::updateSpelling()
+{
+	if (!m_enabled) {
+		return;
+	}
+
+	QTextBlock block = m_text->textCursor().block();
+	bool found = false;
+
+	// Check first unchecked block at or after cursor
+	for (QTextBlock i = block; i.isValid(); i = i.next()) {
+		BlockStats* stats = static_cast<BlockStats*>(i.userData());
+		if (stats && (stats->spellingStatus() != BlockStats::Checked)) {
+			stats->checkSpelling(i.text(), m_dictionary);
+			rehighlightBlock(i);
+			found = true;
+			break;
+		}
+	}
+
+	// Check first unchecked block before cursor
+	for (QTextBlock i = block; i.isValid(); i = i.previous()) {
+		BlockStats* stats = static_cast<BlockStats*>(i.userData());
+		if (stats && (stats->spellingStatus() != BlockStats::Checked)) {
+			stats->checkSpelling(i.text(), m_dictionary);
+			rehighlightBlock(i);
+			found = true;
+			break;
+		}
+	}
+
+	// Repeat until all blocks have been checked
+	if (found) {
+		m_spell_timer->start();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -181,10 +228,10 @@ void Highlighter::suggestion(QAction* action)
 {
 	if (action == m_add_action) {
 		m_text->setTextCursor(m_start_cursor);
-		m_dictionary->add(m_word);
+		m_dictionary.addWord(m_word);
 	} else if (action == m_check_action) {
 		m_text->setTextCursor(m_start_cursor);
-		SpellChecker::checkDocument(m_text);
+		SpellChecker::checkDocument(m_text, m_dictionary);
 	} else {
 		m_cursor.insertText(action->text());
 	}

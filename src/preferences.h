@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +60,6 @@ public:
 
 	bool alwaysCenter() const;
 	bool blockCursor() const;
-	bool richText() const;
 	bool smoothFonts() const;
 	bool smartQuotes() const;
 	int doubleQuotes() const;
@@ -68,12 +67,14 @@ public:
 	bool typewriterSounds() const;
 	void setAlwaysCenter(bool center);
 	void setBlockCursor(bool block);
-	void setRichText(bool rich);
 	void setSmoothFonts(bool smooth);
 	void setSmartQuotes(bool quotes);
 	void setDoubleQuotes(int quotes);
 	void setSingleQuotes(int quotes);
 	void setTypewriterSounds(bool sounds);
+
+	QString sceneDivider() const;
+	void setSceneDivider(const QString& divider);
 
 	bool autoSave() const;
 	bool savePositions() const;
@@ -113,12 +114,13 @@ private:
 
 	bool m_always_center;
 	bool m_block_cursor;
-	bool m_rich_text;
 	bool m_smooth_fonts;
 	bool m_smart_quotes;
 	int m_double_quotes;
 	int m_single_quotes;
 	bool m_typewriter_sounds;
+
+	QString m_scene_divider;
 
 	bool m_auto_save;
 	bool m_save_positions;

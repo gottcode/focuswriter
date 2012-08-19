@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,6 +45,10 @@ public slots:
 signals:
 	void findNextAvailable(bool available);
 
+protected:
+	void moveEvent(QMoveEvent* event);
+	void showEvent(QShowEvent* event);
+
 private slots:
 	void find();
 	void findChanged(const QString& text);
@@ -64,11 +68,14 @@ private:
 
 	QCheckBox* m_ignore_case;
 	QCheckBox* m_whole_words;
+	QCheckBox* m_regular_expressions;
 	QRadioButton* m_search_backwards;
 
 	QPushButton* m_find_button;
 	QPushButton* m_replace_button;
 	QPushButton* m_replace_all_button;
+
+	QPoint m_position;
 };
 
 #endif

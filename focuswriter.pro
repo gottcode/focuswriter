@@ -1,11 +1,12 @@
 TEMPLATE = app
-CONFIG += warn_on release
+greaterThan(QT_MAJOR_VERSION, 4) {
+	QT += widgets
+	QT += printsupport
+}
+CONFIG += warn_on
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 	CONFIG += x86_64
-	# Comment the above line and uncomment the following lines to compile Universal for 10.4+
-	# QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-	# CONFIG += x86 ppc
 }
 
 !win32 {
@@ -16,36 +17,82 @@ MOC_DIR = build
 OBJECTS_DIR = build
 RCC_DIR = build
 
+VERSION = $$system(git rev-parse --short HEAD)
+isEmpty(VERSION) {
+	VERSION = 0
+}
+DEFINES += VERSIONSTR=\\\"git.$${VERSION}\\\"
+
 unix: !macx {
 	TARGET = focuswriter
 } else {
 	TARGET = FocusWriter
 }
 
+# Add Qt single use application
+INCLUDEPATH += src/qtsingleapplication
+SOURCES += src/qtsingleapplication/qtsingleapplication.cpp \
+	src/qtsingleapplication/qtlocalpeer.cpp
+HEADERS += src/qtsingleapplication/qtsingleapplication.h \
+	src/qtsingleapplication/qtlocalpeer.h
+QT *= network
+
 macx {
-	INCLUDEPATH += /Library/Frameworks/hunspell.framework/Headers /Library/Frameworks/libzip.framework/Headers
-	LIBS += -framework hunspell -framework libzip
+	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
+	LIBS += -framework libzip -framework AppKit
 
-	HEADERS += src/rtf/clipboard_mac.h
+	HEADERS += src/rtf/clipboard_mac.h \
+		src/nsspellchecker/dictionary.h \
+		src/nsspellchecker/dictionary_data.h \
+		src/nsspellchecker/dictionary_manager.h
+
 	SOURCES += src/rtf/clipboard_mac.cpp
-} else:win32 {
-	INCLUDEPATH += hunspell libzip
-	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/rtf/clipboard_windows.h
-	SOURCES += src/rtf/clipboard_windows.cpp
+	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary.mm \
+		src/nsspellchecker/dictionary_data.mm \
+		src/nsspellchecker/dictionary_manager.mm \
+		src/nssound/sound.mm
+} else:win32 {
+	INCLUDEPATH += enchant libzip src/enchant
+	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
+
+	HEADERS += src/rtf/clipboard_windows.h \
+		src/enchant/dictionary.h \
+		src/enchant/dictionary_data.h \
+		src/enchant/dictionary_manager.h
+
+	SOURCES += src/rtf/clipboard_windows.cpp \
+		src/enchant/dictionary.cpp \
+		src/enchant/dictionary_data.cpp \
+		src/enchant/dictionary_manager.cpp \
+		src/sdl/sound.cpp
 } else {
+	INCLUDEPATH += src/enchant
+
 	CONFIG += link_pkgconfig
-	PKGCONFIG += hunspell libzip
+	PKGCONFIG += enchant libzip
+
+	HEADERS += src/enchant/dictionary.h \
+		src/enchant/dictionary_data.h \
+		src/enchant/dictionary_manager.h
+
+	SOURCES += src/enchant/dictionary.cpp \
+		src/enchant/dictionary_data.cpp \
+		src/enchant/dictionary_manager.cpp \
+		src/sdl/sound.cpp
 }
 
-HEADERS += src/alert.h \
+HEADERS += src/action_manager.h \
+	src/alert.h \
 	src/alert_layer.h \
+	src/application.h \
 	src/block_stats.h \
 	src/color_button.h \
 	src/deltas.h \
-	src/dictionary.h \
 	src/document.h \
+	src/document_cache.h \
+	src/document_watcher.h \
+	src/document_writer.h \
 	src/find_dialog.h \
 	src/gzip.h \
 	src/highlighter.h \
@@ -55,14 +102,19 @@ HEADERS += src/alert.h \
 	src/odt_reader.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
+	src/scene_list.h \
+	src/scene_model.h \
 	src/session.h \
 	src/session_manager.h \
 	src/settings_file.h \
+	src/shortcut_edit.h \
 	src/smart_quotes.h \
 	src/sound.h \
 	src/spell_checker.h \
 	src/stack.h \
 	src/stats.h \
+	src/symbols_dialog.h \
+	src/symbols_model.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
@@ -74,13 +126,17 @@ HEADERS += src/alert.h \
 	src/rtf/tokenizer.h \
 	src/rtf/writer.h
 
-SOURCES += src/alert.cpp \
+SOURCES += src/action_manager.cpp \
+	src/alert.cpp \
 	src/alert_layer.cpp \
+	src/application.cpp \
 	src/block_stats.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
-	src/dictionary.cpp \
 	src/document.cpp \
+	src/document_cache.cpp \
+	src/document_watcher.cpp \
+	src/document_writer.cpp \
 	src/find_dialog.cpp \
 	src/gzip.cpp \
 	src/highlighter.cpp \
@@ -91,13 +147,17 @@ SOURCES += src/alert.cpp \
 	src/odt_reader.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
+	src/scene_list.cpp \
+	src/scene_model.cpp \
 	src/session.cpp \
 	src/session_manager.cpp \
+	src/shortcut_edit.cpp \
 	src/smart_quotes.cpp \
-	src/sound.cpp \
 	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/stats.cpp \
+	src/symbols_dialog.cpp \
+	src/symbols_model.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \
@@ -127,6 +187,7 @@ TRANSLATIONS = translations/focuswriter_ca.ts \
 	translations/focuswriter_pt.ts \
 	translations/focuswriter_pt_BR.ts \
 	translations/focuswriter_ru.ts \
+	translations/focuswriter_sk.ts \
 	translations/focuswriter_sv.ts \
 	translations/focuswriter_uk.ts
 
@@ -142,39 +203,49 @@ macx {
 	ICONS.files = resources/images/icons/oxygen/hicolor
 	ICONS.path = Contents/Resources/icons
 
-	DICTIONARIES.files = resources/dict/
-	DICTIONARIES.path = Contents/Resources/Dictionaries
-
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	QMAKE_BUNDLE_DATA += ICONS DICTIONARIES SOUNDS
+	SYMBOLS.files = resources/symbols/symbols.dat
+	SYMBOLS.path = Contents/Resources
+
+	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
 }
 
 unix: !macx {
 	isEmpty(PREFIX) {
 		PREFIX = /usr/local
 	}
+	isEmpty(BINDIR) {
+		BINDIR = $$PREFIX/bin
+	}
+	isEmpty(DATADIR) {
+		DATADIR = $$PREFIX/share
+	}
+	DEFINES += DATADIR=\\\"$${DATADIR}/focuswriter\\\"
 
-	target.path = $$PREFIX/bin/
+	target.path = $$BINDIR
 
 	icon.files = resources/images/icons/hicolor/*
-	icon.path = $$PREFIX/share/icons/hicolor/
+	icon.path = $$DATADIR/icons/hicolor
 
-	pixmap.files = resources/unix/focuswriter_32.xpm
-	pixmap.path = $$PREFIX/share/pixmaps/
+	pixmap.files = resources/unix/focuswriter.xpm
+	pixmap.path = $$DATADIR/pixmaps
 
 	icons.files = resources/images/icons/oxygen/hicolor/*
-	icons.path = $$PREFIX/share/focuswriter/icons/hicolor
+	icons.path = $$DATADIR/focuswriter/icons/hicolor
 
 	desktop.files = resources/unix/focuswriter.desktop
-	desktop.path = $$PREFIX/share/applications/
+	desktop.path = $$DATADIR/applications/
 
 	qm.files = translations/*.qm
-	qm.path = $$PREFIX/share/focuswriter/translations
+	qm.path = $$DATADIR/focuswriter/translations
 
 	sounds.files = resources/sounds/*
-	sounds.path = $$PREFIX/share/focuswriter/sounds
+	sounds.path = $$DATADIR/focuswriter/sounds
 
-	INSTALLS += target icon pixmap desktop icons qm sounds
+	symbols.files = resources/symbols/symbols.dat
+	symbols.path = $$DATADIR/focuswriter
+
+	INSTALLS += target icon pixmap desktop icons qm sounds symbols
 }

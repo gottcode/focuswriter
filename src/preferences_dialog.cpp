@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,12 @@
 
 #include "preferences_dialog.h"
 
+#include "action_manager.h"
 #include "dictionary.h"
+#include "dictionary_manager.h"
 #include "locale_dialog.h"
 #include "preferences.h"
+#include "shortcut_edit.h"
 #include "smart_quotes.h"
 
 #include <QAction>
@@ -32,6 +35,8 @@
 #include <QFileDialog>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QHeaderView>
+#include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
 #include <QMessageBox>
@@ -41,6 +46,7 @@
 #include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
+#include <QTreeWidget>
 #include <QVBoxLayout>
 
 #include <zip.h>
@@ -67,25 +73,27 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_preferences(preferences)
+PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) :
+	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_preferences(preferences),
+	m_shortcut_conflicts(false)
 {
 	setWindowTitle(tr("Preferences"));
 
-	QTabWidget* tabs = new QTabWidget(this);
-	tabs->addTab(initGeneralTab(), tr("General"));
-	tabs->addTab(initStatisticsTab(), tr("Statistics"));
-	tabs->addTab(initToolbarTab(), tr("Toolbar"));
-	tabs->addTab(initSpellingTab(), tr("Spell Checking"));
-	tabs->setUsesScrollButtons(false);
+	m_tabs = new QTabWidget(this);
+	m_tabs->addTab(initGeneralTab(), tr("General"));
+	m_tabs->addTab(initStatisticsTab(), tr("Statistics"));
+	m_tabs->addTab(initSpellingTab(), tr("Spell Checking"));
+	m_tabs->addTab(initToolbarTab(), tr("Toolbar"));
+	m_tabs->addTab(initShortcutsTab(), tr("Shortcuts"));
+	m_tabs->setUsesScrollButtons(false);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
 	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
 	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
-	layout->addWidget(tabs);
+	layout->addWidget(m_tabs);
 	layout->addWidget(buttons);
 
 	// Load settings
@@ -131,15 +139,24 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 
 	m_always_center->setChecked(m_preferences.alwaysCenter());
 	m_block_cursor->setChecked(m_preferences.blockCursor());
-	m_rich_text->setChecked(m_preferences.richText());
 	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
 	m_smart_quotes->setChecked(m_preferences.smartQuotes());
 	m_double_quotes->setCurrentIndex(m_preferences.doubleQuotes());
 	m_single_quotes->setCurrentIndex(m_preferences.singleQuotes());
 	m_typewriter_sounds->setChecked(m_preferences.typewriterSounds());
 
+	m_scene_divider->setText(m_preferences.sceneDivider());
+
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_save_positions->setChecked(m_preferences.savePositions());
+
+	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
+	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
+	m_ignore_uppercase->setChecked(m_preferences.ignoredUppercaseWords());
+	int index = m_languages->findData(m_preferences.language());
+	if (index != -1) {
+		m_languages->setCurrentIndex(index);
+	}
 
 	int style = m_toolbar_style->findData(m_preferences.toolbarStyle());
 	if (style == -1) {
@@ -177,15 +194,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent)
 	}
 	m_toolbar_actions->setCurrentRow(0);
 
-	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
-	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
-	m_ignore_uppercase->setChecked(m_preferences.ignoredUppercaseWords());
-	int index = m_languages->findData(m_preferences.language());
-	if (index != -1) {
-		m_languages->setCurrentIndex(index);
-	}
-
-	resize(QSettings().value("Preferences/Size", QSize(490, 550)).toSize());
+	resize(QSettings().value("Preferences/Size", QSize(650, 560)).toSize());
 }
 
 //-----------------------------------------------------------------------------
@@ -199,6 +208,18 @@ PreferencesDialog::~PreferencesDialog()
 
 void PreferencesDialog::accept()
 {
+	// Confirm close even with shortcut conflicts
+	if (m_shortcut_conflicts) {
+		m_tabs->setCurrentIndex(4);
+		if (QMessageBox::question(this,
+				tr("Question"),
+				tr("One or more shortcuts conflict. Do you wish to proceed?"),
+				QMessageBox::Yes | QMessageBox::No,
+				QMessageBox::No) == QMessageBox::No) {
+			return;
+		}
+	}
+
 	// Save settings
 	if (m_option_time->isChecked()) {
 		m_preferences.setGoalType(1);
@@ -230,12 +251,13 @@ void PreferencesDialog::accept()
 
 	m_preferences.setAlwaysCenter(m_always_center->isChecked());
 	m_preferences.setBlockCursor(m_block_cursor->isChecked());
-	m_preferences.setRichText(m_rich_text->isChecked());
 	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
 	m_preferences.setSmartQuotes(m_smart_quotes->isChecked());
 	m_preferences.setDoubleQuotes(m_double_quotes->currentIndex());
 	m_preferences.setSingleQuotes(m_single_quotes->currentIndex());
 	m_preferences.setTypewriterSounds(m_typewriter_sounds->isChecked());
+
+	m_preferences.setSceneDivider(m_scene_divider->text());
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
 	m_preferences.setSavePositions(m_save_positions->isChecked());
@@ -252,6 +274,8 @@ void PreferencesDialog::accept()
 	}
 	m_preferences.setToolbarActions(actions);
 
+	ActionManager::instance()->setShortcuts(m_new_shortcuts);
+
 	// Uninstall languages
 	foreach (const QString& language, m_uninstalled) {
 		QFile::remove("dict:" + language + ".aff");
@@ -259,14 +283,13 @@ void PreferencesDialog::accept()
 	}
 
 	// Install languages
-	QString path = Dictionary::path() + "/install/";
+	QString path = DictionaryManager::path() + "/install/";
+	QString new_path = DictionaryManager::installedPath() + "/";
 	QDir dir(path);
 	QStringList files = dir.entryList(QDir::Files);
 	foreach (const QString& file, files) {
-		QFile::remove(path + "/../" + file);
-		QString new_file = file;
-		new_file.replace(QChar('-'), QChar('_'));
-		QFile::rename(path + file, path + "/../" + new_file);
+		QFile::remove(new_path + file);
+		QFile::rename(path + file, new_path + file);
 	}
 	dir.cdUp();
 	dir.rmdir("install");
@@ -282,14 +305,14 @@ void PreferencesDialog::accept()
 	}
 	Dictionary::setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
 	Dictionary::setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
-	Dictionary::setDefaultLanguage(m_preferences.language());
+	DictionaryManager::instance().setDefaultLanguage(m_preferences.language());
 
 	// Save personal dictionary
 	QStringList words;
 	for (int i = 0; i < m_personal_dictionary->count(); ++i) {
 		words.append(m_personal_dictionary->item(i)->text());
 	}
-	Dictionary::setPersonal(words);
+	DictionaryManager::instance().setPersonal(words);
 
 	QDialog::accept();
 }
@@ -298,7 +321,7 @@ void PreferencesDialog::accept()
 
 void PreferencesDialog::reject()
 {
-	QDir dir(Dictionary::path() + "/install/");
+	QDir dir(DictionaryManager::path() + "/install/");
 	if (dir.exists()) {
 		QStringList files = dir.entryList(QDir::Files);
 		foreach (const QString& file, files) {
@@ -410,14 +433,16 @@ void PreferencesDialog::addLanguage()
 		}
 
 		// Extract files
-		QDir dir(Dictionary::path());
+		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
 		QHashIterator<QString, int> i(files);
 		while (i.hasNext()) {
 			i.next();
 
-			QFile file(install + i.key().section('/', -1));
+			QString filename = i.key().section('/', -1);
+			filename.replace(QChar('-'), QChar('_'));
+			QFile file(install + filename);
 			if (file.open(QIODevice::WriteOnly)) {
 				zip_file* zfile = zip_fopen_index(archive, i.value(), 0);
 				if (zfile == 0) {
@@ -438,8 +463,8 @@ void PreferencesDialog::addLanguage()
 		}
 
 		// Add to language selection
-		QString dictionary_path = Dictionary::path() + "/install/";
-		QString dictionary_new_path = Dictionary::path() + "/";
+		QString dictionary_path = DictionaryManager::path() + "/install/";
+		QString dictionary_new_path = DictionaryManager::installedPath() + "/";
 		foreach (const QString& dictionary, dictionaries) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
@@ -493,7 +518,7 @@ void PreferencesDialog::selectedLanguageChanged(int index)
 {
 	if (index != -1) {
 		QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
-		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(Dictionary::path()));
+		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(DictionaryManager::installedPath()));
 	}
 }
 
@@ -533,6 +558,89 @@ void PreferencesDialog::wordEdited()
 {
 	QString word = m_word->text();
 	m_add_word_button->setEnabled(!word.isEmpty() && m_personal_dictionary->findItems(word, Qt::MatchExactly).isEmpty());
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::selectedShortcutChanged()
+{
+	m_shortcut_edit->setEnabled(m_shortcuts->currentItem() != 0);
+	if (!m_shortcuts->currentItem()) {
+		m_shortcut_edit->blockSignals(true);
+		m_shortcut_edit->setShortcut(QKeySequence(), QKeySequence());
+		m_shortcut_edit->blockSignals(false);
+		return;
+	}
+
+	// Set shortcut in editor
+	QString name = m_shortcuts->currentItem()->text(2);
+	QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+	m_shortcut_edit->blockSignals(true);
+	m_shortcut_edit->setShortcut(shortcut, ActionManager::instance()->defaultShortcut(name));
+	m_shortcut_edit->blockSignals(false);
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::shortcutChanged()
+{
+	if (!m_shortcuts->currentItem()) {
+		return;
+	}
+
+	// Find old shortcut
+	QString name = m_shortcuts->currentItem()->text(2);
+	QKeySequence old_shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+	QKeySequence shortcut = m_shortcut_edit->shortcut();
+	if (shortcut == old_shortcut) {
+		return;
+	}
+
+	// Update shortcut
+	m_new_shortcuts[name] = shortcut;
+	m_shortcuts->currentItem()->setText(1, shortcut.toString(QKeySequence::NativeText));
+	highlightShortcutConflicts();
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::shortcutDoubleClicked()
+{
+	m_shortcut_edit->setFocus();
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::highlightShortcutConflicts()
+{
+	m_shortcut_conflicts = false;
+	QFont conflict = font();
+	conflict.setBold(true);
+
+	QMap<QKeySequence, QTreeWidgetItem*> shortcuts;
+	for (int i = 0, count = m_shortcuts->topLevelItemCount(); i < count; ++i) {
+		// Reset font and highlight
+		QTreeWidgetItem* item = m_shortcuts->topLevelItem(i);
+		item->setForeground(1, palette().foreground());
+		item->setFont(1, font());
+
+		// Find shortcut
+		QString name = item->text(2);
+		QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+		if (shortcut.isEmpty()) {
+			continue;
+		}
+
+		// Highlight conflict
+		if (shortcuts.contains(shortcut)) {
+			m_shortcut_conflicts = true;
+			item->setForeground(1, Qt::red);
+			item->setFont(1,conflict);
+			shortcuts[shortcut]->setForeground(1, Qt::red);
+			shortcuts[shortcut]->setFont(1, conflict);
+		}
+		shortcuts[shortcut] = item;
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -580,7 +688,6 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	m_always_center = new QCheckBox(tr("Always vertically center"), edit_group);
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
-	m_rich_text = new QCheckBox(tr("Default to rich text"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
 	m_typewriter_sounds = new QCheckBox(tr("Typewriter sounds"), edit_group);
 
@@ -608,10 +715,19 @@ QWidget* PreferencesDialog::initGeneralTab()
 	QVBoxLayout* edit_layout = new QVBoxLayout(edit_group);
 	edit_layout->addWidget(m_always_center);
 	edit_layout->addWidget(m_block_cursor);
-	edit_layout->addWidget(m_rich_text);
 	edit_layout->addWidget(m_smooth_fonts);
 	edit_layout->addLayout(quotes_layout);
 	edit_layout->addWidget(m_typewriter_sounds);
+
+	// Create section options
+	QGroupBox* scene_group = new QGroupBox(tr("Scenes"), tab);
+
+	m_scene_divider = new QLineEdit(scene_group);
+
+	QFormLayout* scene_layout = new QFormLayout(scene_group);
+	scene_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	scene_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
+	scene_layout->addRow(tr("Divider:"), m_scene_divider);
 
 	// Create save options
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);
@@ -627,6 +743,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	QVBoxLayout* layout = new QVBoxLayout(tab);
 	layout->addWidget(goals_group);
 	layout->addWidget(edit_group);
+	layout->addWidget(scene_group);
 	layout->addWidget(save_group);
 	layout->addStretch();
 
@@ -713,6 +830,93 @@ QWidget* PreferencesDialog::initStatisticsTab()
 
 //-----------------------------------------------------------------------------
 
+QWidget* PreferencesDialog::initSpellingTab()
+{
+	QWidget* tab = new QWidget(this);
+
+	// Create spelling options
+	QWidget* general_group = new QWidget(tab);
+
+	m_highlight_misspelled = new QCheckBox(tr("Check spelling as you type"), general_group);
+	m_ignore_uppercase = new QCheckBox(tr("Ignore words in UPPERCASE"), general_group);
+	m_ignore_numbers = new QCheckBox(tr("Ignore words with numbers"), general_group);
+#ifdef Q_OS_MAC
+	m_ignore_uppercase->hide();
+	m_ignore_numbers->hide();
+#endif
+
+	QVBoxLayout* general_group_layout = new QVBoxLayout(general_group);
+	general_group_layout->setMargin(0);
+	general_group_layout->addWidget(m_highlight_misspelled);
+	general_group_layout->addWidget(m_ignore_uppercase);
+	general_group_layout->addWidget(m_ignore_numbers);
+
+	// Create language selection
+	QGroupBox* languages_group = new QGroupBox(tr("Language"), tab);
+
+	m_languages = new QComboBox(languages_group);
+	connect(m_languages, SIGNAL(currentIndexChanged(int)), this, SLOT(selectedLanguageChanged(int)));
+
+	m_add_language_button = new QPushButton(tr("Add"), languages_group);
+	m_add_language_button->setAutoDefault(false);
+	connect(m_add_language_button, SIGNAL(clicked()), this, SLOT(addLanguage()));
+	m_remove_language_button = new QPushButton(tr("Remove"), languages_group);
+	m_remove_language_button->setAutoDefault(false);
+	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
+
+	QStringList languages = DictionaryManager::instance().availableDictionaries();
+	foreach (const QString& language, languages) {
+		m_languages->addItem(LocaleDialog::languageName(language), language);
+	}
+	m_languages->model()->sort(0);
+
+	// Lay out language selection
+	QHBoxLayout* languages_layout = new QHBoxLayout(languages_group);
+	languages_layout->addWidget(m_languages, 1);
+	languages_layout->addWidget(m_add_language_button);
+	languages_layout->addWidget(m_remove_language_button);
+
+	// Read personal dictionary
+	QGroupBox* personal_dictionary_group = new QGroupBox(tr("Personal Dictionary"), tab);
+
+	m_word = new QLineEdit(personal_dictionary_group);
+	connect(m_word, SIGNAL(textChanged(QString)), this, SLOT(wordEdited()));
+
+	m_add_word_button = new QPushButton(tr("Add"), personal_dictionary_group);
+	m_add_word_button->setAutoDefault(false);
+	m_add_word_button->setDisabled(true);
+	connect(m_add_word_button, SIGNAL(clicked()), this, SLOT(addWord()));
+
+	m_personal_dictionary = new QListWidget(personal_dictionary_group);
+	QStringList words = DictionaryManager::instance().personal();
+	foreach (const QString& word, words) {
+		m_personal_dictionary->addItem(word);
+	}
+	connect(m_personal_dictionary, SIGNAL(itemSelectionChanged()), this, SLOT(selectedWordChanged()));
+
+	m_remove_word_button = new QPushButton(tr("Remove"), personal_dictionary_group);
+	m_remove_word_button->setAutoDefault(false);
+	m_remove_word_button->setDisabled(true);
+	connect(m_remove_word_button, SIGNAL(clicked()), this, SLOT(removeWord()));
+
+	// Lay out personal dictionary group
+	QGridLayout* personal_dictionary_layout = new QGridLayout(personal_dictionary_group);
+	personal_dictionary_layout->addWidget(m_word, 0, 0);
+	personal_dictionary_layout->addWidget(m_add_word_button, 0, 1);
+	personal_dictionary_layout->addWidget(m_personal_dictionary, 1, 0);
+	personal_dictionary_layout->addWidget(m_remove_word_button, 1, 1, Qt::AlignTop);
+
+	// Lay out spelling options
+	QVBoxLayout* layout = new QVBoxLayout(tab);
+	layout->addWidget(general_group);
+	layout->addWidget(languages_group);
+	layout->addWidget(personal_dictionary_group);
+
+	return makeScrollable(tab);
+}
+
+//-----------------------------------------------------------------------------
+
 QWidget* PreferencesDialog::initToolbarTab()
 {
 	QWidget* tab = new QWidget(this);
@@ -737,6 +941,9 @@ QWidget* PreferencesDialog::initToolbarTab()
 	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
 	QList<QAction*> actions = parentWidget()->window()->actions();
 	foreach (QAction* action, actions) {
+		if (action->data().isNull()) {
+			continue;
+		}
 		QListWidgetItem* item = new QListWidgetItem(action->icon(), action->iconText(), m_toolbar_actions);
 		item->setData(Qt::UserRole, action->data());
 		item->setCheckState(Qt::Unchecked);
@@ -770,83 +977,60 @@ QWidget* PreferencesDialog::initToolbarTab()
 
 //-----------------------------------------------------------------------------
 
-QWidget* PreferencesDialog::initSpellingTab()
+QWidget* PreferencesDialog::initShortcutsTab()
 {
 	QWidget* tab = new QWidget(this);
 
-	// Create spelling options
-	QWidget* general_group = new QWidget(tab);
+	// Create shortcuts view
+	m_shortcuts = new QTreeWidget(tab);
+	m_shortcuts->setIconSize(QSize(16,16));
+	m_shortcuts->setDragDropMode(QAbstractItemView::NoDragDrop);
+	m_shortcuts->setItemsExpandable(false);
+	m_shortcuts->setRootIsDecorated(false);
+	m_shortcuts->setColumnCount(3);
+	m_shortcuts->setColumnHidden(2, true);
+	m_shortcuts->setHeaderLabels(QStringList() << tr("Command") << tr("Shortcut") << tr("Action"));
+	m_shortcuts->header()->setClickable(false);
+	m_shortcuts->header()->setMovable(false);
+	m_shortcuts->header()->setResizeMode(0, QHeaderView::ResizeToContents);
+	connect(m_shortcuts, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(shortcutDoubleClicked()));
 
-	m_highlight_misspelled = new QCheckBox(tr("Check spelling as you type"), general_group);
-	m_ignore_uppercase = new QCheckBox(tr("Ignore words in UPPERCASE"), general_group);
-	m_ignore_numbers = new QCheckBox(tr("Ignore words with numbers"), general_group);
-
-	QVBoxLayout* general_group_layout = new QVBoxLayout(general_group);
-	general_group_layout->setMargin(0);
-	general_group_layout->addWidget(m_highlight_misspelled);
-	general_group_layout->addWidget(m_ignore_uppercase);
-	general_group_layout->addWidget(m_ignore_numbers);
-
-	// Create language selection
-	QGroupBox* languages_group = new QGroupBox(tr("Language"), tab);
-
-	m_languages = new QComboBox(languages_group);
-	connect(m_languages, SIGNAL(currentIndexChanged(int)), this, SLOT(selectedLanguageChanged(int)));
-
-	m_add_language_button = new QPushButton(tr("Add"), languages_group);
-	m_add_language_button->setAutoDefault(false);
-	connect(m_add_language_button, SIGNAL(clicked()), this, SLOT(addLanguage()));
-	m_remove_language_button = new QPushButton(tr("Remove"), languages_group);
-	m_remove_language_button->setAutoDefault(false);
-	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
-
-	QStringList languages = Dictionary::availableLanguages();
-	foreach (const QString& language, languages) {
-		m_languages->addItem(LocaleDialog::languageName(language), language);
+	// List shortcuts
+	QPixmap empty_icon(m_shortcuts->iconSize());
+	empty_icon.fill(Qt::transparent);
+	QList<QString> actions = ActionManager::instance()->actions();
+	foreach (const QString& name, actions) {
+		QAction* action = ActionManager::instance()->action(name);
+		QIcon icon = action->icon();
+		if (icon.isNull()) {
+			icon = empty_icon;
+		}
+		QString text = action->statusTip();
+		if (text.isEmpty()) {
+			text = action->text();
+		}
+		text.replace("&", "");
+		QStringList strings = QStringList() << text << action->shortcut().toString(QKeySequence::NativeText) << name;
+		QTreeWidgetItem* item = new QTreeWidgetItem(m_shortcuts, strings);
+		item->setIcon(0, icon);
 	}
-	m_languages->model()->sort(0);
+	m_shortcuts->sortByColumn(0, Qt::AscendingOrder);
+	connect(m_shortcuts, SIGNAL(itemSelectionChanged()), this, SLOT(selectedShortcutChanged()));
 
-	// Lay out language selection
-	QHBoxLayout* languages_layout = new QHBoxLayout(languages_group);
-	languages_layout->addWidget(m_languages, 1);
-	languages_layout->addWidget(m_add_language_button);
-	languages_layout->addWidget(m_remove_language_button);
+	// Create editor
+	m_shortcut_edit = new ShortcutEdit(this);
+	connect(m_shortcut_edit, SIGNAL(changed()), this, SLOT(shortcutChanged()));
 
-	// Read personal dictionary
-	QGroupBox* personal_dictionary_group = new QGroupBox(tr("Personal Dictionary"), tab);
+	// Lay out shortcut tab
+	QGridLayout* layout = new QGridLayout(tab);
+	layout->setColumnStretch(1, 1);
+	layout->setRowStretch(0, 1);
+	layout->addWidget(m_shortcuts, 0, 0, 1, 2);
+	layout->addWidget(new QLabel(ShortcutEdit::tr("Shortcut:"), tab), 1, 0);
+	layout->addWidget(m_shortcut_edit, 1, 1);
 
-	m_word = new QLineEdit(personal_dictionary_group);
-	connect(m_word, SIGNAL(textChanged(QString)), this, SLOT(wordEdited()));
-
-	m_add_word_button = new QPushButton(tr("Add"), personal_dictionary_group);
-	m_add_word_button->setAutoDefault(false);
-	m_add_word_button->setDisabled(true);
-	connect(m_add_word_button, SIGNAL(clicked()), this, SLOT(addWord()));
-
-	m_personal_dictionary = new QListWidget(personal_dictionary_group);
-	QStringList words = Dictionary::personal();
-	foreach (const QString& word, words) {
-		m_personal_dictionary->addItem(word);
-	}
-	connect(m_personal_dictionary, SIGNAL(itemSelectionChanged()), this, SLOT(selectedWordChanged()));
-
-	m_remove_word_button = new QPushButton(tr("Remove"), personal_dictionary_group);
-	m_remove_word_button->setAutoDefault(false);
-	m_remove_word_button->setDisabled(true);
-	connect(m_remove_word_button, SIGNAL(clicked()), this, SLOT(removeWord()));
-
-	// Lay out personal dictionary group
-	QGridLayout* personal_dictionary_layout = new QGridLayout(personal_dictionary_group);
-	personal_dictionary_layout->addWidget(m_word, 0, 0);
-	personal_dictionary_layout->addWidget(m_add_word_button, 0, 1);
-	personal_dictionary_layout->addWidget(m_personal_dictionary, 1, 0);
-	personal_dictionary_layout->addWidget(m_remove_word_button, 1, 1, Qt::AlignTop);
-
-	// Lay out spelling options
-	QVBoxLayout* layout = new QVBoxLayout(tab);
-	layout->addWidget(general_group);
-	layout->addWidget(languages_group);
-	layout->addWidget(personal_dictionary_group);
+	m_shortcuts->setCurrentItem(m_shortcuts->topLevelItem(0));
+	highlightShortcutConflicts();
 
 	return makeScrollable(tab);
 }

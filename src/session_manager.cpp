@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -351,7 +351,7 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 	QString name = session;
 	forever {
 		bool ok;
-		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok);
+		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok, 0, Qt::ImhNone);
 		if (!ok) {
 			return QString();
 		}

@@ -1,7 +1,7 @@
 @ECHO OFF
 
 SET APP=FocusWriter
-SET VERSION=1.3.6
+FOR /f %%i IN ('git rev-parse --short HEAD') DO SET VERSION=%%i
 
 ECHO Copying executable
 MKDIR %APP%
@@ -23,17 +23,24 @@ MKDIR %ICONS%
 XCOPY /Q /S /Y resources\images\icons\oxygen\hicolor %ICONS% >nul
 
 ECHO Copying dictionaries
-SET DICTIONARIES=%APP%\Dictionaries
+SET DICTIONARIES=%APP%\dictionaries
 MKDIR %DICTIONARIES%
-COPY resources\dict\* %DICTIONARIES% >nul
+XCOPY /Q /S /Y resources\dict %DICTIONARIES% >nul
 
 ECHO Copying sounds
 SET SOUNDS=%APP%\sounds
 MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
-ECHO Copying hunspell library
-COPY hunspell\hunspell1.dll %APP% >nul
+ECHO Copying symbols
+COPY resources\symbols\symbols.dat %APP% >nul
+
+ECHO Copying enchant library
+XCOPY /Q /S /Y enchant %APP% >nul
+DEL %APP%\enchant.h >nul
+
+ECHO Copying voikko library
+COPY voikko\libvoikko-1.dll %APP% >nul
 
 ECHO Copying libzip library
 COPY libzip\libzip0.dll %APP% >nul
@@ -47,19 +54,28 @@ COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul
 COPY %QTDIR%\bin\mingwm10.dll %APP% >nul
 COPY %QTDIR%\bin\QtCore4.dll %APP% >nul
 COPY %QTDIR%\bin\QtGui4.dll %APP% >nul
+COPY %QTDIR%\bin\QtNetwork4.dll %APP% >nul
 
-ECHO Copying Qt image plugins
+ECHO Copying Qt plugins
+MKDIR %APP%\accessible
+XCOPY /Q /S /Y %QTDIR%\plugins\accessible %APP%\accessible >nul
+DEL %APP%\accessible\*d4.dll >nul
+
+MKDIR %APP%\bearer
+XCOPY /Q /S /Y %QTDIR%\plugins\bearer %APP%\bearer >nul
+DEL %APP%\bearer\*d4.dll >nul
+
+MKDIR %APP%\codecs
+XCOPY /Q /S /Y %QTDIR%\plugins\codecs %APP%\codecs >nul
+DEL %APP%\codecs\*d4.dll >nul
+
 MKDIR %APP%\imageformats
-COPY %QTDIR%\plugins\imageformats\qgif4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qico4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qjpeg4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qmng4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qsvg4.dll %APP%\imageformats >nul
-COPY %QTDIR%\plugins\imageformats\qtiff4.dll %APP%\imageformats >nul
+XCOPY /Q /S /Y %QTDIR%\plugins\imageformats %APP%\imageformats >nul
+DEL %APP%\imageformats\*d4.dll >nul
 
 ECHO Creating compressed file
 CD %APP%
-7z a %APP%_%VERSION%.zip * >nul
+7z a -mx=9 %APP%_%VERSION%.zip * >nul
 CD ..
 MOVE %APP%\%APP%_%VERSION%.zip . >nul
 

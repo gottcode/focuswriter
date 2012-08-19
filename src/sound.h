@@ -29,7 +29,6 @@ public:
 	~Sound();
 
 	bool isValid() const;
-	void play();
 
 	static void play(int name);
 	static void setEnabled(bool enabled);

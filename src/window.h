@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,9 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+class Document;
+class DocumentCache;
+class DocumentWatcher;
 class Preferences;
 class SessionManager;
 class Sound;
@@ -29,6 +32,7 @@ class TimerManager;
 #include <QHash>
 #include <QMainWindow>
 class QAction;
+class QActionGroup;
 class QLabel;
 class QSettings;
 class QTabBar;
@@ -45,7 +49,11 @@ public:
 	void addDocuments(QDropEvent* event);
 	bool closeDocuments(QSettings* session = 0);
 
+public slots:
+	void addDocuments(const QString& documents);
+
 protected:
+	virtual void changeEvent(QEvent* event);
 	virtual void dragEnterEvent(QDragEnterEvent* event);
 	virtual void dropEvent(QDropEvent* event);
 	virtual bool event(QEvent* event);
@@ -59,9 +67,12 @@ private slots:
 	void renameDocument();
 	void saveAllDocuments();
 	void closeDocument();
+	void closeDocument(Document* document);
+	void showDocument(Document* document);
 	void nextDocument();
 	void previousDocument();
-	void setFormattingEnabled(bool enabled);
+	void firstDocument();
+	void lastDocument();
 	void minimize();
 	void toggleFullscreen();
 	void toggleToolbar(bool visible);
@@ -82,6 +93,7 @@ private slots:
 
 private:
 	bool addDocument(const QString& file = QString(), const QString& datafile = QString(), int position = -1);
+	void queueDocuments(const QStringList& files);
 	bool saveDocument(int index);
 	void loadPreferences(Preferences& preferences);
 	void hideInterface();
@@ -94,12 +106,17 @@ private:
 	QToolBar* m_toolbar;
 	QHash<QString, QAction*> m_actions;
 	QList<QAction*> m_format_actions;
-	QAction* m_plaintext_action;
-	QAction* m_richtext_action;
 	QAction* m_replace_document_quotes;
 	QAction* m_replace_selection_quotes;
+	QActionGroup* m_focus_actions;
 
 	Stack* m_documents;
+	DocumentCache* m_document_cache;
+	DocumentWatcher* m_document_watcher;
+	QThread* m_document_cache_thread;
+	QStringList m_queued_documents;
+	bool m_loading;
+
 	QTabBar* m_tabs;
 	SessionManager* m_sessions;
 	TimerManager* m_timers;

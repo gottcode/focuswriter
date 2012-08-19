@@ -17,193 +17,116 @@
  *
  ***********************************************************************/
 
-#include "dictionary.h"
+#include "application.h"
+#include "dictionary_manager.h"
 #include "document.h"
 #include "locale_dialog.h"
 #include "session.h"
 #include "sound.h"
+#include "symbols_model.h"
 #include "theme.h"
-#include "window.h"
 
-#ifdef Q_OS_MAC
-#include "rtf/clipboard_mac.h"
-#endif
-#ifdef Q_OS_WIN32
-#include "rtf/clipboard_windows.h"
-#endif
-
-#include <QApplication>
+#include <QDesktopServices>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QFileOpenEvent>
+#include <QIcon>
 #include <QSettings>
 #include <QStringList>
-
-//-----------------------------------------------------------------------------
-
-class Application : public QApplication
-{
-public:
-	Application(int& argc, char** argv);
-
-	void createWindow();
-
-protected:
-	virtual bool event(QEvent* e);
-
-private:
-	QStringList m_files;
-	Window* m_window;
-};
-
-//-----------------------------------------------------------------------------
-
-Application::Application(int& argc, char** argv)
-	: QApplication(argc, argv),
-	m_window(0)
-{
-	setApplicationName("FocusWriter");
-	setApplicationVersion("1.3.6");
-	setOrganizationDomain("gottcode.org");
-	setOrganizationName("GottCode");
-	{
-		QIcon fallback(":/hicolor/256x256/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/128x128/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/64x64/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/48x48/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/32x32/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/24x24/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/22x22/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
-		if (!QIcon::themeName().isEmpty() && (QIcon::themeName() != "hicolor")) {
-			setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
-		} else {
-			setWindowIcon(fallback);
-		}
-	}
-
-#ifndef Q_WS_MAC
-	setAttribute(Qt::AA_DontUseNativeMenuBar);
-#else
-	setAttribute(Qt::AA_DontShowIconsInMenus, true);
-#endif
-
-# if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
-	new RTF::Clipboard;
-#endif
-
-	qputenv("UNICODEMAP_JP", "cp932");
-
-	m_files = arguments().mid(1);
-	processEvents();
-}
-
-//-----------------------------------------------------------------------------
-
-void Application::createWindow()
-{
-#ifndef Q_WS_MAC
-	setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
-#endif
-	m_window = new Window(m_files);
-}
-
-//-----------------------------------------------------------------------------
-
-bool Application::event(QEvent* e)
-{
-	if (e->type() != QEvent::FileOpen) {
-		return QApplication::event(e);
-	} else {
-		QString file = static_cast<QFileOpenEvent*>(e)->file();
-		if (m_window) {
-			m_window->addDocuments(QStringList(file), QStringList(file));
-		} else {
-			m_files.append(file);
-		}
-		e->accept();
-		return true;
-	}
-}
-
-//-----------------------------------------------------------------------------
 
 int main(int argc, char** argv)
 {
 	Application app(argc, argv);
+	if (app.isRunning()) {
+		app.sendMessage(app.files().join(QLatin1String("\n")));
+		return 0;
+	}
 	QString appdir = app.applicationDirPath();
 
-	QStringList paths = QIcon::themeSearchPaths();
-	paths.prepend(appdir + "/../share/focuswriter/icons");
-	paths.prepend(appdir + "/icons");
-	QIcon::setThemeSearchPaths(paths);
+	// Find application data dirs
+	QStringList datadirs;
+	QStringList dictdirs;
+#if defined(Q_OS_MAC)
+	QFileInfo portable(appdir + "/../../../Data");
+	datadirs.append(appdir + "/../Resources");
+#elif defined(Q_OS_UNIX)
+	QFileInfo portable(appdir + "/Data");
+	datadirs.append(DATADIR);
+	datadirs.append(appdir + "/../share/focuswriter");
+#else
+	QFileInfo portable(appdir + "/Data");
+	datadirs.append(appdir);
+	dictdirs.append(appdir + "/dictionaries");
+#endif
 
-	paths.clear();
-	paths.append(appdir + "/sounds/");
-	paths.append(appdir + "/../share/focuswriter/sounds/");
-	paths.append(appdir + "/../Resources/sounds");
-	foreach (const QString& path, paths) {
-		if (QFile::exists(path)) {
-			Sound::setPath(path);
+	// Handle portability
+	QString userdir;
+	if (portable.exists() && portable.isWritable()) {
+		userdir = portable.absoluteFilePath();
+		QSettings::setDefaultFormat(QSettings::IniFormat);
+		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userdir + "/Settings");
+	}
+
+	// Set locations of fallback icons
+	{
+		QStringList paths = QIcon::themeSearchPaths();
+		foreach (const QString& path, datadirs) {
+			paths.prepend(path + "/icons");
+		}
+		QIcon::setThemeSearchPaths(paths);
+	}
+
+	// Find sounds
+	foreach (const QString& path, datadirs) {
+		if (QFile::exists(path + "/sounds/")) {
+			Sound::setPath(path + "/sounds/");
 			break;
 		}
 	}
 
-	// Find data paths
-	QStringList locations;
-#if defined(Q_OS_MAC)
-	QFileInfo portable(appdir + "/../../../Data");
-	QString path = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
-
-	locations.append(QDir::homePath() + "/Library/Spelling");
-	locations.append("/Library/Spelling");
-	locations.append(appdir + "/../Resources/Dictionaries");
-#elif defined(Q_OS_UNIX)
-	QFileInfo portable(appdir + "/Data");
-	QString path = qgetenv("XDG_DATA_HOME");
-	if (path.isEmpty()) {
-		path = QDir::homePath() + "/.local/share";
-	}
-	path += "/focuswriter/";
-
-	QStringList xdg = QString(qgetenv("XDG_DATA_DIRS")).split(QChar(':'), QString::SkipEmptyParts);
-	if (xdg.isEmpty()) {
-		xdg.append("/usr/local/share");
-		xdg.append("/usr/share");
-	}
-	QStringList subdirs = QStringList() << "/hunspell" << "/myspell/dicts" << "/myspell";
-	foreach (const QString& subdir, subdirs) {
-		foreach (const QString& dir, xdg) {
-			QString path = dir + subdir;
-			if (!locations.contains(path)) {
-				locations.append(path);
-			}
+	// Find unicode names
+	foreach (const QString& path, datadirs) {
+		if (QFile::exists(path + "/symbols.dat")) {
+			SymbolsModel::setData(path + "/symbols.dat");
+			break;
 		}
-	}
-#elif defined(Q_OS_WIN32)
-	QFileInfo portable(appdir + "/Data");
-	QString path = QDir::homePath() + "/Application Data/GottCode/FocusWriter/";
-
-	locations.append(appdir + "/Dictionaries");
-#endif
-
-	// Handle portability
-	if (portable.exists() && portable.isWritable()) {
-		path = portable.absoluteFilePath();
-		QSettings::setDefaultFormat(QSettings::IniFormat);
-		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, path + "/Settings");
 	}
 
 	// Load application language
-	LocaleDialog::loadTranslator("focuswriter_");
+	LocaleDialog::loadTranslator("focuswriter_", datadirs);
 
-	// Create base data path
-	QDir dir;
-	if (!QFile::exists(path)) {
-		dir.mkpath(path);
+	// Find user data dir if not in portable mode
+	if (userdir.isEmpty()) {
+		userdir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+
+		// Move user data to new location
+		if (!QFile::exists(userdir)) {
+#if defined(Q_OS_MAC)
+			QString oldpath = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
+#elif defined(Q_OS_UNIX)
+			QString oldpath = QString::fromLocal8Bit(qgetenv("XDG_DATA_HOME"));
+			if (oldpath.isEmpty()) {
+				oldpath = QDir::homePath() + "/.local/share";
+			}
+			oldpath += "/focuswriter";
+#else
+			QString oldpath = QDir::homePath() + "/Application Data/GottCode/FocusWriter/";
+#endif
+			QDir dir(userdir + "/../");
+			if (!dir.exists()) {
+				dir.mkpath(dir.absolutePath());
+			}
+			if (QFile::exists(oldpath)) {
+				QFile::rename(oldpath, userdir);
+			}
+		}
 	}
-	dir.setPath(path);
+
+	// Create base user data path
+	QDir dir(userdir);
+	if (!dir.exists()) {
+		dir.mkpath(dir.absolutePath());
+	}
 
 	// Create cache path
 	if (!dir.exists("Cache/Files")) {
@@ -238,9 +161,9 @@ int main(int argc, char** argv)
 			dir.mkdir("Dictionaries");
 		}
 	}
-	Dictionary::setPath(dir.absoluteFilePath("Dictionaries"));
-	locations.prepend(Dictionary::path());
-	QDir::setSearchPaths("dict", locations);
+	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
+	dictdirs.prepend(DictionaryManager::installedPath());
+	QDir::setSearchPaths("dict", dictdirs);
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
@@ -266,7 +189,9 @@ int main(int argc, char** argv)
 	}
 
 	// Create main window
-	app.createWindow();
+	if (!app.createWindow()) {
+		return 0;
+	}
 
 	// Browse to documents after command-line specified documents have been loaded
 	QDir::setCurrent(QSettings().value("Save/Location", QDir::homePath()).toString());

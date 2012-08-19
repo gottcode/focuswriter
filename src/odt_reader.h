@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,6 +70,7 @@ private:
 		QTextCharFormat char_format;
 	};
 	QHash<QString, Style> m_styles[2];
+	QTextBlockFormat m_block_format;
 
 	bool m_in_block;
 

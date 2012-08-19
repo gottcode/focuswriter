@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,12 +31,15 @@ class LoadScreen : public QLabel
 public:
 	LoadScreen(QWidget* parent);
 
+	bool eventFilter(QObject* watched, QEvent* event);
+
+public slots:
 	void setText(const QString& step);
 	void finish();
 
 protected:
-	virtual void hideEvent(QHideEvent* event);
-	virtual void showEvent(QShowEvent* event);
+	void hideEvent(QHideEvent* event);
+	void showEvent(QShowEvent* event);
 
 private slots:
 	void fade();

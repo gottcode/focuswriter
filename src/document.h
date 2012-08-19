@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +20,17 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
+#include "dictionary.h"
 #include "stats.h"
-class Dictionary;
+class DocumentWriter;
 class Highlighter;
 class Preferences;
+class SceneList;
+class SceneModel;
 class Theme;
 
 #include <QHash>
+#include <QTextBlockFormat>
 #include <QTime>
 #include <QWidget>
 class QGridLayout;
@@ -52,19 +56,23 @@ public:
 	int pageCount() const;
 	int paragraphCount() const;
 	int wordCount() const;
+	SceneModel* sceneModel() const;
 	QTextEdit* text() const;
 
 	void cache();
 	bool save();
 	bool saveAs();
 	bool rename();
+	void reload(bool prompt = true);
 	void checkSpelling();
 	void print();
 	bool loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
 	void loadPreferences(const Preferences& preferences);
+	void setFocusMode(int focus_mode);
 	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);
+	void setSceneList(SceneList* scene_list);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 	virtual void mouseMoveEvent(QMouseEvent* event);
@@ -76,20 +84,26 @@ public slots:
 	void centerCursor(bool force = false);
 
 signals:
+	void cacheFile(DocumentWriter* file);
+	void removeCacheFile(const QString& file);
 	void changed();
 	void changedName();
+	void loadStarted(const QString& path);
+	void loadFinished();
 	void footerVisible(bool visible);
 	void headerVisible(bool visible);
-	void formattingEnabled(bool enabled);
+	void scenesVisible(bool visible);
 	void indentChanged(bool indented);
 	void alignmentChanged();
 
 protected:
+	virtual void mousePressEvent(QMouseEvent* event);
 	virtual void resizeEvent(QResizeEvent* event);
 	virtual void wheelEvent(QWheelEvent* event);
 
 private slots:
 	void cursorPositionChanged();
+	void focusText();
 	void hideMouse();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);
@@ -102,11 +116,11 @@ private:
 	void calculateWordCount();
 	void clearIndex();
 	void findIndex();
-	QString fileFilter(const QString& filename) const;
-	QString fileNameWithExtension(const QString& filename, const QString& filter) const;
+	QString getSaveFileName(const QString& title);
+	bool processFileName(const QString& filename);
 	void updateSaveLocation();
+	void updateSaveName();
 	void updateState();
-	bool writeFile(const QString& filename, bool sync);
 
 private:
 	QString m_filename;
@@ -118,14 +132,20 @@ private:
 	bool m_always_center;
 	bool m_block_cursor;
 	bool m_rich_text;
+	bool m_spacings_loaded;
+	int m_focus_mode;
+	QTextBlockFormat m_block_format;
 
 	QTimer* m_hide_timer;
 
 	QGridLayout* m_layout;
 	QTextEdit* m_text;
 	QScrollBar* m_scrollbar;
-	Dictionary* m_dictionary;
+	SceneList* m_scene_list;
+	SceneModel* m_scene_model;
+	Dictionary m_dictionary;
 	Highlighter* m_highlighter;
+	QColor m_text_color;
 
 	Stats* m_stats;
 	Stats m_document_stats;
@@ -181,6 +201,10 @@ inline int Document::paragraphCount() const {
 
 inline int Document::wordCount() const {
 	return m_stats->wordCount();
+}
+
+inline SceneModel* Document::sceneModel() const {
+	return m_scene_model;
 }
 
 inline QTextEdit* Document::text() const {

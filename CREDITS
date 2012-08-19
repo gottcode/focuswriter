@@ -22,6 +22,7 @@ Translators
 * Márcio Massula Jr. (pt_BR)
 * Danila Evstifeyev (ru)
 * Dmitriy Kodanev (ru)
+* Jan Gallik (sk)
 * Daniel Nylander (sv)
 * Sergiy Gavrylov (uk)
 
@@ -31,8 +32,7 @@ Icons
 
 Libraries
 ---------
-* Qt, http://qt.nokia.com/
-* hunspell, http://hunspell.sourceforge.net/
+* Qt, http://qt-project.org/
+* enchant, http://www.abisource.com/projects/enchant/
 * libzip, http://www.nih.at/libzip/
-* SDL, http://www.libsdl.org/
 * SDL_mixer, http://www.libsdl.org/projects/SDL_mixer/

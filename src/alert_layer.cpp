@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@
 
 #include "alert_layer.h"
 
+#include "action_manager.h"
 #include "alert.h"
 
-#include <QShortcut>
+#include <QAction>
+#include <QStyle>
 #include <QVBoxLayout>
 
 //-----------------------------------------------------------------------------
@@ -32,7 +34,37 @@ AlertLayer::AlertLayer(QWidget* parent)
 	setMaximumWidth(400);
 	m_alerts_layout = new QVBoxLayout(this);
 	m_alerts_layout->setMargin(0);
-	new QShortcut(tr("Ctrl+D"), this, SLOT(dismissAlert()));
+
+	QAction* action = new QAction(tr("Dismiss Alert"), this);
+	action->setShortcut(tr("Ctrl+D"));
+	connect(action, SIGNAL(triggered()), this, SLOT(dismissAlert()));
+	addAction(action);
+	ActionManager::instance()->addAction("DismissAlert", action);
+}
+
+//-----------------------------------------------------------------------------
+
+void AlertLayer::addAlert(QMessageBox::Icon icon, const QString& text, const QStringList& details)
+{
+	QStyle::StandardPixmap pixmap = QStyle::SP_CustomBase;
+	switch (icon) {
+	case QMessageBox::Critical:
+		pixmap = QStyle::SP_MessageBoxCritical;
+		break;
+	case QMessageBox::Information:
+		pixmap = QStyle::SP_MessageBoxInformation;
+		break;
+	case QMessageBox::Question:
+		pixmap = QStyle::SP_MessageBoxQuestion;
+		break;
+	case QMessageBox::Warning:
+		pixmap = QStyle::SP_MessageBoxWarning;
+		break;
+	default:
+		break;
+	}
+	int size = style()->pixelMetric(QStyle::PM_LargeIconSize);
+	addAlert(style()->standardIcon(pixmap).pixmap(size,size), text, details);
 }
 
 //-----------------------------------------------------------------------------

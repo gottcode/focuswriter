@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * Derived in part from KWord's rtfimport.cpp
  *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
@@ -97,7 +97,7 @@ RTF::Reader::Reader()
 		functions["enspace"] = Function(&Reader::insertSymbol, 0x2002);
 		functions["ldblquote"] = Function(&Reader::insertSymbol, 0x201c);
 		functions["lquote"] = Function(&Reader::insertSymbol, 0x2018);
-		functions["line"] = Function(&Reader::insertSymbol, 0x000a);
+		functions["line"] = Function(&Reader::insertSymbol, 0x2028);
 		functions["ltrmark"] = Function(&Reader::insertSymbol, 0x200e);
 		functions["qmspace"] = Function(&Reader::insertSymbol, 0x2004);
 		functions["rdblquote"] = Function(&Reader::insertSymbol, 0x201d);
@@ -207,6 +207,10 @@ bool RTF::Reader::hasError() const
 void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
 {
 	try {
+		// Use theme spacings
+		m_block_format = cursor.blockFormat();
+		m_state.block_format = m_block_format;
+
 		// Open file
 		m_cursor = cursor;
 		m_cursor.beginEditBlock();
@@ -342,7 +346,7 @@ void RTF::Reader::popState()
 
 void RTF::Reader::resetBlockFormatting(qint32)
 {
-	m_state.block_format = QTextBlockFormat();
+	m_state.block_format = m_block_format;
 	m_cursor.setBlockFormat(m_state.block_format);
 }
 

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -201,7 +201,7 @@ void ThemeManager::importTheme()
 	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).baseName().toUtf8());
 	while (QFile::exists(Theme::filePath(name))) {
 		bool ok;
-		name = QInputDialog::getText(this, tr("Sorry"), tr("A theme already exists with that name. Please enter a new name:"), QLineEdit::Normal, name, &ok);
+		name = QInputDialog::getText(this, tr("Sorry"), tr("A theme already exists with that name. Please enter a new name:"), QLineEdit::Normal, name, &ok, 0, Qt::ImhNone);
 		if (!ok) {
 			return;
 		}

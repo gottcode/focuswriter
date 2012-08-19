@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,58 @@
  *
  ***********************************************************************/
 
-#include <QTextBlockUserData>
+#ifndef BLOCK_STATS_H
+#define BLOCK_STATS_H
 
 class Dictionary;
+class SceneModel;
+
+#include <QTextBlockUserData>
 
 class BlockStats : public QTextBlockUserData
 {
 public:
-	BlockStats(const QString& text, Dictionary* dictionary);
+	BlockStats(SceneModel* scene_model);
+	~BlockStats();
 
 	bool isEmpty() const;
+	bool isScene() const;
 	int characterCount() const;
 	int spaceCount() const;
 	int wordCount() const;
-	QVector<QStringRef> misspelled() const;
+	QList<QStringRef> misspelled() const;
 
-	void checkSpelling(const QString& text, Dictionary* dictionary);
-	void update(const QString& text, Dictionary* dictionary);
+	enum SpellCheckStatus
+	{
+		Unchecked,
+		Checked,
+		CheckSpelling
+	};
+	SpellCheckStatus spellingStatus() const;
+
+	void checkSpelling(const QString& text, const Dictionary& dictionary);
+	void recheckSpelling();
+	void setScene(bool scene);
+	void update(const QString& text);
 
 private:
 	int m_characters;
 	int m_spaces;
 	int m_words;
-	QVector<QStringRef> m_misspelled;
+	bool m_scene;
+	SceneModel* m_scene_model;
+	QList<QStringRef> m_misspelled;
+	SpellCheckStatus m_checked;
 };
 
 inline bool BlockStats::isEmpty() const
 {
 	return m_words == 0;
+}
+
+inline bool BlockStats::isScene() const
+{
+	return m_scene;
 }
 
 inline int BlockStats::characterCount() const
@@ -62,7 +86,24 @@ inline int BlockStats::wordCount() const
 	return m_words;
 }
 
-inline QVector<QStringRef> BlockStats::misspelled() const
+inline QList<QStringRef> BlockStats::misspelled() const
 {
 	return m_misspelled;
 }
+
+inline void BlockStats::setScene(bool scene)
+{
+	m_scene = scene;
+}
+
+inline BlockStats::SpellCheckStatus BlockStats::spellingStatus() const
+{
+	return m_checked;
+}
+
+inline void BlockStats::recheckSpelling()
+{
+	m_checked = CheckSpelling;
+}
+
+#endif

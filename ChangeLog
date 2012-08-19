@@ -1,8 +1,136 @@
-2012-06-12 Graeme Gott <graeme@gottcode.org>
-	* Tag version 1.3.6.
+2012-08-13 Graeme Gott <graeme@gottcode.org>
+	* Use built-in Voikko support for finding dictionaries.
+
+2012-08-12 Graeme Gott <graeme@gottcode.org>
+	* Use NSSound on the Mac.
+	* FIXED: Regression - fallback icons were not used.
+	* Use file contents to determine format when loading.
+	* Don't allow rename on Read-Only files.
+
+2012-08-11 Graeme Gott <graeme@gottcode.org>
+	* FIXED: File rename did not change formats.
+	* Check spelling in background.
+
+2012-08-09 Graeme Gott <graeme@gottcode.org>
+	* Only check spelling in highlighter.
+	* FIXED: Default shortcuts conflicted on the Mac.
+	* Queue simultaneous requests to add documents.
+	* Stop grabbing keyboard during load.
+
+2012-08-07 Graeme Gott <graeme@gottcode.org>
+	* Update Oxygen icons.
+
+2012-08-04 Graeme Gott <graeme@gottcode.org>
+	* Change how data paths are handled.
+
+2012-08-03 Graeme Gott <graeme@gottcode.org>
+	* Split symbol shortcuts out of dialog.
+	* FIXED: Restoring from cache treated all files as plain text.
+	* Clear cache on successful exit.
+
+2012-08-02 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Line spacing combo was incorrect for non-default sizes.
+	* Reduce minimum line spacing.
+	* Stop cache thread while window is visible.
+
+2012-07-31 Graeme Gott <graeme@gottcode.org>
+	* Switch to rich text if saving as ODT or RTF.
+	* FIXED: Filenames were incorrect after undo and redo.
+
+2012-07-27 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Formatting of first paragraph was lost on reload.
+
+2012-07-26 Graeme Gott <graeme@gottcode.org>
+	* Warn when trying to save rich text in plain text file.
+	* Allow any file to be saved in any format.
+	* Remove menu action for toggling rich text.
+	* Remove setting for defaulting to rich text.
+	* Use file extension to determine format when loading.
+	* Use file extension to determine format when saving.
+	* Always allow rich text.
+
+2012-07-25 Graeme Gott <graeme@gottcode.org>
+	* Add editable keyboard shortcuts.
+
+2012-07-20 Graeme Gott <graeme@gottcode.org>
+	* Make it compile with Qt 5.
+	* Use alerts for errors when loading files.
+	* Warn about missing SDL_mixer.
+	* Remove use of QSound as fallback.
+
+2012-07-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Switching themes wasn't properly focusing text.
+	* FIXED: Line spacings were ignored on reload.
+	* Use ODT as default format.
+
+2012-07-18 Graeme Gott <graeme@gottcode.org>
+	* Monitor files for changes.
+	* Add option to reload files.
+
+2012-07-14 Graeme Gott <graeme@gottcode.org>
+	* Auto-hide scene list when document is clicked on.
+	* Only update scene list when visible.
+
+2012-07-13 Graeme Gott <graeme@gottcode.org>
+	* Always select current scene in list.
+
+2012-07-11 Graeme Gott <graeme@gottcode.org>
+	* Add preview to symbols dialog.
+
+2012-07-10 Graeme Gott <graeme@gottcode.org>
+	* Add keyboard shortcuts to symbols dialog.
+
+2012-07-08 Graeme Gott <graeme@gottcode.org>
+	* Add a dialog to insert Unicode symbols.
+
+2012-07-06 Graeme Gott <graeme@gottcode.org>
+	* Add a model for looking up Unicode symbols.
+
+2012-07-03 Graeme Gott <graeme@gottcode.org>
+	* Add widget to edit a shortcut.
+
+2012-07-01 Graeme Gott <graeme@gottcode.org>
+	* Move selecting scenes into scene model.
+
+2012-06-29 Graeme Gott <graeme@gottcode.org>
+	* Add keyboard shortcuts for moving scenes.
+	* FIXED: Scene dividers did not update until program restart.
+	* Make first paragraph always be a scene.
+	* Move detecting scenes into scene model.
+
+2012-06-28 Graeme Gott <graeme@gottcode.org>
+	* Show multiple lines from each scene.
+
+2012-06-24 Graeme Gott <graeme@gottcode.org>
+	* Allow resizing scene list.
+
+2012-06-22 Graeme Gott <graeme@gottcode.org>
+	* Auto-hide scene list.
+
+2012-06-20 Graeme Gott <graeme@gottcode.org>
+	* Add scene list.
+
+2012-06-19 Graeme Gott <graeme@gottcode.org>
+	* Add dragging scenes.
+
+2012-06-18 Graeme Gott <graeme@gottcode.org>
+	* Add scene model.
+
+2012-06-15 Graeme Gott <graeme@gottcode.org>
+	* Remember find dialog position while program is running.
+	* FIXED: Line spacings were broken at first on Windows.
+
+2012-06-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Text brought onto current line was not focused.
+	* FIXED: Replace all could not be reverted with a single undo.
+
+2012-06-13 Graeme Gott <graeme@gottcode.org>
+	* Only allow a single instance to run.
+	* Add support for finding regular expressions.
 
 2012-06-11 Graeme Gott <graeme@gottcode.org>
-	* Only use fsync when saving files.
+	* Add background thread for caching files.
+	* Move writing file out of document class.
 	* FIXED: Saved cache files more frequently than necessary.
 	* FIXED: Displayed paths did not use native separators.
 
@@ -16,14 +144,54 @@
 	* FIXED: Data was not always written to disk.
 	* FIXED: Was adding spaces before pasted rich text.
 
+2012-06-09 Graeme Gott <graeme@gottcode.org>
+	* Allow changing scene dividers.
+
+2012-06-03 Graeme Gott <graeme@gottcode.org>
+	* Add tab navigation by keyboard.
+
+2012-06-01 Graeme Gott <graeme@gottcode.org>
+	* Make spacings take effect immediately.
+	* Add selecting scenes.
+	* Add detecting scenes.
+
 2012-05-26 Morten Juhl-Johansen Zölde-Fejér <mjjzf@syntaktisk.dk>
 	* Add Danish translation.
 
+2012-05-23 Graeme Gott <graeme@gottcode.org>
+	* FIXED: New documents were always modified.
+
 2012-05-18 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Inserting text resets alignment.
+	* Add option to paste text without formatting.
+	* Add focused text options.
+	* Add options to theme dialog for setting spacings.
+	* Use theme spacings when creating document instances.
+	* Add line spacing and paragraph margins to theme.
+
+2012-05-17 Graeme Gott <graeme@gottcode.org>
+	* Add reading and writing soft returns.
+
+2012-05-16 Graeme Gott <graeme@gottcode.org>
+	* FIXED: No suggestions for misspelled words on 10.5.
+
+2012-05-15 Graeme Gott <graeme@gottcode.org>
+	* Use modified voikko provider for enchant on Windows.
+
+2012-05-12 Graeme Gott <graeme@gottcode.org>
+	* Install dictionaries to shared folder on the Mac.
 
 2012-05-11 Graeme Gott <graeme@gottcode.org>
+	* Use NSSpellChecker directly on the Mac.
 	* Use translated names for dictionaries.
+	* Remove dictionary data files.
+
+2012-05-10 Graeme Gott <graeme@gottcode.org>
+	* Switch to enchant from hunspell.
+	* Add a wrapper class for the dictionary.
+
+2012-05-09 Graeme Gott <graeme@gottcode.org>
+	* Add dictionary manager.
 
 2012-01-16 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.3.5.2.

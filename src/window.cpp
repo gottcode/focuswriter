@@ -19,8 +19,11 @@
 
 #include "window.h"
 
+#include "action_manager.h"
 #include "alert_layer.h"
 #include "document.h"
+#include "document_cache.h"
+#include "document_watcher.h"
 #include "load_screen.h"
 #include "locale_dialog.h"
 #include "preferences.h"
@@ -48,14 +51,15 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QPlainTextEdit>
 #include <QScrollBar>
 #include <QSettings>
-#include <QShortcut>
-#include <QStyle>
+#include <QSignalMapper>
 #include <QTabBar>
 #include <QTextCodec>
 #include <QTextStream>
+#include <QThread>
 #include <QTimer>
 #include <QToolBar>
 #include <QUrl>
@@ -78,8 +82,9 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Window::Window(const QStringList& command_line_files)
-	: m_toolbar(0),
+Window::Window(const QStringList& command_line_files) :
+	m_toolbar(0),
+	m_loading(false),
 	m_key_sound(0),
 	m_enter_key_sound(0),
 	m_fullscreen(true),
@@ -102,6 +107,9 @@ Window::Window(const QStringList& command_line_files)
 		setIconSize(QSize(22,22));
 	}
 
+	// Create actions manager
+	new ActionManager(this);
+
 	// Create window contents first so they stack behind documents
 	menuBar();
 	m_toolbar = new QToolBar(this);
@@ -111,12 +119,22 @@ Window::Window(const QStringList& command_line_files)
 	QWidget* contents = new QWidget(this);
 	setCentralWidget(contents);
 
+	// Set up watcher for documents
+	m_document_watcher = new DocumentWatcher(this);
+	connect(m_document_watcher, SIGNAL(closeDocument(Document*)), this, SLOT(closeDocument(Document*)));
+	connect(m_document_watcher, SIGNAL(showDocument(Document*)), this, SLOT(showDocument(Document*)));
+
+	// Set up thread for caching documents
+	m_document_cache = new DocumentCache;
+	m_document_cache_thread = new QThread(this);
+	m_document_cache->moveToThread(m_document_cache_thread);
+	m_document_cache_thread->start();
+
 	// Create documents
 	m_documents = new Stack(this);
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
-	connect(m_documents, SIGNAL(formattingEnabled(bool)), this, SLOT(setFormattingEnabled(bool)));
 	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
 	connect(m_documents, SIGNAL(updateFormatAlignmentActions()), this, SLOT(updateFormatAlignmentActions()));
 	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
@@ -134,11 +152,11 @@ Window::Window(const QStringList& command_line_files)
 	// Set up details
 	m_footer = new QWidget(contents);
 	QWidget* details = new QWidget(m_footer);
-	m_wordcount_label = new QLabel(tr("Words: 0"), details);
-	m_page_label = new QLabel(tr("Pages: 0"), details);
-	m_paragraph_label = new QLabel(tr("Paragraphs: 0"), details);
-	m_character_label = new QLabel(tr("Characters: 0"), details);
-	m_progress_label = new QLabel(tr("0% of daily goal"), details);
+	m_wordcount_label = new QLabel(tr("Words: %L1").arg(0), details);
+	m_page_label = new QLabel(tr("Pages: %L1").arg(0), details);
+	m_paragraph_label = new QLabel(tr("Paragraphs: %L1").arg(0), details);
+	m_character_label = new QLabel(tr("Characters: %L1 / %L2").arg(0).arg(0), details);
+	m_progress_label = new QLabel(tr("%1% of daily goal").arg(0), details);
 	m_clock_label = new QLabel(details);
 	updateClock();
 
@@ -162,8 +180,42 @@ Window::Window(const QStringList& command_line_files)
 	connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabClicked(int)));
 	connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosed(int)));
 	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
-	new QShortcut(QKeySequence::NextChild, this, SLOT(nextDocument()));
-	new QShortcut(QKeySequence::PreviousChild, this, SLOT(previousDocument()));
+
+	// Set up tab navigation
+	QAction* action = new QAction(tr("Switch to Next Document"), this);
+	action->setShortcut(QKeySequence::NextChild);
+	connect(action, SIGNAL(triggered()), this, SLOT(nextDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchNextDocument", action);
+
+	action = new QAction(tr("Switch to Previous Document"), this);
+	action->setShortcut(QKeySequence::PreviousChild);
+	connect(action, SIGNAL(triggered()), this, SLOT(previousDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchPreviousDocument", action);
+
+	action = new QAction(tr("Switch to First Document"), this);
+	action->setShortcut(Qt::CTRL + Qt::Key_1);
+	connect(action, SIGNAL(triggered()), this, SLOT(firstDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchFirstDocument", action);
+
+	action = new QAction(tr("Switch to Last Document"), this);
+	action->setShortcut(Qt::CTRL + Qt::Key_0);
+	connect(action, SIGNAL(triggered()), this, SLOT(lastDocument()));
+	addAction(action);
+	ActionManager::instance()->addAction("SwitchLastDocument", action);
+
+	QSignalMapper* mapper = new QSignalMapper(this);
+	for (int i = 2; i < 10 ; ++i) {
+		action = new QAction(tr("Switch to Document %1").arg(i), this);
+		action->setShortcut(Qt::CTRL + Qt::Key_0 + i);
+		connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
+		mapper->setMapping(action, i - 1);
+		addAction(action);
+		ActionManager::instance()->addAction(QString("SwitchDocument%1").arg(i), action);
+	}
+	connect(mapper, SIGNAL(mapped(int)), m_tabs, SLOT(setCurrentIndex(int)));
 
 	// Always bring interface to front
 	connect(m_documents, SIGNAL(headerVisible(bool)), menuBar(), SLOT(raise()));
@@ -242,7 +294,7 @@ Window::Window(const QStringList& command_line_files)
 	// Restore after crash
 	bool writable = QFileInfo(Document::cachePath()).isWritable() && QFileInfo(Document::cachePath() + "/../").isWritable();
 	if (!writable) {
-		m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Emergency cache is not writable."), QStringList());
+		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Emergency cache is not writable."), QStringList());
 	}
 	QStringList files, datafiles;
 	QString cachepath;
@@ -343,9 +395,13 @@ Window::Window(const QStringList& command_line_files)
 
 void Window::addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions, int active, bool show_load)
 {
+	m_loading = true;
+
+	// Hide interface
 	m_documents->setHeaderVisible(false);
 	m_documents->setFooterVisible(false);
 
+	// Skip loading files of unsupported formats
 	static const QStringList suffixes = QStringList()
 		<< "abw" << "awt" << "zabw"
 		<< "doc" << "dot"
@@ -355,7 +411,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		<< "wpd";
 	QList<int> skip;
 	for (int i = 0; i < files.count(); ++i) {
-		if (suffixes.contains(QFileInfo(files.at(i)).suffix())) {
+		if (suffixes.contains(QFileInfo(files.at(i)).suffix().toLower())) {
 			skip += i;
 		}
 	}
@@ -364,22 +420,17 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		foreach (int i, skip) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
-		QMessageBox mbox(window());
-		mbox.setWindowTitle(tr("Sorry"));
-		mbox.setText(tr("Some files are unsupported and will not be opened."));
-		mbox.setDetailedText(skipped.join("\n"));
-		mbox.setStandardButtons(QMessageBox::Ok);
-		mbox.setDefaultButton(QMessageBox::Ok);
-		mbox.setIcon(QMessageBox::Warning);
-		mbox.exec();
+		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files were unsupported and could not be opened."), skipped);
 	}
 
-	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()) && !m_documents->loadScreen()->isVisible());
+	// Show load screen if switching sessions or opening more than one file
+	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()));
 	if (show_load) {
 		m_documents->loadScreen()->setText("");
 		setCursor(Qt::WaitCursor);
 	}
 
+	// Remember current file and if it is untitled and unmodified
 	int untitled_index = -1;
 	int current_index = -1;
 	if (m_documents->count()) {
@@ -390,29 +441,38 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		}
 	}
 
+	// Read files
 	QStringList missing;
 	QStringList readonly;
 	int open_files = m_documents->count();
 	for (int i = 0; i < files.count(); ++i) {
-		if (!skip.isEmpty() && skip.first() == i) {
+		// Skip file known to be unsupported
+		if (!skip.isEmpty() && (skip.first() == i)) {
 			skip.removeFirst();
 			continue;
+		// Attempt to load file or datafile
 		} else if (!addDocument(files.at(i), datafiles.at(i), positions.value(i, "-1").toInt())) {
+			// Track if unable to open file
 			missing.append(QDir::toNativeSeparators(files.at(i)));
 		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
+			// Track if unable to read file
 			int index = m_documents->currentIndex();
 			missing.append(QDir::toNativeSeparators(files.at(i)));
 			m_documents->removeDocument(index);
 			m_tabs->removeTab(index);
-		} else if (m_documents->currentDocument()->isReadOnly() && m_documents->count() > open_files) {
+		} else if (m_documents->currentDocument()->isReadOnly() && (m_documents->count() > open_files)) {
+			// Track if file is read-only and not already open
 			readonly.append(QDir::toNativeSeparators(files.at(i)));
 		}
 		open_files = m_documents->count();
 	}
+
+	// Make sure that there is always at least one document
 	if (m_documents->count() == 0) {
 		newDocument();
 	}
 
+	// Switch to tab of active session file or of current file
 	if (untitled_index == -1) {
 		if (active != -1) {
 			m_tabs->setCurrentIndex(active);
@@ -420,36 +480,33 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			m_tabs->setCurrentIndex(m_tabs->count() - 1);
 		}
 	} else {
+		// Replace current tab if it is untitled and unmodified
 		m_tabs->setCurrentIndex(untitled_index);
 		closeDocument();
 	}
 
+	// Inform user about unopened and read-only files
 	if (!missing.isEmpty()) {
-		QMessageBox mbox(window());
-		mbox.setWindowTitle(tr("Sorry"));
-		mbox.setText(tr("Some files could not be opened."));
-		mbox.setDetailedText(missing.join("\n"));
-		mbox.setStandardButtons(QMessageBox::Ok);
-		mbox.setDefaultButton(QMessageBox::Ok);
-		mbox.setIcon(QMessageBox::Warning);
-		mbox.exec();
+		m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Some files could not be opened."), missing);
 	}
 	if (!readonly.isEmpty()) {
-		QMessageBox mbox(window());
-		mbox.setWindowTitle(tr("Note"));
-		mbox.setText(tr("Some files were opened Read-Only."));
-		mbox.setDetailedText(readonly.join("\n"));
-		mbox.setStandardButtons(QMessageBox::Ok);
-		mbox.setDefaultButton(QMessageBox::Ok);
-		mbox.setIcon(QMessageBox::Information);
-		mbox.exec();
+		m_documents->alerts()->addAlert(QMessageBox::Information, tr("Some files were opened Read-Only."), readonly);
 	}
 
-	if (show_load) {
+	// Hide load screen
+	if (m_documents->loadScreen()->isVisible()) {
 		m_documents->waitForThemeBackground();
 		m_documents->loadScreen()->finish();
 		unsetCursor();
 	}
+
+	// Open any files queued during load
+	if (!m_queued_documents.isEmpty()) {
+		QStringList queued = m_queued_documents;
+		m_queued_documents.clear();
+		addDocuments(queued, queued);
+	}
+	m_loading = false;
 }
 
 //-----------------------------------------------------------------------------
@@ -461,7 +518,7 @@ void Window::addDocuments(QDropEvent* event)
 		foreach (QUrl url, event->mimeData()->urls()) {
 			files.append(url.toLocalFile());
 		}
-		addDocuments(files, files);
+		queueDocuments(files);
 		event->acceptProposedAction();
 	}
 }
@@ -510,6 +567,26 @@ bool Window::closeDocuments(QSettings* session)
 
 //-----------------------------------------------------------------------------
 
+void Window::addDocuments(const QString& documents)
+{
+	QStringList files = documents.split(QLatin1String("\n"), QString::SkipEmptyParts);
+	if (!files.isEmpty()) {
+		queueDocuments(files);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::changeEvent(QEvent* event)
+{
+	if (isActiveWindow()) {
+		m_document_watcher->processUpdates();
+	}
+	QMainWindow::changeEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::dragEnterEvent(QDragEnterEvent* event)
 {
 	if (event->mimeData()->hasUrls()) {
@@ -538,13 +615,25 @@ bool Window::event(QEvent* event)
 
 void Window::closeEvent(QCloseEvent* event)
 {
+	// Confirm discarding any unsaved changes
 	if (!m_timers->cancelEditing() || !m_sessions->closeCurrent()) {
 		event->ignore();
 		return;
 	}
+
+	// Save window settings
+	QSettings().setValue("Window/FocusedText", m_focus_actions->checkedAction()->data().toInt());
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
+
+	// Stop cache thread while window is visible
+	setCursor(Qt::WaitCursor);
+	m_document_cache_thread->quit();
+	m_document_cache_thread->wait();
+	delete m_document_cache;
+	m_document_cache = 0;
+
 	QMainWindow::closeEvent(event);
 }
 
@@ -637,11 +726,46 @@ void Window::closeDocument()
 	if (!saveDocument(index)) {
 		return;
 	}
+
 	if (m_documents->count() == 1) {
 		newDocument();
 	}
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::closeDocument(Document* document)
+{
+	int index = -1;
+	for (int i = 0; i < m_documents->count(); ++i) {
+		if (m_documents->document(i) == document) {
+			index = i;
+			break;
+		}
+	}
+	if (index == -1) {
+		return;
+	}
+
+	if (m_documents->count() == 1) {
+		newDocument();
+	}
+	m_documents->removeDocument(index);
+	m_tabs->removeTab(index);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::showDocument(Document* document)
+{
+	for (int i = 0; i < m_documents->count(); ++i) {
+		if (m_documents->document(i) == document) {
+			m_tabs->setCurrentIndex(i);
+			break;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -668,19 +792,16 @@ void Window::previousDocument()
 
 //-----------------------------------------------------------------------------
 
-void Window::setFormattingEnabled(bool enabled)
+void Window::firstDocument()
 {
-	foreach (QAction* action, m_format_actions) {
-		action->setEnabled(enabled);
-	}
-	if (enabled) {
-		m_actions["FormatIndentDecrease"]->setEnabled(false);
-		m_richtext_action->setVisible(false);
-		m_plaintext_action->setVisible(true);
-	} else {
-		m_plaintext_action->setVisible(false);
-		m_richtext_action->setVisible(true);
-	}
+	m_tabs->setCurrentIndex(0);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::lastDocument()
+{
+	m_tabs->setCurrentIndex(m_tabs->count() - 1);
 }
 
 //-----------------------------------------------------------------------------
@@ -755,16 +876,16 @@ void Window::preferencesClicked()
 
 void Window::aboutClicked()
 {
-	QMessageBox::about(this, tr("About FocusWriter"), tr(
-		"<p><center><big><b>FocusWriter %1</b></big><br/>"
-		"A simple fullscreen word processor<br/>"
-		"<small>Copyright &copy; 2008-%2 Graeme Gott</small><br/>"
-		"<small>Released under the <a href=\"http://www.gnu.org/licenses/gpl.html\">GPL 3</a> license</small></center></p>"
-		"<p><center>Uses <a href=\"http://hunspell.sourceforge.net/\">Hunspell</a> for spell checking<br/>"
-		"<small>Used under the <a href=\"http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\">LGPL 2.1</a> license</small></center></p>"
-		"<p><center>Uses icons from the <a href=\"http://www.oxygen-icons.org/\">Oxygen</a> icon theme<br/>"
-		"<small>Used under the <a href=\"http://www.gnu.org/licenses/lgpl.html\">LGPL 3</a> license</small></center></p>"
-	).arg(QApplication::applicationVersion()).arg("2012"));
+	QMessageBox::about(this, tr("About FocusWriter"), QString(
+		"<p align='center'><big><b>%1 %2</b></big><br/>%3<br/><small>%4<br/>%5</small></p>"
+		"<p align='center'>%6<br/><small>%7</small></p>")
+		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
+			tr("A simple fullscreen word processor"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2012"),
+			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
+			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
+			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
+	);
 }
 
 //-----------------------------------------------------------------------------
@@ -891,7 +1012,7 @@ void Window::updateProgress()
 void Window::updateSave()
 {
 	m_actions["Save"]->setEnabled(m_documents->currentDocument()->text()->document()->isModified());
-	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->filename().isEmpty());
+	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->isReadOnly() || m_documents->currentDocument()->filename().isEmpty());
 	for (int i = 0; i < m_documents->count(); ++i) {
 		updateTab(i);
 	}
@@ -923,7 +1044,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	show_load = !file.isEmpty() && !m_documents->loadScreen()->isVisible() && (info.size() > 100000);
 	if (m_documents->loadScreen()->isVisible() || show_load) {
 		if (!file.isEmpty()) {
-			m_documents->loadScreen()->setText(tr("Opening %1").arg(file));
+			m_documents->loadScreen()->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
 		} else {
 			m_documents->loadScreen()->setText("");
 		}
@@ -952,6 +1073,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
 	m_documents->addDocument(document);
 	document->loadTheme(m_sessions->current()->theme());
+	document->setFocusMode(m_focus_actions->checkedAction()->data().toInt());
 	if (document->loadFile(path, m_save_positions ? position : -1)) {
 		if (datafile != file) {
 			document->text()->document()->setModified(!compareFiles(file, datafile));
@@ -965,6 +1087,8 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
+	connect(document, SIGNAL(cacheFile(DocumentWriter*)), m_document_cache, SLOT(cacheFile(DocumentWriter*)));
+	connect(document, SIGNAL(removeCacheFile(QString)), m_document_cache, SLOT(removeCacheFile(QString)));
 
 	// Add tab for document
 	int index = m_tabs->addTab(tr("Untitled"));
@@ -975,7 +1099,23 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 		m_documents->loadScreen()->finish();
 	}
 
+	// Allow documents to show load screen on reload
+	connect(document, SIGNAL(loadStarted(QString)), m_documents->loadScreen(), SLOT(setText(QString)));
+	connect(document, SIGNAL(loadFinished()), m_documents->loadScreen(), SLOT(finish()));
+	connect(document, SIGNAL(loadFinished()), this, SLOT(updateSave()));
+
 	return true;
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::queueDocuments(const QStringList& files)
+{
+	if (m_loading) {
+		m_queued_documents += files;
+	} else {
+		addDocuments(files, files);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -1017,7 +1157,8 @@ void Window::loadPreferences(Preferences& preferences)
 		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
 
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
-			m_documents->alerts()->addAlert(style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32,32), tr("Unable to load typewriter sounds."), QStringList());
+			m_documents->alerts()->addAlert(QMessageBox::Warning, tr("Unable to load typewriter sounds."),
+				QStringList(tr("Please make sure that SDL_mixer is installed.")));
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
@@ -1080,6 +1221,7 @@ void Window::hideInterface()
 {
 	m_documents->setFooterVisible(false);
 	m_documents->setHeaderVisible(false);
+	m_documents->setScenesVisible(false);
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->setScrollBarVisible(false);
 	}
@@ -1133,12 +1275,9 @@ void Window::updateWriteState(int index)
 		disconnect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
 		m_actions["Cut"]->setEnabled(false);
 	}
-	m_richtext_action->setEnabled(writable);
 	m_replace_document_quotes->setEnabled(writable);
 	m_replace_selection_quotes->setEnabled(writable);
 
-	writable &= document->isRichText();
-	m_plaintext_action->setEnabled(writable);
 	foreach (QAction* action, m_format_actions) {
 		action->setEnabled(writable);
 	}
@@ -1153,6 +1292,7 @@ void Window::initMenus()
 	QMenu* file_menu = menuBar()->addMenu(tr("&File"));
 	m_actions["New"] = file_menu->addAction(QIcon::fromTheme("document-new"), tr("&New"), this, SLOT(newDocument()), QKeySequence::New);
 	m_actions["Open"] = file_menu->addAction(QIcon::fromTheme("document-open"), tr("&Open..."), this, SLOT(openDocument()), QKeySequence::Open);
+	m_actions["Reload"] = file_menu->addAction(QIcon::fromTheme("view-refresh"), tr("Reloa&d"), m_documents, SLOT(reload()), QKeySequence::Refresh);
 	file_menu->addSeparator();
 	m_actions["Save"] = file_menu->addAction(QIcon::fromTheme("document-save"), tr("&Save"), m_documents, SLOT(save()), QKeySequence::Save);
 	m_actions["Save"]->setEnabled(false);
@@ -1189,8 +1329,10 @@ void Window::initMenus()
 	m_actions["Copy"]->setEnabled(false);
 	connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Copy"], SLOT(setEnabled(bool)));
 	m_actions["Paste"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("&Paste"), m_documents, SLOT(paste()), QKeySequence::Paste);
+	m_actions["PasteUnformatted"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("Paste &Unformatted"), m_documents, SLOT(pasteUnformatted()), tr("Ctrl+Shift+V"));
 	edit_menu->addSeparator();
 	m_actions["SelectAll"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &All"), m_documents, SLOT(selectAll()), QKeySequence::SelectAll);
+	m_actions["SelectScene"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &Scene"), m_documents, SLOT(selectScene()), tr("Ctrl+Shift+A"));
 
 	// Create format menu
 	QMenu* format_menu = menuBar()->addMenu(tr("Fo&rmat"));
@@ -1238,11 +1380,6 @@ void Window::initMenus()
 	direction->addAction(m_actions["FormatDirectionRTL"]);
 	m_actions["FormatDirectionLTR"]->setChecked(true);
 
-	format_menu->addSeparator();
-	m_plaintext_action = format_menu->addAction(tr("&Make Plain Text"), m_documents, SLOT(makePlainText()));
-	m_richtext_action = format_menu->addAction(tr("&Make Rich Text"), m_documents, SLOT(makeRichText()));
-	m_richtext_action->setVisible(false);
-
 	// Create tools menu
 	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));
 	m_actions["Find"] = tools_menu->addAction(QIcon::fromTheme("edit-find"), tr("&Find..."), m_documents, SLOT(find()), QKeySequence::Find);
@@ -1256,21 +1393,30 @@ void Window::initMenus()
 	tools_menu->addSeparator();
 	QMenu* quotes_menu = tools_menu->addMenu(tr("Smart &Quotes"));
 	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, SLOT(updateSmartQuotes()));
+	m_replace_document_quotes->setStatusTip("Update Document Smart Quotes");
+	ActionManager::instance()->addAction("SmartQuotesUpdateDocument", m_replace_document_quotes);
 	m_replace_selection_quotes = quotes_menu->addAction(tr("Update &Selection"), m_documents, SLOT(updateSmartQuotesSelection()));
+	m_replace_selection_quotes->setStatusTip("Update Selection Smart Quotes");
+	ActionManager::instance()->addAction("SmartQuotesUpdateSelection", m_replace_selection_quotes);
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, SLOT(show()));
+	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, SLOT(showSymbols()));
 
 	// Create settings menu
 	QMenu* settings_menu = menuBar()->addMenu(tr("&Settings"));
 	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
+	ActionManager::instance()->addAction("ShowToolbar", action);
 #ifndef Q_OS_MAC
 	action = settings_menu->addAction(tr("Show &Menu Icons"), this, SLOT(toggleMenuIcons(bool)));
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Window/MenuIcons", false).toBool());
+	ActionManager::instance()->addAction("ShowMenuIcons", action);
 #endif
+	settings_menu->addSeparator();
+	QMenu* focus_menu = settings_menu->addMenu(tr("F&ocused Text"));
 	settings_menu->addSeparator();
 	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
 #ifdef Q_OS_MAC
@@ -1285,6 +1431,27 @@ void Window::initMenus()
 	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, SLOT(setLocaleClicked()));
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
 	m_actions["Preferences"]->setMenuRole(QAction::PreferencesRole);
+
+	// Create focus sub-menu
+	QAction* focus_mode[4];
+	focus_mode[0] = focus_menu->addAction(tr("&Off"));
+	focus_mode[0]->setStatusTip(tr("Focus Off"));
+	focus_mode[1] = focus_menu->addAction(tr("One &Line"));
+	focus_mode[1]->setStatusTip(tr("Focus One Line"));
+	focus_mode[2] = focus_menu->addAction(tr("&Three Lines"));
+	focus_mode[2]->setStatusTip(tr("Focus Three Lines"));
+	focus_mode[3] = focus_menu->addAction(tr("&Paragraph"));
+	focus_mode[3]->setStatusTip(tr("Focus Paragraph"));
+	m_focus_actions = new QActionGroup(this);
+	for (int i = 0; i < 4; ++i) {
+		focus_mode[i]->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + (Qt::Key_0 + i)));
+		focus_mode[i]->setCheckable(true);
+		focus_mode[i]->setData(i);
+		m_focus_actions->addAction(focus_mode[i]);
+		ActionManager::instance()->addAction(QString("FocusedText%1").arg(i), focus_mode[i]);
+	}
+	focus_mode[qBound(0, QSettings().value("Window/FocusedText").toInt(), 3)]->setChecked(true);
+	connect(m_focus_actions, SIGNAL(triggered(QAction*)), m_documents, SLOT(setFocusMode(QAction*)));
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
@@ -1320,6 +1487,9 @@ void Window::initMenus()
 		if (i.key().startsWith("Format")) {
 			m_format_actions.append(i.value());
 		}
+
+		// Load custom shortcut
+		ActionManager::instance()->addAction(i.key(), i.value());
 	}
 	addActions(m_actions.values());
 }
