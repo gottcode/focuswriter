@@ -5,7 +5,7 @@ Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
 Build-Depends: debhelper (>= 9),
 	       libqt4-dev,
-	       libhunspell-dev,
+	       libenchant-dev,
 	       libzip-dev,
 	       pkg-config
 Standards-Version: 3.9.3
