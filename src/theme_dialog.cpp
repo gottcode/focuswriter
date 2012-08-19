@@ -36,6 +36,7 @@
 #include <QPainter>
 #include <QSpinBox>
 #include <QTabWidget>
+#include <QTextEdit>
 #include <QVBoxLayout>
 
 //-----------------------------------------------------------------------------
@@ -126,6 +127,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_rounding->setSuffix(tr(" pixels"));
 	m_foreground_rounding->setRange(0, 100);
 	m_foreground_rounding->setValue(m_theme.foregroundRounding());
+	connect(m_foreground_rounding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_foreground_margin = new QSpinBox(tab);
 	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
@@ -138,6 +140,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_padding->setSuffix(tr(" pixels"));
 	m_foreground_padding->setRange(0, 250);
 	m_foreground_padding->setValue(m_theme.foregroundPadding());
+	connect(m_foreground_padding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	QHBoxLayout* color_layout = new QHBoxLayout;
 	color_layout->setMargin(0);
@@ -221,19 +224,24 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	default: m_line_spacing->setEnabled(true); break;
 	}
 	connect(m_line_spacing_type, SIGNAL(currentIndexChanged(int)), this, SLOT(lineSpacingChanged(int)));
+	connect(m_line_spacing_type, SIGNAL(currentIndexChanged(int)), this, SLOT(renderPreview()));
+	connect(m_line_spacing, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	QGroupBox* paragraph_spacing = new QGroupBox(tr("Paragraph Spacing"), tab);
 
 	m_indent_first_line = new QCheckBox(tab);
 	m_indent_first_line->setChecked(m_theme.indentFirstLine());
+	connect(m_indent_first_line, SIGNAL(toggled(bool)), this, SLOT(renderPreview()));
 
 	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
 	m_spacing_above_paragraph->setRange(0, 1000);
 	m_spacing_above_paragraph->setValue(m_theme.spacingAboveParagraph());
+	connect(m_spacing_above_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_spacing_below_paragraph = new QSpinBox(paragraph_spacing);
 	m_spacing_below_paragraph->setRange(0, 1000);
 	m_spacing_below_paragraph->setValue(m_theme.spacingBelowParagraph());
+	connect(m_spacing_below_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	QHBoxLayout* line_spacing_layout = new QHBoxLayout(line_spacing);
 	line_spacing_layout->addWidget(m_line_spacing_type);
@@ -256,6 +264,14 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 
 	// Create preview
+	m_preview_background = new QLabel;
+
+	m_preview_text = new QTextEdit(m_preview_background);
+	m_preview_text->setGeometry(20, 20, 160, 110);
+	m_preview_text->setFrameStyle(QFrame::NoFrame);
+	m_preview_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	m_preview_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 	m_preview = new QLabel(this);
 	m_preview->setAlignment(Qt::AlignCenter);
 	renderPreview();
@@ -277,6 +293,13 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	layout->addLayout(name_layout);
 	layout->addLayout(contents_layout);
 	layout->addWidget(buttons);
+}
+
+//-----------------------------------------------------------------------------
+
+ThemeDialog::~ThemeDialog()
+{
+	delete m_preview_background;
 }
 
 //-----------------------------------------------------------------------------
@@ -411,31 +434,60 @@ void ThemeDialog::renderPreview()
 {
 	QPixmap preview(":/shadow.png");
 	{
+		// Set up painter inside of shadow
 		QPainter painter(&preview);
 		painter.translate(9, 6);
 		painter.setClipRect(0, 0, 200, 150);
 
+		// Set up background
 		int type = m_background_type->currentIndex();
 		m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
 
-		// Draw background
 		QImage background = Theme::renderBackground(m_background_image->image(), type, m_background_color->color(), QSize(200, 150));
-		painter.drawImage(QPoint(99, 74) - background.rect().center(), background);
+		m_preview_background->setPixmap(QPixmap::fromImage(background));
 
-		// Draw foreground
+		// Set up colors
 		QColor color = m_foreground_color->color();
 		color.setAlpha(m_foreground_opacity->value() * 2.55f);
-		painter.setRenderHint(QPainter::Antialiasing);
-		painter.setBrush(color);
-		painter.setPen(Qt::NoPen);
-		painter.drawRoundedRect(QRect(20, 20, 160, 110), m_foreground_rounding->value(), m_foreground_rounding->value());
+		QColor text_color = m_text_color->color();
+		text_color.setAlpha(255);
+		QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
 
-		// Draw text
-		painter.setPen(m_text_color->color());
+		m_preview_text->clear();
+		m_preview_text->setStyleSheet(
+			QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
+				.arg(color.red())
+				.arg(color.green())
+				.arg(color.blue())
+				.arg(color.alpha())
+				.arg(text_color.red())
+				.arg(text_color.green())
+				.arg(text_color.blue())
+				.arg(text_color.alpha())
+				.arg(text_color.name())
+				.arg(contrast)
+				.arg(m_foreground_padding->value())
+				.arg(m_foreground_rounding->value())
+		);
+
+		// Set up spacings
+		QTextBlockFormat block_format;
+#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
+		block_format.setLineHeight(m_line_spacing->value(), (m_line_spacing->value() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
+#endif
+		block_format.setTextIndent(48 * m_indent_first_line->isChecked());
+		block_format.setTopMargin(m_spacing_above_paragraph->value());
+		block_format.setBottomMargin(m_spacing_below_paragraph->value());
+		m_preview_text->textCursor().mergeBlockFormat(block_format);
+
+		// Set up text
 		QFont font = m_font_names->currentFont();
 		font.setPointSizeF(m_font_sizes->currentText().toDouble());
-		painter.setFont(font);
-		painter.drawText(QRect(23, 23, 154, 104), Qt::TextWordWrap, tr("The quick brown fox jumps over the lazy dog"));
+		m_preview_text->setFont(font);
+		m_preview_text->append(tr("The quick brown fox jumps over the lazy dog"));
+
+		// Create preview pixmap
+		m_preview_background->render(&painter);
 	}
 	m_preview->setPixmap(preview);
 }

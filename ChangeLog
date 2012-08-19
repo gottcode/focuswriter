@@ -1,3 +1,6 @@
+2012-08-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Theme previews did not show line spacing.
+
 2012-08-16 Graeme Gott <graeme@gottcode.org>
 	* Stop distributing dictionaries on Windows.
 
