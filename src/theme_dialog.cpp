@@ -23,8 +23,10 @@
 #include "image_button.h"
 #include "theme.h"
 
+#include <QApplication>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QFile>
@@ -439,11 +441,14 @@ void ThemeDialog::renderPreview()
 		painter.translate(9, 6);
 		painter.setClipRect(0, 0, 200, 150);
 
-		// Set up background
+		// Create background, zoomed to fit preview image
 		int type = m_background_type->currentIndex();
 		m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
 
-		QImage background = Theme::renderBackground(m_background_image->image(), type, m_background_color->color(), QSize(200, 150));
+		QRect rect = QApplication::desktop()->screenGeometry();
+		QImage background = Theme::renderBackground(m_background_image->image(), type, m_background_color->color(), rect.size());
+		background = background.scaled(200, 150, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+		background = background.copy((background.width() - 200) / 2, (background.height() - 150) / 2, 200, 150);
 		m_preview_background->setPixmap(QPixmap::fromImage(background));
 
 		// Set up colors
