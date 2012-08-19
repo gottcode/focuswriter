@@ -255,6 +255,7 @@ Document::~Document()
 {
 	m_scene_model->removeAllScenes();
 
+	DocumentWatcher::instance()->removeWatch(this);
 	clearIndex();
 	emit removeCacheFile(g_cache_path + m_cache_filename);
 }
