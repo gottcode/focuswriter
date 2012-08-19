@@ -2,8 +2,3 @@
 
 %:
 	dh $@ --parallel
-
-override_dh_auto_install:
-	dh_auto_install
-	cd debian/focuswriter/usr/share/pixmaps/ \
-	 && mv focuswriter_32.xpm focuswriter.xpm
