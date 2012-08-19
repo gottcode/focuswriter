@@ -637,10 +637,6 @@ void Document::loadTheme(const Theme& theme)
 	}
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 
-	if (m_focus_mode) {
-		focusText();
-	}
-
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
@@ -670,6 +666,10 @@ void Document::loadTheme(const Theme& theme)
 
 		m_layout->setColumnStretch(0, 0);
 		m_layout->setColumnStretch(2, 0);
+	}
+
+	if (m_focus_mode) {
+		focusText();
 	}
 
 	centerCursor(true);
