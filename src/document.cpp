@@ -333,7 +333,7 @@ bool Document::saveAs()
 	}
 
 	// Save file as new name
-	if (QFile::exists(filename) && !QFile::remove(filename)) {
+	if (QFile::exists(filename) && (DocumentWatcher::instance()->isWatching(filename) || !QFile::remove(filename))) {
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 		return false;
 	}
@@ -364,7 +364,7 @@ bool Document::rename()
 	}
 
 	// Rename file
-	if (QFile::exists(filename) && !QFile::remove(filename)) {
+	if (QFile::exists(filename) && (DocumentWatcher::instance()->isWatching(filename) || !QFile::remove(filename))) {
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 		return false;
 	}
