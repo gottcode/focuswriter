@@ -775,12 +775,14 @@ void Stack::updateBackground()
 void Stack::updateMask()
 {
 	if (m_header_visible || m_footer_visible) {
+		m_scenes->setUpdatesEnabled(false);
 		setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
 		setAttribute(Qt::WA_TransparentForMouseEvents, true);
 	} else {
 		clearMask();
 		setAttribute(Qt::WA_TransparentForMouseEvents, false);
 		raise();
+		m_scenes->setUpdatesEnabled(true);
 	}
 }
 
