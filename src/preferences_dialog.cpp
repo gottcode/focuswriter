@@ -69,6 +69,34 @@ namespace
 
 		return area;
 	}
+
+	bool recursivelyRemove(const QString& path)
+	{
+		// Abort early if directory doesn't exist
+		QDir dir(path);
+		if (!dir.exists()) {
+			return true;
+		}
+
+		// Remove subdirectories
+		QStringList contents = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Hidden | QDir::System);
+		foreach (const QString& entry, contents) {
+			if (!recursivelyRemove(dir.absoluteFilePath(entry))) {
+				return false;
+			}
+		}
+
+		// Remove all files
+		contents = dir.entryList(QDir::Files | QDir::Hidden | QDir::System);
+		foreach (const QString& entry, contents) {
+			if (!QFile::remove(dir.absoluteFilePath(entry))) {
+				return false;
+			}
+		}
+
+		// Remove directory
+		return dir.rmdir(path);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -280,6 +308,12 @@ void PreferencesDialog::accept()
 	QString path = DictionaryManager::path() + "/install/";
 	QString new_path = DictionaryManager::installedPath() + "/";
 	QDir dir(path);
+#ifdef Q_OS_WIN
+	QStringList dirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+	foreach (const QString& file, dirs) {
+		QFile::rename(path + file, new_path + file);
+	}
+#endif
 	QStringList files = dir.entryList(QDir::Files);
 	foreach (const QString& file, files) {
 		QFile::remove(new_path + file);
@@ -315,14 +349,8 @@ void PreferencesDialog::accept()
 
 void PreferencesDialog::reject()
 {
-	QDir dir(DictionaryManager::path() + "/install/");
-	if (dir.exists()) {
-		QStringList files = dir.entryList(QDir::Files);
-		foreach (const QString& file, files) {
-			QFile::remove(dir.filePath(file));
-		}
-		dir.cdUp();
-		dir.rmdir("install");
+	if (!recursivelyRemove(DictionaryManager::path() + "/install/")) {
+		qWarning("Failed to clean up dictionary install path");
 	}
 	QDialog::reject();
 }
@@ -405,10 +433,26 @@ void PreferencesDialog::addLanguage()
 				aff_files[name] = i;
 			} else if (name.endsWith(".dic")) {
 				dic_files[name] = i;
+#ifdef Q_OS_WIN
+			} else if (name.contains("mor-")) {
+				files[name] = i;
+#endif
 			}
 		}
 
-		// Find dictionary files
+		// Find Voikko dictionaries
+		if (!files.isEmpty()) {
+			QStringList keys = files.keys();
+			foreach (const QString& file, keys) {
+				QString name = file.section('/', -1).section('.', 0);
+				name.replace("voikko-", "");
+				if (!dictionaries.contains(name)) {
+					dictionaries += name;
+				}
+			}
+		}
+
+		// Find Hunspell dictionary files
 		foreach (const QString& dic, dic_files.keys()) {
 			QString aff = dic;
 			aff.replace(".dic", ".aff");
@@ -434,8 +478,17 @@ void PreferencesDialog::addLanguage()
 		while (i.hasNext()) {
 			i.next();
 
-			QString filename = i.key().section('/', -1);
-			filename.replace(QChar('-'), QChar('_'));
+			QString filename = i.key();
+			if (filename.endsWith(".dic") || filename.endsWith(".aff")) {
+				// Ignore path for Hunspell dictionaries
+				filename = filename.section('/', -1);
+				filename.replace(QChar('-'), QChar('_'));
+			} else {
+				// Create path for Voikko dictionary
+				dir.setPath(install + filename + "/..");
+				dir.mkpath(dir.absolutePath());
+			}
+
 			QFile file(install + filename);
 			if (file.open(QIODevice::WriteOnly)) {
 				zip_file* zfile = zip_fopen_index(archive, i.value(), 0);
