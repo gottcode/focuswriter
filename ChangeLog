@@ -1,3 +1,6 @@
+2012-08-24 Graeme Gott <graeme@gottcode.org>
+	* Remove uninstalling dictionary files.
+
 2012-08-20 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Scene list was visually corrupted when footer was shown.
 	* FIXED: Could save over files open on other tabs.
