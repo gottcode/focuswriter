@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,9 +34,8 @@ class AlertLayer : public QWidget
 public:
 	AlertLayer(QWidget* parent);
 
-	void addAlert(const QString& text, const QStringList& details);
-	void addAlert(QMessageBox::Icon icon, const QString& text, const QStringList& details);
-	void addAlert(const QPixmap& pixmap, const QString& text, const QStringList& details);
+public slots:
+	void addAlert(Alert* alert);
 
 private slots:
 	void alertDestroyed(QObject* alert);
@@ -46,10 +45,5 @@ private:
 	QList<Alert*> m_alerts;
 	QVBoxLayout* m_alerts_layout;
 };
-
-inline void AlertLayer::addAlert(const QString& text, const QStringList& details)
-{
-	addAlert(QPixmap(), text, details);
-}
 
 #endif

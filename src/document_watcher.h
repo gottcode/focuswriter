@@ -35,6 +35,8 @@ public:
 	DocumentWatcher(QObject* parent = 0);
 	~DocumentWatcher();
 
+	bool isWatching(const QString& path) const;
+
 	void addWatch(Document* document);
 	void removeWatch(Document* document);
 	void processUpdates();

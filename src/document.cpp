@@ -19,6 +19,7 @@
 
 #include "document.h"
 
+#include "alert.h"
 #include "block_stats.h"
 #include "dictionary_manager.h"
 #include "document_watcher.h"
@@ -254,6 +255,7 @@ Document::~Document()
 {
 	m_scene_model->removeAllScenes();
 
+	DocumentWatcher::instance()->removeWatch(this);
 	clearIndex();
 	emit removeCacheFile(g_cache_path + m_cache_filename);
 }
@@ -331,7 +333,7 @@ bool Document::saveAs()
 	}
 
 	// Save file as new name
-	if (QFile::exists(filename) && !QFile::remove(filename)) {
+	if (QFile::exists(filename) && (DocumentWatcher::instance()->isWatching(filename) || !QFile::remove(filename))) {
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 		return false;
 	}
@@ -362,7 +364,7 @@ bool Document::rename()
 	}
 
 	// Rename file
-	if (QFile::exists(filename) && !QFile::remove(filename)) {
+	if (QFile::exists(filename) && (DocumentWatcher::instance()->isWatching(filename) || !QFile::remove(filename))) {
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 		return false;
 	}
@@ -492,12 +494,13 @@ bool Document::loadFile(const QString& filename, int position)
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
 	if (file.isOpen()) {
+		QString error;
 		if (type == "odt") {
 			file.close();
 			ODT::Reader reader;
 			reader.read(filename, document);
 			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				error = reader.errorString();
 				loaded = false;
 				position = -1;
 			}
@@ -508,7 +511,7 @@ bool Document::loadFile(const QString& filename, int position)
 			m_codepage = reader.codePage();
 			file.close();
 			if (reader.hasError()) {
-				QMessageBox::warning(this, tr("Sorry"), reader.errorString());
+				error = reader.errorString();
 				loaded = false;
 				position = -1;
 			}
@@ -526,6 +529,10 @@ bool Document::loadFile(const QString& filename, int position)
 			}
 			cursor.endEditBlock();
 			file.close();
+		}
+
+		if (!loaded) {
+			emit alert(new Alert(Alert::Warning, error, QStringList(filename), false));
 		}
 	}
 	document->setUndoRedoEnabled(true);
@@ -630,10 +637,6 @@ void Document::loadTheme(const Theme& theme)
 	}
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 
-	if (m_focus_mode) {
-		focusText();
-	}
-
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
@@ -663,6 +666,10 @@ void Document::loadTheme(const Theme& theme)
 
 		m_layout->setColumnStretch(0, 0);
 		m_layout->setColumnStretch(2, 0);
+	}
+
+	if (m_focus_mode) {
+		focusText();
 	}
 
 	centerCursor(true);
@@ -1047,6 +1054,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	if (end.isValid()) {
 		end = end.next();
 	}
+	bool update_spelling = false;
 	BlockStats* stats = 0;
 	for (QTextBlock i = begin; i != end; i = i.next()) {
 		stats = static_cast<BlockStats*>(i.userData());
@@ -1054,10 +1062,14 @@ void Document::updateWordCount(int position, int removed, int added)
 			stats = new BlockStats(m_scene_model);
 			i.setUserData(stats);
 			m_cached_stats.clear();
+			update_spelling = true;
 		}
 		stats->update(i.text());
 		stats->recheckSpelling();
 		m_scene_model->updateScene(stats, i);
+	}
+	if (update_spelling) {
+		m_highlighter->updateSpelling();
 	}
 
 	// Update document stats and daily word count

@@ -46,6 +46,7 @@ public:
 	~SceneModel();
 
 	QModelIndex findScene(const QTextCursor& cursor) const;
+	void moveScenes(QList<int> scenes, int row);
 	void removeScene(BlockStats* stats);
 	void removeAllScenes();
 	void updateScene(BlockStats* stats, const QTextBlock& block);

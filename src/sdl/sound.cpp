@@ -111,20 +111,24 @@ namespace
 	void loadSDL()
 	{
 		// Initialize SDL
+		QLibrary sdl_lib("SDL2");
 		QLibrary mixer_lib("SDL2_mixer");
-		if (!mixer_lib.load()) {
+		if (!sdl_lib.load()) {
+			sdl_lib.setFileName("SDL");
 			mixer_lib.setFileName("SDL_mixer");
 		}
-		if (!mixer_lib.load()) {
+		if (!sdl_lib.load()) {
+			sdl_lib.setFileNameAndVersion("SDL2-2.0", "0");
 			mixer_lib.setFileNameAndVersion("SDL2_mixer-2.0", "0");
 		}
-		if (!mixer_lib.load()) {
+		if (!sdl_lib.load()) {
+			sdl_lib.setFileNameAndVersion("SDL-1.2", "0");
 			mixer_lib.setFileNameAndVersion("SDL_mixer-1.2", "0");
 		}
-		sdl_Init = (func_SDL_Init) mixer_lib.resolve("SDL_Init");
-		sdl_Quit = (func_SDL_Quit) mixer_lib.resolve("SDL_Quit");
-		sdl_GetError = (func_SDL_GetError) mixer_lib.resolve("SDL_GetError");
-		sdl_RWFromFile = (func_SDL_RWFromFile) mixer_lib.resolve("SDL_RWFromFile");
+		sdl_Init = (func_SDL_Init) sdl_lib.resolve("SDL_Init");
+		sdl_Quit = (func_SDL_Quit) sdl_lib.resolve("SDL_Quit");
+		sdl_GetError = (func_SDL_GetError) sdl_lib.resolve("SDL_GetError");
+		sdl_RWFromFile = (func_SDL_RWFromFile) sdl_lib.resolve("SDL_RWFromFile");
 		if ((sdl_Init == 0) || (sdl_Quit == 0) || (sdl_GetError == 0) || (sdl_RWFromFile == 0)) {
 			qWarning("Unable to load SDL");
 			return;

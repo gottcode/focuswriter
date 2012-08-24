@@ -78,6 +78,90 @@ QModelIndex SceneModel::findScene(const QTextCursor& cursor) const
 
 //-----------------------------------------------------------------------------
 
+void SceneModel::moveScenes(QList<int> scenes, int row)
+{
+	// Make sure scenes are ordered correctly
+	if (scenes.isEmpty()) {
+		return;
+	}
+	qSort(scenes);
+
+	// Copy text fragments of scenes
+	QTextCursor cursor = m_document->textCursor();
+	QList<QTextDocumentFragment> fragments;
+	foreach (int scene, scenes) {
+		selectScene(m_scenes.at(scene), cursor);
+		fragments += cursor.selection();
+	}
+
+	// Find location in document to insert text fragments
+	int position = 0;
+	if ((row < m_scenes.size()) && (row > -1)) {
+		const Scene& scene = m_scenes.at(row);
+		QTextBlock block = m_document->document()->findBlockByNumber(scene.block_number);
+		if (block.userData() == scene.stats) {
+			position = block.position();
+		} else {
+			block = m_document->document()->begin();
+			while (block.isValid()) {
+				position = block.position();
+				if (block.userData() == scene.stats) {
+					break;
+				}
+				block = block.next();
+			}
+		}
+	} else {
+		cursor.movePosition(QTextCursor::End);
+		if (cursor.block().text().length()) {
+			cursor.insertBlock();
+		}
+		position = cursor.position();
+	}
+
+	// Start edit block by moving to start of dragged scenes
+	cursor = m_document->textCursor();
+	cursor.beginEditBlock();
+	cursor.setPosition(position);
+
+	// Make sure inserted text begins with divider
+	if (!fragments.first().toPlainText().startsWith(f_scene_divider)) {
+		cursor.insertText(f_scene_divider + "\n");
+	}
+
+	// Insert text fragments; will indirectly create scenes
+	foreach (const QTextDocumentFragment& fragment, fragments) {
+		cursor.insertFragment(fragment);
+		if (!cursor.atBlockStart()) {
+			cursor.insertBlock();
+		}
+	}
+
+	// Make sure inserted text ends with divider
+	if (!cursor.atEnd() && !cursor.block().text().startsWith(f_scene_divider)) {
+		cursor.insertText(f_scene_divider + "\n");
+	}
+
+	// Delete original fragments; will indirectly delete scenes
+	int delta = 0;
+	for (int i = scenes.count() - 1; i >= 0; --i) {
+		selectScene(m_scenes.at(scenes.at(i)), cursor);
+		delta += cursor.position();
+		cursor.removeSelectedText();
+		delta -= cursor.position();
+	}
+
+	// End edit block by moving to start of dropped scenes
+	if (row > scenes.first()) {
+		position -= delta;
+	}
+	cursor.setPosition(position);
+	cursor.endEditBlock();
+	m_document->setTextCursor(cursor);
+}
+
+//-----------------------------------------------------------------------------
+
 void SceneModel::removeScene(BlockStats* stats)
 {
 	// Find scene containing stats
@@ -210,78 +294,8 @@ bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int 
 	QDataStream stream(&bytes, QIODevice::ReadOnly);
 	QList<int> scenes;
 	stream >> scenes;
-	if (scenes.isEmpty()) {
-		return true;
-	}
-	qSort(scenes);
 
-	// Don't allow scenes to be dropped on themselves
-	if ((scenes.first() == row) || ((scenes.first() + 1) == row)) {
-		return true;
-	}
-
-	// Copy text fragments of scenes
-	QTextCursor cursor = m_document->textCursor();
-	QList<QTextDocumentFragment> fragments;
-	foreach (int scene, scenes) {
-		selectScene(m_scenes.at(scene), cursor);
-		fragments += cursor.selection();
-	}
-
-	// Find location in document to insert text fragments
-	int position = 0;
-	if ((row < m_scenes.size()) && (row > -1)) {
-		const Scene& scene = m_scenes.at(row);
-		QTextBlock block = m_document->document()->findBlockByNumber(scene.block_number);
-		if (block.userData() == scene.stats) {
-			position = block.position();
-		} else {
-			block = m_document->document()->begin();
-			while (block.isValid()) {
-				position = block.position();
-				if (block.userData() == scene.stats) {
-					break;
-				}
-				block = block.next();
-			}
-		}
-	} else {
-		cursor.movePosition(QTextCursor::End);
-		if (cursor.block().text().length()) {
-			cursor.insertBlock();
-		}
-		position = cursor.position();
-	}
-
-	// Start edit block by moving to start of dragged scenes
-	cursor = m_document->textCursor();
-	cursor.beginEditBlock();
-	cursor.setPosition(position);
-
-	// Insert text fragments; will indirectly create scenes
-	foreach (const QTextDocumentFragment& fragment, fragments) {
-		cursor.insertFragment(fragment);
-		if (!cursor.atBlockStart()) {
-			cursor.insertBlock();
-		}
-	}
-
-	// Delete original fragments; will indirectly delete scenes
-	int delta = 0;
-	for (int i = scenes.count() - 1; i >= 0; --i) {
-		selectScene(m_scenes.at(scenes.at(i)), cursor);
-		delta += cursor.position();
-		cursor.removeSelectedText();
-		delta -= cursor.position();
-	}
-
-	// End edit block by moving to start of dropped scenes
-	if (row > scenes.first()) {
-		position -= delta;
-	}
-	cursor.setPosition(position);
-	cursor.endEditBlock();
-	m_document->setTextCursor(cursor);
+	moveScenes(scenes, row);
 
 	return true;
 }
@@ -512,7 +526,8 @@ void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
 	cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
 	block = cursor.block();
 	while (block.isValid()) {
-		if (block.userData() && static_cast<BlockStats*>(block.userData())->isScene()) {
+		if ((block.userData() && static_cast<BlockStats*>(block.userData())->isScene())
+				|| block.text().startsWith(f_scene_divider)) {
 			break;
 		}
 		block = block.next();

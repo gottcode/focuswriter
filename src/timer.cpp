@@ -19,6 +19,7 @@
 
 #include "timer.h"
 
+#include "alert.h"
 #include "alert_layer.h"
 #include "document.h"
 #include "deltas.h"
@@ -357,7 +358,7 @@ void Timer::timerFinished()
 		details << tr("<b>Characters:</b> %L1 / %L2").arg(m_character_count).arg(m_character_and_space_count);
 
 		remove();
-		m_documents->alerts()->addAlert(m_display_label->text(), details);
+		m_documents->alerts()->addAlert(new Alert(Alert::NoIcon, m_display_label->text(), details, true));
 	}
 }
 

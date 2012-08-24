@@ -33,6 +33,7 @@ class QLabel;
 class QLineEdit;
 class QPushButton;
 class QSpinBox;
+class QTextEdit;
 
 class ThemeDialog : public QDialog
 {
@@ -40,6 +41,7 @@ class ThemeDialog : public QDialog
 
 public:
 	ThemeDialog(Theme& theme, QWidget* parent = 0);
+	~ThemeDialog();
 
 	static void createPreview(const QString& name);
 
@@ -63,6 +65,8 @@ private:
 	QPushButton* m_ok;
 
 	QLabel* m_preview;
+	QLabel* m_preview_background;
+	QTextEdit* m_preview_text;
 
 	QComboBox* m_background_type;
 	ColorButton* m_background_color;

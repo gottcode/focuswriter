@@ -25,6 +25,8 @@
 #include <QFile>
 #include <QPalette>
 
+#include <climits>
+
 //-----------------------------------------------------------------------------
 
 QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter::Range& range)

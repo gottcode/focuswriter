@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,22 +30,39 @@ class Alert : public QWidget
 	Q_OBJECT
 
 public:
-	Alert(const QPixmap& pixmap, const QString& text, const QStringList& details, QWidget* parent);
+	enum Icon {
+		NoIcon = 0,
+		Information,
+		Warning,
+		Critical,
+		Question
+	};
+
+	Alert(QWidget* parent = 0);
+	Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent = 0);
+
+	bool underMouse() const;
 
 	void fadeIn();
-	void setText(const QPixmap& pixmap, const QString& text, const QStringList& details);
+	void setExpandable(bool expandable);
+	void setIcon(Icon icon);
+	void setIcon(const QPixmap& pixmap);
+	void setText(const QString& text, const QStringList& details);
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event);
 
 protected:
-	virtual void enterEvent(QEvent* event);
-	virtual void leaveEvent(QEvent* event);
-	virtual void paintEvent(QPaintEvent* event);
+	void enterEvent(QEvent* event);
+	void leaveEvent(QEvent* event);
+	void paintEvent(QPaintEvent* event);
 
 private slots:
 	void expanderToggled();
 	void fadeInFinished();
 	void fadeOut();
+
+private:
+	void init();
 
 private:
 	QToolButton* m_expander;
@@ -55,7 +72,13 @@ private:
 	QString m_long_text;
 	QTimeLine* m_fade_timer;
 	bool m_expanded;
+	bool m_always_expanded;
 	bool m_under_mouse;
 };
+
+inline bool Alert::underMouse() const
+{
+	return m_under_mouse;
+}
 
 #endif

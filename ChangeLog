@@ -1,4 +1,36 @@
+2012-08-24 Graeme Gott <graeme@gottcode.org>
+	* Add installing Voikko data files in Windows.
+	* Remove uninstalling dictionary files.
+
+2012-08-20 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Scene list was visually corrupted when footer was shown.
+	* FIXED: Could save over files open on other tabs.
+
+2012-08-19 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Switching themes still wasn't properly focusing text.
+	* FIXED: Did not stop watching files when they were closed.
+	* FIXED: Theme previews did not scale tiled or centered images.
+	* FIXED: Theme previews did not show line spacing.
+
+2012-08-16 Graeme Gott <graeme@gottcode.org>
+	* Stop distributing dictionaries on Windows.
+
+2012-08-15 Graeme Gott <graeme@gottcode.org>
+	* Base maximum width of alerts on pixel density.
+	* Close alert under mouse first.
+	* Move code for configuring alert into alert class.
+	* Use alerts for warnings when loading files.
+	* FIXED: Warned user twice about every malformed file.
+	* FIXED: Could not interact with dialogs during load.
+	* FIXED: Did not check spelling of pasted paragraphs.
+
+2012-08-14 Graeme Gott <graeme@gottcode.org>
+	* Stop faking drag-and-drop for moving scenes.
+	* FIXED: Dragging last scene deleted it.
+	* FIXED: Dragging top scene merged it with other scenes.
+
 2012-08-13 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Regression - Windows did not load SDL.
 	* Use built-in Voikko support for finding dictionaries.
 
 2012-08-12 Graeme Gott <graeme@gottcode.org>

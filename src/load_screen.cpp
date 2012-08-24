@@ -62,12 +62,19 @@ bool LoadScreen::eventFilter(QObject* watched, QEvent* event)
 	case QEvent::MouseButtonDblClick:
 	case QEvent::MouseButtonPress:
 	case QEvent::MouseButtonRelease:
+		if (!window()->isActiveWindow()) {
+			return QLabel::eventFilter(watched, event);
+		}
+		// fall through
+
 	case QEvent::Shortcut:
 	case QEvent::Wheel:
 		return true;
+
 	default:
-		return QLabel::eventFilter(watched, event);
+		break;
 	}
+	return QLabel::eventFilter(watched, event);
 }
 
 //-----------------------------------------------------------------------------

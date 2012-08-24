@@ -53,9 +53,19 @@ DocumentWatcher::~DocumentWatcher()
 
 //-----------------------------------------------------------------------------
 
+bool DocumentWatcher::isWatching(const QString& path) const
+{
+	return m_watcher->files().contains(QFileInfo(path).canonicalFilePath());
+}
+
+//-----------------------------------------------------------------------------
+
 void DocumentWatcher::addWatch(Document* document)
 {
-	QString path = document->filename();
+	QString path = QFileInfo(document->filename()).canonicalFilePath();
+	if (isWatching(path)) {
+		return;
+	}
 	m_paths.insert(path, document);
 	m_watcher->addPath(path);
 }
