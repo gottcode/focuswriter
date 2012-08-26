@@ -1,0 +1,61 @@
+From: "Barak A. Pearlmutter" <bap@debian.org>
+Date: Sun, 26 Aug 2012 11:50:19 +0200
+Subject: revert SDL load fix
+
+This reverts commit 3da303ed3a02fd53970a1db35f3eb267bbde4976,
+"FIXED: Regression - Windows did not load SDL."
+Said commit broke loading the SDL_mixer library on Debian testing
+thus breaking typewriter sounds---the key feature of focuswriter!
+---
+ ChangeLog         |    1 -
+ src/sdl/sound.cpp |   18 +++++++-----------
+ 2 files changed, 7 insertions(+), 12 deletions(-)
+
+diff --git a/ChangeLog b/ChangeLog
+index 9ccd00c..68c7a17 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -30,7 +30,6 @@
+ 	* FIXED: Dragging top scene merged it with other scenes.
+ 
+ 2012-08-13 Graeme Gott <graeme@gottcode.org>
+-	* FIXED: Regression - Windows did not load SDL.
+ 	* Use built-in Voikko support for finding dictionaries.
+ 
+ 2012-08-12 Graeme Gott <graeme@gottcode.org>
+diff --git a/src/sdl/sound.cpp b/src/sdl/sound.cpp
+index 7ec6589..c47a145 100644
+--- a/src/sdl/sound.cpp
++++ b/src/sdl/sound.cpp
+@@ -111,24 +111,20 @@ namespace
+ 	void loadSDL()
+ 	{
+ 		// Initialize SDL
+-		QLibrary sdl_lib("SDL2");
+ 		QLibrary mixer_lib("SDL2_mixer");
+-		if (!sdl_lib.load()) {
+-			sdl_lib.setFileName("SDL");
++		if (!mixer_lib.load()) {
+ 			mixer_lib.setFileName("SDL_mixer");
+ 		}
+-		if (!sdl_lib.load()) {
+-			sdl_lib.setFileNameAndVersion("SDL2-2.0", "0");
++		if (!mixer_lib.load()) {
+ 			mixer_lib.setFileNameAndVersion("SDL2_mixer-2.0", "0");
+ 		}
+-		if (!sdl_lib.load()) {
+-			sdl_lib.setFileNameAndVersion("SDL-1.2", "0");
++		if (!mixer_lib.load()) {
+ 			mixer_lib.setFileNameAndVersion("SDL_mixer-1.2", "0");
+ 		}
+-		sdl_Init = (func_SDL_Init) sdl_lib.resolve("SDL_Init");
+-		sdl_Quit = (func_SDL_Quit) sdl_lib.resolve("SDL_Quit");
+-		sdl_GetError = (func_SDL_GetError) sdl_lib.resolve("SDL_GetError");
+-		sdl_RWFromFile = (func_SDL_RWFromFile) sdl_lib.resolve("SDL_RWFromFile");
++		sdl_Init = (func_SDL_Init) mixer_lib.resolve("SDL_Init");
++		sdl_Quit = (func_SDL_Quit) mixer_lib.resolve("SDL_Quit");
++		sdl_GetError = (func_SDL_GetError) mixer_lib.resolve("SDL_GetError");
++		sdl_RWFromFile = (func_SDL_RWFromFile) mixer_lib.resolve("SDL_RWFromFile");
+ 		if ((sdl_Init == 0) || (sdl_Quit == 0) || (sdl_GetError == 0) || (sdl_RWFromFile == 0)) {
+ 			qWarning("Unable to load SDL");
+ 			return;
