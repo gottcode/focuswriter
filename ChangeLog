@@ -1,3 +1,6 @@
+2012-08-27 Graeme Gott <graeme@gottcode.org>
+	* Only add dictionaries in locally installed path.
+
 2012-08-26 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Regression - SDL_mixer was not loaded in Debian.
 

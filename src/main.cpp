@@ -45,7 +45,6 @@ int main(int argc, char** argv)
 
 	// Find application data dirs
 	QStringList datadirs;
-	QStringList dictdirs;
 #if defined(Q_OS_MAC)
 	QFileInfo portable(appdir + "/../../../Data");
 	datadirs.append(appdir + "/../Resources");
@@ -56,7 +55,6 @@ int main(int argc, char** argv)
 #else
 	QFileInfo portable(appdir + "/Data");
 	datadirs.append(appdir);
-	dictdirs.append(appdir + "/dictionaries");
 #endif
 
 	// Handle portability
@@ -162,8 +160,6 @@ int main(int argc, char** argv)
 		}
 	}
 	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
-	dictdirs.prepend(DictionaryManager::installedPath());
-	QDir::setSearchPaths("dict", dictdirs);
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
