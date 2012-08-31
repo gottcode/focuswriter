@@ -1,3 +1,10 @@
+focuswriter (1.3.90-2) unstable; urgency=low
+
+  * merge upstream proper sound fix
+  * remove corresponding quilt patch 0001-revert-SDL-load-fix.patch
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 31 Aug 2012 09:44:20 +0200
+
 focuswriter (1.3.90-1) unstable; urgency=low
 
   * New upstream release
