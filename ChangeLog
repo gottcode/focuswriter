@@ -1,3 +1,6 @@
+2012-08-26 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Regression - SDL_mixer was not loaded in Debian.
+
 2012-08-24 Graeme Gott <graeme@gottcode.org>
 	* Add installing Voikko data files in Windows.
 	* Remove uninstalling dictionary files.
