@@ -137,6 +137,8 @@ SceneList::SceneList(QWidget* parent) :
 	m_scenes->setModel(m_filter_model);
 	connect(m_scenes->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(sceneSelected(QModelIndex)));
 	m_scenes->show();
+	setFocusProxy(m_scenes);
+	setFocusPolicy(Qt::StrongFocus);
 
 	// Create filter widget
 	m_filter = new QLineEdit(this);
@@ -226,16 +228,14 @@ void SceneList::hideScenes()
 		m_document->text()->setFocus();
 	}
 
-	if (!rect().contains(mapFromGlobal(QCursor::pos()))) {
-		setMask(QRect(-1,-1,1,1));
-	}
+	hide();
 }
 
 //-----------------------------------------------------------------------------
 
 void SceneList::showScenes()
 {
-	clearMask();
+	show();
 
 	m_hide_button->show();
 	m_scenes->show();

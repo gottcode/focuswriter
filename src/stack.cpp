@@ -690,10 +690,9 @@ void Stack::setHeaderVisible(bool visible)
 void Stack::setScenesVisible(bool visible)
 {
 	if (!visible && !m_scenes->scenesVisible()) {
-		m_scenes->setMask(QRect(-1,-1,1,1));
-		update();
+		m_scenes->hide();
 	} else {
-		m_scenes->clearMask();
+		m_scenes->show();
 	}
 }
 
@@ -776,14 +775,19 @@ void Stack::updateBackground()
 void Stack::updateMask()
 {
 	if (m_header_visible || m_footer_visible) {
-		m_scenes->setUpdatesEnabled(false);
 		setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
 		setAttribute(Qt::WA_TransparentForMouseEvents, true);
 	} else {
 		clearMask();
 		setAttribute(Qt::WA_TransparentForMouseEvents, false);
 		raise();
-		m_scenes->setUpdatesEnabled(true);
+
+		if (m_scenes->isVisible()) {
+			QApplication::processEvents();
+			m_scenes->update();
+			m_scenes->clearFocus();
+			m_scenes->setFocus();
+		}
 	}
 }
 
