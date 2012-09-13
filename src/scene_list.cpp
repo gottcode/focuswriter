@@ -112,11 +112,13 @@ SceneList::SceneList(QWidget* parent) :
 	connect(m_hide_button, SIGNAL(clicked()), this, SLOT(hideScenes()));
 
 	// Create action for toggling scenes
-	action = new QAction(tr("Toggle Scene List"), this);
-	action->setShortcut(tr("Shift+F4"));
-	ActionManager::instance()->addAction("ToggleScenes", action);
-	connect(action, SIGNAL(changed()), this, SLOT(updateShortcuts()));
+	m_toggle_action = new QAction(tr("Toggle Scene List"), this);
+	m_toggle_action->setShortcut(tr("Shift+F4"));
+	connect(m_toggle_action, SIGNAL(changed()), this, SLOT(updateShortcuts()));
+	connect(m_toggle_action, SIGNAL(triggered()), this, SLOT(toggleScenes()));
+	ActionManager::instance()->addAction("ToggleScenes", m_toggle_action);
 	updateShortcuts();
+	parent->addAction(m_toggle_action);
 
 	// Create scene view
 	m_filter_model = new QSortFilterProxyModel(this);
@@ -376,12 +378,22 @@ void SceneList::setFilter(const QString& filter)
 
 //-----------------------------------------------------------------------------
 
+void SceneList::toggleScenes()
+{
+	if (scenesVisible()) {
+		hideScenes();
+	} else {
+		showScenes();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void SceneList::updateShortcuts()
 {
 	QKeySequence shortcut = ActionManager::instance()->action("ToggleScenes")->shortcut();
-	m_show_button->setShortcut(shortcut);
+	m_toggle_action->setShortcut(shortcut);
 	m_show_button->setToolTip(tr("Show scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
-	m_hide_button->setShortcut(shortcut);
 	m_hide_button->setToolTip(tr("Hide scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
 }
 
