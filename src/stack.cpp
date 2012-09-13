@@ -274,6 +274,7 @@ void Stack::setMargins(int footer, int header)
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
 	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
 	updateMask();
+	showHeader();
 }
 
 //-----------------------------------------------------------------------------
