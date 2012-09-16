@@ -1,3 +1,6 @@
+2012-09-16 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Insert key did not switch to overwrite mode.
+
 2012-09-13 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Regression - keyboard shortcut for scenes did not work.
 	* FIXED: Did not show scene list if mouse was over interface.
