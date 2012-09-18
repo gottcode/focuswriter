@@ -1,3 +1,6 @@
+2012-09-18 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not save to WebDAV.
+
 2012-09-16 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Insert key did not switch to overwrite mode.
 

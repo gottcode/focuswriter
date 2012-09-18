@@ -60,7 +60,7 @@ bool DocumentWriter::write()
 	Q_ASSERT(!m_filename.isEmpty());
 
 	bool saved = false;
-	QFile file(m_filename + ".tmp");
+	QFile file(m_filename);
 	if (m_type == "odt") {
 		if (file.open(QFile::WriteOnly)) {
 			QTextDocumentWriter writer(&file, "ODT");
@@ -88,7 +88,7 @@ bool DocumentWriter::write()
 
 	if (file.isOpen()) {
 #if defined(Q_OS_MAC)
-		saved &= (fcntl(file.handle(), F_FULLFSYNC, NULL) == 0);
+		saved &= (fsync(file.handle()) == 0);
 #elif defined(Q_OS_UNIX)
 		saved &= (fsync(file.handle()) == 0);
 #elif defined(Q_OS_WIN)
@@ -98,14 +98,6 @@ bool DocumentWriter::write()
 		file.close();
 	}
 
-	if (saved) {
-		if (QFile::exists(m_filename)) {
-			saved &= QFile::remove(m_filename);
-		}
-		if (saved) {
-			saved &= QFile::rename(m_filename + ".tmp", m_filename);
-		}
-	}
 	return saved;
 }
 
