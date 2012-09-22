@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ja" sourcelanguage="en">
+<TS version="2.0" language="zh_CN" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation>閉じる (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
         <source>Collapse</source>
-        <translation>セッション (&amp;S)</translation>
+        <translation>折叠</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation>詳細</translation>
+        <translation>展开</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation>警告を無視する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -40,83 +40,83 @@
         <location filename="../src/document.cpp" line="378"/>
         <location filename="../src/document.cpp" line="384"/>
         <source>Sorry</source>
-        <translation>エラー</translation>
+        <translation>Sorry</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="327"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; を保存できませんでした。</translation>
+        <translation>不能保存 &apos;%1&apos;。</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="340"/>
         <source>Save File As</source>
-        <translation>名前を付けて保存</translation>
+        <translation>保存文件为</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="347"/>
         <location filename="../src/document.cpp" line="378"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; を上書きすることができませんでした。</translation>
+        <translation>不能覆盖 &apos;%1&apos;。</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="371"/>
         <source>Rename File</source>
-        <translation>ファイル名の変更</translation>
+        <translation>重命名文件</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="384"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; の名前を変更できませんでした。</translation>
+        <translation>不能重命名 &apos;%1&apos;。</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="408"/>
         <source>Reload File</source>
-        <translation>ファイルを再読み込みする</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="409"/>
         <source>Reload the file %1 from disk?</source>
-        <translation>ファイル %1 を再読み込みしますか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="410"/>
         <source>All unsaved changes will be lost.</source>
-        <translation>保存されていない変更はすべて失われます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="412"/>
         <source>Reload</source>
-        <translation>再読み込み</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1155"/>
         <source>Plain Text (*.txt)</source>
-        <translation>テキスト文書 (*.txt)</translation>
+        <translation>纯文本 (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1214"/>
         <source>Question</source>
-        <translation>問い合わせ</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1215"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>プレーン・テキストとして保存した場合、すべての書式が失われます。よろしいですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1153"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation>OpenDocument 形式 (*.odt)</translation>
+        <translation>OpenDocument Text (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1154"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>リッチ テキスト形式 (*.rtf)</translation>
+        <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1156"/>
         <source>All Files (*)</source>
-        <translation>すべてのファイル (*.*)</translation>
+        <translation>所有文件 (*)</translation>
     </message>
 </context>
 <context>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="107"/>
         <source>File Changed</source>
-        <translation>ファイルが変更されています</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
         <source>The file %1 was changed by another program.</source>
-        <translation>他のプログラムによりファイル %1 は変更されています。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="109"/>
         <source>Do you want to reload the file?</source>
-        <translation>ファイルを読み込み直しますか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Reload</source>
-        <translation>再読み込み</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="116"/>
         <source>Ignore</source>
-        <translation>無視</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="127"/>
         <source>File Deleted</source>
-        <translation>ファイルが削除されました</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="128"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation>他のプログラムによりファイル %1 は削除されました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="129"/>
         <source>Do you want to save or close the file?</source>
-        <translation>ファイルを保存、または閉じますか？</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -167,86 +167,86 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Search for:</source>
-        <translation>検索する文字列:</translation>
+        <translation>搜索：</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Replace with:</source>
-        <translation>置換後の文字列:</translation>
+        <translation>替换为：</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="51"/>
         <source>Ignore case</source>
-        <translation>大文字と小文字を区別しない</translation>
+        <translation>忽略大小写</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Whole words only</source>
-        <translation>単語単位で探す</translation>
+        <translation>全字匹配</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation>正規表現</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
         <source>Search up</source>
-        <translation>前を検索</translation>
+        <translation>向上搜索</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="57"/>
         <source>Search down</source>
-        <translation>次を検索</translation>
+        <translation>向下搜索</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation>検索 (&amp;F)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation>置換 (&amp;R)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation>すべて置換 (&amp;A)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
         <source>Find</source>
-        <translation>検索</translation>
+        <translation>查找</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="142"/>
         <source>Replace</source>
-        <translation>置換</translation>
+        <translation>替换</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Replace %n instance(s)?</source>
-        <translation>
-            <numerusform>%n 件置換しますか？</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Question</source>
-        <translation>確認</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Sorry</source>
-        <translation>エラー</translation>
+        <translation>Sorry</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Phrase not found.</source>
-        <translation>見つかりませんでした。</translation>
+        <translation>没找到词组。</translation>
     </message>
 </context>
 <context>
@@ -254,17 +254,17 @@
     <message>
         <location filename="../src/highlighter.cpp" line="51"/>
         <source>Add</source>
-        <translation>追加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="52"/>
         <source>Check Spelling...</source>
-        <translation>スペルチェック...</translation>
+        <translation>检查拼写...</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="124"/>
         <source>(No suggestions found)</source>
-        <translation>(修正候補は見つかりませんでした)</translation>
+        <translation>（找不到建议）</translation>
     </message>
 </context>
 <context>
@@ -272,12 +272,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Open Image</source>
-        <translation>画像の選択</translation>
+        <translation>打开图像</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Images(%1)</source>
-        <translation>画像 (%1)</translation>
+        <translation>图像(%1)</translation>
     </message>
 </context>
 <context>
@@ -285,12 +285,12 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="50"/>
         <source>Select application language:</source>
-        <translation>言語の選択:</translation>
+        <translation>选择程序语言：</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;システムの言語&gt;</translation>
+        <translation>&lt;System Language&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
@@ -300,7 +300,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>言語の変更を反映させるためにアプリケーションを再起動してください。</translation>
+        <translation>要使语言的变化生效，请重新启动该应用程序。</translation>
     </message>
 </context>
 <context>
@@ -308,7 +308,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation>設定</translation>
+        <translation>偏好设置</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
@@ -318,145 +318,145 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Statistics</source>
-        <translation>統計</translation>
+        <translation>统计</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Toolbar</source>
-        <translation>ツール バー</translation>
+        <translation>工具栏</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Spell Checking</source>
-        <translation>スペルチェック</translation>
+        <translation>拼写检查</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="406"/>
         <source>Select Dictionary</source>
-        <translation>辞書の選択</translation>
+        <translation>选择词典</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <location filename="../src/preferences_dialog.cpp" line="541"/>
         <source>Sorry</source>
-        <translation>エラー</translation>
+        <translation>Sorry</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <source>Unable to open archive.</source>
-        <translation>アーカイブを開けませんでした。</translation>
+        <translation>不能打开存档。</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="428"/>
         <source>Unable to read archive metadata.</source>
-        <translation>アーカイブのメタデータを読み込めませんでした。</translation>
+        <translation>无法读取存档元数据。</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="470"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>このアーカイブには有効な辞書が含まれていません。</translation>
+        <translation>存档不包含可用的词典。</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="496"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; を開けませんでした。</translation>
+        <translation>不能打开文件 &apos;%1&apos;。</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="507"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; を閉じれませんでした。</translation>
+        <translation>不能关闭文件 &apos;%1&apos;。</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="243"/>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>Question</source>
-        <translation>確認</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation>ショートカット一覧</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>ショートカットがいくつかバッティングしています。続行してもよろしいですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>&quot;%1&quot; という名前の辞書は既にあります。置き換えても良いですか？</translation>
+        <translation>词典 &quot;%1&quot; 已经存在。您要替换它吗？</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
         <source>Daily Goal</source>
-        <translation>一日の目標</translation>
+        <translation>每日目标</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>None</source>
-        <translation>なし</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="680"/>
         <source>Minutes:</source>
-        <translation>分:</translation>
+        <translation>分钟：</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="692"/>
         <location filename="../src/preferences_dialog.cpp" line="819"/>
         <source>Words:</source>
-        <translation>語:</translation>
+        <translation>字数：</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="710"/>
         <source>Editing</source>
-        <translation>編集</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="712"/>
         <source>Always vertically center</source>
-        <translation>カーソル位置を常に縦方向の中央にする</translation>
+        <translation>始终垂直居中</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="713"/>
         <source>Block insertion cursor</source>
-        <translation>挿入モードでもブロック形のカーソルを使う</translation>
+        <translation>块插入光标</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="714"/>
         <source>Smooth fonts</source>
-        <translation>フォントをなめらかにする</translation>
+        <translation>平滑字体</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Typewriter sounds</source>
-        <translation>タイプライター音を再生する</translation>
+        <translation>打字机声音</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="717"/>
         <source>Smart quotes:</source>
-        <translation>スマート引用符:</translation>
+        <translation>智能引号：</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="724"/>
         <source>Double</source>
-        <translation>二重</translation>
+        <translation>双引号</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Single</source>
-        <translation>一重</translation>
+        <translation>单引号</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation>シーン一覧</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation>ディバイダー:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
@@ -466,12 +466,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="758"/>
         <source>Automatically save changes</source>
-        <translation>変更を自動的に保存する</translation>
+        <translation>自动保存更改</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="759"/>
         <source>Remember cursor position</source>
-        <translation>カーソル位置を記憶する</translation>
+        <translation>记住光标位置</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="783"/>
@@ -481,12 +481,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="785"/>
         <source>Word count</source>
-        <translation>単語数</translation>
+        <translation>字数</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="786"/>
         <source>Page count</source>
-        <translation>ページ数</translation>
+        <translation>页数</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="787"/>
@@ -496,138 +496,138 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="788"/>
         <source>Character count</source>
-        <translation>文字数</translation>
+        <translation>字符数</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="797"/>
         <source>Page Size</source>
-        <translation>ページのサイズ</translation>
+        <translation>页面大小</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="799"/>
         <source>Characters:</source>
-        <translation>文字</translation>
+        <translation>字符：</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="809"/>
         <source>Paragraphs:</source>
-        <translation>段落</translation>
+        <translation>段落：</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="835"/>
         <source>Word Count Algorithm</source>
-        <translation>単語カウント・アルゴリズム</translation>
+        <translation>字数统计规则</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="837"/>
         <source>Detect word boundaries</source>
-        <translation>単語の境界を認識する</translation>
+        <translation>探测单词边界</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Divide character count by six</source>
-        <translation>文字数を 6 で割る</translation>
+        <translation>字符数除以6</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="943"/>
         <source>Style</source>
-        <translation>スタイル</translation>
+        <translation>样式</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Icons Only</source>
-        <translation>アイコンのみ</translation>
+        <translation>仅图标</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Text Only</source>
-        <translation>文字のみ</translation>
+        <translation>仅文本</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Text Alongside Icons</source>
-        <translation>アイコンの横に文字</translation>
+        <translation>文本在图标旁</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="949"/>
         <source>Text Under Icons</source>
-        <translation>アイコンの下に文字</translation>
+        <translation>文本在图标下</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="953"/>
         <source>Text Position:</source>
-        <translation>文字の位置:</translation>
+        <translation>文本位置：</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="956"/>
         <source>Actions</source>
-        <translation>アクション</translation>
+        <translation>动作</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="972"/>
         <source>Move Up</source>
-        <translation>上へ移動</translation>
+        <translation>上移</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Move Down</source>
-        <translation>下へ移動</translation>
+        <translation>下移</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="976"/>
         <source>Add Separator</source>
-        <translation>セパレーターを追加</translation>
+        <translation>添加分隔符</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation>コマンド</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation>ショートカット</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation>アクション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
         <source>Check spelling as you type</source>
-        <translation>タイプするごとにチェックする</translation>
+        <translation>输入时检查拼写</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="864"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>大文字を無視する</translation>
+        <translation>忽略大写单词</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="865"/>
         <source>Ignore words with numbers</source>
-        <translation>数字が含まれる単語を無視する</translation>
+        <translation>忽略带数字的单词</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="878"/>
         <source>Language</source>
-        <translation>言語</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="882"/>
         <location filename="../src/preferences_dialog.cpp" line="903"/>
         <source>Add</source>
-        <translation>追加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="915"/>
         <source>Remove</source>
-        <translation>削除</translation>
+        <translation>移除</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Personal Dictionary</source>
-        <translation>ユーザー辞書</translation>
+        <translation>个人词典</translation>
     </message>
 </context>
 <context>
@@ -636,22 +636,22 @@
         <location filename="../src/rtf/reader.cpp" line="225"/>
         <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
-        <translation>サポートしていないリッチ テキスト形式です。</translation>
+        <translation>不支持的RTF文件。</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
         <source>Unable to open archive.</source>
-        <translation>アーカイブを開けませんでした。</translation>
+        <translation>不能打开存档。</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; を開けませんでした。</translation>
+        <translation>不能打开文件 &apos;%1&apos;。</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; を閉じれませんでした。</translation>
+        <translation>不能关闭文件 &apos;%1&apos;。</translation>
     </message>
 </context>
 <context>
@@ -659,52 +659,52 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Shift+Down</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation>シーンをひとつ上に移動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Shift+Up</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation>シーン・リストの表示の切り替え</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
         <source>Shift+F4</source>
-        <translation>Shift+F4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="396"/>
         <source>Show scene list (%1)</source>
-        <translation>シーン・リストの表示 (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="397"/>
         <source>Hide scene list (%1)</source>
-        <translation>シーン・リストの非表示 (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="148"/>
         <source>Filter</source>
-        <translation>絞込み</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation>シーンをひとつ下に移動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="156"/>
         <source>Resize scene list</source>
-        <translation>シーン・リストのリサイズ</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -718,7 +718,7 @@
         <location filename="../src/session_manager.cpp" line="380"/>
         <location filename="../src/session_manager.cpp" line="383"/>
         <source>Default</source>
-        <translation>デフォルト</translation>
+        <translation>默认</translation>
     </message>
 </context>
 <context>
@@ -726,83 +726,83 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>セッションの管理</translation>
+        <translation>管理会话</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>セッション (&amp;S)</translation>
+        <translation>会话(&amp;E)</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>新規</translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
         <source>Rename</source>
-        <translation>名前の変更</translation>
+        <translation>重命名</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>複製</translation>
+        <translation>克隆</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
         <source>Delete</source>
-        <translation>削除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>切り替え</translation>
+        <translation>切换到</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
         <source>New Session</source>
-        <translation>新しいセッション</translation>
+        <translation>新会话</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>セッションの複製</translation>
+        <translation>克隆会话</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
         <source>Rename Session</source>
-        <translation>セッション名の変更</translation>
+        <translation>重命名会话</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Question</source>
-        <translation>確認</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>選択中のセッションを削除しますか？</translation>
+        <translation>删除所选会话？</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="355"/>
         <location filename="../src/session_manager.cpp" line="357"/>
         <source>Session name:</source>
-        <translation>セッション名:</translation>
+        <translation>会话名称：</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="366"/>
         <source>Sorry</source>
-        <translation>エラー</translation>
+        <translation>Sorry</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="366"/>
         <source>The requested session name is already in use.</source>
-        <translation>指定したセッション名は既にあります。</translation>
+        <translation>请求的会话名称已在使用中。</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="406"/>
         <source>&amp;New...</source>
-        <translation>新規 (&amp;N)...</translation>
+        <translation>新建(&amp;N)...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="406"/>
@@ -812,7 +812,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="407"/>
         <source>&amp;Manage...</source>
-        <translation>管理 (&amp;M)...</translation>
+        <translation>管理(&amp;M)...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="407"/>
@@ -825,18 +825,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation>消去</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation>デフォルトに戻す</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1047"/>
         <location filename="../src/symbols_dialog.cpp" line="203"/>
         <source>Shortcut:</source>
-        <translation>ショートカット:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -844,12 +844,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="113"/>
         <source>Replacing quotation marks...</source>
-        <translation>引用符の置換...</translation>
+        <translation>更换引号...</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="114"/>
         <source>Please Wait</source>
-        <translation>お待ちください</translation>
+        <translation>请等待</translation>
     </message>
 </context>
 <context>
@@ -857,62 +857,62 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="130"/>
         <source>Check Spelling</source>
-        <translation>スペルチェック</translation>
+        <translation>检查拼写</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation>追加 (&amp;A)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation>無視 (&amp;I)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation>すべて無視 (&amp;G)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation>変更 (&amp;C)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation>すべて変更 (&amp;H)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
         <source>Not in dictionary:</source>
-        <translation>辞書にないもの:</translation>
+        <translation>不在词典中：</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="175"/>
         <source>Change to:</source>
-        <translation>変更後:</translation>
+        <translation>更改为：</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>スペルチェック中です...</translation>
+        <translation>检查拼写...</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>キャンセル</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>お待ちください</translation>
+        <translation>请等待</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="260"/>
         <source>Spell check complete.</source>
-        <translation>スペルチェックが終わりました。</translation>
+        <translation>拼写检查完成。</translation>
     </message>
 </context>
 <context>
@@ -920,32 +920,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation>シンボル一覧</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation>最近使ったシンボル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="126"/>
         <source>All symbols</source>
-        <translation>すべてのシンボル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="179"/>
         <source>Details</source>
-        <translation>詳細</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Name:</source>
-        <translation>名前:</translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="215"/>
         <source>Insert</source>
-        <translation>挿入</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -953,12 +953,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Blocks</source>
-        <translation>ブロック</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Scripts</source>
-        <translation>スクリプト</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -966,7 +966,7 @@
     <message>
         <location filename="../src/theme.cpp" line="104"/>
         <source>Untitled %1</source>
-        <translation>無題 %1</translation>
+        <translation>无标题 %1</translation>
     </message>
 </context>
 <context>
@@ -974,12 +974,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="50"/>
         <source>Modify Theme</source>
-        <translation>テーマの編集</translation>
+        <translation>修改主题</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="60"/>
         <source>Name:</source>
-        <translation>名前:</translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="68"/>
@@ -989,56 +989,56 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>No Image</source>
-        <translation>イメージなし</translation>
+        <translation>无图像</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Tiled</source>
-        <translation>並べて表示</translation>
+        <translation>平铺</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Centered</source>
-        <translation>中央に表示</translation>
+        <translation>居中</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Stretched</source>
-        <translation>画面に合わせて伸縮</translation>
+        <translation>拉伸</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Scaled</source>
-        <translation>ページ縦幅に合わせる</translation>
+        <translation>比例</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Zoomed</source>
-        <translation>ページ横幅に合わせる</translation>
+        <translation>缩放</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="83"/>
         <source>Remove</source>
-        <translation>削除</translation>
+        <translation>移除</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="95"/>
         <source>Type:</source>
-        <translation>画像の配置:</translation>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="96"/>
         <location filename="../src/theme_dialog.cpp" line="161"/>
         <location filename="../src/theme_dialog.cpp" line="200"/>
         <source>Color:</source>
-        <translation>背景色:</translation>
+        <translation>颜色：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="97"/>
         <source>Image:</source>
-        <translation>画像:</translation>
+        <translation>图像：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="102"/>
@@ -1048,7 +1048,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
         <source>Opacity</source>
-        <translation>透明度</translation>
+        <translation>不透明度</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
@@ -1056,17 +1056,17 @@
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <location filename="../src/theme_dialog.cpp" line="142"/>
         <source> pixels</source>
-        <translation> ピクセル</translation>
+        <translation>像素</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Left</source>
-        <translation>左寄せ</translation>
+        <translation>左</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Right</source>
-        <translation>右寄せ</translation>
+        <translation>右</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="125"/>
@@ -1076,92 +1076,92 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Size:</source>
-        <translation>大きさ:</translation>
+        <translation>大小：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="163"/>
         <source>Rounding:</source>
-        <translation>角の丸さ:</translation>
+        <translation>圆化：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Margin:</source>
-        <translation>外側の余白:</translation>
+        <translation>页边距：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="165"/>
         <source>Padding:</source>
-        <translation>内側の余白:</translation>
+        <translation>填充：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="170"/>
         <source>Text</source>
-        <translation>文字</translation>
+        <translation>文本</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Font:</source>
-        <translation>フォント:</translation>
+        <translation>字体：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="202"/>
         <source>Misspelled:</source>
-        <translation>スペルミス:</translation>
+        <translation>拼写错误：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation>余白</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation>行間のスペース</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation>シングル</translation>
+        <translation>单引号</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation>1.5倍</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation>2倍</translation>
+        <translation>双引号</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation>プロポーショナル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation>段落間のマージン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation>一行目のインデント</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Pixels Above:</source>
-        <translation>上の余白:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation>下の余白:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Windows でコンピューターの世界が広がります。</translation>
+        <translation>The quick brown fox jumps over the lazy dog</translation>
     </message>
 </context>
 <context>
@@ -1169,79 +1169,79 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="46"/>
         <source>Themes</source>
-        <translation>テーマ</translation>
+        <translation>主题</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="72"/>
         <source>Add</source>
-        <translation>追加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="76"/>
         <source>Modify</source>
-        <translation>編集</translation>
+        <translation>修改</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="80"/>
         <source>Remove</source>
-        <translation>削除</translation>
+        <translation>移除</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="84"/>
         <source>Import</source>
-        <translation>インポート</translation>
+        <translation>导入</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="88"/>
         <source>Export</source>
-        <translation>エクスポート</translation>
+        <translation>导出</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Close</source>
-        <translation>閉じる</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Question</source>
-        <translation>確認</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Remove selected theme?</source>
-        <translation>選択中のテーマを削除しますか？</translation>
+        <translation>移除所选主题？</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Import Theme</source>
-        <translation>テーマのインポート</translation>
+        <translation>导入主题</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Themes (*.fwtz *.theme)</source>
-        <translation>テーマ (*.fwtz *.theme)</translation>
+        <translation>主题 (*.fwtz *.theme)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="260"/>
         <source>Themes (*.fwtz)</source>
-        <translation>テーマ (*.fwtz)</translation>
+        <translation>主题 (*.fwtz)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="205"/>
         <location filename="../src/theme_manager.cpp" line="207"/>
         <source>Sorry</source>
-        <translation>エラー</translation>
+        <translation>Sorry</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="205"/>
         <location filename="../src/theme_manager.cpp" line="207"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>その名前のテーマは既にあります。他の名前を指定してください。</translation>
+        <translation>已经存在同名的一个主题。请输入新的名称：</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="260"/>
         <source>Export Theme</source>
-        <translation>テーマのエクスポート</translation>
+        <translation>导出主题</translation>
     </message>
 </context>
 <context>
@@ -1254,52 +1254,52 @@
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation>確認</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation>タイマーを削除しますか？</translation>
+        <translation>删除定时器？</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;単語数:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;单词数：&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;ページ数:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;页数：&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;段落数:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;段落数：&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="358"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;文字数:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;字符数：&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation>時間で指定</translation>
+        <translation>设定延迟</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation>時刻で指定</translation>
+        <translation>设定时间</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
         <source>Delay:</source>
-        <translation>時間:</translation>
+        <translation>延迟：</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="409"/>
         <source>Time:</source>
-        <translation>時刻:</translation>
+        <translation>时间：</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="418"/>
@@ -1309,27 +1309,27 @@
     <message>
         <location filename="../src/timer.cpp" line="431"/>
         <source>Alarm</source>
-        <translation>アラーム</translation>
+        <translation>闹铃</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="444"/>
         <source>Type:</source>
-        <translation>種類:</translation>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation>メモ:</translation>
+        <translation>备忘录：</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation>編集</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation>削除</translation>
+        <translation>删除</translation>
     </message>
 </context>
 <context>
@@ -1342,7 +1342,7 @@
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>タイマーはありません。</translation>
+        <translation>无定时器运行</translation>
     </message>
 </context>
 <context>
@@ -1350,27 +1350,27 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>タイマー</translation>
+        <translation>定时器</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>新規作成</translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation>履歴</translation>
+        <translation>最近的</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>確認</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>タイマーの編集を中止しますか？</translation>
+        <translation>取消编辑定时器吗？</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1388,7 +1388,7 @@
     <message>
         <location filename="../src/rtf/tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation>ファイルの最後に到達しました。</translation>
+        <translation>Unexpectedly reached end of file.</translation>
     </message>
 </context>
 <context>
@@ -1396,145 +1396,145 @@
     <message>
         <location filename="../src/window.cpp" line="284"/>
         <source>Loading themes</source>
-        <translation>テーマを読み込んでいます</translation>
+        <translation>载入主题</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1155"/>
         <source>Loading sounds</source>
-        <translation>音声を読み込んでいます</translation>
+        <translation>载入声音</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="290"/>
         <location filename="../src/window.cpp" line="1095"/>
         <source>Untitled</source>
-        <translation>無題</translation>
+        <translation>无标题</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="689"/>
         <source>Open File</source>
-        <translation>開く</translation>
+        <translation>打开文件</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="880"/>
         <source>About FocusWriter</source>
-        <translation>FocusWriter について</translation>
+        <translation>关于 FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="883"/>
         <source>FocusWriter</source>
-        <translation>FocusWriter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="884"/>
         <source>A simple fullscreen word processor</source>
-        <translation>A simple fullscreen word processor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="885"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="886"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="887"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="888"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="159"/>
         <location filename="../src/window.cpp" line="943"/>
         <source>Characters: %L1 / %L2</source>
-        <translation>文字数: %L1 / %L2</translation>
+        <translation>字符数：%L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="157"/>
         <location filename="../src/window.cpp" line="944"/>
         <source>Pages: %L1</source>
-        <translation>ページ数: %L1</translation>
+        <translation>页数：%L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="158"/>
         <location filename="../src/window.cpp" line="945"/>
         <source>Paragraphs: %L1</source>
-        <translation>段落数: %L1</translation>
+        <translation>段落数：%L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="156"/>
         <location filename="../src/window.cpp" line="946"/>
         <source>Words: %L1</source>
-        <translation>単語数: %L1</translation>
+        <translation>单词数：%L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="160"/>
         <location filename="../src/window.cpp" line="1008"/>
         <source>%1% of daily goal</source>
-        <translation>一日の目標の %1%</translation>
+        <translation>每日目标的 %1%</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="425"/>
         <location filename="../src/window.cpp" line="1048"/>
         <source>Opening %1</source>
-        <translation>%1 を開いています</translation>
+        <translation>正在打开 %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1137"/>
         <source>Question</source>
-        <translation>確認</translation>
+        <translation>询问</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1137"/>
         <source>Save changes?</source>
-        <translation>変更を保存しますか？</translation>
+        <translation>保存更改？</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="348"/>
         <location filename="../src/window.cpp" line="1251"/>
         <source>(Untitled %1)</source>
-        <translation>(無題 %1)</translation>
+        <translation>(无标题 %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="186"/>
         <source>Switch to Next Document</source>
-        <translation>次のドキュメントへ切り替える</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="192"/>
         <source>Switch to Previous Document</source>
-        <translation>前のドキュメントへ切り替える</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="198"/>
         <source>Switch to First Document</source>
-        <translation>最初のドキュメントへ切り替える</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="204"/>
         <source>Switch to Last Document</source>
-        <translation>最後のドキュメントへ切り替える</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="212"/>
         <source>Switch to Document %1</source>
-        <translation>%1 へ切り替える</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="279"/>
         <source>Loading settings</source>
-        <translation>設定を読み込んでいます</translation>
+        <translation>栽入设置</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="298"/>
         <source>Emergency cache is not writable.</source>
-        <translation>緊急用のキャッシュに書き込むことができませんでした。</translation>
+        <translation>紧急缓存是不可写的。</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="354"/>
@@ -1545,117 +1545,117 @@
     <message>
         <location filename="../src/window.cpp" line="355"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter は正常に終了できませんでした。</translation>
+        <translation>FocusWriter 没有完全关闭。</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="356"/>
         <source>Restore from the emergency cache?</source>
-        <translation>緊急用のキャッシュから復活させますか？</translation>
+        <translation>从紧急缓存中还原？</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="491"/>
         <source>Some files could not be opened.</source>
-        <translation>いくつかのファイルが開けませんでした。</translation>
+        <translation>有些文件无法打开。</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="494"/>
         <source>Some files were opened Read-Only.</source>
-        <translation>いくつかをファイルを読み取り専用で開きました。</translation>
+        <translation>一些文件以只读方式打开。</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="689"/>
         <source>Text Files (%1);;All Files (*)</source>
-        <translation>テキスト文書 (%1);;すべてのファイル (*)</translation>
+        <translation>文本文件 (%1);;所有文件 (*)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1063"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; はキャッシュより新しいようです。</translation>
+        <translation>&apos;%1&apos; 比缓存的副本新。</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1064"/>
         <source>Overwrite newer file?</source>
-        <translation>新しいファイルを上書きしますか？</translation>
+        <translation>覆盖较新的文件？</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1162"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation>タイプライター音を読み込めませんでした。</translation>
+        <translation>无法加载打字机声音。</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1163"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation>SDL_mixer がインストールされていることを確認してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1254"/>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (読み込み専用)</translation>
+        <translation>%1 (只读)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1296"/>
         <source>&amp;File</source>
-        <translation>ファイル (&amp;F)</translation>
+        <translation>文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1297"/>
         <source>&amp;New</source>
-        <translation>新規作成 (&amp;N)</translation>
+        <translation>新建(&amp;N)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1298"/>
         <source>&amp;Open...</source>
-        <translation>開く (&amp;O)...</translation>
+        <translation>打开(&amp;O)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1299"/>
         <source>Reloa&amp;d</source>
-        <translation>再読み込み (&amp;D)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1301"/>
         <source>&amp;Save</source>
-        <translation>保存 (&amp;S)...</translation>
+        <translation>保存(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1303"/>
         <source>Save &amp;As...</source>
-        <translation>名前を付けて保存 (&amp;A)...</translation>
+        <translation>另存为(&amp;A)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1304"/>
         <source>&amp;Rename...</source>
-        <translation>名前の変更 (&amp;R)...</translation>
+        <translation>重命名(&amp;R)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1306"/>
         <source>Save A&amp;ll</source>
-        <translation>すべて保存 (&amp;L)</translation>
+        <translation>全部保存(&amp;L)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Manage Sessions</source>
-        <translation>セッションの管理</translation>
+        <translation>管理会话</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
         <source>New Session</source>
-        <translation>新規セッション</translation>
+        <translation>新会话</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1314"/>
         <source>&amp;Print...</source>
-        <translation>印刷 (&amp;P)...</translation>
+        <translation>打印(&amp;P)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1316"/>
         <source>&amp;Close</source>
-        <translation>閉じる (&amp;C)</translation>
+        <translation>关闭(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Quit</source>
-        <translation>終了 (&amp;Q)</translation>
+        <translation>退出(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
@@ -1665,82 +1665,82 @@
     <message>
         <location filename="../src/window.cpp" line="1321"/>
         <source>&amp;Edit</source>
-        <translation>編集 (&amp;E)</translation>
+        <translation>编辑(&amp;E)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1322"/>
         <source>&amp;Undo</source>
-        <translation>元に戻す (&amp;U)</translation>
+        <translation>撤销(&amp;U)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1325"/>
         <source>&amp;Redo</source>
-        <translation>やり直し (&amp;R)</translation>
+        <translation>重做(&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1329"/>
         <source>Cu&amp;t</source>
-        <translation>切り取り (&amp;T)</translation>
+        <translation>剪切(&amp;T)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1332"/>
         <source>&amp;Copy</source>
-        <translation>コピー (&amp;C)</translation>
+        <translation>复制(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1335"/>
         <source>&amp;Paste</source>
-        <translation>貼り付け (&amp;P)</translation>
+        <translation>粘贴(&amp;P)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1336"/>
         <source>Paste &amp;Unformatted</source>
-        <translation>書式を無視して貼り付け</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1336"/>
         <source>Ctrl+Shift+V</source>
-        <translation>Ctrl+Shift+V</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1338"/>
         <source>Select &amp;All</source>
-        <translation>すべて選択 (&amp;A)</translation>
+        <translation>全选(&amp;A)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1339"/>
         <source>Select &amp;Scene</source>
-        <translation>シーンの選択 (&amp;S)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1339"/>
         <source>Ctrl+Shift+A</source>
-        <translation>Ctrl+Shift+A</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Fo&amp;rmat</source>
-        <translation>書式 (&amp;R)</translation>
+        <translation>格式(&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>&amp;Bold</source>
-        <translation>太字 (&amp;B)</translation>
+        <translation>粗体(&amp;B)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1346"/>
         <source>&amp;Italic</source>
-        <translation>斜体 (&amp;I)</translation>
+        <translation>斜体(&amp;I)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>&amp;Underline</source>
-        <translation>下線 (&amp;U)</translation>
+        <translation>下划线(&amp;U)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
         <source>Stri&amp;kethrough</source>
-        <translation>取り消し線 (&amp;K)</translation>
+        <translation>删除线(&amp;K)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
@@ -1750,7 +1750,7 @@
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>Sup&amp;erscript</source>
-        <translation>下付き文字 (&amp;E)</translation>
+        <translation>上标(&amp;E)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
@@ -1760,7 +1760,7 @@
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>&amp;Subscript</source>
-        <translation>上付き文字 (&amp;S)</translation>
+        <translation>下标(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1354"/>
@@ -1770,7 +1770,7 @@
     <message>
         <location filename="../src/window.cpp" line="1358"/>
         <source>Align &amp;Left</source>
-        <translation>左揃え (&amp;L)</translation>
+        <translation>左对齐(&amp;L)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1358"/>
@@ -1780,7 +1780,7 @@
     <message>
         <location filename="../src/window.cpp" line="1360"/>
         <source>Align &amp;Center</source>
-        <translation>中央揃え (&amp;C)</translation>
+        <translation>居中(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1360"/>
@@ -1790,7 +1790,7 @@
     <message>
         <location filename="../src/window.cpp" line="1362"/>
         <source>Align &amp;Right</source>
-        <translation>右揃え (&amp;R)</translation>
+        <translation>右对齐(&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1362"/>
@@ -1800,7 +1800,7 @@
     <message>
         <location filename="../src/window.cpp" line="1364"/>
         <source>Align &amp;Justify</source>
-        <translation>均等割付 (&amp;J)</translation>
+        <translation>两端对齐(&amp;J)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1364"/>
@@ -1810,7 +1810,7 @@
     <message>
         <location filename="../src/window.cpp" line="1374"/>
         <source>&amp;Decrease Indent</source>
-        <translation>インデントを減らす (&amp;D)</translation>
+        <translation>减少缩进(&amp;D)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1374"/>
@@ -1820,7 +1820,7 @@
     <message>
         <location filename="../src/window.cpp" line="1375"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>インデントを増やす (&amp;N)</translation>
+        <translation>增加缩进(&amp;N)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1375"/>
@@ -1830,37 +1830,37 @@
     <message>
         <location filename="../src/window.cpp" line="1378"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>左から右へ (&amp;F)</translation>
+        <translation>左至右块(&amp;F)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>右から左へ (&amp;G)</translation>
+        <translation>右至左块 (&amp;G)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1388"/>
         <source>&amp;Tools</source>
-        <translation>ツール (&amp;T)</translation>
+        <translation>工具(&amp;T)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1389"/>
         <source>&amp;Find...</source>
-        <translation>検索 (&amp;F)...</translation>
+        <translation>查找(&amp;F)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1390"/>
         <source>Find &amp;Next</source>
-        <translation>次を検索 (&amp;N)</translation>
+        <translation>查找下一个(&amp;N)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1393"/>
         <source>Find Pre&amp;vious</source>
-        <translation>前を検索 (&amp;V)</translation>
+        <translation>查找上一个(&amp;V)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>&amp;Replace...</source>
-        <translation>置換 (&amp;R)...</translation>
+        <translation>替换(&amp;R)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
@@ -1870,22 +1870,22 @@
     <message>
         <location filename="../src/window.cpp" line="1398"/>
         <source>Smart &amp;Quotes</source>
-        <translation>スマート引用符 (&amp;Q)</translation>
+        <translation>智能引号(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1399"/>
         <source>Update &amp;Document</source>
-        <translation>文書全体に適用 (&amp;D)</translation>
+        <translation>更新文档(&amp;D)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1402"/>
         <source>Update &amp;Selection</source>
-        <translation>選択範囲に適用 (&amp;S)</translation>
+        <translation>更新所选(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1406"/>
         <source>&amp;Spelling...</source>
-        <translation>スペルチェック (&amp;S)...</translation>
+        <translation>拼写(&amp;S)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1406"/>
@@ -1895,37 +1895,37 @@
     <message>
         <location filename="../src/window.cpp" line="1407"/>
         <source>&amp;Timers...</source>
-        <translation>タイマー (&amp;T)...</translation>
+        <translation>定时器(&amp;T)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1408"/>
         <source>S&amp;ymbols...</source>
-        <translation>シンボル (&amp;Y)...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1411"/>
         <source>&amp;Settings</source>
-        <translation>設定 (&amp;S)</translation>
+        <translation>设置(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
         <source>Show &amp;Toolbar</source>
-        <translation>ツール バーを表示 (&amp;T)</translation>
+        <translation>显示工具栏(&amp;T)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1417"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>メニュー項目のアイコンを表示 (&amp;M)</translation>
+        <translation>显示菜单图标(&amp;M)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>F&amp;ocused Text</source>
-        <translation>フォーカスされた文字 (&amp;O)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1425"/>
         <source>&amp;Fullscreen</source>
-        <translation>全画面表示 (&amp;F)</translation>
+        <translation>全屏(&amp;F)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1425"/>
@@ -1940,7 +1940,7 @@
     <message>
         <location filename="../src/window.cpp" line="1431"/>
         <source>M&amp;inimize</source>
-        <translation>最小化 (&amp;I)</translation>
+        <translation>最小化(&amp;I)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
@@ -1950,77 +1950,77 @@
     <message>
         <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Themes...</source>
-        <translation>テーマ (&amp;T)...</translation>
+        <translation>主题(&amp;T)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1436"/>
         <source>&amp;Preferences...</source>
-        <translation>設定 (&amp;P)...</translation>
+        <translation>偏好设置(&amp;P)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1442"/>
         <source>Focus Off</source>
-        <translation>フォーカスの無効</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1444"/>
         <source>Focus One Line</source>
-        <translation>一行フォーカス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1446"/>
         <source>Focus Three Lines</source>
-        <translation>三行フォーカス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
         <source>&amp;Paragraph</source>
-        <translation>段落 (&amp;P)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1448"/>
         <source>Focus Paragraph</source>
-        <translation>段落フォーカス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1461"/>
         <source>&amp;Help</source>
-        <translation>ヘルプ (&amp;H)</translation>
+        <translation>帮助(&amp;H)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1435"/>
         <source>Application &amp;Language...</source>
-        <translation>Application &amp;Language...</translation>
+        <translation>程序语言(&amp;L)...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="424"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>いくつかのファイルがサポートされていない形式のため開くことができませんでした。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>&amp;Off</source>
-        <translation>オフ (&amp;O)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1443"/>
         <source>One &amp;Line</source>
-        <translation>一行 (&amp;L)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1445"/>
         <source>&amp;Three Lines</source>
-        <translation>三行 (&amp;T)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1462"/>
         <source>&amp;About</source>
-        <translation>FocusWriter について (&amp;A)</translation>
+        <translation>关于&amp;About</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1464"/>
         <source>About &amp;Qt</source>
-        <translation>Qt について (&amp;Q)</translation>
+        <translation>关于 &amp;Qt</translation>
     </message>
 </context>
 </TS>

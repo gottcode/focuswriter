@@ -189,7 +189,8 @@ TRANSLATIONS = translations/focuswriter_ca.ts \
 	translations/focuswriter_ru.ts \
 	translations/focuswriter_sk.ts \
 	translations/focuswriter_sv.ts \
-	translations/focuswriter_uk.ts
+	translations/focuswriter_uk.ts \
+	translations/focuswriter_zh_CN.ts
 
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
 macx {
