@@ -57,12 +57,14 @@ private slots:
 	void sceneSelected(const QModelIndex& index);
 	void selectCurrentScene();
 	void setFilter(const QString& filter);
+	void toggleScenes();
 	void updateShortcuts();
 
 private:
 	void moveSelectedScenes(int movement);
 
 private:
+	QAction* m_toggle_action;
 	QToolButton* m_show_button;
 	QListView* m_scenes;
 	QLineEdit* m_filter;

@@ -96,6 +96,7 @@ namespace
 		virtual bool canInsertFromMimeData(const QMimeData* source) const;
 		virtual QMimeData* createMimeDataFromSelection() const;
 		virtual void insertFromMimeData(const QMimeData* source);
+		virtual void keyPressEvent(QKeyEvent* event);
 
 	private:
 		QByteArray mimeToRtf(const QMimeData* source) const;
@@ -137,6 +138,15 @@ namespace
 			buffer.close();
 		} else {
 			QTextEdit::insertFromMimeData(source);
+		}
+	}
+
+	void TextEdit::keyPressEvent(QKeyEvent* event)
+	{
+		if (event->key() == Qt::Key_Insert) {
+			setOverwriteMode(!overwriteMode());
+		} else {
+			QTextEdit::keyPressEvent(event);
 		}
 	}
 

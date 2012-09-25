@@ -1234,6 +1234,7 @@ void Window::hideInterface()
 
 void Window::updateMargin()
 {
+	QApplication::processEvents();
 	int header = centralWidget()->mapToParent(QPoint(0,0)).y();
 	int footer = m_footer->sizeHint().height();
 	m_documents->setMargins(footer, header);

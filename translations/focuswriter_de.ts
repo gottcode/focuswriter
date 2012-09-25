@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließen (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarm Beenden</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="317"/>
-        <location filename="../src/document.cpp" line="337"/>
-        <location filename="../src/document.cpp" line="368"/>
-        <location filename="../src/document.cpp" line="374"/>
+        <location filename="../src/document.cpp" line="327"/>
+        <location filename="../src/document.cpp" line="347"/>
+        <location filename="../src/document.cpp" line="378"/>
+        <location filename="../src/document.cpp" line="384"/>
         <source>Sorry</source>
         <translation>Entschuldigung</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="317"/>
+        <location filename="../src/document.cpp" line="327"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kann nicht gespeichert werden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="330"/>
+        <location filename="../src/document.cpp" line="340"/>
         <source>Save File As</source>
         <translation>Datei speichern unter</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="337"/>
-        <location filename="../src/document.cpp" line="368"/>
+        <location filename="../src/document.cpp" line="347"/>
+        <location filename="../src/document.cpp" line="378"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kann nicht überschrieben werden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="361"/>
+        <location filename="../src/document.cpp" line="371"/>
         <source>Rename File</source>
         <translation>Datei umbenennen</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="374"/>
+        <location filename="../src/document.cpp" line="384"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kann nicht umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="398"/>
+        <location filename="../src/document.cpp" line="408"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei neu laden</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="399"/>
+        <location filename="../src/document.cpp" line="409"/>
         <source>Reload the file %1 from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei %1 von der Festplatte neu laden?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="400"/>
+        <location filename="../src/document.cpp" line="410"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle ungespeicherten Änderungen werden verloren gehen.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="402"/>
+        <location filename="../src/document.cpp" line="412"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1145"/>
+        <location filename="../src/document.cpp" line="1155"/>
         <source>Plain Text (*.txt)</source>
         <translation>nur Text (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1204"/>
+        <location filename="../src/document.cpp" line="1214"/>
         <source>Question</source>
-        <translation type="unfinished">Frage</translation>
+        <translation>Frage</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1205"/>
+        <location filename="../src/document.cpp" line="1215"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Durch das Soeichern als einfacher Text werden alle Formatierungen entfernt. Formatierungen entfernen?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1143"/>
+        <location filename="../src/document.cpp" line="1153"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument Text (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1144"/>
+        <location filename="../src/document.cpp" line="1154"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text(*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1146"/>
+        <location filename="../src/document.cpp" line="1156"/>
         <source>All Files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="107"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei geändert</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu laden</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="116"/>
@@ -387,6 +387,10 @@
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
         <translation>Das Wörterbuch %1 existiert bereits. Möchten Sie es ersetzen?</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation type="obsolete">Aktuelles Wörterbuch entfernen?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
@@ -683,17 +687,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="383"/>
+        <location filename="../src/scene_list.cpp" line="396"/>
         <source>Show scene list (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="385"/>
+        <location filename="../src/scene_list.cpp" line="397"/>
         <source>Hide scene list (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="144"/>
+        <location filename="../src/scene_list.cpp" line="148"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -703,7 +707,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="152"/>
+        <location filename="../src/scene_list.cpp" line="156"/>
         <source>Resize scene list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -711,7 +715,7 @@
 <context>
     <name>Session</name>
     <message>
-        <location filename="../src/main.cpp" line="172"/>
+        <location filename="../src/main.cpp" line="168"/>
         <location filename="../src/session.cpp" line="35"/>
         <location filename="../src/session.cpp" line="42"/>
         <location filename="../src/session_manager.cpp" line="147"/>
@@ -941,7 +945,7 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Name:</source>
-        <translation type="unfinished">Name:</translation>
+        <translation>Name:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="215"/>
@@ -1481,7 +1485,7 @@
         <translation>%1% des Tagesziels</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="425"/>
         <location filename="../src/window.cpp" line="1048"/>
         <source>Opening %1</source>
         <translation>Datei %1 wird geöffnet</translation>
@@ -1498,7 +1502,7 @@
     </message>
     <message>
         <location filename="../src/window.cpp" line="348"/>
-        <location filename="../src/window.cpp" line="1250"/>
+        <location filename="../src/window.cpp" line="1251"/>
         <source>(Untitled %1)</source>
         <translation>(Unbenannt %1)</translation>
     </message>
@@ -1589,407 +1593,407 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1253"/>
+        <location filename="../src/window.cpp" line="1254"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Schreibgeschützt)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1295"/>
+        <location filename="../src/window.cpp" line="1296"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1296"/>
+        <location filename="../src/window.cpp" line="1297"/>
         <source>&amp;New</source>
         <translation>&amp;Neu</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1297"/>
+        <location filename="../src/window.cpp" line="1298"/>
         <source>&amp;Open...</source>
         <translation>&amp;Öffnen...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1298"/>
+        <location filename="../src/window.cpp" line="1299"/>
         <source>Reloa&amp;d</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1300"/>
+        <location filename="../src/window.cpp" line="1301"/>
         <source>&amp;Save</source>
         <translation>&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1302"/>
+        <location filename="../src/window.cpp" line="1303"/>
         <source>Save &amp;As...</source>
         <translation>Speichern &amp;unter...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1303"/>
+        <location filename="../src/window.cpp" line="1304"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Umbenennen...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1305"/>
+        <location filename="../src/window.cpp" line="1306"/>
         <source>Save A&amp;ll</source>
         <translation>&amp;Alles speichern</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1308"/>
+        <location filename="../src/window.cpp" line="1309"/>
         <source>Manage Sessions</source>
         <translation>Sitzungen verwalten</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1310"/>
+        <location filename="../src/window.cpp" line="1311"/>
         <source>New Session</source>
         <translation>Neue Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1313"/>
+        <location filename="../src/window.cpp" line="1314"/>
         <source>&amp;Print...</source>
         <translation>&amp;Drucken...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1315"/>
+        <location filename="../src/window.cpp" line="1316"/>
         <source>&amp;Close</source>
         <translation>&amp;Schließen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1316"/>
+        <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1316"/>
+        <location filename="../src/window.cpp" line="1317"/>
         <source>Ctrl+Q</source>
         <translation>Strg+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1320"/>
+        <location filename="../src/window.cpp" line="1321"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1322"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1325"/>
         <source>&amp;Redo</source>
         <translation>&amp;Wiederholen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1329"/>
         <source>Cu&amp;t</source>
         <translation>A&amp;usschneiden</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1332"/>
         <source>&amp;Copy</source>
         <translation>K&amp;opieren</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1334"/>
+        <location filename="../src/window.cpp" line="1335"/>
         <source>&amp;Paste</source>
         <translation>Einf&amp;ügen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>Paste &amp;Unformatted</source>
         <translation>&amp;Rohtext einfügen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>Ctrl+Shift+V</source>
         <translation>Strg+Shift+V</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1338"/>
         <source>Select &amp;All</source>
         <translation>Alles Ausw&amp;ählen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1338"/>
+        <location filename="../src/window.cpp" line="1339"/>
         <source>Select &amp;Scene</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1338"/>
+        <location filename="../src/window.cpp" line="1339"/>
         <source>Ctrl+Shift+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmatieren</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>&amp;Bold</source>
         <translation>&amp;Fett</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1345"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>&amp;Italic</source>
         <translation>&amp;Kursiv</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1348"/>
         <source>&amp;Underline</source>
         <translation>&amp;Unterstrichen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1349"/>
+        <location filename="../src/window.cpp" line="1350"/>
         <source>Stri&amp;kethrough</source>
         <translation>Durch&amp;gestrichen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1349"/>
+        <location filename="../src/window.cpp" line="1350"/>
         <source>Ctrl+K</source>
         <translation>Strg+G</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1351"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Sup&amp;erscript</source>
         <translation>&amp;Hochgestellt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1351"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Ctrl+^</source>
         <translation>Strg+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1353"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>&amp;Subscript</source>
         <translation>&amp;Tiefgestellt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1353"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>Ctrl+_</source>
         <translation>Strg+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1357"/>
+        <location filename="../src/window.cpp" line="1358"/>
         <source>Align &amp;Left</source>
         <translation>&amp;Linksbündig</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1357"/>
+        <location filename="../src/window.cpp" line="1358"/>
         <source>Ctrl+{</source>
         <translation>Strg+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1359"/>
+        <location filename="../src/window.cpp" line="1360"/>
         <source>Align &amp;Center</source>
         <translation>&amp;Zentrieren</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1359"/>
+        <location filename="../src/window.cpp" line="1360"/>
         <source>Ctrl+|</source>
         <translation>Strg+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1361"/>
+        <location filename="../src/window.cpp" line="1362"/>
         <source>Align &amp;Right</source>
         <translation>&amp;Rechtsbündig</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1361"/>
+        <location filename="../src/window.cpp" line="1362"/>
         <source>Ctrl+}</source>
         <translation>Strg+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1363"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>Align &amp;Justify</source>
         <translation>&amp;Blocksatz</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1363"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>Ctrl+J</source>
         <translation>Strg+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1373"/>
+        <location filename="../src/window.cpp" line="1374"/>
         <source>&amp;Decrease Indent</source>
         <translation>Zeileneinzug &amp;verringern</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1373"/>
+        <location filename="../src/window.cpp" line="1374"/>
         <source>Ctrl+&lt;</source>
         <translation>Strg+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1374"/>
+        <location filename="../src/window.cpp" line="1375"/>
         <source>I&amp;ncrease Indent</source>
         <translation>&amp;Zeile einrücken</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1374"/>
+        <location filename="../src/window.cpp" line="1375"/>
         <source>Ctrl+&gt;</source>
         <translation>Strg+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1377"/>
+        <location filename="../src/window.cpp" line="1378"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>Block &amp;linksbündig ausrichten</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1379"/>
+        <location filename="../src/window.cpp" line="1380"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Block &amp;rechtbündig ausrichten</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1387"/>
+        <location filename="../src/window.cpp" line="1388"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1388"/>
+        <location filename="../src/window.cpp" line="1389"/>
         <source>&amp;Find...</source>
         <translation>&amp;Suchen...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1389"/>
+        <location filename="../src/window.cpp" line="1390"/>
         <source>Find &amp;Next</source>
         <translation>&amp;Weitersuchen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1392"/>
+        <location filename="../src/window.cpp" line="1393"/>
         <source>Find Pre&amp;vious</source>
         <translation>&amp;Rückwärts suchen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1395"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Ersetzen...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1395"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>Ctrl+R</source>
         <translation>Strg+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1397"/>
+        <location filename="../src/window.cpp" line="1398"/>
         <source>Smart &amp;Quotes</source>
         <translation>&amp;Anführungszeichen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1398"/>
+        <location filename="../src/window.cpp" line="1399"/>
         <source>Update &amp;Document</source>
         <translation>&amp;Dokument aktualisieren</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1401"/>
+        <location filename="../src/window.cpp" line="1402"/>
         <source>Update &amp;Selection</source>
         <translation>Aus&amp;wahl aktualisieren</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1405"/>
+        <location filename="../src/window.cpp" line="1406"/>
         <source>&amp;Spelling...</source>
         <translation>&amp;Rechtschreibung...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1405"/>
+        <location filename="../src/window.cpp" line="1406"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1406"/>
+        <location filename="../src/window.cpp" line="1407"/>
         <source>&amp;Timers...</source>
         <translation>&amp;Wecker...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1407"/>
+        <location filename="../src/window.cpp" line="1408"/>
         <source>S&amp;ymbols...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1410"/>
+        <location filename="../src/window.cpp" line="1411"/>
         <source>&amp;Settings</source>
         <translation>&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1411"/>
+        <location filename="../src/window.cpp" line="1412"/>
         <source>Show &amp;Toolbar</source>
         <translation>&amp;Symbolleiste zeigen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1416"/>
+        <location filename="../src/window.cpp" line="1417"/>
         <source>Show &amp;Menu Icons</source>
         <translation>&amp;Menu Icons anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1422"/>
+        <location filename="../src/window.cpp" line="1423"/>
         <source>F&amp;ocused Text</source>
         <translation>&amp;Hervorgehobener Text</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1425"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Vollbild</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1425"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1426"/>
+        <location filename="../src/window.cpp" line="1427"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1430"/>
+        <location filename="../src/window.cpp" line="1431"/>
         <source>M&amp;inimize</source>
         <translation>M&amp;inimieren</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1430"/>
+        <location filename="../src/window.cpp" line="1431"/>
         <source>Ctrl+M</source>
         <translation>Strg+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1432"/>
+        <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Designs...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1435"/>
+        <location filename="../src/window.cpp" line="1436"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Voreinstellungen...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1441"/>
+        <location filename="../src/window.cpp" line="1442"/>
         <source>Focus Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1443"/>
+        <location filename="../src/window.cpp" line="1444"/>
         <source>Focus One Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1445"/>
+        <location filename="../src/window.cpp" line="1446"/>
         <source>Focus Three Lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1446"/>
+        <location filename="../src/window.cpp" line="1447"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;Absatz</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1447"/>
+        <location filename="../src/window.cpp" line="1448"/>
         <source>Focus Paragraph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1460"/>
+        <location filename="../src/window.cpp" line="1461"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1434"/>
+        <location filename="../src/window.cpp" line="1435"/>
         <source>Application &amp;Language...</source>
         <translation>&amp;Sprache...</translation>
     </message>
@@ -1999,27 +2003,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1440"/>
+        <location filename="../src/window.cpp" line="1441"/>
         <source>&amp;Off</source>
         <translation>&amp;Aus</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1442"/>
+        <location filename="../src/window.cpp" line="1443"/>
         <source>One &amp;Line</source>
         <translation>Eine Zeile</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1444"/>
+        <location filename="../src/window.cpp" line="1445"/>
         <source>&amp;Three Lines</source>
         <translation>Drei Zeilen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1461"/>
+        <location filename="../src/window.cpp" line="1462"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1463"/>
+        <location filename="../src/window.cpp" line="1464"/>
         <source>About &amp;Qt</source>
         <translation>Über &amp;Qt</translation>
     </message>

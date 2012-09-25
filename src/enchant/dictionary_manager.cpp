@@ -27,10 +27,6 @@
 #include <QFile>
 #include <QTextStream>
 
-#ifdef Q_OS_WIN
-#include <Windows.h>
-#endif
-
 //-----------------------------------------------------------------------------
 
 namespace
@@ -163,29 +159,15 @@ void DictionaryManager::setPersonal(const QStringList& words)
 DictionaryManager::DictionaryManager()
 {
 #ifdef Q_OS_WIN
-	// Add path for Voikko dictionary
+	// Add path for locally installed Voikko dictionary
 	qputenv("VOIKKO_DICTIONARY_PATH", QFile::encodeName(m_path));
 #endif
 
 	// Create dictionary broker
 	m_broker = enchant_broker_init();
 
-	// Add paths for Hunspell dictionaries
-	QByteArray paths;
-#ifdef Q_OS_WIN
-	char sep = ';';
-#else
-	char sep = ':';
-#endif
-	QStringList locations = QDir::searchPaths("dict");
-	int count = locations.count();
-	for (int i = 0; i < count; ++i) {
-		paths += QFile::encodeName(QDir::toNativeSeparators(locations.at(i)));
-		if (i < (count - 1)) {
-			paths += sep;
-		}
-	}
-	enchant_broker_set_param(m_broker, "enchant.myspell.dictionary.path", paths.constData());
+	// Add path for locally installed Hunspell dictionaries
+	enchant_broker_set_param(m_broker, "enchant.myspell.dictionary.path", QFile::encodeName(QDir::toNativeSeparators(m_path)));
 
 	// Load personal dictionary
 	QFile file(m_path + "/personal");

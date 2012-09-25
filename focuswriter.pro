@@ -17,11 +17,8 @@ MOC_DIR = build
 OBJECTS_DIR = build
 RCC_DIR = build
 
-VERSION = $$system(git rev-parse --short HEAD)
-isEmpty(VERSION) {
-	VERSION = 0
-}
-DEFINES += VERSIONSTR=\\\"git.$${VERSION}\\\"
+VERSION = 1.4.0
+DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 unix: !macx {
 	TARGET = focuswriter
@@ -189,7 +186,8 @@ TRANSLATIONS = translations/focuswriter_ca.ts \
 	translations/focuswriter_ru.ts \
 	translations/focuswriter_sk.ts \
 	translations/focuswriter_sv.ts \
-	translations/focuswriter_uk.ts
+	translations/focuswriter_uk.ts \
+	translations/focuswriter_zh_CN.ts
 
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
 macx {
