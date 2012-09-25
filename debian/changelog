@@ -1,3 +1,9 @@
+focuswriter (1.4.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 25 Sep 2012 15:05:55 +0100
+
 focuswriter (1.3.90-2) unstable; urgency=low
 
   * merge upstream proper sound fix
