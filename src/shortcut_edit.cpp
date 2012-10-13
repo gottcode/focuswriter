@@ -94,9 +94,9 @@ bool ShortcutEdit::eventFilter(QObject* watched, QEvent* event)
 		}
 
 		// Add modifiers; only allow shift if it is not required for key of shortcut
-		if ((modifiers & Qt::ShiftModifier) && !key_event->text().isEmpty()) {
-			QChar c = key_event->text().at(0);
-			if (c.isPrint() && !c.isLetterOrNumber() && !c.isSpace()) {
+		if (modifiers & Qt::ShiftModifier) {
+			QChar c = !key_event->text().isEmpty() ? key_event->text().at(0) : QChar();
+			if (!c.isPrint() || c.isLetterOrNumber() || c.isSpace()) {
 				key |= Qt::SHIFT;
 			}
 		}

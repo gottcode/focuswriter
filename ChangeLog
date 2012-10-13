@@ -1,3 +1,6 @@
+2012-10-12 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Cannot add new keyboard shortcuts with the Shift key.
+
 2012-09-22 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.4.0.
 
