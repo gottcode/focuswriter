@@ -1,3 +1,6 @@
+2012-10-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Cleared keyboard shortcuts not saved.
+
 2012-10-12 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Cannot add new keyboard shortcuts with the Shift key.
 
