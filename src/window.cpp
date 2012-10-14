@@ -1271,6 +1271,7 @@ void Window::updateWriteState(int index)
 
 	bool writable = !document->isReadOnly();
 	m_actions["Paste"]->setEnabled(writable);
+	m_actions["PasteUnformatted"]->setEnabled(writable);
 	m_actions["Replace"]->setEnabled(writable);
 	m_actions["CheckSpelling"]->setEnabled(writable);
 	if (writable) {
