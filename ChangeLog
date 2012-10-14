@@ -1,4 +1,5 @@
 2012-10-14 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could check spelling of Read-Only files.
 	* FIXED: Cleared keyboard shortcuts not saved.
 
 2012-10-12 Graeme Gott <graeme@gottcode.org>

@@ -82,7 +82,7 @@ void Highlighter::setMisspelledColor(const QColor& color)
 
 bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 {
-	if (watched != m_text->viewport() || event->type() != QEvent::ContextMenu || !m_enabled) {
+	if (watched != m_text->viewport() || event->type() != QEvent::ContextMenu || !m_enabled || m_text->isReadOnly()) {
 		return QSyntaxHighlighter::eventFilter(watched, event);
 	} else {
 		// Check spelling of text block under mouse
@@ -144,7 +144,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 void Highlighter::highlightBlock(const QString& text)
 {
 	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
-	if (!m_enabled || !stats || (stats->spellingStatus() == BlockStats::Unchecked)) {
+	if (!m_enabled || m_text->isReadOnly() || !stats || (stats->spellingStatus() == BlockStats::Unchecked)) {
 		return;
 	}
 	if (stats->spellingStatus() == BlockStats::CheckSpelling) {
@@ -172,7 +172,7 @@ void Highlighter::highlightBlock(const QString& text)
 
 void Highlighter::updateSpelling()
 {
-	if (!m_enabled) {
+	if (!m_enabled || m_text->isReadOnly()) {
 		return;
 	}
 
