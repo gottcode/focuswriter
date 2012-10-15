@@ -595,6 +595,7 @@ void Stack::showSymbols()
 	if (!m_symbols_dialog) {
 		window()->setCursor(Qt::WaitCursor);
 		m_symbols_dialog = new SymbolsDialog(this);
+		m_symbols_dialog->setInsertEnabled(!m_current_document->isReadOnly());
 		m_symbols_dialog->setPreviewFont(m_current_document->text()->font());
 		connect(m_symbols_dialog, SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 		window()->unsetCursor();
