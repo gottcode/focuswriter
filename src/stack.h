@@ -44,6 +44,7 @@ public:
 
 	AlertLayer* alerts() const;
 	LoadScreen* loadScreen() const;
+	SymbolsDialog* symbols() const;
 
 	int count() const;
 	Document* currentDocument() const;
@@ -155,6 +156,10 @@ inline AlertLayer* Stack::alerts() const {
 
 inline LoadScreen* Stack::loadScreen() const {
 	return m_load_screen;
+}
+
+inline SymbolsDialog* Stack::symbols() const {
+	return m_symbols_dialog;
 }
 
 inline int Stack::count() const {
