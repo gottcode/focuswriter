@@ -147,6 +147,18 @@ namespace
 			setOverwriteMode(!overwriteMode());
 		} else {
 			QTextEdit::keyPressEvent(event);
+
+			// Play sound effect
+			int key = event->key();
+			if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
+					!(event->modifiers().testFlag(Qt::AltModifier)) &&
+					!(event->modifiers().testFlag(Qt::MetaModifier))) {
+				if ((key == Qt::Key_Return) || (key == Qt::Key_Enter)) {
+					Sound::play(Qt::Key_Enter);
+				} else if ((key < Qt::Key_Escape) || (key == Qt::Key_unknown)) {
+					Sound::play(Qt::Key_Any);
+				}
+			}
 		}
 	}
 
@@ -1039,17 +1051,8 @@ void Document::updateWordCount(int position, int removed, int added)
 		}
 	}
 
-	// Play a sound on keypress
-	int block_count = m_text->document()->blockCount();
-	if (added) {
-		if ((m_cached_block_count < block_count) && (m_cached_block_count > 0)) {
-			Sound::play(Qt::Key_Enter);
-		} else {
-			Sound::play(Qt::Key_Any);
-		}
-	}
-
 	// Clear cached stats if amount of blocks or current block has changed
+	int block_count = m_text->document()->blockCount();
 	int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
 		m_cached_stats.clear();
