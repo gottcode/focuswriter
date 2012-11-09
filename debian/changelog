@@ -1,3 +1,16 @@
+focuswriter (1.4.0.2012.10.15-1) unstable; urgency=low
+
+  * merge upstream bug fixes on branch release-1.4
+    - FIXED: Could drag scenes in Read-Only files.
+    - FIXED: Could insert symbols in Read-Only files.
+    - FIXED: Could paste unformatted in Read-Only files.
+    - FIXED: Could check spelling of Read-Only files.
+    - FIXED: Cleared keyboard shortcuts not saved.
+    - FIXED: Cannot add new keyboard shortcuts with the Shift key.
+  * bump debian standards version, no changes needed
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 09 Nov 2012 13:38:35 +0000
+
 focuswriter (1.4.0-1) unstable; urgency=low
 
   * New upstream release
