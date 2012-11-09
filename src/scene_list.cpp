@@ -199,6 +199,7 @@ void SceneList::setDocument(Document* document)
 
 	m_document = document;
 	if (m_document && scenesVisible()) {
+		m_scenes->setDragDropMode(!m_document->text()->isReadOnly() ? QAbstractItemView::InternalMove : QAbstractItemView::NoDragDrop);
 		m_document->sceneModel()->setUpdatesBlocked(false);
 		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
 		selectCurrentScene();
@@ -250,6 +251,7 @@ void SceneList::showScenes()
 	setMaximumWidth(m_width);
 
 	if (m_document) {
+		m_scenes->setDragDropMode(!m_document->text()->isReadOnly() ? QAbstractItemView::InternalMove : QAbstractItemView::NoDragDrop);
 		m_document->sceneModel()->setUpdatesBlocked(false);
 		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
 		selectCurrentScene();

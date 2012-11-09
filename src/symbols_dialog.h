@@ -43,6 +43,7 @@ class SymbolsDialog : public QDialog
 public:
 	SymbolsDialog(QWidget* parent = 0);
 
+	void setInsertEnabled(bool enabled);
 	void setPreviewFont(const QFont& font);
 
 signals:
@@ -83,6 +84,8 @@ private:
 	QLabel* m_symbol_code;
 
 	QTableWidget* m_recent;
+
+	QPushButton* m_insert_button;
 };
 
 #endif

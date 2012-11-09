@@ -109,12 +109,14 @@ QKeySequence ActionManager::shortcut(quint32 unicode)
 
 void ActionManager::addAction(const QString& name, QAction* action)
 {
+	bool set = m_actions.contains(name);
 	Action& act = m_actions[name];
 	act.action = action;
 	act.default_shortcut = action->shortcut();
-	if (!act.shortcut.isEmpty()) {
-		action->setShortcut(act.shortcut);
+	if (!set) {
+		act.shortcut = act.default_shortcut;
 	}
+	action->setShortcut(act.shortcut);
 }
 
 //-----------------------------------------------------------------------------
@@ -160,7 +162,7 @@ void ActionManager::setShortcuts(const QHash<QString, QKeySequence>& shortcuts)
 	while (j.hasNext()) {
 		const QString& name = j.next().key();
 		const Action& act = j.value();
-		if (!act.shortcut.isEmpty() && (act.default_shortcut != act.shortcut)) {
+		if (act.default_shortcut != act.shortcut) {
 			settings.setValue(name, act.shortcut);
 		} else {
 			settings.remove(name);

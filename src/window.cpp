@@ -34,6 +34,7 @@
 #include "smart_quotes.h"
 #include "sound.h"
 #include "stack.h"
+#include "symbols_dialog.h"
 #include "theme.h"
 #include "theme_manager.h"
 #include "timer_display.h"
@@ -1271,6 +1272,7 @@ void Window::updateWriteState(int index)
 
 	bool writable = !document->isReadOnly();
 	m_actions["Paste"]->setEnabled(writable);
+	m_actions["PasteUnformatted"]->setEnabled(writable);
 	m_actions["Replace"]->setEnabled(writable);
 	m_actions["CheckSpelling"]->setEnabled(writable);
 	if (writable) {
@@ -1281,6 +1283,10 @@ void Window::updateWriteState(int index)
 	}
 	m_replace_document_quotes->setEnabled(writable);
 	m_replace_selection_quotes->setEnabled(writable);
+
+	if (m_documents->symbols()) {
+		m_documents->symbols()->setInsertEnabled(writable);
+	}
 
 	foreach (QAction* action, m_format_actions) {
 		action->setEnabled(writable);

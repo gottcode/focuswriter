@@ -212,9 +212,9 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
 	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
 
-	QPushButton* insert_button = buttons->addButton(tr("Insert"), QDialogButtonBox::AcceptRole);
-	insert_button->setAutoDefault(true);
-	insert_button->setDefault(true);
+	m_insert_button = buttons->addButton(tr("Insert"), QDialogButtonBox::AcceptRole);
+	m_insert_button->setAutoDefault(true);
+	m_insert_button->setDefault(true);
 
 	// Lay out dialog
 	QVBoxLayout* layout = new QVBoxLayout(this);
@@ -253,6 +253,23 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 
 	// Select most recently selected symbol
 	selectSymbol(settings.value("SymbolsDialog/Current", ' ').toUInt());
+}
+
+//-----------------------------------------------------------------------------
+
+void SymbolsDialog::setInsertEnabled(bool enabled)
+{
+	if (m_insert_button->isEnabled() == enabled) {
+		return;
+	}
+
+	m_insert_button->setEnabled(enabled);
+
+	if (enabled) {
+		connect(m_view, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(accept()));
+	} else {
+		disconnect(m_view, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(accept()));
+	}
 }
 
 //-----------------------------------------------------------------------------
