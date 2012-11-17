@@ -1,3 +1,10 @@
+focuswriter (1.4.0.2012.11.04-1) unstable; urgency=low
+
+  * merge upstream bug fixes on branch release-1.4
+    - FIXED: Played sounds constantly in Ubuntu 10.04.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sat, 17 Nov 2012 18:17:59 +0000
+
 focuswriter (1.4.0.2012.10.15-1) unstable; urgency=low
 
   * merge upstream bug fixes on branch release-1.4
