@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fi" sourcelanguage="en">
+<TS version="2.0" language="ro" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Închide (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
         <source>Collapse</source>
-        <translation>Pienennä</translation>
+        <translation>Restrînge</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation>Laajenna</translation>
+        <translation>Extinde</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Revocare alertă</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -40,83 +40,83 @@
         <location filename="../src/document.cpp" line="390"/>
         <location filename="../src/document.cpp" line="396"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>Scuze</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="339"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>%1 - tallentaminen epäonnistui.</translation>
+        <translation>Nu se poate salva &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="352"/>
         <source>Save File As</source>
-        <translation>Tallenna nimellä</translation>
+        <translation>Salvează fişierul ca</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="359"/>
         <location filename="../src/document.cpp" line="390"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Ei voitu korvata &quot;%1&quot;.</translation>
+        <translation>Nu se poate suprascrie&apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="383"/>
         <source>Rename File</source>
-        <translation>Uudelleennimeä</translation>
+        <translation>Redenumire fişier</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="396"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Ei voitu nimetä uudelleen &quot;%1&quot;.</translation>
+        <translation>Nu se poate redenumi &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="420"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>Reîncarcă fişier</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="421"/>
         <source>Reload the file %1 from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Reîncarcă fişierul %1?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate modificările nesalvate vor fi pierdute</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="424"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Reîncarcă</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1158"/>
         <source>Plain Text (*.txt)</source>
-        <translation>Teksti (*.txt)</translation>
+        <translation>Text simplu (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1217"/>
         <source>Question</source>
-        <translation type="unfinished">Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1218"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvînd ca text simplu se vor pierde toate formatările. Renunţaţi la formatare?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1156"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation>OpenDocument-teksti (*.odt)</translation>
+        <translation>Text OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1157"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>Muotoiltu teksti (*.rtf)</translation>
+        <translation>Text îmbogăţit (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1159"/>
         <source>All Files (*)</source>
-        <translation>Kaikki tiedostot</translation>
+        <translation>Toate fişierele (*)</translation>
     </message>
 </context>
 <context>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="107"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Fişierul a fost modificat</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
         <source>The file %1 was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fişierul %1 a fost modificat de un alt program.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="109"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriţi să reîncărcaţi fişierul?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Reîncarcă</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="116"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignoră</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="127"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Fişier şters</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="128"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fişierul %1 a fost şters de un alt program.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="129"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriţi să salvaţi sau  închideţi fişierul?</translation>
     </message>
 </context>
 <context>
@@ -167,87 +167,88 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Search for:</source>
-        <translation>Etsi:</translation>
+        <translation>Caută:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Replace with:</source>
-        <translation>Korvaa:</translation>
+        <translation>Înlocuieşte cu:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="51"/>
         <source>Ignore case</source>
-        <translation>Kirjainkoolla väliä</translation>
+        <translation>Ignoră minuscule/majuscule</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Whole words only</source>
-        <translation>Kokonaiset sanat</translation>
+        <translation>Doar cuvinte întregi</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Expresii regulate</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
         <source>Search up</source>
-        <translation>Etsi ylös</translation>
+        <translation>Caută în sus</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="57"/>
         <source>Search down</source>
-        <translation>Etsi alas</translation>
+        <translation>Caută în jos</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation>&amp;Etsi</translation>
+        <translation>Caută</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation>&amp;Korvaa</translation>
+        <translation>Înlocuieşte</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation>Korvaa K&amp;aikki</translation>
+        <translation>Înlocuieşte toate</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
         <source>Find</source>
-        <translation>Etsi</translation>
+        <translation>Căutare</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="142"/>
         <source>Replace</source>
-        <translation>Korvaa</translation>
+        <translation>Înlocuire</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Korvataanko %n tapaus?</numerusform>
-            <numerusform>Korvataanko %n tapausta?</numerusform>
+            <numerusform>Înlocuire %n o dată?</numerusform>
+            <numerusform>Înlocuire %n ori?</numerusform>
+            <numerusform>Înlocuire %n ori?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>Scuze</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Phrase not found.</source>
-        <translation>Virkettä ei löytynyt.</translation>
+        <translation>Fraza nu a fost găsită.</translation>
     </message>
 </context>
 <context>
@@ -255,17 +256,17 @@
     <message>
         <location filename="../src/highlighter.cpp" line="51"/>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>Adaugă</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="52"/>
         <source>Check Spelling...</source>
-        <translation>Tarkista oikeinkirjoitus...</translation>
+        <translation>Verificare ortografică...</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="124"/>
         <source>(No suggestions found)</source>
-        <translation>(Ei ehdotuksia)</translation>
+        <translation>(Nu s-au găsit sugestii)</translation>
     </message>
 </context>
 <context>
@@ -273,12 +274,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Open Image</source>
-        <translation>Avaa kuva</translation>
+        <translation>Deschide imagine</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Images(%1)</source>
-        <translation>Kuvat (%1)</translation>
+        <translation>Imagini (%1)</translation>
     </message>
 </context>
 <context>
@@ -286,22 +287,22 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="50"/>
         <source>Select application language:</source>
-        <translation>Valitse sovelluksen kieli:</translation>
+        <translation>Selectaţi limba aplicaţiei:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>&lt;System Language&gt;</source>
-        <translation>Järjestelmän kieli</translation>
+        <translation>&lt;Limbaj Sistem&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Note</source>
-        <translation>Huomautus</translation>
+        <translation>Notă</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Ole hyvä ja käynnistä sovellus uudelleen jotta kielen muutos astuu voimaan.</translation>
+        <translation>Vă rugăm reporniţi această aplicaţie pentru ca schimbarea limbii să aibă efect.</translation>
     </message>
 </context>
 <context>
@@ -309,326 +310,326 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation>Asetukset</translation>
+        <translation>Preferinţe</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
         <source>General</source>
-        <translation>Yleinen</translation>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Statistics</source>
-        <translation>Tilastot</translation>
+        <translation>Statistici</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Toolbar</source>
-        <translation>Työkalu</translation>
+        <translation>Bară de intrumente</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Spell Checking</source>
-        <translation>Oikoluku</translation>
+        <translation>Verificare ortografică</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="406"/>
         <source>Select Dictionary</source>
-        <translation>Valitse sanakirja</translation>
+        <translation>Selectaţi dicţionarul</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <location filename="../src/preferences_dialog.cpp" line="541"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>Scuze</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <source>Unable to open archive.</source>
-        <translation>Ei voitu avata arkistoa.</translation>
+        <translation>Nu se poate deschide arhiva</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="428"/>
         <source>Unable to read archive metadata.</source>
-        <translation>Ei voitu lukea arkiston metatietoja.</translation>
+        <translation>Nu se pot citi metadatele arhivei.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="470"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Arkisto ei sisällä käyttökelpoista sanakirjaa.</translation>
+        <translation>Arhiva nu conţine un dicţionar utilizabil.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="496"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Ei voitu avata tiedostoa &quot;%1&quot;.</translation>
+        <translation>Nu se poate deschide fişierul &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="507"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Ei voitu sulkea tiedostoa &quot;%1&quot;.</translation>
+        <translation>Nu se poate închide fişierul &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="243"/>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Scurtături</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Una sau mai multe scurtături sînt în conflict. Doriţi să continuaţi?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Sanakirja &quot;%1&quot; on jo olemassa. Haluatko korvata sen?</translation>
+        <translation>Dicţionarul &quot;%1&quot; deja există. Doriţi să-l înlocuiţi?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
         <source>Daily Goal</source>
-        <translation>Päivittäinen tavoite</translation>
+        <translation>Obiectiv zilnic</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>None</source>
-        <translation>Tyhjä</translation>
+        <translation>Niciunul</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="680"/>
         <source>Minutes:</source>
-        <translation>Minuutteja:</translation>
+        <translation>Minute:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="692"/>
         <location filename="../src/preferences_dialog.cpp" line="819"/>
         <source>Words:</source>
-        <translation>Sanoja:</translation>
+        <translation>Cuvinte:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="710"/>
         <source>Editing</source>
-        <translation>Muokkaaminen</translation>
+        <translation>Editare</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="712"/>
         <source>Always vertically center</source>
-        <translation>Keskitä aina pystysuunnassa</translation>
+        <translation>Centrează vertical întotdeauna</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="713"/>
         <source>Block insertion cursor</source>
-        <translation>Estä lisäyskohdistin</translation>
+        <translation>Cursor block de inserare</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="714"/>
         <source>Smooth fonts</source>
-        <translation>Tasoitetut kirjaimet</translation>
+        <translation>Netezire font-uri</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Typewriter sounds</source>
-        <translation>Kirjoituskoneäänet</translation>
+        <translation>Sunete maşină de scris</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="717"/>
         <source>Smart quotes:</source>
-        <translation>Älykkäät lainausmerkit</translation>
+        <translation>Ghilimele inteligente:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="724"/>
         <source>Double</source>
-        <translation>Tupla</translation>
+        <translation>Duble</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Single</source>
-        <translation>Yksi</translation>
+        <translation>Simple</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Scene</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Divizor:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
         <source>Saving</source>
-        <translation>Tallennetaan</translation>
+        <translation>Salvare</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="758"/>
         <source>Automatically save changes</source>
-        <translation>Tallenna automaattisesti</translation>
+        <translation>Salvează automat modificările</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="759"/>
         <source>Remember cursor position</source>
-        <translation>Muista kohdistimen sijainti</translation>
+        <translation>Amintire poziţie cursor</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="783"/>
         <source>Contents</source>
-        <translation>Sisällysluettelo</translation>
+        <translation>Conţinut</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="785"/>
         <source>Word count</source>
-        <translation>Sanamäärä</translation>
+        <translation>Contor cuvinte</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="786"/>
         <source>Page count</source>
-        <translation>Sivumäärä</translation>
+        <translation>Contor pagini</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="787"/>
         <source>Paragraph count</source>
-        <translation>Kappalemäärä</translation>
+        <translation>Contor paragrafe</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="788"/>
         <source>Character count</source>
-        <translation>Merkkimäärä</translation>
+        <translation>Contor caractere</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="797"/>
         <source>Page Size</source>
-        <translation>Sivun koko</translation>
+        <translation>Mărime pagină</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="799"/>
         <source>Characters:</source>
-        <translation>Kirjainmäärä:</translation>
+        <translation>Caractere:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="809"/>
         <source>Paragraphs:</source>
-        <translation>Kappaleet:</translation>
+        <translation>Paragrafe:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="835"/>
         <source>Word Count Algorithm</source>
-        <translation>Sanalaskenta-algoritmi</translation>
+        <translation>Algoritm contorizare cuvinte</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="837"/>
         <source>Detect word boundaries</source>
-        <translation>Tunnista sanojen rajat</translation>
+        <translation>Detectare limite cuvinte</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Divide character count by six</source>
-        <translation>Jaa merkkimäärä kuudella</translation>
+        <translation>Împarte numărul de caractere cu şase</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="943"/>
         <source>Style</source>
-        <translation>Tyyli</translation>
+        <translation>Stil</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Icons Only</source>
-        <translation>Vain kuvakkeet</translation>
+        <translation>Doar iconuri</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Text Only</source>
-        <translation>Vain teksti</translation>
+        <translation>Doar text</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Text Alongside Icons</source>
-        <translation>Teksti ja kuvakkeet</translation>
+        <translation>Text lîngă iconuri</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="949"/>
         <source>Text Under Icons</source>
-        <translation>Teksti kuvakkeiden alla</translation>
+        <translation>Text sub iconuri</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="953"/>
         <source>Text Position:</source>
-        <translation>Tekstin sijainti:</translation>
+        <translation>Poziţie text</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="956"/>
         <source>Actions</source>
-        <translation>Toiminnot</translation>
+        <translation>Acţiuni</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="972"/>
         <source>Move Up</source>
-        <translation>Siirrä ylös</translation>
+        <translation>Mută în sus</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Move Down</source>
-        <translation>Siirrä alas</translation>
+        <translation>Mută în jos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="976"/>
         <source>Add Separator</source>
-        <translation>Lisää erotin</translation>
+        <translation>Adaugă separator</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandă</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Scurtătură</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Acţiune</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
         <source>Check spelling as you type</source>
-        <translation>Tarkista oikeinkirjoitus kirjoitettaessa</translation>
+        <translation>Verificare ortografică în timpul tastării</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="864"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ohita sanat ISOILLA</translation>
+        <translation>Ignorare cuvinte cu MAJUSCULE</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="865"/>
         <source>Ignore words with numbers</source>
-        <translation>Ohita sanat, joissa on numeroita</translation>
+        <translation>Ignorare cuvinte care conţin cifre</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="878"/>
         <source>Language</source>
-        <translation>Kieli</translation>
+        <translation>Limbă</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="882"/>
         <location filename="../src/preferences_dialog.cpp" line="903"/>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>Adăugare</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="915"/>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>Înlăturare</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Personal Dictionary</source>
-        <translation>Oma sanakirja</translation>
+        <translation>Dicţionar personal</translation>
     </message>
 </context>
 <context>
@@ -637,22 +638,22 @@
         <location filename="../src/rtf/reader.cpp" line="225"/>
         <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
-        <translation>Ei tuettu RTF-tiedosto.</translation>
+        <translation>Fişier RTF nesuportat.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
         <source>Unable to open archive.</source>
-        <translation>Ei voi avata arkistoa.</translation>
+        <translation>Nu se poate deschide arhiva.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Ei voitu avata tiedostoa &quot;%1&quot;.</translation>
+        <translation>Nu se poate deschide fişierul &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Ei voitu sulkea tiedostoa &quot;%1&quot;.</translation>
+        <translation>Nu se poate închide fişierul &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -660,52 +661,52 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Săgeată în jos</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mută scene în sus</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Săgeată în sus</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutare listă scene</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="398"/>
         <source>Show scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arată listă scene (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
         <source>Hide scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ascunde listă scene (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="148"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtru</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mută scene în jos</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="156"/>
         <source>Resize scene list</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimensionare listă scene</translation>
     </message>
 </context>
 <context>
@@ -719,7 +720,7 @@
         <location filename="../src/session_manager.cpp" line="380"/>
         <location filename="../src/session_manager.cpp" line="383"/>
         <source>Default</source>
-        <translation>Oletus</translation>
+        <translation>Iniţial</translation>
     </message>
 </context>
 <context>
@@ -727,83 +728,83 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Hallinnoi istuntoja</translation>
+        <translation>Gestionare sesiuni</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>I&amp;stunnot</translation>
+        <translation>S&amp;esiuni</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Uusi</translation>
+        <translation>Nou</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
         <source>Rename</source>
-        <translation>Nimeä uudelleen</translation>
+        <translation>Redenumire</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>Kopioi</translation>
+        <translation>Clonează</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>Ştergere</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Siirry</translation>
+        <translation>Comută la</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
         <source>New Session</source>
-        <translation>Uusi istunto</translation>
+        <translation>Sesiune nouă</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>Kopioi sessio</translation>
+        <translation>Clonează sesiune</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
         <source>Rename Session</source>
-        <translation>Uudelleennimeä sessio</translation>
+        <translation>Redenumire sesiune</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>Poistetaanko valittu istunto?</translation>
+        <translation>Şterge sesiunea selectată?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="355"/>
         <location filename="../src/session_manager.cpp" line="357"/>
         <source>Session name:</source>
-        <translation>Istunnon nimi:</translation>
+        <translation>Nume sesiune:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="366"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>Scuze</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="366"/>
         <source>The requested session name is already in use.</source>
-        <translation>Pyytämäsi istunnon nimi on jo käytössä.</translation>
+        <translation>Numele solicitat al sesiunii este deja în uz.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="406"/>
         <source>&amp;New...</source>
-        <translation>&amp;Uusi...</translation>
+        <translation>&amp;Nou...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="406"/>
@@ -813,7 +814,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="407"/>
         <source>&amp;Manage...</source>
-        <translation>&amp;Hallinnoi...</translation>
+        <translation>Gestionare...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="407"/>
@@ -826,18 +827,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Curăţă</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetează la valorile implicte</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1047"/>
         <location filename="../src/symbols_dialog.cpp" line="203"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"></translation>
+        <translation>Scurtătură:</translation>
     </message>
 </context>
 <context>
@@ -845,12 +846,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="113"/>
         <source>Replacing quotation marks...</source>
-        <translation>Korvataan lainausmerkkejä...</translation>
+        <translation>Înlocuire ghilimele...</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="114"/>
         <source>Please Wait</source>
-        <translation>Odota</translation>
+        <translation>Vă rugăm aşteptaţi</translation>
     </message>
 </context>
 <context>
@@ -858,62 +859,62 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="130"/>
         <source>Check Spelling</source>
-        <translation>Tarkista oikeinkirjoitus</translation>
+        <translation>Verificare ortografică</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation>&amp;Lisää</translation>
+        <translation>&amp;Adaugă</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation>Jätä &amp;huomiotta</translation>
+        <translation>&amp;Ignoră</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation>Jätä kaikki huo&amp;miotta</translation>
+        <translation>I&amp;gnoră toate</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation>&amp;Muuta</translation>
+        <translation>&amp;Modifică</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation>Muuta kaikk&amp;i</translation>
+        <translation>Modifică &amp;toate</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
         <source>Not in dictionary:</source>
-        <translation>Ei sanakirjassa:</translation>
+        <translation>Nu este în dicţionar:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="175"/>
         <source>Change to:</source>
-        <translation>Vaihda:</translation>
+        <translation>Modifică în:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>Tarkistetaan oikeinkirjoitusta...</translation>
+        <translation>Verificare ortografie...</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>Peruuta</translation>
+        <translation>Anulare</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>Odota</translation>
+        <translation>Vă rugăm aşteptaţi</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="260"/>
         <source>Spell check complete.</source>
-        <translation>Oikoluku valmis.</translation>
+        <translation>Verificare ortografică completă.</translation>
     </message>
 </context>
 <context>
@@ -921,32 +922,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Simboluri</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Simbolurile folosite recent</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="126"/>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate simbolurile</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="179"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Detalii</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation>Nume:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="215"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserează</translation>
     </message>
 </context>
 <context>
@@ -954,12 +955,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Blocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Blocuri</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Script-uri</translation>
     </message>
 </context>
 <context>
@@ -967,7 +968,7 @@
     <message>
         <location filename="../src/theme.cpp" line="104"/>
         <source>Untitled %1</source>
-        <translation>Nimetön %1</translation>
+        <translation>FărăTitlu %1</translation>
     </message>
 </context>
 <context>
@@ -975,81 +976,81 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="50"/>
         <source>Modify Theme</source>
-        <translation>Muokkaa teemaa</translation>
+        <translation>Modificare temă</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="60"/>
         <source>Name:</source>
-        <translation>Nimi:</translation>
+        <translation>Nume:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="68"/>
         <source>Background</source>
-        <translation>Tausta</translation>
+        <translation>Fundal</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>No Image</source>
-        <translation>Ei kuvaa</translation>
+        <translation>Fără imagine</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Tiled</source>
-        <translation>Toistettu</translation>
+        <translation>Placat</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Centered</source>
-        <translation>Keskitetty</translation>
+        <translation>Centrat</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Stretched</source>
-        <translation>Venytetty</translation>
+        <translation>Întins</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Scaled</source>
-        <translation>Skaalattu</translation>
+        <translation>Redimensionat</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Zoomed</source>
-        <translation>Suurennettu</translation>
+        <translation>Mărit</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="83"/>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>Înlătură</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="95"/>
         <source>Type:</source>
-        <translation>Tyyppi:</translation>
+        <translation>Tip:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="96"/>
         <location filename="../src/theme_dialog.cpp" line="161"/>
         <location filename="../src/theme_dialog.cpp" line="200"/>
         <source>Color:</source>
-        <translation>Väri:</translation>
+        <translation>Culoare:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="97"/>
         <source>Image:</source>
-        <translation>Kuva:</translation>
+        <translation>Imagine:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="102"/>
         <source>Foreground</source>
-        <translation>Tekstialue</translation>
+        <translation>Prim plan</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
         <source>Opacity</source>
-        <translation>Peittävyys</translation>
+        <translation>Opacitate</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
@@ -1057,112 +1058,112 @@
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <location filename="../src/theme_dialog.cpp" line="142"/>
         <source> pixels</source>
-        <translation>pikseliä</translation>
+        <translation>pixeli</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Left</source>
-        <translation>Vasen</translation>
+        <translation>Stînga</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Right</source>
-        <translation>Oikea</translation>
+        <translation>Dreapta</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="125"/>
         <source>Position</source>
-        <translation>Sijainti</translation>
+        <translation>Poziţie</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Size:</source>
-        <translation>Koko:</translation>
+        <translation>Mărime:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="163"/>
         <source>Rounding:</source>
-        <translation>Pyöristys:</translation>
+        <translation>Rotunjire:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Margin:</source>
-        <translation>Marginaali:</translation>
+        <translation>Margine:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="165"/>
         <source>Padding:</source>
-        <translation>Sisämarginaali:</translation>
+        <translation>Umplere:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="170"/>
         <source>Text</source>
-        <translation>Teksti</translation>
+        <translation>Text</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Font:</source>
-        <translation>Kirjasin:</translation>
+        <translation>Font:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="202"/>
         <source>Misspelled:</source>
-        <translation>Väärinkirjoitettu:</translation>
+        <translation>Greşit:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation>Välistykset</translation>
+        <translation>Spaţiere</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation>Riviväli</translation>
+        <translation>Spaţiere rînd</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation>Yksinkertainen</translation>
+        <translation>Simplă</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation>1.5-kertainen</translation>
+        <translation>1.5 linii</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation>Kaksinkertainen</translation>
+        <translation>Două rînduri</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation>Suhteellinen</translation>
+        <translation>Proporţional</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation>Kappalevälistys</translation>
+        <translation>Spaţiere paragraf</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation>Sisennä ensimmäistä riviä:</translation>
+        <translation>Indentaţie prima linie:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Pixels Above:</source>
-        <translation>Pikseleitä yläpuolella</translation>
+        <translation>Pixeli deasupra:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation>Pikseleitä alapuolella</translation>
+        <translation>Pixeli dedesubt:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Albert osti fagotin ja töräytti puhkuvan melodian.</translation>
+        <translation>The quick brown fox jumps over the lazy dog</translation>
     </message>
 </context>
 <context>
@@ -1170,79 +1171,79 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="46"/>
         <source>Themes</source>
-        <translation>Teemat</translation>
+        <translation>Teme</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="72"/>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>Adăugare</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="76"/>
         <source>Modify</source>
-        <translation>Muokkaa</translation>
+        <translation>Modificare</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="80"/>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>Înlăturare</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="84"/>
         <source>Import</source>
-        <translation>Tuo</translation>
+        <translation>Import</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="88"/>
         <source>Export</source>
-        <translation>Vie</translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Close</source>
-        <translation>Sulje</translation>
+        <translation>Închide</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Remove selected theme?</source>
-        <translation>Poistetaanko valittu teema?</translation>
+        <translation>Înlătură tema selectată?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Import Theme</source>
-        <translation>Tuo teema</translation>
+        <translation>Importare temă</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Themes (*.fwtz *.theme)</source>
-        <translation>Teemat (*.fwtz *.theme)</translation>
+        <translation>Teme (*.fwtz *.theme)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="260"/>
         <source>Themes (*.fwtz)</source>
-        <translation>Teemat (*.fwtz)</translation>
+        <translation>Teme (*.fwtz)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="205"/>
         <location filename="../src/theme_manager.cpp" line="207"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>Scuze</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="205"/>
         <location filename="../src/theme_manager.cpp" line="207"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Samanniminen teema on jo olemassa. Anna uusi nimi:</translation>
+        <translation>Există deja o  temă cu acest nume. Vă rugăm tastaţi un alt nume:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="260"/>
         <source>Export Theme</source>
-        <translation>Vie teema</translation>
+        <translation>Exportare temă</translation>
     </message>
 </context>
 <context>
@@ -1255,82 +1256,82 @@
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation>Poistetaanko ajastin?</translation>
+        <translation>Şterge cronometru?</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sanat:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Cuvinte:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sivut:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Pagini:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Kappaleet:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Paragrafe:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="358"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Kirjaimet:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;Caractere:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation>Aseta viive</translation>
+        <translation>Setare întîrzîiere</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation>Aseta aika</translation>
+        <translation>Setare timp</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
         <source>Delay:</source>
-        <translation>Viive:</translation>
+        <translation>Întîrzîiere:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="409"/>
         <source>Time:</source>
-        <translation>Aika:</translation>
+        <translation>Timp:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="418"/>
         <source>HH:mm:ss</source>
-        <translation>TT:mm:ss</translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="431"/>
         <source>Alarm</source>
-        <translation>Hälytys</translation>
+        <translation>Alarmă</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="444"/>
         <source>Type:</source>
-        <translation>Tyyppi:</translation>
+        <translation>Tip:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation>Lisätieto:</translation>
+        <translation>Notă:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation>Muokkaa</translation>
+        <translation>Editare</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>Ştergere</translation>
     </message>
 </context>
 <context>
@@ -1338,12 +1339,12 @@
     <message>
         <location filename="../src/timer_display.cpp" line="150"/>
         <source>HH:mm:ss</source>
-        <translation>TT:mm:ss</translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>Ei ajastimia käynnissä</translation>
+        <translation>Nu există cronometre care rulează</translation>
     </message>
 </context>
 <context>
@@ -1351,27 +1352,27 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>Ajastimet</translation>
+        <translation>Cronometre</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>Uusi</translation>
+        <translation>Nou</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation>Viimeisin</translation>
+        <translation>Recent</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>Peruutetaanko ajastimien muokkaus?</translation>
+        <translation>Anulare cronometru editare?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1389,7 +1390,7 @@
     <message>
         <location filename="../src/rtf/tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Tiedosto loppui yllättäen.</translation>
+        <translation>S-a ajuns pe neaşteptate la sfîrşitul fişierului.</translation>
     </message>
 </context>
 <context>
@@ -1397,28 +1398,28 @@
     <message>
         <location filename="../src/window.cpp" line="285"/>
         <source>Loading themes</source>
-        <translation>Ladataan teemoja</translation>
+        <translation>Încărcare teme</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1156"/>
         <source>Loading sounds</source>
-        <translation>Ladataan ääniä</translation>
+        <translation>Încărcare sunete</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="291"/>
         <location filename="../src/window.cpp" line="1096"/>
         <source>Untitled</source>
-        <translation>Nimetön</translation>
+        <translation>FărăTitlu</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="690"/>
         <source>Open File</source>
-        <translation>Avaa tiedosto</translation>
+        <translation>Deschide fişier</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="881"/>
         <source>About FocusWriter</source>
-        <translation>Tietoja FocusWriterista</translation>
+        <translation>Despre FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="884"/>
@@ -1428,235 +1429,235 @@
     <message>
         <location filename="../src/window.cpp" line="885"/>
         <source>A simple fullscreen word processor</source>
-        <translation>Yksinkertainen kokoruudun tekstinkäsittelyohjelma</translation>
+        <translation>Un procesor simplu de text pe tot ecranul</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="886"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
+        <translation>Toate drepturile rezervate &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="887"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Julkaistu &lt;a href=%1&gt;GPL 3&lt;/a&gt;-lisenssin alaisena</translation>
+        <translation>Lansat sub licenţă &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="888"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Käyttää &lt;a href=%1&gt;Oxygen&lt;/a&gt;-kuvaketeemaa</translation>
+        <translation>Foloseşte iconuri din tema &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="889"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Käytetty &lt;a href=%1&gt;LGPL 3&lt;/a&gt;-lisenssin alaisena</translation>
+        <translation>Folosit sub licenţă &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="160"/>
         <location filename="../src/window.cpp" line="944"/>
         <source>Characters: %L1 / %L2</source>
-        <translation>Kirjaimet: %L1 / %L2</translation>
+        <translation>Caractere: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="158"/>
         <location filename="../src/window.cpp" line="945"/>
         <source>Pages: %L1</source>
-        <translation>Sivut: %L1</translation>
+        <translation>Pagini: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="159"/>
         <location filename="../src/window.cpp" line="946"/>
         <source>Paragraphs: %L1</source>
-        <translation>Kappaleet: %L1</translation>
+        <translation>Paragrafe: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="157"/>
         <location filename="../src/window.cpp" line="947"/>
         <source>Words: %L1</source>
-        <translation>Sanat: %L1</translation>
+        <translation>Cuvinte: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="161"/>
         <location filename="../src/window.cpp" line="1009"/>
         <source>%1% of daily goal</source>
-        <translation>%1% päivittäisestä tavoiteesta</translation>
+        <translation>%1% din obiectiv zilnic</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="437"/>
         <location filename="../src/window.cpp" line="1049"/>
         <source>Opening %1</source>
-        <translation>Avataan %1</translation>
+        <translation>Deschidere %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1138"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>Întrebare</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1138"/>
         <source>Save changes?</source>
-        <translation>Tallennetaanko muutokset?</translation>
+        <translation>Salvaţi modificările?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="349"/>
         <location filename="../src/window.cpp" line="1252"/>
         <source>(Untitled %1)</source>
-        <translation>(Nimetön %1)</translation>
+        <translation>(Fără titlu %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="187"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutare la următorul document</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="193"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutare la documentul precedent</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="199"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutare la primul document</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="205"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutare la ultimul document</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="213"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutare la document %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="280"/>
         <source>Loading settings</source>
-        <translation>Ladataan asennuksia</translation>
+        <translation>Încărcare setări</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="299"/>
         <source>Emergency cache is not writable.</source>
-        <translation>Hätävälimuistia ei voida kirjoittaa.</translation>
+        <translation>Cache-ul de urgenţă nu poate fi scris.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="355"/>
         <location filename="../src/window.cpp" line="1063"/>
         <source>Warning</source>
-        <translation>Varoitus</translation>
+        <translation>Avertisment</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="356"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriteriä ei suljettu oikein.</translation>
+        <translation>FocusWriter nu a fost oprit corect.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="357"/>
         <source>Restore from the emergency cache?</source>
-        <translation>Palautetaanko tilanne hätävälimuistista?</translation>
+        <translation>Restaurare din memoria cache de urgenţă?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="492"/>
         <source>Some files could not be opened.</source>
-        <translation>Joitain tiedostoja ei saatu avattua.</translation>
+        <translation>Unele fişiere nu au putut fi deschise.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="495"/>
         <source>Some files were opened Read-Only.</source>
-        <translation>Osa tiedostoista avattiin Vain Luku -tilassa</translation>
+        <translation>Unele fişiere au fost deschise în mod doar-citire.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="690"/>
         <source>Text Files (%1);;All Files (*)</source>
-        <translation>Tekstitiedostot (%1);;Kaikki tiedostot (*)</translation>
+        <translation>Fişiere text (%1);;Toate fişierele (*)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1064"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>%1 on uudempi kuin välimuistin versio.</translation>
+        <translation>&apos;%1&apos; este mai nou decît copia din cache.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1065"/>
         <source>Overwrite newer file?</source>
-        <translation>Korvataanko uudempi tiedosto?</translation>
+        <translation>Suprascrie noul fişier?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1163"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Ei pystytty lataamaan kirjoituskoneääniä.</translation>
+        <translation>Nu se pot încărca sunetele maşină de scris.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1164"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vă rugăm să vă asiguraţi că SDL_mixer este instalat.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1255"/>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (vain luku)</translation>
+        <translation>%1 (Doar-citire)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1302"/>
         <source>&amp;File</source>
-        <translation>&amp;Tiedosto</translation>
+        <translation>&amp;Fişier</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1303"/>
         <source>&amp;New</source>
-        <translation>&amp;Uusi</translation>
+        <translation>&amp;Nou</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1304"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Avaa...</translation>
+        <translation>&amp;Deschide...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>Reîncarcă</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1307"/>
         <source>&amp;Save</source>
-        <translation>&amp;Tallenna</translation>
+        <translation>&amp;Salvare</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Save &amp;As...</source>
-        <translation>Tallenna &amp;nimellä...</translation>
+        <translation>Salvare c&amp;a...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;Rename...</source>
-        <translation>&amp;Nimeä uudelleen...</translation>
+        <translation>&amp;Redenumire...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1312"/>
         <source>Save A&amp;ll</source>
-        <translation>Tallenna &amp;kaikki</translation>
+        <translation>Salvează tot</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1315"/>
         <source>Manage Sessions</source>
-        <translation>Hallinnoi istuntoja</translation>
+        <translation>Gestionare sesiuni</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>New Session</source>
-        <translation>Uusi istunto</translation>
+        <translation>Sesiune nouă</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1320"/>
         <source>&amp;Print...</source>
-        <translation>&amp;Tulosta...</translation>
+        <translation>Imprimare...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1322"/>
         <source>&amp;Close</source>
-        <translation>&amp;Sulje</translation>
+        <translation>Închide</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1323"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Lopeta</translation>
+        <translation>&amp;Ieşire</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1323"/>
@@ -1666,37 +1667,37 @@
     <message>
         <location filename="../src/window.cpp" line="1327"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Muokkaa</translation>
+        <translation>&amp;Editare</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1328"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Peru</translation>
+        <translation>Anulează</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Tee uudelleen</translation>
+        <translation>Reface</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1335"/>
         <source>Cu&amp;t</source>
-        <translation>Leik&amp;kaa</translation>
+        <translation>&amp;Taie</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopioi</translation>
+        <translation>&amp;Copiază</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1341"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Liitä</translation>
+        <translation>&amp;Lipeşte</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Paste &amp;Unformatted</source>
-        <translation>Liitä &amp;Muotoilematta</translation>
+        <translation>Lipire neformatat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
@@ -1706,42 +1707,42 @@
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>Select &amp;All</source>
-        <translation>Valitse kaikki</translation>
+        <translation>Selectează &amp;tot</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectare &amp;scenă</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>Fo&amp;rmat</source>
-        <translation>Muo&amp;toile</translation>
+        <translation>Fo&amp;rmatare</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
         <source>&amp;Bold</source>
-        <translation>&amp;Lihavoitu</translation>
+        <translation>Îngroşat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>&amp;Italic</source>
-        <translation>&amp;Kursivoitu</translation>
+        <translation>&amp;Italic</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Alleviivattu</translation>
+        <translation>S&amp;ubliniat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1356"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Yli&amp;viivattu</translation>
+        <translation>&amp;Tăiat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1356"/>
@@ -1751,7 +1752,7 @@
     <message>
         <location filename="../src/window.cpp" line="1358"/>
         <source>Sup&amp;erscript</source>
-        <translation>Ylä&amp;indeksi</translation>
+        <translation>Exponent</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1358"/>
@@ -1761,7 +1762,7 @@
     <message>
         <location filename="../src/window.cpp" line="1360"/>
         <source>&amp;Subscript</source>
-        <translation>&amp;Alaindeksi</translation>
+        <translation>Indice</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1360"/>
@@ -1771,7 +1772,7 @@
     <message>
         <location filename="../src/window.cpp" line="1364"/>
         <source>Align &amp;Left</source>
-        <translation>Tasaa &amp;vasemmalle</translation>
+        <translation>Aliniere la &amp;stînga</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1364"/>
@@ -1781,7 +1782,7 @@
     <message>
         <location filename="../src/window.cpp" line="1366"/>
         <source>Align &amp;Center</source>
-        <translation>Tasaa &amp;keskelle</translation>
+        <translation>Aliniere la &amp;centru</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1366"/>
@@ -1791,7 +1792,7 @@
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>Align &amp;Right</source>
-        <translation>Tasaa &amp;oikealle</translation>
+        <translation>Aliniere la &amp;dreapta</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
@@ -1801,7 +1802,7 @@
     <message>
         <location filename="../src/window.cpp" line="1370"/>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Tasaa molemmat reunat</translation>
+        <translation>Aliniere stînga-dreapta</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1370"/>
@@ -1811,7 +1812,7 @@
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Ulonna</translation>
+        <translation>Mărire alineat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
@@ -1821,7 +1822,7 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>&amp;Sisennä</translation>
+        <translation>Micşorare alineat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -1831,37 +1832,37 @@
     <message>
         <location filename="../src/window.cpp" line="1384"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Vasemm&amp;alta oikealle</translation>
+        <translation>Bloc stînga-dreapta</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1386"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Oike&amp;alta vasemmalle</translation>
+        <translation>Bloc dreapta-stînga</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1394"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Työkalut</translation>
+        <translation>&amp;Unelte</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1395"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Etsi...</translation>
+        <translation>&amp;Caută...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Find &amp;Next</source>
-        <translation>Etsi &amp;seuraava</translation>
+        <translation>Caută &amp;următorul</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1399"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Etsi edelli&amp;nen</translation>
+        <translation>Caută &amp;precedent</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1402"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;Korvaa...</translation>
+        <translation>Înlocuire...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1402"/>
@@ -1871,22 +1872,22 @@
     <message>
         <location filename="../src/window.cpp" line="1404"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Alykkäät &amp;lainausmerkit</translation>
+        <translation>Ghilimele inteligente</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1405"/>
         <source>Update &amp;Document</source>
-        <translation>Päivitä &amp;asiakirja</translation>
+        <translation>Actualizare &amp;document</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1408"/>
         <source>Update &amp;Selection</source>
-        <translation>Päivitä &amp;valinta</translation>
+        <translation>Actualizare &amp;selecţie</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Oikeinkirjoitus...</translation>
+        <translation>&amp;Ortografie...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
@@ -1896,37 +1897,37 @@
     <message>
         <location filename="../src/window.cpp" line="1413"/>
         <source>&amp;Timers...</source>
-        <translation>&amp;Ajastimet...</translation>
+        <translation>Cronometre...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;imboluri...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1417"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Asetukset</translation>
+        <translation>&amp;Setări</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1418"/>
         <source>Show &amp;Toolbar</source>
-        <translation>Näytä &amp;työkalut</translation>
+        <translation>Arată bară de unelte</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Näytä &amp;valikkokuvakkeet</translation>
+        <translation>Arată iconuri &amp;meniu</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1429"/>
         <source>F&amp;ocused Text</source>
-        <translation>K&amp;ohdistettu teksti</translation>
+        <translation>Text f&amp;ocalizat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Koko näyttö</translation>
+        <translation>&amp;Tot ecranul</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
@@ -1941,7 +1942,7 @@
     <message>
         <location filename="../src/window.cpp" line="1437"/>
         <source>M&amp;inimize</source>
-        <translation>P&amp;ienennä</translation>
+        <translation>M&amp;inimizare</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1437"/>
@@ -1951,77 +1952,77 @@
     <message>
         <location filename="../src/window.cpp" line="1439"/>
         <source>&amp;Themes...</source>
-        <translation>&amp;Teemat...</translation>
+        <translation>&amp;Teme...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1442"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Asetukset...</translation>
+        <translation>&amp;Preferinţe...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1448"/>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Focaliuzare oprită</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1450"/>
         <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Focalizare o linie</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Focalizare trei linii</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1453"/>
         <source>&amp;Paragraph</source>
-        <translation>&amp;Kappale</translation>
+        <translation>&amp;Paragraf</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1454"/>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Focalizare paragraf</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1467"/>
         <source>&amp;Help</source>
-        <translation>&amp;Ohje</translation>
+        <translation>&amp;Ajutor</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>Application &amp;Language...</source>
-        <translation>Sovelluksen &amp;kieli...</translation>
+        <translation>Limbă aplicaţie...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="425"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unele fişiere au fost nesuportate şi nu au putut fi deschide.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
         <source>&amp;Off</source>
-        <translation>P&amp;ois</translation>
+        <translation>&amp;Oprit</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
         <source>One &amp;Line</source>
-        <translation>&amp;Yksi rivi</translation>
+        <translation>O &amp;linie</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1451"/>
         <source>&amp;Three Lines</source>
-        <translation>&amp;Kolme riviä</translation>
+        <translation>&amp;Trei linii</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1468"/>
         <source>&amp;About</source>
-        <translation>&amp;Tietoja</translation>
+        <translation>&amp;Despre</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1470"/>
         <source>About &amp;Qt</source>
-        <translation>Tietoja &amp;Qt:sta</translation>
+        <translation>Despre &amp;Qt</translation>
     </message>
 </context>
 </TS>

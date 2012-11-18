@@ -179,6 +179,7 @@ TRANSLATIONS = translations/focuswriter_ca.ts \
 	translations/focuswriter_es_MX.ts \
 	translations/focuswriter_fi.ts \
 	translations/focuswriter_fr.ts \
+	translations/focuswriter_he.ts \
 	translations/focuswriter_hu.ts \
 	translations/focuswriter_it.ts \
 	translations/focuswriter_ja.ts \
@@ -186,9 +187,11 @@ TRANSLATIONS = translations/focuswriter_ca.ts \
 	translations/focuswriter_pl.ts \
 	translations/focuswriter_pt.ts \
 	translations/focuswriter_pt_BR.ts \
+	translations/focuswriter_ro.ts \
 	translations/focuswriter_ru.ts \
 	translations/focuswriter_sk.ts \
 	translations/focuswriter_sv.ts \
+	translations/focuswriter_tr.ts \
 	translations/focuswriter_uk.ts \
 	translations/focuswriter_zh_CN.ts
 
