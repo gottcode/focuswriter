@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="da" sourcelanguage="en">
+<TS version="2.0" language="he" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation>Luk (%1)</translation>
+        <translation>לסגור (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
         <source>Collapse</source>
-        <translation>Fold sammen</translation>
+        <translation>לצמצם</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation>Fold ud</translation>
+        <translation>להרחיב</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation>Afvis alarm</translation>
+        <translation>סילוק אתראה</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -40,83 +40,83 @@
         <location filename="../src/document.cpp" line="390"/>
         <location filename="../src/document.cpp" line="396"/>
         <source>Sorry</source>
-        <translation>Beklager</translation>
+        <translation>צר לי</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="339"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Det er ikke muligt at gemme &apos;%1&apos;.</translation>
+        <translation>לא ניתן לשמור &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="352"/>
         <source>Save File As</source>
-        <translation>Gem fil som</translation>
+        <translation>שמירת קובץ בשם</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="359"/>
         <location filename="../src/document.cpp" line="390"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Det er ikke muligt at overskrive &apos;%1&apos;.</translation>
+        <translation>לא ניתן להחליף את &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="383"/>
         <source>Rename File</source>
-        <translation>Omdøb fil</translation>
+        <translation>שינוי שם קובץ</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="396"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Det er ikke muligt at omdøbe &apos;%1&apos;.</translation>
+        <translation>לא ניתן לשנות שם &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="420"/>
         <source>Reload File</source>
-        <translation>Genindlæs fil</translation>
+        <translation>טעינת קובץ מחדש</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="421"/>
         <source>Reload the file %1 from disk?</source>
-        <translation>Genindlæs filen %1 fra disk?</translation>
+        <translation>טעינת הקובץ %1 מחדש מתוך כונן?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
         <source>All unsaved changes will be lost.</source>
-        <translation>Alle ændringer, der ikke er gemt, vil gå tabt.</translation>
+        <translation>כל השינויים שלא נשמרו יאבדו.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="424"/>
         <source>Reload</source>
-        <translation>Genindlæs</translation>
+        <translation>טעינה מחדש</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1158"/>
         <source>Plain Text (*.txt)</source>
-        <translation>Ren tekst (*.txt)</translation>
+        <translation>תמליל גלוי ‪(*.txt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1217"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1218"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Gemmes der som ren tekst, vil al formatting blive fjernet. Fjern formattering?</translation>
+        <translation>שמירה כתמליל גלוי תתעלם מכל העיצוב. האם להתעלם מן עיצוב?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1156"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation>OpenDocument-tekst (*.odt)</translation>
+        <translation>תמליל ‫OpenDocument ‫(‭*.odt‬)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1157"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>Rich Text (*.rtf)</translation>
+        <translation>תמליל עשיר ‪(*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1159"/>
         <source>All Files (*)</source>
-        <translation>Alle filer (*)</translation>
+        <translation>כל הקבצים (*)</translation>
     </message>
 </context>
 <context>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="107"/>
         <source>File Changed</source>
-        <translation>Fil ændret</translation>
+        <translation>קובץ שונה</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
         <source>The file %1 was changed by another program.</source>
-        <translation>Filen %1 blev ændret af et andet program.</translation>
+        <translation>הקובץ %1 שונה על ידי תוכנית אחרת.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="109"/>
         <source>Do you want to reload the file?</source>
-        <translation>Ønsker du at genindlæse filen?</translation>
+        <translation>האם ברצונך להטעין את הקובץ מחדש?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Reload</source>
-        <translation>Genindlæs</translation>
+        <translation>טעינה מחדש</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="116"/>
         <source>Ignore</source>
-        <translation>Ignorer</translation>
+        <translation>התעלמות מן אירוע</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="127"/>
         <source>File Deleted</source>
-        <translation>Fil slettet</translation>
+        <translation>קובץ נמחק</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="128"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Filen %1 blev slettet af et andet program.</translation>
+        <translation>הקובץ %1 נמחק על ידי תוכנית אחרת.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="129"/>
         <source>Do you want to save or close the file?</source>
-        <translation>Ønsker du at gemme eller lukke filen?</translation>
+        <translation>האם ברצונך לשמור או לסגור את הקובץ?</translation>
     </message>
 </context>
 <context>
@@ -167,87 +167,87 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Search for:</source>
-        <translation>Søg efter:</translation>
+        <translation>חיפוש עבור:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Replace with:</source>
-        <translation>Erstat med:</translation>
+        <translation>החלפה עם:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="51"/>
         <source>Ignore case</source>
-        <translation>Ignorer store/små bogstaver</translation>
+        <translation>התעלמות מרישיות</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Whole words only</source>
-        <translation>Kun hele ord</translation>
+        <translation>כל המילים בלבד</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation>Regulære udtryk</translation>
+        <translation>ביטויים רגולריים</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
         <source>Search up</source>
-        <translation>Søg tilbage</translation>
+        <translation>חיפוש מעלה</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="57"/>
         <source>Search down</source>
-        <translation>Søg fremad</translation>
+        <translation>חיפוש מטה</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation>&amp;Find</translation>
+        <translation>&amp;מציאה</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation>&amp;Erstat</translation>
+        <translation>&amp;החלפה</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation>Erstat &amp;alle</translation>
+        <translation>החלפה &amp;מוחלטת</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
         <source>Find</source>
-        <translation>Find</translation>
+        <translation>מציאה</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="142"/>
         <source>Replace</source>
-        <translation>Erstat</translation>
+        <translation>החלפה</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Erstat %n forekomst?</numerusform>
-            <numerusform>Erstat %n forekomster?</numerusform>
+            <numerusform>להחליף מאורע %n?</numerusform>
+            <numerusform>להחליף %n מאורעות?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Sorry</source>
-        <translation>Beklager</translation>
+        <translation>צר לי</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Phrase not found.</source>
-        <translation>Frasen kunne ikke findes.</translation>
+        <translation>צירוף מילים לא נמצא.</translation>
     </message>
 </context>
 <context>
@@ -255,17 +255,17 @@
     <message>
         <location filename="../src/highlighter.cpp" line="51"/>
         <source>Add</source>
-        <translation>Tilføj</translation>
+        <translation>הוספה</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="52"/>
         <source>Check Spelling...</source>
-        <translation>Stavekontrol...</translation>
+        <translation>בדיקת איות...</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="124"/>
         <source>(No suggestions found)</source>
-        <translation>(Der er ikke fundet forslag)</translation>
+        <translation>(לא נמצאו הצעות)</translation>
     </message>
 </context>
 <context>
@@ -273,12 +273,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Open Image</source>
-        <translation>Åbn billede</translation>
+        <translation>פתיחת תמונה</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="82"/>
         <source>Images(%1)</source>
-        <translation>Billeder(%1)</translation>
+        <translation>תמונות(%1)</translation>
     </message>
 </context>
 <context>
@@ -286,22 +286,22 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="50"/>
         <source>Select application language:</source>
-        <translation>Vælg programmets sprog:</translation>
+        <translation>בחירת שפת יישום:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Systemsprog&gt;</translation>
+        <translation>&lt;שפת מערכת&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Note</source>
-        <translation>Note</translation>
+        <translation>הערה</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Genstart programmet for at skifte til det valgte sprog.</translation>
+        <translation>נא לאתחל את יישום זה כדי להחיל את השינוי בשפה.</translation>
     </message>
 </context>
 <context>
@@ -309,326 +309,326 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation>Indstillinger</translation>
+        <translation>העדפות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
         <source>General</source>
-        <translation>Generelt</translation>
+        <translation>כללי</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Statistics</source>
-        <translation>Statistik</translation>
+        <translation>סטטיסטיקה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Toolbar</source>
-        <translation>Værktøjslinie</translation>
+        <translation>סרגל כלים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Spell Checking</source>
-        <translation>Stavekontrol</translation>
+        <translation>בדיקת איות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="406"/>
         <source>Select Dictionary</source>
-        <translation>Vælg ordbog</translation>
+        <translation>בחירת מילון</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <location filename="../src/preferences_dialog.cpp" line="541"/>
         <source>Sorry</source>
-        <translation>Beklager</translation>
+        <translation>צר לי</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <source>Unable to open archive.</source>
-        <translation>Det er ikke muligt at åbne arkivet.</translation>
+        <translation>לא ניתן לפתוח ארכיון.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="428"/>
         <source>Unable to read archive metadata.</source>
-        <translation>Det er ikke muligt at indlæse arkivets metadata.</translation>
+        <translation>לא ניתן לקרוא metadata של ארכיון.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="470"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Dette arkiv indeholder ikke en anvendelig ordbog.</translation>
+        <translation>הארכיון לא מכיל מילון שמיש.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="496"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Det er ikke muligt at åbne filen &apos;%1&apos;.</translation>
+        <translation>לא ניתן לפתוח קובץ &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="507"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Det er ikke muligt at lukke filen &apos;%1&apos;.</translation>
+        <translation>לא ניתן לסגור קובץ &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="243"/>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation>Genveje</translation>
+        <translation>קיצורי דרך</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>En eller flere genveje er i konflikt. Ønsker du at fortsætte?</translation>
+        <translation>התנגשות קיצור דרך אחת או יותר. האם ברצונך להמשיך?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Ordbogen &apos;%1&apos; findes allerede. Ønsker du at erstatte den?</translation>
+        <translation>המילון &quot;%1&quot; כבר קיים. האם ברצונך להחליפו?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
         <source>Daily Goal</source>
-        <translation>Dagligt mål</translation>
+        <translation>יעד יומי</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>None</source>
-        <translation>Intet</translation>
+        <translation>בלי</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="680"/>
         <source>Minutes:</source>
-        <translation>Minutter:</translation>
+        <translation>דקות:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="692"/>
         <location filename="../src/preferences_dialog.cpp" line="819"/>
         <source>Words:</source>
-        <translation>Ord:</translation>
+        <translation>מילים:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="710"/>
         <source>Editing</source>
-        <translation>Redigering</translation>
+        <translation>עריכה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="712"/>
         <source>Always vertically center</source>
-        <translation>Altid centreret lodret</translation>
+        <translation>תמיד ממורכז במאונך</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="713"/>
         <source>Block insertion cursor</source>
-        <translation>Firkantet markør for indsættelse</translation>
+        <translation>סמן שיבוץ בלוק</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="714"/>
         <source>Smooth fonts</source>
-        <translation>Udjævn skrifttyper</translation>
+        <translation>גופנים מלוטשים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Typewriter sounds</source>
-        <translation>Skrivemaskinelyde</translation>
+        <translation>קולות מכונת־כתיבה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="717"/>
         <source>Smart quotes:</source>
-        <translation>Smart quotes:</translation>
+        <translation>מרכאות חכמות:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="724"/>
         <source>Double</source>
-        <translation>Dobbelte</translation>
+        <translation>כפולות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Single</source>
-        <translation>Enkelte</translation>
+        <translation>בודדות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation>Scener</translation>
+        <translation>מקטעים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation>Separator:</translation>
+        <translation>מפריד:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
         <source>Saving</source>
-        <translation>Gemmer</translation>
+        <translation>שמירה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="758"/>
         <source>Automatically save changes</source>
-        <translation>Gem automatisk</translation>
+        <translation>שמירת שינויים אוטומטית</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="759"/>
         <source>Remember cursor position</source>
-        <translation>Husk markørens placering</translation>
+        <translation>זכירת מיקום סמן</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="783"/>
         <source>Contents</source>
-        <translation>Indhold</translation>
+        <translation>תכנים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="785"/>
         <source>Word count</source>
-        <translation>Optælling af ord</translation>
+        <translation>ספירת מילים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="786"/>
         <source>Page count</source>
-        <translation>Antal sider</translation>
+        <translation>ספירת עמודים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="787"/>
         <source>Paragraph count</source>
-        <translation>Antal afsnit</translation>
+        <translation>ספירת פסקאות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="788"/>
         <source>Character count</source>
-        <translation>Antal tegn</translation>
+        <translation>ספירת תווים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="797"/>
         <source>Page Size</source>
-        <translation>Sideformat</translation>
+        <translation>גודל עמוד</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="799"/>
         <source>Characters:</source>
-        <translation>Tegn:</translation>
+        <translation>תווים:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="809"/>
         <source>Paragraphs:</source>
-        <translation>Afsnit:</translation>
+        <translation>פסקאות:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="835"/>
         <source>Word Count Algorithm</source>
-        <translation>Algoritme til ordtælling</translation>
+        <translation>אלגוריתם ספירת מילים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="837"/>
         <source>Detect word boundaries</source>
-        <translation>Registrer ordgrænser</translation>
+        <translation>איתור גבולות מילה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Divide character count by six</source>
-        <translation>Del antal tegn med seks</translation>
+        <translation>חילוק ספירת תו בשש (6)</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="943"/>
         <source>Style</source>
-        <translation>Stil</translation>
+        <translation>סגנון</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Icons Only</source>
-        <translation>Kun ikoner</translation>
+        <translation>צלמיות בלבד</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Text Only</source>
-        <translation>Kun tekst</translation>
+        <translation>תמליל בלבד</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Text Alongside Icons</source>
-        <translation>Tekst ved siden af ikoner</translation>
+        <translation>תמליל לצד צלמיות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="949"/>
         <source>Text Under Icons</source>
-        <translation>Tekst under ikoner</translation>
+        <translation>תמליל תחת צלמיות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="953"/>
         <source>Text Position:</source>
-        <translation>Placering i tekst</translation>
+        <translation>מיקום תמליל:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="956"/>
         <source>Actions</source>
-        <translation>Handlinger</translation>
+        <translation>פעולות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="972"/>
         <source>Move Up</source>
-        <translation>Flyt op</translation>
+        <translation>הזזה מעלה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Move Down</source>
-        <translation>Flyt ned</translation>
+        <translation>הזזה מטה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="976"/>
         <source>Add Separator</source>
-        <translation>Tilføj opdeling</translation>
+        <translation>הוספת חוצץ</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation>Kommando</translation>
+        <translation>פקודה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation>Genvej</translation>
+        <translation>קיצור דרך</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation>Handling</translation>
+        <translation>פעולה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
         <source>Check spelling as you type</source>
-        <translation>Kontroller stavning, mens der skrives</translation>
+        <translation>בדיקת איות בעת הקלדה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="864"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ignorer STORE BOGSTAVER</translation>
+        <translation>התעלמות ממילים עיליות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="865"/>
         <source>Ignore words with numbers</source>
-        <translation>Ignorer ord med tal</translation>
+        <translation>התעלמות ממילים עם אותיות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="878"/>
         <source>Language</source>
-        <translation>Sprog</translation>
+        <translation>שפה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="882"/>
         <location filename="../src/preferences_dialog.cpp" line="903"/>
         <source>Add</source>
-        <translation>Tilføj</translation>
+        <translation>הוספה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="915"/>
         <source>Remove</source>
-        <translation>Fjern</translation>
+        <translation>הסרה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Personal Dictionary</source>
-        <translation>Personlig ordbog</translation>
+        <translation>מילון אישי</translation>
     </message>
 </context>
 <context>
@@ -637,22 +637,22 @@
         <location filename="../src/rtf/reader.cpp" line="225"/>
         <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
-        <translation>Ikke en understøttet RTF-fil</translation>
+        <translation>קובץ RTF שלא נתמך.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
         <source>Unable to open archive.</source>
-        <translation>Kunne ikke åbne arkivet.</translation>
+        <translation>לא ניתן לפתוח ארכיון.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Kunne ikke åbne filen &apos;%1&apos;.</translation>
+        <translation>לא ניתן לפתוח קובץ &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Kunne ikke lukke filen &apos;%1&apos;.</translation>
+        <translation>לא ניתן לסגור קובץ &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -660,22 +660,22 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Shift+Ned</translation>
+        <translation>Ctrl+Shift+מטה</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation>Flyt scener op</translation>
+        <translation>הזזת מקטעים מעלה</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Shift+Op</translation>
+        <translation>Ctrl+Shift+מעלה</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation>Liste over scener til/fra</translation>
+        <translation>הצגת/הסתרת רשימת מקטע</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
@@ -685,27 +685,27 @@
     <message>
         <location filename="../src/scene_list.cpp" line="398"/>
         <source>Show scene list (%1)</source>
-        <translation>Vis liste over scener (%1)</translation>
+        <translation>הצגת רשימת מקטע (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
         <source>Hide scene list (%1)</source>
-        <translation>Skjul liste over scener (%1)</translation>
+        <translation>הסתרת רשימת מקטע (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="148"/>
         <source>Filter</source>
-        <translation>Filter</translation>
+        <translation>סינון</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation>Flyt scener ned</translation>
+        <translation>הזזת מקטעים מטה</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="156"/>
         <source>Resize scene list</source>
-        <translation>Juster liste over scener</translation>
+        <translation>שינוי גודל רשימת מקטע</translation>
     </message>
 </context>
 <context>
@@ -719,7 +719,7 @@
         <location filename="../src/session_manager.cpp" line="380"/>
         <location filename="../src/session_manager.cpp" line="383"/>
         <source>Default</source>
-        <translation>Standard</translation>
+        <translation>ברירת מחדל</translation>
     </message>
 </context>
 <context>
@@ -727,83 +727,83 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Administrer sessioner</translation>
+        <translation>ניהול סשנים</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>S&amp;essioner</translation>
+        <translation>ס&amp;שנים</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Ny</translation>
+        <translation>חדש</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
         <source>Rename</source>
-        <translation>Omdøb</translation>
+        <translation>שינוי שם</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>Klon</translation>
+        <translation>שיבוט</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
         <source>Delete</source>
-        <translation>Slet</translation>
+        <translation>מחיקה</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Skift til</translation>
+        <translation>החלפה אל</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
         <source>New Session</source>
-        <translation>Ny session</translation>
+        <translation>סשן חדש</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>Klon session</translation>
+        <translation>שיבוט סשן</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
         <source>Rename Session</source>
-        <translation>Omdøb session</translation>
+        <translation>שינוי שם סשן</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>Slet valgte session?</translation>
+        <translation>מחיקת סשן נבחר?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="355"/>
         <location filename="../src/session_manager.cpp" line="357"/>
         <source>Session name:</source>
-        <translation>Navn på session:</translation>
+        <translation>שם סשן:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="366"/>
         <source>Sorry</source>
-        <translation>Beklager</translation>
+        <translation>צר לי</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="366"/>
         <source>The requested session name is already in use.</source>
-        <translation>Der gøres allerede brug af det ønskede sessionsnavn.</translation>
+        <translation>שם הסשן המבוקש כבר מצוי בשימוש.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="406"/>
         <source>&amp;New...</source>
-        <translation>&amp;Ny...</translation>
+        <translation>&amp;חדש...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="406"/>
@@ -813,7 +813,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="407"/>
         <source>&amp;Manage...</source>
-        <translation>&amp;Administrer</translation>
+        <translation>&amp;ניהול...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="407"/>
@@ -826,18 +826,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation>Ryd</translation>
+        <translation>טיהור</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation>Nulstil</translation>
+        <translation>איפוס אל ברירת מחדל</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1047"/>
         <location filename="../src/symbols_dialog.cpp" line="203"/>
         <source>Shortcut:</source>
-        <translation>Genvej:</translation>
+        <translation>קיצור דרך:</translation>
     </message>
 </context>
 <context>
@@ -845,12 +845,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="113"/>
         <source>Replacing quotation marks...</source>
-        <translation>Erstatter citatonstegn...</translation>
+        <translation>מחליף כעת סימני מרכאות...</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="114"/>
         <source>Please Wait</source>
-        <translation>Vent venligst</translation>
+        <translation>נא להמתין</translation>
     </message>
 </context>
 <context>
@@ -858,62 +858,62 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="130"/>
         <source>Check Spelling</source>
-        <translation>Kontroller stavning</translation>
+        <translation>בדיקת איות</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation>&amp;Tilføj</translation>
+        <translation>להו&amp;סיף</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation>&amp;Ignorer</translation>
+        <translation>להת&amp;עלם</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation>I&amp;gnorer alle</translation>
+        <translation>להתעלם מ&amp;הכל</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation>&amp;Skift</translation>
+        <translation>ל&amp;שנות</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation>S&amp;kift alle</translation>
+        <translation>לשנות ה&amp;כל</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
         <source>Not in dictionary:</source>
-        <translation>Ikke i ordbogen:</translation>
+        <translation>לא במילון:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="175"/>
         <source>Change to:</source>
-        <translation>Skift til:</translation>
+        <translation>שינוי אל:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>Kontrollerer stavning...</translation>
+        <translation>בודק כעת איות...</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>Fortryd</translation>
+        <translation>ביטול</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>Vent venligst</translation>
+        <translation>נא להמתין</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="260"/>
         <source>Spell check complete.</source>
-        <translation>Stavekontrol fuldført.</translation>
+        <translation>בדיקת איות הושלמה</translation>
     </message>
 </context>
 <context>
@@ -921,32 +921,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation>Symboler</translation>
+        <translation>סמלים</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation>Nyligt brugte symboler</translation>
+        <translation>סמלים שנשתמשו לאחרונה</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="126"/>
         <source>All symbols</source>
-        <translation>Alle symboler</translation>
+        <translation>כל הסמלים</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="179"/>
         <source>Details</source>
-        <translation>Detaljer</translation>
+        <translation>פרטים</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Name:</source>
-        <translation>Navn:</translation>
+        <translation>שם:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="215"/>
         <source>Insert</source>
-        <translation>Indsæt</translation>
+        <translation>שיבוץ</translation>
     </message>
 </context>
 <context>
@@ -954,12 +954,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Blocks</source>
-        <translation>Blokke</translation>
+        <translation>בלוקים</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Scripts</source>
-        <translation>Scripts</translation>
+        <translation>תסריטים</translation>
     </message>
 </context>
 <context>
@@ -967,7 +967,7 @@
     <message>
         <location filename="../src/theme.cpp" line="104"/>
         <source>Untitled %1</source>
-        <translation>Uden titel %1</translation>
+        <translation>ללא כותרת %1</translation>
     </message>
 </context>
 <context>
@@ -975,81 +975,81 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="50"/>
         <source>Modify Theme</source>
-        <translation>Tilpas tema</translation>
+        <translation>התאמת מוטיב</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="60"/>
         <source>Name:</source>
-        <translation>Navn:</translation>
+        <translation>שם:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="68"/>
         <source>Background</source>
-        <translation>Baggrund</translation>
+        <translation>רקע אחורי</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>No Image</source>
-        <translation>Intet billede</translation>
+        <translation>ללא תמונה</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Tiled</source>
-        <translation>Side om side</translation>
+        <translation>מרוצף</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Centered</source>
-        <translation>Centreret</translation>
+        <translation>ממורכז</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Stretched</source>
-        <translation>Strakt</translation>
+        <translation>פרוש</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Scaled</source>
-        <translation>Skaleret</translation>
+        <translation>מתוח</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Zoomed</source>
-        <translation>Zoomet</translation>
+        <translation>מוקרב</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="83"/>
         <source>Remove</source>
-        <translation>Fjern</translation>
+        <translation>הסרה</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="95"/>
         <source>Type:</source>
-        <translation>Type:</translation>
+        <translation>סוג:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="96"/>
         <location filename="../src/theme_dialog.cpp" line="161"/>
         <location filename="../src/theme_dialog.cpp" line="200"/>
         <source>Color:</source>
-        <translation>Farve:</translation>
+        <translation>צבע:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="97"/>
         <source>Image:</source>
-        <translation>Billede:</translation>
+        <translation>תמונה:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="102"/>
         <source>Foreground</source>
-        <translation>Forgrund</translation>
+        <translation>רקע קדמי</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
         <source>Opacity</source>
-        <translation>Gennemsigtighed</translation>
+        <translation>עמימות</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
@@ -1057,112 +1057,112 @@
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <location filename="../src/theme_dialog.cpp" line="142"/>
         <source> pixels</source>
-        <translation> pixels</translation>
+        <translation>פיקסלים</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Left</source>
-        <translation>Venstre</translation>
+        <translation>שמאל</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Right</source>
-        <translation>Højre</translation>
+        <translation>ימין</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="125"/>
         <source>Position</source>
-        <translation>Position</translation>
+        <translation>מיקום</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Size:</source>
-        <translation>Størrelse:</translation>
+        <translation>גודל:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="163"/>
         <source>Rounding:</source>
-        <translation>Runding:</translation>
+        <translation>התעגלות:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Margin:</source>
-        <translation>Margen:</translation>
+        <translation>שוליים:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="165"/>
         <source>Padding:</source>
-        <translation>Luft omkring:</translation>
+        <translation>ריפוד:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="170"/>
         <source>Text</source>
-        <translation>Tekst</translation>
+        <translation>תמליל</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Font:</source>
-        <translation>Skrifttype:</translation>
+        <translation>גופן:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="202"/>
         <source>Misspelled:</source>
-        <translation>Stavefejl:</translation>
+        <translation>שגיאת כתיב:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation>Afstande</translation>
+        <translation>ריווח</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation>Linjeafstand</translation>
+        <translation>ריווח שורה</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation>Enkel</translation>
+        <translation>בודדות</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation>Halvanden linie</translation>
+        <translation>1.5 שורות</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation>Dobbelt</translation>
+        <translation>כפולות</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation>Proportionel</translation>
+        <translation>פרופורציונלי</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation>Mellemrum mellem afsnit</translation>
+        <translation>ריווח פסקאות</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation>Indryk første linje:</translation>
+        <translation>הזחת שורה ראשונה:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Pixels Above:</source>
-        <translation>Pixels over:</translation>
+        <translation>פיקסלים תחתונים:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation>Pixels under:</translation>
+        <translation>פיקסלים תחתונים:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Tekst til test</translation>
+        <translation>יורם יהודה, צייד הנחשים</translation>
     </message>
 </context>
 <context>
@@ -1170,79 +1170,79 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="46"/>
         <source>Themes</source>
-        <translation>Temaer</translation>
+        <translation>מוטיבים</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="72"/>
         <source>Add</source>
-        <translation>Tilføj</translation>
+        <translation>הוספה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="76"/>
         <source>Modify</source>
-        <translation>Tilpas</translation>
+        <translation>התאמה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="80"/>
         <source>Remove</source>
-        <translation>Fjern</translation>
+        <translation>הסרה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="84"/>
         <source>Import</source>
-        <translation>Importer</translation>
+        <translation>ייבוא</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="88"/>
         <source>Export</source>
-        <translation>Eksport</translation>
+        <translation>ייצוא</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Close</source>
-        <translation>Luk</translation>
+        <translation>סגירה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Remove selected theme?</source>
-        <translation>Fjern valgte tema?</translation>
+        <translation>הסרת מוטיב נבחר?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Import Theme</source>
-        <translation>Importer tema</translation>
+        <translation>ייבוא מוטיב</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Themes (*.fwtz *.theme)</source>
-        <translation>Temaer (*.fwtz *.theme)</translation>
+        <translation>מוטיבים ‪(*.fwtz *.theme)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="260"/>
         <source>Themes (*.fwtz)</source>
-        <translation>Temaer(*.fwtz)</translation>
+        <translation>מוטיבים ‪(*.fwtz)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="205"/>
         <location filename="../src/theme_manager.cpp" line="207"/>
         <source>Sorry</source>
-        <translation>Beklager</translation>
+        <translation>צר לי</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="205"/>
         <location filename="../src/theme_manager.cpp" line="207"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Der findes allerede et tema med det navn. Indtast venligst et nyt:</translation>
+        <translation>כבר קיים מוטיב עם שם זה. נא להזין שם חדש:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="260"/>
         <source>Export Theme</source>
-        <translation>Eksporter tema</translation>
+        <translation>ייצוא מוטיב</translation>
     </message>
 </context>
 <context>
@@ -1250,87 +1250,87 @@
     <message>
         <location filename="../src/timer.cpp" line="255"/>
         <source>&lt;b&gt;%1&lt;/b&gt; - %2</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; - %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation>Slet tæller</translation>
+        <translation>מחיקת שעון עצר?</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Ord:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;מילים:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sider:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;עמודים:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Afsnit:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;פסקאות:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="358"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Tegn:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;תווים:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation>Sæt nedtælling</translation>
+        <translation>הגדרת שיהוי</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation>Sæt tid</translation>
+        <translation>הגדרת זמן</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
         <source>Delay:</source>
-        <translation>Nedtælling:</translation>
+        <translation>שיהוי:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="409"/>
         <source>Time:</source>
-        <translation>Tid:</translation>
+        <translation>זמן:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="418"/>
         <source>HH:mm:ss</source>
-        <translation>TT:mm:ss</translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="431"/>
         <source>Alarm</source>
-        <translation>Alarm</translation>
+        <translation>אזעקה</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="444"/>
         <source>Type:</source>
-        <translation>Type:</translation>
+        <translation>סוג:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation>Memo:</translation>
+        <translation>תזכיר:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation>Rediger</translation>
+        <translation>עריכה</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation>Slet</translation>
+        <translation>מחיקה</translation>
     </message>
 </context>
 <context>
@@ -1338,12 +1338,12 @@
     <message>
         <location filename="../src/timer_display.cpp" line="150"/>
         <source>HH:mm:ss</source>
-        <translation>TT:mm:ss</translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>Ingen aktive tællere</translation>
+        <translation>אין שעון עצר שמורץ</translation>
     </message>
 </context>
 <context>
@@ -1351,37 +1351,37 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>Tællere</translation>
+        <translation>שעוני עצר</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>Ny</translation>
+        <translation>חדש</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation>Nylig</translation>
+        <translation>אחרונים</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>Fortryd ændring af tællere</translation>
+        <translation>ביטול עריכת שעוני עצר?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
         <source>+HH:mm:ss</source>
-        <translation>+TT:mm:ss</translation>
+        <translation>+HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="323"/>
         <source>%1 - %2</source>
-        <translation>%1 - %2</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1389,7 +1389,7 @@
     <message>
         <location filename="../src/rtf/tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Uventet nået slutning på fil.</translation>
+        <translation>הגעה בלתי צפויה אל סוף קובץ.</translation>
     </message>
 </context>
 <context>
@@ -1397,38 +1397,38 @@
     <message>
         <location filename="../src/window.cpp" line="285"/>
         <source>Loading themes</source>
-        <translation>Indlæser temaer</translation>
+        <translation>מטעין כעת מוטיבים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1156"/>
         <source>Loading sounds</source>
-        <translation>Indlæser lyde</translation>
+        <translation>מטעין כעת צלילים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="291"/>
         <location filename="../src/window.cpp" line="1096"/>
         <source>Untitled</source>
-        <translation>Uden titel</translation>
+        <translation>ללא כותרת</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="690"/>
         <source>Open File</source>
-        <translation>Åbn fil</translation>
+        <translation>פתיחת קובץ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="881"/>
         <source>About FocusWriter</source>
-        <translation>Om FocusWriter</translation>
+        <translation>אדות ‫FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="884"/>
         <source>FocusWriter</source>
-        <translation>FocusWriter</translation>
+        <translation>‫FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="885"/>
         <source>A simple fullscreen word processor</source>
-        <translation>Et enkelt tekstbehandlingsprogram i fuld skærm</translation>
+        <translation>עורך תמלילים פשוט במסך מלא</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="886"/>
@@ -1438,225 +1438,225 @@
     <message>
         <location filename="../src/window.cpp" line="887"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Udgivet under licensen &lt;a href=%1&gt;GPL 3&lt;/a&gt;.</translation>
+        <translation>משוחרר תחת הרשיון ‫&lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="888"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Anvender ikoner fra &lt;a href=%1&gt;Oxygen&lt;/a&gt;-temaet</translation>
+        <translation>הצלמיות נלקחו מן הפרויקט &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="889"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Anvendes under  licensen &lt;a href=%1&gt;LGPL 3&lt;/a&gt;.</translation>
+        <translation>בשימוש תחת הרשיון &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="160"/>
         <location filename="../src/window.cpp" line="944"/>
         <source>Characters: %L1 / %L2</source>
-        <translation>Tegn: %L1 / %L2</translation>
+        <translation>תווים: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="158"/>
         <location filename="../src/window.cpp" line="945"/>
         <source>Pages: %L1</source>
-        <translation>Sider: %L1</translation>
+        <translation>עמודים: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="159"/>
         <location filename="../src/window.cpp" line="946"/>
         <source>Paragraphs: %L1</source>
-        <translation>Afsnit: %L1</translation>
+        <translation>פסקאות: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="157"/>
         <location filename="../src/window.cpp" line="947"/>
         <source>Words: %L1</source>
-        <translation>Ord: %L1</translation>
+        <translation>מילים: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="161"/>
         <location filename="../src/window.cpp" line="1009"/>
         <source>%1% of daily goal</source>
-        <translation>%1% af dagligt mål</translation>
+        <translation>%1% מן היעד היומי</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="437"/>
         <location filename="../src/window.cpp" line="1049"/>
         <source>Opening %1</source>
-        <translation>Åbner %1</translation>
+        <translation>‫‭%1‬ נפתח כעת</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1138"/>
         <source>Question</source>
-        <translation>Spørgsmål</translation>
+        <translation>שאלה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1138"/>
         <source>Save changes?</source>
-        <translation>Gem ændringer</translation>
+        <translation>שמירת שינויים?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="349"/>
         <location filename="../src/window.cpp" line="1252"/>
         <source>(Untitled %1)</source>
-        <translation>(Uden titel%1)</translation>
+        <translation>(ללא כותרת %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="187"/>
         <source>Switch to Next Document</source>
-        <translation>Skift til næste dokument</translation>
+        <translation>מעבר אל מסמך בא</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="193"/>
         <source>Switch to Previous Document</source>
-        <translation>Skift til tidligere dokument</translation>
+        <translation>מעבר אל מסמך קודם</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="199"/>
         <source>Switch to First Document</source>
-        <translation>Skift til første dokument</translation>
+        <translation>מעבר אל מסמך ראשון</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="205"/>
         <source>Switch to Last Document</source>
-        <translation>Skift til sidste dokument</translation>
+        <translation>מעבר אל מסמך אחרון</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="213"/>
         <source>Switch to Document %1</source>
-        <translation>Skift til dokument %1</translation>
+        <translation>מעבר אל מסמך %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="280"/>
         <source>Loading settings</source>
-        <translation>Indlæser indstillinger</translation>
+        <translation>טוען כעת הגדרות</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="299"/>
         <source>Emergency cache is not writable.</source>
-        <translation>Der kan ikke skrives til reservecachen.</translation>
+        <translation>מטמון חירום אינו בר־כתיבה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="355"/>
         <location filename="../src/window.cpp" line="1063"/>
         <source>Warning</source>
-        <translation>Advarsel</translation>
+        <translation>אזהרה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="356"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter blev ikke lukket korrekt.</translation>
+        <translation>‫FocusWriter לא סוים באופן מוסדר.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="357"/>
         <source>Restore from the emergency cache?</source>
-        <translation>Gendan fra reservecache?</translation>
+        <translation>שחזור ממטמון חירום?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="492"/>
         <source>Some files could not be opened.</source>
-        <translation>Visse filer kunne ikke åbnes.</translation>
+        <translation>קבצים מסוימים לא יכלו להיפתח.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="495"/>
         <source>Some files were opened Read-Only.</source>
-        <translation>Visse filer blev åbnet skrivebeskyttet.</translation>
+        <translation>קבצים מסוימים נפתחו לקריאה-בלבד.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="690"/>
         <source>Text Files (%1);;All Files (*)</source>
-        <translation>Tekstfiler (%1);;Alle Filer (*)</translation>
+        <translation>קבצי תמליל (%1);;כל הקבצים (*)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1064"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; er nyere end den lagrede kopi.</translation>
+        <translation>&apos;%1&apos; הינו חדש יותר מן העותק המוטמן.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1065"/>
         <source>Overwrite newer file?</source>
-        <translation>Overskriv nyere fil?</translation>
+        <translation>החלפת קובץ חדש?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1163"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Kan ikke indlæse skrivemaskinelyde.</translation>
+        <translation>לא ניתן לטעון קולות מכונת־כתיבה.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1164"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation>Sørg for, at SDL_mixer er installeret.</translation>
+        <translation>נא לוודא שהרכיב SDL_mixer הינו מותקן.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1255"/>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (Skrivebeskyttet)</translation>
+        <translation>%1 (לקריאה-בלבד)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1302"/>
         <source>&amp;File</source>
-        <translation>&amp;Fil</translation>
+        <translation>&amp;קובץ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1303"/>
         <source>&amp;New</source>
-        <translation>&amp;Ny</translation>
+        <translation>&amp;חדש</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1304"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Åbn...</translation>
+        <translation>&amp;פתיחה...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>Reloa&amp;d</source>
-        <translation>Genind&amp;læs</translation>
+        <translation>&amp;טעינה מחדש</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1307"/>
         <source>&amp;Save</source>
-        <translation>&amp;Gem</translation>
+        <translation>&amp;שמירה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Save &amp;As...</source>
-        <translation>Gem &amp;som</translation>
+        <translation>שמירה &amp;בשם...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;Rename...</source>
-        <translation>&amp;Omdøb...</translation>
+        <translation>שי&amp;נוי שם...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1312"/>
         <source>Save A&amp;ll</source>
-        <translation>Gem &amp;alle</translation>
+        <translation>שמור ה&amp;כל</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1315"/>
         <source>Manage Sessions</source>
-        <translation>Administrer sessioner</translation>
+        <translation>ניהול סשנים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>New Session</source>
-        <translation>Ny session</translation>
+        <translation>סשן חדש</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1320"/>
         <source>&amp;Print...</source>
-        <translation>&amp;Udskrift...</translation>
+        <translation>ה&amp;דפסה...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1322"/>
         <source>&amp;Close</source>
-        <translation>&amp;Luk</translation>
+        <translation>&amp;סגירה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1323"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Afslut</translation>
+        <translation>י&amp;ציאה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1323"/>
@@ -1666,37 +1666,37 @@
     <message>
         <location filename="../src/window.cpp" line="1327"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Rediger</translation>
+        <translation>ע&amp;ריכה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1328"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Fortryd</translation>
+        <translation>&amp;ביטול</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Gendan</translation>
+        <translation>&amp;חזרה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1335"/>
         <source>Cu&amp;t</source>
-        <translation>K&amp;lip</translation>
+        <translation>&amp;גזור</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopier</translation>
+        <translation>הע&amp;תק</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1341"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Indsæt</translation>
+        <translation>ה&amp;דבק</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Paste &amp;Unformatted</source>
-        <translation>Indsæt &amp;uformatteret</translation>
+        <translation>הדבק בלי &amp;עיצוב</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
@@ -1706,12 +1706,12 @@
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>Select &amp;All</source>
-        <translation>Vælg &amp;alle</translation>
+        <translation>בחר ה&amp;כל</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Select &amp;Scene</source>
-        <translation>Vælg &amp;scene</translation>
+        <translation>בחר &amp;מקטע</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
@@ -1721,27 +1721,27 @@
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>Fo&amp;rmat</source>
-        <translation>Fo&amp;rmat</translation>
+        <translation>עי&amp;צוב</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
         <source>&amp;Bold</source>
-        <translation>&amp;Fed</translation>
+        <translation>&amp;מודגש</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>&amp;Italic</source>
-        <translation>&amp;Kursiv</translation>
+        <translation>&amp;נטוי</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Understreg</translation>
+        <translation>&amp;קו תחתון</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1356"/>
         <source>Stri&amp;kethrough</source>
-        <translation>&amp;Gennemstreg</translation>
+        <translation>קו &amp;חוצה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1356"/>
@@ -1751,7 +1751,7 @@
     <message>
         <location filename="../src/window.cpp" line="1358"/>
         <source>Sup&amp;erscript</source>
-        <translation>&amp;Hævet skrift</translation>
+        <translation>כיתוב &amp;עילי</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1358"/>
@@ -1761,7 +1761,7 @@
     <message>
         <location filename="../src/window.cpp" line="1360"/>
         <source>&amp;Subscript</source>
-        <translation>&amp;Sænket skrift</translation>
+        <translation>כיתוב &amp;תחתי</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1360"/>
@@ -1771,7 +1771,7 @@
     <message>
         <location filename="../src/window.cpp" line="1364"/>
         <source>Align &amp;Left</source>
-        <translation>&amp;Venstrestil</translation>
+        <translation>יישור &amp;שמאל</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1364"/>
@@ -1781,7 +1781,7 @@
     <message>
         <location filename="../src/window.cpp" line="1366"/>
         <source>Align &amp;Center</source>
-        <translation>&amp;Centrer</translation>
+        <translation>יישור מ&amp;רכז</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1366"/>
@@ -1791,7 +1791,7 @@
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>Align &amp;Right</source>
-        <translation>&amp;Højrestil</translation>
+        <translation>יישור &amp;ימין</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
@@ -1801,7 +1801,7 @@
     <message>
         <location filename="../src/window.cpp" line="1370"/>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Tilpasset</translation>
+        <translation>יישור מ&amp;אוזן</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1370"/>
@@ -1811,7 +1811,7 @@
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Forminds indrykning</translation>
+        <translation>&amp;צמצום שוליים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
@@ -1821,7 +1821,7 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Fo&amp;røg indrykning</translation>
+        <translation>&amp;גידול שוליים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -1831,37 +1831,37 @@
     <message>
         <location filename="../src/window.cpp" line="1384"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Tekstblok med Ve&amp;nstre til højre</translation>
+        <translation>בלוק שמ&amp;אל לימין</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1386"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Tekstblok med Hø&amp;jre til venstre</translation>
+        <translation>בלוק י&amp;מין לשמאל</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1394"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Værktøjer</translation>
+        <translation>&amp;כלים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1395"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Find...</translation>
+        <translation>&amp;מציאה...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Find &amp;Next</source>
-        <translation>Find &amp;næste</translation>
+        <translation>מציאת ה&amp;בא</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1399"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Find &amp;tidligere</translation>
+        <translation>מציאת ה&amp;קודם</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1402"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;Erstat</translation>
+        <translation>ה&amp;חלפה...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1402"/>
@@ -1871,22 +1871,22 @@
     <message>
         <location filename="../src/window.cpp" line="1404"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Smart &amp;Quotes</translation>
+        <translation>מר&amp;כאות חכמות</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1405"/>
         <source>Update &amp;Document</source>
-        <translation>Opdater &amp;dokument</translation>
+        <translation>עדכון &amp;מסמך</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1408"/>
         <source>Update &amp;Selection</source>
-        <translation>Opdater &amp;markering</translation>
+        <translation>עדכון &amp;נבחר</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Stavning...</translation>
+        <translation>&amp;איות...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
@@ -1896,37 +1896,37 @@
     <message>
         <location filename="../src/window.cpp" line="1413"/>
         <source>&amp;Timers...</source>
-        <translation>&amp;Tællere...</translation>
+        <translation>&amp;שעוני עצר...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>S&amp;ymbols...</source>
-        <translation>S&amp;ymboler...</translation>
+        <translation>&amp;סמלים...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1417"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Indstillinger</translation>
+        <translation>&amp;הגדרות</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1418"/>
         <source>Show &amp;Toolbar</source>
-        <translation>Vis &amp;værktøjslinie</translation>
+        <translation>הצגת &amp;סרגל כלים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Vis &amp;menuikoner</translation>
+        <translation>הצגת &amp;צלמיות תפריט</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1429"/>
         <source>F&amp;ocused Text</source>
-        <translation>F&amp;okuseret tekst</translation>
+        <translation>תמליל ממור&amp;כז</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Fuld skærm</translation>
+        <translation>&amp;מסך מלא</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
@@ -1941,7 +1941,7 @@
     <message>
         <location filename="../src/window.cpp" line="1437"/>
         <source>M&amp;inimize</source>
-        <translation>M&amp;inimer</translation>
+        <translation>מ&amp;זעור</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1437"/>
@@ -1951,77 +1951,77 @@
     <message>
         <location filename="../src/window.cpp" line="1439"/>
         <source>&amp;Themes...</source>
-        <translation>&amp;Temaer...</translation>
+        <translation>מו&amp;טיבים...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1442"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Indstillinger...</translation>
+        <translation>&amp;העדפות...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1448"/>
         <source>Focus Off</source>
-        <translation>Fokus fra</translation>
+        <translation>כיבוי מרכוז</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1450"/>
         <source>Focus One Line</source>
-        <translation>Fokus én linie</translation>
+        <translation>מרכוז שורה אחת</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>Focus Three Lines</source>
-        <translation>Fokus tre linier</translation>
+        <translation>מרכוז שלוש שורות</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1453"/>
         <source>&amp;Paragraph</source>
-        <translation>A&amp;fsnit</translation>
+        <translation>&amp;פסקה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1454"/>
         <source>Focus Paragraph</source>
-        <translation>Fokus afsnit</translation>
+        <translation>מרכוז פסקה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1467"/>
         <source>&amp;Help</source>
-        <translation>&amp;Hjælp</translation>
+        <translation>&amp;עזרה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>Application &amp;Language...</source>
-        <translation>Programmets &amp;sprog</translation>
+        <translation>&amp;שפת יישום...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="425"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Nogle filer var ikke understøttede og kunne ikke åbnes.</translation>
+        <translation>קבצים מסוימים לא נתמכו ולא ניתן היה לפתוחם.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
         <source>&amp;Off</source>
-        <translation>&amp;Fra</translation>
+        <translation>&amp;כבוי</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
         <source>One &amp;Line</source>
-        <translation>En &amp;linie</translation>
+        <translation>שורה &amp;אחת</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1451"/>
         <source>&amp;Three Lines</source>
-        <translation>&amp;Tre linier</translation>
+        <translation>&amp;שלוש שורות</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1468"/>
         <source>&amp;About</source>
-        <translation>&amp;Om</translation>
+        <translation>&amp;אודות</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1470"/>
         <source>About &amp;Qt</source>
-        <translation>Om &amp;QT</translation>
+        <translation>אודות &amp;Qt</translation>
     </message>
 </context>
 </TS>
