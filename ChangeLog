@@ -1,3 +1,6 @@
+2012-11-20 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Showing scene list moved cursor to start of document.
+
 2012-11-18 Graeme Gott <graeme@gottcode.org>
 	* Sync translations with Transifex.
 

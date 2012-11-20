@@ -137,7 +137,6 @@ SceneList::SceneList(QWidget* parent) :
 	m_scenes->setWordWrap(true);
 	m_scenes->viewport()->setAcceptDrops(true);
 	m_scenes->setModel(m_filter_model);
-	connect(m_scenes->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(sceneSelected(QModelIndex)));
 	m_scenes->show();
 	setFocusProxy(m_scenes);
 	setFocusPolicy(Qt::StrongFocus);
@@ -211,6 +210,7 @@ void SceneList::setDocument(Document* document)
 void SceneList::hideScenes()
 {
 	if (m_document) {
+		disconnect(m_scenes->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(sceneSelected(QModelIndex)));
 		m_document->sceneModel()->setUpdatesBlocked(true);
 		disconnect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
 	}
@@ -227,11 +227,11 @@ void SceneList::hideScenes()
 
 	m_filter->clear();
 
+	hide();
+
 	if (m_document) {
 		m_document->text()->setFocus();
 	}
-
-	hide();
 }
 
 //-----------------------------------------------------------------------------
@@ -255,6 +255,7 @@ void SceneList::showScenes()
 		m_document->sceneModel()->setUpdatesBlocked(false);
 		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
 		selectCurrentScene();
+		connect(m_scenes->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(sceneSelected(QModelIndex)));
 	}
 
 	m_scenes->setFocus();
