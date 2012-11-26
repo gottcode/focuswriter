@@ -744,10 +744,12 @@ void Document::setFocusMode(int focus_mode)
 	m_text->setStyleSheet(style_sheet);
 
 	if (m_focus_mode) {
-		connect(m_text, SIGNAL(textChanged()), this, SLOT(focusText()));
+		connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(focusText()));
+		connect(m_text, SIGNAL(selectionChanged()), this, SLOT(focusText()));
 		focusText();
 	} else {
-		disconnect(m_text, SIGNAL(textChanged()), this, SLOT(focusText()));
+		disconnect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(focusText()));
+		disconnect(m_text, SIGNAL(selectionChanged()), this, SLOT(focusText()));
 		m_text->setExtraSelections(QList<QTextEdit::ExtraSelection>());
 	}
 }
