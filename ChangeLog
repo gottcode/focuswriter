@@ -1,3 +1,6 @@
+2012-11-26 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Crashed when typing circumflex with focused text.
+
 2012-11-20 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Showing scene list moved cursor to start of document.
 
