@@ -143,11 +143,11 @@ namespace
 
 	void TextEdit::keyPressEvent(QKeyEvent* event)
 	{
+		QTextEdit::keyPressEvent(event);
+
 		if (event->key() == Qt::Key_Insert) {
 			setOverwriteMode(!overwriteMode());
 		} else {
-			QTextEdit::keyPressEvent(event);
-
 			// Play sound effect
 			int key = event->key();
 			if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
