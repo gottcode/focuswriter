@@ -89,32 +89,32 @@
         <translation>טעינה מחדש</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1160"/>
         <source>Plain Text (*.txt)</source>
         <translation>תמליל גלוי ‪(*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1217"/>
+        <location filename="../src/document.cpp" line="1219"/>
         <source>Question</source>
         <translation>שאלה</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1218"/>
+        <location filename="../src/document.cpp" line="1220"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>שמירה כתמליל גלוי תתעלם מכל העיצוב. האם להתעלם מן עיצוב?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1156"/>
+        <location filename="../src/document.cpp" line="1158"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>תמליל ‫OpenDocument ‫(‭*.odt‬)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1157"/>
+        <location filename="../src/document.cpp" line="1159"/>
         <source>Rich Text (*.rtf)</source>
         <translation>תמליל עשיר ‪(*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1161"/>
         <source>All Files (*)</source>
         <translation>כל הקבצים (*)</translation>
     </message>
@@ -683,17 +683,17 @@
         <translation>Shift+F4</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="398"/>
+        <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
         <translation>הצגת רשימת מקטע (%1)</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="399"/>
+        <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
         <translation>הסתרת רשימת מקטע (%1)</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="148"/>
+        <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
         <translation>סינון</translation>
     </message>
@@ -703,7 +703,7 @@
         <translation>הזזת מקטעים מטה</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="156"/>
+        <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
         <translation>שינוי גודל רשימת מקטע</translation>
     </message>

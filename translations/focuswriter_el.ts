@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλείσιμο (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Απόκρυψη Ειδοποίησης</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -45,76 +45,76 @@
     <message>
         <location filename="../src/document.cpp" line="339"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό να αποθηκευτεί το &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό να αποθηκευτεί το «%1».</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="352"/>
         <source>Save File As</source>
-        <translation>Αποθήκευση αρχείου ως</translation>
+        <translation>Αποθήκευση Αρχείου Ως</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="359"/>
         <location filename="../src/document.cpp" line="390"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό να αντικατασταθεί το &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό να αντικατασταθεί το «%1».</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="383"/>
         <source>Rename File</source>
-        <translation>Μετονομασία αρχείου</translation>
+        <translation>Μετονομασία Αρχείου</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="396"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό να μετονομαστεί το &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό να μετονομαστεί το «%1».</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="420"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφόρτωση Αρχείου</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="421"/>
         <source>Reload the file %1 from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφόρτωση του αρχείου «%1» από τον δίσκο;</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Όλες οι μη αποθηκευμένες αλλαγές θα χαθούν.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="424"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφόρτωση</translation>
+    </message>
+    <message>
+        <location filename="../src/document.cpp" line="1160"/>
+        <source>Plain Text (*.txt)</source>
+        <translation>Απλό Κείμενο (*.txt)</translation>
+    </message>
+    <message>
+        <location filename="../src/document.cpp" line="1219"/>
+        <source>Question</source>
+        <translation>Ερώτηση</translation>
+    </message>
+    <message>
+        <location filename="../src/document.cpp" line="1220"/>
+        <source>Saving as plain text will discard all formatting. Discard formatting?</source>
+        <translation>Η αποθήκευση σε τύπο απλού κειμένου θα απορρίψει όλη τη μορφοποίηση. Απόρριψη όλης της μορφοποίησης;</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1158"/>
-        <source>Plain Text (*.txt)</source>
-        <translation>Απλό κείμενο (*.txt)</translation>
-    </message>
-    <message>
-        <location filename="../src/document.cpp" line="1217"/>
-        <source>Question</source>
-        <translation type="unfinished">Ερώτηση</translation>
-    </message>
-    <message>
-        <location filename="../src/document.cpp" line="1218"/>
-        <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/document.cpp" line="1156"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>Κείμενο OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1157"/>
+        <location filename="../src/document.cpp" line="1159"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Εμπλουτισμένο κείμενο (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1161"/>
         <source>All Files (*)</source>
         <translation>Όλα τα αρχεία (*)</translation>
     </message>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="107"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχείο Έχει Αλλάξει</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
         <source>The file %1 was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το αρχείο %1 έχει αλλαχθεί από άλλο πρόγραμμα.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="109"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Θέλετε να επαναφορτώσετε το αρχείο;</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφόρτωση</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="116"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Αγνόηση</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="127"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχείο Διεγράφει</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="128"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το αρχείο «%1» διεγράφη από άλλο πρόγραμμα.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="129"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Θέλετε να αποθηκεύσετε ή να κλείσετε το αρχείο;</translation>
     </message>
 </context>
 <context>
@@ -202,17 +202,17 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Εύρεση</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Αντικατάσταση</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντικατάσταση &amp;Όλων</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
@@ -291,7 +291,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;System Language&gt;</translation>
+        <translation>&lt;Γλώσσα Συστήματος&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
@@ -376,12 +376,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Συντομεύσεις</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Μία ή περισσότερες συντομεύσεις συγκρούονται. Θέλετε να συνεχίσετε;</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
@@ -452,12 +452,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Σκηνές</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαχωριστικό:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
@@ -582,17 +582,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Εντολή</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Συντόμευση</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Δράση</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
@@ -660,7 +660,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Κάτω</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
@@ -670,7 +670,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Πάνω</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
@@ -680,22 +680,22 @@
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="398"/>
+        <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="399"/>
+        <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="148"/>
+        <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Φιλτράρισμα</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
@@ -703,7 +703,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="156"/>
+        <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -826,18 +826,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Εκκαθάριση</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά στα Προκαθορισμένα</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1047"/>
         <location filename="../src/symbols_dialog.cpp" line="203"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"></translation>
+        <translation>Συντόμευση:</translation>
     </message>
 </context>
 <context>
@@ -921,32 +921,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Σύμβολα</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Πρόσφατα σύμβολα</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="126"/>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Όλα τα σύμβολα</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="179"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Λεπτομέρειες</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Name:</source>
-        <translation type="unfinished">Όνομα:</translation>
+        <translation>Όνομα:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="215"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Εισαγωγή</translation>
     </message>
 </context>
 <context>
@@ -975,7 +975,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="50"/>
         <source>Modify Theme</source>
-        <translation>Τροποποίηση θέματος</translation>
+        <translation>Τροποποίηση Θέματος</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="60"/>
@@ -990,7 +990,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>No Image</source>
-        <translation>Χωρίς εικόνα</translation>
+        <translation>Χωρίς Εικόνα</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
@@ -1112,37 +1112,37 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation type="unfinished"></translation>
+        <translation>Αποστάσεις</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Απόσταση Γραμμών</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation type="unfinished">Μονά</translation>
+        <translation>Μονή</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1,5 Γραμμή</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation type="unfinished">Διπλά</translation>
+        <translation>Διπλή</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation>Αναλογική</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Απόσταση Παραγράφων</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
@@ -1152,12 +1152,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Pixels Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel Παραπάνω:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel Παρακάνω:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
@@ -1215,7 +1215,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Import Theme</source>
-        <translation>Εισαγωγή θέματος</translation>
+        <translation>Εισαγωγή Θέματος</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
@@ -1242,7 +1242,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="260"/>
         <source>Export Theme</source>
-        <translation>Εξαγωγή θέματος</translation>
+        <translation>Εξαγωγή Θέματος</translation>
     </message>
 </context>
 <context>
@@ -1285,12 +1285,12 @@
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation>Ορισμός καθυστέρησης</translation>
+        <translation>Ορισμός Καθυστέρησης</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation>Ορισμός ώρας</translation>
+        <translation>Ορισμός Ώρας</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
@@ -1413,42 +1413,42 @@
     <message>
         <location filename="../src/window.cpp" line="690"/>
         <source>Open File</source>
-        <translation>Άνοιγμα αρχείου</translation>
+        <translation>Άνοιγμα Αρχείου</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="881"/>
         <source>About FocusWriter</source>
-        <translation>Περί του FocusWriter</translation>
+        <translation>Σχετικά με το FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="884"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="885"/>
         <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένας απλός επεξεργαστής κειμένου πλήρης οθόνης</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="886"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation>Πνευματική ιδιοκτησία του &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="887"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Κυκλοφορεί υπό την άδεια χρήσης &lt;a href=%1&gt;GPL 3&lt;/a&gt; </translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="888"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρησιμοποιεί εικονίδια από το θέμα εικονιδίων &lt;a href=%1&gt;Oxygen&lt;/a&gt; </translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="889"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρησιμοποιούνται υπό την άδεια χρήσης &lt;a href=%1&gt;LGPL 3&lt;/ a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="160"/>
@@ -1505,27 +1505,27 @@
     <message>
         <location filename="../src/window.cpp" line="187"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Μετάβαση στο Επόμενο Έγγραφο</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="193"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Μετάβαση στο Προηγούμενο Έγγραφο</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="199"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Μετάβαση στο Πρώτο Έγγραφο</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="205"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Μετάβαση στο Τελευταίο Έγγραφο</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="213"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Μετάβαση στο Έγγραφο %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="280"/>
@@ -1535,7 +1535,7 @@
     <message>
         <location filename="../src/window.cpp" line="299"/>
         <source>Emergency cache is not writable.</source>
-        <translation>Δεν μπορεί να γίνει εγγραφή στην cache εκτάκτου ανάγκης.</translation>
+        <translation>Δεν μπορεί να γίνει εγγραφή στην κρυφή μνήμη εκτάκτου ανάγκης.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="355"/>
@@ -1586,7 +1586,7 @@
     <message>
         <location filename="../src/window.cpp" line="1164"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Παρακαλούμε βεβαιωθείτε ότι το SDL_mixer είναι εγκατεστημένο.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1255"/>
@@ -1611,7 +1611,7 @@
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφόρτωσ&amp;η</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1307"/>
@@ -1636,12 +1636,12 @@
     <message>
         <location filename="../src/window.cpp" line="1315"/>
         <source>Manage Sessions</source>
-        <translation>Διαχείριση περιόδων λειτουργίας</translation>
+        <translation>Διαχείριση Περιόδων Λειτουργίας</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>New Session</source>
-        <translation>Νέα περίοδος λειτουργίας</translation>
+        <translation>Νέα Περίοδος Λειτουργίας</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1320"/>
@@ -1701,7 +1701,7 @@
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
@@ -1716,7 +1716,7 @@
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
@@ -1961,17 +1961,17 @@
     <message>
         <location filename="../src/window.cpp" line="1448"/>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Εστίαση Ανένεργη</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1450"/>
         <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Εστίαση Μίας Γραμμής</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Εστίαση Τριών Γραμμών</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1453"/>
@@ -1981,7 +1981,7 @@
     <message>
         <location filename="../src/window.cpp" line="1454"/>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Εστίαση Παραγράφου</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1467"/>
@@ -2016,12 +2016,12 @@
     <message>
         <location filename="../src/window.cpp" line="1468"/>
         <source>&amp;About</source>
-        <translation>&amp;Ταυτότητα</translation>
+        <translation>&amp;Σχετικά</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1470"/>
         <source>About &amp;Qt</source>
-        <translation>&amp;Περί του Qt</translation>
+        <translation>&amp;Σχετικά με το Qt</translation>
     </message>
 </context>
 </TS>
