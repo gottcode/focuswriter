@@ -89,32 +89,32 @@
         <translation>Volver a cargar</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1160"/>
         <source>Plain Text (*.txt)</source>
         <translation>Texto plano (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1217"/>
+        <location filename="../src/document.cpp" line="1219"/>
         <source>Question</source>
         <translation>Confirmación</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1218"/>
+        <location filename="../src/document.cpp" line="1220"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Al guardar como texto plano se descartarán todos los cambios de formato. ¿Desea continuar?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1156"/>
+        <location filename="../src/document.cpp" line="1158"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>Texto de OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1157"/>
+        <location filename="../src/document.cpp" line="1159"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto enriquecido (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1161"/>
         <source>All Files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
@@ -683,17 +683,17 @@
         <translation>Mayús + F4</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="398"/>
+        <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
         <translation>Mostrar la lista de escenas (%1)</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="399"/>
+        <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
         <translation>Ocultar la lista de escenas (%1)</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="148"/>
+        <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
         <translation>Filtro</translation>
     </message>
@@ -703,7 +703,7 @@
         <translation>Bajar escenas</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="156"/>
+        <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
         <translation>Cambiar el tamaño de la lista de escenas</translation>
     </message>

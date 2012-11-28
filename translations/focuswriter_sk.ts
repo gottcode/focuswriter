@@ -89,32 +89,32 @@
         <translation>Opätovne načítať</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1160"/>
         <source>Plain Text (*.txt)</source>
         <translation>Obyčajný text (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1217"/>
+        <location filename="../src/document.cpp" line="1219"/>
         <source>Question</source>
         <translation>Otázka</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1218"/>
+        <location filename="../src/document.cpp" line="1220"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Uloženie ako obyčajný text odstráni formátovanie. Chcete zrušiť formátovanie?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1156"/>
+        <location filename="../src/document.cpp" line="1158"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument Text (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1157"/>
+        <location filename="../src/document.cpp" line="1159"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1161"/>
         <source>All Files (*)</source>
         <translation>Všetky súbory (*)</translation>
     </message>
@@ -684,17 +684,17 @@
         <translation>Shift+F4</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="398"/>
+        <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
         <translation>Zobraziť zoznam scén (%1)</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="399"/>
+        <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
         <translation>Skryť zoznam scén (%1)</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="148"/>
+        <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
@@ -704,7 +704,7 @@
         <translation>Posunúť scény nadol</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="156"/>
+        <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
         <translation>Zmeniť veľkosť zoznamu scén</translation>
     </message>
