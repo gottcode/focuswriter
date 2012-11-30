@@ -1,3 +1,10 @@
+focuswriter (1.4.1-1) unstable; urgency=low
+
+  * new upstream release
+  * fix debian/watch file
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 30 Nov 2012 23:03:48 +0000
+
 focuswriter (1.4.0.2012.11.18-1) unstable; urgency=low
 
   * merge upstream changes on branch release-1.4
