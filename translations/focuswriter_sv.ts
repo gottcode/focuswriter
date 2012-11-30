@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng varning</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -71,50 +71,50 @@
     <message>
         <location filename="../src/document.cpp" line="420"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs om fil</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="421"/>
         <source>Reload the file %1 from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs om filen %1 från disk?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla osparade ändringar kommer att gå förlorade.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="424"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs om</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1160"/>
         <source>Plain Text (*.txt)</source>
         <translation>Vanlig text (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1217"/>
+        <location filename="../src/document.cpp" line="1219"/>
         <source>Question</source>
-        <translation type="unfinished">Fråga</translation>
+        <translation>Fråga</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1218"/>
+        <location filename="../src/document.cpp" line="1220"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Att spara som vanlig text tar bort all formatering. Ta bort formatering?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1156"/>
+        <location filename="../src/document.cpp" line="1158"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument-text (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1157"/>
+        <location filename="../src/document.cpp" line="1159"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1161"/>
         <source>All Files (*)</source>
         <translation>Alla filer (*)</translation>
     </message>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="107"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen ändrad</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
         <source>The file %1 was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen %1 ändrades av ett annat program.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="109"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du läsa om filen?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs om</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="116"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorera</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="127"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Fil raderad</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="128"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen %1 togs bort av ett annat program.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="129"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du spara eller stänga filen?</translation>
     </message>
 </context>
 <context>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguljära uttryck</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
@@ -202,17 +202,17 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sök</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ersätt</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersätt &amp;alla</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
@@ -301,7 +301,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Starta om programmet för att språkändringar ska aktiveras.</translation>
+        <translation>Starta om programmet för att språkändringen ska aktiveras.</translation>
     </message>
 </context>
 <context>
@@ -376,12 +376,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Genvägar</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Genvägar i konflikt. Vill du fortsätta?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
@@ -452,12 +452,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Scener</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Avdelare:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
@@ -582,17 +582,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Genväg</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Åtgärd</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
@@ -660,52 +660,52 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Skift+Ned</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta upp scener</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Skift+Upp</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla scenlista</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/scene_list.cpp" line="398"/>
-        <source>Show scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skift+F4</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
-        <source>Hide scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <source>Show scene list (%1)</source>
+        <translation>Visa scenlista (%1)</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="148"/>
+        <location filename="../src/scene_list.cpp" line="400"/>
+        <source>Hide scene list (%1)</source>
+        <translation>Dölj scenlista (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta ner scener</translation>
     </message>
     <message>
-        <location filename="../src/scene_list.cpp" line="156"/>
+        <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
-        <translation type="unfinished"></translation>
+        <translation>Storleksändra scenlista</translation>
     </message>
 </context>
 <context>
@@ -826,18 +826,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Töm</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Återställ till förval</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1047"/>
         <location filename="../src/symbols_dialog.cpp" line="203"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"></translation>
+        <translation>Genväg:</translation>
     </message>
 </context>
 <context>
@@ -863,27 +863,27 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ignorera</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation type="unfinished"></translation>
+        <translation>I&amp;gnorera alla</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ändra</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation type="unfinished"></translation>
+        <translation>Ä&amp;ndra alla</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -921,32 +921,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Symboler</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyligen använda symboler</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="126"/>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla symboler</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="179"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Detaljer</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Name:</source>
-        <translation type="unfinished">Namn:</translation>
+        <translation>Namn:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="215"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga</translation>
     </message>
 </context>
 <context>
@@ -954,12 +954,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Blocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Tecken</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="93"/>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriftspråk</translation>
     </message>
 </context>
 <context>
@@ -1057,7 +1057,7 @@
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <location filename="../src/theme_dialog.cpp" line="142"/>
         <source> pixels</source>
-        <translation>bildpunkter</translation>
+        <translation> bildpunkter</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
@@ -1112,52 +1112,52 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation type="unfinished"></translation>
+        <translation>Avstånd</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Radavstånd</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation type="unfinished">Enkel</translation>
+        <translation>Enkelt</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1,5 radavstånd</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation type="unfinished">Dubbel</translation>
+        <translation>Dubbelt</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation>Proportionellt</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Styckeavstånd</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Indrag första raden:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Pixels Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixlar ovanför:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixlar nedanför:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
@@ -1423,32 +1423,32 @@
     <message>
         <location filename="../src/window.cpp" line="884"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="885"/>
         <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <translation>En enkel ordbehandlare med helskärmsläge</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="886"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="887"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Släppt under licensen &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="888"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Använder ikoner från ikontemat &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="889"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Använda under licensen &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="160"/>
@@ -1478,7 +1478,7 @@
         <location filename="../src/window.cpp" line="161"/>
         <location filename="../src/window.cpp" line="1009"/>
         <source>%1% of daily goal</source>
-        <translation>%1% av dagligt mål</translation>
+        <translation>%1 % av dagligt mål</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="437"/>
@@ -1505,27 +1505,27 @@
     <message>
         <location filename="../src/window.cpp" line="187"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla till nästa dokument</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="193"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla till föregående dokument</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="199"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla till första dokumentet</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="205"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla till sista dokumentet</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="213"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla till dokument %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="280"/>
@@ -1586,7 +1586,7 @@
     <message>
         <location filename="../src/window.cpp" line="1164"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se till att SDL_mixer är installerat.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1255"/>
@@ -1611,7 +1611,7 @@
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs in &amp;igen</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1307"/>
@@ -1696,12 +1696,12 @@
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Klistra in &amp;oformaterat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Skift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
@@ -1711,12 +1711,12 @@
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj &amp;scen</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Skift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
@@ -1811,7 +1811,7 @@
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Minska indragning</translation>
+        <translation>&amp;Minska indrag</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
@@ -1821,7 +1821,7 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Öka in&amp;dragning</translation>
+        <translation>Öka in&amp;drag</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -1901,7 +1901,7 @@
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;ymboler...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1417"/>
@@ -1921,7 +1921,7 @@
     <message>
         <location filename="../src/window.cpp" line="1429"/>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;okuserad text</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
@@ -1961,27 +1961,27 @@
     <message>
         <location filename="../src/window.cpp" line="1448"/>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokus av</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1450"/>
         <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokusera en rad</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokusera tre rader</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1453"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stycke</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1454"/>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokusera stycke</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1467"/>
@@ -1996,22 +1996,22 @@
     <message>
         <location filename="../src/window.cpp" line="425"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Några filer stöds inte och kunde inte öppnas.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
         <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Av</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
         <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation>En &amp;rad</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1451"/>
         <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tre rader</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1468"/>

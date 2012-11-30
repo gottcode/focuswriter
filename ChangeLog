@@ -1,3 +1,16 @@
+2012-11-28 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.4.1.
+
+2012-11-27 Graeme Gott <graeme@gottcode.org>
+	* FIXED: High CPU use in Ubuntu 10.04.
+
+2012-11-26 Graeme Gott <graeme@gottcode.org>
+	* Use QSound on Windows because SDL doesn't always work.
+	* FIXED: Crashed when typing circumflex with focused text.
+
+2012-11-20 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Showing scene list moved cursor to start of document.
+
 2012-11-18 Graeme Gott <graeme@gottcode.org>
 	* Sync translations with Transifex.
 

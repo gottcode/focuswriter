@@ -17,7 +17,7 @@ MOC_DIR = build
 OBJECTS_DIR = build
 RCC_DIR = build
 
-VERSION = 1.4.0
+VERSION = 1.4.1
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 unix: !macx {
@@ -62,7 +62,7 @@ macx {
 		src/enchant/dictionary.cpp \
 		src/enchant/dictionary_data.cpp \
 		src/enchant/dictionary_manager.cpp \
-		src/sdl/sound.cpp
+		src/qsound/sound.cpp
 } else {
 	INCLUDEPATH += src/enchant
 
