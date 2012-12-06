@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation>Stäng (%1)</translation>
+        <translation>Stängd (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -301,7 +301,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Starta om programmet för att språkändringen ska aktiveras.</translation>
+        <translation>Starta om programmet för att språkändringar ska aktiveras.</translation>
     </message>
 </context>
 <context>
