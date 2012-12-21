@@ -107,13 +107,20 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	m_recent->setRowCount(1);
 	m_recent->setSelectionMode(QAbstractItemView::SingleSelection);
 	m_recent->setTabKeyNavigation(false);
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+	m_recent->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	m_recent->verticalHeader()->setSectionsClickable(false);
+	m_recent->verticalHeader()->setSectionsMovable(false);
+	m_recent->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
 	m_recent->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
 	m_recent->verticalHeader()->setClickable(false);
 	m_recent->verticalHeader()->setMovable(false);
 	m_recent->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
 	m_recent->setMaximumHeight(m_recent->verticalHeader()->sectionSize(0));
-	m_recent->horizontalHeader()->setHidden(true);
-	m_recent->verticalHeader()->setHidden(true);
+	m_recent->horizontalHeader()->hide();
+	m_recent->verticalHeader()->hide();
 	m_recent->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_recent->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	connect(m_recent, SIGNAL(currentItemChanged(QTableWidgetItem*,QTableWidgetItem*)), this, SLOT(recentSymbolClicked(QTableWidgetItem*)));
@@ -157,13 +164,22 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	m_view->setSelectionMode(QAbstractItemView::SingleSelection);
 	m_view->setTabKeyNavigation(false);
 	m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+	m_view->horizontalHeader()->setSectionsClickable(false);
+	m_view->horizontalHeader()->setSectionsMovable(false);
+	m_view->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	m_view->verticalHeader()->setSectionsClickable(false);
+	m_view->verticalHeader()->setSectionsMovable(false);
+	m_view->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
 	m_view->horizontalHeader()->setClickable(false);
 	m_view->horizontalHeader()->setMovable(false);
 	m_view->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-	m_view->horizontalHeader()->hide();
 	m_view->verticalHeader()->setClickable(false);
 	m_view->verticalHeader()->setMovable(false);
 	m_view->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
+	m_view->horizontalHeader()->hide();
 	m_view->verticalHeader()->hide();
 	m_view->setModel(m_model);
 	connect(m_view->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(symbolClicked(QModelIndex)));
@@ -180,7 +196,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 
 	QGraphicsScene* scene = new QGraphicsScene(this);
 	scene->setBackgroundBrush(palette().base());
-	m_symbol_preview_item = new QGraphicsSimpleTextItem(0, scene);
+	m_symbol_preview_item = scene->addSimpleText("");
 	m_symbol_preview_item->setBrush(palette().text());
 	m_symbol_preview = new QGraphicsView(scene, details_group);
 	m_symbol_preview->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

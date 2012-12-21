@@ -132,7 +132,7 @@ QString LocaleDialog::languageName(const QString& language)
 	QString lang_code = language.left(5);
 	QLocale locale(lang_code);
 	QString name;
-#if QT_VERSION >= 0x040800
+#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	if (lang_code.length() > 2) {
 		if (locale.name() == lang_code) {
 			name = locale.nativeLanguageName() + " (" + locale.nativeCountryName() + ")";

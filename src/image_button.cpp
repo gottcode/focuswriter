@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,11 @@
 
 #include "image_button.h"
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QStandardPaths>
+#else
 #include <QDesktopServices>
+#endif
 #include <QFileDialog>
 #include <QImageReader>
 
@@ -78,7 +82,11 @@ void ImageButton::onClicked()
 	foreach (QByteArray type, formats) {
 		filters.append("*." + type);
 	}
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+	QString path = !m_path.isEmpty() ? m_path : QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+#else
 	QString path = !m_path.isEmpty() ? m_path : QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
+#endif
 	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")));
 	if (!image.isEmpty()) {
 		setImage(image, image);

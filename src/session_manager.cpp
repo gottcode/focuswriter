@@ -23,19 +23,19 @@
 #include "theme.h"
 #include "window.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QSettings>
+#include <QDir>
+#include <QFile>
+#include <QSettings>
 
-#include <QtGui/QActionGroup>
-#include <QtGui/QApplication>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QGridLayout>
-#include <QtGui/QInputDialog>
-#include <QtGui/QListWidget>
-#include <QtGui/QMenu>
-#include <QtGui/QMessageBox>
-#include <QtGui/QPushButton>
+#include <QActionGroup>
+#include <QApplication>
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QInputDialog>
+#include <QListWidget>
+#include <QMenu>
+#include <QMessageBox>
+#include <QPushButton>
 
 //-----------------------------------------------------------------------------
 
@@ -351,11 +351,7 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 	QString name = session;
 	forever {
 		bool ok;
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok, 0, Qt::ImhNone);
-#else
 		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok);
-#endif
 		if (!ok) {
 			return QString();
 		}

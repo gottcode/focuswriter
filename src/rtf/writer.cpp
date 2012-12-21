@@ -95,8 +95,6 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Portuguese] = "CP1252";
 	codepages[QLocale::RhaetoRomance] = "CP1252";
 	codepages[QLocale::Quechua] = "CP1252";
-	codepages[QLocale::Sesotho] = "CP1252";
-	codepages[QLocale::Setswana] = "CP1252";
 	codepages[QLocale::Spanish] = "CP1252";
 	codepages[QLocale::Swahili] = "CP1252";
 	codepages[QLocale::Swedish] = "CP1252";

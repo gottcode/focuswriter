@@ -44,7 +44,11 @@
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDate>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QStandardPaths>
+#else
 #include <QDesktopServices>
+#endif
 #include <QFileDialog>
 #include <QFileOpenEvent>
 #include <QGridLayout>
@@ -679,7 +683,11 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+	static QString oldpath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#else
 	static QString oldpath = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#endif
 	QString path = m_documents->currentDocument()->filename();
 	if (!path.isEmpty()) {
 		path = QFileInfo(path).dir().path();
@@ -1467,7 +1475,13 @@ void Window::initMenus()
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
 	m_actions["About"]->setMenuRole(QAction::AboutRole);
-	m_actions["AboutQt"] = help_menu->addAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), qApp, SLOT(aboutQt()));
+	m_actions["AboutQt"] = help_menu->addAction(
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"),
+#else
+		QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"),
+#endif
+		tr("About &Qt"), qApp, SLOT(aboutQt()));
 	m_actions["AboutQt"]->setMenuRole(QAction::AboutQtRole);
 
 	// Always show menubar
