@@ -1861,12 +1861,12 @@
     <message>
         <location filename="../src/window.cpp" line="1402"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;sostituisci...</translation>
+        <translation>&amp;Sostituisci...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1402"/>
         <source>Ctrl+R</source>
-        <translation>Ctrl + R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1404"/>
@@ -1886,7 +1886,7 @@
     <message>
         <location filename="../src/window.cpp" line="1412"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;ortografia...</translation>
+        <translation>&amp;Ortografia...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
@@ -1906,7 +1906,7 @@
     <message>
         <location filename="../src/window.cpp" line="1417"/>
         <source>&amp;Settings</source>
-        <translation>&amp;impostazioni</translation>
+        <translation>&amp;Impostazioni</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1418"/>
@@ -1946,7 +1946,7 @@
     <message>
         <location filename="../src/window.cpp" line="1437"/>
         <source>Ctrl+M</source>
-        <translation>Ctrl + M</translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1439"/>
@@ -1986,7 +1986,7 @@
     <message>
         <location filename="../src/window.cpp" line="1467"/>
         <source>&amp;Help</source>
-        <translation>&amp;aiuto</translation>
+        <translation>&amp;Aiuto</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
