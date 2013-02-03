@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi avviso</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -71,37 +71,37 @@
     <message>
         <location filename="../src/document.cpp" line="420"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica File</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="421"/>
         <source>Reload the file %1 from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricaricare il file %1 dal disco?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutte le modifiche non salvate verranno perse.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="424"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1160"/>
         <source>Plain Text (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Testo semplice (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1219"/>
         <source>Question</source>
-        <translation type="unfinished">Domanda</translation>
+        <translation>Domanda</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1220"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvando come testo semplice la formattazione verr&agrave; persa. Eliminare la formattazione?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1158"/>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="107"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>File modificato</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
         <source>The file %1 was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file %1 &egrave; stato modificato da un altro programma.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="109"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi ricaricare il file?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="116"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignora</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="127"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>File eliminato</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="128"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file %1 &egrave; stato modificato da un altro programma.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="129"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi salvare o chiudere il file?</translation>
     </message>
 </context>
 <context>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Espressioni regolari</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
@@ -197,22 +197,22 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="57"/>
         <source>Search down</source>
-        <translation>Cerca giù</translation>
+        <translation>Cerca gi&ugrave;</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cerca</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sostituisci</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Sostitusci &amp;tutto</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
@@ -291,7 +291,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>&lt;System Language&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Lingua di sistema&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
@@ -301,7 +301,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Per modificarela  lingua riavviare l&apos;applicazione.</translation>
+        <translation>Per modificare la lingua riavviare l&apos;applicazione.</translation>
     </message>
 </context>
 <context>
@@ -376,12 +376,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Scorciatioie</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>C&apos;&egrave; un conflitto di scorciatoie. Continuare?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
@@ -391,7 +391,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
         <source>Daily Goal</source>
-        <translation>Obiettivo del giorno</translation>
+        <translation>Obiettivo giornaliero</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
@@ -437,27 +437,27 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="717"/>
         <source>Smart quotes:</source>
-        <translation>Citazione:</translation>
+        <translation>Virgolette:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="724"/>
         <source>Double</source>
-        <translation>Doppio</translation>
+        <translation>Doppie</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Single</source>
-        <translation>Singolo</translation>
+        <translation>Singole</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Scene</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Divisore</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
@@ -487,12 +487,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="786"/>
         <source>Page count</source>
-        <translation>Conteggio pagina </translation>
+        <translation>Conteggio pagine</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="787"/>
         <source>Paragraph count</source>
-        <translation>Conteggio paragrafo </translation>
+        <translation>Conteggio paragrafi</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="788"/>
@@ -502,7 +502,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="797"/>
         <source>Page Size</source>
-        <translation>Dimensione pagina</translation>
+        <translation>Dimensioni pagina</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="799"/>
@@ -517,17 +517,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="835"/>
         <source>Word Count Algorithm</source>
-        <translation>Conteggio parole Algoritmo</translation>
+        <translation>Algoritmo di conteggio parole</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="837"/>
         <source>Detect word boundaries</source>
-        <translation>Rileva confini delle parole</translation>
+        <translation>Rileva limiti delle parole</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Divide character count by six</source>
-        <translation>Dividere conteggio dei caratteri da sei</translation>
+        <translation>Dividere per sei il conteggio caratteri</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="943"/>
@@ -572,7 +572,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Move Down</source>
-        <translation>Sposta giù</translation>
+        <translation>Sposta gi&ugrave;</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="976"/>
@@ -582,17 +582,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Scorciatoia</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Azione</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
@@ -637,7 +637,7 @@
         <location filename="../src/rtf/reader.cpp" line="225"/>
         <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
-        <translation>Non è un file RTF supportato.</translation>
+        <translation>Non &egrave; un file RTF supportato.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
@@ -660,22 +660,22 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Gi&ugrave;</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposta scene su</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Su</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation>Attiva lista scene</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
