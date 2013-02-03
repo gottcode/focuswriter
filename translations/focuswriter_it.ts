@@ -101,7 +101,7 @@
     <message>
         <location filename="../src/document.cpp" line="1220"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Salvando come testo semplice la formattazione verr&agrave; persa. Eliminare la formattazione?</translation>
+        <translation>Salvando come testo semplice la formattazione verrà persa. Eliminare la formattazione?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1158"/>
@@ -129,7 +129,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="108"/>
         <source>The file %1 was changed by another program.</source>
-        <translation>Il file %1 &egrave; stato modificato da un altro programma.</translation>
+        <translation>Il file %1 è stato modificato da un altro programma.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="109"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="128"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Il file %1 &egrave; stato modificato da un altro programma.</translation>
+        <translation>Il file %1 è stato modificato da un altro programma.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="129"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="57"/>
         <source>Search down</source>
-        <translation>Cerca gi&ugrave;</translation>
+        <translation>Cerca giù</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
@@ -381,7 +381,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>C&apos;&egrave; un conflitto di scorciatoie. Continuare?</translation>
+        <translation>C&apos;è un conflitto di scorciatoie. Continuare?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
@@ -572,7 +572,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Move Down</source>
-        <translation>Sposta gi&ugrave;</translation>
+        <translation>Sposta giù</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="976"/>
@@ -637,7 +637,7 @@
         <location filename="../src/rtf/reader.cpp" line="225"/>
         <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
-        <translation>Non &egrave; un file RTF supportato.</translation>
+        <translation>Non è un file RTF supportato.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
@@ -660,7 +660,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Shift+Gi&ugrave;</translation>
+        <translation>Ctrl+Shift+Giù</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
@@ -700,7 +700,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation>Sposta scene gi&ugrave;</translation>
+        <translation>Sposta scene giù</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="155"/>
@@ -1049,7 +1049,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
         <source>Opacity</source>
-        <translation>Opacit&agrave;</translation>
+        <translation>Opacità</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
@@ -1535,7 +1535,7 @@
     <message>
         <location filename="../src/window.cpp" line="299"/>
         <source>Emergency cache is not writable.</source>
-        <translation>La cache di emergenza non &egrave; scrivibile</translation>
+        <translation>La cache di emergenza non è scrivibile</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="355"/>
@@ -1546,7 +1546,7 @@
     <message>
         <location filename="../src/window.cpp" line="356"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter non &egrave; stato chiuso correttamente.</translation>
+        <translation>FocusWriter non è stato chiuso correttamente.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="357"/>
@@ -1556,7 +1556,7 @@
     <message>
         <location filename="../src/window.cpp" line="492"/>
         <source>Some files could not be opened.</source>
-        <translation>Non &egrave; stato possibile aprire alcuni file.</translation>
+        <translation>Non è stato possibile aprire alcuni file.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="495"/>
@@ -1571,12 +1571,12 @@
     <message>
         <location filename="../src/window.cpp" line="1064"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; &egrave; pi&ugrave; recente della copia in cache.</translation>
+        <translation>&apos;%1&apos; è più recente della copia in cache.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1065"/>
         <source>Overwrite newer file?</source>
-        <translation>Sovrascrivere il file pi&ugrave; recente?</translation>
+        <translation>Sovrascrivere il file più recente?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1163"/>
@@ -1996,7 +1996,7 @@
     <message>
         <location filename="../src/window.cpp" line="425"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Qualche file non &egrave; supportato e non &egrave; stato aperto.</translation>
+        <translation>Qualche file non è supportato e non è stato aperto.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
