@@ -727,7 +727,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Gestire le sessioni</translation>
+        <translation>Gestione sessioni</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
@@ -737,7 +737,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Nuovo</translation>
+        <translation>Nuova</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
