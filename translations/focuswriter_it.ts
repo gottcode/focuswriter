@@ -1162,7 +1162,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>La volpe col suo balzo ha raggiunto il quieto fido</translation>
+        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</translation>
     </message>
 </context>
 <context>
