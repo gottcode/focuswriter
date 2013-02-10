@@ -90,6 +90,7 @@ private:
 	QLineEdit* m_scene_divider;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_save_positions;
+	QCheckBox* m_save_with_bom;
 
 	QCheckBox* m_show_characters;
 	QCheckBox* m_show_pages;

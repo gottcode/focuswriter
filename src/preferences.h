@@ -78,8 +78,10 @@ public:
 
 	bool autoSave() const;
 	bool savePositions() const;
+	bool saveWithBOM() const;
 	void setAutoSave(bool save);
 	void setSavePositions(bool save);
+	void setSaveWithBOM(bool saveWithBOM);
 
 	int toolbarStyle() const;
 	QStringList toolbarActions() const;
@@ -124,6 +126,7 @@ private:
 
 	bool m_auto_save;
 	bool m_save_positions;
+	bool m_save_with_bom;
 
 	int m_toolbar_style;
 	QStringList m_toolbar_actions;

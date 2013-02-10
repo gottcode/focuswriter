@@ -63,6 +63,7 @@ Preferences::Preferences()
 
 	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
+	m_save_with_bom = settings.value("Save/SaveWithBOM", false).toBool();
 
 	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
 	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace" << "|" << "Themes";
@@ -121,6 +122,7 @@ Preferences::~Preferences()
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/RememberPositions", m_save_positions);
+	settings.setValue("Save/SaveWithBOM", m_save_with_bom);
 
 	settings.setValue("Toolbar/Style", m_toolbar_style);
 	settings.setValue("Toolbar/Actions", m_toolbar_actions);
@@ -428,6 +430,13 @@ bool Preferences::savePositions() const
 
 //-----------------------------------------------------------------------------
 
+bool Preferences::saveWithBOM() const
+{
+	return m_save_with_bom;
+}
+
+//-----------------------------------------------------------------------------
+
 void Preferences::setAutoSave(bool save)
 {
 	setValue(m_auto_save, save);
@@ -438,6 +447,13 @@ void Preferences::setAutoSave(bool save)
 void Preferences::setSavePositions(bool save)
 {
 	setValue(m_save_positions, save);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setSaveWithBOM(bool saveWithBOM)
+{
+	setValue(m_save_with_bom, saveWithBOM);
 }
 
 //-----------------------------------------------------------------------------
