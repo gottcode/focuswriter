@@ -324,6 +324,8 @@ bool Document::save()
 	writer.setType(m_filename.section(QLatin1Char('.'), -1));
 	writer.setCodePage(m_codepage);
 	writer.setDocument(m_text->document());
+	writer.setSaveWithBOM(settings.value( "Save/SaveWithBOM", false ).toBool());
+
 	bool saved = writer.write();
 	m_codepage = writer.codePage();
 	if (saved) {

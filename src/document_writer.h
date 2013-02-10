@@ -21,6 +21,7 @@
 #define DOCUMENT_WRITER_H
 
 #include <QString>
+#include "preferences.h"
 class QTextDocument;
 
 class DocumentWriter
@@ -35,6 +36,7 @@ public:
 	void setDocument(QTextDocument* document);
 	void setFileName(const QString& filename);
 	void setType(const QString& type);
+	void setSaveWithBOM( const bool saveWithBOM );
 
 	bool write();
 
@@ -43,6 +45,7 @@ private:
 	QString m_type;
 	QByteArray m_codepage;
 	QTextDocument* m_document;
+	bool m_saveWithBOM;
 };
 
 inline QByteArray DocumentWriter::codePage() const
@@ -68,6 +71,11 @@ inline void DocumentWriter::setFileName(const QString& filename)
 inline void DocumentWriter::setType(const QString& type)
 {
 	m_type = type.toLower();
+}
+
+inline void DocumentWriter::setSaveWithBOM( const bool saveWithBOM )
+{
+	m_saveWithBOM = saveWithBOM;
 }
 
 #endif

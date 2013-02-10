@@ -177,6 +177,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_save_positions->setChecked(m_preferences.savePositions());
+	m_save_with_bom->setChecked(m_preferences.saveWithBOM());
 
 	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
 	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
@@ -289,6 +290,7 @@ void PreferencesDialog::accept()
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
 	m_preferences.setSavePositions(m_save_positions->isChecked());
+	m_preferences.setSaveWithBOM(m_save_with_bom->isChecked());
 
 	m_preferences.setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
@@ -757,10 +759,12 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	m_auto_save = new QCheckBox(tr("Automatically save changes"), save_group);
 	m_save_positions = new QCheckBox(tr("Remember cursor position"), save_group);
+	m_save_with_bom = new QCheckBox(tr("Save Text Files with BOM"), save_group);
 
 	QVBoxLayout* save_layout = new QVBoxLayout(save_group);
 	save_layout->addWidget(m_auto_save);
 	save_layout->addWidget(m_save_positions);
+	save_layout->addWidget(m_save_with_bom);
 
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
