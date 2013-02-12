@@ -40,7 +40,7 @@ namespace
 
 	NSData* loadSound(const QString& filename)
 	{
-		const NSString* nsstring = [[NSString alloc] initWithCharacters:reinterpret_cast<const unichar*>(filename.unicode()) length:filename.length()];
+		NSString* nsstring = [[NSString alloc] initWithCharacters:reinterpret_cast<const unichar*>(filename.unicode()) length:filename.length()];
 		NSData* chunk = [[NSData alloc] initWithContentsOfFile:nsstring];
 		[nsstring release];
 		return chunk;
@@ -103,7 +103,7 @@ void Sound::play(int name)
 	}
 
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	NSSound* const nssound = [[NSSound alloc] initWithData:f_chunks.at(sound->m_id)];
+	NSSound* nssound = [[NSSound alloc] initWithData:f_chunks.at(sound->m_id)];
 	[nssound play];
 	[pool release];
 }

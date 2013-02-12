@@ -34,14 +34,14 @@ QList<QStringRef> Dictionary::check(const QString& string) const
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-	const NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
+	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
 
 	QList<QStringRef> misspelled;
 
 	int start = 0;
-	const int end = string.length();
+	int end = string.length();
 	while (start < end) {
-		const NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
+		NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
 			startingAt:start
 			language:(*d)->language()
 			wrap:NO
@@ -71,9 +71,9 @@ QStringList Dictionary::suggestions(const QString& word) const
 	range.location = 0;
 	range.length = word.length();
 
-	const NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()];
+	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()];
 
-	const NSArray* array;
+	NSArray* array;
 	if ([[NSSpellChecker sharedSpellChecker] respondsToSelector:@selector(guessesForWordRange)]) {
 		array = [[NSSpellChecker sharedSpellChecker] guessesForWordRange:range
 			inString:nsstring
