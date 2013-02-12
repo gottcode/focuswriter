@@ -24,11 +24,13 @@
 #include <QFileOpenEvent>
 #include <QSettings>
 
+#if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
 #ifdef Q_OS_MAC
 #include "rtf/clipboard_mac.h"
 #endif
 #ifdef Q_OS_WIN32
 #include "rtf/clipboard_windows.h"
+#endif
 #endif
 
 //-----------------------------------------------------------------------------
@@ -63,8 +65,10 @@ Application::Application(int& argc, char** argv) :
 	setAttribute(Qt::AA_DontShowIconsInMenus, true);
 #endif
 
+#if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
 # if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
 	new RTF::Clipboard;
+#endif
 #endif
 
 	qputenv("UNICODEMAP_JP", "cp932");
