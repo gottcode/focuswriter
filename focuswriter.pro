@@ -38,31 +38,36 @@ macx {
 	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
 
-	HEADERS += src/rtf/clipboard_mac.h \
-		src/nsspellchecker/dictionary.h \
+	HEADERS += src/nsspellchecker/dictionary.h \
 		src/nsspellchecker/dictionary_data.h \
 		src/nsspellchecker/dictionary_manager.h
-
-	SOURCES += src/rtf/clipboard_mac.cpp
 
 	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary.mm \
 		src/nsspellchecker/dictionary_data.mm \
 		src/nsspellchecker/dictionary_manager.mm \
 		src/nssound/sound.mm
+
+	lessThan(QT_MAJOR_VERSION, 5) {
+		HEADERS += src/rtf/clipboard_mac.h
+		SOURCES += src/rtf/clipboard_mac.cpp
+	}
 } else:win32 {
 	INCLUDEPATH += enchant libzip src/enchant
 	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/rtf/clipboard_windows.h \
-		src/enchant/dictionary.h \
+	HEADERS += src/enchant/dictionary.h \
 		src/enchant/dictionary_data.h \
 		src/enchant/dictionary_manager.h
 
-	SOURCES += src/rtf/clipboard_windows.cpp \
-		src/enchant/dictionary.cpp \
+	SOURCES += src/enchant/dictionary.cpp \
 		src/enchant/dictionary_data.cpp \
 		src/enchant/dictionary_manager.cpp \
 		src/qsound/sound.cpp
+
+	lessThan(QT_MAJOR_VERSION, 5) {
+		HEADERS += src/rtf/clipboard_windows.h
+		SOURCES += src/rtf/clipboard_windows.cpp
+	}
 } else {
 	INCLUDEPATH += src/enchant
 
