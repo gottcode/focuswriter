@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ public:
 	int characterCount() const;
 	int spaceCount() const;
 	int wordCount() const;
-	QList<QStringRef> misspelled() const;
+	QVector<QStringRef> misspelled() const;
 
 	enum SpellCheckStatus
 	{
@@ -57,7 +57,7 @@ private:
 	int m_words;
 	bool m_scene;
 	SceneModel* m_scene_model;
-	QList<QStringRef> m_misspelled;
+	QVector<QStringRef> m_misspelled;
 	SpellCheckStatus m_checked;
 };
 
@@ -86,7 +86,7 @@ inline int BlockStats::wordCount() const
 	return m_words;
 }
 
-inline QList<QStringRef> BlockStats::misspelled() const
+inline QVector<QStringRef> BlockStats::misspelled() const
 {
 	return m_misspelled;
 }

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,11 +39,10 @@ Dictionary::Dictionary(DictionaryData** data) :
 
 //-----------------------------------------------------------------------------
 
-QList<QStringRef> Dictionary::check(const QString& string) const
+QStringRef Dictionary::check(const QString& string, int start_at) const
 {
-	QList<QStringRef> misspelled;
 	if (!d) {
-		return misspelled;
+		return QStringRef();
 	}
 
 	int index = -1;
@@ -54,7 +53,7 @@ QList<QStringRef> Dictionary::check(const QString& string) const
 	bool is_word = false;
 
 	int count = string.length() - 1;
-	for (int i = 0; i <= count; ++i) {
+	for (int i = start_at; i <= count; ++i) {
 		QChar c = string.at(i);
 		switch (c.category()) {
 			case QChar::Number_DecimalDigit:
@@ -102,7 +101,7 @@ QList<QStringRef> Dictionary::check(const QString& string) const
 				word.replace(QChar(0x2019), QLatin1Char('\''));
 				QByteArray word_utf8 = word.toUtf8();
 				if (enchant_dict_check((*d)->dictionary(), word_utf8.constData(), word_utf8.length()) > 0) {
-					misspelled.append(check);
+					return check;
 				}
 			}
 			index = -1;
@@ -111,8 +110,7 @@ QList<QStringRef> Dictionary::check(const QString& string) const
 			is_uppercase = f_ignore_uppercase;
 		}
 	}
-
-	return misspelled;
+	return QStringRef();
 }
 
 //-----------------------------------------------------------------------------

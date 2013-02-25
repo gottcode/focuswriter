@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,10 @@ void BlockStats::checkSpelling(const QString& text, const Dictionary& dictionary
 {
 	m_misspelled.clear();
 	if (!text.isEmpty()) {
-		m_misspelled = dictionary.check(text);
+		QStringRef word;
+		while ((word = dictionary.check(text, word.position() + word.length())).isNull() == false) {
+			m_misspelled.append(word);
+		}
 	}
 	m_checked = Checked;
 }
