@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,7 +93,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 		bool under_mouse = false;
 		QStringRef word;
-		QList<QStringRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
+		QVector<QStringRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
 		for (int i = 0; i < words.count(); ++i) {
 			word = words.at(i);
 			int delta = cursor - word.position();
@@ -165,7 +165,7 @@ void Highlighter::highlightBlock(const QString& text)
 	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
 	int cursor = m_text->textCursor().position() - currentBlock().position();
-	QList<QStringRef> words = stats->misspelled();
+	QVector<QStringRef> words = stats->misspelled();
 	for (int i = 0; i < words.count(); ++i) {
 		const QStringRef& word = words.at(i);
 		int delta = cursor - word.position();

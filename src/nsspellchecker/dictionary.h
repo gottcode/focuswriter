@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@
 
 class DictionaryData;
 
-#include <QList>
 class QString;
 class QStringList;
 class QStringRef;
@@ -32,7 +31,7 @@ class Dictionary
 public:
 	Dictionary(DictionaryData** data = 0) : d((data && *data) ? data : 0) { }
 
-	QList<QStringRef> check(const QString& string) const;
+	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
 	void addWord(const QString& word);

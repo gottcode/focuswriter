@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,30 +30,23 @@
 
 //-----------------------------------------------------------------------------
 
-QList<QStringRef> Dictionary::check(const QString& string) const
+QStringRef Dictionary::check(const QString& string, int start_at) const
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
 	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
 
-	QList<QStringRef> misspelled;
+	QStringRef misspelled;
 
-	int start = 0;
-	int end = string.length();
-	while (start < end) {
-		NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
-			startingAt:start
-			language:(*d)->language()
-			wrap:NO
-			inSpellDocumentWithTag:(*d)->tag()
-			wordCount:NULL];
+	NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
+		startingAt:start_at
+		language:(*d)->language()
+		wrap:NO
+		inSpellDocumentWithTag:(*d)->tag()
+		wordCount:NULL];
 
-		if (range.length > 0) {
-			misspelled.append(QStringRef(&string, range.location, range.length));
-		} else {
-			break;
-		}
-		start = range.location + range.length;
+	if (range.length > 0) {
+		misspelled = QStringRef(&string, range.location, range.length);
 	}
 
 	[pool release];
