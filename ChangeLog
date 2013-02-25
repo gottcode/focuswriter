@@ -1,4 +1,5 @@
 2013-02-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not play key press sound for non-Latin languages.
 	* FIXED: Crash when ignoring words in spelling dialog.
 
 2012-12-21 Graeme Gott <graeme@gottcode.org>

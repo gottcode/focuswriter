@@ -97,6 +97,7 @@ namespace
 		virtual QMimeData* createMimeDataFromSelection() const;
 		virtual void insertFromMimeData(const QMimeData* source);
 		virtual void keyPressEvent(QKeyEvent* event);
+		virtual void inputMethodEvent(QInputMethodEvent* event);
 
 	private:
 		QByteArray mimeToRtf(const QMimeData* source) const;
@@ -160,6 +161,12 @@ namespace
 				}
 			}
 		}
+	}
+
+	void TextEdit::inputMethodEvent(QInputMethodEvent* event)
+	{
+		QTextEdit::inputMethodEvent(event);
+		Sound::play(Qt::Key_Any);
 	}
 
 	QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
