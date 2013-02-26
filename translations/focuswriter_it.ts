@@ -727,7 +727,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Gestire le sessioni</translation>
+        <translation>Gestione sessioni</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
@@ -737,7 +737,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Nuovo</translation>
+        <translation>Nuova</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
@@ -1161,7 +1161,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>La volpe col suo balzo ha raggiunto il quieto fido</translation>
+        <translation>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</translation>
     </message>
 </context>
 <context>
@@ -1858,12 +1858,12 @@
     <message>
         <location filename="../src/window.cpp" line="1410"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;sostituisci...</translation>
+        <translation>&amp;Sostituisci...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1410"/>
         <source>Ctrl+R</source>
-        <translation>Ctrl + R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
@@ -1883,7 +1883,7 @@
     <message>
         <location filename="../src/window.cpp" line="1420"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;ortografia...</translation>
+        <translation>&amp;Ortografia...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1420"/>
@@ -1903,7 +1903,7 @@
     <message>
         <location filename="../src/window.cpp" line="1425"/>
         <source>&amp;Settings</source>
-        <translation>&amp;impostazioni</translation>
+        <translation>&amp;Impostazioni</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1426"/>
@@ -1943,7 +1943,7 @@
     <message>
         <location filename="../src/window.cpp" line="1445"/>
         <source>Ctrl+M</source>
-        <translation>Ctrl + M</translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
@@ -1983,7 +1983,7 @@
     <message>
         <location filename="../src/window.cpp" line="1475"/>
         <source>&amp;Help</source>
-        <translation>&amp;aiuto</translation>
+        <translation>&amp;Aiuto</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
