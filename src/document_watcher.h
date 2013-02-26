@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,12 +39,14 @@ public:
 
 	void addWatch(Document* document);
 	void removeWatch(Document* document);
-	void processUpdates();
 
 	static DocumentWatcher* instance()
 	{
 		return m_instance;
 	}
+
+public slots:
+	void processUpdates();
 
 signals:
 	void closeDocument(Document* document);

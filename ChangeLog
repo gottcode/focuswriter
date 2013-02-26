@@ -1,4 +1,5 @@
 2013-02-26 Graeme Gott <graeme@gottcode.org>
+	* Add small delay before handling changed files.
 	* Add ignoring deleted file message.
 
 2013-02-25 Graeme Gott <graeme@gottcode.org>

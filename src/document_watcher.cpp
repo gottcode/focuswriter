@@ -28,6 +28,7 @@
 #include <QPushButton>
 #include <QStyle>
 #include <QTextEdit>
+#include <QTimer>
 
 //-----------------------------------------------------------------------------
 
@@ -160,7 +161,7 @@ void DocumentWatcher::documentChanged(const QString& path)
 	}
 	m_updates.append(path);
 	if (parent() && (QApplication::activeWindow() == parent())) {
-		processUpdates();
+		QTimer::singleShot(50, this, SLOT(processUpdates()));
 	}
 }
 
