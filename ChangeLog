@@ -1,3 +1,6 @@
+2013-02-26 Graeme Gott <graeme@gottcode.org>
+	* Add ignoring deleted file message.
+
 2013-02-25 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Did not play key press sound for non-Latin languages.
 	* FIXED: Crash when ignoring words in spelling dialog.
