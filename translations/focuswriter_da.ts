@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="346"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Sorry</source>
         <translation>Beklager</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
+        <location filename="../src/document.cpp" line="346"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Det er ikke muligt at gemme &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="352"/>
+        <location filename="../src/document.cpp" line="359"/>
         <source>Save File As</source>
         <translation>Gem fil som</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Det er ikke muligt at overskrive &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="383"/>
+        <location filename="../src/document.cpp" line="390"/>
         <source>Rename File</source>
         <translation>Omdøb fil</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Det er ikke muligt at omdøbe &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="427"/>
         <source>Reload File</source>
         <translation>Genindlæs fil</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="421"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>Reload the file %1 from disk?</source>
         <translation>Genindlæs filen %1 fra disk?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="422"/>
+        <location filename="../src/document.cpp" line="429"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Alle ændringer, der ikke er gemt, vil gå tabt.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="424"/>
+        <location filename="../src/document.cpp" line="431"/>
         <source>Reload</source>
         <translation>Genindlæs</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1160"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>Plain Text (*.txt)</source>
         <translation>Ren tekst (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1219"/>
+        <location filename="../src/document.cpp" line="1226"/>
         <source>Question</source>
         <translation>Spørgsmål</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1220"/>
+        <location filename="../src/document.cpp" line="1227"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Gemmes der som ren tekst, vil al formatting blive fjernet. Fjern formattering?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1165"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument-tekst (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1166"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1161"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>All Files (*)</source>
         <translation>Alle filer (*)</translation>
     </message>
@@ -122,42 +122,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="107"/>
+        <location filename="../src/document_watcher.cpp" line="109"/>
         <source>File Changed</source>
         <translation>Fil ændret</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="108"/>
+        <location filename="../src/document_watcher.cpp" line="110"/>
         <source>The file %1 was changed by another program.</source>
         <translation>Filen %1 blev ændret af et andet program.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="109"/>
+        <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Do you want to reload the file?</source>
         <translation>Ønsker du at genindlæse filen?</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="111"/>
+        <location filename="../src/document_watcher.cpp" line="113"/>
         <source>Reload</source>
         <translation>Genindlæs</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="116"/>
+        <location filename="../src/document_watcher.cpp" line="118"/>
         <source>Ignore</source>
         <translation>Ignorer</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="127"/>
+        <location filename="../src/document_watcher.cpp" line="129"/>
         <source>File Deleted</source>
         <translation>Fil slettet</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="128"/>
+        <location filename="../src/document_watcher.cpp" line="130"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>Filen %1 blev slettet af et andet program.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="129"/>
+        <location filename="../src/document_watcher.cpp" line="131"/>
         <source>Do you want to save or close the file?</source>
         <translation>Ønsker du at gemme eller lukke filen?</translation>
     </message>
@@ -1478,7 +1478,7 @@
         <translation>%1% af dagligt mål</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="437"/>
+        <location filename="../src/document.cpp" line="444"/>
         <location filename="../src/window.cpp" line="1057"/>
         <source>Opening %1</source>
         <translation>Åbner %1</translation>

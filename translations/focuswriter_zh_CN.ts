@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="346"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Sorry</source>
         <translation>Sorry</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
+        <location filename="../src/document.cpp" line="346"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>不能保存 &apos;%1&apos;。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="352"/>
+        <location filename="../src/document.cpp" line="359"/>
         <source>Save File As</source>
         <translation>保存文件为</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>不能覆盖 &apos;%1&apos;。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="383"/>
+        <location filename="../src/document.cpp" line="390"/>
         <source>Rename File</source>
         <translation>重命名文件</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>不能重命名 &apos;%1&apos;。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="427"/>
         <source>Reload File</source>
         <translation>重新加载文件</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="421"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>Reload the file %1 from disk?</source>
         <translation>重新从磁盘中加载文件 %1 ？</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="422"/>
+        <location filename="../src/document.cpp" line="429"/>
         <source>All unsaved changes will be lost.</source>
         <translation>未保存的更改将丢失。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="424"/>
+        <location filename="../src/document.cpp" line="431"/>
         <source>Reload</source>
         <translation>重新加载</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1160"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>Plain Text (*.txt)</source>
         <translation>纯文本 (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1219"/>
+        <location filename="../src/document.cpp" line="1226"/>
         <source>Question</source>
         <translation>问题</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1220"/>
+        <location filename="../src/document.cpp" line="1227"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>保存为纯文本将丢弃全部格式。丢弃格式吗？</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1165"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument Text (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1166"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1161"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>All Files (*)</source>
         <translation>所有文件 (*)</translation>
     </message>
@@ -122,42 +122,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="107"/>
+        <location filename="../src/document_watcher.cpp" line="109"/>
         <source>File Changed</source>
         <translation>文件已更改</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="108"/>
+        <location filename="../src/document_watcher.cpp" line="110"/>
         <source>The file %1 was changed by another program.</source>
         <translation>文件 %1 已由其他程序更改。</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="109"/>
+        <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Do you want to reload the file?</source>
         <translation>您要重新加载文件吗？</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="111"/>
+        <location filename="../src/document_watcher.cpp" line="113"/>
         <source>Reload</source>
         <translation>重新加载</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="116"/>
+        <location filename="../src/document_watcher.cpp" line="118"/>
         <source>Ignore</source>
         <translation>忽略</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="127"/>
+        <location filename="../src/document_watcher.cpp" line="129"/>
         <source>File Deleted</source>
         <translation>文件已删除</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="128"/>
+        <location filename="../src/document_watcher.cpp" line="130"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>文件 %1 已经由其他程序删除。</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="129"/>
+        <location filename="../src/document_watcher.cpp" line="131"/>
         <source>Do you want to save or close the file?</source>
         <translation>您要保存或关闭该文件？</translation>
     </message>
@@ -1477,7 +1477,7 @@
         <translation>每日目标的 %1%</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="437"/>
+        <location filename="../src/document.cpp" line="444"/>
         <location filename="../src/window.cpp" line="1057"/>
         <source>Opening %1</source>
         <translation>正在打开 %1</translation>

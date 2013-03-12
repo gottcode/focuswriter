@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="346"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Sorry</source>
         <translation>Spiacente</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
+        <location filename="../src/document.cpp" line="346"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Impossibile salvare &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="352"/>
+        <location filename="../src/document.cpp" line="359"/>
         <source>Save File As</source>
         <translation>Salva con nome</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Impossibile sovrascrivere &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="383"/>
+        <location filename="../src/document.cpp" line="390"/>
         <source>Rename File</source>
         <translation>Rinomina File</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Impossibile rinominare &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="427"/>
         <source>Reload File</source>
         <translation>Ricarica File</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="421"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>Reload the file %1 from disk?</source>
         <translation>Ricaricare il file %1 dal disco?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="422"/>
+        <location filename="../src/document.cpp" line="429"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Tutte le modifiche non salvate verranno perse.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="424"/>
+        <location filename="../src/document.cpp" line="431"/>
         <source>Reload</source>
         <translation>Ricarica</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1160"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>Plain Text (*.txt)</source>
         <translation>Testo semplice (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1219"/>
+        <location filename="../src/document.cpp" line="1226"/>
         <source>Question</source>
         <translation>Domanda</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1220"/>
+        <location filename="../src/document.cpp" line="1227"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Salvando come testo semplice la formattazione verrà persa. Eliminare la formattazione?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1165"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1166"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1161"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>All Files (*)</source>
         <translation>Tutti i file (*)</translation>
     </message>
@@ -122,42 +122,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="107"/>
+        <location filename="../src/document_watcher.cpp" line="109"/>
         <source>File Changed</source>
         <translation>File modificato</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="108"/>
+        <location filename="../src/document_watcher.cpp" line="110"/>
         <source>The file %1 was changed by another program.</source>
         <translation>Il file %1 è stato modificato da un altro programma.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="109"/>
+        <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Do you want to reload the file?</source>
         <translation>Vuoi ricaricare il file?</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="111"/>
+        <location filename="../src/document_watcher.cpp" line="113"/>
         <source>Reload</source>
         <translation>Ricarica</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="116"/>
+        <location filename="../src/document_watcher.cpp" line="118"/>
         <source>Ignore</source>
         <translation>Ignora</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="127"/>
+        <location filename="../src/document_watcher.cpp" line="129"/>
         <source>File Deleted</source>
         <translation>File eliminato</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="128"/>
+        <location filename="../src/document_watcher.cpp" line="130"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>Il file %1 è stato modificato da un altro programma.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="129"/>
+        <location filename="../src/document_watcher.cpp" line="131"/>
         <source>Do you want to save or close the file?</source>
         <translation>Vuoi salvare o chiudere il file?</translation>
     </message>
@@ -1478,7 +1478,7 @@
         <translation>%1% dell&apos; obiettivo giornaliero</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="437"/>
+        <location filename="../src/document.cpp" line="444"/>
         <location filename="../src/window.cpp" line="1057"/>
         <source>Opening %1</source>
         <translation>Apertura %1</translation>

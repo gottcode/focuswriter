@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="346"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Sorry</source>
         <translation>Disculpes</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
+        <location filename="../src/document.cpp" line="346"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>No s&apos;ha pogut desar &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="352"/>
+        <location filename="../src/document.cpp" line="359"/>
         <source>Save File As</source>
         <translation>Anomena i desa</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>No s&apos;ha pogut sobreescriure &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="383"/>
+        <location filename="../src/document.cpp" line="390"/>
         <source>Rename File</source>
         <translation>Reanomena el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>No s&apos;ha pogut reanomenar &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="427"/>
         <source>Reload File</source>
         <translation>Torna a carregar el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="421"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>Reload the file %1 from disk?</source>
         <translation>Voleu tornar a carregar el fitxer %1 des del disc?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="422"/>
+        <location filename="../src/document.cpp" line="429"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Es perdran tots els canvis.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="424"/>
+        <location filename="../src/document.cpp" line="431"/>
         <source>Reload</source>
         <translation>Torna a carregar</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1160"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>Plain Text (*.txt)</source>
         <translation>Text pla (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1219"/>
+        <location filename="../src/document.cpp" line="1226"/>
         <source>Question</source>
         <translation>Pregunta</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1220"/>
+        <location filename="../src/document.cpp" line="1227"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Si deseu com a text pla es perdran tots els canvis de format. Voleu descartar el formatatge?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1165"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>Text OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1166"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Text enriquit (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1161"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>All Files (*)</source>
         <translation>Tots els fitxers (*)</translation>
     </message>
@@ -122,42 +122,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="107"/>
+        <location filename="../src/document_watcher.cpp" line="109"/>
         <source>File Changed</source>
         <translation>S&apos;ha canviat el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="108"/>
+        <location filename="../src/document_watcher.cpp" line="110"/>
         <source>The file %1 was changed by another program.</source>
         <translation>Un altre programa ha modificat el fitxer %1</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="109"/>
+        <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Do you want to reload the file?</source>
         <translation>Este segur que voleu tornar a carregar el fitxer?</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="111"/>
+        <location filename="../src/document_watcher.cpp" line="113"/>
         <source>Reload</source>
         <translation>Torna a carregar</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="116"/>
+        <location filename="../src/document_watcher.cpp" line="118"/>
         <source>Ignore</source>
         <translation>Ignora</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="127"/>
+        <location filename="../src/document_watcher.cpp" line="129"/>
         <source>File Deleted</source>
         <translation>S&apos;ha esborrat el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="128"/>
+        <location filename="../src/document_watcher.cpp" line="130"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>Un altre programa ha esborrat el fitxer %1</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="129"/>
+        <location filename="../src/document_watcher.cpp" line="131"/>
         <source>Do you want to save or close the file?</source>
         <translation>Voleu tancar o desar el fitxer?</translation>
     </message>
@@ -1479,7 +1479,7 @@
         <translation>%1% de l&apos;objectiu diari</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="437"/>
+        <location filename="../src/document.cpp" line="444"/>
         <location filename="../src/window.cpp" line="1057"/>
         <source>Opening %1</source>
         <translation>&apos;està obrint %1</translation>

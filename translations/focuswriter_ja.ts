@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="346"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Sorry</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="339"/>
+        <location filename="../src/document.cpp" line="346"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; を保存できませんでした。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="352"/>
+        <location filename="../src/document.cpp" line="359"/>
         <source>Save File As</source>
         <translation>名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="359"/>
-        <location filename="../src/document.cpp" line="390"/>
+        <location filename="../src/document.cpp" line="366"/>
+        <location filename="../src/document.cpp" line="397"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; を上書きすることができませんでした。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="383"/>
+        <location filename="../src/document.cpp" line="390"/>
         <source>Rename File</source>
         <translation>ファイル名の変更</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="396"/>
+        <location filename="../src/document.cpp" line="403"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; の名前を変更できませんでした。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="427"/>
         <source>Reload File</source>
         <translation>ファイルを再読み込みする</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="421"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>Reload the file %1 from disk?</source>
         <translation>ファイル %1 を再読み込みしますか？</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="422"/>
+        <location filename="../src/document.cpp" line="429"/>
         <source>All unsaved changes will be lost.</source>
         <translation>保存されていない変更はすべて失われます。</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="424"/>
+        <location filename="../src/document.cpp" line="431"/>
         <source>Reload</source>
         <translation>再読み込み</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1160"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>Plain Text (*.txt)</source>
         <translation>テキスト文書 (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1219"/>
+        <location filename="../src/document.cpp" line="1226"/>
         <source>Question</source>
         <translation>問い合わせ</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1220"/>
+        <location filename="../src/document.cpp" line="1227"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>プレーン・テキストとして保存した場合、すべての書式が失われます。よろしいですか？</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1158"/>
+        <location filename="../src/document.cpp" line="1165"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument 形式 (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1159"/>
+        <location filename="../src/document.cpp" line="1166"/>
         <source>Rich Text (*.rtf)</source>
         <translation>リッチ テキスト形式 (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1161"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>All Files (*)</source>
         <translation>すべてのファイル (*.*)</translation>
     </message>
@@ -122,42 +122,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="107"/>
+        <location filename="../src/document_watcher.cpp" line="109"/>
         <source>File Changed</source>
         <translation>ファイルが変更されています</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="108"/>
+        <location filename="../src/document_watcher.cpp" line="110"/>
         <source>The file %1 was changed by another program.</source>
         <translation>他のプログラムによりファイル %1 は変更されています。</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="109"/>
+        <location filename="../src/document_watcher.cpp" line="111"/>
         <source>Do you want to reload the file?</source>
         <translation>ファイルを読み込み直しますか？</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="111"/>
+        <location filename="../src/document_watcher.cpp" line="113"/>
         <source>Reload</source>
         <translation>再読み込み</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="116"/>
+        <location filename="../src/document_watcher.cpp" line="118"/>
         <source>Ignore</source>
         <translation>無視</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="127"/>
+        <location filename="../src/document_watcher.cpp" line="129"/>
         <source>File Deleted</source>
         <translation>ファイルが削除されました</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="128"/>
+        <location filename="../src/document_watcher.cpp" line="130"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>他のプログラムによりファイル %1 は削除されました。</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="129"/>
+        <location filename="../src/document_watcher.cpp" line="131"/>
         <source>Do you want to save or close the file?</source>
         <translation>ファイルを保存、または閉じますか？</translation>
     </message>
@@ -1477,7 +1477,7 @@
         <translation>一日の目標の %1%</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="437"/>
+        <location filename="../src/document.cpp" line="444"/>
         <location filename="../src/window.cpp" line="1057"/>
         <source>Opening %1</source>
         <translation>%1 を開いています</translation>
