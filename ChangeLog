@@ -1,3 +1,6 @@
+2013-03-26 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Could not end italics before smart quote.
+
 2013-02-26 Graeme Gott <graeme@gottcode.org>
 	* Add small delay before handling changed files.
 	* Add ignoring deleted file message.
