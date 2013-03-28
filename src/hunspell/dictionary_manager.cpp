@@ -20,6 +20,7 @@
 #include "dictionary_manager.h"
 
 #include "dictionary_hunspell.h"
+#include "dictionary_provider_hunspell.h"
 #include "../dictionary_ref.h"
 #include "../smart_quotes.h"
 
@@ -52,22 +53,11 @@ DictionaryManager& DictionaryManager::instance()
 QStringList DictionaryManager::availableDictionaries() const
 {
 	QStringList result;
-	QStringList locations = QDir::searchPaths("dict");
-	QListIterator<QString> i(locations);
-	while (i.hasNext()) {
-		QDir dir(i.next());
-
-		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
-		dic_files.replaceInStrings(QRegExp("\\.dic.*"), "");
-		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
-		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
-
-		foreach (const QString& language, dic_files) {
-			if (aff_files.contains(language) && !result.contains(language)) {
-				result.append(language);
-			}
-		}
+	foreach (AbstractDictionaryProvider* provider, m_providers) {
+		result += provider->availableDictionaries();
 	}
+	result.sort();
+	result.removeDuplicates();
 	return result;
 }
 
@@ -175,25 +165,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 DictionaryManager::DictionaryManager()
 {
-	QStringList dictdirs;
-	dictdirs.append(m_path);
-#if !defined(Q_OS_MAC) && defined(Q_OS_UNIX)
-	QStringList xdg = QString(qgetenv("XDG_DATA_DIRS")).split(QChar(':'), QString::SkipEmptyParts);
-	if (xdg.isEmpty()) {
-		xdg.append("/usr/local/share");
-		xdg.append("/usr/share");
-	}
-	QStringList subdirs = QStringList() << "/hunspell" << "/myspell/dicts" << "/myspell";
-	foreach (const QString& subdir, subdirs) {
-		foreach (const QString& dir, xdg) {
-			QString path = dir + subdir;
-			if (!dictdirs.contains(path)) {
-				dictdirs.append(path);
-			}
-		}
-	}
-#endif
-	QDir::setSearchPaths("dict", dictdirs);
+	m_providers.append(new DictionaryProviderHunspell);
 
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
@@ -215,6 +187,9 @@ DictionaryManager::~DictionaryManager()
 		delete dictionary;
 	}
 	m_dictionaries.clear();
+
+	qDeleteAll(m_providers);
+	m_providers.clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -222,7 +197,16 @@ DictionaryManager::~DictionaryManager()
 AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		AbstractDictionary* dictionary = new DictionaryHunspell(language);
+		AbstractDictionary* dictionary = 0;
+		foreach (AbstractDictionaryProvider* provider, m_providers) {
+			dictionary = provider->requestDictionary(language);
+			if (dictionary) {
+				break;
+			}
+		}
+		if (!dictionary) {
+			return 0;
+		}
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;
 	}

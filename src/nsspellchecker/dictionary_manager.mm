@@ -20,16 +20,13 @@
 #include "dictionary_manager.h"
 
 #include "dictionary_nsspellchecker.h"
+#include "dictionary_provider_nsspellchecker.h"
 #include "../dictionary_ref.h"
 #include "../smart_quotes.h"
 
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
-
-#import <AppKit/NSSpellChecker.h>
-#import <Foundation/NSArray.h>
-#import <Foundation/NSAutoreleasePool.h>
 
 //-----------------------------------------------------------------------------
 
@@ -55,19 +52,13 @@ DictionaryManager& DictionaryManager::instance()
 
 QStringList DictionaryManager::availableDictionaries() const
 {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-	QStringList languages;
-	NSArray* array = [[NSSpellChecker sharedSpellChecker] availableLanguages];
-	if (array) {
-		for (unsigned int i = 0; i < [array count]; ++i) {
-			languages += QString::fromUtf8([[array objectAtIndex: i] UTF8String]);
-		}
+	QStringList result;
+	foreach (AbstractDictionaryProvider* provider, m_providers) {
+		result += provider->availableDictionaries();
 	}
-
-	[pool release];
-
-	return languages;
+	result.sort();
+	result.removeDuplicates();
+	return result;
 }
 
 //-----------------------------------------------------------------------------
@@ -183,6 +174,8 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 DictionaryManager::DictionaryManager()
 {
+	m_providers.append(new DictionaryProviderNSSpellChecker);
+
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -203,6 +196,9 @@ DictionaryManager::~DictionaryManager()
 		delete dictionary;
 	}
 	m_dictionaries.clear();
+
+	qDeleteAll(m_providers);
+	m_providers.clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -210,7 +206,16 @@ DictionaryManager::~DictionaryManager()
 AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		AbstractDictionary* dictionary = new DictionaryNSSpellChecker(language);
+		AbstractDictionary* dictionary = 0;
+		foreach (AbstractDictionaryProvider* provider, m_providers) {
+			dictionary = provider->requestDictionary(language);
+			if (dictionary) {
+				break;
+			}
+		}
+		if (!dictionary) {
+			return 0;
+		}
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;
 	}

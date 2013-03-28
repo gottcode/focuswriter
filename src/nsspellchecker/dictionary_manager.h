@@ -21,6 +21,7 @@
 #define DICTIONARY_MANAGER_H
 
 class AbstractDictionary;
+class AbstractDictionaryProvider;
 class DictionaryRef;
 
 #include <QHash>
@@ -59,6 +60,7 @@ private:
 	AbstractDictionary** requestDictionaryData(const QString& language);
 
 private:
+	QList<AbstractDictionaryProvider*> m_providers;
 	QHash<QString, AbstractDictionary*> m_dictionaries;
 	AbstractDictionary* m_default_dictionary;
 
