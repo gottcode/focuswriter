@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,6 @@
 
 class Dictionary;
 class DictionaryData;
-
-#include <enchant.h>
 
 #include <QHash>
 #include <QObject>
@@ -59,8 +57,6 @@ private:
 	DictionaryData** requestDictionaryData(const QString& language);
 
 private:
-	EnchantBroker* m_broker;
-
 	QHash<QString, DictionaryData*> m_dictionaries;
 	DictionaryData* m_default_dictionary;
 

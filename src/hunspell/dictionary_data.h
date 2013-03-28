@@ -17,30 +17,41 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_H
-#define DICTIONARY_H
+#ifndef DICTIONARY_DATA_H
+#define DICTIONARY_DATA_H
 
-class DictionaryData;
+class Hunspell;
 
 class QString;
 class QStringList;
 class QStringRef;
+class QTextCodec;
 
-class Dictionary
+class DictionaryData
 {
 public:
-	Dictionary(DictionaryData** data = 0);
+	DictionaryData(const QString& language);
+	~DictionaryData();
 
-	QStringRef check(const QString& string, int start_at) const;
-	QStringList suggestions(const QString& word) const;
+	QTextCodec* codec() const;
+	Hunspell* dictionary() const;
 
-	void addWord(const QString& word);
-
-	static void setIgnoreNumbers(bool ignore);
-	static void setIgnoreUppercase(bool ignore);
+	void addToSession(const QStringList& words);
+	void removeFromSession(const QStringList& words);
 
 private:
-	DictionaryData** d;
+	Hunspell* m_dictionary;
+	QTextCodec* m_codec;
 };
+
+inline QTextCodec* DictionaryData::codec() const
+{
+	return m_codec;
+}
+
+inline Hunspell* DictionaryData::dictionary() const
+{
+	return m_dictionary;
+}
 
 #endif

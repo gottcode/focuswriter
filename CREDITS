@@ -40,6 +40,6 @@ Icons
 Libraries
 ---------
 * Qt, http://qt-project.org/
-* enchant, http://www.abisource.com/projects/enchant/
+* hunspell, http://hunspell.sourceforge.net/
 * libzip, http://www.nih.at/libzip/
 * SDL_mixer, http://www.libsdl.org/projects/SDL_mixer/

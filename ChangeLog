@@ -1,3 +1,6 @@
+2013-03-28 Graeme Gott <graeme@gottcode.org>
+	* Switch back to hunspell from enchant.
+
 2013-03-26 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Could not end italics before smart quote.
 

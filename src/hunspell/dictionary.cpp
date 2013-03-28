@@ -24,6 +24,9 @@
 #include "../smart_quotes.h"
 
 #include <QStringList>
+#include <QTextCodec>
+
+#include <hunspell.hxx>
 
 //-----------------------------------------------------------------------------
 
@@ -99,8 +102,7 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 				QStringRef check(&string, index, length);
 				QString word = check.toString();
 				word.replace(QChar(0x2019), QLatin1Char('\''));
-				QByteArray word_utf8 = word.toUtf8();
-				if (enchant_dict_check((*d)->dictionary(), word_utf8.constData(), word_utf8.length()) > 0) {
+				if (!(*d)->dictionary()->spell((*d)->codec()->fromUnicode(word).constData())) {
 					return check;
 				}
 			}
@@ -110,6 +112,7 @@ QStringRef Dictionary::check(const QString& string, int start_at) const
 			is_uppercase = f_ignore_uppercase;
 		}
 	}
+
 	return QStringRef();
 }
 
@@ -124,19 +127,17 @@ QStringList Dictionary::suggestions(const QString& word) const
 
 	QString check = word;
 	check.replace(QChar(0x2019), QLatin1Char('\''));
-	QByteArray word_utf8 = check.toUtf8();
-
-	size_t count;
-	char** suggestions = enchant_dict_suggest((*d)->dictionary(), word_utf8.constData(), word_utf8.length(), &count);
-	if (suggestions && count) {
-		for (size_t i = 0; i < count; ++i) {
-			QString word = QString::fromUtf8(suggestions[i]);
+	char** suggestions = 0;
+	int count = (*d)->dictionary()->suggest(&suggestions, (*d)->codec()->fromUnicode(check).constData());
+	if (suggestions != 0) {
+		for (int i = 0; i < count; ++i) {
+			QString word = (*d)->codec()->toUnicode(suggestions[i]);
 			if (SmartQuotes::isEnabled()) {
 				SmartQuotes::replace(word);
 			}
 			result.append(word);
 		}
-		enchant_dict_free_string_list((*d)->dictionary(), suggestions);
+		(*d)->dictionary()->free_list(&suggestions, count);
 	}
 	return result;
 }

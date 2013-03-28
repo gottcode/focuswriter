@@ -30,9 +30,8 @@ COPY resources\sounds\* %SOUNDS% >nul
 ECHO Copying symbols
 COPY resources\symbols\symbols.dat %APP% >nul
 
-ECHO Copying enchant library
-XCOPY /Q /S /Y enchant %APP% >nul
-DEL %APP%\enchant.h >nul
+ECHO Copying hunspell library
+COPY hunspell\hunspell1.dll %APP% >nul
 
 ECHO Copying voikko library
 COPY voikko\libvoikko-1.dll %APP% >nul

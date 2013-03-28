@@ -46,16 +46,16 @@ macx {
 		SOURCES += src/rtf/clipboard_mac.cpp
 	}
 } else:win32 {
-	INCLUDEPATH += enchant libzip src/enchant
-	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
+	INCLUDEPATH += hunspell libzip src/hunspell
+	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/enchant/dictionary.h \
-		src/enchant/dictionary_data.h \
-		src/enchant/dictionary_manager.h
+	HEADERS += src/hunspell/dictionary.h \
+		src/hunspell/dictionary_data.h \
+		src/hunspell/dictionary_manager.h
 
-	SOURCES += src/enchant/dictionary.cpp \
-		src/enchant/dictionary_data.cpp \
-		src/enchant/dictionary_manager.cpp \
+	SOURCES += src/hunspell/dictionary.cpp \
+		src/hunspell/dictionary_data.cpp \
+		src/hunspell/dictionary_manager.cpp \
 		src/qsound/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
@@ -63,18 +63,18 @@ macx {
 		SOURCES += src/rtf/clipboard_windows.cpp
 	}
 } else {
-	INCLUDEPATH += src/enchant
+	INCLUDEPATH += src/hunspell
 
 	CONFIG += link_pkgconfig
-	PKGCONFIG += enchant libzip
+	PKGCONFIG += hunspell libzip
 
-	HEADERS += src/enchant/dictionary.h \
-		src/enchant/dictionary_data.h \
-		src/enchant/dictionary_manager.h
+	HEADERS += src/hunspell/dictionary.h \
+		src/hunspell/dictionary_data.h \
+		src/hunspell/dictionary_manager.h
 
-	SOURCES += src/enchant/dictionary.cpp \
-		src/enchant/dictionary_data.cpp \
-		src/enchant/dictionary_manager.cpp \
+	SOURCES += src/hunspell/dictionary.cpp \
+		src/hunspell/dictionary_data.cpp \
+		src/hunspell/dictionary_manager.cpp \
 		src/sdl/sound.cpp
 }
 

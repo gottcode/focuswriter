@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,35 +17,31 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_DATA_H
-#define DICTIONARY_DATA_H
+#ifndef DICTIONARY_H
+#define DICTIONARY_H
 
-#include <enchant.h>
+class DictionaryData;
 
+#include <QList>
 class QString;
 class QStringList;
 class QStringRef;
-class QTextCodec;
 
-class DictionaryData
+class Dictionary
 {
 public:
-	DictionaryData(EnchantBroker* broker, const QString& language);
-	~DictionaryData();
+	Dictionary(DictionaryData** data = 0);
 
-	EnchantDict* dictionary() const;
+	QStringRef check(const QString& string, int start_at) const;
+	QStringList suggestions(const QString& word) const;
 
-	void addToSession(const QStringList& words);
-	void removeFromSession(const QStringList& words);
+	void addWord(const QString& word);
+
+	static void setIgnoreNumbers(bool ignore);
+	static void setIgnoreUppercase(bool ignore);
 
 private:
-	EnchantBroker* m_broker;
-	EnchantDict* m_dictionary;
+	DictionaryData** d;
 };
-
-inline EnchantDict* DictionaryData::dictionary() const
-{
-	return m_dictionary;
-}
 
 #endif
