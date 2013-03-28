@@ -41,6 +41,8 @@ public:
 	void add(const QString& word);
 	Dictionary requestDictionary(const QString& language = QString());
 	void setDefaultLanguage(const QString& language);
+	void setIgnoreNumbers(bool ignore);
+	void setIgnoreUppercase(bool ignore);
 	void setPersonal(const QStringList& words);
 
 	static QString installedPath();

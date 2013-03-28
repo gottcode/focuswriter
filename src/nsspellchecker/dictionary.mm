@@ -97,17 +97,3 @@ void Dictionary::addWord(const QString& word)
 }
 
 //-----------------------------------------------------------------------------
-
-void Dictionary::setIgnoreNumbers(bool)
-{
-	// Can't tell NSSpellChecker to ignore words with numbers?
-}
-
-//-----------------------------------------------------------------------------
-
-void Dictionary::setIgnoreUppercase(bool)
-{
-	// Can't tell NSSpellChecker to ignore words in all uppercase?
-}
-
-//-----------------------------------------------------------------------------

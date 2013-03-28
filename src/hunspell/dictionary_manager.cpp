@@ -116,6 +116,20 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 //-----------------------------------------------------------------------------
 
+void DictionaryManager::setIgnoreNumbers(bool ignore)
+{
+	Dictionary::setIgnoreNumbers(ignore);
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryManager::setIgnoreUppercase(bool ignore)
+{
+	Dictionary::setIgnoreUppercase(ignore);
+}
+
+//-----------------------------------------------------------------------------
+
 void DictionaryManager::setPath(const QString& path)
 {
 	m_path = path;

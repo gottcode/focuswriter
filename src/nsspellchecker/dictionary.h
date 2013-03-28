@@ -36,9 +36,6 @@ public:
 
 	void addWord(const QString& word);
 
-	static void setIgnoreNumbers(bool ignore);
-	static void setIgnoreUppercase(bool ignore);
-
 private:
 	DictionaryData** d;
 };

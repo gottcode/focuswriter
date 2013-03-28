@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -111,6 +111,22 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 	// Re-check documents
 	emit changed();
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryManager::setIgnoreNumbers(bool ignore)
+{
+	Q_UNUSED(ignore)
+	// Can't tell NSSpellChecker to ignore words with numbers?
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryManager::setIgnoreUppercase(bool ignore)
+{
+	Q_UNUSED(ignore)
+	// Can't tell NSSpellChecker to ignore words in all uppercase?
 }
 
 //-----------------------------------------------------------------------------

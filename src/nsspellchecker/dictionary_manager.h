@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,8 @@ public:
 	void add(const QString& word);
 	Dictionary requestDictionary(const QString& language = QString());
 	void setDefaultLanguage(const QString& language);
+	void setIgnoreNumbers(bool ignore);
+	void setIgnoreUppercase(bool ignore);
 	void setPersonal(const QStringList& words);
 
 	static QString installedPath();

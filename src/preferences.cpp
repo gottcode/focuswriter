@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@
 
 #include "preferences.h"
 
-#include "dictionary.h"
 #include "dictionary_manager.h"
 #include "scene_model.h"
 
@@ -79,8 +78,8 @@ Preferences::Preferences()
 		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
 	}
 	DictionaryManager::instance().setDefaultLanguage(m_language);
-	Dictionary::setIgnoreNumbers(m_ignore_numbers);
-	Dictionary::setIgnoreUppercase(m_ignore_uppercase);
+	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
+	DictionaryManager::instance().setIgnoreUppercase(m_ignore_uppercase);
 }
 
 //-----------------------------------------------------------------------------

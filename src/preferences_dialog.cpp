@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #include "preferences_dialog.h"
 
 #include "action_manager.h"
-#include "dictionary.h"
 #include "dictionary_manager.h"
 #include "locale_dialog.h"
 #include "preferences.h"
@@ -331,9 +330,9 @@ void PreferencesDialog::accept()
 	} else {
 		m_preferences.setLanguage(QString());
 	}
-	Dictionary::setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
-	Dictionary::setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
 	DictionaryManager::instance().setDefaultLanguage(m_preferences.language());
+	DictionaryManager::instance().setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
+	DictionaryManager::instance().setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
 
 	// Save personal dictionary
 	QStringList words;
