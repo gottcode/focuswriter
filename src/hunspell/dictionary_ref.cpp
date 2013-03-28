@@ -17,27 +17,33 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_H
-#define DICTIONARY_H
+#include "dictionary_ref.h"
 
-class DictionaryData;
+#include "dictionary_data.h"
+#include "dictionary_manager.h"
 
-class QString;
-class QStringList;
-class QStringRef;
+#include <QStringRef>
+#include <QStringList>
 
-class Dictionary
+//-----------------------------------------------------------------------------
+
+QStringRef DictionaryRef::check(const QString& string, int start_at) const
 {
-public:
-	Dictionary(DictionaryData** data = 0) : d((data && *data) ? data : 0) { }
+	return d ? (*d)->check(string, start_at) : QStringRef();
+}
 
-	QStringRef check(const QString& string, int start_at) const;
-	QStringList suggestions(const QString& word) const;
+//-----------------------------------------------------------------------------
 
-	void addWord(const QString& word);
+QStringList DictionaryRef::suggestions(const QString& word) const
+{
+	return d ? (*d)->suggestions(word) : QStringList();
+}
 
-private:
-	DictionaryData** d;
-};
+//-----------------------------------------------------------------------------
 
-#endif
+void DictionaryRef::addWord(const QString& word)
+{
+	DictionaryManager::instance().add(word);
+}
+
+//-----------------------------------------------------------------------------

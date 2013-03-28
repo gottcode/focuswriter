@@ -20,7 +20,7 @@
 #ifndef DICTIONARY_MANAGER_H
 #define DICTIONARY_MANAGER_H
 
-class Dictionary;
+class DictionaryRef;
 class DictionaryData;
 
 #include <QHash>
@@ -39,7 +39,7 @@ public:
 	QStringList personal() const;
 
 	void add(const QString& word);
-	Dictionary requestDictionary(const QString& language = QString());
+	DictionaryRef requestDictionary(const QString& language = QString());
 	void setDefaultLanguage(const QString& language);
 	void setIgnoreNumbers(bool ignore);
 	void setIgnoreUppercase(bool ignore);

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef HIGHLIGHTER_H
 #define HIGHLIGHTER_H
 
-class Dictionary;
+class DictionaryRef;
 
 #include <QSyntaxHighlighter>
 #include <QTextCursor>
@@ -33,7 +33,7 @@ class Highlighter : public QSyntaxHighlighter
 	Q_OBJECT
 
 public:
-	Highlighter(QTextEdit* text, Dictionary& dictionary);
+	Highlighter(QTextEdit* text, DictionaryRef& dictionary);
 
 	bool enabled() const;
 	void setEnabled(bool enabled);
@@ -50,7 +50,7 @@ private slots:
 	void suggestion(QAction* action);
 
 private:
-	Dictionary& m_dictionary;
+	DictionaryRef& m_dictionary;
 	QTimer* m_spell_timer;
 	QTextEdit* m_text;
 	QTextCursor m_cursor;

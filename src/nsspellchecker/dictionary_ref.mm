@@ -17,7 +17,7 @@
  *
  ***********************************************************************/
 
-#include "dictionary.h"
+#include "dictionary_ref.h"
 
 #include "dictionary_data.h"
 #include "dictionary_manager.h"
@@ -27,21 +27,21 @@
 
 //-----------------------------------------------------------------------------
 
-QStringRef Dictionary::check(const QString& string, int start_at) const
+QStringRef DictionaryRef::check(const QString& string, int start_at) const
 {
 	return d ? (*d)->check(string, start_at) : QStringRef();
 }
 
 //-----------------------------------------------------------------------------
 
-QStringList Dictionary::suggestions(const QString& word) const
+QStringList DictionaryRef::suggestions(const QString& word) const
 {
 	return d ? (*d)->suggestions(word) : QStringList();
 }
 
 //-----------------------------------------------------------------------------
 
-void Dictionary::addWord(const QString& word)
+void DictionaryRef::addWord(const QString& word)
 {
 	DictionaryManager::instance().add(word);
 }

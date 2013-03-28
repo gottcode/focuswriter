@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef SPELL_H
 #define SPELL_H
 
-class Dictionary;
+class DictionaryRef;
 
 #include <QDialog>
 #include <QTextCursor>
@@ -35,7 +35,7 @@ class SpellChecker : public QDialog
 	Q_OBJECT
 
 public:
-	static void checkDocument(QTextEdit* document, Dictionary& dictionary);
+	static void checkDocument(QTextEdit* document, DictionaryRef& dictionary);
 
 public slots:
 	virtual void reject();
@@ -49,11 +49,11 @@ private slots:
 	void changeAll();
 
 private:
-	SpellChecker(QTextEdit* document, Dictionary& dictionary);
+	SpellChecker(QTextEdit* document, DictionaryRef& dictionary);
 	void check();
 
 private:
-	Dictionary& m_dictionary;
+	DictionaryRef& m_dictionary;
 
 	QTextEdit* m_document;
 	QTextEdit* m_context;

@@ -20,7 +20,7 @@
 #include "highlighter.h"
 
 #include "block_stats.h"
-#include "dictionary.h"
+#include "dictionary_ref.h"
 #include "spell_checker.h"
 
 #include <QAction>
@@ -32,7 +32,7 @@
 
 //-----------------------------------------------------------------------------
 
-Highlighter::Highlighter(QTextEdit* text, Dictionary& dictionary)
+Highlighter::Highlighter(QTextEdit* text, DictionaryRef& dictionary)
 	: QSyntaxHighlighter(text),
 	m_dictionary(dictionary),
 	m_text(text),

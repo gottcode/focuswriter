@@ -20,7 +20,7 @@
 #ifndef BLOCK_STATS_H
 #define BLOCK_STATS_H
 
-class Dictionary;
+class DictionaryRef;
 class SceneModel;
 
 #include <QTextBlockUserData>
@@ -46,7 +46,7 @@ public:
 	};
 	SpellCheckStatus spellingStatus() const;
 
-	void checkSpelling(const QString& text, const Dictionary& dictionary);
+	void checkSpelling(const QString& text, const DictionaryRef& dictionary);
 	void recheckSpelling();
 	void setScene(bool scene);
 	void update(const QString& text);

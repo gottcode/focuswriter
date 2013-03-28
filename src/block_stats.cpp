@@ -19,7 +19,7 @@
 
 #include "block_stats.h"
 
-#include "dictionary.h"
+#include "dictionary_ref.h"
 #include "scene_model.h"
 
 //-----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ BlockStats::~BlockStats()
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::checkSpelling(const QString& text, const Dictionary& dictionary)
+void BlockStats::checkSpelling(const QString& text, const DictionaryRef& dictionary)
 {
 	m_misspelled.clear();
 	if (!text.isEmpty()) {

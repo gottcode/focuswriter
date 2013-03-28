@@ -19,7 +19,7 @@
 
 #include "spell_checker.h"
 
-#include "dictionary.h"
+#include "dictionary_ref.h"
 #include "document.h"
 
 #include <QAction>
@@ -38,7 +38,7 @@
 
 //-----------------------------------------------------------------------------
 
-void SpellChecker::checkDocument(QTextEdit* document, Dictionary& dictionary)
+void SpellChecker::checkDocument(QTextEdit* document, DictionaryRef& dictionary)
 {
 	SpellChecker* checker = new SpellChecker(document, dictionary);
 	checker->m_start_cursor = document->textCursor();
@@ -122,7 +122,7 @@ void SpellChecker::changeAll()
 
 //-----------------------------------------------------------------------------
 
-SpellChecker::SpellChecker(QTextEdit* document, Dictionary& dictionary) :
+SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
 	QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
 	m_dictionary(dictionary),
 	m_document(document)

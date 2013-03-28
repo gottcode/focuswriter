@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
-#include "dictionary.h"
+#include "dictionary_ref.h"
 #include "stats.h"
 class Alert;
 class DocumentWriter;
@@ -145,7 +145,7 @@ private:
 	QScrollBar* m_scrollbar;
 	SceneList* m_scene_list;
 	SceneModel* m_scene_model;
-	Dictionary m_dictionary;
+	DictionaryRef m_dictionary;
 	Highlighter* m_highlighter;
 	QColor m_text_color;
 

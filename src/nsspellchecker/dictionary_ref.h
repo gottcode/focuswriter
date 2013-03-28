@@ -17,8 +17,8 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_H
-#define DICTIONARY_H
+#ifndef DICTIONARY_REF_H
+#define DICTIONARY_REF_H
 
 class DictionaryData;
 
@@ -26,10 +26,10 @@ class QString;
 class QStringList;
 class QStringRef;
 
-class Dictionary
+class DictionaryRef
 {
 public:
-	Dictionary(DictionaryData** data = 0) : d((data && *data) ? data : 0) { }
+	DictionaryRef(DictionaryData** data = 0) : d((data && *data) ? data : 0) { }
 
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;

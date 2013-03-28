@@ -19,7 +19,7 @@
 
 #include "dictionary_manager.h"
 
-#include "dictionary.h"
+#include "dictionary_ref.h"
 #include "dictionary_data.h"
 #include "../smart_quotes.h"
 
@@ -84,7 +84,7 @@ void DictionaryManager::add(const QString& word)
 
 //-----------------------------------------------------------------------------
 
-Dictionary DictionaryManager::requestDictionary(const QString& language)
+DictionaryRef DictionaryManager::requestDictionary(const QString& language)
 {
 	if (language.isEmpty()) {
 		// Fetch shared default dictionary
