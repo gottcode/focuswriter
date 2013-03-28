@@ -19,8 +19,8 @@
 
 #include "dictionary_manager.h"
 
-#include "dictionary_ref.h"
 #include "dictionary_data.h"
+#include "../dictionary_ref.h"
 #include "../smart_quotes.h"
 
 #include <QDir>

@@ -1,4 +1,5 @@
 2013-03-28 Graeme Gott <graeme@gottcode.org>
+	* Share DictionaryRef on all platforms.
 	* Add abstract base class for dictionaries.
 	* Rename Dictionary to DictionaryRef.
 	* Move all spellchecking code into DictionaryData class.

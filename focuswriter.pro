@@ -32,12 +32,10 @@ macx {
 	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
 
-	HEADERS += src/nsspellchecker/dictionary_ref.h \
-		src/nsspellchecker/dictionary_data.h \
+	HEADERS += src/nsspellchecker/dictionary_data.h \
 		src/nsspellchecker/dictionary_manager.h
 
-	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary_ref.mm \
-		src/nsspellchecker/dictionary_data.mm \
+	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary_data.mm \
 		src/nsspellchecker/dictionary_manager.mm \
 		src/nssound/sound.mm
 
@@ -49,12 +47,10 @@ macx {
 	INCLUDEPATH += hunspell libzip src/hunspell
 	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/hunspell/dictionary_ref.h \
-		src/hunspell/dictionary_data.h \
+	HEADERS += src/hunspell/dictionary_data.h \
 		src/hunspell/dictionary_manager.h
 
-	SOURCES += src/hunspell/dictionary_ref.cpp \
-		src/hunspell/dictionary_data.cpp \
+	SOURCES += src/hunspell/dictionary_data.cpp \
 		src/hunspell/dictionary_manager.cpp \
 		src/qsound/sound.cpp
 
@@ -68,12 +64,10 @@ macx {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell libzip
 
-	HEADERS += src/hunspell/dictionary_ref.h \
-		src/hunspell/dictionary_data.h \
+	HEADERS += src/hunspell/dictionary_data.h \
 		src/hunspell/dictionary_manager.h
 
-	SOURCES += src/hunspell/dictionary_ref.cpp \
-		src/hunspell/dictionary_data.cpp \
+	SOURCES += src/hunspell/dictionary_data.cpp \
 		src/hunspell/dictionary_manager.cpp \
 		src/sdl/sound.cpp
 }
@@ -88,6 +82,7 @@ HEADERS += src/abstract_dictionary.h \
 	src/block_stats.h \
 	src/color_button.h \
 	src/deltas.h \
+	src/dictionary_ref.h \
 	src/document.h \
 	src/document_cache.h \
 	src/document_watcher.h \

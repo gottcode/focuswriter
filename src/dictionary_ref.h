@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,38 @@
  *
  ***********************************************************************/
 
-#include "dictionary_ref.h"
+#ifndef DICTIONARY_REF_H
+#define DICTIONARY_REF_H
 
-#include "../abstract_dictionary.h"
+#include "abstract_dictionary.h"
 
-#include <QStringRef>
 #include <QStringList>
+#include <QStringRef>
 
-//-----------------------------------------------------------------------------
-
-QStringRef DictionaryRef::check(const QString& string, int start_at) const
+class DictionaryRef
 {
-	return d ? (*d)->check(string, start_at) : QStringRef();
-}
+public:
+	DictionaryRef(AbstractDictionary** data = 0) : d((data && *data) ? data : 0) { }
 
-//-----------------------------------------------------------------------------
-
-QStringList DictionaryRef::suggestions(const QString& word) const
-{
-	return d ? (*d)->suggestions(word) : QStringList();
-}
-
-//-----------------------------------------------------------------------------
-
-void DictionaryRef::addToPersonal(const QString& word)
-{
-	if (d) {
-		(*d)->addToPersonal(word);
+	QStringRef check(const QString& string, int start_at) const
+	{
+		return d ? (*d)->check(string, start_at) : QStringRef();
 	}
-}
 
-//-----------------------------------------------------------------------------
+	QStringList suggestions(const QString& word) const
+	{
+		return d ? (*d)->suggestions(word) : QStringList();
+	}
+
+	void addToPersonal(const QString& word)
+	{
+		if (d) {
+			(*d)->addToPersonal(word);
+		}
+	}
+
+private:
+	AbstractDictionary** d;
+};
+
+#endif
