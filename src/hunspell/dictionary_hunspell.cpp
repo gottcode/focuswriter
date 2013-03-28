@@ -19,7 +19,7 @@
 
 #include "dictionary_hunspell.h"
 
-#include "dictionary_manager.h"
+#include "../dictionary_manager.h"
 #include "../smart_quotes.h"
 
 #include <QFile>

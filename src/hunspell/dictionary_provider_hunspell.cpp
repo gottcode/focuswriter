@@ -20,7 +20,7 @@
 #include "dictionary_provider_hunspell.h"
 
 #include "dictionary_hunspell.h"
-#include "dictionary_manager.h"
+#include "../dictionary_manager.h"
 
 #include <QDir>
 #include <QListIterator>

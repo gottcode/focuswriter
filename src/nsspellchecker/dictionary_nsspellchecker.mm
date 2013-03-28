@@ -19,7 +19,7 @@
 
 #include "dictionary_nsspellchecker.h"
 
-#include "dictionary_manager.h"
+#include "../dictionary_manager.h"
 
 #include <QStringList>
 #include <QVector>

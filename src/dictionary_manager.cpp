@@ -19,10 +19,14 @@
 
 #include "dictionary_manager.h"
 
-#include "dictionary_hunspell.h"
-#include "dictionary_provider_hunspell.h"
-#include "../dictionary_ref.h"
-#include "../smart_quotes.h"
+#ifndef Q_OS_MAC
+#include "hunspell/dictionary_hunspell.h"
+#include "hunspell/dictionary_provider_hunspell.h"
+#else
+#include "nsspellchecker/dictionary_provider_nsspellchecker.h"
+#endif
+#include "dictionary_ref.h"
+#include "smart_quotes.h"
 
 #include <QDir>
 #include <QFile>
@@ -108,14 +112,35 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 void DictionaryManager::setIgnoreNumbers(bool ignore)
 {
+#ifndef Q_OS_MAC
 	DictionaryHunspell::setIgnoreNumbers(ignore);
+#else
+	Q_UNUSED(ignore)
+	// Can't tell NSSpellChecker to ignore words with numbers?
+#endif
 }
 
 //-----------------------------------------------------------------------------
 
 void DictionaryManager::setIgnoreUppercase(bool ignore)
 {
+#ifndef Q_OS_MAC
 	DictionaryHunspell::setIgnoreUppercase(ignore);
+#else
+	Q_UNUSED(ignore)
+	// Can't tell NSSpellChecker to ignore words in all uppercase?
+#endif
+}
+
+//-----------------------------------------------------------------------------
+
+QString DictionaryManager::installedPath()
+{
+#ifndef Q_OS_MAC
+	return m_path;
+#else
+	return QDir::homePath() + "/Library/Spelling/";
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -165,7 +190,11 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 DictionaryManager::DictionaryManager()
 {
+#ifndef Q_OS_MAC
 	m_providers.append(new DictionaryProviderHunspell);
+#else
+	m_providers.append(new DictionaryProviderNSSpellChecker);
+#endif
 
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
