@@ -80,7 +80,8 @@ macx {
 
 INCLUDEPATH += src/qtsingleapplication
 
-HEADERS += src/action_manager.h \
+HEADERS += src/abstract_dictionary.h \
+	src/action_manager.h \
 	src/alert.h \
 	src/alert_layer.h \
 	src/application.h \

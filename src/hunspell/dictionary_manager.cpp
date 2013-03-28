@@ -147,7 +147,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	}
 
 	// Remove current personal dictionary
-	foreach (DictionaryData* dictionary, m_dictionaries) {
+	foreach (AbstractDictionary* dictionary, m_dictionaries) {
 		dictionary->removeFromSession(m_personal);
 	}
 
@@ -163,7 +163,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	}
 
 	// Add personal dictionary
-	foreach (DictionaryData* dictionary, m_dictionaries) {
+	foreach (AbstractDictionary* dictionary, m_dictionaries) {
 		dictionary->addToSession(m_personal);
 	}
 
@@ -211,7 +211,7 @@ DictionaryManager::DictionaryManager()
 
 DictionaryManager::~DictionaryManager()
 {
-	foreach (DictionaryData* dictionary, m_dictionaries) {
+	foreach (AbstractDictionary* dictionary, m_dictionaries) {
 		delete dictionary;
 	}
 	m_dictionaries.clear();
@@ -219,10 +219,10 @@ DictionaryManager::~DictionaryManager()
 
 //-----------------------------------------------------------------------------
 
-DictionaryData** DictionaryManager::requestDictionaryData(const QString& language)
+AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		DictionaryData* dictionary = new DictionaryData(language);
+		AbstractDictionary* dictionary = new DictionaryData(language);
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;
 	}

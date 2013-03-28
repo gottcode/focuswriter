@@ -20,8 +20,8 @@
 #ifndef DICTIONARY_MANAGER_H
 #define DICTIONARY_MANAGER_H
 
+class AbstractDictionary;
 class DictionaryRef;
-class DictionaryData;
 
 #include <QHash>
 #include <QObject>
@@ -56,11 +56,11 @@ private:
 	DictionaryManager();
 	~DictionaryManager();
 
-	DictionaryData** requestDictionaryData(const QString& language);
+	AbstractDictionary** requestDictionaryData(const QString& language);
 
 private:
-	QHash<QString, DictionaryData*> m_dictionaries;
-	DictionaryData* m_default_dictionary;
+	QHash<QString, AbstractDictionary*> m_dictionaries;
+	AbstractDictionary* m_default_dictionary;
 
 	QString m_default_language;
 	QStringList m_personal;

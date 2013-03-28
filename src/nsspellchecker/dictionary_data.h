@@ -20,13 +20,15 @@
 #ifndef DICTIONARY_DATA_H
 #define DICTIONARY_DATA_H
 
+#include "../abstract_dictionary.h"
+
 class QString;
 class QStringList;
 class QStringRef;
 
 #import <Foundation/NSString.h>
 
-class DictionaryData
+class DictionaryData : public AbstractDictionary
 {
 public:
 	DictionaryData(const QString& language);
@@ -35,6 +37,7 @@ public:
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
+	void addToPersonal(const QString& word);
 	void addToSession(const QStringList& words);
 	void removeFromSession(const QStringList& words);
 

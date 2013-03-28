@@ -20,7 +20,7 @@
 #ifndef DICTIONARY_REF_H
 #define DICTIONARY_REF_H
 
-class DictionaryData;
+class AbstractDictionary;
 
 class QString;
 class QStringList;
@@ -29,15 +29,15 @@ class QStringRef;
 class DictionaryRef
 {
 public:
-	DictionaryRef(DictionaryData** data = 0) : d((data && *data) ? data : 0) { }
+	DictionaryRef(AbstractDictionary** data = 0) : d((data && *data) ? data : 0) { }
 
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
-	void addWord(const QString& word);
+	void addToPersonal(const QString& word);
 
 private:
-	DictionaryData** d;
+	AbstractDictionary** d;
 };
 
 #endif

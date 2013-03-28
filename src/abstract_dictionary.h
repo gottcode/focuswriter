@@ -17,34 +17,24 @@
  *
  ***********************************************************************/
 
-#include "dictionary_ref.h"
+#ifndef ABSTRACT_DICTIONARY_H
+#define ABSTRACT_DICTIONARY_H
 
-#include "../abstract_dictionary.h"
+class QString;
+class QStringList;
+class QStringRef;
 
-#include <QStringRef>
-#include <QStringList>
-
-//-----------------------------------------------------------------------------
-
-QStringRef DictionaryRef::check(const QString& string, int start_at) const
+class AbstractDictionary
 {
-	return d ? (*d)->check(string, start_at) : QStringRef();
-}
+public:
+	virtual ~AbstractDictionary() { }
 
-//-----------------------------------------------------------------------------
+	virtual QStringRef check(const QString& string, int start_at) const = 0;
+	virtual QStringList suggestions(const QString& word) const = 0;
 
-QStringList DictionaryRef::suggestions(const QString& word) const
-{
-	return d ? (*d)->suggestions(word) : QStringList();
-}
+	virtual void addToPersonal(const QString& word) = 0;
+	virtual void addToSession(const QStringList& words) = 0;
+	virtual void removeFromSession(const QStringList& words) = 0;
+};
 
-//-----------------------------------------------------------------------------
-
-void DictionaryRef::addToPersonal(const QString& word)
-{
-	if (d) {
-		(*d)->addToPersonal(word);
-	}
-}
-
-//-----------------------------------------------------------------------------
+#endif

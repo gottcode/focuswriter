@@ -73,7 +73,7 @@ void SpellChecker::suggestionChanged(QListWidgetItem* suggestion)
 
 void SpellChecker::add()
 {
-	m_dictionary.addWord(m_word);
+	m_dictionary.addToPersonal(m_word);
 	ignore();
 }
 

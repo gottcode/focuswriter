@@ -19,6 +19,7 @@
 
 #include "dictionary_data.h"
 
+#include "dictionary_manager.h"
 #include "../smart_quotes.h"
 
 #include <QFile>
@@ -170,6 +171,13 @@ QStringList DictionaryData::suggestions(const QString& word) const
 		m_dictionary->free_list(&suggestions, count);
 	}
 	return result;
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryData::addToPersonal(const QString& word)
+{
+	DictionaryManager::instance().add(word);
 }
 
 //-----------------------------------------------------------------------------

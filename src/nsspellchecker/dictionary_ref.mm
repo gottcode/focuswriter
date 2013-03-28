@@ -19,8 +19,7 @@
 
 #include "dictionary_ref.h"
 
-#include "dictionary_data.h"
-#include "dictionary_manager.h"
+#include "../abstract_dictionary.h"
 
 #include <QStringRef>
 #include <QStringList>
@@ -41,9 +40,11 @@ QStringList DictionaryRef::suggestions(const QString& word) const
 
 //-----------------------------------------------------------------------------
 
-void DictionaryRef::addWord(const QString& word)
+void DictionaryRef::addToPersonal(const QString& word)
 {
-	DictionaryManager::instance().add(word);
+	if (d) {
+		(*d)->addToPersonal(word);
+	}
 }
 
 //-----------------------------------------------------------------------------

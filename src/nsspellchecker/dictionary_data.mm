@@ -19,6 +19,8 @@
 
 #include "dictionary_data.h"
 
+#include "dictionary_manager.h"
+
 #include <QStringList>
 #include <QVector>
 
@@ -120,6 +122,13 @@ QStringList DictionaryData::suggestions(const QString& word) const
 	[pool release];
 
 	return suggestions;
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryData::addToPersonal(const QString& word)
+{
+	DictionaryManager::instance().add(word);
 }
 
 //-----------------------------------------------------------------------------
