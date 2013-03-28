@@ -17,7 +17,7 @@
  *
  ***********************************************************************/
 
-#include "dictionary_data.h"
+#include "dictionary_hunspell.h"
 
 #include "dictionary_manager.h"
 #include "../smart_quotes.h"
@@ -36,7 +36,7 @@ static bool f_ignore_uppercase = true;
 
 //-----------------------------------------------------------------------------
 
-DictionaryData::DictionaryData(const QString& language) :
+DictionaryHunspell::DictionaryHunspell(const QString& language) :
 	m_dictionary(0),
 	m_codec(0)
 {
@@ -66,14 +66,14 @@ DictionaryData::DictionaryData(const QString& language) :
 
 //-----------------------------------------------------------------------------
 
-DictionaryData::~DictionaryData()
+DictionaryHunspell::~DictionaryHunspell()
 {
 	delete m_dictionary;
 }
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryData::check(const QString& string, int start_at) const
+QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 {
 	if (!m_dictionary) {
 		return QStringRef();
@@ -149,7 +149,7 @@ QStringRef DictionaryData::check(const QString& string, int start_at) const
 
 //-----------------------------------------------------------------------------
 
-QStringList DictionaryData::suggestions(const QString& word) const
+QStringList DictionaryHunspell::suggestions(const QString& word) const
 {
 	QStringList result;
 	if (!m_dictionary) {
@@ -175,14 +175,14 @@ QStringList DictionaryData::suggestions(const QString& word) const
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::addToPersonal(const QString& word)
+void DictionaryHunspell::addToPersonal(const QString& word)
 {
 	DictionaryManager::instance().add(word);
 }
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::addToSession(const QStringList& words)
+void DictionaryHunspell::addToSession(const QStringList& words)
 {
 	if (m_dictionary) {
 		foreach (const QString& word, words) {
@@ -193,7 +193,7 @@ void DictionaryData::addToSession(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::removeFromSession(const QStringList& words)
+void DictionaryHunspell::removeFromSession(const QStringList& words)
 {
 	if (m_dictionary) {
 		foreach (const QString& word, words) {
@@ -204,14 +204,14 @@ void DictionaryData::removeFromSession(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::setIgnoreNumbers(bool ignore)
+void DictionaryHunspell::setIgnoreNumbers(bool ignore)
 {
 	f_ignore_numbers = ignore;
 }
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::setIgnoreUppercase(bool ignore)
+void DictionaryHunspell::setIgnoreUppercase(bool ignore)
 {
 	f_ignore_uppercase = ignore;
 }

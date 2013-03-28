@@ -19,7 +19,7 @@
 
 #include "dictionary_manager.h"
 
-#include "dictionary_data.h"
+#include "dictionary_nsspellchecker.h"
 #include "../dictionary_ref.h"
 #include "../smart_quotes.h"
 
@@ -210,7 +210,7 @@ DictionaryManager::~DictionaryManager()
 AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		AbstractDictionary* dictionary = new DictionaryData(language);
+		AbstractDictionary* dictionary = new DictionaryNSSpellChecker(language);
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;
 	}

@@ -17,7 +17,7 @@
  *
  ***********************************************************************/
 
-#include "dictionary_data.h"
+#include "dictionary_nsspellchecker.h"
 
 #include "dictionary_manager.h"
 
@@ -43,7 +43,7 @@ static NSArray* convertList(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-DictionaryData::DictionaryData(const QString& language)
+DictionaryNSSpellChecker::DictionaryNSSpellChecker(const QString& language)
 {
 	m_language = [[NSString alloc] initWithCharacters:reinterpret_cast<const unichar*>(language.unicode()) length:language.length()];
 
@@ -52,7 +52,7 @@ DictionaryData::DictionaryData(const QString& language)
 
 //-----------------------------------------------------------------------------
 
-DictionaryData::~DictionaryData()
+DictionaryNSSpellChecker::~DictionaryNSSpellChecker()
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
@@ -65,7 +65,7 @@ DictionaryData::~DictionaryData()
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryData::check(const QString& string, int start_at) const
+QStringRef DictionaryNSSpellChecker::check(const QString& string, int start_at) const
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
@@ -91,7 +91,7 @@ QStringRef DictionaryData::check(const QString& string, int start_at) const
 
 //-----------------------------------------------------------------------------
 
-QStringList DictionaryData::suggestions(const QString& word) const
+QStringList DictionaryNSSpellChecker::suggestions(const QString& word) const
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
@@ -126,14 +126,14 @@ QStringList DictionaryData::suggestions(const QString& word) const
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::addToPersonal(const QString& word)
+void DictionaryNSSpellChecker::addToPersonal(const QString& word)
 {
 	DictionaryManager::instance().add(word);
 }
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::addToSession(const QStringList& words)
+void DictionaryNSSpellChecker::addToSession(const QStringList& words)
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
@@ -144,7 +144,7 @@ void DictionaryData::addToSession(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-void DictionaryData::removeFromSession(const QStringList& words)
+void DictionaryNSSpellChecker::removeFromSession(const QStringList& words)
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 

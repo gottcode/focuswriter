@@ -17,8 +17,8 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_DATA_H
-#define DICTIONARY_DATA_H
+#ifndef DICTIONARY_NSSPELLCHECKER_H
+#define DICTIONARY_NSSPELLCHECKER_H
 
 #include "../abstract_dictionary.h"
 
@@ -28,11 +28,11 @@ class QStringRef;
 
 #import <Foundation/NSString.h>
 
-class DictionaryData : public AbstractDictionary
+class DictionaryNSSpellChecker : public AbstractDictionary
 {
 public:
-	DictionaryData(const QString& language);
-	~DictionaryData();
+	DictionaryNSSpellChecker(const QString& language);
+	~DictionaryNSSpellChecker();
 
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;

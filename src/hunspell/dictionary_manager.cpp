@@ -19,7 +19,7 @@
 
 #include "dictionary_manager.h"
 
-#include "dictionary_data.h"
+#include "dictionary_hunspell.h"
 #include "../dictionary_ref.h"
 #include "../smart_quotes.h"
 
@@ -118,14 +118,14 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 void DictionaryManager::setIgnoreNumbers(bool ignore)
 {
-	DictionaryData::setIgnoreNumbers(ignore);
+	DictionaryHunspell::setIgnoreNumbers(ignore);
 }
 
 //-----------------------------------------------------------------------------
 
 void DictionaryManager::setIgnoreUppercase(bool ignore)
 {
-	DictionaryData::setIgnoreUppercase(ignore);
+	DictionaryHunspell::setIgnoreUppercase(ignore);
 }
 
 //-----------------------------------------------------------------------------
@@ -222,7 +222,7 @@ DictionaryManager::~DictionaryManager()
 AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		AbstractDictionary* dictionary = new DictionaryData(language);
+		AbstractDictionary* dictionary = new DictionaryHunspell(language);
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;
 	}

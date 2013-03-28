@@ -17,8 +17,8 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_DATA_H
-#define DICTIONARY_DATA_H
+#ifndef DICTIONARY_HUNSPELL_H
+#define DICTIONARY_HUNSPELL_H
 
 #include "../abstract_dictionary.h"
 class Hunspell;
@@ -28,11 +28,11 @@ class QStringList;
 class QStringRef;
 class QTextCodec;
 
-class DictionaryData : public AbstractDictionary
+class DictionaryHunspell : public AbstractDictionary
 {
 public:
-	DictionaryData(const QString& language);
-	~DictionaryData();
+	DictionaryHunspell(const QString& language);
+	~DictionaryHunspell();
 
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
