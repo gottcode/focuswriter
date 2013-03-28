@@ -33,25 +33,18 @@ public:
 	DictionaryData(const QString& language);
 	~DictionaryData();
 
-	QTextCodec* codec() const;
-	Hunspell* dictionary() const;
+	QStringRef check(const QString& string, int start_at) const;
+	QStringList suggestions(const QString& word) const;
 
 	void addToSession(const QStringList& words);
 	void removeFromSession(const QStringList& words);
+
+	static void setIgnoreNumbers(bool ignore);
+	static void setIgnoreUppercase(bool ignore);
 
 private:
 	Hunspell* m_dictionary;
 	QTextCodec* m_codec;
 };
-
-inline QTextCodec* DictionaryData::codec() const
-{
-	return m_codec;
-}
-
-inline Hunspell* DictionaryData::dictionary() const
-{
-	return m_dictionary;
-}
 
 #endif

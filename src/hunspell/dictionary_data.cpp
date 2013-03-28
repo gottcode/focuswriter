@@ -19,12 +19,19 @@
 
 #include "dictionary_data.h"
 
+#include "../smart_quotes.h"
+
 #include <QFile>
 #include <QFileInfo>
 #include <QStringList>
 #include <QTextCodec>
 
 #include <hunspell.hxx>
+
+//-----------------------------------------------------------------------------
+
+static bool f_ignore_numbers = false;
+static bool f_ignore_uppercase = true;
 
 //-----------------------------------------------------------------------------
 
@@ -65,6 +72,108 @@ DictionaryData::~DictionaryData()
 
 //-----------------------------------------------------------------------------
 
+QStringRef DictionaryData::check(const QString& string, int start_at) const
+{
+	if (!m_dictionary) {
+		return QStringRef();
+	}
+
+	int index = -1;
+	int length = 0;
+	int chars = 1;
+	bool is_number = false;
+	bool is_uppercase = f_ignore_uppercase;
+	bool is_word = false;
+
+	int count = string.length() - 1;
+	for (int i = start_at; i <= count; ++i) {
+		QChar c = string.at(i);
+		switch (c.category()) {
+			case QChar::Number_DecimalDigit:
+			case QChar::Number_Letter:
+			case QChar::Number_Other:
+				is_number = f_ignore_numbers;
+				goto Letter;
+			case QChar::Letter_Lowercase:
+				is_uppercase = false;
+				Letter:
+			case QChar::Letter_Uppercase:
+			case QChar::Letter_Titlecase:
+			case QChar::Letter_Modifier:
+			case QChar::Letter_Other:
+			case QChar::Mark_NonSpacing:
+			case QChar::Mark_SpacingCombining:
+			case QChar::Mark_Enclosing:
+				if (index == -1) {
+					index = i;
+					chars = 1;
+					length = 0;
+				}
+				length += chars;
+				chars = 1;
+				break;
+
+			case QChar::Punctuation_FinalQuote:
+			case QChar::Punctuation_Other:
+				if (c == 0x0027 || c == 0x2019) {
+					chars++;
+					break;
+				}
+
+			default:
+				if (index != -1) {
+					is_word = true;
+				}
+				break;
+		}
+
+		if (is_word || (i == count && index != -1)) {
+			if (!is_uppercase && !is_number) {
+				QStringRef check(&string, index, length);
+				QString word = check.toString();
+				word.replace(QChar(0x2019), QLatin1Char('\''));
+				if (!m_dictionary->spell(m_codec->fromUnicode(word).constData())) {
+					return check;
+				}
+			}
+			index = -1;
+			is_word = false;
+			is_number = false;
+			is_uppercase = f_ignore_uppercase;
+		}
+	}
+
+	return QStringRef();
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList DictionaryData::suggestions(const QString& word) const
+{
+	QStringList result;
+	if (!m_dictionary) {
+		return result;
+	}
+
+	QString check = word;
+	check.replace(QChar(0x2019), QLatin1Char('\''));
+	char** suggestions = 0;
+	int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(check).constData());
+	if (suggestions != 0) {
+		for (int i = 0; i < count; ++i) {
+			QString word = m_codec->toUnicode(suggestions[i]);
+			if (SmartQuotes::isEnabled()) {
+				SmartQuotes::replace(word);
+			}
+			result.append(word);
+		}
+		m_dictionary->free_list(&suggestions, count);
+	}
+	return result;
+}
+
+//-----------------------------------------------------------------------------
+
 void DictionaryData::addToSession(const QStringList& words)
 {
 	if (m_dictionary) {
@@ -83,6 +192,20 @@ void DictionaryData::removeFromSession(const QStringList& words)
 			m_dictionary->remove(m_codec->fromUnicode(word).constData());
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryData::setIgnoreNumbers(bool ignore)
+{
+	f_ignore_numbers = ignore;
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryData::setIgnoreUppercase(bool ignore)
+{
+	f_ignore_uppercase = ignore;
 }
 
 //-----------------------------------------------------------------------------

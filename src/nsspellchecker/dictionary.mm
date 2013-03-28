@@ -22,71 +22,21 @@
 #include "dictionary_data.h"
 #include "dictionary_manager.h"
 
+#include <QStringRef>
 #include <QStringList>
-
-#import <AppKit/NSSpellChecker.h>
-#import <Foundation/NSArray.h>
-#import <Foundation/NSAutoreleasePool.h>
 
 //-----------------------------------------------------------------------------
 
 QStringRef Dictionary::check(const QString& string, int start_at) const
 {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
-
-	QStringRef misspelled;
-
-	NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
-		startingAt:start_at
-		language:(*d)->language()
-		wrap:NO
-		inSpellDocumentWithTag:(*d)->tag()
-		wordCount:NULL];
-
-	if (range.length > 0) {
-		misspelled = QStringRef(&string, range.location, range.length);
-	}
-
-	[pool release];
-
-	return misspelled;
+	return d ? (*d)->check(string, start_at) : QStringRef();
 }
 
 //-----------------------------------------------------------------------------
 
 QStringList Dictionary::suggestions(const QString& word) const
 {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-	NSRange range;
-	range.location = 0;
-	range.length = word.length();
-
-	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()];
-
-	NSArray* array;
-	if ([[NSSpellChecker sharedSpellChecker] respondsToSelector:@selector(guessesForWordRange)]) {
-		array = [[NSSpellChecker sharedSpellChecker] guessesForWordRange:range
-			inString:nsstring
-			language:(*d)->language()
-			inSpellDocumentWithTag:(*d)->tag()];
-	} else {
-		array = [[NSSpellChecker sharedSpellChecker] guessesForWord:nsstring];
-	}
-
-	QStringList suggestions;
-	if (array) {
-		for (unsigned int i = 0; i < [array count]; ++i) {
-			nsstring = [array objectAtIndex: i];
-			suggestions += QString::fromUtf8([nsstring UTF8String]);
-		}
-	}
-
-	[pool release];
-
-	return suggestions;
+	return d ? (*d)->suggestions(word) : QStringList();
 }
 
 //-----------------------------------------------------------------------------

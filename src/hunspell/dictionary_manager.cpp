@@ -118,14 +118,14 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 void DictionaryManager::setIgnoreNumbers(bool ignore)
 {
-	Dictionary::setIgnoreNumbers(ignore);
+	DictionaryData::setIgnoreNumbers(ignore);
 }
 
 //-----------------------------------------------------------------------------
 
 void DictionaryManager::setIgnoreUppercase(bool ignore)
 {
-	Dictionary::setIgnoreUppercase(ignore);
+	DictionaryData::setIgnoreUppercase(ignore);
 }
 
 //-----------------------------------------------------------------------------

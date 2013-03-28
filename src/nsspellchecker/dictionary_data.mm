@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +59,67 @@ DictionaryData::~DictionaryData()
 	[[NSSpellChecker sharedSpellChecker] closeSpellDocumentWithTag:m_tag];
 
 	[pool release];
+}
+
+//-----------------------------------------------------------------------------
+
+QStringRef DictionaryData::check(const QString& string, int start_at) const
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
+
+	QStringRef misspelled;
+
+	NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
+		startingAt:start_at
+		language:m_language
+		wrap:NO
+		inSpellDocumentWithTag:m_tag
+		wordCount:NULL];
+
+	if (range.length > 0) {
+		misspelled = QStringRef(&string, range.location, range.length);
+	}
+
+	[pool release];
+
+	return misspelled;
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList DictionaryData::suggestions(const QString& word) const
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	NSRange range;
+	range.location = 0;
+	range.length = word.length();
+
+	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()];
+
+	NSArray* array;
+	if ([[NSSpellChecker sharedSpellChecker] respondsToSelector:@selector(guessesForWordRange)]) {
+		array = [[NSSpellChecker sharedSpellChecker] guessesForWordRange:range
+			inString:nsstring
+			language:m_language
+			inSpellDocumentWithTag:m_tag];
+	} else {
+		array = [[NSSpellChecker sharedSpellChecker] guessesForWord:nsstring];
+	}
+
+	QStringList suggestions;
+	if (array) {
+		for (unsigned int i = 0; i < [array count]; ++i) {
+			nsstring = [array objectAtIndex: i];
+			suggestions += QString::fromUtf8([nsstring UTF8String]);
+		}
+	}
+
+	[pool release];
+
+	return suggestions;
 }
 
 //-----------------------------------------------------------------------------

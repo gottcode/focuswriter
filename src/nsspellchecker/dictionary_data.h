@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,8 +32,8 @@ public:
 	DictionaryData(const QString& language);
 	~DictionaryData();
 
-	NSString* language() const;
-	NSInteger tag() const;
+	QStringRef check(const QString& string, int start_at) const;
+	QStringList suggestions(const QString& word) const;
 
 	void addToSession(const QStringList& words);
 	void removeFromSession(const QStringList& words);
@@ -43,13 +43,4 @@ private:
 	NSInteger m_tag;
 };
 
-inline NSString* DictionaryData::language() const
-{
-	return m_language;
-}
-
-inline NSInteger DictionaryData::tag() const
-{
-	return m_tag;
-}
 #endif

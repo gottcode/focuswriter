@@ -22,7 +22,6 @@
 
 class DictionaryData;
 
-#include <QList>
 class QString;
 class QStringList;
 class QStringRef;
@@ -30,15 +29,12 @@ class QStringRef;
 class Dictionary
 {
 public:
-	Dictionary(DictionaryData** data = 0);
+	Dictionary(DictionaryData** data = 0) : d((data && *data) ? data : 0) { }
 
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
 	void addWord(const QString& word);
-
-	static void setIgnoreNumbers(bool ignore);
-	static void setIgnoreUppercase(bool ignore);
 
 private:
 	DictionaryData** d;
