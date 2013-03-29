@@ -114,6 +114,9 @@ void DictionaryManager::setIgnoreNumbers(bool ignore)
 	foreach (AbstractDictionaryProvider* provider, m_providers) {
 		provider->setIgnoreNumbers(ignore);
 	}
+
+	// Re-check documents
+	emit changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -123,6 +126,9 @@ void DictionaryManager::setIgnoreUppercase(bool ignore)
 	foreach (AbstractDictionaryProvider* provider, m_providers) {
 		provider->setIgnoreUppercase(ignore);
 	}
+
+	// Re-check documents
+	emit changed();
 }
 
 //-----------------------------------------------------------------------------

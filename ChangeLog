@@ -1,4 +1,5 @@
 2013-03-29 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Documents were not rechecked after changing settings.
 	* Hide implementations of dictionaries.
 	* Add global dictionary settings to dictionary providers.
 	* Merge source files of dictionaries and providers.
