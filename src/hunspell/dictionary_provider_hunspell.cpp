@@ -49,6 +49,11 @@ public:
 	DictionaryHunspell(const QString& language);
 	~DictionaryHunspell();
 
+	bool isValid() const
+	{
+		return m_dictionary;
+	}
+
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
@@ -102,10 +107,6 @@ DictionaryHunspell::~DictionaryHunspell()
 
 QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 {
-	if (!m_dictionary) {
-		return QStringRef();
-	}
-
 	int index = -1;
 	int length = 0;
 	int chars = 1;
@@ -179,10 +180,6 @@ QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 QStringList DictionaryHunspell::suggestions(const QString& word) const
 {
 	QStringList result;
-	if (!m_dictionary) {
-		return result;
-	}
-
 	QString check = word;
 	check.replace(QChar(0x2019), QLatin1Char('\''));
 	char** suggestions = 0;
@@ -211,10 +208,8 @@ void DictionaryHunspell::addToPersonal(const QString& word)
 
 void DictionaryHunspell::addToSession(const QStringList& words)
 {
-	if (m_dictionary) {
-		foreach (const QString& word, words) {
-			m_dictionary->add(m_codec->fromUnicode(word).constData());
-		}
+	foreach (const QString& word, words) {
+		m_dictionary->add(m_codec->fromUnicode(word).constData());
 	}
 }
 
@@ -222,10 +217,8 @@ void DictionaryHunspell::addToSession(const QStringList& words)
 
 void DictionaryHunspell::removeFromSession(const QStringList& words)
 {
-	if (m_dictionary) {
-		foreach (const QString& word, words) {
-			m_dictionary->remove(m_codec->fromUnicode(word).constData());
-		}
+	foreach (const QString& word, words) {
+		m_dictionary->remove(m_codec->fromUnicode(word).constData());
 	}
 }
 

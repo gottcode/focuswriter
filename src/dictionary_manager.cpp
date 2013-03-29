@@ -228,10 +228,14 @@ AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& lan
 		AbstractDictionary* dictionary = 0;
 		foreach (AbstractDictionaryProvider* provider, m_providers) {
 			dictionary = provider->requestDictionary(language);
-			if (dictionary) {
+			if (dictionary && dictionary->isValid()) {
 				break;
+			} else {
+				delete dictionary;
+				dictionary = 0;
 			}
 		}
+
 		if (!dictionary) {
 			return 0;
 		}

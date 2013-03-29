@@ -29,6 +29,7 @@ class AbstractDictionary
 public:
 	virtual ~AbstractDictionary() { }
 
+	virtual bool isValid() const = 0;
 	virtual QStringRef check(const QString& string, int start_at) const = 0;
 	virtual QStringList suggestions(const QString& word) const = 0;
 

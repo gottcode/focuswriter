@@ -54,6 +54,11 @@ public:
 	DictionaryNSSpellChecker(const QString& language);
 	~DictionaryNSSpellChecker();
 
+	bool isValid() const
+	{
+		return true;
+	}
+
 	QStringRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
