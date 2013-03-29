@@ -126,6 +126,7 @@ SOURCES += src/action_manager.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
 	src/dictionary_manager.cpp \
+	src/dictionary_ref.cpp \
 	src/document.cpp \
 	src/document_cache.cpp \
 	src/document_watcher.cpp \

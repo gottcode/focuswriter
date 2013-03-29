@@ -17,36 +17,59 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_REF_H
-#define DICTIONARY_REF_H
+#include "dictionary_ref.h"
 
-#include "abstract_dictionary.h"
+//-----------------------------------------------------------------------------
 
-#include <QStringList>
-#include <QStringRef>
+namespace
+{
 
-class DictionaryRef
+class DictionaryFallback : public AbstractDictionary
 {
 public:
-	DictionaryRef(AbstractDictionary** data = 0);
+	bool isValid() const
+	{
+		return true;
+	}
 
 	QStringRef check(const QString& string, int start_at) const
 	{
-		return (*d)->check(string, start_at);
+		Q_UNUSED(string);
+		Q_UNUSED(start_at);
+		return QStringRef();
 	}
 
 	QStringList suggestions(const QString& word) const
 	{
-		return (*d)->suggestions(word);
+		Q_UNUSED(word);
+		return QStringList();
 	}
 
 	void addToPersonal(const QString& word)
 	{
-		(*d)->addToPersonal(word);
+		Q_UNUSED(word);
 	}
 
-private:
-	AbstractDictionary** d;
-};
+	void addToSession(const QStringList& words)
+	{
+		Q_UNUSED(words);
+	}
 
-#endif
+	void removeFromSession(const QStringList& words)
+	{
+		Q_UNUSED(words);
+	}
+} f_fallback;
+
+}
+
+static AbstractDictionary* f_fallback_ptr = &f_fallback;
+
+//-----------------------------------------------------------------------------
+
+DictionaryRef::DictionaryRef(AbstractDictionary** data) :
+	d((data && *data) ? data : &f_fallback_ptr)
+{
+}
+
+//-----------------------------------------------------------------------------
