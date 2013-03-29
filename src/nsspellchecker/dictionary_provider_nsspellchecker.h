@@ -28,6 +28,11 @@ class QStringList;
 class DictionaryProviderNSSpellChecker : public AbstractDictionaryProvider
 {
 public:
+	bool isValid() const
+	{
+		return true;
+	}
+
 	QStringList availableDictionaries() const;
 	AbstractDictionary* requestDictionary(const QString& language) const;
 

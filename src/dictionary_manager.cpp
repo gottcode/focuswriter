@@ -190,9 +190,9 @@ void DictionaryManager::setPersonal(const QStringList& words)
 DictionaryManager::DictionaryManager()
 {
 #ifndef Q_OS_MAC
-	m_providers.append(new DictionaryProviderHunspell);
+	addProvider(new DictionaryProviderHunspell);
 #else
-	m_providers.append(new DictionaryProviderNSSpellChecker);
+	addProvider(new DictionaryProviderNSSpellChecker);
 #endif
 
 	// Load personal dictionary
@@ -218,6 +218,18 @@ DictionaryManager::~DictionaryManager()
 
 	qDeleteAll(m_providers);
 	m_providers.clear();
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryManager::addProvider(AbstractDictionaryProvider* provider)
+{
+	if (provider->isValid()) {
+		m_providers.append(provider);
+	} else {
+		delete provider;
+		provider = 0;
+	}
 }
 
 //-----------------------------------------------------------------------------

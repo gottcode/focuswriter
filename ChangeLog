@@ -1,4 +1,5 @@
 2013-03-29 Graeme Gott <graeme@gottcode.org>
+	* Check provider validity on creation.
 	* Add fallback dictionary to DictionaryRef.
 	* Check dictionary validity on creation.
 	* FIXED: Documents were not rechecked after changing settings.

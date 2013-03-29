@@ -57,6 +57,7 @@ private:
 	DictionaryManager();
 	~DictionaryManager();
 
+	void addProvider(AbstractDictionaryProvider* provider);
 	AbstractDictionary** requestDictionaryData(const QString& language);
 
 private:
