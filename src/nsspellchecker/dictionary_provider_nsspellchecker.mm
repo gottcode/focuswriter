@@ -19,6 +19,7 @@
 
 #include "dictionary_provider_nsspellchecker.h"
 
+#include "../abstract_dictionary.h"
 #include "../dictionary_manager.h"
 
 #include <QStringList>
@@ -27,6 +28,7 @@
 #import <AppKit/NSSpellChecker.h>
 #import <Foundation/NSArray.h>
 #import <Foundation/NSAutoreleasePool.h>
+#import <Foundation/NSString.h>
 
 //-----------------------------------------------------------------------------
 
@@ -40,6 +42,29 @@ static NSArray* convertList(const QStringList& words)
 	NSArray* array = [NSArray arrayWithObjects:strings.constData() count:strings.size()];
 	return array;
 }
+
+//-----------------------------------------------------------------------------
+
+namespace
+{
+
+class DictionaryNSSpellChecker : public AbstractDictionary
+{
+public:
+	DictionaryNSSpellChecker(const QString& language);
+	~DictionaryNSSpellChecker();
+
+	QStringRef check(const QString& string, int start_at) const;
+	QStringList suggestions(const QString& word) const;
+
+	void addToPersonal(const QString& word);
+	void addToSession(const QStringList& words);
+	void removeFromSession(const QStringList& words);
+
+private:
+	NSString* m_language;
+	NSInteger m_tag;
+};
 
 //-----------------------------------------------------------------------------
 
@@ -162,6 +187,8 @@ void DictionaryNSSpellChecker::removeFromSession(const QStringList& words)
 	[[NSSpellChecker sharedSpellChecker] setIgnoredWords:convertList(session) inSpellDocumentWithTag:m_tag];
 
 	[pool release];
+}
+
 }
 
 //-----------------------------------------------------------------------------

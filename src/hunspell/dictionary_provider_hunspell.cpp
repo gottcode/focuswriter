@@ -19,6 +19,7 @@
 
 #include "dictionary_provider_hunspell.h"
 
+#include "../abstract_dictionary.h"
 #include "../dictionary_manager.h"
 #include "../smart_quotes.h"
 
@@ -36,6 +37,29 @@
 
 static bool f_ignore_numbers = false;
 static bool f_ignore_uppercase = true;
+
+//-----------------------------------------------------------------------------
+
+namespace
+{
+
+class DictionaryHunspell : public AbstractDictionary
+{
+public:
+	DictionaryHunspell(const QString& language);
+	~DictionaryHunspell();
+
+	QStringRef check(const QString& string, int start_at) const;
+	QStringList suggestions(const QString& word) const;
+
+	void addToPersonal(const QString& word);
+	void addToSession(const QStringList& words);
+	void removeFromSession(const QStringList& words);
+
+private:
+	Hunspell* m_dictionary;
+	QTextCodec* m_codec;
+};
 
 //-----------------------------------------------------------------------------
 
@@ -203,6 +227,8 @@ void DictionaryHunspell::removeFromSession(const QStringList& words)
 			m_dictionary->remove(m_codec->fromUnicode(word).constData());
 		}
 	}
+}
+
 }
 
 //-----------------------------------------------------------------------------

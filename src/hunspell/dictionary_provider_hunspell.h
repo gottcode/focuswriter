@@ -20,33 +20,10 @@
 #ifndef DICTIONARY_PROVIDER_HUNSPELL_H
 #define DICTIONARY_PROVIDER_HUNSPELL_H
 
-#include "../abstract_dictionary.h"
 #include "../abstract_dictionary_provider.h"
-
-class Hunspell;
 
 class QString;
 class QStringList;
-class QStringRef;
-class QTextCodec;
-
-class DictionaryHunspell : public AbstractDictionary
-{
-public:
-	DictionaryHunspell(const QString& language);
-	~DictionaryHunspell();
-
-	QStringRef check(const QString& string, int start_at) const;
-	QStringList suggestions(const QString& word) const;
-
-	void addToPersonal(const QString& word);
-	void addToSession(const QStringList& words);
-	void removeFromSession(const QStringList& words);
-
-private:
-	Hunspell* m_dictionary;
-	QTextCodec* m_codec;
-};
 
 class DictionaryProviderHunspell : public AbstractDictionaryProvider
 {

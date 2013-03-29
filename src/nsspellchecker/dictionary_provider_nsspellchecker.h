@@ -20,32 +20,10 @@
 #ifndef DICTIONARY_PROVIDER_NSSPELLCHECKER_H
 #define DICTIONARY_PROVIDER_NSSPELLCHECKER_H
 
-#include "../abstract_dictionary.h"
 #include "../abstract_dictionary_provider.h"
 
 class QString;
 class QStringList;
-class QStringRef;
-
-#import <Foundation/NSString.h>
-
-class DictionaryNSSpellChecker : public AbstractDictionary
-{
-public:
-	DictionaryNSSpellChecker(const QString& language);
-	~DictionaryNSSpellChecker();
-
-	QStringRef check(const QString& string, int start_at) const;
-	QStringList suggestions(const QString& word) const;
-
-	void addToPersonal(const QString& word);
-	void addToSession(const QStringList& words);
-	void removeFromSession(const QStringList& words);
-
-private:
-	NSString* m_language;
-	NSInteger m_tag;
-};
 
 class DictionaryProviderNSSpellChecker : public AbstractDictionaryProvider
 {
