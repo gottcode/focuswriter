@@ -191,3 +191,19 @@ AbstractDictionary* DictionaryProviderNSSpellChecker::requestDictionary(const QS
 }
 
 //-----------------------------------------------------------------------------
+
+void DictionaryProviderNSSpellChecker::setIgnoreNumbers(bool ignore)
+{
+	Q_UNUSED(ignore)
+	// Can't tell NSSpellChecker to ignore words with numbers?
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryProviderNSSpellChecker::setIgnoreUppercase(bool ignore)
+{
+	Q_UNUSED(ignore)
+	// Can't tell NSSpellChecker to ignore words in all uppercase?
+}
+
+//-----------------------------------------------------------------------------

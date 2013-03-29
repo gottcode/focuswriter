@@ -111,24 +111,18 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 void DictionaryManager::setIgnoreNumbers(bool ignore)
 {
-#ifndef Q_OS_MAC
-	DictionaryHunspell::setIgnoreNumbers(ignore);
-#else
-	Q_UNUSED(ignore)
-	// Can't tell NSSpellChecker to ignore words with numbers?
-#endif
+	foreach (AbstractDictionaryProvider* provider, m_providers) {
+		provider->setIgnoreNumbers(ignore);
+	}
 }
 
 //-----------------------------------------------------------------------------
 
 void DictionaryManager::setIgnoreUppercase(bool ignore)
 {
-#ifndef Q_OS_MAC
-	DictionaryHunspell::setIgnoreUppercase(ignore);
-#else
-	Q_UNUSED(ignore)
-	// Can't tell NSSpellChecker to ignore words in all uppercase?
-#endif
+	foreach (AbstractDictionaryProvider* provider, m_providers) {
+		provider->setIgnoreUppercase(ignore);
+	}
 }
 
 //-----------------------------------------------------------------------------

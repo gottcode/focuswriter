@@ -52,6 +52,9 @@ class DictionaryProviderNSSpellChecker : public AbstractDictionaryProvider
 public:
 	QStringList availableDictionaries() const;
 	AbstractDictionary* requestDictionary(const QString& language) const;
+
+	void setIgnoreNumbers(bool ignore);
+	void setIgnoreUppercase(bool ignore);
 };
 
 #endif

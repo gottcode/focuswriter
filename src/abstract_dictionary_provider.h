@@ -32,6 +32,9 @@ public:
 
 	virtual QStringList availableDictionaries() const = 0;
 	virtual AbstractDictionary* requestDictionary(const QString& language) const = 0;
+
+	virtual void setIgnoreNumbers(bool ignore) = 0;
+	virtual void setIgnoreUppercase(bool ignore) = 0;
 };
 
 #endif

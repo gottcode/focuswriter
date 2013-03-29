@@ -43,9 +43,6 @@ public:
 	void addToSession(const QStringList& words);
 	void removeFromSession(const QStringList& words);
 
-	static void setIgnoreNumbers(bool ignore);
-	static void setIgnoreUppercase(bool ignore);
-
 private:
 	Hunspell* m_dictionary;
 	QTextCodec* m_codec;
@@ -58,6 +55,9 @@ public:
 
 	QStringList availableDictionaries() const;
 	AbstractDictionary* requestDictionary(const QString& language) const;
+
+	void setIgnoreNumbers(bool ignore);
+	void setIgnoreUppercase(bool ignore);
 };
 
 #endif

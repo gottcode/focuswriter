@@ -207,20 +207,6 @@ void DictionaryHunspell::removeFromSession(const QStringList& words)
 
 //-----------------------------------------------------------------------------
 
-void DictionaryHunspell::setIgnoreNumbers(bool ignore)
-{
-	f_ignore_numbers = ignore;
-}
-
-//-----------------------------------------------------------------------------
-
-void DictionaryHunspell::setIgnoreUppercase(bool ignore)
-{
-	f_ignore_uppercase = ignore;
-}
-
-//-----------------------------------------------------------------------------
-
 DictionaryProviderHunspell::DictionaryProviderHunspell()
 {
 	QStringList dictdirs;
@@ -273,6 +259,20 @@ QStringList DictionaryProviderHunspell::availableDictionaries() const
 AbstractDictionary* DictionaryProviderHunspell::requestDictionary(const QString& language) const
 {
 	return new DictionaryHunspell(language);
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryProviderHunspell::setIgnoreNumbers(bool ignore)
+{
+	f_ignore_numbers = ignore;
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryProviderHunspell::setIgnoreUppercase(bool ignore)
+{
+	f_ignore_uppercase = ignore;
 }
 
 //-----------------------------------------------------------------------------
