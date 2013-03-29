@@ -45,9 +45,11 @@ macx {
 	INCLUDEPATH += hunspell libzip src/hunspell
 	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/hunspell/dictionary_provider_hunspell.h
+	HEADERS += src/hunspell/dictionary_provider_hunspell.h \
+		src/voikko/dictionary_provider_voikko.h
 
 	SOURCES += src/hunspell/dictionary_provider_hunspell.cpp \
+		src/voikko/dictionary_provider_voikko.cpp \
 		src/qsound/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
@@ -60,9 +62,11 @@ macx {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell libzip
 
-	HEADERS += src/hunspell/dictionary_provider_hunspell.h
+	HEADERS += src/hunspell/dictionary_provider_hunspell.h \
+		src/voikko/dictionary_provider_voikko.h
 
 	SOURCES += src/hunspell/dictionary_provider_hunspell.cpp \
+		src/voikko/dictionary_provider_voikko.cpp \
 		src/sdl/sound.cpp
 }
 

@@ -21,6 +21,7 @@
 
 #ifndef Q_OS_MAC
 #include "hunspell/dictionary_provider_hunspell.h"
+#include "voikko/dictionary_provider_voikko.h"
 #else
 #include "nsspellchecker/dictionary_provider_nsspellchecker.h"
 #endif
@@ -191,6 +192,7 @@ DictionaryManager::DictionaryManager()
 {
 #ifndef Q_OS_MAC
 	addProvider(new DictionaryProviderHunspell);
+	addProvider(new DictionaryProviderVoikko);
 #else
 	addProvider(new DictionaryProviderNSSpellChecker);
 #endif
