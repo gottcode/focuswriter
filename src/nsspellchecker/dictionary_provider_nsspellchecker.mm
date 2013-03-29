@@ -19,13 +19,150 @@
 
 #include "dictionary_provider_nsspellchecker.h"
 
-#include "dictionary_nsspellchecker.h"
+#include "../dictionary_manager.h"
 
 #include <QStringList>
+#include <QVector>
 
 #import <AppKit/NSSpellChecker.h>
 #import <Foundation/NSArray.h>
 #import <Foundation/NSAutoreleasePool.h>
+
+//-----------------------------------------------------------------------------
+
+static NSArray* convertList(const QStringList& words)
+{
+	QVector<NSString*> strings;
+	foreach (const QString& word, words) {
+		strings.append([NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()]);
+	}
+
+	NSArray* array = [NSArray arrayWithObjects:strings.constData() count:strings.size()];
+	return array;
+}
+
+//-----------------------------------------------------------------------------
+
+DictionaryNSSpellChecker::DictionaryNSSpellChecker(const QString& language)
+{
+	m_language = [[NSString alloc] initWithCharacters:reinterpret_cast<const unichar*>(language.unicode()) length:language.length()];
+
+	m_tag = [NSSpellChecker uniqueSpellDocumentTag];
+}
+
+//-----------------------------------------------------------------------------
+
+DictionaryNSSpellChecker::~DictionaryNSSpellChecker()
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	[m_language release];
+
+	[[NSSpellChecker sharedSpellChecker] closeSpellDocumentWithTag:m_tag];
+
+	[pool release];
+}
+
+//-----------------------------------------------------------------------------
+
+QStringRef DictionaryNSSpellChecker::check(const QString& string, int start_at) const
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
+
+	QStringRef misspelled;
+
+	NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
+		startingAt:start_at
+		language:m_language
+		wrap:NO
+		inSpellDocumentWithTag:m_tag
+		wordCount:NULL];
+
+	if (range.length > 0) {
+		misspelled = QStringRef(&string, range.location, range.length);
+	}
+
+	[pool release];
+
+	return misspelled;
+}
+
+//-----------------------------------------------------------------------------
+
+QStringList DictionaryNSSpellChecker::suggestions(const QString& word) const
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	NSRange range;
+	range.location = 0;
+	range.length = word.length();
+
+	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()];
+
+	NSArray* array;
+	if ([[NSSpellChecker sharedSpellChecker] respondsToSelector:@selector(guessesForWordRange)]) {
+		array = [[NSSpellChecker sharedSpellChecker] guessesForWordRange:range
+			inString:nsstring
+			language:m_language
+			inSpellDocumentWithTag:m_tag];
+	} else {
+		array = [[NSSpellChecker sharedSpellChecker] guessesForWord:nsstring];
+	}
+
+	QStringList suggestions;
+	if (array) {
+		for (unsigned int i = 0; i < [array count]; ++i) {
+			nsstring = [array objectAtIndex: i];
+			suggestions += QString::fromUtf8([nsstring UTF8String]);
+		}
+	}
+
+	[pool release];
+
+	return suggestions;
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryNSSpellChecker::addToPersonal(const QString& word)
+{
+	DictionaryManager::instance().add(word);
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryNSSpellChecker::addToSession(const QStringList& words)
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	[[NSSpellChecker sharedSpellChecker] setIgnoredWords:convertList(words) inSpellDocumentWithTag:m_tag];
+
+	[pool release];
+}
+
+//-----------------------------------------------------------------------------
+
+void DictionaryNSSpellChecker::removeFromSession(const QStringList& words)
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+	QStringList session;
+	NSArray* array = [[NSSpellChecker sharedSpellChecker] ignoredWordsInSpellDocumentWithTag:m_tag];
+	if (array) {
+		for (unsigned int i = 0; i < [array count]; ++i) {
+			session += QString::fromUtf8([[array objectAtIndex: i] UTF8String]);
+		}
+		foreach (const QString& word, words) {
+			session.removeAll(word);
+		}
+	}
+
+	[[NSSpellChecker sharedSpellChecker] setIgnoredWords:convertList(session) inSpellDocumentWithTag:m_tag];
+
+	[pool release];
+}
 
 //-----------------------------------------------------------------------------
 

@@ -20,7 +20,6 @@
 #include "dictionary_manager.h"
 
 #ifndef Q_OS_MAC
-#include "hunspell/dictionary_hunspell.h"
 #include "hunspell/dictionary_provider_hunspell.h"
 #else
 #include "nsspellchecker/dictionary_provider_nsspellchecker.h"

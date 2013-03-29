@@ -1,3 +1,6 @@
+2013-03-29 Graeme Gott <graeme@gottcode.org>
+	* Merge source files of dictionaries and providers.
+
 2013-03-28 Graeme Gott <graeme@gottcode.org>
 	* Share DictionaryManager on all platforms.
 	* Use dictionary provider to fetch dictionary.
