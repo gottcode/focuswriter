@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ public:
 	QModelIndex parent(const QModelIndex& child) const;
 	int rowCount(const QModelIndex& parent = QModelIndex()) const;
 
-	static void setData(const QString& path);
+	static void setData(const QStringList& datadirs);
 
 	friend QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter& filter);
 	friend QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter::Range& range);

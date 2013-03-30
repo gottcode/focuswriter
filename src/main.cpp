@@ -83,12 +83,7 @@ int main(int argc, char** argv)
 	}
 
 	// Find unicode names
-	foreach (const QString& path, datadirs) {
-		if (QFile::exists(path + "/symbols.dat")) {
-			SymbolsModel::setData(path + "/symbols.dat");
-			break;
-		}
-	}
+	SymbolsModel::setData(datadirs);
 
 	// Load application language
 	LocaleDialog::loadTranslator("focuswriter_", datadirs);

@@ -28,7 +28,7 @@ MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
 ECHO Copying symbols
-COPY resources\symbols\symbols.dat %APP% >nul
+COPY resources\symbols\symbols510.dat %APP% >nul
 
 ECHO Copying enchant library
 XCOPY /Q /S /Y enchant %APP% >nul
