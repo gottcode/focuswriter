@@ -95,6 +95,7 @@ HEADERS += src/action_manager.h \
 	src/load_screen.h \
 	src/locale_dialog.h \
 	src/odt_reader.h \
+	src/paths.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
 	src/scene_list.h \
@@ -142,6 +143,7 @@ SOURCES += src/action_manager.cpp \
 	src/locale_dialog.cpp \
 	src/main.cpp \
 	src/odt_reader.cpp \
+	src/paths.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
 	src/scene_list.cpp \
