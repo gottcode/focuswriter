@@ -1,3 +1,6 @@
+2013-03-30 Graeme Gott <graeme@gottcode.org>
+	* Migrate data from Qt 4 version.
+
 2013-03-29 Graeme Gott <graeme@gottcode.org>
 	* Group spellchecking files together.
 	* Add voikko dictionary provider.
