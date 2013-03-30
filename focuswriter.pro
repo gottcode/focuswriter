@@ -186,7 +186,7 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	SYMBOLS.files = resources/symbols/symbols.dat
+	SYMBOLS.files = resources/symbols/symbols510.dat
 	SYMBOLS.path = Contents/Resources
 
 	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
@@ -224,7 +224,11 @@ unix: !macx {
 	sounds.files = resources/sounds/*
 	sounds.path = $$DATADIR/focuswriter/sounds
 
-	symbols.files = resources/symbols/symbols.dat
+	greaterThan(QT_MAJOR_VERSION, 4) {
+		symbols.files = resources/symbols/symbols620.dat
+	} else {
+		symbols.files = resources/symbols/symbols510.dat
+	}
 	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon pixmap desktop icons qm sounds symbols
