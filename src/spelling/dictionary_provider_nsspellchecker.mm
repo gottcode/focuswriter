@@ -19,8 +19,8 @@
 
 #include "dictionary_provider_nsspellchecker.h"
 
-#include "../abstract_dictionary.h"
-#include "../dictionary_manager.h"
+#include "abstract_dictionary.h"
+#include "dictionary_manager.h"
 
 #include <QStringList>
 #include <QVector>

@@ -20,10 +20,10 @@
 #include "dictionary_manager.h"
 
 #ifndef Q_OS_MAC
-#include "hunspell/dictionary_provider_hunspell.h"
-#include "voikko/dictionary_provider_voikko.h"
+#include "dictionary_provider_hunspell.h"
+#include "dictionary_provider_voikko.h"
 #else
-#include "nsspellchecker/dictionary_provider_nsspellchecker.h"
+#include "dictionary_provider_nsspellchecker.h"
 #endif
 #include "dictionary_ref.h"
 #include "smart_quotes.h"

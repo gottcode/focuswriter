@@ -17,20 +17,22 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_PROVIDER_VOIKKO_H
-#define DICTIONARY_PROVIDER_VOIKKO_H
+#ifndef DICTIONARY_PROVIDER_NSSPELLCHECKER_H
+#define DICTIONARY_PROVIDER_NSSPELLCHECKER_H
 
-#include "../abstract_dictionary_provider.h"
+#include "abstract_dictionary_provider.h"
 
 class QString;
 class QStringList;
 
-class DictionaryProviderVoikko : public AbstractDictionaryProvider
+class DictionaryProviderNSSpellChecker : public AbstractDictionaryProvider
 {
 public:
-	DictionaryProviderVoikko();
+	bool isValid() const
+	{
+		return true;
+	}
 
-	bool isValid() const;
 	QStringList availableDictionaries() const;
 	AbstractDictionary* requestDictionary(const QString& language) const;
 

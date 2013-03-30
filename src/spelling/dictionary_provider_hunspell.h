@@ -20,7 +20,7 @@
 #ifndef DICTIONARY_PROVIDER_HUNSPELL_H
 #define DICTIONARY_PROVIDER_HUNSPELL_H
 
-#include "../abstract_dictionary_provider.h"
+#include "abstract_dictionary_provider.h"
 
 class QString;
 class QStringList;

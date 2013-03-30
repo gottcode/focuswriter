@@ -29,12 +29,12 @@ unix: !macx {
 }
 
 macx {
-	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
+	INCLUDEPATH += /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
 
-	HEADERS += src/nsspellchecker/dictionary_provider_nsspellchecker.h
+	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h
 
-	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary_provider_nsspellchecker.mm \
+	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm \
 		src/nssound/sound.mm
 
 	lessThan(QT_MAJOR_VERSION, 5) {
@@ -42,14 +42,14 @@ macx {
 		SOURCES += src/rtf/clipboard_mac.cpp
 	}
 } else:win32 {
-	INCLUDEPATH += hunspell libzip src/hunspell
+	INCLUDEPATH += hunspell libzip
 	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/hunspell/dictionary_provider_hunspell.h \
-		src/voikko/dictionary_provider_voikko.h
+	HEADERS += src/spelling/dictionary_provider_hunspell.h \
+		src/spelling/dictionary_provider_voikko.h
 
-	SOURCES += src/hunspell/dictionary_provider_hunspell.cpp \
-		src/voikko/dictionary_provider_voikko.cpp \
+	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
+		src/spelling/dictionary_provider_voikko.cpp \
 		src/qsound/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
@@ -57,39 +57,32 @@ macx {
 		SOURCES += src/rtf/clipboard_windows.cpp
 	}
 } else {
-	INCLUDEPATH += src/hunspell
-
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell libzip
 
-	HEADERS += src/hunspell/dictionary_provider_hunspell.h \
-		src/voikko/dictionary_provider_voikko.h
+	HEADERS += src/spelling/dictionary_provider_hunspell.h \
+		src/spelling/dictionary_provider_voikko.h
 
-	SOURCES += src/hunspell/dictionary_provider_hunspell.cpp \
-		src/voikko/dictionary_provider_voikko.cpp \
+	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
+		src/spelling/dictionary_provider_voikko.cpp \
 		src/sdl/sound.cpp
 }
 
-INCLUDEPATH += src/qtsingleapplication
+INCLUDEPATH += src src/qtsingleapplication src/spelling
 
-HEADERS += src/abstract_dictionary.h \
-	src/abstract_dictionary_provider.h \
-	src/action_manager.h \
+HEADERS += src/action_manager.h \
 	src/alert.h \
 	src/alert_layer.h \
 	src/application.h \
 	src/block_stats.h \
 	src/color_button.h \
 	src/deltas.h \
-	src/dictionary_manager.h \
-	src/dictionary_ref.h \
 	src/document.h \
 	src/document_cache.h \
 	src/document_watcher.h \
 	src/document_writer.h \
 	src/find_dialog.h \
 	src/gzip.h \
-	src/highlighter.h \
 	src/image_button.h \
 	src/load_screen.h \
 	src/locale_dialog.h \
@@ -104,7 +97,6 @@ HEADERS += src/abstract_dictionary.h \
 	src/shortcut_edit.h \
 	src/smart_quotes.h \
 	src/sound.h \
-	src/spell_checker.h \
 	src/stack.h \
 	src/stats.h \
 	src/symbols_dialog.h \
@@ -120,7 +112,13 @@ HEADERS += src/abstract_dictionary.h \
 	src/qtsingleapplication/qtlocalpeer.h \
 	src/rtf/reader.h \
 	src/rtf/tokenizer.h \
-	src/rtf/writer.h
+	src/rtf/writer.h \
+	src/spelling/abstract_dictionary.h \
+	src/spelling/abstract_dictionary_provider.h \
+	src/spelling/dictionary_manager.h \
+	src/spelling/dictionary_ref.h \
+	src/spelling/highlighter.h \
+	src/spelling/spell_checker.h
 
 SOURCES += src/action_manager.cpp \
 	src/alert.cpp \
@@ -129,15 +127,12 @@ SOURCES += src/action_manager.cpp \
 	src/block_stats.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
-	src/dictionary_manager.cpp \
-	src/dictionary_ref.cpp \
 	src/document.cpp \
 	src/document_cache.cpp \
 	src/document_watcher.cpp \
 	src/document_writer.cpp \
 	src/find_dialog.cpp \
 	src/gzip.cpp \
-	src/highlighter.cpp \
 	src/image_button.cpp \
 	src/load_screen.cpp \
 	src/locale_dialog.cpp \
@@ -151,7 +146,6 @@ SOURCES += src/action_manager.cpp \
 	src/session_manager.cpp \
 	src/shortcut_edit.cpp \
 	src/smart_quotes.cpp \
-	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/stats.cpp \
 	src/symbols_dialog.cpp \
@@ -167,7 +161,11 @@ SOURCES += src/action_manager.cpp \
 	src/qtsingleapplication/qtlocalpeer.cpp \
 	src/rtf/reader.cpp \
 	src/rtf/tokenizer.cpp \
-	src/rtf/writer.cpp
+	src/rtf/writer.cpp \
+	src/spelling/dictionary_manager.cpp \
+	src/spelling/dictionary_ref.cpp \
+	src/spelling/highlighter.cpp \
+	src/spelling/spell_checker.cpp
 
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
 

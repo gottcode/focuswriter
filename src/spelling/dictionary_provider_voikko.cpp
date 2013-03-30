@@ -19,9 +19,9 @@
 
 #include "dictionary_provider_voikko.h"
 
-#include "../abstract_dictionary.h"
-#include "../dictionary_manager.h"
-#include "../smart_quotes.h"
+#include "abstract_dictionary.h"
+#include "dictionary_manager.h"
+#include "smart_quotes.h"
 
 #include <QFile>
 #include <QLibrary>
