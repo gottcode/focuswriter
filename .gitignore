@@ -1,4 +1,6 @@
+*.o
+moc_*.cpp
+qrc_*.cpp
 /Makefile
 /build
 /focuswriter
-/resources/images/icons/hicolor/32x32/apps/focuswriter.xpm
