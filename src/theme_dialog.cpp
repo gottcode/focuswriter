@@ -260,7 +260,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	spacing_layout->addWidget(paragraph_spacing);
 	spacing_layout->addStretch();
 
-#if QT_VERSION < 0x040800
+#if (QT_VERSION < QT_VERSION_CHECK(4,8,0))
 	line_spacing->hide();
 #endif
 

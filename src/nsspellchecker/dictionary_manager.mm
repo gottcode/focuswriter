@@ -58,7 +58,7 @@ QStringList DictionaryManager::availableDictionaries() const
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
 	QStringList languages;
-	const NSArray* array = [[NSSpellChecker sharedSpellChecker] availableLanguages];
+	NSArray* array = [[NSSpellChecker sharedSpellChecker] availableLanguages];
 	if (array) {
 		for (unsigned int i = 0; i < [array count]; ++i) {
 			languages += QString::fromUtf8([[array objectAtIndex: i] UTF8String]);

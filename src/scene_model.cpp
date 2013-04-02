@@ -39,7 +39,6 @@ SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
 	m_document(document),
 	m_updates(0)
 {
-	setSupportedDragActions(Qt::MoveAction);
 	connect(m_document->document(), SIGNAL(blockCountChanged(int)), this, SLOT(invalidateScenes()));
 
 	f_scene_models.append(this);

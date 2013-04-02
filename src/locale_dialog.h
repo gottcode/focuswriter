@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,65 @@
  *
  ***********************************************************************/
 
-#ifndef LOCALE_DIALOG_H
-#define LOCALE_DIALOG_H
+#ifndef FOCUSWRITER_LOCALE_DIALOG_H
+#define FOCUSWRITER_LOCALE_DIALOG_H
 
 #include <QDialog>
 class QComboBox;
 
+/**
+ * Dialog to set application language.
+ *
+ * This class handles setting the application language when the application is
+ * launched, as well as allowing the user to choose a different language for
+ * future launches.
+ */
 class LocaleDialog : public QDialog
 {
 	Q_OBJECT
 
 public:
+	/**
+	 * Construct a dialog to choose application language.
+	 *
+	 * @param parent the parent widget of the dialog
+	 */
 	LocaleDialog(QWidget* parent = 0);
 
+	/**
+	 * Load the stored language into the application; defaults to system language.
+	 *
+	 * @param appname application name to prepend to translation filenames
+	 * @param datadirs locations to search for directory containing translations
+	 */
 	static void loadTranslator(const QString& appname, const QStringList& datadirs = QStringList());
+
+	/**
+	 * Fetch native language name for QLocale name.
+	 *
+	 * @param language QLocale name to look up
+	 * @return translated language name
+	 */
 	static QString languageName(const QString& language);
 
 public slots:
-	virtual void accept();
+	/** Override parent function to store application language. */
+	void accept();
 
 private:
+	/**
+	 * Fetch list of application translations.
+	 *
+	 * @return list of QLocale names
+	 */
 	static QStringList findTranslations();
 
 private:
-	QComboBox* m_translations;
+	QComboBox* m_translations; /**< list of found translations */
 
-	static QString m_current;
-	static QString m_path;
-	static QString m_appname;
+	static QString m_current; /**< stored application language */
+	static QString m_path; /**< location of translations; found in loadTranslator() */
+	static QString m_appname; /**< application name passed to loadTranslator() */
 };
 
-#endif
+#endif // FOCUSWRITER_LOCALE_DIALOG_H

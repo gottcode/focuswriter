@@ -96,8 +96,11 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 
 	if (key->text().right(1) != m_quotes[quote]) {
 		cursor.beginEditBlock();
+		QTextCharFormat format = cursor.charFormat();
 		cursor.deletePreviousChar();
 		cursor.insertText(m_quotes[quote]);
+		cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor);
+		cursor.mergeCharFormat(format);
 		cursor.endEditBlock();
 	}
 

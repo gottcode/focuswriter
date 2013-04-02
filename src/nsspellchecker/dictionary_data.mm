@@ -79,7 +79,7 @@ void DictionaryData::removeFromSession(const QStringList& words)
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
 	QStringList session;
-	const NSArray* array = [[NSSpellChecker sharedSpellChecker] ignoredWordsInSpellDocumentWithTag:m_tag];
+	NSArray* array = [[NSSpellChecker sharedSpellChecker] ignoredWordsInSpellDocumentWithTag:m_tag];
 	if (array) {
 		for (unsigned int i = 0; i < [array count]; ++i) {
 			session += QString::fromUtf8([[array objectAtIndex: i] UTF8String]);

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,11 @@
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDate>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QStandardPaths>
+#else
 #include <QDesktopServices>
+#endif
 #include <QFileDialog>
 #include <QFileOpenEvent>
 #include <QGridLayout>
@@ -679,7 +683,11 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+	static QString oldpath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#else
 	static QString oldpath = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#endif
 	QString path = m_documents->currentDocument()->filename();
 	if (!path.isEmpty()) {
 		path = QFileInfo(path).dir().path();
@@ -883,7 +891,7 @@ void Window::aboutClicked()
 		"<p align='center'>%6<br/><small>%7</small></p>")
 		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
 			tr("A simple fullscreen word processor"),
-			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2012"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2013"),
 			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
 			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
 			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
@@ -1467,7 +1475,13 @@ void Window::initMenus()
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
 	m_actions["About"]->setMenuRole(QAction::AboutRole);
-	m_actions["AboutQt"] = help_menu->addAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), qApp, SLOT(aboutQt()));
+	m_actions["AboutQt"] = help_menu->addAction(
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"),
+#else
+		QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"),
+#endif
+		tr("About &Qt"), qApp, SLOT(aboutQt()));
 	m_actions["AboutQt"]->setMenuRole(QAction::AboutQtRole);
 
 	// Always show menubar

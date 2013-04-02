@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,8 +41,8 @@ QString LocaleDialog::m_appname;
 
 //-----------------------------------------------------------------------------
 
-LocaleDialog::LocaleDialog(QWidget* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+LocaleDialog::LocaleDialog(QWidget* parent) :
+	QDialog(parent, Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
 	QString title = parent ? parent->window()->windowTitle() : QString();
 	setWindowTitle(!title.isEmpty() ? title : QCoreApplication::applicationName());
@@ -80,7 +80,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 {
 	m_appname = name;
 
-	// Findpaths translator path
+	// Find translator path
 	QStringList paths = datadirs;
 	if (paths.isEmpty()) {
 		QString appdir = QCoreApplication::applicationDirPath();
@@ -132,7 +132,7 @@ QString LocaleDialog::languageName(const QString& language)
 	QString lang_code = language.left(5);
 	QLocale locale(lang_code);
 	QString name;
-#if QT_VERSION >= 0x040800
+#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	if (lang_code.length() > 2) {
 		if (locale.name() == lang_code) {
 			name = locale.nativeLanguageName() + " (" + locale.nativeCountryName() + ")";

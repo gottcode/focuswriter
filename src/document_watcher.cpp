@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QStyle>
+#include <QTextEdit>
+#include <QTimer>
 
 //-----------------------------------------------------------------------------
 
@@ -128,11 +130,21 @@ void DocumentWatcher::processUpdates()
 			mbox.setText(tr("The file %1 was deleted by another program.").arg(filename));
 			mbox.setInformativeText(tr("Do you want to save or close the file?"));
 
-			mbox.setStandardButtons(QMessageBox::Save | QMessageBox::Close);
+			mbox.setStandardButtons(QMessageBox::Save | QMessageBox::Close | QMessageBox::Ignore);
 			mbox.setDefaultButton(QMessageBox::Save);
 
-			if (mbox.exec() == QMessageBox::Save) {
+			QAbstractButton* save_button = mbox.button(QMessageBox::Save);
+
+			QAbstractButton* ignore_button = mbox.button(QMessageBox::Ignore);
+			if (ignore_button->icon().isNull() && ignore_button->style()->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons)) {
+				ignore_button->setIcon(ignore_button->style()->standardIcon(QStyle::SP_MessageBoxWarning));
+			}
+
+			mbox.exec();
+			if (mbox.clickedButton() == save_button) {
 				document->save();
+			} else if (mbox.clickedButton() == ignore_button) {
+				document->text()->document()->setModified(true);
 			} else {
 				emit closeDocument(document);
 			}
@@ -149,7 +161,7 @@ void DocumentWatcher::documentChanged(const QString& path)
 	}
 	m_updates.append(path);
 	if (parent() && (QApplication::activeWindow() == parent())) {
-		processUpdates();
+		QTimer::singleShot(50, this, SLOT(processUpdates()));
 	}
 }
 

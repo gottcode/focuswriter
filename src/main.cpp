@@ -26,7 +26,11 @@
 #include "symbols_model.h"
 #include "theme.h"
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QStandardPaths>
+#else
 #include <QDesktopServices>
+#endif
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -95,7 +99,11 @@ int main(int argc, char** argv)
 
 	// Find user data dir if not in portable mode
 	if (userdir.isEmpty()) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		userdir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
 		userdir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
 
 		// Move user data to new location
 		if (!QFile::exists(userdir)) {

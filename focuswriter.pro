@@ -1,23 +1,22 @@
+lessThan(QT_VERSION, 4.6) {
+	error("FocusWriter requires Qt 4.6 or greater")
+}
+
 TEMPLATE = app
+QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
-	QT += widgets
-	QT += printsupport
+	QT += widgets printsupport
 }
 CONFIG += warn_on
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
-	CONFIG += x86_64
 }
 
 !win32 {
 	LIBS += -lz
 }
 
-MOC_DIR = build
-OBJECTS_DIR = build
-RCC_DIR = build
-
-VERSION = 1.4.1
+VERSION = 1.4.2
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 unix: !macx {
@@ -26,43 +25,40 @@ unix: !macx {
 	TARGET = FocusWriter
 }
 
-# Add Qt single use application
-INCLUDEPATH += src/qtsingleapplication
-SOURCES += src/qtsingleapplication/qtsingleapplication.cpp \
-	src/qtsingleapplication/qtlocalpeer.cpp
-HEADERS += src/qtsingleapplication/qtsingleapplication.h \
-	src/qtsingleapplication/qtlocalpeer.h
-QT *= network
-
 macx {
 	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
 
-	HEADERS += src/rtf/clipboard_mac.h \
-		src/nsspellchecker/dictionary.h \
+	HEADERS += src/nsspellchecker/dictionary.h \
 		src/nsspellchecker/dictionary_data.h \
 		src/nsspellchecker/dictionary_manager.h
-
-	SOURCES += src/rtf/clipboard_mac.cpp
 
 	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary.mm \
 		src/nsspellchecker/dictionary_data.mm \
 		src/nsspellchecker/dictionary_manager.mm \
 		src/nssound/sound.mm
+
+	lessThan(QT_MAJOR_VERSION, 5) {
+		HEADERS += src/rtf/clipboard_mac.h
+		SOURCES += src/rtf/clipboard_mac.cpp
+	}
 } else:win32 {
 	INCLUDEPATH += enchant libzip src/enchant
 	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
 
-	HEADERS += src/rtf/clipboard_windows.h \
-		src/enchant/dictionary.h \
+	HEADERS += src/enchant/dictionary.h \
 		src/enchant/dictionary_data.h \
 		src/enchant/dictionary_manager.h
 
-	SOURCES += src/rtf/clipboard_windows.cpp \
-		src/enchant/dictionary.cpp \
+	SOURCES += src/enchant/dictionary.cpp \
 		src/enchant/dictionary_data.cpp \
 		src/enchant/dictionary_manager.cpp \
 		src/qsound/sound.cpp
+
+	lessThan(QT_MAJOR_VERSION, 5) {
+		HEADERS += src/rtf/clipboard_windows.h
+		SOURCES += src/rtf/clipboard_windows.cpp
+	}
 } else {
 	INCLUDEPATH += src/enchant
 
@@ -78,6 +74,8 @@ macx {
 		src/enchant/dictionary_manager.cpp \
 		src/sdl/sound.cpp
 }
+
+INCLUDEPATH += src/qtsingleapplication
 
 HEADERS += src/action_manager.h \
 	src/alert.h \
@@ -119,6 +117,8 @@ HEADERS += src/action_manager.h \
 	src/timer_display.h \
 	src/timer_manager.h \
 	src/window.h \
+	src/qtsingleapplication/qtsingleapplication.h \
+	src/qtsingleapplication/qtlocalpeer.h \
 	src/rtf/reader.h \
 	src/rtf/tokenizer.h \
 	src/rtf/writer.h
@@ -162,35 +162,13 @@ SOURCES += src/action_manager.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
 	src/window.cpp \
+	src/qtsingleapplication/qtsingleapplication.cpp \
+	src/qtsingleapplication/qtlocalpeer.cpp \
 	src/rtf/reader.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp
 
-TRANSLATIONS = translations/focuswriter_ca.ts \
-	translations/focuswriter_cs.ts \
-	translations/focuswriter_da.ts \
-	translations/focuswriter_de.ts \
-	translations/focuswriter_el.ts \
-	translations/focuswriter_en.ts \
-	translations/focuswriter_es.ts \
-	translations/focuswriter_es_MX.ts \
-	translations/focuswriter_fi.ts \
-	translations/focuswriter_fr.ts \
-	translations/focuswriter_he.ts \
-	translations/focuswriter_hu.ts \
-	translations/focuswriter_it.ts \
-	translations/focuswriter_ja.ts \
-	translations/focuswriter_nl.ts \
-	translations/focuswriter_pl.ts \
-	translations/focuswriter_pt.ts \
-	translations/focuswriter_pt_BR.ts \
-	translations/focuswriter_ro.ts \
-	translations/focuswriter_ru.ts \
-	translations/focuswriter_sk.ts \
-	translations/focuswriter_sv.ts \
-	translations/focuswriter_tr.ts \
-	translations/focuswriter_uk.ts \
-	translations/focuswriter_zh_CN.ts
+TRANSLATIONS = $$files(translations/focuswriter_*.ts)
 
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
 macx {
