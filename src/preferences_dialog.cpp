@@ -48,6 +48,7 @@
 #include <QTreeWidget>
 #include <QVBoxLayout>
 
+#define ZIP_DISABLE_DEPRECATED 1
 #include <zip.h>
 
 //-----------------------------------------------------------------------------
@@ -408,9 +409,9 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// File lists
-	QHash<QString, int> aff_files;
-	QHash<QString, int> dic_files;
-	QHash<QString, int> files;
+	QHash<QString, zip_int64_t> aff_files;
+	QHash<QString, zip_int64_t> dic_files;
+	QHash<QString, zip_int64_t> files;
 	QStringList dictionaries;
 
 	// Open archive
@@ -422,11 +423,11 @@ void PreferencesDialog::addLanguage()
 
 	try {
 		// List files
-		int count = zip_get_num_files(archive);
+		zip_int64_t count = zip_get_num_entries(archive, 0);
 		if (count == -1) {
 			throw tr("Unable to read archive metadata.");
 		}
-		for (int i = 0; i < count; ++i) {
+		for (zip_int64_t i = 0; i < count; ++i) {
 			QString name = QString::fromUtf8(zip_get_name(archive, i, 0));
 			if (name.endsWith(".aff")) {
 				aff_files[name] = i;
@@ -473,7 +474,7 @@ void PreferencesDialog::addLanguage()
 		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
-		QHashIterator<QString, int> i(files);
+		QHashIterator<QString, zip_int64_t> i(files);
 		while (i.hasNext()) {
 			i.next();
 

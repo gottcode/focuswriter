@@ -18,7 +18,7 @@ SOURCES += $$PWD/libzip/mkstemp.c \
 	$$PWD/libzip/zip_get_compression_implementation.c \
 	$$PWD/libzip/zip_get_encryption_implementation.c \
 	$$PWD/libzip/zip_get_name.c \
-	$$PWD/libzip/zip_get_num_files.c \
+	$$PWD/libzip/zip_get_num_entries.c \
 	$$PWD/libzip/zip_memdup.c \
 	$$PWD/libzip/zip_name_locate.c \
 	$$PWD/libzip/zip_new.c \

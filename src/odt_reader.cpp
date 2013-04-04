@@ -23,6 +23,7 @@
 #include <QFile>
 #include <QTextDocument>
 
+#define ZIP_DISABLE_DEPRECATED 1
 #include <zip.h>
 
 //-----------------------------------------------------------------------------
@@ -65,21 +66,21 @@ void ODT::Reader::read(const QString& filename, QTextDocument* text)
 	}
 
 	try {
-		const size_t buffer_size = 0x4000;
+		const zip_uint64_t buffer_size = 0x4000;
 		char buffer[buffer_size + 1];
 
 		const char* files[] = { "styles.xml", "content.xml" };
 		for (int i = 0; i < 2; ++i) {
 			const char* file = files[i];
-			int index = zip_name_locate(archive, file, 0);
+			zip_int64_t index = zip_name_locate(archive, file, 0);
 			if (index != -1) {
 				zip_file* zfile = zip_fopen_index(archive, index, 0);
-				if (zfile == 0) {
+				if (zfile == NULL) {
 					throw tr("Unable to open file '%1'.").arg(file);
 				}
 
 				m_xml.clear();
-				int len = 0;
+				zip_int64_t len = 0;
 				while ((len = zip_fread(zfile, &buffer, buffer_size)) > 0) {
 					buffer[len] = 0;
 					m_xml.addData(buffer);
