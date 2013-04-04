@@ -30,18 +30,8 @@ COPY resources\sounds\* %SOUNDS% >nul
 ECHO Copying symbols
 COPY resources\symbols\symbols510.dat %APP% >nul
 
-ECHO Copying hunspell library
-COPY hunspell\hunspell1.dll %APP% >nul
-
 ECHO Copying voikko library
 COPY voikko\libvoikko-1.dll %APP% >nul
-
-ECHO Copying libzip library
-COPY libzip\libzip0.dll %APP% >nul
-
-ECHO Copying SDL libraries
-COPY SDL\SDL.dll %APP% >nul
-COPY SDL\SDL_mixer.dll %APP% >nul
 
 ECHO Copying Qt libraries
 COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul

@@ -1,3 +1,6 @@
+2013-04-04 Graeme Gott <graeme@gottcode.org>
+	* Include hunspell and libzip with source.
+
 2013-03-30 Graeme Gott <graeme@gottcode.org>
 	* Add support for Unicode names with Qt 5.
 	* Migrate data from Qt 4 version.

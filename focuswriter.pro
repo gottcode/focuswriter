@@ -12,10 +12,6 @@ macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
 
-!win32 {
-	LIBS += -lz
-}
-
 VERSION = $$system(git rev-parse --short HEAD)
 isEmpty(VERSION) {
 	VERSION = 0
@@ -29,8 +25,8 @@ unix: !macx {
 }
 
 macx {
-	INCLUDEPATH += /Library/Frameworks/libzip.framework/Headers
-	LIBS += -framework libzip -framework AppKit
+	LIBS += -lz -framework AppKit
+	USE_BUNDLED_LIBZIP = 1
 
 	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h
 
@@ -42,8 +38,8 @@ macx {
 		SOURCES += src/rtf/clipboard_mac.cpp
 	}
 } else:win32 {
-	INCLUDEPATH += hunspell libzip
-	LIBS += ./hunspell/hunspell1.dll ./libzip/libzip0.dll -lOle32
+	USE_BUNDLED_HUNSPELL = 1
+	USE_BUNDLED_LIBZIP = 1
 
 	HEADERS += src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
@@ -53,12 +49,27 @@ macx {
 		src/qsound/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
+		LIBS += -lOle32
 		HEADERS += src/rtf/clipboard_windows.h
 		SOURCES += src/rtf/clipboard_windows.cpp
 	}
 } else {
+	LIBS += -lz
 	CONFIG += link_pkgconfig
-	PKGCONFIG += hunspell libzip
+	isEmpty(USE_BUNDLED_HUNSPELL) {
+		system(pkg-config --atleast-version=1.2 hunspell) {
+			PKGCONFIG += hunspell
+		} else {
+			USE_BUNDLED_HUNSPELL = 1
+		}
+	}
+	isEmpty(USE_BUNDLED_LIBZIP) {
+		system(pkg-config --atleast-version=0.10 libzip) {
+			PKGCONFIG += libzip
+		} else {
+			USE_BUNDLED_LIBZIP = 1
+		}
+	}
 
 	HEADERS += src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
@@ -66,6 +77,13 @@ macx {
 	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
 		src/spelling/dictionary_provider_voikko.cpp \
 		src/sdl/sound.cpp
+}
+
+!isEmpty(USE_BUNDLED_HUNSPELL) {
+	include(src/3rdparty/hunspell.pri)
+}
+!isEmpty(USE_BUNDLED_LIBZIP) {
+	include(src/3rdparty/libzip.pri)
 }
 
 INCLUDEPATH += src src/qtsingleapplication src/spelling
@@ -186,7 +204,11 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	SYMBOLS.files = resources/symbols/symbols510.dat
+	greaterThan(QT_MAJOR_VERSION, 4) {
+		SYMBOLS.files = resources/symbols/symbols620.dat
+	} else {
+		SYMBOLS.files = resources/symbols/symbols510.dat
+	}
 	SYMBOLS.path = Contents/Resources
 
 	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
