@@ -40,18 +40,22 @@ COPY %QTDIR%\bin\QtNetwork4.dll %APP% >nul
 ECHO Copying Qt plugins
 MKDIR %APP%\accessible
 XCOPY /Q /S /Y %QTDIR%\plugins\accessible %APP%\accessible >nul
+DEL %APP%\accessible\*.a >nul
 DEL %APP%\accessible\*d4.dll >nul
 
 MKDIR %APP%\bearer
 XCOPY /Q /S /Y %QTDIR%\plugins\bearer %APP%\bearer >nul
+DEL %APP%\bearer\*.a >nul
 DEL %APP%\bearer\*d4.dll >nul
 
 MKDIR %APP%\codecs
 XCOPY /Q /S /Y %QTDIR%\plugins\codecs %APP%\codecs >nul
+DEL %APP%\codecs\*.a >nul
 DEL %APP%\codecs\*d4.dll >nul
 
 MKDIR %APP%\imageformats
 XCOPY /Q /S /Y %QTDIR%\plugins\imageformats %APP%\imageformats >nul
+DEL %APP%\imageformats\*.a >nul
 DEL %APP%\imageformats\*d4.dll >nul
 
 ECHO Creating compressed file
