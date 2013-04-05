@@ -36,10 +36,61 @@
 
 namespace
 {
-	bool compareWords(const QString& s1, const QString& s2)
+
+bool compareWords(const QString& s1, const QString& s2)
+{
+	return s1.localeAwareCompare(s2) < 0;
+}
+
+class DictionaryFallback : public AbstractDictionary
+{
+public:
+	static AbstractDictionary** instance()
 	{
-		return s1.localeAwareCompare(s2) < 0;
+		static DictionaryFallback fallback;
+		static AbstractDictionary* fallback_ptr = &fallback;
+		return &fallback_ptr;
 	}
+
+	bool isValid() const
+	{
+		return true;
+	}
+
+	QStringRef check(const QString& string, int start_at) const
+	{
+		Q_UNUSED(string);
+		Q_UNUSED(start_at);
+		return QStringRef();
+	}
+
+	QStringList suggestions(const QString& word) const
+	{
+		Q_UNUSED(word);
+		return QStringList();
+	}
+
+	void addToPersonal(const QString& word)
+	{
+		Q_UNUSED(word);
+	}
+
+	void addToSession(const QStringList& words)
+	{
+		Q_UNUSED(words);
+	}
+
+	void removeFromSession(const QStringList& words)
+	{
+		Q_UNUSED(words);
+	}
+
+private:
+	DictionaryFallback()
+	{
+	}
+};
+
 }
 
 QString DictionaryManager::m_path;
@@ -251,7 +302,7 @@ AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& lan
 		}
 
 		if (!dictionary) {
-			return 0;
+			return DictionaryFallback::instance();
 		}
 		dictionary->addToSession(m_personal);
 		m_dictionaries[language] = dictionary;

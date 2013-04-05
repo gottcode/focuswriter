@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -202,6 +202,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_spacings_loaded(false),
 	m_focus_mode(0),
 	m_scene_list(0),
+	m_dictionary(DictionaryManager::instance().requestDictionary()),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
 	m_page_type(0),
@@ -236,7 +237,6 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 
 	m_scene_model = new SceneModel(m_text, this);
 
-	m_dictionary = DictionaryManager::instance().requestDictionary();
 	m_highlighter = new Highlighter(m_text, m_dictionary);
 	connect(&DictionaryManager::instance(), SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 

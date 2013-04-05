@@ -183,7 +183,6 @@ SOURCES += src/action_manager.cpp \
 	src/rtf/tokenizer.cpp \
 	src/rtf/writer.cpp \
 	src/spelling/dictionary_manager.cpp \
-	src/spelling/dictionary_ref.cpp \
 	src/spelling/highlighter.cpp \
 	src/spelling/spell_checker.cpp
 

@@ -21,6 +21,7 @@
 #define DICTIONARY_REF_H
 
 #include "abstract_dictionary.h"
+class DictionaryManager;
 
 #include <QStringList>
 #include <QStringRef>
@@ -28,8 +29,6 @@
 class DictionaryRef
 {
 public:
-	DictionaryRef(AbstractDictionary** data = 0);
-
 	QStringRef check(const QString& string, int start_at) const
 	{
 		return (*d)->check(string, start_at);
@@ -43,6 +42,15 @@ public:
 	void addToPersonal(const QString& word)
 	{
 		(*d)->addToPersonal(word);
+	}
+
+	friend class DictionaryManager;
+
+private:
+	DictionaryRef(AbstractDictionary** data) :
+		d(data)
+	{
+		Q_ASSERT(d != 0);
 	}
 
 private:
