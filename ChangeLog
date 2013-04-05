@@ -1,3 +1,6 @@
+2013-04-05 Graeme Gott <graeme@gottcode.org>
+	* Install voikko DLL with voikko datafiles.
+
 2013-04-04 Graeme Gott <graeme@gottcode.org>
 	* Stop using deprecated libzip API.
 	* Include hunspell and libzip with source.

@@ -434,16 +434,21 @@ void PreferencesDialog::addLanguage()
 			} else if (name.endsWith(".dic")) {
 				dic_files[name] = i;
 #ifdef Q_OS_WIN
-			} else if (name.contains("mor-")) {
+			// Find Voikko files
+			} else if (name.contains("mor-") || (name == "libvoikko-1.dll")) {
 				files[name] = i;
 #endif
 			}
 		}
 
+#ifdef Q_OS_WIN
 		// Find Voikko dictionaries
 		if (!files.isEmpty()) {
 			QStringList keys = files.keys();
 			foreach (const QString& file, keys) {
+				if (file.endsWith(".dll")) {
+					continue;
+				}
 				QString name = file.section('/', -1).section('.', 0);
 				name.replace("voikko-", "");
 				if (!dictionaries.contains(name)) {
@@ -451,6 +456,7 @@ void PreferencesDialog::addLanguage()
 				}
 			}
 		}
+#endif
 
 		// Find Hunspell dictionary files
 		foreach (const QString& dic, dic_files.keys()) {
@@ -483,10 +489,15 @@ void PreferencesDialog::addLanguage()
 				// Ignore path for Hunspell dictionaries
 				filename = filename.section('/', -1);
 				filename.replace(QChar('-'), QChar('_'));
+#ifdef Q_OS_WIN
+			} else if (filename.endsWith(".dll")) {
+				// Ignore path for Voikko library
+				dir.setPath(install);
 			} else {
 				// Create path for Voikko dictionary
 				dir.setPath(install + filename + "/..");
 				dir.mkpath(dir.absolutePath());
+#endif
 			}
 
 			QFile file(install + filename);

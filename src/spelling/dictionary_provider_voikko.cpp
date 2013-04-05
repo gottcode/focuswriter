@@ -216,7 +216,14 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 
 	QLibrary voikko_lib("libvoikko");
 	if (!voikko_lib.load()) {
+#ifdef Q_OS_WIN
+		voikko_lib.setFileName(DictionaryManager::path() + "/libvoikko-1.dll");
+		if (!voikko_lib.load()) {
+			return;
+		}
+#else
 		return;
+#endif
 	}
 
 	voikkoInit = (VoikkoInitFunction) voikko_lib.resolve("voikkoInit");
