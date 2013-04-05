@@ -40,6 +40,7 @@ public:
 	QStringList personal() const;
 
 	void add(const QString& word);
+	void addProviders();
 	DictionaryRef requestDictionary(const QString& language = QString());
 	void setDefaultLanguage(const QString& language);
 	void setIgnoreNumbers(bool ignore);

@@ -331,6 +331,7 @@ void PreferencesDialog::accept()
 	} else {
 		m_preferences.setLanguage(QString());
 	}
+	DictionaryManager::instance().addProviders();
 	DictionaryManager::instance().setDefaultLanguage(m_preferences.language());
 	DictionaryManager::instance().setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
 	DictionaryManager::instance().setIgnoreUppercase(m_preferences.ignoredUppercaseWords());

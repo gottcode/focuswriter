@@ -130,6 +130,43 @@ void DictionaryManager::add(const QString& word)
 
 //-----------------------------------------------------------------------------
 
+void DictionaryManager::addProviders()
+{
+#ifndef Q_OS_MAC
+	bool has_hunspell = false;
+	bool has_voikko = false;
+
+	foreach (AbstractDictionaryProvider* provider, m_providers) {
+		if (dynamic_cast<DictionaryProviderHunspell*>(provider) != NULL) {
+			has_hunspell = true;
+		} else if (dynamic_cast<DictionaryProviderVoikko*>(provider) != NULL) {
+			has_voikko = true;
+		}
+	}
+
+	if (!has_hunspell) {
+		addProvider(new DictionaryProviderHunspell);
+	}
+	if (!has_voikko) {
+		addProvider(new DictionaryProviderVoikko);
+	}
+#else
+	bool has_nsspellchecker = false;
+
+	foreach (AbstractDictionaryProvider* provider, m_providers) {
+		if (dynamic_cast<DictionaryProviderNSSpellChecker*>(provider) != NULL) {
+			has_nsspellchecker = true;
+		}
+	}
+
+	if (!has_nsspellchecker) {
+		addProvider(new DictionaryProviderNSSpellChecker);
+	}
+#endif
+}
+
+//-----------------------------------------------------------------------------
+
 DictionaryRef DictionaryManager::requestDictionary(const QString& language)
 {
 	if (language.isEmpty()) {
@@ -241,12 +278,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 
 DictionaryManager::DictionaryManager()
 {
-#ifndef Q_OS_MAC
-	addProvider(new DictionaryProviderHunspell);
-	addProvider(new DictionaryProviderVoikko);
-#else
-	addProvider(new DictionaryProviderNSSpellChecker);
-#endif
+	addProviders();
 
 	// Load personal dictionary
 	QFile file(m_path + "/personal");
