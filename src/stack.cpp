@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 #include "action_manager.h"
 #include "alert_layer.h"
 #include "document.h"
+#include "document_cache.h"
 #include "find_dialog.h"
 #include "load_screen.h"
 #include "scene_list.h"
@@ -796,7 +797,7 @@ void Stack::updateMask()
 
 void Stack::updateMapping()
 {
-	QFile file(Document::cachePath() + "/mapping");
+	QFile file(DocumentCache::path() + "/mapping");
 	if (file.open(QFile::WriteOnly | QFile::Text)) {
 		QTextStream stream(&file);
 		stream.setCodec(QTextCodec::codecForName("UTF-8"));

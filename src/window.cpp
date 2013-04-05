@@ -298,18 +298,18 @@ Window::Window(const QStringList& command_line_files) :
 	m_tabs->blockSignals(false);
 
 	// Restore after crash
-	bool writable = QFileInfo(Document::cachePath()).isWritable() && QFileInfo(Document::cachePath() + "/../").isWritable();
+	bool writable = QFileInfo(DocumentCache::path()).isWritable() && QFileInfo(DocumentCache::path() + "/../").isWritable();
 	if (!writable) {
 		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Emergency cache is not writable."), QStringList(), true));
 	}
 	QStringList files, datafiles;
 	QString cachepath;
-	QStringList entries = QDir(Document::cachePath()).entryList(QDir::Files);
+	QStringList entries = QDir(DocumentCache::path()).entryList(QDir::Files);
 	if (writable && (entries.count() > 1) && entries.contains("mapping")) {
 		// Find cachedir
 		QString date = QDate::currentDate().toString("yyyyMMdd");
 		int extra = 0;
-		QDir dir(QDir::cleanPath(Document::cachePath() + "/../"));
+		QDir dir(QDir::cleanPath(DocumentCache::path() + "/../"));
 		QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
 		foreach (const QString& subdir, subdirs) {
 			if (subdir.startsWith(date)) {

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,14 @@
 
 #include "document_cache.h"
 
-#include "document.h"
 #include "document_writer.h"
 
 #include <QDir>
 #include <QFile>
+
+//-----------------------------------------------------------------------------
+
+QString DocumentCache::m_path;
 
 //-----------------------------------------------------------------------------
 
@@ -37,10 +40,27 @@ DocumentCache::DocumentCache(QObject* parent) :
 DocumentCache::~DocumentCache()
 {
 	// Empty cache
-	QDir dir(Document::cachePath());
+	QDir dir(m_path);
 	QStringList files = dir.entryList(QDir::Files);
 	foreach (const QString& file, files) {
 		dir.remove(file);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+QString DocumentCache::path()
+{
+	return m_path;
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::setPath(const QString& path)
+{
+	m_path = path;
+	if (!m_path.endsWith(QLatin1Char('/'))) {
+		m_path += QLatin1Char('/');
 	}
 }
 

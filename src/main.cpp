@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 #include "application.h"
 #include "dictionary_manager.h"
-#include "document.h"
+#include "document_cache.h"
 #include "locale_dialog.h"
 #include "paths.h"
 #include "session.h"
@@ -135,7 +135,7 @@ int main(int argc, char** argv)
 	if (!dir.exists("Cache/Files")) {
 		dir.mkpath("Cache/Files");
 	}
-	Document::setCachePath(dir.filePath("Cache/Files"));
+	DocumentCache::setPath(dir.filePath("Cache/Files"));
 
 	// Set sessions path
 	if (!dir.exists("Sessions")) {

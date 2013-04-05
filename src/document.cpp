@@ -22,6 +22,7 @@
 #include "alert.h"
 #include "block_stats.h"
 #include "dictionary_manager.h"
+#include "document_cache.h"
 #include "document_watcher.h"
 #include "document_writer.h"
 #include "highlighter.h"
@@ -66,8 +67,6 @@ namespace
 {
 	QList<int> g_untitled_indexes = QList<int>() << 0;
 
-	QString g_cache_path;
-
 	QString randomCacheFilename()
 	{
 		static time_t seed = 0;
@@ -77,7 +76,7 @@ namespace
 		}
 
 		QString filename;
-		QDir dir(g_cache_path);
+		QDir dir(DocumentCache::path());
 		do {
 			filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
 		} while (dir.exists(filename));
@@ -286,7 +285,7 @@ Document::~Document()
 
 	DocumentWatcher::instance()->removeWatch(this);
 	clearIndex();
-	emit removeCacheFile(g_cache_path + m_cache_filename);
+	emit removeCacheFile(DocumentCache::path() + m_cache_filename);
 }
 
 //-----------------------------------------------------------------------------
@@ -303,7 +302,7 @@ void Document::cache()
 	if (m_cache_outdated) {
 		m_cache_outdated = false;
 		DocumentWriter* writer = new DocumentWriter;
-		writer->setFileName(g_cache_path + m_cache_filename);
+		writer->setFileName(DocumentCache::path() + m_cache_filename);
 		writer->setType(!m_filename.isEmpty() ? m_filename.section(QLatin1Char('.'), -1) : "odt");
 		writer->setCodePage(m_codepage);
 		writer->setDocument(m_text->document()->clone());
@@ -335,8 +334,8 @@ bool Document::save()
 	m_codepage = writer.codePage();
 	if (saved) {
 		m_cache_outdated = false;
-		QFile::remove(g_cache_path + m_cache_filename);
-		QFile::copy(m_filename, g_cache_path + m_cache_filename);
+		QFile::remove(DocumentCache::path() + m_cache_filename);
+		QFile::copy(m_filename, DocumentCache::path() + m_cache_filename);
 	} else {
 		cache();
 	}
@@ -497,7 +496,7 @@ bool Document::loadFile(const QString& filename, int position)
 	m_highlighter->setEnabled(false);
 
 	// Cache contents
-	QFile::copy(filename, g_cache_path + m_cache_filename);
+	QFile::copy(filename, DocumentCache::path() + m_cache_filename);
 
 	// Determine file type from contents
 	QString type;
@@ -846,23 +845,6 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 		emit scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
 	}
 	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
-}
-
-//-----------------------------------------------------------------------------
-
-QString Document::cachePath()
-{
-	return g_cache_path;
-}
-
-//-----------------------------------------------------------------------------
-
-void Document::setCachePath(const QString& path)
-{
-	g_cache_path = path;
-	if (!g_cache_path.endsWith(QLatin1Char('/'))) {
-		g_cache_path += QLatin1Char('/');
-	}
 }
 
 //-----------------------------------------------------------------------------

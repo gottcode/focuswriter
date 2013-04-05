@@ -78,9 +78,6 @@ public:
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 	virtual void mouseMoveEvent(QMouseEvent* event);
 
-	static QString cachePath();
-	static void setCachePath(const QString& path);
-
 public slots:
 	void centerCursor(bool force = false);
 

@@ -1,8 +1,8 @@
 2013-04-06 Graeme Gott <graeme@gottcode.org>
-	* Tag version 1.4.3.
 	* FIXED: Unsaved new files were not restored from cache.
 
 2013-04-05 Graeme Gott <graeme@gottcode.org>
+	* Move cache path into DocumentCache.
 	* Move detection of best dictionary into dictionary manager.
 	* Dynamically add dictionary providers.
 	* FIXED: Crashed when no dictionaries were installed.
@@ -39,9 +39,6 @@
 	* Move global settings for dictionaries into dictionary manager.
 	* Switch back to hunspell from enchant.
 
-2013-03-27 Graeme Gott <graeme@gottcode.org>
-	* Tag version 1.4.2.
-
 2013-03-26 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Could not end italics before smart quote.
 
@@ -55,9 +52,6 @@
 
 2012-12-21 Graeme Gott <graeme@gottcode.org>
 	* Add support for compiling with Qt 5.0.0.
-
-2012-11-28 Graeme Gott <graeme@gottcode.org>
-	* Tag version 1.4.1.
 
 2012-11-27 Graeme Gott <graeme@gottcode.org>
 	* FIXED: High CPU use in Ubuntu 10.04.
