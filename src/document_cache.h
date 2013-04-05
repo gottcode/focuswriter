@@ -20,8 +20,11 @@
 #ifndef DOCUMENT_CACHE_H
 #define DOCUMENT_CACHE_H
 
+class Document;
 class DocumentWriter;
+class Stack;
 
+#include <QHash>
 #include <QObject>
 
 class DocumentCache : public QObject
@@ -32,6 +35,11 @@ public:
 	DocumentCache(QObject* parent = 0);
 	~DocumentCache();
 
+	void parseMapping(const QString& cache_path, QStringList& files, QStringList& datafiles) const;
+
+	void add(Document* document);
+	void setOrdering(Stack* ordering);
+
 	static QString fileName();
 	static QString path();
 	static void setPath(const QString& path);
@@ -39,8 +47,12 @@ public:
 public slots:
 	void cacheFile(DocumentWriter* document);
 	void removeCacheFile(const QString& document);
+	void updateMapping();
 
 private:
+	Stack* m_ordering;
+	QHash<Document*, QString> m_filenames;
+
 	static QString m_path;
 };
 

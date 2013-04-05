@@ -19,10 +19,14 @@
 
 #include "document_cache.h"
 
+#include "document.h"
 #include "document_writer.h"
+#include "stack.h"
 
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
+#include <QTextStream>
 
 //-----------------------------------------------------------------------------
 
@@ -31,7 +35,8 @@ QString DocumentCache::m_path;
 //-----------------------------------------------------------------------------
 
 DocumentCache::DocumentCache(QObject* parent) :
-	QObject(parent)
+	QObject(parent),
+	m_ordering(0)
 {
 }
 
@@ -49,6 +54,46 @@ DocumentCache::~DocumentCache()
 
 //-----------------------------------------------------------------------------
 
+void DocumentCache::parseMapping(const QString& cache_path, QStringList& files, QStringList& datafiles) const
+{
+	QFile file(cache_path + "/mapping");
+	if (file.open(QFile::ReadOnly | QFile::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec("UTF-8");
+		stream.setAutoDetectUnicode(true);
+
+		while (!stream.atEnd()) {
+			QString line = stream.readLine();
+			QString datafile = line.section(' ', 0, 0);
+			QString path = line.section(' ', 1);
+			if (!datafile.isEmpty()) {
+				files.append(path);
+				datafiles.append(cache_path + "/" + datafile);
+			}
+		}
+		file.close();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::add(Document* document)
+{
+	m_filenames[document] = document->cacheFilename();
+	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
+	connect(document, SIGNAL(destroyed()), this, SLOT(updateMapping()));
+	updateMapping();
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::setOrdering(Stack* ordering)
+{
+	m_ordering = ordering;
+}
+
+//-----------------------------------------------------------------------------
+
 QString DocumentCache::fileName()
 {
 	static time_t seed = 0;
@@ -62,6 +107,7 @@ QString DocumentCache::fileName()
 	do {
 		filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
 	} while (dir.exists(filename));
+
 	return filename;
 }
 
@@ -95,6 +141,27 @@ void DocumentCache::cacheFile(DocumentWriter* document)
 void DocumentCache::removeCacheFile(const QString& document)
 {
 	QFile::remove(document);
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::updateMapping()
+{
+	QFile file(m_path + "/mapping");
+	if (file.open(QFile::WriteOnly | QFile::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec("UTF-8");
+		stream.setGenerateByteOrderMark(true);
+
+		for (int i = 0; i < m_ordering->count(); ++i) {
+			Document* document = m_ordering->document(i);
+			if (!m_filenames.contains(document)) {
+				continue;
+			}
+			stream << QFileInfo(m_filenames[document]).baseName() << " " << document->filename() << endl;
+		}
+		file.close();
+	}
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -124,7 +124,6 @@ private slots:
 	void insertSymbol(const QString& text);
 	void updateBackground();
 	void updateMask();
-	void updateMapping();
 
 private:
 	LoadScreen* m_load_screen;

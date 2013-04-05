@@ -22,7 +22,6 @@
 #include "action_manager.h"
 #include "alert_layer.h"
 #include "document.h"
-#include "document_cache.h"
 #include "find_dialog.h"
 #include "load_screen.h"
 #include "scene_list.h"
@@ -34,19 +33,16 @@
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
-#include <QFileInfo>
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QPainter>
 #include <QPaintEvent>
-#include <QPlainTextEdit>
 #include <QStackedWidget>
 #include <QTextBlock>
-#include <QTextCodec>
 #include <QTextCursor>
-#include <QTextStream>
+#include <QTextEdit>
 #include <QThread>
 #include <QTimer>
 
@@ -215,7 +211,6 @@ void Stack::addDocument(Document* document)
 	connect(document, SIGNAL(alert(Alert*)), m_alerts, SLOT(addAlert(Alert*)));
 	connect(document, SIGNAL(alignmentChanged()), this, SIGNAL(updateFormatAlignmentActions()));
 	connect(document, SIGNAL(changedName()), this, SIGNAL(updateFormatActions()));
-	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
 	connect(document, SIGNAL(footerVisible(bool)), this, SLOT(setFooterVisible(bool)));
 	connect(document, SIGNAL(headerVisible(bool)), this, SLOT(setHeaderVisible(bool)));
 	connect(document, SIGNAL(scenesVisible(bool)), this, SLOT(setScenesVisible(bool)));
@@ -227,7 +222,6 @@ void Stack::addDocument(Document* document)
 	m_documents.append(document);
 	m_contents->addWidget(document);
 	m_contents->setCurrentWidget(document);
-	updateMapping();
 
 	emit documentAdded(document);
 	emit updateFormatActions();
@@ -238,7 +232,6 @@ void Stack::addDocument(Document* document)
 void Stack::moveDocument(int from, int to)
 {
 	m_documents.move(from, to);
-	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -249,7 +242,6 @@ void Stack::removeDocument(int index)
 	m_contents->removeWidget(document);
 	emit documentRemoved(document);
 	document->deleteLater();
-	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -470,7 +462,6 @@ void Stack::replace()
 void Stack::save()
 {
 	m_current_document->save();
-	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -789,21 +780,6 @@ void Stack::updateMask()
 			m_scenes->update();
 			m_scenes->clearFocus();
 			m_scenes->setFocus();
-		}
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-void Stack::updateMapping()
-{
-	QFile file(DocumentCache::path() + "/mapping");
-	if (file.open(QFile::WriteOnly | QFile::Text)) {
-		QTextStream stream(&file);
-		stream.setCodec(QTextCodec::codecForName("UTF-8"));
-		stream.setGenerateByteOrderMark(true);
-		foreach (Document* document, m_documents) {
-			stream << QFileInfo(document->cacheFilename()).baseName() << " " << document->filename() << endl;
 		}
 	}
 }

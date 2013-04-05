@@ -63,8 +63,6 @@
 #include <QSettings>
 #include <QSignalMapper>
 #include <QTabBar>
-#include <QTextCodec>
-#include <QTextStream>
 #include <QThread>
 #include <QTimer>
 #include <QToolBar>
@@ -138,6 +136,7 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Create documents
 	m_documents = new Stack(this);
+	m_document_cache->setOrdering(m_documents);
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
@@ -323,23 +322,7 @@ Window::Window(const QStringList& command_line_files) :
 		dir.mkdir("Files");
 
 		// Read mapping of cached files
-		QFile file(cachepath + "/mapping");
-		if (file.open(QFile::ReadOnly | QFile::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream.setAutoDetectUnicode(true);
-
-			while (!stream.atEnd()) {
-				QString line = stream.readLine();
-				QString datafile = line.section(' ', 0, 0);
-				QString path = line.section(' ', 1);
-				if (!datafile.isEmpty()) {
-					files.append(path);
-					datafiles.append(cachepath + "/" + datafile);
-				}
-			}
-			file.close();
-		}
+		m_document_cache->parseMapping(cachepath, files, datafiles);
 
 		// Ask if they want to use cached files
 		if (!files.isEmpty()) {
@@ -935,6 +918,7 @@ void Window::tabMoved(int from, int to)
 {
 	m_documents->moveDocument(from, to);
 	m_documents->setCurrentDocument(m_tabs->currentIndex());
+	m_document_cache->updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -1084,6 +1068,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	}
 	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
 	m_documents->addDocument(document);
+	m_document_cache->add(document);
 	document->loadTheme(m_sessions->current()->theme());
 	document->setFocusMode(m_focus_actions->checkedAction()->data().toInt());
 	if (document->loadFile(path, m_save_positions ? position : -1)) {
