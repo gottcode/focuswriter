@@ -49,6 +49,24 @@ DocumentCache::~DocumentCache()
 
 //-----------------------------------------------------------------------------
 
+QString DocumentCache::fileName()
+{
+	static time_t seed = 0;
+	if (seed == 0) {
+		seed = time(0);
+		qsrand(seed);
+	}
+
+	QString filename;
+	QDir dir(m_path);
+	do {
+		filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
+	} while (dir.exists(filename));
+	return filename;
+}
+
+//-----------------------------------------------------------------------------
+
 QString DocumentCache::path()
 {
 	return m_path;

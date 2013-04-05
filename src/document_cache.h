@@ -32,6 +32,7 @@ public:
 	DocumentCache(QObject* parent = 0);
 	~DocumentCache();
 
+	static QString fileName();
 	static QString path();
 	static void setPath(const QString& path);
 

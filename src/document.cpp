@@ -67,22 +67,6 @@ namespace
 {
 	QList<int> g_untitled_indexes = QList<int>() << 0;
 
-	QString randomCacheFilename()
-	{
-		static time_t seed = 0;
-		if (seed == 0) {
-			seed = time(0);
-			qsrand(seed);
-		}
-
-		QString filename;
-		QDir dir(DocumentCache::path());
-		do {
-			filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
-		} while (dir.exists(filename));
-		return filename;
-	}
-
 	class TextEdit : public QTextEdit
 	{
 	public:
@@ -193,7 +177,7 @@ namespace
 
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
-	m_cache_filename(randomCacheFilename()),
+	m_cache_filename(DocumentCache::fileName()),
 	m_cache_outdated(false),
 	m_index(0),
 	m_always_center(false),
