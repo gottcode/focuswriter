@@ -118,6 +118,19 @@ QStringList DictionaryManager::availableDictionaries() const
 
 //-----------------------------------------------------------------------------
 
+QString DictionaryManager::availableDictionary(const QString& language) const
+{
+	QStringList languages = availableDictionaries();
+	if (!languages.isEmpty() && !languages.contains(language)) {
+		int close = languages.indexOf(QRegExp(language.left(2) + ".*"));
+		return (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
+	} else {
+		return language;
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void DictionaryManager::add(const QString& word)
 {
 	QStringList words = personal();

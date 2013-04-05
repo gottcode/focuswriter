@@ -36,6 +36,7 @@ public:
 	static DictionaryManager& instance();
 
 	QStringList availableDictionaries() const;
+	QString availableDictionary(const QString& language) const;
 	QString defaultLanguage() const;
 	QStringList personal() const;
 

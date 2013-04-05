@@ -1,4 +1,5 @@
 2013-04-05 Graeme Gott <graeme@gottcode.org>
+	* Move detection of best dictionary into dictionary manager.
 	* Dynamically add dictionary providers.
 	* FIXED: Crashed when no dictionaries were installed.
 	* Install voikko DLL with voikko datafiles.

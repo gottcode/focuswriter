@@ -70,13 +70,8 @@ Preferences::Preferences()
 	m_highlight_misspelled = settings.value("Spelling/HighlightMisspelled", true).toBool();
 	m_ignore_numbers = settings.value("Spelling/IgnoreNumbers", true).toBool();
 	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
-	m_language = settings.value("Spelling/Language", QLocale().name()).toString();
+	m_language = DictionaryManager::instance().availableDictionary(settings.value("Spelling/Language", QLocale().name()).toString());
 
-	QStringList languages = DictionaryManager::instance().availableDictionaries();
-	if (!languages.isEmpty() && !languages.contains(m_language)) {
-		int close = languages.indexOf(QRegExp(m_language.left(2) + ".*"));
-		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
-	}
 	DictionaryManager::instance().setDefaultLanguage(m_language);
 	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
 	DictionaryManager::instance().setIgnoreUppercase(m_ignore_uppercase);
@@ -520,7 +515,7 @@ void Preferences::setIgnoreUppercaseWords(bool ignore)
 
 void Preferences::setLanguage(const QString& language)
 {
-	setValue(m_language, language);
+	setValue(m_language, DictionaryManager::instance().availableDictionary(language));
 }
 
 //-----------------------------------------------------------------------------
