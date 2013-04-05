@@ -81,8 +81,18 @@ void DocumentCache::add(Document* document)
 {
 	m_filenames[document] = document->cacheFilename();
 	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
-	connect(document, SIGNAL(destroyed()), this, SLOT(updateMapping()));
 	updateMapping();
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::remove(Document* document)
+{
+	if (m_filenames.contains(document)) {
+		QString cache_file = m_filenames.take(document);
+		updateMapping();
+		QFile::remove(cache_file);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -134,13 +144,6 @@ void DocumentCache::cacheFile(DocumentWriter* document)
 {
 	document->write();
 	delete document;
-}
-
-//-----------------------------------------------------------------------------
-
-void DocumentCache::removeCacheFile(const QString& document)
-{
-	QFile::remove(document);
 }
 
 //-----------------------------------------------------------------------------

@@ -84,7 +84,6 @@ public slots:
 signals:
 	void alert(Alert* alert);
 	void cacheFile(DocumentWriter* file);
-	void removeCacheFile(const QString& file);
 	void changed();
 	void changedName();
 	void loadStarted(const QString& path);

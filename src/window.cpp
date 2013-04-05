@@ -547,6 +547,7 @@ bool Window::closeDocuments(QSettings* session)
 	// Close files
 	int count = m_documents->count();
 	for (int i = 0; i < count; ++i) {
+		m_document_cache->remove(m_documents->document(0));
 		m_documents->removeDocument(0);
 		m_tabs->removeTab(0);
 	}
@@ -723,6 +724,7 @@ void Window::closeDocument()
 	if (m_documents->count() == 1) {
 		newDocument();
 	}
+	m_document_cache->remove(m_documents->document(index));
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
 }
@@ -745,6 +747,7 @@ void Window::closeDocument(Document* document)
 	if (m_documents->count() == 1) {
 		newDocument();
 	}
+	m_document_cache->remove(m_documents->document(index));
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
 }
@@ -1085,7 +1088,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 	connect(document, SIGNAL(cacheFile(DocumentWriter*)), m_document_cache, SLOT(cacheFile(DocumentWriter*)));
-	connect(document, SIGNAL(removeCacheFile(QString)), m_document_cache, SLOT(removeCacheFile(QString)));
 
 	// Add tab for document
 	int index = m_tabs->addTab(tr("Untitled"));

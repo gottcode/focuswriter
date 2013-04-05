@@ -38,6 +38,7 @@ public:
 	void parseMapping(const QString& cache_path, QStringList& files, QStringList& datafiles) const;
 
 	void add(Document* document);
+	void remove(Document* document);
 	void setOrdering(Stack* ordering);
 
 	static QString fileName();
@@ -46,7 +47,6 @@ public:
 
 public slots:
 	void cacheFile(DocumentWriter* document);
-	void removeCacheFile(const QString& document);
 	void updateMapping();
 
 private:

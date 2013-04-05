@@ -269,7 +269,6 @@ Document::~Document()
 
 	DocumentWatcher::instance()->removeWatch(this);
 	clearIndex();
-	emit removeCacheFile(DocumentCache::path() + m_cache_filename);
 }
 
 //-----------------------------------------------------------------------------
