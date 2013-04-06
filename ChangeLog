@@ -1,4 +1,5 @@
 2013-04-06 Graeme Gott <graeme@gottcode.org>
+	* Share code for closing documents.
 	* FIXED: Unsaved new files were not restored from cache.
 
 2013-04-05 Graeme Gott <graeme@gottcode.org>

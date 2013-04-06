@@ -447,8 +447,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			// Track if unable to read file
 			int index = m_documents->currentIndex();
 			missing.append(QDir::toNativeSeparators(files.at(i)));
-			m_documents->removeDocument(index);
-			m_tabs->removeTab(index);
+			closeDocument(index, true);
 		} else if (m_documents->currentDocument()->isReadOnly() && (m_documents->count() > open_files)) {
 			// Track if file is read-only and not already open
 			readonly.append(QDir::toNativeSeparators(files.at(i)));
@@ -547,9 +546,7 @@ bool Window::closeDocuments(QSettings* session)
 	// Close files
 	int count = m_documents->count();
 	for (int i = 0; i < count; ++i) {
-		m_document_cache->remove(m_documents->document(0));
-		m_documents->removeDocument(0);
-		m_tabs->removeTab(0);
+		closeDocument(0, true);
 	}
 
 	return true;
@@ -720,36 +717,18 @@ void Window::closeDocument()
 	if (!saveDocument(index)) {
 		return;
 	}
-
-	if (m_documents->count() == 1) {
-		newDocument();
-	}
-	m_document_cache->remove(m_documents->document(index));
-	m_documents->removeDocument(index);
-	m_tabs->removeTab(index);
+	closeDocument(index);
 }
 
 //-----------------------------------------------------------------------------
 
 void Window::closeDocument(Document* document)
 {
-	int index = -1;
 	for (int i = 0; i < m_documents->count(); ++i) {
 		if (m_documents->document(i) == document) {
-			index = i;
-			break;
+			return closeDocument(i);
 		}
 	}
-	if (index == -1) {
-		return;
-	}
-
-	if (m_documents->count() == 1) {
-		newDocument();
-	}
-	m_document_cache->remove(m_documents->document(index));
-	m_documents->removeDocument(index);
-	m_tabs->removeTab(index);
 }
 
 //-----------------------------------------------------------------------------
@@ -1104,6 +1083,18 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(loadFinished()), this, SLOT(updateSave()));
 
 	return true;
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::closeDocument(int index, bool allow_empty)
+{
+	if (!allow_empty && (m_documents->count() == 1)) {
+		newDocument();
+	}
+	m_document_cache->remove(m_documents->document(index));
+	m_documents->removeDocument(index);
+	m_tabs->removeTab(index);
 }
 
 //-----------------------------------------------------------------------------

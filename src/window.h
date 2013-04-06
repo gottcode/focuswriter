@@ -93,6 +93,7 @@ private slots:
 
 private:
 	bool addDocument(const QString& file = QString(), const QString& datafile = QString(), int position = -1);
+	void closeDocument(int index, bool allow_empty = false);
 	void queueDocuments(const QStringList& files);
 	bool saveDocument(int index);
 	void loadPreferences(Preferences& preferences);
