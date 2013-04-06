@@ -1079,6 +1079,8 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 				position = -1;
 			}
 		}
+	} else {
+		path = datafile;
 	}
 	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
 	m_documents->addDocument(document);

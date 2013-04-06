@@ -1,3 +1,6 @@
+2013-04-06 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Unsaved new files were not restored from cache.
+
 2013-03-30 Graeme Gott <graeme@gottcode.org>
 	* Add support for Unicode names with Qt 5.
 	* Migrate data from Qt 4 version.
