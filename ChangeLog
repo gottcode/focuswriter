@@ -1,3 +1,6 @@
+2013-04-06 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Unsaved new files were not restored from cache.
+
 2013-04-05 Graeme Gott <graeme@gottcode.org>
 	* Move detection of best dictionary into dictionary manager.
 	* Dynamically add dictionary providers.

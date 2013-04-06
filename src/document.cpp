@@ -570,7 +570,7 @@ bool Document::loadFile(const QString& filename, int position)
 	document->blockSignals(false);
 	m_text->blockSignals(false);
 
-	m_text->setReadOnly(!QFileInfo(m_filename).isWritable());
+	m_text->setReadOnly(!m_filename.isEmpty() ? !QFileInfo(m_filename).isWritable() : false);
 
 	// Restore cursor position
 	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
@@ -596,7 +596,7 @@ bool Document::loadFile(const QString& filename, int position)
 		focusText();
 	}
 
-	if (loaded) {
+	if (loaded && !m_filename.isEmpty()) {
 		DocumentWatcher::instance()->addWatch(this);
 	}
 	return loaded;
