@@ -47,7 +47,6 @@ public:
 	Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent = 0);
 	~Document();
 
-	QString cacheFilename() const;
 	QString filename() const;
 	int untitledIndex() const;
 	bool isReadOnly() const;
@@ -83,7 +82,8 @@ public slots:
 
 signals:
 	void alert(Alert* alert);
-	void cacheFile(DocumentWriter* file);
+	void replaceCacheFile(Document* document, const QString& file);
+	void writeCacheFile(Document* document, DocumentWriter* writer);
 	void changed();
 	void changedName();
 	void loadStarted(const QString& path);
@@ -122,7 +122,6 @@ private:
 
 private:
 	QString m_filename;
-	QString m_cache_filename;
 	bool m_cache_outdated;
 	QByteArray m_codepage;
 	QHash<int, QPair<QString, bool> > m_old_states;
@@ -164,10 +163,6 @@ private:
 	int& m_current_time;
 	int m_time_goal;
 };
-
-inline QString Document::cacheFilename() const {
-	return m_cache_filename;
-}
 
 inline QString Document::filename() const {
 	return m_filename;

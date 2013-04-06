@@ -79,8 +79,10 @@ void DocumentCache::parseMapping(const QString& cache_path, QStringList& files, 
 
 void DocumentCache::add(Document* document)
 {
-	m_filenames[document] = document->cacheFilename();
+	m_filenames[document] = createFileName();
 	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
+	connect(document, SIGNAL(replaceCacheFile(Document*, QString)), this, SLOT(replaceCacheFile(Document*, QString)));
+	connect(document, SIGNAL(writeCacheFile(Document*, DocumentWriter*)), this, SLOT(writeCacheFile(Document*, DocumentWriter*)));
 	updateMapping();
 }
 
@@ -104,25 +106,6 @@ void DocumentCache::setOrdering(Stack* ordering)
 
 //-----------------------------------------------------------------------------
 
-QString DocumentCache::fileName()
-{
-	static time_t seed = 0;
-	if (seed == 0) {
-		seed = time(0);
-		qsrand(seed);
-	}
-
-	QString filename;
-	QDir dir(m_path);
-	do {
-		filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
-	} while (dir.exists(filename));
-
-	return filename;
-}
-
-//-----------------------------------------------------------------------------
-
 QString DocumentCache::path()
 {
 	return m_path;
@@ -136,14 +119,6 @@ void DocumentCache::setPath(const QString& path)
 	if (!m_path.endsWith(QLatin1Char('/'))) {
 		m_path += QLatin1Char('/');
 	}
-}
-
-//-----------------------------------------------------------------------------
-
-void DocumentCache::cacheFile(DocumentWriter* document)
-{
-	document->write();
-	delete document;
 }
 
 //-----------------------------------------------------------------------------
@@ -165,6 +140,46 @@ void DocumentCache::updateMapping()
 		}
 		file.close();
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::replaceCacheFile(Document* document, const QString& file)
+{
+	QString cache_file = m_path + m_filenames[document];
+	if (QFile::exists(cache_file)) {
+		QFile::remove(cache_file);
+	}
+	QFile::copy(file, cache_file);
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::writeCacheFile(Document* document, DocumentWriter* writer)
+{
+	QString cache_file = m_path + m_filenames[document];
+	writer->setFileName(cache_file);
+	writer->write();
+	delete writer;
+}
+
+//-----------------------------------------------------------------------------
+
+QString DocumentCache::createFileName()
+{
+	static time_t seed = 0;
+	if (seed == 0) {
+		seed = time(0);
+		qsrand(seed);
+	}
+
+	QString filename;
+	QDir dir(m_path);
+	do {
+		filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
+	} while (dir.exists(filename));
+
+	return filename;
 }
 
 //-----------------------------------------------------------------------------

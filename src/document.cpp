@@ -22,7 +22,6 @@
 #include "alert.h"
 #include "block_stats.h"
 #include "dictionary_manager.h"
-#include "document_cache.h"
 #include "document_watcher.h"
 #include "document_writer.h"
 #include "highlighter.h"
@@ -177,7 +176,6 @@ namespace
 
 Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
 	: QWidget(parent),
-	m_cache_filename(DocumentCache::fileName()),
 	m_cache_outdated(false),
 	m_index(0),
 	m_always_center(false),
@@ -285,11 +283,10 @@ void Document::cache()
 	if (m_cache_outdated) {
 		m_cache_outdated = false;
 		DocumentWriter* writer = new DocumentWriter;
-		writer->setFileName(DocumentCache::path() + m_cache_filename);
 		writer->setType(!m_filename.isEmpty() ? m_filename.section(QLatin1Char('.'), -1) : "odt");
 		writer->setCodePage(m_codepage);
 		writer->setDocument(m_text->document()->clone());
-		emit cacheFile(writer);
+		emit writeCacheFile(this, writer);
 	}
 }
 
@@ -317,8 +314,7 @@ bool Document::save()
 	m_codepage = writer.codePage();
 	if (saved) {
 		m_cache_outdated = false;
-		QFile::remove(DocumentCache::path() + m_cache_filename);
-		QFile::copy(m_filename, DocumentCache::path() + m_cache_filename);
+		emit replaceCacheFile(this, m_filename);
 	} else {
 		cache();
 	}
@@ -479,7 +475,7 @@ bool Document::loadFile(const QString& filename, int position)
 	m_highlighter->setEnabled(false);
 
 	// Cache contents
-	QFile::copy(filename, DocumentCache::path() + m_cache_filename);
+	emit replaceCacheFile(this, filename);
 
 	// Determine file type from contents
 	QString type;

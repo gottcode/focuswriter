@@ -41,13 +41,18 @@ public:
 	void remove(Document* document);
 	void setOrdering(Stack* ordering);
 
-	static QString fileName();
 	static QString path();
 	static void setPath(const QString& path);
 
 public slots:
-	void cacheFile(DocumentWriter* document);
 	void updateMapping();
+
+private slots:
+	void replaceCacheFile(Document* document, const QString& file);
+	void writeCacheFile(Document* document, DocumentWriter* writer);
+
+private:
+	QString createFileName();
 
 private:
 	Stack* m_ordering;
