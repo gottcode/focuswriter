@@ -1,4 +1,5 @@
 2013-04-06 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.4.3.
 	* FIXED: Unsaved new files were not restored from cache.
 
 2013-04-05 Graeme Gott <graeme@gottcode.org>
@@ -37,6 +38,9 @@
 	* Move all spellchecking code into DictionaryData class.
 	* Move global settings for dictionaries into dictionary manager.
 	* Switch back to hunspell from enchant.
+
+2013-03-27 Graeme Gott <graeme@gottcode.org>
+	* Tag version 1.4.2.
 
 2013-03-26 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Could not end italics before smart quote.
