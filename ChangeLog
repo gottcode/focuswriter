@@ -1,4 +1,5 @@
 2013-04-07 Graeme Gott <graeme@gottcode.org>
+	* Move crashed check into DocumentCache.
 	* Move writable check into DocumentCache.
 
 2013-04-06 Graeme Gott <graeme@gottcode.org>

@@ -54,6 +54,14 @@ DocumentCache::~DocumentCache()
 
 //-----------------------------------------------------------------------------
 
+bool DocumentCache::isClean() const
+{
+	QStringList entries = QDir(m_path).entryList(QDir::Files);
+	return (entries.count() <= 1) || !entries.contains("mapping");
+}
+
+//-----------------------------------------------------------------------------
+
 bool DocumentCache::isWritable() const
 {
 	return QFileInfo(m_path).isWritable() && QFileInfo(m_path + "/../").isWritable();

@@ -297,14 +297,12 @@ Window::Window(const QStringList& command_line_files) :
 	m_tabs->blockSignals(false);
 
 	// Restore after crash
-	bool writable = m_document_cache->isWritable();
-	if (!writable) {
-		m_documents->alerts()->addAlert(new Alert(Alert::Critical, tr("Emergency cache is not writable."), QStringList(), true));
-	}
 	QStringList files, datafiles;
 	QString cachepath;
-	QStringList entries = QDir(DocumentCache::path()).entryList(QDir::Files);
-	if (writable && (entries.count() > 1) && entries.contains("mapping")) {
+	if (!m_document_cache->isWritable()) {
+		// Warn user that cache can't be used
+		m_documents->alerts()->addAlert(new Alert(Alert::Critical, tr("Emergency cache is not writable."), QStringList(), true));
+	} else if (!m_document_cache->isClean()) {
 		// Find cachedir
 		QString date = QDate::currentDate().toString("yyyyMMdd");
 		int extra = 0;
