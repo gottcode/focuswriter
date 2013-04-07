@@ -37,13 +37,12 @@ public:
 
 	bool isClean() const;
 	bool isWritable() const;
-	void parseMapping(const QString& cache_path, QStringList& files, QStringList& datafiles) const;
+	void parseMapping(QStringList& files, QStringList& datafiles) const;
 
 	void add(Document* document);
 	void remove(Document* document);
 	void setOrdering(Stack* ordering);
 
-	static QString path();
 	static void setPath(const QString& path);
 
 public slots:

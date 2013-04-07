@@ -43,7 +43,6 @@
 #include <QAction>
 #include <QApplication>
 #include <QCloseEvent>
-#include <QDate>
 #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QStandardPaths>
 #else
@@ -298,29 +297,12 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Restore after crash
 	QStringList files, datafiles;
-	QString cachepath;
 	if (!m_document_cache->isWritable()) {
 		// Warn user that cache can't be used
 		m_documents->alerts()->addAlert(new Alert(Alert::Critical, tr("Emergency cache is not writable."), QStringList(), true));
 	} else if (!m_document_cache->isClean()) {
-		// Find cachedir
-		QString date = QDate::currentDate().toString("yyyyMMdd");
-		int extra = 0;
-		QDir dir(QDir::cleanPath(DocumentCache::path() + "/../"));
-		QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-		foreach (const QString& subdir, subdirs) {
-			if (subdir.startsWith(date)) {
-				extra = qMax(extra, subdir.mid(9).toInt() + 1);
-			}
-		}
-		cachepath = dir.absoluteFilePath(date + ((extra > 0) ? QString("-%1").arg(extra) : ""));
-
-		// Move cache out of the way
-		dir.rename("Files", cachepath);
-		dir.mkdir("Files");
-
 		// Read mapping of cached files
-		m_document_cache->parseMapping(cachepath, files, datafiles);
+		m_document_cache->parseMapping(files, datafiles);
 
 		// Ask if they want to use cached files
 		if (!files.isEmpty()) {
@@ -360,15 +342,6 @@ Window::Window(const QStringList& command_line_files) :
 		settings.setValue("Save/Active", 0);
 	}
 	m_sessions->setCurrent(session, files, datafiles);
-
-	// Remove old cache
-	if (!cachepath.isEmpty()) {
-		QDir cachedir(cachepath);
-		if ((cachedir.count() == 3) && (cachedir.entryList(QDir::Files).first() == "mapping")) {
-			cachedir.remove("mapping");
-			cachedir.rmdir(cachepath);
-		}
-	}
 
 	// Bring to front
 	activateWindow();
@@ -1054,7 +1027,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	if (document->loadFile(path, m_save_positions ? position : -1)) {
 		if (datafile != file) {
 			document->text()->document()->setModified(!compareFiles(file, datafile));
-			QFile::remove(datafile);
 		}
 	} else if (path != file) {
 		document->loadFile(file, m_save_positions ? position : -1);

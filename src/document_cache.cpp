@@ -69,9 +69,9 @@ bool DocumentCache::isWritable() const
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::parseMapping(const QString& cache_path, QStringList& files, QStringList& datafiles) const
+void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) const
 {
-	QFile file(cache_path + "/mapping");
+	QFile file(m_path + "/mapping");
 	if (file.open(QFile::ReadOnly | QFile::Text)) {
 		QTextStream stream(&file);
 		stream.setCodec("UTF-8");
@@ -83,7 +83,7 @@ void DocumentCache::parseMapping(const QString& cache_path, QStringList& files, 
 			QString path = line.section(' ', 1);
 			if (!datafile.isEmpty()) {
 				files.append(path);
-				datafiles.append(cache_path + "/" + datafile);
+				datafiles.append(m_path + "/" + datafile);
 			}
 		}
 		file.close();
@@ -117,13 +117,6 @@ void DocumentCache::remove(Document* document)
 void DocumentCache::setOrdering(Stack* ordering)
 {
 	m_ordering = ordering;
-}
-
-//-----------------------------------------------------------------------------
-
-QString DocumentCache::path()
-{
-	return m_path;
 }
 
 //-----------------------------------------------------------------------------
@@ -162,6 +155,9 @@ void DocumentCache::updateMapping()
 void DocumentCache::replaceCacheFile(Document* document, const QString& file)
 {
 	QString cache_file = m_path + m_filenames[document];
+	if (cache_file == file) {
+		return;
+	}
 	if (QFile::exists(cache_file)) {
 		QFile::remove(cache_file);
 	}
