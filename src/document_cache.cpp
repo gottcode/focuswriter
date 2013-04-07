@@ -54,6 +54,13 @@ DocumentCache::~DocumentCache()
 
 //-----------------------------------------------------------------------------
 
+bool DocumentCache::isWritable() const
+{
+	return QFileInfo(m_path).isWritable() && QFileInfo(m_path + "/../").isWritable();
+}
+
+//-----------------------------------------------------------------------------
+
 void DocumentCache::parseMapping(const QString& cache_path, QStringList& files, QStringList& datafiles) const
 {
 	QFile file(cache_path + "/mapping");

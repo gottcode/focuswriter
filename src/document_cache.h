@@ -35,6 +35,7 @@ public:
 	DocumentCache(QObject* parent = 0);
 	~DocumentCache();
 
+	bool isWritable() const;
 	void parseMapping(const QString& cache_path, QStringList& files, QStringList& datafiles) const;
 
 	void add(Document* document);

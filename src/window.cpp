@@ -297,9 +297,9 @@ Window::Window(const QStringList& command_line_files) :
 	m_tabs->blockSignals(false);
 
 	// Restore after crash
-	bool writable = QFileInfo(DocumentCache::path()).isWritable() && QFileInfo(DocumentCache::path() + "/../").isWritable();
+	bool writable = m_document_cache->isWritable();
 	if (!writable) {
-		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Emergency cache is not writable."), QStringList(), true));
+		m_documents->alerts()->addAlert(new Alert(Alert::Critical, tr("Emergency cache is not writable."), QStringList(), true));
 	}
 	QStringList files, datafiles;
 	QString cachepath;
