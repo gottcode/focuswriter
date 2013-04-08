@@ -1,3 +1,6 @@
+2013-04-08 Graeme Gott <graeme@gottcode.org>
+	* Don't delete cache files when closing program.
+
 2013-04-07 Graeme Gott <graeme@gottcode.org>
 	* Don't delete cache files when restoring from cache.
 	* Move crashed check into DocumentCache.

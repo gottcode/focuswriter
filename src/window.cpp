@@ -486,6 +486,24 @@ void Window::addDocuments(QDropEvent* event)
 
 bool Window::closeDocuments(QSettings* session)
 {
+	// Save files
+	if (!saveDocuments(session)) {
+		return false;
+	}
+
+	// Close files
+	int count = m_documents->count();
+	for (int i = 0; i < count; ++i) {
+		closeDocument(0, true);
+	}
+
+	return true;
+}
+
+//-----------------------------------------------------------------------------
+
+bool Window::saveDocuments(QSettings* session)
+{
 	if (m_documents->count() == 0) {
 		return true;
 	}
@@ -513,12 +531,6 @@ bool Window::closeDocuments(QSettings* session)
 	session->setValue("Save/Current", files);
 	session->setValue("Save/Positions", positions);
 	session->setValue("Save/Active", active);
-
-	// Close files
-	int count = m_documents->count();
-	for (int i = 0; i < count; ++i) {
-		closeDocument(0, true);
-	}
 
 	return true;
 }
@@ -574,9 +586,15 @@ bool Window::event(QEvent* event)
 void Window::closeEvent(QCloseEvent* event)
 {
 	// Confirm discarding any unsaved changes
-	if (!m_timers->cancelEditing() || !m_sessions->closeCurrent()) {
+	if (!m_timers->cancelEditing() || !m_sessions->saveCurrent()) {
 		event->ignore();
 		return;
+	}
+
+	// Close documents but keep them cached
+	int count = m_documents->count();
+	for (int i = 0; i < count; ++i) {
+		m_documents->removeDocument(0);
 	}
 
 	// Save window settings

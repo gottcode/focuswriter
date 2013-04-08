@@ -44,12 +44,6 @@ DocumentCache::DocumentCache(QObject* parent) :
 
 DocumentCache::~DocumentCache()
 {
-	// Empty cache
-	QDir dir(m_path);
-	QStringList files = dir.entryList(QDir::Files);
-	foreach (const QString& file, files) {
-		dir.remove(file);
-	}
 }
 
 //-----------------------------------------------------------------------------

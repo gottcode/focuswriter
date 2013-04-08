@@ -47,7 +47,8 @@ public:
 
 	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);
-	bool closeDocuments(QSettings* session = 0);
+	bool closeDocuments(QSettings* session);
+	bool saveDocuments(QSettings* session);
 
 public slots:
 	void addDocuments(const QString& documents);

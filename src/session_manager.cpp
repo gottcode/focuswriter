@@ -136,6 +136,13 @@ bool SessionManager::closeCurrent()
 
 //-----------------------------------------------------------------------------
 
+bool SessionManager::saveCurrent()
+{
+	return m_session ? m_window->saveDocuments(m_session->data()) : true;
+}
+
+//-----------------------------------------------------------------------------
+
 void SessionManager::setCurrent(const QString& session, const QStringList& files, const QStringList& datafiles)
 {
 	// Close open documents
