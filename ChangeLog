@@ -1,3 +1,6 @@
+2013-04-09 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Smart quotes were incorrect after opening punctuation.
+
 2013-04-06 Graeme Gott <graeme@gottcode.org>
 	* Tag version 1.4.3.
 	* FIXED: Unsaved new files were not restored from cache.
