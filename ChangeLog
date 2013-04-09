@@ -1,3 +1,6 @@
+2013-04-09 Graeme Gott <graeme@gottcode.org>
+	* Backup cache on successful exit.
+
 2013-04-08 Graeme Gott <graeme@gottcode.org>
 	* Don't delete cache files when closing program.
 

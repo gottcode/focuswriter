@@ -53,11 +53,13 @@ private slots:
 	void writeCacheFile(Document* document, DocumentWriter* writer);
 
 private:
+	QString backupCache();
 	QString createFileName();
 
 private:
 	Stack* m_ordering;
 	QHash<Document*, QString> m_filenames;
+	QString m_previous_cache;
 
 	static QString m_path;
 };

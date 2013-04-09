@@ -23,6 +23,7 @@
 #include "document_writer.h"
 #include "stack.h"
 
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -38,20 +39,24 @@ DocumentCache::DocumentCache(QObject* parent) :
 	QObject(parent),
 	m_ordering(0)
 {
+	QStringList entries = QDir(m_path).entryList(QDir::Files);
+	if ((entries.count() >= 1) && entries.contains("mapping")) {
+		m_previous_cache = backupCache();
+	}
 }
 
 //-----------------------------------------------------------------------------
 
 DocumentCache::~DocumentCache()
 {
+	backupCache();
 }
 
 //-----------------------------------------------------------------------------
 
 bool DocumentCache::isClean() const
 {
-	QStringList entries = QDir(m_path).entryList(QDir::Files);
-	return (entries.count() <= 1) || !entries.contains("mapping");
+	return m_previous_cache.isEmpty();
 }
 
 //-----------------------------------------------------------------------------
@@ -65,7 +70,8 @@ bool DocumentCache::isWritable() const
 
 void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) const
 {
-	QFile file(m_path + "/mapping");
+	QString cache_path = isClean() ? m_path : m_previous_cache;
+	QFile file(cache_path + "/mapping");
 	if (file.open(QFile::ReadOnly | QFile::Text)) {
 		QTextStream stream(&file);
 		stream.setCodec("UTF-8");
@@ -77,7 +83,7 @@ void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) con
 			QString path = line.section(' ', 1);
 			if (!datafile.isEmpty()) {
 				files.append(path);
-				datafiles.append(m_path + "/" + datafile);
+				datafiles.append(cache_path + "/" + datafile);
 			}
 		}
 		file.close();
@@ -166,6 +172,49 @@ void DocumentCache::writeCacheFile(Document* document, DocumentWriter* writer)
 	writer->setFileName(cache_file);
 	writer->write();
 	delete writer;
+}
+
+//-----------------------------------------------------------------------------
+
+QString DocumentCache::backupCache()
+{
+	// Find backup location
+#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
+	QString date = QDateTime::currentDateTimeUtc().toString("yyyyMMddhhmmss");
+#else
+	QString date = QDateTime::currentDateTime().toUTC().toString("yyyyMMddhhmmss");
+#endif
+	int extra = 0;
+	QDir dir(QDir::cleanPath(m_path + "/../"));
+	QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::LocaleAware);
+	subdirs.removeAll("Files");
+	foreach (const QString& subdir, subdirs) {
+		if (subdir.startsWith(date)) {
+			extra = qMax(extra, subdir.mid(15).toInt() + 1);
+		}
+	}
+	QString cachepath = dir.absoluteFilePath(date + ((extra == 0) ? "" : QString("-%1").arg(extra)));
+
+	// Move cache files to backup location
+	dir.rename("Files", cachepath);
+	dir.mkdir("Files");
+
+	// Limit to five backups
+	while (subdirs.count() > 4) {
+		QString subdir_name = subdirs.takeAt(0);
+		QDir subdir(dir.absoluteFilePath(subdir_name));
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		subdir.removeRecursively();
+#else
+		QStringList files = subdir.entryList(QDir::Files);
+		foreach (const QString& file, files) {
+			subdir.remove(file);
+		}
+		dir.rmdir(subdir_name);
+#endif
+	}
+
+	return cachepath;
 }
 
 //-----------------------------------------------------------------------------
