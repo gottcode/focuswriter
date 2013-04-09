@@ -154,23 +154,21 @@ void DocumentCache::updateMapping()
 
 void DocumentCache::replaceCacheFile(Document* document, const QString& file)
 {
-	QString cache_file = m_path + m_filenames[document];
-	if (cache_file == file) {
-		return;
+	QString cache_file = createFileName();
+	if (QFile::copy(file, m_path + cache_file)) {
+		updateCacheFile(document, cache_file);
 	}
-	if (QFile::exists(cache_file)) {
-		QFile::remove(cache_file);
-	}
-	QFile::copy(file, cache_file);
 }
 
 //-----------------------------------------------------------------------------
 
 void DocumentCache::writeCacheFile(Document* document, DocumentWriter* writer)
 {
-	QString cache_file = m_path + m_filenames[document];
-	writer->setFileName(cache_file);
-	writer->write();
+	QString cache_file = createFileName();
+	writer->setFileName(m_path + cache_file);
+	if (writer->write()) {
+		updateCacheFile(document, cache_file);
+	}
 	delete writer;
 }
 
@@ -234,6 +232,21 @@ QString DocumentCache::createFileName()
 	} while (dir.exists(filename));
 
 	return filename;
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::updateCacheFile(Document* document, const QString& cache_file)
+{
+	// Swap cache filename
+	QFile old_cache_file(m_path + m_filenames[document]);
+	m_filenames[document] = cache_file;
+	updateMapping();
+
+	// Delete old cache file
+	if (old_cache_file.exists()) {
+		old_cache_file.remove();
+	}
 }
 
 //-----------------------------------------------------------------------------

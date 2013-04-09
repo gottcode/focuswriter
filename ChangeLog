@@ -1,4 +1,5 @@
 2013-04-09 Graeme Gott <graeme@gottcode.org>
+	* Always write to new cache files.
 	* Backup cache on successful exit.
 
 2013-04-08 Graeme Gott <graeme@gottcode.org>

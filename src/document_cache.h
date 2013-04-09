@@ -55,6 +55,7 @@ private slots:
 private:
 	QString backupCache();
 	QString createFileName();
+	void updateCacheFile(Document* document, const QString& cache_file);
 
 private:
 	Stack* m_ordering;
