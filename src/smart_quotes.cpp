@@ -86,7 +86,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 
 	QTextCursor cursor = text->textCursor();
 	QChar c = text->document()->characterAt(cursor.selectionStart() - 1);
-	if (!c.isSpace() && !c.isNull()) {
+	if (!c.isSpace() && !c.isNull() && (c.category() != QChar::Punctuation_Open)) {
 		quote++;
 	}
 
@@ -134,7 +134,7 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 			continue;
 		}
 
-		if (!previous.isSpace() && !previous.isNull()) {
+		if (!previous.isSpace() && !previous.isNull() && (previous.category() != QChar::Punctuation_Open)) {
 			quote++;
 		}
 		previous = c;
@@ -170,7 +170,7 @@ void SmartQuotes::replace(QString& string)
 			continue;
 		}
 
-		if (!previous.isSpace() && !previous.isNull()) {
+		if (!previous.isSpace() && !previous.isNull() && (previous.category() != QChar::Punctuation_Open)) {
 			quote++;
 		}
 		previous = c;
