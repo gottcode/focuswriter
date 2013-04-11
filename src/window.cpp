@@ -22,6 +22,7 @@
 #include "action_manager.h"
 #include "alert.h"
 #include "alert_layer.h"
+#include "daily_progress.h"
 #include "document.h"
 #include "document_cache.h"
 #include "document_watcher.h"
@@ -92,12 +93,7 @@ Window::Window(const QStringList& command_line_files) :
 	m_enter_key_sound(0),
 	m_fullscreen(true),
 	m_auto_save(true),
-	m_save_positions(true),
-	m_goal_type(0),
-	m_time_goal(0),
-	m_wordcount_goal(0),
-	m_current_time(0),
-	m_current_wordcount(0)
+	m_save_positions(true)
 {
 	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -260,16 +256,11 @@ Window::Window(const QStringList& command_line_files) :
 	layout->addWidget(m_footer);
 
 	// Load current daily progress
-	QSettings settings;
-	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
-		settings.remove("Progress");
-	}
-	settings.setValue("Progress/Date", QDate::currentDate().toString(Qt::ISODate));
-	m_current_wordcount = settings.value("Progress/Words", 0).toInt();
-	m_current_time = settings.value("Progress/Time", 0).toInt();
+	m_daily_progress = new DailyProgress(this);
 	updateProgress();
 
 	// Restore window geometry
+	QSettings settings;
 	setMinimumSize(640, 480);
 	resize(800, 600);
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
@@ -963,13 +954,7 @@ void Window::updateFormatAlignmentActions()
 
 void Window::updateProgress()
 {
-	int progress = 0;
-	if (m_goal_type == 1) {
-		progress = (m_current_time * 100) / (m_time_goal * 60000);
-	} else if (m_goal_type == 2) {
-		progress = (m_current_wordcount * 100) / m_wordcount_goal;
-	}
-	m_progress_label->setText(tr("%1% of daily goal").arg(progress));
+	m_progress_label->setText(tr("%1% of daily goal").arg(m_daily_progress->percentComplete()));
 }
 
 //-----------------------------------------------------------------------------
@@ -1037,7 +1022,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	} else {
 		path = datafile;
 	}
-	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
+	Document* document = new Document(file, m_daily_progress, this);
 	m_documents->addDocument(document);
 	m_document_cache->add(document);
 	document->loadTheme(m_sessions->current()->theme());
@@ -1164,9 +1149,7 @@ void Window::loadPreferences(Preferences& preferences)
 	m_wordcount_label->setVisible(preferences.showWords());
 	m_progress_label->setVisible(preferences.goalType() != 0);
 
-	m_goal_type = preferences.goalType();
-	m_wordcount_goal = preferences.goalWords();
-	m_time_goal = preferences.goalMinutes();
+	m_daily_progress->loadPreferences(preferences);
 	updateProgress();
 
 	m_toolbar->clear();

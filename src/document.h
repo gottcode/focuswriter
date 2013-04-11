@@ -23,6 +23,7 @@
 #include "dictionary_ref.h"
 #include "stats.h"
 class Alert;
+class DailyProgress;
 class DocumentWriter;
 class Highlighter;
 class Preferences;
@@ -44,7 +45,7 @@ class Document : public QWidget
 	Q_OBJECT
 
 public:
-	Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent = 0);
+	Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent = 0);
 	~Document();
 
 	QString filename() const;
@@ -157,11 +158,8 @@ private:
 	bool m_accurate_wordcount;
 
 	// Daily progress
-	int& m_current_wordcount;
-	int m_wordcount_goal;
+	DailyProgress* m_daily_progress;
 	QTime m_time;
-	int& m_current_time;
-	int m_time_goal;
 };
 
 inline QString Document::filename() const {

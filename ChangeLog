@@ -2,6 +2,9 @@
 	* Increase maximum size of foreground.
 	* Allow margins smaller than 10 pixels.
 
+2013-04-11 Graeme Gott <graeme@gottcode.org>
+	* Move tracking daily progress into single class.
+
 2013-04-09 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Smart quotes were incorrect after opening punctuation.
 	* Always write to new cache files.

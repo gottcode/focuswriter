@@ -21,6 +21,7 @@
 
 #include "alert.h"
 #include "block_stats.h"
+#include "daily_progress.h"
 #include "dictionary_manager.h"
 #include "document_watcher.h"
 #include "document_writer.h"
@@ -175,7 +176,7 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
+Document::Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent)
 	: QWidget(parent),
 	m_cache_outdated(false),
 	m_index(0),
@@ -190,8 +191,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_page_type(0),
 	m_page_amount(0),
 	m_accurate_wordcount(true),
-	m_current_wordcount(current_wordcount),
-	m_current_time(current_time)
+	m_daily_progress(daily_progress)
 {
 	setMouseTracking(true);
 
@@ -296,9 +296,7 @@ void Document::cache()
 bool Document::save()
 {
 	// Save progress
-	QSettings settings;
-	settings.setValue("Progress/Words", m_current_wordcount);
-	settings.setValue("Progress/Time", m_current_time);
+	m_daily_progress->save();
 
 	if (m_filename.isEmpty() || !processFileName(m_filename)) {
 		return saveAs();
@@ -792,7 +790,7 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 	} else if (event->type() == QEvent::KeyPress && watched == m_text) {
 		int msecs = m_time.restart();
 		if (msecs < 30000) {
-			m_current_time += msecs;
+			m_daily_progress->increaseTime(msecs);
 		}
 		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
 			return true;
@@ -1060,7 +1058,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	// Update document stats and daily word count
 	int words = m_document_stats.wordCount();
 	calculateWordCount();
-	m_current_wordcount += (m_document_stats.wordCount() - words);
+	m_daily_progress->increaseWordCount(m_document_stats.wordCount() - words);
 	emit changed();
 }
 
