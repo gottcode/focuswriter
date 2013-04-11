@@ -40,6 +40,8 @@ DailyProgress::DailyProgress(QObject* parent) :
 	settings.setValue("Progress/Date", QDate::currentDate().toString(Qt::ISODate));
 	m_words = settings.value("Progress/Words", 0).toInt();
 	m_msecs = settings.value("Progress/Time", 0).toInt();
+
+	m_typing_timer.start();
 }
 
 //-----------------------------------------------------------------------------
@@ -60,6 +62,16 @@ int DailyProgress::percentComplete() const
 		progress = (m_words * 100) / m_goal;
 	}
 	return progress;
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::increaseTime()
+{
+	qint64 msecs = m_typing_timer.restart();
+	if (msecs < 30000) {
+		m_msecs += msecs;
+	}
 }
 
 //-----------------------------------------------------------------------------

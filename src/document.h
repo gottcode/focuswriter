@@ -157,9 +157,7 @@ private:
 
 	bool m_accurate_wordcount;
 
-	// Daily progress
 	DailyProgress* m_daily_progress;
-	QTime m_time;
 };
 
 inline QString Document::filename() const {

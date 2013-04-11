@@ -788,10 +788,7 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 	if (event->type() == QEvent::MouseMove) {
 		mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (event->type() == QEvent::KeyPress && watched == m_text) {
-		int msecs = m_time.restart();
-		if (msecs < 30000) {
-			m_daily_progress->increaseTime(msecs);
-		}
+		m_daily_progress->increaseTime();
 		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
 			return true;
 		}

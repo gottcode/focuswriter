@@ -23,6 +23,11 @@
 class Preferences;
 
 #include <QObject>
+#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
+#include <QElapsedTimer>
+#else
+#include <QTime>
+#endif
 
 class DailyProgress : public QObject
 {
@@ -35,7 +40,7 @@ public:
 	int percentComplete() const;
 
 	void increaseWordCount(int words);
-	void increaseTime(int msecs);
+	void increaseTime();
 	void loadPreferences(const Preferences& preferences);
 	void save();
 
@@ -44,16 +49,17 @@ private:
 	int m_msecs;
 	int m_type;
 	int m_goal;
+
+#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
+	QElapsedTimer m_typing_timer;
+#else
+	QTime m_typing_timer;
+#endif
 };
 
 inline void DailyProgress::increaseWordCount(int words)
 {
 	m_words += words;
-}
-
-inline void DailyProgress::increaseTime(int msecs)
-{
-	m_msecs += msecs;
 }
 
 #endif
