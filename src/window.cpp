@@ -257,6 +257,7 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Load current daily progress
 	m_daily_progress = new DailyProgress(this);
+	connect(m_save_timer, SIGNAL(timeout()), m_daily_progress, SLOT(save()));
 	updateProgress();
 
 	// Restore window geometry

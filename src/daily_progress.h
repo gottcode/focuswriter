@@ -44,9 +44,11 @@ public:
 	void increaseWordCount(int words);
 	void increaseTime();
 	void loadPreferences(const Preferences& preferences);
-	void save();
 
 	static void setPath(const QString& path);
+
+public slots:
+	void save();
 
 private:
 	QSettings* m_file;
