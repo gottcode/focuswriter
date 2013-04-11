@@ -22,12 +22,14 @@
 
 class Preferences;
 
+#include <QDate>
 #include <QObject>
 #if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 #include <QElapsedTimer>
 #else
 #include <QTime>
 #endif
+class QSettings;
 
 class DailyProgress : public QObject
 {
@@ -44,7 +46,11 @@ public:
 	void loadPreferences(const Preferences& preferences);
 	void save();
 
+	static void setPath(const QString& path);
+
 private:
+	QSettings* m_file;
+
 	int m_words;
 	int m_msecs;
 	int m_type;
@@ -55,6 +61,10 @@ private:
 #else
 	QTime m_typing_timer;
 #endif
+
+	QDate m_date;
+
+	static QString m_path;
 };
 
 inline void DailyProgress::increaseWordCount(int words)

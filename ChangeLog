@@ -3,6 +3,7 @@
 	* Allow margins smaller than 10 pixels.
 
 2013-04-11 Graeme Gott <graeme@gottcode.org>
+	* Remember daily progress for each day the program is run.
 	* Share daily goal timer between documents.
 	* Move tracking daily progress into single class.
 

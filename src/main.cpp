@@ -18,6 +18,7 @@
  ***********************************************************************/
 
 #include "application.h"
+#include "daily_progress.h"
 #include "dictionary_manager.h"
 #include "document_cache.h"
 #include "locale_dialog.h"
@@ -165,6 +166,9 @@ int main(int argc, char** argv)
 		}
 	}
 	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
+
+	// Set location for daily progress
+	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {

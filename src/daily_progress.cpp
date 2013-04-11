@@ -21,8 +21,12 @@
 
 #include "preferences.h"
 
-#include <QDate>
+#include <QFile>
 #include <QSettings>
+
+//-----------------------------------------------------------------------------
+
+QString DailyProgress::m_path;
 
 //-----------------------------------------------------------------------------
 
@@ -33,13 +37,41 @@ DailyProgress::DailyProgress(QObject* parent) :
 	m_type(0),
 	m_goal(0)
 {
-	QSettings settings;
-	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
-		settings.remove("Progress");
+	// Fetch date of when the program was started
+	m_date = QDate::currentDate();
+
+	// Initialize daily progress data
+	m_file = new QSettings(m_path, QSettings::IniFormat, this);
+
+	int version = m_file->value(QLatin1String("Version"), -1).toInt();
+	if (version == 1) {
+		// Load current daily progress data from 1.5
+		m_file->beginGroup(QLatin1String("Progress"));
+		QVariantList values = m_file->value(m_date.toString(Qt::ISODate)).toList();
+		m_words = values.value(0).toInt();
+		m_msecs = values.value(1).toInt();
+		m_type = values.value(2).toInt();
+		m_goal = values.value(3).toInt();
+	} else if (version == -1) {
+		// Load current daily progress data from 1.4
+		QSettings settings;
+		if (settings.value(QLatin1String("Progress/Date")).toString() == m_date.toString(Qt::ISODate)) {
+			m_words = settings.value(QLatin1String("Progress/Words"), 0).toInt();
+			m_msecs = settings.value(QLatin1String("Progress/Time"), 0).toInt();
+		}
+		settings.remove(QLatin1String("Progress"));
+		m_file->setValue(QLatin1String("Version"), 1);
+		m_file->beginGroup(QLatin1String("Progress"));
+	} else {
+		int extra = 0;
+		QString newpath = m_path + ".bak";
+		while (QFile::exists(newpath)) {
+			++extra;
+			newpath = m_path + ".bak" + QString::number(extra);
+		}
+		QFile::copy(m_path, newpath);
+		qWarning("The daily progress history is of unsupported version %d and could not be loaded.", version);
 	}
-	settings.setValue("Progress/Date", QDate::currentDate().toString(Qt::ISODate));
-	m_words = settings.value("Progress/Words", 0).toInt();
-	m_msecs = settings.value("Progress/Time", 0).toInt();
 
 	m_typing_timer.start();
 }
@@ -92,9 +124,18 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 
 void DailyProgress::save()
 {
-	QSettings settings;
-	settings.setValue("Progress/Words", m_words);
-	settings.setValue("Progress/Time", m_msecs);
+	m_file->setValue(m_date.toString(Qt::ISODate), QVariantList()
+			<< m_words
+			<< m_msecs
+			<< m_type
+			<< m_goal);
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::setPath(const QString& path)
+{
+	m_path = path;
 }
 
 //-----------------------------------------------------------------------------
