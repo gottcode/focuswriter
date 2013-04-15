@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <QBuffer>
 #include <QDataStream>
 #include <QFile>
+#include <QFileInfo>
 #include <QPalette>
 
 #include <climits>
@@ -62,7 +63,20 @@ SymbolsModel::SymbolsModel(QObject* parent) :
 		return;
 	}
 	QDataStream stream(&buffer);
-	stream.setVersion(QDataStream::Qt_4_6);
+
+	const int unicode_version = m_path.mid(m_path.length() - 7, 3).toInt();
+	switch (unicode_version) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+	case 620:
+		stream.setVersion(QDataStream::Qt_5_0);
+		break;
+#endif
+	case 510:
+	default:
+		stream.setVersion(QDataStream::Qt_4_6);
+		break;
+	}
+
 	stream >> m_names;
 	stream >> m_groups;
 	buffer.close();
@@ -290,9 +304,22 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 
 //-----------------------------------------------------------------------------
 
-void SymbolsModel::setData(const QString& path)
+void SymbolsModel::setData(const QStringList& datadirs)
 {
-	m_path = path;
+	QStringList files = QStringList()
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+			<< "symbols620.dat"
+#endif
+			<< "symbols510.dat";
+	foreach (const QString& path, datadirs) {
+		foreach (const QString& file, files) {
+			QFileInfo info(path + "/" + file);
+			if (info.exists()) {
+				m_path = info.absoluteFilePath();
+				break;
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

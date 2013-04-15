@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #include <QBuffer>
 #include <QCoreApplication>
 #include <QDataStream>
+#include <QDir>
 #include <QFile>
 #include <QHash>
 #include <QNetworkAccessManager>
@@ -81,28 +82,35 @@ QDataStream& operator<<(QDataStream& stream, const Filter& filter)
 	return stream;
 }
 
-int main(int argc, char** argv)
+int downloadAndParse(const QString& unicode_version, QDataStream::Version data_version)
 {
-	QCoreApplication app(argc, argv);
+	QString path = unicode_version;
+	path = path.remove('.');
+	path = path.prepend("symbols");
+
+	// Create location for data
+	{
+		QDir dir(path);
+		dir.mkdir(dir.absolutePath());
+	}
 
 	// Download necessary Unicode data files
 	{
 		QScopedPointer<QNetworkAccessManager> manager(new QNetworkAccessManager);
 
-		const QStringList filenames = QStringList() << "UnicodeData.txt" << "Blocks.txt" << "Scripts.txt";
+		const QStringList filenames = QStringList()
+				<< "UnicodeData.txt"
+				<< "Blocks.txt"
+				<< "Scripts.txt";
 		foreach (const QString& filename, filenames) {
 			std::cout << "Downloading " << filename.toStdString() << "... " << std::flush;
-			if (QFile::exists(filename)) {
+			if (QFile::exists(path + "/" + filename)) {
 				std::cout << "SKIPPED" << std::endl;
 				continue;
 			}
 
 			// Download file
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-			QUrl url("http://www.unicode.org/Public/6.1.0/ucd/" + filename);
-#else
-			QUrl url("http://www.unicode.org/Public/5.0.0/ucd/" + filename);
-#endif
+			QUrl url("http://www.unicode.org/Public/" + unicode_version + "/ucd/" + filename);
 			QNetworkReply* reply = manager->get(QNetworkRequest(url));
 
 			QEventLoop loop;
@@ -110,7 +118,7 @@ int main(int argc, char** argv)
 			loop.exec();
 
 			// Write file to disk
-			QFile file(filename);
+			QFile file(path + "/" + filename);
 			if (!file.open(QFile::WriteOnly | QFile::Text)) {
 				std::cout << "ERROR" << std::endl;
 				return 1;
@@ -129,7 +137,7 @@ int main(int argc, char** argv)
 	// Parse names
 	{
 		std::cout << "Parsing names... " << std::flush;
-		QFile file("UnicodeData.txt");
+		QFile file(path + "/UnicodeData.txt");
 		if (!file.open(QFile::ReadOnly | QFile::Text)) {
 			std::cout << "ERROR" << std::endl;
 			return 1;
@@ -157,7 +165,7 @@ int main(int argc, char** argv)
 		FilterGroup blocks;
 
 		std::cout << "Parsing blocks... " << std::flush;
-		QFile file("Blocks.txt");
+		QFile file(path + "/Blocks.txt");
 		if (!file.open(QFile::ReadOnly | QFile::Text)) {
 			std::cout << "ERROR" << std::endl;
 			return 1;
@@ -204,7 +212,7 @@ int main(int argc, char** argv)
 		FilterGroup scripts;
 
 		std::cout << "Parsing scripts... " << std::flush;
-		QFile file("Scripts.txt");
+		QFile file(path + "/Scripts.txt");
 		if (!file.open(QFile::ReadOnly | QFile::Text)) {
 			std::cout << "ERROR" << std::endl;
 			return 1;
@@ -267,12 +275,12 @@ int main(int argc, char** argv)
 		}
 
 		QDataStream stream(&buffer);
-		stream.setVersion(QDataStream::Qt_4_6);
+		stream.setVersion(data_version);
 		stream << names;
 		stream << groups;
 		buffer.close();
 
-		QFile file("symbols.dat");
+		QFile file(path + ".dat");
 		if (!file.open(QFile::WriteOnly)) {
 			std::cout << "ERROR" << std::endl;
 			return 1;
@@ -282,4 +290,16 @@ int main(int argc, char** argv)
 
 		std::cout << "DONE" << std::endl;
 	}
+
+	return 0;
+}
+
+int main(int argc, char** argv)
+{
+	QCoreApplication app(argc, argv);
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+	downloadAndParse("6.2.0", QDataStream::Qt_5_0);
+#endif
+	downloadAndParse("5.1.0", QDataStream::Qt_4_6);
 }

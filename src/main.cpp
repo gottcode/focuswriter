@@ -21,16 +21,12 @@
 #include "dictionary_manager.h"
 #include "document.h"
 #include "locale_dialog.h"
+#include "paths.h"
 #include "session.h"
 #include "sound.h"
 #include "symbols_model.h"
 #include "theme.h"
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-#include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -87,43 +83,44 @@ int main(int argc, char** argv)
 	}
 
 	// Find unicode names
-	foreach (const QString& path, datadirs) {
-		if (QFile::exists(path + "/symbols.dat")) {
-			SymbolsModel::setData(path + "/symbols.dat");
-			break;
-		}
-	}
+	SymbolsModel::setData(datadirs);
 
 	// Load application language
 	LocaleDialog::loadTranslator("focuswriter_", datadirs);
 
 	// Find user data dir if not in portable mode
 	if (userdir.isEmpty()) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-		userdir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-		userdir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
-
-		// Move user data to new location
+		userdir = Paths::dataPath();
 		if (!QFile::exists(userdir)) {
-#if defined(Q_OS_MAC)
-			QString oldpath = QDir::homePath() + "/Library/Application Support/GottCode/FocusWriter/";
-#elif defined(Q_OS_UNIX)
-			QString oldpath = QString::fromLocal8Bit(qgetenv("XDG_DATA_HOME"));
-			if (oldpath.isEmpty()) {
-				oldpath = QDir::homePath() + "/.local/share";
-			}
-			oldpath += "/focuswriter";
-#else
-			QString oldpath = QDir::homePath() + "/Application Data/GottCode/FocusWriter/";
-#endif
-			QDir dir(userdir + "/../");
-			if (!dir.exists()) {
-				dir.mkpath(dir.absolutePath());
-			}
+			QDir dir(userdir);
+			dir.mkpath(dir.absolutePath());
+
+			// Migrate data from old location
+			QString oldpath = Paths::oldDataPath();
 			if (QFile::exists(oldpath)) {
-				QFile::rename(oldpath, userdir);
+				QStringList old_dirs = QStringList() << "";
+
+				QDir olddir(oldpath);
+				for (int i = 0; i < old_dirs.count(); ++i) {
+					QString subpath = old_dirs.at(i);
+					dir.mkpath(userdir + "/" + subpath);
+					olddir.setPath(oldpath + "/" + subpath);
+
+					QStringList subdirs = olddir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+					foreach (const QString& subdir, subdirs) {
+						old_dirs.append(subpath + "/" + subdir);
+					}
+
+					QStringList files = olddir.entryList(QDir::Files);
+					foreach (const QString& file, files) {
+						QFile::rename(olddir.absoluteFilePath(file), userdir + "/" + subpath + "/" + file);
+					}
+				}
+
+				olddir.setPath(oldpath);
+				for (int i = old_dirs.count() - 1; i >= 0; --i) {
+					olddir.rmdir(oldpath + "/" + old_dirs.at(i));
+				}
 			}
 		}
 	}

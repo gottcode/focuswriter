@@ -16,7 +16,7 @@ macx {
 	LIBS += -lz
 }
 
-VERSION = 1.4.2
+VERSION = 1.4.3
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 unix: !macx {
@@ -95,6 +95,7 @@ HEADERS += src/action_manager.h \
 	src/load_screen.h \
 	src/locale_dialog.h \
 	src/odt_reader.h \
+	src/paths.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
 	src/scene_list.h \
@@ -142,6 +143,7 @@ SOURCES += src/action_manager.cpp \
 	src/locale_dialog.cpp \
 	src/main.cpp \
 	src/odt_reader.cpp \
+	src/paths.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
 	src/scene_list.cpp \
@@ -185,7 +187,11 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	SYMBOLS.files = resources/symbols/symbols.dat
+	greaterThan(QT_MAJOR_VERSION, 4) {
+		SYMBOLS.files = resources/symbols/symbols620.dat
+	} else {
+		SYMBOLS.files = resources/symbols/symbols510.dat
+	}
 	SYMBOLS.path = Contents/Resources
 
 	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
@@ -223,7 +229,11 @@ unix: !macx {
 	sounds.files = resources/sounds/*
 	sounds.path = $$DATADIR/focuswriter/sounds
 
-	symbols.files = resources/symbols/symbols.dat
+	greaterThan(QT_MAJOR_VERSION, 4) {
+		symbols.files = resources/symbols/symbols620.dat
+	} else {
+		symbols.files = resources/symbols/symbols510.dat
+	}
 	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon pixmap desktop icons qm sounds symbols
