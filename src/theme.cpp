@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,7 +121,7 @@ Theme::Theme(const QString& name)
 	m_foreground_opacity = qBound(0, settings.value("Foreground/Opacity", 100).toInt(), 100);
 	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 2000);
 	m_foreground_rounding = qBound(0, settings.value("Foreground/Rounding", 0).toInt(), 100);
-	m_foreground_margin = qBound(0, settings.value("Foreground/Margin", 65).toInt(), 250);
+	m_foreground_margin = qBound(1, settings.value("Foreground/Margin", 65).toInt(), 250);
 	m_foreground_padding = qBound(0, settings.value("Foreground/Padding", 0).toInt(), 250);
 	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 3);
 
