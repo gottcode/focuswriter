@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -134,7 +134,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_margin = new QSpinBox(tab);
 	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_margin->setSuffix(tr(" pixels"));
-	m_foreground_margin->setRange(10, 250);
+	m_foreground_margin->setRange(1, 250);
 	m_foreground_margin->setValue(m_theme.foregroundMargin());
 
 	m_foreground_padding = new QSpinBox(tab);

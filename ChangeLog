@@ -1,3 +1,6 @@
+2013-04-15 Graeme Gott <graeme@gottcode.org>
+	* Allow margins smaller than 10 pixels.
+
 2013-04-09 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Smart quotes were incorrect after opening punctuation.
 	* Always write to new cache files.
