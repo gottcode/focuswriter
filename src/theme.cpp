@@ -108,7 +108,7 @@ Theme::Theme(const QString& name)
 	QSettings settings(filePath(m_name), QSettings::IniFormat);
 
 	// Load background settings
-	m_background_type = settings.value("Background/Type", 0).toInt();
+	m_background_type = qBound(0, settings.value("Background/Type", 0).toInt(), 5);
 	m_background_color = settings.value("Background/Color", "#cccccc").toString();
 	m_background_path = settings.value("Background/Image").toString();
 	m_background_image = settings.value("Background/ImageFile").toString();
@@ -119,7 +119,7 @@ Theme::Theme(const QString& name)
 	// Load foreground settings
 	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
 	m_foreground_opacity = qBound(0, settings.value("Foreground/Opacity", 100).toInt(), 100);
-	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 2000);
+	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 9999);
 	m_foreground_rounding = qBound(0, settings.value("Foreground/Rounding", 0).toInt(), 100);
 	m_foreground_margin = qBound(1, settings.value("Foreground/Margin", 65).toInt(), 250);
 	m_foreground_padding = qBound(0, settings.value("Foreground/Padding", 0).toInt(), 250);

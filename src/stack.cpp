@@ -33,6 +33,7 @@
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
+#include <QDesktopWidget>
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QMutex>
@@ -624,11 +625,11 @@ void Stack::themeSelected(const Theme& theme)
 		m_symbols_dialog->setPreviewFont(theme.textFont());
 	}
 
+	window()->setMinimumWidth(qMin((m_margin * 2) + theme.foregroundWidth(), QApplication::desktop()->availableGeometry().width()));
+
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme);
 	}
-
-	window()->setMinimumWidth((m_margin * 2) + theme.foregroundWidth());
 }
 
 //-----------------------------------------------------------------------------

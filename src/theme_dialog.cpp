@@ -116,7 +116,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width = new QSpinBox(tab);
 	m_foreground_width->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_width->setSuffix(tr(" pixels"));
-	m_foreground_width->setRange(500, 2000);
+	m_foreground_width->setRange(500, 9999);
 	m_foreground_width->setValue(m_theme.foregroundWidth());
 
 	m_foreground_position = new QComboBox(tab);

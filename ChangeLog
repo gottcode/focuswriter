@@ -1,4 +1,5 @@
 2013-04-15 Graeme Gott <graeme@gottcode.org>
+	* Increase maximum size of foreground.
 	* Allow margins smaller than 10 pixels.
 
 2013-04-09 Graeme Gott <graeme@gottcode.org>

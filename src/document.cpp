@@ -39,6 +39,7 @@
 
 #include <QApplication>
 #include <QBuffer>
+#include <QDesktopWidget>
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
@@ -647,8 +648,9 @@ void Document::loadTheme(const Theme& theme)
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
+	int foreground_width = qMin(theme.foregroundWidth(), QApplication::desktop()->availableGeometry().width() - (theme.foregroundMargin() * 2));
 	if (theme.foregroundPosition() < 3) {
-		m_text->setFixedWidth(theme.foregroundWidth());
+		m_text->setFixedWidth(foreground_width);
 
 		switch (theme.foregroundPosition()) {
 		case 0:
@@ -668,8 +670,8 @@ void Document::loadTheme(const Theme& theme)
 			break;
 		};
 	} else {
-		m_text->setMinimumWidth(theme.foregroundWidth());
-		m_text->setMaximumWidth(maximumSize().height());
+		m_text->setMinimumWidth(foreground_width);
+		m_text->setMaximumWidth(maximumSize().width());
 
 		m_layout->setColumnStretch(0, 0);
 		m_layout->setColumnStretch(2, 0);
