@@ -22,8 +22,9 @@
 
 class Preferences;
 
+#include <QAbstractTableModel>
 #include <QDate>
-#include <QObject>
+#include <QStringList>
 #if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 #include <QElapsedTimer>
 #else
@@ -32,7 +33,7 @@ class Preferences;
 #include <QVector>
 class QSettings;
 
-class DailyProgress : public QObject
+class DailyProgress : public QAbstractTableModel
 {
 	Q_OBJECT
 
@@ -45,6 +46,12 @@ public:
 	void increaseWordCount(int words);
 	void increaseTime();
 	void loadPreferences(const Preferences& preferences);
+
+	int columnCount(const QModelIndex& parent = QModelIndex()) const;
+	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+	Qt::ItemFlags flags(const QModelIndex& index) const;
+	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+	int rowCount(const QModelIndex& parent = QModelIndex()) const;
 
 	static void setPath(const QString& path);
 
@@ -89,6 +96,9 @@ private:
 	QVector<Progress> m_progress;
 	Progress* m_current;
 	bool m_current_valid;
+	int m_current_pos;
+
+	QStringList m_day_names;
 
 	static QString m_path;
 };

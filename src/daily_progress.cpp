@@ -22,6 +22,7 @@
 #include "preferences.h"
 
 #include <QFile>
+#include <QLocale>
 #include <QSettings>
 
 //-----------------------------------------------------------------------------
@@ -31,12 +32,13 @@ QString DailyProgress::m_path;
 //-----------------------------------------------------------------------------
 
 DailyProgress::DailyProgress(QObject* parent) :
-	QObject(parent),
+	QAbstractTableModel(parent),
 	m_words(0),
 	m_msecs(0),
 	m_type(0),
 	m_goal(0),
-	m_current_valid(false)
+	m_current_valid(false),
+	m_current_pos(0)
 {
 	// Fetch date of when the program was started
 	QDate date = QDate::currentDate();
@@ -106,8 +108,50 @@ DailyProgress::DailyProgress(QObject* parent) :
 		previous = next;
 	}
 
+	// Add null entries before data to make it week-based
+	QLocale locale;
+#if (QT_VERSION >= (QT_VERSION_CHECK(4,8,0)))
+	int start_of_week = locale.firstDayOfWeek();
+#else
+	int start_of_week = Qt::Sunday;
+#endif
+	int day_of_week = m_progress.first().date().dayOfWeek();
+	int null_days = 0;
+	if (day_of_week < start_of_week) {
+		null_days = day_of_week + (7 - start_of_week);
+	} else if (day_of_week > start_of_week) {
+		null_days = day_of_week - start_of_week;
+	}
+	for (int i = 0; i < null_days; ++i) {
+		m_progress.insert(0, Progress());
+	}
+
+	// Add null entries after data to make it week-based
+	null_days = 7 - (m_progress.size() % 7);
+	if (null_days < 7) {
+		for (int i = 0; i < null_days; ++i) {
+			m_progress.append(Progress());
+		}
+	}
+
 	// Fetch current daily progress
-	m_current = &m_progress[m_progress.size() - 1];
+	for (m_current_pos = m_progress.size() - 1; m_current_pos >= 0; --m_current_pos) {
+		if (m_progress.at(m_current_pos).date() == date) {
+			m_current = &m_progress[m_current_pos];
+			break;
+		}
+	}
+
+	// Fetch day names
+	day_of_week = start_of_week;
+	for (int i = 0; i < 7; ++i) {
+		m_day_names.append(locale.dayName(day_of_week, QLocale::ShortFormat));
+		if (day_of_week != Qt::Sunday) {
+			++day_of_week;
+		} else {
+			day_of_week = Qt::Monday;
+		}
+	}
 
 	m_typing_timer.start();
 }
@@ -126,6 +170,8 @@ int DailyProgress::percentComplete()
 	if (!m_current_valid) {
 		m_current_valid = true;
 		m_current->setProgress(m_words, m_msecs, m_type, m_goal);
+		QModelIndex index = createIndex(m_current_pos / 7, m_current_pos % 7);
+		emit dataChanged(index, index);
 	}
 	return m_current->progress();
 }
@@ -154,6 +200,78 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 		m_goal = 0;
 	}
 	m_current_valid = false;
+}
+
+//-----------------------------------------------------------------------------
+
+int DailyProgress::columnCount(const QModelIndex&) const
+{
+	return 7;
+}
+
+//-----------------------------------------------------------------------------
+
+QVariant DailyProgress::data(const QModelIndex& index, int role) const
+{
+	QVariant result;
+
+	int column = index.column();
+	Progress progress = m_progress.value((index.row() * 7) + column);
+	if (!progress.date().isValid()) {
+		return result;
+	}
+
+	switch (role) {
+	case Qt::DisplayRole:
+		result = QString::number(progress.date().day());
+		break;
+
+	case Qt::TextAlignmentRole:
+		result = Qt::AlignCenter;
+		break;
+
+	case Qt::UserRole:
+		result = progress.progress();
+		break;
+
+	case Qt::ToolTipRole:
+		result = QString("<center><small><b>%1</b></small><br>%2%</center>")
+				.arg(progress.date().toString(Qt::DefaultLocaleLongDate))
+				.arg(progress.progress());
+		break;
+
+	default:
+		break;
+	}
+
+	return result;
+}
+
+//-----------------------------------------------------------------------------
+
+Qt::ItemFlags DailyProgress::flags(const QModelIndex&) const
+{
+	return Qt::NoItemFlags;
+}
+
+//-----------------------------------------------------------------------------
+
+QVariant DailyProgress::headerData(int section, Qt::Orientation orientation, int role) const
+{
+	if (orientation == Qt::Horizontal) {
+		if (role == Qt::DisplayRole) {
+			return m_day_names[section];
+		}
+	}
+
+	return QAbstractTableModel::headerData(section, orientation, role);
+}
+
+//-----------------------------------------------------------------------------
+
+int DailyProgress::rowCount(const QModelIndex& parent) const
+{
+	return parent.isValid() ? 0 : (m_progress.size() / 7);
 }
 
 //-----------------------------------------------------------------------------
