@@ -41,6 +41,8 @@ public:
 	DailyProgress(QObject* parent = 0);
 	~DailyProgress();
 
+	void findCurrentStreak(QDate& start, QDate& end) const;
+	void findLongestStreak(QDate& start, QDate& end) const;
 	int percentComplete();
 
 	void increaseWordCount(int words);
@@ -57,6 +59,9 @@ public:
 
 public slots:
 	void save();
+
+private:
+	void findStreak(int pos, int& start, int& end) const;
 
 private:
 	QSettings* m_file;

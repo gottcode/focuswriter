@@ -167,6 +167,53 @@ DailyProgress::~DailyProgress()
 
 //-----------------------------------------------------------------------------
 
+void DailyProgress::findCurrentStreak(QDate& start, QDate& end) const
+{
+	int start_pos = -1, end_pos = -1;
+	findStreak(m_current_pos, start_pos, end_pos);
+
+	if (start_pos != -1) {
+		start = m_progress.at(start_pos).date();
+		end = m_progress.at(end_pos).date();
+	} else {
+		start = end = QDate();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::findLongestStreak(QDate& start, QDate& end) const
+{
+	int start_pos = -1, end_pos = -1, length = -1;
+	for (int i = m_current_pos; i >= 0; --i) {
+		int test_start_pos = -1, test_end_pos = -1;
+		findStreak(i, test_start_pos, test_end_pos);
+		if (test_start_pos != -1) {
+			// Track if it is longest streak found so far
+			int test_length = test_end_pos - test_start_pos;
+			if (test_length > length) {
+				start_pos = test_start_pos;
+				end_pos = test_end_pos;
+				length = test_length;
+			}
+
+			// Skip finding streaks inside of a streak
+			if (test_length > 0) {
+				i -= (test_length - 1);
+			}
+		}
+	}
+
+	if (start_pos != -1) {
+		start = m_progress.at(start_pos).date();
+		end = m_progress.at(end_pos).date();
+	} else {
+		start = end = QDate();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 int DailyProgress::percentComplete()
 {
 	if (!m_current_valid) {
@@ -296,6 +343,23 @@ void DailyProgress::save()
 void DailyProgress::setPath(const QString& path)
 {
 	m_path = path;
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::findStreak(int pos, int& start, int& end) const
+{
+	start = end = -1;
+	for (int i = pos; i >= 0; --i) {
+		if (m_progress.at(i).progress() > 0) {
+			start = i;
+			if (end == -1) {
+				end = i;
+			}
+		} else {
+			break;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

@@ -23,6 +23,7 @@
 class DailyProgress;
 
 #include <QDialog>
+class QDate;
 class QTableView;
 
 class DailyProgressDialog : public QDialog
@@ -32,6 +33,9 @@ public:
 
 protected:
 	void showEvent(QShowEvent* event);
+
+private:
+	QString createStreakText(const QString& title, const QDate& start, const QDate& end);
 
 private:
 	DailyProgress* m_progress;

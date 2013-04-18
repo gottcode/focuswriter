@@ -23,7 +23,10 @@
 
 #include <QApplication>
 #include <QColor>
+#include <QFrame>
 #include <QHeaderView>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QScrollBar>
 #include <QStyle>
 #include <QStyledItemDelegate>
@@ -145,9 +148,27 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->setMinimumHeight((size * 5) + frame + m_display->horizontalHeader()->sizeHint().height());
 	m_display->scrollToBottom();
 
+	// Find streaks
+	QDate streak_start, streak_end;
+	m_progress->findLongestStreak(streak_start, streak_end);
+	QLabel* longest_streak = new QLabel(createStreakText(tr("Longest streak"), streak_start, streak_end), this);
+
+	QFrame* streak_divider = new QFrame(this);
+	streak_divider->setFrameStyle(QFrame::Sunken | QFrame::VLine);
+
+	m_progress->findCurrentStreak(streak_start, streak_end);
+	QLabel* current_streak = new QLabel(createStreakText(tr("Current streak"), streak_start, streak_end), this);
+
+	QHBoxLayout* streaks_layout = new QHBoxLayout;
+	streaks_layout->setMargin(0);
+	streaks_layout->addWidget(longest_streak);
+	streaks_layout->addWidget(streak_divider);
+	streaks_layout->addWidget(current_streak);
+
 	// Lay out dialog
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_display);
+	layout->addLayout(streaks_layout);
 }
 
 //-----------------------------------------------------------------------------
@@ -157,6 +178,25 @@ void DailyProgressDialog::showEvent(QShowEvent* event)
 	m_display->scrollToBottom();
 
 	QDialog::showEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+QString DailyProgressDialog::createStreakText(const QString& title, const QDate& start, const QDate& end)
+{
+	int length = start.isValid() ? (start.daysTo(end) + 1) : 0;
+	QString start_str, end_str;
+	if (length > 0) {
+		start_str = start.toString(Qt::DefaultLocaleShortDate);
+		end_str = end.toString(Qt::DefaultLocaleShortDate);
+	} else {
+		start_str = end_str = tr("N/A");
+	}
+
+	return QString("<center><b>%1</b><br><big>%2</big><br><small>%3</small></center>")
+			.arg(title)
+			.arg(tr("%n day(s)", "", length))
+			.arg(tr("%1 &ndash; %2").arg(start_str).arg(end_str));
 }
 
 //-----------------------------------------------------------------------------
