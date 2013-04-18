@@ -144,6 +144,7 @@ DailyProgress::DailyProgress(QObject* parent) :
 
 	// Fetch day names
 	day_of_week = start_of_week;
+	m_day_names.append(QString());
 	for (int i = 0; i < 7; ++i) {
 		m_day_names.append(locale.dayName(day_of_week, QLocale::ShortFormat));
 		if (day_of_week != Qt::Sunday) {
@@ -152,6 +153,7 @@ DailyProgress::DailyProgress(QObject* parent) :
 			day_of_week = Qt::Monday;
 		}
 	}
+	m_day_names.append(QString());
 
 	m_typing_timer.start();
 }
@@ -206,7 +208,7 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 
 int DailyProgress::columnCount(const QModelIndex&) const
 {
-	return 7;
+	return 9;
 }
 
 //-----------------------------------------------------------------------------
@@ -215,7 +217,11 @@ QVariant DailyProgress::data(const QModelIndex& index, int role) const
 {
 	QVariant result;
 
-	int column = index.column();
+	int column = index.column() - 1;
+	if ((column == -1) || (column == 7)) {
+		return result;
+	}
+
 	Progress progress = m_progress.value((index.row() * 7) + column);
 	if (!progress.date().isValid()) {
 		return result;

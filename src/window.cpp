@@ -23,6 +23,7 @@
 #include "alert.h"
 #include "alert_layer.h"
 #include "daily_progress.h"
+#include "daily_progress_dialog.h"
 #include "document.h"
 #include "document_cache.h"
 #include "document_watcher.h"
@@ -142,12 +143,17 @@ Window::Window(const QStringList& command_line_files) :
 	contents->setMouseTracking(true);
 	contents->installEventFilter(m_documents);
 
+	// Set up daily progress tracking
+	m_daily_progress = new DailyProgress(this);
+	m_daily_progress_dialog = new DailyProgressDialog(m_daily_progress, this);
+
 	// Set up menubar and toolbar
 	initMenus();
 
 	// Set up cache timer
 	m_save_timer = new QTimer(this);
 	m_save_timer->setInterval(600000);
+	connect(m_save_timer, SIGNAL(timeout()), m_daily_progress, SLOT(save()));
 
 	// Set up details
 	m_footer = new QWidget(contents);
@@ -254,11 +260,6 @@ Window::Window(const QStringList& command_line_files) :
 	layout->setMargin(0);
 	layout->addStretch();
 	layout->addWidget(m_footer);
-
-	// Load current daily progress
-	m_daily_progress = new DailyProgress(this);
-	connect(m_save_timer, SIGNAL(timeout()), m_daily_progress, SLOT(save()));
-	updateProgress();
 
 	// Restore window geometry
 	QSettings settings;
@@ -1371,6 +1372,7 @@ void Window::initMenus()
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, SLOT(show()));
 	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, SLOT(showSymbols()));
+	m_actions["DailyProgress"] = tools_menu->addAction(QIcon::fromTheme("view-calendar"), tr("&Daily Progress"), m_daily_progress_dialog, SLOT(show()));
 
 	// Create settings menu
 	QMenu* settings_menu = menuBar()->addMenu(tr("&Settings"));

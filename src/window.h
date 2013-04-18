@@ -21,6 +21,7 @@
 #define WINDOW_H
 
 class DailyProgress;
+class DailyProgressDialog;
 class Document;
 class DocumentCache;
 class DocumentWatcher;
@@ -140,6 +141,7 @@ private:
 	bool m_auto_save;
 	bool m_save_positions;
 	DailyProgress* m_daily_progress;
+	DailyProgressDialog* m_daily_progress_dialog;
 };
 
 #endif
