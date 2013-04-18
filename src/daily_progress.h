@@ -29,6 +29,7 @@ class Preferences;
 #else
 #include <QTime>
 #endif
+#include <QVector>
 class QSettings;
 
 class DailyProgress : public QObject
@@ -85,6 +86,7 @@ private:
 		QDate m_date;
 		int m_progress;
 	};
+	QVector<Progress> m_progress;
 	Progress* m_current;
 	bool m_current_valid;
 
