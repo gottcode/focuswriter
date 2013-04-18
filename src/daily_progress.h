@@ -39,7 +39,7 @@ public:
 	DailyProgress(QObject* parent = 0);
 	~DailyProgress();
 
-	int percentComplete() const;
+	int percentComplete();
 
 	void increaseWordCount(int words);
 	void increaseTime();
@@ -64,7 +64,29 @@ private:
 	QTime m_typing_timer;
 #endif
 
-	QDate m_date;
+	class Progress
+	{
+	public:
+		Progress(const QDate& date = QDate()) : m_date(date), m_progress(0)
+			{ }
+
+		QDate date() const
+			{ return m_date; }
+
+		int progress() const
+			{ return m_progress; }
+
+		void setDate(const QDate& date)
+			{ m_date = date; }
+
+		void setProgress(int words, int msecs, int type, int goal);
+
+	private:
+		QDate m_date;
+		int m_progress;
+	};
+	Progress* m_current;
+	bool m_current_valid;
 
 	static QString m_path;
 };
@@ -72,6 +94,7 @@ private:
 inline void DailyProgress::increaseWordCount(int words)
 {
 	m_words += words;
+	m_current_valid = false;
 }
 
 #endif

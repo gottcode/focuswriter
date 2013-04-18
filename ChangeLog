@@ -1,3 +1,6 @@
+2013-04-18 Graeme Gott <graeme@gottcode.org>
+	* Calculate daily progress in nested class.
+
 2013-04-15 Graeme Gott <graeme@gottcode.org>
 	* Increase maximum size of foreground.
 	* Allow margins smaller than 10 pixels.

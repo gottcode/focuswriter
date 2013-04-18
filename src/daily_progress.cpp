@@ -35,10 +35,12 @@ DailyProgress::DailyProgress(QObject* parent) :
 	m_words(0),
 	m_msecs(0),
 	m_type(0),
-	m_goal(0)
+	m_goal(0),
+	m_current_valid(false)
 {
 	// Fetch date of when the program was started
-	m_date = QDate::currentDate();
+	QDate date = QDate::currentDate();
+	m_current = new Progress(date);
 
 	// Initialize daily progress data
 	m_file = new QSettings(m_path, QSettings::IniFormat, this);
@@ -47,7 +49,7 @@ DailyProgress::DailyProgress(QObject* parent) :
 	if (version == 1) {
 		// Load current daily progress data from 1.5
 		m_file->beginGroup(QLatin1String("Progress"));
-		QVariantList values = m_file->value(m_date.toString(Qt::ISODate)).toList();
+		QVariantList values = m_file->value(date.toString(Qt::ISODate)).toList();
 		m_words = values.value(0).toInt();
 		m_msecs = values.value(1).toInt();
 		m_type = values.value(2).toInt();
@@ -55,7 +57,7 @@ DailyProgress::DailyProgress(QObject* parent) :
 	} else if (version == -1) {
 		// Load current daily progress data from 1.4
 		QSettings settings;
-		if (settings.value(QLatin1String("Progress/Date")).toString() == m_date.toString(Qt::ISODate)) {
+		if (settings.value(QLatin1String("Progress/Date")).toString() == date.toString(Qt::ISODate)) {
 			m_words = settings.value(QLatin1String("Progress/Words"), 0).toInt();
 			m_msecs = settings.value(QLatin1String("Progress/Time"), 0).toInt();
 		}
@@ -81,19 +83,18 @@ DailyProgress::DailyProgress(QObject* parent) :
 DailyProgress::~DailyProgress()
 {
 	save();
+	delete m_current;
 }
 
 //-----------------------------------------------------------------------------
 
-int DailyProgress::percentComplete() const
+int DailyProgress::percentComplete()
 {
-	int progress = 0;
-	if (m_type == 1) {
-		progress = (m_msecs * 100) / m_goal;
-	} else if (m_type == 2) {
-		progress = (m_words * 100) / m_goal;
+	if (!m_current_valid) {
+		m_current_valid = true;
+		m_current->setProgress(m_words, m_msecs, m_type, m_goal);
 	}
-	return progress;
+	return m_current->progress();
 }
 
 //-----------------------------------------------------------------------------
@@ -103,6 +104,7 @@ void DailyProgress::increaseTime()
 	qint64 msecs = m_typing_timer.restart();
 	if (msecs < 30000) {
 		m_msecs += msecs;
+		m_current_valid = false;
 	}
 }
 
@@ -118,13 +120,14 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 	} else {
 		m_goal = 0;
 	}
+	m_current_valid = false;
 }
 
 //-----------------------------------------------------------------------------
 
 void DailyProgress::save()
 {
-	m_file->setValue(m_date.toString(Qt::ISODate), QVariantList()
+	m_file->setValue(m_current->date().toString(Qt::ISODate), QVariantList()
 			<< m_words
 			<< m_msecs
 			<< m_type
@@ -136,6 +139,22 @@ void DailyProgress::save()
 void DailyProgress::setPath(const QString& path)
 {
 	m_path = path;
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::Progress::setProgress(int words, int msecs, int type, int goal)
+{
+	m_progress = 0;
+	if (goal > 0) {
+		if (type == 1) {
+			m_progress = (msecs * 100) / goal;
+		} else if (type == 2) {
+			m_progress = (words * 100) / goal;
+		}
+	} else if (words || msecs) {
+		m_progress = 100;
+	}
 }
 
 //-----------------------------------------------------------------------------
