@@ -28,6 +28,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QScrollBar>
+#include <QSettings>
 #include <QStyle>
 #include <QStyledItemDelegate>
 #include <QTableView>
@@ -169,6 +170,17 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_display);
 	layout->addLayout(streaks_layout);
+
+	// Restore size
+	resize(QSettings().value("DailyProgressDialog/Size", sizeHint()).toSize());
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgressDialog::closeEvent(QCloseEvent* event)
+{
+	QSettings().setValue("DailyProgressDialog/Size", size());
+	QDialog::closeEvent(event);
 }
 
 //-----------------------------------------------------------------------------

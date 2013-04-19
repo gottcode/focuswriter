@@ -35,6 +35,7 @@ public:
 	DailyProgressDialog(DailyProgress* progress, QWidget* parent = 0);
 
 protected:
+	void closeEvent(QCloseEvent* event);
 	void showEvent(QShowEvent* event);
 
 private slots:
