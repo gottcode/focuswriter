@@ -24,6 +24,7 @@
 #include "alert_layer.h"
 #include "daily_progress.h"
 #include "daily_progress_dialog.h"
+#include "daily_progress_label.h"
 #include "document.h"
 #include "document_cache.h"
 #include "document_watcher.h"
@@ -162,7 +163,8 @@ Window::Window(const QStringList& command_line_files) :
 	m_page_label = new QLabel(tr("Pages: %L1").arg(0), details);
 	m_paragraph_label = new QLabel(tr("Paragraphs: %L1").arg(0), details);
 	m_character_label = new QLabel(tr("Characters: %L1 / %L2").arg(0).arg(0), details);
-	m_progress_label = new QLabel(tr("%1% of daily goal").arg(0), details);
+	m_progress_label = new DailyProgressLabel(m_daily_progress, details);
+	connect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));
 	m_clock_label = new QLabel(details);
 	updateClock();
 
@@ -954,13 +956,6 @@ void Window::updateFormatAlignmentActions()
 
 //-----------------------------------------------------------------------------
 
-void Window::updateProgress()
-{
-	m_progress_label->setText(tr("%1% of daily goal").arg(m_daily_progress->percentComplete()));
-}
-
-//-----------------------------------------------------------------------------
-
 void Window::updateSave()
 {
 	m_actions["Save"]->setEnabled(m_documents->currentDocument()->text()->document()->isModified());
@@ -1037,7 +1032,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 		document->loadFile(file, m_save_positions ? position : -1);
 	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
-	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
+	connect(document, SIGNAL(changed()), m_progress_label, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
@@ -1152,7 +1147,7 @@ void Window::loadPreferences(Preferences& preferences)
 	m_progress_label->setVisible(preferences.goalType() != 0);
 
 	m_daily_progress->loadPreferences(preferences);
-	updateProgress();
+	m_progress_label->updateProgress();
 
 	m_toolbar->clear();
 	m_toolbar->hide();

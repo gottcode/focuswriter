@@ -22,6 +22,7 @@
 
 class DailyProgress;
 class DailyProgressDialog;
+class DailyProgressLabel;
 class Document;
 class DocumentCache;
 class DocumentWatcher;
@@ -91,7 +92,6 @@ private slots:
 	void updateDetails();
 	void updateFormatActions();
 	void updateFormatAlignmentActions();
-	void updateProgress();
 	void updateSave();
 
 private:
@@ -132,7 +132,7 @@ private:
 	QLabel* m_page_label;
 	QLabel* m_paragraph_label;
 	QLabel* m_wordcount_label;
-	QLabel* m_progress_label;
+	DailyProgressLabel* m_progress_label;
 	QLabel* m_clock_label;
 	QTimer* m_clock_timer;
 	QTimer* m_save_timer;

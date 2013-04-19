@@ -97,6 +97,7 @@ HEADERS += src/action_manager.h \
 	src/deltas.h \
 	src/daily_progress.h \
 	src/daily_progress_dialog.h \
+	src/daily_progress_label.h \
 	src/document.h \
 	src/document_cache.h \
 	src/document_watcher.h \
@@ -148,8 +149,9 @@ SOURCES += src/action_manager.cpp \
 	src/block_stats.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
-	src/daily_progress_dialog.cpp \
 	src/daily_progress.cpp \
+	src/daily_progress_dialog.cpp \
+	src/daily_progress_label.cpp \
 	src/document.cpp \
 	src/document_cache.cpp \
 	src/document_watcher.cpp \

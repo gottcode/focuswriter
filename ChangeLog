@@ -1,4 +1,5 @@
 2013-04-19 Graeme Gott <graeme@gottcode.org>
+	* Add clicking on daily progress to show history.
 	* Remember daily progress dialog size.
 	* Update streak labels when streaks change.
 
