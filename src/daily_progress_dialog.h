@@ -24,15 +24,21 @@ class DailyProgress;
 
 #include <QDialog>
 class QDate;
+class QLabel;
 class QTableView;
 
 class DailyProgressDialog : public QDialog
 {
+	Q_OBJECT
+
 public:
 	DailyProgressDialog(DailyProgress* progress, QWidget* parent = 0);
 
 protected:
 	void showEvent(QShowEvent* event);
+
+private slots:
+	void streaksChanged();
 
 private:
 	QString createStreakText(const QString& title, const QDate& start, const QDate& end);
@@ -40,6 +46,8 @@ private:
 private:
 	DailyProgress* m_progress;
 	QTableView* m_display;
+	QLabel* m_longest_streak;
+	QLabel* m_current_streak;
 };
 
 #endif

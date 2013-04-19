@@ -60,6 +60,9 @@ public:
 public slots:
 	void save();
 
+signals:
+	void streaksChanged();
+
 private:
 	void findStreak(int pos, int& start, int& end) const;
 

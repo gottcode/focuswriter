@@ -1,3 +1,6 @@
+2013-04-19 Graeme Gott <graeme@gottcode.org>
+	* Update streak labels when streaks change.
+
 2013-04-18 Graeme Gott <graeme@gottcode.org>
 	* Show daily progress streaks.
 	* Add dialog to show daily progress history.

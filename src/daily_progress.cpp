@@ -218,7 +218,15 @@ int DailyProgress::percentComplete()
 {
 	if (!m_current_valid) {
 		m_current_valid = true;
+
+		bool had_streak_before = m_current->progress() > 0;
 		m_current->setProgress(m_words, m_msecs, m_type, m_goal);
+		bool had_streak_after = m_current->progress() > 0;
+
+		if (had_streak_before != had_streak_after) {
+			emit streaksChanged();
+		}
+
 		QModelIndex index = createIndex(m_current_pos / 7, m_current_pos % 7);
 		emit dataChanged(index, index);
 	}

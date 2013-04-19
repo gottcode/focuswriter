@@ -148,22 +148,22 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->setMinimumHeight((size * 5) + frame + m_display->horizontalHeader()->sizeHint().height());
 	m_display->scrollToBottom();
 
-	// Find streaks
-	QDate streak_start, streak_end;
-	m_progress->findLongestStreak(streak_start, streak_end);
-	QLabel* longest_streak = new QLabel(createStreakText(tr("Longest streak"), streak_start, streak_end), this);
+	// Set up streak labels
+	m_longest_streak = new QLabel(this);
 
 	QFrame* streak_divider = new QFrame(this);
 	streak_divider->setFrameStyle(QFrame::Sunken | QFrame::VLine);
 
-	m_progress->findCurrentStreak(streak_start, streak_end);
-	QLabel* current_streak = new QLabel(createStreakText(tr("Current streak"), streak_start, streak_end), this);
+	m_current_streak = new QLabel(this);
 
 	QHBoxLayout* streaks_layout = new QHBoxLayout;
 	streaks_layout->setMargin(0);
-	streaks_layout->addWidget(longest_streak);
+	streaks_layout->addWidget(m_longest_streak);
 	streaks_layout->addWidget(streak_divider);
-	streaks_layout->addWidget(current_streak);
+	streaks_layout->addWidget(m_current_streak);
+
+	connect(m_progress, SIGNAL(streaksChanged()), this, SLOT(streaksChanged()));
+	streaksChanged();
 
 	// Lay out dialog
 	QVBoxLayout* layout = new QVBoxLayout(this);
@@ -178,6 +178,19 @@ void DailyProgressDialog::showEvent(QShowEvent* event)
 	m_display->scrollToBottom();
 
 	QDialog::showEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgressDialog::streaksChanged()
+{
+	QDate streak_start, streak_end;
+
+	m_progress->findLongestStreak(streak_start, streak_end);
+	m_longest_streak->setText(createStreakText(tr("Longest streak"), streak_start, streak_end));
+
+	m_progress->findCurrentStreak(streak_start, streak_end);
+	m_current_streak->setText(createStreakText(tr("Current streak"), streak_start, streak_end));
 }
 
 //-----------------------------------------------------------------------------
