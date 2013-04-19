@@ -147,6 +147,8 @@ Window::Window(const QStringList& command_line_files) :
 	// Set up daily progress tracking
 	m_daily_progress = new DailyProgress(this);
 	m_daily_progress_dialog = new DailyProgressDialog(m_daily_progress, this);
+	connect(m_documents, SIGNAL(footerVisible(bool)), m_daily_progress, SLOT(setProgressEnabled(bool)));
+	connect(m_daily_progress_dialog, SIGNAL(visibleChanged(bool)), m_daily_progress, SLOT(setProgressEnabled(bool)));
 
 	// Set up menubar and toolbar
 	initMenus();
@@ -1032,7 +1034,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 		document->loadFile(file, m_save_positions ? position : -1);
 	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
-	connect(document, SIGNAL(changed()), m_progress_label, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
 	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
@@ -1147,7 +1148,6 @@ void Window::loadPreferences(Preferences& preferences)
 	m_progress_label->setVisible(preferences.goalType() != 0);
 
 	m_daily_progress->loadPreferences(preferences);
-	m_progress_label->updateProgress();
 
 	m_toolbar->clear();
 	m_toolbar->hide();

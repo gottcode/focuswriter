@@ -34,8 +34,12 @@ class DailyProgressDialog : public QDialog
 public:
 	DailyProgressDialog(DailyProgress* progress, QWidget* parent = 0);
 
+signals:
+	void visibleChanged(bool visible);
+
 protected:
 	void closeEvent(QCloseEvent* event);
+	void hideEvent(QHideEvent* event);
 	void showEvent(QShowEvent* event);
 
 private slots:

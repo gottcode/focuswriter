@@ -28,13 +28,7 @@ DailyProgressLabel::DailyProgressLabel(DailyProgress* progress, QWidget* parent)
 	m_progress(progress)
 {
 	setText(tr("%1% of daily goal").arg(0));
-}
-
-//-----------------------------------------------------------------------------
-
-void DailyProgressLabel::updateProgress()
-{
-	setText(tr("%1% of daily goal").arg(m_progress->percentComplete()));
+	connect(m_progress, SIGNAL(progressChanged()), this, SLOT(progressChanged()));
 }
 
 //-----------------------------------------------------------------------------
@@ -44,6 +38,13 @@ void DailyProgressLabel::mousePressEvent(QMouseEvent* event)
 	emit clicked();
 
 	QLabel::mousePressEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgressLabel::progressChanged()
+{
+	setText(tr("%1% of daily goal").arg(m_progress->percentComplete()));
 }
 
 //-----------------------------------------------------------------------------

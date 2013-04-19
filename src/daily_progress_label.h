@@ -31,14 +31,14 @@ class DailyProgressLabel : public QLabel
 public:
 	DailyProgressLabel(DailyProgress* progress, QWidget* parent = 0);
 
-public slots:
-	void updateProgress();
-
 signals:
 	void clicked();
 
 protected:
 	void mousePressEvent(QMouseEvent* event);
+
+private slots:
+	void progressChanged();
 
 private:
 	DailyProgress* m_progress;

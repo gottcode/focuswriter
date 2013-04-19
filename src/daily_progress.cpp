@@ -38,7 +38,8 @@ DailyProgress::DailyProgress(QObject* parent) :
 	m_type(0),
 	m_goal(0),
 	m_current_valid(false),
-	m_current_pos(0)
+	m_current_pos(0),
+	m_progress_enabled(0)
 {
 	// Fetch date of when the program was started
 	QDate date = QDate::currentDate();
@@ -229,6 +230,8 @@ int DailyProgress::percentComplete()
 
 		QModelIndex index = createIndex(m_current_pos / 7, m_current_pos % 7);
 		emit dataChanged(index, index);
+
+		emit progressChanged();
 	}
 	return m_current->progress();
 }
@@ -241,6 +244,7 @@ void DailyProgress::increaseTime()
 	if (msecs < 30000) {
 		m_msecs += msecs;
 		m_current_valid = false;
+		updateProgress();
 	}
 }
 
@@ -256,7 +260,9 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 	} else {
 		m_goal = 0;
 	}
+
 	m_current_valid = false;
+	updateProgress();
 }
 
 //-----------------------------------------------------------------------------
@@ -348,6 +354,18 @@ void DailyProgress::save()
 
 //-----------------------------------------------------------------------------
 
+void DailyProgress::setProgressEnabled(bool enable)
+{
+	if (enable) {
+		++m_progress_enabled;
+		updateProgress();
+	} else if (m_progress_enabled) {
+		--m_progress_enabled;
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void DailyProgress::setPath(const QString& path)
 {
 	m_path = path;
@@ -367,6 +385,15 @@ void DailyProgress::findStreak(int pos, int& start, int& end) const
 		} else {
 			break;
 		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::updateProgress()
+{
+	if (m_progress_enabled) {
+		percentComplete();
 	}
 }
 

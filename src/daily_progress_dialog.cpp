@@ -185,8 +185,19 @@ void DailyProgressDialog::closeEvent(QCloseEvent* event)
 
 //-----------------------------------------------------------------------------
 
+void DailyProgressDialog::hideEvent(QHideEvent* event)
+{
+	emit visibleChanged(false);
+
+	QDialog::hideEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
 void DailyProgressDialog::showEvent(QShowEvent* event)
 {
+	emit visibleChanged(true);
+
 	m_display->scrollToBottom();
 
 	QDialog::showEvent(event);

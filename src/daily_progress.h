@@ -59,12 +59,15 @@ public:
 
 public slots:
 	void save();
+	void setProgressEnabled(bool enable = true);
 
 signals:
+	void progressChanged();
 	void streaksChanged();
 
 private:
 	void findStreak(int pos, int& start, int& end) const;
+	void updateProgress();
 
 private:
 	QSettings* m_file;
@@ -105,6 +108,7 @@ private:
 	Progress* m_current;
 	bool m_current_valid;
 	int m_current_pos;
+	int m_progress_enabled;
 
 	QStringList m_day_names;
 
@@ -115,6 +119,7 @@ inline void DailyProgress::increaseWordCount(int words)
 {
 	m_words += words;
 	m_current_valid = false;
+	updateProgress();
 }
 
 #endif
