@@ -45,15 +45,6 @@ public:
 	Delegate(QObject* parent = 0) :
 		QStyledItemDelegate(parent)
 	{
-		// Load colors
-		QPalette palette = QApplication::palette();
-		m_foregrounds[0] = palette.color(QPalette::Text);
-		m_foregrounds[1] = palette.color(QPalette::HighlightedText);
-		m_foregrounds[2] = palette.color(QPalette::HighlightedText);
-		m_backgrounds[0] = palette.color(QPalette::AlternateBase);
-		m_backgrounds[1] = palette.color(QPalette::Highlight);
-		m_backgrounds[1].setAlpha(128);
-		m_backgrounds[2] = palette.color(QPalette::Highlight);
 	}
 
 	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -65,26 +56,31 @@ public:
 			return;
 		} else {
 			opt.rect = opt.rect.adjusted(2,2,-2,-2);
-			int progress = index.data(Qt::UserRole).toInt();
-			if (progress <= 0) {
-				opt.palette.setColor(QPalette::Text, m_foregrounds[0]);
-				opt.backgroundBrush = m_backgrounds[0];
-			} else if (progress < 100) {
-				opt.palette.setColor(QPalette::Text, m_foregrounds[1]);
-				opt.backgroundBrush = m_backgrounds[1];
+
+			int progress = qBound(0, index.data(Qt::UserRole).toInt(), 100);
+			if (progress == 0) {
+				opt.backgroundBrush = opt.palette.alternateBase();
+			} else if (progress == 100) {
+				opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Highlight);
 			} else {
-				opt.palette.setColor(QPalette::Text, m_foregrounds[2]);
-				opt.backgroundBrush = m_backgrounds[2];
+				qreal k = (progress * 0.009) + 0.1;
+				qreal ik = 1.0 - k;
+				QColor base = opt.palette.color(QPalette::Active, QPalette::AlternateBase);
+				QColor highlight = opt.palette.color(QPalette::Active, QPalette::Highlight);
+				opt.backgroundBrush = QColor(qRound((highlight.red() * k) + (base.red() * ik)),
+						qRound((highlight.green() * k) + (base.green() * ik)),
+						qRound((highlight.blue() * k) + (base.blue() * ik)));
+				opt.palette.setColor(QPalette::Text, opt.palette.color(QPalette::Active, QPalette::Text));
+			}
+
+			if (progress >= 50) {
+				opt.palette.setColor(QPalette::Text, opt.palette.color(QPalette::Active, QPalette::HighlightedText));
 			}
 		}
 
 		QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 		style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
 	}
-
-private:
-	QColor m_backgrounds[3];
-	QColor m_foregrounds[3];
 };
 
 }

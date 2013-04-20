@@ -1,4 +1,5 @@
 2013-04-19 Graeme Gott <graeme@gottcode.org>
+	* Use more colors to show daily progress history.
 	* Update daily progress only when visible.
 	* Add clicking on daily progress to show history.
 	* Remember daily progress dialog size.
