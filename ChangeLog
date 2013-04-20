@@ -1,3 +1,6 @@
+2013-04-20 Graeme Gott <graeme@gottcode.org>
+	* Show months and years in daily progress history.
+
 2013-04-19 Graeme Gott <graeme@gottcode.org>
 	* Use more colors to show daily progress history.
 	* Update daily progress only when visible.

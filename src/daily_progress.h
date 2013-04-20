@@ -111,6 +111,8 @@ private:
 	int m_progress_enabled;
 
 	QStringList m_day_names;
+	QHash<int, QString> m_row_month_names;
+	QHash<int, QString> m_row_year_names;
 
 	static QString m_path;
 };

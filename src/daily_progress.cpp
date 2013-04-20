@@ -156,6 +156,34 @@ DailyProgress::DailyProgress(QObject* parent) :
 	}
 	m_day_names.append(QString());
 
+	// Fetch row month and year names
+	int month = -1;
+	int year = -1;
+	int offset = 0;
+	for (int i = 0; i < m_progress.size(); i += 7) {
+		const Progress& progress = m_progress.at(i);
+		if (progress.date().isNull()) {
+			i -= 6;
+			++offset;
+			continue;
+		} else if (offset) {
+			i -= offset;
+			offset = 0;
+		}
+
+		int row = i / 7;
+		if (progress.date().month() != month) {
+			month = progress.date().month();
+			QString name = locale.standaloneMonthName(progress.date().month(), QLocale::ShortFormat);
+			m_row_month_names.insert(row, name);
+		}
+		if (progress.date().year() != year) {
+			year = progress.date().year();
+			QString name = QString::number(year);
+			m_row_year_names.insert(row, name);
+		}
+	}
+
 	m_typing_timer.start();
 }
 
@@ -279,7 +307,33 @@ QVariant DailyProgress::data(const QModelIndex& index, int role) const
 	QVariant result;
 
 	int column = index.column() - 1;
-	if ((column == -1) || (column == 7)) {
+	if (column == -1) {
+		switch (role) {
+		case Qt::DisplayRole:
+			result = m_row_month_names.value(index.row());
+			break;
+
+		case Qt::TextAlignmentRole:
+			result = int(Qt::AlignRight | Qt::AlignVCenter);
+			break;
+
+		default:
+			break;
+		}
+		return result;
+	} else if (column == 7) {
+		switch (role) {
+		case Qt::DisplayRole:
+			result = m_row_year_names.value(index.row());
+			break;
+
+		case Qt::TextAlignmentRole:
+			result = int(Qt::AlignLeft | Qt::AlignVCenter);
+			break;
+
+		default:
+			break;
+		}
 		return result;
 	}
 

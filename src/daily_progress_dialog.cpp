@@ -54,7 +54,7 @@ public:
 
 		if (opt.text.isEmpty()) {
 			return;
-		} else {
+		} else if ((index.column() > 0) && (index.column() < 8)) {
 			opt.rect = opt.rect.adjusted(2,2,-2,-2);
 
 			int progress = qBound(0, index.data(Qt::UserRole).toInt(), 100);
@@ -76,6 +76,8 @@ public:
 			if (progress >= 50) {
 				opt.palette.setColor(QPalette::Text, opt.palette.color(QPalette::Active, QPalette::HighlightedText));
 			}
+		} else {
+			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Base);
 		}
 
 		QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
@@ -141,7 +143,8 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 
 	// Set minimum size to always show up to 5 weeks of data
 	int frame = (m_display->style()->pixelMetric(QStyle::PM_DefaultFrameWidth) * 2) + 4;
-	m_display->setMinimumWidth(size * 7 + frame + m_display->verticalScrollBar()->sizeHint().width());
+	int min_width = m_display->fontMetrics().averageCharWidth() * 10;
+	m_display->setMinimumWidth(size * 7 + frame + m_display->verticalScrollBar()->sizeHint().width() + min_width);
 	m_display->setMinimumHeight((size * 5) + frame + m_display->horizontalHeader()->sizeHint().height());
 	m_display->scrollToBottom();
 
