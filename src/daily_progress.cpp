@@ -64,12 +64,12 @@ DailyProgress::DailyProgress(QObject* parent) :
 			if (!date.isValid()) {
 				continue;
 			}
-			Progress progress(date);
 			QVariantList values = m_file->value(key).toList();
 			if (values.size() == 4) {
-				progress.setProgress(values.at(0).toInt(), values.at(1).toInt(), values.at(2).toInt(), values.at(3).toInt());
+				m_progress.append(Progress(date, values.at(0).toInt(), values.at(1).toInt(), values.at(2).toInt(), values.at(3).toInt()));
+			} else {
+				m_progress.append(Progress(date));
 			}
-			m_progress.append(progress);
 		}
 	} else if (version == -1) {
 		// Load current daily progress data from 1.4
@@ -101,10 +101,12 @@ DailyProgress::DailyProgress(QObject* parent) :
 	QDate previous = m_progress.last().date();
 	for (int i = m_progress.size() - 2; i >= 0; --i) {
 		QDate next = m_progress.at(i).date();
+		int type = m_progress.at(i).type();
+		int goal = m_progress.at(i).goal();
 		int count = next.daysTo(previous) - 1;
 		for (int j = 0; j < count; ++j) {
 			previous = previous.addDays(-1);
-			m_progress.insert(i + 1, Progress(previous));
+			m_progress.insert(i + 1, Progress(previous, 0, 0, type, goal));
 		}
 		previous = next;
 	}
@@ -356,9 +358,9 @@ QVariant DailyProgress::data(const QModelIndex& index, int role) const
 		break;
 
 	case Qt::ToolTipRole:
-		result = QString("<center><small><b>%1</b></small><br>%2%</center>")
+		result = QString("<center><small><b>%1</b></small><br>%2</center>")
 				.arg(progress.date().toString(Qt::DefaultLocaleLongDate))
-				.arg(progress.progress());
+				.arg(progress.progressString());
 		break;
 
 	default:
@@ -453,16 +455,44 @@ void DailyProgress::updateProgress()
 
 //-----------------------------------------------------------------------------
 
+QString DailyProgress::Progress::progressString() const
+{
+	if (m_type == 1) {
+		return DailyProgress::tr("%1% of %Ln minute(s)", "", m_goal / 60000).arg(m_progress);
+	} else if (m_type == 2) {
+		return DailyProgress::tr("%1% of %Ln word(s)", "", m_goal).arg(m_progress);
+	} else if (m_words) {
+		return DailyProgress::tr("%Ln word(s)", "", m_words);
+	} else if (m_msecs) {
+		return DailyProgress::tr("%Ln minute(s)", "", m_msecs / 60000);
+	} else {
+		return DailyProgress::tr("0%");
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void DailyProgress::Progress::setProgress(int words, int msecs, int type, int goal)
 {
+	m_words = words;
+	m_msecs = msecs;
+	m_type = type;
+	m_goal = goal;
+	calculateProgress();
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::Progress::calculateProgress()
+{
 	m_progress = 0;
-	if (goal > 0) {
-		if (type == 1) {
-			m_progress = (msecs * 100) / goal;
-		} else if (type == 2) {
-			m_progress = (words * 100) / goal;
+	if (m_goal > 0) {
+		if (m_type == 1) {
+			m_progress = (m_msecs * 100) / m_goal;
+		} else if (m_type == 2) {
+			m_progress = (m_words * 100) / m_goal;
 		}
-	} else if (words || msecs) {
+	} else if (m_words || m_msecs) {
 		m_progress = 100;
 	}
 }

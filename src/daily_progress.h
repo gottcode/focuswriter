@@ -86,14 +86,27 @@ private:
 	class Progress
 	{
 	public:
-		Progress(const QDate& date = QDate()) : m_date(date), m_progress(0)
+		Progress(const QDate& date = QDate()) :
+			m_date(date), m_words(0), m_msecs(0), m_type(0), m_goal(0), m_progress(0)
 			{ }
+
+		Progress(const QDate& date, int words, int msecs, int type, int goal) :
+			m_date(date), m_words(words), m_msecs(msecs), m_type(type), m_goal(goal), m_progress(0)
+			{ calculateProgress(); }
 
 		QDate date() const
 			{ return m_date; }
 
+		int goal() const
+			{ return m_goal; }
+
+		int type() const
+			{ return m_type; }
+
 		int progress() const
 			{ return m_progress; }
+
+		QString progressString() const;
 
 		void setDate(const QDate& date)
 			{ m_date = date; }
@@ -101,7 +114,14 @@ private:
 		void setProgress(int words, int msecs, int type, int goal);
 
 	private:
+		void calculateProgress();
+
+	private:
 		QDate m_date;
+		int m_words;
+		int m_msecs;
+		int m_type;
+		int m_goal;
 		int m_progress;
 	};
 	QVector<Progress> m_progress;
