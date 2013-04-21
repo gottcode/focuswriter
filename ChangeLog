@@ -1,4 +1,5 @@
 2013-04-21 Graeme Gott <graeme@gottcode.org>
+	* Draw star in history for days that met daily goal.
 	* Add option to disable daily progress history.
 
 2013-04-20 Graeme Gott <graeme@gottcode.org>

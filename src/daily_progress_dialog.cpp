@@ -27,12 +27,16 @@
 #include <QHeaderView>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QPainter>
+#include <QPixmap>
 #include <QScrollBar>
 #include <QSettings>
 #include <QStyle>
 #include <QStyledItemDelegate>
 #include <QTableView>
 #include <QVBoxLayout>
+
+#include <cmath>
 
 //-----------------------------------------------------------------------------
 
@@ -61,7 +65,8 @@ public:
 			if (progress == 0) {
 				opt.backgroundBrush = opt.palette.alternateBase();
 			} else if (progress == 100) {
-				opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Highlight);
+				opt.backgroundBrush.setTexture(fetchStarBackground(opt));
+				opt.font.setBold(true);
 			} else {
 				qreal k = (progress * 0.009) + 0.1;
 				qreal ik = 1.0 - k;
@@ -83,6 +88,48 @@ public:
 		QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 		style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
 	}
+
+private:
+	QPixmap fetchStarBackground(const QStyleOptionViewItemV4& option) const
+	{
+		if (m_pixmap.size() != option.rect.size()) {
+			// Create success background image
+			QStyleOptionViewItemV4 opt = option;
+			opt.rect = QRect(QPoint(0,0), opt.rect.size());
+			m_pixmap = QPixmap(opt.rect.size());
+
+			// Draw view item background
+			QPainter p(&m_pixmap);
+			p.fillRect(opt.rect, opt.palette.color(QPalette::Active, QPalette::Base));
+			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Highlight);
+			QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
+			style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, &p, opt.widget);
+
+			// Create star
+			QPolygonF star;
+			const qreal pi = acos(-1.0);
+			for (int i = 0; i < 5; ++i) {
+				qreal angle = ((i * 0.8) - 0.5) * pi;
+				star << QPointF(cos(angle), sin(angle));
+			}
+
+			// Draw star
+			p.setRenderHint(QPainter::Antialiasing);
+			p.setPen(Qt::NoPen);
+			QColor background = opt.palette.color(QPalette::Active, QPalette::HighlightedText);
+			background.setAlpha(64);
+			p.setBrush(background);
+			qreal size = (opt.rect.width() * 0.5) - 2.0;
+			qreal offset = 2.0 + size;
+			p.translate(offset, offset);
+			p.scale(size, size);
+			p.drawPolygon(star, Qt::WindingFill);
+		}
+		return m_pixmap;
+	}
+
+private:
+	mutable QPixmap m_pixmap;
 };
 
 }
