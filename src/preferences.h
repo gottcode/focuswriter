@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,9 +33,11 @@ public:
 	int goalType() const;
 	int goalMinutes() const;
 	int goalWords() const;
+	bool goalHistory() const;
 	void setGoalType(int goal);
 	void setGoalMinutes(int goal);
 	void setGoalWords(int goal);
+	void setGoalHistory(bool enable);
 
 	bool showCharacters() const;
 	bool showPages() const;
@@ -99,6 +101,7 @@ private:
 	int m_goal_type;
 	int m_goal_minutes;
 	int m_goal_words;
+	bool m_goal_history;
 
 	bool m_show_characters;
 	bool m_show_pages;

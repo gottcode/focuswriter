@@ -1,3 +1,6 @@
+2013-04-21 Graeme Gott <graeme@gottcode.org>
+	* Add option to disable daily progress history.
+
 2013-04-20 Graeme Gott <graeme@gottcode.org>
 	* Show units for percents in daily progress history.
 	* Show months and years in daily progress history.

@@ -282,6 +282,29 @@ void DailyProgress::increaseTime()
 
 void DailyProgress::loadPreferences(const Preferences& preferences)
 {
+	// Check if history is disabled
+	m_file->endGroup();
+	if (preferences.goalHistory()) {
+		m_file->remove(QLatin1String("HistoryDisabled"));
+	} else {
+		// Remove history of previous launch
+		QDate disabled_date = m_file->value(QLatin1String("HistoryDisabled")).toDate();
+		if (disabled_date.isValid() && (disabled_date != m_current->date())) {
+			m_file->remove(QLatin1String("Progress/") + disabled_date.toString(Qt::ISODate));
+
+			// Update model
+			int pos = m_current_pos - disabled_date.daysTo(m_current->date());
+			m_progress[pos] = Progress(disabled_date);
+			int row = pos / 7;
+			int col = pos % 7;
+			QModelIndex index = createIndex(row, col);
+			emit dataChanged(index, index);
+		}
+		m_file->setValue(QLatin1String("HistoryDisabled"), m_current->date().toString(Qt::ISODate));
+	}
+	m_file->beginGroup(QLatin1String("Progress"));
+
+	// Load goal
 	m_type = preferences.goalType();
 	if (m_type == 1) {
 		m_goal = preferences.goalMinutes() * 60000;
@@ -291,6 +314,7 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 		m_goal = 0;
 	}
 
+	// Refresh current value if visible
 	m_current_valid = false;
 	updateProgress();
 }

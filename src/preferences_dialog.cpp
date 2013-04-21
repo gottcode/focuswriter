@@ -138,6 +138,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 	}
 	m_time->setValue(m_preferences.goalMinutes());
 	m_wordcount->setValue(m_preferences.goalWords());
+	m_goal_history->setChecked(m_preferences.goalHistory());
 
 	m_show_characters->setChecked(m_preferences.showCharacters());
 	m_show_pages->setChecked(m_preferences.showPages());
@@ -258,6 +259,7 @@ void PreferencesDialog::accept()
 	}
 	m_preferences.setGoalMinutes(m_time->value());
 	m_preferences.setGoalWords(m_wordcount->value());
+	m_preferences.setGoalHistory(m_goal_history->isChecked());
 
 	m_preferences.setShowCharacters(m_show_characters->isChecked());
 	m_preferences.setShowPages(m_show_pages->isChecked());
@@ -718,6 +720,16 @@ QWidget* PreferencesDialog::initGeneralTab()
 	goals_layout->addLayout(time_layout);
 	goals_layout->addLayout(wordcount_layout);
 
+	// Create daily progress options
+	QGroupBox* daily_progress_group = new QGroupBox(tr("Daily Progress"), tab);
+
+	m_goal_history = new QCheckBox(tr("Remember history"), daily_progress_group);
+
+	QFormLayout* daily_progress_layout = new QFormLayout(daily_progress_group);
+	daily_progress_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	daily_progress_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
+	daily_progress_layout->addRow(m_goal_history);
+
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
@@ -777,6 +789,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
 	layout->addWidget(goals_group);
+	layout->addWidget(daily_progress_group);
 	layout->addWidget(edit_group);
 	layout->addWidget(scene_group);
 	layout->addWidget(save_group);
