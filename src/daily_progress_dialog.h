@@ -38,6 +38,7 @@ signals:
 	void visibleChanged(bool visible);
 
 protected:
+	void changeEvent(QEvent* event);
 	void closeEvent(QCloseEvent* event);
 	void hideEvent(QHideEvent* event);
 	void showEvent(QShowEvent* event);
@@ -51,6 +52,8 @@ private:
 private:
 	DailyProgress* m_progress;
 	QTableView* m_display;
+	class Delegate;
+	Delegate* m_delegate;
 	QLabel* m_longest_streak;
 	QLabel* m_current_streak;
 };

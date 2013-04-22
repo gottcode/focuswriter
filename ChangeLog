@@ -1,4 +1,5 @@
 2013-04-22 Graeme Gott <graeme@gottcode.org>
+	* Redraw daily progress star when palette or style changes.
 	* Allow user to set minimum percent for daily progress streaks.
 
 2013-04-21 Graeme Gott <graeme@gottcode.org>

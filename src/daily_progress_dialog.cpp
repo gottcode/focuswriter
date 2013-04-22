@@ -40,15 +40,19 @@
 
 //-----------------------------------------------------------------------------
 
-namespace
-{
-
-class Delegate : public QStyledItemDelegate
+class DailyProgressDialog::Delegate : public QStyledItemDelegate
 {
 public:
 	Delegate(QObject* parent = 0) :
 		QStyledItemDelegate(parent)
 	{
+	}
+
+	void changeEvent(QEvent* event)
+	{
+		if ((event->type() == QEvent::PaletteChange) || (event->type() == QEvent::StyleChange)) {
+			m_pixmap = QPixmap();
+		}
 	}
 
 	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -132,8 +136,6 @@ private:
 	mutable QPixmap m_pixmap;
 };
 
-}
-
 //-----------------------------------------------------------------------------
 
 DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* parent) :
@@ -146,10 +148,12 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display = new QTableView(this);
 	m_display->setModel(progress);
 	m_display->setShowGrid(false);
-	m_display->setItemDelegate(new Delegate(this));
 	m_display->verticalHeader()->hide();
 	m_display->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_display->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+	m_delegate = new Delegate(this);
+	m_display->setItemDelegate(m_delegate);
 
 	// Find maximum size needed to show day names
 	m_display->horizontalHeader()->setMinimumSectionSize(0);
@@ -219,6 +223,14 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 
 	// Restore size
 	resize(QSettings().value("DailyProgressDialog/Size", sizeHint()).toSize());
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgressDialog::changeEvent(QEvent* event)
+{
+	m_delegate->changeEvent(event);
+	QDialog::changeEvent(event);
 }
 
 //-----------------------------------------------------------------------------
