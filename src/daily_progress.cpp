@@ -39,7 +39,8 @@ DailyProgress::DailyProgress(QObject* parent) :
 	m_goal(0),
 	m_current_valid(false),
 	m_current_pos(0),
-	m_progress_enabled(0)
+	m_progress_enabled(0),
+	m_streak_minimum(100)
 {
 	// Fetch date of when the program was started
 	QDate date = QDate::currentDate();
@@ -250,9 +251,9 @@ int DailyProgress::percentComplete()
 	if (!m_current_valid) {
 		m_current_valid = true;
 
-		bool had_streak_before = m_current->progress() > 0;
+		bool had_streak_before = m_current->progress() >= m_streak_minimum;
 		m_current->setProgress(m_words, m_msecs, m_type, m_goal);
-		bool had_streak_after = m_current->progress() > 0;
+		bool had_streak_after = m_current->progress() >= m_streak_minimum;
 
 		if (had_streak_before != had_streak_after) {
 			emit streaksChanged();
@@ -317,6 +318,13 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 	// Refresh current value if visible
 	m_current_valid = false;
 	updateProgress();
+
+	// Refresh streaks if minimum percent has changed
+	int streak_minimum = m_streak_minimum;
+	m_streak_minimum = preferences.goalStreakMinimum();
+	if (streak_minimum != m_streak_minimum) {
+		emit streaksChanged();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -457,7 +465,7 @@ void DailyProgress::findStreak(int pos, int& start, int& end) const
 {
 	start = end = -1;
 	for (int i = pos; i >= 0; --i) {
-		if (m_progress.at(i).progress() > 0) {
+		if (m_progress.at(i).progress() >= m_streak_minimum) {
 			start = i;
 			if (end == -1) {
 				end = i;

@@ -34,10 +34,12 @@ public:
 	int goalMinutes() const;
 	int goalWords() const;
 	bool goalHistory() const;
+	int goalStreakMinimum() const;
 	void setGoalType(int goal);
 	void setGoalMinutes(int goal);
 	void setGoalWords(int goal);
 	void setGoalHistory(bool enable);
+	void setGoalStreakMinimum(int percent);
 
 	bool showCharacters() const;
 	bool showPages() const;
@@ -102,6 +104,7 @@ private:
 	int m_goal_minutes;
 	int m_goal_words;
 	bool m_goal_history;
+	int m_goal_streak_minimum;
 
 	bool m_show_characters;
 	bool m_show_pages;

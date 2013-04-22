@@ -139,6 +139,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 	m_time->setValue(m_preferences.goalMinutes());
 	m_wordcount->setValue(m_preferences.goalWords());
 	m_goal_history->setChecked(m_preferences.goalHistory());
+	m_streak_minimum->setValue(m_preferences.goalStreakMinimum());
 
 	m_show_characters->setChecked(m_preferences.showCharacters());
 	m_show_pages->setChecked(m_preferences.showPages());
@@ -260,6 +261,7 @@ void PreferencesDialog::accept()
 	m_preferences.setGoalMinutes(m_time->value());
 	m_preferences.setGoalWords(m_wordcount->value());
 	m_preferences.setGoalHistory(m_goal_history->isChecked());
+	m_preferences.setGoalStreakMinimum(m_streak_minimum->value());
 
 	m_preferences.setShowCharacters(m_show_characters->isChecked());
 	m_preferences.setShowPages(m_show_pages->isChecked());
@@ -699,6 +701,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_time->setSingleStep(5);
 
 	QHBoxLayout* time_layout = new QHBoxLayout;
+	time_layout->setMargin(0);
 	time_layout->addWidget(m_option_time);
 	time_layout->addWidget(m_time);
 	time_layout->addStretch();
@@ -711,6 +714,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_wordcount->setSingleStep(100);
 
 	QHBoxLayout* wordcount_layout = new QHBoxLayout;
+	wordcount_layout->setMargin(0);
 	wordcount_layout->addWidget(m_option_wordcount);
 	wordcount_layout->addWidget(m_wordcount);
 	wordcount_layout->addStretch();
@@ -725,10 +729,16 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	m_goal_history = new QCheckBox(tr("Remember history"), daily_progress_group);
 
+	m_streak_minimum = new QSpinBox(daily_progress_group);
+	m_streak_minimum->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_streak_minimum->setRange(1, 100);
+	m_streak_minimum->setSuffix(QLocale().percent());
+
 	QFormLayout* daily_progress_layout = new QFormLayout(daily_progress_group);
 	daily_progress_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	daily_progress_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
 	daily_progress_layout->addRow(m_goal_history);
+	daily_progress_layout->addRow(tr("Minimum progress for streaks:"), m_streak_minimum);
 
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);

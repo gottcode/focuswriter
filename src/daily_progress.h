@@ -129,6 +129,7 @@ private:
 	bool m_current_valid;
 	int m_current_pos;
 	int m_progress_enabled;
+	int m_streak_minimum;
 
 	QStringList m_day_names;
 	QHash<int, QString> m_row_month_names;

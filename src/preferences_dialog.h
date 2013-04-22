@@ -81,6 +81,7 @@ private:
 	QSpinBox* m_time;
 	QSpinBox* m_wordcount;
 	QCheckBox* m_goal_history;
+	QSpinBox* m_streak_minimum;
 	QCheckBox* m_always_center;
 	QCheckBox* m_block_cursor;
 	QCheckBox* m_smooth_fonts;
