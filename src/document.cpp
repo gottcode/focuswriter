@@ -1120,10 +1120,10 @@ QString Document::getSaveFileName(const QString& title)
 	QString filter;
 	QString default_filter;
 	{
-		QString opendocumenttext = tr("OpenDocument Text (*.odt)");
-		QString richtext = tr("Rich Text (*.rtf)");
-		QString plaintext = tr("Plain Text (*.txt)");
-		QString all = tr("All Files (*)");
+		QString opendocumenttext = tr("OpenDocument Text") + QLatin1String(" (*.odt)");
+		QString richtext = tr("Rich Text Format") + QLatin1String(" (*.rtf)");
+		QString plaintext = tr("Plain Text") + QLatin1String(" (*.txt *.text)");
+		QString all = tr("All Files") + QLatin1String(" (*)");
 		default_filter = opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
 
 		QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
@@ -1150,12 +1150,22 @@ QString Document::getSaveFileName(const QString& title)
 		// Append file extension
 		QString type;
 		QRegExp exp("\\*(\\.\\w+)");
-		int index = exp.indexIn(selected);
-		if (index != -1) {
+		bool append_extension = false;
+		QStringList types;
+		int index = selected.indexOf(QLatin1Char('(')) + 1;
+		while ((index = exp.indexIn(selected, index)) != -1) {
 			type = exp.cap(1);
+			if (filename.endsWith(type)) {
+				append_extension = false;
+				break;
+			}
+
+			append_extension = true;
+			types.append(type);
+			index += types.last().length();
 		}
-		if (!filename.endsWith(type)) {
-			filename.append(type);
+		if (append_extension) {
+			filename.append(types.first());
 		}
 
 		// Handle rich text in plain text file

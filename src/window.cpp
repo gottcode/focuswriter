@@ -661,7 +661,14 @@ void Window::openDocument()
 		path = oldpath;
 	}
 
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, tr("Text Files (%1);;All Files (*)").arg("*.txt *.text *.odt *.rtf"));
+	QString text = tr("All Supported Files") + QLatin1String(" (*.odt *.rtf *.txt *.text)");
+	QString opendocumenttext = Document::tr("OpenDocument Text") + QLatin1String(" (*.odt)");
+	QString richtext = Document::tr("Rich Text Format") + QLatin1String(" (*.rtf)");
+	QString plaintext = Document::tr("Plain Text") + QLatin1String(" (*.txt *.text)");
+	QString all = Document::tr("All Files") + QLatin1String(" (*)");
+	QString filter = text + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
+
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, filter);
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
 		oldpath = QFileInfo(filenames.last()).dir().path();
