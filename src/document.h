@@ -123,6 +123,7 @@ private:
 
 private:
 	QString m_filename;
+	QString m_default_format;
 	bool m_cache_outdated;
 	QByteArray m_codepage;
 	QHash<int, QPair<QString, bool> > m_old_states;

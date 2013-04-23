@@ -1,4 +1,5 @@
 2013-04-23 Graeme Gott <graeme@gottcode.org>
+	* Add setting default file format.
 	* Improve format selection in file dialogs.
 
 2013-04-22 Graeme Gott <graeme@gottcode.org>

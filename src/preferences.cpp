@@ -64,6 +64,11 @@ Preferences::Preferences()
 
 	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
+	m_save_format = settings.value("Save/DefaultFormat", "odt").toString();
+	const QStringList formats = QStringList() << "odt" << "rtf" << "txt";
+	if (!formats.contains(m_save_format)) {
+		m_save_format = "odt";
+	}
 
 	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
 	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace" << "|" << "Themes";
@@ -119,6 +124,7 @@ Preferences::~Preferences()
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/RememberPositions", m_save_positions);
+	settings.setValue("Save/DefaultFormat", m_save_format);
 
 	settings.setValue("Toolbar/Style", m_toolbar_style);
 	settings.setValue("Toolbar/Actions", m_toolbar_actions);
@@ -454,6 +460,13 @@ bool Preferences::savePositions() const
 
 //-----------------------------------------------------------------------------
 
+QString Preferences::saveFormat() const
+{
+	return m_save_format;
+}
+
+//-----------------------------------------------------------------------------
+
 void Preferences::setAutoSave(bool save)
 {
 	setValue(m_auto_save, save);
@@ -464,6 +477,13 @@ void Preferences::setAutoSave(bool save)
 void Preferences::setSavePositions(bool save)
 {
 	setValue(m_save_positions, save);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setSaveFormat(const QString& format)
+{
+	setValue(m_save_format, format);
 }
 
 //-----------------------------------------------------------------------------

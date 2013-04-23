@@ -714,6 +714,8 @@ void Document::loadPreferences(const Preferences& preferences)
 	m_text->setFont(font);
 
 	m_highlighter->setEnabled(!isReadOnly() ? preferences.highlightMisspelled() : false);
+
+	m_default_format = preferences.saveFormat();
 }
 
 //-----------------------------------------------------------------------------
@@ -1118,20 +1120,21 @@ QString Document::getSaveFileName(const QString& title)
 {
 	// Determine filter
 	QString filter;
-	QString default_filter;
 	{
 		QString opendocumenttext = tr("OpenDocument Text") + QLatin1String(" (*.odt)");
 		QString richtext = tr("Rich Text Format") + QLatin1String(" (*.rtf)");
 		QString plaintext = tr("Plain Text") + QLatin1String(" (*.txt *.text)");
 		QString all = tr("All Files") + QLatin1String(" (*)");
-		default_filter = opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
 
 		QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
-		if (type == "rtf") {
+		if (type.isEmpty()) {
+			type = m_default_format;
+		}
+		if (type == "odt") {
+			filter = opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
+		} else if (type == "rtf") {
 			filter = richtext + ";;" + opendocumenttext + ";;" + plaintext + ";;" + all;
-		} else if ((type == "odt") || m_rich_text || m_filename.isEmpty()) {
-			filter = default_filter;
-		} else if (type == "txt") {
+		} else  if ((type == "txt") || (type == "text")) {
 			filter = plaintext + ";;" + opendocumenttext + ";;" + richtext + ";;" + all;
 		} else {
 			filter = all + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext;
@@ -1170,7 +1173,6 @@ QString Document::getSaveFileName(const QString& title)
 
 		// Handle rich text in plain text file
 		if (!processFileName(filename)) {
-			filter = default_filter;
 			filename.clear();
 		}
 	}

@@ -21,6 +21,7 @@
 
 #include "action_manager.h"
 #include "dictionary_manager.h"
+#include "document.h"
 #include "locale_dialog.h"
 #include "preferences.h"
 #include "shortcut_edit.h"
@@ -179,6 +180,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 
 	m_auto_save->setChecked(m_preferences.autoSave());
 	m_save_positions->setChecked(m_preferences.savePositions());
+	m_save_format->setCurrentIndex(m_save_format->findData(m_preferences.saveFormat()));
 
 	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
 	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
@@ -293,6 +295,7 @@ void PreferencesDialog::accept()
 
 	m_preferences.setAutoSave(m_auto_save->isChecked());
 	m_preferences.setSavePositions(m_save_positions->isChecked());
+	m_preferences.setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
 
 	m_preferences.setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
@@ -792,9 +795,22 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_auto_save = new QCheckBox(tr("Automatically save changes"), save_group);
 	m_save_positions = new QCheckBox(tr("Remember cursor position"), save_group);
 
+	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
+	m_save_format = new QComboBox(save_group);
+	m_save_format->addItem(Document::tr("OpenDocument Text") + QLatin1String(" (*.odt)"), "odt");
+	m_save_format->addItem(Document::tr("Rich Text Format") + QLatin1String(" (*.rtf)"), "rtf");
+	m_save_format->addItem(Document::tr("Plain Text") + QLatin1String(" (*.txt *.text)"), "txt");
+
+	QHBoxLayout* save_format_layout = new QHBoxLayout;
+	save_format_layout->setMargin(0);
+	save_format_layout->addWidget(save_format_label);
+	save_format_layout->addWidget(m_save_format);
+	save_format_layout->addStretch();
+
 	QVBoxLayout* save_layout = new QVBoxLayout(save_group);
 	save_layout->addWidget(m_auto_save);
 	save_layout->addWidget(m_save_positions);
+	save_layout->addLayout(save_format_layout);
 
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
