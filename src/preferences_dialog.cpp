@@ -709,35 +709,35 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_option_none = new QRadioButton(tr("None"), goals_group);
 
 	m_option_time = new QRadioButton(tr("Minutes:"), goals_group);
-
 	m_time = new QSpinBox(goals_group);
 	m_time->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_time->setRange(5, 1440);
 	m_time->setSingleStep(5);
-
-	QHBoxLayout* time_layout = new QHBoxLayout;
-	time_layout->setMargin(0);
-	time_layout->addWidget(m_option_time);
-	time_layout->addWidget(m_time);
-	time_layout->addStretch();
+	m_time->setEnabled(false);
 
 	m_option_wordcount = new QRadioButton(tr("Words:"), goals_group);
-
 	m_wordcount = new QSpinBox(goals_group);
 	m_wordcount->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_wordcount->setRange(100, 100000);
 	m_wordcount->setSingleStep(100);
+	m_wordcount->setEnabled(false);
 
-	QHBoxLayout* wordcount_layout = new QHBoxLayout;
-	wordcount_layout->setMargin(0);
-	wordcount_layout->addWidget(m_option_wordcount);
-	wordcount_layout->addWidget(m_wordcount);
-	wordcount_layout->addStretch();
+	connect(m_option_none, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
+	connect(m_option_none, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
 
-	QVBoxLayout* goals_layout = new QVBoxLayout(goals_group);
-	goals_layout->addWidget(m_option_none);
-	goals_layout->addLayout(time_layout);
-	goals_layout->addLayout(wordcount_layout);
+	connect(m_option_time, SIGNAL(toggled(bool)), m_time, SLOT(setEnabled(bool)));
+	connect(m_option_time, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
+
+	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
+	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_wordcount, SLOT(setEnabled(bool)));
+
+	QGridLayout* goals_layout = new QGridLayout(goals_group);
+	goals_layout->setColumnStretch(2, 1);
+	goals_layout->addWidget(m_option_none, 0, 0);
+	goals_layout->addWidget(m_option_time, 1, 0);
+	goals_layout->addWidget(m_time, 1, 1);
+	goals_layout->addWidget(m_option_wordcount, 2, 0);
+	goals_layout->addWidget(m_wordcount, 2, 1);
 
 	// Create daily progress options
 	QGroupBox* daily_progress_group = new QGroupBox(tr("Daily Progress"), tab);
@@ -874,35 +874,42 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	m_page_characters->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_page_characters->setRange(500, 10000);
 	m_page_characters->setSingleStep(250);
-	QHBoxLayout* characters_layout = new QHBoxLayout;
-	characters_layout->addWidget(m_option_characters);
-	characters_layout->addWidget(m_page_characters);
-	characters_layout->addStretch();
+	m_page_characters->setEnabled(false);
 
 	m_option_paragraphs = new QRadioButton(tr("Paragraphs:"), page_group);
 	m_page_paragraphs = new QSpinBox(page_group);
 	m_page_paragraphs->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_page_paragraphs->setRange(1, 100);
 	m_page_paragraphs->setSingleStep(1);
-	QHBoxLayout* paragraphs_layout = new QHBoxLayout;
-	paragraphs_layout->addWidget(m_option_paragraphs);
-	paragraphs_layout->addWidget(m_page_paragraphs);
-	paragraphs_layout->addStretch();
+	m_page_paragraphs->setEnabled(false);
 
 	m_option_words = new QRadioButton(tr("Words:"), page_group);
 	m_page_words = new QSpinBox(page_group);
 	m_page_words->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_page_words->setRange(100, 2000);
 	m_page_words->setSingleStep(50);
-	QHBoxLayout* words_layout = new QHBoxLayout;
-	words_layout->addWidget(m_option_words);
-	words_layout->addWidget(m_page_words);
-	words_layout->addStretch();
+	m_page_words->setEnabled(false);
 
-	QVBoxLayout* page_layout = new QVBoxLayout(page_group);
-	page_layout->addLayout(characters_layout);
-	page_layout->addLayout(paragraphs_layout);
-	page_layout->addLayout(words_layout);
+	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_characters, SLOT(setEnabled(bool)));
+	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setDisabled(bool)));
+	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_words, SLOT(setDisabled(bool)));
+
+	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_characters, SLOT(setDisabled(bool)));
+	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setEnabled(bool)));
+	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_words, SLOT(setDisabled(bool)));
+
+	connect(m_option_words, SIGNAL(toggled(bool)), m_page_characters, SLOT(setDisabled(bool)));
+	connect(m_option_words, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setDisabled(bool)));
+	connect(m_option_words, SIGNAL(toggled(bool)), m_page_words, SLOT(setEnabled(bool)));
+
+	QGridLayout* page_layout = new QGridLayout(page_group);
+	page_layout->setColumnStretch(2, 1);
+	page_layout->addWidget(m_option_characters, 0, 0);
+	page_layout->addWidget(m_page_characters, 0, 1);
+	page_layout->addWidget(m_option_paragraphs, 1, 0);
+	page_layout->addWidget(m_page_paragraphs, 1, 1);
+	page_layout->addWidget(m_option_words, 2, 0);
+	page_layout->addWidget(m_page_words, 2, 1);
 
 	// Create wordcount options
 	QGroupBox* wordcount_group = new QGroupBox(tr("Word Count Algorithm"), this);
