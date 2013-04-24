@@ -139,7 +139,9 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 	}
 	m_time->setValue(m_preferences.goalMinutes());
 	m_wordcount->setValue(m_preferences.goalWords());
+
 	m_goal_history->setChecked(m_preferences.goalHistory());
+	m_goal_streaks->setChecked(m_preferences.goalStreaks());
 	m_streak_minimum->setValue(m_preferences.goalStreakMinimum());
 
 	m_show_characters->setChecked(m_preferences.showCharacters());
@@ -263,6 +265,7 @@ void PreferencesDialog::accept()
 	m_preferences.setGoalMinutes(m_time->value());
 	m_preferences.setGoalWords(m_wordcount->value());
 	m_preferences.setGoalHistory(m_goal_history->isChecked());
+	m_preferences.setGoalStreaks(m_goal_streaks->isChecked());
 	m_preferences.setGoalStreakMinimum(m_streak_minimum->value());
 
 	m_preferences.setShowCharacters(m_show_characters->isChecked());
@@ -361,6 +364,15 @@ void PreferencesDialog::reject()
 		qWarning("Failed to clean up dictionary install path");
 	}
 	QDialog::reject();
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::goalHistoryToggled()
+{
+	m_goal_streaks->setEnabled(m_goal_history->isChecked());
+	m_streak_minimum->setEnabled(m_goal_streaks->isChecked() && m_goal_streaks->isEnabled());
+	m_streak_minimum_label->setEnabled(m_goal_streaks->isChecked() && m_goal_streaks->isEnabled());
 }
 
 //-----------------------------------------------------------------------------
@@ -731,17 +743,27 @@ QWidget* PreferencesDialog::initGeneralTab()
 	QGroupBox* daily_progress_group = new QGroupBox(tr("Daily Progress"), tab);
 
 	m_goal_history = new QCheckBox(tr("Remember history"), daily_progress_group);
+	connect(m_goal_history, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
+
+	m_goal_streaks = new QCheckBox(tr("Show streaks"), daily_progress_group);
+	m_goal_streaks->setEnabled(false);
+	connect(m_goal_streaks, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
 
 	m_streak_minimum = new QSpinBox(daily_progress_group);
 	m_streak_minimum->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_streak_minimum->setRange(1, 100);
 	m_streak_minimum->setSuffix(QLocale().percent());
+	m_streak_minimum->setEnabled(false);
 
 	QFormLayout* daily_progress_layout = new QFormLayout(daily_progress_group);
 	daily_progress_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	daily_progress_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
 	daily_progress_layout->addRow(m_goal_history);
+	daily_progress_layout->addRow(m_goal_streaks);
 	daily_progress_layout->addRow(tr("Minimum progress for streaks:"), m_streak_minimum);
+
+	m_streak_minimum_label = daily_progress_layout->labelForField(m_streak_minimum);
+	m_streak_minimum_label->setEnabled(false);
 
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);

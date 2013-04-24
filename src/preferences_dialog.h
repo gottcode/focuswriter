@@ -49,6 +49,7 @@ public slots:
 	virtual void reject();
 
 private slots:
+	void goalHistoryToggled();
 	void moveActionUp();
 	void moveActionDown();
 	void addSeparatorAction();
@@ -81,7 +82,9 @@ private:
 	QSpinBox* m_time;
 	QSpinBox* m_wordcount;
 	QCheckBox* m_goal_history;
+	QWidget* m_streak_minimum_label;
 	QSpinBox* m_streak_minimum;
+	QCheckBox* m_goal_streaks;
 	QCheckBox* m_always_center;
 	QCheckBox* m_block_cursor;
 	QCheckBox* m_smooth_fonts;

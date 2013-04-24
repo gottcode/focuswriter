@@ -1154,6 +1154,7 @@ void Window::loadPreferences(Preferences& preferences)
 	m_progress_label->setVisible(preferences.goalType() != 0);
 
 	m_daily_progress->loadPreferences(preferences);
+	m_daily_progress_dialog->loadPreferences(preferences);
 	m_actions["DailyProgress"]->setEnabled(preferences.goalHistory());
 	if (preferences.goalHistory()) {
 		connect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));

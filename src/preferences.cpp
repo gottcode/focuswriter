@@ -37,6 +37,7 @@ Preferences::Preferences()
 	m_goal_minutes = settings.value("Goal/Minutes", 30).toInt();
 	m_goal_words = settings.value("Goal/Words", 1000).toInt();
 	m_goal_history = settings.value("Goal/History", true).toBool();
+	m_goal_streaks = settings.value("Goal/Streaks", true).toBool();
 	m_goal_streak_minimum = qBound(1, settings.value("Goal/StreakMinimum", 100).toInt(), 100);
 
 	m_show_characters = settings.value("Stats/ShowCharacters", false).toBool();
@@ -98,6 +99,7 @@ Preferences::~Preferences()
 	settings.setValue("Goal/Minutes", m_goal_minutes);
 	settings.setValue("Goal/Words", m_goal_words);
 	settings.setValue("Goal/History", m_goal_history);
+	settings.setValue("Goal/Streaks", m_goal_streaks);
 	settings.setValue("Goal/StreakMinimum", m_goal_streak_minimum);
 
 	settings.setValue("Stats/ShowCharacters", m_show_characters);
@@ -165,6 +167,13 @@ bool Preferences::goalHistory() const
 
 //-----------------------------------------------------------------------------
 
+bool Preferences::goalStreaks() const
+{
+	return m_goal_streaks;
+}
+
+//-----------------------------------------------------------------------------
+
 int Preferences::goalStreakMinimum() const
 {
 	return m_goal_streak_minimum;
@@ -196,6 +205,13 @@ void Preferences::setGoalWords(int goal)
 void Preferences::setGoalHistory(bool enable)
 {
 	setValue(m_goal_history, enable);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setGoalStreaks(bool enable)
+{
+	setValue(m_goal_streaks, enable);
 }
 
 //-----------------------------------------------------------------------------

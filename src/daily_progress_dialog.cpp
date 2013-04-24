@@ -20,6 +20,7 @@
 #include "daily_progress_dialog.h"
 
 #include "daily_progress.h"
+#include "preferences.h"
 
 #include <QApplication>
 #include <QColor>
@@ -200,14 +201,17 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->scrollToBottom();
 
 	// Set up streak labels
-	m_longest_streak = new QLabel(this);
+	m_streaks = new QWidget(this);
+	m_streaks->setVisible(false);
 
-	QFrame* streak_divider = new QFrame(this);
+	m_longest_streak = new QLabel(m_streaks);
+
+	QFrame* streak_divider = new QFrame(m_streaks);
 	streak_divider->setFrameStyle(QFrame::Sunken | QFrame::VLine);
 
-	m_current_streak = new QLabel(this);
+	m_current_streak = new QLabel(m_streaks);
 
-	QHBoxLayout* streaks_layout = new QHBoxLayout;
+	QHBoxLayout* streaks_layout = new QHBoxLayout(m_streaks);
 	streaks_layout->setMargin(0);
 	streaks_layout->addWidget(m_longest_streak);
 	streaks_layout->addWidget(streak_divider);
@@ -219,10 +223,17 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	// Lay out dialog
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_display);
-	layout->addLayout(streaks_layout);
+	layout->addWidget(m_streaks);
 
 	// Restore size
 	resize(QSettings().value("DailyProgressDialog/Size", sizeHint()).toSize());
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgressDialog::loadPreferences(const Preferences& preferences)
+{
+	m_streaks->setVisible(preferences.goalStreaks());
 }
 
 //-----------------------------------------------------------------------------

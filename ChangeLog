@@ -1,3 +1,6 @@
+2013-04-24 Graeme Gott <graeme@gottcode.org>
+	* Allow disabling daily progress streaks.
+
 2013-04-23 Graeme Gott <graeme@gottcode.org>
 	* Add setting default file format.
 	* Improve format selection in file dialogs.

@@ -21,6 +21,7 @@
 #define DAILY_PROGRESS_DIALOG_H
 
 class DailyProgress;
+class Preferences;
 
 #include <QDialog>
 class QDate;
@@ -33,6 +34,8 @@ class DailyProgressDialog : public QDialog
 
 public:
 	DailyProgressDialog(DailyProgress* progress, QWidget* parent = 0);
+
+	void loadPreferences(const Preferences& preferences);
 
 signals:
 	void visibleChanged(bool visible);
@@ -54,6 +57,7 @@ private:
 	QTableView* m_display;
 	class Delegate;
 	Delegate* m_delegate;
+	QWidget* m_streaks;
 	QLabel* m_longest_streak;
 	QLabel* m_current_streak;
 };
