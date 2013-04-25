@@ -22,6 +22,7 @@
 #include "document.h"
 
 #include <QApplication>
+#include <QDateTime>
 #include <QDir>
 #include <QFileSystemWatcher>
 #include <QMessageBox>
@@ -29,6 +30,16 @@
 #include <QStyle>
 #include <QTextEdit>
 #include <QTimer>
+
+//-----------------------------------------------------------------------------
+
+DocumentWatcher::Details::Details(const QFileInfo& info) :
+	path(info.canonicalFilePath()),
+	modified(info.lastModified()),
+	permissions(info.permissions()),
+	ignored(false)
+{
+}
 
 //-----------------------------------------------------------------------------
 
@@ -57,34 +68,93 @@ DocumentWatcher::~DocumentWatcher()
 
 bool DocumentWatcher::isWatching(const QString& path) const
 {
-	return m_watcher->files().contains(QFileInfo(path).canonicalFilePath());
+	return m_paths.contains(QFileInfo(path).canonicalFilePath());
 }
 
 //-----------------------------------------------------------------------------
 
 void DocumentWatcher::addWatch(Document* document)
 {
-	QString path = QFileInfo(document->filename()).canonicalFilePath();
-	if (isWatching(path)) {
+	if (m_documents.contains(document)) {
 		return;
 	}
-	m_paths.insert(path, document);
-	m_watcher->addPath(path);
+
+	// Store document details
+	QString path = document->filename();
+	if (!path.isEmpty()) {
+		m_documents.insert(document, QFileInfo(path));
+		const Details& details = m_documents[document];
+
+		// Add path
+		m_paths.insert(details.path, document);
+		m_watcher->addPath(details.path);
+	} else {
+		m_documents.insert(document, Details());
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentWatcher::pauseWatch(Document* document)
+{
+	m_documents[document].ignored = true;
 }
 
 //-----------------------------------------------------------------------------
 
 void DocumentWatcher::removeWatch(Document* document)
 {
-	// Find path
-	QString path = m_paths.key(document);
-	if (path.isEmpty()) {
-		return;
-	}
+	// Remove document details
+	Details details = m_documents.take(document);
 
 	// Remove path
-	m_paths.remove(path);
-	m_watcher->removePath(path);
+	if (!details.path.isEmpty()) {
+		m_watcher->removePath(details.path);
+		m_paths.remove(details.path);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentWatcher::resumeWatch(Document* document)
+{
+	m_documents[document].ignored = false;
+	updateWatch(document);
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentWatcher::updateWatch(Document* document)
+{
+	// Update document details
+	Details& details = m_documents[document];
+	QString oldpath = details.path;
+	QString path = document->filename();
+	if (!path.isEmpty()) {
+		QFileInfo info(path);
+		details.path = info.canonicalFilePath();
+		details.modified = info.lastModified();
+		details.permissions = info.permissions();
+	} else {
+		details.path = path;
+		details.modified = QDateTime();
+		details.permissions = 0;
+	}
+
+	// Update path
+	if (details.path != oldpath) {
+		// Remove old path
+		if (!oldpath.isEmpty()) {
+			m_watcher->removePath(oldpath);
+			m_paths.remove(oldpath);
+		}
+
+		// Add new path
+		if (!path.isEmpty()) {
+			m_paths.insert(details.path, document);
+			m_watcher->addPath(details.path);
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -93,16 +163,26 @@ void DocumentWatcher::processUpdates()
 {
 	while (!m_updates.isEmpty()) {
 		QString path = m_updates.takeFirst();
-		QString filename = "<i>" + QFileInfo(path).fileName() + "</i>";
+		QFileInfo info(path);
+		QString filename = "<i>" + info.fileName() + "</i>";
 
 		// Show document
 		Document* document = m_paths.value(path);
 		if (!document) {
 			continue;
 		}
+		const Details& details = m_documents[document];
+		if (details.ignored) {
+			continue;
+		}
 		emit showDocument(document);
 
-		if (QFile::exists(path)) {
+		if (info.exists()) {
+			// Ignore unchanged files
+			if ((details.modified == info.lastModified()) && (details.permissions == info.permissions())) {
+				continue;
+			}
+
 			// Process changed file
 			QMessageBox mbox(document->window());
 			mbox.setIcon(QMessageBox::Warning);
@@ -161,7 +241,7 @@ void DocumentWatcher::documentChanged(const QString& path)
 	}
 	m_updates.append(path);
 	if (parent() && (QApplication::activeWindow() == parent())) {
-		QTimer::singleShot(50, this, SLOT(processUpdates()));
+		QTimer::singleShot(200, this, SLOT(processUpdates()));
 	}
 }
 

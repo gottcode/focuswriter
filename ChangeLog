@@ -1,3 +1,6 @@
+2013-04-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not always ignore changes made by program.
+
 2013-04-24 Graeme Gott <graeme@gottcode.org>
 	* Improve preference dialog layouts.
 	* Allow disabling daily progress streaks.
