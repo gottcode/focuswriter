@@ -20,16 +20,34 @@
 #ifndef DOCUMENT_WATCHER_H
 #define DOCUMENT_WATCHER_H
 
-#include <QHash>
-#include <QSet>
 class Document;
 
+#include <QDateTime>
+#include <QFile>
+#include <QHash>
+#include <QList>
 #include <QObject>
+class QFileInfo;
 class QFileSystemWatcher;
 
 class DocumentWatcher : public QObject
 {
 	Q_OBJECT
+
+	struct Details
+	{
+		Details() :
+			permissions(0),
+			ignored(false)
+		{ }
+
+		Details(const QFileInfo& info);
+
+		QString path;
+		QDateTime modified;
+		QFile::Permissions permissions;
+		bool ignored;
+	};
 
 public:
 	DocumentWatcher(QObject* parent = 0);
@@ -38,7 +56,10 @@ public:
 	bool isWatching(const QString& path) const;
 
 	void addWatch(Document* document);
+	void pauseWatch(Document* document);
 	void removeWatch(Document* document);
+	void resumeWatch(Document* document);
+	void updateWatch(Document* document);
 
 	static DocumentWatcher* instance()
 	{
@@ -57,6 +78,7 @@ private slots:
 
 private:
 	QFileSystemWatcher* m_watcher;
+	QHash<Document*, Details> m_documents;
 	QHash<QString, Document*> m_paths;
 	QList<QString> m_updates;
 	static DocumentWatcher* m_instance;
