@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * Derived in part from KWord's rtfimport.cpp
  *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
@@ -22,7 +22,7 @@
  *
  ***********************************************************************/
 
-#include "reader.h"
+#include "rtf_reader.h"
 
 #include <QFile>
 #include <QTextBlock>
@@ -34,25 +34,25 @@
 
 namespace
 {
-	class Function
+	class RtfFunction
 	{
 	public:
-		Function(void (RTF::Reader::*func)(qint32) = 0, qint32 value = 0)
+		RtfFunction(void (RtfReader::*func)(qint32) = 0, qint32 value = 0)
 			: m_func(func),
 			m_value(value)
 		{
 		}
 
-		void call(RTF::Reader* reader, const RTF::Tokenizer& token) const
+		void call(RtfReader* reader, const RtfTokenizer& token) const
 		{
 			(reader->*m_func)(token.hasValue() ? token.value() : m_value);
 		}
 
 	private:
-		void (RTF::Reader::*m_func)(qint32);
+		void (RtfReader::*m_func)(qint32);
 		qint32 m_value;
 	};
-	QHash<QByteArray, Function> functions;
+	QHash<QByteArray, RtfFunction> functions;
 
 	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = 0)
 	{
@@ -76,94 +76,94 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-RTF::Reader::Reader()
-	: m_in_block(true),
+RtfReader::RtfReader() :
+	m_in_block(true),
 	m_codec(0),
 	m_decoder(0)
 {
 	if (functions.isEmpty()) {
-		functions["\\"] = Function(&Reader::insertSymbol, '\\');
-		functions["_"] = Function(&Reader::insertSymbol, 0x2011);
-		functions["{"] = Function(&Reader::insertSymbol, '{');
-		functions["|"] = Function(&Reader::insertSymbol, 0x00b7);
-		functions["}"] = Function(&Reader::insertSymbol, '}');
-		functions["~"] = Function(&Reader::insertSymbol, 0x00a0);
-		functions["-"] = Function(&Reader::insertSymbol, 0x00ad);
+		functions["\\"] = RtfFunction(&RtfReader::insertSymbol, '\\');
+		functions["_"] = RtfFunction(&RtfReader::insertSymbol, 0x2011);
+		functions["{"] = RtfFunction(&RtfReader::insertSymbol, '{');
+		functions["|"] = RtfFunction(&RtfReader::insertSymbol, 0x00b7);
+		functions["}"] = RtfFunction(&RtfReader::insertSymbol, '}');
+		functions["~"] = RtfFunction(&RtfReader::insertSymbol, 0x00a0);
+		functions["-"] = RtfFunction(&RtfReader::insertSymbol, 0x00ad);
 
-		functions["bullet"] = Function(&Reader::insertSymbol, 0x2022);
-		functions["emdash"] = Function(&Reader::insertSymbol, 0x2014);
-		functions["emspace"] = Function(&Reader::insertSymbol, 0x2003);
-		functions["endash"] = Function(&Reader::insertSymbol, 0x2013);
-		functions["enspace"] = Function(&Reader::insertSymbol, 0x2002);
-		functions["ldblquote"] = Function(&Reader::insertSymbol, 0x201c);
-		functions["lquote"] = Function(&Reader::insertSymbol, 0x2018);
-		functions["line"] = Function(&Reader::insertSymbol, 0x2028);
-		functions["ltrmark"] = Function(&Reader::insertSymbol, 0x200e);
-		functions["qmspace"] = Function(&Reader::insertSymbol, 0x2004);
-		functions["rdblquote"] = Function(&Reader::insertSymbol, 0x201d);
-		functions["rquote"] = Function(&Reader::insertSymbol, 0x2019);
-		functions["rtlmark"] = Function(&Reader::insertSymbol, 0x200f);
-		functions["tab"] = Function(&Reader::insertSymbol, 0x0009);
-		functions["zwj"] = Function(&Reader::insertSymbol, 0x200d);
-		functions["zwnj"] = Function(&Reader::insertSymbol, 0x200c);
+		functions["bullet"] = RtfFunction(&RtfReader::insertSymbol, 0x2022);
+		functions["emdash"] = RtfFunction(&RtfReader::insertSymbol, 0x2014);
+		functions["emspace"] = RtfFunction(&RtfReader::insertSymbol, 0x2003);
+		functions["endash"] = RtfFunction(&RtfReader::insertSymbol, 0x2013);
+		functions["enspace"] = RtfFunction(&RtfReader::insertSymbol, 0x2002);
+		functions["ldblquote"] = RtfFunction(&RtfReader::insertSymbol, 0x201c);
+		functions["lquote"] = RtfFunction(&RtfReader::insertSymbol, 0x2018);
+		functions["line"] = RtfFunction(&RtfReader::insertSymbol, 0x2028);
+		functions["ltrmark"] = RtfFunction(&RtfReader::insertSymbol, 0x200e);
+		functions["qmspace"] = RtfFunction(&RtfReader::insertSymbol, 0x2004);
+		functions["rdblquote"] = RtfFunction(&RtfReader::insertSymbol, 0x201d);
+		functions["rquote"] = RtfFunction(&RtfReader::insertSymbol, 0x2019);
+		functions["rtlmark"] = RtfFunction(&RtfReader::insertSymbol, 0x200f);
+		functions["tab"] = RtfFunction(&RtfReader::insertSymbol, 0x0009);
+		functions["zwj"] = RtfFunction(&RtfReader::insertSymbol, 0x200d);
+		functions["zwnj"] = RtfFunction(&RtfReader::insertSymbol, 0x200c);
 
-		functions["\'"] = Function(&Reader::insertHexSymbol);
-		functions["u"] = Function(&Reader::insertUnicodeSymbol);
-		functions["uc"] = Function(&Reader::setSkipCharacters);
-		functions["par"] = Function(&Reader::endBlock);
-		functions["\n"] = Function(&Reader::endBlock);
-		functions["\r"] = Function(&Reader::endBlock);
+		functions["\'"] = RtfFunction(&RtfReader::insertHexSymbol);
+		functions["u"] = RtfFunction(&RtfReader::insertUnicodeSymbol);
+		functions["uc"] = RtfFunction(&RtfReader::setSkipCharacters);
+		functions["par"] = RtfFunction(&RtfReader::endBlock);
+		functions["\n"] = RtfFunction(&RtfReader::endBlock);
+		functions["\r"] = RtfFunction(&RtfReader::endBlock);
 
-		functions["pard"] = Function(&Reader::resetBlockFormatting);
-		functions["plain"] = Function(&Reader::resetTextFormatting);
+		functions["pard"] = RtfFunction(&RtfReader::resetBlockFormatting);
+		functions["plain"] = RtfFunction(&RtfReader::resetTextFormatting);
 
-		functions["qc"] = Function(&Reader::setBlockAlignment, Qt::AlignHCenter);
-		functions["qj"] = Function(&Reader::setBlockAlignment, Qt::AlignJustify);
-		functions["ql"] = Function(&Reader::setBlockAlignment, Qt::AlignLeft | Qt::AlignAbsolute);
-		functions["qr"] = Function(&Reader::setBlockAlignment, Qt::AlignRight | Qt::AlignAbsolute);
+		functions["qc"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignHCenter);
+		functions["qj"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignJustify);
+		functions["ql"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignLeft | Qt::AlignAbsolute);
+		functions["qr"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignRight | Qt::AlignAbsolute);
 
-		functions["li"] = Function(&Reader::setBlockIndent);
+		functions["li"] = RtfFunction(&RtfReader::setBlockIndent);
 
-		functions["ltrpar"] = Function(&Reader::setBlockDirection, Qt::LeftToRight);
-		functions["rtlpar"] = Function(&Reader::setBlockDirection, Qt::RightToLeft);
+		functions["ltrpar"] = RtfFunction(&RtfReader::setBlockDirection, Qt::LeftToRight);
+		functions["rtlpar"] = RtfFunction(&RtfReader::setBlockDirection, Qt::RightToLeft);
 
-		functions["b"] = Function(&Reader::setTextBold, true);
-		functions["i"] = Function(&Reader::setTextItalic, true);
-		functions["strike"] = Function(&Reader::setTextStrikeOut, true);
-		functions["striked"] = Function(&Reader::setTextStrikeOut, true);
-		functions["ul"] = Function(&Reader::setTextUnderline, true);
-		functions["uld"] = Function(&Reader::setTextUnderline, true);
-		functions["uldash"] = Function(&Reader::setTextUnderline, true);
-		functions["uldashd"] = Function(&Reader::setTextUnderline, true);
-		functions["uldb"] = Function(&Reader::setTextUnderline, true);
-		functions["ulnone"] = Function(&Reader::setTextUnderline, false);
-		functions["ulth"] = Function(&Reader::setTextUnderline, true);
-		functions["ulw"] = Function(&Reader::setTextUnderline, true);
-		functions["ulwave"] = Function(&Reader::setTextUnderline, true);
-		functions["ulhwave"] = Function(&Reader::setTextUnderline, true);
-		functions["ululdbwave"] = Function(&Reader::setTextUnderline, true);
+		functions["b"] = RtfFunction(&RtfReader::setTextBold, true);
+		functions["i"] = RtfFunction(&RtfReader::setTextItalic, true);
+		functions["strike"] = RtfFunction(&RtfReader::setTextStrikeOut, true);
+		functions["striked"] = RtfFunction(&RtfReader::setTextStrikeOut, true);
+		functions["ul"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["uld"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["uldash"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["uldashd"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["uldb"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["ulnone"] = RtfFunction(&RtfReader::setTextUnderline, false);
+		functions["ulth"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["ulw"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["ulwave"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["ulhwave"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions["ululdbwave"] = RtfFunction(&RtfReader::setTextUnderline, true);
 
-		functions["sub"] = Function(&Reader::setTextVerticalAlignment, QTextCharFormat::AlignSubScript);
-		functions["super"] = Function(&Reader::setTextVerticalAlignment, QTextCharFormat::AlignSuperScript);
-		functions["nosupersub"] = Function(&Reader::setTextVerticalAlignment, QTextCharFormat::AlignNormal);
+		functions["sub"] = RtfFunction(&RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSubScript);
+		functions["super"] = RtfFunction(&RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSuperScript);
+		functions["nosupersub"] = RtfFunction(&RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignNormal);
 
-		functions["ansicpg"] = Function(&Reader::setCodepage);
-		functions["ansi"] = Function(&Reader::setCodepage, 1252);
-		functions["mac"] = Function(&Reader::setCodepage, 10000);
-		functions["pc"] = Function(&Reader::setCodepage, 850);
-		functions["pca"] = Function(&Reader::setCodepage, 850);
+		functions["ansicpg"] = RtfFunction(&RtfReader::setCodepage);
+		functions["ansi"] = RtfFunction(&RtfReader::setCodepage, 1252);
+		functions["mac"] = RtfFunction(&RtfReader::setCodepage, 10000);
+		functions["pc"] = RtfFunction(&RtfReader::setCodepage, 850);
+		functions["pca"] = RtfFunction(&RtfReader::setCodepage, 850);
 
-		functions["deff"] = Function(&Reader::setFont);
-		functions["f"] = Function(&Reader::setFont);
-		functions["cpg"] = Function(&Reader::setFontCodepage);
-		functions["fcharset"] = Function(&Reader::setFontCharset);
+		functions["deff"] = RtfFunction(&RtfReader::setFont);
+		functions["f"] = RtfFunction(&RtfReader::setFont);
+		functions["cpg"] = RtfFunction(&RtfReader::setFontCodepage);
+		functions["fcharset"] = RtfFunction(&RtfReader::setFontCharset);
 
-		functions["filetbl"] = Function(&Reader::ignoreGroup);
-		functions["colortbl"] = Function(&Reader::ignoreGroup);
-		functions["fonttbl"] = Function(&Reader::ignoreText);
-		functions["stylesheet"] = Function(&Reader::ignoreGroup);
-		functions["info"] = Function(&Reader::ignoreGroup);
-		functions["*"] = Function(&Reader::ignoreGroup);
+		functions["filetbl"] = RtfFunction(&RtfReader::ignoreGroup);
+		functions["colortbl"] = RtfFunction(&RtfReader::ignoreGroup);
+		functions["fonttbl"] = RtfFunction(&RtfReader::ignoreText);
+		functions["stylesheet"] = RtfFunction(&RtfReader::ignoreGroup);
+		functions["info"] = RtfFunction(&RtfReader::ignoreGroup);
+		functions["*"] = RtfFunction(&RtfReader::ignoreGroup);
 	}
 
 	m_state.ignore_control_word = false;
@@ -176,35 +176,35 @@ RTF::Reader::Reader()
 
 //-----------------------------------------------------------------------------
 
-RTF::Reader::~Reader()
+RtfReader::~RtfReader()
 {
 	delete m_decoder;
 }
 
 //-----------------------------------------------------------------------------
 
-QByteArray RTF::Reader::codePage() const
+QByteArray RtfReader::codePage() const
 {
 	return m_codepage_name;
 }
 
 //-----------------------------------------------------------------------------
 
-QString RTF::Reader::errorString() const
+QString RtfReader::errorString() const
 {
 	return m_error;
 }
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Reader::hasError() const
+bool RtfReader::hasError() const
 {
 	return !m_error.isEmpty();
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
+void RtfReader::read(QIODevice* device, const QTextCursor& cursor)
 {
 	try {
 		// Use theme spacings
@@ -260,14 +260,14 @@ void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::endBlock(qint32)
+void RtfReader::endBlock(qint32)
 {
 	m_in_block = false;
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::ignoreGroup(qint32)
+void RtfReader::ignoreGroup(qint32)
 {
 	m_state.ignore_control_word = true;
 	m_state.ignore_text = true;
@@ -275,28 +275,28 @@ void RTF::Reader::ignoreGroup(qint32)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::ignoreText(qint32)
+void RtfReader::ignoreText(qint32)
 {
 	m_state.ignore_text = true;
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::insertHexSymbol(qint32)
+void RtfReader::insertHexSymbol(qint32)
 {
 	m_cursor.insertText(m_decoder->toUnicode(m_token.hex()));
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::insertSymbol(qint32 value)
+void RtfReader::insertSymbol(qint32 value)
 {
 	m_cursor.insertText(QChar(value));
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::insertUnicodeSymbol(qint32 value)
+void RtfReader::insertUnicodeSymbol(qint32 value)
 {
 	m_cursor.insertText(QChar(value));
 
@@ -325,14 +325,14 @@ void RTF::Reader::insertUnicodeSymbol(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::pushState()
+void RtfReader::pushState()
 {
 	m_states.push(m_state);
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::popState()
+void RtfReader::popState()
 {
 	if (m_states.isEmpty()) {
 		return;
@@ -344,7 +344,7 @@ void RTF::Reader::popState()
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::resetBlockFormatting(qint32)
+void RtfReader::resetBlockFormatting(qint32)
 {
 	m_state.block_format = m_block_format;
 	m_cursor.setBlockFormat(m_state.block_format);
@@ -352,7 +352,7 @@ void RTF::Reader::resetBlockFormatting(qint32)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::resetTextFormatting(qint32)
+void RtfReader::resetTextFormatting(qint32)
 {
 	m_state.char_format = QTextCharFormat();
 	m_cursor.setCharFormat(m_state.char_format);
@@ -360,7 +360,7 @@ void RTF::Reader::resetTextFormatting(qint32)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setBlockAlignment(qint32 value)
+void RtfReader::setBlockAlignment(qint32 value)
 {
 	m_state.block_format.setAlignment(Qt::Alignment(value));
 	m_cursor.mergeBlockFormat(m_state.block_format);
@@ -368,7 +368,7 @@ void RTF::Reader::setBlockAlignment(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setBlockDirection(qint32 value)
+void RtfReader::setBlockDirection(qint32 value)
 {
 	m_state.block_format.setLayoutDirection(Qt::LayoutDirection(value));
 	Qt::Alignment alignment = m_state.block_format.alignment();
@@ -381,7 +381,7 @@ void RTF::Reader::setBlockDirection(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setBlockIndent(qint32 value)
+void RtfReader::setBlockIndent(qint32 value)
 {
 	m_state.block_format.setIndent(value / 15);
 	m_cursor.mergeBlockFormat(m_state.block_format);
@@ -389,7 +389,7 @@ void RTF::Reader::setBlockIndent(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setTextBold(qint32 value)
+void RtfReader::setTextBold(qint32 value)
 {
 	m_state.char_format.setFontWeight(value ? QFont::Bold : QFont::Normal);
 	m_cursor.mergeCharFormat(m_state.char_format);
@@ -397,7 +397,7 @@ void RTF::Reader::setTextBold(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setTextItalic(qint32 value)
+void RtfReader::setTextItalic(qint32 value)
 {
 	m_state.char_format.setFontItalic(value);
 	m_cursor.mergeCharFormat(m_state.char_format);
@@ -405,7 +405,7 @@ void RTF::Reader::setTextItalic(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setTextStrikeOut(qint32 value)
+void RtfReader::setTextStrikeOut(qint32 value)
 {
 	m_state.char_format.setFontStrikeOut(value);
 	m_cursor.mergeCharFormat(m_state.char_format);
@@ -413,7 +413,7 @@ void RTF::Reader::setTextStrikeOut(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setTextUnderline(qint32 value)
+void RtfReader::setTextUnderline(qint32 value)
 {
 	m_state.char_format.setFontUnderline(value);
 	m_cursor.mergeCharFormat(m_state.char_format);
@@ -421,7 +421,7 @@ void RTF::Reader::setTextUnderline(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setTextVerticalAlignment(qint32 value)
+void RtfReader::setTextVerticalAlignment(qint32 value)
 {
 	m_state.char_format.setVerticalAlignment(QTextCharFormat::VerticalAlignment(value));
 	m_cursor.mergeCharFormat(m_state.char_format);
@@ -429,14 +429,14 @@ void RTF::Reader::setTextVerticalAlignment(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setSkipCharacters(qint32 value)
+void RtfReader::setSkipCharacters(qint32 value)
 {
 	m_state.skip = value;
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setCodepage(qint32 value)
+void RtfReader::setCodepage(qint32 value)
 {
 	QByteArray codepage;
 	QTextCodec* codec = codecForCodePage(value, &codepage);
@@ -449,7 +449,7 @@ void RTF::Reader::setCodepage(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setFont(qint32 value)
+void RtfReader::setFont(qint32 value)
 {
 	m_state.active_codepage = value;
 
@@ -467,7 +467,7 @@ void RTF::Reader::setFont(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setFontCodepage(qint32 value)
+void RtfReader::setFontCodepage(qint32 value)
 {
 	if (m_state.active_codepage >= m_codepages.count()) {
 		m_state.ignore_control_word = true;
@@ -486,7 +486,7 @@ void RTF::Reader::setFontCodepage(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setFontCharset(qint32 value)
+void RtfReader::setFontCharset(qint32 value)
 {
 	if (m_state.active_codepage >= m_codepages.count()) {
 		m_state.ignore_text = true;
@@ -532,7 +532,7 @@ void RTF::Reader::setFontCharset(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RTF::Reader::setCodec(QTextCodec* codec)
+void RtfReader::setCodec(QTextCodec* codec)
 {
 	if (m_codec != codec) {
 		m_codec = codec;

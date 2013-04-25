@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 #include "document_writer.h"
 
-#include "rtf/writer.h"
+#include "rtf_writer.h"
 
 #include <QFile>
 #include <QTextDocument>
@@ -68,7 +68,7 @@ bool DocumentWriter::write()
 		}
 	} else if (m_type == "rtf") {
 		if (file.open(QFile::WriteOnly)) {
-			RTF::Writer writer(m_codepage);
+			RtfWriter writer(m_codepage);
 			if (m_codepage.isEmpty()) {
 				m_codepage = writer.codePage();
 			}

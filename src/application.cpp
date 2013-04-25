@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,10 +26,10 @@
 
 #if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
 #ifdef Q_OS_MAC
-#include "rtf/clipboard_mac.h"
+#include "clipboard_mac.h"
 #endif
 #ifdef Q_OS_WIN32
-#include "rtf/clipboard_windows.h"
+#include "clipboard_windows.h"
 #endif
 #endif
 

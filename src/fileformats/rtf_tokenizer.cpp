@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * Derived from KWord's rtfimport_tokenizer.cpp
  *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
@@ -22,15 +22,15 @@
  *
  ***********************************************************************/
 
-#include "tokenizer.h"
+#include "rtf_tokenizer.h"
 
 #include <QApplication>
 #include <QIODevice>
 
 //-----------------------------------------------------------------------------
 
-RTF::Tokenizer::Tokenizer()
-	: m_device(0),
+RtfTokenizer::RtfTokenizer() :
+	m_device(0),
 	m_position(0),
 	m_value(0),
 	m_has_value(false)
@@ -41,14 +41,14 @@ RTF::Tokenizer::Tokenizer()
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Tokenizer::hasNext() const
+bool RtfTokenizer::hasNext() const
 {
 	return (m_position < m_buffer.size() - 1) || !m_device->atEnd();
 }
 
 //-----------------------------------------------------------------------------
 
-void RTF::Tokenizer::readNext()
+void RtfTokenizer::readNext()
 {
 	// Reset values
 	m_type = TextToken;
@@ -134,14 +134,14 @@ void RTF::Tokenizer::readNext()
 
 //-----------------------------------------------------------------------------
 
-void RTF::Tokenizer::setDevice(QIODevice* device)
+void RtfTokenizer::setDevice(QIODevice* device)
 {
 	m_device = device;
 }
 
 //-----------------------------------------------------------------------------
 
-char RTF::Tokenizer::next()
+char RtfTokenizer::next()
 {
 	m_position++;
 	if (m_position >= m_buffer.size()) {

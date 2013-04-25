@@ -28,6 +28,8 @@
 #include "highlighter.h"
 #include "odt_reader.h"
 #include "preferences.h"
+#include "rtf_reader.h"
+#include "rtf_writer.h"
 #include "scene_list.h"
 #include "scene_model.h"
 #include "smart_quotes.h"
@@ -35,8 +37,6 @@
 #include "spell_checker.h"
 #include "theme.h"
 #include "window.h"
-#include "rtf/reader.h"
-#include "rtf/writer.h"
 
 #include <QApplication>
 #include <QBuffer>
@@ -116,7 +116,7 @@ namespace
 				return;
 			}
 
-			RTF::Reader reader;
+			RtfReader reader;
 			QBuffer buffer(&richtext);
 			buffer.open(QIODevice::ReadOnly);
 			reader.read(&buffer, textCursor());
@@ -164,7 +164,7 @@ namespace
 		}
 
 		// Convert to RTF
-		RTF::Writer writer;
+		RtfWriter writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
 		writer.write(&buffer, &document, false);
@@ -505,7 +505,7 @@ bool Document::loadFile(const QString& filename, int position)
 		QString error;
 		if (type == "odt") {
 			file.close();
-			ODT::Reader reader;
+			OdtReader reader;
 			reader.read(filename, document);
 			if (reader.hasError()) {
 				error = reader.errorString();
@@ -513,7 +513,7 @@ bool Document::loadFile(const QString& filename, int position)
 				position = -1;
 			}
 		} else if (type == "rtf") {
-			RTF::Reader reader;
+			RtfReader reader;
 			QTextCursor cursor(document);
 			reader.read(&file, cursor);
 			m_codepage = reader.codePage();

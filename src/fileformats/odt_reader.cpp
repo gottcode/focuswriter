@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 
 //-----------------------------------------------------------------------------
 
-ODT::Reader::Reader()
+OdtReader::OdtReader()
 	: m_in_block(true)
 {
 	m_xml.setNamespaceProcessing(false);
@@ -36,21 +36,21 @@ ODT::Reader::Reader()
 
 //-----------------------------------------------------------------------------
 
-QString ODT::Reader::errorString() const
+QString OdtReader::errorString() const
 {
 	return m_error;
 }
 
 //-----------------------------------------------------------------------------
 
-bool ODT::Reader::hasError() const
+bool OdtReader::hasError() const
 {
 	return !m_error.isEmpty();
 }
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::read(const QString& filename, QTextDocument* text)
+void OdtReader::read(const QString& filename, QTextDocument* text)
 {
 	m_filename = filename;
 
@@ -111,7 +111,7 @@ void ODT::Reader::read(const QString& filename, QTextDocument* text)
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readDocument()
+void OdtReader::readDocument()
 {
 	m_xml.readNextStartElement();
 	while (m_xml.readNextStartElement()) {
@@ -129,7 +129,7 @@ void ODT::Reader::readDocument()
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readStylesGroup()
+void OdtReader::readStylesGroup()
 {
 	while (m_xml.readNextStartElement()) {
 		if (m_xml.qualifiedName() == "style:style") {
@@ -142,7 +142,7 @@ void ODT::Reader::readStylesGroup()
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readStyle()
+void OdtReader::readStyle()
 {
 	QXmlStreamAttributes attributes = m_xml.attributes();
 
@@ -186,7 +186,7 @@ void ODT::Reader::readStyle()
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readStyleParagraphProperties(QTextBlockFormat& format)
+void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 {
 	QXmlStreamAttributes attributes = m_xml.attributes();
 
@@ -232,7 +232,7 @@ void ODT::Reader::readStyleParagraphProperties(QTextBlockFormat& format)
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readStyleTextProperties(QTextCharFormat& format)
+void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 {
 	QXmlStreamAttributes attributes = m_xml.attributes();
 
@@ -277,7 +277,7 @@ void ODT::Reader::readStyleTextProperties(QTextCharFormat& format)
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readBody()
+void OdtReader::readBody()
 {
 	while (m_xml.readNextStartElement()) {
 		if (m_xml.qualifiedName() == "office:text") {
@@ -290,7 +290,7 @@ void ODT::Reader::readBody()
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readBodyText()
+void OdtReader::readBodyText()
 {
 	while (m_xml.readNextStartElement()) {
 		if (m_xml.qualifiedName() == "text:p" || m_xml.qualifiedName() == "text:h") {
@@ -303,7 +303,7 @@ void ODT::Reader::readBodyText()
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readParagraph()
+void OdtReader::readParagraph()
 {
 	QTextBlockFormat block_format;
 	QTextCharFormat char_format;
@@ -332,7 +332,7 @@ void ODT::Reader::readParagraph()
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readSpan()
+void OdtReader::readSpan()
 {
 	QXmlStreamAttributes attributes = m_xml.attributes();
 
@@ -361,7 +361,7 @@ void ODT::Reader::readSpan()
 
 //-----------------------------------------------------------------------------
 
-void ODT::Reader::readText()
+void OdtReader::readText()
 {
 	int depth = 1;
 	while (depth && (m_xml.readNext() != QXmlStreamReader::Invalid)) {

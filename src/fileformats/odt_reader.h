@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,15 +27,12 @@
 class QIODevice;
 class QTextDocument;
 
-namespace ODT
+class OdtReader
 {
-
-class Reader
-{
-	Q_DECLARE_TR_FUNCTIONS(Reader)
+	Q_DECLARE_TR_FUNCTIONS(OdtReader)
 
 public:
-	Reader();
+	OdtReader();
 
 	QString errorString() const;
 	bool hasError() const;
@@ -76,7 +73,5 @@ private:
 
 	QString m_error;
 };
-
-}
 
 #endif

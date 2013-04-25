@@ -1,4 +1,5 @@
 2013-04-25 Graeme Gott <graeme@gottcode.org>
+	* Group together classes for handling file formats.
 	* FIXED: Did not always ignore changes made by program.
 
 2013-04-24 Graeme Gott <graeme@gottcode.org>

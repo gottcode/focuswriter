@@ -34,8 +34,8 @@ macx {
 		src/nssound/sound.mm
 
 	lessThan(QT_MAJOR_VERSION, 5) {
-		HEADERS += src/rtf/clipboard_mac.h
-		SOURCES += src/rtf/clipboard_mac.cpp
+		HEADERS += src/fileformats/clipboard_mac.h
+		SOURCES += src/fileformats/clipboard_mac.cpp
 	}
 } else:win32 {
 	USE_BUNDLED_HUNSPELL = 1
@@ -50,8 +50,8 @@ macx {
 
 	lessThan(QT_MAJOR_VERSION, 5) {
 		LIBS += -lOle32
-		HEADERS += src/rtf/clipboard_windows.h
-		SOURCES += src/rtf/clipboard_windows.cpp
+		HEADERS += src/fileformats/clipboard_windows.h
+		SOURCES += src/fileformats/clipboard_windows.cpp
 	}
 } else {
 	LIBS += -lz
@@ -86,7 +86,7 @@ macx {
 	include(src/3rdparty/libzip.pri)
 }
 
-INCLUDEPATH += src src/qtsingleapplication src/spelling
+INCLUDEPATH += src src/fileformats src/qtsingleapplication src/spelling
 
 HEADERS += src/action_manager.h \
 	src/alert.h \
@@ -107,7 +107,6 @@ HEADERS += src/action_manager.h \
 	src/image_button.h \
 	src/load_screen.h \
 	src/locale_dialog.h \
-	src/odt_reader.h \
 	src/paths.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
@@ -130,11 +129,12 @@ HEADERS += src/action_manager.h \
 	src/timer_display.h \
 	src/timer_manager.h \
 	src/window.h \
+	src/fileformats/odt_reader.h \
+	src/fileformats/rtf_reader.h \
+	src/fileformats/rtf_tokenizer.h \
+	src/fileformats/rtf_writer.h \
 	src/qtsingleapplication/qtsingleapplication.h \
 	src/qtsingleapplication/qtlocalpeer.h \
-	src/rtf/reader.h \
-	src/rtf/tokenizer.h \
-	src/rtf/writer.h \
 	src/spelling/abstract_dictionary.h \
 	src/spelling/abstract_dictionary_provider.h \
 	src/spelling/dictionary_manager.h \
@@ -162,7 +162,6 @@ SOURCES += src/action_manager.cpp \
 	src/load_screen.cpp \
 	src/locale_dialog.cpp \
 	src/main.cpp \
-	src/odt_reader.cpp \
 	src/paths.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
@@ -183,11 +182,12 @@ SOURCES += src/action_manager.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
 	src/window.cpp \
+	src/fileformats/odt_reader.cpp \
+	src/fileformats/rtf_reader.cpp \
+	src/fileformats/rtf_tokenizer.cpp \
+	src/fileformats/rtf_writer.cpp \
 	src/qtsingleapplication/qtsingleapplication.cpp \
 	src/qtsingleapplication/qtlocalpeer.cpp \
-	src/rtf/reader.cpp \
-	src/rtf/tokenizer.cpp \
-	src/rtf/writer.cpp \
 	src/spelling/dictionary_manager.cpp \
 	src/spelling/highlighter.cpp \
 	src/spelling/spell_checker.cpp

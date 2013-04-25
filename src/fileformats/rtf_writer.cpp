@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  *
  ***********************************************************************/
 
-#include "writer.h"
+#include "rtf_writer.h"
 
 #include <QHash>
 #include <QIODevice>
@@ -211,9 +211,9 @@ QByteArray fetchCodePage()
 
 //-----------------------------------------------------------------------------
 
-RTF::Writer::Writer(const QByteArray& codepage)
-	: m_codepage(codepage),
-	  m_codec(0)
+RtfWriter::RtfWriter(const QByteArray& codepage) :
+	m_codepage(codepage),
+	m_codec(0)
 {
 	// Fetch system codepage
 	if (m_codepage.isEmpty()) {
@@ -242,7 +242,7 @@ RTF::Writer::Writer(const QByteArray& codepage)
 
 //-----------------------------------------------------------------------------
 
-bool RTF::Writer::write(QIODevice* device, QTextDocument* text, bool full)
+bool RtfWriter::write(QIODevice* device, QTextDocument* text, bool full)
 {
 	if (m_codec == 0) {
 		return false;
@@ -323,7 +323,7 @@ bool RTF::Writer::write(QIODevice* device, QTextDocument* text, bool full)
 
 //-----------------------------------------------------------------------------
 
-QByteArray RTF::Writer::fromUnicode(const QString& string) const
+QByteArray RtfWriter::fromUnicode(const QString& string) const
 {
 	QByteArray text;
 
