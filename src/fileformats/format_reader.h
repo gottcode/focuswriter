@@ -54,6 +54,12 @@ public:
 		readData(device);
 	}
 
+	enum { Type = 0 };
+	virtual int type() const
+	{
+		return Type;
+	}
+
 protected:
 	QTextCursor m_cursor;
 	QString m_error;

@@ -24,6 +24,13 @@
 
 class TxtReader : public FormatReader
 {
+public:
+	enum { Type = 1 };
+	int type() const
+	{
+		return Type;
+	}
+
 private:
 	void readData(QIODevice* device);
 };

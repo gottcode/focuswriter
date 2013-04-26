@@ -33,6 +33,12 @@ class OdtReader : public FormatReader
 public:
 	OdtReader();
 
+	enum { Type = 3 };
+	int type() const
+	{
+		return Type;
+	}
+
 private:
 	void readData(QIODevice* device);
 	void readDocument();

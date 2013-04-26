@@ -479,17 +479,19 @@ bool Document::loadFile(const QString& filename, int position)
 	emit replaceCacheFile(this, filename);
 
 	// Determine file type from contents
-	QString type;
+	FormatReader* reader = 0;
 	QFile file(filename);
 	if (file.open(QIODevice::ReadOnly)) {
 		if (file.peek(2) == "PK") {
 			file.seek(30);
 			if (file.read(47) == "mimetypeapplication/vnd.oasis.opendocument.text") {
-				type = "odt";
+				reader = new OdtReader;
 			}
 			file.reset();
 		} else if (file.peek(5) == "{\\rtf") {
-			type = "rtf";
+			reader = new RtfReader;
+		} else {
+			reader = new TxtReader;
 		}
 	}
 
@@ -501,31 +503,18 @@ bool Document::loadFile(const QString& filename, int position)
 	document->setUndoRedoEnabled(false);
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
-	if (file.isOpen()) {
+	if (reader) {
 		QString error;
-		if (type == "odt") {
-			OdtReader reader;
-			reader.read(&file, document);
-			file.close();
-			if (reader.hasError()) {
-				error = reader.errorString();
-				loaded = false;
-				position = -1;
-			}
-		} else if (type == "rtf") {
-			RtfReader reader;
-			reader.read(&file, document);
-			file.close();
-			if (reader.hasError()) {
-				error = reader.errorString();
-				loaded = false;
-				position = -1;
-			}
-			m_codepage = reader.codePage();
-		} else {
-			TxtReader reader;
-			reader.read(&file, document);
-			file.close();
+		reader->read(&file, document);
+		file.close();
+		if (reader->type() == RtfReader::Type) {
+			m_codepage = static_cast<RtfReader*>(reader)->codePage();
+		}
+
+		if (reader->hasError()) {
+			error = reader->errorString();
+			loaded = false;
+			position = -1;
 		}
 
 		if (!loaded) {

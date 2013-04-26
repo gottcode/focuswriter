@@ -1,4 +1,5 @@
 2013-04-26 Graeme Gott <graeme@gottcode.org>
+	* Simplify code for reading file formats in document.
 	* Unify API for file format readers.
 	* Move reading plain text files into separate class.
 

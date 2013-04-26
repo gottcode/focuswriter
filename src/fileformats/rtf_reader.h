@@ -40,6 +40,12 @@ public:
 
 	QByteArray codePage() const;
 
+	enum { Type = 2 };
+	int type() const
+	{
+		return Type;
+	}
+
 private:
 	void readData(QIODevice* device);
 	void endBlock(qint32);
