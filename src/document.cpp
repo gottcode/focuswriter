@@ -482,13 +482,9 @@ bool Document::loadFile(const QString& filename, int position)
 	FormatReader* reader = 0;
 	QFile file(filename);
 	if (file.open(QIODevice::ReadOnly)) {
-		if (file.peek(2) == "PK") {
-			file.seek(30);
-			if (file.read(47) == "mimetypeapplication/vnd.oasis.opendocument.text") {
-				reader = new OdtReader;
-			}
-			file.reset();
-		} else if (file.peek(5) == "{\\rtf") {
+		if (OdtReader::canRead(&file)) {
+			reader = new OdtReader;
+		} else if (RtfReader::canRead(&file)) {
 			reader = new RtfReader;
 		} else {
 			reader = new TxtReader;

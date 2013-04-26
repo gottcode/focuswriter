@@ -35,6 +35,14 @@ OdtReader::OdtReader()
 
 //-----------------------------------------------------------------------------
 
+bool OdtReader::canRead(QIODevice* device)
+{
+	return (device->peek(2) == "PK") &&
+			(device->peek(77).right(47) == "mimetypeapplication/vnd.oasis.opendocument.text");
+}
+
+//-----------------------------------------------------------------------------
+
 void OdtReader::readData(QIODevice* device)
 {
 	m_in_block = m_cursor.document()->blockCount();

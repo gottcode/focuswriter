@@ -46,6 +46,8 @@ public:
 		return Type;
 	}
 
+	static bool canRead(QIODevice* device);
+
 private:
 	void readData(QIODevice* device);
 	void endBlock(qint32);

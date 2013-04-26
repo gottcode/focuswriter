@@ -189,6 +189,13 @@ QByteArray RtfReader::codePage() const
 
 //-----------------------------------------------------------------------------
 
+bool RtfReader::canRead(QIODevice* device)
+{
+	return device->peek(5) == "{\\rtf";
+}
+
+//-----------------------------------------------------------------------------
+
 void RtfReader::readData(QIODevice* device)
 {
 	try {

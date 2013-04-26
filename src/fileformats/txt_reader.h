@@ -31,6 +31,12 @@ public:
 		return Type;
 	}
 
+	static bool canRead(QIODevice* device)
+	{
+		Q_UNUSED(device)
+		return true;
+	}
+
 private:
 	void readData(QIODevice* device);
 };
