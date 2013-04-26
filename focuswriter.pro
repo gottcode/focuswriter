@@ -133,6 +133,7 @@ HEADERS += src/action_manager.h \
 	src/fileformats/rtf_reader.h \
 	src/fileformats/rtf_tokenizer.h \
 	src/fileformats/rtf_writer.h \
+	src/fileformats/txt_reader.h \
 	src/qtsingleapplication/qtsingleapplication.h \
 	src/qtsingleapplication/qtlocalpeer.h \
 	src/spelling/abstract_dictionary.h \
@@ -186,6 +187,7 @@ SOURCES += src/action_manager.cpp \
 	src/fileformats/rtf_reader.cpp \
 	src/fileformats/rtf_tokenizer.cpp \
 	src/fileformats/rtf_writer.cpp \
+	src/fileformats/txt_reader.cpp \
 	src/qtsingleapplication/qtsingleapplication.cpp \
 	src/qtsingleapplication/qtlocalpeer.cpp \
 	src/spelling/dictionary_manager.cpp \

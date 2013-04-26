@@ -36,6 +36,7 @@
 #include "sound.h"
 #include "spell_checker.h"
 #include "theme.h"
+#include "txt_reader.h"
 #include "window.h"
 
 #include <QApplication>
@@ -57,7 +58,6 @@
 #include <QStyle>
 #include <QTextBlock>
 #include <QTextEdit>
-#include <QTextStream>
 #include <QTimer>
 
 #include <ctime>
@@ -524,18 +524,8 @@ bool Document::loadFile(const QString& filename, int position)
 				position = -1;
 			}
 		} else {
-			file.setTextModeEnabled(true);
-			QTextStream stream(&file);
-			stream.setCodec("UTF-8");
-			stream.setAutoDetectUnicode(true);
-
-			QTextCursor cursor(document);
-			cursor.beginEditBlock();
-			while (!stream.atEnd()) {
-				cursor.insertText(stream.read(8192));
-				QApplication::processEvents();
-			}
-			cursor.endEditBlock();
+			TxtReader reader;
+			reader.read(&file, document);
 			file.close();
 		}
 
