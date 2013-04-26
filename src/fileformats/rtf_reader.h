@@ -20,18 +20,17 @@
 #ifndef RTF_READER_H
 #define RTF_READER_H
 
+#include "format_reader.h"
 #include "rtf_tokenizer.h"
 
 #include <QCoreApplication>
 #include <QStack>
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
-#include <QTextCursor>
 class QString;
-class QTextEdit;
 class QTextDecoder;
 
-class RtfReader
+class RtfReader : public FormatReader
 {
 	Q_DECLARE_TR_FUNCTIONS(RtfReader)
 
@@ -40,12 +39,9 @@ public:
 	~RtfReader();
 
 	QByteArray codePage() const;
-	QString errorString() const;
-	bool hasError() const;
-
-	void read(QIODevice* device, const QTextCursor& cursor);
 
 private:
+	void readData(QIODevice* device);
 	void endBlock(qint32);
 	void ignoreGroup(qint32);
 	void ignoreText(qint32);
@@ -93,10 +89,6 @@ private:
 	QTextCodec* m_codepage;
 	QVector<QTextCodec*> m_codepages;
 	QByteArray m_codepage_name;
-
-	QString m_error;
-
-	QTextCursor m_cursor;
 };
 
 #endif

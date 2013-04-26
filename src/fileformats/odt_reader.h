@@ -20,26 +20,21 @@
 #ifndef ODT_READER_H
 #define ODT_READER_H
 
+#include "format_reader.h"
+
 #include <QCoreApplication>
 #include <QStack>
-#include <QTextCursor>
 #include <QXmlStreamReader>
-class QIODevice;
-class QTextDocument;
 
-class OdtReader
+class OdtReader : public FormatReader
 {
 	Q_DECLARE_TR_FUNCTIONS(OdtReader)
 
 public:
 	OdtReader();
 
-	QString errorString() const;
-	bool hasError() const;
-
-	void read(const QString& filename, QTextDocument* text);
-
 private:
+	void readData(QIODevice* device);
 	void readDocument();
 	void readStylesGroup();
 	void readStyle();
@@ -52,9 +47,7 @@ private:
 	void readText();
 
 private:
-	QString m_filename;
 	QXmlStreamReader m_xml;
-	QTextCursor m_cursor;
 
 	struct Style
 	{
@@ -70,8 +63,6 @@ private:
 	QTextBlockFormat m_block_format;
 
 	bool m_in_block;
-
-	QString m_error;
 };
 
 #endif

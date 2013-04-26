@@ -19,7 +19,6 @@
 
 #include "odt_reader.h"
 
-#include <QApplication>
 #include <QFile>
 #include <QTextDocument>
 
@@ -36,31 +35,18 @@ OdtReader::OdtReader()
 
 //-----------------------------------------------------------------------------
 
-QString OdtReader::errorString() const
+void OdtReader::readData(QIODevice* device)
 {
-	return m_error;
-}
-
-//-----------------------------------------------------------------------------
-
-bool OdtReader::hasError() const
-{
-	return !m_error.isEmpty();
-}
-
-//-----------------------------------------------------------------------------
-
-void OdtReader::read(const QString& filename, QTextDocument* text)
-{
-	m_filename = filename;
-
-	m_in_block = text->blockCount();
-	m_cursor = QTextCursor(text);
+	m_in_block = m_cursor.document()->blockCount();
 	m_block_format = m_cursor.blockFormat();
 	m_cursor.beginEditBlock();
 
 	// Open archive
-	zip* archive = zip_open(QFile::encodeName(m_filename).constData(), 0, 0);
+	zip* archive = 0;
+	QFile* file = qobject_cast<QFile*>(device);
+	if (file) {
+		archive = zip_fdopen(file->handle(), 0, 0);
+	}
 	if (!archive) {
 		m_error = tr("Unable to open archive.");
 	}
@@ -106,7 +92,7 @@ void OdtReader::read(const QString& filename, QTextDocument* text)
 	zip_close(archive);
 	m_xml.clear();
 
-	QApplication::processEvents();
+	QCoreApplication::processEvents();
 }
 
 //-----------------------------------------------------------------------------

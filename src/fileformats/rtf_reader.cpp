@@ -28,7 +28,6 @@
 #include <QTextBlock>
 #include <QTextCodec>
 #include <QTextDecoder>
-#include <QTextEdit>
 
 //-----------------------------------------------------------------------------
 
@@ -190,29 +189,14 @@ QByteArray RtfReader::codePage() const
 
 //-----------------------------------------------------------------------------
 
-QString RtfReader::errorString() const
-{
-	return m_error;
-}
-
-//-----------------------------------------------------------------------------
-
-bool RtfReader::hasError() const
-{
-	return !m_error.isEmpty();
-}
-
-//-----------------------------------------------------------------------------
-
-void RtfReader::read(QIODevice* device, const QTextCursor& cursor)
+void RtfReader::readData(QIODevice* device)
 {
 	try {
 		// Use theme spacings
-		m_block_format = cursor.blockFormat();
+		m_block_format = m_cursor.blockFormat();
 		m_state.block_format = m_block_format;
 
 		// Open file
-		m_cursor = cursor;
 		m_cursor.beginEditBlock();
 		m_token.setDevice(device);
 		setBlockDirection(Qt::LeftToRight);

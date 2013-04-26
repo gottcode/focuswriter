@@ -17,15 +17,49 @@
  *
  ***********************************************************************/
 
-#ifndef TXT_READER_H
-#define TXT_READER_H
+#ifndef FORMAT_READER_H
+#define FORMAT_READER_H
 
-#include "format_reader.h"
+#include <QString>
+#include <QTextCursor>
+class QIODevice;
+class QTextDocument;
 
-class TxtReader : public FormatReader
+class FormatReader
 {
+public:
+	virtual ~FormatReader()
+	{
+	}
+
+	QString errorString() const
+	{
+		return m_error;
+	}
+
+	bool hasError() const
+	{
+		return !m_error.isEmpty();
+	}
+
+	void read(QIODevice* device, QTextDocument* document)
+	{
+		m_cursor = QTextCursor(document);
+		readData(device);
+	}
+
+	void read(QIODevice* device, const QTextCursor& cursor)
+	{
+		m_cursor = cursor;
+		readData(device);
+	}
+
+protected:
+	QTextCursor m_cursor;
+	QString m_error;
+
 private:
-	void readData(QIODevice* device);
+	virtual void readData(QIODevice* device) = 0;
 };
 
 #endif

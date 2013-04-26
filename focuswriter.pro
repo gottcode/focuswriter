@@ -129,6 +129,7 @@ HEADERS += src/action_manager.h \
 	src/timer_display.h \
 	src/timer_manager.h \
 	src/window.h \
+	src/fileformats/format_reader.h \
 	src/fileformats/odt_reader.h \
 	src/fileformats/rtf_reader.h \
 	src/fileformats/rtf_tokenizer.h \

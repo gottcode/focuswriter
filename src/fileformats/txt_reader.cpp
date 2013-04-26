@@ -20,33 +20,24 @@
 #include "txt_reader.h"
 
 #include <QCoreApplication>
-#include <QTextCursor>
 #include <QTextStream>
 
 //-----------------------------------------------------------------------------
 
-void TxtReader::read(QIODevice* device, QTextDocument* document)
+void TxtReader::readData(QIODevice* device)
 {
-	QTextCursor cursor(document);
-	read(device, cursor);
-}
-
-//-----------------------------------------------------------------------------
-
-void TxtReader::read(QIODevice* device, QTextCursor& cursor)
-{
-	cursor.beginEditBlock();
+	m_cursor.beginEditBlock();
 
 	QTextStream stream(device);
 	stream.setCodec("UTF-8");
 	stream.setAutoDetectUnicode(true);
 
 	while (!stream.atEnd()) {
-		cursor.insertText(stream.read(0x4000));
+		m_cursor.insertText(stream.read(0x4000));
 		QCoreApplication::processEvents();
 	}
 
-	cursor.endEditBlock();
+	m_cursor.endEditBlock();
 }
 
 //-----------------------------------------------------------------------------

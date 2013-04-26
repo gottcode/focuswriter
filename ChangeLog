@@ -1,4 +1,5 @@
 2013-04-26 Graeme Gott <graeme@gottcode.org>
+	* Unify API for file format readers.
 	* Move reading plain text files into separate class.
 
 2013-04-25 Graeme Gott <graeme@gottcode.org>

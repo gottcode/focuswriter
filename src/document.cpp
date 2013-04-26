@@ -504,9 +504,9 @@ bool Document::loadFile(const QString& filename, int position)
 	if (file.isOpen()) {
 		QString error;
 		if (type == "odt") {
-			file.close();
 			OdtReader reader;
-			reader.read(filename, document);
+			reader.read(&file, document);
+			file.close();
 			if (reader.hasError()) {
 				error = reader.errorString();
 				loaded = false;
@@ -514,15 +514,14 @@ bool Document::loadFile(const QString& filename, int position)
 			}
 		} else if (type == "rtf") {
 			RtfReader reader;
-			QTextCursor cursor(document);
-			reader.read(&file, cursor);
-			m_codepage = reader.codePage();
+			reader.read(&file, document);
 			file.close();
 			if (reader.hasError()) {
 				error = reader.errorString();
 				loaded = false;
 				position = -1;
 			}
+			m_codepage = reader.codePage();
 		} else {
 			TxtReader reader;
 			reader.read(&file, document);

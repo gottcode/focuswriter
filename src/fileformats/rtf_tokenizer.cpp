@@ -24,7 +24,7 @@
 
 #include "rtf_tokenizer.h"
 
-#include <QApplication>
+#include <QCoreApplication>
 #include <QIODevice>
 
 //-----------------------------------------------------------------------------
@@ -152,7 +152,7 @@ char RtfTokenizer::next()
 		}
 		m_buffer.resize(size);
 		m_position = 0;
-		QApplication::processEvents();
+		QCoreApplication::processEvents();
 	}
 	return m_buffer.at(m_position);
 }
