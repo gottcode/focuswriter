@@ -1,4 +1,5 @@
 2013-04-26 Graeme Gott <graeme@gottcode.org>
+	* Group logic for handling file formats.
 	* Move type check into format readers.
 	* Simplify code for reading file formats in document.
 	* Unify API for file format readers.

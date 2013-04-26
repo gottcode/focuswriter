@@ -129,6 +129,7 @@ HEADERS += src/action_manager.h \
 	src/timer_display.h \
 	src/timer_manager.h \
 	src/window.h \
+	src/fileformats/format_manager.h \
 	src/fileformats/format_reader.h \
 	src/fileformats/odt_reader.h \
 	src/fileformats/rtf_reader.h \
@@ -184,6 +185,7 @@ SOURCES += src/action_manager.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
 	src/window.cpp \
+	src/fileformats/format_manager.cpp \
 	src/fileformats/odt_reader.cpp \
 	src/fileformats/rtf_reader.cpp \
 	src/fileformats/rtf_tokenizer.cpp \

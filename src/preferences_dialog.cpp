@@ -21,7 +21,7 @@
 
 #include "action_manager.h"
 #include "dictionary_manager.h"
-#include "document.h"
+#include "format_manager.h"
 #include "locale_dialog.h"
 #include "preferences.h"
 #include "shortcut_edit.h"
@@ -819,9 +819,10 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
 	m_save_format = new QComboBox(save_group);
-	m_save_format->addItem(Document::tr("OpenDocument Text") + QLatin1String(" (*.odt)"), "odt");
-	m_save_format->addItem(Document::tr("Rich Text Format") + QLatin1String(" (*.rtf)"), "rtf");
-	m_save_format->addItem(Document::tr("Plain Text") + QLatin1String(" (*.txt *.text)"), "txt");
+	QStringList types = FormatManager::types();
+	foreach (const QString& type, types) {
+		m_save_format->addItem(FormatManager::filter(type), type);
+	}
 
 	QHBoxLayout* save_format_layout = new QHBoxLayout;
 	save_format_layout->setMargin(0);

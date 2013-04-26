@@ -28,6 +28,7 @@
 #include "document.h"
 #include "document_cache.h"
 #include "document_watcher.h"
+#include "format_manager.h"
 #include "load_screen.h"
 #include "locale_dialog.h"
 #include "preferences.h"
@@ -661,14 +662,7 @@ void Window::openDocument()
 		path = oldpath;
 	}
 
-	QString text = tr("All Supported Files") + QLatin1String(" (*.odt *.rtf *.txt *.text)");
-	QString opendocumenttext = Document::tr("OpenDocument Text") + QLatin1String(" (*.odt)");
-	QString richtext = Document::tr("Rich Text Format") + QLatin1String(" (*.rtf)");
-	QString plaintext = Document::tr("Plain Text") + QLatin1String(" (*.txt *.text)");
-	QString all = Document::tr("All Files") + QLatin1String(" (*)");
-	QString filter = text + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
-
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, filter);
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
 		oldpath = QFileInfo(filenames.last()).dir().path();

@@ -25,8 +25,8 @@
 #include "dictionary_manager.h"
 #include "document_watcher.h"
 #include "document_writer.h"
+#include "format_manager.h"
 #include "highlighter.h"
-#include "odt_reader.h"
 #include "preferences.h"
 #include "rtf_reader.h"
 #include "rtf_writer.h"
@@ -36,7 +36,6 @@
 #include "sound.h"
 #include "spell_checker.h"
 #include "theme.h"
-#include "txt_reader.h"
 #include "window.h"
 
 #include <QApplication>
@@ -224,8 +223,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 
 	// Set filename
 	if (!filename.isEmpty()) {
-		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
-		m_rich_text = (suffix == "odt") || (suffix == "rtf");
+		m_rich_text = FormatManager::isRichText(filename.section(QLatin1Char('.'), -1).toLower());
 		m_filename = QFileInfo(filename).canonicalFilePath();
 		updateState();
 	}
@@ -478,17 +476,11 @@ bool Document::loadFile(const QString& filename, int position)
 	// Cache contents
 	emit replaceCacheFile(this, filename);
 
-	// Determine file type from contents
+	// Fetch reader for file
 	FormatReader* reader = 0;
 	QFile file(filename);
 	if (file.open(QIODevice::ReadOnly)) {
-		if (OdtReader::canRead(&file)) {
-			reader = new OdtReader;
-		} else if (RtfReader::canRead(&file)) {
-			reader = new RtfReader;
-		} else {
-			reader = new TxtReader;
-		}
+		reader = FormatManager::createReader(&file, filename.section(QLatin1Char('.'), -1).toLower());
 	}
 
 	// Load text area contents
@@ -1094,27 +1086,11 @@ void Document::findIndex()
 QString Document::getSaveFileName(const QString& title)
 {
 	// Determine filter
-	QString filter;
-	{
-		QString opendocumenttext = tr("OpenDocument Text") + QLatin1String(" (*.odt)");
-		QString richtext = tr("Rich Text Format") + QLatin1String(" (*.rtf)");
-		QString plaintext = tr("Plain Text") + QLatin1String(" (*.txt *.text)");
-		QString all = tr("All Files") + QLatin1String(" (*)");
-
-		QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
-		if (type.isEmpty()) {
-			type = m_default_format;
-		}
-		if (type == "odt") {
-			filter = opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
-		} else if (type == "rtf") {
-			filter = richtext + ";;" + opendocumenttext + ";;" + plaintext + ";;" + all;
-		} else  if ((type == "txt") || (type == "text")) {
-			filter = plaintext + ";;" + opendocumenttext + ";;" + richtext + ";;" + all;
-		} else {
-			filter = all + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext;
-		}
+	QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
+	if (type.isEmpty()) {
+		type = m_default_format;
 	}
+	QString filter = FormatManager::filters(type).join(";;");
 
 	// Prompt for filename
 	QString filename;
@@ -1160,8 +1136,7 @@ QString Document::getSaveFileName(const QString& title)
 bool Document::processFileName(const QString& filename)
 {
 	// Check if rich text status is the same
-	QString type = filename.section(QLatin1Char('.'), -1).toLower();
-	bool rich_text = (type == "odt") || (type == "rtf");
+	bool rich_text = FormatManager::isRichText(filename.section(QLatin1Char('.'), -1).toLower());
 	if (m_rich_text == rich_text) {
 		return true;
 	}
