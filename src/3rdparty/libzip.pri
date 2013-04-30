@@ -1,5 +1,6 @@
 INCLUDEPATH += $$PWD/libzip
 SOURCES += $$PWD/libzip/mkstemp.c \
+	$$PWD/libzip/zip_add_entry.c \
 	$$PWD/libzip/zip_close.c \
 	$$PWD/libzip/zip_dirent.c \
 	$$PWD/libzip/zip_discard.c \
@@ -9,8 +10,11 @@ SOURCES += $$PWD/libzip/mkstemp.c \
 	$$PWD/libzip/zip_error_get_sys_type.c \
 	$$PWD/libzip/zip_extra_field.c \
 	$$PWD/libzip/zip_fclose.c \
+	$$PWD/libzip/zip_fdopen.c \
+	$$PWD/libzip/zip_file_add.c \
 	$$PWD/libzip/zip_file_get_offset.c \
 	$$PWD/libzip/zip_filerange_crc.c \
+	$$PWD/libzip/zip_file_replace.c \
 	$$PWD/libzip/zip_fopen_index.c \
 	$$PWD/libzip/zip_fopen_index_encrypted.c \
 	$$PWD/libzip/zip_fread.c \
@@ -24,6 +28,8 @@ SOURCES += $$PWD/libzip/mkstemp.c \
 	$$PWD/libzip/zip_new.c \
 	$$PWD/libzip/zip_open.c \
 	$$PWD/libzip/zip_set_archive_comment.c \
+	$$PWD/libzip/zip_set_file_compression.c \
+	$$PWD/libzip/zip_set_name.c \
 	$$PWD/libzip/zip_source_buffer.c \
 	$$PWD/libzip/zip_source_close.c \
 	$$PWD/libzip/zip_source_crc.c \

@@ -54,8 +54,8 @@ macx {
 		SOURCES += src/fileformats/clipboard_windows.cpp
 	}
 } else {
-	LIBS += -lz
 	CONFIG += link_pkgconfig
+	PKGCONFIG += zlib
 	isEmpty(USE_BUNDLED_HUNSPELL) {
 		system(pkg-config --atleast-version=1.2 hunspell) {
 			PKGCONFIG += hunspell
@@ -64,7 +64,7 @@ macx {
 		}
 	}
 	isEmpty(USE_BUNDLED_LIBZIP) {
-		system(pkg-config --atleast-version=0.10 libzip) {
+		system(pkg-config --atleast-version=0.11 libzip) {
 			PKGCONFIG += libzip
 		} else {
 			USE_BUNDLED_LIBZIP = 1
@@ -129,6 +129,8 @@ HEADERS += src/action_manager.h \
 	src/timer_display.h \
 	src/timer_manager.h \
 	src/window.h \
+	src/zip_reader.h \
+	src/zip_writer.h \
 	src/fileformats/format_manager.h \
 	src/fileformats/format_reader.h \
 	src/fileformats/odt_reader.h \
@@ -185,6 +187,8 @@ SOURCES += src/action_manager.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
 	src/window.cpp \
+	src/zip_reader.cpp \
+	src/zip_writer.cpp \
 	src/fileformats/format_manager.cpp \
 	src/fileformats/odt_reader.cpp \
 	src/fileformats/rtf_reader.cpp \

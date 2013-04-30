@@ -19,16 +19,14 @@
 
 #include "odt_reader.h"
 
-#include <QFile>
-#include <QTextDocument>
+#include "zip_reader.h"
 
-#define ZIP_DISABLE_DEPRECATED 1
-#include <zip.h>
+#include <QTextDocument>
 
 //-----------------------------------------------------------------------------
 
-OdtReader::OdtReader()
-	: m_in_block(true)
+OdtReader::OdtReader() :
+	m_in_block(true)
 {
 	m_xml.setNamespaceProcessing(false);
 }
@@ -37,7 +35,7 @@ OdtReader::OdtReader()
 
 bool OdtReader::canRead(QIODevice* device)
 {
-	return (device->peek(2) == "PK") &&
+	return ZipReader::canRead(device) &&
 			(device->peek(77).right(47) == "mimetypeapplication/vnd.oasis.opendocument.text");
 }
 
@@ -47,58 +45,32 @@ void OdtReader::readData(QIODevice* device)
 {
 	m_in_block = m_cursor.document()->blockCount();
 	m_block_format = m_cursor.blockFormat();
-	m_cursor.beginEditBlock();
 
 	// Open archive
-	zip* archive = 0;
-	QFile* file = qobject_cast<QFile*>(device);
-	if (file) {
-		archive = zip_fdopen(file->handle(), 0, 0);
-	}
-	if (!archive) {
+	ZipReader zip(device);
+
+	// Read archive
+	if (zip.isReadable()) {
+		const QString files[] = { QString::fromLatin1("styles.xml"), QString::fromLatin1("content.xml") };
+		for (int i = 0; i < 2; ++i) {
+			QByteArray data = zip.fileData(files[i]);
+			if (data.isEmpty()) {
+				continue;
+			}
+			m_xml.addData(data);
+			readDocument();
+			if (m_xml.hasError()) {
+				m_error = m_xml.errorString();
+				break;
+			}
+			m_xml.clear();
+		}
+	} else {
 		m_error = tr("Unable to open archive.");
 	}
 
-	try {
-		const zip_uint64_t buffer_size = 0x4000;
-		char buffer[buffer_size + 1];
-
-		const char* files[] = { "styles.xml", "content.xml" };
-		for (int i = 0; i < 2; ++i) {
-			const char* file = files[i];
-			zip_int64_t index = zip_name_locate(archive, file, 0);
-			if (index != -1) {
-				zip_file* zfile = zip_fopen_index(archive, index, 0);
-				if (zfile == NULL) {
-					throw tr("Unable to open file '%1'.").arg(file);
-				}
-
-				m_xml.clear();
-				zip_int64_t len = 0;
-				while ((len = zip_fread(zfile, &buffer, buffer_size)) > 0) {
-					buffer[len] = 0;
-					m_xml.addData(buffer);
-				}
-
-				if (zip_fclose(zfile) != 0) {
-					throw tr("Unable to close file '%1'.").arg(file);
-				}
-
-				readDocument();
-				if (m_xml.hasError()) {
-					throw m_xml.errorString();
-				}
-			}
-		}
-	}
-	catch (QString error) {
-		m_error = error;
-	}
-	m_cursor.endEditBlock();
-
 	// Close archive
-	zip_close(archive);
-	m_xml.clear();
+	zip.close();
 
 	QCoreApplication::processEvents();
 }
@@ -273,6 +245,7 @@ void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 
 void OdtReader::readBody()
 {
+	m_cursor.beginEditBlock();
 	while (m_xml.readNextStartElement()) {
 		if (m_xml.qualifiedName() == "office:text") {
 			readBodyText();
@@ -280,6 +253,7 @@ void OdtReader::readBody()
 			m_xml.skipCurrentElement();
 		}
 	}
+	m_cursor.endEditBlock();
 }
 
 //-----------------------------------------------------------------------------
@@ -322,6 +296,8 @@ void OdtReader::readParagraph()
 	// Read paragraph text
 	readText();
 	m_in_block = false;
+
+	QCoreApplication::processEvents();
 }
 
 //-----------------------------------------------------------------------------

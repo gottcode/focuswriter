@@ -1,3 +1,6 @@
+2013-04-30 Graeme Gott <graeme@gottcode.org>
+	* Add wrapper for libzip.
+
 2013-04-26 Graeme Gott <graeme@gottcode.org>
 	* Group logic for handling file formats.
 	* Move type check into format readers.

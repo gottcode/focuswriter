@@ -26,6 +26,7 @@
 #include "preferences.h"
 #include "shortcut_edit.h"
 #include "smart_quotes.h"
+#include "zip_reader.h"
 
 #include <QAction>
 #include <QCheckBox>
@@ -48,9 +49,6 @@
 #include <QTabWidget>
 #include <QTreeWidget>
 #include <QVBoxLayout>
-
-#define ZIP_DISABLE_DEPRECATED 1
-#include <zip.h>
 
 //-----------------------------------------------------------------------------
 
@@ -429,82 +427,69 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// File lists
-	QHash<QString, zip_int64_t> aff_files;
-	QHash<QString, zip_int64_t> dic_files;
-	QHash<QString, zip_int64_t> files;
+	QStringList aff_files;
+	QStringList dic_files;
+	QStringList files;
 	QStringList dictionaries;
 
 	// Open archive
-	zip* archive = zip_open(QFile::encodeName(path).constData(), 0, 0);
-	if (!archive) {
+	ZipReader zip(path);
+	if (!zip.isReadable()) {
 		QMessageBox::warning(this, tr("Sorry"), tr("Unable to open archive."));
 		return;
 	}
 
-	try {
-		// List files
-		zip_int64_t count = zip_get_num_entries(archive, 0);
-		if (count == -1) {
-			throw tr("Unable to read archive metadata.");
-		}
-		for (zip_int64_t i = 0; i < count; ++i) {
-			QString name = QString::fromUtf8(zip_get_name(archive, i, 0));
-			if (name.endsWith(".aff")) {
-				aff_files[name] = i;
-			} else if (name.endsWith(".dic")) {
-				dic_files[name] = i;
+	// List files
+	QStringList entries = zip.fileList();
+	for (int i = 0; i < entries.count(); ++i) {
+		QString name = entries.at(i);
+		if (name.endsWith(".aff")) {
+			aff_files += name;
+		} else if (name.endsWith(".dic")) {
+			dic_files += name;
 #ifdef Q_OS_WIN
-			// Find Voikko files
-			} else if (name.contains("mor-") || (name == "libvoikko-1.dll")) {
-				files[name] = i;
+		// Find Voikko files
+		} else if (name.contains("mor-") || (name == "libvoikko-1.dll")) {
+			files += name;
 #endif
-			}
 		}
+	}
 
 #ifdef Q_OS_WIN
-		// Find Voikko dictionaries
-		if (!files.isEmpty()) {
-			QStringList keys = files.keys();
-			foreach (const QString& file, keys) {
-				if (file.endsWith(".dll")) {
-					continue;
-				}
-				QString name = file.section('/', -1).section('.', 0);
-				name.replace("voikko-", "");
-				if (!dictionaries.contains(name)) {
-					dictionaries += name;
-				}
-			}
+	// Find Voikko dictionaries
+	foreach (const QString& file, files) {
+		if (file.endsWith(".dll")) {
+			continue;
 		}
+		QString name = file.section('/', -1).section('.', 0);
+		name.replace("voikko-", "");
+		if (!dictionaries.contains(name)) {
+			dictionaries += name;
+		}
+	}
 #endif
 
-		// Find Hunspell dictionary files
-		foreach (const QString& dic, dic_files.keys()) {
-			QString aff = dic;
-			aff.replace(".dic", ".aff");
-			if (aff_files.contains(aff)) {
-				files[dic] = dic_files[dic];
-				files[aff] = aff_files[aff];
-				QString dictionary = dic.section('/', -1);
-				dictionary.chop(4);
-				dictionaries += dictionary;
-			}
+	// Find Hunspell dictionary files
+	foreach (const QString& dic, dic_files) {
+		QString aff = dic;
+		aff.replace(".dic", ".aff");
+		if (aff_files.contains(aff)) {
+			files += dic;
+			files += aff;
+			QString dictionary = dic.section('/', -1);
+			dictionary.chop(4);
+			dictionaries += dictionary;
 		}
+	}
 
-		// Check for dictionaries
-		if (dictionaries.isEmpty()) {
-			throw tr("The archive does not contain a usable dictionary.");
-		}
-
+	// Check for dictionaries
+	if (!dictionaries.isEmpty()) {
 		// Extract files
 		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
-		QHashIterator<QString, zip_int64_t> i(files);
-		while (i.hasNext()) {
-			i.next();
-
-			QString filename = i.key();
+		foreach (const QString& file, files) {
+			QString filename = file;
 			if (filename.endsWith(".dic") || filename.endsWith(".aff")) {
 				// Ignore path for Hunspell dictionaries
 				filename = filename.section('/', -1);
@@ -520,23 +505,9 @@ void PreferencesDialog::addLanguage()
 #endif
 			}
 
-			QFile file(install + filename);
-			if (file.open(QIODevice::WriteOnly)) {
-				zip_file* zfile = zip_fopen_index(archive, i.value(), 0);
-				if (zfile == 0) {
-					throw tr("Unable to open file '%1'.").arg(i.key());
-				}
-
-				char buffer[8192];
-				int len;
-				while ((len = zip_fread(zfile, &buffer, sizeof(buffer))) > 0) {
-					file.write(buffer, len);
-				}
-				file.close();
-
-				if (zip_fclose(zfile) != 0) {
-					throw tr("Unable to close file '%1'.").arg(i.key());
-				}
+			QFile out(install + filename);
+			if (out.open(QIODevice::WriteOnly)) {
+				out.write(zip.fileData(file));
 			}
 		}
 
@@ -566,14 +537,12 @@ void PreferencesDialog::addLanguage()
 			m_languages->setCurrentIndex(m_languages->count() - 1);
 		}
 		m_languages->model()->sort(0);
-	}
-
-	catch (QString error) {
-		QMessageBox::warning(this, tr("Sorry"), error);
+	} else {
+		QMessageBox::warning(this, tr("Sorry"), tr("The archive does not contain a usable dictionary."));
 	}
 
 	// Close archive
-	zip_close(archive);
+	zip.close();
 }
 
 //-----------------------------------------------------------------------------
