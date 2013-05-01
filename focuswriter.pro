@@ -131,6 +131,8 @@ HEADERS += src/action_manager.h \
 	src/window.h \
 	src/zip_reader.h \
 	src/zip_writer.h \
+	src/fileformats/docx_reader.h \
+	src/fileformats/docx_writer.h \
 	src/fileformats/format_manager.h \
 	src/fileformats/format_reader.h \
 	src/fileformats/odt_reader.h \
@@ -189,6 +191,8 @@ SOURCES += src/action_manager.cpp \
 	src/window.cpp \
 	src/zip_reader.cpp \
 	src/zip_writer.cpp \
+	src/fileformats/docx_reader.cpp \
+	src/fileformats/docx_writer.cpp \
 	src/fileformats/format_manager.cpp \
 	src/fileformats/odt_reader.cpp \
 	src/fileformats/rtf_reader.cpp \

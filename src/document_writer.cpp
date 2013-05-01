@@ -19,6 +19,7 @@
 
 #include "document_writer.h"
 
+#include "docx_writer.h"
 #include "rtf_writer.h"
 
 #include <QFile>
@@ -66,6 +67,9 @@ bool DocumentWriter::write()
 			QTextDocumentWriter writer(&file, "ODT");
 			saved = writer.write(m_document);
 		}
+	} else if (m_type == "docx") {
+		DocxWriter writer;
+		saved = writer.write(m_filename, m_document);
 	} else if (m_type == "rtf") {
 		if (file.open(QFile::WriteOnly)) {
 			RtfWriter writer(m_codepage);

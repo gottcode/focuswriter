@@ -1,3 +1,6 @@
+2013-05-01 Graeme Gott <graeme@gottcode.org>
+	* Add basic Office Open XML support.
+
 2013-04-30 Graeme Gott <graeme@gottcode.org>
 	* Add wrapper for libzip.
 

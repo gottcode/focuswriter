@@ -362,7 +362,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	static const QStringList suffixes = QStringList()
 		<< "abw" << "awt" << "zabw"
 		<< "doc" << "dot"
-		<< "docx" << "docm" << "dotx" << "dotm"
+		<< "docm" << "dotx" << "dotm"
 		<< "kwd"
 		<< "ott"
 		<< "wpd";

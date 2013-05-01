@@ -52,6 +52,22 @@
 			<string>OpenDocument Text document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>Document</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>docx</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Microsoft Word 2007 document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>NSDocumentClass</key>
+			<string>Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
