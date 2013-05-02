@@ -1,4 +1,5 @@
 2013-05-01 Graeme Gott <graeme@gottcode.org>
+	* Add custom OpenDocument Text writer.
 	* Clean up document writer class.
 	* Add basic Office Open XML support.
 

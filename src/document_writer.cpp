@@ -20,11 +20,11 @@
 #include "document_writer.h"
 
 #include "docx_writer.h"
+#include "odt_writer.h"
 #include "rtf_writer.h"
 
 #include <QFile>
 #include <QTextDocument>
-#include <QTextDocumentWriter>
 #include <QTextStream>
 
 #if defined(Q_OS_UNIX)
@@ -61,8 +61,8 @@ bool DocumentWriter::write()
 	bool saved = false;
 
 	if (m_type == "odt") {
-		QTextDocumentWriter writer(m_filename, "ODT");
-		saved = writer.write(m_document);
+		OdtWriter writer;
+		saved = writer.write(m_filename, m_document);
 	} else if (m_type == "docx") {
 		DocxWriter writer;
 		saved = writer.write(m_filename, m_document);
