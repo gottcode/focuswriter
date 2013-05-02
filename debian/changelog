@@ -1,3 +1,11 @@
+focuswriter (1.4.3.2013.04.15-1) unstable; urgency=low
+
+  * merge upstream maintenance branch
+    - FIXED: Smart quotes were incorrect after opening punctuation.
+    - Allow margins smaller than 10 pixels.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 02 May 2013 14:57:52 +0100
+
 focuswriter (1.4.3-1) unstable; urgency=low
 
   * new upstream release
