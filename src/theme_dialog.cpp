@@ -231,9 +231,14 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	QGroupBox* paragraph_spacing = new QGroupBox(tr("Paragraph Spacing"), tab);
 
-	m_indent_first_line = new QCheckBox(tab);
+	m_indent_first_line = new QCheckBox(paragraph_spacing);
 	m_indent_first_line->setChecked(m_theme.indentFirstLine());
 	connect(m_indent_first_line, SIGNAL(toggled(bool)), this, SLOT(renderPreview()));
+
+	m_tab_width = new QSpinBox(paragraph_spacing);
+	m_tab_width->setSuffix(tr(" pixels"));
+	m_tab_width->setRange(1, 1000);
+	m_tab_width->setValue(m_theme.tabWidth());
 
 	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
 	m_spacing_above_paragraph->setRange(0, 1000);
@@ -252,6 +257,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	QFormLayout* paragraph_spacing_layout = new QFormLayout(paragraph_spacing);
 	paragraph_spacing_layout->addRow(tr("Indent First Line:"), m_indent_first_line);
+	paragraph_spacing_layout->addRow(tr("Tab Width:"), m_tab_width);
 	paragraph_spacing_layout->addRow(tr("Pixels Above:"), m_spacing_above_paragraph);
 	paragraph_spacing_layout->addRow(tr("Pixels Below:"), m_spacing_below_paragraph);
 
@@ -341,6 +347,7 @@ void ThemeDialog::accept()
 	m_theme.setLineSpacing(m_line_spacing->value());
 	m_theme.setSpacingAboveParagraph(m_spacing_above_paragraph->value());
 	m_theme.setSpacingBelowParagraph(m_spacing_below_paragraph->value());
+	m_theme.setTabWidth(m_tab_width->value());
 
 	savePreview();
 

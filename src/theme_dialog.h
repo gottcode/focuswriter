@@ -91,6 +91,7 @@ private:
 	QSpinBox* m_line_spacing;
 	QSpinBox* m_spacing_above_paragraph;
 	QSpinBox* m_spacing_below_paragraph;
+	QSpinBox* m_tab_width;
 };
 
 #endif

@@ -135,6 +135,7 @@ Theme::Theme(const QString& name)
 	m_line_spacing = qBound(85, settings.value("Spacings/LineSpacing", 100).toInt(), 1000);
 	m_paragraph_spacing_above = qBound(0, settings.value("Spacings/ParagraphAbove", 0).toInt(), 1000);
 	m_paragraph_spacing_below = qBound(0, settings.value("Spacings/ParagraphBelow", 0).toInt(), 1000);
+	m_tab_width = qBound(1, settings.value("Spacings/TabWidth", 48).toInt(), 1000);
 }
 
 //-----------------------------------------------------------------------------
@@ -174,6 +175,7 @@ Theme::~Theme()
 	settings.setValue("Spacings/LineSpacing", m_line_spacing);
 	settings.setValue("Spacings/ParagraphAbove", m_paragraph_spacing_above);
 	settings.setValue("Spacings/ParagraphBelow", m_paragraph_spacing_below);
+	settings.setValue("Spacings/TabWidth", m_tab_width);
 }
 
 //-----------------------------------------------------------------------------
@@ -523,6 +525,13 @@ int Theme::spacingBelowParagraph() const
 
 //-----------------------------------------------------------------------------
 
+int Theme::tabWidth() const
+{
+	return m_tab_width;
+}
+
+//-----------------------------------------------------------------------------
+
 void Theme::setIndentFirstLine(bool indent)
 {
 	setValue(m_indent_first_line, indent);
@@ -547,6 +556,13 @@ void Theme::setSpacingAboveParagraph(int spacing)
 void Theme::setSpacingBelowParagraph(int spacing)
 {
 	setValue(m_paragraph_spacing_below, spacing);
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setTabWidth(int width)
+{
+	setValue(m_tab_width, width);
 }
 
 //-----------------------------------------------------------------------------

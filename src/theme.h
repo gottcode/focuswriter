@@ -87,11 +87,13 @@ public:
 	int lineSpacing() const;
 	int spacingAboveParagraph() const;
 	int spacingBelowParagraph() const;
+	int tabWidth() const;
 
 	void setIndentFirstLine(bool indent);
 	void setLineSpacing(int spacing);
 	void setSpacingAboveParagraph(int spacing);
 	void setSpacingBelowParagraph(int spacing);
+	void setTabWidth(int width);
 
 private:
 	static QString m_path;
@@ -118,6 +120,7 @@ private:
 	int m_line_spacing;
 	int m_paragraph_spacing_above;
 	int m_paragraph_spacing_below;
+	int m_tab_width;
 };
 
 #endif

@@ -598,6 +598,9 @@ void Document::loadTheme(const Theme& theme)
 		m_text->document()->setModified(false);
 		m_spacings_loaded = true;
 	}
+	int tab_width = theme.tabWidth();
+	m_text->setTabStopWidth(tab_width);
+	m_text->document()->setIndentWidth(tab_width);
 
 	// Update text
 	QFont font = theme.textFont();
