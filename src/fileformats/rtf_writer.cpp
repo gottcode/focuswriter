@@ -269,7 +269,7 @@ bool RtfWriter::write(QIODevice* device, QTextDocument* text, bool full)
 				par += "\\qj";
 			}
 			if (block_format.indent() > 0) {
-				par += "\\li" + QByteArray::number(block_format.indent() * 15);
+				par += "\\li" + QByteArray::number(block_format.indent() * 720);
 			}
 			device->write(par);
 		} else {

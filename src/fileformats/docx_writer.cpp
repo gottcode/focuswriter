@@ -198,7 +198,7 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 	if (block_format.indent() > 0) {
 		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
 		m_xml.writeEmptyElement(QString::fromLatin1("w:ind"));
-		QString indent = QString::number(block_format.indent() * 15);
+		QString indent = QString::number(block_format.indent() * 720);
 		if (m_strict) {
 			m_xml.writeAttribute(QString::fromLatin1("w:start"), indent);
 		} else if (rtl) {

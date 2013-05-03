@@ -177,7 +177,7 @@ void OdtWriter::writeParagraphStyle(const QTextBlockFormat& format, const QStrin
 	}
 
 	if (format.indent() > 0) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:margin-left"), QString::number(format.indent() / 96.0) + QString::fromLatin1("in"));
+		m_xml.writeAttribute(QString::fromLatin1("fo:margin-left"), QString::number(format.indent() * 0.5) + QString::fromLatin1("in"));
 	}
 
 	m_xml.writeEndElement();

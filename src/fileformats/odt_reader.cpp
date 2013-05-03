@@ -182,15 +182,26 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 		QString margin = attributes.value(QLatin1String("fo:margin-left")).toString();
 		QString type = margin.right(2);
 		margin.chop(2);
-		int value = 0;
 
-		// Assume 96 DPI for margin
-		if (type == ("pt")) {
-			value = qRound(margin.toDouble() / 36.0);
-		} else if (type == ("in")) {
-			value = qRound(margin.toDouble() * 2.0);
+		// Internal indent units are 0.5in
+		int indent = 0;
+		if (type == QLatin1String("in")) {
+			indent = qRound(margin.toDouble() * 2.0);
+		} else if (type == QLatin1String("cm")) {
+			indent = qRound(margin.toDouble() / 1.27);
+		} else if (type == QLatin1String("mm")) {
+			indent = qRound(margin.toDouble() / 12.7);
+		} else if (type == QLatin1String("pt")) {
+			// 72pt to inch
+			indent = qRound(margin.toDouble() / 36.0);
+		} else if (type == QLatin1String("pc")) {
+			// 6pc to inch
+			indent = qRound(margin.toDouble() / 3.0);
+		} else if (type == QLatin1String("px")) {
+			// 96px to inch
+			indent = qRound(margin.toDouble() / 48.0);
 		}
-		format.setIndent(value * 48);
+		format.setIndent(qMax(0, indent));
 	}
 
 	m_xml.skipCurrentElement();

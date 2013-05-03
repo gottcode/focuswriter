@@ -374,7 +374,7 @@ void RtfReader::setBlockDirection(qint32 value)
 
 void RtfReader::setBlockIndent(qint32 value)
 {
-	m_state.block_format.setIndent(value / 15);
+	m_state.block_format.setIndent(qRound(static_cast<double>(value) / 720.0));
 	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 

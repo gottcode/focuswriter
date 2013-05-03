@@ -324,10 +324,10 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 			}
 		} else if (m_xml.qualifiedName() == "w:ind") {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
-			left_indent = qRound(m_xml.attributes().value("w:left").toString().toDouble() / 720.0) * 48;
-			right_indent = qRound(m_xml.attributes().value("w:right").toString().toDouble() / 720.0) * 48;
+			left_indent = qRound(m_xml.attributes().value("w:left").toString().toDouble() / 720.0);
+			right_indent = qRound(m_xml.attributes().value("w:right").toString().toDouble() / 720.0);
 			// ECMA-376 2nd edition, ISO/IEC 29500 strict
-			indent = qRound(m_xml.attributes().value("w:start").toString().toDouble() / 720.0) * 48;
+			indent = qRound(m_xml.attributes().value("w:start").toString().toDouble() / 720.0);
 			if (indent) {
 				style.block_format.setIndent(indent);
 				left_indent = right_indent = 0;
