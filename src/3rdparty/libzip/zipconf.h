@@ -8,7 +8,7 @@
    based on ../config.h.
  */
 
-#define LIBZIP_VERSION "0.11"
+#define LIBZIP_VERSION "0.11.1"
 #define LIBZIP_VERSION_MAJOR 0
 #define LIBZIP_VERSION_MINOR 11
 #define LIBZIP_VERSION_MICRO 0
