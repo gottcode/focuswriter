@@ -42,6 +42,7 @@ private:
 private:
 	QByteArray m_codepage;
 	QTextCodec* m_codec;
+	bool m_supports_ascii;
 	QByteArray m_header;
 };
 

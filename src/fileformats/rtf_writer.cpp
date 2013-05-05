@@ -213,7 +213,8 @@ QByteArray fetchCodePage()
 
 RtfWriter::RtfWriter(const QByteArray& codepage) :
 	m_codepage(codepage),
-	m_codec(0)
+	m_codec(0),
+	m_supports_ascii(false)
 {
 	// Fetch system codepage
 	if (m_codepage.isEmpty()) {
@@ -228,6 +229,27 @@ RtfWriter::RtfWriter(const QByteArray& codepage) :
 	if (!m_codec) {
 		m_codepage = "CP1252";
 		m_codec = QTextCodec::codecForName(m_codepage);
+	}
+
+	// Check if codec is a superset of ASCII
+	static QHash<int, bool> supports_ascii;
+	int mib = m_codec->mibEnum();
+	if (supports_ascii.contains(mib)) {
+		m_supports_ascii = supports_ascii[mib];
+	} else {
+		m_supports_ascii = true;
+		QByteArray encoded;
+		QTextCodec::ConverterState state;
+		state.flags = QTextCodec::ConvertInvalidToNull;
+		for (int i = 0x20; i < 0x80; ++i) {
+			QChar c = QChar::fromLatin1(i);
+			encoded = m_codec->fromUnicode(&c, 1, &state);
+			if (state.invalidChars || (encoded.size() > 1) || (encoded.at(0) != i)) {
+				m_supports_ascii = false;
+				break;
+			}
+		}
+		supports_ascii.insert(mib, m_supports_ascii);
 	}
 
 	// Create header
@@ -358,6 +380,11 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 		case 0x2022: text += "\\bullet "; break;
 		case 0x2028: text += "\\line "; break;
 		default:
+			if (m_supports_ascii && (i->unicode() >= 0x0020) && (i->unicode() < 0x0080)) {
+				text += i->unicode();
+				break;
+			}
+
 			encoded = m_codec->fromUnicode(i, 1, &state);
 			if (state.invalidChars == 0) {
 				if (encoded.count() == 1 && encoded.at(0) >= 0x20) {
