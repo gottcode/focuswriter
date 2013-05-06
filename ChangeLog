@@ -1,3 +1,6 @@
+2013-05-06 Graeme Gott <graeme@gottcode.org>
+	* Add saving changes to settings outside of destructor.
+
 2013-05-05 Graeme Gott <graeme@gottcode.org>
 	* Speed up writing ASCII in RTF files.
 

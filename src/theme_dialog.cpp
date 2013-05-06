@@ -349,6 +349,8 @@ void ThemeDialog::accept()
 	m_theme.setSpacingBelowParagraph(m_spacing_below_paragraph->value());
 	m_theme.setTabWidth(m_tab_width->value());
 
+	m_theme.saveChanges();
+
 	savePreview();
 
 	QDialog::accept();

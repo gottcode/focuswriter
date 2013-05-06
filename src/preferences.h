@@ -104,6 +104,10 @@ public:
 	void setLanguage(const QString& language);
 
 private:
+	void reload();
+	void write();
+
+private:
 	int m_goal_type;
 	int m_goal_minutes;
 	int m_goal_words;

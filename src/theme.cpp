@@ -93,8 +93,8 @@ QString Theme::m_path;
 
 //-----------------------------------------------------------------------------
 
-Theme::Theme(const QString& name)
-	: m_name(name)
+Theme::Theme(const QString& name) :
+	m_name(name)
 {
 	if (m_name.isEmpty()) {
 		QString untitled;
@@ -105,77 +105,15 @@ Theme::Theme(const QString& name)
 		} while (QFile::exists(filePath(untitled)));
 		m_name = untitled;
 	}
-	QSettings settings(filePath(m_name), QSettings::IniFormat);
 
-	// Load background settings
-	m_background_type = qBound(0, settings.value("Background/Type", 0).toInt(), 5);
-	m_background_color = settings.value("Background/Color", "#cccccc").toString();
-	m_background_path = settings.value("Background/Image").toString();
-	m_background_image = settings.value("Background/ImageFile").toString();
-	if (!m_background_path.isEmpty() && m_background_image.isEmpty()) {
-		setValue(m_background_image, copyImage(m_background_path));
-	}
-
-	// Load foreground settings
-	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
-	m_foreground_opacity = qBound(0, settings.value("Foreground/Opacity", 100).toInt(), 100);
-	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 9999);
-	m_foreground_rounding = qBound(0, settings.value("Foreground/Rounding", 0).toInt(), 100);
-	m_foreground_margin = qBound(1, settings.value("Foreground/Margin", 65).toInt(), 250);
-	m_foreground_padding = qBound(0, settings.value("Foreground/Padding", 0).toInt(), 250);
-	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 3);
-
-	// Load text settings
-	m_text_color = settings.value("Text/Color", "#000000").toString();
-	m_text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
-	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
-
-	// Load spacings
-	m_indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
-	m_line_spacing = qBound(85, settings.value("Spacings/LineSpacing", 100).toInt(), 1000);
-	m_paragraph_spacing_above = qBound(0, settings.value("Spacings/ParagraphAbove", 0).toInt(), 1000);
-	m_paragraph_spacing_below = qBound(0, settings.value("Spacings/ParagraphBelow", 0).toInt(), 1000);
-	m_tab_width = qBound(1, settings.value("Spacings/TabWidth", 48).toInt(), 1000);
+	forgetChanges();
 }
 
 //-----------------------------------------------------------------------------
 
 Theme::~Theme()
 {
-	if (!isChanged()) {
-		return;
-	}
-
-	QSettings settings(filePath(m_name), QSettings::IniFormat);
-
-	// Store background settings
-	settings.setValue("Background/Type", m_background_type);
-	settings.setValue("Background/Color", m_background_color.name());
-	if (!m_background_path.isEmpty()) {
-		settings.setValue("Background/Image", m_background_path);
-	}
-	settings.setValue("Background/ImageFile", m_background_image);
-
-	// Store foreground settings
-	settings.setValue("Foreground/Color", m_foreground_color.name());
-	settings.setValue("Foreground/Opacity", m_foreground_opacity);
-	settings.setValue("Foreground/Width", m_foreground_width);
-	settings.setValue("Foreground/Rounding", m_foreground_rounding);
-	settings.setValue("Foreground/Margin", m_foreground_margin);
-	settings.setValue("Foreground/Padding", m_foreground_padding);
-	settings.setValue("Foreground/Position", m_foreground_position);
-
-	// Store text settings
-	settings.setValue("Text/Color", m_text_color.name());
-	settings.setValue("Text/Font", m_text_font.toString());
-	settings.setValue("Text/Misspelled", m_misspelled_color.name());
-
-	// Store spacings
-	settings.setValue("Spacings/IndentFirstLine", m_indent_first_line);
-	settings.setValue("Spacings/LineSpacing", m_line_spacing);
-	settings.setValue("Spacings/ParagraphAbove", m_paragraph_spacing_above);
-	settings.setValue("Spacings/ParagraphBelow", m_paragraph_spacing_below);
-	settings.setValue("Spacings/TabWidth", m_tab_width);
+	saveChanges();
 }
 
 //-----------------------------------------------------------------------------
@@ -563,6 +501,79 @@ void Theme::setSpacingBelowParagraph(int spacing)
 void Theme::setTabWidth(int width)
 {
 	setValue(m_tab_width, width);
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::reload()
+{
+	QSettings settings(filePath(m_name), QSettings::IniFormat);
+
+	// Load background settings
+	m_background_type = qBound(0, settings.value("Background/Type", 0).toInt(), 5);
+	m_background_color = settings.value("Background/Color", "#cccccc").toString();
+	m_background_path = settings.value("Background/Image").toString();
+	m_background_image = settings.value("Background/ImageFile").toString();
+	if (!m_background_path.isEmpty() && m_background_image.isEmpty()) {
+		setValue(m_background_image, copyImage(m_background_path));
+	}
+
+	// Load foreground settings
+	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
+	m_foreground_opacity = qBound(0, settings.value("Foreground/Opacity", 100).toInt(), 100);
+	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 9999);
+	m_foreground_rounding = qBound(0, settings.value("Foreground/Rounding", 0).toInt(), 100);
+	m_foreground_margin = qBound(1, settings.value("Foreground/Margin", 65).toInt(), 250);
+	m_foreground_padding = qBound(0, settings.value("Foreground/Padding", 0).toInt(), 250);
+	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 3);
+
+	// Load text settings
+	m_text_color = settings.value("Text/Color", "#000000").toString();
+	m_text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
+	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
+
+	// Load spacings
+	m_indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
+	m_line_spacing = qBound(85, settings.value("Spacings/LineSpacing", 100).toInt(), 1000);
+	m_paragraph_spacing_above = qBound(0, settings.value("Spacings/ParagraphAbove", 0).toInt(), 1000);
+	m_paragraph_spacing_below = qBound(0, settings.value("Spacings/ParagraphBelow", 0).toInt(), 1000);
+	m_tab_width = qBound(1, settings.value("Spacings/TabWidth", 48).toInt(), 1000);
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::write()
+{
+	QSettings settings(filePath(m_name), QSettings::IniFormat);
+
+	// Store background settings
+	settings.setValue("Background/Type", m_background_type);
+	settings.setValue("Background/Color", m_background_color.name());
+	if (!m_background_path.isEmpty()) {
+		settings.setValue("Background/Image", m_background_path);
+	}
+	settings.setValue("Background/ImageFile", m_background_image);
+
+	// Store foreground settings
+	settings.setValue("Foreground/Color", m_foreground_color.name());
+	settings.setValue("Foreground/Opacity", m_foreground_opacity);
+	settings.setValue("Foreground/Width", m_foreground_width);
+	settings.setValue("Foreground/Rounding", m_foreground_rounding);
+	settings.setValue("Foreground/Margin", m_foreground_margin);
+	settings.setValue("Foreground/Padding", m_foreground_padding);
+	settings.setValue("Foreground/Position", m_foreground_position);
+
+	// Store text settings
+	settings.setValue("Text/Color", m_text_color.name());
+	settings.setValue("Text/Font", m_text_font.toString());
+	settings.setValue("Text/Misspelled", m_misspelled_color.name());
+
+	// Store spacings
+	settings.setValue("Spacings/IndentFirstLine", m_indent_first_line);
+	settings.setValue("Spacings/LineSpacing", m_line_spacing);
+	settings.setValue("Spacings/ParagraphAbove", m_paragraph_spacing_above);
+	settings.setValue("Spacings/ParagraphBelow", m_paragraph_spacing_below);
+	settings.setValue("Spacings/TabWidth", m_tab_width);
 }
 
 //-----------------------------------------------------------------------------
