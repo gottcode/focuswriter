@@ -103,6 +103,7 @@ HEADERS += src/action_manager.h \
 	src/document_watcher.h \
 	src/document_writer.h \
 	src/find_dialog.h \
+	src/font_combobox.h \
 	src/gzip.h \
 	src/image_button.h \
 	src/load_screen.h \
@@ -165,6 +166,7 @@ SOURCES += src/action_manager.cpp \
 	src/document_watcher.cpp \
 	src/document_writer.cpp \
 	src/find_dialog.cpp \
+	src/font_combobox.cpp \
 	src/gzip.cpp \
 	src/image_button.cpp \
 	src/load_screen.cpp \
