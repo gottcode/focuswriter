@@ -1,3 +1,6 @@
+2013-05-06 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Crashed when opening font dropdown in theme dialog.
+
 2013-04-25 Graeme Gott <graeme@gottcode.org>
 	* FIXED: Did not always ignore changes made by program.
 
