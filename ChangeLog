@@ -1,3 +1,6 @@
+2013-04-25 Graeme Gott <graeme@gottcode.org>
+	* FIXED: Did not always ignore changes made by program.
+
 2013-04-15 Graeme Gott <graeme@gottcode.org>
 	* Allow margins smaller than 10 pixels.
 
