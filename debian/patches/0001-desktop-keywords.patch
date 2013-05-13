@@ -1,0 +1,18 @@
+From: "Barak A. Pearlmutter" <barak+git@cs.nuim.ie>
+Date: Mon, 13 May 2013 12:27:06 +0100
+Subject: desktop keywords
+
+silence lintian desktop-entry-lacks-keywords-entry
+---
+ resources/unix/focuswriter.desktop | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/resources/unix/focuswriter.desktop b/resources/unix/focuswriter.desktop
+index 8eb0767..5493e83 100644
+--- a/resources/unix/focuswriter.desktop
++++ b/resources/unix/focuswriter.desktop
+@@ -10,3 +10,4 @@ Exec=focuswriter %F
+ Terminal=false
+ MimeType=application/rtf;application/vnd.oasis.opendocument.text;text/plain;text/rtf;
+ Categories=Qt;Office;WordProcessor;
++Keywords=fullscreen editor typewriter keyclick distraction concentration focused monomaniacal writing
