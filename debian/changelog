@@ -1,3 +1,12 @@
+focuswriter (1.4.3.2013.04.25-1) unstable; urgency=low
+
+  * merge upstream maintenance branch
+    - FIXED: Did not always ignore changes made by program.
+  * tweak VCS entry in debian/control to appease lintian
+  * quilt patch that adds keywords to desktop file to appease lintian
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 13 May 2013 12:31:45 +0100
+
 focuswriter (1.4.3.2013.04.15-1) unstable; urgency=low
 
   * merge upstream maintenance branch
