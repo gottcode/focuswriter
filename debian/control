@@ -10,8 +10,8 @@ Build-Depends: debhelper (>= 9),
 	       pkg-config
 Standards-Version: 3.9.4
 Homepage: http://gottcode.org/focuswriter/
-Vcs-Git: git://git.debian.org/collab-maint/focuswriter.git
-Vcs-Browser: http://git.debian.org/?p=collab-maint/focuswriter.git;a=summary
+Vcs-Git: git://anonscm.debian.org/collab-maint/focuswriter.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/focuswriter.git
 
 Package: focuswriter
 Architecture: any
