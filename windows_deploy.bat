@@ -1,7 +1,7 @@
 @ECHO OFF
 
 SET APP=FocusWriter
-SET VERSION=1.4.3
+SET VERSION=1.4.4
 
 ECHO Copying executable
 MKDIR %APP%

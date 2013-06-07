@@ -20,6 +20,7 @@
 #include "theme_dialog.h"
 
 #include "color_button.h"
+#include "font_combobox.h"
 #include "image_button.h"
 #include "theme.h"
 
@@ -30,7 +31,6 @@
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QFile>
-#include <QFontComboBox>
 #include <QFormLayout>
 #include <QGroupBox>
 #include <QLabel>
@@ -173,7 +173,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_text_color->setColor(m_theme.textColor());
 	connect(m_text_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
-	m_font_names = new QFontComboBox(tab);
+	m_font_names = new FontComboBox(tab);
 	m_font_names->setEditable(false);
 	m_font_names->setCurrentFont(m_theme.textFont());
 	connect(m_font_names, SIGNAL(activated(int)), this, SLOT(fontChanged()));
