@@ -100,9 +100,8 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) :
+PreferencesDialog::PreferencesDialog(QWidget* parent) :
 	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_preferences(preferences),
 	m_shortcut_conflicts(false)
 {
 	setWindowTitle(tr("Preferences"));
@@ -124,7 +123,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 	layout->addWidget(buttons);
 
 	// Load settings
-	switch (m_preferences.goalType()) {
+	switch (Preferences::instance().goalType()) {
 	case 1:
 		m_option_time->setChecked(true);
 		break;
@@ -135,19 +134,19 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 		m_option_none->setChecked(true);
 		break;
 	}
-	m_time->setValue(m_preferences.goalMinutes());
-	m_wordcount->setValue(m_preferences.goalWords());
+	m_time->setValue(Preferences::instance().goalMinutes());
+	m_wordcount->setValue(Preferences::instance().goalWords());
 
-	m_goal_history->setChecked(m_preferences.goalHistory());
-	m_goal_streaks->setChecked(m_preferences.goalStreaks());
-	m_streak_minimum->setValue(m_preferences.goalStreakMinimum());
+	m_goal_history->setChecked(Preferences::instance().goalHistory());
+	m_goal_streaks->setChecked(Preferences::instance().goalStreaks());
+	m_streak_minimum->setValue(Preferences::instance().goalStreakMinimum());
 
-	m_show_characters->setChecked(m_preferences.showCharacters());
-	m_show_pages->setChecked(m_preferences.showPages());
-	m_show_paragraphs->setChecked(m_preferences.showParagraphs());
-	m_show_words->setChecked(m_preferences.showWords());
+	m_show_characters->setChecked(Preferences::instance().showCharacters());
+	m_show_pages->setChecked(Preferences::instance().showPages());
+	m_show_paragraphs->setChecked(Preferences::instance().showParagraphs());
+	m_show_words->setChecked(Preferences::instance().showWords());
 
-	switch (m_preferences.pageType()) {
+	switch (Preferences::instance().pageType()) {
 	case 1:
 		m_option_paragraphs->setChecked(true);
 		break;
@@ -158,44 +157,44 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 		m_option_characters->setChecked(true);
 		break;
 	}
-	m_page_characters->setValue(m_preferences.pageCharacters());
-	m_page_paragraphs->setValue(m_preferences.pageParagraphs());
-	m_page_words->setValue(m_preferences.pageWords());
+	m_page_characters->setValue(Preferences::instance().pageCharacters());
+	m_page_paragraphs->setValue(Preferences::instance().pageParagraphs());
+	m_page_words->setValue(Preferences::instance().pageWords());
 
-	if (m_preferences.accurateWordcount()) {
+	if (Preferences::instance().accurateWordcount()) {
 		m_option_accurate_wordcount->setChecked(true);
 	} else {
 		m_option_estimate_wordcount->setChecked(true);
 	}
 
-	m_always_center->setChecked(m_preferences.alwaysCenter());
-	m_block_cursor->setChecked(m_preferences.blockCursor());
-	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
-	m_smart_quotes->setChecked(m_preferences.smartQuotes());
-	m_double_quotes->setCurrentIndex(m_preferences.doubleQuotes());
-	m_single_quotes->setCurrentIndex(m_preferences.singleQuotes());
-	m_typewriter_sounds->setChecked(m_preferences.typewriterSounds());
+	m_always_center->setChecked(Preferences::instance().alwaysCenter());
+	m_block_cursor->setChecked(Preferences::instance().blockCursor());
+	m_smooth_fonts->setChecked(Preferences::instance().smoothFonts());
+	m_smart_quotes->setChecked(Preferences::instance().smartQuotes());
+	m_double_quotes->setCurrentIndex(Preferences::instance().doubleQuotes());
+	m_single_quotes->setCurrentIndex(Preferences::instance().singleQuotes());
+	m_typewriter_sounds->setChecked(Preferences::instance().typewriterSounds());
 
-	m_scene_divider->setText(m_preferences.sceneDivider());
+	m_scene_divider->setText(Preferences::instance().sceneDivider());
 
-	m_auto_save->setChecked(m_preferences.autoSave());
-	m_save_positions->setChecked(m_preferences.savePositions());
-	m_save_format->setCurrentIndex(m_save_format->findData(m_preferences.saveFormat()));
+	m_auto_save->setChecked(Preferences::instance().autoSave());
+	m_save_positions->setChecked(Preferences::instance().savePositions());
+	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat()));
 
-	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
-	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
-	m_ignore_uppercase->setChecked(m_preferences.ignoredUppercaseWords());
-	int index = m_languages->findData(m_preferences.language());
+	m_highlight_misspelled->setChecked(Preferences::instance().highlightMisspelled());
+	m_ignore_numbers->setChecked(Preferences::instance().ignoredWordsWithNumbers());
+	m_ignore_uppercase->setChecked(Preferences::instance().ignoredUppercaseWords());
+	int index = m_languages->findData(Preferences::instance().language());
 	if (index != -1) {
 		m_languages->setCurrentIndex(index);
 	}
 
-	int style = m_toolbar_style->findData(m_preferences.toolbarStyle());
+	int style = m_toolbar_style->findData(Preferences::instance().toolbarStyle());
 	if (style == -1) {
 		style = m_toolbar_style->findData(Qt::ToolButtonTextUnderIcon);
 	}
 	m_toolbar_style->setCurrentIndex(style);
-	QStringList actions = m_preferences.toolbarActions();
+	QStringList actions = Preferences::instance().toolbarActions();
 	int pos = 0;
 	foreach (const QString& action, actions) {
 		QString text = action;
@@ -254,51 +253,51 @@ void PreferencesDialog::accept()
 
 	// Save settings
 	if (m_option_time->isChecked()) {
-		m_preferences.setGoalType(1);
+		Preferences::instance().setGoalType(1);
 	} else if (m_option_wordcount->isChecked()) {
-		m_preferences.setGoalType(2);
+		Preferences::instance().setGoalType(2);
 	} else {
-		m_preferences.setGoalType(0);
+		Preferences::instance().setGoalType(0);
 	}
-	m_preferences.setGoalMinutes(m_time->value());
-	m_preferences.setGoalWords(m_wordcount->value());
-	m_preferences.setGoalHistory(m_goal_history->isChecked());
-	m_preferences.setGoalStreaks(m_goal_streaks->isChecked());
-	m_preferences.setGoalStreakMinimum(m_streak_minimum->value());
+	Preferences::instance().setGoalMinutes(m_time->value());
+	Preferences::instance().setGoalWords(m_wordcount->value());
+	Preferences::instance().setGoalHistory(m_goal_history->isChecked());
+	Preferences::instance().setGoalStreaks(m_goal_streaks->isChecked());
+	Preferences::instance().setGoalStreakMinimum(m_streak_minimum->value());
 
-	m_preferences.setShowCharacters(m_show_characters->isChecked());
-	m_preferences.setShowPages(m_show_pages->isChecked());
-	m_preferences.setShowParagraphs(m_show_paragraphs->isChecked());
-	m_preferences.setShowWords(m_show_words->isChecked());
+	Preferences::instance().setShowCharacters(m_show_characters->isChecked());
+	Preferences::instance().setShowPages(m_show_pages->isChecked());
+	Preferences::instance().setShowParagraphs(m_show_paragraphs->isChecked());
+	Preferences::instance().setShowWords(m_show_words->isChecked());
 
 	if (m_option_paragraphs->isChecked()) {
-		m_preferences.setPageType(1);
+		Preferences::instance().setPageType(1);
 	} else if (m_option_words->isChecked()) {
-		m_preferences.setPageType(2);
+		Preferences::instance().setPageType(2);
 	} else {
-		m_preferences.setPageType(0);
+		Preferences::instance().setPageType(0);
 	}
-	m_preferences.setPageCharacters(m_page_characters->value());
-	m_preferences.setPageParagraphs(m_page_paragraphs->value());
-	m_preferences.setPageWords(m_page_words->value());
+	Preferences::instance().setPageCharacters(m_page_characters->value());
+	Preferences::instance().setPageParagraphs(m_page_paragraphs->value());
+	Preferences::instance().setPageWords(m_page_words->value());
 
-	m_preferences.setAccurateWordcount(m_option_accurate_wordcount->isChecked());
+	Preferences::instance().setAccurateWordcount(m_option_accurate_wordcount->isChecked());
 
-	m_preferences.setAlwaysCenter(m_always_center->isChecked());
-	m_preferences.setBlockCursor(m_block_cursor->isChecked());
-	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
-	m_preferences.setSmartQuotes(m_smart_quotes->isChecked());
-	m_preferences.setDoubleQuotes(m_double_quotes->currentIndex());
-	m_preferences.setSingleQuotes(m_single_quotes->currentIndex());
-	m_preferences.setTypewriterSounds(m_typewriter_sounds->isChecked());
+	Preferences::instance().setAlwaysCenter(m_always_center->isChecked());
+	Preferences::instance().setBlockCursor(m_block_cursor->isChecked());
+	Preferences::instance().setSmoothFonts(m_smooth_fonts->isChecked());
+	Preferences::instance().setSmartQuotes(m_smart_quotes->isChecked());
+	Preferences::instance().setDoubleQuotes(m_double_quotes->currentIndex());
+	Preferences::instance().setSingleQuotes(m_single_quotes->currentIndex());
+	Preferences::instance().setTypewriterSounds(m_typewriter_sounds->isChecked());
 
-	m_preferences.setSceneDivider(m_scene_divider->text());
+	Preferences::instance().setSceneDivider(m_scene_divider->text());
 
-	m_preferences.setAutoSave(m_auto_save->isChecked());
-	m_preferences.setSavePositions(m_save_positions->isChecked());
-	m_preferences.setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
+	Preferences::instance().setAutoSave(m_auto_save->isChecked());
+	Preferences::instance().setSavePositions(m_save_positions->isChecked());
+	Preferences::instance().setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
 
-	m_preferences.setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
+	Preferences::instance().setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
 	int count = m_toolbar_actions->count();
 	for (int i = 0; i < count; ++i) {
@@ -308,7 +307,7 @@ void PreferencesDialog::accept()
 			actions.append(action);
 		}
 	}
-	m_preferences.setToolbarActions(actions);
+	Preferences::instance().setToolbarActions(actions);
 
 	ActionManager::instance()->setShortcuts(m_new_shortcuts);
 
@@ -331,16 +330,16 @@ void PreferencesDialog::accept()
 	dir.rmdir("install");
 
 	// Set dictionary
-	m_preferences.setHighlightMisspelled(m_highlight_misspelled->isChecked());
-	m_preferences.setIgnoreWordsWithNumbers(m_ignore_numbers->isChecked());
-	m_preferences.setIgnoreUppercaseWords(m_ignore_uppercase->isChecked());
+	Preferences::instance().setHighlightMisspelled(m_highlight_misspelled->isChecked());
+	Preferences::instance().setIgnoreWordsWithNumbers(m_ignore_numbers->isChecked());
+	Preferences::instance().setIgnoreUppercaseWords(m_ignore_uppercase->isChecked());
 	if (m_languages->count()) {
-		m_preferences.setLanguage(m_languages->itemData(m_languages->currentIndex()).toString());
+		Preferences::instance().setLanguage(m_languages->itemData(m_languages->currentIndex()).toString());
 	} else {
-		m_preferences.setLanguage(QString());
+		Preferences::instance().setLanguage(QString());
 	}
 
-	m_preferences.saveChanges();
+	Preferences::instance().saveChanges();
 
 	// Save personal dictionary
 	QStringList words;

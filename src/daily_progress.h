@@ -20,8 +20,6 @@
 #ifndef DAILY_PROGRESS_H
 #define DAILY_PROGRESS_H
 
-class Preferences;
-
 #include <QAbstractTableModel>
 #include <QDate>
 #include <QStringList>
@@ -47,7 +45,7 @@ public:
 
 	void increaseWordCount(int words);
 	void increaseTime();
-	void loadPreferences(const Preferences& preferences);
+	void loadPreferences();
 
 	int columnCount(const QModelIndex& parent = QModelIndex()) const;
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;

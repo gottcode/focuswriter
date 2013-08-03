@@ -281,11 +281,11 @@ void DailyProgress::increaseTime()
 
 //-----------------------------------------------------------------------------
 
-void DailyProgress::loadPreferences(const Preferences& preferences)
+void DailyProgress::loadPreferences()
 {
 	// Check if history is disabled
 	m_file->endGroup();
-	if (preferences.goalHistory()) {
+	if (Preferences::instance().goalHistory()) {
 		m_file->remove(QLatin1String("HistoryDisabled"));
 	} else {
 		// Remove history of previous launch
@@ -306,11 +306,11 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 	m_file->beginGroup(QLatin1String("Progress"));
 
 	// Load goal
-	m_type = preferences.goalType();
+	m_type = Preferences::instance().goalType();
 	if (m_type == 1) {
-		m_goal = preferences.goalMinutes() * 60000;
+		m_goal = Preferences::instance().goalMinutes() * 60000;
 	} else if (m_type == 2) {
-		m_goal = preferences.goalWords();
+		m_goal = Preferences::instance().goalWords();
 	} else {
 		m_goal = 0;
 	}
@@ -321,7 +321,7 @@ void DailyProgress::loadPreferences(const Preferences& preferences)
 
 	// Refresh streaks if minimum percent has changed
 	int streak_minimum = m_streak_minimum;
-	m_streak_minimum = preferences.goalStreakMinimum();
+	m_streak_minimum = Preferences::instance().goalStreakMinimum();
 	if (streak_minimum != m_streak_minimum) {
 		emit streaksChanged();
 	}

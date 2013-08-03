@@ -26,7 +26,6 @@ class DailyProgressLabel;
 class Document;
 class DocumentCache;
 class DocumentWatcher;
-class Preferences;
 class SessionManager;
 class Sound;
 class Stack;
@@ -99,7 +98,7 @@ private:
 	void closeDocument(int index, bool allow_empty = false);
 	void queueDocuments(const QStringList& files);
 	bool saveDocument(int index);
-	void loadPreferences(Preferences& preferences);
+	void loadPreferences();
 	void hideInterface();
 	void updateMargin();
 	void updateTab(int index);

@@ -26,7 +26,6 @@ class Alert;
 class DailyProgress;
 class DocumentWriter;
 class Highlighter;
-class Preferences;
 class SceneList;
 class SceneModel;
 class Theme;
@@ -69,7 +68,7 @@ public:
 	void print();
 	bool loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme);
-	void loadPreferences(const Preferences& preferences);
+	void loadPreferences();
 	void setFocusMode(int focus_mode);
 	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);

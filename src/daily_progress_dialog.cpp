@@ -231,9 +231,9 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 
 //-----------------------------------------------------------------------------
 
-void DailyProgressDialog::loadPreferences(const Preferences& preferences)
+void DailyProgressDialog::loadPreferences()
 {
-	m_streaks->setVisible(preferences.goalStreaks());
+	m_streaks->setVisible(Preferences::instance().goalStreaks());
 }
 
 //-----------------------------------------------------------------------------

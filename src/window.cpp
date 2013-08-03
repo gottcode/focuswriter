@@ -277,8 +277,7 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Load settings
 	m_documents->loadScreen()->setText(tr("Loading settings"));
-	Preferences preferences;
-	loadPreferences(preferences);
+	loadPreferences();
 
 	// Update and load theme
 	m_documents->loadScreen()->setText(tr("Loading themes"));
@@ -826,10 +825,9 @@ void Window::themeClicked()
 
 void Window::preferencesClicked()
 {
-	Preferences preferences;
-	PreferencesDialog dialog(preferences, this);
+	PreferencesDialog dialog(this);
 	if (dialog.exec() == QDialog::Accepted) {
-		loadPreferences(preferences);
+		loadPreferences();
 	}
 }
 
@@ -1107,9 +1105,9 @@ bool Window::saveDocument(int index)
 
 //-----------------------------------------------------------------------------
 
-void Window::loadPreferences(Preferences& preferences)
+void Window::loadPreferences()
 {
-	if (preferences.typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
+	if (Preferences::instance().typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
 		if (m_documents->loadScreen()->isVisible()) {
 			m_documents->loadScreen()->setText(tr("Loading sounds"));
 		}
@@ -1124,12 +1122,12 @@ void Window::loadPreferences(Preferences& preferences)
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
-			preferences.setTypewriterSounds(false);
+			Preferences::instance().setTypewriterSounds(false);
 		}
 	}
-	Sound::setEnabled(preferences.typewriterSounds());
+	Sound::setEnabled(Preferences::instance().typewriterSounds());
 
-	m_auto_save = preferences.autoSave();
+	m_auto_save = Preferences::instance().autoSave();
 	if (m_auto_save) {
 		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
@@ -1137,20 +1135,20 @@ void Window::loadPreferences(Preferences& preferences)
 		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 	}
-	m_save_positions = preferences.savePositions();
+	m_save_positions = Preferences::instance().savePositions();
 
-	SmartQuotes::loadPreferences(preferences);
+	SmartQuotes::loadPreferences();
 
-	m_character_label->setVisible(preferences.showCharacters());
-	m_page_label->setVisible(preferences.showPages());
-	m_paragraph_label->setVisible(preferences.showParagraphs());
-	m_wordcount_label->setVisible(preferences.showWords());
-	m_progress_label->setVisible(preferences.goalType() != 0);
+	m_character_label->setVisible(Preferences::instance().showCharacters());
+	m_page_label->setVisible(Preferences::instance().showPages());
+	m_paragraph_label->setVisible(Preferences::instance().showParagraphs());
+	m_wordcount_label->setVisible(Preferences::instance().showWords());
+	m_progress_label->setVisible(Preferences::instance().goalType() != 0);
 
-	m_daily_progress->loadPreferences(preferences);
-	m_daily_progress_dialog->loadPreferences(preferences);
-	m_actions["DailyProgress"]->setEnabled(preferences.goalHistory());
-	if (preferences.goalHistory()) {
+	m_daily_progress->loadPreferences();
+	m_daily_progress_dialog->loadPreferences();
+	m_actions["DailyProgress"]->setEnabled(Preferences::instance().goalHistory());
+	if (Preferences::instance().goalHistory()) {
 		connect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));
 	} else {
 		disconnect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));
@@ -1159,8 +1157,8 @@ void Window::loadPreferences(Preferences& preferences)
 
 	m_toolbar->clear();
 	m_toolbar->hide();
-	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(preferences.toolbarStyle()));
-	QStringList actions = preferences.toolbarActions();
+	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(Preferences::instance().toolbarStyle()));
+	QStringList actions = Preferences::instance().toolbarActions();
 	foreach (const QString action, actions) {
 		if (action == "|") {
 			m_toolbar->addSeparator();
@@ -1172,14 +1170,14 @@ void Window::loadPreferences(Preferences& preferences)
 	updateMargin();
 
 	for (int i = 0; i < m_documents->count(); ++i) {
-		m_documents->document(i)->loadPreferences(preferences);
+		m_documents->document(i)->loadPreferences();
 	}
 	if (m_documents->count() > 0) {
 		updateDetails();
 	}
 
-	m_replace_document_quotes->setEnabled(preferences.smartQuotes());
-	m_replace_selection_quotes->setEnabled(preferences.smartQuotes());
+	m_replace_document_quotes->setEnabled(Preferences::instance().smartQuotes());
+	m_replace_selection_quotes->setEnabled(Preferences::instance().smartQuotes());
 }
 
 //-----------------------------------------------------------------------------

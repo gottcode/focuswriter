@@ -251,8 +251,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_layout->addWidget(m_scrollbar, 0, 2, Qt::AlignRight);
 
 	// Load settings
-	Preferences preferences;
-	loadPreferences(preferences);
+	loadPreferences();
 
 	// Make it read-only until content is loaded
 	m_text->setReadOnly(true);
@@ -656,37 +655,37 @@ void Document::loadTheme(const Theme& theme)
 
 //-----------------------------------------------------------------------------
 
-void Document::loadPreferences(const Preferences& preferences)
+void Document::loadPreferences()
 {
-	m_always_center = preferences.alwaysCenter();
+	m_always_center = Preferences::instance().alwaysCenter();
 
-	m_page_type = preferences.pageType();
+	m_page_type = Preferences::instance().pageType();
 	switch (m_page_type) {
 	case 1:
-		m_page_amount = preferences.pageParagraphs();
+		m_page_amount = Preferences::instance().pageParagraphs();
 		break;
 	case 2:
-		m_page_amount = preferences.pageWords();
+		m_page_amount = Preferences::instance().pageWords();
 		break;
 	default:
-		m_page_amount = preferences.pageCharacters();
+		m_page_amount = Preferences::instance().pageCharacters();
 		break;
 	}
 
-	m_accurate_wordcount = preferences.accurateWordcount();
+	m_accurate_wordcount = Preferences::instance().accurateWordcount();
 	if (m_cached_block_count != -1) {
 		calculateWordCount();
 	}
 
-	m_block_cursor = preferences.blockCursor();
+	m_block_cursor = Preferences::instance().blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
 	QFont font = m_text->font();
-	font.setStyleStrategy(preferences.smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
+	font.setStyleStrategy(Preferences::instance().smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
 	m_text->setFont(font);
 
-	m_highlighter->setEnabled(!isReadOnly() ? preferences.highlightMisspelled() : false);
+	m_highlighter->setEnabled(!isReadOnly() ? Preferences::instance().highlightMisspelled() : false);
 
-	m_default_format = preferences.saveFormat();
+	m_default_format = Preferences::instance().saveFormat();
 }
 
 //-----------------------------------------------------------------------------

@@ -20,7 +20,6 @@
 #ifndef PREFERENCES_DIALOG_H
 #define PREFERENCES_DIALOG_H
 
-class Preferences;
 class ShortcutEdit;
 
 #include <QDialog>
@@ -41,7 +40,7 @@ class PreferencesDialog : public QDialog
 	Q_OBJECT
 
 public:
-	PreferencesDialog(Preferences& preferences, QWidget* parent = 0);
+	PreferencesDialog(QWidget* parent = 0);
 	~PreferencesDialog();
 
 public slots:
@@ -72,8 +71,6 @@ private:
 	QWidget* initShortcutsTab();
 
 private:
-	Preferences& m_preferences;
-
 	QTabWidget* m_tabs;
 
 	QRadioButton* m_option_none;

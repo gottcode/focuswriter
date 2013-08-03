@@ -27,8 +27,13 @@
 class Preferences : public SettingsFile
 {
 public:
-	Preferences();
 	~Preferences();
+
+	static Preferences& instance()
+	{
+		static Preferences preferences;
+		return preferences;
+	}
 
 	int goalType() const;
 	int goalMinutes() const;
@@ -104,6 +109,8 @@ public:
 	void setLanguage(const QString& language);
 
 private:
+	Preferences();
+
 	void reload();
 	void write();
 

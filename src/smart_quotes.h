@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
 
 #ifndef SMART_QUOTES_H
 #define SMART_QUOTES_H
-
-class Preferences;
 
 #include <QChar>
 #include <QCoreApplication>
@@ -42,7 +40,7 @@ public:
 	static QStringList revert(const QStringList& strings);
 	static QString quoteString(const QString& string, size_t index);
 
-	static void loadPreferences(Preferences& preferences);
+	static void loadPreferences();
 
 private:
 	static void setQuotes(size_t index_double, size_t index_single);
