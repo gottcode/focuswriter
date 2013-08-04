@@ -32,6 +32,11 @@ public:
 	{
 	}
 
+	QByteArray encoding() const
+	{
+		return m_encoding;
+	}
+
 	QString errorString() const
 	{
 		return m_error;
@@ -63,6 +68,7 @@ public:
 protected:
 	QTextCursor m_cursor;
 	QString m_error;
+	QByteArray m_encoding;
 
 private:
 	virtual void readData(QIODevice* device) = 0;

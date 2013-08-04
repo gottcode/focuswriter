@@ -38,8 +38,6 @@ public:
 	RtfReader();
 	~RtfReader();
 
-	QByteArray codePage() const;
-
 	enum { Type = 2 };
 	int type() const
 	{
@@ -96,7 +94,6 @@ private:
 	QTextDecoder* m_decoder;
 	QTextCodec* m_codepage;
 	QVector<QTextCodec*> m_codepages;
-	QByteArray m_codepage_name;
 };
 
 #endif

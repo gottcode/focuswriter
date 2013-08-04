@@ -182,13 +182,6 @@ RtfReader::~RtfReader()
 
 //-----------------------------------------------------------------------------
 
-QByteArray RtfReader::codePage() const
-{
-	return m_codepage_name;
-}
-
-//-----------------------------------------------------------------------------
-
 bool RtfReader::canRead(QIODevice* device)
 {
 	return device->peek(5) == "{\\rtf";
@@ -433,7 +426,7 @@ void RtfReader::setCodepage(qint32 value)
 	QTextCodec* codec = codecForCodePage(value, &codepage);
 	if (codec != 0) {
 		m_codepage = codec;
-		m_codepage_name = codepage;
+		m_encoding = codepage;
 		setCodec(codec);
 	}
 }

@@ -25,9 +25,9 @@
 
 //-----------------------------------------------------------------------------
 
-TxtReader::TxtReader() :
-	m_codec("UTF-8")
+TxtReader::TxtReader()
 {
+	m_encoding = "UTF-8";
 }
 
 //-----------------------------------------------------------------------------
@@ -44,7 +44,7 @@ void TxtReader::readData(QIODevice* device)
 		m_cursor.insertText(stream.read(0x4000));
 		QCoreApplication::processEvents();
 	}
-	m_codec = stream.codec()->name().toUpper();
+	m_encoding = stream.codec()->name().toUpper();
 
 	m_cursor.endEditBlock();
 }

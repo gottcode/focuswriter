@@ -27,11 +27,6 @@ class TxtReader : public FormatReader
 public:
 	TxtReader();
 
-	QByteArray codec() const
-	{
-		return m_codec;
-	}
-
 	enum { Type = 1 };
 	int type() const
 	{
@@ -46,9 +41,6 @@ public:
 
 private:
 	void readData(QIODevice* device);
-
-private:
-	QByteArray m_codec;
 };
 
 #endif

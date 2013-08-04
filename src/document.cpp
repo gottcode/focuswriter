@@ -36,7 +36,6 @@
 #include "sound.h"
 #include "spell_checker.h"
 #include "theme.h"
-#include "txt_reader.h"
 #include "window.h"
 
 #include <QApplication>
@@ -495,11 +494,7 @@ bool Document::loadFile(const QString& filename, int position)
 		QString error;
 		reader->read(&file, document);
 		file.close();
-		if (reader->type() == RtfReader::Type) {
-			m_codepage = static_cast<RtfReader*>(reader)->codePage();
-		} else if (reader->type() == TxtReader::Type) {
-			m_codepage = static_cast<TxtReader*>(reader)->codec();
-		}
+		m_codepage = reader->encoding();
 
 		if (reader->hasError()) {
 			error = reader->errorString();
