@@ -36,6 +36,7 @@
 #include "sound.h"
 #include "spell_checker.h"
 #include "theme.h"
+#include "txt_reader.h"
 #include "window.h"
 
 #include <QApplication>
@@ -496,6 +497,8 @@ bool Document::loadFile(const QString& filename, int position)
 		file.close();
 		if (reader->type() == RtfReader::Type) {
 			m_codepage = static_cast<RtfReader*>(reader)->codePage();
+		} else if (reader->type() == TxtReader::Type) {
+			m_codepage = static_cast<TxtReader*>(reader)->codec();
 		}
 
 		if (reader->hasError()) {

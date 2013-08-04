@@ -77,8 +77,8 @@ bool DocumentWriter::write()
 				saved = writer.write(&file, m_document);
 			} else {
 				QTextStream stream(&file);
-				stream.setCodec("UTF-8");
-				if (m_type == "txt") {
+				stream.setCodec(!m_codepage.isEmpty() ? m_codepage : "UTF-8");
+				if ((m_type == "txt") || (m_codepage != "UTF-8")) {
 					stream.setGenerateByteOrderMark(true);
 				}
 				stream << m_document->toPlainText();
