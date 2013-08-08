@@ -128,6 +128,7 @@ private:
 	QHash<int, QPair<QString, bool> > m_old_states;
 	int m_index;
 	bool m_always_center;
+	bool m_mouse_button_down;
 	bool m_block_cursor;
 	bool m_rich_text;
 	bool m_spacings_loaded;

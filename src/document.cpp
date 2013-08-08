@@ -180,6 +180,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_cache_outdated(false),
 	m_index(0),
 	m_always_center(false),
+	m_mouse_button_down(false),
 	m_rich_text(false),
 	m_spacings_loaded(false),
 	m_focus_mode(0),
@@ -768,7 +769,12 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 			return true;
 		}
 	} else if (event->type() == QEvent::MouseButtonPress) {
+		m_mouse_button_down = true;
 		m_scene_list->hideScenes();
+	} else if (event->type() == QEvent::MouseButtonRelease) {
+		m_mouse_button_down = false;
+	} else if (event->type() == QEvent::MouseButtonDblClick) {
+		m_mouse_button_down = true;
 	}
 	return QWidget::eventFilter(watched, event);
 }
@@ -841,7 +847,7 @@ void Document::cursorPositionChanged()
 {
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
 	emit alignmentChanged();
-	if (QApplication::mouseButtons() == Qt::NoButton) {
+	if (!m_mouse_button_down) {
 		centerCursor();
 	}
 }
