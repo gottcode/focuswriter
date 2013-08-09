@@ -228,8 +228,7 @@ void DictionaryHunspell::removeFromSession(const QStringList& words)
 
 DictionaryProviderHunspell::DictionaryProviderHunspell()
 {
-	QStringList dictdirs;
-	dictdirs.append(DictionaryManager::path());
+	QStringList dictdirs = QDir::searchPaths("dict");
 #if !defined(Q_OS_MAC) && defined(Q_OS_UNIX)
 	QStringList xdg = QString(qgetenv("XDG_DATA_DIRS")).split(QChar(':'), QString::SkipEmptyParts);
 	if (xdg.isEmpty()) {

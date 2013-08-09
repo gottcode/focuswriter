@@ -166,6 +166,12 @@ int main(int argc, char** argv)
 		}
 	}
 	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
+	QStringList dictdirs;
+	dictdirs.append(DictionaryManager::path());
+#ifdef Q_OS_WIN
+	dictdirs.append(appdir + "/dictionaries");
+#endif
+	QDir::setSearchPaths("dict", dictdirs);
 
 	// Set location for daily progress
 	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));

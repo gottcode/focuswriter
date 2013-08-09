@@ -23,7 +23,9 @@
 #include "dictionary_manager.h"
 #include "smart_quotes.h"
 
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QLibrary>
 #include <QStringList>
 #include <QStringRef>
@@ -61,6 +63,7 @@ namespace
 
 	bool f_voikko_loaded = false;
 	QList<VoikkoHandle*> f_handles;
+	QByteArray f_voikko_path;
 }
 
 //-----------------------------------------------------------------------------
@@ -101,7 +104,7 @@ DictionaryVoikko::DictionaryVoikko(const QString& language) :
 	m_handle(0)
 {
 	const char* voikko_error;
-	m_handle = voikkoInit(&voikko_error, language.toUtf8().constData(), QFile::encodeName(DictionaryManager::path()));
+	m_handle = voikkoInit(&voikko_error, language.toUtf8().constData(), f_voikko_path.constData());
 	if (voikko_error) {
 		qWarning("DictionaryVoikko(%s): %s", qPrintable(language), voikko_error);
 	} else if (m_handle) {
@@ -217,8 +220,16 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 	QLibrary voikko_lib("libvoikko");
 	if (!voikko_lib.load()) {
 #ifdef Q_OS_WIN
-		voikko_lib.setFileName(DictionaryManager::path() + "/libvoikko-1.dll");
-		if (!voikko_lib.load()) {
+		QLibrary voikko_lib;
+		QStringList dictdirs = QDir::searchPaths("dict");
+		foreach (const QString dictdir, dictdirs) {
+			voikko_lib.setFileName(dictdir + "/libvoikko-1.dll");
+			if (voikko_lib.load()) {
+				f_voikko_path = QFile::encodeName(QFileInfo(voikko_lib.fileName()).path());
+				break;
+			}
+		}
+		if (!voikko_lib.isLoaded()) {
 			return;
 		}
 #else
@@ -267,7 +278,7 @@ QStringList DictionaryProviderVoikko::availableDictionaries() const
 	}
 
 	QStringList result;
-	char** languages = voikkoListSupportedSpellingLanguages(QFile::encodeName(DictionaryManager::path()));
+	char** languages = voikkoListSupportedSpellingLanguages(f_voikko_path.constData());
 	if (languages) {
 		for (size_t i = 0; languages[i] != NULL; ++i) {
 			result.append(QString::fromUtf8(languages[i]));
