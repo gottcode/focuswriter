@@ -29,6 +29,8 @@
 #include <QFileInfo>
 #include <QTextStream>
 
+#include <ctime>
+
 //-----------------------------------------------------------------------------
 
 QString DocumentCache::m_path;
