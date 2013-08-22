@@ -180,6 +180,7 @@ PreferencesDialog::PreferencesDialog(QWidget* parent) :
 	m_auto_save->setChecked(Preferences::instance().autoSave());
 	m_save_positions->setChecked(Preferences::instance().savePositions());
 	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat()));
+	m_write_bom->setChecked(Preferences::instance().writeByteOrderMark());
 
 	m_highlight_misspelled->setChecked(Preferences::instance().highlightMisspelled());
 	m_ignore_numbers->setChecked(Preferences::instance().ignoredWordsWithNumbers());
@@ -295,6 +296,7 @@ void PreferencesDialog::accept()
 
 	Preferences::instance().setAutoSave(m_auto_save->isChecked());
 	Preferences::instance().setSavePositions(m_save_positions->isChecked());
+	Preferences::instance().setWriteByteOrderMark(m_write_bom->isChecked());
 	Preferences::instance().setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
 
 	Preferences::instance().setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
@@ -782,6 +784,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	m_auto_save = new QCheckBox(tr("Automatically save changes"), save_group);
 	m_save_positions = new QCheckBox(tr("Remember cursor position"), save_group);
+	m_write_bom = new QCheckBox(tr("Write byte order mark in plain text files"), save_group);
 
 	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
 	m_save_format = new QComboBox(save_group);
@@ -799,6 +802,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	QVBoxLayout* save_layout = new QVBoxLayout(save_group);
 	save_layout->addWidget(m_auto_save);
 	save_layout->addWidget(m_save_positions);
+	save_layout->addWidget(m_write_bom);
 	save_layout->addLayout(save_format_layout);
 
 	// Lay out general options

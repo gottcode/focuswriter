@@ -55,7 +55,6 @@ static bool readBool(const QStringRef& value)
 DocxReader::DocxReader() :
 	m_in_block(false)
 {
-	m_encoding = "UTF-8";
 	m_xml.setNamespaceProcessing(false);
 }
 

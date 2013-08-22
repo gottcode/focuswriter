@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ public:
 	void setDocument(QTextDocument* document);
 	void setFileName(const QString& filename);
 	void setType(const QString& type);
+	void setWriteByteOrderMark(bool write_bom);
 
 	bool write();
 
@@ -43,6 +44,7 @@ private:
 	QString m_type;
 	QByteArray m_codepage;
 	QTextDocument* m_document;
+	bool m_write_bom;
 };
 
 inline QByteArray DocumentWriter::codePage() const
@@ -68,6 +70,11 @@ inline void DocumentWriter::setFileName(const QString& filename)
 inline void DocumentWriter::setType(const QString& type)
 {
 	m_type = type.toLower();
+}
+
+inline void DocumentWriter::setWriteByteOrderMark(bool write_bom)
+{
+	m_write_bom = write_bom;
 }
 
 #endif

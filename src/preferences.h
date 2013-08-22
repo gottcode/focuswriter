@@ -89,9 +89,11 @@ public:
 
 	bool autoSave() const;
 	bool savePositions() const;
+	bool writeByteOrderMark() const;
 	QString saveFormat() const;
 	void setAutoSave(bool save);
 	void setSavePositions(bool save);
+	void setWriteByteOrderMark(bool write_bom);
 	void setSaveFormat(const QString& format);
 
 	int toolbarStyle() const;
@@ -147,6 +149,7 @@ private:
 	bool m_auto_save;
 	bool m_save_positions;
 	QString m_save_format;
+	bool m_write_bom;
 
 	int m_toolbar_style;
 	QStringList m_toolbar_actions;

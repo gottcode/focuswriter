@@ -38,7 +38,8 @@
 
 DocumentWriter::DocumentWriter() :
 	m_type("odt"),
-	m_document(0)
+	m_document(0),
+	m_write_bom(false)
 {
 }
 
@@ -77,8 +78,9 @@ bool DocumentWriter::write()
 				saved = writer.write(&file, m_document);
 			} else {
 				QTextStream stream(&file);
-				stream.setCodec(!m_codepage.isEmpty() ? m_codepage : "UTF-8");
-				if ((m_type == "txt") || (m_codepage != "UTF-8")) {
+				QByteArray encoding = !m_codepage.isEmpty() ? m_codepage : "UTF-8";
+				stream.setCodec(encoding);
+				if (m_write_bom || (encoding != "UTF-8")) {
 					stream.setGenerateByteOrderMark(true);
 				}
 				stream << m_document->toPlainText();

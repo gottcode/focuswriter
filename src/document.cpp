@@ -286,6 +286,7 @@ void Document::cache()
 		DocumentWriter* writer = new DocumentWriter;
 		writer->setType(!m_filename.isEmpty() ? m_filename.section(QLatin1Char('.'), -1) : "odt");
 		writer->setCodePage(m_codepage);
+		writer->setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 		writer->setDocument(m_text->document()->clone());
 		emit writeCacheFile(this, writer);
 	}
@@ -308,6 +309,7 @@ bool Document::save()
 	writer.setFileName(m_filename);
 	writer.setType(m_filename.section(QLatin1Char('.'), -1));
 	writer.setCodePage(m_codepage);
+	writer.setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 	writer.setDocument(m_text->document());
 	bool saved = writer.write();
 	m_codepage = writer.codePage();
@@ -343,11 +345,16 @@ bool Document::saveAs()
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 		return false;
 	}
+
+	QByteArray codepage;
 	qSwap(m_filename, filename);
+	qSwap(m_codepage, codepage);
 	if (!save()) {
-		m_filename = filename;
+		qSwap(m_filename, filename);
+		qSwap(m_codepage, codepage);
 		return false;
 	}
+
 	clearIndex();
 	updateSaveLocation();
 	m_text->setReadOnly(false);
@@ -382,6 +389,7 @@ bool Document::rename()
 	}
 	DocumentWatcher::instance()->resumeWatch(this);
 	m_filename = filename;
+	m_codepage.clear();
 	save();
 	updateSaveLocation();
 	m_text->document()->setModified(false);
@@ -495,6 +503,7 @@ bool Document::loadFile(const QString& filename, int position)
 		QString error;
 		reader->read(&file, document);
 		file.close();
+
 		m_codepage = reader->encoding();
 
 		if (reader->hasError()) {

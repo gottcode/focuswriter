@@ -27,7 +27,6 @@
 
 TxtReader::TxtReader()
 {
-	m_encoding = "UTF-8";
 }
 
 //-----------------------------------------------------------------------------
@@ -37,14 +36,18 @@ void TxtReader::readData(QIODevice* device)
 	m_cursor.beginEditBlock();
 
 	QTextStream stream(device);
-	stream.setCodec("UTF-8");
-	stream.setAutoDetectUnicode(true);
+	QTextCodec* codec = QTextCodec::codecForUtfText(device->peek(4), NULL);
+	if (codec != NULL) {
+		m_encoding = codec->name().toUpper();
+	} else {
+		codec = QTextCodec::codecForName("UTF-8");
+	}
+	stream.setCodec(codec);
 
 	while (!stream.atEnd()) {
 		m_cursor.insertText(stream.read(0x4000));
 		QCoreApplication::processEvents();
 	}
-	m_encoding = stream.codec()->name().toUpper();
 
 	m_cursor.endEditBlock();
 }

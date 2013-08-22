@@ -380,6 +380,13 @@ bool Preferences::savePositions() const
 
 //-----------------------------------------------------------------------------
 
+bool Preferences::writeByteOrderMark() const
+{
+	return m_write_bom;
+}
+
+//-----------------------------------------------------------------------------
+
 QString Preferences::saveFormat() const
 {
 	return m_save_format;
@@ -397,6 +404,13 @@ void Preferences::setAutoSave(bool save)
 void Preferences::setSavePositions(bool save)
 {
 	setValue(m_save_positions, save);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setWriteByteOrderMark(bool write_bom)
+{
+	setValue(m_write_bom, write_bom);
 }
 
 //-----------------------------------------------------------------------------
@@ -528,6 +542,7 @@ void Preferences::reload()
 
 	m_auto_save = settings.value("Save/Auto", false).toBool();
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
+	m_write_bom = settings.value("Save/WriteBOM", true).toBool();
 	m_save_format = settings.value("Save/DefaultFormat", "odt").toString();
 	const QStringList formats = QStringList() << "odt" << "rtf" << "txt";
 	if (!formats.contains(m_save_format)) {
@@ -585,6 +600,7 @@ void Preferences::write()
 
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/RememberPositions", m_save_positions);
+	settings.setValue("Save/WriteBOM", m_write_bom);
 	settings.setValue("Save/DefaultFormat", m_save_format);
 
 	settings.setValue("Toolbar/Style", m_toolbar_style);

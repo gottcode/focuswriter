@@ -28,7 +28,6 @@
 OdtReader::OdtReader() :
 	m_in_block(true)
 {
-	m_encoding = "UTF-8";
 	m_xml.setNamespaceProcessing(false);
 }
 
