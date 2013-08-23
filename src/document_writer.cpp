@@ -71,14 +71,14 @@ bool DocumentWriter::write()
 		QFile file(m_filename);
 		if (file.open(QFile::WriteOnly | QFile::Truncate)) {
 			if (m_type == "rtf") {
-				RtfWriter writer(m_codepage);
-				if (m_codepage.isEmpty()) {
-					m_codepage = writer.codePage();
+				RtfWriter writer(m_encoding);
+				if (m_encoding.isEmpty()) {
+					m_encoding = writer.encoding();
 				}
 				saved = writer.write(&file, m_document);
 			} else {
 				QTextStream stream(&file);
-				QByteArray encoding = !m_codepage.isEmpty() ? m_codepage : "UTF-8";
+				QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
 				stream.setCodec(encoding);
 				if (m_write_bom || (encoding != "UTF-8")) {
 					stream.setGenerateByteOrderMark(true);

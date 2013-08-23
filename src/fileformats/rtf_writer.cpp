@@ -211,24 +211,24 @@ QByteArray fetchCodePage()
 
 //-----------------------------------------------------------------------------
 
-RtfWriter::RtfWriter(const QByteArray& codepage) :
-	m_codepage(codepage),
+RtfWriter::RtfWriter(const QByteArray& encoding) :
+	m_encoding(encoding),
 	m_codec(0),
 	m_supports_ascii(false)
 {
 	// Fetch system codepage
-	if (m_codepage.isEmpty()) {
-		m_codepage = fetchCodePage();
+	if (m_encoding.isEmpty()) {
+		m_encoding = fetchCodePage();
 	}
-	if (m_codepage == "CP932") {
-		m_codepage = "Shift-JIS";
+	if (m_encoding == "CP932") {
+		m_encoding = "Shift-JIS";
 	}
 
 	// Load codec
-	m_codec = QTextCodec::codecForName(m_codepage);
+	m_codec = QTextCodec::codecForName(m_encoding);
 	if (!m_codec) {
-		m_codepage = "CP1252";
-		m_codec = QTextCodec::codecForName(m_codepage);
+		m_encoding = "CP1252";
+		m_codec = QTextCodec::codecForName(m_encoding);
 	}
 
 	// Check if codec is a superset of ASCII
@@ -258,7 +258,7 @@ RtfWriter::RtfWriter(const QByteArray& codepage) :
 	case 17: m_header = "{\\rtf1\\ansi\\ansicpg932\n"; break;
 	case 106: m_header = "{\\rtf1\\ansi\\ansicpg65001\n"; break;
 	case 2009: m_header = "{\\rtf1\\pca\\ansicpg850\n"; break;
-	default: m_header = "{\\rtf1\\ansi\\ansicpg" + m_codepage.mid(2) + "\n"; break;
+	default: m_header = "{\\rtf1\\ansi\\ansicpg" + m_encoding.mid(2) + "\n"; break;
 	}
 }
 

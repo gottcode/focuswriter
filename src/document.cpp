@@ -286,7 +286,7 @@ void Document::cache()
 		m_cache_outdated = false;
 		DocumentWriter* writer = new DocumentWriter;
 		writer->setType(!m_filename.isEmpty() ? m_filename.section(QLatin1Char('.'), -1) : "odt");
-		writer->setCodePage(m_codepage);
+		writer->setEncoding(m_encoding);
 		writer->setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 		writer->setDocument(m_text->document()->clone());
 		emit writeCacheFile(this, writer);
@@ -309,11 +309,11 @@ bool Document::save()
 	DocumentWriter writer;
 	writer.setFileName(m_filename);
 	writer.setType(m_filename.section(QLatin1Char('.'), -1));
-	writer.setCodePage(m_codepage);
+	writer.setEncoding(m_encoding);
 	writer.setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 	writer.setDocument(m_text->document());
 	bool saved = writer.write();
-	m_codepage = writer.codePage();
+	m_encoding = writer.encoding();
 	if (saved) {
 		m_cache_outdated = false;
 		emit replaceCacheFile(this, m_filename);
@@ -347,12 +347,12 @@ bool Document::saveAs()
 		return false;
 	}
 
-	QByteArray codepage;
+	QByteArray encoding;
 	std::swap(m_filename, filename);
-	std::swap(m_codepage, codepage);
+	std::swap(m_encoding, encoding);
 	if (!save()) {
 		std::swap(m_filename, filename);
-		std::swap(m_codepage, codepage);
+		std::swap(m_encoding, encoding);
 		return false;
 	}
 
@@ -390,7 +390,7 @@ bool Document::rename()
 	}
 	DocumentWatcher::instance()->resumeWatch(this);
 	m_filename = filename;
-	m_codepage.clear();
+	m_encoding.clear();
 	save();
 	updateSaveLocation();
 	m_text->document()->setModified(false);
@@ -504,8 +504,7 @@ bool Document::loadFile(const QString& filename, int position)
 		QString error;
 		reader->read(&file, document);
 		file.close();
-
-		m_codepage = reader->encoding();
+		m_encoding = reader->encoding();
 
 		if (reader->hasError()) {
 			error = reader->errorString();

@@ -29,9 +29,9 @@ class QTextDocument;
 class RtfWriter
 {
 public:
-	RtfWriter(const QByteArray& codepage = QByteArray());
+	RtfWriter(const QByteArray& encoding = QByteArray());
 
-	QByteArray codePage() const;
+	QByteArray encoding() const;
 
 	bool write(QIODevice* device, QTextDocument* text, bool full = true);
 
@@ -40,15 +40,15 @@ private:
 	QByteArray fromUnicode(const QString& string) const;
 
 private:
-	QByteArray m_codepage;
+	QByteArray m_encoding;
 	QTextCodec* m_codec;
 	bool m_supports_ascii;
 	QByteArray m_header;
 };
 
-inline QByteArray RtfWriter::codePage() const
+inline QByteArray RtfWriter::encoding() const
 {
-	return m_codepage;
+	return m_encoding;
 }
 
 #endif
