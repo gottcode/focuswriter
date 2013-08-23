@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,11 +44,11 @@ Sound::Sound(int name, const QString& filename, QObject* parent) :
 	m_id(-1),
 	m_name(name)
 {
-	f_total_sounds++;
+	++f_total_sounds;
 
 	if (f_ids.contains(filename)) {
 		m_id = f_ids.value(filename);
-	} else if (QSound::isAvailable()) {
+	} else {
 		m_id = f_sounds.count();
 		QSound* sound = new QSound(f_path + "/" + filename);
 		f_sounds.append(QList<QSound*>() << sound);
@@ -63,7 +63,7 @@ Sound::Sound(int name, const QString& filename, QObject* parent) :
 Sound::~Sound()
 {
 	f_sound_objects[m_name] = 0;
-	f_total_sounds--;
+	--f_total_sounds;
 	if (f_total_sounds == 0) {
 		int count = f_sounds.count();
 		for (int i = 0; i < count; ++i) {
@@ -78,25 +78,29 @@ Sound::~Sound()
 
 void Sound::play(int name)
 {
-	if (f_enabled) {
-		Sound* sound = f_sound_objects.value(name);
-		if (sound && sound->isValid()) {
-			QSound* qsound = 0;
-			QList<QSound*>& sounds = f_sounds[sound->m_id];
-			int count = sounds.count();
-			for (int i = 0; i < count; ++i) {
-				if (sounds.at(i)->isFinished()) {
-					qsound = sounds.at(i);
-					break;
-				}
-			}
-			if (qsound == 0) {
-				qsound = new QSound(sounds.first()->fileName());
-				sounds.append(qsound);
-			}
-			qsound->play();
+	if (!f_enabled) {
+		return;
+	}
+
+	Sound* sound = f_sound_objects.value(name);
+	if (!sound || !sound->isValid()) {
+		return;
+	}
+
+	QSound* qsound = 0;
+	QList<QSound*>& sounds = f_sounds[sound->m_id];
+	int count = sounds.count();
+	for (int i = 0; i < count; ++i) {
+		if (sounds.at(i)->isFinished()) {
+			qsound = sounds.at(i);
+			break;
 		}
 	}
+	if (qsound == 0) {
+		qsound = new QSound(sounds.first()->fileName());
+		sounds.append(qsound);
+	}
+	qsound->play();
 }
 
 //-----------------------------------------------------------------------------

@@ -5,7 +5,7 @@ lessThan(QT_VERSION, 4.6) {
 TEMPLATE = app
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
-	QT += widgets printsupport
+	QT += widgets printsupport multimedia
 }
 CONFIG += warn_on
 macx {
@@ -30,8 +30,9 @@ macx {
 
 	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h
 
-	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm \
-		src/nssound/sound.mm
+	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm
+
+	SOURCES += src/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
 		HEADERS += src/fileformats/clipboard_mac.h
@@ -46,7 +47,7 @@ macx {
 
 	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
 		src/spelling/dictionary_provider_voikko.cpp \
-		src/qsound/sound.cpp
+		src/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
 		LIBS += -lOle32
@@ -75,8 +76,13 @@ macx {
 		src/spelling/dictionary_provider_voikko.h
 
 	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
-		src/spelling/dictionary_provider_voikko.cpp \
-		src/sdl/sound.cpp
+		src/spelling/dictionary_provider_voikko.cpp
+
+	lessThan(QT_MAJOR_VERSION, 5) {
+		SOURCES += src/sdl/sound.cpp
+	} else {
+		SOURCES += src/sound.cpp
+	}
 }
 
 !isEmpty(USE_BUNDLED_HUNSPELL) {
