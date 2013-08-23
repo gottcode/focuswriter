@@ -59,6 +59,7 @@
 #include <QTextEdit>
 #include <QTimer>
 
+#include <algorithm>
 #include <ctime>
 
 //-----------------------------------------------------------------------------
@@ -347,11 +348,11 @@ bool Document::saveAs()
 	}
 
 	QByteArray codepage;
-	qSwap(m_filename, filename);
-	qSwap(m_codepage, codepage);
+	std::swap(m_filename, filename);
+	std::swap(m_codepage, codepage);
 	if (!save()) {
-		qSwap(m_filename, filename);
-		qSwap(m_codepage, codepage);
+		std::swap(m_filename, filename);
+		std::swap(m_codepage, codepage);
 		return false;
 	}
 
@@ -1190,7 +1191,7 @@ void Document::updateSaveName()
 		return;
 	}
 	QList<int> keys = m_old_states.keys();
-	qSort(keys);
+	std::sort(keys.begin(), keys.end());
 	int count = keys.count();
 
 	// Find undo states nearest to current

@@ -32,6 +32,8 @@
 #include <QFile>
 #include <QTextStream>
 
+#include <algorithm>
+
 //-----------------------------------------------------------------------------
 
 namespace
@@ -257,7 +259,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 {
 	// Check if new
 	QStringList personal = SmartQuotes::revert(words);
-	qSort(personal.begin(), personal.end(), compareWords);
+	std::sort(personal.begin(), personal.end(), compareWords);
 	if (personal == m_personal) {
 		return;
 	}
@@ -301,7 +303,7 @@ DictionaryManager::DictionaryManager()
 		while (!stream.atEnd()) {
 			m_personal.append(stream.readLine());
 		}
-		qSort(m_personal.begin(), m_personal.end(), compareWords);
+		std::sort(m_personal.begin(), m_personal.end(), compareWords);
 	}
 }
 
