@@ -28,7 +28,7 @@
 #ifdef Q_OS_MAC
 #include "clipboard_mac.h"
 #endif
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include "clipboard_windows.h"
 #endif
 #endif
@@ -66,7 +66,7 @@ Application::Application(int& argc, char** argv) :
 #endif
 
 #if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
-# if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
+# if defined(Q_OS_MAC) || defined(Q_OS_WIN)
 	new RTF::Clipboard;
 #endif
 #endif
