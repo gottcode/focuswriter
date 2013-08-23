@@ -35,7 +35,7 @@ public:
 	static FormatReader* createReader(QIODevice* device, const QString& type = QString());
 	static QString filter(const QString& type);
 	static QStringList filters(const QString& type = QString());
-	static bool isRichText(const QString& type);
+	static bool isRichText(const QString& filename);
 	static QStringList types();
 };
 

@@ -225,7 +225,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 
 	// Set filename
 	if (!filename.isEmpty()) {
-		m_rich_text = FormatManager::isRichText(filename.section(QLatin1Char('.'), -1).toLower());
+		m_rich_text = FormatManager::isRichText(filename);
 		m_filename = QFileInfo(filename).canonicalFilePath();
 		updateState();
 	}
@@ -1152,7 +1152,7 @@ QString Document::getSaveFileName(const QString& title)
 bool Document::processFileName(const QString& filename)
 {
 	// Check if rich text status is the same
-	bool rich_text = FormatManager::isRichText(filename.section(QLatin1Char('.'), -1).toLower());
+	bool rich_text = FormatManager::isRichText(filename);
 	if (m_rich_text == rich_text) {
 		return true;
 	}
