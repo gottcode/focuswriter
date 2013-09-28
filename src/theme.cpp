@@ -94,7 +94,18 @@ QString Theme::m_path;
 //-----------------------------------------------------------------------------
 
 Theme::Theme(const QString& name) :
-	m_name(name)
+	m_name(name),
+	m_background_type(0, 5),
+	m_foreground_opacity(0, 100),
+	m_foreground_width(500, 9999),
+	m_foreground_rounding(0, 100),
+	m_foreground_margin(1, 250),
+	m_foreground_padding(0, 250),
+	m_foreground_position(0, 3),
+	m_line_spacing(50, 1000),
+	m_paragraph_spacing_above(0, 1000),
+	m_paragraph_spacing_below(0, 1000),
+	m_tab_width(1, 1000)
 {
 	if (m_name.isEmpty()) {
 		QString untitled;
@@ -301,7 +312,7 @@ QColor Theme::foregroundColor() const
 
 //-----------------------------------------------------------------------------
 
-int Theme::foregroundOpacity() const
+RangedInt Theme::foregroundOpacity() const
 {
 	return m_foreground_opacity;
 }
@@ -309,35 +320,35 @@ int Theme::foregroundOpacity() const
 
 //-----------------------------------------------------------------------------
 
-int Theme::foregroundWidth() const
+RangedInt Theme::foregroundWidth() const
 {
 	return m_foreground_width;
 }
 
 //-----------------------------------------------------------------------------
 
-int Theme::foregroundRounding() const
+RangedInt Theme::foregroundRounding() const
 {
 	return m_foreground_rounding;
 }
 
 //-----------------------------------------------------------------------------
 
-int Theme::foregroundMargin() const
+RangedInt Theme::foregroundMargin() const
 {
 	return m_foreground_margin;
 }
 
 //-----------------------------------------------------------------------------
 
-int Theme::foregroundPadding() const
+RangedInt Theme::foregroundPadding() const
 {
 	return m_foreground_padding;
 }
 
 //-----------------------------------------------------------------------------
 
-int Theme::foregroundPosition() const
+RangedInt Theme::foregroundPosition() const
 {
 	return m_foreground_position;
 }
@@ -442,28 +453,28 @@ bool Theme::indentFirstLine() const
 
 //-----------------------------------------------------------------------------
 
-int Theme::lineSpacing() const
+RangedInt Theme::lineSpacing() const
 {
 	return m_line_spacing;
 }
 
 //-----------------------------------------------------------------------------
 
-int Theme::spacingAboveParagraph() const
+RangedInt Theme::spacingAboveParagraph() const
 {
 	return m_paragraph_spacing_above;
 }
 
 //-----------------------------------------------------------------------------
 
-int Theme::spacingBelowParagraph() const
+RangedInt Theme::spacingBelowParagraph() const
 {
 	return m_paragraph_spacing_below;
 }
 
 //-----------------------------------------------------------------------------
 
-int Theme::tabWidth() const
+RangedInt Theme::tabWidth() const
 {
 	return m_tab_width;
 }
@@ -510,7 +521,7 @@ void Theme::reload()
 	QSettings settings(filePath(m_name), QSettings::IniFormat);
 
 	// Load background settings
-	m_background_type = qBound(0, settings.value("Background/Type", 0).toInt(), 5);
+	m_background_type = settings.value("Background/Type", 0).toInt();
 	m_background_color = settings.value("Background/Color", "#cccccc").toString();
 	m_background_path = settings.value("Background/Image").toString();
 	m_background_image = settings.value("Background/ImageFile").toString();
@@ -520,12 +531,12 @@ void Theme::reload()
 
 	// Load foreground settings
 	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
-	m_foreground_opacity = qBound(0, settings.value("Foreground/Opacity", 100).toInt(), 100);
-	m_foreground_width = qBound(500, settings.value("Foreground/Width", 700).toInt(), 9999);
-	m_foreground_rounding = qBound(0, settings.value("Foreground/Rounding", 0).toInt(), 100);
-	m_foreground_margin = qBound(1, settings.value("Foreground/Margin", 65).toInt(), 250);
-	m_foreground_padding = qBound(0, settings.value("Foreground/Padding", 0).toInt(), 250);
-	m_foreground_position = qBound(0, settings.value("Foreground/Position", 1).toInt(), 3);
+	m_foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
+	m_foreground_width = settings.value("Foreground/Width", 700).toInt();
+	m_foreground_rounding = settings.value("Foreground/Rounding", 0).toInt();
+	m_foreground_margin = settings.value("Foreground/Margin", 65).toInt();
+	m_foreground_padding = settings.value("Foreground/Padding", 0).toInt();
+	m_foreground_position = settings.value("Foreground/Position", 1).toInt();
 
 	// Load text settings
 	m_text_color = settings.value("Text/Color", "#000000").toString();
@@ -534,10 +545,10 @@ void Theme::reload()
 
 	// Load spacings
 	m_indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
-	m_line_spacing = qBound(85, settings.value("Spacings/LineSpacing", 100).toInt(), 1000);
-	m_paragraph_spacing_above = qBound(0, settings.value("Spacings/ParagraphAbove", 0).toInt(), 1000);
-	m_paragraph_spacing_below = qBound(0, settings.value("Spacings/ParagraphBelow", 0).toInt(), 1000);
-	m_tab_width = qBound(1, settings.value("Spacings/TabWidth", 48).toInt(), 1000);
+	m_line_spacing = settings.value("Spacings/LineSpacing", 100).toInt();
+	m_paragraph_spacing_above = settings.value("Spacings/ParagraphAbove", 0).toInt();
+	m_paragraph_spacing_below = settings.value("Spacings/ParagraphBelow", 0).toInt();
+	m_tab_width = settings.value("Spacings/TabWidth", 48).toInt();
 }
 
 //-----------------------------------------------------------------------------
@@ -547,7 +558,7 @@ void Theme::write()
 	QSettings settings(filePath(m_name), QSettings::IniFormat);
 
 	// Store background settings
-	settings.setValue("Background/Type", m_background_type);
+	settings.setValue("Background/Type", m_background_type.value());
 	settings.setValue("Background/Color", m_background_color.name());
 	if (!m_background_path.isEmpty()) {
 		settings.setValue("Background/Image", m_background_path);
@@ -556,12 +567,12 @@ void Theme::write()
 
 	// Store foreground settings
 	settings.setValue("Foreground/Color", m_foreground_color.name());
-	settings.setValue("Foreground/Opacity", m_foreground_opacity);
-	settings.setValue("Foreground/Width", m_foreground_width);
-	settings.setValue("Foreground/Rounding", m_foreground_rounding);
-	settings.setValue("Foreground/Margin", m_foreground_margin);
-	settings.setValue("Foreground/Padding", m_foreground_padding);
-	settings.setValue("Foreground/Position", m_foreground_position);
+	settings.setValue("Foreground/Opacity", m_foreground_opacity.value());
+	settings.setValue("Foreground/Width", m_foreground_width.value());
+	settings.setValue("Foreground/Rounding", m_foreground_rounding.value());
+	settings.setValue("Foreground/Margin", m_foreground_margin.value());
+	settings.setValue("Foreground/Padding", m_foreground_padding.value());
+	settings.setValue("Foreground/Position", m_foreground_position.value());
 
 	// Store text settings
 	settings.setValue("Text/Color", m_text_color.name());
@@ -570,10 +581,10 @@ void Theme::write()
 
 	// Store spacings
 	settings.setValue("Spacings/IndentFirstLine", m_indent_first_line);
-	settings.setValue("Spacings/LineSpacing", m_line_spacing);
-	settings.setValue("Spacings/ParagraphAbove", m_paragraph_spacing_above);
-	settings.setValue("Spacings/ParagraphBelow", m_paragraph_spacing_below);
-	settings.setValue("Spacings/TabWidth", m_tab_width);
+	settings.setValue("Spacings/LineSpacing", m_line_spacing.value());
+	settings.setValue("Spacings/ParagraphAbove", m_paragraph_spacing_above.value());
+	settings.setValue("Spacings/ParagraphBelow", m_paragraph_spacing_below.value());
+	settings.setValue("Spacings/TabWidth", m_tab_width.value());
 }
 
 //-----------------------------------------------------------------------------

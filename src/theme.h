@@ -20,6 +20,7 @@
 #ifndef THEME_H
 #define THEME_H
 
+#include "ranged_int.h"
 #include "settings_file.h"
 
 #include <QColor>
@@ -58,12 +59,12 @@ public:
 
 	// Foreground settings
 	QColor foregroundColor() const;
-	int foregroundOpacity() const;
-	int foregroundWidth() const;
-	int foregroundRounding() const;
-	int foregroundMargin() const;
-	int foregroundPadding() const;
-	int foregroundPosition() const;
+	RangedInt foregroundOpacity() const;
+	RangedInt foregroundWidth() const;
+	RangedInt foregroundRounding() const;
+	RangedInt foregroundMargin() const;
+	RangedInt foregroundPadding() const;
+	RangedInt foregroundPosition() const;
 
 	void setForegroundColor(const QColor& color);
 	void setForegroundOpacity(int opacity);
@@ -84,10 +85,10 @@ public:
 
 	// Spacing settings
 	bool indentFirstLine() const;
-	int lineSpacing() const;
-	int spacingAboveParagraph() const;
-	int spacingBelowParagraph() const;
-	int tabWidth() const;
+	RangedInt lineSpacing() const;
+	RangedInt spacingAboveParagraph() const;
+	RangedInt spacingBelowParagraph() const;
+	RangedInt tabWidth() const;
 
 	void setIndentFirstLine(bool indent);
 	void setLineSpacing(int spacing);
@@ -103,28 +104,28 @@ private:
 	static QString m_path;
 	QString m_name;
 
-	int m_background_type;
+	RangedInt m_background_type;
 	QColor m_background_color;
 	QString m_background_path;
 	QString m_background_image;
 
 	QColor m_foreground_color;
-	int m_foreground_opacity;
-	int m_foreground_width;
-	int m_foreground_rounding;
-	int m_foreground_margin;
-	int m_foreground_padding;
-	int m_foreground_position;
+	RangedInt m_foreground_opacity;
+	RangedInt m_foreground_width;
+	RangedInt m_foreground_rounding;
+	RangedInt m_foreground_margin;
+	RangedInt m_foreground_padding;
+	RangedInt m_foreground_position;
 
 	QColor m_text_color;
 	QFont m_text_font;
 	QColor m_misspelled_color;
 
 	bool m_indent_first_line;
-	int m_line_spacing;
-	int m_paragraph_spacing_above;
-	int m_paragraph_spacing_below;
-	int m_tab_width;
+	RangedInt m_line_spacing;
+	RangedInt m_paragraph_spacing_above;
+	RangedInt m_paragraph_spacing_below;
+	RangedInt m_tab_width;
 };
 
 #endif

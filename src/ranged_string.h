@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,63 +17,50 @@
  *
  ***********************************************************************/
 
-#ifndef SETTINGS_FILE_H
-#define SETTINGS_FILE_H
+#ifndef RANGED_STRING_H
+#define RANGED_STRING_H
 
-class SettingsFile
+#include <QString>
+#include <QStringList>
+#include <QVariant>
+
+class RangedString
 {
 public:
-	SettingsFile() :
-		m_changed(false)
+	RangedString(const QStringList& allowed) :
+		m_value(!allowed.isEmpty() ? allowed.first() : ""), m_allowed(allowed)
 	{
 	}
 
-	virtual ~SettingsFile()
+	RangedString& operator=(const QString& value)
 	{
+		m_value = m_allowed.contains(value) ? value : m_value;
+		return *this;
 	}
 
-	bool isChanged() const
+	QStringList allowedValues() const
 	{
-		return m_changed;
+		return m_allowed;
 	}
 
-	void forgetChanges()
+	QString value() const
 	{
-		m_changed = false;
-		reload();
+		return m_value;
 	}
 
-	void saveChanges()
+	operator QString() const
 	{
-		if (m_changed) {
-			write();
-			m_changed = false;
-		}
+		return m_value;
 	}
 
-protected:
-	template <typename T> void setValue(T& dest, const T& source)
+	bool operator!=(const QString& string) const
 	{
-		if (dest != source) {
-			dest = source;
-			m_changed = true;
-		}
-	}
-
-	template <typename T1, typename T2> void setValue(T1& dest, const T2& source)
-	{
-		if (dest != source) {
-			dest = source;
-			m_changed = true;
-		}
+		return m_value != string;
 	}
 
 private:
-	virtual void reload() = 0;
-	virtual void write() = 0;
-
-private:
-	bool m_changed;
+	QString m_value;
+	const QStringList m_allowed;
 };
 
 #endif

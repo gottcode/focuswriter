@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,63 +17,54 @@
  *
  ***********************************************************************/
 
-#ifndef SETTINGS_FILE_H
-#define SETTINGS_FILE_H
+#ifndef RANGED_INT_H
+#define RANGED_INT_H
 
-class SettingsFile
+#include <QVariant>
+
+class RangedInt
 {
 public:
-	SettingsFile() :
-		m_changed(false)
+	RangedInt(int min, int max) :
+		m_value(min), m_min(min), m_max(max)
 	{
 	}
 
-	virtual ~SettingsFile()
+	RangedInt& operator=(int value)
 	{
+		m_value = (value > m_min) ? ((value < m_max) ? value : m_max) : m_min;
+		return *this;
 	}
 
-	bool isChanged() const
+	int minimumValue() const
 	{
-		return m_changed;
+		return m_min;
 	}
 
-	void forgetChanges()
+	int maximumValue() const
 	{
-		m_changed = false;
-		reload();
+		return m_max;
 	}
 
-	void saveChanges()
+	int value() const
 	{
-		if (m_changed) {
-			write();
-			m_changed = false;
-		}
+		return m_value;
 	}
 
-protected:
-	template <typename T> void setValue(T& dest, const T& source)
+	operator int() const
 	{
-		if (dest != source) {
-			dest = source;
-			m_changed = true;
-		}
+		return m_value;
 	}
 
-	template <typename T1, typename T2> void setValue(T1& dest, const T2& source)
+	bool operator!=(int value) const
 	{
-		if (dest != source) {
-			dest = source;
-			m_changed = true;
-		}
+		return m_value != value;
 	}
 
 private:
-	virtual void reload() = 0;
-	virtual void write() = 0;
-
-private:
-	bool m_changed;
+	int m_value;
+	const int m_min;
+	const int m_max;
 };
 
 #endif

@@ -624,7 +624,8 @@ void Document::loadTheme(const Theme& theme)
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
-	int foreground_width = qMin(theme.foregroundWidth(), QApplication::desktop()->availableGeometry().width() - (theme.foregroundMargin() * 2));
+	int foreground_width = theme.foregroundWidth();
+	foreground_width = qMin(foreground_width, QApplication::desktop()->availableGeometry().width() - (theme.foregroundMargin() * 2));
 	if (theme.foregroundPosition() < 3) {
 		m_text->setFixedWidth(foreground_width);
 

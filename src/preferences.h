@@ -20,6 +20,8 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
+#include "ranged_int.h"
+#include "ranged_string.h"
 #include "settings_file.h"
 
 #include <QStringList>
@@ -35,12 +37,12 @@ public:
 		return preferences;
 	}
 
-	int goalType() const;
-	int goalMinutes() const;
-	int goalWords() const;
+	RangedInt goalType() const;
+	RangedInt goalMinutes() const;
+	RangedInt goalWords() const;
 	bool goalHistory() const;
 	bool goalStreaks() const;
-	int goalStreakMinimum() const;
+	RangedInt goalStreakMinimum() const;
 	void setGoalType(int goal);
 	void setGoalMinutes(int goal);
 	void setGoalWords(int goal);
@@ -57,10 +59,10 @@ public:
 	void setShowParagraphs(bool show);
 	void setShowWords(bool show);
 
-	int pageType() const;
-	int pageCharacters() const;
-	int pageParagraphs() const;
-	int pageWords() const;
+	RangedInt pageType() const;
+	RangedInt pageCharacters() const;
+	RangedInt pageParagraphs() const;
+	RangedInt pageWords() const;
 	void setPageType(int type);
 	void setPageCharacters(int characters);
 	void setPageParagraphs(int paragraphs);
@@ -90,7 +92,7 @@ public:
 	bool autoSave() const;
 	bool savePositions() const;
 	bool writeByteOrderMark() const;
-	QString saveFormat() const;
+	RangedString saveFormat() const;
 	void setAutoSave(bool save);
 	void setSavePositions(bool save);
 	void setWriteByteOrderMark(bool write_bom);
@@ -117,22 +119,22 @@ private:
 	void write();
 
 private:
-	int m_goal_type;
-	int m_goal_minutes;
-	int m_goal_words;
+	RangedInt m_goal_type;
+	RangedInt m_goal_minutes;
+	RangedInt m_goal_words;
 	bool m_goal_history;
 	bool m_goal_streaks;
-	int m_goal_streak_minimum;
+	RangedInt m_goal_streak_minimum;
 
 	bool m_show_characters;
 	bool m_show_pages;
 	bool m_show_paragraphs;
 	bool m_show_words;
 
-	int m_page_type;
-	int m_page_characters;
-	int m_page_paragraphs;
-	int m_page_words;
+	RangedInt m_page_type;
+	RangedInt m_page_characters;
+	RangedInt m_page_paragraphs;
+	RangedInt m_page_words;
 
 	bool m_accurate_wordcount;
 
@@ -148,7 +150,7 @@ private:
 
 	bool m_auto_save;
 	bool m_save_positions;
-	QString m_save_format;
+	RangedString m_save_format;
 	bool m_write_bom;
 
 	int m_toolbar_style;

@@ -179,7 +179,7 @@ PreferencesDialog::PreferencesDialog(QWidget* parent) :
 
 	m_auto_save->setChecked(Preferences::instance().autoSave());
 	m_save_positions->setChecked(Preferences::instance().savePositions());
-	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat()));
+	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat().value()));
 	m_write_bom->setChecked(Preferences::instance().writeByteOrderMark());
 
 	m_highlight_misspelled->setChecked(Preferences::instance().highlightMisspelled());
@@ -679,14 +679,14 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_option_time = new QRadioButton(tr("Minutes:"), goals_group);
 	m_time = new QSpinBox(goals_group);
 	m_time->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_time->setRange(5, 1440);
+	m_time->setRange(Preferences::instance().goalMinutes().minimumValue(), Preferences::instance().goalMinutes().maximumValue());
 	m_time->setSingleStep(5);
 	m_time->setEnabled(false);
 
 	m_option_wordcount = new QRadioButton(tr("Words:"), goals_group);
 	m_wordcount = new QSpinBox(goals_group);
 	m_wordcount->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_wordcount->setRange(100, 100000);
+	m_wordcount->setRange(Preferences::instance().goalWords().minimumValue(), Preferences::instance().goalWords().maximumValue());
 	m_wordcount->setSingleStep(100);
 	m_wordcount->setEnabled(false);
 
@@ -719,7 +719,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	m_streak_minimum = new QSpinBox(daily_progress_group);
 	m_streak_minimum->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_streak_minimum->setRange(1, 100);
+	m_streak_minimum->setRange(Preferences::instance().goalStreakMinimum().minimumValue(), Preferences::instance().goalStreakMinimum().maximumValue());
 	m_streak_minimum->setSuffix(QLocale().percent());
 	m_streak_minimum->setEnabled(false);
 
@@ -788,7 +788,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
 	m_save_format = new QComboBox(save_group);
-	QStringList types = FormatManager::types();
+	QStringList types = Preferences::instance().saveFormat().allowedValues();
 	foreach (const QString& type, types) {
 		m_save_format->addItem(FormatManager::filter(type), type);
 	}
@@ -843,21 +843,21 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	m_option_characters = new QRadioButton(tr("Characters:"), page_group);
 	m_page_characters = new QSpinBox(page_group);
 	m_page_characters->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_page_characters->setRange(500, 10000);
+	m_page_characters->setRange(Preferences::instance().pageCharacters().minimumValue(), Preferences::instance().pageCharacters().maximumValue());
 	m_page_characters->setSingleStep(250);
 	m_page_characters->setEnabled(false);
 
 	m_option_paragraphs = new QRadioButton(tr("Paragraphs:"), page_group);
 	m_page_paragraphs = new QSpinBox(page_group);
 	m_page_paragraphs->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_page_paragraphs->setRange(1, 100);
+	m_page_paragraphs->setRange(Preferences::instance().pageParagraphs().minimumValue(), Preferences::instance().pageParagraphs().maximumValue());
 	m_page_paragraphs->setSingleStep(1);
 	m_page_paragraphs->setEnabled(false);
 
 	m_option_words = new QRadioButton(tr("Words:"), page_group);
 	m_page_words = new QSpinBox(page_group);
 	m_page_words->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_page_words->setRange(100, 2000);
+	m_page_words->setRange(Preferences::instance().pageWords().minimumValue(), Preferences::instance().pageWords().maximumValue());
 	m_page_words->setSingleStep(50);
 	m_page_words->setEnabled(false);
 

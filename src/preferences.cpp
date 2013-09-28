@@ -20,6 +20,7 @@
 #include "preferences.h"
 
 #include "dictionary_manager.h"
+#include "format_manager.h"
 #include "scene_model.h"
 
 #include <QApplication>
@@ -29,7 +30,16 @@
 
 //-----------------------------------------------------------------------------
 
-Preferences::Preferences()
+Preferences::Preferences() :
+	m_goal_type(0, 2),
+	m_goal_minutes(5, 1440),
+	m_goal_words(100, 100000),
+	m_goal_streak_minimum(1, 100),
+	m_page_type(0, 2),
+	m_page_characters(500, 10000),
+	m_page_paragraphs(1, 100),
+	m_page_words(100, 2000),
+	m_save_format(FormatManager::types())
 {
 	forgetChanges();
 }
@@ -43,21 +53,21 @@ Preferences::~Preferences()
 
 //-----------------------------------------------------------------------------
 
-int Preferences::goalType() const
+RangedInt Preferences::goalType() const
 {
 	return m_goal_type;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::goalMinutes() const
+RangedInt Preferences::goalMinutes() const
 {
 	return m_goal_minutes;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::goalWords() const
+RangedInt Preferences::goalWords() const
 {
 	return m_goal_words;
 }
@@ -78,7 +88,7 @@ bool Preferences::goalStreaks() const
 
 //-----------------------------------------------------------------------------
 
-int Preferences::goalStreakMinimum() const
+RangedInt Preferences::goalStreakMinimum() const
 {
 	return m_goal_streak_minimum;
 }
@@ -183,28 +193,28 @@ void Preferences::setShowWords(bool show)
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageType() const
+RangedInt Preferences::pageType() const
 {
 	return m_page_type;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageCharacters() const
+RangedInt Preferences::pageCharacters() const
 {
 	return m_page_characters;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageParagraphs() const
+RangedInt Preferences::pageParagraphs() const
 {
 	return m_page_paragraphs;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageWords() const
+RangedInt Preferences::pageWords() const
 {
 	return m_page_words;
 }
@@ -387,7 +397,7 @@ bool Preferences::writeByteOrderMark() const
 
 //-----------------------------------------------------------------------------
 
-QString Preferences::saveFormat() const
+RangedString Preferences::saveFormat() const
 {
 	return m_save_format;
 }
@@ -515,7 +525,7 @@ void Preferences::reload()
 	m_goal_words = settings.value("Goal/Words", 1000).toInt();
 	m_goal_history = settings.value("Goal/History", true).toBool();
 	m_goal_streaks = settings.value("Goal/Streaks", true).toBool();
-	m_goal_streak_minimum = qBound(1, settings.value("Goal/StreakMinimum", 100).toInt(), 100);
+	m_goal_streak_minimum = settings.value("Goal/StreakMinimum", 100).toInt();
 
 	m_show_characters = settings.value("Stats/ShowCharacters", false).toBool();
 	m_show_pages = settings.value("Stats/ShowPages", false).toBool();
@@ -569,22 +579,22 @@ void Preferences::write()
 {
 	QSettings settings;
 
-	settings.setValue("Goal/Type", m_goal_type);
-	settings.setValue("Goal/Minutes", m_goal_minutes);
-	settings.setValue("Goal/Words", m_goal_words);
+	settings.setValue("Goal/Type", m_goal_type.value());
+	settings.setValue("Goal/Minutes", m_goal_minutes.value());
+	settings.setValue("Goal/Words", m_goal_words.value());
 	settings.setValue("Goal/History", m_goal_history);
 	settings.setValue("Goal/Streaks", m_goal_streaks);
-	settings.setValue("Goal/StreakMinimum", m_goal_streak_minimum);
+	settings.setValue("Goal/StreakMinimum", m_goal_streak_minimum.value());
 
 	settings.setValue("Stats/ShowCharacters", m_show_characters);
 	settings.setValue("Stats/ShowPages", m_show_pages);
 	settings.setValue("Stats/ShowParagraphs", m_show_paragraphs);
 	settings.setValue("Stats/ShowWords", m_show_words);
 
-	settings.setValue("Stats/PageSizeType", m_page_type);
-	settings.setValue("Stats/CharactersPerPage", m_page_characters);
-	settings.setValue("Stats/ParagraphsPerPage", m_page_paragraphs);
-	settings.setValue("Stats/WordsPerPage", m_page_words);
+	settings.setValue("Stats/PageSizeType", m_page_type.value());
+	settings.setValue("Stats/CharactersPerPage", m_page_characters.value());
+	settings.setValue("Stats/ParagraphsPerPage", m_page_paragraphs.value());
+	settings.setValue("Stats/WordsPerPage", m_page_words.value());
 
 	settings.setValue("Stats/AccurateWordcount", m_accurate_wordcount);
 
@@ -601,7 +611,7 @@ void Preferences::write()
 	settings.setValue("Save/Auto", m_auto_save);
 	settings.setValue("Save/RememberPositions", m_save_positions);
 	settings.setValue("Save/WriteBOM", m_write_bom);
-	settings.setValue("Save/DefaultFormat", m_save_format);
+	settings.setValue("Save/DefaultFormat", m_save_format.value());
 
 	settings.setValue("Toolbar/Style", m_toolbar_style);
 	settings.setValue("Toolbar/Actions", m_toolbar_actions);

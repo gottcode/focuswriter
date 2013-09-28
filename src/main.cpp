@@ -188,8 +188,8 @@ int main(int argc, char** argv)
 		settings.remove("Background");
 
 		theme.setForegroundColor(settings.value("Page/Color", theme.foregroundColor()).toString());
-		theme.setForegroundWidth(settings.value("Page/Width", theme.foregroundWidth()).toInt());
-		theme.setForegroundOpacity(settings.value("Page/Opacity", theme.foregroundOpacity()).toInt());
+		theme.setForegroundWidth(settings.value("Page/Width", theme.foregroundWidth().value()).toInt());
+		theme.setForegroundOpacity(settings.value("Page/Opacity", theme.foregroundOpacity().value()).toInt());
 		settings.remove("Page");
 
 		theme.setTextColor(settings.value("Text/Color", theme.textColor()).toString());

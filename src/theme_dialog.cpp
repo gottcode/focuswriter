@@ -108,7 +108,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_opacity = new QSpinBox(tab);
 	m_foreground_opacity->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_opacity->setSuffix("%");
-	m_foreground_opacity->setRange(0, 100);
+	m_foreground_opacity->setRange(theme.foregroundOpacity().minimumValue(), theme.foregroundOpacity().maximumValue());
 	m_foreground_opacity->setValue(m_theme.foregroundOpacity());
 	m_foreground_opacity->setToolTip(tr("Opacity"));
 	connect(m_foreground_opacity, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
@@ -116,7 +116,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width = new QSpinBox(tab);
 	m_foreground_width->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_width->setSuffix(tr(" pixels"));
-	m_foreground_width->setRange(500, 9999);
+	m_foreground_width->setRange(theme.foregroundWidth().minimumValue(), theme.foregroundWidth().maximumValue());
 	m_foreground_width->setValue(m_theme.foregroundWidth());
 
 	m_foreground_position = new QComboBox(tab);
@@ -127,20 +127,20 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_rounding = new QSpinBox(tab);
 	m_foreground_rounding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_rounding->setSuffix(tr(" pixels"));
-	m_foreground_rounding->setRange(0, 100);
+	m_foreground_rounding->setRange(theme.foregroundRounding().minimumValue(), theme.foregroundRounding().maximumValue());
 	m_foreground_rounding->setValue(m_theme.foregroundRounding());
 	connect(m_foreground_rounding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_foreground_margin = new QSpinBox(tab);
 	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_margin->setSuffix(tr(" pixels"));
-	m_foreground_margin->setRange(1, 250);
+	m_foreground_margin->setRange(theme.foregroundMargin().minimumValue(), theme.foregroundMargin().maximumValue());
 	m_foreground_margin->setValue(m_theme.foregroundMargin());
 
 	m_foreground_padding = new QSpinBox(tab);
 	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_padding->setSuffix(tr(" pixels"));
-	m_foreground_padding->setRange(0, 250);
+	m_foreground_padding->setRange(theme.foregroundPadding().minimumValue(), theme.foregroundPadding().maximumValue());
 	m_foreground_padding->setValue(m_theme.foregroundPadding());
 	connect(m_foreground_padding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
@@ -215,7 +215,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_line_spacing = new QSpinBox(line_spacing);
 	m_line_spacing->setSuffix(QLocale().percent());
-	m_line_spacing->setRange(85, 1000);
+	m_line_spacing->setRange(theme.lineSpacing().minimumValue(), theme.lineSpacing().maximumValue());
 	m_line_spacing->setValue(m_theme.lineSpacing());
 	m_line_spacing->setEnabled(false);
 
@@ -237,16 +237,16 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_tab_width = new QSpinBox(paragraph_spacing);
 	m_tab_width->setSuffix(tr(" pixels"));
-	m_tab_width->setRange(1, 1000);
+	m_tab_width->setRange(theme.tabWidth().minimumValue(), theme.tabWidth().maximumValue());
 	m_tab_width->setValue(m_theme.tabWidth());
 
 	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
-	m_spacing_above_paragraph->setRange(0, 1000);
+	m_spacing_above_paragraph->setRange(theme.spacingAboveParagraph().minimumValue(), theme.spacingAboveParagraph().maximumValue());
 	m_spacing_above_paragraph->setValue(m_theme.spacingAboveParagraph());
 	connect(m_spacing_above_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_spacing_below_paragraph = new QSpinBox(paragraph_spacing);
-	m_spacing_below_paragraph->setRange(0, 1000);
+	m_spacing_below_paragraph->setRange(theme.spacingBelowParagraph().minimumValue(), theme.spacingBelowParagraph().maximumValue());
 	m_spacing_below_paragraph->setValue(m_theme.spacingBelowParagraph());
 	connect(m_spacing_below_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 

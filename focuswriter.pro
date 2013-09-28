@@ -117,6 +117,8 @@ HEADERS += src/action_manager.h \
 	src/paths.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
+	src/ranged_int.h \
+	src/ranged_string.h \
 	src/scene_list.h \
 	src/scene_model.h \
 	src/session.h \
