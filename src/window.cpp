@@ -69,6 +69,7 @@
 #include <QThread>
 #include <QTimer>
 #include <QToolBar>
+#include <QToolButton>
 #include <QUrl>
 
 //-----------------------------------------------------------------------------
@@ -392,7 +393,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	if (m_documents->count()) {
 		current_index = m_documents->currentIndex();
 		Document* document = m_documents->count() ? m_documents->currentDocument() : 0;
-		if (document->untitledIndex() && !document->text()->document()->isModified()) {
+		if (document->untitledIndex() && !document->isModified()) {
 			untitled_index = m_documents->currentIndex();
 		}
 	}
@@ -958,7 +959,7 @@ void Window::updateFormatAlignmentActions()
 
 void Window::updateSave()
 {
-	m_actions["Save"]->setEnabled(m_documents->currentDocument()->text()->document()->isModified());
+	m_actions["Save"]->setEnabled(m_documents->currentDocument()->isModified());
 	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->isReadOnly() || m_documents->currentDocument()->filename().isEmpty());
 	for (int i = 0; i < m_documents->count(); ++i) {
 		updateTab(i);
@@ -1026,7 +1027,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	document->setFocusMode(m_focus_actions->checkedAction()->data().toInt());
 	if (document->loadFile(path, m_save_positions ? position : -1)) {
 		if (datafile != file) {
-			document->text()->document()->setModified(!compareFiles(file, datafile));
+			document->setModified(!compareFiles(file, datafile));
 		}
 	} else if (path != file) {
 		document->loadFile(file, m_save_positions ? position : -1);
@@ -1034,7 +1035,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
-	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
+	connect(document, SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Add tab for document
 	int index = m_tabs->addTab(tr("Untitled"));
@@ -1081,12 +1082,12 @@ void Window::queueDocuments(const QStringList& files)
 bool Window::saveDocument(int index)
 {
 	Document* document = m_documents->document(index);
-	if (!document->text()->document()->isModified()) {
+	if (!document->isModified()) {
 		return true;
 	}
 
 	// Auto-save document
-	if (m_auto_save && document->text()->document()->isModified() && !document->filename().isEmpty()) {
+	if (m_auto_save && document->isModified() && !document->filename().isEmpty()) {
 		return document->save();
 	}
 
@@ -1095,7 +1096,7 @@ bool Window::saveDocument(int index)
 	case QMessageBox::Save:
 		return document->save();
 	case QMessageBox::Discard:
-		document->text()->document()->setModified(false);
+		document->setModified(false);
 		return true;
 	case QMessageBox::Cancel:
 	default:
@@ -1207,20 +1208,12 @@ void Window::updateMargin()
 void Window::updateTab(int index)
 {
 	Document* document = m_documents->document(index);
-	QString filename = document->filename();
-	QString name = QFileInfo(filename).fileName();
-	if (name.isEmpty()) {
-		name = tr("(Untitled %1)").arg(document->untitledIndex());
-	}
-	if (document->isReadOnly()) {
-		name = tr("%1 (Read-Only)").arg(name);
-	}
-	bool modified = document->text()->document()->isModified();
-	m_tabs->setTabText(index, name + (modified ? "*" : ""));
-	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(filename));
+	QString name = document->title();
+	m_tabs->setTabText(index, name + (document->isModified() ? "*" : ""));
+	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(document->filename()));
 	if (document == m_documents->currentDocument()) {
 		setWindowFilePath(name);
-		setWindowModified(modified);
+		setWindowModified(document->isModified());
 		updateWriteState(index);
 	}
 }

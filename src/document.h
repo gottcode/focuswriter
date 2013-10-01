@@ -48,7 +48,9 @@ public:
 	~Document();
 
 	QString filename() const;
+	QString title() const;
 	int untitledIndex() const;
+	bool isModified() const;
 	bool isReadOnly() const;
 	bool isRichText() const;
 	int characterCount() const;
@@ -70,6 +72,7 @@ public:
 	void loadTheme(const Theme& theme);
 	void loadPreferences();
 	void setFocusMode(int focus_mode);
+	void setModified(bool modified);
 	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);
 	void setSceneList(SceneList* scene_list);
@@ -92,6 +95,7 @@ signals:
 	void headerVisible(bool visible);
 	void scenesVisible(bool visible);
 	void indentChanged(bool indented);
+	void modificationChanged(bool modified);
 	void alignmentChanged();
 
 protected:

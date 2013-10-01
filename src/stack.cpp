@@ -328,7 +328,7 @@ void Stack::alignRight()
 void Stack::autoCache()
 {
 	foreach (Document* document, m_documents) {
-		if (document->text()->document()->isModified()) {
+		if (document->isModified()) {
 			document->cache();
 		}
 	}
@@ -339,7 +339,7 @@ void Stack::autoCache()
 void Stack::autoSave()
 {
 	foreach (Document* document, m_documents) {
-		if (document->text()->document()->isModified()) {
+		if (document->isModified()) {
 			if (!document->filename().isEmpty()) {
 				document->save();
 			} else {

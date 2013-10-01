@@ -224,7 +224,7 @@ void DocumentWatcher::processUpdates()
 			if (mbox.clickedButton() == save_button) {
 				document->save();
 			} else if (mbox.clickedButton() == ignore_button) {
-				document->text()->document()->setModified(true);
+				document->setModified(true);
 			} else {
 				emit closeDocument(document);
 			}

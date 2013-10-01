@@ -217,6 +217,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_text->viewport()->installEventFilter(this);
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
+	connect(m_text->document(), SIGNAL(modificationChanged(bool)), this, SIGNAL(modificationChanged(bool)));
 
 	m_scene_model = new SceneModel(m_text, this);
 
@@ -269,6 +270,27 @@ Document::~Document()
 
 	DocumentWatcher::instance()->removeWatch(this);
 	clearIndex();
+}
+
+//-----------------------------------------------------------------------------
+
+QString Document::title() const
+{
+	QString name = QFileInfo(m_filename).fileName();
+	if (name.isEmpty()) {
+		name = tr("(Untitled %1)").arg(m_index);
+	}
+	if (isReadOnly()) {
+		name = tr("%1 (Read-Only)").arg(name);
+	}
+	return name;
+}
+
+//-----------------------------------------------------------------------------
+
+bool Document::isModified() const
+{
+	return m_text->document()->isModified();
 }
 
 //-----------------------------------------------------------------------------
@@ -741,6 +763,13 @@ void Document::setRichText(bool rich_text)
 	cursor.setCharFormat(QTextCharFormat());
 	cursor.endEditBlock();
 	updateState();
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::setModified(bool modified)
+{
+	m_text->document()->setModified(modified);
 }
 
 //-----------------------------------------------------------------------------

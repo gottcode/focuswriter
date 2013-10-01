@@ -30,6 +30,7 @@ class Theme;
 
 #include <QWidget>
 class QGridLayout;
+class QMenu;
 class QStackedWidget;
 
 class Stack : public QWidget
