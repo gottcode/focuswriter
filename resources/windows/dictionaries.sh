@@ -11,19 +11,29 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='4.1.0.4'
+loversion='4.1.2.2'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	wget "http://download.documentfoundation.org/libreoffice/src/4.1.0/${lodict}.tar.xz"
+	wget "http://download.documentfoundation.org/libreoffice/src/4.1.2/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
 fi
 
-echo -n 'Downloading Finnish dictionary... '
-if [ ! -e "voikko.oxt" ]; then
+echo -n 'Downloading Finnish dictionary...'
+if [ ! -e 'voikko.oxt' ]; then
 	wget 'http://www.puimula.org/htp/ooo/voikko-win/3.4.0.20130717/voikko.oxt'
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
+echo -n 'Downloading Korean dictionary...'
+kodict='korean_spell-checker-0-5-6_ooo'
+kofiles='korean_spell-checker-0-5-6_ooo/dictionaries'
+if [ ! -e "${kodict}.oxt" ]; then
+	wget "http://extensions.libreoffice.org/extension-center/korean-spellchecker/releases/0.5.6/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -49,7 +59,7 @@ else
 	echo ' SKIPPED'
 fi
 
-echo -n 'Extracting Finnish dictionary... '
+echo -n 'Extracting Finnish dictionary...'
 if [ ! -e voikko ]; then
 	unzip -qq voikko.oxt -d voikko
 	echo ' DONE'
@@ -57,7 +67,15 @@ else
 	echo ' SKIPPED'
 fi
 
-echo -n 'Extracting Turkish dictionary... '
+echo -n 'Extracting Korean dictionary...'
+if [ ! -e "${kodict}" ]; then
+	unzip -qq "${kodict}.oxt" -d "${kodict}"
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
+echo -n 'Extracting Turkish dictionary...'
 if [ ! -e "${trdict}" ]; then
 	unzip -qq "${trdict}.xpi" -d "${trdict}"
 	echo ' DONE'
@@ -123,6 +141,9 @@ cp -a $lofiles/hu_HU/hu_HU.dic dicts/hu.dic
 echo -n ' it'
 cp -a $lofiles/it_IT/it_IT.aff dicts/it.aff
 cp -a $lofiles/it_IT/it_IT.dic dicts/it.dic
+echo -n ' ko'
+cp -a $kofiles/ko-KR.aff dicts/ko.aff
+cp -a $kofiles/ko-KR.dic dicts/ko.dic
 echo -n ' nl'
 cp -a $lofiles/nl_NL/nl_NL.aff dicts/nl.aff
 cp -a $lofiles/nl_NL/nl_NL.dic dicts/nl.dic
@@ -144,6 +165,11 @@ cp -a $lofiles/ru_RU/ru_RU.dic dicts/ru.dic
 echo -n ' sk'
 cp -a $lofiles/sk_SK/sk_SK.aff dicts/sk.aff
 cp -a $lofiles/sk_SK/sk_SK.dic dicts/sk.dic
+echo -n ' sr'
+cp -a $lofiles/sr/sr.aff dicts/sr.aff
+cp -a $lofiles/sr/sr.dic dicts/sr.dic
+cp -a $lofiles/sr/sr-Latn.aff dicts/sr-Latn.aff
+cp -a $lofiles/sr/sr-Latn.dic dicts/sr-Latn.dic
 echo -n ' sv'
 cp -a $lofiles/sv_SE/sv_SE.aff dicts/sv.aff
 cp -a $lofiles/sv_SE/sv_SE.dic dicts/sv.dic
