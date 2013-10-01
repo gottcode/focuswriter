@@ -65,6 +65,7 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QSignalMapper>
+#include <QSizeGrip>
 #include <QTabBar>
 #include <QThread>
 #include <QTimer>
@@ -191,6 +192,15 @@ Window::Window(const QStringList& command_line_files) :
 	connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabClicked(int)));
 	connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosed(int)));
 	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
+	connect(m_documents, SIGNAL(documentSelected(int)), m_tabs, SLOT(setCurrentIndex(int)));
+
+	QToolButton* tabs_menu = new QToolButton(m_tabs);
+	tabs_menu->setArrowType(Qt::UpArrow);
+	tabs_menu->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+	tabs_menu->setPopupMode(QToolButton::InstantPopup);
+	tabs_menu->setMenu(m_documents->menu());
+	tabs_menu->setStyleSheet("QToolButton::menu-indicator { image: none; }");
+	tabs_menu->setToolTip(tr("List all documents"));
 
 	// Set up tab navigation
 	QAction* action = new QAction(tr("Switch to Next Document"), this);
@@ -253,11 +263,14 @@ Window::Window(const QStringList& command_line_files) :
 	details_layout->addLayout(clock_layout);
 
 	// Lay out footer
-	QVBoxLayout* footer_layout = new QVBoxLayout(m_footer);
+	QGridLayout* footer_layout = new QGridLayout(m_footer);
 	footer_layout->setSpacing(0);
 	footer_layout->setMargin(0);
-	footer_layout->addWidget(details);
-	footer_layout->addWidget(m_tabs);
+	footer_layout->setColumnStretch(0, 1);
+	footer_layout->addWidget(details, 0, 0, 1, 3);
+	footer_layout->addWidget(m_tabs, 1, 0, 1, 1);
+	footer_layout->addWidget(tabs_menu, 1, 1, 1, 1);
+	footer_layout->addWidget(new QSizeGrip(this), 1, 2, 1, 1, Qt::AlignBottom);
 
 	// Lay out window
 	QVBoxLayout* layout = new QVBoxLayout(contents);
@@ -339,6 +352,9 @@ Window::Window(const QStringList& command_line_files) :
 		settings.setValue("Save/Active", 0);
 	}
 	m_sessions->setCurrent(session, files, datafiles);
+
+	// Prevent tabs menu from increasing height
+	tabs_menu->setMaximumHeight(m_tabs->sizeHint().height());
 
 	// Bring to front
 	activateWindow();
@@ -1211,6 +1227,7 @@ void Window::updateTab(int index)
 	QString name = document->title();
 	m_tabs->setTabText(index, name + (document->isModified() ? "*" : ""));
 	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(document->filename()));
+	m_documents->updateDocument(index);
 	if (document == m_documents->currentDocument()) {
 		setWindowFilePath(name);
 		setWindowModified(document->isModified());

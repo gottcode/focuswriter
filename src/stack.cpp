@@ -34,7 +34,9 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QDesktopWidget>
+#include <QDir>
 #include <QGridLayout>
+#include <QMenu>
 #include <QMessageBox>
 #include <QMutex>
 #include <QMutexLocker>
@@ -167,6 +169,11 @@ Stack::Stack(QWidget* parent) :
 	m_scenes = new SceneList(this);
 	setScenesVisible(false);
 
+	m_menu = new QMenu(this);
+	m_menu_group = new QActionGroup(this);
+	m_menu_group->setExclusive(true);
+	connect(m_menu_group, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
+
 	m_load_screen = new LoadScreen(this);
 
 	m_find_dialog = new FindDialog(this);
@@ -224,6 +231,13 @@ void Stack::addDocument(Document* document)
 	m_contents->addWidget(document);
 	m_contents->setCurrentWidget(document);
 
+	QAction* action = new QAction(this);
+	action->setCheckable(true);
+	action->setActionGroup(m_menu_group);
+	m_document_actions.push_back(action);
+	m_menu->addAction(action);
+	updateMenuIndexes();
+
 	emit documentAdded(document);
 	emit updateFormatActions();
 }
@@ -232,7 +246,13 @@ void Stack::addDocument(Document* document)
 
 void Stack::moveDocument(int from, int to)
 {
+	QAction* action = m_document_actions.at(from);
+	QAction* before = m_document_actions.at(to);
+	m_menu->removeAction(action);
 	m_documents.move(from, to);
+	m_document_actions.move(from, to);
+	m_menu->insertAction(before, action);
+	updateMenuIndexes();
 }
 
 //-----------------------------------------------------------------------------
@@ -241,8 +261,24 @@ void Stack::removeDocument(int index)
 {
 	Document* document = m_documents.takeAt(index);
 	m_contents->removeWidget(document);
+
+	QAction* action = m_document_actions.takeAt(index);
+	m_menu->removeAction(action);
+	delete action;
+	updateMenuIndexes();
+
 	emit documentRemoved(document);
 	document->deleteLater();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::updateDocument(int index)
+{
+	Document* document = m_documents.at(index);
+	QAction* action = m_document_actions.at(index);
+	action->setText(document->title() + (document->isModified() ? "*" : ""));
+	action->setToolTip(QDir::toNativeSeparators(document->filename()));
 }
 
 //-----------------------------------------------------------------------------
@@ -252,6 +288,7 @@ void Stack::setCurrentDocument(int index)
 	m_current_document = m_documents[index];
 	m_contents->setCurrentWidget(m_current_document);
 	m_scenes->setDocument(m_current_document);
+	m_document_actions[index]->setChecked(true);
 
 	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
 	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
@@ -742,6 +779,13 @@ void Stack::resizeEvent(QResizeEvent* event)
 
 //-----------------------------------------------------------------------------
 
+void Stack::actionTriggered(QAction* action)
+{
+	emit documentSelected(action->data().toInt());
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::insertSymbol(const QString& text)
 {
 	m_current_document->text()->insertPlainText(text);
@@ -782,6 +826,15 @@ void Stack::updateMask()
 			m_scenes->clearFocus();
 			m_scenes->setFocus();
 		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::updateMenuIndexes()
+{
+	for (int i = 0; i < m_document_actions.size(); ++i) {
+		m_document_actions[i]->setData(i);
 	}
 }
 
