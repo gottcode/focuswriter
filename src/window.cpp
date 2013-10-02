@@ -25,6 +25,7 @@
 #include "daily_progress.h"
 #include "daily_progress_dialog.h"
 #include "daily_progress_label.h"
+#include "dictionary_dialog.h"
 #include "document.h"
 #include "document_cache.h"
 #include "document_watcher.h"
@@ -783,6 +784,14 @@ void Window::lastDocument()
 
 //-----------------------------------------------------------------------------
 
+void Window::setLanguageClicked()
+{
+	DictionaryDialog dialog(this);
+	dialog.exec();
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::minimize()
 {
 #ifdef Q_OS_MAC
@@ -1381,6 +1390,8 @@ void Window::initMenus()
 	ActionManager::instance()->addAction("SmartQuotesUpdateSelection", m_replace_selection_quotes);
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
+	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("accessories-dictionary"), tr("Set &Language..."), this, SLOT(setLanguageClicked()));
+	tools_menu->addSeparator();
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, SLOT(show()));
 	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, SLOT(showSymbols()));
 	m_actions["DailyProgress"] = tools_menu->addAction(QIcon::fromTheme("view-calendar"), tr("&Daily Progress"), m_daily_progress_dialog, SLOT(show()));

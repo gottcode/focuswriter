@@ -76,6 +76,7 @@ private slots:
 	void previousDocument();
 	void firstDocument();
 	void lastDocument();
+	void setLanguageClicked();
 	void minimize();
 	void toggleFullscreen();
 	void toggleToolbar(bool visible);

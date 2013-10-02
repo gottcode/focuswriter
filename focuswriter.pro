@@ -154,6 +154,7 @@ HEADERS += src/action_manager.h \
 	src/qtsingleapplication/qtlocalpeer.h \
 	src/spelling/abstract_dictionary.h \
 	src/spelling/abstract_dictionary_provider.h \
+	src/spelling/dictionary_dialog.h \
 	src/spelling/dictionary_manager.h \
 	src/spelling/dictionary_ref.h \
 	src/spelling/highlighter.h \
@@ -213,6 +214,7 @@ SOURCES += src/action_manager.cpp \
 	src/fileformats/txt_reader.cpp \
 	src/qtsingleapplication/qtsingleapplication.cpp \
 	src/qtsingleapplication/qtlocalpeer.cpp \
+	src/spelling/dictionary_dialog.cpp \
 	src/spelling/dictionary_manager.cpp \
 	src/spelling/highlighter.cpp \
 	src/spelling/spell_checker.cpp
