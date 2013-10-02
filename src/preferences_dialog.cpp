@@ -108,6 +108,7 @@ PreferencesDialog::PreferencesDialog(QWidget* parent) :
 
 	m_tabs = new QTabWidget(this);
 	m_tabs->addTab(initGeneralTab(), tr("General"));
+	m_tabs->addTab(initDailyGoalTab(), tr("Daily Goal"));
 	m_tabs->addTab(initStatisticsTab(), tr("Statistics"));
 	m_tabs->addTab(initSpellingTab(), tr("Spell Checking"));
 	m_tabs->addTab(initToolbarTab(), tr("Toolbar"));
@@ -671,68 +672,6 @@ QWidget* PreferencesDialog::initGeneralTab()
 {
 	QWidget* tab = new QWidget(this);
 
-	// Create goal options
-	QGroupBox* goals_group = new QGroupBox(tr("Daily Goal"), tab);
-
-	m_option_none = new QRadioButton(tr("None"), goals_group);
-
-	m_option_time = new QRadioButton(tr("Minutes:"), goals_group);
-	m_time = new QSpinBox(goals_group);
-	m_time->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_time->setRange(Preferences::instance().goalMinutes().minimumValue(), Preferences::instance().goalMinutes().maximumValue());
-	m_time->setSingleStep(5);
-	m_time->setEnabled(false);
-
-	m_option_wordcount = new QRadioButton(tr("Words:"), goals_group);
-	m_wordcount = new QSpinBox(goals_group);
-	m_wordcount->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_wordcount->setRange(Preferences::instance().goalWords().minimumValue(), Preferences::instance().goalWords().maximumValue());
-	m_wordcount->setSingleStep(100);
-	m_wordcount->setEnabled(false);
-
-	connect(m_option_none, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
-	connect(m_option_none, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
-
-	connect(m_option_time, SIGNAL(toggled(bool)), m_time, SLOT(setEnabled(bool)));
-	connect(m_option_time, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
-
-	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
-	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_wordcount, SLOT(setEnabled(bool)));
-
-	QGridLayout* goals_layout = new QGridLayout(goals_group);
-	goals_layout->setColumnStretch(2, 1);
-	goals_layout->addWidget(m_option_none, 0, 0);
-	goals_layout->addWidget(m_option_time, 1, 0);
-	goals_layout->addWidget(m_time, 1, 1);
-	goals_layout->addWidget(m_option_wordcount, 2, 0);
-	goals_layout->addWidget(m_wordcount, 2, 1);
-
-	// Create daily progress options
-	QGroupBox* daily_progress_group = new QGroupBox(tr("Daily Progress"), tab);
-
-	m_goal_history = new QCheckBox(tr("Remember history"), daily_progress_group);
-	connect(m_goal_history, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
-
-	m_goal_streaks = new QCheckBox(tr("Show streaks"), daily_progress_group);
-	m_goal_streaks->setEnabled(false);
-	connect(m_goal_streaks, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
-
-	m_streak_minimum = new QSpinBox(daily_progress_group);
-	m_streak_minimum->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_streak_minimum->setRange(Preferences::instance().goalStreakMinimum().minimumValue(), Preferences::instance().goalStreakMinimum().maximumValue());
-	m_streak_minimum->setSuffix(QLocale().percent());
-	m_streak_minimum->setEnabled(false);
-
-	QFormLayout* daily_progress_layout = new QFormLayout(daily_progress_group);
-	daily_progress_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-	daily_progress_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
-	daily_progress_layout->addRow(m_goal_history);
-	daily_progress_layout->addRow(m_goal_streaks);
-	daily_progress_layout->addRow(tr("Minimum progress for streaks:"), m_streak_minimum);
-
-	m_streak_minimum_label = daily_progress_layout->labelForField(m_streak_minimum);
-	m_streak_minimum_label->setEnabled(false);
-
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
@@ -807,11 +746,84 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
-	layout->addWidget(goals_group);
-	layout->addWidget(daily_progress_group);
 	layout->addWidget(edit_group);
 	layout->addWidget(scene_group);
 	layout->addWidget(save_group);
+	layout->addStretch();
+
+	return makeScrollable(tab);
+}
+
+//-----------------------------------------------------------------------------
+
+QWidget* PreferencesDialog::initDailyGoalTab()
+{
+	QWidget* tab = new QWidget(this);
+
+	// Create goal options
+	m_option_none = new QRadioButton(tr("None"), tab);
+
+	m_option_time = new QRadioButton(tr("Minutes:"), tab);
+	m_time = new QSpinBox(tab);
+	m_time->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_time->setRange(Preferences::instance().goalMinutes().minimumValue(), Preferences::instance().goalMinutes().maximumValue());
+	m_time->setSingleStep(5);
+	m_time->setEnabled(false);
+
+	m_option_wordcount = new QRadioButton(tr("Words:"), tab);
+	m_wordcount = new QSpinBox(tab);
+	m_wordcount->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_wordcount->setRange(Preferences::instance().goalWords().minimumValue(), Preferences::instance().goalWords().maximumValue());
+	m_wordcount->setSingleStep(100);
+	m_wordcount->setEnabled(false);
+
+	connect(m_option_none, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
+	connect(m_option_none, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
+
+	connect(m_option_time, SIGNAL(toggled(bool)), m_time, SLOT(setEnabled(bool)));
+	connect(m_option_time, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
+
+	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
+	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_wordcount, SLOT(setEnabled(bool)));
+
+	QGridLayout* goal_layout = new QGridLayout;
+	goal_layout->setColumnStretch(2, 1);
+	goal_layout->addWidget(m_option_none, 0, 0);
+	goal_layout->addWidget(m_option_time, 1, 0);
+	goal_layout->addWidget(m_time, 1, 1);
+	goal_layout->addWidget(m_option_wordcount, 2, 0);
+	goal_layout->addWidget(m_wordcount, 2, 1);
+
+	// Create history options
+	QGroupBox* history_group = new QGroupBox(tr("History"), tab);
+
+	m_goal_history = new QCheckBox(tr("Remember history"), history_group);
+	connect(m_goal_history, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
+
+	m_goal_streaks = new QCheckBox(tr("Show streaks"), history_group);
+	m_goal_streaks->setEnabled(false);
+	connect(m_goal_streaks, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
+
+	m_streak_minimum = new QSpinBox(history_group);
+	m_streak_minimum->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_streak_minimum->setRange(Preferences::instance().goalStreakMinimum().minimumValue(), Preferences::instance().goalStreakMinimum().maximumValue());
+	m_streak_minimum->setSuffix(QLocale().percent());
+	m_streak_minimum->setEnabled(false);
+
+	QFormLayout* history_layout = new QFormLayout(history_group);
+	history_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	history_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
+	history_layout->addRow(m_goal_history);
+	history_layout->addRow(m_goal_streaks);
+	history_layout->addRow(tr("Minimum progress for streaks:"), m_streak_minimum);
+
+	m_streak_minimum_label = history_layout->labelForField(m_streak_minimum);
+	m_streak_minimum_label->setEnabled(false);
+
+	// Lay out daily goal options
+	QVBoxLayout* layout = new QVBoxLayout(tab);
+	layout->addLayout(goal_layout);
+	layout->addWidget(history_group);
 	layout->addStretch();
 
 	return makeScrollable(tab);

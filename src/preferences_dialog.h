@@ -65,6 +65,7 @@ private slots:
 private:
 	void highlightShortcutConflicts();
 	QWidget* initGeneralTab();
+	QWidget* initDailyGoalTab();
 	QWidget* initStatisticsTab();
 	QWidget* initSpellingTab();
 	QWidget* initToolbarTab();
@@ -73,15 +74,6 @@ private:
 private:
 	QTabWidget* m_tabs;
 
-	QRadioButton* m_option_none;
-	QRadioButton* m_option_time;
-	QRadioButton* m_option_wordcount;
-	QSpinBox* m_time;
-	QSpinBox* m_wordcount;
-	QCheckBox* m_goal_history;
-	QWidget* m_streak_minimum_label;
-	QSpinBox* m_streak_minimum;
-	QCheckBox* m_goal_streaks;
 	QCheckBox* m_always_center;
 	QCheckBox* m_block_cursor;
 	QCheckBox* m_smooth_fonts;
@@ -94,6 +86,16 @@ private:
 	QCheckBox* m_save_positions;
 	QCheckBox* m_write_bom;
 	QComboBox* m_save_format;
+
+	QRadioButton* m_option_none;
+	QRadioButton* m_option_time;
+	QRadioButton* m_option_wordcount;
+	QSpinBox* m_time;
+	QSpinBox* m_wordcount;
+	QCheckBox* m_goal_history;
+	QWidget* m_streak_minimum_label;
+	QSpinBox* m_streak_minimum;
+	QCheckBox* m_goal_streaks;
 
 	QCheckBox* m_show_characters;
 	QCheckBox* m_show_pages;
