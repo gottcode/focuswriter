@@ -104,14 +104,14 @@ private:
 	QCheckBox* m_show_pages;
 	QCheckBox* m_show_paragraphs;
 	QCheckBox* m_show_words;
+	QRadioButton* m_option_accurate_wordcount;
+	QRadioButton* m_option_estimate_wordcount;
 	QRadioButton* m_option_characters;
 	QRadioButton* m_option_paragraphs;
 	QRadioButton* m_option_words;
 	QSpinBox* m_page_characters;
 	QSpinBox* m_page_paragraphs;
 	QSpinBox* m_page_words;
-	QRadioButton* m_option_accurate_wordcount;
-	QRadioButton* m_option_estimate_wordcount;
 
 	QCheckBox* m_highlight_misspelled;
 	QCheckBox* m_ignore_uppercase;

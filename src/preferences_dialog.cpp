@@ -857,21 +857,29 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	QWidget* tab = new QWidget(this);
 
 	// Create statistics options
-	QGroupBox* counts_group = new QGroupBox(tr("Contents"), tab);
+	m_show_words = new QCheckBox(tr("Word count"), tab);
+	m_show_pages = new QCheckBox(tr("Page count"), tab);
+	m_show_paragraphs = new QCheckBox(tr("Paragraph count"), tab);
+	m_show_characters = new QCheckBox(tr("Character count"), tab);
 
-	m_show_words = new QCheckBox(tr("Word count"), counts_group);
-	m_show_pages = new QCheckBox(tr("Page count"), counts_group);
-	m_show_paragraphs = new QCheckBox(tr("Paragraph count"), counts_group);
-	m_show_characters = new QCheckBox(tr("Character count"), counts_group);
-
-	QVBoxLayout* counts_layout = new QVBoxLayout(counts_group);
+	QVBoxLayout* counts_layout = new QVBoxLayout;
 	counts_layout->addWidget(m_show_words);
 	counts_layout->addWidget(m_show_pages);
 	counts_layout->addWidget(m_show_paragraphs);
 	counts_layout->addWidget(m_show_characters);
 
-	// Create page algorithm options
-	QGroupBox* page_group = new QGroupBox(tr("Page Size"), tab);
+	// Create word count algorithm options
+	QGroupBox* wordcount_group = new QGroupBox(tr("Word Count Algorithm"), this);
+
+	m_option_accurate_wordcount = new QRadioButton(tr("Detect word boundaries"), wordcount_group);
+	m_option_estimate_wordcount = new QRadioButton(tr("Divide character count by six"), wordcount_group);
+
+	QVBoxLayout* wordcount_layout = new QVBoxLayout(wordcount_group);
+	wordcount_layout->addWidget(m_option_accurate_wordcount);
+	wordcount_layout->addWidget(m_option_estimate_wordcount);
+
+	// Create page count algorithm options
+	QGroupBox* page_group = new QGroupBox(tr("Page Count Algorithm"), tab);
 
 	m_option_characters = new QRadioButton(tr("Characters:"), page_group);
 	m_page_characters = new QSpinBox(page_group);
@@ -915,21 +923,11 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	page_layout->addWidget(m_option_words, 2, 0);
 	page_layout->addWidget(m_page_words, 2, 1);
 
-	// Create wordcount options
-	QGroupBox* wordcount_group = new QGroupBox(tr("Word Count Algorithm"), this);
-
-	m_option_accurate_wordcount = new QRadioButton(tr("Detect word boundaries"), wordcount_group);
-	m_option_estimate_wordcount = new QRadioButton(tr("Divide character count by six"), wordcount_group);
-
-	QVBoxLayout* wordcount_layout = new QVBoxLayout(wordcount_group);
-	wordcount_layout->addWidget(m_option_accurate_wordcount);
-	wordcount_layout->addWidget(m_option_estimate_wordcount);
-
 	// Lay out statistics options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
-	layout->addWidget(counts_group);
-	layout->addWidget(page_group);
+	layout->addLayout(counts_layout);
 	layout->addWidget(wordcount_group);
+	layout->addWidget(page_group);
 	layout->addStretch();
 
 	return makeScrollable(tab);
