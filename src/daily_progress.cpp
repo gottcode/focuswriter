@@ -329,6 +329,16 @@ void DailyProgress::loadPreferences()
 
 //-----------------------------------------------------------------------------
 
+void DailyProgress::resetToday()
+{
+	m_words = 0;
+	m_msecs = 0;
+	m_current_valid = false;
+	updateProgress();
+}
+
+//-----------------------------------------------------------------------------
+
 int DailyProgress::columnCount(const QModelIndex&) const
 {
 	return 9;

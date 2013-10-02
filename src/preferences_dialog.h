@@ -20,6 +20,7 @@
 #ifndef PREFERENCES_DIALOG_H
 #define PREFERENCES_DIALOG_H
 
+class DailyProgress;
 class ShortcutEdit;
 
 #include <QDialog>
@@ -40,7 +41,7 @@ class PreferencesDialog : public QDialog
 	Q_OBJECT
 
 public:
-	PreferencesDialog(QWidget* parent = 0);
+	PreferencesDialog(DailyProgress* daily_progress, QWidget* parent = 0);
 	~PreferencesDialog();
 
 public slots:
@@ -49,6 +50,7 @@ public slots:
 
 private slots:
 	void goalHistoryToggled();
+	void resetDailyGoal();
 	void moveActionUp();
 	void moveActionDown();
 	void addSeparatorAction();
@@ -87,6 +89,7 @@ private:
 	QCheckBox* m_write_bom;
 	QComboBox* m_save_format;
 
+	DailyProgress* m_daily_progress;
 	QRadioButton* m_option_none;
 	QRadioButton* m_option_time;
 	QRadioButton* m_option_wordcount;

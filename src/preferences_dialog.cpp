@@ -20,6 +20,7 @@
 #include "preferences_dialog.h"
 
 #include "action_manager.h"
+#include "daily_progress.h"
 #include "dictionary_manager.h"
 #include "format_manager.h"
 #include "locale_dialog.h"
@@ -100,8 +101,9 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-PreferencesDialog::PreferencesDialog(QWidget* parent) :
+PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* parent) :
 	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
+	m_daily_progress(daily_progress),
 	m_shortcut_conflicts(false)
 {
 	setWindowTitle(tr("Preferences"));
@@ -371,6 +373,21 @@ void PreferencesDialog::goalHistoryToggled()
 	m_goal_streaks->setEnabled(m_goal_history->isChecked());
 	m_streak_minimum->setEnabled(m_goal_streaks->isChecked() && m_goal_streaks->isEnabled());
 	m_streak_minimum_label->setEnabled(m_goal_streaks->isChecked() && m_goal_streaks->isEnabled());
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::resetDailyGoal()
+{
+	if (QMessageBox::question(this,
+			tr("Question"),
+			tr("Reset daily progress for today to zero?"),
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No)
+		== QMessageBox::Yes)
+	{
+		m_daily_progress->resetToday();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -786,6 +803,9 @@ QWidget* PreferencesDialog::initDailyGoalTab()
 	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
 	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_wordcount, SLOT(setEnabled(bool)));
 
+	QPushButton* reset_today_button = new QPushButton(tr("Reset Today"), tab);
+	connect(reset_today_button, SIGNAL(clicked()), this, SLOT(resetDailyGoal()));
+
 	QGridLayout* goal_layout = new QGridLayout;
 	goal_layout->setColumnStretch(2, 1);
 	goal_layout->addWidget(m_option_none, 0, 0);
@@ -793,6 +813,7 @@ QWidget* PreferencesDialog::initDailyGoalTab()
 	goal_layout->addWidget(m_time, 1, 1);
 	goal_layout->addWidget(m_option_wordcount, 2, 0);
 	goal_layout->addWidget(m_wordcount, 2, 1);
+	goal_layout->addWidget(reset_today_button, 3, 0, 1, 2, Qt::AlignLeft | Qt::AlignVCenter);
 
 	// Create history options
 	QGroupBox* history_group = new QGroupBox(tr("History"), tab);

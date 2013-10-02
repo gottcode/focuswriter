@@ -842,7 +842,7 @@ void Window::themeClicked()
 
 void Window::preferencesClicked()
 {
-	PreferencesDialog dialog(this);
+	PreferencesDialog dialog(m_daily_progress, this);
 	if (dialog.exec() == QDialog::Accepted) {
 		loadPreferences();
 	}

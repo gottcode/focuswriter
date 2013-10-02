@@ -46,6 +46,7 @@ public:
 	void increaseWordCount(int words);
 	void increaseTime();
 	void loadPreferences();
+	void resetToday();
 
 	int columnCount(const QModelIndex& parent = QModelIndex()) const;
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
