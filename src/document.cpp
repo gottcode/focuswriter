@@ -669,7 +669,7 @@ void Document::loadTheme(const Theme& theme)
 			break;
 		};
 	} else {
-		m_text->setMinimumWidth(foreground_width);
+		m_text->setMinimumWidth(100);
 		m_text->setMaximumWidth(maximumSize().width());
 
 		m_layout->setColumnStretch(0, 0);

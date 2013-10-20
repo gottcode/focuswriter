@@ -662,7 +662,13 @@ void Stack::themeSelected(const Theme& theme)
 		m_symbols_dialog->setPreviewFont(theme.textFont());
 	}
 
-	window()->setMinimumWidth(qMin((m_margin * 2) + theme.foregroundWidth(), QApplication::desktop()->availableGeometry().width()));
+	int minimum_size = (m_margin * 2) + 100;
+	if (theme.foregroundPosition() < 3) {
+		window()->setMinimumWidth(qMin((m_margin * 2) + theme.foregroundWidth(), QApplication::desktop()->availableGeometry().width()));
+	} else {
+		window()->setMinimumWidth(minimum_size);
+	}
+	window()->setMinimumHeight(minimum_size);
 
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme);
