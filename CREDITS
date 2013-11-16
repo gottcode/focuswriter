@@ -2,40 +2,110 @@ Developers
 ----------
 * Graeme Gott
 
-Translators
------------
-* Joan Queralt Gil (ca)
-* Pavel Fric (cs)
-* Ladislav Thon (cs)
-* Morten Juhl-Johansen Zölde-Fejér (da)
-* Dennis Peteranderl (de)
-* Eduard Bruckner (de)
-* Epameinondas Soufleros (el)
-* Luis Osa (es)
-* Verónica Jiménez (es)
-* Israel Buitrón (es_MX)
-* Aarni (fi)
-* Jérôme Borme (fr)
-* Isratine Citizen (he)
-* Andrea Bergamasco (it)
-* Zoltán Adamek (hu)
-* Robert Borst (nl)
-* Jakub Kowalski (pl)
-* Jérôme Borme (pt)
-* Márcio Massula Jr. (pt_BR)
-* Jaff (Oprea Nicolae) (ro)
-* Danila Evstifeyev (ru)
-* Dmitriy Kodanev (ru)
-* Jan Gallik (sk)
-* Daniel Nylander (sv)
-* Påvel Nicklasson (sv)
-* Cüneyt Oktay (tr)
-* Ülgen (tr)
-* Sergiy Gavrylov (uk)
+
+Translations
+------------
+Catalan:
+* Joan Queralt Gil
+
+Czech:
+* Pavel Fric
+* Ladislav Thon
+
+Danish:
+* Morten Juhl-Johansen Zölde-Fejér
+
+Dutch:
+* Robert Borst
+
+German:
+* Dennis Peteranderl
+* Eduard Bruckner
+
+Greek:
+* Γιάννης Ανθυμίδης
+* Epameinondas Soufleros
+
+Finnish:
+* Aarni
+* Lasse Liehu
+
+French:
+* Guillaume Gay
+* Jérôme Borme
+
+Hebrew:
+* Jacob Paikin
+
+Hungarian:
+* Zoltán Adamek
+
+Italian:
+* Andrea Bergamasco
+
+Indonesian:
+* Eka Y Saputra
+
+Japanese:
+* Kyo Nagashima
+
+Korean:
+* Hwang In Tak
+
+Polish:
+* Jakub Kowalski
+
+Portuguese:
+* Jérôme Borme
+
+Portuguese (Brazil):
+* Enrico Nicoletto
+* Márcio Massula Jr.
+
+Romanian:
+* Jaff (Oprea Nicolae)
+
+Russian:
+* Danila Evstifeyev
+* Dmitriy Kodanev
+* Сергей Миронов
+
+Slovak:
+* Jan Gallik
+
+Spanish:
+* Adolfo Jayme Barrientos
+* Freddy Sequera
+* Luis Osa
+* Verónica Jiménez
+
+Spanish (Mexico):
+* Israel Buitrón
+
+Swedish:
+* Daniel Nylander
+* Påvel Nicklasson
+
+Turkish:
+* Cüneyt Oktay
+* Ülgen
+
+Ukrainian:
+* Sergiy Gavrylov
+
+Vietnamese:
+* Anh Phan (vi)
+
+Chinese (China):
+* Dianjin Wang
+* Jiajun Liu
+* 勇 郭
+
 
 Icons
 -----
 * Oxygen, http://www.oxygen-icons.org/
+
 
 Libraries
 ---------
@@ -43,6 +113,7 @@ Libraries
 * hunspell, http://hunspell.sourceforge.net/
 * libzip, http://www.nih.at/libzip/
 * SDL_mixer, http://www.libsdl.org/projects/SDL_mixer/
+
 
 License of bundled libzip
 -------------------------
