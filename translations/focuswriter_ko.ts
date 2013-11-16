@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fi" sourcelanguage="en">
+<TS version="2.0" language="ko" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation>Sulje (%1)</translation>
+        <translation>(%1) 닫기</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
         <source>Collapse</source>
-        <translation>Pienennä</translation>
+        <translation>접기</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation>Laajenna</translation>
+        <translation>펼치기</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation>Kuittaa hälytys</translation>
+        <translation>알림 해제</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -40,83 +40,83 @@
         <location filename="../src/document.cpp" line="399"/>
         <location filename="../src/document.cpp" line="405"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>죄송합니다</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="348"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Tiedoston %1 tallentaminen epäonnistui.</translation>
+        <translation>&apos;%1&apos; 파일을 저장할 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="361"/>
         <source>Save File As</source>
-        <translation>Tallenna nimellä</translation>
+        <translation>다른 이름으로 저장</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="368"/>
         <location filename="../src/document.cpp" line="399"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” korvaaminen epäonnistui.</translation>
+        <translation>&apos;%1&apos; 파일을 덮어쓸 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="392"/>
         <source>Rename File</source>
-        <translation>Nimeä tiedosto uudelleen</translation>
+        <translation>파일 이름 바꾸기</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="405"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” nimen muuttaminen epäonnistui.</translation>
+        <translation>&apos;%1&apos; 파일의 이름을 바꿀 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="430"/>
         <source>Reload File</source>
-        <translation>Lataa tiedosto uudelleen</translation>
+        <translation>파일 다시 불러오기</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="431"/>
         <source>Reload the file %1 from disk?</source>
-        <translation>Ladataanko tiedosto %1 uudelleen levyltä?</translation>
+        <translation>디스크에서 %1 파일을 다시 불러올까요?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="432"/>
         <source>All unsaved changes will be lost.</source>
-        <translation>Kaikki tallentamattomat muutokset menetetään.</translation>
+        <translation>저장하지 않은 바뀐 정보는 사라집니다.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="434"/>
         <source>Reload</source>
-        <translation>Lataa uudelleen</translation>
+        <translation>새로 고침</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1168"/>
         <source>Plain Text (*.txt)</source>
-        <translation>Muotoilematon teksti (*.txt)</translation>
+        <translation>일반 텍스트 (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1227"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1228"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Muotoilemattomana tekstinä tallennettaessa menetetään kaikki muotoilu. Poistetaanko muotoilu?</translation>
+        <translation>일반 텍스트로 저장하면 모든 서식을 잃어버리게 됩니다. 서식을 버리시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1166"/>
         <source>OpenDocument Text (*.odt)</source>
-        <translation>OpenDocument-teksti (*.odt)</translation>
+        <translation>오픈 다큐먼트 텍스트 (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1167"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>Muotoiltu teksti (*.rtf)</translation>
+        <translation>서식 있는 텍스트 (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1169"/>
         <source>All Files (*)</source>
-        <translation>Kaikki tiedostot</translation>
+        <translation>모든 파일 (*)</translation>
     </message>
 </context>
 <context>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="189"/>
         <source>File Changed</source>
-        <translation>Tiedosto muuttui</translation>
+        <translation>파일 변환 완료</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file %1 was changed by another program.</source>
-        <translation>Toinen ohjelma on muuttanut tiedostoa %1.</translation>
+        <translation>%1 파일이 다른 프로그램에 의해서 바뀌었습니다.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>Do you want to reload the file?</source>
-        <translation>Haluatko ladata tiedoston uudelleen?</translation>
+        <translation>파일을 다시 불러올까요?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Reload</source>
-        <translation>Lataa uudelleen</translation>
+        <translation>새로 고침</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="198"/>
         <source>Ignore</source>
-        <translation>Jätä huomiotta</translation>
+        <translation>그대로 둠</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="209"/>
         <source>File Deleted</source>
-        <translation>Tiedosto poistettu</translation>
+        <translation>파일이 지워졌습니다.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="210"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Toinen ohjelma on poistanut tiedoston %1.</translation>
+        <translation>%1 파일이 다른 프로그램에 의해서 지워졌습니다.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>Do you want to save or close the file?</source>
-        <translation>Haluatko tallentaa vai sulkea tiedoston?</translation>
+        <translation>파일을 저장할까요? 닫을까요?</translation>
     </message>
 </context>
 <context>
@@ -167,87 +167,86 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Search for:</source>
-        <translation>Etsi:</translation>
+        <translation>검색 :</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Replace with:</source>
-        <translation>Korvaa:</translation>
+        <translation>다음과 바꿈 :  </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="51"/>
         <source>Ignore case</source>
-        <translation>Kirjainkoolla ei väliä</translation>
+        <translation>대/소문자 구분 안함</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Whole words only</source>
-        <translation>Vain kokonaiset sanat</translation>
+        <translation>단어로 검색</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation>Säännölliset lausekkeet</translation>
+        <translation>일반적인 표현</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
         <source>Search up</source>
-        <translation>Etsi ylös</translation>
+        <translation>위로 검색</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="57"/>
         <source>Search down</source>
-        <translation>Etsi alas</translation>
+        <translation>아래로 검색</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation>&amp;Etsi</translation>
+        <translation>&amp;찾기</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation>&amp;Korvaa</translation>
+        <translation>&amp;바꾸기</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation>Korvaa k&amp;aikki</translation>
+        <translation>&amp;모두 바꾸기</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
         <source>Find</source>
-        <translation>Etsi</translation>
+        <translation>찾기</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="142"/>
         <source>Replace</source>
-        <translation>Korvaa</translation>
+        <translation>바꾸기</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Korvataanko %n esiintymä?</numerusform>
-            <numerusform>Korvataanko %n esiintymää?</numerusform>
+            <numerusform>%n 의 사례를 바꿀까요?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>죄송합니다</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Phrase not found.</source>
-        <translation>Virkettä ei löytynyt.</translation>
+        <translation>문장이 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -255,17 +254,17 @@
     <message>
         <location filename="../src/highlighter.cpp" line="51"/>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>더하기</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="52"/>
         <source>Check Spelling...</source>
-        <translation>Tarkista oikeinkirjoitus…</translation>
+        <translation>맞춤법 검사 하기</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="124"/>
         <source>(No suggestions found)</source>
-        <translation>(Ei ehdotuksia)</translation>
+        <translation>(다른 대안을 찾지 못했습니다)</translation>
     </message>
 </context>
 <context>
@@ -273,12 +272,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="90"/>
         <source>Open Image</source>
-        <translation>Avaa kuva</translation>
+        <translation>이미지 열기</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="90"/>
         <source>Images(%1)</source>
-        <translation>Kuvat (%1)</translation>
+        <translation>이미지(%1)</translation>
     </message>
 </context>
 <context>
@@ -286,22 +285,22 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="50"/>
         <source>Select application language:</source>
-        <translation>Valitse sovelluksen kieli:</translation>
+        <translation>프로그램 언어 선택:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>&lt;System Language&gt;</source>
-        <translation>Järjestelmän kieli</translation>
+        <translation>&lt; 시스템 언어 &gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Note</source>
-        <translation>Huomautus</translation>
+        <translation>노트</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Ole hyvä ja käynnistä sovellus uudelleen, jotta kielen muutos tulee voimaan.</translation>
+        <translation>바뀐 언어로 적용하기 위해 프로그램을 다시 시작 해주세요.</translation>
     </message>
 </context>
 <context>
@@ -309,326 +308,326 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation>Asetukset</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
         <source>General</source>
-        <translation>Yleisasetukset</translation>
+        <translation>일반 설정</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Statistics</source>
-        <translation>Tilastot</translation>
+        <translation>통계</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Toolbar</source>
-        <translation>Työkalupalkki</translation>
+        <translation>툴바</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Spell Checking</source>
-        <translation>Oikoluku</translation>
+        <translation>맞춤법 검사</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="406"/>
         <source>Select Dictionary</source>
-        <translation>Valitse sanakirja</translation>
+        <translation>사전 고르기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <location filename="../src/preferences_dialog.cpp" line="541"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>죄송합니다</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <source>Unable to open archive.</source>
-        <translation>Arkiston avaaminen epäonnistui.</translation>
+        <translation>압축파일을 열 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="428"/>
         <source>Unable to read archive metadata.</source>
-        <translation>Arkiston metatietojen lukeminen epäonnistui.</translation>
+        <translation>압축파일의 메타데이터를 열 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="470"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Arkisto ei sisällä käyttökelpoista sanakirjaa.</translation>
+        <translation>이용할 만 한 사전이 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="496"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” avaaminen epäonnistui.</translation>
+        <translation>&apos;%1&apos; 파일을 열 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="507"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” sulkeminen epäonnistui.</translation>
+        <translation>&apos;%1&apos; 파일을 닫을 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="243"/>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation>Pikanäppäimet</translation>
+        <translation>단축키</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Yksi tai useampi päällekkäinen pikanäppäin. Haluatko jatkaa?</translation>
+        <translation>하나 이상의 단축키에서 충돌이 났습니다. 계속할까요?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Sanakirja ”%1” on jo olemassa. Haluatko korvata sen?</translation>
+        <translation>사전 &quot;%1&quot; 은 이미 있습니다. 바꾸시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
         <source>Daily Goal</source>
-        <translation>Päivittäinen tavoite</translation>
+        <translation>오늘의 목표</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>None</source>
-        <translation>Ei tavoitetta</translation>
+        <translation>없음</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="680"/>
         <source>Minutes:</source>
-        <translation>Minuutteina:</translation>
+        <translation>분:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="692"/>
         <location filename="../src/preferences_dialog.cpp" line="819"/>
         <source>Words:</source>
-        <translation>Sanoina:</translation>
+        <translation>단어:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="710"/>
         <source>Editing</source>
-        <translation>Muokkaaminen</translation>
+        <translation>설정하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="712"/>
         <source>Always vertically center</source>
-        <translation>Keskitä aina pystysuunnassa</translation>
+        <translation>항상 세로로 가운데 맞춤</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="713"/>
         <source>Block insertion cursor</source>
-        <translation>Estä lisäyskohdistin</translation>
+        <translation>블럭 삽입 커서</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="714"/>
         <source>Smooth fonts</source>
-        <translation>Tasoitetut kirjaimet</translation>
+        <translation>부드러운 글꼴</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Typewriter sounds</source>
-        <translation>Kirjoituskoneäänet</translation>
+        <translation>타자기 소리</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="717"/>
         <source>Smart quotes:</source>
-        <translation>Älykkäät lainausmerkit</translation>
+        <translation>지능형 따옴표:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="724"/>
         <source>Double</source>
-        <translation>Kokolainausmerkit</translation>
+        <translation>큰 따옴표</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Single</source>
-        <translation>Puolilainausmerkit</translation>
+        <translation>작은 따옴표</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation>Kohtaukset</translation>
+        <translation>화면</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation>Erotin:</translation>
+        <translation>구분선:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
         <source>Saving</source>
-        <translation>Tallennus</translation>
+        <translation>저장하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="758"/>
         <source>Automatically save changes</source>
-        <translation>Tallenna automaattisesti</translation>
+        <translation>자동으로 저장하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="759"/>
         <source>Remember cursor position</source>
-        <translation>Muista kohdistimen sijainti</translation>
+        <translation>커서 위치 저장하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="783"/>
         <source>Contents</source>
-        <translation>Sisällysluettelo</translation>
+        <translation>내용</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="785"/>
         <source>Word count</source>
-        <translation>Sanamäärä</translation>
+        <translation>단어 수</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="786"/>
         <source>Page count</source>
-        <translation>Sivumäärä</translation>
+        <translation>페이지 수</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="787"/>
         <source>Paragraph count</source>
-        <translation>Kappalemäärä</translation>
+        <translation>문단 수</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="788"/>
         <source>Character count</source>
-        <translation>Merkkimäärä</translation>
+        <translation>글자 수</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="797"/>
         <source>Page Size</source>
-        <translation>Sivun koko</translation>
+        <translation>페이지 크기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="799"/>
         <source>Characters:</source>
-        <translation>Merkkeinä:</translation>
+        <translation>글자:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="809"/>
         <source>Paragraphs:</source>
-        <translation>Kappaleina:</translation>
+        <translation>문단:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="835"/>
         <source>Word Count Algorithm</source>
-        <translation>Sanalaskenta-algoritmi</translation>
+        <translation>단어 수 세는 알고리즘</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="837"/>
         <source>Detect word boundaries</source>
-        <translation>Tunnista sanojen rajat</translation>
+        <translation>단어의 범위를 감지하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Divide character count by six</source>
-        <translation>Jaa merkkimäärä kuudella</translation>
+        <translation>글자 수를 여섯 개마다 나누기 </translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="943"/>
         <source>Style</source>
-        <translation>Tyyli</translation>
+        <translation>스타일</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Icons Only</source>
-        <translation>Vain kuvakkeet</translation>
+        <translation>아이콘만 사용</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Text Only</source>
-        <translation>Vain teksti</translation>
+        <translation>텍스트만 사용</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Text Alongside Icons</source>
-        <translation>Teksti kuvakkeiden vieressä</translation>
+        <translation>아이콘 옆에 글자 표시</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="949"/>
         <source>Text Under Icons</source>
-        <translation>Teksti kuvakkeiden alla</translation>
+        <translation>아이콘 아래에 글자 표시</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="953"/>
         <source>Text Position:</source>
-        <translation>Tekstin sijainti:</translation>
+        <translation>텍스트 위치:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="956"/>
         <source>Actions</source>
-        <translation>Toiminnot</translation>
+        <translation>기능</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="972"/>
         <source>Move Up</source>
-        <translation>Siirrä ylemmäs</translation>
+        <translation>위로 옮기기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Move Down</source>
-        <translation>Siirrä alemmas</translation>
+        <translation>아래로 옮기기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="976"/>
         <source>Add Separator</source>
-        <translation>Lisää erotin</translation>
+        <translation>구분선 더하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation>Komento</translation>
+        <translation>명령어</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation>Pikanäppäin</translation>
+        <translation>단축키</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation>Toiminto</translation>
+        <translation>기능</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
         <source>Check spelling as you type</source>
-        <translation>Tarkista oikeinkirjoitus kirjoitettaessa</translation>
+        <translation>입력하는 대로 검사하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="864"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ohita SUURAAKKOSIN kirjoitetut sanat</translation>
+        <translation>대문자 건너뛰기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="865"/>
         <source>Ignore words with numbers</source>
-        <translation>Ohita sanat, joissa on numeroita</translation>
+        <translation>숫자 건너뛰기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="878"/>
         <source>Language</source>
-        <translation>Kieli</translation>
+        <translation>언어</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="882"/>
         <location filename="../src/preferences_dialog.cpp" line="903"/>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>더하기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="915"/>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>제거</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Personal Dictionary</source>
-        <translation>Oma sanakirja</translation>
+        <translation>개인 사전</translation>
     </message>
 </context>
 <context>
@@ -637,22 +636,22 @@
         <location filename="../src/rtf/reader.cpp" line="225"/>
         <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
-        <translation>Ei tuettu RTF-tiedosto.</translation>
+        <translation>지원하는 RTF 파일이 아닙니다.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="64"/>
         <source>Unable to open archive.</source>
-        <translation>Arkiston avaaminen epäonnistui.</translation>
+        <translation>압축파일을 열 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” avaaminen epäonnistui.</translation>
+        <translation>&apos;%1&apos; 파일을 열 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” sulkeminen epäonnistui.</translation>
+        <translation>&apos;%1&apos; 파일을 닫을 수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -665,7 +664,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation>Siirrä kohtauksia ylemmäs</translation>
+        <translation>화면을 위로 올리기</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
@@ -675,7 +674,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation>Näytä tai piilota kohtausluettelo</translation>
+        <translation>화면 목록 켜고/끄기</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
@@ -685,27 +684,27 @@
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
-        <translation>Näytä kohtausluettelo (%1)</translation>
+        <translation>(%1) 화면 목록 보이기</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
-        <translation>Piilota kohtausluettelo (%1)</translation>
+        <translation>(%1) 화면 목록 감추기</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
-        <translation>Suodata</translation>
+        <translation>필터</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation>Siirrä kohtauksia alemmas</translation>
+        <translation>화면을 아래로 내리기</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
-        <translation>Muuta kohtausluettelon kokoa</translation>
+        <translation>화면 목록 크기 조절</translation>
     </message>
 </context>
 <context>
@@ -719,7 +718,7 @@
         <location filename="../src/session_manager.cpp" line="376"/>
         <location filename="../src/session_manager.cpp" line="379"/>
         <source>Default</source>
-        <translation>Oletus</translation>
+        <translation>기본 세션</translation>
     </message>
 </context>
 <context>
@@ -727,82 +726,82 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Hallinnoi istuntoja</translation>
+        <translation>세션 관리</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>&amp;Istunnot</translation>
+        <translation>&amp;세션</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Uusi</translation>
+        <translation>새로 만들기</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
         <source>Rename</source>
-        <translation>Nimeä uudelleen</translation>
+        <translation>이름 바꾸기</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>Kopioi</translation>
+        <translation>복제하기</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>지우기</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Siirry</translation>
+        <translation>서로 바꾸기</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
         <source>New Session</source>
-        <translation>Uusi istunto</translation>
+        <translation>새 세션</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>Kopioi sessio</translation>
+        <translation>세션 복제</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
         <source>Rename Session</source>
-        <translation>Nimeä istunto uudelleen</translation>
+        <translation>세션 이름 바꾸기</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>Poistetaanko valittu istunto?</translation>
+        <translation>선택한 세션을 지우시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="354"/>
         <source>Session name:</source>
-        <translation>Istunnon nimi:</translation>
+        <translation>세션 이름</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>죄송합니다.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
         <source>The requested session name is already in use.</source>
-        <translation>Pyytämäsi istunnon nimi on jo käytössä.</translation>
+        <translation>요청하신 세션 이름은 이미 사용 중입니다.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
         <source>&amp;New...</source>
-        <translation>&amp;Uusi…</translation>
+        <translation>&amp;새로 만들기...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="402"/>
@@ -812,7 +811,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
         <source>&amp;Manage...</source>
-        <translation>&amp;Hallinnoi…</translation>
+        <translation>&amp;관리하기...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
@@ -825,18 +824,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation>Tyhjennä</translation>
+        <translation>지우기</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation>Palauta oletusarvoon</translation>
+        <translation>기본 설정으로 되돌리기</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1053"/>
         <location filename="../src/symbols_dialog.cpp" line="219"/>
         <source>Shortcut:</source>
-        <translation>Pikanäppäin:</translation>
+        <translation>단축키:</translation>
     </message>
 </context>
 <context>
@@ -844,12 +843,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="116"/>
         <source>Replacing quotation marks...</source>
-        <translation>Korvataan lainausmerkkejä…</translation>
+        <translation>따옴표 바꾸기...</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="117"/>
         <source>Please Wait</source>
-        <translation>Odota hetki</translation>
+        <translation>기다려 주세요</translation>
     </message>
 </context>
 <context>
@@ -857,62 +856,62 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="130"/>
         <source>Check Spelling</source>
-        <translation>Tarkista oikeinkirjoitus</translation>
+        <translation>맞춤법 검사</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation>&amp;Lisää</translation>
+        <translation>&amp;더하기</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation>Jätä &amp;huomiotta</translation>
+        <translation>&amp;그대로 둠</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation>&amp;Jätä kaikki huomiotta</translation>
+        <translation>&amp;모두 그대로 둠</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation>&amp;Muuta</translation>
+        <translation>&amp;바꾸기</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation>Muuta &amp;kaikki</translation>
+        <translation>&amp;모두 바꿈</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
         <source>Not in dictionary:</source>
-        <translation>Ei sanakirjassa:</translation>
+        <translation>이 사전엔 없습니다 :</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="175"/>
         <source>Change to:</source>
-        <translation>Vaihda:</translation>
+        <translation>다음으로 바꾸기:</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>Tarkistetaan oikeinkirjoitusta…</translation>
+        <translation>맞춤법 검사 중입니다...</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>Peruuta</translation>
+        <translation>취소하기</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>Odota hetki</translation>
+        <translation>기다려 주세요</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="258"/>
         <source>Spell check complete.</source>
-        <translation>Oikoluku valmis.</translation>
+        <translation>맞춤법 검사를 마쳤습니다.</translation>
     </message>
 </context>
 <context>
@@ -920,32 +919,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation>Symbolit</translation>
+        <translation>부호</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation>Viimeksi käytetyt symbolit</translation>
+        <translation>최근에 사용한 부호들</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="133"/>
         <source>All symbols</source>
-        <translation>Kaikki symbolit</translation>
+        <translation>모든 부호들</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="195"/>
         <source>Details</source>
-        <translation>Tiedot</translation>
+        <translation>크게 보기</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="221"/>
         <source>Name:</source>
-        <translation>Nimi:</translation>
+        <translation>이름:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="231"/>
         <source>Insert</source>
-        <translation>Lisää</translation>
+        <translation>적용</translation>
     </message>
 </context>
 <context>
@@ -953,12 +952,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Blocks</source>
-        <translation>Lohkot</translation>
+        <translation>블록</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Scripts</source>
-        <translation>Kirjoitusjärjestelmät</translation>
+        <translation>스크립트</translation>
     </message>
 </context>
 <context>
@@ -966,7 +965,7 @@
     <message>
         <location filename="../src/theme.cpp" line="104"/>
         <source>Untitled %1</source>
-        <translation>Nimetön %1</translation>
+        <translation>제목 없음 %1</translation>
     </message>
 </context>
 <context>
@@ -974,81 +973,81 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="50"/>
         <source>Modify Theme</source>
-        <translation>Muokkaa teemaa</translation>
+        <translation>테마 설정</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="60"/>
         <source>Name:</source>
-        <translation>Nimi:</translation>
+        <translation>이름:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="68"/>
         <source>Background</source>
-        <translation>Tausta</translation>
+        <translation>바탕화면</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>No Image</source>
-        <translation>Ei kuvaa</translation>
+        <translation>이미지 없음</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Tiled</source>
-        <translation>Toistettu</translation>
+        <translation>타일 붙임</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Centered</source>
-        <translation>Keskitetty</translation>
+        <translation>가운데 맞춤</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Stretched</source>
-        <translation>Venytetty</translation>
+        <translation>늘이기</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Scaled</source>
-        <translation>Skaalattu</translation>
+        <translation>비율 맞춤</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Zoomed</source>
-        <translation>Suurennettu</translation>
+        <translation>확대 맞춤</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="83"/>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>지우기</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="95"/>
         <source>Type:</source>
-        <translation>Tyyppi:</translation>
+        <translation>종류</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="96"/>
         <location filename="../src/theme_dialog.cpp" line="161"/>
         <location filename="../src/theme_dialog.cpp" line="200"/>
         <source>Color:</source>
-        <translation>Väri:</translation>
+        <translation>색상</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="97"/>
         <source>Image:</source>
-        <translation>Kuva:</translation>
+        <translation>이미지</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="102"/>
         <source>Foreground</source>
-        <translation>Tekstialue</translation>
+        <translation>노트배경 </translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
         <source>Opacity</source>
-        <translation>Peittävyys</translation>
+        <translation>불투명도</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
@@ -1056,112 +1055,112 @@
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <location filename="../src/theme_dialog.cpp" line="142"/>
         <source> pixels</source>
-        <translation> pikseliä</translation>
+        <translation>pixels</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Left</source>
-        <translation>Vasemmalla</translation>
+        <translation>왼쪽</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Right</source>
-        <translation>Oikealla</translation>
+        <translation>오른쪽</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="125"/>
         <source>Position</source>
-        <translation>Sijainti</translation>
+        <translation>위치</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Size:</source>
-        <translation>Koko:</translation>
+        <translation>크기:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="163"/>
         <source>Rounding:</source>
-        <translation>Pyöristys:</translation>
+        <translation>모서리 둥근 정도:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Margin:</source>
-        <translation>Marginaali:</translation>
+        <translation>가장자리와의 폭:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="165"/>
         <source>Padding:</source>
-        <translation>Sisämarginaali:</translation>
+        <translation>들여쓰는 폭:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="170"/>
         <source>Text</source>
-        <translation>Teksti</translation>
+        <translation>글자</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Font:</source>
-        <translation>Kirjasin:</translation>
+        <translation>글꼴:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="202"/>
         <source>Misspelled:</source>
-        <translation>Väärinkirjoitettu:</translation>
+        <translation>오자 표시:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation>Välistykset</translation>
+        <translation>띄우기</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation>Riviväli</translation>
+        <translation>줄 띄우기</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation>Yksinkertainen</translation>
+        <translation>한 줄</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation>1,5-kertainen</translation>
+        <translation>1.5 줄</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation>Kaksinkertainen</translation>
+        <translation> 두 줄</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation>Suhteellinen</translation>
+        <translation>비율 맞춤</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation>Kappalevälistys</translation>
+        <translation>문단 사이 띄기</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation>Sisennä ensimmäistä riviä:</translation>
+        <translation>한 줄 들여쓰기</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Pixels Above:</source>
-        <translation>Pikseleitä yläpuolella:</translation>
+        <translation>위로 띄울 pixels:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation>Pikseleitä alapuolella:</translation>
+        <translation>아래로 띄울 pixels:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Albert osti fagotin ja töräytti puhkuvan melodian.</translation>
+        <translation>이 화면을 보시면서 바탕화면, 노트 배경, 폰트, 글자 크기 등을 설정하세요.</translation>
     </message>
 </context>
 <context>
@@ -1169,77 +1168,77 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="46"/>
         <source>Themes</source>
-        <translation>Teemat</translation>
+        <translation>테마</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="72"/>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>더하기</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="76"/>
         <source>Modify</source>
-        <translation>Muokkaa</translation>
+        <translation>설정하기</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="80"/>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>지우기</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="84"/>
         <source>Import</source>
-        <translation>Tuo</translation>
+        <translation>가져오기</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="88"/>
         <source>Export</source>
-        <translation>Vie</translation>
+        <translation>내보내기</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Close</source>
-        <translation>Sulje</translation>
+        <translation>닫기</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Remove selected theme?</source>
-        <translation>Poistetaanko valittu teema?</translation>
+        <translation>선택하신 테마를 지울까요?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Import Theme</source>
-        <translation>Tuo teema</translation>
+        <translation>테마 가져오기</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Themes (*.fwtz *.theme)</source>
-        <translation>Teemat (*.fwtz *.theme)</translation>
+        <translation>테마 (*.fwtz *.theme)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="256"/>
         <source>Themes (*.fwtz)</source>
-        <translation>Teemat (*.fwtz)</translation>
+        <translation>테마 (*.fwtz)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
         <source>Sorry</source>
-        <translation>Pahoittelut</translation>
+        <translation>죄송합니다</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Samanniminen teema on jo olemassa. Anna uusi nimi:</translation>
+        <translation>같은 이름의 테마가 이미 있습니다. 다른 이름을 붙여주세요 :</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="256"/>
         <source>Export Theme</source>
-        <translation>Vie teema</translation>
+        <translation>테마 내보내기</translation>
     </message>
 </context>
 <context>
@@ -1252,82 +1251,82 @@
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation>Poistetaanko ajastin?</translation>
+        <translation>타이머를 지울까요?</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sanoja:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;단어:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sivuja:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;페이지:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Kappaleita:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;문단:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="358"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Merkkejä:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;글자:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation>Aseta viive</translation>
+        <translation>지연 시간 설정</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation>Aseta aika</translation>
+        <translation>시간 설정</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
         <source>Delay:</source>
-        <translation>Viive:</translation>
+        <translation>지연 시간:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="409"/>
         <source>Time:</source>
-        <translation>Aika:</translation>
+        <translation>시간:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="418"/>
         <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
+        <translation>시:분:초</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="431"/>
         <source>Alarm</source>
-        <translation>Hälytys</translation>
+        <translation>알람</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="444"/>
         <source>Type:</source>
-        <translation>Tyyppi:</translation>
+        <translation>종류:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation>Lisätieto:</translation>
+        <translation>메모:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation>Muokkaa</translation>
+        <translation>수정</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>지우기</translation>
     </message>
 </context>
 <context>
@@ -1335,12 +1334,12 @@
     <message>
         <location filename="../src/timer_display.cpp" line="150"/>
         <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
+        <translation>시:분:초</translation>
     </message>
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>Ei ajastimia käynnissä</translation>
+        <translation>타이머 작동 안함</translation>
     </message>
 </context>
 <context>
@@ -1348,37 +1347,37 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>Ajastimet</translation>
+        <translation>타이머</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>Uusi</translation>
+        <translation>새로 만들기</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation>Viimeisimmät</translation>
+        <translation>최근 설정</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다.</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>Peruutetaanko ajastimien muokkaus?</translation>
+        <translation>타이머 수정을 취소할까요?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
         <source>+HH:mm:ss</source>
-        <translation>+HH:mm:ss</translation>
+        <translation>+시:분:초</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="323"/>
         <source>%1 - %2</source>
-        <translation>%1 – %2</translation>
+        <translation>%1 - %2</translation>
     </message>
 </context>
 <context>
@@ -1386,7 +1385,7 @@
     <message>
         <location filename="../src/rtf/tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Tiedosto loppui yllättäen.</translation>
+        <translation>예상과 달리 파일끝에 닿았습니다.</translation>
     </message>
 </context>
 <context>
@@ -1394,266 +1393,266 @@
     <message>
         <location filename="../src/window.cpp" line="289"/>
         <source>Loading themes</source>
-        <translation>Ladataan teemoja</translation>
+        <translation>테마 불러오는 중</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1166"/>
         <source>Loading sounds</source>
-        <translation>Ladataan ääniä</translation>
+        <translation>소리 불러오는 중</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="295"/>
         <location filename="../src/window.cpp" line="1106"/>
         <source>Untitled</source>
-        <translation>Nimetön</translation>
+        <translation>제목 없음</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="698"/>
         <source>Open File</source>
-        <translation>Avaa tiedosto</translation>
+        <translation>파일 열기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="889"/>
         <source>About FocusWriter</source>
-        <translation>Tietoja FocusWriterista</translation>
+        <translation>포커스 라이터 란</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="892"/>
         <source>FocusWriter</source>
-        <translation>FocusWriter</translation>
+        <translation>포커스 라이터</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="893"/>
         <source>A simple fullscreen word processor</source>
-        <translation>Yksinkertainen koko näytön tekstinkäsittelyohjelma</translation>
+        <translation>간편한 풀스크린 워드 프로세서</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="894"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Copyright &amp;copy; 2008–%1 Graeme Gott</translation>
+        <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="895"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Julkaistu &lt;a href=%1&gt;GPL 3&lt;/a&gt;-lisenssin alaisena</translation>
+        <translation> &lt;a href=%1&gt;GPL 3&lt;/a&gt; 라이선스에 따라 배포됩니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="896"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Käyttää &lt;a href=%1&gt;Oxygen&lt;/a&gt;-kuvaketeemaa</translation>
+        <translation>&lt;a href=%1&gt;Oxygen&lt;/a&gt;의 아이콘 테마를 이용합니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="897"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Käytetty &lt;a href=%1&gt;LGPL 3&lt;/a&gt;-lisenssin alaisena</translation>
+        <translation>&lt;a href=%1&gt;LGPL 3&lt;/a&gt; 의 라이선스를 준수합니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="164"/>
         <location filename="../src/window.cpp" line="952"/>
         <source>Characters: %L1 / %L2</source>
-        <translation>Merkkejä: %L1 / %L2</translation>
+        <translation>문자: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="162"/>
         <location filename="../src/window.cpp" line="953"/>
         <source>Pages: %L1</source>
-        <translation>Sivuja: %L1</translation>
+        <translation>페이지: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="163"/>
         <location filename="../src/window.cpp" line="954"/>
         <source>Paragraphs: %L1</source>
-        <translation>Kappaleita: %L1</translation>
+        <translation>문단: % L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="161"/>
         <location filename="../src/window.cpp" line="955"/>
         <source>Words: %L1</source>
-        <translation>Sanoja: %L1</translation>
+        <translation>단어: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="165"/>
         <location filename="../src/window.cpp" line="1017"/>
         <source>%1% of daily goal</source>
-        <translation>%1 % päivittäisestä tavoiteesta</translation>
+        <translation>오늘 목표의 %1% </translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="447"/>
         <location filename="../src/window.cpp" line="1057"/>
         <source>Opening %1</source>
-        <translation>Avataan %1</translation>
+        <translation>%1 열기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>물어볼 것이 있습니다</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>
         <source>Save changes?</source>
-        <translation>Tallennetaanko muutokset?</translation>
+        <translation>바뀐 내용을 저장하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="353"/>
         <location filename="../src/window.cpp" line="1262"/>
         <source>(Untitled %1)</source>
-        <translation>(Nimetön %1)</translation>
+        <translation>(제목없음 %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="191"/>
         <source>Switch to Next Document</source>
-        <translation>Siirry seuraavaan asiakirjaan</translation>
+        <translation>다음 문서로 이동</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="197"/>
         <source>Switch to Previous Document</source>
-        <translation>Siirry edelliseen asiakirjaan</translation>
+        <translation>이전 문서로 이동</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="203"/>
         <source>Switch to First Document</source>
-        <translation>Siirry ensimmäiseen asiakirjaan</translation>
+        <translation>처음 문서로 이동</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="209"/>
         <source>Switch to Last Document</source>
-        <translation>Siirry viimeiseen asiakirjaan</translation>
+        <translation>마지막 문서로 이동</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="217"/>
         <source>Switch to Document %1</source>
-        <translation>Siirry asiakirjaan %1</translation>
+        <translation>%1 문서로 이동</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="284"/>
         <source>Loading settings</source>
-        <translation>Ladataan asetuksia</translation>
+        <translation>설정 불러오는 중</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="303"/>
         <source>Emergency cache is not writable.</source>
-        <translation>Hätävälimuistiin ei voida kirjoittaa.</translation>
+        <translation>비상 캐시가 작성되지 않습니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="359"/>
         <location filename="../src/window.cpp" line="1071"/>
         <source>Warning</source>
-        <translation>Varoitus</translation>
+        <translation>알림</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="360"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriteriä ei suljettu oikein.</translation>
+        <translation>포커스 라이터가 제대로 꺼지지 않았습니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="361"/>
         <source>Restore from the emergency cache?</source>
-        <translation>Palautetaanko tilanne hätävälimuistista?</translation>
+        <translation>비상 캐시를 이용해서 복구할까요?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="496"/>
         <source>Some files could not be opened.</source>
-        <translation>Joitain tiedostoja ei saatu avattua.</translation>
+        <translation>몇몇 파일들이 열리지 않습니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="499"/>
         <source>Some files were opened Read-Only.</source>
-        <translation>Osa tiedostoista avattiin vain luku -tilassa.</translation>
+        <translation>몇몇 파일들이 일기 전용으로 열렸습니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="698"/>
         <source>Text Files (%1);;All Files (*)</source>
-        <translation>Tekstitiedostot (%1);;Kaikki tiedostot (*)</translation>
+        <translation>텍스트 파일 (%1);;모든 파일 (*)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1072"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>%1 on uudempi kuin välimuistin versio.</translation>
+        <translation>&apos;%1&apos; 이 캐시에 복사된 것보다 새것입니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1073"/>
         <source>Overwrite newer file?</source>
-        <translation>Korvataanko uudempi tiedosto?</translation>
+        <translation>새 파일로 덮어쓸까요?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1173"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Kirjoituskoneäänien lataaminen epäonnistui.</translation>
+        <translation>타자기 소리가 나지 않습니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1174"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation>Tarkista, että SDL_mixer on asennettu.</translation>
+        <translation>SDL_mixer 이 설치되어있나 확인해 주세요</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1265"/>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (vain luku)</translation>
+        <translation>%1 (읽기 전용)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1312"/>
         <source>&amp;File</source>
-        <translation>&amp;Tiedosto</translation>
+        <translation>&amp;파일</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1313"/>
         <source>&amp;New</source>
-        <translation>&amp;Uusi</translation>
+        <translation>&amp;새로 만들기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1314"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Avaa…</translation>
+        <translation>&amp;열기...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1315"/>
         <source>Reloa&amp;d</source>
-        <translation>Lataa uu&amp;delleen</translation>
+        <translation>&amp;새로 고침</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Save</source>
-        <translation>&amp;Tallenna</translation>
+        <translation>&amp;저장</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1319"/>
         <source>Save &amp;As...</source>
-        <translation>Tallenna &amp;nimellä…</translation>
+        <translation>&amp;다른 이름으로 저장...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1320"/>
         <source>&amp;Rename...</source>
-        <translation>Ni&amp;meä uudelleen…</translation>
+        <translation>&amp;이름 바꾸기...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1322"/>
         <source>Save A&amp;ll</source>
-        <translation>Tallenna &amp;kaikki</translation>
+        <translation>&amp;모두 저장하기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1325"/>
         <source>Manage Sessions</source>
-        <translation>Hallinnoi istuntoja</translation>
+        <translation>세션 관리하기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1327"/>
         <source>New Session</source>
-        <translation>Uusi istunto</translation>
+        <translation>새 세션</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1330"/>
         <source>&amp;Print...</source>
-        <translation>Tul&amp;osta…</translation>
+        <translation>&amp;프린트...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1332"/>
         <source>&amp;Close</source>
-        <translation>&amp;Sulje</translation>
+        <translation>&amp;닫기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Lopeta</translation>
+        <translation>&amp;끝내기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
@@ -1663,37 +1662,37 @@
     <message>
         <location filename="../src/window.cpp" line="1337"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Muokkaa</translation>
+        <translation>&amp;편집</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Peru</translation>
+        <translation>&amp;뒤로 무르기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1341"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Tee uudelleen</translation>
+        <translation>&amp;다시 적용</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Cu&amp;t</source>
-        <translation>L&amp;eikkaa</translation>
+        <translation>&amp;자르기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopioi</translation>
+        <translation>&amp;복사</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1351"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Liitä</translation>
+        <translation>&amp;붙여넣기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>Paste &amp;Unformatted</source>
-        <translation>Liitä &amp;muotoilematta</translation>
+        <translation>&amp;서식을 유지한 채 붙여넣기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
@@ -1703,12 +1702,12 @@
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>Select &amp;All</source>
-        <translation>Valitse k&amp;aikki</translation>
+        <translation>&amp;모두 선택</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1355"/>
         <source>Select &amp;Scene</source>
-        <translation>&amp;Valitse kohtaus</translation>
+        <translation>&amp;화면 선택</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1355"/>
@@ -1718,27 +1717,27 @@
     <message>
         <location filename="../src/window.cpp" line="1358"/>
         <source>Fo&amp;rmat</source>
-        <translation>M&amp;uotoile</translation>
+        <translation>&amp;형식</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1360"/>
         <source>&amp;Bold</source>
-        <translation>Li&amp;havointi</translation>
+        <translation>&amp;볼드</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1362"/>
         <source>&amp;Italic</source>
-        <translation>Ku&amp;rsivointi</translation>
+        <translation>&amp;이탤릭</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1364"/>
         <source>&amp;Underline</source>
-        <translation>All&amp;eviivaus</translation>
+        <translation>&amp;밑줄 긋기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1366"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Yl&amp;iviivaus</translation>
+        <translation>&amp;가운데 줄긋기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1366"/>
@@ -1748,7 +1747,7 @@
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>Sup&amp;erscript</source>
-        <translation>&amp;Yläindeksi</translation>
+        <translation>&amp;위 첨자</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
@@ -1758,7 +1757,7 @@
     <message>
         <location filename="../src/window.cpp" line="1370"/>
         <source>&amp;Subscript</source>
-        <translation>&amp;Alaindeksi</translation>
+        <translation>&amp;아래 첨자</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1370"/>
@@ -1768,7 +1767,7 @@
     <message>
         <location filename="../src/window.cpp" line="1374"/>
         <source>Align &amp;Left</source>
-        <translation>Tasaa &amp;vasemmalle</translation>
+        <translation>&amp;왼쪽 끝 맞춤</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1374"/>
@@ -1778,7 +1777,7 @@
     <message>
         <location filename="../src/window.cpp" line="1376"/>
         <source>Align &amp;Center</source>
-        <translation>Tasaa &amp;keskelle</translation>
+        <translation>&amp;가운데 줄맞춤</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1376"/>
@@ -1788,7 +1787,7 @@
     <message>
         <location filename="../src/window.cpp" line="1378"/>
         <source>Align &amp;Right</source>
-        <translation>Tasaa &amp;oikealle</translation>
+        <translation>&amp;오른쪽 끝 맞춤</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1378"/>
@@ -1798,7 +1797,7 @@
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Tasaa molemmat reunat</translation>
+        <translation>&amp;양끝 맞춤</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
@@ -1808,7 +1807,7 @@
     <message>
         <location filename="../src/window.cpp" line="1390"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Ulonna</translation>
+        <translation>&amp;들여 쓰기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1390"/>
@@ -1818,7 +1817,7 @@
     <message>
         <location filename="../src/window.cpp" line="1391"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>&amp;Sisennä</translation>
+        <translation>&amp;내어 쓰기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1391"/>
@@ -1828,37 +1827,37 @@
     <message>
         <location filename="../src/window.cpp" line="1394"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Vase&amp;mmalta oikealle</translation>
+        <translation>&amp;왼쪽에서 오른쪽으로 쓰기 시작</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Oikea&amp;lta vasemmalle</translation>
+        <translation>&amp;오른쪽에서 왼쪽으로 쓰기 시작</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1404"/>
         <source>&amp;Tools</source>
-        <translation>T&amp;yökalut</translation>
+        <translation>&amp;도구</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1405"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Etsi…</translation>
+        <translation>&amp;찾기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1406"/>
         <source>Find &amp;Next</source>
-        <translation>Etsi &amp;seuraava</translation>
+        <translation>&amp;다음에서 찾기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1409"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Etsi edelli&amp;nen</translation>
+        <translation>&amp;이전에서 찾기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;Korvaa…</translation>
+        <translation>&amp;바꾸기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
@@ -1868,22 +1867,22 @@
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Älykkäät &amp;lainausmerkit</translation>
+        <translation>&amp;지능형 따옴표</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1415"/>
         <source>Update &amp;Document</source>
-        <translation>Päivitä &amp;asiakirja</translation>
+        <translation>&amp;문서에 적용</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1418"/>
         <source>Update &amp;Selection</source>
-        <translation>Päivitä &amp;valinta</translation>
+        <translation>&amp;선택한 내용 적용</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1422"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Oikeinkirjoitus…</translation>
+        <translation>&amp;맞춤법</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1422"/>
@@ -1893,37 +1892,37 @@
     <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>&amp;Timers...</source>
-        <translation>&amp;Ajastimet…</translation>
+        <translation>&amp;타이머</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1424"/>
         <source>S&amp;ymbols...</source>
-        <translation>S&amp;ymbolit…</translation>
+        <translation>&amp;부호들...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Asetukset</translation>
+        <translation>&amp;설정</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1428"/>
         <source>Show &amp;Toolbar</source>
-        <translation>Näytä &amp;työkalupalkki</translation>
+        <translation>&amp;툴바 보이기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1433"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Näytä &amp;valikkokuvakkeet</translation>
+        <translation>&amp;메뉴 아이콘 보이기</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1439"/>
         <source>F&amp;ocused Text</source>
-        <translation>K&amp;ohdistettu teksti</translation>
+        <translation>&amp;포커스 텍스트</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>&amp;Fullscreen</source>
-        <translation>Koko &amp;näyttö</translation>
+        <translation>&amp;전체 화면</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
@@ -1938,7 +1937,7 @@
     <message>
         <location filename="../src/window.cpp" line="1447"/>
         <source>M&amp;inimize</source>
-        <translation>P&amp;ienennä</translation>
+        <translation>&amp;최소화</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
@@ -1948,77 +1947,77 @@
     <message>
         <location filename="../src/window.cpp" line="1449"/>
         <source>&amp;Themes...</source>
-        <translation>T&amp;eemat…</translation>
+        <translation>&amp;테마</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Asetukset…</translation>
+        <translation>&amp;설정</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1458"/>
         <source>Focus Off</source>
-        <translation>Kohdistus pois päältä</translation>
+        <translation>포커스 끔</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1460"/>
         <source>Focus One Line</source>
-        <translation>Kohdista yksi rivi</translation>
+        <translation>한 줄 포커스 </translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1462"/>
         <source>Focus Three Lines</source>
-        <translation>Kohdista kolme riviä</translation>
+        <translation>세 줄 포커스 </translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1463"/>
         <source>&amp;Paragraph</source>
-        <translation>&amp;Kappale</translation>
+        <translation>&amp;문단</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1464"/>
         <source>Focus Paragraph</source>
-        <translation>Kohdista kappale</translation>
+        <translation>문단 포커스 </translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1477"/>
         <source>&amp;Help</source>
-        <translation>&amp;Ohje</translation>
+        <translation>&amp;도움말</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1451"/>
         <source>Application &amp;Language...</source>
-        <translation>Sovelluksen &amp;kieli…</translation>
+        <translation>&amp;프로그램 언어 설정</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="429"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Joidenkin tiedostojen tiedostomuotoja ei tueta; niiden avaaminen epäonnistui.</translation>
+        <translation>지원되지 않는 파일이 있어서 열 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1457"/>
         <source>&amp;Off</source>
-        <translation>&amp;Pois</translation>
+        <translation>&amp;사용 안함</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1459"/>
         <source>One &amp;Line</source>
-        <translation>&amp;Yksi rivi</translation>
+        <translation>&amp;한 줄</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1461"/>
         <source>&amp;Three Lines</source>
-        <translation>Kolme &amp;riviä</translation>
+        <translation>&amp;세 줄</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1478"/>
         <source>&amp;About</source>
-        <translation>&amp;Tietoja</translation>
+        <translation>&amp;FocusWriter 소개</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1486"/>
         <source>About &amp;Qt</source>
-        <translation>Tietoja &amp;Qt:sta</translation>
+        <translation>&amp;Qt 소개</translation>
     </message>
 </context>
 </TS>

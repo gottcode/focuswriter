@@ -111,7 +111,7 @@
     <message>
         <location filename="../src/document.cpp" line="1167"/>
         <source>Rich Text (*.rtf)</source>
-        <translation>Rich Text (*.rtf)</translation>
+        <translation>富文本文件 (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1169"/>
@@ -227,8 +227,8 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Replace %n instance(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>替换 %n 个实例？</numerusform>
         </translation>
     </message>
     <message>
@@ -240,7 +240,7 @@
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Sorry</source>
-        <translation>Sorry</translation>
+        <translation>对不起</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
@@ -290,7 +290,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;System Language&gt;</translation>
+        <translation>&lt;系统语言&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="183"/>
@@ -339,7 +339,7 @@
         <location filename="../src/preferences_dialog.cpp" line="420"/>
         <location filename="../src/preferences_dialog.cpp" line="541"/>
         <source>Sorry</source>
-        <translation>Sorry</translation>
+        <translation>对不起</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
@@ -664,7 +664,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>向上滚屏</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
@@ -791,7 +791,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
         <source>Sorry</source>
-        <translation>Sorry</translation>
+        <translation>对不起</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="362"/>
@@ -939,12 +939,12 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="221"/>
         <source>Name:</source>
-        <translation type="unfinished">名称：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="231"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>插入</translation>
     </message>
 </context>
 <context>
@@ -957,7 +957,7 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>脚本</translation>
     </message>
 </context>
 <context>
@@ -1110,12 +1110,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation type="unfinished"></translation>
+        <translation>间隔</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>行间隔</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
@@ -1125,12 +1125,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1.5 倍行距</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation type="unfinished">双引号</translation>
+        <translation>双倍行距</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
@@ -1140,12 +1140,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>段间距</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation type="unfinished"></translation>
+        <translation>首行缩进</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
@@ -1228,7 +1228,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
         <source>Sorry</source>
-        <translation>Sorry</translation>
+        <translation>对不起</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
@@ -1385,7 +1385,7 @@
     <message>
         <location filename="../src/rtf/tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Unexpectedly reached end of file.</translation>
+        <translation>意外地跳到了文件末尾</translation>
     </message>
 </context>
 <context>
@@ -1419,17 +1419,17 @@
     <message>
         <location filename="../src/window.cpp" line="892"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>专心写作</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="893"/>
         <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <translation>一个简洁的全屏文字处理软件</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="894"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation>版权 &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="895"/>
@@ -1501,32 +1501,32 @@
     <message>
         <location filename="../src/window.cpp" line="191"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>跳转到下一文档</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="197"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>跳转到上一文档</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="203"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>跳转到第一个文档</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="209"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>跳转到最后一个文档</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="217"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>跳转到文档 %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="284"/>
         <source>Loading settings</source>
-        <translation>栽入设置</translation>
+        <translation>载入设置</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="303"/>
@@ -1582,7 +1582,7 @@
     <message>
         <location filename="../src/window.cpp" line="1174"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>请确认 SDL_mixer 已被安装</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1265"/>
@@ -1692,12 +1692,12 @@
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>无格式粘贴</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1354"/>
@@ -1712,7 +1712,7 @@
     <message>
         <location filename="../src/window.cpp" line="1355"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1358"/>
