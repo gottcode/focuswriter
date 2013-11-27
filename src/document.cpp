@@ -641,7 +641,7 @@ void Document::loadTheme(const Theme& theme)
 		QEvent e(QEvent::FontChange);
 		QApplication::sendEvent(m_text, &e);
 	}
-	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
 
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);
@@ -709,7 +709,7 @@ void Document::loadPreferences()
 	}
 
 	m_block_cursor = Preferences::instance().blockCursor();
-	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
 	QFont font = m_text->font();
 	font.setStyleStrategy(Preferences::instance().smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
 	m_text->setFont(font);
