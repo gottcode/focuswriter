@@ -901,14 +901,15 @@ void Document::focusText()
 
 	switch (m_focus_mode) {
 	case 1: // Current line
-		selection.cursor.movePosition(QTextCursor::EndOfLine);
-		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+		selection.cursor.movePosition(QTextCursor::StartOfLine);
+		selection.cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
 		break;
 
 	case 2: // Current line and previous two lines
-		selection.cursor.movePosition(QTextCursor::EndOfLine);
-		selection.cursor.movePosition(QTextCursor::Up, QTextCursor::KeepAnchor, 2);
-		selection.cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor);
+		selection.cursor.movePosition(QTextCursor::StartOfLine);
+		selection.cursor.movePosition(QTextCursor::Up);
+		selection.cursor.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, 2);
+		selection.cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
 		break;
 
 	case 3: // Current paragraph
