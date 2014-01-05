@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_CN" sourcelanguage="en">
+<TS version="2.1" language="zh_CN" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -187,12 +187,12 @@
         <translation>重新加载</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1191"/>
+        <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
         <translation>问题</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>保存为纯文本将丢弃全部格式。丢弃格式吗？</translation>
     </message>

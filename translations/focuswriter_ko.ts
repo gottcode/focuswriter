@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ko" sourcelanguage="en">
+<TS version="2.1" language="ko" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -187,12 +187,12 @@
         <translation>새로 고침</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1191"/>
+        <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
         <translation>물어볼 것이 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>일반 텍스트로 저장하면 모든 서식을 잃어버리게 됩니다. 서식을 버리시겠습니까?</translation>
     </message>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_MX" sourcelanguage="en">
+<TS version="2.1" language="ar" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>إغـلاق (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
         <source>Collapse</source>
-        <translation>Colapsar</translation>
+        <translation>تجميع</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation>Expadir</translation>
+        <translation>بسـط</translation>
     </message>
 </context>
 <context>
@@ -40,12 +40,20 @@
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
@@ -56,12 +64,20 @@
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
@@ -100,6 +116,10 @@
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -114,7 +134,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished">%1% de la meta diaria</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -130,12 +150,12 @@
     <message>
         <location filename="../src/document.cpp" line="281"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Sin título %1)</translation>
+        <translation type="unfinished">(%1 غير معنون)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="284"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished">%1 (Solo lectura)</translation>
+        <translation type="unfinished">%1 (للقراءة فقط)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="348"/>
@@ -143,38 +163,38 @@
         <location filename="../src/document.cpp" line="404"/>
         <location filename="../src/document.cpp" line="410"/>
         <source>Sorry</source>
-        <translation>Lo siento</translation>
+        <translation>معـذرة!</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="348"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>No se puede guardar &apos;%1&apos;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="361"/>
         <source>Save File As</source>
-        <translation>Guardar archivo como</translation>
+        <translation>حفظ باسم</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="368"/>
         <location filename="../src/document.cpp" line="404"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>No se puede sobreescribir &apos;%1&apos;.</translation>
+        <translation>لا يمكن الكتابة على &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="397"/>
         <source>Rename File</source>
-        <translation>Renombrar archivo</translation>
+        <translation>تسمية الملف مجددا</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="410"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>No se puede renombrar &apos;%1&apos;.</translation>
+        <translation>لا يمكن إعادة تسمية &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="436"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>تحديـث الملف</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="437"/>
@@ -189,12 +209,12 @@
     <message>
         <location filename="../src/document.cpp" line="440"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>تحديـث</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
-        <translation type="unfinished">Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1193"/>
@@ -217,17 +237,17 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>تحدِّث هذا الملف؟</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>تحديـث</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="198"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>تجاهـل</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="209"/>
@@ -242,7 +262,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>تريد إغلاق هذا الملف أم حفظه؟</translation>
     </message>
 </context>
 <context>
@@ -250,7 +270,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="95"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">No se puede abrir el archivo.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -258,87 +278,91 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Search for:</source>
-        <translation>Buscar:</translation>
+        <translation>بحث عن:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Replace with:</source>
-        <translation>Reemplazar con:</translation>
+        <translation>استبدال: </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="51"/>
         <source>Ignore case</source>
-        <translation>Ignorar mayúsculas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
         <source>Whole words only</source>
-        <translation>Solo palabras completas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>تعبيرات قياسية</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
         <source>Search up</source>
-        <translation>Buscar arriba</translation>
+        <translation>بحث تجاه فوق</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="57"/>
         <source>Search down</source>
-        <translation>Buscar abajo</translation>
+        <translation>بحث تجاه تحت</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>بحـث</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>استبدال الكل</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>استبدال بالكل</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
         <source>Find</source>
-        <translation>Buscar</translation>
+        <translation>بحـث</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="142"/>
         <source>Replace</source>
-        <translation>Reemplazar</translation>
+        <translation>استبـدال</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Replace %n instance(s)?</source>
-        <translation>
-            <numerusform>Replace %n instance?</numerusform>
-            <numerusform>Replace %n instances?</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Sorry</source>
-        <translation>Lo siento</translation>
+        <translation>معذرة!</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="262"/>
         <location filename="../src/find_dialog.cpp" line="337"/>
         <source>Phrase not found.</source>
-        <translation>No se encontró la frase.</translation>
+        <translation>كلمة غير موجودة.</translation>
     </message>
 </context>
 <context>
@@ -379,17 +403,17 @@
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="51"/>
         <source>Add</source>
-        <translation>Agregar</translation>
+        <translation>إضافة</translation>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="52"/>
         <source>Check Spelling...</source>
-        <translation>Checar ortografía...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="124"/>
         <source>(No suggestions found)</source>
-        <translation>(No se encontraron sugerencias)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -397,12 +421,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="90"/>
         <source>Open Image</source>
-        <translation>Abrir imagen</translation>
+        <translation>فتح صورة</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="90"/>
         <source>Images(%1)</source>
-        <translation>Imágenes (%1)</translation>
+        <translation>صور(%1)</translation>
     </message>
 </context>
 <context>
@@ -410,22 +434,22 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="51"/>
         <source>Select application language:</source>
-        <translation>Seleccione idioma de la aplicación:</translation>
+        <translation>اختيار لغة البرنامج</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="54"/>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Idioma del sistema&gt;</translation>
+        <translation>&lt;لغة النظام&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="187"/>
         <source>Note</source>
-        <translation>Nota</translation>
+        <translation>ملاحظة</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="187"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Por favor reinicie esta aplicación para que los cambios de idioma se realicen.</translation>
+        <translation>من فضلك، أعد تشغيل البرنامج ليتم تفعيل اللغة المختارة.</translation>
     </message>
 </context>
 <context>
@@ -433,7 +457,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="69"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">No se puede abrir el archivo.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -441,55 +465,55 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation>Preferencias</translation>
+        <translation>تفضيلات</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
         <source>General</source>
-        <translation>General</translation>
+        <translation>عـام</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Statistics</source>
-        <translation>Estadísticas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Toolbar</source>
-        <translation>Barra de herramientas</translation>
+        <translation>شريط الأدوات</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Spell Checking</source>
-        <translation>Chequeo de ortógrafía</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="441"/>
         <source>Select Dictionary</source>
-        <translation>Seleccione diccionario</translation>
+        <translation>اختـر قاموساً</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="455"/>
         <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>Sorry</source>
-        <translation>Lo siento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="455"/>
         <source>Unable to open archive.</source>
-        <translation>No se puede abrir el archivo.</translation>
+        <translation>لا يمكن فتح ملف الأرشيف</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>El archivo no contiene un diccionario utilizable.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="250"/>
         <location filename="../src/preferences_dialog.cpp" line="383"/>
         <location filename="../src/preferences_dialog.cpp" line="546"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="117"/>
@@ -504,68 +528,68 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="546"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>El diccionario &quot;%1&quot; ya existe. ¿Desea reemplazarlo?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Daily Goal</source>
-        <translation>Meta diaria</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="781"/>
         <source>None</source>
-        <translation>Ninguna</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="783"/>
         <source>Minutes:</source>
-        <translation>Minutos:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="790"/>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Words:</source>
-        <translation>Palabras:</translation>
+        <translation>الكلمـات:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="693"/>
         <source>Editing</source>
-        <translation>Edición</translation>
+        <translation>تحريـر</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="695"/>
         <source>Always vertically center</source>
-        <translation>Siempre centrar verticalmente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="696"/>
         <source>Block insertion cursor</source>
-        <translation>Cursor de bloque</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="697"/>
         <source>Smooth fonts</source>
-        <translation>Suavizar fuentess</translation>
+        <translation>تنعيم الخطوط</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="698"/>
         <source>Typewriter sounds</source>
-        <translation>Sonido de máquina de escribir</translation>
+        <translation>أصوات الرقن</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="700"/>
         <source>Smart quotes:</source>
-        <translation>Comillas inteligentes:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="707"/>
         <source>Double</source>
-        <translation>Dobles</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="708"/>
         <source>Single</source>
-        <translation>Sencillas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
@@ -580,52 +604,52 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="739"/>
         <source>Saving</source>
-        <translation>Guardar</translation>
+        <translation>حفـظ</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="741"/>
         <source>Automatically save changes</source>
-        <translation>Guardar automáticamente los cambios</translation>
+        <translation>حفظ تلقائي للتغييرات</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="742"/>
         <source>Remember cursor position</source>
-        <translation>Recordar la posición del cursor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="860"/>
         <source>Word count</source>
-        <translation>Conteo de palabras</translation>
+        <translation>عدد الكلمات</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="861"/>
         <source>Page count</source>
-        <translation>Conteo de páginas</translation>
+        <translation>عدد الصفحات</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="862"/>
         <source>Paragraph count</source>
-        <translation>Conteo de párrafos</translation>
+        <translation>عدد الفقرات</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
         <source>Character count</source>
-        <translation>Conteo de caracteres</translation>
+        <translation>عدد الحروف</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="884"/>
         <source>Characters:</source>
-        <translation>Caracteres:</translation>
+        <translation>الحروف: </translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="891"/>
         <source>Paragraphs:</source>
-        <translation>Párrafos:</translation>
+        <translation>الفقرات:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="872"/>
         <source>Word Count Algorithm</source>
-        <translation>Algoritmo de conteo de palabras</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="384"/>
@@ -670,12 +694,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Detect word boundaries</source>
-        <translation>Detectar límite de palabra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Divide character count by six</source>
-        <translation>Dividir conteo de caracteres por 6</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="882"/>
@@ -685,52 +709,52 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1025"/>
         <source>Style</source>
-        <translation>EStilo</translation>
+        <translation>النـمـط</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1028"/>
         <source>Icons Only</source>
-        <translation>Solo íconos</translation>
+        <translation>أيقوانات فقط</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1029"/>
         <source>Text Only</source>
-        <translation>Solo texto</translation>
+        <translation>نص فقط</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1030"/>
         <source>Text Alongside Icons</source>
-        <translation>Texto con íconos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1031"/>
         <source>Text Under Icons</source>
-        <translation>Texto debajo íconos</translation>
+        <translation>النص تحت الأيقونة</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1035"/>
         <source>Text Position:</source>
-        <translation>Posición de texto:</translation>
+        <translation>تموضع النص:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1038"/>
         <source>Actions</source>
-        <translation>Acciones</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1054"/>
         <source>Move Up</source>
-        <translation>Mover arriba</translation>
+        <translation>تحريك إلى أعلى</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1056"/>
         <source>Move Down</source>
-        <translation>Mover abajo</translation>
+        <translation>تحريك إلى أسفل</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1058"/>
         <source>Add Separator</source>
-        <translation>Agregar separador</translation>
+        <translation>إضافة فاصل</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1092"/>
@@ -750,38 +774,38 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="945"/>
         <source>Check spelling as you type</source>
-        <translation>Checar ortigrafía mientras escribe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ignorar palabras en mayúsculas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Ignore words with numbers</source>
-        <translation>Ignorar palabras con números</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="960"/>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation>اللغة</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="964"/>
         <location filename="../src/preferences_dialog.cpp" line="985"/>
         <source>Add</source>
-        <translation>Agregar</translation>
+        <translation>إضافة</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="997"/>
         <source>Remove</source>
-        <translation>Eliminar</translation>
+        <translation>حـذف</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="980"/>
         <source>Personal Dictionary</source>
-        <translation>Diccionario personal</translation>
+        <translation>قاموس شخصي</translation>
     </message>
 </context>
 <context>
@@ -790,7 +814,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="209"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="213"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished">Archivo RTF no soportado.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -798,7 +822,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished">Se alcazó inesperadamente el fin de archivo.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -806,7 +830,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
@@ -816,7 +840,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
@@ -826,7 +850,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
@@ -865,7 +889,7 @@
         <location filename="../src/session_manager.cpp" line="383"/>
         <location filename="../src/session_manager.cpp" line="386"/>
         <source>Default</source>
-        <translation>Por omisión</translation>
+        <translation>الافتراضي</translation>
     </message>
 </context>
 <context>
@@ -873,97 +897,97 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Administrar sesiones</translation>
+        <translation>إدارة الجلسات</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>S&amp;esiones</translation>
+        <translation>الجلسـات</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
         <source>New</source>
-        <translation>Nueva</translation>
+        <translation>جديد</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="67"/>
         <source>Rename</source>
-        <translation>Renombrar</translation>
+        <translation>التسمية مجددا</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="70"/>
         <source>Clone</source>
-        <translation>Duplicar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="73"/>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>حـذف</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Cambiar a</translation>
+        <translation>التبديل إلى</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="177"/>
         <source>New Session</source>
-        <translation>Nueva sesión</translation>
+        <translation>جلسة جديدة</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="223"/>
         <source>Clone Session</source>
-        <translation>Duplicar sessión</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="263"/>
         <source>Rename Session</source>
-        <translation>Renombrar sesión</translation>
+        <translation>تسمية الجلسة مجددًا</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="290"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="290"/>
         <source>Delete selected session?</source>
-        <translation>¿Borrar sesión seleccionada?</translation>
+        <translation>تحذف الجلسة المحددة؟</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="361"/>
         <source>Session name:</source>
-        <translation>Nombre de sesión:</translation>
+        <translation>اسم الجلسة:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="369"/>
         <source>Sorry</source>
-        <translation>Lo siento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="369"/>
         <source>The requested session name is already in use.</source>
-        <translation>La sesión solicitada se encuentra en uso.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="409"/>
         <source>&amp;New...</source>
-        <translation>&amp;Nueva...</translation>
+        <translation>جديـد...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="409"/>
         <source>Ctrl+Shift+N</source>
-        <translation>Ctrl+Mayus+N</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="410"/>
         <source>&amp;Manage...</source>
-        <translation>&amp;Administrar...</translation>
+        <translation>إدارة...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="410"/>
         <source>Ctrl+Shift+M</source>
-        <translation>Ctrl+Mayus+M</translation>
+        <translation>Ctrl+Shift+M</translation>
     </message>
 </context>
 <context>
@@ -990,12 +1014,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="116"/>
         <source>Replacing quotation marks...</source>
-        <translation>Reemplazando comillas...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="117"/>
         <source>Please Wait</source>
-        <translation>Por favor espere</translation>
+        <translation>من فضلك، انتظر</translation>
     </message>
 </context>
 <context>
@@ -1003,27 +1027,27 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="130"/>
         <source>Check Spelling</source>
-        <translation>Checar ortografía</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>إضافة</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>تجاهـل</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation type="unfinished"></translation>
+        <translation>تجاهل الكل</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>تغييـر</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="152"/>
@@ -1033,32 +1057,32 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="167"/>
         <source>Not in dictionary:</source>
-        <translation>Fuera del diccionario:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="175"/>
         <source>Change to:</source>
-        <translation>Cambiar a:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>Checando ortografía...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>إلغـاء</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>Por favor espere</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="258"/>
         <source>Spell check complete.</source>
-        <translation>Chequeo ortográfico completo.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1081,17 +1105,17 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="195"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>تفاصيـل</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="221"/>
         <source>Name:</source>
-        <translation type="unfinished">Nombre:</translation>
+        <translation>الاسـم:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="231"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>إدراج</translation>
     </message>
 </context>
 <context>
@@ -1112,7 +1136,7 @@
     <message>
         <location filename="../src/theme.cpp" line="115"/>
         <source>Untitled %1</source>
-        <translation>Sin título %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1120,81 +1144,81 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="50"/>
         <source>Modify Theme</source>
-        <translation>Modificar tema</translation>
+        <translation>تعديل السمة</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="60"/>
         <source>Name:</source>
-        <translation>Nombre:</translation>
+        <translation>الاسـم:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="68"/>
         <source>Background</source>
-        <translation>Fondo</translation>
+        <translation>الخلفيـة</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>No Image</source>
-        <translation>Sin imagen</translation>
+        <translation>لا صورة</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Tiled</source>
-        <translation>Mosaico</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Centered</source>
-        <translation>Centrado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Stretched</source>
-        <translation>Estirado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Scaled</source>
-        <translation>Escalado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Zoomed</source>
-        <translation>Ajustado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="83"/>
         <source>Remove</source>
-        <translation>REmover</translation>
+        <translation>حـذف</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="95"/>
         <source>Type:</source>
-        <translation>Tipo:</translation>
+        <translation type="unfinished">النـوع:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="96"/>
         <location filename="../src/theme_dialog.cpp" line="161"/>
         <location filename="../src/theme_dialog.cpp" line="200"/>
         <source>Color:</source>
-        <translation>Color:</translation>
+        <translation>اللـون:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="97"/>
         <source>Image:</source>
-        <translation>Imagen:</translation>
+        <translation>الصـورة:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="102"/>
         <source>Foreground</source>
-        <translation>Primer plano</translation>
+        <translation>الواجـهة</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="113"/>
         <source>Opacity</source>
-        <translation>Opacidad</translation>
+        <translation>العتـامة</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
@@ -1203,72 +1227,72 @@
         <location filename="../src/theme_dialog.cpp" line="142"/>
         <location filename="../src/theme_dialog.cpp" line="239"/>
         <source> pixels</source>
-        <translation>pixeles</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Left</source>
-        <translation>Izquierda</translation>
+        <translation>يسارا</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
         <source>Right</source>
-        <translation>Derecha</translation>
+        <translation>يمينـا</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="125"/>
         <source>Position</source>
-        <translation>Posición</translation>
+        <translation>الموضع</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Size:</source>
-        <translation>Tamaño:</translation>
+        <translation>الحجـم:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="163"/>
         <source>Rounding:</source>
-        <translation>Redondeo:</translation>
+        <translation>تحديب الحواف</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Margin:</source>
-        <translation>Margen:</translation>
+        <translation>الهامـش:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="165"/>
         <source>Padding:</source>
-        <translation>Relleno:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="170"/>
         <source>Text</source>
-        <translation>Texto</translation>
+        <translation>النص</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Font:</source>
-        <translation>Fuente:</translation>
+        <translation>الخـط</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="202"/>
         <source>Misspelled:</source>
-        <translation>Mal escrito:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation type="unfinished"></translation>
+        <translation>مباعـدة</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>المباعدة بين الأسطر</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation type="unfinished">Sencillas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
@@ -1278,7 +1302,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation type="unfinished">Dobles</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
@@ -1313,7 +1337,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="501"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>El veloz murciélago hindú comía feliz cardillo y kiwi La cigüeña tocaba el saxofón detrás del palenque de paja</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1321,77 +1345,77 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="46"/>
         <source>Themes</source>
-        <translation>Temas</translation>
+        <translation>السمـات</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="72"/>
         <source>Add</source>
-        <translation>Agregar</translation>
+        <translation>إضافة</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="76"/>
         <source>Modify</source>
-        <translation>Modificar</translation>
+        <translation>تعديـل</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="80"/>
         <source>Remove</source>
-        <translation>Remover</translation>
+        <translation>حـذف</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="84"/>
         <source>Import</source>
-        <translation>Importar</translation>
+        <translation>تحميـل</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="88"/>
         <source>Export</source>
-        <translation>Exportar</translation>
+        <translation>تصديـر</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Close</source>
-        <translation>Cerrar</translation>
+        <translation>إغـلاق</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="182"/>
         <source>Remove selected theme?</source>
-        <translation>¿Desea eliminar el tema seleccionado?</translation>
+        <translation>تحذف السمة المحددة؟</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Import Theme</source>
-        <translation>Importar tema</translation>
+        <translation>تحميل سمة</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="195"/>
         <source>Themes (*.fwtz *.theme)</source>
-        <translation>Temas (*.fwtz *.theme)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="256"/>
         <source>Themes (*.fwtz)</source>
-        <translation>Temas (*.fwtz)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
         <source>Sorry</source>
-        <translation>Lo siento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Ya existe un tema con este nombre. Por favor escriba un nombre nuevo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="256"/>
         <source>Export Theme</source>
-        <translation>Exportar tema</translation>
+        <translation>تصدير السمة</translation>
     </message>
 </context>
 <context>
@@ -1399,57 +1423,57 @@
     <message>
         <location filename="../src/timer.cpp" line="255"/>
         <source>&lt;b&gt;%1&lt;/b&gt; - %2</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; - %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation>¿Desea eliminar el contador de tiempo?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Palabras:&lt;/b&gt; %L1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Páginas:&lt;/b&gt; %L1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Párrafos:&lt;/b&gt; %L1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="358"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Caracteres:&lt;/b&gt; %L1 / %L2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation>Ajustar retraso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation>Ajustar tiempo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
         <source>Delay:</source>
-        <translation>Retraso:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="409"/>
         <source>Time:</source>
-        <translation>Tiempo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="418"/>
@@ -1459,27 +1483,27 @@
     <message>
         <location filename="../src/timer.cpp" line="431"/>
         <source>Alarm</source>
-        <translation>Alarma</translation>
+        <translation>منبـه</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="444"/>
         <source>Type:</source>
-        <translation>Tipo:</translation>
+        <translation>النـوع:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation>Nota:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation type="unfinished">حـذف</translation>
     </message>
 </context>
 <context>
@@ -1487,12 +1511,12 @@
     <message>
         <location filename="../src/timer_display.cpp" line="150"/>
         <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
+        <translation type="unfinished">HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation>No hay contadores de tiempo en ejecución</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1500,27 +1524,27 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation>Contador de tiempo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation>Nuevo</translation>
+        <translation>جديـد</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation>Reciente</translation>
+        <translation>المستندات الأخيرة</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>¿Desea cancelar contadores de tiempo?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1538,28 +1562,28 @@
     <message>
         <location filename="../src/window.cpp" line="297"/>
         <source>Loading themes</source>
-        <translation>Cargando temas</translation>
+        <translation>تحميـل سمـات</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1137"/>
         <source>Loading sounds</source>
-        <translation>Cargando sonidos</translation>
+        <translation>تحميل الأصوات</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="303"/>
         <location filename="../src/window.cpp" line="1065"/>
         <source>Untitled</source>
-        <translation>Sin título</translation>
+        <translation>غير معنون</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="681"/>
         <source>Open File</source>
-        <translation>Abrir archivo</translation>
+        <translation>فتـح ملف</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="863"/>
         <source>About FocusWriter</source>
-        <translation>Acerca de FocusWriter</translation>
+        <translation>حـول البرنامج FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="866"/>
@@ -1595,46 +1619,46 @@
         <location filename="../src/window.cpp" line="171"/>
         <location filename="../src/window.cpp" line="927"/>
         <source>Characters: %L1 / %L2</source>
-        <translation>Caracteres: %L1 / %L2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="169"/>
         <location filename="../src/window.cpp" line="928"/>
         <source>Pages: %L1</source>
-        <translation>Páginas: %L1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="170"/>
         <location filename="../src/window.cpp" line="929"/>
         <source>Paragraphs: %L1</source>
-        <translation>Párrafos: %L1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="168"/>
         <location filename="../src/window.cpp" line="930"/>
         <source>Words: %L1</source>
-        <translation>Palabras: %L1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="453"/>
         <location filename="../src/window.cpp" line="1019"/>
         <source>Opening %1</source>
-        <translation>Abriendo %1</translation>
+        <translation>فتـح %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1119"/>
         <source>Question</source>
-        <translation>Pregunta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1119"/>
         <source>Save changes?</source>
-        <translation>¿Desea guardar cambios?</translation>
+        <translation>تحفظ التغييرات؟</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="326"/>
         <source>(Untitled %1)</source>
-        <translation>(Sin título %1)</translation>
+        <translation>(%1 غير معنون)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="204"/>
@@ -1644,78 +1668,78 @@
     <message>
         <location filename="../src/window.cpp" line="207"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>التبديل إلى المستند اللاحق</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="213"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>التبديل إلى المستند السابق</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="219"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>التبديل إلى المستند الأول</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="225"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>التبديل إلى المستند الأخير</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="233"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>التبديل إلى المستند %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="293"/>
         <source>Loading settings</source>
-        <translation>Cargando preferencias</translation>
+        <translation>تحميل الإعدادات</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="312"/>
         <source>Emergency cache is not writable.</source>
-        <translation>No se puede escribir el caché de emergencia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="332"/>
         <location filename="../src/window.cpp" line="1033"/>
         <source>Warning</source>
-        <translation>Advertencia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="333"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter no fue cerrado correctamente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="334"/>
         <source>Restore from the emergency cache?</source>
-        <translation>¿Restaurar el caché de emergencia?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="462"/>
         <source>Some files could not be opened.</source>
-        <translation>Algunos archivos no se pueden abrir.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="465"/>
         <source>Some files were opened Read-Only.</source>
-        <translation>Algunos archivos son de sólo lectura.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1034"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; is más reciente que el que se tiene en caché.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1035"/>
         <source>Overwrite newer file?</source>
-        <translation>¿Sobreescribir el archivo nuevo?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1144"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation>No se puede cargar los sonidos de escritura.</translation>
+        <translation>لا يمكن تحمل أصوات الرقن.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1145"/>
@@ -1725,67 +1749,67 @@
     <message>
         <location filename="../src/window.cpp" line="1281"/>
         <source>&amp;File</source>
-        <translation>&amp;Archivo</translation>
+        <translation>ملـف</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1282"/>
         <source>&amp;New</source>
-        <translation>&amp;Nuevo</translation>
+        <translation>جديـد</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1283"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Abrir...</translation>
+        <translation>فتـح</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1284"/>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>تحديـث</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1286"/>
         <source>&amp;Save</source>
-        <translation>&amp;Guardar</translation>
+        <translation>حفـظ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1288"/>
         <source>Save &amp;As...</source>
-        <translation>Guardar &amp;como...</translation>
+        <translation>حفظ باسم</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1289"/>
         <source>&amp;Rename...</source>
-        <translation>&amp;Renombrar...</translation>
+        <translation>التسمية مجددًا</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1291"/>
         <source>Save A&amp;ll</source>
-        <translation>Guardar To&amp;do</translation>
+        <translation>حفظ الكل</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1294"/>
         <source>Manage Sessions</source>
-        <translation>Administrar sesiones</translation>
+        <translation>إدارة الجلسات</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1296"/>
         <source>New Session</source>
-        <translation>Nueva sesión</translation>
+        <translation>جلسة جديدة</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1299"/>
         <source>&amp;Print...</source>
-        <translation>&amp;Imprimir...</translation>
+        <translation>طباعة</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1301"/>
         <source>&amp;Close</source>
-        <translation>&amp;Cerrar</translation>
+        <translation>إغلاق المستند الحالي</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1302"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Salir</translation>
+        <translation>إغلاق البرنامج</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1302"/>
@@ -1795,32 +1819,32 @@
     <message>
         <location filename="../src/window.cpp" line="1306"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Editar</translation>
+        <translation>تحريـر</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1307"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Deshacer</translation>
+        <translation>تراجـع</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Rehacer</translation>
+        <translation>استرجاع</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1314"/>
         <source>Cu&amp;t</source>
-        <translation>Cor&amp;tar</translation>
+        <translation>قـص</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Copiar</translation>
+        <translation>نسـخ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1320"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Pegar</translation>
+        <translation>لصـق</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1321"/>
@@ -1830,12 +1854,12 @@
     <message>
         <location filename="../src/window.cpp" line="1321"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1323"/>
         <source>Select &amp;All</source>
-        <translation>Seleccionar &amp;todo</translation>
+        <translation>تحديـد الكل</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1324"/>
@@ -1845,32 +1869,32 @@
     <message>
         <location filename="../src/window.cpp" line="1324"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1327"/>
         <source>Fo&amp;rmat</source>
-        <translation>Fo&amp;rmato</translation>
+        <translation>النمـط</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1329"/>
         <source>&amp;Bold</source>
-        <translation>&amp;Negrita</translation>
+        <translation>سمـيك</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>&amp;Italic</source>
-        <translation>&amp;Itálica</translation>
+        <translation>مائـل</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Subrayado</translation>
+        <translation>مسطر تحته</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1335"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Ta&amp;chado</translation>
+        <translation>مشـطب</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1335"/>
@@ -1880,7 +1904,7 @@
     <message>
         <location filename="../src/window.cpp" line="1337"/>
         <source>Sup&amp;erscript</source>
-        <translation>Sup&amp;eríndice</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1337"/>
@@ -1890,7 +1914,7 @@
     <message>
         <location filename="../src/window.cpp" line="1339"/>
         <source>&amp;Subscript</source>
-        <translation>&amp;Subíndice</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1339"/>
@@ -1900,7 +1924,7 @@
     <message>
         <location filename="../src/window.cpp" line="1343"/>
         <source>Align &amp;Left</source>
-        <translation>Alinear a &amp;Izquierda</translation>
+        <translation>محاذاة إلى اليسار</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1343"/>
@@ -1910,7 +1934,7 @@
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Align &amp;Center</source>
-        <translation>&amp;Centrar</translation>
+        <translation>محاذاة إلى الوسط</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
@@ -1920,7 +1944,7 @@
     <message>
         <location filename="../src/window.cpp" line="1347"/>
         <source>Align &amp;Right</source>
-        <translation>Alinear a &amp;Derecha</translation>
+        <translation>محاذاة إلى اليمين</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1347"/>
@@ -1930,7 +1954,7 @@
     <message>
         <location filename="../src/window.cpp" line="1349"/>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Justificar</translation>
+        <translation>ضبـط</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1349"/>
@@ -1940,7 +1964,7 @@
     <message>
         <location filename="../src/window.cpp" line="1359"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Decrementar Indentación</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1359"/>
@@ -1950,7 +1974,7 @@
     <message>
         <location filename="../src/window.cpp" line="1360"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>A&amp;umentar Indentación</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1360"/>
@@ -1960,37 +1984,37 @@
     <message>
         <location filename="../src/window.cpp" line="1363"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Bloque &amp;Izquierda a Derecha</translation>
+        <translation>الاتجاه من اليسار إلى اليمين</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1365"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Bloque &amp;Derecha a Izquierda</translation>
+        <translation>الاتجاه من اليمين إلى اليسار</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1373"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Herramientas</translation>
+        <translation>أدوات</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1374"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Buscar...</translation>
+        <translation>بحـث</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1375"/>
         <source>Find &amp;Next</source>
-        <translation>&amp;Buscar siguiente</translation>
+        <translation>أوجد اللاحق</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1378"/>
         <source>Find Pre&amp;vious</source>
-        <translation>&amp;Buscar previo</translation>
+        <translation>أوجد السابق</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>&amp;Replace...</source>
-        <translation>&amp;Reemplazar...</translation>
+        <translation>استبـدال...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -2000,22 +2024,22 @@
     <message>
         <location filename="../src/window.cpp" line="1383"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Comillas &amp;inteligentes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1384"/>
         <source>Update &amp;Document</source>
-        <translation>Actualizar &amp;documento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1387"/>
         <source>Update &amp;Selection</source>
-        <translation>Actualizar &amp;selección</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1391"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Ortografía...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1391"/>
@@ -2030,7 +2054,7 @@
     <message>
         <location filename="../src/window.cpp" line="1394"/>
         <source>&amp;Timers...</source>
-        <translation>Contador de &amp;tiempo...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1395"/>
@@ -2045,27 +2069,27 @@
     <message>
         <location filename="../src/window.cpp" line="1399"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Configuración</translation>
+        <translation>إعـدادات</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1400"/>
         <source>Show &amp;Toolbar</source>
-        <translation>Mostrar &amp;barra de herramientas</translation>
+        <translation>إظهار شريط الأدوات</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1405"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Mostrar &amp;menú de íconos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1411"/>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>النص المركز عليه</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1413"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Pantalla completa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1413"/>
@@ -2080,7 +2104,7 @@
     <message>
         <location filename="../src/window.cpp" line="1419"/>
         <source>M&amp;inimize</source>
-        <translation>M&amp;inimizar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1419"/>
@@ -2090,47 +2114,47 @@
     <message>
         <location filename="../src/window.cpp" line="1421"/>
         <source>&amp;Themes...</source>
-        <translation>&amp;Temas...</translation>
+        <translation>سمـات...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1424"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Preferencias...</translation>
+        <translation>تفضيلات...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1430"/>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>دون تركيز</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1432"/>
         <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <translation>تركيز على سطر</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1434"/>
         <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>تركيز على ثلاثة أسطر</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1435"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>فقـرة</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1436"/>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>تركيز على فقرة</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
         <source>&amp;Help</source>
-        <translation>A&amp;yuda</translation>
+        <translation>مساعدة</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Application &amp;Language...</source>
-        <translation>&amp;Idioma de aplicación...</translation>
+        <translation>لغة التطبيق...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="396"/>
@@ -2140,27 +2164,27 @@
     <message>
         <location filename="../src/window.cpp" line="1429"/>
         <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
+        <translation>دون تركيز</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
         <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation>تركيز على سطر</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>تركيز على ثلاثة أسطر</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1450"/>
         <source>&amp;About</source>
-        <translation>&amp;Acerca de</translation>
+        <translation>حـول</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1458"/>
         <source>About &amp;Qt</source>
-        <translation>Acerca de &amp;Qt</translation>
+        <translation>حـول &quot;كيوتي&quot;</translation>
     </message>
 </context>
 </TS>

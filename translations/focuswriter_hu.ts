@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hu" sourcelanguage="en">
+<TS version="2.1" language="hu" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás </translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation>Kinyitás</translation>
+        <translation>Kibontás</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Figyelmeztetés bezárása</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -169,32 +169,32 @@
     <message>
         <location filename="../src/document.cpp" line="436"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl újratöltése</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="437"/>
         <source>Reload the file %1 from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Fájl újratöltése a lemezről</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="438"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden el nem mentett változtatás el fog veszni</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="440"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/document.cpp" line="1191"/>
-        <source>Question</source>
-        <translation type="unfinished">Kérdés</translation>
+        <translation>Újratöltés</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1192"/>
+        <source>Question</source>
+        <translation>Kérdés</translation>
+    </message>
+    <message>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyszerű szövegként való mentés minden formázást töröl. Töröl minden formázást?</translation>
     </message>
 </context>
 <context>
@@ -202,42 +202,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="189"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>A fálj megváltozott</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file %1 was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 fájl egy másik program megváltoztatta</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Újra akarja tölteni a fájlt?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Újratöltés</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="198"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Figyelmen kívül hagyás</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="209"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl törölve</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="210"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>A()z %1 fájlt egy másik program törölte</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>El szeretné menteni vagy be szeretné zárni a fájlt?</translation>
     </message>
 </context>
 <context>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Szabályos kifejezések</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
@@ -288,17 +288,17 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Keresés...</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Csere</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes &amp;cseréje</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
@@ -488,12 +488,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="117"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyorsgombok</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="251"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy vagy több gyorsgomb ütközik. Szeretné folytatni?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="546"/>
@@ -564,12 +564,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenetek</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="736"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Elosztó</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="739"/>
@@ -729,17 +729,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1092"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Parancs</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1092"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyorsgomb</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1092"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Akció</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="945"/>
@@ -800,52 +800,52 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Le</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenetek mozgatása felfelé</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Fel</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenetek átváltása</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenetek listájának mutatása (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenetek listájának elrejtése (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Szűrő</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenetek mozgatása lefelé</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenek listájának átméretezése</translation>
     </message>
 </context>
 <context>
@@ -965,18 +965,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Visszaállítás alapértelmezettre</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1135"/>
         <location filename="../src/symbols_dialog.cpp" line="219"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyorsgomb:</translation>
     </message>
 </context>
 <context>
@@ -1002,27 +1002,27 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hozzáadás</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Figyelmen kívül hagyás</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Összes figyelmen kívül hagyása</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Változtatás</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes változtatása</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="167"/>
@@ -1060,32 +1060,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Szimbólumok</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemrég használt szimbólumok</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="133"/>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden szimbólum</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="195"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Részletek</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="221"/>
         <source>Name:</source>
-        <translation type="unfinished">Név:</translation>
+        <translation>Név:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="231"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Beszúrás</translation>
     </message>
 </context>
 <context>
@@ -1093,12 +1093,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Blocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Tömbök</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Szkriptek</translation>
     </message>
 </context>
 <context>
@@ -1252,42 +1252,42 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation type="unfinished"></translation>
+        <translation>Helyközölés</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorközök</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation type="unfinished">Szimpla</translation>
+        <translation>Szimpla</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1.5 Sor</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation type="unfinished">Dupla</translation>
+        <translation>Dupla</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation>Arányos</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekezdésközök</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="259"/>
         <source>Indent First Line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Első sor bekezdéssel indítása:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="260"/>
@@ -1297,12 +1297,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="261"/>
         <source>Pixels Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixelek felette:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="262"/>
         <source>Pixels Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixelek alatta:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="501"/>
@@ -1558,32 +1558,32 @@
     <message>
         <location filename="../src/window.cpp" line="866"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="867"/>
         <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy egyszerű teljesképernyős szövegszerkesztő</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="868"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerzői jogvédelem alatt &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="869"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation> &lt;a href=%1&gt;GPL 3&lt;/a&gt; licensz alatt kiadva</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="870"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation> &lt;a href=%1&gt;Oxygen&lt;/a&gt; ikontémából használ ikonokat</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="871"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=%1&gt;LGPL 3&lt;/a&gt; licensz alatt használva</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="171"/>
@@ -1638,27 +1638,27 @@
     <message>
         <location filename="../src/window.cpp" line="207"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Váltás a következő dokumentumra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="213"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Váltás az előző dokumentumra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="219"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Váltás az első dokumentumra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="225"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Váltás az utolsó dokumentumra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="233"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Váltás a(z)  %1 dokumentumra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="293"/>
@@ -1714,7 +1714,7 @@
     <message>
         <location filename="../src/window.cpp" line="1145"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérem győződjön meg róla, hogy az SDL_mixer telepítve van.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1281"/>
@@ -1734,7 +1734,7 @@
     <message>
         <location filename="../src/window.cpp" line="1284"/>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>Újratöltés &amp;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1286"/>
@@ -1819,12 +1819,12 @@
     <message>
         <location filename="../src/window.cpp" line="1321"/>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Beillesztés &amp;Formázatlanul</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1321"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1323"/>
@@ -1834,12 +1834,12 @@
     <message>
         <location filename="../src/window.cpp" line="1324"/>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Jelenet kiválasztása</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1324"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1327"/>
@@ -2029,7 +2029,7 @@
     <message>
         <location filename="../src/window.cpp" line="1395"/>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Szimbólumok</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
@@ -2054,7 +2054,7 @@
     <message>
         <location filename="../src/window.cpp" line="1411"/>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Fókuszált szöveg</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1413"/>
@@ -2094,27 +2094,27 @@
     <message>
         <location filename="../src/window.cpp" line="1430"/>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Fókusz kikapcsolása</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1432"/>
         <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy sor fókuszálása</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1434"/>
         <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Három sor fókuszálása</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1435"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bekezdés</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1436"/>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekezdés fókuszálása</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
@@ -2129,22 +2129,22 @@
     <message>
         <location filename="../src/window.cpp" line="396"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Néhány fájltípus nem támogatott és nem került megnyitásra.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1429"/>
         <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kikapcsolás</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
         <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy &amp;Sor</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Három sor</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1450"/>

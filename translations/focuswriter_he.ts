@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="he" sourcelanguage="en">
+<TS version="2.1" language="he" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -192,12 +192,12 @@
         <translation>טעינה מחדש</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1191"/>
+        <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
         <translation>שאלה</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>שמירה כתמליל גלוי תתעלם מכל העיצוב. האם להתעלם מן עיצוב?</translation>
     </message>

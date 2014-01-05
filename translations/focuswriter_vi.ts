@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="vi" sourcelanguage="en">
+<TS version="2.1" language="vi" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -187,12 +187,12 @@
         <translation>Tải lại</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1191"/>
+        <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
         <translation>Câu hỏi</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Lưu dưới dạng văn bản thông thường sẽ bỏ qua tất cả các chỉnh sửa về hiển thị. Bỏ qua toàn bộ các hiển thị?</translation>
     </message>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ro" sourcelanguage="en">
+<TS version="2.1" language="ro" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -197,12 +197,12 @@
         <translation>Reîncarcă</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1191"/>
+        <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
         <translation>Întrebare</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Salvînd ca text simplu se vor pierde toate formatările. Renunţaţi la formatare?</translation>
     </message>

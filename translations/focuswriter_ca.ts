@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ca" sourcelanguage="en">
+<TS version="2.1" language="ca" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -197,12 +197,12 @@
         <translation>Torna a carregar</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1191"/>
+        <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
         <translation>Pregunta</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Si deseu com a text pla es perdran tots els canvis de format. Voleu descartar el formatatge?</translation>
     </message>

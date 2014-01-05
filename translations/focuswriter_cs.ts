@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs" sourcelanguage="en">
+<TS version="2.1" language="cs" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -197,12 +197,12 @@
         <translation>Nahrát znovu</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1191"/>
+        <location filename="../src/document.cpp" line="1192"/>
         <source>Question</source>
         <translation>Otázka</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1193"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Uložení v prostém textu zahodí všechno formátování. Zahodit formátování?</translation>
     </message>
@@ -546,7 +546,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="696"/>
         <source>Block insertion cursor</source>
-        <translation>Ukazovátko vkládání bloku</translation>
+        <translation>Ukazatel vkládání bloku</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="697"/>
@@ -596,7 +596,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="742"/>
         <source>Remember cursor position</source>
-        <translation>Zapamatovat si polohu ukazovátka</translation>
+        <translation>Zapamatovat si polohu ukazatele</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="860"/>
@@ -1097,7 +1097,7 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="231"/>
         <source>Insert</source>
-        <translation>Vložka</translation>
+        <translation>Vložit</translation>
     </message>
 </context>
 <context>
