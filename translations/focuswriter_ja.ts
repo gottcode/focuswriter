@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ja" sourcelanguage="en">
+<TS version="2.1" language="ja" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -89,32 +89,32 @@
         <translation>再読み込み</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1168"/>
+        <location filename="../src/document.cpp" line="1169"/>
         <source>Plain Text (*.txt)</source>
         <translation>テキスト文書 (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1227"/>
+        <location filename="../src/document.cpp" line="1228"/>
         <source>Question</source>
         <translation>問い合わせ</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1228"/>
+        <location filename="../src/document.cpp" line="1229"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>プレーン・テキストとして保存した場合、すべての書式が失われます。よろしいですか？</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1166"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument 形式 (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1167"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>Rich Text (*.rtf)</source>
         <translation>リッチ テキスト形式 (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1169"/>
+        <location filename="../src/document.cpp" line="1170"/>
         <source>All Files (*)</source>
         <translation>すべてのファイル (*.*)</translation>
     </message>

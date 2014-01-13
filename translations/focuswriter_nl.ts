@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl" sourcelanguage="en">
+<TS version="2.1" language="nl" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -89,32 +89,32 @@
         <translation>Herladen</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1168"/>
+        <location filename="../src/document.cpp" line="1169"/>
         <source>Plain Text (*.txt)</source>
         <translation>Platte tekst (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1227"/>
+        <location filename="../src/document.cpp" line="1228"/>
         <source>Question</source>
         <translation>Vraag</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1228"/>
+        <location filename="../src/document.cpp" line="1229"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Opslaan als kale tekst zal alle opmaak verwijderen. Opmaak verwijderen ?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1166"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument Tekst (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1167"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text(*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1169"/>
+        <location filename="../src/document.cpp" line="1170"/>
         <source>All Files (*)</source>
         <translation>Alle bestanden (*)</translation>
     </message>

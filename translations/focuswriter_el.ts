@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="el" sourcelanguage="en">
+<TS version="2.1" language="el" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -89,32 +89,32 @@
         <translation>Επαναφόρτωση</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1168"/>
+        <location filename="../src/document.cpp" line="1169"/>
         <source>Plain Text (*.txt)</source>
         <translation>Απλό Κείμενο (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1227"/>
+        <location filename="../src/document.cpp" line="1228"/>
         <source>Question</source>
         <translation>Ερώτηση</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1228"/>
+        <location filename="../src/document.cpp" line="1229"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Η αποθήκευση σε τύπο απλού κειμένου θα απορρίψει όλη τη μορφοποίηση. Απόρριψη όλης της μορφοποίησης;</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1166"/>
-        <source>OpenDocument Text (*.odt)</source>
-        <translation>Κείμενο OpenDocument (*.odt)</translation>
-    </message>
-    <message>
         <location filename="../src/document.cpp" line="1167"/>
-        <source>Rich Text (*.rtf)</source>
-        <translation>Εμπλουτισμένο κείμενο (*.rtf)</translation>
+        <source>OpenDocument Text (*.odt)</source>
+        <translation>Έγγραφο Κειμένου ODF (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1169"/>
+        <location filename="../src/document.cpp" line="1168"/>
+        <source>Rich Text (*.rtf)</source>
+        <translation>Εμπλουτισμένο Κείμενο (*.rtf)</translation>
+    </message>
+    <message>
+        <location filename="../src/document.cpp" line="1170"/>
         <source>All Files (*)</source>
         <translation>Όλα τα αρχεία (*)</translation>
     </message>
@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="189"/>
         <source>File Changed</source>
-        <translation>Αρχείο Έχει Αλλάξει</translation>
+        <translation>Το Αρχείο Έχει Αλλάξει</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
@@ -144,12 +144,12 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="198"/>
         <source>Ignore</source>
-        <translation>Αγνόηση</translation>
+        <translation>Παράβλεψη</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="209"/>
         <source>File Deleted</source>
-        <translation>Αρχείο Διεγράφει</translation>
+        <translation>Αρχείο Διεγράφη</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="210"/>
@@ -167,7 +167,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="45"/>
         <source>Search for:</source>
-        <translation>Αναζήτηση του:</translation>
+        <translation>Αναζήτηση για:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
@@ -228,8 +228,8 @@
         <location filename="../src/find_dialog.cpp" line="258"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Αντικατάσταση %n ευρημάτων/-τος;</numerusform>
-            <numerusform>Αντικατάσταση %n ευρημάτων/-τος;</numerusform>
+            <numerusform>Αντικατάσταση %n ευρήματος;</numerusform>
+            <numerusform>Αντικατάσταση %n ευρημάτων;</numerusform>
         </translation>
     </message>
     <message>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/highlighter.cpp" line="52"/>
         <source>Check Spelling...</source>
-        <translation>Ορθογραφικός έλεγχος...</translation>
+        <translation>Ορθογραφικός Έλεγχος...</translation>
     </message>
     <message>
         <location filename="../src/highlighter.cpp" line="124"/>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../src/image_button.cpp" line="90"/>
         <source>Open Image</source>
-        <translation>Άνοιγμα εικόνας</translation>
+        <translation>Άνοιγμα Εικόνας</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="90"/>
@@ -324,17 +324,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Toolbar</source>
-        <translation>Γραμμή εργαλείων</translation>
+        <translation>Γραμμή Εργαλείων</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Spell Checking</source>
-        <translation>Ορθογραφικός έλεγχος</translation>
+        <translation>Ορθογραφικός Έλεγχος</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="406"/>
         <source>Select Dictionary</source>
-        <translation>Επιλογή λεξικού</translation>
+        <translation>Επιλογή Λεξικού</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="420"/>
@@ -360,12 +360,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="496"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό να ανοίξει το αρχείο &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό να ανοίξει το αρχείο «%1».</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="507"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό να κλείσει το αρχείο &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό να κλείσει το αρχείο «%1».</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="243"/>
@@ -386,17 +386,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Το λεξικό &apos;%1&apos; υπάρχει ήδη. Θέλετε να αντικατασταθεί;</translation>
+        <translation>Το λεξικό «%1» υπάρχει ήδη. Θέλετε να αντικατασταθεί;</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
         <source>Daily Goal</source>
-        <translation>Ημερήσιος στόχος</translation>
+        <translation>Ημερήσιος Στόχος</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="678"/>
         <source>None</source>
-        <translation>Κανείς</translation>
+        <translation>Κανένας</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="680"/>
@@ -467,7 +467,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="758"/>
         <source>Automatically save changes</source>
-        <translation>Αποθήκευση αλλαγών αυτόματα</translation>
+        <translation>Αυτόματη αποθήκευση αλλαγών</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="759"/>
@@ -502,7 +502,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="797"/>
         <source>Page Size</source>
-        <translation>Μέγεθος σελίδας</translation>
+        <translation>Διαστάσεις Σελίδας</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="799"/>
@@ -517,12 +517,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="835"/>
         <source>Word Count Algorithm</source>
-        <translation>Αριθμός καταμέτρησης λέξεων</translation>
+        <translation>Αλγόριθμος Καταμέτρησης Λέξεων</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="837"/>
         <source>Detect word boundaries</source>
-        <translation>Εντοπισμός ορίων λέξεων</translation>
+        <translation>Εντοπισμός Ορίων Λέξεων</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
@@ -537,27 +537,27 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Icons Only</source>
-        <translation>Μόνο εικονίδια</translation>
+        <translation>Μόνο Εικονίδια</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Text Only</source>
-        <translation>Μόνο κείμενο</translation>
+        <translation>Μόνο Κείμενο</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Text Alongside Icons</source>
-        <translation>Κείμενο πλάι στα εικονίδια</translation>
+        <translation>Κείμενο Πλάι στα Εικονίδια</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="949"/>
         <source>Text Under Icons</source>
-        <translation>Κείμενο κάτω από τα εικονίδια</translation>
+        <translation>Κείμενο Κάτω από τα Εικονίδια</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="953"/>
         <source>Text Position:</source>
-        <translation>Θέση κειμένου:</translation>
+        <translation>Θέση Κειμένου:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="956"/>
@@ -567,17 +567,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="972"/>
         <source>Move Up</source>
-        <translation>Μετακίνηση πάνω</translation>
+        <translation>Μετακίνηση Πάνω</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Move Down</source>
-        <translation>Μετακίνηση κάτω</translation>
+        <translation>Μετακίνηση Κάτω</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="976"/>
         <source>Add Separator</source>
-        <translation>Προσθήκη διαχωριστικού</translation>
+        <translation>Προσθήκη Διαχωριστικού</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
@@ -592,7 +592,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation>Δράση</translation>
+        <translation>Ενέργεια</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
@@ -602,7 +602,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="864"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Παράβλεψη λέξεων με κεφαλαία</translation>
+        <translation>Παράβλεψη λέξεων σε ΚΕΦΑΛΑΙΑ</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="865"/>
@@ -628,7 +628,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Personal Dictionary</source>
-        <translation>Προσωπικό λεξικό</translation>
+        <translation>Προσωπικό Λεξικό</translation>
     </message>
 </context>
 <context>
@@ -647,12 +647,12 @@
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό να ανοίξει το αρχείο &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό να ανοίξει το αρχείο «%1».</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό να κλείσει το αρχείο &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό να κλείσει το αρχείο «%1».</translation>
     </message>
 </context>
 <context>
@@ -665,7 +665,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation>Μετακίνηση Σκηνές Up προς τα πάνω</translation>
+        <translation>Μετακίνηση Σκηνών Πάνω</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
@@ -675,7 +675,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation>Εναλλαγή Λίστας Σκηνων</translation>
+        <translation>Εναλλαγή Λίστας Σκηνών</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
@@ -685,12 +685,12 @@
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
-        <translation>Εμφάνιση λίστας σκηνης (%1)</translation>
+        <translation>Εμφάνιση λίστας σκηνών (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
-        <translation>Απόκρυψη λίστας σκηνής (%1)</translation>
+        <translation>Απόκρυψη λίστας σκηνών (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="147"/>
@@ -700,7 +700,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation>Μετακίνηση σκηνων προς τα κάτω</translation>
+        <translation>Μετακίνηση Σκηνών Κάτω</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="155"/>
@@ -727,7 +727,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="47"/>
         <source>Manage Sessions</source>
-        <translation>Διαχείριση περιόδων λειτουργίας</translation>
+        <translation>Διαχείριση Περιόδων Λειτουργίας</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
@@ -757,22 +757,22 @@
     <message>
         <location filename="../src/session_manager.cpp" line="76"/>
         <source>Switch To</source>
-        <translation>Εναλλαγή σε</translation>
+        <translation>Εναλλαγή Σε</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="170"/>
         <source>New Session</source>
-        <translation>Νέα περίοδο λειτουργίας</translation>
+        <translation>Νέα Περίοδος Λειτουργίας</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="216"/>
         <source>Clone Session</source>
-        <translation>Κλωνοποίηση περιόδου λειτουργίας</translation>
+        <translation>Κλωνοποίηση Περιόδου Λειτουργίας</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="256"/>
         <source>Rename Session</source>
-        <translation>Μετονομασία περιόδου λειτουργίας</translation>
+        <translation>Μετονομασία Περιόδου Λειτουργίας</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
@@ -782,7 +782,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="283"/>
         <source>Delete selected session?</source>
-        <translation>Διαγραφή επιλεγμένης περιόδου λειτουργίας;</translation>
+        <translation>Να διαγραφή η επιλεγμένη περιόδου λειτουργίας;</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="354"/>
@@ -849,7 +849,7 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="117"/>
         <source>Please Wait</source>
-        <translation>Περιμένετε</translation>
+        <translation>Παρακαλώ Περιμένετε</translation>
     </message>
 </context>
 <context>
@@ -857,32 +857,32 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="130"/>
         <source>Check Spelling</source>
-        <translation>Ορθογραφικός έλεγχος</translation>
+        <translation>Ορθογραφικός Έλεγχος</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation>Προσθήκη</translation>
+        <translation>&amp;Προσθήκη</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation>Αγνόηση</translation>
+        <translation>Πα&amp;ράβλεψη</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation>Παράβλεψη όλων</translation>
+        <translation>Παράβλε&amp;ψη Όλων</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation>Αλλαγή</translation>
+        <translation>&amp;Αλλαγή</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation>Αλλαγή όλων</translation>
+        <translation>Α&amp;λλαγή Όλων</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -897,22 +897,22 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Checking spelling...</source>
-        <translation>Έλεγχος ορθογραφίας...</translation>
+        <translation>Γίνεται έλεγχος ορθογραφίας...</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="190"/>
         <source>Cancel</source>
-        <translation>Άκυρο</translation>
+        <translation>Ακύρωση</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="191"/>
         <source>Please wait</source>
-        <translation>Περιμένετε</translation>
+        <translation>Παρακαλώ Περιμένετε</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="258"/>
         <source>Spell check complete.</source>
-        <translation>Ολοκληρώθηκε ο ορθογραφικός έλεγχος.</translation>
+        <translation>Ο ορθογραφικός έλεγχος ολοκληρώθηκε.</translation>
     </message>
 </context>
 <context>
@@ -953,12 +953,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Blocks</source>
-        <translation>Μπλοκ</translation>
+        <translation>Κουτάκια</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Scripts</source>
-        <translation>Σκριπτ</translation>
+        <translation>Γραφές</translation>
     </message>
 </context>
 <context>
@@ -1016,7 +1016,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="71"/>
         <source>Zoomed</source>
-        <translation>Μεγεθυμένη</translation>
+        <translation>Μεγεθυσμένη</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="83"/>
@@ -1056,7 +1056,7 @@
         <location filename="../src/theme_dialog.cpp" line="136"/>
         <location filename="../src/theme_dialog.cpp" line="142"/>
         <source> pixels</source>
-        <translation> pixel</translation>
+        <translation>pixel</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="123"/>
@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation>Εσοχή πρώτης γραμμής:</translation>
+        <translation>Εσοχή Πρώτης Γραμμής:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
@@ -1156,12 +1156,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation>Pixel Παρακάνω:</translation>
+        <translation>Pixel Παρακάτω:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
         <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Θέλει αρετή και τόλμη η ελευθερία</translation>
+        <translation>Ξεσκεπάζω την ψυχοφθόρα βδελυγμία</translation>
     </message>
 </context>
 <context>
@@ -1234,7 +1234,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="204"/>
         <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Υπάρχει ήδη θέμα με αυτό το όνομα. Γράψτε νέο όνομα:</translation>
+        <translation>Υπάρχει ήδη θέμα με αυτό το όνομα. Παρακαλώ γράψτε νέο όνομα:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="256"/>
@@ -1257,7 +1257,7 @@
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation>Διαγραφή χρονομέτρου;</translation>
+        <translation>Να διαγραφεί το χρονομέτρο;</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
@@ -1368,7 +1368,7 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>Ακύρωση επεξεργασίας χρονομέτρων;</translation>
+        <translation>Να ακυρωθεί η επεξεργασία χρονομέτρων;</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1548,7 +1548,7 @@
     <message>
         <location filename="../src/window.cpp" line="361"/>
         <source>Restore from the emergency cache?</source>
-        <translation>Να γίνει επαναφορά από την cache εκτάκτου ανάγκης;</translation>
+        <translation>Να γίνει επαναφορά από τη μνήμη εκτάκτου ανάγκης;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="496"/>
@@ -1563,12 +1563,12 @@
     <message>
         <location filename="../src/window.cpp" line="698"/>
         <source>Text Files (%1);;All Files (*)</source>
-        <translation>Αρχεία κειμένου (%1);;Όλα τα αρχεία (*)</translation>
+        <translation>Αρχεία Κειμένου (%1);;Όλα τα αρχεία (*)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1072"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>Το &apos;%1&apos; είναι νεότερο από το αντίγραφο στην cache.</translation>
+        <translation>Το «%1» είναι νεότερο από το αντίγραφο στη μνήμη.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1073"/>
@@ -1693,7 +1693,7 @@
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>Paste &amp;Unformatted</source>
-        <translation>Επικόλληση χωρίς μορφοποίηση</translation>
+        <translation>Επικόλληση &amp;Χωρίς Μορφοποίηση</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
@@ -1703,12 +1703,12 @@
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>Select &amp;All</source>
-        <translation>Επιλογή όλ&amp;ων</translation>
+        <translation>Επιλογή Όλ&amp;ων</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1355"/>
         <source>Select &amp;Scene</source>
-        <translation>Επιλογή σκηνης</translation>
+        <translation>Επιλογή &amp;Σκηνής</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1355"/>
@@ -1758,7 +1758,7 @@
     <message>
         <location filename="../src/window.cpp" line="1370"/>
         <source>&amp;Subscript</source>
-        <translation>Δεί&amp;κτης</translation>
+        <translation>&amp;Δείκτης</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1370"/>
@@ -1768,7 +1768,7 @@
     <message>
         <location filename="../src/window.cpp" line="1374"/>
         <source>Align &amp;Left</source>
-        <translation>Στοίχιση &amp;αριστερά</translation>
+        <translation>Στοίχιση &amp;Αριστερά</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1374"/>
@@ -1778,7 +1778,7 @@
     <message>
         <location filename="../src/window.cpp" line="1376"/>
         <source>Align &amp;Center</source>
-        <translation>Στοίχιση στο κέν&amp;τρο</translation>
+        <translation>Στοίχιση στο Κέν&amp;τρο</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1376"/>
@@ -1788,7 +1788,7 @@
     <message>
         <location filename="../src/window.cpp" line="1378"/>
         <source>Align &amp;Right</source>
-        <translation>Στοίχιση &amp;δεξιά</translation>
+        <translation>Στοίχιση &amp;Δεξιά</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1378"/>
@@ -1798,7 +1798,7 @@
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>Align &amp;Justify</source>
-        <translation>Πλήρης &amp;στοίχιση</translation>
+        <translation>Πλήρης &amp;Στοίχιση</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
@@ -1808,7 +1808,7 @@
     <message>
         <location filename="../src/window.cpp" line="1390"/>
         <source>&amp;Decrease Indent</source>
-        <translation>Μεί&amp;ωση εσοχής</translation>
+        <translation>Μεί&amp;ωση Εσοχής</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1390"/>
@@ -1818,7 +1818,7 @@
     <message>
         <location filename="../src/window.cpp" line="1391"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Αύ&amp;ξηση εσοχής</translation>
+        <translation>Αύ&amp;ξηση Εσοχής</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1391"/>
@@ -1828,12 +1828,12 @@
     <message>
         <location filename="../src/window.cpp" line="1394"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Δεξιόστ&amp;ροφη γραφή</translation>
+        <translation>Δεξιόστ&amp;ροφη Γραφή</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Αριστερόστρο&amp;φη γραφή</translation>
+        <translation>Αριστερόστρο&amp;φη Γραφή</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1404"/>
@@ -1848,12 +1848,12 @@
     <message>
         <location filename="../src/window.cpp" line="1406"/>
         <source>Find &amp;Next</source>
-        <translation>Εύρεση &amp;επόμενου</translation>
+        <translation>Εύρεση &amp;Επόμενου</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1409"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Εύρεση &amp;προηγούμενου</translation>
+        <translation>Εύρεση &amp;Προηγούμενου</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
@@ -1868,7 +1868,7 @@
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Έξυπνα εισαγ&amp;ωγικά</translation>
+        <translation>Έξυπνα Εισαγ&amp;ωγικά</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1415"/>
@@ -1878,7 +1878,7 @@
     <message>
         <location filename="../src/window.cpp" line="1418"/>
         <source>Update &amp;Selection</source>
-        <translation>Ε&amp;νημέρωση επιλογής</translation>
+        <translation>Ε&amp;νημέρωση Επιλογής</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1422"/>
@@ -1898,7 +1898,7 @@
     <message>
         <location filename="../src/window.cpp" line="1424"/>
         <source>S&amp;ymbols...</source>
-        <translation>Συμβολα...</translation>
+        <translation>Σύμ&amp;βολα...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
@@ -1908,22 +1908,22 @@
     <message>
         <location filename="../src/window.cpp" line="1428"/>
         <source>Show &amp;Toolbar</source>
-        <translation>Εμφάνιση γραμμής εργα&amp;λείων</translation>
+        <translation>Εμφάνιση Γραμμής Εργα&amp;λείων</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1433"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Εμφάνιση εικονιδίων &amp;μενού</translation>
+        <translation>Εμφάνιση Εικονιδίων &amp;Μενού</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1439"/>
         <source>F&amp;ocused Text</source>
-        <translation>F&amp;ocused Κείμενο</translation>
+        <translation>Εστιασμένο &amp;Κείμενο</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>&amp;Fullscreen</source>
-        <translation>Πλήρης οθό&amp;νη</translation>
+        <translation>Πλήρης Οθό&amp;νη</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
@@ -1958,7 +1958,7 @@
     <message>
         <location filename="../src/window.cpp" line="1458"/>
         <source>Focus Off</source>
-        <translation>Εστίαση Ανένεργη</translation>
+        <translation>Εστίαση Ανενεργή</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1460"/>
@@ -1973,7 +1973,7 @@
     <message>
         <location filename="../src/window.cpp" line="1463"/>
         <source>&amp;Paragraph</source>
-        <translation>Παραγραφος</translation>
+        <translation>&amp;Παραγράφου</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1464"/>
@@ -1988,27 +1988,27 @@
     <message>
         <location filename="../src/window.cpp" line="1451"/>
         <source>Application &amp;Language...</source>
-        <translation>&amp;Γλώσσα εφαρμογής...</translation>
+        <translation>&amp;Γλώσσα Εφαρμογής...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="429"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Ορισμένα αρχεία δεν υποστηρίζονται και δεν θα ανοιχτούν.</translation>
+        <translation>Ορισμένα αρχεία δεν υποστηρίζονται και δεν ήταν δυνατό να ανοιχτούν.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1457"/>
         <source>&amp;Off</source>
-        <translation>Απενεργοποιηση</translation>
+        <translation>&amp;Απενεργοποίηση</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1459"/>
         <source>One &amp;Line</source>
-        <translation>Μία Γραμμή</translation>
+        <translation>&amp;Μία Γραμμή</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1461"/>
         <source>&amp;Three Lines</source>
-        <translation>Τρεις Γραμμές</translation>
+        <translation>&amp;Τρεις Γραμμές</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1478"/>

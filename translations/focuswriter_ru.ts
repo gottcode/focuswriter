@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru" sourcelanguage="en">
+<TS version="2.1" language="ru" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -89,32 +89,32 @@
         <translation>Открыть заново</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1168"/>
+        <location filename="../src/document.cpp" line="1169"/>
         <source>Plain Text (*.txt)</source>
         <translation>Простой текст (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1227"/>
+        <location filename="../src/document.cpp" line="1228"/>
         <source>Question</source>
         <translation>Вопрос</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1228"/>
+        <location filename="../src/document.cpp" line="1229"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Сохранение файла как простой текст приведёт к потере форматирования. Убрать форматирование?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1166"/>
+        <location filename="../src/document.cpp" line="1167"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1167"/>
+        <location filename="../src/document.cpp" line="1168"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Текст с форматированием (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1169"/>
+        <location filename="../src/document.cpp" line="1170"/>
         <source>All Files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
