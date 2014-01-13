@@ -1,3 +1,12 @@
+focuswriter (1.4.4+git.3.ec86fd40-1) unstable; urgency=low
+  
+  * Track upstream maintenance branch
+    - c0ceb94a Sync translations with Transifex.
+    - 9b365049 FIXED: Hyphenated lines were not focused properly.
+    - ec86fd40 Update translations.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 13 Jan 2014 17:00:32 +0000
+
 focuswriter (1.4.4-1) unstable; urgency=low
 
   * new upstream release
