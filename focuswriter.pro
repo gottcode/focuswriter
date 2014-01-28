@@ -39,6 +39,9 @@ macx {
 		SOURCES += src/fileformats/clipboard_mac.cpp
 	}
 } else:win32 {
+	greaterThan(QT_MAJOR_VERSION, 4) {
+		LIBS += -lz
+	}
 	USE_BUNDLED_HUNSPELL = 1
 	USE_BUNDLED_LIBZIP = 1
 
