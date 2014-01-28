@@ -147,6 +147,7 @@ void SessionManager::setCurrent(const QString& session, const QStringList& files
 {
 	// Close open documents
 	if (!closeCurrent()) {
+		updateList(m_session->name());
 		return;
 	}
 
