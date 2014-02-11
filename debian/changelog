@@ -1,3 +1,15 @@
+focuswriter (1.4.4+git.4.0c3b3c1-1) unstable; urgency=low
+
+  * Track upstream mainenance branch
+    - 0c3b3c1 FIXED: Selected session was incorrect when switching sessions
+      was canceled.
+    - a51290e Prevent opening unsupported multimedia files.
+    - 77b3da5 Fix linker error with Qt 5 on Windows.
+    - bb69d83 Update QtSingleApplication.
+    - cb19614 Fix compilation error with Qt 5 on Windows.
+  
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 11 Feb 2014 11:44:36 +0000
+
 focuswriter (1.4.4+git.3.ec86fd40-1) unstable; urgency=low
   
   * Track upstream maintenance branch
