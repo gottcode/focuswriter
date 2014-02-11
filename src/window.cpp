@@ -409,12 +409,10 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 
 	// Skip loading files of unsupported formats
 	static const QStringList suffixes = QStringList()
-		<< "abw" << "awt" << "zabw"
-		<< "doc" << "dot"
-		<< "docx" << "docm" << "dotx" << "dotm"
-		<< "kwd"
-		<< "ott"
-		<< "wpd";
+		<< "abw" << "awt" << "zabw" << "doc" << "dot" << "docx" << "docm" << "dotx" << "dotm" << "kwd" << "ott" << "wpd"
+		<< "bmp" << "dds" << "gif" << "icns" << "ico" << "jng" << "jp2" << "jpg" << "jpeg" << "jps" << "mng" << "png" << "tga" << "tif" << "tiff" << "xcf"
+		<< "aac" << "aif" << "aifc" << "aiff" << "asf" << "au" << "flac" << "mid" << "midi" << "mod" << "mp2" << "mp3" << "m4a" << "ogg" << "s3m" << "snd" << "spx" << "wav" << "wma"
+		<< "avi" << "m1v" << "m2ts" << "m4v" << "mkv" << "mov" << "mp4" << "mp4v" << "mpa" << "mpe" << "mpg" << "mpeg" << "mpv2" << "wm" << "wmv";
 	QList<int> skip;
 	for (int i = 0; i < files.count(); ++i) {
 		if (suffixes.contains(QFileInfo(files.at(i)).suffix().toLower())) {

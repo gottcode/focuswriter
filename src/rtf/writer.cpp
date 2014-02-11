@@ -202,7 +202,7 @@ QByteArray fetchCodePage()
 #else
 	QString codepage = QLatin1String("CP") + QString::fromLocal8Bit(buffer);
 #endif
-	return codepage.toAscii();
+	return codepage.toLatin1();
 }
 
 #endif

@@ -45,6 +45,9 @@ macx {
 } else:win32 {
 	INCLUDEPATH += enchant libzip src/enchant
 	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
+	greaterThan(QT_MAJOR_VERSION, 4) {
+		LIBS += -lz
+	}
 
 	HEADERS += src/enchant/dictionary.h \
 		src/enchant/dictionary_data.h \
