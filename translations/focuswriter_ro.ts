@@ -37,43 +37,43 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% of %Ln minut</numerusform>
+            <numerusform>%1% of %Ln minut(e)</numerusform>
+            <numerusform>%1% of %Ln minut(e)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% of %Ln cuvînt</numerusform>
+            <numerusform>%1% of %Ln cuvinte</numerusform>
+            <numerusform>%1% of %Ln cuvinte</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln cuvînt</numerusform>
+            <numerusform>%Ln cuvinte</numerusform>
+            <numerusform>%Ln cuvinte</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minut</numerusform>
+            <numerusform>%Ln minute</numerusform>
+            <numerusform>%Ln minute</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="511"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -81,36 +81,36 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="146"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progres zilnic</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce mai lungă perioadă</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="285"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Perioada curentă</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="298"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Indisponibil</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n zi</numerusform>
+            <numerusform>%n zile</numerusform>
+            <numerusform>%n zile</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -119,7 +119,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished">%1% din obiectiv zilnic</translation>
+        <translation>%1% din obiectiv zilnic</translation>
     </message>
 </context>
 <context>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Setare limbă</translation>
     </message>
 </context>
 <context>
@@ -135,12 +135,12 @@
     <message>
         <location filename="../src/document.cpp" line="281"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Fără titlu %1)</translation>
+        <translation>(Fără titlu %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="284"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished">%1 (Doar-citire)</translation>
+        <translation>%1 (Doar-citire)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="348"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="95"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu se poate deschide arhiva.</translation>
     </message>
 </context>
 <context>
@@ -352,32 +352,32 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Text îmbogăţit</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text simplu</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate fişierele</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="106"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate fişierele suportate</translation>
     </message>
 </context>
 <context>
@@ -439,7 +439,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="69"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu se poate deschide arhiva.</translation>
     </message>
 </context>
 <context>
@@ -636,42 +636,42 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="384"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetare progres zilnic pentru astăzi la zero?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="743"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrie marker ordine octeţi în fişierele de text simplu</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="745"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Format iniţial:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="806"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetare astăzi</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="819"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Istoric</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="821"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Amintire istoric</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="824"/>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation>Arată perioade</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="839"/>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Progres minim pentru perioade:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="874"/>
@@ -686,7 +686,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="882"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritm contorizare pagini</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1025"/>
@@ -796,7 +796,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="209"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="213"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished">Fişier RTF nesuportat.</translation>
+        <translation>Fişier RTF nesuportat.</translation>
     </message>
 </context>
 <context>
@@ -804,7 +804,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished">S-a ajuns pe neaşteptate la sfîrşitul fişierului.</translation>
+        <translation>S-a ajuns pe neaşteptate la sfîrşitul fişierului.</translation>
     </message>
 </context>
 <context>
@@ -866,10 +866,10 @@
         <location filename="../src/main.cpp" line="183"/>
         <location filename="../src/session.cpp" line="35"/>
         <location filename="../src/session.cpp" line="42"/>
-        <location filename="../src/session_manager.cpp" line="154"/>
-        <location filename="../src/session_manager.cpp" line="366"/>
-        <location filename="../src/session_manager.cpp" line="383"/>
-        <location filename="../src/session_manager.cpp" line="386"/>
+        <location filename="../src/session_manager.cpp" line="155"/>
+        <location filename="../src/session_manager.cpp" line="367"/>
+        <location filename="../src/session_manager.cpp" line="384"/>
+        <location filename="../src/session_manager.cpp" line="387"/>
         <source>Default</source>
         <translation>Iniţial</translation>
     </message>
@@ -912,62 +912,62 @@
         <translation>Comută la</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="177"/>
+        <location filename="../src/session_manager.cpp" line="178"/>
         <source>New Session</source>
         <translation>Sesiune nouă</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="223"/>
+        <location filename="../src/session_manager.cpp" line="224"/>
         <source>Clone Session</source>
         <translation>Clonează sesiune</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="263"/>
+        <location filename="../src/session_manager.cpp" line="264"/>
         <source>Rename Session</source>
         <translation>Redenumire sesiune</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="290"/>
+        <location filename="../src/session_manager.cpp" line="291"/>
         <source>Question</source>
         <translation>Întrebare</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="290"/>
+        <location filename="../src/session_manager.cpp" line="291"/>
         <source>Delete selected session?</source>
         <translation>Şterge sesiunea selectată?</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="361"/>
+        <location filename="../src/session_manager.cpp" line="362"/>
         <source>Session name:</source>
         <translation>Nume sesiune:</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="369"/>
+        <location filename="../src/session_manager.cpp" line="370"/>
         <source>Sorry</source>
         <translation>Scuze</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="369"/>
+        <location filename="../src/session_manager.cpp" line="370"/>
         <source>The requested session name is already in use.</source>
         <translation>Numele solicitat al sesiunii este deja în uz.</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="409"/>
+        <location filename="../src/session_manager.cpp" line="410"/>
         <source>&amp;New...</source>
         <translation>&amp;Nou...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="409"/>
+        <location filename="../src/session_manager.cpp" line="410"/>
         <source>Ctrl+Shift+N</source>
         <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="410"/>
+        <location filename="../src/session_manager.cpp" line="411"/>
         <source>&amp;Manage...</source>
         <translation>Gestionare...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="410"/>
+        <location filename="../src/session_manager.cpp" line="411"/>
         <source>Ctrl+Shift+M</source>
         <translation>Ctrl+Shift+M</translation>
     </message>
@@ -1304,7 +1304,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="260"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lăţime tab:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="261"/>
@@ -1547,93 +1547,93 @@
         <translation>Încărcare teme</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1137"/>
+        <location filename="../src/window.cpp" line="1135"/>
         <source>Loading sounds</source>
         <translation>Încărcare sunete</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="303"/>
-        <location filename="../src/window.cpp" line="1065"/>
+        <location filename="../src/window.cpp" line="1063"/>
         <source>Untitled</source>
         <translation>FărăTitlu</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="681"/>
+        <location filename="../src/window.cpp" line="679"/>
         <source>Open File</source>
         <translation>Deschide fişier</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="863"/>
+        <location filename="../src/window.cpp" line="861"/>
         <source>About FocusWriter</source>
         <translation>Despre FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="866"/>
+        <location filename="../src/window.cpp" line="864"/>
         <source>FocusWriter</source>
         <translation>FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="867"/>
+        <location filename="../src/window.cpp" line="865"/>
         <source>A simple fullscreen word processor</source>
         <translation>Un procesor simplu de text pe tot ecranul</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="868"/>
+        <location filename="../src/window.cpp" line="866"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
         <translation>Toate drepturile rezervate &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="869"/>
+        <location filename="../src/window.cpp" line="867"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
         <translation>Lansat sub licenţă &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="870"/>
+        <location filename="../src/window.cpp" line="868"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
         <translation>Foloseşte iconuri din tema &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="871"/>
+        <location filename="../src/window.cpp" line="869"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
         <translation>Folosit sub licenţă &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="171"/>
-        <location filename="../src/window.cpp" line="927"/>
+        <location filename="../src/window.cpp" line="925"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Caractere: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="169"/>
-        <location filename="../src/window.cpp" line="928"/>
+        <location filename="../src/window.cpp" line="926"/>
         <source>Pages: %L1</source>
         <translation>Pagini: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="170"/>
-        <location filename="../src/window.cpp" line="929"/>
+        <location filename="../src/window.cpp" line="927"/>
         <source>Paragraphs: %L1</source>
         <translation>Paragrafe: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="168"/>
-        <location filename="../src/window.cpp" line="930"/>
+        <location filename="../src/window.cpp" line="928"/>
         <source>Words: %L1</source>
         <translation>Cuvinte: %L1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="453"/>
-        <location filename="../src/window.cpp" line="1019"/>
+        <location filename="../src/window.cpp" line="1017"/>
         <source>Opening %1</source>
         <translation>Deschidere %1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1119"/>
+        <location filename="../src/window.cpp" line="1117"/>
         <source>Question</source>
         <translation>Întrebare</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1119"/>
+        <location filename="../src/window.cpp" line="1117"/>
         <source>Save changes?</source>
         <translation>Salvaţi modificările?</translation>
     </message>
@@ -1645,7 +1645,7 @@
     <message>
         <location filename="../src/window.cpp" line="204"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Listă toate documentele</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="207"/>
@@ -1684,7 +1684,7 @@
     </message>
     <message>
         <location filename="../src/window.cpp" line="332"/>
-        <location filename="../src/window.cpp" line="1033"/>
+        <location filename="../src/window.cpp" line="1031"/>
         <source>Warning</source>
         <translation>Avertisment</translation>
     </message>
@@ -1699,472 +1699,472 @@
         <translation>Restaurare din memoria cache de urgenţă?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="462"/>
+        <location filename="../src/window.cpp" line="460"/>
         <source>Some files could not be opened.</source>
         <translation>Unele fişiere nu au putut fi deschise.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="465"/>
+        <location filename="../src/window.cpp" line="463"/>
         <source>Some files were opened Read-Only.</source>
         <translation>Unele fişiere au fost deschise în mod doar-citire.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1034"/>
+        <location filename="../src/window.cpp" line="1032"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; este mai nou decît copia din cache.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1035"/>
+        <location filename="../src/window.cpp" line="1033"/>
         <source>Overwrite newer file?</source>
         <translation>Suprascrie noul fişier?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1144"/>
+        <location filename="../src/window.cpp" line="1142"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>Nu se pot încărca sunetele maşină de scris.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1145"/>
+        <location filename="../src/window.cpp" line="1143"/>
         <source>Please make sure that SDL_mixer is installed.</source>
         <translation>Vă rugăm să vă asiguraţi că SDL_mixer este instalat.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1281"/>
+        <location filename="../src/window.cpp" line="1279"/>
         <source>&amp;File</source>
         <translation>&amp;Fişier</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1282"/>
+        <location filename="../src/window.cpp" line="1280"/>
         <source>&amp;New</source>
         <translation>&amp;Nou</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1283"/>
+        <location filename="../src/window.cpp" line="1281"/>
         <source>&amp;Open...</source>
         <translation>&amp;Deschide...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1284"/>
+        <location filename="../src/window.cpp" line="1282"/>
         <source>Reloa&amp;d</source>
         <translation>Reîncarcă</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1286"/>
+        <location filename="../src/window.cpp" line="1284"/>
         <source>&amp;Save</source>
         <translation>&amp;Salvare</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1288"/>
+        <location filename="../src/window.cpp" line="1286"/>
         <source>Save &amp;As...</source>
         <translation>Salvare c&amp;a...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1289"/>
+        <location filename="../src/window.cpp" line="1287"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Redenumire...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1291"/>
+        <location filename="../src/window.cpp" line="1289"/>
         <source>Save A&amp;ll</source>
         <translation>Salvează tot</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1294"/>
+        <location filename="../src/window.cpp" line="1292"/>
         <source>Manage Sessions</source>
         <translation>Gestionare sesiuni</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1296"/>
+        <location filename="../src/window.cpp" line="1294"/>
         <source>New Session</source>
         <translation>Sesiune nouă</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1299"/>
+        <location filename="../src/window.cpp" line="1297"/>
         <source>&amp;Print...</source>
         <translation>Imprimare...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1301"/>
+        <location filename="../src/window.cpp" line="1299"/>
         <source>&amp;Close</source>
         <translation>Închide</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1302"/>
+        <location filename="../src/window.cpp" line="1300"/>
         <source>&amp;Quit</source>
         <translation>&amp;Ieşire</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1302"/>
+        <location filename="../src/window.cpp" line="1300"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1306"/>
+        <location filename="../src/window.cpp" line="1304"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editare</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1307"/>
+        <location filename="../src/window.cpp" line="1305"/>
         <source>&amp;Undo</source>
         <translation>Anulează</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1310"/>
+        <location filename="../src/window.cpp" line="1308"/>
         <source>&amp;Redo</source>
         <translation>Reface</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1314"/>
+        <location filename="../src/window.cpp" line="1312"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Taie</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1317"/>
+        <location filename="../src/window.cpp" line="1315"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiază</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1320"/>
+        <location filename="../src/window.cpp" line="1318"/>
         <source>&amp;Paste</source>
         <translation>&amp;Lipeşte</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1319"/>
         <source>Paste &amp;Unformatted</source>
         <translation>Lipire neformatat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1319"/>
         <source>Ctrl+Shift+V</source>
         <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1323"/>
+        <location filename="../src/window.cpp" line="1321"/>
         <source>Select &amp;All</source>
         <translation>Selectează &amp;tot</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1322"/>
         <source>Select &amp;Scene</source>
         <translation>Selectare &amp;scenă</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1322"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1327"/>
+        <location filename="../src/window.cpp" line="1325"/>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmatare</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1329"/>
+        <location filename="../src/window.cpp" line="1327"/>
         <source>&amp;Bold</source>
         <translation>Îngroşat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1329"/>
         <source>&amp;Italic</source>
         <translation>&amp;Italic</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1333"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>&amp;Underline</source>
         <translation>S&amp;ubliniat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1333"/>
         <source>Stri&amp;kethrough</source>
         <translation>&amp;Tăiat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1333"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1335"/>
         <source>Sup&amp;erscript</source>
         <translation>Exponent</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1335"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1339"/>
+        <location filename="../src/window.cpp" line="1337"/>
         <source>&amp;Subscript</source>
         <translation>Indice</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1339"/>
+        <location filename="../src/window.cpp" line="1337"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1341"/>
         <source>Align &amp;Left</source>
         <translation>Aliniere la &amp;stînga</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1341"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1345"/>
+        <location filename="../src/window.cpp" line="1343"/>
         <source>Align &amp;Center</source>
         <translation>Aliniere la &amp;centru</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1345"/>
+        <location filename="../src/window.cpp" line="1343"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1345"/>
         <source>Align &amp;Right</source>
         <translation>Aliniere la &amp;dreapta</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1345"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1349"/>
+        <location filename="../src/window.cpp" line="1347"/>
         <source>Align &amp;Justify</source>
         <translation>Aliniere stînga-dreapta</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1349"/>
+        <location filename="../src/window.cpp" line="1347"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1359"/>
+        <location filename="../src/window.cpp" line="1357"/>
         <source>&amp;Decrease Indent</source>
         <translation>Mărire alineat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1359"/>
+        <location filename="../src/window.cpp" line="1357"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1360"/>
+        <location filename="../src/window.cpp" line="1358"/>
         <source>I&amp;ncrease Indent</source>
         <translation>Micşorare alineat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1360"/>
+        <location filename="../src/window.cpp" line="1358"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1363"/>
+        <location filename="../src/window.cpp" line="1361"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>Bloc stînga-dreapta</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1365"/>
+        <location filename="../src/window.cpp" line="1363"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Bloc dreapta-stînga</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1373"/>
+        <location filename="../src/window.cpp" line="1371"/>
         <source>&amp;Tools</source>
         <translation>&amp;Unelte</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1374"/>
+        <location filename="../src/window.cpp" line="1372"/>
         <source>&amp;Find...</source>
         <translation>&amp;Caută...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1375"/>
+        <location filename="../src/window.cpp" line="1373"/>
         <source>Find &amp;Next</source>
         <translation>Caută &amp;următorul</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1378"/>
+        <location filename="../src/window.cpp" line="1376"/>
         <source>Find Pre&amp;vious</source>
         <translation>Caută &amp;precedent</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1381"/>
+        <location filename="../src/window.cpp" line="1379"/>
         <source>&amp;Replace...</source>
         <translation>Înlocuire...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1381"/>
+        <location filename="../src/window.cpp" line="1379"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1383"/>
+        <location filename="../src/window.cpp" line="1381"/>
         <source>Smart &amp;Quotes</source>
         <translation>Ghilimele inteligente</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1384"/>
+        <location filename="../src/window.cpp" line="1382"/>
         <source>Update &amp;Document</source>
         <translation>Actualizare &amp;document</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1387"/>
+        <location filename="../src/window.cpp" line="1385"/>
         <source>Update &amp;Selection</source>
         <translation>Actualizare &amp;selecţie</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1391"/>
+        <location filename="../src/window.cpp" line="1389"/>
         <source>&amp;Spelling...</source>
         <translation>&amp;Ortografie...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1391"/>
+        <location filename="../src/window.cpp" line="1389"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1392"/>
+        <location filename="../src/window.cpp" line="1390"/>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Setare &amp;limbă...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1394"/>
+        <location filename="../src/window.cpp" line="1392"/>
         <source>&amp;Timers...</source>
         <translation>Cronometre...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1395"/>
+        <location filename="../src/window.cpp" line="1393"/>
         <source>S&amp;ymbols...</source>
         <translation>S&amp;imboluri...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1396"/>
+        <location filename="../src/window.cpp" line="1394"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progres zilnic</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1399"/>
+        <location filename="../src/window.cpp" line="1397"/>
         <source>&amp;Settings</source>
         <translation>&amp;Setări</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1400"/>
+        <location filename="../src/window.cpp" line="1398"/>
         <source>Show &amp;Toolbar</source>
         <translation>Arată bară de unelte</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1405"/>
+        <location filename="../src/window.cpp" line="1403"/>
         <source>Show &amp;Menu Icons</source>
         <translation>Arată iconuri &amp;meniu</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1411"/>
+        <location filename="../src/window.cpp" line="1409"/>
         <source>F&amp;ocused Text</source>
         <translation>Text f&amp;ocalizat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1413"/>
+        <location filename="../src/window.cpp" line="1411"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Tot ecranul</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1413"/>
+        <location filename="../src/window.cpp" line="1411"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1415"/>
+        <location filename="../src/window.cpp" line="1413"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1419"/>
+        <location filename="../src/window.cpp" line="1417"/>
         <source>M&amp;inimize</source>
         <translation>M&amp;inimizare</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1419"/>
+        <location filename="../src/window.cpp" line="1417"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1421"/>
+        <location filename="../src/window.cpp" line="1419"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Teme...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1422"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Preferinţe...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1430"/>
+        <location filename="../src/window.cpp" line="1428"/>
         <source>Focus Off</source>
         <translation>Focaliuzare oprită</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1432"/>
+        <location filename="../src/window.cpp" line="1430"/>
         <source>Focus One Line</source>
         <translation>Focalizare o linie</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1434"/>
+        <location filename="../src/window.cpp" line="1432"/>
         <source>Focus Three Lines</source>
         <translation>Focalizare trei linii</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1435"/>
+        <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;Paragraf</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1436"/>
+        <location filename="../src/window.cpp" line="1434"/>
         <source>Focus Paragraph</source>
         <translation>Focalizare paragraf</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1449"/>
+        <location filename="../src/window.cpp" line="1447"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajutor</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1423"/>
+        <location filename="../src/window.cpp" line="1421"/>
         <source>Application &amp;Language...</source>
         <translation>Limbă aplicaţie...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="396"/>
+        <location filename="../src/window.cpp" line="394"/>
         <source>Some files were unsupported and could not be opened.</source>
         <translation>Unele fişiere au fost nesuportate şi nu au putut fi deschide.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1429"/>
+        <location filename="../src/window.cpp" line="1427"/>
         <source>&amp;Off</source>
         <translation>&amp;Oprit</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1431"/>
+        <location filename="../src/window.cpp" line="1429"/>
         <source>One &amp;Line</source>
         <translation>O &amp;linie</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1433"/>
+        <location filename="../src/window.cpp" line="1431"/>
         <source>&amp;Three Lines</source>
         <translation>&amp;Trei linii</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1450"/>
+        <location filename="../src/window.cpp" line="1448"/>
         <source>&amp;About</source>
         <translation>&amp;Despre</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1458"/>
+        <location filename="../src/window.cpp" line="1456"/>
         <source>About &amp;Qt</source>
         <translation>Despre &amp;Qt</translation>
     </message>
