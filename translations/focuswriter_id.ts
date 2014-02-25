@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutup (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Hilangkan Peringatan</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -71,22 +71,22 @@
     <message>
         <location filename="../src/document.cpp" line="430"/>
         <source>Reload File</source>
-        <translation type="unfinished"></translation>
+        <translation>Muat Ulang File</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="431"/>
         <source>Reload the file %1 from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Muat file %1?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="432"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Semua perubahan yang tidak disimpan akan hilang.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="434"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Muat ulang</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1169"/>
@@ -96,12 +96,12 @@
     <message>
         <location filename="../src/document.cpp" line="1228"/>
         <source>Question</source>
-        <translation type="unfinished">Pertanyaan</translation>
+        <translation>Pertanyaan</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1229"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Menyimpan sebagai teks polos akan membuang semua format. Buang format?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1167"/>
@@ -124,42 +124,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="189"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>File Berubah</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file %1 was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>File %1 berubah oleh program lain.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Apakah Anda ingin memuat file ini?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Muat ulang</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="198"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Abaikan</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="209"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>File Dihapus</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="210"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>File %1 dihapus oleh program lain.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Apakah Anda ingin menyimpan atau menutup file ini?</translation>
     </message>
 </context>
 <context>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>RegEx</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="56"/>
@@ -202,17 +202,17 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Temukan...</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gantikan...</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Gantikan &amp;Semua</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
@@ -375,12 +375,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Shortcuts</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="244"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Satu atau lebih shortcuts beradu. Apakah Anda ingin melanjutkan?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
@@ -451,12 +451,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="746"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Suasana</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pembagi:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
@@ -581,17 +581,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Perintah</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Shortcut</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1010"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Tindakan</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="863"/>
@@ -659,52 +659,52 @@
     <message>
         <location filename="../src/scene_list.cpp" line="89"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Naikkan Suasana</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation>Toggle List Suasana</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="399"/>
         <source>Show scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tampilkan list suasana (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="400"/>
         <source>Hide scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sembunyian list suasana (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="147"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Turunkan Suasana</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="155"/>
         <source>Resize scene list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ubah ukuran list suasana</translation>
     </message>
 </context>
 <context>
@@ -713,10 +713,10 @@
         <location filename="../src/main.cpp" line="173"/>
         <location filename="../src/session.cpp" line="35"/>
         <location filename="../src/session.cpp" line="42"/>
-        <location filename="../src/session_manager.cpp" line="147"/>
-        <location filename="../src/session_manager.cpp" line="359"/>
-        <location filename="../src/session_manager.cpp" line="376"/>
-        <location filename="../src/session_manager.cpp" line="379"/>
+        <location filename="../src/session_manager.cpp" line="148"/>
+        <location filename="../src/session_manager.cpp" line="360"/>
+        <location filename="../src/session_manager.cpp" line="377"/>
+        <location filename="../src/session_manager.cpp" line="380"/>
         <source>Default</source>
         <translation>Setelan Standar</translation>
     </message>
@@ -759,62 +759,62 @@
         <translation>Pindah Ke</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="170"/>
+        <location filename="../src/session_manager.cpp" line="171"/>
         <source>New Session</source>
         <translation>Sesi Baru</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="216"/>
+        <location filename="../src/session_manager.cpp" line="217"/>
         <source>Clone Session</source>
         <translation>Klon Sesi</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="256"/>
+        <location filename="../src/session_manager.cpp" line="257"/>
         <source>Rename Session</source>
         <translation>Ubah Nama Sesi</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="283"/>
+        <location filename="../src/session_manager.cpp" line="284"/>
         <source>Question</source>
         <translation>Pertanyaan</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="283"/>
+        <location filename="../src/session_manager.cpp" line="284"/>
         <source>Delete selected session?</source>
         <translation>Hapus sesi terpilih?</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="354"/>
+        <location filename="../src/session_manager.cpp" line="355"/>
         <source>Session name:</source>
         <translation>Judul sesi:</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="362"/>
+        <location filename="../src/session_manager.cpp" line="363"/>
         <source>Sorry</source>
         <translation>Maaf</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="362"/>
+        <location filename="../src/session_manager.cpp" line="363"/>
         <source>The requested session name is already in use.</source>
         <translation>Nama sesi sudah pernah dipakai.</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="402"/>
+        <location filename="../src/session_manager.cpp" line="403"/>
         <source>&amp;New...</source>
         <translation>&amp;Baru...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="402"/>
+        <location filename="../src/session_manager.cpp" line="403"/>
         <source>Ctrl+Shift+N</source>
         <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="403"/>
+        <location filename="../src/session_manager.cpp" line="404"/>
         <source>&amp;Manage...</source>
         <translation>&amp;Kelola...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="403"/>
+        <location filename="../src/session_manager.cpp" line="404"/>
         <source>Ctrl+Shift+M</source>
         <translation>Ctrl+Shift+M</translation>
     </message>
@@ -824,18 +824,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Bersihkan</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Setelan Standar</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1053"/>
         <location filename="../src/symbols_dialog.cpp" line="219"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"></translation>
+        <translation>Shortcut:</translation>
     </message>
 </context>
 <context>
@@ -861,27 +861,27 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tambahkan</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Abaikan</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation type="unfinished"></translation>
+        <translation>Abaikan &amp;Semua</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ubah</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation type="unfinished"></translation>
+        <translation>U&amp;bah Semua</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -919,32 +919,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="96"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Simbol</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="103"/>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Simbol baru dipakai</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="133"/>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Semua simbol</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="195"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Rincian</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="221"/>
         <source>Name:</source>
-        <translation type="unfinished">Nama:</translation>
+        <translation>Nama:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="231"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Sisipkan</translation>
     </message>
 </context>
 <context>
@@ -952,12 +952,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Blocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Blok</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="107"/>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Naskah</translation>
     </message>
 </context>
 <context>
@@ -1110,52 +1110,52 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="207"/>
         <source>Spacings</source>
-        <translation type="unfinished"></translation>
+        <translation>Jarak</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Jarak Baris</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Single</source>
-        <translation type="unfinished">Tunggal</translation>
+        <translation>Tunggal</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1.5 Baris</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Double</source>
-        <translation type="unfinished">Ganda</translation>
+        <translation>Ganda</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation>Proporsional</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="232"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Jarak Paragraf</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="254"/>
         <source>Indent First Line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Indent Baris Pertama:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Pixels Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Piksel Di Atas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="256"/>
         <source>Pixels Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Piksel Di Bawah:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="492"/>
@@ -1396,132 +1396,132 @@
         <translation>Memuat tema</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1166"/>
+        <location filename="../src/window.cpp" line="1164"/>
         <source>Loading sounds</source>
         <translation>Memuat suara</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="295"/>
-        <location filename="../src/window.cpp" line="1106"/>
+        <location filename="../src/window.cpp" line="1104"/>
         <source>Untitled</source>
         <translation>Tanpa Judul</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="698"/>
+        <location filename="../src/window.cpp" line="696"/>
         <source>Open File</source>
         <translation>Buka File</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="889"/>
+        <location filename="../src/window.cpp" line="887"/>
         <source>About FocusWriter</source>
         <translation>Tentang FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="892"/>
+        <location filename="../src/window.cpp" line="890"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="891"/>
+        <source>A simple fullscreen word processor</source>
+        <translation>Pengolah kata selayar penuh sederhana</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="892"/>
+        <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
+        <translation>Hak Cipta &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="893"/>
-        <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
+        <translation>Dirilis dalam lisensi &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="894"/>
-        <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
+        <translation>Menggunakan ikon dari tema ikon &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="895"/>
-        <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="896"/>
-        <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="897"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Digunakan dalam lisensi &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="164"/>
-        <location filename="../src/window.cpp" line="952"/>
+        <location filename="../src/window.cpp" line="950"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Karakter: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="162"/>
-        <location filename="../src/window.cpp" line="953"/>
+        <location filename="../src/window.cpp" line="951"/>
         <source>Pages: %L1</source>
         <translation>Halaman: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="163"/>
-        <location filename="../src/window.cpp" line="954"/>
+        <location filename="../src/window.cpp" line="952"/>
         <source>Paragraphs: %L1</source>
         <translation>Paragraf: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="161"/>
-        <location filename="../src/window.cpp" line="955"/>
+        <location filename="../src/window.cpp" line="953"/>
         <source>Words: %L1</source>
         <translation>Kata: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="165"/>
-        <location filename="../src/window.cpp" line="1017"/>
+        <location filename="../src/window.cpp" line="1015"/>
         <source>%1% of daily goal</source>
         <translation>%1% dari target harian</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="447"/>
-        <location filename="../src/window.cpp" line="1057"/>
+        <location filename="../src/window.cpp" line="1055"/>
         <source>Opening %1</source>
         <translation>Membuka %1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1148"/>
+        <location filename="../src/window.cpp" line="1146"/>
         <source>Question</source>
         <translation>Pertanyaan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1148"/>
+        <location filename="../src/window.cpp" line="1146"/>
         <source>Save changes?</source>
         <translation>Simpan perubahan?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="353"/>
-        <location filename="../src/window.cpp" line="1262"/>
+        <location filename="../src/window.cpp" line="1260"/>
         <source>(Untitled %1)</source>
         <translation>(Tanpa Judul %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="191"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Beralih Ke Dokumen Berikutnya</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="197"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Beralih Ke Dokumen Sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="203"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Beralih Ke Dokumen Pertama</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="209"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Beralih Ke Dokumen Terakhir</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="217"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Beralih Ke Dokumen %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="284"/>
@@ -1535,7 +1535,7 @@
     </message>
     <message>
         <location filename="../src/window.cpp" line="359"/>
-        <location filename="../src/window.cpp" line="1071"/>
+        <location filename="../src/window.cpp" line="1069"/>
         <source>Warning</source>
         <translation>Peringatan</translation>
     </message>
@@ -1550,474 +1550,474 @@
         <translation>Kembalikan dari penyimpanan darurat?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="496"/>
+        <location filename="../src/window.cpp" line="494"/>
         <source>Some files could not be opened.</source>
         <translation>Beberapa file tak bisa dibuka.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="499"/>
+        <location filename="../src/window.cpp" line="497"/>
         <source>Some files were opened Read-Only.</source>
         <translation>Beberapa file dibuka secara Read-Only (tak bisa diedit).</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="698"/>
+        <location filename="../src/window.cpp" line="696"/>
         <source>Text Files (%1);;All Files (*)</source>
         <translation>File Teks (%1);;Semua File (*)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1072"/>
+        <location filename="../src/window.cpp" line="1070"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; lebih mutakhir daripada kopian yang tersimpan.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1073"/>
+        <location filename="../src/window.cpp" line="1071"/>
         <source>Overwrite newer file?</source>
         <translation>Timpa file yang lebih baru?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1173"/>
+        <location filename="../src/window.cpp" line="1171"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>Gagal memuat suara mesin ketik.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1174"/>
+        <location filename="../src/window.cpp" line="1172"/>
         <source>Please make sure that SDL_mixer is installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pastikan SDL_mixer dipasang di komputer Anda.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1265"/>
+        <location filename="../src/window.cpp" line="1263"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Read-Only)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1312"/>
+        <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1313"/>
+        <location filename="../src/window.cpp" line="1311"/>
         <source>&amp;New</source>
         <translation>&amp;Baru</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1314"/>
+        <location filename="../src/window.cpp" line="1312"/>
         <source>&amp;Open...</source>
         <translation>&amp;Buka...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1315"/>
+        <location filename="../src/window.cpp" line="1313"/>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Muat Ulang</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1317"/>
+        <location filename="../src/window.cpp" line="1315"/>
         <source>&amp;Save</source>
         <translation>&amp;Simpan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1319"/>
+        <location filename="../src/window.cpp" line="1317"/>
         <source>Save &amp;As...</source>
         <translation>Simpan &amp;sebagai...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1320"/>
+        <location filename="../src/window.cpp" line="1318"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Ubah Nama...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1322"/>
+        <location filename="../src/window.cpp" line="1320"/>
         <source>Save A&amp;ll</source>
         <translation>Simpan S&amp;emua</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1325"/>
+        <location filename="../src/window.cpp" line="1323"/>
         <source>Manage Sessions</source>
         <translation>Kelola Sesi</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1327"/>
+        <location filename="../src/window.cpp" line="1325"/>
         <source>New Session</source>
         <translation>Sesi Baru</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1330"/>
+        <location filename="../src/window.cpp" line="1328"/>
         <source>&amp;Print...</source>
         <translation>&amp;Cetak...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1332"/>
+        <location filename="../src/window.cpp" line="1330"/>
         <source>&amp;Close</source>
         <translation>&amp;Tutup</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1333"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>&amp;Quit</source>
         <translation>&amp;Keluar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1333"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1335"/>
         <source>&amp;Edit</source>
         <translation>&amp;Edit</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1338"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>&amp;Undo</source>
         <translation>&amp;Undo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1339"/>
         <source>&amp;Redo</source>
         <translation>&amp;Redo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1345"/>
+        <location filename="../src/window.cpp" line="1343"/>
         <source>Cu&amp;t</source>
         <translation>Po%tong</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1348"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>&amp;Copy</source>
         <translation>&amp;Salin</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1351"/>
+        <location filename="../src/window.cpp" line="1349"/>
         <source>&amp;Paste</source>
         <translation>&amp;Tempelkan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1352"/>
+        <location filename="../src/window.cpp" line="1350"/>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Paste &amp;Tanpa Format</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1350"/>
+        <source>Ctrl+Shift+V</source>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
-        <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1354"/>
         <source>Select &amp;All</source>
         <translation>Pilih &amp;Semua</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1355"/>
+        <location filename="../src/window.cpp" line="1353"/>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Pilih &amp;Suasana</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1355"/>
+        <location filename="../src/window.cpp" line="1353"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1358"/>
+        <location filename="../src/window.cpp" line="1356"/>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1360"/>
+        <location filename="../src/window.cpp" line="1358"/>
         <source>&amp;Bold</source>
         <translation>&amp;Tebal</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1362"/>
+        <location filename="../src/window.cpp" line="1360"/>
         <source>&amp;Italic</source>
         <translation>&amp;Miring</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1364"/>
+        <location filename="../src/window.cpp" line="1362"/>
         <source>&amp;Underline</source>
         <translation>&amp;Garisbawah</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1366"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>Stri&amp;kethrough</source>
         <translation>Gar&amp;iscoret</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1366"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1368"/>
+        <location filename="../src/window.cpp" line="1366"/>
         <source>Sup&amp;erscript</source>
         <translation>Sup&amp;erscript</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1368"/>
+        <location filename="../src/window.cpp" line="1366"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1370"/>
+        <location filename="../src/window.cpp" line="1368"/>
         <source>&amp;Subscript</source>
         <translation>&amp;Subscript</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1370"/>
+        <location filename="../src/window.cpp" line="1368"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1374"/>
+        <location filename="../src/window.cpp" line="1372"/>
         <source>Align &amp;Left</source>
         <translation>Rata &amp;Kiri</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1374"/>
+        <location filename="../src/window.cpp" line="1372"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1376"/>
+        <location filename="../src/window.cpp" line="1374"/>
         <source>Align &amp;Center</source>
         <translation>Rata &amp;Tengah</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1376"/>
+        <location filename="../src/window.cpp" line="1374"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1378"/>
+        <location filename="../src/window.cpp" line="1376"/>
         <source>Align &amp;Right</source>
         <translation>Rata &amp;Kanan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1378"/>
+        <location filename="../src/window.cpp" line="1376"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1380"/>
+        <location filename="../src/window.cpp" line="1378"/>
         <source>Align &amp;Justify</source>
         <translation>Rata &amp;Sisi</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1380"/>
+        <location filename="../src/window.cpp" line="1378"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1390"/>
+        <location filename="../src/window.cpp" line="1388"/>
         <source>&amp;Decrease Indent</source>
         <translation>%Kurangi Indentasi</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1390"/>
+        <location filename="../src/window.cpp" line="1388"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1391"/>
+        <location filename="../src/window.cpp" line="1389"/>
         <source>I&amp;ncrease Indent</source>
         <translation>T&amp;ambahkan Indentasi</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1391"/>
+        <location filename="../src/window.cpp" line="1389"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1394"/>
+        <location filename="../src/window.cpp" line="1392"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>Bl&amp;ok Kiri ke Kanan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1396"/>
+        <location filename="../src/window.cpp" line="1394"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Bl&amp;ok Kanan ke Kiri</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1404"/>
+        <location filename="../src/window.cpp" line="1402"/>
         <source>&amp;Tools</source>
         <translation>&amp;Peralatan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1405"/>
+        <location filename="../src/window.cpp" line="1403"/>
         <source>&amp;Find...</source>
         <translation>&amp;Temukan...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1406"/>
+        <location filename="../src/window.cpp" line="1404"/>
         <source>Find &amp;Next</source>
         <translation>Temukan &amp;berikutnya</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1409"/>
+        <location filename="../src/window.cpp" line="1407"/>
         <source>Find Pre&amp;vious</source>
         <translation>Temukan Seb&amp;elumnya</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1412"/>
+        <location filename="../src/window.cpp" line="1410"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Gantikan...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1412"/>
+        <location filename="../src/window.cpp" line="1410"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1414"/>
+        <location filename="../src/window.cpp" line="1412"/>
         <source>Smart &amp;Quotes</source>
         <translation>Kutipan &amp;Cerdas</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1415"/>
+        <location filename="../src/window.cpp" line="1413"/>
         <source>Update &amp;Document</source>
         <translation>Perbarui &amp;Dokumen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1418"/>
+        <location filename="../src/window.cpp" line="1416"/>
         <source>Update &amp;Selection</source>
         <translation>Perbarui &amp;Seleksi</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1422"/>
+        <location filename="../src/window.cpp" line="1420"/>
         <source>&amp;Spelling...</source>
         <translation>%Ejaan...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1422"/>
+        <location filename="../src/window.cpp" line="1420"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1423"/>
+        <location filename="../src/window.cpp" line="1421"/>
         <source>&amp;Timers...</source>
         <translation>&amp;Pengatur Waktu...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1422"/>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;imbol...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1427"/>
+        <location filename="../src/window.cpp" line="1425"/>
         <source>&amp;Settings</source>
         <translation>&amp;Pengaturan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1428"/>
+        <location filename="../src/window.cpp" line="1426"/>
         <source>Show &amp;Toolbar</source>
         <translation>Tampilkan &amp;Bilah Alat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1433"/>
+        <location filename="../src/window.cpp" line="1431"/>
         <source>Show &amp;Menu Icons</source>
         <translation>Tampilkan &amp;Ikon Menu</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1439"/>
+        <location filename="../src/window.cpp" line="1437"/>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Teks Yang Difokus</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1441"/>
+        <location filename="../src/window.cpp" line="1439"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Layar Penuh</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1441"/>
+        <location filename="../src/window.cpp" line="1439"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1443"/>
+        <location filename="../src/window.cpp" line="1441"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1447"/>
+        <location filename="../src/window.cpp" line="1445"/>
         <source>M&amp;inimize</source>
         <translation>M&amp;inimize</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1447"/>
+        <location filename="../src/window.cpp" line="1445"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1449"/>
+        <location filename="../src/window.cpp" line="1447"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Tema...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1452"/>
+        <location filename="../src/window.cpp" line="1450"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Preferensi...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1458"/>
+        <location filename="../src/window.cpp" line="1456"/>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokus Mati</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1458"/>
+        <source>Focus One Line</source>
+        <translation>Fokus Satu Baris</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1460"/>
-        <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <source>Focus Three Lines</source>
+        <translation>Fokus Tiga Baris</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1461"/>
+        <source>&amp;Paragraph</source>
+        <translation>&amp;Paragraf</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1462"/>
-        <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1463"/>
-        <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1464"/>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokus Paragraf</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1477"/>
+        <location filename="../src/window.cpp" line="1475"/>
         <source>&amp;Help</source>
         <translation>&amp;Bantuan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1451"/>
+        <location filename="../src/window.cpp" line="1449"/>
         <source>Application &amp;Language...</source>
         <translation>Bahasa &amp;Aplikasi...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="429"/>
+        <location filename="../src/window.cpp" line="427"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beberapa file tak didukung dan tak bisa dibuka.</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1455"/>
+        <source>&amp;Off</source>
+        <translation>&amp;Mati</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1457"/>
-        <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
+        <source>One &amp;Line</source>
+        <translation>Satu &amp;Baris</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1459"/>
-        <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1461"/>
         <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tiga Baris</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1478"/>
+        <location filename="../src/window.cpp" line="1476"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tentang</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1486"/>
+        <location filename="../src/window.cpp" line="1484"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Tentang &amp;Qt</translation>
     </message>
 </context>
 </TS>
