@@ -1,43 +1,59 @@
-lessThan(QT_VERSION, 4.6) {
-	error("FocusWriter requires Qt 4.6 or greater")
+greaterThan(QT_MAJOR_VERSION, 4) {
+	lessThan(QT_VERSION, 5.2) {
+		error("FocusWriter requires Qt 5.2 or greater")
+	}
+} else {
+	lessThan(QT_VERSION, 4.6) {
+		error("FocusWriter requires Qt 4.6 or greater")
+	}
 }
 
 TEMPLATE = app
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
 	QT += widgets printsupport multimedia
+	macx {
+		QT += macextras
+	}
 }
 CONFIG += warn_on
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
 
+# Allow in-tree builds
+!win32 {
+	MOC_DIR = build
+	OBJECTS_DIR = build
+	RCC_DIR = build
+}
+
+# Set program version
 VERSION = $$system(git rev-parse --short HEAD)
 isEmpty(VERSION) {
 	VERSION = 0
 }
 DEFINES += VERSIONSTR=\\\"git.$${VERSION}\\\"
 
+# Set program name
 unix: !macx {
 	TARGET = focuswriter
 } else {
 	TARGET = FocusWriter
 }
 
+# Add dependencies
 macx {
 	LIBS += -lz -framework AppKit
 	USE_BUNDLED_LIBZIP = 1
 
-	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h
+	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h \
+		src/fileformats/clipboard_mac.h
 
 	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm
 
-	SOURCES += src/sound.cpp
-
-	lessThan(QT_MAJOR_VERSION, 5) {
-		HEADERS += src/fileformats/clipboard_mac.h
-		SOURCES += src/fileformats/clipboard_mac.cpp
-	}
+	SOURCES += src/fileformats/clipboard_mac.cpp \
+		src/sound.cpp
 } else:win32 {
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
@@ -57,7 +73,7 @@ macx {
 		HEADERS += src/fileformats/clipboard_windows.h
 		SOURCES += src/fileformats/clipboard_windows.cpp
 	}
-} else {
+} else:unix {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += zlib
 	isEmpty(USE_BUNDLED_HUNSPELL) {
@@ -97,6 +113,7 @@ macx {
 
 INCLUDEPATH += src src/fileformats src/qtsingleapplication src/spelling
 
+# Specify program sources
 HEADERS += src/action_manager.h \
 	src/alert.h \
 	src/alert_layer.h \
@@ -222,17 +239,15 @@ SOURCES += src/action_manager.cpp \
 	src/spelling/highlighter.cpp \
 	src/spelling/spell_checker.cpp
 
+# Allow for updating translations
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
 
+# Install program data
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
-macx {
-	ICON = resources/mac/focuswriter.icns
-}
-win32 {
-	RC_FILE = resources/windows/icon.rc
-}
 
 macx {
+	ICON = resources/mac/focuswriter.icns
+
 	ICONS.files = resources/images/icons/oxygen/hicolor
 	ICONS.path = Contents/Resources/icons
 
@@ -247,9 +262,9 @@ macx {
 	SYMBOLS.path = Contents/Resources
 
 	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
-}
-
-unix: !macx {
+} else:win32 {
+	RC_FILE = resources/windows/icon.rc
+} else:unix {
 	isEmpty(PREFIX) {
 		PREFIX = /usr/local
 	}
