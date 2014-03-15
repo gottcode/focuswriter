@@ -307,7 +307,7 @@ void FindDialog::find(bool backwards)
 	if (!m_ignore_case->isChecked()) {
 		flags |= QTextDocument::FindCaseSensitively;
 	}
-	if (m_whole_words->isChecked()) {
+	if (m_whole_words->isChecked() && !m_regular_expressions->isChecked()) {
 		flags |= QTextDocument::FindWholeWords;
 	}
 	if (backwards) {
