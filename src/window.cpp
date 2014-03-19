@@ -1080,12 +1080,13 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 
 void Window::closeDocument(int index, bool allow_empty)
 {
-	if (!allow_empty && (m_documents->count() == 1)) {
-		newDocument();
-	}
 	m_document_cache->remove(m_documents->document(index));
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
+
+	if (!allow_empty && !m_documents->count()) {
+		newDocument();
+	}
 }
 
 //-----------------------------------------------------------------------------

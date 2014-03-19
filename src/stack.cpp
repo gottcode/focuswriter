@@ -268,7 +268,7 @@ void Stack::removeDocument(int index)
 	updateMenuIndexes();
 
 	emit documentRemoved(document);
-	document->deleteLater();
+	document->close();
 }
 
 //-----------------------------------------------------------------------------

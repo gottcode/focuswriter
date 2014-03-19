@@ -460,6 +460,14 @@ void Document::reload(bool prompt)
 
 //-----------------------------------------------------------------------------
 
+void Document::close()
+{
+	clearIndex();
+	deleteLater();
+}
+
+//-----------------------------------------------------------------------------
+
 void Document::checkSpelling()
 {
 	SpellChecker::checkDocument(m_text, m_dictionary);
