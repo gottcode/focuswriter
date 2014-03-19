@@ -735,11 +735,11 @@ void Window::closeDocument()
 		return;
 	}
 
-	if (m_documents->count() == 1) {
-		newDocument();
-	}
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
+	if (m_documents->count() == 0) {
+		newDocument();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -757,11 +757,11 @@ void Window::closeDocument(Document* document)
 		return;
 	}
 
-	if (m_documents->count() == 1) {
-		newDocument();
-	}
 	m_documents->removeDocument(index);
 	m_tabs->removeTab(index);
+	if (m_documents->count() == 0) {
+		newDocument();
+	}
 }
 
 //-----------------------------------------------------------------------------
