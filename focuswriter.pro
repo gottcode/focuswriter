@@ -1,20 +1,11 @@
-greaterThan(QT_MAJOR_VERSION, 4) {
-	lessThan(QT_VERSION, 5.2) {
-		error("FocusWriter requires Qt 5.2 or greater")
-	}
-} else {
-	lessThan(QT_VERSION, 4.6) {
-		error("FocusWriter requires Qt 4.6 or greater")
-	}
+lessThan(QT_VERSION, 4.6) {
+	error("FocusWriter requires Qt 4.6 or greater")
 }
 
 TEMPLATE = app
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
 	QT += widgets printsupport multimedia
-	macx {
-		QT += macextras
-	}
 }
 CONFIG += warn_on
 macx {
@@ -44,16 +35,20 @@ unix: !macx {
 
 # Add dependencies
 macx {
+	greaterThan(QT_VERSION, 5.2) {
+		QT += macextras
+		HEADERS += src/fileformats/clipboard_mac.h
+		SOURCES += src/fileformats/clipboard_mac.cpp
+	}
+
 	LIBS += -lz -framework AppKit
 	USE_BUNDLED_LIBZIP = 1
 
-	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h \
-		src/fileformats/clipboard_mac.h
+	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h
 
 	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm
 
-	SOURCES += src/fileformats/clipboard_mac.cpp \
-		src/sound.cpp
+	SOURCES += src/sound.cpp
 } else:win32 {
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
