@@ -247,7 +247,7 @@ void Stack::removeDocument(int index)
 	Document* document = m_documents.takeAt(index);
 	m_contents->removeWidget(document);
 	emit documentRemoved(document);
-	document->deleteLater();
+	document->close();
 	updateMapping();
 }
 

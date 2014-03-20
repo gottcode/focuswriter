@@ -65,6 +65,7 @@ public:
 	bool saveAs();
 	bool rename();
 	void reload(bool prompt = true);
+	void close();
 	void checkSpelling();
 	void print();
 	bool loadFile(const QString& filename, int position);
