@@ -1,6 +1,16 @@
+focuswriter (1.4.4+git.5.56edf89-1) unstable; urgency=medium
+
+  * Track upstream maintenance branch
+    - e47f5f2 Sync translations with Transifex.
+    - 70ddae7 FIXED: Paragraphs not always focused properly when merged.
+    - 47cd508 FIXED: Regexp searches did not ignore whole words option.
+    - 56edf89 FIXED: Closing last empty document increased untitled count.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 20 Mar 2014 14:03:57 +0000
+
 focuswriter (1.4.4+git.4.0c3b3c1-1) unstable; urgency=low
 
-  * Track upstream mainenance branch
+  * Track upstream maintenance branch
     - 0c3b3c1 FIXED: Selected session was incorrect when switching sessions
       was canceled.
     - a51290e Prevent opening unsupported multimedia files.
