@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,8 +68,8 @@ public:
 	void setPageParagraphs(int paragraphs);
 	void setPageWords(int words);
 
-	bool accurateWordcount() const;
-	void setAccurateWordcount(bool accurate);
+	RangedInt wordcountType() const;
+	void setWordcountType(int type);
 
 	bool alwaysCenter() const;
 	bool blockCursor() const;
@@ -136,7 +136,7 @@ private:
 	RangedInt m_page_paragraphs;
 	RangedInt m_page_words;
 
-	bool m_accurate_wordcount;
+	RangedInt m_wordcount_type;
 
 	bool m_always_center;
 	bool m_block_cursor;

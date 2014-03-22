@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -191,7 +191,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_cached_current_block(-1),
 	m_page_type(0),
 	m_page_amount(0),
-	m_accurate_wordcount(true),
+	m_wordcount_type(0),
 	m_daily_progress(daily_progress)
 {
 	setMouseTracking(true);
@@ -711,7 +711,7 @@ void Document::loadPreferences()
 		break;
 	}
 
-	m_accurate_wordcount = Preferences::instance().accurateWordcount();
+	m_wordcount_type = Preferences::instance().wordcountType();
 	if (m_cached_block_count != -1) {
 		calculateWordCount();
 	}
@@ -991,9 +991,7 @@ void Document::selectionChanged()
 			temp.update(string);
 			m_selected_stats.append(&temp);
 		}
-		if (!m_accurate_wordcount) {
-			m_selected_stats.calculateEstimatedWordCount();
-		}
+		m_selected_stats.calculateWordCount(m_wordcount_type);
 		m_selected_stats.calculatePageCount(m_page_type, m_page_amount);
 		m_stats = &m_selected_stats;
 	} else {
@@ -1113,9 +1111,7 @@ void Document::calculateWordCount()
 	if (data) {
 		m_document_stats.append(static_cast<BlockStats*>(data));
 	}
-	if (!m_accurate_wordcount) {
-		m_document_stats.calculateEstimatedWordCount();
-	}
+	m_document_stats.calculateWordCount(m_wordcount_type);
 	m_document_stats.calculatePageCount(m_page_type, m_page_amount);
 }
 

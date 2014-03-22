@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,10 +164,16 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_page_paragraphs->setValue(Preferences::instance().pageParagraphs());
 	m_page_words->setValue(Preferences::instance().pageWords());
 
-	if (Preferences::instance().accurateWordcount()) {
-		m_option_accurate_wordcount->setChecked(true);
-	} else {
+	switch (Preferences::instance().wordcountType()) {
+	case 1:
 		m_option_estimate_wordcount->setChecked(true);
+		break;
+	case 2:
+		m_option_singlechar_wordcount->setChecked(true);
+		break;
+	default:
+		m_option_accurate_wordcount->setChecked(true);
+		break;
 	}
 
 	m_always_center->setChecked(Preferences::instance().alwaysCenter());
@@ -285,7 +291,13 @@ void PreferencesDialog::accept()
 	Preferences::instance().setPageParagraphs(m_page_paragraphs->value());
 	Preferences::instance().setPageWords(m_page_words->value());
 
-	Preferences::instance().setAccurateWordcount(m_option_accurate_wordcount->isChecked());
+	if (m_option_accurate_wordcount->isChecked()) {
+		Preferences::instance().setWordcountType(0);
+	} else if (m_option_estimate_wordcount->isChecked()) {
+		Preferences::instance().setWordcountType(1);
+	} else {
+		Preferences::instance().setWordcountType(2);
+	}
 
 	Preferences::instance().setAlwaysCenter(m_always_center->isChecked());
 	Preferences::instance().setBlockCursor(m_block_cursor->isChecked());
@@ -873,10 +885,12 @@ QWidget* PreferencesDialog::initStatisticsTab()
 
 	m_option_accurate_wordcount = new QRadioButton(tr("Detect word boundaries"), wordcount_group);
 	m_option_estimate_wordcount = new QRadioButton(tr("Divide character count by six"), wordcount_group);
+	m_option_singlechar_wordcount = new QRadioButton(tr("Count each letter as a word"), wordcount_group);
 
 	QVBoxLayout* wordcount_layout = new QVBoxLayout(wordcount_group);
 	wordcount_layout->addWidget(m_option_accurate_wordcount);
 	wordcount_layout->addWidget(m_option_estimate_wordcount);
+	wordcount_layout->addWidget(m_option_singlechar_wordcount);
 
 	// Create page count algorithm options
 	QGroupBox* page_group = new QGroupBox(tr("Page Count Algorithm"), tab);

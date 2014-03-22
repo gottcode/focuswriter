@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ Preferences::Preferences() :
 	m_page_characters(500, 10000),
 	m_page_paragraphs(1, 100),
 	m_page_words(100, 2000),
+	m_wordcount_type(0, 2),
 	m_save_format(FormatManager::types())
 {
 	forgetChanges();
@@ -249,16 +250,16 @@ void Preferences::setPageWords(int words)
 
 //-----------------------------------------------------------------------------
 
-bool Preferences::accurateWordcount() const
+RangedInt Preferences::wordcountType() const
 {
-	return m_accurate_wordcount;
+	return m_wordcount_type;
 }
 
 //-----------------------------------------------------------------------------
 
-void Preferences::setAccurateWordcount(bool accurate)
+void Preferences::setWordcountType(int type)
 {
-	setValue(m_accurate_wordcount, accurate);
+	setValue(m_wordcount_type, type);
 }
 
 //-----------------------------------------------------------------------------
@@ -537,7 +538,16 @@ void Preferences::reload()
 	m_page_paragraphs = settings.value("Stats/ParagraphsPerPage", 5).toInt();
 	m_page_words = settings.value("Stats/WordsPerPage", 250).toInt();
 
-	m_accurate_wordcount = settings.value("Stats/AccurateWordcount", true).toBool();
+	int old_wordcount_type = !settings.value("Stats/AccurateWordcount", true).toBool();
+	QLocale::Language language = QLocale().language();
+	if (language == QLocale::Chinese ||
+			language == QLocale::Khmer ||
+			language == QLocale::Japanese ||
+			language == QLocale::Lao ||
+			language == QLocale::Thai) {
+		old_wordcount_type = 2;
+	}
+	m_wordcount_type = settings.value("Stats/WordcountType", old_wordcount_type).toInt();
 
 	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
 	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
@@ -596,7 +606,7 @@ void Preferences::write()
 	settings.setValue("Stats/ParagraphsPerPage", m_page_paragraphs.value());
 	settings.setValue("Stats/WordsPerPage", m_page_words.value());
 
-	settings.setValue("Stats/AccurateWordcount", m_accurate_wordcount);
+	settings.setValue("Stats/WordcountType", m_wordcount_type.value());
 
 	settings.setValue("Edit/AlwaysCenter", m_always_center);
 	settings.setValue("Edit/BlockCursor", m_block_cursor);
