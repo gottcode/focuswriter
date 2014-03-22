@@ -233,7 +233,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	// Set filename
 	if (!filename.isEmpty()) {
 		m_rich_text = FormatManager::isRichText(filename);
-		m_filename = QFileInfo(filename).canonicalFilePath();
+		m_filename = QFileInfo(filename).absoluteFilePath();
 		updateState();
 	}
 
@@ -1172,7 +1172,7 @@ QString Document::getSaveFileName(const QString& title)
 	QString filename;
 	while (filename.isEmpty()) {
 		QString selected;
-		filename = QFileDialog::getSaveFileName(window(), title, path, filter, &selected);
+		filename = QFileDialog::getSaveFileName(window(), title, path, filter, &selected, QFileDialog::DontResolveSymlinks);
 		if (filename.isEmpty()) {
 			break;
 		}
@@ -1235,9 +1235,8 @@ bool Document::processFileName(const QString& filename)
 
 void Document::updateSaveLocation()
 {
-	QString path = QFileInfo(m_filename).canonicalPath();
+	QString path = QFileInfo(m_filename).absolutePath();
 	QSettings().setValue("Save/Location", path);
-	QDir::setCurrent(path);
 	updateState();
 	updateSaveName();
 }

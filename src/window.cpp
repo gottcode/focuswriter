@@ -672,7 +672,7 @@ void Window::openDocument()
 #endif
 	QString path = settings.value("Save/Location", default_path).toString();
 
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"), 0, QFileDialog::DontResolveSymlinks);
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
 		settings.setValue("Save/Location", QFileInfo(filenames.last()).absolutePath());
@@ -993,7 +993,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 		// Check if already open
 		QString canonical_filename = info.canonicalFilePath();
 		for (int i = 0; i < m_documents->count(); ++i) {
-			if (m_documents->document(i)->filename() == canonical_filename) {
+			if (QFileInfo(m_documents->document(i)->filename()).canonicalFilePath() == canonical_filename) {
 				m_tabs->setCurrentIndex(i);
 				return true;
 			}
