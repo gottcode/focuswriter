@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -414,7 +414,7 @@ void Stack::decreaseIndent()
 	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
-	format.setIndent(qMax(0, format.indent() - 48));
+	format.setIndent(qMax(0, format.indent() - 1));
 	cursor.setBlockFormat(format);
 	emit updateFormatActions();
 }
@@ -447,7 +447,7 @@ void Stack::increaseIndent()
 	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
-	format.setIndent(format.indent() + 48);
+	format.setIndent(format.indent() + 1);
 	cursor.setBlockFormat(format);
 	emit updateFormatActions();
 }

@@ -628,11 +628,12 @@ void Document::loadTheme(const Theme& theme)
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update spacings
+	int tab_width = theme.tabWidth();
 	m_block_format = QTextBlockFormat();
 #if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	m_block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
 #endif
-	m_block_format.setTextIndent(48 * theme.indentFirstLine());
+	m_block_format.setTextIndent(tab_width * theme.indentFirstLine());
 	m_block_format.setTopMargin(theme.spacingAboveParagraph());
 	m_block_format.setBottomMargin(theme.spacingBelowParagraph());
 	if (m_spacings_loaded) {
@@ -649,7 +650,6 @@ void Document::loadTheme(const Theme& theme)
 		m_text->document()->setModified(false);
 		m_spacings_loaded = true;
 	}
-	int tab_width = theme.tabWidth();
 	m_text->setTabStopWidth(tab_width);
 	m_text->document()->setIndentWidth(tab_width);
 
