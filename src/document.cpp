@@ -54,6 +54,11 @@
 #include <QPushButton>
 #include <QScrollBar>
 #include <QSettings>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QStandardPaths>
+#else
+#include <QDesktopServices>
+#endif
 #include <QStyle>
 #include <QTextBlock>
 #include <QTextEdit>
@@ -1152,11 +1157,22 @@ QString Document::getSaveFileName(const QString& title)
 	}
 	QString filter = FormatManager::filters(type).join(";;");
 
+	// Determine location
+	QString path = m_filename;
+	if (m_filename.isEmpty()) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#else
+		QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#endif
+		path = QSettings().value("Save/Location", default_path).toString() + "/" + tr("Untitled %1").arg(m_index);
+	}
+
 	// Prompt for filename
 	QString filename;
 	while (filename.isEmpty()) {
 		QString selected;
-		filename = QFileDialog::getSaveFileName(window(), title, m_filename, filter, &selected);
+		filename = QFileDialog::getSaveFileName(window(), title, path, filter, &selected);
 		if (filename.isEmpty()) {
 			break;
 		}

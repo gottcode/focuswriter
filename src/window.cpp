@@ -664,22 +664,18 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
+	QSettings settings;
 #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-	static QString oldpath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+	QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 #else
-	static QString oldpath = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+	QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
 #endif
-	QString path = m_documents->currentDocument()->filename();
-	if (!path.isEmpty()) {
-		path = QFileInfo(path).dir().path();
-	} else {
-		path = oldpath;
-	}
+	QString path = settings.value("Save/Location", default_path).toString();
 
 	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
-		oldpath = QFileInfo(filenames.last()).dir().path();
+		settings.setValue("Save/Location", QFileInfo(filenames.last()).absolutePath());
 	}
 }
 
