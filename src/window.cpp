@@ -1127,6 +1127,7 @@ bool Window::saveDocument(int index)
 		return document->save();
 	case QMessageBox::Discard:
 		document->setModified(false);
+		m_daily_progress->increaseWordCount(-document->wordCountDelta());
 		return true;
 	case QMessageBox::Cancel:
 	default:

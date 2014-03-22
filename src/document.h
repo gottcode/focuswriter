@@ -58,6 +58,7 @@ public:
 	int pageCount() const;
 	int paragraphCount() const;
 	int wordCount() const;
+	int wordCountDelta() const;
 	SceneModel* sceneModel() const;
 	QTextEdit* text() const;
 
@@ -157,6 +158,7 @@ private:
 	Stats m_cached_stats;
 	int m_cached_block_count;
 	int m_cached_current_block;
+	int m_saved_wordcount;
 
 	int m_page_type;
 	float m_page_amount;
@@ -196,6 +198,10 @@ inline int Document::paragraphCount() const {
 
 inline int Document::wordCount() const {
 	return m_stats->wordCount();
+}
+
+inline int Document::wordCountDelta() const {
+	return m_document_stats.wordCount() - m_saved_wordcount;
 }
 
 inline SceneModel* Document::sceneModel() const {
