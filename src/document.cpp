@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -204,6 +204,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_scene_list(0),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
+	m_saved_wordcount(0),
 	m_page_type(0),
 	m_page_amount(0),
 	m_accurate_wordcount(true),
@@ -348,6 +349,8 @@ bool Document::save()
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to save '%1'.").arg(QDir::toNativeSeparators(m_filename)));
 		return false;
 	}
+
+	m_saved_wordcount = m_document_stats.wordCount();
 
 	m_text->document()->setModified(false);
 	return true;
@@ -596,6 +599,7 @@ bool Document::loadFile(const QString& filename, int position)
 	// Update details
 	m_cached_stats.clear();
 	calculateWordCount();
+	m_saved_wordcount = m_document_stats.wordCount();
 	if (enabled) {
 		m_highlighter->setEnabled(true);
 	}
