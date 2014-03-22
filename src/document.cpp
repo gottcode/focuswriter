@@ -580,6 +580,7 @@ bool Document::loadFile(const QString& filename, int position)
 
 		if (!loaded) {
 			emit alert(new Alert(Alert::Warning, error, QStringList(filename), false));
+			findIndex();
 		}
 	}
 	document->setUndoRedoEnabled(true);
