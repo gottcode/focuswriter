@@ -1115,7 +1115,14 @@ bool Window::saveDocument(int index)
 	}
 
 	// Prompt about saving changes
-	switch (QMessageBox::question(this, tr("Question"), tr("Save changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel)) {
+	QMessageBox mbox(window());
+	mbox.setWindowTitle(tr("Save document?"));
+	mbox.setText(tr("Save changes to document '%1' before closing?").arg(document->title()));
+	mbox.setInformativeText(tr("Your changes will be lost if you don't save them."));
+	mbox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+	mbox.setDefaultButton(QMessageBox::Save);
+	mbox.setIcon(QMessageBox::Warning);
+	switch (mbox.exec()) {
 	case QMessageBox::Save:
 		return document->save();
 	case QMessageBox::Discard:
