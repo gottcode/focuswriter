@@ -365,6 +365,9 @@ bool Document::saveAs()
 	if (filename.isEmpty()) {
 		return false;
 	}
+	if (m_filename == filename) {
+		return save();
+	}
 
 	// Save file as new name
 	if (QFile::exists(filename) && (DocumentWatcher::instance()->isWatching(filename) || !QFile::remove(filename))) {
