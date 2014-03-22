@@ -454,6 +454,8 @@ void Document::reload(bool prompt)
 	m_text->setReadOnly(true);
 	disconnect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	disconnect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	m_current_wordcount -= wordCountDelta();
+	emit changed();
 	loadFile(m_filename, -1);
 	emit loadFinished();
 }
