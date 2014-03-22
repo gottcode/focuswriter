@@ -541,9 +541,11 @@ void Preferences::reload()
 	int old_wordcount_type = !settings.value("Stats/AccurateWordcount", true).toBool();
 	QLocale::Language language = QLocale().language();
 	if (language == QLocale::Chinese ||
-			language == QLocale::Khmer ||
 			language == QLocale::Japanese ||
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+			language == QLocale::Khmer ||
 			language == QLocale::Lao ||
+#endif
 			language == QLocale::Thai) {
 		old_wordcount_type = 2;
 	}
