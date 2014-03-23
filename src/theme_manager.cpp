@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #include "theme_manager.h"
 
 #include "gzip.h"
+#include "session.h"
 #include "theme.h"
 #include "theme_dialog.h"
 
@@ -184,6 +185,13 @@ void ThemeManager::removeTheme()
 		QFile::remove(Theme::iconPath(item->text()));
 		delete item;
 		item = 0;
+
+		// Create default theme if all themes are removed
+		if (m_themes->count() == 0) {
+			Theme theme;
+			theme.setName(Session::tr("Default"));
+			addItem(theme.name());
+		}
 	}
 }
 
