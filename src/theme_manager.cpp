@@ -20,6 +20,7 @@
 #include "theme_manager.h"
 
 #include "gzip.h"
+#include "session.h"
 #include "theme.h"
 #include "theme_dialog.h"
 
@@ -184,6 +185,13 @@ void ThemeManager::removeTheme()
 		QFile::remove(Theme::iconPath(item->text()));
 		delete item;
 		item = 0;
+
+		// Create default theme if all themes are removed
+		if (m_themes->count() == 0) {
+			Theme theme;
+			theme.setName(Session::tr("Default"));
+			addItem(theme.name());
+		}
 	}
 }
 
