@@ -78,9 +78,9 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	edit_button->setAutoDefault(false);
 	connect(edit_button, SIGNAL(clicked()), this, SLOT(modifyTheme()));
 
-	QPushButton* remove_button = new QPushButton(tr("Remove"), this);
-	remove_button->setAutoDefault(false);
-	connect(remove_button, SIGNAL(clicked()), this, SLOT(removeTheme()));
+	m_remove_button = new QPushButton(tr("Remove"), this);
+	m_remove_button->setAutoDefault(false);
+	connect(m_remove_button, SIGNAL(clicked()), this, SLOT(removeTheme()));
 
 	QPushButton* import_button = new QPushButton(tr("Import"), this);
 	import_button->setAutoDefault(false);
@@ -99,7 +99,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	buttons_layout->setMargin(0);
 	buttons_layout->addWidget(add_button);
 	buttons_layout->addWidget(edit_button);
-	buttons_layout->addWidget(remove_button);
+	buttons_layout->addWidget(m_remove_button);
 	buttons_layout->addSpacing(import_button->sizeHint().height());
 	buttons_layout->addWidget(import_button);
 	buttons_layout->addWidget(export_button);
@@ -141,6 +141,7 @@ void ThemeManager::addTheme()
 		name = theme.name();
 	}
 	addItem(name);
+	m_remove_button->setEnabled(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -191,6 +192,7 @@ void ThemeManager::removeTheme()
 			Theme theme;
 			theme.setName(Session::tr("Default"));
 			addItem(theme.name());
+			m_remove_button->setDisabled(true);
 		}
 	}
 }
