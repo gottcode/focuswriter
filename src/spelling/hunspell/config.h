@@ -1,8 +1,6 @@
 #ifndef HUNSPELL_CONFIG_H
 #define HUNSPELL_CONFIG_H
 
-#include "../config.h"
-
 /* Definitions shared between Linux, Mac OS X, and Windows. */
 #define HAVE_ALLOCA 1
 #define HAVE_BUILTIN_EXPECT 1
@@ -11,23 +9,36 @@
 #define HAVE_GETCWD 1
 #define HAVE_GETPAGESIZE 1
 #define HAVE_INTMAX_T 1
+#define HAVE_INTTYPES_H 1
 #define HAVE_INTTYPES_H_WITH_UINTMAX 1
 #define HAVE_LIMITS_H 1
 #define HAVE_LOCALE_H 1
 #define HAVE_LONG_LONG_INT 1
 #define HAVE_MEMCHR 1
+#define HAVE_MEMORY_H 1
 #define HAVE_PTHREAD_MUTEX_RECURSIVE 1
 #define HAVE_PTHREAD_RWLOCK 1
 #define HAVE_PUTENV 1
 #define HAVE_SETLOCALE 1
+#define STDC_HEADERS 1
+#define HAVE_SNPRINTF 1
 #define HAVE_STDDEF_H 1
+#define HAVE_STDINT_H 1
 #define HAVE_STDINT_H_WITH_UINTMAX 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRCASECMP 1
 #define HAVE_STRCHR 1
+#define HAVE_STRDUP 1
 #define HAVE_STRSTR 1
+#define HAVE_STRING_H 1
+#define HAVE_STRINGS_H 1
 #define HAVE_STRTOUL 1
 #define HAVE_SYS_PARAM_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_TYPES_H 1
 #define HAVE_TSEARCH 1
 #define HAVE_UINTMAX_T 1
+#define HAVE_UNISTD_H 1
 #define HAVE_UNSIGNED_LONG_LONG_INT 1
 #define HAVE_VISIBILITY 1
 #define HAVE_WCHAR_T 1

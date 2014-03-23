@@ -52,13 +52,24 @@ macx {
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
 	}
-	USE_BUNDLED_HUNSPELL = 1
+
+	INCLUDEPATH += src/spelling/hunspell
 
 	HEADERS += src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
 
 	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
 		src/spelling/dictionary_provider_voikko.cpp \
+		src/spelling/hunspell/affentry.cxx \
+		src/spelling/hunspell/affixmgr.cxx \
+		src/spelling/hunspell/csutil.cxx \
+		src/spelling/hunspell/filemgr.cxx \
+		src/spelling/hunspell/hashmgr.cxx \
+		src/spelling/hunspell/hunspell.cxx \
+		src/spelling/hunspell/hunzip.cxx \
+		src/spelling/hunspell/phonet.cxx \
+		src/spelling/hunspell/replist.cxx \
+		src/spelling/hunspell/suggestmgr.cxx \
 		src/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
@@ -68,14 +79,7 @@ macx {
 	}
 } else:unix {
 	CONFIG += link_pkgconfig
-	PKGCONFIG += zlib
-	isEmpty(USE_BUNDLED_HUNSPELL) {
-		system(pkg-config --atleast-version=1.2 hunspell) {
-			PKGCONFIG += hunspell
-		} else {
-			USE_BUNDLED_HUNSPELL = 1
-		}
-	}
+	PKGCONFIG += hunspell zlib
 
 	HEADERS += src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
@@ -88,10 +92,6 @@ macx {
 	} else {
 		SOURCES += src/sound.cpp
 	}
-}
-
-!isEmpty(USE_BUNDLED_HUNSPELL) {
-	include(src/3rdparty/hunspell.pri)
 }
 
 INCLUDEPATH += src src/fileformats src/qtsingleapplication src/qtzip src/spelling
