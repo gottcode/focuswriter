@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,6 +47,7 @@ Highlighter::Highlighter(QTextEdit* text, DictionaryRef& dictionary)
 	m_spell_timer->setSingleShot(true);
 	connect(m_spell_timer, SIGNAL(timeout()), this, SLOT(updateSpelling()));
 
+	m_text->installEventFilter(this);
 	m_text->viewport()->installEventFilter(this);
 	m_add_action = new QAction(tr("Add"), this);
 	m_check_action = new QAction(tr("Check Spelling..."), this);
@@ -82,7 +83,7 @@ void Highlighter::setMisspelledColor(const QColor& color)
 
 bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 {
-	if (watched != m_text->viewport() || event->type() != QEvent::ContextMenu || !m_enabled || m_text->isReadOnly()) {
+	if (event->type() != QEvent::ContextMenu || !m_enabled || m_text->isReadOnly()) {
 		return QSyntaxHighlighter::eventFilter(watched, event);
 	} else {
 		// Check spelling of text block under mouse
@@ -111,7 +112,9 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 			m_cursor.setPosition(word.position() + block.position());
 			m_cursor.setPosition(m_cursor.position() + word.length(), QTextCursor::KeepAnchor);
 			m_word = m_cursor.selectedText();
+			m_text->blockSignals(true);
 			m_text->setTextCursor(m_cursor);
+			m_text->blockSignals(false);
 
 			// List suggestions in context menu
 			QMenu* menu = new QMenu;
