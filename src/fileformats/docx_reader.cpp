@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,9 @@
 
 #include "docx_reader.h"
 
-#include "zip_reader.h"
-
 #include <QTextDocument>
 #include <QXmlStreamAttributes>
+#include <QtZipReader>
 
 //-----------------------------------------------------------------------------
 
@@ -62,7 +61,7 @@ DocxReader::DocxReader() :
 
 bool DocxReader::canRead(QIODevice* device)
 {
-	return ZipReader::canRead(device);
+	return QtZipReader::canRead(device);
 }
 
 //-----------------------------------------------------------------------------
@@ -73,7 +72,7 @@ void DocxReader::readData(QIODevice* device)
 	m_current_style.block_format = m_cursor.blockFormat();
 
 	// Open archive
-	ZipReader zip(device);
+	QtZipReader zip(device);
 
 	// Read archive
 	if (zip.isReadable()) {

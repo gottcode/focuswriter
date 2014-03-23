@@ -27,7 +27,6 @@
 #include "preferences.h"
 #include "shortcut_edit.h"
 #include "smart_quotes.h"
-#include "zip_reader.h"
 
 #include <QAction>
 #include <QCheckBox>
@@ -50,6 +49,7 @@
 #include <QTabWidget>
 #include <QTreeWidget>
 #include <QVBoxLayout>
+#include <QtZipReader>
 
 //-----------------------------------------------------------------------------
 
@@ -462,7 +462,7 @@ void PreferencesDialog::addLanguage()
 	QStringList dictionaries;
 
 	// Open archive
-	ZipReader zip(path);
+	QtZipReader zip(path);
 	if (!zip.isReadable()) {
 		QMessageBox::warning(this, tr("Sorry"), tr("Unable to open archive."));
 		return;

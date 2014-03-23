@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,12 @@
 
 #include "docx_writer.h"
 
-#include "zip_writer.h"
-
 #include <QBuffer>
 #include <QTextBlock>
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
 #include <QTextDocument>
+#include <QtZipWriter>
 
 //-----------------------------------------------------------------------------
 
@@ -45,46 +44,41 @@ void DocxWriter::setStrict(bool strict)
 
 bool DocxWriter::write(const QString& filename, QTextDocument* document)
 {
-	ZipWriter zip(filename);
-
-	if (!zip.addFile(QString::fromLatin1("_rels/.rels"),
-			"<?xml version=\"1.0\"?>"
-			"<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">"
-			"<Relationship Target=\"word/document.xml\" Id=\"pkgRId0\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\"/>"
-			"</Relationships>")) {
+	QtZipWriter zip(filename);
+	if (zip.status() != QtZipWriter::NoError) {
 		return false;
 	}
 
-	if (!zip.addFile(QString::fromLatin1("word/_rels/document.xml.rels"),
-			"<?xml version=\"1.0\"?>"
-			"<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">"
-			"<Relationship Target=\"styles.xml\" Id=\"docRId0\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\"/>"
-			"</Relationships>")) {
-		return false;
-	}
+	zip.addFile(QString::fromLatin1("_rels/.rels"),
+		"<?xml version=\"1.0\"?>"
+		"<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">"
+		"<Relationship Target=\"word/document.xml\" Id=\"pkgRId0\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\"/>"
+		"</Relationships>");
 
-	if (!zip.addFile(QString::fromLatin1("word/document.xml"),
-			writeDocument(document))) {
-		return false;
-	}
+	zip.addFile(QString::fromLatin1("word/_rels/document.xml.rels"),
+		"<?xml version=\"1.0\"?>"
+		"<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">"
+		"<Relationship Target=\"styles.xml\" Id=\"docRId0\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\"/>"
+		"</Relationships>");
 
-	if (!zip.addFile(QString::fromLatin1("word/styles.xml"),
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
-			"<w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"/>")) {
-		return false;
-	}
+	zip.addFile(QString::fromLatin1("word/document.xml"),
+		writeDocument(document));
 
-	if (!zip.addFile(QString::fromLatin1("[Content_Types].xml"),
-			"<?xml version=\"1.0\"?>"
-			"<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">"
-			"<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>"
-			"<Default Extension=\"xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml\"/>"
-			"<Override PartName=\"/word/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml\"/>"
-			"</Types>")) {
-		return false;
-	}
+	zip.addFile(QString::fromLatin1("word/styles.xml"),
+		"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
+		"<w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"/>");
 
-	return zip.close();
+	zip.addFile(QString::fromLatin1("[Content_Types].xml"),
+		"<?xml version=\"1.0\"?>"
+		"<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">"
+		"<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>"
+		"<Default Extension=\"xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml\"/>"
+		"<Override PartName=\"/word/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml\"/>"
+		"</Types>");
+
+	zip.close();
+
+	return zip.status() == QtZipWriter::NoError;
 }
 
 //-----------------------------------------------------------------------------

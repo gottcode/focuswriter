@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +19,13 @@
 
 #include "odt_writer.h"
 
-#include "zip_writer.h"
-
 #include <QBuffer>
 #include <QTextBlock>
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
 #include <QTextDocument>
 #include <QTextFragment>
+#include <QtZipWriter>
 
 //-----------------------------------------------------------------------------
 
@@ -38,36 +37,34 @@ OdtWriter::OdtWriter()
 
 bool OdtWriter::write(const QString& filename, QTextDocument* document)
 {
-	ZipWriter zip(filename);
-
-	if (!zip.addFile(QString::fromLatin1("mimetype"),
-			"application/vnd.oasis.opendocument.text",
-			false)) {
+	QtZipWriter zip(filename);
+	if (zip.status() != QtZipWriter::NoError) {
 		return false;
 	}
 
-	if (!zip.addFile(QString::fromLatin1("META-INF/manifest.xml"),
-			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-			"<manifest:manifest xmlns:manifest=\"urn:oasis:names:tc:opendocument:xmlns:manifest:1.0\" manifest:version=\"1.2\">\n"
-			" <manifest:file-entry manifest:full-path=\"/\" manifest:version=\"1.2\" manifest:media-type=\"application/vnd.oasis.opendocument.text\"/>\n"
-			" <manifest:file-entry manifest:full-path=\"content.xml\" manifest:media-type=\"text/xml\"/>\n"
-			" <manifest:file-entry manifest:full-path=\"styles.xml\" manifest:media-type=\"text/xml\"/>\n"
-			"</manifest:manifest>\n")) {
-		return false;
-	}
+	zip.setCompressionPolicy(QtZipWriter::NeverCompress);
+	zip.addFile(QString::fromLatin1("mimetype"),
+		"application/vnd.oasis.opendocument.text");
+	zip.setCompressionPolicy(QtZipWriter::AlwaysCompress);
 
-	if (!zip.addFile(QString::fromLatin1("content.xml"),
-			writeDocument(document))) {
-		return false;
-	}
+	zip.addFile(QString::fromLatin1("META-INF/manifest.xml"),
+		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+		"<manifest:manifest xmlns:manifest=\"urn:oasis:names:tc:opendocument:xmlns:manifest:1.0\" manifest:version=\"1.2\">\n"
+		" <manifest:file-entry manifest:full-path=\"/\" manifest:version=\"1.2\" manifest:media-type=\"application/vnd.oasis.opendocument.text\"/>\n"
+		" <manifest:file-entry manifest:full-path=\"content.xml\" manifest:media-type=\"text/xml\"/>\n"
+		" <manifest:file-entry manifest:full-path=\"styles.xml\" manifest:media-type=\"text/xml\"/>\n"
+		"</manifest:manifest>\n");
 
-	if (!zip.addFile(QString::fromLatin1("styles.xml"),
-			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-			"<office:document-styles xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" office:version=\"1.2\"/>\n")) {
-		return false;
-	}
+	zip.addFile(QString::fromLatin1("content.xml"),
+		writeDocument(document));
 
-	return zip.close();
+	zip.addFile(QString::fromLatin1("styles.xml"),
+		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+		"<office:document-styles xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" office:version=\"1.2\"/>\n");
+
+	zip.close();
+
+	return zip.status() == QtZipWriter::NoError;
 }
 
 //-----------------------------------------------------------------------------

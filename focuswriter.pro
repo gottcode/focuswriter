@@ -42,7 +42,6 @@ macx {
 	}
 
 	LIBS += -lz -framework AppKit
-	USE_BUNDLED_LIBZIP = 1
 
 	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h
 
@@ -54,7 +53,6 @@ macx {
 		LIBS += -lz
 	}
 	USE_BUNDLED_HUNSPELL = 1
-	USE_BUNDLED_LIBZIP = 1
 
 	HEADERS += src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
@@ -78,13 +76,6 @@ macx {
 			USE_BUNDLED_HUNSPELL = 1
 		}
 	}
-	isEmpty(USE_BUNDLED_LIBZIP) {
-		system(pkg-config --atleast-version=0.11 libzip) {
-			PKGCONFIG += libzip
-		} else {
-			USE_BUNDLED_LIBZIP = 1
-		}
-	}
 
 	HEADERS += src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
@@ -102,11 +93,8 @@ macx {
 !isEmpty(USE_BUNDLED_HUNSPELL) {
 	include(src/3rdparty/hunspell.pri)
 }
-!isEmpty(USE_BUNDLED_LIBZIP) {
-	include(src/3rdparty/libzip.pri)
-}
 
-INCLUDEPATH += src src/fileformats src/qtsingleapplication src/spelling
+INCLUDEPATH += src src/fileformats src/qtsingleapplication src/qtzip src/spelling
 
 # Specify program sources
 HEADERS += src/action_manager.h \
@@ -153,8 +141,6 @@ HEADERS += src/action_manager.h \
 	src/timer_display.h \
 	src/timer_manager.h \
 	src/window.h \
-	src/zip_reader.h \
-	src/zip_writer.h \
 	src/fileformats/docx_reader.h \
 	src/fileformats/docx_writer.h \
 	src/fileformats/format_manager.h \
@@ -167,6 +153,8 @@ HEADERS += src/action_manager.h \
 	src/fileformats/txt_reader.h \
 	src/qtsingleapplication/qtsingleapplication.h \
 	src/qtsingleapplication/qtlocalpeer.h \
+	src/qtzip/qtzipreader.h \
+	src/qtzip/qtzipwriter.h \
 	src/spelling/abstract_dictionary.h \
 	src/spelling/abstract_dictionary_provider.h \
 	src/spelling/dictionary_dialog.h \
@@ -216,8 +204,6 @@ SOURCES += src/action_manager.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
 	src/window.cpp \
-	src/zip_reader.cpp \
-	src/zip_writer.cpp \
 	src/fileformats/docx_reader.cpp \
 	src/fileformats/docx_writer.cpp \
 	src/fileformats/format_manager.cpp \
@@ -229,6 +215,7 @@ SOURCES += src/action_manager.cpp \
 	src/fileformats/txt_reader.cpp \
 	src/qtsingleapplication/qtsingleapplication.cpp \
 	src/qtsingleapplication/qtlocalpeer.cpp \
+	src/qtzip/qtzip.cpp \
 	src/spelling/dictionary_dialog.cpp \
 	src/spelling/dictionary_manager.cpp \
 	src/spelling/highlighter.cpp \

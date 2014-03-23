@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,8 @@
 
 #include "odt_reader.h"
 
-#include "zip_reader.h"
-
 #include <QTextDocument>
+#include <QtZipReader>
 
 //-----------------------------------------------------------------------------
 
@@ -35,7 +34,7 @@ OdtReader::OdtReader() :
 
 bool OdtReader::canRead(QIODevice* device)
 {
-	return ZipReader::canRead(device) &&
+	return QtZipReader::canRead(device) &&
 			(device->peek(77).right(47) == "mimetypeapplication/vnd.oasis.opendocument.text");
 }
 
@@ -47,7 +46,7 @@ void OdtReader::readData(QIODevice* device)
 	m_block_format = m_cursor.blockFormat();
 
 	// Open archive
-	ZipReader zip(device);
+	QtZipReader zip(device);
 
 	// Read archive
 	if (zip.isReadable()) {
