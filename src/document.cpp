@@ -444,8 +444,8 @@ void Document::reload(bool prompt)
 	if (prompt) {
 		QMessageBox mbox(window());
 		mbox.setIcon(QMessageBox::Question);
-		mbox.setWindowTitle(tr("Reload File"));
-		mbox.setText(tr("Reload the file %1 from disk?").arg("<i>" + QFileInfo(m_filename).fileName() + "</i>"));
+		mbox.setWindowTitle(tr("Reload File?"));
+		mbox.setText(tr("Reload the file '%1' from disk?").arg(QFileInfo(m_filename).fileName()));
 		mbox.setInformativeText(tr("All unsaved changes will be lost."));
 
 		QPushButton* reload_button = mbox.addButton(tr("Reload"), QMessageBox::AcceptRole);

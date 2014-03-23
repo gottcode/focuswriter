@@ -164,7 +164,7 @@ void DocumentWatcher::processUpdates()
 	while (!m_updates.isEmpty()) {
 		QString path = m_updates.takeFirst();
 		QFileInfo info(path);
-		QString filename = "<i>" + info.fileName() + "</i>";
+		QString filename = info.fileName();
 
 		// Show document
 		Document* document = m_paths.value(path);
@@ -187,7 +187,7 @@ void DocumentWatcher::processUpdates()
 			QMessageBox mbox(document->window());
 			mbox.setIcon(QMessageBox::Warning);
 			mbox.setWindowTitle(tr("File Changed"));
-			mbox.setText(tr("The file %1 was changed by another program.").arg(filename));
+			mbox.setText(tr("The file '%1' was changed by another program.").arg(filename));
 			mbox.setInformativeText(tr("Do you want to reload the file?"));
 
 			QPushButton* reload_button = mbox.addButton(tr("Reload"), QMessageBox::AcceptRole);
