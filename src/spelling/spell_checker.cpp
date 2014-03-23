@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,8 @@ void SpellChecker::checkDocument(QTextEdit* document, DictionaryRef& dictionary)
 	SpellChecker* checker = new SpellChecker(document, dictionary);
 	checker->m_start_cursor = document->textCursor();
 	checker->m_cursor = checker->m_start_cursor;
-	checker->m_cursor.movePosition(QTextCursor::Start);
+	checker->m_cursor.movePosition(QTextCursor::StartOfBlock);
+	checker->m_loop_available = checker->m_start_cursor.block().previous().isValid();
 	checker->show();
 	checker->check();
 }
@@ -125,7 +126,10 @@ void SpellChecker::changeAll()
 SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
 	QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
 	m_dictionary(dictionary),
-	m_document(document)
+	m_document(document),
+	m_checked_blocks(1),
+	m_total_blocks(document->document()->blockCount()),
+	m_loop_available(true)
 {
 	setWindowTitle(tr("Check Spelling"));
 	setWindowModality(Qt::WindowModal);
@@ -187,17 +191,19 @@ SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
 void SpellChecker::check()
 {
 	setDisabled(true);
-	QProgressDialog wait_dialog(tr("Checking spelling..."), tr("Cancel"), 0, m_document->document()->characterCount(), this);
+
+	QProgressDialog wait_dialog(tr("Checking spelling..."), tr("Cancel"), 0, m_total_blocks, this);
 	wait_dialog.setWindowTitle(tr("Please wait"));
 	wait_dialog.setValue(0);
 	wait_dialog.setWindowModality(Qt::WindowModal);
+	bool canceled = false;
 
 	forever {
 		// Update wait dialog
-		wait_dialog.setValue(m_cursor.position());
+		wait_dialog.setValue(m_checked_blocks);
 		if (wait_dialog.wasCanceled()) {
-			m_document->setTextCursor(m_start_cursor);
-			reject();
+			canceled = true;
+			break;
 		}
 
 		// Check current line
@@ -206,7 +212,24 @@ void SpellChecker::check()
 		if (word.isNull()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);
-				continue;
+				++m_checked_blocks;
+				if (m_checked_blocks < m_total_blocks) {
+					continue;
+				} else {
+					break;
+				}
+			} else if (m_loop_available) {
+				wait_dialog.reset();
+				if (QMessageBox::question(this, QString(), tr("Continue checking at beginning of file?"),
+						QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+					m_loop_available = false;
+					m_cursor.movePosition(QTextCursor::Start);
+					wait_dialog.setRange(0, m_total_blocks);
+					continue;
+				} else {
+					canceled = true;
+					break;
+				}
 			} else {
 				break;
 			}
@@ -255,7 +278,9 @@ void SpellChecker::check()
 
 	// Inform user of completed spell check
 	wait_dialog.close();
-	QMessageBox::information(this, QString(), tr("Spell check complete."));
+	if (!canceled) {
+		QMessageBox::information(this, QString(), tr("Spell check complete."));
+	}
 	reject();
 }
 

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,6 +61,10 @@ private:
 	QListWidget* m_suggestions;
 	QTextCursor m_cursor;
 	QTextCursor m_start_cursor;
+
+	int m_checked_blocks;
+	int m_total_blocks;
+	bool m_loop_available;
 
 	QString m_word;
 	QStringList m_ignored;
