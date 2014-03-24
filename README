@@ -1,3 +1,22 @@
+About
+=====
+
+FocusWriter is a simple, distraction-free word processor. It utilizes a
+hide-away interface that you access by moving your mouse to the edges of
+the screen, allowing the program to have a familiar look and feel to it
+while still getting out of the way so that you can immerse yourself in
+your work.
+
+FocusWriter allows you to customize your environment by creating themes
+that control the font, colors, and background image to add ambiance. It
+also features on-the-fly updating statistics, daily goals, multiple open
+documents, spell-checking, and much more.
+
+Additionally, when you open the program your current work in progress will
+automatically load and position you where you last left off so that you
+can immediately jump back in.
+
+
 Portable Mode
 =============
 
@@ -13,7 +32,7 @@ newly created "Data" folder. The "Themes" folder is located in one of the
 following places:
 
   Linux:
-    ~/.local/share/focuswriter
+    ~/.local/share/GottCode/FocusWriter
 
   Mac OS X:
     ~/Library/Application Support/GottCode/FocusWriter
