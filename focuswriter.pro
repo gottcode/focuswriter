@@ -239,6 +239,9 @@ unix: !macx {
 	appdata.files = resources/unix/focuswriter.appdata.xml
 	appdata.path = $$DATADIR/appdata/
 
+	man.files = resources/unix/focuswriter.1
+	man.path = $$PREFIX/share/man/man1
+
 	qm.files = translations/*.qm
 	qm.path = $$DATADIR/focuswriter/translations
 
@@ -252,5 +255,5 @@ unix: !macx {
 	}
 	symbols.path = $$DATADIR/focuswriter
 
-	INSTALLS += target icon pixmap desktop appdata icons qm sounds symbols
+	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols
 }
