@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <id type="desktop">focuswriter.desktop</id>
+  <licence>CC0</licence>
+  <summary>Fullscreen word processor</summary>
+  <description>
+    <p>FocusWriter is a simple, distraction-free word processor. It utilizes a hide-away interface that you access by moving your mouse to the edges of the screen, allowing the program to have a familiar look and feel to it while still getting out of the way so that you can immerse yourself in your work.</p>
+    <p>FocusWriter allows you to customize your environment by creating themes that control the font, colors, and background image to add ambiance. It also features on-the-fly updating statistics, daily goals, multiple open documents, spell-checking, and much more.</p>
+    <p>Additionally, when you open the program your current work in progress will automatically load and position you where you last left off so that you can immediately jump back in.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default" width="1280" height="720">http://gottcode.org/focuswriter/screenshots/appdata.jpg</screenshot>
+  </screenshots>
+  <url type="homepage">http://gottcode.org/focuswriter/</url>
+</application>
