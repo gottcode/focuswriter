@@ -1,3 +1,27 @@
+focuswriter (1.4.4+git.6.7dd2047-1) unstable; urgency=medium
+
+  * Track upstream maintenance branch 
+    - 470afbf FIXED: Second instance would not open relative paths.
+    - 3080967 FIXED: Symbols dialog had help titlebar icon.
+    - 9bda9c0 FIXED: Locale dialog always prompted users of System Language to
+			restart.
+    - f1adc3a FIXED: Discarding a modified file did not reduce daily goal
+			progress.
+    - 4e7a15c FIXED: Unable to overwrite current document.
+    - 7d72227 FIXED: Reloading a modified file did not reduce daily goal
+			progress.
+    - d163e86 FIXED: Created a new tab for corrupted documents.
+    - bff55ac FIXED: Did not recreate default theme until program restart.
+    - 7d95657 FIXED: Could delete all themes.
+    - ce3e44e FIXED: Context menu key did not show spelling menu.
+    - c59bf51 FIXED: Interpreted images in RTF files as text.
+    - 56cfb56 Add support for more RTF mimetypes.
+    - 6b149bc Require Qt 5.2 on the Mac for clipboard handling.
+    - 7dd2047 FIXED: Regular expression replaces did not ignore whole words
+			option.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 24 Mar 2014 19:10:18 +0000
+
 focuswriter (1.4.4+git.5.56edf89-1) unstable; urgency=medium
 
   * Track upstream maintenance branch
