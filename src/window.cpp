@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -439,7 +439,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	int current_index = -1;
 	if (m_documents->count()) {
 		current_index = m_documents->currentIndex();
-		Document* document = m_documents->count() ? m_documents->currentDocument() : 0;
+		Document* document = m_documents->currentDocument();
 		if (document->untitledIndex() && !document->text()->document()->isModified()) {
 			untitled_index = m_documents->currentIndex();
 		}
@@ -447,6 +447,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 
 	// Read files
 	QStringList missing;
+	QStringList errors;
 	QStringList readonly;
 	int open_files = m_documents->count();
 	for (int i = 0; i < files.count(); ++i) {
@@ -461,7 +462,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
 			// Track if unable to read file
 			int index = m_documents->currentIndex();
-			missing.append(QDir::toNativeSeparators(files.at(i)));
+			errors.append(QDir::toNativeSeparators(files.at(i)));
 			m_documents->removeDocument(index);
 			m_tabs->removeTab(index);
 		} else if (m_documents->currentDocument()->isReadOnly() && (m_documents->count() > open_files)) {
@@ -483,8 +484,8 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		} else if (m_documents->currentIndex() == current_index) {
 			m_tabs->setCurrentIndex(m_tabs->count() - 1);
 		}
-	} else {
-		// Replace current tab if it is untitled and unmodified
+	// Replace current tab if it is untitled and unmodified
+	} else if (files.count() > (missing.count() + errors.count())) {
 		m_tabs->setCurrentIndex(untitled_index);
 		closeDocument();
 	}
@@ -1148,6 +1149,7 @@ bool Window::saveDocument(int index)
 		return document->save();
 	case QMessageBox::Discard:
 		document->text()->document()->setModified(false);
+		m_current_wordcount -= document->wordCountDelta();
 		return true;
 	case QMessageBox::Cancel:
 	default:

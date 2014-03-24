@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #include "theme_manager.h"
 
 #include "gzip.h"
+#include "session.h"
 #include "theme.h"
 #include "theme_dialog.h"
 
@@ -77,9 +78,9 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	edit_button->setAutoDefault(false);
 	connect(edit_button, SIGNAL(clicked()), this, SLOT(modifyTheme()));
 
-	QPushButton* remove_button = new QPushButton(tr("Remove"), this);
-	remove_button->setAutoDefault(false);
-	connect(remove_button, SIGNAL(clicked()), this, SLOT(removeTheme()));
+	m_remove_button = new QPushButton(tr("Remove"), this);
+	m_remove_button->setAutoDefault(false);
+	connect(m_remove_button, SIGNAL(clicked()), this, SLOT(removeTheme()));
 
 	QPushButton* import_button = new QPushButton(tr("Import"), this);
 	import_button->setAutoDefault(false);
@@ -98,7 +99,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	buttons_layout->setMargin(0);
 	buttons_layout->addWidget(add_button);
 	buttons_layout->addWidget(edit_button);
-	buttons_layout->addWidget(remove_button);
+	buttons_layout->addWidget(m_remove_button);
 	buttons_layout->addSpacing(import_button->sizeHint().height());
 	buttons_layout->addWidget(import_button);
 	buttons_layout->addWidget(export_button);
@@ -140,6 +141,7 @@ void ThemeManager::addTheme()
 		name = theme.name();
 	}
 	addItem(name);
+	m_remove_button->setEnabled(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -184,6 +186,14 @@ void ThemeManager::removeTheme()
 		QFile::remove(Theme::iconPath(item->text()));
 		delete item;
 		item = 0;
+
+		// Create default theme if all themes are removed
+		if (m_themes->count() == 0) {
+			Theme theme;
+			theme.setName(Session::tr("Default"));
+			addItem(theme.name());
+			m_remove_button->setDisabled(true);
+		}
 	}
 }
 

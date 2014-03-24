@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -111,7 +111,10 @@ namespace
 	QMimeData* TextEdit::createMimeDataFromSelection() const
 	{
 		QMimeData* mime = QTextEdit::createMimeDataFromSelection();
-		mime->setData(QLatin1String("text/rtf"), mimeToRtf(mime));
+		QByteArray rtf = mimeToRtf(mime);
+		mime->setData(QLatin1String("text/rtf"), rtf);
+		mime->setData(QLatin1String("text/richtext"), rtf);
+		mime->setData(QLatin1String("application/rtf"), rtf);
 		return mime;
 	}
 
@@ -125,6 +128,12 @@ namespace
 			QByteArray richtext;
 			if (source->hasFormat(QLatin1String("text/rtf"))) {
 				richtext = source->data(QLatin1String("text/rtf"));
+			} else if (source->hasFormat(QLatin1String("text/richtext"))) {
+				richtext = source->data(QLatin1String("text/richtext"));
+			} else if (source->hasFormat(QLatin1String("application/rtf"))) {
+				richtext = source->data(QLatin1String("application/rtf"));
+			} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
+				richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
 			} else if (source->hasHtml()) {
 				richtext = mimeToRtf(source);
 			} else {
@@ -204,6 +213,7 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_scene_list(0),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
+	m_saved_wordcount(0),
 	m_page_type(0),
 	m_page_amount(0),
 	m_accurate_wordcount(true),
@@ -349,6 +359,8 @@ bool Document::save()
 		return false;
 	}
 
+	m_saved_wordcount = m_document_stats.wordCount();
+
 	m_text->document()->setModified(false);
 	return true;
 }
@@ -361,6 +373,9 @@ bool Document::saveAs()
 	QString filename = getSaveFileName(tr("Save File As"));
 	if (filename.isEmpty()) {
 		return false;
+	}
+	if (m_filename == filename) {
+		return save();
 	}
 
 	// Save file as new name
@@ -448,6 +463,8 @@ void Document::reload(bool prompt)
 	m_text->setReadOnly(true);
 	disconnect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	disconnect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	m_current_wordcount -= wordCountDelta();
+	emit changed();
 	loadFile(m_filename, -1);
 	emit loadFinished();
 }
@@ -572,6 +589,7 @@ bool Document::loadFile(const QString& filename, int position)
 
 		if (!loaded) {
 			emit alert(new Alert(Alert::Warning, error, QStringList(filename), false));
+			findIndex();
 		}
 	}
 	document->setUndoRedoEnabled(true);
@@ -596,6 +614,7 @@ bool Document::loadFile(const QString& filename, int position)
 	// Update details
 	m_cached_stats.clear();
 	calculateWordCount();
+	m_saved_wordcount = m_document_stats.wordCount();
 	if (enabled) {
 		m_highlighter->setEnabled(true);
 	}

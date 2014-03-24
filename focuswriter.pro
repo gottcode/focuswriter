@@ -1,11 +1,17 @@
 lessThan(QT_VERSION, 4.6) {
 	error("FocusWriter requires Qt 4.6 or greater")
 }
+macx:greaterThan(QT_MAJOR_VERSION, 4):lessThan(QT_VERSION, 5.2) {
+	error("FocusWriter requires Qt 5.2 or greater")
+}
 
 TEMPLATE = app
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
-	QT += widgets printsupport
+	QT += widgets printsupport multimedia
+	macx {
+		QT += macextras
+	}
 }
 CONFIG += warn_on
 macx {
@@ -26,25 +32,25 @@ unix: !macx {
 }
 
 macx {
+	DEFINES += RTFCLIPBOARD
+
 	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
 
 	HEADERS += src/nsspellchecker/dictionary.h \
 		src/nsspellchecker/dictionary_data.h \
-		src/nsspellchecker/dictionary_manager.h
+		src/nsspellchecker/dictionary_manager.h \
+		src/rtf/clipboard_mac.h
 
 	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary.mm \
 		src/nsspellchecker/dictionary_data.mm \
 		src/nsspellchecker/dictionary_manager.mm \
 		src/nssound/sound.mm
 
-	lessThan(QT_MAJOR_VERSION, 5) {
-		HEADERS += src/rtf/clipboard_mac.h
-		SOURCES += src/rtf/clipboard_mac.cpp
-	}
+	SOURCES += src/rtf/clipboard_mac.cpp
 } else:win32 {
 	INCLUDEPATH += enchant libzip src/enchant
-	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll -lOle32
+	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
 	}
@@ -59,6 +65,8 @@ macx {
 		src/qsound/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
+		DEFINES += RTFCLIPBOARD
+		LIBS += -lOle32
 		HEADERS += src/rtf/clipboard_windows.h
 		SOURCES += src/rtf/clipboard_windows.cpp
 	}
