@@ -111,7 +111,10 @@ namespace
 	QMimeData* TextEdit::createMimeDataFromSelection() const
 	{
 		QMimeData* mime = QTextEdit::createMimeDataFromSelection();
-		mime->setData(QLatin1String("text/rtf"), mimeToRtf(mime));
+		QByteArray rtf = mimeToRtf(mime);
+		mime->setData(QLatin1String("text/rtf"), rtf);
+		mime->setData(QLatin1String("text/richtext"), rtf);
+		mime->setData(QLatin1String("application/rtf"), rtf);
 		return mime;
 	}
 
@@ -125,6 +128,12 @@ namespace
 			QByteArray richtext;
 			if (source->hasFormat(QLatin1String("text/rtf"))) {
 				richtext = source->data(QLatin1String("text/rtf"));
+			} else if (source->hasFormat(QLatin1String("text/richtext"))) {
+				richtext = source->data(QLatin1String("text/richtext"));
+			} else if (source->hasFormat(QLatin1String("application/rtf"))) {
+				richtext = source->data(QLatin1String("application/rtf"));
+			} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
+				richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
 			} else if (source->hasHtml()) {
 				richtext = mimeToRtf(source);
 			} else {
