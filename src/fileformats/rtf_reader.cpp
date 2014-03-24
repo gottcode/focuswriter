@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * Derived in part from KWord's rtfimport.cpp
  *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
@@ -162,6 +162,7 @@ RtfReader::RtfReader() :
 		functions["fonttbl"] = RtfFunction(&RtfReader::ignoreText);
 		functions["stylesheet"] = RtfFunction(&RtfReader::ignoreGroup);
 		functions["info"] = RtfFunction(&RtfReader::ignoreGroup);
+		functions["pict"] = RtfFunction(&RtfReader::ignoreGroup);
 		functions["*"] = RtfFunction(&RtfReader::ignoreGroup);
 	}
 
