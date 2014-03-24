@@ -27,6 +27,7 @@
 #include "document_writer.h"
 #include "format_manager.h"
 #include "highlighter.h"
+#include "odt_reader.h"
 #include "preferences.h"
 #include "rtf_reader.h"
 #include "rtf_writer.h"
@@ -100,7 +101,10 @@ namespace
 	QMimeData* TextEdit::createMimeDataFromSelection() const
 	{
 		QMimeData* mime = QTextEdit::createMimeDataFromSelection();
-		mime->setData(QLatin1String("text/rtf"), mimeToRtf(mime));
+		QByteArray rtf = mimeToRtf(mime);
+		mime->setData(QLatin1String("text/rtf"), rtf);
+		mime->setData(QLatin1String("text/richtext"), rtf);
+		mime->setData(QLatin1String("application/rtf"), rtf);
 		return mime;
 	}
 
@@ -114,6 +118,18 @@ namespace
 			QByteArray richtext;
 			if (source->hasFormat(QLatin1String("text/rtf"))) {
 				richtext = source->data(QLatin1String("text/rtf"));
+			} else if (source->hasFormat(QLatin1String("text/richtext"))) {
+				richtext = source->data(QLatin1String("text/richtext"));
+			} else if (source->hasFormat(QLatin1String("application/rtf"))) {
+				richtext = source->data(QLatin1String("application/rtf"));
+			} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
+				richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
+			} else if (source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))) {
+				QBuffer buffer;
+				buffer.setData(source->data(QLatin1String("application/vnd.oasis.opendocument.text")));
+				buffer.open(QIODevice::ReadOnly);
+				OdtReader reader;
+				reader.read(&buffer, textCursor());
 			} else if (source->hasHtml()) {
 				richtext = mimeToRtf(source);
 			} else {
