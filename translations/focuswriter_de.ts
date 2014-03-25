@@ -37,39 +37,39 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% von %Ln Minute(n)</numerusform>
+            <numerusform>%1% von %Ln Minute(n)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% von %Ln Wörtern</numerusform>
+            <numerusform>%1% von %Ln Wörtern</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln Wörter</numerusform>
+            <numerusform>%Ln Wörter</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln Minute(n)</numerusform>
+            <numerusform>%Ln Minute(n)</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="511"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="146"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Täglicher Fortschritt</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
@@ -92,20 +92,20 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="298"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/A</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Tag(e)</numerusform>
+            <numerusform>%n Tag(e)</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -114,7 +114,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% des Tagesziels</translation>
     </message>
 </context>
 <context>
@@ -130,12 +130,12 @@
     <message>
         <location filename="../src/document.cpp" line="303"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Unbenannt %1)</translation>
+        <translation>(Unbenannt %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="306"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Schreibgeschützt)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="370"/>
@@ -174,12 +174,12 @@
     <message>
         <location filename="../src/document.cpp" line="463"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei neu laden?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="464"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei &apos;%1&apos; von der Festplatte neu laden?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="465"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/document.cpp" line="1185"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Unbenannt %1</translation>
+        <translation>Unbenannt %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1239"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei &apos;%1&apos; wurde durch ein anderes Programm geändert.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="94"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Archiv kann nicht geöffnet werden.</translation>
+        <translation>Archiv kann nicht geöffnet werden.</translation>
     </message>
 </context>
 <context>
@@ -351,32 +351,32 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Text</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Rich Text Format</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>nur Text</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Dateien</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="106"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle unterstützten Dateien</translation>
     </message>
 </context>
 <context>
@@ -438,7 +438,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="68"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Archiv kann nicht geöffnet werden.</translation>
+        <translation>Archiv kann nicht geöffnet werden.</translation>
     </message>
 </context>
 <context>
@@ -635,32 +635,32 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagesziel auf Null zurücksetzen?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Schreibe Bytereihenfolge-Markierung in einfache Textdateien</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="757"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard Format:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Heute zurücksetzen?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="831"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Chronik</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="833"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Chronik speichern</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="836"/>
@@ -685,12 +685,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeden Buchstaben als Wort zählen</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Algorithmus für die Seitenzählung</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1039"/>
@@ -800,7 +800,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="210"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="214"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine unterstützte RTF-Datei.</translation>
     </message>
 </context>
 <context>
@@ -808,7 +808,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ende der Datei unerwartet erreicht.</translation>
     </message>
 </context>
 <context>
@@ -1069,7 +1069,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfung am Dateianfang fortsetzen?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1635,7 +1635,7 @@
     <message>
         <location filename="../src/window.cpp" line="204"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Dokumente auflisten</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="207"/>
@@ -1711,17 +1711,17 @@
     <message>
         <location filename="../src/window.cpp" line="1116"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen speichern?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1117"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen an der Datei &apos;%1&apos; vor dem Schließen speichern?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1118"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Änderungen gehen verloren, wenn diese nicht gespeichert werden.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>
@@ -2051,7 +2051,7 @@
     <message>
         <location filename="../src/window.cpp" line="1400"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Täglicher Fortschritt</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1403"/>

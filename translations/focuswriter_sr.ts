@@ -179,12 +179,12 @@
     <message>
         <location filename="../src/document.cpp" line="463"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Поново учитај фајл?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="464"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Поново учитај фајл &apos;%1&apos; са диска?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="465"/>
@@ -199,7 +199,7 @@
     <message>
         <location filename="../src/document.cpp" line="1185"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Без наслова %1</translation>
+        <translation>Без наслова %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1239"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Фајл &apos;%1&apos; је промењен од стране другог програма.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -691,7 +691,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Рачунај свако слово као реч</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
@@ -1075,7 +1075,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Наставите проверу на почетку фајла?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1717,17 +1717,17 @@
     <message>
         <location filename="../src/window.cpp" line="1116"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај промене?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1117"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувајте промене фајла &apos;%1&apos; пре затварања?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1118"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваше промене ће бити изгубљене, ако их не сачувате.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>

@@ -3,6 +3,7 @@
   <id type="desktop">focuswriter.desktop</id>
   <licence>CC0</licence>
   <summary>Fullscreen word processor</summary>
+  <summary xml:lang="de">Vollbild-Textverarbeitungsprogramm</summary>
   <summary xml:lang="ja">フルスクリーン・ワードプロセッサ</summary>
   <summary xml:lang="pt">Processador de textos em ecrã completo</summary>
   <summary xml:lang="zh-CN">全屏文字编辑器</summary>
@@ -10,6 +11,9 @@
     <p>FocusWriter is a simple, distraction-free word processor. It utilizes a hide-away interface that you access by moving your mouse to the edges of the screen, allowing the program to have a familiar look and feel to it while still getting out of the way so that you can immerse yourself in your work.</p>
     <p>FocusWriter allows you to customize your environment by creating themes that control the font, colors, and background image to add ambiance. It also features on-the-fly updating statistics, daily goals, multiple open documents, spell-checking, and much more.</p>
     <p>Additionally, when you open the program your current work in progress will automatically load and position you where you last left off so that you can immediately jump back in.</p>
+	<p xml:lang="de">FocusWriter ist ein einfaches, ablenkungsfreies Textverarbeitungsprogramm. Die Bedienoberfläche ist nur dann sichtbar, wenn man den Mauszeiger an den Rand des Bildschirms bewegt. Auf dieses Weise lässt sich das Programm intuitiv benutzen, ohne dass die Programmoberfläche ihnen die Sicht auf das versperrt, was eigentlich zählt: Ihre Arbeit.</p>
+	<p xml:lang="de">FocusWriter erlaubt es Ihnen, die Benutzeroberfläche anzupassen. indem Sie mittel selbst erstellter Themen die Schriftart, Farben und das Hintergrundbild des Programms einstellen, schaffen Sie ihre eigene Arbeitsatmosphäre. Weitere Bestandteile sind Echtzeit-Statistiken, Tagesziele, das Öffnen mehrerer Dokumente gleichzeitig, Rechtschreibkorrektur und vieles mehr.</p>
+	<p xml:lang="de">Darüberhinaus lädt das Programm beim Start automatisch ihr zuletzt geöffnetes Dokument an der Stelle, an der Sie zuletzt gearbeitet haben, sodass Sie ihre Arbeit direkt fortsetzen können.</p>
 	<p xml:lang="ja">FocusWriter はシンプルなディストラクション・フリーのワード・プロセッサーです。普段は隠されているインターフェイスにはマウスを画面端に動かすだけでアクセスできるようになっているので、プログラムの基本的なルック・アンド・フィールは維持したまま、作業に没頭することができるでしょう。</p>
 	<p xml:lang="ja">FocusWriter ではフォント・色・背景画像などテーマとして作り、それを使って作業環境をカスタマイズすることができます。またリアルタイムな文書の統計情報の表示、進捗管理、複数文書の編集、スペル・チェッカーなどといった機能もあります。</p>
 	<p xml:lang="ja">更には、現在のプロジェクトをプログラム開くと、以前の作業状況がカーソル位置も含め復元されるので、直ぐに続きを書き始めることが出来ます。</p>

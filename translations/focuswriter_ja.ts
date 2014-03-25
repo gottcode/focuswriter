@@ -169,12 +169,12 @@
     <message>
         <location filename="../src/document.cpp" line="463"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルを再読み込みしますか？</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="464"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル %1 を再読み込みしますか？</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="465"/>
@@ -189,7 +189,7 @@
     <message>
         <location filename="../src/document.cpp" line="1185"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">無題 %1</translation>
+        <translation>無題 %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1239"/>
@@ -212,7 +212,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>他のプログラムによりファイル %1 は変更されています。</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -679,7 +679,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>一文字ごとに単語として数える</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
@@ -1063,7 +1063,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルの先頭からチェックを続けますか？</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1705,17 +1705,17 @@
     <message>
         <location filename="../src/window.cpp" line="1116"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>変更を保存しますか？</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1117"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>閉じる前にファイル %1 へ加えた変更を保存しますか？</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1118"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>保存しない場合、加えた変更は失われます。</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>
