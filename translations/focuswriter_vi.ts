@@ -109,7 +109,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished">Đạt đượ %1% mục tiêu trong ngày</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -123,76 +123,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="281"/>
+        <location filename="../src/document.cpp" line="303"/>
         <source>(Untitled %1)</source>
         <translation type="unfinished">(Chưa đặt tiêu đề %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="284"/>
+        <location filename="../src/document.cpp" line="306"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished">%1 (Chỉ được-đọc)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="348"/>
-        <location filename="../src/document.cpp" line="368"/>
-        <location filename="../src/document.cpp" line="404"/>
-        <location filename="../src/document.cpp" line="410"/>
+        <location filename="../src/document.cpp" line="370"/>
+        <location filename="../src/document.cpp" line="395"/>
+        <location filename="../src/document.cpp" line="431"/>
+        <location filename="../src/document.cpp" line="437"/>
         <source>Sorry</source>
         <translation>Rất tiếc</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="348"/>
+        <location filename="../src/document.cpp" line="370"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Không thể lưu &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="361"/>
+        <location filename="../src/document.cpp" line="385"/>
         <source>Save File As</source>
         <translation>Lưu tập tin thành</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="368"/>
-        <location filename="../src/document.cpp" line="404"/>
+        <location filename="../src/document.cpp" line="395"/>
+        <location filename="../src/document.cpp" line="431"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Không thể ghi đè lên &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="397"/>
+        <location filename="../src/document.cpp" line="424"/>
         <source>Rename File</source>
         <translation>Đổi tên tập tin</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="410"/>
+        <location filename="../src/document.cpp" line="437"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Không thể đổi tên &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="436"/>
-        <source>Reload File</source>
-        <translation>Tải lại tập tin</translation>
+        <location filename="../src/document.cpp" line="463"/>
+        <source>Reload File?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="437"/>
-        <source>Reload the file %1 from disk?</source>
-        <translation>Tải lại tập tin %1 từ đĩa?</translation>
+        <location filename="../src/document.cpp" line="464"/>
+        <source>Reload the file &apos;%1&apos; from disk?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="438"/>
+        <location filename="../src/document.cpp" line="465"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Tất cả các thay đổi chưa lưu sẽ bị mất.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="440"/>
+        <location filename="../src/document.cpp" line="467"/>
         <source>Reload</source>
         <translation>Tải lại</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1192"/>
+        <location filename="../src/document.cpp" line="1185"/>
+        <source>Untitled %1</source>
+        <translation type="unfinished">Chưa đặt tiêu đề %1</translation>
+    </message>
+    <message>
+        <location filename="../src/document.cpp" line="1239"/>
         <source>Question</source>
         <translation>Câu hỏi</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1193"/>
+        <location filename="../src/document.cpp" line="1240"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Lưu dưới dạng văn bản thông thường sẽ bỏ qua tất cả các chỉnh sửa về hiển thị. Bỏ qua toàn bộ các hiển thị?</translation>
     </message>
@@ -206,8 +211,8 @@
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
-        <source>The file %1 was changed by another program.</source>
-        <translation>Tập tin %1 bị thay đổi bởi một chương trình khác.</translation>
+        <source>The file &apos;%1&apos; was changed by another program.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -243,7 +248,7 @@
 <context>
     <name>DocxReader</name>
     <message>
-        <location filename="../src/fileformats/docx_reader.cpp" line="95"/>
+        <location filename="../src/fileformats/docx_reader.cpp" line="94"/>
         <source>Unable to open archive.</source>
         <translation type="unfinished">Không thể mở phần lưu trữ.</translation>
     </message>
@@ -371,17 +376,17 @@
 <context>
     <name>Highlighter</name>
     <message>
-        <location filename="../src/spelling/highlighter.cpp" line="51"/>
+        <location filename="../src/spelling/highlighter.cpp" line="52"/>
         <source>Add</source>
         <translation>Thêm</translation>
     </message>
     <message>
-        <location filename="../src/spelling/highlighter.cpp" line="52"/>
+        <location filename="../src/spelling/highlighter.cpp" line="53"/>
         <source>Check Spelling...</source>
         <translation>Kiểm tra lỗi chính tả...</translation>
     </message>
     <message>
-        <location filename="../src/spelling/highlighter.cpp" line="124"/>
+        <location filename="../src/spelling/highlighter.cpp" line="127"/>
         <source>(No suggestions found)</source>
         <translation>(Không tìm thấy lời đề nghị nào)</translation>
     </message>
@@ -425,7 +430,7 @@
 <context>
     <name>OdtReader</name>
     <message>
-        <location filename="../src/fileformats/odt_reader.cpp" line="69"/>
+        <location filename="../src/fileformats/odt_reader.cpp" line="68"/>
         <source>Unable to open archive.</source>
         <translation type="unfinished">Không thể mở phần lưu trữ.</translation>
     </message>
@@ -458,30 +463,30 @@
         <translation>Đang kiểm tra lỗi chính tả</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="441"/>
+        <location filename="../src/preferences_dialog.cpp" line="453"/>
         <source>Select Dictionary</source>
         <translation>Chọn Từ Điển</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="455"/>
-        <location filename="../src/preferences_dialog.cpp" line="558"/>
+        <location filename="../src/preferences_dialog.cpp" line="467"/>
+        <location filename="../src/preferences_dialog.cpp" line="570"/>
         <source>Sorry</source>
         <translation>Rất tiếc</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="455"/>
+        <location filename="../src/preferences_dialog.cpp" line="467"/>
         <source>Unable to open archive.</source>
         <translation>Không thể mở phần lưu trữ.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="558"/>
+        <location filename="../src/preferences_dialog.cpp" line="570"/>
         <source>The archive does not contain a usable dictionary.</source>
         <translation>Phần lưu trữ không chứa từ điển nào có thể sử dụng được.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="250"/>
-        <location filename="../src/preferences_dialog.cpp" line="383"/>
-        <location filename="../src/preferences_dialog.cpp" line="546"/>
+        <location filename="../src/preferences_dialog.cpp" line="256"/>
+        <location filename="../src/preferences_dialog.cpp" line="395"/>
+        <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>Question</source>
         <translation>Câu hỏi</translation>
     </message>
@@ -491,12 +496,12 @@
         <translation>Phím tắt</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="251"/>
+        <location filename="../src/preferences_dialog.cpp" line="257"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
         <translation>Một hoặc nhiều phím tắt hơn bị xung đột. Bạn có muốn tiếp tục?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="546"/>
+        <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
         <translation>Từ điển &quot;%1&quot; đã có sẵn. Bạn có muốn thay thế từ điển này không?</translation>
     </message>
@@ -506,274 +511,279 @@
         <translation>Mục tiêu mỗi ngày</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="781"/>
+        <location filename="../src/preferences_dialog.cpp" line="793"/>
         <source>None</source>
         <translation>Không</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="783"/>
+        <location filename="../src/preferences_dialog.cpp" line="795"/>
         <source>Minutes:</source>
         <translation>Phút:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="790"/>
-        <location filename="../src/preferences_dialog.cpp" line="898"/>
+        <location filename="../src/preferences_dialog.cpp" line="802"/>
+        <location filename="../src/preferences_dialog.cpp" line="912"/>
         <source>Words:</source>
         <translation>Từ:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="693"/>
+        <location filename="../src/preferences_dialog.cpp" line="705"/>
         <source>Editing</source>
         <translation>Đang chỉnh sửa</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="695"/>
+        <location filename="../src/preferences_dialog.cpp" line="707"/>
         <source>Always vertically center</source>
         <translation>Vị trí luôn thẳng đứng ở giữa</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="696"/>
+        <location filename="../src/preferences_dialog.cpp" line="708"/>
         <source>Block insertion cursor</source>
         <translation>Khóa việc chèn con trỏ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="697"/>
+        <location filename="../src/preferences_dialog.cpp" line="709"/>
         <source>Smooth fonts</source>
         <translation>Kiểu chữ dễ nhìn</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="698"/>
+        <location filename="../src/preferences_dialog.cpp" line="710"/>
         <source>Typewriter sounds</source>
         <translation>Âm thanh đánh máy khi gõ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="700"/>
+        <location filename="../src/preferences_dialog.cpp" line="712"/>
         <source>Smart quotes:</source>
         <translation>Trích dẫn thông minh:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="707"/>
+        <location filename="../src/preferences_dialog.cpp" line="719"/>
         <source>Double</source>
         <translation>Gấp đôi</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="708"/>
+        <location filename="../src/preferences_dialog.cpp" line="720"/>
         <source>Single</source>
         <translation>Đơn lẻ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="729"/>
+        <location filename="../src/preferences_dialog.cpp" line="741"/>
         <source>Scenes</source>
         <translation>Khung cảnh</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="736"/>
+        <location filename="../src/preferences_dialog.cpp" line="748"/>
         <source>Divider:</source>
         <translation>Người chia cắt:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="739"/>
+        <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>Saving</source>
         <translation>Đang lưu</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="741"/>
+        <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Automatically save changes</source>
         <translation>Tự động lưu các thay đổi</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="742"/>
+        <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Remember cursor position</source>
         <translation>Nhớ vị trí trỏ chuột</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="860"/>
+        <location filename="../src/preferences_dialog.cpp" line="872"/>
         <source>Word count</source>
         <translation>Tổng số từ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="861"/>
+        <location filename="../src/preferences_dialog.cpp" line="873"/>
         <source>Page count</source>
         <translation>Tổng số trang</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="862"/>
+        <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Paragraph count</source>
         <translation>Tổng số đoạn văn</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="863"/>
+        <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Character count</source>
         <translation>Tổng số ký tự</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="884"/>
+        <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Characters:</source>
         <translation>Ký tự:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="891"/>
+        <location filename="../src/preferences_dialog.cpp" line="905"/>
         <source>Paragraphs:</source>
         <translation>Đoạn văn:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="872"/>
+        <location filename="../src/preferences_dialog.cpp" line="884"/>
         <source>Word Count Algorithm</source>
         <translation>Thuật toán tính toán tổng số chữ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="384"/>
+        <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="743"/>
+        <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Write byte order mark in plain text files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="745"/>
+        <location filename="../src/preferences_dialog.cpp" line="757"/>
         <source>Default format:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="806"/>
+        <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>Reset Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="819"/>
+        <location filename="../src/preferences_dialog.cpp" line="831"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="821"/>
+        <location filename="../src/preferences_dialog.cpp" line="833"/>
         <source>Remember history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="824"/>
+        <location filename="../src/preferences_dialog.cpp" line="836"/>
         <source>Show streaks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="839"/>
+        <location filename="../src/preferences_dialog.cpp" line="851"/>
         <source>Minimum progress for streaks:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="874"/>
+        <location filename="../src/preferences_dialog.cpp" line="886"/>
         <source>Detect word boundaries</source>
         <translation>Phát hiện việc bo tròn các chữ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="875"/>
+        <location filename="../src/preferences_dialog.cpp" line="887"/>
         <source>Divide character count by six</source>
         <translation>Chia các ký tự bởi nhóm có số lượng sáu</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="882"/>
+        <location filename="../src/preferences_dialog.cpp" line="888"/>
+        <source>Count each letter as a word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/preferences_dialog.cpp" line="896"/>
         <source>Page Count Algorithm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1025"/>
+        <location filename="../src/preferences_dialog.cpp" line="1039"/>
         <source>Style</source>
         <translation>Giao diện</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1028"/>
+        <location filename="../src/preferences_dialog.cpp" line="1042"/>
         <source>Icons Only</source>
         <translation>Chỉ hiển thị biểu tượng</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1029"/>
+        <location filename="../src/preferences_dialog.cpp" line="1043"/>
         <source>Text Only</source>
         <translation>Chỉ hiển thị chữ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1030"/>
+        <location filename="../src/preferences_dialog.cpp" line="1044"/>
         <source>Text Alongside Icons</source>
         <translation>Chữ kèm theo biểu tượng</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1031"/>
+        <location filename="../src/preferences_dialog.cpp" line="1045"/>
         <source>Text Under Icons</source>
         <translation>Chữ dưới biểu tượng</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1035"/>
+        <location filename="../src/preferences_dialog.cpp" line="1049"/>
         <source>Text Position:</source>
         <translation>Vị trí chữ:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1038"/>
+        <location filename="../src/preferences_dialog.cpp" line="1052"/>
         <source>Actions</source>
         <translation>Thao tác</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1054"/>
+        <location filename="../src/preferences_dialog.cpp" line="1068"/>
         <source>Move Up</source>
         <translation>Di chuyển lên</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1056"/>
+        <location filename="../src/preferences_dialog.cpp" line="1070"/>
         <source>Move Down</source>
         <translation>Di chuyển xuống</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1058"/>
+        <location filename="../src/preferences_dialog.cpp" line="1072"/>
         <source>Add Separator</source>
         <translation>Thêm dấu phân cách</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1092"/>
+        <location filename="../src/preferences_dialog.cpp" line="1106"/>
         <source>Command</source>
         <translation>Lệnh</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1092"/>
+        <location filename="../src/preferences_dialog.cpp" line="1106"/>
         <source>Shortcut</source>
         <translation>Phím tắt</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1092"/>
+        <location filename="../src/preferences_dialog.cpp" line="1106"/>
         <source>Action</source>
         <translation>Thao tác</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="945"/>
+        <location filename="../src/preferences_dialog.cpp" line="959"/>
         <source>Check spelling as you type</source>
         <translation>Kiểm tra ngữ pháp khi gõ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="946"/>
+        <location filename="../src/preferences_dialog.cpp" line="960"/>
         <source>Ignore words in UPPERCASE</source>
         <translation>Bỏ qua các từ IN HOA</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="947"/>
+        <location filename="../src/preferences_dialog.cpp" line="961"/>
         <source>Ignore words with numbers</source>
         <translation>Bỏ qua các từ kèm theo số</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="960"/>
+        <location filename="../src/preferences_dialog.cpp" line="974"/>
         <source>Language</source>
         <translation>Ngôn ngữ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="964"/>
-        <location filename="../src/preferences_dialog.cpp" line="985"/>
+        <location filename="../src/preferences_dialog.cpp" line="978"/>
+        <location filename="../src/preferences_dialog.cpp" line="999"/>
         <source>Add</source>
         <translation>Thêm</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="997"/>
+        <location filename="../src/preferences_dialog.cpp" line="1011"/>
         <source>Remove</source>
         <translation>Loại bỏ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="980"/>
+        <location filename="../src/preferences_dialog.cpp" line="994"/>
         <source>Personal Dictionary</source>
         <translation>Từ điển tự tạo</translation>
     </message>
@@ -781,10 +791,10 @@
 <context>
     <name>RtfReader</name>
     <message>
-        <location filename="../src/fileformats/rtf_reader.cpp" line="209"/>
-        <location filename="../src/fileformats/rtf_reader.cpp" line="213"/>
+        <location filename="../src/fileformats/rtf_reader.cpp" line="210"/>
+        <location filename="../src/fileformats/rtf_reader.cpp" line="214"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished">Tập tin RTF này không được hỗ trợ.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -792,7 +802,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished">Lỗi phần truy cập đến phần cuối của tập tin</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -858,6 +868,7 @@
         <location filename="../src/session_manager.cpp" line="367"/>
         <location filename="../src/session_manager.cpp" line="384"/>
         <location filename="../src/session_manager.cpp" line="387"/>
+        <location filename="../src/theme_manager.cpp" line="193"/>
         <source>Default</source>
         <translation>Mặc định</translation>
     </message>
@@ -973,7 +984,7 @@
         <translation>Chuyển về mặc định</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1135"/>
+        <location filename="../src/preferences_dialog.cpp" line="1149"/>
         <location filename="../src/symbols_dialog.cpp" line="219"/>
         <source>Shortcut:</source>
         <translation>Phím tắt:</translation>
@@ -995,62 +1006,67 @@
 <context>
     <name>SpellChecker</name>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="130"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="134"/>
         <source>Check Spelling</source>
         <translation>Kiểm tra ngữ pháp</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="138"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="142"/>
         <source>&amp;Add</source>
         <translation>&amp;Thêm</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="141"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="145"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Bỏ qua</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="144"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="148"/>
         <source>I&amp;gnore All</source>
         <translation>Bỏ q&amp;ua tất cả</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="149"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="153"/>
         <source>&amp;Change</source>
         <translation>Th&amp;ay đổi</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="152"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="156"/>
         <source>C&amp;hange All</source>
         <translation>Tha&amp;y đổi tất cả</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="167"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="171"/>
         <source>Not in dictionary:</source>
         <translation>Không có trong từ điển:</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="175"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="179"/>
         <source>Change to:</source>
         <translation>Thay đổi sang:</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="190"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Checking spelling...</source>
         <translation>Đang thực hiện việc kiểm tra ngữ pháp...</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="190"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Cancel</source>
         <translation>Hủy bỏ</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="191"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="196"/>
         <source>Please wait</source>
         <translation>Vui lòng đợi</translation>
     </message>
     <message>
-        <location filename="../src/spelling/spell_checker.cpp" line="258"/>
+        <location filename="../src/spelling/spell_checker.cpp" line="223"/>
+        <source>Continue checking at beginning of file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/spelling/spell_checker.cpp" line="282"/>
         <source>Spell check complete.</source>
         <translation>Đã thực hiện xong thao tác kiểm tra ngữ pháp.</translation>
     </message>
@@ -1313,77 +1329,67 @@
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/theme_manager.cpp" line="46"/>
+        <location filename="../src/theme_manager.cpp" line="47"/>
         <source>Themes</source>
         <translation>Giao diện</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="72"/>
+        <location filename="../src/theme_manager.cpp" line="73"/>
         <source>Add</source>
         <translation>Thêm</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="76"/>
+        <location filename="../src/theme_manager.cpp" line="77"/>
         <source>Modify</source>
         <translation>Chỉnh sửa</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="80"/>
+        <location filename="../src/theme_manager.cpp" line="81"/>
         <source>Remove</source>
         <translation>Loại bỏ</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="84"/>
+        <location filename="../src/theme_manager.cpp" line="85"/>
         <source>Import</source>
         <translation>Nhập dữ liệu</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="88"/>
+        <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Export</source>
         <translation>Xuất dữ liệu</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="92"/>
+        <location filename="../src/theme_manager.cpp" line="93"/>
         <source>Close</source>
         <translation>Đóng lại</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="182"/>
+        <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Question</source>
         <translation>Câu hỏi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="182"/>
+        <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Remove selected theme?</source>
         <translation>Loại bỏ giao diện đã được chọn?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="195"/>
+        <location filename="../src/theme_manager.cpp" line="205"/>
         <source>Import Theme</source>
         <translation>Nhập dữ liệu về giao diện</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="195"/>
+        <location filename="../src/theme_manager.cpp" line="205"/>
         <source>Themes (*.fwtz *.theme)</source>
         <translation>Giao diện (*.fwtz *.theme)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="256"/>
+        <location filename="../src/theme_manager.cpp" line="267"/>
         <source>Themes (*.fwtz)</source>
         <translation>Themes (*.fwtz)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="204"/>
-        <source>Sorry</source>
-        <translation>Rất tiếc</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_manager.cpp" line="204"/>
-        <source>A theme already exists with that name. Please enter a new name:</source>
-        <translation>Một giao diện với cùng tên như thế đã tồn tại. Vui lòng điền vào một tên khác:</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_manager.cpp" line="256"/>
+        <location filename="../src/theme_manager.cpp" line="267"/>
         <source>Export Theme</source>
         <translation>Xuất dữ liệu về giao diện</translation>
     </message>
@@ -1535,95 +1541,85 @@
         <translation>Đang tải dữ liệu giao diện</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1135"/>
+        <location filename="../src/window.cpp" line="1141"/>
         <source>Loading sounds</source>
         <translation>Đang tải dữ liệu âm thanh</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="303"/>
-        <location filename="../src/window.cpp" line="1063"/>
+        <location filename="../src/window.cpp" line="1060"/>
         <source>Untitled</source>
         <translation>Chưa đặt tiêu đề</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="679"/>
+        <location filename="../src/window.cpp" line="676"/>
         <source>Open File</source>
         <translation>Mở tập tin</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="861"/>
+        <location filename="../src/window.cpp" line="858"/>
         <source>About FocusWriter</source>
         <translation>Dịch bởi Phan Anh</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="864"/>
+        <location filename="../src/window.cpp" line="861"/>
         <source>FocusWriter</source>
         <translation>FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="865"/>
+        <location filename="../src/window.cpp" line="862"/>
         <source>A simple fullscreen word processor</source>
         <translation>Một phần mềm soạn thảo văn bản toàn màn hình dạng đơn giản</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="866"/>
+        <location filename="../src/window.cpp" line="863"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
         <translation>Bản quyền &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="867"/>
+        <location filename="../src/window.cpp" line="864"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
         <translation>Phát hành dựa theo giấy phép &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="868"/>
+        <location filename="../src/window.cpp" line="865"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
         <translation>Sử dụng bộ biểu tượng từ &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="869"/>
+        <location filename="../src/window.cpp" line="866"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
         <translation>Sử dụng dựa trên giấy phép &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="171"/>
-        <location filename="../src/window.cpp" line="925"/>
+        <location filename="../src/window.cpp" line="922"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Số ký tự: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="169"/>
-        <location filename="../src/window.cpp" line="926"/>
+        <location filename="../src/window.cpp" line="923"/>
         <source>Pages: %L1</source>
         <translation>Số trang: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="170"/>
-        <location filename="../src/window.cpp" line="927"/>
+        <location filename="../src/window.cpp" line="924"/>
         <source>Paragraphs: %L1</source>
         <translation>Số đoạn văn: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="168"/>
-        <location filename="../src/window.cpp" line="928"/>
+        <location filename="../src/window.cpp" line="925"/>
         <source>Words: %L1</source>
         <translation>Số từ: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="453"/>
-        <location filename="../src/window.cpp" line="1017"/>
+        <location filename="../src/document.cpp" line="480"/>
+        <location filename="../src/window.cpp" line="1014"/>
         <source>Opening %1</source>
         <translation>Đang mở %1</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1117"/>
-        <source>Question</source>
-        <translation>Câu hỏi</translation>
-    </message>
-    <message>
-        <location filename="../src/window.cpp" line="1117"/>
-        <source>Save changes?</source>
-        <translation>Lưu các thay đổi</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="326"/>
@@ -1672,7 +1668,7 @@
     </message>
     <message>
         <location filename="../src/window.cpp" line="332"/>
-        <location filename="../src/window.cpp" line="1031"/>
+        <location filename="../src/window.cpp" line="1028"/>
         <source>Warning</source>
         <translation>Cảnh báo</translation>
     </message>
@@ -1687,442 +1683,457 @@
         <translation>Khôi phục dữ liệu từ phần bộ nhớ đệm khẩn cấp?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="460"/>
+        <location filename="../src/window.cpp" line="461"/>
         <source>Some files could not be opened.</source>
         <translation>Không thể mở một số tập tin.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="463"/>
+        <location filename="../src/window.cpp" line="464"/>
         <source>Some files were opened Read-Only.</source>
         <translation>Một vài tập tin được mở dưới chế độ Chỉ Được-Đọc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1032"/>
+        <location filename="../src/window.cpp" line="1029"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; mới hơn bản dữ liệu được sao chép trong bộ nhớ đệm.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1033"/>
+        <location filename="../src/window.cpp" line="1030"/>
         <source>Overwrite newer file?</source>
         <translation>Viết đè dữ liệu lên tập tin mới hơn?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1142"/>
+        <location filename="../src/window.cpp" line="1116"/>
+        <source>Save Changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1117"/>
+        <source>Save changes to the file &apos;%1&apos; before closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1118"/>
+        <source>Your changes will be lost if you don&apos;t save them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1148"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>Không thể tải âm thanh tạo hiệu ứng gõ chữ.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1143"/>
+        <location filename="../src/window.cpp" line="1149"/>
         <source>Please make sure that SDL_mixer is installed.</source>
         <translation>Xin vui lòng chắc chắn rằng SDL_mixer đã được cài đặt.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1279"/>
+        <location filename="../src/window.cpp" line="1285"/>
         <source>&amp;File</source>
         <translation>&amp;Tập tin</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1280"/>
+        <location filename="../src/window.cpp" line="1286"/>
         <source>&amp;New</source>
         <translation>&amp;Tạo mới</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1281"/>
+        <location filename="../src/window.cpp" line="1287"/>
         <source>&amp;Open...</source>
         <translation>&amp;Mở...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1282"/>
+        <location filename="../src/window.cpp" line="1288"/>
         <source>Reloa&amp;d</source>
         <translation>Tải l&amp;ại</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1284"/>
+        <location filename="../src/window.cpp" line="1290"/>
         <source>&amp;Save</source>
         <translation>&amp;Lưu</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1286"/>
+        <location filename="../src/window.cpp" line="1292"/>
         <source>Save &amp;As...</source>
         <translation>Lưu &amp;Dưới Dạng...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1287"/>
+        <location filename="../src/window.cpp" line="1293"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Đổi tên...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1289"/>
+        <location filename="../src/window.cpp" line="1295"/>
         <source>Save A&amp;ll</source>
         <translation>Lưu T&amp;ất Cả</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1292"/>
+        <location filename="../src/window.cpp" line="1298"/>
         <source>Manage Sessions</source>
         <translation>Quản lý phiên làm việc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1294"/>
+        <location filename="../src/window.cpp" line="1300"/>
         <source>New Session</source>
         <translation>Phiên làm việc mới</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1297"/>
+        <location filename="../src/window.cpp" line="1303"/>
         <source>&amp;Print...</source>
         <translation>&amp;In dữ liệu...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1299"/>
+        <location filename="../src/window.cpp" line="1305"/>
         <source>&amp;Close</source>
         <translation>Đ&amp;óng lại</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1300"/>
+        <location filename="../src/window.cpp" line="1306"/>
         <source>&amp;Quit</source>
         <translation>Th&amp;oát</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1300"/>
+        <location filename="../src/window.cpp" line="1306"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1304"/>
+        <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;Edit</source>
         <translation>C&amp;hỉnh sửa</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1305"/>
+        <location filename="../src/window.cpp" line="1311"/>
         <source>&amp;Undo</source>
         <translation>Hủ&amp;y thao tác</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1308"/>
+        <location filename="../src/window.cpp" line="1314"/>
         <source>&amp;Redo</source>
         <translation>Lặ&amp;p lại thao tác</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1312"/>
+        <location filename="../src/window.cpp" line="1318"/>
         <source>Cu&amp;t</source>
         <translation>Cắ&amp;t</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1315"/>
+        <location filename="../src/window.cpp" line="1321"/>
         <source>&amp;Copy</source>
         <translation>S&amp;ao chép</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1318"/>
+        <location filename="../src/window.cpp" line="1324"/>
         <source>&amp;Paste</source>
         <translation>D&amp;án</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1319"/>
+        <location filename="../src/window.cpp" line="1325"/>
         <source>Paste &amp;Unformatted</source>
         <translation>Dán vào dữ liệu ch&amp;ưa chỉnh sửa</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1319"/>
+        <location filename="../src/window.cpp" line="1325"/>
         <source>Ctrl+Shift+V</source>
         <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1327"/>
         <source>Select &amp;All</source>
         <translation>Chọn tấ&amp;t cả</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1322"/>
+        <location filename="../src/window.cpp" line="1328"/>
         <source>Select &amp;Scene</source>
         <translation>Chọn c&amp;ảnh</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1322"/>
+        <location filename="../src/window.cpp" line="1328"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1325"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>Fo&amp;rmat</source>
         <translation>Đị&amp;nh dạng</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1327"/>
+        <location filename="../src/window.cpp" line="1333"/>
         <source>&amp;Bold</source>
         <translation>&amp;In đậm</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1329"/>
+        <location filename="../src/window.cpp" line="1335"/>
         <source>&amp;Italic</source>
         <translation>I&amp;n nghiêng</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1337"/>
         <source>&amp;Underline</source>
         <translation>&amp;Gạch dưới</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1333"/>
+        <location filename="../src/window.cpp" line="1339"/>
         <source>Stri&amp;kethrough</source>
         <translation>G&amp;ạch xuyên qua</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1333"/>
+        <location filename="../src/window.cpp" line="1339"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1341"/>
         <source>Sup&amp;erscript</source>
         <translation>Chữ t&amp;rồi lên</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1341"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1343"/>
         <source>&amp;Subscript</source>
         <translation>Chữ s&amp;ụp xuống</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1343"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1347"/>
         <source>Align &amp;Left</source>
         <translation>Canh lề b&amp;ên trái</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1347"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1349"/>
         <source>Align &amp;Center</source>
         <translation>Canh lề c&amp;hính giữa</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1349"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1345"/>
+        <location filename="../src/window.cpp" line="1351"/>
         <source>Align &amp;Right</source>
         <translation>Canh lề bên p&amp;hải</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1345"/>
+        <location filename="../src/window.cpp" line="1351"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1353"/>
         <source>Align &amp;Justify</source>
         <translation>Canh lề đ&amp;ều hai bên</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1353"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1357"/>
+        <location filename="../src/window.cpp" line="1363"/>
         <source>&amp;Decrease Indent</source>
         <translation>Giả&amp;m mức lùi dòng</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1357"/>
+        <location filename="../src/window.cpp" line="1363"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1358"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>I&amp;ncrease Indent</source>
         <translation>Tă&amp;ng mức lùi dòng</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1358"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1361"/>
+        <location filename="../src/window.cpp" line="1367"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>Khối văn bản từ tr&amp;ái sang phải</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1363"/>
+        <location filename="../src/window.cpp" line="1369"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Khối văn bản từ ph&amp;ải sang trái</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1371"/>
+        <location filename="../src/window.cpp" line="1377"/>
         <source>&amp;Tools</source>
         <translation>Cô&amp;ng cụ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1372"/>
+        <location filename="../src/window.cpp" line="1378"/>
         <source>&amp;Find...</source>
         <translation>Tì&amp;m kiếm...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1373"/>
+        <location filename="../src/window.cpp" line="1379"/>
         <source>Find &amp;Next</source>
         <translation>Tìm tiế&amp;p theo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1376"/>
+        <location filename="../src/window.cpp" line="1382"/>
         <source>Find Pre&amp;vious</source>
         <translation>Tìm tr&amp;ước đó</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1379"/>
+        <location filename="../src/window.cpp" line="1385"/>
         <source>&amp;Replace...</source>
         <translation>Th&amp;ay thế...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1379"/>
+        <location filename="../src/window.cpp" line="1385"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1381"/>
+        <location filename="../src/window.cpp" line="1387"/>
         <source>Smart &amp;Quotes</source>
         <translation>Trích dẫn thô&amp;ng minh:</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1382"/>
+        <location filename="../src/window.cpp" line="1388"/>
         <source>Update &amp;Document</source>
         <translation>Cập nhật tà&amp;i liệu</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1385"/>
+        <location filename="../src/window.cpp" line="1391"/>
         <source>Update &amp;Selection</source>
         <translation>Cập nhật v&amp;ùng lựa chọn</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1389"/>
+        <location filename="../src/window.cpp" line="1395"/>
         <source>&amp;Spelling...</source>
         <translation>Kiểm tr&amp;a lỗi chính tả...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1389"/>
+        <location filename="../src/window.cpp" line="1395"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1390"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>Set &amp;Language...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1392"/>
+        <location filename="../src/window.cpp" line="1398"/>
         <source>&amp;Timers...</source>
         <translation>B&amp;ộ đếm thời gian</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1393"/>
+        <location filename="../src/window.cpp" line="1399"/>
         <source>S&amp;ymbols...</source>
         <translation>Biể&amp;u tượng...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1394"/>
+        <location filename="../src/window.cpp" line="1400"/>
         <source>&amp;Daily Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1397"/>
+        <location filename="../src/window.cpp" line="1403"/>
         <source>&amp;Settings</source>
         <translation>Thiế&amp;t lập</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1398"/>
+        <location filename="../src/window.cpp" line="1404"/>
         <source>Show &amp;Toolbar</source>
         <translation>Hiển thị th&amp;anh công cụ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1403"/>
+        <location filename="../src/window.cpp" line="1409"/>
         <source>Show &amp;Menu Icons</source>
         <translation>Hiển thị biểu tượng men&amp;u</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1409"/>
+        <location filename="../src/window.cpp" line="1415"/>
         <source>F&amp;ocused Text</source>
         <translation>Tập tr&amp;ung vào văn bản</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1411"/>
+        <location filename="../src/window.cpp" line="1417"/>
         <source>&amp;Fullscreen</source>
         <translation>Toàn mà&amp;n hình</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1411"/>
+        <location filename="../src/window.cpp" line="1417"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1413"/>
+        <location filename="../src/window.cpp" line="1419"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1417"/>
+        <location filename="../src/window.cpp" line="1423"/>
         <source>M&amp;inimize</source>
         <translation>T&amp;hu nhỏ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1417"/>
+        <location filename="../src/window.cpp" line="1423"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1419"/>
+        <location filename="../src/window.cpp" line="1425"/>
         <source>&amp;Themes...</source>
         <translation>G&amp;iao diện...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1422"/>
+        <location filename="../src/window.cpp" line="1428"/>
         <source>&amp;Preferences...</source>
         <translation>Tùy biế&amp;n...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1428"/>
+        <location filename="../src/window.cpp" line="1434"/>
         <source>Focus Off</source>
         <translation>Tắt phần tập trung</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1430"/>
+        <location filename="../src/window.cpp" line="1436"/>
         <source>Focus One Line</source>
         <translation>Tập trung vào một dòng văn bản</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1432"/>
+        <location filename="../src/window.cpp" line="1438"/>
         <source>Focus Three Lines</source>
         <translation>Tập trung vào ba dòng văn bản</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1433"/>
+        <location filename="../src/window.cpp" line="1439"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;Đoạn văn</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1434"/>
+        <location filename="../src/window.cpp" line="1440"/>
         <source>Focus Paragraph</source>
         <translation>Tập trung vào đoạn văn</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1447"/>
+        <location filename="../src/window.cpp" line="1453"/>
         <source>&amp;Help</source>
         <translation>Dịch bởi P&amp;han Anh</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1421"/>
+        <location filename="../src/window.cpp" line="1427"/>
         <source>Application &amp;Language...</source>
         <translation>Ngôn ngữ hiển th&amp;ị...</translation>
     </message>
@@ -2132,27 +2143,27 @@
         <translation>Một số tập tin không được hỗ trợ nên sẽ không thể mở được.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1427"/>
+        <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Off</source>
         <translation>T&amp;ắt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1429"/>
+        <location filename="../src/window.cpp" line="1435"/>
         <source>One &amp;Line</source>
         <translation>Một D&amp;òng</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1431"/>
+        <location filename="../src/window.cpp" line="1437"/>
         <source>&amp;Three Lines</source>
         <translation>B&amp;a Dòng</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1448"/>
+        <location filename="../src/window.cpp" line="1454"/>
         <source>&amp;About</source>
         <translation>Thô&amp;ng tin</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1456"/>
+        <location filename="../src/window.cpp" line="1462"/>
         <source>About &amp;Qt</source>
         <translation>Thô&amp;ng tin về Qt</translation>
     </message>
