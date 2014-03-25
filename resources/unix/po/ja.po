@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Graeme Gott
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: FocusWriter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-25 21:52+0000\n"
+"PO-Revision-Date: 2014-03-25 21:48+0000\n"
+"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/focuswriter/"
+"language/ja/)\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../focuswriter.appdata.xml.in.h:1
+msgid "Fullscreen word processor"
+msgstr "フルスクリーン・ワードプロセッサ"
+
+#: ../focuswriter.appdata.xml.in.h:2
+msgid ""
+"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
+"away interface that you access by moving your mouse to the edges of the "
+"screen, allowing the program to have a familiar look and feel to it while "
+"still getting out of the way so that you can immerse yourself in your work."
+msgstr ""
+"FocusWriter はシンプルなディストラクション・フリーのワード・プロセッサーで"
+"す。普段は隠されているインターフェイスにはマウスを画面端に動かすだけでアクセ"
+"スできるようになっているので、プログラムの基本的なルック・アンド・フィールは"
+"維持したまま、作業に没頭することができるでしょう。"
+
+#: ../focuswriter.appdata.xml.in.h:3
+msgid ""
+"FocusWriter allows you to customize your environment by creating themes that "
+"control the font, colors, and background image to add ambiance. It also "
+"features on-the-fly updating statistics, daily goals, multiple open "
+"documents, spell-checking, and much more."
+msgstr ""
+"FocusWriter ではフォント・色・背景画像などテーマとして作り、それを使って作業"
+"環境をカスタマイズすることができます。またリアルタイムな文書の統計情報の表"
+"示、進捗管理、複数文書の編集、スペル・チェッカーなどといった機能もあります。"
+
+#: ../focuswriter.appdata.xml.in.h:4
+msgid ""
+"Additionally, when you open the program your current work in progress will "
+"automatically load and position you where you last left off so that you can "
+"immediately jump back in."
+msgstr ""
+"更には、現在のプロジェクトをプログラム開くと、以前の作業状況がカーソル位置も"
+"含め復元されるので、直ぐに続きを書き始めることが出来ます。"
+
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
+msgid "Fullscreen Word Processor"
+msgstr "フルスクリーン・ワードプロセッサ"
+
+#: ../focuswriter.desktop.in.h:3
+msgid "Write without distractions"
+msgstr "気を散らすことなく集中して文章を書けるワードプロセッサです"
