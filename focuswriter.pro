@@ -34,7 +34,7 @@ unix: !macx {
 macx {
 	DEFINES += RTFCLIPBOARD
 
-	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
+	INCLUDEPATH += src/nsspellchecker src/rtf /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
 
 	HEADERS += src/nsspellchecker/dictionary.h \
@@ -49,7 +49,7 @@ macx {
 
 	SOURCES += src/rtf/clipboard_mac.cpp
 } else:win32 {
-	INCLUDEPATH += enchant libzip src/enchant
+	INCLUDEPATH += enchant libzip src/enchant src/rtf
 	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
