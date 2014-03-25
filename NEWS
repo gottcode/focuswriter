@@ -1,3 +1,26 @@
+1.4.5
+-----
+* FIXED: Infinite loop during replace all with regular expressions.
+* FIXED: Regular expression replaces did not ignore whole words option.
+* FIXED: Interpreted images in RTF files as text.
+* FIXED: Context menu key did not show spelling menu.
+* FIXED: Could delete all themes.
+* FIXED: Did not recreate default theme until program restart.
+* FIXED: Created a new tab for corrupted documents.
+* FIXED: Reloading a modified file did not reduce daily goal progress.
+* FIXED: Unable to overwrite current document.
+* FIXED: Discarding a modified file did not reduce daily goal progress.
+* FIXED: Locale dialog always prompted users of System Language to restart.
+* FIXED: Symbols dialog had help titlebar icon.
+* FIXED: Second instance would not open relative paths.
+* FIXED: Closing last empty document increased untitled count.
+* FIXED: Regular expression searches did not ignore whole words option.
+* FIXED: Paragraphs not always focused properly when merged.
+* FIXED: Selected session was incorrect when switching sessions was canceled.
+* FIXED: Could open unsupported multimedia files.
+* FIXED: Hyphenated lines were not focused properly.
+* Translation updates: Arabic, Chinese (China), Czech, English (United Kingdom), Finnish, Greek, Hungarian, Korean, Indonesian, Serbian, Vietnamese.
+
 1.4.4
 -----
 * FIXED: Crashed when opening font dropdown in theme dialog.
