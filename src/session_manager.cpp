@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -388,7 +388,7 @@ void SessionManager::updateList(const QString& selected)
 			continue;
 		}
 
-		QAction* action = m_sessions_menu->addAction(name);
+		QAction* action = m_sessions_menu->addAction(fontMetrics().elidedText(name, Qt::ElideRight, 3 * logicalDpiX()));
 		action->setData(name);
 		action->setCheckable(true);
 		m_sessions_actions->addAction(action);
