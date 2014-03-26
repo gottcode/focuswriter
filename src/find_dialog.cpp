@@ -247,7 +247,7 @@ void FindDialog::replaceAll()
 	} else {
 		forever {
 			cursor = document->document()->find(regex, cursor, flags);
-			if (!cursor.isNull()) {
+			if (!cursor.isNull() && cursor.hasSelection()) {
 				found++;
 			} else {
 				break;
@@ -279,7 +279,7 @@ void FindDialog::replaceAll()
 	} else {
 		forever {
 			cursor = document->document()->find(regex, cursor, flags);
-			if (!cursor.isNull()) {
+			if (!cursor.isNull() && cursor.hasSelection()) {
 				QString match = cursor.selectedText();
 				match.replace(regex, m_replace_string->text());
 				cursor.insertText(match);

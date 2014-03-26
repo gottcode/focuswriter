@@ -22,7 +22,7 @@ macx {
 	LIBS += -lz
 }
 
-VERSION = 1.4.4
+VERSION = 1.4.5
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 unix: !macx {
@@ -34,7 +34,7 @@ unix: !macx {
 macx {
 	DEFINES += RTFCLIPBOARD
 
-	INCLUDEPATH += src/nsspellchecker /Library/Frameworks/libzip.framework/Headers
+	INCLUDEPATH += src/nsspellchecker src/rtf /Library/Frameworks/libzip.framework/Headers
 	LIBS += -framework libzip -framework AppKit
 
 	HEADERS += src/nsspellchecker/dictionary.h \
@@ -49,7 +49,7 @@ macx {
 
 	SOURCES += src/rtf/clipboard_mac.cpp
 } else:win32 {
-	INCLUDEPATH += enchant libzip src/enchant
+	INCLUDEPATH += enchant libzip src/enchant src/rtf
 	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
@@ -236,6 +236,12 @@ unix: !macx {
 	desktop.files = resources/unix/focuswriter.desktop
 	desktop.path = $$DATADIR/applications/
 
+	appdata.files = resources/unix/focuswriter.appdata.xml
+	appdata.path = $$DATADIR/appdata/
+
+	man.files = resources/unix/focuswriter.1
+	man.path = $$PREFIX/share/man/man1
+
 	qm.files = translations/*.qm
 	qm.path = $$DATADIR/focuswriter/translations
 
@@ -249,5 +255,5 @@ unix: !macx {
 	}
 	symbols.path = $$DATADIR/focuswriter
 
-	INSTALLS += target icon pixmap desktop icons qm sounds symbols
+	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols
 }
