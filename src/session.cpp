@@ -139,7 +139,7 @@ QString Session::pathFromName(const QString& name)
 
 QString Session::pathToName(const QString& path)
 {
-	return QUrl::fromPercentEncoding(QFileInfo(path).baseName().toUtf8());
+	return QUrl::fromPercentEncoding(QFileInfo(path).completeBaseName().toUtf8());
 }
 
 //-----------------------------------------------------------------------------
