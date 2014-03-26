@@ -60,7 +60,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes->setWordWrap(true);
 	QStringList themes = QDir(Theme::path(), "*.theme").entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
 	foreach (const QString& theme, themes) {
-		addItem(QUrl::fromPercentEncoding(QFileInfo(theme).baseName().toUtf8()));
+		addItem(QUrl::fromPercentEncoding(QFileInfo(theme).completeBaseName().toUtf8()));
 	}
 	QList<QListWidgetItem*> items = m_themes->findItems(m_settings.value("ThemeManager/Theme").toString(), Qt::MatchExactly);
 	if (!items.isEmpty()) {
@@ -208,7 +208,7 @@ void ThemeManager::importTheme()
 	}
 
 	// Find theme name
-	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).baseName().toUtf8());
+	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).completeBaseName().toUtf8());
 	{
 		QString theme_name = name;
 		int count = 1;
