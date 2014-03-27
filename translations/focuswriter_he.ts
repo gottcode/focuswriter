@@ -174,12 +174,12 @@
     <message>
         <location filename="../src/document.cpp" line="463"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>לטעון מחדש קובץ?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="464"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>לטעון מחדש קובץ &apos;%1&apos; מתוך כונן?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="465"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/document.cpp" line="1185"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">ללא כותרת %1</translation>
+        <translation>ללא כותרת %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1239"/>
@@ -471,7 +471,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="453"/>
         <source>Select Dictionary</source>
-        <translation>בחר מילון</translation>
+        <translation>בחירת מילון</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="467"/>
@@ -590,7 +590,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Automatically save changes</source>
-        <translation>שמירת שינויים אוטומטית</translation>
+        <translation>שמור שינויים אוטומטית</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
@@ -600,22 +600,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="872"/>
         <source>Word count</source>
-        <translation>ספירת מילים</translation>
+        <translation>ספור מילים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="873"/>
         <source>Page count</source>
-        <translation>ספירת עמודים</translation>
+        <translation>ספור עמודים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Paragraph count</source>
-        <translation>ספירת פסקאות</translation>
+        <translation>ספור פסקאות</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Character count</source>
-        <translation>ספירת תווים</translation>
+        <translation>ספור תווים</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
@@ -685,7 +685,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>ספור כל אות כאילו היתה מילה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
@@ -730,12 +730,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1068"/>
         <source>Move Up</source>
-        <translation>הזזה מעלה</translation>
+        <translation>הזז מעלה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1070"/>
         <source>Move Down</source>
-        <translation>הזזה מטה</translation>
+        <translation>הזז מטה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1072"/>
@@ -781,12 +781,12 @@
         <location filename="../src/preferences_dialog.cpp" line="978"/>
         <location filename="../src/preferences_dialog.cpp" line="999"/>
         <source>Add</source>
-        <translation>הוספה</translation>
+        <translation>הוסף</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1011"/>
         <source>Remove</source>
-        <translation>הסרה</translation>
+        <translation>הסר</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="994"/>
@@ -982,12 +982,12 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation>טיהור</translation>
+        <translation>טהר</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation>איפוס</translation>
+        <translation>אפס</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1149"/>
@@ -1069,7 +1069,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>להמשיך לבדוק בתחילתו של קובץ?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1183,7 +1183,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="83"/>
         <source>Remove</source>
-        <translation>הסרה</translation>
+        <translation>הסר</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="95"/>
@@ -1342,32 +1342,32 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="73"/>
         <source>Add</source>
-        <translation>הוספה</translation>
+        <translation>הוסף</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="77"/>
         <source>Modify</source>
-        <translation>התאמה</translation>
+        <translation>התאם</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="81"/>
         <source>Remove</source>
-        <translation>הסרה</translation>
+        <translation>הסר</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="85"/>
         <source>Import</source>
-        <translation>ייבוא</translation>
+        <translation>יבא</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Export</source>
-        <translation>ייצוא</translation>
+        <translation>יצא</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="93"/>
         <source>Close</source>
-        <translation>סגירה</translation>
+        <translation>סגור</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="184"/>
@@ -1640,27 +1640,27 @@
     <message>
         <location filename="../src/window.cpp" line="207"/>
         <source>Switch to Next Document</source>
-        <translation>מעבר אל מסמך בא</translation>
+        <translation>עבור אל מסמך בא</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="213"/>
         <source>Switch to Previous Document</source>
-        <translation>מעבר אל מסמך קודם</translation>
+        <translation>עבור אל מסמך קודם</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="219"/>
         <source>Switch to First Document</source>
-        <translation>מעבר אל מסמך ראשון</translation>
+        <translation>עבור אל מסמך ראשון</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="225"/>
         <source>Switch to Last Document</source>
-        <translation>מעבר אל מסמך אחרון</translation>
+        <translation>עבור אל מסמך אחרון</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="233"/>
         <source>Switch to Document %1</source>
-        <translation>מעבר אל מסמך %1</translation>
+        <translation>עבור אל מסמך %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="293"/>
@@ -1711,7 +1711,7 @@
     <message>
         <location filename="../src/window.cpp" line="1116"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>לשמור שינויים?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1117"/>
@@ -1776,7 +1776,7 @@
     <message>
         <location filename="../src/window.cpp" line="1298"/>
         <source>Manage Sessions</source>
-        <translation>ניהול סשנים</translation>
+        <translation>נהל סשנים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1300"/>
@@ -1951,7 +1951,7 @@
     <message>
         <location filename="../src/window.cpp" line="1363"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;צמצום שוליים</translation>
+        <translation>&amp;צמצם שוליים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1363"/>
@@ -2111,17 +2111,17 @@
     <message>
         <location filename="../src/window.cpp" line="1434"/>
         <source>Focus Off</source>
-        <translation>כיבוי מרכוז</translation>
+        <translation>בטל מרכוז</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1436"/>
         <source>Focus One Line</source>
-        <translation>מרכוז שורה אחת</translation>
+        <translation>מרכז שורה אחת</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1438"/>
         <source>Focus Three Lines</source>
-        <translation>מרכוז שלוש שורות</translation>
+        <translation>מרכז שלוש שורות</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1439"/>
@@ -2131,7 +2131,7 @@
     <message>
         <location filename="../src/window.cpp" line="1440"/>
         <source>Focus Paragraph</source>
-        <translation>מרכוז פסקה</translation>
+        <translation>מרכז פסקה</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1453"/>

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# fri <pavelfric@seznam.cz>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:52+0000\n"
-"PO-Revision-Date: 2014-03-25 21:45+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2014-03-27 14:15+0000\n"
+"PO-Revision-Date: 2014-03-26 11:46+0000\n"
+"Last-Translator: fri <pavelfric@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/focuswriter/"
 "language/cs/)\n"
 "Language: cs\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Textový procesor v režimu na celou obrazovku"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""

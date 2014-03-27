@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# min zhang <zm1990s@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:52+0000\n"
-"PO-Revision-Date: 2014-03-25 21:49+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2014-03-27 14:15+0000\n"
+"PO-Revision-Date: 2014-03-26 14:37+0000\n"
+"Last-Translator: min zhang <zm1990s@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/"
 "focuswriter/language/zh_CN/)\n"
 "Language: zh_CN\n"
@@ -29,6 +30,8 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter 是个简洁的，专注于写作的文字编辑器。所有菜单默认隐藏，当鼠标滑动"
+"到屏幕边缘时会显示。这样既提供所需功能，又能保证让您专注于写作"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:52+0000\n"
-"PO-Revision-Date: 2014-03-25 21:45+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2014-03-27 14:15+0000\n"
+"PO-Revision-Date: 2014-03-26 21:17+0000\n"
+"Last-Translator: PavelNicklasson <pavelnicklasson@bahnhof.se>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/focuswriter/"
 "language/sv/)\n"
 "Language: sv\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Ordbehandlare med helskärmsläge"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""
@@ -29,6 +29,11 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter är en enkel, distraktionsfri ordbehandlare. Den utnyttjar ett "
+"dolt gränssnitt som du kommer åt genom att flytta din mus till "
+"skärmkanterna, vilket tillåter programmet att ha välbekant utseende och "
+"känsla, medan det håller sig ur vägen så att du kan fördjupa dig i ditt "
+"arbete. "
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -37,6 +42,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter tillåter dig att anpassa din miljö genom att skapa teman som "
+"kontrollerar typsnitt, färger, och bakgrundsbilden för att lägga till "
+"atmosfär. Den har även automatisk statistikuppdatering, dagliga mål, flera "
+"öppna dokument, stavningskontroll och mycket mer."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -44,15 +53,17 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Dessutom, när du öppnar programmet kommer ditt pågående arbete att laddas "
+"automatiskt där du slutade senast så att du omedelbart kan fortsätta"
 
 #: ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "Ordbehandlare med helskärmsläge"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr ""
+msgstr "Skriv utan distraktioner"

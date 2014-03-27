@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# GenghisKhan <genghiskhan@gmx.ca>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:52+0000\n"
-"PO-Revision-Date: 2014-03-25 21:47+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2014-03-27 14:15+0000\n"
+"PO-Revision-Date: 2014-03-26 13:49+0000\n"
+"Last-Translator: GenghisKhan <genghiskhan@gmx.ca>\n"
 "Language-Team: Hebrew (http://www.transifex.com/projects/p/focuswriter/"
 "language/he/)\n"
 "Language: he\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "מעבד תמלילים במסך מלא"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""

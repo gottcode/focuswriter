@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Jaff <jaff2002@yahoo.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-25 21:52+0000\n"
-"PO-Revision-Date: 2014-03-25 21:48+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2014-03-27 14:15+0000\n"
+"PO-Revision-Date: 2014-03-26 08:16+0000\n"
+"Last-Translator: Jaff <jaff2002@yahoo.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/focuswriter/"
 "language/ro/)\n"
 "Language: ro\n"
@@ -21,7 +22,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Procesor de text pe tot ecranul"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""
@@ -30,6 +31,11 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter este un procesor de text simplu, fără distragerea atenţiei. "
+"Acesta folosește o interfaţă ascunsă pe care o accesaţi prin mutarea mouse-"
+"ului pe marginile ecranului, care permite programului să aibă un aspect şi "
+"un simţămînt familiar în timp ce se dă la o parte, astfel încît să vă puteţi "
+"cufunda în munca dvs."
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -38,6 +44,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter vă permite să personalizaţi mediul prin crearea de teme care "
+"controlează font-ul, culorile şi imaginea de fundal pentru a adăuga "
+"ambianţă. Acesta oferă, de asemenea, statistici de actualizare, obiective de "
+"zi cu zi, mai multe documente deschise, verificare ortografică, şi mult mai "
+"mult."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -45,6 +56,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"În plus, atunci când deschideţi programul, lucrul dvs. în curs de execuţie "
+"va fi încărcat automat şi poziția unde aţi rămas ultima dată, astfel încît "
+"să puteţi trece imediat la treabă."
 
 #: ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
@@ -52,7 +66,7 @@ msgstr "FocusWriter"
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr "Procesor de test pe tot ecranul"
+msgstr "Procesor de text pe tot ecranul"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
