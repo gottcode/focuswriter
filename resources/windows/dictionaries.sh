@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='4.1.2.2'
+loversion='4.2.3.1'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	wget "http://download.documentfoundation.org/libreoffice/src/4.1.2/${lodict}.tar.xz"
+	wget "http://download.documentfoundation.org/libreoffice/src/4.2.3/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -23,7 +23,7 @@ fi
 
 echo -n 'Downloading Finnish dictionary...'
 if [ ! -e 'voikko.oxt' ]; then
-	wget 'http://www.puimula.org/htp/ooo/voikko-win/3.4.0.20130717/voikko.oxt'
+	wget 'http://www.puimula.org/htp/ooo/voikko-win/3.4.0.20140310/voikko.oxt'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -87,6 +87,9 @@ fi
 # Copy files
 echo -n 'Copying...'
 mkdir dicts
+echo -n ' ar'
+cp -a $lofiles/ar/ar.aff dicts/ca.aff
+cp -a $lofiles/ar/ar.dic dicts/ca.dic
 echo -n ' ca'
 cp -a $lofiles/ca/ca.aff dicts/ca.aff
 cp -a $lofiles/ca/ca.dic dicts/ca.dic
@@ -179,6 +182,9 @@ cp -a $trfiles/tr.dic dicts/tr.dic
 echo -n ' uk'
 cp -a $lofiles/uk_UA/uk_UA.aff dicts/uk.aff
 cp -a $lofiles/uk_UA/uk_UA.dic dicts/uk.dic
+echo -n ' vi'
+cp -a $lofiles/vi/vi_VN.aff dicts/vi.aff
+cp -a $lofiles/vi/vi_VN.dic dicts/vi.dic
 echo ' DONE'
 
 
