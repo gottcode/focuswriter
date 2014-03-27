@@ -242,7 +242,7 @@ macx {
 	SOUNDS.path = Contents/Resources
 
 	greaterThan(QT_MAJOR_VERSION, 4) {
-		SYMBOLS.files = resources/symbols/symbols620.dat
+		SYMBOLS.files = resources/symbols/symbols630.dat
 	} else {
 		SYMBOLS.files = resources/symbols/symbols510.dat
 	}
@@ -290,7 +290,7 @@ macx {
 	sounds.path = $$DATADIR/focuswriter/sounds
 
 	greaterThan(QT_MAJOR_VERSION, 4) {
-		symbols.files = resources/symbols/symbols620.dat
+		symbols.files = resources/symbols/symbols630.dat
 	} else {
 		symbols.files = resources/symbols/symbols510.dat
 	}
