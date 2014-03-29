@@ -169,7 +169,7 @@ void Theme::copyBackgrounds()
 
 QImage Theme::renderBackground(const QSize& background) const
 {
-	QImage image(background, QImage::Format_RGB32);
+	QImage image(background, QImage::Format_ARGB32_Premultiplied);
 	image.fill(backgroundColor());
 
 	QPainter painter(&image);
@@ -200,6 +200,33 @@ QImage Theme::renderBackground(const QSize& background) const
 		painter.fillRect(image.rect(), QImage(backgroundImage()));
 	}
 	painter.end();
+	return image;
+}
+
+//-----------------------------------------------------------------------------
+
+QImage Theme::renderForeground(QImage& image, const QSize& background, QRect& foreground) const
+{
+	QPainter painter(&image);
+	painter.setPen(Qt::NoPen);
+
+	// Determine foreground rectangle
+	foreground = foregroundRect(background);
+
+	// Set clipping for rounded themes
+	int rounding = foregroundRounding();
+	if (rounding) {
+		painter.setRenderHint(QPainter::Antialiasing);
+		QPainterPath path;
+		path.addRoundedRect(foreground, rounding, rounding);
+		painter.setClipPath(path);
+	}
+
+	// Draw foreground
+	QColor color = foregroundColor();
+	color.setAlpha(foregroundOpacity() * 2.55f);
+	painter.fillRect(foreground, color);
+
 	return image;
 }
 
@@ -249,6 +276,40 @@ void Theme::setBackgroundImage(const QString& path)
 			d->background_image.clear();
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+QRect Theme::foregroundRect(const QSize& size) const
+{
+	int margin = d->foreground_margin;
+	int x = 0;
+	int y = margin;
+	int width = std::min(d->foreground_width.value(), size.width() - (margin * 2));
+	int height = size.height() - (margin * 2);
+
+	switch (d->foreground_position) {
+	case 0:
+		// Left
+		x = margin;
+		break;
+	case 2:
+		// Right
+		x = size.width() - margin - width;
+		break;
+	case 3:
+		// Stretched
+		x = margin;
+		width = size.width() - (margin * 2);
+		break;
+	case 1:
+	default:
+		// Centered
+		x = (size.width() - width) / 2;
+		break;
+	};
+
+	return QRect(x, y, width, height);
 }
 
 //-----------------------------------------------------------------------------

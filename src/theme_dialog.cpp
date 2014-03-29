@@ -431,25 +431,21 @@ void ThemeDialog::renderPreview()
 
 	// Set colors
 	QColor color = theme.foregroundColor();
-	color.setAlpha(theme.foregroundOpacity() * 2.55f);
 	QColor text_color = theme.textColor();
 	text_color.setAlpha(255);
 	QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
 
 	m_preview_text->setStyleSheet(
-		QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
+		QString("QTextEdit { background:rgba(%1,%2,%3,0); color:rgba(%4,%5,%6,%7); selection-background-color:%8; selection-color:%9; }")
 			.arg(color.red())
 			.arg(color.green())
 			.arg(color.blue())
-			.arg(color.alpha())
 			.arg(text_color.red())
 			.arg(text_color.green())
 			.arg(text_color.blue())
 			.arg(text_color.alpha())
 			.arg(text_color.name())
 			.arg(contrast)
-			.arg(theme.foregroundPadding())
-			.arg(theme.foregroundRounding())
 	);
 
 	// Set spacings
@@ -474,6 +470,10 @@ void ThemeDialog::renderPreview()
 	QImage background = theme.renderBackground(rect.size());
 	background = background.scaled(200, 150, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 	background = background.copy((background.width() - 200) / 2, (background.height() - 150) / 2, 200, 150);
+
+	// Draw foreground onto background
+	QRect foreground;
+	m_theme.renderForeground(background, QSize(200, 150), foreground);
 	m_preview_background->setPixmap(QPixmap::fromImage(background));
 
 	// Create preview pixmap

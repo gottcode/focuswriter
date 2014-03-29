@@ -73,6 +73,7 @@ namespace
 
 		struct CacheFile {
 			File file;
+			QRect foreground;
 			QImage image;
 			bool operator==(const CacheFile& other);
 		};
@@ -118,12 +119,13 @@ namespace
 			m_files.clear();
 			m_file_mutex.unlock();
 
-			CacheFile cache_file = { file, QImage() };
+			CacheFile cache_file = { file, QRect(), QImage() };
 			int index = m_cache.indexOf(cache_file);
 			if (index != -1) {
 				cache_file = m_cache.at(index);
 			} else {
 				cache_file.image = file.theme.renderBackground(file.background);
+				cache_file.image = file.theme.renderForeground(cache_file.image, file.background, cache_file.foreground);
 				m_cache.prepend(cache_file);
 				while (m_cache.size() > 10) {
 					m_cache.removeLast();

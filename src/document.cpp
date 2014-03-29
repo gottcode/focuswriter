@@ -318,8 +318,8 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_layout = new QGridLayout(this);
 	m_layout->setSpacing(0);
 	m_layout->setMargin(0);
-	m_layout->addWidget(m_text, 0, 1);
-	m_layout->addWidget(m_scrollbar, 0, 2, Qt::AlignRight);
+	m_layout->addWidget(m_text, 1, 1);
+	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
 
 	// Load settings
 	loadPreferences();
@@ -669,23 +669,19 @@ void Document::loadTheme(const Theme& theme)
 	// Update colors
 	QString contrast = (qGray(theme.textColor().rgb()) > 127) ? "black" : "white";
 	QColor color = theme.foregroundColor();
-	color.setAlpha(theme.foregroundOpacity() * 2.55f);
 	m_text_color = theme.textColor();
 	m_text_color.setAlpha(255);
 	m_text->setStyleSheet(
-		QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
+		QString("QTextEdit { background:rgba(%1,%2,%3,0); color:rgba(%4,%5,%6,%7); selection-background-color:%8; selection-color:%9; }")
 			.arg(color.red())
 			.arg(color.green())
 			.arg(color.blue())
-			.arg(color.alpha())
 			.arg(m_text_color.red())
 			.arg(m_text_color.green())
 			.arg(m_text_color.blue())
 			.arg(m_focus_mode ? "128" : "255")
 			.arg(theme.textColor().name())
 			.arg(contrast)
-			.arg(theme.foregroundPadding())
-			.arg(theme.foregroundRounding())
 	);
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
@@ -727,10 +723,13 @@ void Document::loadTheme(const Theme& theme)
 	}
 	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
 
-	int margin = theme.foregroundMargin();
+	int padding = theme.foregroundPadding();
+	m_layout->setRowMinimumHeight(0, padding);
+	m_layout->setRowMinimumHeight(2, padding);
+	int margin = theme.foregroundMargin() + padding;
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
-	int foreground_width = theme.foregroundWidth();
+	int foreground_width = theme.foregroundWidth() - (padding * 2);
 	foreground_width = qMin(foreground_width, QApplication::desktop()->availableGeometry().width() - (theme.foregroundMargin() * 2));
 	if (theme.foregroundPosition() < 3) {
 		m_text->setFixedWidth(foreground_width);

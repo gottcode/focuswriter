@@ -78,6 +78,7 @@ public:
 	static void setPath(const QString& path) { m_path = path; }
 
 	QImage renderBackground(const QSize& background) const;
+	QImage renderForeground(QImage& image, const QSize& background, QRect& foreground) const;
 
 	// Name settings
 	QString name() const { return d->name; }
@@ -101,6 +102,7 @@ public:
 	RangedInt foregroundMargin() const { return d->foreground_margin; }
 	RangedInt foregroundPadding() const { return d->foreground_padding; }
 	RangedInt foregroundPosition() const { return d->foreground_position; }
+	QRect foregroundRect(const QSize& size) const;
 
 	void setForegroundColor(const QColor& color) { setValue(d->foreground_color, color); }
 	void setForegroundOpacity(int opacity) { setValue(d->foreground_opacity, opacity); }
