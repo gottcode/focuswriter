@@ -57,7 +57,8 @@ namespace
 	{
 	public:
 		void create(const Theme& theme, const QSize& background);
-		QPixmap pixmap();
+		QRect foregroundRect();
+		QImage image();
 		void reset();
 
 	protected:
@@ -79,6 +80,7 @@ namespace
 		};
 		QList<CacheFile> m_cache;
 
+		QRect m_rect;
 		QImage m_image;
 		QMutex m_image_mutex;
 	} background_loader;
@@ -99,10 +101,16 @@ namespace
 		}
 	}
 
-	QPixmap BackgroundLoader::pixmap()
+	QRect BackgroundLoader::foregroundRect()
 	{
 		QMutexLocker locker(&m_image_mutex);
-		return QPixmap::fromImage(m_image, Qt::AutoColor | Qt::AvoidDither);
+		return m_rect;
+	}
+
+	QImage BackgroundLoader::image()
+	{
+		QMutexLocker locker(&m_image_mutex);
+		return m_image;
 	}
 
 	void BackgroundLoader::reset()
@@ -134,6 +142,7 @@ namespace
 
 			m_image_mutex.lock();
 			m_image = cache_file.image;
+			m_rect = cache_file.foreground;
 			m_image_mutex.unlock();
 
 			m_file_mutex.lock();
@@ -242,7 +251,7 @@ void Stack::addDocument(Document* document)
 	m_menu->addAction(action);
 	updateMenuIndexes();
 
-	document->loadTheme(m_theme);
+	document->loadTheme(m_theme, m_foreground);
 
 	emit documentAdded(document);
 	emit updateFormatActions();
@@ -649,10 +658,6 @@ void Stack::themeSelected(const Theme& theme)
 {
 	m_theme = theme;
 
-	QPalette p = palette();
-	p.setColor(QPalette::Window, theme.backgroundColor().rgb());
-	setPalette(p);
-
 	background_loader.reset();
 	updateBackground();
 
@@ -675,7 +680,7 @@ void Stack::themeSelected(const Theme& theme)
 	window()->setMinimumHeight(minimum_size);
 
 	foreach (Document* document, m_documents) {
-		document->loadTheme(theme);
+		document->loadTheme(theme, m_foreground);
 	}
 }
 
@@ -802,13 +807,46 @@ void Stack::insertSymbol(const QString& text)
 
 void Stack::updateBackground()
 {
-	m_background = background_loader.pixmap();
-	if (m_background.isNull() || m_background.size() != size()) {
-		m_background = QPixmap(size());
-		m_background.fill(palette().color(QPalette::Window));
+	QImage image = background_loader.image();
+	QRect foreground = background_loader.foregroundRect();
+
+	// Create fallback background and reload if incorrect size
+	if (image.size() != size()) {
+		image = QImage(size(), QImage::Format_ARGB32_Premultiplied);
+		image.fill(m_theme.backgroundColor());
+
+		foreground = m_theme.foregroundRect(size());
+
+		QPainter painter(&image);
+		QColor color = m_theme.foregroundColor();
+		color.setAlpha(m_theme.foregroundOpacity() * 2.55f);
+		painter.setPen(Qt::NoPen);
+		painter.setBrush(color);
+
+		if (!m_theme.foregroundRounding()) {
+			painter.drawRect(foreground);
+		} else {
+			painter.setRenderHint(QPainter::Antialiasing);
+			int rounding = m_theme.foregroundRounding();
+			painter.drawRoundedRect(foreground, rounding, rounding);
+		}
 
 		background_loader.create(m_theme, size());
 	}
+
+	// Load background and foreground
+	m_background = QPixmap::fromImage(image, Qt::AutoColor | Qt::AvoidDither);
+
+	int padding = m_theme.foregroundPadding();
+	m_foreground = image.copy(foreground.adjusted(padding, padding, -padding, -padding));
+
+	// Configure text area
+	foreach (Document* document, m_documents) {
+		QPalette p = document->text()->palette();
+		p.setBrush(QPalette::Base, m_foreground);
+		document->text()->setPalette(p);
+	}
+
 	update();
 }
 

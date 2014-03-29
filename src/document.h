@@ -71,7 +71,7 @@ public:
 	void checkSpelling();
 	void print();
 	bool loadFile(const QString& filename, int position);
-	void loadTheme(const Theme& theme);
+	void loadTheme(const Theme& theme, const QBrush& foreground);
 	void loadPreferences();
 	void setFocusMode(int focus_mode);
 	void setModified(bool modified);

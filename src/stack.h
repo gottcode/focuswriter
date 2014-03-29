@@ -148,6 +148,7 @@ private:
 	Document* m_current_document;
 
 	QPixmap m_background;
+	QBrush m_foreground;
 	Theme m_theme;
 	QTimer* m_resize_timer;
 

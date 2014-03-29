@@ -431,22 +431,17 @@ void ThemeDialog::renderPreview()
 
 	// Set colors
 	QColor color = theme.foregroundColor();
+	color.setAlpha(0);
 	QColor text_color = theme.textColor();
 	text_color.setAlpha(255);
-	QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
 
-	m_preview_text->setStyleSheet(
-		QString("QTextEdit { background:rgba(%1,%2,%3,0); color:rgba(%4,%5,%6,%7); selection-background-color:%8; selection-color:%9; }")
-			.arg(color.red())
-			.arg(color.green())
-			.arg(color.blue())
-			.arg(text_color.red())
-			.arg(text_color.green())
-			.arg(text_color.blue())
-			.arg(text_color.alpha())
-			.arg(text_color.name())
-			.arg(contrast)
-	);
+	QPalette p = m_preview_text->palette();
+	p.setColor(QPalette::Window, Qt::transparent);
+	p.setColor(QPalette::Base, color);
+	p.setColor(QPalette::Text, text_color);
+	p.setColor(QPalette::Highlight, text_color);
+	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
+	m_preview_text->setPalette(p);
 
 	// Set spacings
 	int tab_width = theme.tabWidth();

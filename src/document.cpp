@@ -662,27 +662,23 @@ bool Document::loadFile(const QString& filename, int position)
 
 //-----------------------------------------------------------------------------
 
-void Document::loadTheme(const Theme& theme)
+void Document::loadTheme(const Theme& theme, const QBrush& foreground)
 {
 	m_text->document()->blockSignals(true);
 
 	// Update colors
-	QString contrast = (qGray(theme.textColor().rgb()) > 127) ? "black" : "white";
-	QColor color = theme.foregroundColor();
 	m_text_color = theme.textColor();
 	m_text_color.setAlpha(255);
-	m_text->setStyleSheet(
-		QString("QTextEdit { background:rgba(%1,%2,%3,0); color:rgba(%4,%5,%6,%7); selection-background-color:%8; selection-color:%9; }")
-			.arg(color.red())
-			.arg(color.green())
-			.arg(color.blue())
-			.arg(m_text_color.red())
-			.arg(m_text_color.green())
-			.arg(m_text_color.blue())
-			.arg(m_focus_mode ? "128" : "255")
-			.arg(theme.textColor().name())
-			.arg(contrast)
-	);
+	QColor text_color = m_text_color;
+	text_color.setAlpha(m_focus_mode ? 128 : 255);
+
+	QPalette p = m_text->palette();
+	p.setBrush(QPalette::Base, foreground);
+	p.setColor(QPalette::Text, text_color);
+	p.setColor(QPalette::Highlight, m_text_color);
+	p.setColor(QPalette::HighlightedText, (qGray(m_text_color.rgb()) > 127) ? Qt::black : Qt::white);
+	m_text->setPalette(p);
+
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update spacings
@@ -808,11 +804,11 @@ void Document::setFocusMode(int focus_mode)
 {
 	m_focus_mode = focus_mode;
 
-	QString style_sheet = m_text->styleSheet();
-	int end = style_sheet.lastIndexOf(QChar(')'));
-	int start = style_sheet.lastIndexOf(QChar(','), end);
-	style_sheet.replace(start + 1, end - start - 1, m_focus_mode ? "128" : "255");
-	m_text->setStyleSheet(style_sheet);
+	QColor text_color = m_text_color;
+	text_color.setAlpha(m_focus_mode ? 128 : 255);
+	QPalette p = m_text->palette();
+	p.setColor(QPalette::Text, text_color);
+	m_text->setPalette(p);
 
 	if (m_focus_mode) {
 		connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(focusText()));
