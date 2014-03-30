@@ -144,6 +144,18 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_padding->setValue(m_theme.foregroundPadding());
 	connect(m_foreground_padding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
+	m_blur = new QGroupBox(tr("Blur Background"), tab);
+	m_blur->setCheckable(true);
+	m_blur->setChecked(m_theme.blurEnabled());
+	connect(m_blur, SIGNAL(clicked()), this, SLOT(renderPreview()));
+
+	m_blur_radius = new QSpinBox(m_blur);
+	m_blur_radius->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_blur_radius->setSuffix(tr(" pixels"));
+	m_blur_radius->setRange(theme.blurRadius().minimumValue(), theme.blurRadius().maximumValue());
+	m_blur_radius->setValue(m_theme.blurRadius());
+	connect(m_blur_radius, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
 	QHBoxLayout* color_layout = new QHBoxLayout;
 	color_layout->setMargin(0);
 	color_layout->addWidget(m_foreground_color);
@@ -154,7 +166,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	size_layout->addWidget(m_foreground_width);
 	size_layout->addWidget(m_foreground_position);
 
-	QFormLayout* foreground_layout = new QFormLayout(tab);
+	QFormLayout* foreground_layout = new QFormLayout;
 	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	foreground_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
 	foreground_layout->setLabelAlignment(Qt::AlignRight);
@@ -163,6 +175,21 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	foreground_layout->addRow(tr("Rounding:"), m_foreground_rounding);
 	foreground_layout->addRow(tr("Margin:"), m_foreground_margin);
 	foreground_layout->addRow(tr("Padding:"), m_foreground_padding);
+
+	QFormLayout* blur_layout = new QFormLayout(m_blur);
+	blur_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	blur_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
+	blur_layout->setLabelAlignment(Qt::AlignRight);
+	blur_layout->addRow(tr("Radius:"), m_blur_radius);
+
+	QVBoxLayout* effects_layout = new QVBoxLayout;
+	effects_layout->addWidget(m_blur);
+	effects_layout->addStretch();
+
+	QHBoxLayout* page_layout = new QHBoxLayout(tab);
+	page_layout->addLayout(foreground_layout);
+	page_layout->addSpacing(page_layout->margin() * 2);
+	page_layout->addLayout(effects_layout, 1);
 
 
 	// Create text group
@@ -508,6 +535,9 @@ void ThemeDialog::setValues(Theme& theme)
 	theme.setForegroundMargin(m_foreground_margin->value());
 	theme.setForegroundPadding(m_foreground_padding->value());
 	theme.setForegroundPosition(m_foreground_position->currentIndex());
+
+	theme.setBlurEnabled(m_blur->isChecked());
+	theme.setBlurRadius(m_blur_radius->value());
 
 	theme.setTextColor(m_text_color->color());
 	QFont font = m_font_names->currentFont();

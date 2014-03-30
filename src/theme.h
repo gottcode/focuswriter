@@ -55,6 +55,9 @@ class Theme : public SettingsFile
 		RangedInt foreground_padding;
 		RangedInt foreground_position;
 
+		bool blur_enabled;
+		RangedInt blur_radius;
+
 		QColor text_color;
 		QFont text_font;
 		QColor misspelled_color;
@@ -111,6 +114,12 @@ public:
 	void setForegroundMargin(int margin) { setValue(d->foreground_margin, margin); }
 	void setForegroundPadding(int padding) { setValue(d->foreground_padding, padding); }
 	void setForegroundPosition(int position) { setValue(d->foreground_position, position); }
+
+	bool blurEnabled() const { return d->blur_enabled; }
+	RangedInt blurRadius() const { return d->blur_radius; }
+
+	void setBlurEnabled(bool enabled) { setValue(d->blur_enabled, enabled); }
+	void setBlurRadius(int radius) { setValue(d->blur_radius, radius); }
 
 	// Text settings
 	QColor textColor() const { return d->text_color; }

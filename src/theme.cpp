@@ -31,6 +31,11 @@
 
 //-----------------------------------------------------------------------------
 
+// Exported by QtGui
+void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bool alphaOnly, int transposed = 0);
+
+//-----------------------------------------------------------------------------
+
 bool compareFiles(const QString& filename1, const QString& filename2)
 {
 	// Compare sizes
@@ -102,6 +107,8 @@ Theme::ThemeData::ThemeData(const QString& name_, bool create) :
 	foreground_margin(1, 250),
 	foreground_padding(0, 250),
 	foreground_position(0, 3),
+	blur_enabled(false),
+	blur_radius(1, 128),
 	line_spacing(50, 1000),
 	paragraph_spacing_above(0, 1000),
 	paragraph_spacing_below(0, 1000),
@@ -222,6 +229,16 @@ QImage Theme::renderForeground(QImage& image, const QSize& background, QRect& fo
 		painter.setClipPath(path);
 	}
 
+	// Blur behind foreground
+	if (blurEnabled()) {
+		QImage blurred = image.copy(foreground);
+
+		painter.save();
+		painter.translate(foreground.x(), foreground.y());
+		qt_blurImage(&painter, blurred, blurRadius() * 2, true, false);
+		painter.restore();
+	}
+
 	// Draw foreground
 	QColor color = foregroundColor();
 	color.setAlpha(foregroundOpacity() * 2.55f);
@@ -331,6 +348,9 @@ bool Theme::operator==(const Theme& theme) const
 		&& (d->foreground_padding == theme.d->foreground_padding)
 		&& (d->foreground_position == theme.d->foreground_position)
 
+		&& (d->blur_enabled == theme.d->blur_enabled)
+		&& (d->blur_radius == theme.d->blur_radius)
+
 		&& (d->text_color == theme.d->text_color)
 		&& (d->text_font == theme.d->text_font)
 		&& (d->misspelled_color == theme.d->misspelled_color)
@@ -369,6 +389,9 @@ void Theme::reload()
 	d->foreground_margin = settings.value("Foreground/Margin", 65).toInt();
 	d->foreground_padding = settings.value("Foreground/Padding", 0).toInt();
 	d->foreground_position = settings.value("Foreground/Position", 1).toInt();
+
+	d->blur_enabled = settings.value("ForegroundBlur/Enabled", false).toBool();
+	d->blur_radius = settings.value("ForegroundBlur/Radius", 32).toInt();
 
 	// Load text settings
 	d->text_color = settings.value("Text/Color", "#000000").toString();
@@ -409,6 +432,9 @@ void Theme::write()
 	settings.setValue("Foreground/Margin", d->foreground_margin.value());
 	settings.setValue("Foreground/Padding", d->foreground_padding.value());
 	settings.setValue("Foreground/Position", d->foreground_position.value());
+
+	settings.setValue("ForegroundBlur/Enabled", d->blur_enabled);
+	settings.setValue("ForegroundBlur/Radius", d->blur_radius.value());
 
 	// Store text settings
 	settings.setValue("Text/Color", d->text_color.name());

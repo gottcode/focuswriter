@@ -28,7 +28,7 @@ class Theme;
 #include <QDialog>
 class QCheckBox;
 class QComboBox;
-class QFrame;
+class QGroupBox;
 class QLabel;
 class QLineEdit;
 class QPushButton;
@@ -81,6 +81,9 @@ private:
 	QSpinBox* m_foreground_margin;
 	QSpinBox* m_foreground_padding;
 	QComboBox* m_foreground_position;
+
+	QGroupBox* m_blur;
+	QSpinBox* m_blur_radius;
 
 	ColorButton* m_text_color;
 	FontComboBox* m_font_names;
