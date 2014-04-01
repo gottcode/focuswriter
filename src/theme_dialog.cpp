@@ -156,6 +156,29 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_blur_radius->setValue(m_theme.blurRadius());
 	connect(m_blur_radius, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
+	m_shadow = new QGroupBox(tr("Drop Shadow"), tab);
+	m_shadow->setCheckable(true);
+	m_shadow->setChecked(m_theme.shadowEnabled());
+	connect(m_shadow, SIGNAL(clicked()), this, SLOT(renderPreview()));
+
+	m_shadow_color = new ColorButton(m_shadow);
+	m_shadow_color->setColor(m_theme.shadowColor());
+	connect(m_shadow_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
+
+	m_shadow_radius = new QSpinBox(m_shadow);
+	m_shadow_radius->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_shadow_radius->setSuffix(tr(" pixels"));
+	m_shadow_radius->setRange(theme.shadowRadius().minimumValue(), theme.shadowRadius().maximumValue());
+	m_shadow_radius->setValue(m_theme.shadowRadius());
+	connect(m_shadow_radius, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_shadow_offset = new QSpinBox(m_shadow);
+	m_shadow_offset->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_shadow_offset->setSuffix(tr(" pixels"));
+	m_shadow_offset->setRange(theme.shadowOffset().minimumValue(), theme.shadowOffset().maximumValue());
+	m_shadow_offset->setValue(m_theme.shadowOffset());
+	connect(m_shadow_offset, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
 	QHBoxLayout* color_layout = new QHBoxLayout;
 	color_layout->setMargin(0);
 	color_layout->addWidget(m_foreground_color);
@@ -182,8 +205,18 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	blur_layout->setLabelAlignment(Qt::AlignRight);
 	blur_layout->addRow(tr("Radius:"), m_blur_radius);
 
+	QFormLayout* shadow_layout = new QFormLayout(m_shadow);
+	shadow_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	shadow_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
+	shadow_layout->setLabelAlignment(Qt::AlignRight);
+	shadow_layout->addRow(tr("Color:"), m_shadow_color);
+	shadow_layout->addRow(tr("Radius:"), m_shadow_radius);
+	shadow_layout->addRow(tr("Vertical Offset:"), m_shadow_offset);
+
 	QVBoxLayout* effects_layout = new QVBoxLayout;
 	effects_layout->addWidget(m_blur);
+	effects_layout->addSpacing(effects_layout->margin());
+	effects_layout->addWidget(m_shadow);
 	effects_layout->addStretch();
 
 	QHBoxLayout* page_layout = new QHBoxLayout(tab);
@@ -538,6 +571,10 @@ void ThemeDialog::setValues(Theme& theme)
 
 	theme.setBlurEnabled(m_blur->isChecked());
 	theme.setBlurRadius(m_blur_radius->value());
+	theme.setShadowEnabled(m_shadow->isChecked());
+	theme.setShadowColor(m_shadow_color->color());
+	theme.setShadowRadius(m_shadow_radius->value());
+	theme.setShadowOffset(m_shadow_offset->value());
 
 	theme.setTextColor(m_text_color->color());
 	QFont font = m_font_names->currentFont();

@@ -58,6 +58,11 @@ class Theme : public SettingsFile
 		bool blur_enabled;
 		RangedInt blur_radius;
 
+		bool shadow_enabled;
+		RangedInt shadow_offset;
+		RangedInt shadow_radius;
+		QColor shadow_color;
+
 		QColor text_color;
 		QFont text_font;
 		QColor misspelled_color;
@@ -120,6 +125,16 @@ public:
 
 	void setBlurEnabled(bool enabled) { setValue(d->blur_enabled, enabled); }
 	void setBlurRadius(int radius) { setValue(d->blur_radius, radius); }
+
+	bool shadowEnabled() const { return d->shadow_enabled; }
+	QColor shadowColor() const { return d->shadow_color; }
+	RangedInt shadowRadius() const { return d->shadow_radius; }
+	RangedInt shadowOffset() const { return d->shadow_offset; }
+
+	void setShadowEnabled(bool enabled) { setValue(d->shadow_enabled, enabled); }
+	void setShadowColor(const QColor& color) { setValue(d->shadow_color, color); }
+	void setShadowRadius(int radius) { setValue(d->shadow_radius, radius); }
+	void setShadowOffset(int offset) { setValue(d->shadow_offset, offset); }
 
 	// Text settings
 	QColor textColor() const { return d->text_color; }

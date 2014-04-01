@@ -109,6 +109,9 @@ Theme::ThemeData::ThemeData(const QString& name_, bool create) :
 	foreground_position(0, 3),
 	blur_enabled(false),
 	blur_radius(1, 128),
+	shadow_enabled(false),
+	shadow_offset(0, 128),
+	shadow_radius(1, 128),
 	line_spacing(50, 1000),
 	paragraph_spacing_above(0, 1000),
 	paragraph_spacing_below(0, 1000),
@@ -221,12 +224,14 @@ QImage Theme::renderForeground(QImage& image, const QSize& background, QRect& fo
 	foreground = foregroundRect(background);
 
 	// Set clipping for rounded themes
+	QPainterPath path;
 	int rounding = foregroundRounding();
 	if (rounding) {
 		painter.setRenderHint(QPainter::Antialiasing);
-		QPainterPath path;
 		path.addRoundedRect(foreground, rounding, rounding);
 		painter.setClipPath(path);
+	} else {
+		path.addRect(foreground);
 	}
 
 	// Blur behind foreground
@@ -237,6 +242,30 @@ QImage Theme::renderForeground(QImage& image, const QSize& background, QRect& fo
 		painter.translate(foreground.x(), foreground.y());
 		qt_blurImage(&painter, blurred, blurRadius() * 2, true, false);
 		painter.restore();
+	}
+
+	// Draw drop shadow
+	int shadow_radius = shadowEnabled() ? shadowRadius() : 0;
+	if (shadow_radius) {
+		QImage copy = image.copy(foreground);
+
+		QImage shadow(background, QImage::Format_ARGB32_Premultiplied);
+		shadow.fill(Qt::transparent);
+
+		QPainter shadow_painter(&shadow);
+		shadow_painter.setRenderHint(QPainter::Antialiasing);
+		shadow_painter.setPen(Qt::NoPen);
+		shadow_painter.translate(0, shadowOffset());
+		shadow_painter.fillPath(path, shadowColor());
+		shadow_painter.end();
+
+		painter.save();
+		painter.setClipping(false);
+		qt_blurImage(&painter, shadow, shadow_radius * 2, true, false);
+		painter.setClipping(rounding);
+		painter.restore();
+
+		painter.drawImage(foreground.x(), foreground.y(), copy);
 	}
 
 	// Draw foreground
@@ -351,6 +380,11 @@ bool Theme::operator==(const Theme& theme) const
 		&& (d->blur_enabled == theme.d->blur_enabled)
 		&& (d->blur_radius == theme.d->blur_radius)
 
+		&& (d->shadow_enabled == theme.d->shadow_enabled)
+		&& (d->shadow_offset == theme.d->shadow_offset)
+		&& (d->shadow_radius == theme.d->shadow_radius)
+		&& (d->shadow_color == theme.d->shadow_color)
+
 		&& (d->text_color == theme.d->text_color)
 		&& (d->text_font == theme.d->text_font)
 		&& (d->misspelled_color == theme.d->misspelled_color)
@@ -392,6 +426,11 @@ void Theme::reload()
 
 	d->blur_enabled = settings.value("ForegroundBlur/Enabled", false).toBool();
 	d->blur_radius = settings.value("ForegroundBlur/Radius", 32).toInt();
+
+	d->shadow_enabled = settings.value("ForegroundShadow/Enabled", false).toBool();
+	d->shadow_color = settings.value("ForegroundShadow/Color", "#000000").toString();
+	d->shadow_radius = settings.value("ForegroundShadow/Radius", 8).toInt();
+	d->shadow_offset = settings.value("ForegroundShadow/Offset", 2).toInt();
 
 	// Load text settings
 	d->text_color = settings.value("Text/Color", "#000000").toString();
@@ -435,6 +474,11 @@ void Theme::write()
 
 	settings.setValue("ForegroundBlur/Enabled", d->blur_enabled);
 	settings.setValue("ForegroundBlur/Radius", d->blur_radius.value());
+
+	settings.setValue("ForegroundShadow/Enabled", d->shadow_enabled);
+	settings.setValue("ForegroundShadow/Color", d->shadow_color.name());
+	settings.setValue("ForegroundShadow/Radius", d->shadow_radius.value());
+	settings.setValue("ForegroundShadow/Offset", d->shadow_offset.value());
 
 	// Store text settings
 	settings.setValue("Text/Color", d->text_color.name());

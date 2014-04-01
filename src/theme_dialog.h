@@ -84,6 +84,10 @@ private:
 
 	QGroupBox* m_blur;
 	QSpinBox* m_blur_radius;
+	QGroupBox* m_shadow;
+	ColorButton* m_shadow_color;
+	QSpinBox* m_shadow_radius;
+	QSpinBox* m_shadow_offset;
 
 	ColorButton* m_text_color;
 	FontComboBox* m_font_names;
