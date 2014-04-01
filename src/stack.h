@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +20,13 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include "theme.h"
 class AlertLayer;
 class Document;
 class FindDialog;
 class LoadScreen;
 class SceneList;
 class SymbolsDialog;
-class Theme;
 
 #include <QWidget>
 class QActionGroup;
@@ -148,8 +148,7 @@ private:
 	Document* m_current_document;
 
 	QPixmap m_background;
-	int m_background_position;
-	QString m_background_path;
+	Theme m_theme;
 	QTimer* m_resize_timer;
 
 	int m_margin;

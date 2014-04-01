@@ -153,7 +153,6 @@ Stack::Stack(QWidget* parent) :
 	QWidget(parent),
 	m_symbols_dialog(0),
 	m_current_document(0),
-	m_background_position(0),
 	m_margin(0),
 	m_footer_margin(0),
 	m_header_margin(0),
@@ -237,6 +236,8 @@ void Stack::addDocument(Document* document)
 	m_document_actions.push_back(action);
 	m_menu->addAction(action);
 	updateMenuIndexes();
+
+	document->loadTheme(m_theme);
 
 	emit documentAdded(document);
 	emit updateFormatActions();
@@ -641,8 +642,7 @@ void Stack::showSymbols()
 
 void Stack::themeSelected(const Theme& theme)
 {
-	m_background_position = theme.backgroundType();
-	m_background_path = theme.backgroundImage();
+	m_theme = theme;
 
 	QPalette p = palette();
 	p.setColor(QPalette::Window, theme.backgroundColor().rgb());
@@ -804,7 +804,7 @@ void Stack::updateBackground()
 	m_background = background_loader.pixmap();
 	if ((m_background.isNull() || m_background.size() != size()) && isVisible()) {
 		m_background = QPixmap();
-		background_loader.create(m_background_position, m_background_path, this);
+		background_loader.create(m_theme.backgroundType(), m_theme.backgroundImage(), this);
 		setAttribute(Qt::WA_NoSystemBackground, false);
 		setAutoFillBackground(true);
 	} else {

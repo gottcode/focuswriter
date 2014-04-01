@@ -1042,7 +1042,6 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	Document* document = new Document(file, m_daily_progress, this);
 	m_documents->addDocument(document);
 	m_document_cache->add(document);
-	document->loadTheme(m_sessions->current()->theme());
 	document->setFocusMode(m_focus_actions->checkedAction()->data().toInt());
 	if (document->loadFile(path, m_save_positions ? position : -1)) {
 		if (datafile != file) {
