@@ -471,7 +471,7 @@ void ThemeDialog::renderPreview()
 
 	// Render background, zoomed to fit preview image
 	QRect rect = QApplication::desktop()->screenGeometry();
-	QImage background = Theme::renderBackground(theme.backgroundImage(), theme.backgroundType(), theme.backgroundColor(), rect.size());
+	QImage background = theme.renderBackground(rect.size());
 	background = background.scaled(200, 150, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 	background = background.copy((background.width() - 200) / 2, (background.height() - 150) / 2, 200, 150);
 	m_preview_background->setPixmap(QPixmap::fromImage(background));

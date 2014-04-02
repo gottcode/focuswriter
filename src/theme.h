@@ -72,12 +72,14 @@ public:
 	~Theme();
 
 	static void copyBackgrounds();
-	static QImage renderBackground(const QString& filename, int type, const QColor& background, const QSize& size);
 	static QString filePath(const QString& theme);
 	static QString iconPath(const QString& theme);
 	static QString path() { return m_path; }
 	static void setPath(const QString& path) { m_path = path; }
 
+	QImage renderBackground(const QSize& background) const;
+
+	// Name settings
 	QString name() const { return d->name; }
 	void setName(const QString& name);
 

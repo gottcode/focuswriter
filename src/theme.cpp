@@ -167,32 +167,37 @@ void Theme::copyBackgrounds()
 
 //-----------------------------------------------------------------------------
 
-QImage Theme::renderBackground(const QString& filename, int type, const QColor& background, const QSize& size)
+QImage Theme::renderBackground(const QSize& background) const
 {
-	QImage image(size, QImage::Format_RGB32);
-	image.fill(background.rgb());
+	QImage image(background, QImage::Format_RGB32);
+	image.fill(backgroundColor());
 
 	QPainter painter(&image);
-	if (type > 1) {
-		QImageReader source(filename);
+	if (backgroundType() > 1) {
+		QImageReader source(backgroundImage());
 		QSize scaled = source.size();
-		switch (type) {
+		switch (backgroundType()) {
 		case 3:
-			scaled.scale(size, Qt::IgnoreAspectRatio);
+			// Stretched
+			scaled.scale(background, Qt::IgnoreAspectRatio);
 			break;
 		case 4:
-			scaled.scale(size, Qt::KeepAspectRatio);
+			// Scaled
+			scaled.scale(background, Qt::KeepAspectRatio);
 			break;
 		case 5:
-			scaled.scale(size, Qt::KeepAspectRatioByExpanding);
+			// Zoomed
+			scaled.scale(background, Qt::KeepAspectRatioByExpanding);
 			break;
 		default:
+			// Centered
 			break;
 		}
 		source.setScaledSize(scaled);
-		painter.drawImage((size.width() - scaled.width()) / 2, (size.height() - scaled.height()) / 2, source.read());
-	} else if (type == 1) {
-		painter.fillRect(image.rect(), QImage(filename));
+		painter.drawImage((background.width() - scaled.width()) / 2, (background.height() - scaled.height()) / 2, source.read());
+	} else if (backgroundType() == 1) {
+		// Tiled
+		painter.fillRect(image.rect(), QImage(backgroundImage()));
 	}
 	painter.end();
 	return image;

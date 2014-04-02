@@ -123,7 +123,7 @@ namespace
 			if (index != -1) {
 				cache_file = m_cache.at(index);
 			} else {
-				cache_file.image = Theme::renderBackground(file.theme.backgroundImage(), file.theme.backgroundType(), file.theme.backgroundColor(), file.background);
+				cache_file.image = file.theme.renderBackground(file.background);
 				m_cache.prepend(cache_file);
 				while (m_cache.size() > 10) {
 					m_cache.removeLast();
