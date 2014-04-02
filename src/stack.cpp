@@ -56,7 +56,7 @@ namespace
 	class BackgroundLoader : public QThread
 	{
 	public:
-		void create(int position, const QString& image_path, QWidget* widget);
+		void create(const Theme& theme, const QSize& background);
 		QPixmap pixmap();
 		void reset();
 
@@ -65,10 +65,8 @@ namespace
 
 	private:
 		struct File {
-			int position;
-			QString image_path;
-			QRect rect;
-			QColor color;
+			Theme theme;
+			QSize background;
 		};
 		QList<File> m_files;
 		QMutex m_file_mutex;
@@ -84,9 +82,12 @@ namespace
 		QMutex m_image_mutex;
 	} background_loader;
 
-	void BackgroundLoader::create(int position, const QString& image_path, QWidget* widget)
+	void BackgroundLoader::create(const Theme& theme, const QSize& background)
 	{
-		File file = { position, image_path, widget->rect(), widget->palette().color(QPalette::Window) };
+		File file = {
+			theme,
+			background
+		};
 
 		m_file_mutex.lock();
 		m_files.append(file);
@@ -122,7 +123,7 @@ namespace
 			if (index != -1) {
 				cache_file = m_cache.at(index);
 			} else {
-				cache_file.image = Theme::renderBackground(file.image_path, file.position, file.color, file.rect.size());
+				cache_file.image = Theme::renderBackground(file.theme.backgroundImage(), file.theme.backgroundType(), file.theme.backgroundColor(), file.background);
 				m_cache.prepend(cache_file);
 				while (m_cache.size() > 10) {
 					m_cache.removeLast();
@@ -140,10 +141,7 @@ namespace
 
 	bool BackgroundLoader::CacheFile::operator==(const CacheFile& other)
 	{
-		return (file.image_path == other.file.image_path)
-			&& (file.color == other.file.color)
-			&& (file.position == other.file.position)
-			&& (file.rect == other.file.rect);
+		return (file.theme == other.file.theme) && (file.background == other.file.background);
 	}
 }
 
@@ -804,7 +802,7 @@ void Stack::updateBackground()
 	m_background = background_loader.pixmap();
 	if ((m_background.isNull() || m_background.size() != size()) && isVisible()) {
 		m_background = QPixmap();
-		background_loader.create(m_theme.backgroundType(), m_theme.backgroundImage(), this);
+		background_loader.create(m_theme, size());
 		setAttribute(Qt::WA_NoSystemBackground, false);
 		setAutoFillBackground(true);
 	} else {
