@@ -177,12 +177,16 @@ void Theme::copyBackgrounds()
 
 //-----------------------------------------------------------------------------
 
-QImage Theme::renderBackground(const QSize& background) const
+QImage Theme::render(const QSize& background, QRect& foreground) const
 {
+	// Create image
 	QImage image(background, QImage::Format_ARGB32_Premultiplied);
 	image.fill(backgroundColor());
 
 	QPainter painter(&image);
+	painter.setPen(Qt::NoPen);
+
+	// Draw background image
 	if (backgroundType() > 1) {
 		QImageReader source(backgroundImage());
 		QSize scaled = source.size();
@@ -209,16 +213,6 @@ QImage Theme::renderBackground(const QSize& background) const
 		// Tiled
 		painter.fillRect(image.rect(), QImage(backgroundImage()));
 	}
-	painter.end();
-	return image;
-}
-
-//-----------------------------------------------------------------------------
-
-QImage Theme::renderForeground(QImage& image, const QSize& background, QRect& foreground) const
-{
-	QPainter painter(&image);
-	painter.setPen(Qt::NoPen);
 
 	// Determine foreground rectangle
 	foreground = foregroundRect(background);

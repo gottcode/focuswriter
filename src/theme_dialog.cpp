@@ -24,10 +24,8 @@
 #include "image_button.h"
 #include "theme.h"
 
-#include <QApplication>
 #include <QCheckBox>
 #include <QComboBox>
-#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QFile>
@@ -520,15 +518,9 @@ void ThemeDialog::renderPreview()
 	m_preview_text->setFont(theme.textFont());
 	m_preview_text->append(tr("The quick brown fox jumps over the lazy dog"));
 
-	// Render background, zoomed to fit preview image
-	QRect rect = QApplication::desktop()->screenGeometry();
-	QImage background = theme.renderBackground(rect.size());
-	background = background.scaled(200, 150, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-	background = background.copy((background.width() - 200) / 2, (background.height() - 150) / 2, 200, 150);
-
-	// Draw foreground onto background
+	// Render theme
 	QRect foreground;
-	m_theme.renderForeground(background, QSize(200, 150), foreground);
+	QImage background = theme.render(QSize(200, 150), foreground);
 	m_preview_background->setPixmap(QPixmap::fromImage(background));
 
 	// Create preview pixmap

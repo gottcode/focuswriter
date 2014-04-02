@@ -132,8 +132,7 @@ namespace
 			if (index != -1) {
 				cache_file = m_cache.at(index);
 			} else {
-				cache_file.image = file.theme.renderBackground(file.background);
-				cache_file.image = file.theme.renderForeground(cache_file.image, file.background, cache_file.foreground);
+				cache_file.image = file.theme.render(file.background, cache_file.foreground);
 				m_cache.prepend(cache_file);
 				while (m_cache.size() > 10) {
 					m_cache.removeLast();

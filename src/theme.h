@@ -85,8 +85,7 @@ public:
 	static QString path() { return m_path; }
 	static void setPath(const QString& path) { m_path = path; }
 
-	QImage renderBackground(const QSize& background) const;
-	QImage renderForeground(QImage& image, const QSize& background, QRect& foreground) const;
+	QImage render(const QSize& background, QRect& foreground) const;
 
 	// Name settings
 	QString name() const { return d->name; }
