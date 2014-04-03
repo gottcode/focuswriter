@@ -546,8 +546,20 @@ void ThemeDialog::renderPreview()
 	// Render text
 	m_preview_text->render(&preview, m_preview_text->pos());
 
+	// Create zoomed text cutout
+	int x2 = (x >= 24) ? (x - 24) : 0;
+	int y2 = (y >= 24) ? (y - 24) : 0;
+	QImage text_cutout = preview.copy(x2, y2, 162, 110);
+
 	// Create preview pixmap
 	preview = preview.scaled(480, 270, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	{
+		QPainter painter(&preview);
+		painter.setPen(Qt::NoPen);
+		painter.fillRect(22, 46, 170, 118, QColor(0, 0, 0, 32));
+		painter.fillRect(24, 48, 166, 114, Qt::white);
+		painter.drawImage(26, 50, text_cutout);
+	}
 	m_preview->setPixmap(QPixmap::fromImage(preview));
 }
 
