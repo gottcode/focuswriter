@@ -337,6 +337,11 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_preview_text->setFrameStyle(QFrame::NoFrame);
 	m_preview_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_preview_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	QFile file(":/lorem.txt");
+	if (file.open(QFile::ReadOnly)) {
+		m_preview_text->setPlainText(QString::fromLatin1(file.readAll()));
+		file.close();
+	}
 
 	m_preview = new QLabel(this);
 	m_preview->setAlignment(Qt::AlignCenter);
@@ -490,9 +495,6 @@ void ThemeDialog::renderPreview()
 	setValues(theme);
 	theme.setBackgroundImage(m_background_image->image());
 
-	// Reset text
-	m_preview_text->clear();
-
 	// Set colors
 	QColor color = theme.foregroundColor();
 	color.setAlpha(0);
@@ -517,12 +519,17 @@ void ThemeDialog::renderPreview()
 	block_format.setTopMargin(theme.spacingAboveParagraph());
 	block_format.setBottomMargin(theme.spacingBelowParagraph());
 	m_preview_text->textCursor().mergeBlockFormat(block_format);
+	for (int i = 0, count = m_preview_text->document()->allFormats().count(); i < count; ++i) {
+		QTextFormat& f = m_preview_text->document()->allFormats()[i];
+		if (f.isBlockFormat()) {
+			f.merge(block_format);
+		}
+	}
 	m_preview_text->setTabStopWidth(tab_width);
 	m_preview_text->document()->setIndentWidth(tab_width);
 
 	// Set font
 	m_preview_text->setFont(theme.textFont());
-	m_preview_text->append(tr("The quick brown fox jumps over the lazy dog"));
 
 	// Render theme
 	QRect foreground;
