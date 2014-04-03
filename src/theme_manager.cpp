@@ -29,6 +29,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QHBoxLayout>
+#include <QImageReader>
 #include <QInputDialog>
 #include <QListWidget>
 #include <QMessageBox>
@@ -50,7 +51,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes = new QListWidget(this);
 	m_themes->setSortingEnabled(true);
 	m_themes->setViewMode(QListView::IconMode);
-	m_themes->setIconSize(QSize(218, 168));
+	m_themes->setIconSize(QSize(258, 153));
 	m_themes->setMovement(QListView::Static);
 	m_themes->setResizeMode(QListView::Adjust);
 	m_themes->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -309,7 +310,7 @@ void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 void ThemeManager::addItem(const QString& name)
 {
 	QString icon = Theme::iconPath(name);
-	if (!QFile::exists(icon)) {
+	if (!QFile::exists(icon) || QImageReader(icon).size() != QSize(258, 153)) {
 		ThemeDialog::createPreview(name);
 	}
 	QListWidgetItem* item = new QListWidgetItem(QIcon(icon), name, m_themes);

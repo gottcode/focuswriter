@@ -116,6 +116,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width->setSuffix(tr(" pixels"));
 	m_foreground_width->setRange(theme.foregroundWidth().minimumValue(), theme.foregroundWidth().maximumValue());
 	m_foreground_width->setValue(m_theme.foregroundWidth());
+	connect(m_foreground_width, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_foreground_position = new QComboBox(tab);
 	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
@@ -134,6 +135,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_margin->setSuffix(tr(" pixels"));
 	m_foreground_margin->setRange(theme.foregroundMargin().minimumValue(), theme.foregroundMargin().maximumValue());
 	m_foreground_margin->setValue(m_theme.foregroundMargin());
+	connect(m_foreground_margin, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_foreground_padding = new QSpinBox(tab);
 	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
@@ -297,6 +299,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_tab_width->setSuffix(tr(" pixels"));
 	m_tab_width->setRange(theme.tabWidth().minimumValue(), theme.tabWidth().maximumValue());
 	m_tab_width->setValue(m_theme.tabWidth());
+	connect(m_tab_width, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
 	m_spacing_above_paragraph->setRange(theme.spacingAboveParagraph().minimumValue(), theme.spacingAboveParagraph().maximumValue());
@@ -330,16 +333,19 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 
 	// Create preview
-	m_preview_background = new QLabel;
-
-	m_preview_text = new QTextEdit(m_preview_background);
-	m_preview_text->setGeometry(20, 20, 160, 110);
+	m_preview_text = new QTextEdit;
 	m_preview_text->setFrameStyle(QFrame::NoFrame);
 	m_preview_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_preview_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 	m_preview = new QLabel(this);
 	m_preview->setAlignment(Qt::AlignCenter);
+	m_preview->setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
+
+	QPixmap pixmap(480, 270);
+	pixmap.fill(palette().window().color());
+	m_preview->setPixmap(pixmap);
+
 	renderPreview();
 
 
@@ -352,7 +358,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	QHBoxLayout* contents_layout = new QHBoxLayout;
 	contents_layout->setMargin(0);
 	contents_layout->addWidget(tabs);
-	contents_layout->addWidget(m_preview);
+	contents_layout->addWidget(m_preview, 0, Qt::AlignCenter);
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->setSpacing(12);
@@ -365,7 +371,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 ThemeDialog::~ThemeDialog()
 {
-	delete m_preview_background;
+	delete m_preview_text;
 }
 
 //-----------------------------------------------------------------------------
@@ -520,29 +526,33 @@ void ThemeDialog::renderPreview()
 
 	// Render theme
 	QRect foreground;
-	QImage background = theme.render(QSize(200, 150), foreground);
-	m_preview_background->setPixmap(QPixmap::fromImage(background));
+	QImage preview = theme.render(QSize(1920, 1080), foreground);
+
+	// Position preview text
+	int padding = theme.foregroundPadding();
+	int x = foreground.x() + padding;
+	int y = foreground.y() + padding + theme.spacingAboveParagraph();
+	int width = foreground.width() - (padding * 2);
+	int height = foreground.height() - (padding * 2) - theme.spacingAboveParagraph();
+	m_preview_text->setGeometry(x, y, width, height);
+
+	// Render text
+	m_preview_text->render(&preview, m_preview_text->pos());
 
 	// Create preview pixmap
-	QPixmap preview(":/shadow.png");
-	{
-		QPainter painter(&preview);
-		painter.translate(9, 6);
-		painter.setClipRect(0, 0, 200, 150);
-		m_preview_background->render(&painter);
-	}
-	m_preview->setPixmap(preview);
+	preview = preview.scaled(480, 270, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	m_preview->setPixmap(QPixmap::fromImage(preview));
 }
 
 //-----------------------------------------------------------------------------
 
 void ThemeDialog::savePreview()
 {
-	if (m_preview->pixmap()) {
-		m_preview->pixmap()->save(Theme::iconPath(m_theme.name()));
-	} else {
-		qWarning("Theme preview was not created.");
-	}
+	QPixmap preview(":/shadow.png");
+	QPainter painter(&preview);
+	painter.drawPixmap(9, 9, m_preview->pixmap()->scaled(240, 135, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	painter.end();
+	preview.save(Theme::iconPath(m_theme.name()));
 }
 
 //-----------------------------------------------------------------------------

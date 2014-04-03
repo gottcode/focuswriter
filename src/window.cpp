@@ -297,6 +297,10 @@ Window::Window(const QStringList& command_line_files) :
 	m_documents->loadScreen()->setText(tr("Loading themes"));
 	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
 	Theme::copyBackgrounds();
+	{
+		// Force a reload of previews
+		ThemeManager manager(settings);
+	}
 
 	// Update margin
 	m_tabs->blockSignals(true);

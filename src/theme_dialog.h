@@ -66,7 +66,6 @@ private:
 	QPushButton* m_ok;
 
 	QLabel* m_preview;
-	QLabel* m_preview_background;
 	QTextEdit* m_preview_text;
 
 	QComboBox* m_background_type;
