@@ -359,12 +359,12 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 	QString name = session;
 	forever {
 		bool ok;
-		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok);
+		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok).simplified();
 		if (!ok) {
 			return QString();
 		}
 
-		if (name != Session::tr("Default") && !QFile::exists(Session::pathFromName(name))) {
+		if (!name.isEmpty() && name != Session::tr("Default") && !QFile::exists(Session::pathFromName(name))) {
 			break;
 		} else {
 			QMessageBox::information(window, tr("Sorry"), tr("The requested session name is already in use."));
