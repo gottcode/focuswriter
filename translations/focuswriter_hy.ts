@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation>Տարածել</translation>
+        <translation>Ընդարձակել</translation>
     </message>
 </context>
 <context>
@@ -1678,7 +1678,7 @@
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Cu&amp;t</source>
-        <translation>Հա&amp;տել</translation>
+        <translation>Կտ&amp;րել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
