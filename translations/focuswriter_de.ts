@@ -82,12 +82,12 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Längster Siegeszug</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="285"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktueller Siegeszug</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="298"/>
@@ -665,12 +665,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="836"/>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation>Siegeszüge anzeigen</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="851"/>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindestfortschritt für Siegeszüge:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="886"/>

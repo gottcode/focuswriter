@@ -174,12 +174,12 @@
     <message>
         <location filename="../src/document.cpp" line="463"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Herladen bestamd</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="464"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestand &apos;%1&apos; herladen van disk</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="465"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/document.cpp" line="1185"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Naamloos %1</translation>
+        <translation>Geen naam %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1239"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestand %1 is veranderd door een ander programma</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -685,7 +685,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Tel elke letter als een woord</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
@@ -1069,7 +1069,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ga door met controleren vanaf het begin van het bestand</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1711,17 +1711,17 @@
     <message>
         <location filename="../src/window.cpp" line="1116"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Veranderingen opslaan ?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1117"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Veranderingen in bestand &apos;%1&apos; opslaan voor het afsluiten</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1118"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>De veranderingen zullen verloren gaan als ze niet opgeslagen worden</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>

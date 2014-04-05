@@ -37,39 +37,39 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1%/%Ln minuutti</numerusform>
+            <numerusform>%1%/%Ln minuuttia</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% of %Ln sana</numerusform>
+            <numerusform>%1% of %Ln sanaa</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln sana</numerusform>
+            <numerusform>%Ln sanaa</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minuutti</numerusform>
+            <numerusform>%Ln minuuttia</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="511"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -77,35 +77,35 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="146"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Päivittäinen eteneminen</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Pisin putki</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="285"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Nykyinen putki</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="298"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n päivä</numerusform>
+            <numerusform>%n päivää</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -114,7 +114,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% päivittäisestä tavoitteesta</translation>
     </message>
 </context>
 <context>
@@ -122,7 +122,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta Kieli</translation>
     </message>
 </context>
 <context>
@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/document.cpp" line="303"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Nimetön %1)</translation>
+        <translation>(Nimetön %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="306"/>
@@ -174,12 +174,12 @@
     <message>
         <location filename="../src/document.cpp" line="463"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataa tiedosto uudelleen?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="464"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladataanko tiedosto %1 uudelleen levyltä?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="465"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toinen ohjelma on muuttanut tiedostoa %1.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -361,12 +361,12 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Muotoiltu teksti (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Pelkkä teksti (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
@@ -376,7 +376,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="106"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki tuetut tiedostot</translation>
     </message>
 </context>
 <context>
@@ -438,7 +438,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="68"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Arkiston avaaminen epäonnistui.</translation>
+        <translation>Ei voi avata arkistoa.</translation>
     </message>
 </context>
 <context>
@@ -635,42 +635,42 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nollataanko päivän eteneminen?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Kirjoita tavujärjestysmerkki (BOM) tekstitiedostoihin</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="757"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oletusmuoto:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Nollaa tämä päivä</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="831"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historia</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="833"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Muista historia</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="836"/>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä etenemisputket</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="851"/>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vähin edistyminen voittoputkeen:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="886"/>
@@ -685,12 +685,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Laske jokainen kirjain sanaksi</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Sivumääräalgoritmi</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1039"/>
@@ -800,7 +800,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="210"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="214"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei tuettu RTF-tiedosto.</translation>
     </message>
 </context>
 <context>
@@ -808,7 +808,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedosto loppui yllättäen.</translation>
     </message>
 </context>
 <context>
@@ -1069,7 +1069,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jatketaanko tarkistamista tiedoston alusta?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1314,7 +1314,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="260"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sarkainleveys:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="261"/>
@@ -1635,7 +1635,7 @@
     <message>
         <location filename="../src/window.cpp" line="204"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Luettele kaikki dokumentit</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="207"/>
@@ -1711,17 +1711,17 @@
     <message>
         <location filename="../src/window.cpp" line="1116"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennetaanko muutokset?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1117"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallennetaanko muutokset tiedostoon &apos;%1&apos; ennen sulkemista?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1118"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Muutoksesi häviävät jollet tallenna niitä.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>
@@ -2036,7 +2036,7 @@
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta &amp;Kieli...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1398"/>
@@ -2051,7 +2051,7 @@
     <message>
         <location filename="../src/window.cpp" line="1400"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Päivittäinen eteneminen</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1403"/>
