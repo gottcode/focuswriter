@@ -62,6 +62,7 @@
 #endif
 #include <QStyle>
 #include <QTextBlock>
+#include <QTextDocumentFragment>
 #include <QTextEdit>
 #include <QTimer>
 
@@ -77,8 +78,9 @@ namespace
 	class TextEdit : public QTextEdit
 	{
 	public:
-		TextEdit(QWidget* parent = 0)
-			: QTextEdit(parent)
+		TextEdit(Document* document) :
+			QTextEdit(document),
+			m_document(document)
 		{
 		}
 
@@ -92,6 +94,9 @@ namespace
 
 	private:
 		QByteArray mimeToRtf(const QMimeData* source) const;
+
+	private:
+		Document* m_document;
 	};
 
 	bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
@@ -116,6 +121,10 @@ namespace
 		}
 
 		if (acceptRichText()) {
+			QTextDocument document;
+			int formats = document.allFormats().size();
+			QTextCursor cursor = m_document->isRichText() ? textCursor() : QTextCursor(&document);
+
 			QByteArray richtext;
 			if (source->hasFormat(QLatin1String("text/rtf"))) {
 				richtext = source->data(QLatin1String("text/rtf"));
@@ -130,7 +139,7 @@ namespace
 				buffer.setData(source->data(QLatin1String("application/vnd.oasis.opendocument.text")));
 				buffer.open(QIODevice::ReadOnly);
 				OdtReader reader;
-				reader.read(&buffer, textCursor());
+				reader.read(&buffer, cursor);
 			} else if (source->hasHtml()) {
 				richtext = mimeToRtf(source);
 			} else {
@@ -142,8 +151,15 @@ namespace
 				RtfReader reader;
 				QBuffer buffer(&richtext);
 				buffer.open(QIODevice::ReadOnly);
-				reader.read(&buffer, textCursor());
+				reader.read(&buffer, cursor);
 				buffer.close();
+			}
+
+			if (!m_document->isRichText()) {
+				if (document.allFormats().size() > formats) {
+					m_document->setRichText(true);
+				}
+				textCursor().insertFragment(QTextDocumentFragment(&document));
 			}
 		} else {
 			QTextEdit::insertFromMimeData(source);

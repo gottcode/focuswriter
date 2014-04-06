@@ -200,7 +200,6 @@ void RtfReader::readData(QIODevice* device)
 		// Open file
 		m_cursor.beginEditBlock();
 		m_token.setDevice(device);
-		setBlockDirection(Qt::LeftToRight);
 
 		// Check file type
 		m_token.readNext();
