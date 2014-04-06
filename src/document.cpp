@@ -96,6 +96,7 @@ namespace
 		virtual bool canInsertFromMimeData(const QMimeData* source) const;
 		virtual QMimeData* createMimeDataFromSelection() const;
 		virtual void insertFromMimeData(const QMimeData* source);
+		virtual bool event(QEvent* event);
 		virtual void keyPressEvent(QKeyEvent* event);
 		virtual void inputMethodEvent(QInputMethodEvent* event);
 
@@ -151,8 +152,35 @@ namespace
 		}
 	}
 
+	bool TextEdit::event(QEvent* event)
+	{
+		if (event->type() == QEvent::ShortcutOverride) {
+			QKeyEvent* ke = static_cast<QKeyEvent*>(event);
+			if (ke == QKeySequence::Cut
+					|| ke == QKeySequence::Copy
+					|| ke == QKeySequence::Paste
+					|| ke == QKeySequence::Redo
+					|| ke == QKeySequence::Undo
+					|| ke == QKeySequence::SelectAll) {
+				event->ignore();
+				return true;
+			}
+		}
+		return QTextEdit::event(event);
+	}
+
 	void TextEdit::keyPressEvent(QKeyEvent* event)
 	{
+		if (event == QKeySequence::Cut
+				|| event == QKeySequence::Copy
+				|| event == QKeySequence::Paste
+				|| event == QKeySequence::Redo
+				|| event == QKeySequence::Undo
+				|| event == QKeySequence::SelectAll) {
+			event->ignore();
+			return;
+		}
+
 		QTextEdit::keyPressEvent(event);
 
 		if (event->key() == Qt::Key_Insert) {
