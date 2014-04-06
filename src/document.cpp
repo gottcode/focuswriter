@@ -138,11 +138,13 @@ namespace
 				return;
 			}
 
-			RtfReader reader;
-			QBuffer buffer(&richtext);
-			buffer.open(QIODevice::ReadOnly);
-			reader.read(&buffer, textCursor());
-			buffer.close();
+			if (!richtext.isEmpty()) {
+				RtfReader reader;
+				QBuffer buffer(&richtext);
+				buffer.open(QIODevice::ReadOnly);
+				reader.read(&buffer, textCursor());
+				buffer.close();
+			}
 		} else {
 			QTextEdit::insertFromMimeData(source);
 		}
