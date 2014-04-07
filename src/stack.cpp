@@ -201,6 +201,11 @@ Stack::Stack(QWidget* parent) :
 	m_resize_timer->setSingleShot(true);
 	connect(m_resize_timer, SIGNAL(timeout()), this, SLOT(updateBackground()));
 	connect(&background_loader, SIGNAL(finished()), this, SLOT(updateBackground()));
+
+	// Always draw background
+	setAttribute(Qt::WA_OpaquePaintEvent);
+	setAutoFillBackground(false);
+	updateBackground();
 }
 
 //-----------------------------------------------------------------------------
@@ -649,7 +654,6 @@ void Stack::themeSelected(const Theme& theme)
 	setPalette(p);
 
 	background_loader.reset();
-	m_background = QPixmap();
 	updateBackground();
 
 	m_margin = theme.foregroundMargin();
@@ -766,9 +770,7 @@ void Stack::mouseMoveEvent(QMouseEvent* event)
 void Stack::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
-	if (!m_background.isNull()) {
-		painter.drawPixmap(event->rect(), m_background, event->rect());
-	}
+	painter.drawPixmap(event->rect(), m_background, event->rect());
 	painter.end();
 }
 
@@ -777,7 +779,6 @@ void Stack::paintEvent(QPaintEvent* event)
 void Stack::resizeEvent(QResizeEvent* event)
 {
 	updateMask();
-	m_background = QPixmap();
 	m_resize_timer->start();
 	updateBackground();
 	QWidget::resizeEvent(event);
@@ -802,14 +803,11 @@ void Stack::insertSymbol(const QString& text)
 void Stack::updateBackground()
 {
 	m_background = background_loader.pixmap();
-	if ((m_background.isNull() || m_background.size() != size()) && isVisible()) {
-		m_background = QPixmap();
+	if (m_background.isNull() || m_background.size() != size()) {
+		m_background = QPixmap(size());
+		m_background.fill(palette().color(QPalette::Window));
+
 		background_loader.create(m_theme, size());
-		setAttribute(Qt::WA_NoSystemBackground, false);
-		setAutoFillBackground(true);
-	} else {
-		setAttribute(Qt::WA_NoSystemBackground, true);
-		setAutoFillBackground(false);
 	}
 	update();
 }
