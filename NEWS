@@ -1,3 +1,15 @@
+1.4.6
+-----
+* FIXED: Formatting was lost when saving pasted text in new document.
+* FIXED: Could not change built-in Qt textedit shortcuts.
+* FIXED: Session names did not trim whitespace.
+* FIXED: Theme names did not trim whitespace.
+* FIXED: Did not respect default cursor width.
+* FIXED: Session names could not contain periods.
+* FIXED: Theme names could not contain periods.
+* FIXED: Long session names made session menu unworkable.
+* Translation updates: Armenian, Hebrew.
+
 1.4.5
 -----
 * FIXED: Infinite loop during replace all with regular expressions.
