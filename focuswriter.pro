@@ -22,7 +22,7 @@ macx {
 	LIBS += -lz
 }
 
-VERSION = 1.4.5
+VERSION = 1.4.6
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 unix: !macx {
