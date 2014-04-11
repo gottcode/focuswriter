@@ -53,6 +53,7 @@ private slots:
 	void fontChanged();
 	void imageChanged();
 	void lineSpacingChanged(int index);
+	void positionChanged(int index);
 	void renderPreview();
 
 private:

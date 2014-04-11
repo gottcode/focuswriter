@@ -116,12 +116,13 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width->setSuffix(tr(" pixels"));
 	m_foreground_width->setRange(theme.foregroundWidth().minimumValue(), theme.foregroundWidth().maximumValue());
 	m_foreground_width->setValue(m_theme.foregroundWidth());
+	m_foreground_width->setEnabled(m_theme.foregroundPosition() != 3);
 	connect(m_foreground_width, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
 	m_foreground_position = new QComboBox(tab);
 	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
 	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
-	m_foreground_position->setToolTip(tr("Position"));
+	connect(m_foreground_position, SIGNAL(currentIndexChanged(int)), this, SLOT(positionChanged(int)));
 
 	m_foreground_rounding = new QSpinBox(tab);
 	m_foreground_rounding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
@@ -482,6 +483,14 @@ void ThemeDialog::lineSpacingChanged(int index)
 		m_line_spacing->setEnabled(true);
 		break;
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::positionChanged(int index)
+{
+	m_foreground_width->setEnabled(index != 3);
+	renderPreview();
 }
 
 //-----------------------------------------------------------------------------
