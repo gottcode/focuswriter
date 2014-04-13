@@ -324,31 +324,7 @@ void ThemeDialog::createPreview(const QString& name)
 void ThemeDialog::accept()
 {
 	m_theme.setName(m_name->text().simplified());
-
-	m_theme.setBackgroundType(m_background_type->currentIndex());
-	m_theme.setBackgroundColor(m_background_color->color());
-	m_theme.setBackgroundImage(m_background_image->toString());
-
-	m_theme.setForegroundColor(m_foreground_color->color());
-	m_theme.setForegroundOpacity(m_foreground_opacity->value());
-	m_theme.setForegroundWidth(m_foreground_width->value());
-	m_theme.setForegroundRounding(m_foreground_rounding->value());
-	m_theme.setForegroundMargin(m_foreground_margin->value());
-	m_theme.setForegroundPadding(m_foreground_padding->value());
-	m_theme.setForegroundPosition(m_foreground_position->currentIndex());
-
-	m_theme.setTextColor(m_text_color->color());
-	QFont font = m_font_names->currentFont();
-	font.setPointSizeF(m_font_sizes->currentText().toDouble());
-	m_theme.setTextFont(font);
-	m_theme.setMisspelledColor(m_misspelled_color->color());
-
-	m_theme.setIndentFirstLine(m_indent_first_line->isChecked());
-	m_theme.setLineSpacing(m_line_spacing->value());
-	m_theme.setSpacingAboveParagraph(m_spacing_above_paragraph->value());
-	m_theme.setSpacingBelowParagraph(m_spacing_below_paragraph->value());
-	m_theme.setTabWidth(m_tab_width->value());
-
+	setValues(m_theme);
 	m_theme.saveChanges();
 
 	savePreview();
@@ -443,64 +419,69 @@ void ThemeDialog::lineSpacingChanged(int index)
 
 void ThemeDialog::renderPreview()
 {
+	m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
+
+	// Load theme
+	Theme theme("", false);
+	setValues(theme);
+	theme.setBackgroundImage(m_background_image->image());
+
+	// Reset text
+	m_preview_text->clear();
+
+	// Set colors
+	QColor color = theme.foregroundColor();
+	color.setAlpha(theme.foregroundOpacity() * 2.55f);
+	QColor text_color = theme.textColor();
+	text_color.setAlpha(255);
+	QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
+
+	m_preview_text->setStyleSheet(
+		QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
+			.arg(color.red())
+			.arg(color.green())
+			.arg(color.blue())
+			.arg(color.alpha())
+			.arg(text_color.red())
+			.arg(text_color.green())
+			.arg(text_color.blue())
+			.arg(text_color.alpha())
+			.arg(text_color.name())
+			.arg(contrast)
+			.arg(theme.foregroundPadding())
+			.arg(theme.foregroundRounding())
+	);
+
+	// Set spacings
+	int tab_width = theme.tabWidth();
+	QTextBlockFormat block_format;
+#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
+	block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
+#endif
+	block_format.setTextIndent(tab_width * theme.indentFirstLine());
+	block_format.setTopMargin(theme.spacingAboveParagraph());
+	block_format.setBottomMargin(theme.spacingBelowParagraph());
+	m_preview_text->textCursor().mergeBlockFormat(block_format);
+	m_preview_text->setTabStopWidth(tab_width);
+	m_preview_text->document()->setIndentWidth(tab_width);
+
+	// Set font
+	m_preview_text->setFont(theme.textFont());
+	m_preview_text->append(tr("The quick brown fox jumps over the lazy dog"));
+
+	// Render background, zoomed to fit preview image
+	QRect rect = QApplication::desktop()->screenGeometry();
+	QImage background = Theme::renderBackground(theme.backgroundImage(), theme.backgroundType(), theme.backgroundColor(), rect.size());
+	background = background.scaled(200, 150, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+	background = background.copy((background.width() - 200) / 2, (background.height() - 150) / 2, 200, 150);
+	m_preview_background->setPixmap(QPixmap::fromImage(background));
+
+	// Create preview pixmap
 	QPixmap preview(":/shadow.png");
 	{
-		// Set up painter inside of shadow
 		QPainter painter(&preview);
 		painter.translate(9, 6);
 		painter.setClipRect(0, 0, 200, 150);
-
-		// Create background, zoomed to fit preview image
-		int type = m_background_type->currentIndex();
-		m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
-
-		QRect rect = QApplication::desktop()->screenGeometry();
-		QImage background = Theme::renderBackground(m_background_image->image(), type, m_background_color->color(), rect.size());
-		background = background.scaled(200, 150, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-		background = background.copy((background.width() - 200) / 2, (background.height() - 150) / 2, 200, 150);
-		m_preview_background->setPixmap(QPixmap::fromImage(background));
-
-		// Set up colors
-		QColor color = m_foreground_color->color();
-		color.setAlpha(m_foreground_opacity->value() * 2.55f);
-		QColor text_color = m_text_color->color();
-		text_color.setAlpha(255);
-		QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
-
-		m_preview_text->clear();
-		m_preview_text->setStyleSheet(
-			QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
-				.arg(color.red())
-				.arg(color.green())
-				.arg(color.blue())
-				.arg(color.alpha())
-				.arg(text_color.red())
-				.arg(text_color.green())
-				.arg(text_color.blue())
-				.arg(text_color.alpha())
-				.arg(text_color.name())
-				.arg(contrast)
-				.arg(m_foreground_padding->value())
-				.arg(m_foreground_rounding->value())
-		);
-
-		// Set up spacings
-		QTextBlockFormat block_format;
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
-		block_format.setLineHeight(m_line_spacing->value(), (m_line_spacing->value() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
-#endif
-		block_format.setTextIndent(48 * m_indent_first_line->isChecked());
-		block_format.setTopMargin(m_spacing_above_paragraph->value());
-		block_format.setBottomMargin(m_spacing_below_paragraph->value());
-		m_preview_text->textCursor().mergeBlockFormat(block_format);
-
-		// Set up text
-		QFont font = m_font_names->currentFont();
-		font.setPointSizeF(m_font_sizes->currentText().toDouble());
-		m_preview_text->setFont(font);
-		m_preview_text->append(tr("The quick brown fox jumps over the lazy dog"));
-
-		// Create preview pixmap
 		m_preview_background->render(&painter);
 	}
 	m_preview->setPixmap(preview);
@@ -515,6 +496,35 @@ void ThemeDialog::savePreview()
 	} else {
 		qWarning("Theme preview was not created.");
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::setValues(Theme& theme)
+{
+	theme.setBackgroundType(m_background_type->currentIndex());
+	theme.setBackgroundColor(m_background_color->color());
+	theme.setBackgroundImage(m_background_image->toString());
+
+	theme.setForegroundColor(m_foreground_color->color());
+	theme.setForegroundOpacity(m_foreground_opacity->value());
+	theme.setForegroundWidth(m_foreground_width->value());
+	theme.setForegroundRounding(m_foreground_rounding->value());
+	theme.setForegroundMargin(m_foreground_margin->value());
+	theme.setForegroundPadding(m_foreground_padding->value());
+	theme.setForegroundPosition(m_foreground_position->currentIndex());
+
+	theme.setTextColor(m_text_color->color());
+	QFont font = m_font_names->currentFont();
+	font.setPointSizeF(m_font_sizes->currentText().toDouble());
+	theme.setTextFont(font);
+	theme.setMisspelledColor(m_misspelled_color->color());
+
+	theme.setIndentFirstLine(m_indent_first_line->isChecked());
+	theme.setLineSpacing(m_line_spacing->value());
+	theme.setSpacingAboveParagraph(m_spacing_above_paragraph->value());
+	theme.setSpacingBelowParagraph(m_spacing_below_paragraph->value());
+	theme.setTabWidth(m_tab_width->value());
 }
 
 //-----------------------------------------------------------------------------
