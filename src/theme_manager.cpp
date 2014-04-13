@@ -35,6 +35,11 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QStandardPaths>
+#else
+#include <QDesktopServices>
+#endif
 #include <QTemporaryFile>
 #include <QUrl>
 #include <QVBoxLayout>
@@ -203,10 +208,20 @@ void ThemeManager::removeTheme()
 void ThemeManager::importTheme()
 {
 	// Find file to import
-	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), QDir::homePath(), tr("Themes (*.fwtz *.theme)"));
+	QSettings settings;
+	QString path = settings.value("ThemeManager/Location").toString();
+	if (path.isEmpty() || !QFile::exists(path)) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#else
+		path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#endif
+	}
+	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), path, tr("Themes (%1)").arg("*.fwtz *.theme"), 0, QFileDialog::DontResolveSymlinks);
 	if (filename.isEmpty()) {
 		return;
 	}
+	settings.setValue("ThemeManager/Location", QFileInfo(filename).absolutePath());
 
 	// Find theme name
 	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).completeBaseName().toUtf8());
@@ -231,12 +246,12 @@ void ThemeManager::importTheme()
 	}
 
 	// Extract and use background image
-	QSettings settings(theme_filename, QSettings::IniFormat);
-	QByteArray data = QByteArray::fromBase64(settings.value("Data/Image").toByteArray());
-	QString image_file = settings.value("Background/ImageFile").toString();
-	settings.remove("Background/ImageFile");
-	settings.remove("Data/Image");
-	settings.sync();
+	QSettings theme_ini(theme_filename, QSettings::IniFormat);
+	QByteArray data = QByteArray::fromBase64(theme_ini.value("Data/Image").toByteArray());
+	QString image_file = theme_ini.value("Background/ImageFile").toString();
+	theme_ini.remove("Background/ImageFile");
+	theme_ini.remove("Data/Image");
+	theme_ini.sync();
 
 	if (!data.isEmpty()) {
 		QTemporaryFile file(QDir::tempPath() + "/XXXXXX-" + image_file);
@@ -249,8 +264,8 @@ void ThemeManager::importTheme()
 		theme.setBackgroundImage(file.fileName());
 	}
 
-	settings.sync();
-	settings.remove("Background/Image");
+	theme_ini.sync();
+	theme_ini.remove("Background/Image");
 
 	addItem(name);
 }
@@ -265,13 +280,24 @@ void ThemeManager::exportTheme()
 	}
 
 	// Find export file name
-	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), QDir::homePath() + "/" + item->text() + ".fwtz", tr("Themes (*.fwtz)"));
+	QSettings settings;
+	QString path = settings.value("ThemeManager/Location").toString();
+	if (path.isEmpty() || !QFile::exists(path)) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#else
+		path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#endif
+	}
+	path = path + "/" + item->text() + ".fwtz";
+	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), path, tr("Themes (%1)").arg("*.fwtz"), 0, QFileDialog::DontResolveSymlinks);
 	if (filename.isEmpty()) {
 		return;
 	}
 	if (!filename.endsWith(".fwtz")) {
 		filename += ".fwtz";
 	}
+	settings.setValue("ThemeManager/Location", QFileInfo(filename).absolutePath());
 
 	// Copy theme
 	QFile::remove(filename);
@@ -279,14 +305,14 @@ void ThemeManager::exportTheme()
 
 	// Store image in export file
 	{
-		QSettings settings(filename, QSettings::IniFormat);
-		settings.remove("Background/Image");
+		QSettings theme_ini(filename, QSettings::IniFormat);
+		theme_ini.remove("Background/Image");
 
-		QString image = settings.value("Background/ImageFile").toString();
+		QString image = theme_ini.value("Background/ImageFile").toString();
 		if (!image.isEmpty()) {
 			QFile file(Theme::path() + "/Images/" + image);
 			if (file.open(QFile::ReadOnly)) {
-				settings.setValue("Data/Image", file.readAll().toBase64());
+				theme_ini.setValue("Data/Image", file.readAll().toBase64());
 				file.close();
 			}
 		}
