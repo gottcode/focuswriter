@@ -216,7 +216,6 @@ void RTF::Reader::read(QIODevice* device, const QTextCursor& cursor)
 		m_cursor = cursor;
 		m_cursor.beginEditBlock();
 		m_token.setDevice(device);
-		setBlockDirection(Qt::LeftToRight);
 
 		// Check file type
 		m_token.readNext();

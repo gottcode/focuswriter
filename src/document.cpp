@@ -54,6 +54,7 @@
 #include <QSettings>
 #include <QStyle>
 #include <QTextBlock>
+#include <QTextDocumentFragment>
 #include <QTextEdit>
 #include <QTextStream>
 #include <QTimer>
@@ -87,8 +88,9 @@ namespace
 	class TextEdit : public QTextEdit
 	{
 	public:
-		TextEdit(QWidget* parent = 0)
-			: QTextEdit(parent)
+		TextEdit(Document* document) :
+			QTextEdit(document),
+			m_document(document)
 		{
 		}
 
@@ -96,11 +98,15 @@ namespace
 		virtual bool canInsertFromMimeData(const QMimeData* source) const;
 		virtual QMimeData* createMimeDataFromSelection() const;
 		virtual void insertFromMimeData(const QMimeData* source);
+		virtual bool event(QEvent* event);
 		virtual void keyPressEvent(QKeyEvent* event);
 		virtual void inputMethodEvent(QInputMethodEvent* event);
 
 	private:
 		QByteArray mimeToRtf(const QMimeData* source) const;
+
+	private:
+		Document* m_document;
 	};
 
 	bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
@@ -125,6 +131,10 @@ namespace
 		}
 
 		if (acceptRichText()) {
+			QTextDocument document;
+			int formats = document.allFormats().size();
+			QTextCursor cursor = m_document->isRichText() ? textCursor() : QTextCursor(&document);
+
 			QByteArray richtext;
 			if (source->hasFormat(QLatin1String("text/rtf"))) {
 				richtext = source->data(QLatin1String("text/rtf"));
@@ -144,15 +154,49 @@ namespace
 			RTF::Reader reader;
 			QBuffer buffer(&richtext);
 			buffer.open(QIODevice::ReadOnly);
-			reader.read(&buffer, textCursor());
+			reader.read(&buffer, cursor);
 			buffer.close();
+
+			if (!m_document->isRichText()) {
+				if (document.allFormats().size() > formats) {
+					m_document->setRichText(true);
+				}
+				textCursor().insertFragment(QTextDocumentFragment(&document));
+			}
 		} else {
 			QTextEdit::insertFromMimeData(source);
 		}
 	}
 
+	bool TextEdit::event(QEvent* event)
+	{
+		if (event->type() == QEvent::ShortcutOverride) {
+			QKeyEvent* ke = static_cast<QKeyEvent*>(event);
+			if (ke == QKeySequence::Cut
+					|| ke == QKeySequence::Copy
+					|| ke == QKeySequence::Paste
+					|| ke == QKeySequence::Redo
+					|| ke == QKeySequence::Undo
+					|| ke == QKeySequence::SelectAll) {
+				event->ignore();
+				return true;
+			}
+		}
+		return QTextEdit::event(event);
+	}
+
 	void TextEdit::keyPressEvent(QKeyEvent* event)
 	{
+		if (event == QKeySequence::Cut
+				|| event == QKeySequence::Copy
+				|| event == QKeySequence::Paste
+				|| event == QKeySequence::Redo
+				|| event == QKeySequence::Undo
+				|| event == QKeySequence::SelectAll) {
+			event->ignore();
+			return;
+		}
+
 		QTextEdit::keyPressEvent(event);
 
 		if (event->key() == Qt::Key_Insert) {
@@ -693,7 +737,7 @@ void Document::loadTheme(const Theme& theme)
 		QEvent e(QEvent::FontChange);
 		QApplication::sendEvent(m_text, &e);
 	}
-	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
 
 	int margin = theme.foregroundMargin();
 	m_layout->setColumnMinimumWidth(0, margin);
@@ -759,7 +803,7 @@ void Document::loadPreferences(const Preferences& preferences)
 	}
 
 	m_block_cursor = preferences.blockCursor();
-	m_text->setCursorWidth(!m_block_cursor ? 1 : m_text->fontMetrics().averageCharWidth());
+	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
 	QFont font = m_text->font();
 	font.setStyleStrategy(preferences.smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
 	m_text->setFont(font);

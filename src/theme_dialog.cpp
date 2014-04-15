@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -317,7 +317,7 @@ void ThemeDialog::createPreview(const QString& name)
 
 void ThemeDialog::accept()
 {
-	m_theme.setName(m_name->text());
+	m_theme.setName(m_name->text().simplified());
 
 	m_theme.setBackgroundType(m_background_type->currentIndex());
 	m_theme.setBackgroundColor(m_background_color->color());
@@ -351,7 +351,7 @@ void ThemeDialog::accept()
 
 void ThemeDialog::checkNameAvailable()
 {
-	QString name = m_name->text();
+	QString name = m_name->text().simplified();
 	bool empty = name.isEmpty();
 	bool changed = (name != m_theme.name());
 	bool exists = QFile::exists(Theme::filePath(name));
