@@ -1,3 +1,9 @@
+focuswriter (1.4.6-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 15 Apr 2014 09:12:39 +0100
+
 focuswriter (1.4.5-1) unstable; urgency=medium
 
   * New upstream release
