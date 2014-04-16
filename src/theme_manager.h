@@ -43,6 +43,7 @@ protected:
 private slots:
 	void addTheme();
 	void modifyTheme();
+	void cloneTheme();
 	void removeTheme();
 	void importTheme();
 	void exportTheme();

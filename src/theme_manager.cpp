@@ -84,6 +84,10 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	edit_button->setAutoDefault(false);
 	connect(edit_button, SIGNAL(clicked()), this, SLOT(modifyTheme()));
 
+	QPushButton* clone_button = new QPushButton(tr("Clone"), this);
+	clone_button->setAutoDefault(false);
+	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
+
 	m_remove_button = new QPushButton(tr("Remove"), this);
 	m_remove_button->setAutoDefault(false);
 	connect(m_remove_button, SIGNAL(clicked()), this, SLOT(removeTheme()));
@@ -105,6 +109,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	buttons_layout->setMargin(0);
 	buttons_layout->addWidget(add_button);
 	buttons_layout->addWidget(edit_button);
+	buttons_layout->addWidget(clone_button);
 	buttons_layout->addWidget(m_remove_button);
 	buttons_layout->addSpacing(import_button->sizeHint().height());
 	buttons_layout->addWidget(import_button);
@@ -176,6 +181,29 @@ void ThemeManager::modifyTheme()
 		item = 0;
 		addItem(name);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeManager::cloneTheme()
+{
+	QListWidgetItem* item = m_themes->currentItem();
+	if (!item) {
+		return;
+	}
+
+	QString name = Theme::clone(item->text());
+	{
+		Theme theme(name);
+		ThemeDialog dialog(theme, this);
+		if (dialog.exec() == QDialog::Rejected) {
+			QFile::remove(Theme::filePath(name));
+			QFile::remove(Theme::iconPath(name));
+			return;
+		}
+		name = theme.name();
+	}
+	addItem(name);
 }
 
 //-----------------------------------------------------------------------------

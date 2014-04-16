@@ -79,6 +79,7 @@ public:
 	Theme(const QString& name = QString(), bool create = true);
 	~Theme();
 
+	static QString clone(const QString& theme);
 	static void copyBackgrounds();
 	static QString filePath(const QString& theme);
 	static QString iconPath(const QString& theme);

@@ -145,6 +145,37 @@ Theme::~Theme()
 
 //-----------------------------------------------------------------------------
 
+QString Theme::clone(const QString& theme)
+{
+	if (theme.isEmpty()) {
+		return theme;
+	}
+
+	// Find name for duplicate theme
+	QString name;
+	int count = 1;
+	do {
+		++count;
+		name = tr("%1 %2").arg(theme).arg(count);
+	} while (QFile::exists(filePath(name)));
+
+	// Create duplicate
+	{
+		Theme duplicate(theme);
+		duplicate.setValue(duplicate.d->name, name);
+	}
+
+	// Copy icon
+	QString icon = iconPath(theme);
+	if (QFile::exists(icon)) {
+		QFile::copy(icon, iconPath(name));
+	}
+
+	return name;
+}
+
+//-----------------------------------------------------------------------------
+
 void Theme::copyBackgrounds()
 {
 	QDir dir(path() + "/Images");
