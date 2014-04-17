@@ -72,37 +72,39 @@ private:
 	QLabel* m_preview;
 	QTextEdit* m_preview_text;
 
-	QComboBox* m_background_type;
-	ColorButton* m_background_color;
-	ImageButton* m_background_image;
-	QPushButton* m_clear_image;
-
-	ColorButton* m_foreground_color;
-	QSpinBox* m_foreground_opacity;
-	QSpinBox* m_foreground_width;
-	QSpinBox* m_foreground_rounding;
-	QSpinBox* m_foreground_margin;
-	QSpinBox* m_foreground_padding;
-	QComboBox* m_foreground_position;
-
-	QGroupBox* m_blur;
-	QSpinBox* m_blur_radius;
-	QGroupBox* m_shadow;
-	ColorButton* m_shadow_color;
-	QSpinBox* m_shadow_radius;
-	QSpinBox* m_shadow_offset;
-
 	ColorButton* m_text_color;
 	FontComboBox* m_font_names;
 	QComboBox* m_font_sizes;
 	ColorButton* m_misspelled_color;
 
-	QCheckBox* m_indent_first_line;
+	ColorButton* m_background_color;
+	ImageButton* m_background_image;
+	QPushButton* m_clear_image;
+	QComboBox* m_background_type;
+
+	ColorButton* m_foreground_color;
+	QSpinBox* m_foreground_opacity;
+	QComboBox* m_foreground_position;
+	QSpinBox* m_foreground_width;
+	QSpinBox* m_foreground_rounding;
+	QSpinBox* m_foreground_margin;
+	QSpinBox* m_foreground_padding;
+
+	QGroupBox* m_blur;
+	QSpinBox* m_blur_radius;
+
+	QGroupBox* m_shadow;
+	ColorButton* m_shadow_color;
+	QSpinBox* m_shadow_radius;
+	QSpinBox* m_shadow_offset;
+
 	QComboBox* m_line_spacing_type;
 	QSpinBox* m_line_spacing;
+
+	QSpinBox* m_tab_width;
 	QSpinBox* m_spacing_above_paragraph;
 	QSpinBox* m_spacing_below_paragraph;
-	QSpinBox* m_tab_width;
+	QCheckBox* m_indent_first_line;
 };
 
 #endif
