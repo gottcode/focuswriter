@@ -24,6 +24,7 @@ class ColorButton;
 class FontComboBox;
 class ImageButton;
 class Theme;
+class ThemeRenderer;
 
 #include <QDialog>
 class QCheckBox;
@@ -55,6 +56,7 @@ private slots:
 	void lineSpacingChanged(int index);
 	void positionChanged(int index);
 	void renderPreview();
+	void renderPreview(QImage preview, const QRect& foreground, const Theme& theme);
 
 private:
 	void savePreview();
@@ -66,6 +68,7 @@ private:
 	QLineEdit* m_name;
 	QPushButton* m_ok;
 
+	ThemeRenderer* m_theme_renderer;
 	QLabel* m_preview;
 	QTextEdit* m_preview_text;
 

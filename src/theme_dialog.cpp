@@ -23,6 +23,7 @@
 #include "font_combobox.h"
 #include "image_button.h"
 #include "theme.h"
+#include "theme_renderer.h"
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -352,6 +353,8 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	pixmap.fill(palette().window().color());
 	m_preview->setPixmap(pixmap);
 
+	m_theme_renderer = new ThemeRenderer(this);
+	connect(m_theme_renderer, SIGNAL(rendered(QImage,QRect,Theme)), this, SLOT(renderPreview(QImage,QRect,Theme)));
 	renderPreview();
 
 
@@ -377,6 +380,8 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 ThemeDialog::~ThemeDialog()
 {
+	m_theme_renderer->wait();
+
 	delete m_preview_text;
 }
 
@@ -386,6 +391,8 @@ void ThemeDialog::createPreview(const QString& name)
 {
 	Theme theme(name);
 	ThemeDialog dialog(theme);
+	dialog.m_theme_renderer->wait();
+	QCoreApplication::processEvents();
 	dialog.savePreview();
 }
 
@@ -504,6 +511,14 @@ void ThemeDialog::renderPreview()
 	setValues(theme);
 	theme.setBackgroundImage(m_background_image->image());
 
+	// Render theme
+	m_theme_renderer->create(theme, QSize(1920, 1080));
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const Theme& theme)
+{
 	// Set colors
 	QColor color = theme.foregroundColor();
 	color.setAlpha(0);
@@ -539,10 +554,6 @@ void ThemeDialog::renderPreview()
 
 	// Set font
 	m_preview_text->setFont(theme.textFont());
-
-	// Render theme
-	QRect foreground;
-	QImage preview = theme.render(QSize(1920, 1080), foreground);
 
 	// Position preview text
 	int padding = theme.foregroundPadding();

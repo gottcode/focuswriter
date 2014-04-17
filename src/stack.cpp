@@ -28,7 +28,7 @@
 #include "scene_model.h"
 #include "smart_quotes.h"
 #include "symbols_dialog.h"
-#include "theme.h"
+#include "theme_renderer.h"
 
 #include <QAction>
 #include <QApplication>
@@ -38,122 +38,13 @@
 #include <QGridLayout>
 #include <QMenu>
 #include <QMessageBox>
-#include <QMutex>
-#include <QMutexLocker>
 #include <QPainter>
 #include <QPaintEvent>
 #include <QStackedWidget>
 #include <QTextBlock>
 #include <QTextCursor>
 #include <QTextEdit>
-#include <QThread>
 #include <QTimer>
-
-//-----------------------------------------------------------------------------
-
-namespace
-{
-	class BackgroundLoader : public QThread
-	{
-	public:
-		void create(const Theme& theme, const QSize& background);
-		QRect foregroundRect();
-		QImage image();
-		void reset();
-
-	protected:
-		virtual void run();
-
-	private:
-		struct File {
-			Theme theme;
-			QSize background;
-		};
-		QList<File> m_files;
-		QMutex m_file_mutex;
-
-		struct CacheFile {
-			File file;
-			QRect foreground;
-			QImage image;
-			bool operator==(const CacheFile& other);
-		};
-		QList<CacheFile> m_cache;
-
-		QRect m_rect;
-		QImage m_image;
-		QMutex m_image_mutex;
-	} background_loader;
-
-	void BackgroundLoader::create(const Theme& theme, const QSize& background)
-	{
-		File file = {
-			theme,
-			background
-		};
-
-		m_file_mutex.lock();
-		m_files.append(file);
-		m_file_mutex.unlock();
-
-		if (!isRunning()) {
-			start();
-		}
-	}
-
-	QRect BackgroundLoader::foregroundRect()
-	{
-		QMutexLocker locker(&m_image_mutex);
-		return m_rect;
-	}
-
-	QImage BackgroundLoader::image()
-	{
-		QMutexLocker locker(&m_image_mutex);
-		return m_image;
-	}
-
-	void BackgroundLoader::reset()
-	{
-		QMutexLocker locker(&m_image_mutex);
-		m_image = QImage();
-	}
-
-	void BackgroundLoader::run()
-	{
-		m_file_mutex.lock();
-		do {
-			File file = m_files.takeLast();
-			m_files.clear();
-			m_file_mutex.unlock();
-
-			CacheFile cache_file = { file, QRect(), QImage() };
-			int index = m_cache.indexOf(cache_file);
-			if (index != -1) {
-				cache_file = m_cache.at(index);
-			} else {
-				cache_file.image = file.theme.render(file.background, cache_file.foreground);
-				m_cache.prepend(cache_file);
-				while (m_cache.size() > 10) {
-					m_cache.removeLast();
-				}
-			}
-
-			m_image_mutex.lock();
-			m_image = cache_file.image;
-			m_rect = cache_file.foreground;
-			m_image_mutex.unlock();
-
-			m_file_mutex.lock();
-		} while (!m_files.isEmpty());
-		m_file_mutex.unlock();
-	}
-
-	bool BackgroundLoader::CacheFile::operator==(const CacheFile& other)
-	{
-		return (file.theme == other.file.theme) && (file.background == other.file.background);
-	}
-}
 
 //-----------------------------------------------------------------------------
 
@@ -208,7 +99,9 @@ Stack::Stack(QWidget* parent) :
 	m_resize_timer->setInterval(50);
 	m_resize_timer->setSingleShot(true);
 	connect(m_resize_timer, SIGNAL(timeout()), this, SLOT(updateBackground()));
-	connect(&background_loader, SIGNAL(finished()), this, SLOT(updateBackground()));
+
+	m_theme_renderer = new ThemeRenderer(this);
+	connect(m_theme_renderer, SIGNAL(rendered(QImage,QRect,Theme)), this, SLOT(updateBackground(QImage,QRect)));
 
 	// Always draw background
 	setAttribute(Qt::WA_OpaquePaintEvent);
@@ -220,7 +113,7 @@ Stack::Stack(QWidget* parent) :
 
 Stack::~Stack()
 {
-	background_loader.wait();
+	m_theme_renderer->wait();
 }
 
 //-----------------------------------------------------------------------------
@@ -326,8 +219,8 @@ void Stack::setMargins(int footer, int header)
 
 void Stack::waitForThemeBackground()
 {
-	if (background_loader.isRunning()) {
-		background_loader.wait();
+	if (m_theme_renderer->isRunning()) {
+		m_theme_renderer->wait();
 		repaint();
 	}
 }
@@ -657,7 +550,6 @@ void Stack::themeSelected(const Theme& theme)
 {
 	m_theme = theme;
 
-	background_loader.reset();
 	updateBackground();
 
 	m_margin = theme.foregroundMargin();
@@ -806,16 +698,12 @@ void Stack::insertSymbol(const QString& text)
 
 void Stack::updateBackground()
 {
-	QImage image = background_loader.image();
-	QRect foreground = background_loader.foregroundRect();
+	// Create temporary background
+	QRect foreground = m_theme.foregroundRect(size());
 
-	// Create fallback background and reload if incorrect size
-	if (image.size() != size()) {
-		image = QImage(size(), QImage::Format_ARGB32_Premultiplied);
-		image.fill(m_theme.backgroundColor());
-
-		foreground = m_theme.foregroundRect(size());
-
+	QImage image(size(), QImage::Format_ARGB32_Premultiplied);
+	image.fill(m_theme.backgroundColor());
+	{
 		QPainter painter(&image);
 		QColor color = m_theme.foregroundColor();
 		color.setAlpha(m_theme.foregroundOpacity() * 2.55f);
@@ -829,8 +717,23 @@ void Stack::updateBackground()
 			int rounding = m_theme.foregroundRounding();
 			painter.drawRoundedRect(foreground, rounding, rounding);
 		}
+	}
 
-		background_loader.create(m_theme, size());
+	updateBackground(image, foreground);
+
+	// Create proper background
+	if (!m_resize_timer->isActive()) {
+		m_theme_renderer->create(m_theme, size());
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::updateBackground(const QImage& image, const QRect& foreground)
+{
+	// Make sure image is correct size
+	if (image.size() != size()) {
+		return;
 	}
 
 	// Load background and foreground

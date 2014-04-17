@@ -142,6 +142,7 @@ HEADERS += src/action_manager.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
+	src/theme_renderer.h \
 	src/timer.h \
 	src/timer_display.h \
 	src/timer_manager.h \
@@ -205,6 +206,7 @@ SOURCES += src/action_manager.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \
+	src/theme_renderer.cpp \
 	src/timer.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \

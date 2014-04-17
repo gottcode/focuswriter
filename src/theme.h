@@ -168,4 +168,6 @@ private:
 	static QString m_path;
 };
 
+Q_DECLARE_METATYPE(Theme)
+
 #endif

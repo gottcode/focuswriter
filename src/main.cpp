@@ -44,6 +44,9 @@ int main(int argc, char** argv)
 	}
 	QString appdir = app.applicationDirPath();
 
+	// Allow passing Theme as signal parameter
+	qRegisterMetaType<Theme>("Theme");
+
 	// Find application data dirs
 	QStringList datadirs;
 #if defined(Q_OS_MAC)

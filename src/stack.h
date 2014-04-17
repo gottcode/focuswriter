@@ -27,6 +27,7 @@ class FindDialog;
 class LoadScreen;
 class SceneList;
 class SymbolsDialog;
+class ThemeRenderer;
 
 #include <QWidget>
 class QActionGroup;
@@ -129,6 +130,7 @@ private slots:
 	void actionTriggered(QAction* action);
 	void insertSymbol(const QString& text);
 	void updateBackground();
+	void updateBackground(const QImage& image, const QRect& foreground);
 	void updateMask();
 	void updateMenuIndexes();
 
@@ -147,6 +149,7 @@ private:
 	QList<QAction*> m_document_actions;
 	Document* m_current_document;
 
+	ThemeRenderer* m_theme_renderer;
 	QPixmap m_background;
 	QBrush m_foreground;
 	Theme m_theme;
