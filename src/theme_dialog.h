@@ -87,8 +87,6 @@ private:
 	QComboBox* m_foreground_position;
 	QSpinBox* m_foreground_width;
 	QSpinBox* m_foreground_rounding;
-	QSpinBox* m_foreground_margin;
-	QSpinBox* m_foreground_padding;
 
 	QGroupBox* m_blur;
 	QSpinBox* m_blur_radius;
@@ -97,6 +95,9 @@ private:
 	ColorButton* m_shadow_color;
 	QSpinBox* m_shadow_radius;
 	QSpinBox* m_shadow_offset;
+
+	QSpinBox* m_foreground_margin;
+	QSpinBox* m_foreground_padding;
 
 	QComboBox* m_line_spacing_type;
 	QSpinBox* m_line_spacing;

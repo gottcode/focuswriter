@@ -169,20 +169,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_rounding->setValue(m_theme.foregroundRounding());
 	connect(m_foreground_rounding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
-	m_foreground_margin = new QSpinBox(foreground_group);
-	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_margin->setSuffix(tr(" pixels"));
-	m_foreground_margin->setRange(theme.foregroundMargin().minimumValue(), theme.foregroundMargin().maximumValue());
-	m_foreground_margin->setValue(m_theme.foregroundMargin());
-	connect(m_foreground_margin, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
-	m_foreground_padding = new QSpinBox(foreground_group);
-	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_padding->setSuffix(tr(" pixels"));
-	m_foreground_padding->setRange(theme.foregroundPadding().minimumValue(), theme.foregroundPadding().maximumValue());
-	m_foreground_padding->setValue(m_theme.foregroundPadding());
-	connect(m_foreground_padding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
 	QFormLayout* foreground_layout = new QFormLayout(foreground_group);
 	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	foreground_layout->addRow(tr("Color:"), m_foreground_color);
@@ -190,8 +176,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	foreground_layout->addRow(tr("Position:"), m_foreground_position);
 	foreground_layout->addRow(tr("Width:"), m_foreground_width);
 	foreground_layout->addRow(tr("Round Corners:"), m_foreground_rounding);
-	foreground_layout->addRow(tr("Window Margin:"), m_foreground_margin);
-	foreground_layout->addRow(tr("Page Margin:"), m_foreground_padding);
 
 
 	// Create blur group
@@ -241,6 +225,29 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	shadow_layout->addRow(tr("Color:"), m_shadow_color);
 	shadow_layout->addRow(tr("Radius:"), m_shadow_radius);
 	shadow_layout->addRow(tr("Vertical Offset:"), m_shadow_offset);
+
+
+	// Create margins group
+	QGroupBox* margins_group = new QGroupBox(tr("Margins"), contents);
+
+	m_foreground_margin = new QSpinBox(margins_group);
+	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_foreground_margin->setSuffix(tr(" pixels"));
+	m_foreground_margin->setRange(theme.foregroundMargin().minimumValue(), theme.foregroundMargin().maximumValue());
+	m_foreground_margin->setValue(m_theme.foregroundMargin());
+	connect(m_foreground_margin, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_foreground_padding = new QSpinBox(margins_group);
+	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_foreground_padding->setSuffix(tr(" pixels"));
+	m_foreground_padding->setRange(theme.foregroundPadding().minimumValue(), theme.foregroundPadding().maximumValue());
+	m_foreground_padding->setValue(m_theme.foregroundPadding());
+	connect(m_foreground_padding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	QFormLayout* margins_layout = new QFormLayout(margins_group);
+	margins_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	margins_layout->addRow(tr("Window:"), m_foreground_margin);
+	margins_layout->addRow(tr("Page:"), m_foreground_padding);
 
 
 	// Create line spacing group
@@ -346,6 +353,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	groups_layout->addWidget(foreground_group);
 	groups_layout->addWidget(m_blur);
 	groups_layout->addWidget(m_shadow);
+	groups_layout->addWidget(margins_group);
 	groups_layout->addWidget(line_spacing);
 	groups_layout->addWidget(paragraph_spacing);
 
