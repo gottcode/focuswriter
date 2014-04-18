@@ -73,24 +73,24 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 		m_themes->setCurrentItem(items.first());
 	}
 	connect(m_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
-	connect(m_themes, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(modifyTheme()));
+	connect(m_themes, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(editTheme()));
 
 	// Add control buttons
-	QPushButton* add_button = new QPushButton(tr("Add"), this);
-	add_button->setAutoDefault(false);
-	connect(add_button, SIGNAL(clicked()), this, SLOT(addTheme()));
+	QPushButton* new_button = new QPushButton(tr("New"), this);
+	new_button->setAutoDefault(false);
+	connect(new_button, SIGNAL(clicked()), this, SLOT(newTheme()));
 
-	QPushButton* edit_button = new QPushButton(tr("Modify"), this);
+	QPushButton* edit_button = new QPushButton(tr("Edit"), this);
 	edit_button->setAutoDefault(false);
-	connect(edit_button, SIGNAL(clicked()), this, SLOT(modifyTheme()));
+	connect(edit_button, SIGNAL(clicked()), this, SLOT(editTheme()));
 
 	QPushButton* clone_button = new QPushButton(tr("Clone"), this);
 	clone_button->setAutoDefault(false);
 	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
 
-	m_remove_button = new QPushButton(tr("Remove"), this);
+	m_remove_button = new QPushButton(tr("Delete"), this);
 	m_remove_button->setAutoDefault(false);
-	connect(m_remove_button, SIGNAL(clicked()), this, SLOT(removeTheme()));
+	connect(m_remove_button, SIGNAL(clicked()), this, SLOT(deleteTheme()));
 
 	QPushButton* import_button = new QPushButton(tr("Import"), this);
 	import_button->setAutoDefault(false);
@@ -107,7 +107,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	// Lay out dialog
 	QVBoxLayout* buttons_layout = new QVBoxLayout;
 	buttons_layout->setMargin(0);
-	buttons_layout->addWidget(add_button);
+	buttons_layout->addWidget(new_button);
 	buttons_layout->addWidget(edit_button);
 	buttons_layout->addWidget(clone_button);
 	buttons_layout->addWidget(m_remove_button);
@@ -140,12 +140,13 @@ void ThemeManager::hideEvent(QHideEvent* event)
 
 //-----------------------------------------------------------------------------
 
-void ThemeManager::addTheme()
+void ThemeManager::newTheme()
 {
 	QString name;
 	{
 		Theme theme;
 		ThemeDialog dialog(theme, this);
+		dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
 		if (dialog.exec() == QDialog::Rejected) {
 			return;
 		}
@@ -157,7 +158,7 @@ void ThemeManager::addTheme()
 
 //-----------------------------------------------------------------------------
 
-void ThemeManager::modifyTheme()
+void ThemeManager::editTheme()
 {
 	QListWidgetItem* item = m_themes->currentItem();
 	if (!item) {
@@ -196,6 +197,7 @@ void ThemeManager::cloneTheme()
 	{
 		Theme theme(name);
 		ThemeDialog dialog(theme, this);
+		dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
 		if (dialog.exec() == QDialog::Rejected) {
 			QFile::remove(Theme::filePath(name));
 			QFile::remove(Theme::iconPath(name));
@@ -208,14 +210,14 @@ void ThemeManager::cloneTheme()
 
 //-----------------------------------------------------------------------------
 
-void ThemeManager::removeTheme()
+void ThemeManager::deleteTheme()
 {
 	QListWidgetItem* item = m_themes->currentItem();
 	if (!item) {
 		return;
 	}
 
-	if (QMessageBox::question(this, tr("Question"), tr("Remove selected theme?"), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+	if (QMessageBox::question(this, tr("Question"), tr("Delete theme '%1'?").arg(item->text()), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
 		QFile::remove(Theme::filePath(item->text()));
 		QFile::remove(Theme::iconPath(item->text()));
 		delete item;

@@ -47,7 +47,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
 	m_theme(theme)
 {
-	setWindowTitle(tr("Modify Theme"));
+	setWindowTitle(tr("Edit Theme"));
 	setWindowModality(Qt::WindowModal);
 
 	// Create name edit

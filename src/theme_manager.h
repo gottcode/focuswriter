@@ -41,10 +41,10 @@ protected:
 	virtual void hideEvent(QHideEvent* event);
 
 private slots:
-	void addTheme();
-	void modifyTheme();
+	void newTheme();
+	void editTheme();
 	void cloneTheme();
-	void removeTheme();
+	void deleteTheme();
 	void importTheme();
 	void exportTheme();
 	void currentThemeChanged(QListWidgetItem* current);
