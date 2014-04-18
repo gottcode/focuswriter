@@ -86,7 +86,9 @@ private:
 	QSpinBox* m_foreground_opacity;
 	QComboBox* m_foreground_position;
 	QSpinBox* m_foreground_width;
-	QSpinBox* m_foreground_rounding;
+
+	QGroupBox* m_round_corners;
+	QSpinBox* m_corner_radius;
 
 	QGroupBox* m_blur;
 	QSpinBox* m_blur_radius;

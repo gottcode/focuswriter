@@ -710,12 +710,11 @@ void Stack::updateBackground()
 		painter.setPen(Qt::NoPen);
 		painter.setBrush(color);
 
-		if (!m_theme.foregroundRounding()) {
+		if (!m_theme.roundCornersEnabled()) {
 			painter.drawRect(foreground);
 		} else {
 			painter.setRenderHint(QPainter::Antialiasing);
-			int rounding = m_theme.foregroundRounding();
-			painter.drawRoundedRect(foreground, rounding, rounding);
+			painter.drawRoundedRect(foreground, m_theme.cornerRadius(), m_theme.cornerRadius());
 		}
 	}
 

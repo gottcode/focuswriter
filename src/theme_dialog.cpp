@@ -162,20 +162,30 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width->setEnabled(m_theme.foregroundPosition() != 3);
 	connect(m_foreground_width, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
-	m_foreground_rounding = new QSpinBox(foreground_group);
-	m_foreground_rounding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_rounding->setSuffix(tr(" pixels"));
-	m_foreground_rounding->setRange(theme.foregroundRounding().minimumValue(), theme.foregroundRounding().maximumValue());
-	m_foreground_rounding->setValue(m_theme.foregroundRounding());
-	connect(m_foreground_rounding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
 	QFormLayout* foreground_layout = new QFormLayout(foreground_group);
 	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	foreground_layout->addRow(tr("Color:"), m_foreground_color);
 	foreground_layout->addRow(tr("Opacity:"), m_foreground_opacity);
 	foreground_layout->addRow(tr("Position:"), m_foreground_position);
 	foreground_layout->addRow(tr("Width:"), m_foreground_width);
-	foreground_layout->addRow(tr("Round Corners:"), m_foreground_rounding);
+
+
+	// Create rounding group
+	m_round_corners = new QGroupBox(tr("Round Text Background Corners"), contents);
+	m_round_corners->setCheckable(true);
+	m_round_corners->setChecked(m_theme.roundCornersEnabled());
+	connect(m_round_corners, SIGNAL(clicked()), this, SLOT(renderPreview()));
+
+	m_corner_radius = new QSpinBox(m_round_corners);
+	m_corner_radius->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_corner_radius->setSuffix(tr(" pixels"));
+	m_corner_radius->setRange(theme.cornerRadius().minimumValue(), theme.cornerRadius().maximumValue());
+	m_corner_radius->setValue(m_theme.cornerRadius());
+	connect(m_corner_radius, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	QFormLayout* corner_layout = new QFormLayout(m_round_corners);
+	corner_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	corner_layout->addRow(tr("Radius:"), m_corner_radius);
 
 
 	// Create blur group
@@ -351,6 +361,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	groups_layout->addWidget(text_group);
 	groups_layout->addWidget(background_group);
 	groups_layout->addWidget(foreground_group);
+	groups_layout->addWidget(m_round_corners);
 	groups_layout->addWidget(m_blur);
 	groups_layout->addWidget(m_shadow);
 	groups_layout->addWidget(margins_group);
@@ -596,13 +607,16 @@ void ThemeDialog::setValues(Theme& theme)
 	theme.setForegroundColor(m_foreground_color->color());
 	theme.setForegroundOpacity(m_foreground_opacity->value());
 	theme.setForegroundWidth(m_foreground_width->value());
-	theme.setForegroundRounding(m_foreground_rounding->value());
 	theme.setForegroundMargin(m_foreground_margin->value());
 	theme.setForegroundPadding(m_foreground_padding->value());
 	theme.setForegroundPosition(m_foreground_position->currentIndex());
 
+	theme.setRoundCornersEnabled(m_round_corners->isChecked());
+	theme.setCornerRadius(m_corner_radius->value());
+
 	theme.setBlurEnabled(m_blur->isChecked());
 	theme.setBlurRadius(m_blur_radius->value());
+
 	theme.setShadowEnabled(m_shadow->isChecked());
 	theme.setShadowColor(m_shadow_color->color());
 	theme.setShadowRadius(m_shadow_radius->value());

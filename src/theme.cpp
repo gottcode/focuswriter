@@ -103,10 +103,11 @@ Theme::ThemeData::ThemeData(const QString& name_, bool create) :
 	background_type(0, 5),
 	foreground_opacity(0, 100),
 	foreground_width(500, 9999),
-	foreground_rounding(0, 100),
 	foreground_margin(1, 250),
 	foreground_padding(0, 250),
 	foreground_position(0, 3),
+	round_corners_enabled(false),
+	corner_radius(1, 100),
 	blur_enabled(false),
 	blur_radius(1, 128),
 	shadow_enabled(false),
@@ -250,10 +251,9 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 
 	// Set clipping for rounded themes
 	QPainterPath path;
-	int rounding = foregroundRounding();
-	if (rounding) {
+	if (roundCornersEnabled()) {
 		painter.setRenderHint(QPainter::Antialiasing);
-		path.addRoundedRect(foreground, rounding, rounding);
+		path.addRoundedRect(foreground, cornerRadius(), cornerRadius());
 		painter.setClipPath(path);
 	} else {
 		path.addRect(foreground);
@@ -287,7 +287,7 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 		painter.save();
 		painter.setClipping(false);
 		qt_blurImage(&painter, shadow, shadow_radius * 2, true, false);
-		painter.setClipping(rounding);
+		painter.setClipping(roundCornersEnabled());
 		painter.restore();
 
 		painter.drawImage(foreground.x(), foreground.y(), copy);
@@ -397,10 +397,12 @@ bool Theme::operator==(const Theme& theme) const
 		&& (d->foreground_color == theme.d->foreground_color)
 		&& (d->foreground_opacity == theme.d->foreground_opacity)
 		&& (d->foreground_width == theme.d->foreground_width)
-		&& (d->foreground_rounding == theme.d->foreground_rounding)
 		&& (d->foreground_margin == theme.d->foreground_margin)
 		&& (d->foreground_padding == theme.d->foreground_padding)
 		&& (d->foreground_position == theme.d->foreground_position)
+
+		&& (d->round_corners_enabled == theme.d->round_corners_enabled)
+		&& (d->corner_radius == theme.d->corner_radius)
 
 		&& (d->blur_enabled == theme.d->blur_enabled)
 		&& (d->blur_radius == theme.d->blur_radius)
@@ -444,10 +446,18 @@ void Theme::reload()
 	d->foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
 	d->foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
 	d->foreground_width = settings.value("Foreground/Width", 700).toInt();
-	d->foreground_rounding = settings.value("Foreground/Rounding", 0).toInt();
 	d->foreground_margin = settings.value("Foreground/Margin", 65).toInt();
 	d->foreground_padding = settings.value("Foreground/Padding", 0).toInt();
 	d->foreground_position = settings.value("Foreground/Position", 1).toInt();
+
+	int rounding = settings.value("Foreground/Rounding", 0).toInt();
+	if (rounding > 0) {
+		d->round_corners_enabled = true;
+		d->corner_radius = rounding;
+	} else {
+		d->round_corners_enabled = false;
+		d->corner_radius = settings.value("Foreground/RoundingDisabled", 10).toInt();
+	}
 
 	d->blur_enabled = settings.value("ForegroundBlur/Enabled", false).toBool();
 	d->blur_radius = settings.value("ForegroundBlur/Radius", 32).toInt();
@@ -492,10 +502,17 @@ void Theme::write()
 	settings.setValue("Foreground/Color", d->foreground_color.name());
 	settings.setValue("Foreground/Opacity", d->foreground_opacity.value());
 	settings.setValue("Foreground/Width", d->foreground_width.value());
-	settings.setValue("Foreground/Rounding", d->foreground_rounding.value());
 	settings.setValue("Foreground/Margin", d->foreground_margin.value());
 	settings.setValue("Foreground/Padding", d->foreground_padding.value());
 	settings.setValue("Foreground/Position", d->foreground_position.value());
+
+	if (d->round_corners_enabled) {
+		settings.setValue("Foreground/Rounding", d->corner_radius.value());
+		settings.setValue("Foreground/RoundingDisabled", 0);
+	} else {
+		settings.setValue("Foreground/Rounding", 0);
+		settings.setValue("Foreground/RoundingDisabled", d->corner_radius.value());
+	}
 
 	settings.setValue("ForegroundBlur/Enabled", d->blur_enabled);
 	settings.setValue("ForegroundBlur/Radius", d->blur_radius.value());

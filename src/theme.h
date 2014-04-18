@@ -50,10 +50,12 @@ class Theme : public SettingsFile
 		QColor foreground_color;
 		RangedInt foreground_opacity;
 		RangedInt foreground_width;
-		RangedInt foreground_rounding;
 		RangedInt foreground_margin;
 		RangedInt foreground_padding;
 		RangedInt foreground_position;
+
+		bool round_corners_enabled;
+		RangedInt corner_radius;
 
 		bool blur_enabled;
 		RangedInt blur_radius;
@@ -106,7 +108,6 @@ public:
 	QColor foregroundColor() const { return d->foreground_color; }
 	RangedInt foregroundOpacity() const { return d->foreground_opacity; }
 	RangedInt foregroundWidth() const { return d->foreground_width; }
-	RangedInt foregroundRounding() const { return d->foreground_rounding; }
 	RangedInt foregroundMargin() const { return d->foreground_margin; }
 	RangedInt foregroundPadding() const { return d->foreground_padding; }
 	RangedInt foregroundPosition() const { return d->foreground_position; }
@@ -115,10 +116,15 @@ public:
 	void setForegroundColor(const QColor& color) { setValue(d->foreground_color, color); }
 	void setForegroundOpacity(int opacity) { setValue(d->foreground_opacity, opacity); }
 	void setForegroundWidth(int width) { setValue(d->foreground_width, width); }
-	void setForegroundRounding(int rounding) { setValue(d->foreground_rounding, rounding); }
 	void setForegroundMargin(int margin) { setValue(d->foreground_margin, margin); }
 	void setForegroundPadding(int padding) { setValue(d->foreground_padding, padding); }
 	void setForegroundPosition(int position) { setValue(d->foreground_position, position); }
+
+	bool roundCornersEnabled() const { return d->round_corners_enabled; }
+	RangedInt cornerRadius() const { return d->corner_radius; }
+
+	void setRoundCornersEnabled(bool enabled) { setValue(d->round_corners_enabled, enabled); }
+	void setCornerRadius(int radius) { setValue(d->corner_radius, radius); }
 
 	bool blurEnabled() const { return d->blur_enabled; }
 	RangedInt blurRadius() const { return d->blur_radius; }
