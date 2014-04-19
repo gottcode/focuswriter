@@ -447,7 +447,7 @@ void Theme::reload()
 	d->foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
 	d->foreground_width = settings.value("Foreground/Width", 700).toInt();
 	d->foreground_margin = settings.value("Foreground/Margin", 65).toInt();
-	d->foreground_padding = settings.value("Foreground/Padding", 0).toInt();
+	d->foreground_padding = settings.value("Foreground/Padding", 10).toInt();
 	d->foreground_position = settings.value("Foreground/Position", 1).toInt();
 
 	int rounding = settings.value("Foreground/Rounding", 0).toInt();
