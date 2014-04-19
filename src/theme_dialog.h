@@ -49,6 +49,9 @@ public:
 public slots:
 	virtual void accept();
 
+protected:
+	virtual void hideEvent(QHideEvent* event);
+
 private slots:
 	void checkNameAvailable();
 	void fontChanged();

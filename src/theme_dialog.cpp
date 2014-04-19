@@ -36,6 +36,7 @@
 #include <QLineEdit>
 #include <QPainter>
 #include <QScrollArea>
+#include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
 #include <QTextEdit>
@@ -376,6 +377,8 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	layout->addWidget(scroll, 1, 0, 1, 1);
 	layout->addWidget(m_preview, 1, 1, 1, 1, Qt::AlignCenter);
 	layout->addWidget(buttons, 3, 0, 1, 2);
+
+	resize(QSettings().value("ThemeDialog/Size", sizeHint()).toSize());
 }
 
 //-----------------------------------------------------------------------------
@@ -409,6 +412,14 @@ void ThemeDialog::accept()
 	savePreview();
 
 	QDialog::accept();
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::hideEvent(QHideEvent* event)
+{
+	QSettings().setValue("ThemeDialog/Size", size());
+	QDialog::hideEvent(event);
 }
 
 //-----------------------------------------------------------------------------
