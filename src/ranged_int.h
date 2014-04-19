@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,11 @@ public:
 		return m_value;
 	}
 
+	bool operator==(int value) const
+	{
+		return m_value == value;
+	}
+
 	bool operator!=(int value) const
 	{
 		return m_value != value;
@@ -63,8 +68,8 @@ public:
 
 private:
 	int m_value;
-	const int m_min;
-	const int m_max;
+	int m_min;
+	int m_max;
 };
 
 #endif

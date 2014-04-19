@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,30 +93,36 @@ QString Theme::m_path;
 
 //-----------------------------------------------------------------------------
 
-Theme::Theme(const QString& name) :
-	m_name(name),
-	m_background_type(0, 5),
-	m_foreground_opacity(0, 100),
-	m_foreground_width(500, 9999),
-	m_foreground_rounding(0, 100),
-	m_foreground_margin(1, 250),
-	m_foreground_padding(0, 250),
-	m_foreground_position(0, 3),
-	m_line_spacing(50, 1000),
-	m_paragraph_spacing_above(0, 1000),
-	m_paragraph_spacing_below(0, 1000),
-	m_tab_width(1, 1000)
+Theme::ThemeData::ThemeData(const QString& name_, bool create) :
+	name(name_),
+	background_type(0, 5),
+	foreground_opacity(0, 100),
+	foreground_width(500, 9999),
+	foreground_rounding(0, 100),
+	foreground_margin(1, 250),
+	foreground_padding(0, 250),
+	foreground_position(0, 3),
+	line_spacing(50, 1000),
+	paragraph_spacing_above(0, 1000),
+	paragraph_spacing_below(0, 1000),
+	tab_width(1, 1000)
 {
-	if (m_name.isEmpty()) {
+	if (name.isEmpty() && create) {
 		QString untitled;
 		int count = 0;
 		do {
 			count++;
-			untitled = tr("Untitled %1").arg(count);
-		} while (QFile::exists(filePath(untitled)));
-		m_name = untitled;
+			untitled = Theme::tr("Untitled %1").arg(count);
+		} while (QFile::exists(Theme::filePath(untitled)));
+		name = untitled;
 	}
+}
 
+//-----------------------------------------------------------------------------
+
+Theme::Theme(const QString& name, bool create)
+{
+	d = new ThemeData(name, create);
 	forgetChanges();
 }
 
@@ -194,397 +200,161 @@ QImage Theme::renderBackground(const QString& filename, int type, const QColor& 
 
 //-----------------------------------------------------------------------------
 
-QString Theme::path()
-{
-	return m_path;
-}
-
-//-----------------------------------------------------------------------------
-
 QString Theme::filePath(const QString& theme)
 {
-	return path() + "/" + QUrl::toPercentEncoding(theme, " ") + ".theme";
+	return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".theme";
 }
 
 //-----------------------------------------------------------------------------
 
 QString Theme::iconPath(const QString& theme)
 {
-	return path() + "/" + QUrl::toPercentEncoding(theme, " ") + ".png";
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setPath(const QString& path)
-{
-	m_path = path;
-}
-
-//-----------------------------------------------------------------------------
-
-QString Theme::name() const
-{
-	return m_name;
+	return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".png";
 }
 
 //-----------------------------------------------------------------------------
 
 void Theme::setName(const QString& name)
 {
-	if (m_name != name) {
+	if (d->name != name) {
 		QStringList files = QDir(Session::path(), "*.session").entryList(QDir::Files);
 		files.prepend("");
 		foreach (const QString& file, files) {
 			Session session(file);
-			if (session.theme() == m_name) {
+			if (session.theme() == d->name) {
 				session.setTheme(name);
 			}
 		}
 
-		QFile::remove(filePath(m_name));
-		QFile::remove(iconPath(m_name));
-		setValue(m_name, name);
+		QFile::remove(filePath(d->name));
+		QFile::remove(iconPath(d->name));
+		setValue(d->name, name);
 	}
-}
-
-//-----------------------------------------------------------------------------
-
-int Theme::backgroundType() const
-{
-	return m_background_type;
-}
-
-//-----------------------------------------------------------------------------
-
-QColor Theme::backgroundColor() const
-{
-	return m_background_color;
-}
-
-//-----------------------------------------------------------------------------
-
-QString Theme::backgroundImage() const
-{
-	return path() + "/Images/" + m_background_image;
-}
-
-//-----------------------------------------------------------------------------
-
-QString Theme::backgroundPath() const
-{
-	return m_background_path;
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setBackgroundType(int type)
-{
-	setValue(m_background_type, type);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setBackgroundColor(const QColor& color)
-{
-	setValue(m_background_color, color);
 }
 
 //-----------------------------------------------------------------------------
 
 void Theme::setBackgroundImage(const QString& path)
 {
-	if (m_background_path != path) {
-		setValue(m_background_path, path);
-		if (!m_background_path.isEmpty()) {
-			m_background_image = copyImage(m_background_path);
+	if (d->background_path != path) {
+		setValue(d->background_path, path);
+		if (!d->background_path.isEmpty()) {
+			d->background_image = copyImage(d->background_path);
 		} else {
-			m_background_image.clear();
+			d->background_image.clear();
 		}
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-QColor Theme::foregroundColor() const
+bool Theme::operator==(const Theme& theme) const
 {
-	return m_foreground_color;
-}
+	return (d->name == theme.d->name)
 
-//-----------------------------------------------------------------------------
+		&& (d->background_type == theme.d->background_type)
+		&& (d->background_color == theme.d->background_color)
+		&& (d->background_path == theme.d->background_path)
+		&& (d->background_image == theme.d->background_image)
 
-RangedInt Theme::foregroundOpacity() const
-{
-	return m_foreground_opacity;
-}
+		&& (d->foreground_color == theme.d->foreground_color)
+		&& (d->foreground_opacity == theme.d->foreground_opacity)
+		&& (d->foreground_width == theme.d->foreground_width)
+		&& (d->foreground_rounding == theme.d->foreground_rounding)
+		&& (d->foreground_margin == theme.d->foreground_margin)
+		&& (d->foreground_padding == theme.d->foreground_padding)
+		&& (d->foreground_position == theme.d->foreground_position)
 
+		&& (d->text_color == theme.d->text_color)
+		&& (d->text_font == theme.d->text_font)
+		&& (d->misspelled_color == theme.d->misspelled_color)
 
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::foregroundWidth() const
-{
-	return m_foreground_width;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::foregroundRounding() const
-{
-	return m_foreground_rounding;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::foregroundMargin() const
-{
-	return m_foreground_margin;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::foregroundPadding() const
-{
-	return m_foreground_padding;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::foregroundPosition() const
-{
-	return m_foreground_position;
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundColor(const QColor& color)
-{
-	setValue(m_foreground_color, color);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundOpacity(int opacity)
-{
-	setValue(m_foreground_opacity, opacity);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundWidth(int width)
-{
-	setValue(m_foreground_width, width);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundRounding(int rounding)
-{
-	setValue(m_foreground_rounding, rounding);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundMargin(int margin)
-{
-	setValue(m_foreground_margin, margin);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundPadding(int padding)
-{
-	setValue(m_foreground_padding, padding);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setForegroundPosition(int position)
-{
-	setValue(m_foreground_position, position);
-}
-
-//-----------------------------------------------------------------------------
-
-QColor Theme::textColor() const
-{
-	return m_text_color;
-}
-
-//-----------------------------------------------------------------------------
-
-QFont Theme::textFont() const
-{
-	return m_text_font;
-}
-
-//-----------------------------------------------------------------------------
-
-QColor Theme::misspelledColor() const
-{
-	return m_misspelled_color;
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setTextColor(const QColor& color)
-{
-	setValue(m_text_color, color);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setTextFont(const QFont& font)
-{
-	setValue(m_text_font, font);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setMisspelledColor(const QColor& color)
-{
-	setValue(m_misspelled_color, color);
-}
-
-//-----------------------------------------------------------------------------
-
-bool Theme::indentFirstLine() const
-{
-	return m_indent_first_line;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::lineSpacing() const
-{
-	return m_line_spacing;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::spacingAboveParagraph() const
-{
-	return m_paragraph_spacing_above;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::spacingBelowParagraph() const
-{
-	return m_paragraph_spacing_below;
-}
-
-//-----------------------------------------------------------------------------
-
-RangedInt Theme::tabWidth() const
-{
-	return m_tab_width;
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setIndentFirstLine(bool indent)
-{
-	setValue(m_indent_first_line, indent);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setLineSpacing(int spacing)
-{
-	setValue(m_line_spacing, spacing);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setSpacingAboveParagraph(int spacing)
-{
-	setValue(m_paragraph_spacing_above, spacing);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setSpacingBelowParagraph(int spacing)
-{
-	setValue(m_paragraph_spacing_below, spacing);
-}
-
-//-----------------------------------------------------------------------------
-
-void Theme::setTabWidth(int width)
-{
-	setValue(m_tab_width, width);
+		&& (d->indent_first_line == theme.d->indent_first_line)
+		&& (d->line_spacing == theme.d->line_spacing)
+		&& (d->paragraph_spacing_above == theme.d->paragraph_spacing_above)
+		&& (d->paragraph_spacing_below == theme.d->paragraph_spacing_below)
+		&& (d->tab_width == theme.d->tab_width);
 }
 
 //-----------------------------------------------------------------------------
 
 void Theme::reload()
 {
-	QSettings settings(filePath(m_name), QSettings::IniFormat);
+	if (d->name.isEmpty()) {
+		return;
+	}
+
+	QSettings settings(filePath(d->name), QSettings::IniFormat);
 
 	// Load background settings
-	m_background_type = settings.value("Background/Type", 0).toInt();
-	m_background_color = settings.value("Background/Color", "#cccccc").toString();
-	m_background_path = settings.value("Background/Image").toString();
-	m_background_image = settings.value("Background/ImageFile").toString();
-	if (!m_background_path.isEmpty() && m_background_image.isEmpty()) {
-		setValue(m_background_image, copyImage(m_background_path));
+	d->background_type = settings.value("Background/Type", 0).toInt();
+	d->background_color = settings.value("Background/Color", "#cccccc").toString();
+	d->background_path = settings.value("Background/Image").toString();
+	d->background_image = settings.value("Background/ImageFile").toString();
+	if (!d->background_path.isEmpty() && d->background_image.isEmpty()) {
+		setValue(d->background_image, copyImage(d->background_path));
 	}
 
 	// Load foreground settings
-	m_foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
-	m_foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
-	m_foreground_width = settings.value("Foreground/Width", 700).toInt();
-	m_foreground_rounding = settings.value("Foreground/Rounding", 0).toInt();
-	m_foreground_margin = settings.value("Foreground/Margin", 65).toInt();
-	m_foreground_padding = settings.value("Foreground/Padding", 0).toInt();
-	m_foreground_position = settings.value("Foreground/Position", 1).toInt();
+	d->foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
+	d->foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
+	d->foreground_width = settings.value("Foreground/Width", 700).toInt();
+	d->foreground_rounding = settings.value("Foreground/Rounding", 0).toInt();
+	d->foreground_margin = settings.value("Foreground/Margin", 65).toInt();
+	d->foreground_padding = settings.value("Foreground/Padding", 0).toInt();
+	d->foreground_position = settings.value("Foreground/Position", 1).toInt();
 
 	// Load text settings
-	m_text_color = settings.value("Text/Color", "#000000").toString();
-	m_text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
-	m_misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
+	d->text_color = settings.value("Text/Color", "#000000").toString();
+	d->text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
+	d->misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
 
 	// Load spacings
-	m_indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
-	m_line_spacing = settings.value("Spacings/LineSpacing", 100).toInt();
-	m_paragraph_spacing_above = settings.value("Spacings/ParagraphAbove", 0).toInt();
-	m_paragraph_spacing_below = settings.value("Spacings/ParagraphBelow", 0).toInt();
-	m_tab_width = settings.value("Spacings/TabWidth", 48).toInt();
+	d->indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
+	d->line_spacing = settings.value("Spacings/LineSpacing", 100).toInt();
+	d->paragraph_spacing_above = settings.value("Spacings/ParagraphAbove", 0).toInt();
+	d->paragraph_spacing_below = settings.value("Spacings/ParagraphBelow", 0).toInt();
+	d->tab_width = settings.value("Spacings/TabWidth", 48).toInt();
 }
 
 //-----------------------------------------------------------------------------
 
 void Theme::write()
 {
-	QSettings settings(filePath(m_name), QSettings::IniFormat);
+	if (d->name.isEmpty()) {
+		return;
+	}
+
+	QSettings settings(filePath(d->name), QSettings::IniFormat);
 
 	// Store background settings
-	settings.setValue("Background/Type", m_background_type.value());
-	settings.setValue("Background/Color", m_background_color.name());
-	if (!m_background_path.isEmpty()) {
-		settings.setValue("Background/Image", m_background_path);
+	settings.setValue("Background/Type", d->background_type.value());
+	settings.setValue("Background/Color", d->background_color.name());
+	if (!d->background_path.isEmpty()) {
+		settings.setValue("Background/Image", d->background_path);
 	}
-	settings.setValue("Background/ImageFile", m_background_image);
+	settings.setValue("Background/ImageFile", d->background_image);
 
 	// Store foreground settings
-	settings.setValue("Foreground/Color", m_foreground_color.name());
-	settings.setValue("Foreground/Opacity", m_foreground_opacity.value());
-	settings.setValue("Foreground/Width", m_foreground_width.value());
-	settings.setValue("Foreground/Rounding", m_foreground_rounding.value());
-	settings.setValue("Foreground/Margin", m_foreground_margin.value());
-	settings.setValue("Foreground/Padding", m_foreground_padding.value());
-	settings.setValue("Foreground/Position", m_foreground_position.value());
+	settings.setValue("Foreground/Color", d->foreground_color.name());
+	settings.setValue("Foreground/Opacity", d->foreground_opacity.value());
+	settings.setValue("Foreground/Width", d->foreground_width.value());
+	settings.setValue("Foreground/Rounding", d->foreground_rounding.value());
+	settings.setValue("Foreground/Margin", d->foreground_margin.value());
+	settings.setValue("Foreground/Padding", d->foreground_padding.value());
+	settings.setValue("Foreground/Position", d->foreground_position.value());
 
 	// Store text settings
-	settings.setValue("Text/Color", m_text_color.name());
-	settings.setValue("Text/Font", m_text_font.toString());
-	settings.setValue("Text/Misspelled", m_misspelled_color.name());
+	settings.setValue("Text/Color", d->text_color.name());
+	settings.setValue("Text/Font", d->text_font.toString());
+	settings.setValue("Text/Misspelled", d->misspelled_color.name());
 
 	// Store spacings
-	settings.setValue("Spacings/IndentFirstLine", m_indent_first_line);
-	settings.setValue("Spacings/LineSpacing", m_line_spacing.value());
-	settings.setValue("Spacings/ParagraphAbove", m_paragraph_spacing_above.value());
-	settings.setValue("Spacings/ParagraphBelow", m_paragraph_spacing_below.value());
-	settings.setValue("Spacings/TabWidth", m_tab_width.value());
+	settings.setValue("Spacings/IndentFirstLine", d->indent_first_line);
+	settings.setValue("Spacings/LineSpacing", d->line_spacing.value());
+	settings.setValue("Spacings/ParagraphAbove", d->paragraph_spacing_above.value());
+	settings.setValue("Spacings/ParagraphBelow", d->paragraph_spacing_below.value());
+	settings.setValue("Spacings/TabWidth", d->tab_width.value());
 }
 
 //-----------------------------------------------------------------------------
