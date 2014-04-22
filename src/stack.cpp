@@ -144,6 +144,7 @@ void Stack::addDocument(Document* document)
 	updateMenuIndexes();
 
 	document->loadTheme(m_theme, m_foreground);
+	document->text()->setFixedSize(m_foreground_size);
 
 	emit documentAdded(document);
 	emit updateFormatActions();
@@ -735,17 +736,28 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 		return;
 	}
 
+	// Determine text area size
+	int padding = m_theme.foregroundPadding();
+	QRect foreground_rect = foreground.adjusted(padding, padding, -padding, -padding);
+	bool resize = !m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size);
+	if (resize) {
+		m_foreground_size = foreground_rect.size();
+	}
+
 	// Load background and foreground
 	m_background = QPixmap::fromImage(image, Qt::AutoColor | Qt::AvoidDither);
-
-	int padding = m_theme.foregroundPadding();
-	m_foreground = image.copy(foreground.adjusted(padding, padding, -padding, -padding));
+	m_foreground = image.copy(foreground_rect);
 
 	// Configure text area
 	foreach (Document* document, m_documents) {
 		QPalette p = document->text()->palette();
 		p.setBrush(QPalette::Base, m_foreground);
 		document->text()->setPalette(p);
+
+		if (resize) {
+			document->text()->setFixedSize(m_foreground_size);
+			document->centerCursor(true);
+		}
 	}
 
 	update();

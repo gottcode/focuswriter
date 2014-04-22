@@ -152,6 +152,7 @@ private:
 	ThemeRenderer* m_theme_renderer;
 	QPixmap m_background;
 	QBrush m_foreground;
+	QSize m_foreground_size;
 	Theme m_theme;
 	QTimer* m_resize_timer;
 

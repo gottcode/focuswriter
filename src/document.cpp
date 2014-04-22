@@ -41,7 +41,6 @@
 
 #include <QApplication>
 #include <QBuffer>
-#include <QDesktopWidget>
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
@@ -725,34 +724,27 @@ void Document::loadTheme(const Theme& theme, const QBrush& foreground)
 	int margin = theme.foregroundMargin() + padding;
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
-	int foreground_width = theme.foregroundWidth() - (padding * 2);
-	foreground_width = qMin(foreground_width, QApplication::desktop()->availableGeometry().width() - (theme.foregroundMargin() * 2));
-	if (theme.foregroundPosition() < 3) {
-		m_text->setFixedWidth(foreground_width);
-
-		switch (theme.foregroundPosition()) {
-		case 0:
-			m_layout->setColumnStretch(0, 0);
-			m_layout->setColumnStretch(2, 1);
-			break;
-
-		case 2:
-			m_layout->setColumnStretch(0, 1);
-			m_layout->setColumnStretch(2, 0);
-			break;
-
-		case 1:
-		default:
-			m_layout->setColumnStretch(0, 1);
-			m_layout->setColumnStretch(2, 1);
-			break;
-		};
-	} else {
-		m_text->setMinimumWidth(100);
-		m_text->setMaximumWidth(maximumSize().width());
-
+	switch (theme.foregroundPosition()) {
+	case 0:
+		// Left
+		m_layout->setColumnStretch(0, 0);
+		m_layout->setColumnStretch(2, 1);
+		break;
+	case 2:
+		// Right
+		m_layout->setColumnStretch(0, 1);
+		m_layout->setColumnStretch(2, 0);
+		break;
+	case 3:
+		// Stretched
 		m_layout->setColumnStretch(0, 0);
 		m_layout->setColumnStretch(2, 0);
+	case 1:
+	default:
+		// Centered
+		m_layout->setColumnStretch(0, 1);
+		m_layout->setColumnStretch(2, 1);
+		break;
 	}
 
 	if (m_focus_mode) {
@@ -938,14 +930,6 @@ void Document::mousePressEvent(QMouseEvent* event)
 {
 	m_scene_list->hideScenes();
 	QWidget::mousePressEvent(event);
-}
-
-//-----------------------------------------------------------------------------
-
-void Document::resizeEvent(QResizeEvent* event)
-{
-	centerCursor(true);
-	QWidget::resizeEvent(event);
 }
 
 //-----------------------------------------------------------------------------
