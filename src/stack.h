@@ -156,7 +156,6 @@ private:
 	Theme m_theme;
 	QTimer* m_resize_timer;
 
-	int m_margin;
 	int m_footer_margin;
 	int m_header_margin;
 	int m_footer_visible;

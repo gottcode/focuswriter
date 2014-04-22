@@ -33,7 +33,6 @@
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
-#include <QDesktopWidget>
 #include <QDir>
 #include <QGridLayout>
 #include <QMenu>
@@ -52,7 +51,6 @@ Stack::Stack(QWidget* parent) :
 	QWidget(parent),
 	m_symbols_dialog(0),
 	m_current_document(0),
-	m_margin(0),
 	m_footer_margin(0),
 	m_header_margin(0),
 	m_footer_visible(0),
@@ -551,25 +549,20 @@ void Stack::themeSelected(const Theme& theme)
 {
 	m_theme = theme;
 
-	updateBackground();
-
-	m_margin = theme.foregroundMargin();
-	m_layout->setRowMinimumHeight(0, m_margin);
-	m_layout->setRowMinimumHeight(5, m_margin);
-	m_layout->setColumnMinimumWidth(0, m_margin);
-	m_layout->setColumnMinimumWidth(5, m_margin);
-
 	if (m_symbols_dialog) {
-		m_symbols_dialog->setPreviewFont(theme.textFont());
+		m_symbols_dialog->setPreviewFont(m_theme.textFont());
 	}
 
-	int minimum_size = (m_margin * 2) + 100;
-	if (theme.foregroundPosition() < 3) {
-		window()->setMinimumWidth(qMin((m_margin * 2) + theme.foregroundWidth(), QApplication::desktop()->availableGeometry().width()));
-	} else {
-		window()->setMinimumWidth(minimum_size);
-	}
-	window()->setMinimumHeight(minimum_size);
+	int margin = theme.foregroundMargin();
+	m_layout->setRowMinimumHeight(0, margin);
+	m_layout->setRowMinimumHeight(5, margin);
+	m_layout->setColumnMinimumWidth(0, margin);
+	m_layout->setColumnMinimumWidth(5, margin);
+
+	int minimum_size = (margin * 2) + (theme.foregroundPadding() * 2) + 100;
+	window()->setMinimumSize(minimum_size, minimum_size);
+
+	updateBackground();
 
 	foreach (Document* document, m_documents) {
 		document->loadTheme(theme, m_foreground);
