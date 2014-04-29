@@ -8,7 +8,7 @@ macx:greaterThan(QT_MAJOR_VERSION, 4):lessThan(QT_VERSION, 5.2) {
 TEMPLATE = app
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
-	QT += widgets printsupport multimedia
+	QT += widgets printsupport multimedia concurrent
 	macx {
 		QT += macextras
 	}

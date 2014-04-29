@@ -42,6 +42,8 @@ class Theme : public SettingsFile
 
 		QString name;
 
+		QColor load_color;
+
 		RangedInt background_type;
 		QColor background_color;
 		QString background_path;
@@ -93,6 +95,9 @@ public:
 	// Name settings
 	QString name() const { return d->name; }
 	void setName(const QString& name);
+
+	QColor loadColor() const { return d->load_color; }
+	void setLoadColor(const QColor& color) { setValue(d->load_color, color); }
 
 	// Background settings
 	int backgroundType() const { return d->background_type; }

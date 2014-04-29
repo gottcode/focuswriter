@@ -27,6 +27,7 @@ class Theme;
 class ThemeRenderer;
 
 #include <QDialog>
+#include <QFuture>
 class QCheckBox;
 class QComboBox;
 class QGroupBox;
@@ -74,6 +75,7 @@ private:
 	ThemeRenderer* m_theme_renderer;
 	QLabel* m_preview;
 	QTextEdit* m_preview_text;
+	QFuture<QColor> m_load_color;
 
 	ColorButton* m_text_color;
 	FontComboBox* m_font_names;

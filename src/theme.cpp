@@ -442,6 +442,8 @@ void Theme::reload()
 		setValue(d->background_image, copyImage(d->background_path));
 	}
 
+	d->load_color = settings.value("LoadColor", d->background_color.name()).toString();
+
 	// Load foreground settings
 	d->foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
 	d->foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
@@ -489,6 +491,8 @@ void Theme::write()
 	}
 
 	QSettings settings(filePath(d->name), QSettings::IniFormat);
+
+	settings.setValue("LoadColor", d->load_color.name());
 
 	// Store background settings
 	settings.setValue("Background/Type", d->background_type.value());

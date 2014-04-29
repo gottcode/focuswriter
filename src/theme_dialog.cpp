@@ -25,6 +25,7 @@
 #include "theme.h"
 #include "theme_renderer.h"
 
+#include <QtConcurrentRun>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDialogButtonBox>
@@ -32,6 +33,7 @@
 #include <QFile>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QImageReader>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPainter>
@@ -41,6 +43,44 @@
 #include <QTabWidget>
 #include <QTextEdit>
 #include <QVBoxLayout>
+
+//-----------------------------------------------------------------------------
+
+static QColor averageImage(const QString& filename, const QColor& color)
+{
+	QImageReader reader(filename);
+	if (!reader.canRead()) {
+		return color;
+	}
+
+	QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
+	image.fill(color);
+	{
+		QPainter painter(&image);
+		painter.drawImage(0, 0, reader.read());
+	}
+	const unsigned int width = image.width();
+	const unsigned int height = image.height();
+
+	quint64 sum_r = 0;
+	quint64 sum_g = 0;
+	quint64 sum_b = 0;
+	quint64 sum_a = 0;
+
+	for (unsigned int y = 0; y < height; ++y) {
+		const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
+		for (unsigned int x = 0; x < width; ++x) {
+			QRgb pixel = scanline[x];
+			sum_r += qRed(pixel);
+			sum_g += qGreen(pixel);
+			sum_b += qBlue(pixel);
+			sum_a += qAlpha(pixel);
+		}
+	}
+
+	const qreal divisor = 1.0 / (width * height);
+	return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
+}
 
 //-----------------------------------------------------------------------------
 
@@ -532,6 +572,8 @@ void ThemeDialog::renderPreview()
 
 void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const Theme& theme)
 {
+	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
+
 	// Set colors
 	QColor color = theme.foregroundColor();
 	color.setAlpha(0);
@@ -605,6 +647,7 @@ void ThemeDialog::savePreview()
 	painter.drawPixmap(9, 9, m_preview->pixmap()->scaled(240, 135, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	painter.end();
 	preview.save(Theme::iconPath(m_theme.name()));
+	m_theme.setLoadColor(m_load_color);
 }
 
 //-----------------------------------------------------------------------------
