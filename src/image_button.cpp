@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #endif
 #include <QFileDialog>
 #include <QImageReader>
+#include <QSettings>
 
 //-----------------------------------------------------------------------------
 
@@ -82,13 +83,23 @@ void ImageButton::onClicked()
 	foreach (QByteArray type, formats) {
 		filters.append("*." + type);
 	}
+
+	QSettings settings;
+	QString path = m_path;
+	if (path.isEmpty() || !QFile::exists(path)) {
+		path = settings.value("ImageButton/Location").toString();
+		if (path.isEmpty() || !QFile::exists(path)) {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-	QString path = !m_path.isEmpty() ? m_path : QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+			path = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
 #else
-	QString path = !m_path.isEmpty() ? m_path : QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
+			path = QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
 #endif
-	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")));
+		}
+	}
+
+	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")), 0, QFileDialog::DontResolveSymlinks);
 	if (!image.isEmpty()) {
+		settings.setValue("ImageButton/Location", QFileInfo(image).absolutePath());
 		setImage(image, image);
 	}
 }
