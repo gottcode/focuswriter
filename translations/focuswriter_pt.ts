@@ -128,81 +128,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="303"/>
+        <location filename="../src/document.cpp" line="348"/>
         <source>(Untitled %1)</source>
         <translation type="unfinished">(Sem título %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="306"/>
+        <location filename="../src/document.cpp" line="351"/>
         <source>%1 (Read-Only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="370"/>
-        <location filename="../src/document.cpp" line="395"/>
-        <location filename="../src/document.cpp" line="431"/>
-        <location filename="../src/document.cpp" line="437"/>
+        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="440"/>
+        <location filename="../src/document.cpp" line="476"/>
+        <location filename="../src/document.cpp" line="482"/>
         <source>Sorry</source>
         <translation>Desculpe</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="370"/>
+        <location filename="../src/document.cpp" line="415"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Não foi possível guardar «%1».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="385"/>
+        <location filename="../src/document.cpp" line="430"/>
         <source>Save File As</source>
         <translation>Guardar como</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="395"/>
-        <location filename="../src/document.cpp" line="431"/>
+        <location filename="../src/document.cpp" line="440"/>
+        <location filename="../src/document.cpp" line="476"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Não foi possível substituir «%1».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="424"/>
+        <location filename="../src/document.cpp" line="469"/>
         <source>Rename File</source>
         <translation>Alterar o nome do ficheiro</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="437"/>
+        <location filename="../src/document.cpp" line="482"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Não foi possível alterar o nome « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="463"/>
+        <location filename="../src/document.cpp" line="508"/>
         <source>Reload File?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="464"/>
+        <location filename="../src/document.cpp" line="509"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="465"/>
+        <location filename="../src/document.cpp" line="510"/>
         <source>All unsaved changes will be lost.</source>
         <translation>As alterações que não forem gravadas serão perdidas.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="467"/>
+        <location filename="../src/document.cpp" line="512"/>
         <source>Reload</source>
         <translation>Carregar de novo</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1185"/>
+        <location filename="../src/document.cpp" line="1210"/>
         <source>Untitled %1</source>
         <translation type="unfinished">Sem título %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1239"/>
+        <location filename="../src/document.cpp" line="1264"/>
         <source>Question</source>
         <translation>Pergunta</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1240"/>
+        <location filename="../src/document.cpp" line="1265"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Gravar como texto descartará toda a formatação. Quer descartar a formatação?</translation>
     </message>
@@ -400,12 +400,12 @@
 <context>
     <name>ImageButton</name>
     <message>
-        <location filename="../src/image_button.cpp" line="90"/>
+        <location filename="../src/image_button.cpp" line="100"/>
         <source>Open Image</source>
         <translation>Seleccionar imagem</translation>
     </message>
     <message>
-        <location filename="../src/image_button.cpp" line="90"/>
+        <location filename="../src/image_button.cpp" line="100"/>
         <source>Images(%1)</source>
         <translation>Imagens(%1)</translation>
     </message>
@@ -797,8 +797,8 @@
 <context>
     <name>RtfReader</name>
     <message>
-        <location filename="../src/fileformats/rtf_reader.cpp" line="210"/>
-        <location filename="../src/fileformats/rtf_reader.cpp" line="214"/>
+        <location filename="../src/fileformats/rtf_reader.cpp" line="209"/>
+        <location filename="../src/fileformats/rtf_reader.cpp" line="213"/>
         <source>Not a supported RTF file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -867,14 +867,14 @@
 <context>
     <name>Session</name>
     <message>
-        <location filename="../src/main.cpp" line="183"/>
+        <location filename="../src/main.cpp" line="186"/>
         <location filename="../src/session.cpp" line="35"/>
         <location filename="../src/session.cpp" line="42"/>
         <location filename="../src/session_manager.cpp" line="155"/>
         <location filename="../src/session_manager.cpp" line="367"/>
         <location filename="../src/session_manager.cpp" line="384"/>
         <location filename="../src/session_manager.cpp" line="387"/>
-        <location filename="../src/theme_manager.cpp" line="193"/>
+        <location filename="../src/theme_manager.cpp" line="229"/>
         <source>Default</source>
         <translation>Sessão predefinida</translation>
     </message>
@@ -1126,276 +1126,317 @@
 <context>
     <name>Theme</name>
     <message>
-        <location filename="../src/theme.cpp" line="115"/>
+        <location filename="../src/theme.cpp" line="126"/>
         <source>Untitled %1</source>
         <translation>Sem título %1</translation>
+    </message>
+    <message>
+        <location filename="../src/theme.cpp" line="160"/>
+        <source>%1 %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ThemeDialog</name>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="50"/>
-        <source>Modify Theme</source>
-        <translation>Alterar o tema</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="60"/>
+        <location filename="../src/theme_dialog.cpp" line="101"/>
         <source>Name:</source>
         <translation>Nome:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="68"/>
-        <source>Background</source>
-        <translation>Fundo</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="71"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>No Image</source>
         <translation>Sem imagem</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="71"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Tiled</source>
         <translation>Em mosaico</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="71"/>
-        <location filename="../src/theme_dialog.cpp" line="123"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="194"/>
         <source>Centered</source>
         <translation>Centrado</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="71"/>
-        <location filename="../src/theme_dialog.cpp" line="123"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="194"/>
         <source>Stretched</source>
         <translation>Esticada</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="71"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Scaled</source>
         <translation>Ampliada</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="71"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Zoomed</source>
         <translation>Ampliada e cortada</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="83"/>
+        <location filename="../src/theme_dialog.cpp" line="209"/>
+        <source>Opacity:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="210"/>
+        <source>Position:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="211"/>
+        <source>Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <source>Round Text Background Corners</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="229"/>
+        <location filename="../src/theme_dialog.cpp" line="247"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
+        <source>Radius:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="233"/>
+        <source>Blur Text Background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="251"/>
+        <source>Text Background Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="278"/>
+        <source>Vertical Offset:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="282"/>
+        <source>Margins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="300"/>
+        <source>Window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="301"/>
+        <source>Page:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="359"/>
+        <source>Indent first line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="366"/>
+        <source>Above:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="367"/>
+        <source>Below:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="158"/>
         <source>Remove</source>
         <translation>Eliminar a imagem</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="95"/>
+        <location filename="../src/theme_dialog.cpp" line="91"/>
+        <source>Edit Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="148"/>
+        <source>Window Background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="176"/>
+        <location filename="../src/theme_dialog.cpp" line="330"/>
         <source>Type:</source>
         <translation>Tipo:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="96"/>
-        <location filename="../src/theme_dialog.cpp" line="161"/>
-        <location filename="../src/theme_dialog.cpp" line="200"/>
+        <location filename="../src/theme_dialog.cpp" line="142"/>
+        <location filename="../src/theme_dialog.cpp" line="174"/>
+        <location filename="../src/theme_dialog.cpp" line="208"/>
+        <location filename="../src/theme_dialog.cpp" line="276"/>
         <source>Color:</source>
         <translation>Cor:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="97"/>
+        <location filename="../src/theme_dialog.cpp" line="175"/>
         <source>Image:</source>
         <translation>Imagem:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="102"/>
-        <source>Foreground</source>
-        <translation>Primeiro plano</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="113"/>
-        <source>Opacity</source>
-        <translation>Opacidade</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="118"/>
-        <location filename="../src/theme_dialog.cpp" line="129"/>
-        <location filename="../src/theme_dialog.cpp" line="136"/>
-        <location filename="../src/theme_dialog.cpp" line="142"/>
-        <location filename="../src/theme_dialog.cpp" line="239"/>
+        <location filename="../src/theme_dialog.cpp" line="200"/>
+        <location filename="../src/theme_dialog.cpp" line="222"/>
+        <location filename="../src/theme_dialog.cpp" line="240"/>
+        <location filename="../src/theme_dialog.cpp" line="262"/>
+        <location filename="../src/theme_dialog.cpp" line="269"/>
+        <location filename="../src/theme_dialog.cpp" line="286"/>
+        <location filename="../src/theme_dialog.cpp" line="293"/>
+        <location filename="../src/theme_dialog.cpp" line="342"/>
+        <location filename="../src/theme_dialog.cpp" line="348"/>
+        <location filename="../src/theme_dialog.cpp" line="354"/>
         <source> pixels</source>
         <translation> píxeis</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="123"/>
+        <location filename="../src/theme_dialog.cpp" line="194"/>
         <source>Left</source>
         <translation>Esquerda</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="123"/>
+        <location filename="../src/theme_dialog.cpp" line="180"/>
+        <source>Text Background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="194"/>
         <source>Right</source>
         <translation>Direita</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="125"/>
-        <source>Position</source>
-        <translation>Posição</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
-        <source>Size:</source>
-        <translation>Tamanho:</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="163"/>
-        <source>Rounding:</source>
-        <translation>Arredondamento:</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="164"/>
-        <source>Margin:</source>
-        <translation>Margem :</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="165"/>
-        <source>Padding:</source>
-        <translation>Espaçamento :</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="170"/>
+        <location filename="../src/theme_dialog.cpp" line="114"/>
         <source>Text</source>
         <translation>Texto</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="201"/>
+        <location filename="../src/theme_dialog.cpp" line="143"/>
         <source>Font:</source>
         <translation>Tipo de letra:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="202"/>
+        <location filename="../src/theme_dialog.cpp" line="144"/>
         <source>Misspelled:</source>
         <translation>Erros:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="207"/>
-        <source>Spacings</source>
-        <translation>Espaços</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="209"/>
+        <location filename="../src/theme_dialog.cpp" line="305"/>
         <source>Line Spacing</source>
         <translation>Espaço entre linhas</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="213"/>
+        <location filename="../src/theme_dialog.cpp" line="309"/>
         <source>Single</source>
         <translation>Simples</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="213"/>
+        <location filename="../src/theme_dialog.cpp" line="309"/>
         <source>1.5 Lines</source>
         <translation>1,5 Linhas</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="213"/>
+        <location filename="../src/theme_dialog.cpp" line="309"/>
         <source>Double</source>
         <translation>Duplo</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="213"/>
+        <location filename="../src/theme_dialog.cpp" line="309"/>
         <source>Proportional</source>
         <translation>Proporcional</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="232"/>
+        <location filename="../src/theme_dialog.cpp" line="331"/>
+        <source>Height:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_dialog.cpp" line="339"/>
         <source>Paragraph Spacing</source>
         <translation>Espaçamento do parágrafo</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="259"/>
-        <source>Indent First Line:</source>
-        <translation>Avanço da primeira linha:</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="260"/>
+        <location filename="../src/theme_dialog.cpp" line="365"/>
         <source>Tab Width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="261"/>
-        <source>Pixels Above:</source>
-        <translation>Píxeis por cima:</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="262"/>
-        <source>Pixels Below:</source>
-        <translation>Píxeis por baixo:</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_dialog.cpp" line="501"/>
-        <source>The quick brown fox jumps over the lazy dog</source>
-        <translation>Um pequeno jabuti xereta viu dez cegonhas felizes</translation>
+        <location filename="../src/theme_manager.cpp" line="149"/>
+        <location filename="../src/theme_manager.cpp" line="200"/>
+        <source>New Theme</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/theme_manager.cpp" line="47"/>
+        <location filename="../src/theme_manager.cpp" line="53"/>
         <source>Themes</source>
         <translation>Temas</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="73"/>
-        <source>Add</source>
-        <translation>Adicionar</translation>
+        <location filename="../src/theme_manager.cpp" line="79"/>
+        <source>New</source>
+        <translation type="unfinished">Novo</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="77"/>
-        <source>Modify</source>
-        <translation>Alterar</translation>
+        <location filename="../src/theme_manager.cpp" line="83"/>
+        <source>Edit</source>
+        <translation type="unfinished">Alterar</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="81"/>
-        <source>Remove</source>
-        <translation>Eliminar</translation>
+        <location filename="../src/theme_manager.cpp" line="87"/>
+        <source>Clone</source>
+        <translation type="unfinished">Clonar</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="85"/>
+        <location filename="../src/theme_manager.cpp" line="91"/>
+        <source>Delete</source>
+        <translation type="unfinished">Apagar</translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="95"/>
         <source>Import</source>
         <translation>Importar</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="89"/>
+        <location filename="../src/theme_manager.cpp" line="99"/>
         <source>Export</source>
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="93"/>
+        <location filename="../src/theme_manager.cpp" line="103"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="184"/>
+        <location filename="../src/theme_manager.cpp" line="220"/>
         <source>Question</source>
         <translation>Pergunta</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="184"/>
-        <source>Remove selected theme?</source>
-        <translation>Eliminar o tema seleccionado?</translation>
+        <location filename="../src/theme_manager.cpp" line="220"/>
+        <source>Delete theme &apos;%1&apos;?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="205"/>
+        <location filename="../src/theme_manager.cpp" line="250"/>
+        <location filename="../src/theme_manager.cpp" line="323"/>
+        <source>Themes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="250"/>
         <source>Import Theme</source>
         <translation>Importar um tema</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="205"/>
-        <source>Themes (*.fwtz *.theme)</source>
-        <translation>Temas (*.fwtz *.theme)</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_manager.cpp" line="267"/>
-        <source>Themes (*.fwtz)</source>
-        <translation>Temas (*.fwtz)</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_manager.cpp" line="267"/>
+        <location filename="../src/theme_manager.cpp" line="323"/>
         <source>Export Theme</source>
         <translation>Exportar o tema</translation>
     </message>
@@ -1547,88 +1588,88 @@
         <translation>Carregamento dos temas</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1141"/>
+        <location filename="../src/window.cpp" line="1144"/>
         <source>Loading sounds</source>
         <translation>Carregamentos dos efeitos sonoros</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="303"/>
-        <location filename="../src/window.cpp" line="1060"/>
+        <location filename="../src/window.cpp" line="307"/>
+        <location filename="../src/window.cpp" line="1063"/>
         <source>Untitled</source>
         <translation>Sem título</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="676"/>
+        <location filename="../src/window.cpp" line="680"/>
         <source>Open File</source>
         <translation>Abrir um ficheiro</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="858"/>
+        <location filename="../src/window.cpp" line="862"/>
         <source>About FocusWriter</source>
         <translation>Acerca de FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="861"/>
+        <location filename="../src/window.cpp" line="865"/>
         <source>FocusWriter</source>
         <translation>FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="862"/>
+        <location filename="../src/window.cpp" line="866"/>
         <source>A simple fullscreen word processor</source>
         <translation>Um processador de texto simples em ecrã completo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="863"/>
+        <location filename="../src/window.cpp" line="867"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
         <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="864"/>
+        <location filename="../src/window.cpp" line="868"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
         <translation>Disponibilizado sob licença &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="865"/>
+        <location filename="../src/window.cpp" line="869"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
         <translation>Usa ícones do tema &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="866"/>
+        <location filename="../src/window.cpp" line="870"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
         <translation>Usado sob licença &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="171"/>
-        <location filename="../src/window.cpp" line="922"/>
+        <location filename="../src/window.cpp" line="926"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Caracteres: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="169"/>
-        <location filename="../src/window.cpp" line="923"/>
+        <location filename="../src/window.cpp" line="927"/>
         <source>Pages: %L1</source>
         <translation>Páginas: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="170"/>
-        <location filename="../src/window.cpp" line="924"/>
+        <location filename="../src/window.cpp" line="928"/>
         <source>Paragraphs: %L1</source>
         <translation>Parágrafos: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="168"/>
-        <location filename="../src/window.cpp" line="925"/>
+        <location filename="../src/window.cpp" line="929"/>
         <source>Words: %L1</source>
         <translation>Palávras: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="480"/>
-        <location filename="../src/window.cpp" line="1014"/>
+        <location filename="../src/document.cpp" line="525"/>
+        <location filename="../src/window.cpp" line="1018"/>
         <source>Opening %1</source>
         <translation>A abrir %1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="326"/>
+        <location filename="../src/window.cpp" line="330"/>
         <source>(Untitled %1)</source>
         <translation>(Sem título %1)</translation>
     </message>
@@ -1668,508 +1709,508 @@
         <translation>A carregar definições</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="312"/>
+        <location filename="../src/window.cpp" line="316"/>
         <source>Emergency cache is not writable.</source>
         <translation>Não foi possível escrever o cache de emergência.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="332"/>
-        <location filename="../src/window.cpp" line="1028"/>
+        <location filename="../src/window.cpp" line="336"/>
+        <location filename="../src/window.cpp" line="1032"/>
         <source>Warning</source>
         <translation>Atenção</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="333"/>
+        <location filename="../src/window.cpp" line="337"/>
         <source>FocusWriter was not shut down cleanly.</source>
         <translation>FocusWriter não fechou correctamente.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="334"/>
+        <location filename="../src/window.cpp" line="338"/>
         <source>Restore from the emergency cache?</source>
         <translation>Recuperar dados do cache de emergência?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="461"/>
+        <location filename="../src/window.cpp" line="465"/>
         <source>Some files could not be opened.</source>
         <translation>Alguns ficheiros não puderam ser abertos.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="464"/>
+        <location filename="../src/window.cpp" line="468"/>
         <source>Some files were opened Read-Only.</source>
         <translation>Alguns ficheiros foram abertos em modo de apenas leitura.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1029"/>
+        <location filename="../src/window.cpp" line="1033"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; é mais recente do que a cópia presente no cache.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1030"/>
+        <location filename="../src/window.cpp" line="1034"/>
         <source>Overwrite newer file?</source>
         <translation>Sobrepor o ficheiro mais recente?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1116"/>
+        <location filename="../src/window.cpp" line="1119"/>
         <source>Save Changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1117"/>
+        <location filename="../src/window.cpp" line="1120"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1118"/>
+        <location filename="../src/window.cpp" line="1121"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1148"/>
+        <location filename="../src/window.cpp" line="1151"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>Não foi possível carregar os sons de máquina de escrever.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1149"/>
+        <location filename="../src/window.cpp" line="1152"/>
         <source>Please make sure that SDL_mixer is installed.</source>
         <translation>Por favor verifique que SDL_mixer está instalado no computador.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1285"/>
+        <location filename="../src/window.cpp" line="1288"/>
         <source>&amp;File</source>
         <translation>&amp;Ficheiro</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1286"/>
+        <location filename="../src/window.cpp" line="1289"/>
         <source>&amp;New</source>
         <translation>&amp;Novo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1287"/>
+        <location filename="../src/window.cpp" line="1290"/>
         <source>&amp;Open...</source>
         <translation>&amp;Abrir...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1288"/>
+        <location filename="../src/window.cpp" line="1291"/>
         <source>Reloa&amp;d</source>
         <translation>Carre&amp;gar de novo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1290"/>
+        <location filename="../src/window.cpp" line="1293"/>
         <source>&amp;Save</source>
         <translation>&amp;Guardar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1292"/>
+        <location filename="../src/window.cpp" line="1295"/>
         <source>Save &amp;As...</source>
         <translation>Guardar &amp;como...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1293"/>
+        <location filename="../src/window.cpp" line="1296"/>
         <source>&amp;Rename...</source>
         <translation>&amp;Mudar o nome...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1295"/>
+        <location filename="../src/window.cpp" line="1298"/>
         <source>Save A&amp;ll</source>
         <translation>Gravar tud&amp;o</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1298"/>
+        <location filename="../src/window.cpp" line="1301"/>
         <source>Manage Sessions</source>
         <translation>Organizar as sessões</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1300"/>
+        <location filename="../src/window.cpp" line="1303"/>
         <source>New Session</source>
         <translation>Nova sessão</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1303"/>
+        <location filename="../src/window.cpp" line="1306"/>
         <source>&amp;Print...</source>
         <translation>Im&amp;primir...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1305"/>
+        <location filename="../src/window.cpp" line="1308"/>
         <source>&amp;Close</source>
         <translation>Fec&amp;har</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1306"/>
+        <location filename="../src/window.cpp" line="1309"/>
         <source>&amp;Quit</source>
         <translation>&amp;Sair</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1306"/>
+        <location filename="../src/window.cpp" line="1309"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1310"/>
+        <location filename="../src/window.cpp" line="1313"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1311"/>
+        <location filename="../src/window.cpp" line="1314"/>
         <source>&amp;Undo</source>
         <translation>A&amp;nular</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1314"/>
+        <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Redo</source>
         <translation>&amp;Restaurar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1318"/>
+        <location filename="../src/window.cpp" line="1321"/>
         <source>Cu&amp;t</source>
         <translation>C&amp;ortar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1324"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1327"/>
         <source>&amp;Paste</source>
         <translation>Co&amp;lar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1325"/>
+        <location filename="../src/window.cpp" line="1328"/>
         <source>Paste &amp;Unformatted</source>
         <translation>Colar co&amp;mo texto</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1325"/>
+        <location filename="../src/window.cpp" line="1328"/>
         <source>Ctrl+Shift+V</source>
         <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1327"/>
+        <location filename="../src/window.cpp" line="1330"/>
         <source>Select &amp;All</source>
         <translation>Seleccionar &amp;tudo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>Select &amp;Scene</source>
         <translation>Seleccionar &amp;Cena</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1334"/>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmato</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1333"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>&amp;Bold</source>
         <translation>Ne&amp;grito</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1335"/>
+        <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Italic</source>
         <translation>&amp;Itálico</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1337"/>
+        <location filename="../src/window.cpp" line="1340"/>
         <source>&amp;Underline</source>
         <translation>&amp;Sublinhar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1339"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>Stri&amp;kethrough</source>
         <translation>&amp;Rasurar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1339"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>Sup&amp;erscript</source>
         <translation>&amp;Expoente</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>&amp;Subscript</source>
         <translation>Í&amp;ndice</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1350"/>
         <source>Align &amp;Left</source>
         <translation>&amp;Alinhar à esquerda</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1347"/>
+        <location filename="../src/window.cpp" line="1350"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1349"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Align &amp;Center</source>
         <translation>Alinhar ao &amp;centro</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1349"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1351"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>Align &amp;Right</source>
         <translation>Alinhar à &amp;direita</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1351"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1353"/>
+        <location filename="../src/window.cpp" line="1356"/>
         <source>Align &amp;Justify</source>
         <translation>&amp;Justificado</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1353"/>
+        <location filename="../src/window.cpp" line="1356"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1363"/>
+        <location filename="../src/window.cpp" line="1366"/>
         <source>&amp;Decrease Indent</source>
         <translation>Rem&amp;over a indentação</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1363"/>
+        <location filename="../src/window.cpp" line="1366"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1364"/>
+        <location filename="../src/window.cpp" line="1367"/>
         <source>I&amp;ncrease Indent</source>
         <translation>Inden&amp;tar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1364"/>
+        <location filename="../src/window.cpp" line="1367"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1367"/>
+        <location filename="../src/window.cpp" line="1370"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>&amp;Bloco de escrita da esquerda para a direita</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1369"/>
+        <location filename="../src/window.cpp" line="1372"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>B&amp;loco de escrita da direita para a esquerda</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1377"/>
+        <location filename="../src/window.cpp" line="1380"/>
         <source>&amp;Tools</source>
         <translation>Ferra&amp;mentas</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1378"/>
+        <location filename="../src/window.cpp" line="1381"/>
         <source>&amp;Find...</source>
         <translation>&amp;Procurar...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1379"/>
+        <location filename="../src/window.cpp" line="1382"/>
         <source>Find &amp;Next</source>
         <translation>Procurar se&amp;guinte</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1382"/>
+        <location filename="../src/window.cpp" line="1385"/>
         <source>Find Pre&amp;vious</source>
         <translation>Procurar &amp;anterior</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1385"/>
+        <location filename="../src/window.cpp" line="1388"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Substituir...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1385"/>
+        <location filename="../src/window.cpp" line="1388"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1387"/>
+        <location filename="../src/window.cpp" line="1390"/>
         <source>Smart &amp;Quotes</source>
         <translation>&amp;Aspas curvas e angulares</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1388"/>
+        <location filename="../src/window.cpp" line="1391"/>
         <source>Update &amp;Document</source>
         <translation>Actualizar &amp;documento</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1391"/>
+        <location filename="../src/window.cpp" line="1394"/>
         <source>Update &amp;Selection</source>
         <translation>Actualizar a &amp;selecção</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1395"/>
+        <location filename="../src/window.cpp" line="1398"/>
         <source>&amp;Spelling...</source>
         <translation>&amp;Ortografia...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1395"/>
+        <location filename="../src/window.cpp" line="1398"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1396"/>
+        <location filename="../src/window.cpp" line="1399"/>
         <source>Set &amp;Language...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1398"/>
+        <location filename="../src/window.cpp" line="1401"/>
         <source>&amp;Timers...</source>
         <translation>C&amp;ronómetros...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1399"/>
+        <location filename="../src/window.cpp" line="1402"/>
         <source>S&amp;ymbols...</source>
         <translation>Sí&amp;mbolos...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1400"/>
+        <location filename="../src/window.cpp" line="1403"/>
         <source>&amp;Daily Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1403"/>
+        <location filename="../src/window.cpp" line="1406"/>
         <source>&amp;Settings</source>
         <translation>&amp;Configuração</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1404"/>
+        <location filename="../src/window.cpp" line="1407"/>
         <source>Show &amp;Toolbar</source>
         <translation>Mostrar a &amp;barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1409"/>
+        <location filename="../src/window.cpp" line="1412"/>
         <source>Show &amp;Menu Icons</source>
         <translation>&amp;Mostrar os ícones no menu</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1415"/>
+        <location filename="../src/window.cpp" line="1418"/>
         <source>F&amp;ocused Text</source>
         <translation>Texto f&amp;ocado</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1417"/>
+        <location filename="../src/window.cpp" line="1420"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;Ecrã completo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1417"/>
+        <location filename="../src/window.cpp" line="1420"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1419"/>
+        <location filename="../src/window.cpp" line="1422"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1423"/>
+        <location filename="../src/window.cpp" line="1426"/>
         <source>M&amp;inimize</source>
         <translation>M&amp;inimizar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1423"/>
+        <location filename="../src/window.cpp" line="1426"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1425"/>
+        <location filename="../src/window.cpp" line="1428"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Temas...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1428"/>
+        <location filename="../src/window.cpp" line="1431"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Definições...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1434"/>
+        <location filename="../src/window.cpp" line="1437"/>
         <source>Focus Off</source>
         <translation>Desligar o foco</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1436"/>
+        <location filename="../src/window.cpp" line="1439"/>
         <source>Focus One Line</source>
         <translation>Focar uma linha</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1438"/>
+        <location filename="../src/window.cpp" line="1441"/>
         <source>Focus Three Lines</source>
         <translation>Focar três linhas</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1439"/>
+        <location filename="../src/window.cpp" line="1442"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;Parágrafo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1440"/>
+        <location filename="../src/window.cpp" line="1443"/>
         <source>Focus Paragraph</source>
         <translation>Focar um parágrafo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1453"/>
+        <location filename="../src/window.cpp" line="1456"/>
         <source>&amp;Help</source>
         <translation>A&amp;juda</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1427"/>
+        <location filename="../src/window.cpp" line="1430"/>
         <source>Application &amp;Language...</source>
         <translation>&amp;Língua do programa...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="394"/>
+        <location filename="../src/window.cpp" line="398"/>
         <source>Some files were unsupported and could not be opened.</source>
         <translation>Alguns ficheiros não são suportados e não puderam ser abertos</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1433"/>
+        <location filename="../src/window.cpp" line="1436"/>
         <source>&amp;Off</source>
         <translation>&amp;Desligado</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1435"/>
+        <location filename="../src/window.cpp" line="1438"/>
         <source>One &amp;Line</source>
         <translation>Uma l&amp;inha</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1437"/>
+        <location filename="../src/window.cpp" line="1440"/>
         <source>&amp;Three Lines</source>
         <translation>&amp;Três linhas</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1454"/>
+        <location filename="../src/window.cpp" line="1457"/>
         <source>&amp;About</source>
         <translation>&amp;Acerca</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1462"/>
+        <location filename="../src/window.cpp" line="1465"/>
         <source>About &amp;Qt</source>
         <translation>Acerca de &amp;Qt</translation>
     </message>
