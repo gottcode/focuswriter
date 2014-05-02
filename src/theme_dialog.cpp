@@ -434,7 +434,7 @@ ThemeDialog::~ThemeDialog()
 
 void ThemeDialog::createPreview(const QString& name)
 {
-	Theme theme(name);
+	Theme theme(name, false);
 	ThemeDialog dialog(theme);
 	dialog.m_theme_renderer->wait();
 	QCoreApplication::processEvents();

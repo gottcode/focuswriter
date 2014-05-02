@@ -144,7 +144,7 @@ void ThemeManager::newTheme()
 {
 	QString name;
 	{
-		Theme theme("");
+		Theme theme(QString(), false);
 		ThemeDialog dialog(theme, this);
 		dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
 		if (dialog.exec() == QDialog::Rejected) {
@@ -167,7 +167,7 @@ void ThemeManager::editTheme()
 
 	QString name;
 	{
-		Theme theme(item->text());
+		Theme theme(item->text(), false);
 		ThemeDialog dialog(theme, this);
 		if (dialog.exec() == QDialog::Rejected) {
 			return;
@@ -176,7 +176,7 @@ void ThemeManager::editTheme()
 	}
 	if (name == item->text()) {
 		item->setIcon(QIcon(Theme::iconPath(name)));
-		emit themeSelected(name);
+		emit themeSelected(Theme(name, false));
 	} else {
 		delete item;
 		item = 0;
@@ -193,9 +193,9 @@ void ThemeManager::cloneTheme()
 		return;
 	}
 
-	QString name = Theme::clone(item->text());
+	QString name = Theme::clone(item->text(), false);
 	{
-		Theme theme(name);
+		Theme theme(name, false);
 		ThemeDialog dialog(theme, this);
 		dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
 		if (dialog.exec() == QDialog::Rejected) {
@@ -290,7 +290,7 @@ void ThemeManager::importTheme()
 			file.close();
 		}
 
-		Theme theme(name);
+		Theme theme(name, false);
 		theme.setBackgroundImage(file.fileName());
 	}
 
@@ -357,7 +357,7 @@ void ThemeManager::exportTheme()
 void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 {
 	if (current) {
-		emit themeSelected(current->text());
+		emit themeSelected(Theme(current->text(), false));
 	}
 }
 

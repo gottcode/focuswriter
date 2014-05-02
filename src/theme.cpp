@@ -99,8 +99,9 @@ QString Theme::m_path;
 
 //-----------------------------------------------------------------------------
 
-Theme::ThemeData::ThemeData(const QString& name_, bool create) :
+Theme::ThemeData::ThemeData(const QString& name_, bool theme_is_default, bool create) :
 	name(name_),
+	is_default(theme_is_default),
 	background_type(0, 5),
 	foreground_opacity(0, 100),
 	foreground_width(500, 9999),
@@ -134,14 +135,14 @@ Theme::ThemeData::ThemeData(const QString& name_, bool create) :
 
 Theme::Theme()
 {
-	d = new ThemeData(QString(), false);
+	d = new ThemeData(QString(), false, false);
 }
 
 //-----------------------------------------------------------------------------
 
-Theme::Theme(const QString& name)
+Theme::Theme(const QString& name, bool is_default)
 {
-	d = new ThemeData(name, true);
+	d = new ThemeData(name, is_default, true);
 	forgetChanges();
 }
 
@@ -154,7 +155,7 @@ Theme::~Theme()
 
 //-----------------------------------------------------------------------------
 
-QString Theme::clone(const QString& theme)
+QString Theme::clone(const QString& theme, bool is_default)
 {
 	if (theme.isEmpty()) {
 		return theme;
@@ -170,12 +171,12 @@ QString Theme::clone(const QString& theme)
 
 	// Create duplicate
 	{
-		Theme duplicate(theme);
+		Theme duplicate(theme, is_default);
 		duplicate.setValue(duplicate.d->name, name);
 	}
 
 	// Copy icon
-	QString icon = iconPath(theme);
+	QString icon = iconPath(theme, is_default);
 	if (QFile::exists(icon)) {
 		QFile::copy(icon, iconPath(name));
 	}
@@ -212,6 +213,28 @@ void Theme::copyBackgrounds()
 		if (!images.contains(file)) {
 			QFile::remove(path() + "/Images/" + file);
 		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+QString Theme::filePath(const QString& theme, bool is_default)
+{
+	if (!is_default) {
+		return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".theme";
+	} else {
+		return m_path_default + "/" + theme + ".theme";
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+QString Theme::iconPath(const QString& theme, bool is_default)
+{
+	if (!is_default) {
+		return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".png";
+	} else {
+		return m_path + "/Previews/Default/" + theme + ".png";
 	}
 }
 
@@ -328,20 +351,6 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 
 //-----------------------------------------------------------------------------
 
-QString Theme::filePath(const QString& theme)
-{
-	return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".theme";
-}
-
-//-----------------------------------------------------------------------------
-
-QString Theme::iconPath(const QString& theme)
-{
-	return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".png";
-}
-
-//-----------------------------------------------------------------------------
-
 void Theme::setName(const QString& name)
 {
 	if (d->name != name) {
@@ -349,14 +358,25 @@ void Theme::setName(const QString& name)
 		files.prepend("");
 		foreach (const QString& file, files) {
 			Session session(file);
-			if (session.theme() == d->name) {
-				session.setTheme(name);
+			if ((session.theme() == d->name) && (session.themeDefault() == false)) {
+				session.setTheme(name, false);
 			}
 		}
 
 		QFile::remove(filePath(d->name));
 		QFile::remove(iconPath(d->name));
 		setValue(d->name, name);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+QString Theme::backgroundImage() const
+{
+	if (!d->is_default) {
+		return m_path + "/Images/" + d->background_image;
+	} else {
+		return m_path_default + "/images/" + d->background_image;
 	}
 }
 
@@ -456,7 +476,7 @@ void Theme::reload()
 		return;
 	}
 
-	QSettings settings(filePath(d->name), QSettings::IniFormat);
+	QSettings settings(filePath(d->name, d->is_default), QSettings::IniFormat);
 
 	// Load background settings
 	d->background_type = settings.value("Background/Type", 0).toInt();
@@ -514,6 +534,13 @@ void Theme::write()
 	if (d->name.isEmpty()) {
 		return;
 	}
+
+	if (d->is_default) {
+		if (!d->background_image.isEmpty()) {
+			d->background_image = copyImage(m_path_default + "/images/" + d->background_image);
+		}
+	}
+	d->is_default = false;
 
 	QSettings settings(filePath(d->name), QSettings::IniFormat);
 

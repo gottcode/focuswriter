@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -96,6 +96,13 @@ QString Session::theme() const
 
 //-----------------------------------------------------------------------------
 
+bool Session::themeDefault() const
+{
+	return m_data->value("ThemeManager/ThemeDefault", false).toBool();
+}
+
+//-----------------------------------------------------------------------------
+
 void Session::setName(const QString& name)
 {
 	if (m_default) {
@@ -116,9 +123,10 @@ void Session::setName(const QString& name)
 
 //-----------------------------------------------------------------------------
 
-void Session::setTheme(const QString& theme)
+void Session::setTheme(const QString& theme, bool is_default)
 {
 	m_data->setValue("ThemeManager/Theme", theme);
+	m_data->setValue("ThemeManager/ThemeDefault", is_default);
 }
 
 //-----------------------------------------------------------------------------

@@ -38,9 +38,10 @@ class Theme : public SettingsFile
 	class ThemeData : public QSharedData
 	{
 	public:
-		ThemeData(const QString& name, bool create);
+		ThemeData(const QString& name, bool is_default, bool create);
 
 		QString name;
+		bool is_default;
 
 		QColor load_color;
 
@@ -81,13 +82,13 @@ class Theme : public SettingsFile
 
 public:
 	Theme();
-	Theme(const QString& name);
+	Theme(const QString& name, bool is_default);
 	~Theme();
 
-	static QString clone(const QString& theme);
+	static QString clone(const QString& theme, bool is_default);
 	static void copyBackgrounds();
-	static QString filePath(const QString& theme);
-	static QString iconPath(const QString& theme);
+	static QString filePath(const QString& theme, bool is_default = false);
+	static QString iconPath(const QString& theme, bool is_default = false);
 	static QString path() { return m_path; }
 	static void setDefaultPath(const QString& path);
 	static void setPath(const QString& path);
@@ -95,6 +96,7 @@ public:
 	QImage render(const QSize& background, QRect& foreground) const;
 
 	// Name settings
+	bool isDefault() const { return d->is_default; }
 	QString name() const { return d->name; }
 	void setName(const QString& name);
 
@@ -104,7 +106,7 @@ public:
 	// Background settings
 	int backgroundType() const { return d->background_type; }
 	QColor backgroundColor() const { return d->background_color; }
-	QString backgroundImage() const { return m_path + "/Images/" + d->background_image; }
+	QString backgroundImage() const;
 	QString backgroundPath() const { return d->background_path; }
 
 	void setBackgroundType(int type) { setValue(d->background_type, type); }

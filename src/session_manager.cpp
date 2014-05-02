@@ -153,7 +153,7 @@ void SessionManager::setCurrent(const QString& session, const QStringList& files
 
 	// Open session
 	m_session = new Session(!session.isEmpty() ? session : Session::tr("Default"));
-	emit themeChanged(m_session->theme());
+	emit themeChanged(Theme(m_session->theme(), m_session->themeDefault()));
 	if (files.isEmpty()) {
 		m_window->addDocuments(m_session->files(), m_session->files(), m_session->positions(), m_session->active(), true);
 	} else {
@@ -180,6 +180,7 @@ void SessionManager::newSession()
 		return;
 	}
 	QString theme = m_session->theme();
+	bool is_default = m_session->themeDefault();
 
 	// Close open documents
 	bool visible = isVisible();
@@ -196,6 +197,7 @@ void SessionManager::newSession()
 	{
 		QSettings session(Session::pathFromName(name), QSettings::IniFormat);
 		session.setValue("ThemeManager/Theme", theme);
+		session.setValue("ThemeManager/ThemeDefault", is_default);
 		session.setValue("ThemeManager/Size", QSettings().value("ThemeManager/Size"));
 	}
 	setCurrent(name);
@@ -241,6 +243,7 @@ void SessionManager::cloneSession()
 	} else {
 		QSettings session(Session::pathFromName(name), QSettings::IniFormat);
 		session.setValue("ThemeManager/Theme", settings.value("ThemeManager/Theme"));
+		session.setValue("ThemeManager/ThemeDefault", settings.value("ThemeManager/ThemeDefault", false));
 		session.setValue("ThemeManager/Size", settings.value("ThemeManager/Size"));
 		session.setValue("Save/Current", settings.value("Save/Current"));
 		if (settings.value("Save/RememberPositions", true).toBool()) {

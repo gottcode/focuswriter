@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,9 +38,10 @@ public:
 	QString name() const;
 	QStringList positions() const;
 	QString theme() const;
+	bool themeDefault() const;
 
 	void setName(const QString& name);
-	void setTheme(const QString& theme);
+	void setTheme(const QString& theme, bool is_default);
 
 	static QString path();
 	static QString pathFromName(const QString& name);
