@@ -89,7 +89,8 @@ public:
 	static QString filePath(const QString& theme);
 	static QString iconPath(const QString& theme);
 	static QString path() { return m_path; }
-	static void setPath(const QString& path) { m_path = path; }
+	static void setDefaultPath(const QString& path);
+	static void setPath(const QString& path);
 
 	QImage render(const QSize& background, QRect& foreground) const;
 
@@ -177,6 +178,7 @@ private:
 	void write();
 
 private:
+	static QString m_path_default;
 	static QString m_path;
 };
 

@@ -94,6 +94,7 @@ namespace
 
 //-----------------------------------------------------------------------------
 
+QString Theme::m_path_default;
 QString Theme::m_path;
 
 //-----------------------------------------------------------------------------
@@ -211,6 +212,23 @@ void Theme::copyBackgrounds()
 		if (!images.contains(file)) {
 			QFile::remove(path() + "/Images/" + file);
 		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setDefaultPath(const QString& path)
+{
+	m_path_default = path;
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::setPath(const QString& path)
+{
+	m_path = path;
+	if (m_path_default.isEmpty()) {
+		m_path_default = m_path;
 	}
 }
 

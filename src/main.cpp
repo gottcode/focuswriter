@@ -160,6 +160,14 @@ int main(int argc, char** argv)
 	}
 	Theme::setPath(dir.absoluteFilePath("Themes"));
 
+	foreach (const QString& datadir, datadirs) {
+		QFileInfo info(datadir + "/themes");
+		if (info.exists()) {
+			Theme::setDefaultPath(info.absoluteFilePath());
+			break;
+		}
+	}
+
 	// Set dictionary paths
 	if (!dir.exists("Dictionaries")) {
 		if (dir.exists("dictionaries")) {

@@ -250,7 +250,10 @@ macx {
 	}
 	SYMBOLS.path = Contents/Resources
 
-	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
+	THEMES.files = resources/themes
+	THEMES.path = Contents/Resources
+
+	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS THEMES
 } else:win32 {
 	RC_FILE = resources/windows/icon.rc
 } else:unix {
@@ -291,6 +294,9 @@ macx {
 	sounds.files = resources/sounds/*
 	sounds.path = $$DATADIR/focuswriter/sounds
 
+	themes.files = resources/themes/*
+	themes.path = $$DATADIR/focuswriter/themes
+
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		symbols.files = resources/symbols/symbols630.dat
 	} else {
@@ -298,5 +304,5 @@ macx {
 	}
 	symbols.path = $$DATADIR/focuswriter
 
-	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols
+	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes
 }
