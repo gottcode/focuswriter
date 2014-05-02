@@ -87,6 +87,7 @@ public:
 
 	static QString clone(const QString& theme, bool is_default);
 	static void copyBackgrounds();
+	static QString defaultName() { return "writingdesk"; }
 	static QString filePath(const QString& theme, bool is_default = false);
 	static QString iconPath(const QString& theme, bool is_default = false);
 	static QString path() { return m_path; }
