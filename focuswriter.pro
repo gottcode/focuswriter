@@ -146,6 +146,7 @@ HEADERS += src/action_manager.h \
 	src/timer.h \
 	src/timer_display.h \
 	src/timer_manager.h \
+	src/utils.h \
 	src/window.h \
 	src/fileformats/docx_reader.h \
 	src/fileformats/docx_writer.h \
@@ -210,6 +211,7 @@ SOURCES += src/action_manager.cpp \
 	src/timer.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
+	src/utils.cpp \
 	src/window.cpp \
 	src/fileformats/docx_reader.cpp \
 	src/fileformats/docx_writer.cpp \

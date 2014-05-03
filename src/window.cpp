@@ -44,6 +44,7 @@
 #include "theme_manager.h"
 #include "timer_display.h"
 #include "timer_manager.h"
+#include "utils.h"
 
 #include <QAction>
 #include <QApplication>
@@ -75,8 +76,6 @@
 #include <QUrl>
 
 //-----------------------------------------------------------------------------
-
-extern bool compareFiles(const QString& filename1, const QString& filename2);
 
 namespace
 {

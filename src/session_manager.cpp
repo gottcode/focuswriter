@@ -21,6 +21,7 @@
 
 #include "session.h"
 #include "theme.h"
+#include "utils.h"
 #include "window.h"
 
 #include <QDir>
@@ -223,7 +224,15 @@ void SessionManager::cloneSession()
 	QString filename = item != m_sessions_list->item(0) ? Session::pathFromName(item->text()) : "";
 
 	// Fetch session name
-	QString name = getSessionName(tr("Duplicate Session"));
+	QStringList values = splitStringAtLastNumber(item->text());
+	int count = values.at(1).toInt();
+	QString name;
+	do {
+		++count;
+		name = values.at(0) + QString::number(count);
+	} while (QFile::exists(Session::pathFromName(name)));
+
+	name = getSessionName(tr("Duplicate Session"), name);
 	if (name.isEmpty()) {
 		return;
 	}

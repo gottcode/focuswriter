@@ -23,6 +23,7 @@
 #include "session.h"
 #include "theme.h"
 #include "theme_dialog.h"
+#include "utils.h"
 
 #include <QDir>
 #include <QFile>
@@ -256,11 +257,11 @@ void ThemeManager::importTheme()
 	// Find theme name
 	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).completeBaseName().toUtf8());
 	{
-		QString theme_name = name;
-		int count = 1;
+		QStringList values = splitStringAtLastNumber(name);
+		int count = values.at(1).toInt();
 		while (QFile::exists(Theme::filePath(name))) {
 			++count;
-			name = QString("%1 %2").arg(theme_name).arg(count);
+			name = values.at(0) + QString::number(count);
 		}
 	}
 
