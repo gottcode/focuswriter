@@ -130,14 +130,14 @@ Theme::~Theme()
 
 //-----------------------------------------------------------------------------
 
-QString Theme::clone(const QString& theme, bool is_default)
+QString Theme::clone(const QString& theme, bool is_default, const QString& name)
 {
 	if (theme.isEmpty()) {
 		return theme;
 	}
 
 	// Find name for duplicate theme
-	QStringList values = splitStringAtLastNumber(theme);
+	QStringList values = splitStringAtLastNumber(name);
 	int count = values.at(1).toInt();
 	QString new_name;
 	do {

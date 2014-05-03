@@ -194,7 +194,7 @@ void ThemeManager::cloneTheme()
 		return;
 	}
 
-	addItem(Theme::clone(item->text(), false));
+	addItem(Theme::clone(item->text(), false, item->text()));
 }
 
 //-----------------------------------------------------------------------------
