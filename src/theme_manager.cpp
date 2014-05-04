@@ -25,6 +25,7 @@
 #include "theme_dialog.h"
 #include "utils.h"
 
+#include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
@@ -41,6 +42,7 @@
 #else
 #include <QDesktopServices>
 #endif
+#include <QTabWidget>
 #include <QTemporaryFile>
 #include <QUrl>
 #include <QVBoxLayout>
@@ -53,8 +55,52 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 {
 	setWindowTitle(tr("Themes"));
 
+	m_tabs = new QTabWidget(this);
+
+	// Add default themes tab
+	QWidget* tab = new QWidget(this);
+	m_tabs->addTab(tab, tr("Default"));
+
+	// Add default themes list
+	m_default_themes = new QListWidget(tab);
+	m_default_themes->setSortingEnabled(true);
+	m_default_themes->setViewMode(QListView::IconMode);
+	m_default_themes->setIconSize(QSize(258, 153));
+	m_default_themes->setMovement(QListView::Static);
+	m_default_themes->setResizeMode(QListView::Adjust);
+	m_default_themes->setSelectionMode(QAbstractItemView::SingleSelection);
+	m_default_themes->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+	m_default_themes->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+	m_default_themes->setMinimumSize(250, 250);
+	m_default_themes->setWordWrap(true);
+	addItem("gentleblues", true, tr("Gentle Blues"));
+	addItem("oldschool", true, tr("Old School"));
+	addItem("spacedreams", true, tr("Space Dreams"));
+	addItem("writingdesk", true, tr("Writing Desk"));
+
+	// Add default control buttons
+	QPushButton* new_default_button = new QPushButton(tr("New"), tab);
+	new_default_button->setAutoDefault(false);
+	connect(new_default_button, SIGNAL(clicked()), this, SLOT(newTheme()));
+
+	m_clone_default_button = new QPushButton(tr("Duplicate"), tab);
+	m_clone_default_button->setAutoDefault(false);
+	connect(m_clone_default_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
+
+	// Lay out default themes tab
+	QGridLayout* default_layout = new QGridLayout(tab);
+	default_layout->setColumnStretch(0, 1);
+	default_layout->setRowStretch(2, 1);
+	default_layout->addWidget(m_default_themes, 0, 0, 3, 1);
+	default_layout->addWidget(new_default_button, 0, 1);
+	default_layout->addWidget(m_clone_default_button, 1, 1);
+
+	// Add themes tab
+	tab = new QWidget(this);
+	m_tabs->addTab(tab, tr("Custom"));
+
 	// Add themes list
-	m_themes = new QListWidget(this);
+	m_themes = new QListWidget(tab);
 	m_themes->setSortingEnabled(true);
 	m_themes->setViewMode(QListView::IconMode);
 	m_themes->setIconSize(QSize(258, 153));
@@ -67,60 +113,71 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes->setWordWrap(true);
 	QStringList themes = QDir(Theme::path(), "*.theme").entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
 	foreach (const QString& theme, themes) {
-		addItem(QUrl::fromPercentEncoding(QFileInfo(theme).completeBaseName().toUtf8()));
+		QString name = QUrl::fromPercentEncoding(QFileInfo(theme).completeBaseName().toUtf8());
+		addItem(name, false, name);
 	}
-	QList<QListWidgetItem*> items = m_themes->findItems(m_settings.value("ThemeManager/Theme").toString(), Qt::MatchExactly);
-	if (!items.isEmpty()) {
-		m_themes->setCurrentItem(items.first());
-	}
-	connect(m_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
-	connect(m_themes, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(editTheme()));
 
 	// Add control buttons
-	QPushButton* new_button = new QPushButton(tr("New"), this);
+	QPushButton* new_button = new QPushButton(tr("New"), tab);
 	new_button->setAutoDefault(false);
 	connect(new_button, SIGNAL(clicked()), this, SLOT(newTheme()));
 
-	QPushButton* clone_button = new QPushButton(tr("Duplicate"), this);
-	clone_button->setAutoDefault(false);
-	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
+	m_clone_button = new QPushButton(tr("Duplicate"), tab);
+	m_clone_button->setAutoDefault(false);
+	m_clone_button->setEnabled(false);
+	connect(m_clone_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
 
-	QPushButton* edit_button = new QPushButton(tr("Edit"), this);
-	edit_button->setAutoDefault(false);
-	connect(edit_button, SIGNAL(clicked()), this, SLOT(editTheme()));
+	m_edit_button = new QPushButton(tr("Edit"), tab);
+	m_edit_button->setAutoDefault(false);
+	m_edit_button->setEnabled(false);
+	connect(m_edit_button, SIGNAL(clicked()), this, SLOT(editTheme()));
 
-	m_remove_button = new QPushButton(tr("Delete"), this);
+	m_remove_button = new QPushButton(tr("Delete"), tab);
 	m_remove_button->setAutoDefault(false);
+	m_remove_button->setEnabled(false);
 	connect(m_remove_button, SIGNAL(clicked()), this, SLOT(deleteTheme()));
 
-	QPushButton* import_button = new QPushButton(tr("Import"), this);
+	QPushButton* import_button = new QPushButton(tr("Import"), tab);
 	import_button->setAutoDefault(false);
 	connect(import_button, SIGNAL(clicked()), this, SLOT(importTheme()));
 
-	QPushButton* export_button = new QPushButton(tr("Export"), this);
-	export_button->setAutoDefault(false);
-	connect(export_button, SIGNAL(clicked()), this, SLOT(exportTheme()));
+	m_export_button = new QPushButton(tr("Export"), tab);
+	m_export_button->setAutoDefault(false);
+	m_export_button->setEnabled(false);
+	connect(m_export_button, SIGNAL(clicked()), this, SLOT(exportTheme()));
 
-	QPushButton* close_button = new QPushButton(tr("Close"), this);
-	close_button->setAutoDefault(false);
-	connect(close_button, SIGNAL(clicked()), this, SLOT(accept()));
+	// Lay out custom themes tab
+	QGridLayout* custom_layout = new QGridLayout(tab);
+	custom_layout->setColumnStretch(0, 1);
+	custom_layout->setRowMinimumHeight(4, import_button->sizeHint().height());
+	custom_layout->setRowStretch(7, 1);
+	custom_layout->addWidget(m_themes, 0, 0, 8, 1);
+	custom_layout->addWidget(new_button, 0, 1);
+	custom_layout->addWidget(m_clone_button, 1, 1);
+	custom_layout->addWidget(m_edit_button, 2, 1);
+	custom_layout->addWidget(m_remove_button, 3, 1);
+	custom_layout->addWidget(import_button, 5, 1);
+	custom_layout->addWidget(m_export_button, 6, 1);
 
 	// Lay out dialog
-	QVBoxLayout* buttons_layout = new QVBoxLayout;
-	buttons_layout->setMargin(0);
-	buttons_layout->addWidget(new_button);
-	buttons_layout->addWidget(clone_button);
-	buttons_layout->addWidget(edit_button);
-	buttons_layout->addWidget(m_remove_button);
-	buttons_layout->addSpacing(import_button->sizeHint().height());
-	buttons_layout->addWidget(import_button);
-	buttons_layout->addWidget(export_button);
-	buttons_layout->addStretch();
-	buttons_layout->addWidget(close_button);
+	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
+	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
 
-	QHBoxLayout* layout = new QHBoxLayout(this);
-	layout->addWidget(m_themes);
-	layout->addLayout(buttons_layout);
+	QVBoxLayout* layout = new QVBoxLayout(this);
+	layout->addWidget(m_tabs, 1);
+	layout->addSpacing(layout->margin());
+	layout->addWidget(buttons);
+
+	// Select theme
+	QString theme = m_settings.value("ThemeManager/Theme").toString();
+	bool is_default = m_settings.value("ThemeManager/ThemeDefault", false).toBool();
+	if (!selectItem(theme, is_default)) {
+		selectItem(Theme::defaultName(), true);
+	}
+	selectionChanged(is_default);
+	connect(m_default_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
+	connect(m_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
+	connect(m_themes, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(editTheme()));
 
 	// Restore size
 	resize(m_settings.value("ThemeManager/Size", QSize(630, 450)).toSize());
@@ -131,9 +188,15 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 void ThemeManager::hideEvent(QHideEvent* event)
 {
 	QList<QListWidgetItem*> items = m_themes->selectedItems();
+	bool is_default = false;
+	if (items.isEmpty()) {
+		items = m_default_themes->selectedItems();
+		is_default = true;
+	}
 	QString selected = !items.isEmpty() ? items.first()->text() : QString();
 	if (!selected.isEmpty()) {
 		m_settings.setValue("ThemeManager/Theme", selected);
+		m_settings.setValue("ThemeManager/ThemeDefault", is_default);
 	}
 	m_settings.setValue("ThemeManager/Size", size());
 	QDialog::hideEvent(event);
@@ -153,8 +216,11 @@ void ThemeManager::newTheme()
 		}
 		name = theme.name();
 	}
-	addItem(name);
-	m_remove_button->setEnabled(true);
+
+	QListWidgetItem* item = addItem(name, false, name);
+	m_themes->setCurrentItem(item);
+
+	m_tabs->setCurrentIndex(1);
 }
 
 //-----------------------------------------------------------------------------
@@ -180,8 +246,8 @@ void ThemeManager::editTheme()
 		emit themeSelected(Theme(name, false));
 	} else {
 		delete item;
-		item = 0;
-		addItem(name);
+		item = addItem(name, false, name);
+		m_themes->setCurrentItem(item);
 	}
 }
 
@@ -189,12 +255,17 @@ void ThemeManager::editTheme()
 
 void ThemeManager::cloneTheme()
 {
-	QListWidgetItem* item = m_themes->currentItem();
+	bool is_default = m_tabs->currentIndex() == 0;
+	QListWidgetItem* item = (is_default ? m_default_themes : m_themes)->currentItem();
 	if (!item) {
 		return;
 	}
 
-	addItem(Theme::clone(item->text(), false, item->text()));
+	QString theme = Theme::clone(item->data(Qt::UserRole).toString(), is_default, item->text());
+	item = addItem(theme, false, theme);
+	m_themes->setCurrentItem(item);
+
+	m_tabs->setCurrentIndex(1);
 }
 
 //-----------------------------------------------------------------------------
@@ -216,7 +287,7 @@ void ThemeManager::deleteTheme()
 		if (m_themes->count() == 0) {
 			Theme theme;
 			theme.setName(Session::tr("Default"));
-			addItem(theme.name());
+			addItem(theme.name(), false, theme.name());
 			m_remove_button->setDisabled(true);
 		}
 	}
@@ -286,7 +357,8 @@ void ThemeManager::importTheme()
 	theme_ini.sync();
 	theme_ini.remove("Background/Image");
 
-	addItem(name);
+	QListWidgetItem* item = addItem(name, false, name);
+	m_themes->setCurrentItem(item);
 }
 
 //-----------------------------------------------------------------------------
@@ -346,20 +418,64 @@ void ThemeManager::exportTheme()
 void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 {
 	if (current) {
-		emit themeSelected(Theme(current->text(), false));
+		bool is_default = current->listWidget() == m_default_themes;
+		if (is_default) {
+			m_themes->setCurrentIndex(m_themes->rootIndex());
+		} else {
+			m_default_themes->setCurrentIndex(m_default_themes->rootIndex());
+		}
+
+		selectionChanged(is_default);
+
+		emit themeSelected(Theme(current->data(Qt::UserRole).toString(), is_default));
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-void ThemeManager::addItem(const QString& name)
+QListWidgetItem* ThemeManager::addItem(const QString& theme, bool is_default, const QString& name)
 {
-	QString icon = Theme::iconPath(name);
+	QString icon = Theme::iconPath(theme, is_default);
 	if (!QFile::exists(icon) || QImageReader(icon).size() != QSize(258, 153)) {
-		ThemeDialog::createPreview(name, false);
+		ThemeDialog::createPreview(theme, is_default);
 	}
-	QListWidgetItem* item = new QListWidgetItem(QIcon(icon), name, m_themes);
-	m_themes->setCurrentItem(item);
+	QListWidgetItem* item = new QListWidgetItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);
+	item->setToolTip(name);
+	item->setData(Qt::UserRole, theme);
+	return item;
+}
+
+//-----------------------------------------------------------------------------
+
+bool ThemeManager::selectItem(const QString& theme, bool is_default)
+{
+	QListWidget* view = m_themes;
+	QListWidget* other_view = m_default_themes;
+	if (is_default) {
+		std::swap(view, other_view);
+	}
+	QAbstractItemModel* model = view->model();
+	QModelIndexList items = model->match(model->index(0, 0, QModelIndex()),
+			Qt::UserRole, theme, 1, Qt::MatchFixedString | Qt::MatchCaseSensitive);
+	if (!items.isEmpty()) {
+		view->setCurrentRow(items.first().row());
+		other_view->setCurrentIndex(other_view->rootIndex());
+		m_tabs->setCurrentIndex(!is_default);
+		return true;
+	} else {
+		return false;
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeManager::selectionChanged(bool is_default)
+{
+	m_clone_default_button->setEnabled(is_default);
+	m_clone_button->setDisabled(is_default);
+	m_edit_button->setDisabled(is_default);
+	m_remove_button->setDisabled(is_default);
+	m_export_button->setDisabled(is_default);
 }
 
 //-----------------------------------------------------------------------------
