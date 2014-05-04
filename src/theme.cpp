@@ -456,7 +456,7 @@ void Theme::reload()
 
 	// Load background settings
 	d->background_type = settings.value("Background/Type", 0).toInt();
-	d->background_color = settings.value("Background/Color", "#cccccc").toString();
+	d->background_color = settings.value("Background/Color", "#666666").toString();
 	d->background_path = settings.value("Background/Image").toString();
 	d->background_image = settings.value("Background/ImageFile").toString();
 	if (!d->background_path.isEmpty() && d->background_image.isEmpty()) {
@@ -466,7 +466,7 @@ void Theme::reload()
 	d->load_color = settings.value("LoadColor", d->background_color.name()).toString();
 
 	// Load foreground settings
-	d->foreground_color = settings.value("Foreground/Color", "#cccccc").toString();
+	d->foreground_color = settings.value("Foreground/Color", "#ffffff").toString();
 	d->foreground_opacity = settings.value("Foreground/Opacity", 100).toInt();
 	d->foreground_width = settings.value("Foreground/Width", 700).toInt();
 	d->foreground_margin = settings.value("Foreground/Margin", 65).toInt();
@@ -485,7 +485,7 @@ void Theme::reload()
 	d->blur_enabled = settings.value("ForegroundBlur/Enabled", false).toBool();
 	d->blur_radius = settings.value("ForegroundBlur/Radius", 32).toInt();
 
-	d->shadow_enabled = settings.value("ForegroundShadow/Enabled", false).toBool();
+	d->shadow_enabled = settings.value("ForegroundShadow/Enabled", true).toBool();
 	d->shadow_color = settings.value("ForegroundShadow/Color", "#000000").toString();
 	d->shadow_radius = settings.value("ForegroundShadow/Radius", 8).toInt();
 	d->shadow_offset = settings.value("ForegroundShadow/Offset", 2).toInt();
