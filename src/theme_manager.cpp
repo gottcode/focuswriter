@@ -42,6 +42,7 @@
 #else
 #include <QDesktopServices>
 #endif
+#include <QStyle>
 #include <QTabWidget>
 #include <QTemporaryFile>
 #include <QUrl>
@@ -57,6 +58,14 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 
 	m_tabs = new QTabWidget(this);
 
+	// Find view sizes
+	int focush = style()->pixelMetric(QStyle::PM_FocusFrameHMargin);
+	int focusv = style()->pixelMetric(QStyle::PM_FocusFrameVMargin);
+	int frame = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+	int scrollbar = style()->pixelMetric(QStyle::PM_SliderThickness);
+	QSize grid_size(259 + focush, 154 + focusv + (fontMetrics().height() * 2));
+	QSize view_size((grid_size.width() + frame + focush) * 2 + scrollbar, (grid_size.height() + frame + focusv) * 2);
+
 	// Add default themes tab
 	QWidget* tab = new QWidget(this);
 	m_tabs->addTab(tab, tr("Default"));
@@ -66,12 +75,13 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_default_themes->setSortingEnabled(true);
 	m_default_themes->setViewMode(QListView::IconMode);
 	m_default_themes->setIconSize(QSize(258, 153));
+	m_default_themes->setGridSize(grid_size);
 	m_default_themes->setMovement(QListView::Static);
 	m_default_themes->setResizeMode(QListView::Adjust);
 	m_default_themes->setSelectionMode(QAbstractItemView::SingleSelection);
-	m_default_themes->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+	m_default_themes->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_default_themes->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-	m_default_themes->setMinimumSize(250, 250);
+	m_default_themes->setMinimumSize(view_size);
 	m_default_themes->setWordWrap(true);
 	addItem("gentleblues", true, tr("Gentle Blues"));
 	addItem("oldschool", true, tr("Old School"));
@@ -104,12 +114,13 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes->setSortingEnabled(true);
 	m_themes->setViewMode(QListView::IconMode);
 	m_themes->setIconSize(QSize(258, 153));
+	m_themes->setGridSize(grid_size);
 	m_themes->setMovement(QListView::Static);
 	m_themes->setResizeMode(QListView::Adjust);
 	m_themes->setSelectionMode(QAbstractItemView::SingleSelection);
-	m_themes->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+	m_themes->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_themes->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-	m_themes->setMinimumSize(250, 250);
+	m_themes->setMinimumSize(view_size);
 	m_themes->setWordWrap(true);
 	QStringList themes = QDir(Theme::path(), "*.theme").entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
 	foreach (const QString& theme, themes) {
@@ -180,7 +191,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	connect(m_themes, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(editTheme()));
 
 	// Restore size
-	resize(m_settings.value("ThemeManager/Size", QSize(630, 450)).toSize());
+	resize(m_settings.value("ThemeManager/Size", sizeHint()).toSize());
 }
 
 //-----------------------------------------------------------------------------
