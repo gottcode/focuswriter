@@ -432,9 +432,9 @@ ThemeDialog::~ThemeDialog()
 
 //-----------------------------------------------------------------------------
 
-void ThemeDialog::createPreview(const QString& name)
+void ThemeDialog::createPreview(const QString& name, bool is_default)
 {
-	Theme theme(name, false);
+	Theme theme(name, is_default);
 	ThemeDialog dialog(theme);
 	dialog.m_theme_renderer->wait();
 	QCoreApplication::processEvents();
@@ -654,8 +654,10 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 
 void ThemeDialog::savePreview()
 {
-	m_preview_icon.save(Theme::iconPath(m_theme.name()), "", 0);
-	m_theme.setLoadColor(m_load_color);
+	m_preview_icon.save(Theme::iconPath(m_theme.name(), m_theme.isDefault()), "", 0);
+	if (!m_theme.isDefault()) {
+		m_theme.setLoadColor(m_load_color);
+	}
 }
 
 //-----------------------------------------------------------------------------

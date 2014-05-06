@@ -367,7 +367,7 @@ void ThemeManager::addItem(const QString& name)
 {
 	QString icon = Theme::iconPath(name);
 	if (!QFile::exists(icon) || QImageReader(icon).size() != QSize(258, 153)) {
-		ThemeDialog::createPreview(name);
+		ThemeDialog::createPreview(name, false);
 	}
 	QListWidgetItem* item = new QListWidgetItem(QIcon(icon), name, m_themes);
 	m_themes->setCurrentItem(item);

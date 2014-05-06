@@ -158,6 +158,9 @@ int main(int argc, char** argv)
 	if (!dir.exists("Themes/Images")) {
 		dir.mkdir("Themes/Images");
 	}
+	if (!dir.exists("Themes/Previews/Default")) {
+		dir.mkpath("Themes/Previews/Default");
+	}
 	Theme::setPath(dir.absoluteFilePath("Themes"));
 
 	foreach (const QString& datadir, datadirs) {

@@ -45,7 +45,7 @@ public:
 	ThemeDialog(Theme& theme, QWidget* parent = 0);
 	~ThemeDialog();
 
-	static void createPreview(const QString& name);
+	static void createPreview(const QString& name, bool is_default);
 
 public slots:
 	virtual void accept();
