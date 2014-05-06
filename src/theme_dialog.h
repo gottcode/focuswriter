@@ -74,6 +74,7 @@ private:
 
 	ThemeRenderer* m_theme_renderer;
 	QLabel* m_preview;
+	QImage m_preview_icon;
 	QTextEdit* m_preview_text;
 	QFuture<QColor> m_load_color;
 

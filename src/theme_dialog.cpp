@@ -626,6 +626,18 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 	int y2 = (y >= 24) ? (y - 24) : 0;
 	QImage text_cutout = preview.copy(x2, y2, 162, 110);
 
+	// Create preview icon
+	m_preview_icon = QImage(":/shadow.png").convertToFormat(QImage::Format_ARGB32_Premultiplied);
+	{
+		QPainter painter(&m_preview_icon);
+		painter.drawImage(9, 9, preview.scaled(240, 135, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+		painter.fillRect(20, 32, 85, 59, QColor(0, 0, 0, 32));
+		painter.fillRect(21, 33, 83, 57, Qt::white);
+		int x3 = (x >= 24) ? (x - 12 + theme.tabWidth()) : 12 + theme.tabWidth();
+		int y3 = (y >= 24) ? (y - 6) : 0;
+		painter.drawImage(22, 34, preview, x3, y3, 81, 55);
+	}
+
 	// Create preview pixmap
 	preview = preview.scaled(480, 270, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	{
@@ -642,11 +654,7 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 
 void ThemeDialog::savePreview()
 {
-	QPixmap preview(":/shadow.png");
-	QPainter painter(&preview);
-	painter.drawPixmap(9, 9, m_preview->pixmap()->scaled(240, 135, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-	painter.end();
-	preview.save(Theme::iconPath(m_theme.name()));
+	m_preview_icon.save(Theme::iconPath(m_theme.name()), "", 0);
 	m_theme.setLoadColor(m_load_color);
 }
 
