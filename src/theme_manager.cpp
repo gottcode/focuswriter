@@ -198,17 +198,6 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 
 void ThemeManager::hideEvent(QHideEvent* event)
 {
-	QList<QListWidgetItem*> items = m_themes->selectedItems();
-	bool is_default = false;
-	if (items.isEmpty()) {
-		items = m_default_themes->selectedItems();
-		is_default = true;
-	}
-	QString selected = !items.isEmpty() ? items.first()->text() : QString();
-	if (!selected.isEmpty()) {
-		m_settings.setValue("ThemeManager/Theme", selected);
-		m_settings.setValue("ThemeManager/ThemeDefault", is_default);
-	}
 	m_settings.setValue("ThemeManager/Size", size());
 	QDialog::hideEvent(event);
 }
@@ -435,7 +424,10 @@ void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 
 		selectionChanged(is_default);
 
-		emit themeSelected(Theme(current->data(Qt::UserRole).toString(), is_default));
+		QString theme = current->data(Qt::UserRole).toString();
+		m_settings.setValue("ThemeManager/Theme", theme);
+		m_settings.setValue("ThemeManager/ThemeDefault", is_default);
+		emit themeSelected(Theme(theme, is_default));
 	}
 }
 
