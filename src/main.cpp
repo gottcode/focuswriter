@@ -193,8 +193,7 @@ int main(int argc, char** argv)
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
 		QSettings settings;
-		Theme theme;
-		theme.setName(Session::tr("Default"));
+		Theme theme(QString(), false);
 
 		theme.setBackgroundType(settings.value("Background/Position", theme.backgroundType()).toInt());
 		theme.setBackgroundColor(settings.value("Background/Color", theme.backgroundColor()).toString());
@@ -210,7 +209,9 @@ int main(int argc, char** argv)
 		theme.setTextFont(settings.value("Text/Font", theme.textFont()).value<QFont>());
 		settings.remove("Text");
 
-		settings.setValue("ThemeManager/Theme", theme.name());
+		if (theme.isChanged()) {
+			settings.setValue("ThemeManager/Theme", theme.name());
+		}
 	}
 
 	// Create main window

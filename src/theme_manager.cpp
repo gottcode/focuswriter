@@ -294,12 +294,9 @@ void ThemeManager::deleteTheme()
 		delete item;
 		item = 0;
 
-		// Create default theme if all themes are removed
+		// Handle deleting last custom theme
 		if (m_themes->count() == 0) {
-			Theme theme;
-			theme.setName(Session::tr("Default"));
-			addItem(theme.name(), false, theme.name());
-			m_remove_button->setDisabled(true);
+			selectItem(Theme::defaultName(), true);
 		}
 	}
 }

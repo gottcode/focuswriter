@@ -154,7 +154,16 @@ void SessionManager::setCurrent(const QString& session, const QStringList& files
 
 	// Open session
 	m_session = new Session(!session.isEmpty() ? session : Session::tr("Default"));
-	emit themeChanged(Theme(m_session->theme(), m_session->themeDefault()));
+
+	QString theme = m_session->theme();
+	bool is_default = m_session->themeDefault();
+	if (!QFile::exists(Theme::filePath(theme, is_default))) {
+		theme = Theme::defaultName();
+		is_default = true;
+		m_session->setTheme(theme, is_default);
+	}
+	emit themeChanged(Theme(theme, is_default));
+
 	if (files.isEmpty()) {
 		m_window->addDocuments(m_session->files(), m_session->files(), m_session->positions(), m_session->active(), true);
 	} else {
