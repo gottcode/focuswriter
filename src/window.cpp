@@ -295,7 +295,6 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Update and load theme
 	m_documents->loadScreen()->setText(tr("Loading themes"));
-	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
 	Theme::copyBackgrounds();
 	{
 		// Force a reload of previews
