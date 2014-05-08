@@ -64,11 +64,11 @@ SessionManager::SessionManager(Window* parent)
 	QPushButton* new_button = new QPushButton(tr("New"), this);
 	connect(new_button, SIGNAL(clicked()), this, SLOT(newSession()));
 
+	QPushButton* clone_button = new QPushButton(tr("Duplicate"), this);
+	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneSession()));
+
 	m_rename_button = new QPushButton(tr("Rename"), this);
 	connect(m_rename_button, SIGNAL(clicked()), this, SLOT(renameSession()));
-
-	QPushButton* clone_button = new QPushButton(tr("Clone"), this);
-	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneSession()));
 
 	m_delete_button = new QPushButton(tr("Delete"), this);
 	connect(m_delete_button, SIGNAL(clicked()), this, SLOT(deleteSession()));
@@ -87,8 +87,8 @@ SessionManager::SessionManager(Window* parent)
 	layout->addWidget(m_sessions_list, 0, 0, 6, 1);
 
 	layout->addWidget(new_button, 0, 1);
-	layout->addWidget(m_rename_button, 1, 1);
-	layout->addWidget(clone_button, 2, 1);
+	layout->addWidget(clone_button, 1, 1);
+	layout->addWidget(m_rename_button, 2, 1);
 	layout->addWidget(m_delete_button, 3, 1);
 	layout->addWidget(m_switch_button, 4, 1);
 
@@ -221,7 +221,7 @@ void SessionManager::cloneSession()
 	QString filename = item != m_sessions_list->item(0) ? Session::pathFromName(item->text()) : "";
 
 	// Fetch session name
-	QString name = getSessionName(tr("Clone Session"));
+	QString name = getSessionName(tr("Duplicate Session"));
 	if (name.isEmpty()) {
 		return;
 	}

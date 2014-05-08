@@ -80,13 +80,13 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	new_button->setAutoDefault(false);
 	connect(new_button, SIGNAL(clicked()), this, SLOT(newTheme()));
 
+	QPushButton* clone_button = new QPushButton(tr("Duplicate"), this);
+	clone_button->setAutoDefault(false);
+	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
+
 	QPushButton* edit_button = new QPushButton(tr("Edit"), this);
 	edit_button->setAutoDefault(false);
 	connect(edit_button, SIGNAL(clicked()), this, SLOT(editTheme()));
-
-	QPushButton* clone_button = new QPushButton(tr("Clone"), this);
-	clone_button->setAutoDefault(false);
-	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
 
 	m_remove_button = new QPushButton(tr("Delete"), this);
 	m_remove_button->setAutoDefault(false);
@@ -108,8 +108,8 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	QVBoxLayout* buttons_layout = new QVBoxLayout;
 	buttons_layout->setMargin(0);
 	buttons_layout->addWidget(new_button);
-	buttons_layout->addWidget(edit_button);
 	buttons_layout->addWidget(clone_button);
+	buttons_layout->addWidget(edit_button);
 	buttons_layout->addWidget(m_remove_button);
 	buttons_layout->addSpacing(import_button->sizeHint().height());
 	buttons_layout->addWidget(import_button);
