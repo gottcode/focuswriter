@@ -38,7 +38,7 @@ class Theme : public SettingsFile
 	class ThemeData : public QSharedData
 	{
 	public:
-		ThemeData(const QString& name = QString(), bool create = true);
+		ThemeData(const QString& name, bool create);
 
 		QString name;
 
@@ -80,7 +80,8 @@ class Theme : public SettingsFile
 	QExplicitlySharedDataPointer<ThemeData> d;
 
 public:
-	Theme(const QString& name = QString(), bool create = true);
+	Theme();
+	Theme(const QString& name);
 	~Theme();
 
 	static QString clone(const QString& theme);

@@ -131,9 +131,16 @@ Theme::ThemeData::ThemeData(const QString& name_, bool create) :
 
 //-----------------------------------------------------------------------------
 
-Theme::Theme(const QString& name, bool create)
+Theme::Theme()
 {
-	d = new ThemeData(name, create);
+	d = new ThemeData(QString(), false);
+}
+
+//-----------------------------------------------------------------------------
+
+Theme::Theme(const QString& name)
+{
+	d = new ThemeData(name, true);
 	forgetChanges();
 }
 

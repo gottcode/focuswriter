@@ -560,7 +560,7 @@ void ThemeDialog::renderPreview()
 	m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
 
 	// Load theme
-	Theme theme("", false);
+	Theme theme;
 	setValues(theme);
 	theme.setBackgroundImage(m_background_image->image());
 

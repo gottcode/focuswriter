@@ -144,7 +144,7 @@ void ThemeManager::newTheme()
 {
 	QString name;
 	{
-		Theme theme;
+		Theme theme("");
 		ThemeDialog dialog(theme, this);
 		dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
 		if (dialog.exec() == QDialog::Rejected) {
