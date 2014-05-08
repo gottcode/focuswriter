@@ -493,6 +493,9 @@ void Theme::reload()
 	// Load text settings
 	d->text_color = settings.value("Text/Color", "#000000").toString();
 	d->text_font.fromString(settings.value("Text/Font", QFont("Times New Roman").toString()).toString());
+	if (d->is_default) {
+		d->text_font.setPointSize(QFont().pointSize());
+	}
 	d->misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
 
 	// Load spacings
