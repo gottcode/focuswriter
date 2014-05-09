@@ -281,7 +281,7 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Restore window geometry
 	QSettings settings;
-	resize(800, 600);
+	resize(1280, 720);
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
 	show();
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
