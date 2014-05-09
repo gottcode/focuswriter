@@ -25,9 +25,11 @@
 #include "theme.h"
 #include "theme_renderer.h"
 
+#include <QApplication>
 #include <QtConcurrentRun>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QFile>
@@ -510,7 +512,11 @@ void ThemeDialog::fontChanged()
 void ThemeDialog::imageChanged()
 {
 	if (!m_background_image->image().isEmpty()) {
-		if (m_background_type->currentIndex() == 0) {
+		QSize image = QImageReader(m_background_image->image()).size();
+		QSize desktop = QApplication::desktop()->size();
+		if ((image.width() * image.height() * 4) <= (desktop.width() * desktop.height())) {
+			m_background_type->setCurrentIndex(1);
+		} else if (m_background_type->currentIndex() < 2) {
 			m_background_type->setCurrentIndex(5);
 		}
 	} else {
