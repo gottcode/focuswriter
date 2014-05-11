@@ -194,19 +194,7 @@ void ThemeManager::cloneTheme()
 		return;
 	}
 
-	QString name = Theme::clone(item->text(), false);
-	{
-		Theme theme(name, false);
-		ThemeDialog dialog(theme, this);
-		dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
-		if (dialog.exec() == QDialog::Rejected) {
-			QFile::remove(Theme::filePath(name));
-			QFile::remove(Theme::iconPath(name));
-			return;
-		}
-		name = theme.name();
-	}
-	addItem(name);
+	addItem(Theme::clone(item->text(), false));
 }
 
 //-----------------------------------------------------------------------------
