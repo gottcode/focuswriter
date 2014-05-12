@@ -434,9 +434,9 @@ ThemeDialog::~ThemeDialog()
 
 //-----------------------------------------------------------------------------
 
-void ThemeDialog::createPreview(const QString& name, bool is_default)
+void ThemeDialog::createPreview(const QString& id, bool is_default)
 {
-	Theme theme(name, is_default);
+	Theme theme(id, is_default);
 	ThemeDialog dialog(theme);
 	dialog.m_theme_renderer->wait();
 	QCoreApplication::processEvents();
@@ -471,7 +471,7 @@ void ThemeDialog::checkNameAvailable()
 	QString name = m_name->text().simplified();
 	bool empty = name.isEmpty();
 	bool changed = (name != m_theme.name());
-	bool exists = QFile::exists(Theme::filePath(name));
+	bool exists = Theme::exists(name);
 	m_ok->setEnabled(!changed || (!empty && !exists));
 }
 
@@ -660,7 +660,7 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 
 void ThemeDialog::savePreview()
 {
-	m_preview_icon.save(Theme::iconPath(m_theme.name(), m_theme.isDefault()), "", 0);
+	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault()), "", 0);
 	if (!m_theme.isDefault()) {
 		m_theme.setLoadColor(m_load_color);
 	}

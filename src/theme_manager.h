@@ -51,8 +51,8 @@ private slots:
 	void currentThemeChanged(QListWidgetItem* current);
 
 private:
-	QListWidgetItem* addItem(const QString& theme, bool is_default, const QString& name);
-	bool selectItem(const QString& theme, bool is_default);
+	QListWidgetItem* addItem(const QString& id, bool is_default, const QString& name);
+	bool selectItem(const QString& id, bool is_default);
 	void selectionChanged(bool is_default);
 
 private:

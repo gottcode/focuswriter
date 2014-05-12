@@ -28,7 +28,7 @@
 #include <QImageReader>
 #include <QPainter>
 #include <QSettings>
-#include <QUrl>
+#include <QUuid>
 
 //-----------------------------------------------------------------------------
 
@@ -74,9 +74,9 @@ QString Theme::m_path;
 
 //-----------------------------------------------------------------------------
 
-Theme::ThemeData::ThemeData(const QString& name_, bool theme_is_default, bool create) :
-	name(name_),
-	is_default(theme_is_default),
+Theme::ThemeData::ThemeData(const QString& theme_id, bool theme_default, bool create) :
+	id(theme_id),
+	is_default(theme_default),
 	background_type(0, 5),
 	foreground_opacity(0, 100),
 	foreground_width(500, 9999),
@@ -95,14 +95,15 @@ Theme::ThemeData::ThemeData(const QString& name_, bool theme_is_default, bool cr
 	paragraph_spacing_below(0, 1000),
 	tab_width(1, 1000)
 {
-	if (name.isEmpty() && create) {
+	if (id.isEmpty() && create) {
 		QString untitled;
 		int count = 0;
 		do {
 			count++;
 			untitled = Theme::tr("Untitled %1").arg(count);
-		} while (QFile::exists(Theme::filePath(untitled)));
+		} while (exists(untitled));
 		name = untitled;
+		id = createId();
 	}
 }
 
@@ -115,9 +116,9 @@ Theme::Theme()
 
 //-----------------------------------------------------------------------------
 
-Theme::Theme(const QString& name, bool is_default)
+Theme::Theme(const QString& id, bool is_default)
 {
-	d = new ThemeData(name, is_default, true);
+	d = new ThemeData(id, is_default, true);
 	forgetChanges();
 }
 
@@ -130,10 +131,10 @@ Theme::~Theme()
 
 //-----------------------------------------------------------------------------
 
-QString Theme::clone(const QString& theme, bool is_default, const QString& name)
+QString Theme::clone(const QString& id, bool is_default, const QString& name)
 {
-	if (theme.isEmpty()) {
-		return theme;
+	if (id.isEmpty()) {
+		return id;
 	}
 
 	// Find name for duplicate theme
@@ -143,21 +144,23 @@ QString Theme::clone(const QString& theme, bool is_default, const QString& name)
 	do {
 		++count;
 		new_name = values.at(0) + QString::number(count);
-	} while (QFile::exists(filePath(new_name)));
+	} while (exists(new_name));
 
 	// Create duplicate
+	QString new_id = createId();
 	{
-		Theme duplicate(theme, is_default);
+		Theme duplicate(id, is_default);
 		duplicate.setValue(duplicate.d->name, new_name);
+		duplicate.setValue(duplicate.d->id, new_id);
 	}
 
 	// Copy icon
-	QString icon = iconPath(theme, is_default);
+	QString icon = iconPath(id, is_default);
 	if (QFile::exists(icon)) {
-		QFile::copy(icon, iconPath(new_name));
+		QFile::copy(icon, iconPath(new_id));
 	}
 
-	return new_name;
+	return new_id;
 }
 
 //-----------------------------------------------------------------------------
@@ -194,24 +197,43 @@ void Theme::copyBackgrounds()
 
 //-----------------------------------------------------------------------------
 
-QString Theme::filePath(const QString& theme, bool is_default)
+QString Theme::createId()
 {
-	if (!is_default) {
-		return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".theme";
-	} else {
-		return m_path_default + "/" + theme + ".theme";
-	}
+	QString file;
+	do
+	{
+		file = QUuid::createUuid().toString().mid(1, 36);
+	} while (QFile::exists(filePath(file, false)));
+	return file;
 }
 
 //-----------------------------------------------------------------------------
 
-QString Theme::iconPath(const QString& theme, bool is_default)
+bool Theme::exists(const QString& name)
 {
-	if (!is_default) {
-		return m_path + "/" + QUrl::toPercentEncoding(theme, " ") + ".png";
-	} else {
-		return m_path + "/Previews/Default/" + theme + ".png";
+	QDir dir(m_path, "*.theme");
+	QStringList themes = dir.entryList(QDir::Files);
+	foreach (const QString& theme, themes) {
+		QSettings settings(dir.filePath(theme), QSettings::IniFormat);
+		if (settings.value("Name").toString() == name) {
+			return true;
+		}
 	}
+	return false;
+}
+
+//-----------------------------------------------------------------------------
+
+QString Theme::filePath(const QString& id, bool is_default)
+{
+	return (!is_default ? m_path : m_path_default) + "/" + id + ".theme";
+}
+
+//-----------------------------------------------------------------------------
+
+QString Theme::iconPath(const QString& id, bool is_default)
+{
+	return m_path + (!is_default ? "/Previews/" : "/Previews/Default/") + id + ".png";
 }
 
 //-----------------------------------------------------------------------------
@@ -327,26 +349,6 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 
 //-----------------------------------------------------------------------------
 
-void Theme::setName(const QString& name)
-{
-	if (d->name != name) {
-		QStringList files = QDir(Session::path(), "*.session").entryList(QDir::Files);
-		files.prepend("");
-		foreach (const QString& file, files) {
-			Session session(file);
-			if ((session.theme() == d->name) && (session.themeDefault() == false)) {
-				session.setTheme(name, false);
-			}
-		}
-
-		QFile::remove(filePath(d->name));
-		QFile::remove(iconPath(d->name));
-		setValue(d->name, name);
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 QString Theme::backgroundImage() const
 {
 	if (!d->is_default) {
@@ -448,11 +450,13 @@ bool Theme::operator==(const Theme& theme) const
 
 void Theme::reload()
 {
-	if (d->name.isEmpty()) {
+	if (d->id.isEmpty()) {
 		return;
 	}
 
-	QSettings settings(filePath(d->name, d->is_default), QSettings::IniFormat);
+	QSettings settings(filePath(d->id, d->is_default), QSettings::IniFormat);
+
+	d->name = settings.value("Name", d->name).toString();
 
 	// Load background settings
 	d->background_type = settings.value("Background/Type", 0).toInt();
@@ -521,9 +525,10 @@ void Theme::write()
 	}
 	d->is_default = false;
 
-	QSettings settings(filePath(d->name), QSettings::IniFormat);
+	QSettings settings(filePath(d->id), QSettings::IniFormat);
 
 	settings.setValue("LoadColor", d->load_color.name());
+	settings.setValue("Name", d->name);
 
 	// Store background settings
 	settings.setValue("Background/Type", d->background_type.value());

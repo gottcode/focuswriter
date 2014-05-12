@@ -38,8 +38,9 @@ class Theme : public SettingsFile
 	class ThemeData : public QSharedData
 	{
 	public:
-		ThemeData(const QString& name, bool is_default, bool create);
+		ThemeData(const QString& id, bool is_default, bool create);
 
+		QString id;
 		QString name;
 		bool is_default;
 
@@ -82,14 +83,16 @@ class Theme : public SettingsFile
 
 public:
 	Theme();
-	Theme(const QString& name, bool is_default);
+	Theme(const QString& id, bool is_default);
 	~Theme();
 
-	static QString clone(const QString& theme, bool is_default, const QString& name);
+	static QString clone(const QString& id, bool is_default, const QString& name);
 	static void copyBackgrounds();
-	static QString defaultName() { return "writingdesk"; }
-	static QString filePath(const QString& theme, bool is_default = false);
-	static QString iconPath(const QString& theme, bool is_default = false);
+	static QString createId();
+	static QString defaultId() { return "writingdesk"; }
+	static bool exists(const QString& name);
+	static QString filePath(const QString& id, bool is_default = false);
+	static QString iconPath(const QString& id, bool is_default = false);
 	static QString path() { return m_path; }
 	static void setDefaultPath(const QString& path);
 	static void setPath(const QString& path);
@@ -98,8 +101,9 @@ public:
 
 	// Name settings
 	bool isDefault() const { return d->is_default; }
+	QString id() const { return d->id; }
 	QString name() const { return d->name; }
-	void setName(const QString& name);
+	void setName(const QString& name) { setValue(d->name, name); }
 
 	QColor loadColor() const { return d->load_color; }
 	void setLoadColor(const QColor& color) { setValue(d->load_color, color); }

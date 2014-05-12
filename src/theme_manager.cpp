@@ -143,10 +143,31 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 	m_themes->setMinimumSize(view_size);
 	m_themes->setWordWrap(true);
-	QStringList themes = QDir(Theme::path(), "*.theme").entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
+	QDir dir(Theme::path(), "*.theme");
+	QStringList themes = dir.entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
 	foreach (const QString& theme, themes) {
-		QString name = QUrl::fromPercentEncoding(QFileInfo(theme).completeBaseName().toUtf8());
-		addItem(name, false, name);
+		QString name = QSettings(dir.filePath(theme), QSettings::IniFormat).value("Name").toString();
+		if (!name.isEmpty()) {
+			addItem(QFileInfo(theme).completeBaseName(), false, name);
+		} else {
+			name = QUrl::fromPercentEncoding(QFileInfo(theme).completeBaseName().toUtf8());
+			QSettings(dir.filePath(theme), QSettings::IniFormat).setValue("Name", name);
+
+			QString id = Theme::createId();
+			dir.rename(theme, id + ".theme");
+			dir.remove(QFileInfo(theme).completeBaseName() + ".png");
+
+			QStringList sessions = QDir(Session::path(), "*.session").entryList(QDir::Files);
+			sessions.prepend("");
+			foreach (const QString& file, sessions) {
+				Session session(file);
+				if ((session.theme() == name) && (session.themeDefault() == false)) {
+					session.setTheme(id, false);
+				}
+			}
+
+			addItem(id, false, name);
+		}
 	}
 
 	// Add control buttons
@@ -204,7 +225,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	QString theme = m_settings.value("ThemeManager/Theme").toString();
 	bool is_default = m_settings.value("ThemeManager/ThemeDefault", false).toBool();
 	if (!selectItem(theme, is_default)) {
-		selectItem(Theme::defaultName(), true);
+		selectItem(Theme::defaultId(), true);
 	}
 	selectionChanged(is_default);
 	connect(m_default_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
@@ -227,18 +248,14 @@ void ThemeManager::hideEvent(QHideEvent* event)
 
 void ThemeManager::newTheme()
 {
-	QString name;
-	{
-		Theme theme(QString(), false);
-		ThemeDialog dialog(theme, this);
-		dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
-		if (dialog.exec() == QDialog::Rejected) {
-			return;
-		}
-		name = theme.name();
+	Theme theme(QString(), false);
+	ThemeDialog dialog(theme, this);
+	dialog.setWindowTitle(ThemeDialog::tr("New Theme"));
+	if (dialog.exec() == QDialog::Rejected) {
+		return;
 	}
 
-	QListWidgetItem* item = addItem(name, false, name);
+	QListWidgetItem* item = addItem(theme.id(), false, theme.name());
 	m_themes->setCurrentItem(item);
 
 	m_tabs->setCurrentIndex(1);
@@ -253,23 +270,15 @@ void ThemeManager::editTheme()
 		return;
 	}
 
-	QString name;
-	{
-		Theme theme(item->text(), false);
-		ThemeDialog dialog(theme, this);
-		if (dialog.exec() == QDialog::Rejected) {
-			return;
-		}
-		name = theme.name();
+	Theme theme(item->data(Qt::UserRole).toString(), false);
+	ThemeDialog dialog(theme, this);
+	if (dialog.exec() == QDialog::Rejected) {
+		return;
 	}
-	if (name == item->text()) {
-		item->setIcon(QIcon(Theme::iconPath(name)));
-		emit themeSelected(Theme(name, false));
-	} else {
-		delete item;
-		item = addItem(name, false, name);
-		m_themes->setCurrentItem(item);
-	}
+
+	item->setText(theme.name());
+	item->setIcon(QIcon(Theme::iconPath(theme.id(), false)));
+	emit themeSelected(theme);
 }
 
 //-----------------------------------------------------------------------------
@@ -282,8 +291,9 @@ void ThemeManager::cloneTheme()
 		return;
 	}
 
-	QString theme = Theme::clone(item->data(Qt::UserRole).toString(), is_default, item->text());
-	item = addItem(theme, false, theme);
+	QString id = Theme::clone(item->data(Qt::UserRole).toString(), is_default, item->text());
+	QString name = QSettings(Theme::filePath(id, false), QSettings::IniFormat).value("Name").toString();
+	item = addItem(id, false, name);
 	m_themes->setCurrentItem(item);
 
 	m_tabs->setCurrentIndex(1);
@@ -299,14 +309,15 @@ void ThemeManager::deleteTheme()
 	}
 
 	if (QMessageBox::question(this, tr("Question"), tr("Delete theme '%1'?").arg(item->text()), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-		QFile::remove(Theme::filePath(item->text()));
-		QFile::remove(Theme::iconPath(item->text()));
+		QString id = item->data(Qt::UserRole).toString();
+		QFile::remove(Theme::filePath(id));
+		QFile::remove(Theme::iconPath(id));
 		delete item;
 		item = 0;
 
 		// Handle deleting last custom theme
 		if (m_themes->count() == 0) {
-			selectItem(Theme::defaultName(), true);
+			selectItem(Theme::defaultId(), true);
 		}
 	}
 }
@@ -331,19 +342,10 @@ void ThemeManager::importTheme()
 	}
 	settings.setValue("ThemeManager/Location", QFileInfo(filename).absolutePath());
 
-	// Find theme name
-	QString name = QUrl::fromPercentEncoding(QFileInfo(filename).completeBaseName().toUtf8());
-	{
-		QStringList values = splitStringAtLastNumber(name);
-		int count = values.at(1).toInt();
-		while (QFile::exists(Theme::filePath(name))) {
-			++count;
-			name = values.at(0) + QString::number(count);
-		}
-	}
+	QString id = Theme::createId();
 
 	// Uncompress theme
-	QString theme_filename = Theme::filePath(name);
+	QString theme_filename = Theme::filePath(id);
 	QByteArray theme = gunzip(filename);
 	{
 		QFile file(theme_filename);
@@ -353,8 +355,20 @@ void ThemeManager::importTheme()
 		}
 	}
 
-	// Extract and use background image
+	// Find theme name
 	QSettings theme_ini(theme_filename, QSettings::IniFormat);
+	QString name = theme_ini.value("Name", QFileInfo(filename).completeBaseName()).toString();
+	{
+		QStringList values = splitStringAtLastNumber(name);
+		int count = values.at(1).toInt();
+		while (Theme::exists(name)) {
+			++count;
+			name = values.at(0) + QString::number(count);
+		}
+		theme_ini.setValue("Name", name);
+	}
+
+	// Extract and use background image
 	QByteArray data = QByteArray::fromBase64(theme_ini.value("Data/Image").toByteArray());
 	QString image_file = theme_ini.value("Background/ImageFile").toString();
 	theme_ini.remove("Background/ImageFile");
@@ -368,14 +382,14 @@ void ThemeManager::importTheme()
 			file.close();
 		}
 
-		Theme theme(name, false);
+		Theme theme(id, false);
 		theme.setBackgroundImage(file.fileName());
 	}
 
 	theme_ini.sync();
 	theme_ini.remove("Background/Image");
 
-	QListWidgetItem* item = addItem(name, false, name);
+	QListWidgetItem* item = addItem(id, false, name);
 	m_themes->setCurrentItem(item);
 }
 
@@ -410,7 +424,7 @@ void ThemeManager::exportTheme()
 
 	// Copy theme
 	QFile::remove(filename);
-	QFile::copy(Theme::filePath(item->text()), filename);
+	QFile::copy(Theme::filePath(item->data(Qt::UserRole).toString()), filename);
 
 	// Store image in export file
 	{
@@ -445,30 +459,30 @@ void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 
 		selectionChanged(is_default);
 
-		QString theme = current->data(Qt::UserRole).toString();
-		m_settings.setValue("ThemeManager/Theme", theme);
+		QString id = current->data(Qt::UserRole).toString();
+		m_settings.setValue("ThemeManager/Theme", id);
 		m_settings.setValue("ThemeManager/ThemeDefault", is_default);
-		emit themeSelected(Theme(theme, is_default));
+		emit themeSelected(Theme(id, is_default));
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-QListWidgetItem* ThemeManager::addItem(const QString& theme, bool is_default, const QString& name)
+QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const QString& name)
 {
-	QString icon = Theme::iconPath(theme, is_default);
+	QString icon = Theme::iconPath(id, is_default);
 	if (!QFile::exists(icon) || QImageReader(icon).size() != QSize(258, 153)) {
-		ThemeDialog::createPreview(theme, is_default);
+		ThemeDialog::createPreview(id, is_default);
 	}
 	QListWidgetItem* item = new ThemeItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);
 	item->setToolTip(name);
-	item->setData(Qt::UserRole, theme);
+	item->setData(Qt::UserRole, id);
 	return item;
 }
 
 //-----------------------------------------------------------------------------
 
-bool ThemeManager::selectItem(const QString& theme, bool is_default)
+bool ThemeManager::selectItem(const QString& id, bool is_default)
 {
 	QListWidget* view = m_themes;
 	QListWidget* other_view = m_default_themes;
@@ -477,7 +491,7 @@ bool ThemeManager::selectItem(const QString& theme, bool is_default)
 	}
 	QAbstractItemModel* model = view->model();
 	QModelIndexList items = model->match(model->index(0, 0, QModelIndex()),
-			Qt::UserRole, theme, 1, Qt::MatchFixedString | Qt::MatchCaseSensitive);
+			Qt::UserRole, id, 1, Qt::MatchFixedString | Qt::MatchCaseSensitive);
 	if (!items.isEmpty()) {
 		view->setCurrentRow(items.first().row());
 		other_view->setCurrentIndex(other_view->rootIndex());

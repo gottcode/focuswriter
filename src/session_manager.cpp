@@ -158,7 +158,7 @@ void SessionManager::setCurrent(const QString& session, const QStringList& files
 	QString theme = m_session->theme();
 	bool is_default = m_session->themeDefault();
 	if (!QFile::exists(Theme::filePath(theme, is_default))) {
-		theme = Theme::defaultName();
+		theme = Theme::defaultId();
 		is_default = true;
 		m_session->setTheme(theme, is_default);
 	}
