@@ -43,7 +43,7 @@ public:
 
 	bool closeCurrent();
 	bool saveCurrent();
-	void setCurrent(const QString& session, const QStringList& files = QStringList(), const QStringList& datafiles = QStringList());
+	void setCurrent(const QString& id, const QStringList& files = QStringList(), const QStringList& datafiles = QStringList());
 
 public slots:
 	void newSession();

@@ -26,7 +26,9 @@
 
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QSettings>
+#include <QUrl>
 
 #include <QActionGroup>
 #include <QApplication>
@@ -46,6 +48,33 @@ SessionManager::SessionManager(Window* parent)
 	m_window(parent)
 {
 	setWindowTitle(tr("Manage Sessions"));
+
+	// Rename session files
+	QSettings settings;
+	QString selected = settings.value("SessionManager/Session").toString();
+	if (selected == Session::tr("Default")) {
+		selected.clear();
+		settings.remove("SessionManager/Session");
+	}
+
+	QDir dir(Session::path(), "*.session");
+	QStringList files = dir.entryList(QDir::Files);
+	foreach (const QString& file, files) {
+		QString path = dir.filePath(file);
+		QString name = QSettings(path, QSettings::IniFormat).value("Name").toString();
+		if (!name.isEmpty()) {
+			continue;
+		}
+
+		QString id = Session::createId();
+		name = QUrl::fromPercentEncoding(QFileInfo(path).completeBaseName().toUtf8());
+		QSettings(path, QSettings::IniFormat).setValue("Name", name);
+		dir.rename(file, id + ".session");
+
+		if (name == selected) {
+			settings.setValue("SessionManager/Session", id);
+		}
+	}
 
 	// Create session lists
 	m_sessions_menu = new QMenu(this);
@@ -144,16 +173,16 @@ bool SessionManager::saveCurrent()
 
 //-----------------------------------------------------------------------------
 
-void SessionManager::setCurrent(const QString& session, const QStringList& files, const QStringList& datafiles)
+void SessionManager::setCurrent(const QString& id, const QStringList& files, const QStringList& datafiles)
 {
 	// Close open documents
 	if (!closeCurrent()) {
-		updateList(m_session->name());
+		updateList(m_session->id());
 		return;
 	}
 
 	// Open session
-	m_session = new Session(!session.isEmpty() ? session : Session::tr("Default"));
+	m_session = new Session(id);
 
 	QString theme = m_session->theme();
 	bool is_default = m_session->themeDefault();
@@ -171,13 +200,13 @@ void SessionManager::setCurrent(const QString& session, const QStringList& files
 	}
 
 	// Save session name
-	if (!session.isEmpty()) {
-		QSettings().setValue("SessionManager/Session", m_session->name());
+	if (!m_session->id().isEmpty()) {
+		QSettings().setValue("SessionManager/Session", m_session->id());
 	} else {
 		QSettings().remove("SessionManager/Session");
 	}
 
-	updateList(session);
+	updateList(m_session->id());
 }
 
 //-----------------------------------------------------------------------------
@@ -204,13 +233,15 @@ void SessionManager::newSession()
 	accept();
 
 	// Create session and make it active
+	QString id = Session::createId();
 	{
-		QSettings session(Session::pathFromName(name), QSettings::IniFormat);
+		QSettings session(Session::pathFromId(id), QSettings::IniFormat);
+		session.setValue("Name", name);
 		session.setValue("ThemeManager/Theme", theme);
 		session.setValue("ThemeManager/ThemeDefault", is_default);
 		session.setValue("ThemeManager/Size", QSettings().value("ThemeManager/Size"));
 	}
-	setCurrent(name);
+	setCurrent(id);
 }
 
 //-----------------------------------------------------------------------------
@@ -230,7 +261,8 @@ void SessionManager::cloneSession()
 	if (!item) {
 		return;
 	}
-	QString filename = item != m_sessions_list->item(0) ? Session::pathFromName(item->text()) : "";
+	QString id = item->data(Qt::UserRole).toString();
+	QString filename = item != m_sessions_list->item(0) ? Session::pathFromId(id) : "";
 
 	// Fetch session name
 	QStringList values = splitStringAtLastNumber(item->text());
@@ -239,7 +271,7 @@ void SessionManager::cloneSession()
 	do {
 		++count;
 		name = values.at(0) + QString::number(count);
-	} while (QFile::exists(Session::pathFromName(name)));
+	} while (Session::exists(name));
 
 	name = getSessionName(tr("Duplicate Session"), name);
 	if (name.isEmpty()) {
@@ -255,11 +287,15 @@ void SessionManager::cloneSession()
 	accept();
 
 	// Create session and make it active
-	QSettings settings;
+	id = Session::createId();
+	QString path = Session::pathFromId(id);
 	if (!filename.isEmpty()) {
-		QFile::copy(filename, Session::pathFromName(name));
+		QFile::copy(filename, path);
+		QSettings(path, QSettings::IniFormat).setValue("Name", name);
 	} else {
-		QSettings session(Session::pathFromName(name), QSettings::IniFormat);
+		QSettings settings;
+		QSettings session(path, QSettings::IniFormat);
+		session.setValue("Name", name);
 		session.setValue("ThemeManager/Theme", settings.value("ThemeManager/Theme"));
 		session.setValue("ThemeManager/ThemeDefault", settings.value("ThemeManager/ThemeDefault", false));
 		session.setValue("ThemeManager/Size", settings.value("ThemeManager/Size"));
@@ -269,7 +305,7 @@ void SessionManager::cloneSession()
 		}
 		session.setValue("Save/Active", settings.value("Save/Active"));
 	}
-	setCurrent(name);
+	setCurrent(id);
 }
 
 //-----------------------------------------------------------------------------
@@ -288,15 +324,15 @@ void SessionManager::renameSession()
 	}
 
 	// Rename session
-	QString current = item->text();
-	if (current == m_session->name()) {
+	QString id = item->data(Qt::UserRole).toString();
+	if (id == m_session->id()) {
 		m_session->setName(name);
-		QSettings().setValue("SessionManager/Session", m_session->name());
+		QSettings().setValue("SessionManager/Session", m_session->id());
 	} else {
-		QFile::rename(Session::pathFromName(current), Session::pathFromName(name));
+		QSettings(Session::pathFromId(id), QSettings::IniFormat).setValue("Name", name);
 	}
 
-	updateList(name);
+	updateList(id);
 }
 
 //-----------------------------------------------------------------------------
@@ -314,16 +350,16 @@ void SessionManager::deleteSession()
 	}
 
 	// Delete session
-	QString session = item->text();
-	if (session == m_session->name()) {
+	QString id = item->data(Qt::UserRole).toString();
+	if (id == m_session->id()) {
 		if (!closeCurrent()) {
 			return;
 		}
 		setCurrent("");
 	}
-	QFile::remove(Session::pathFromName(session));
+	QFile::remove(Session::pathFromId(id));
 
-	updateList(m_session->name());
+	updateList(m_session->id());
 }
 
 //-----------------------------------------------------------------------------
@@ -349,12 +385,13 @@ void SessionManager::switchSession(QAction* session)
 void  SessionManager::selectedSessionChanged(QListWidgetItem* session)
 {
 	bool not_default = (session && session != m_sessions_list->item(0));
-	if (not_default && m_session->name() == session->text()) {
+	QString id = session ? session->data(Qt::UserRole).toString() : "";
+	if (not_default && m_session->id() == id) {
 		m_switch_button->setEnabled(false);
 		m_rename_button->setEnabled(true);
 		m_delete_button->setEnabled(true);
 	} else {
-		m_switch_button->setEnabled(session && m_session->name() != session->text());
+		m_switch_button->setEnabled(session && m_session->id() != id);
 		m_rename_button->setEnabled(not_default);
 		m_delete_button->setEnabled(not_default);
 	}
@@ -385,7 +422,7 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 			return QString();
 		}
 
-		if (!name.isEmpty() && name != Session::tr("Default") && !QFile::exists(Session::pathFromName(name))) {
+		if (!name.isEmpty() && name != Session::tr("Default") && !Session::exists(name)) {
 			break;
 		} else {
 			QMessageBox::information(window, tr("Sorry"), tr("The requested session name is already in use."));
@@ -401,27 +438,42 @@ void SessionManager::updateList(const QString& selected)
 	m_sessions_menu->clear();
 	m_sessions_list->clear();
 
-	QStringList files = QDir(Session::path(), "*.session").entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
-	files.prepend(Session::tr("Default"));
-	for (int i = 0; i < files.count(); ++i) {
-		QString name = Session::pathToName(files.at(i));
-		if ((name == Session::tr("Default")) && (i > 0)) {
+	QDir dir(Session::path(), "*.session");
+	QStringList files = dir.entryList(QDir::Files);
+
+	QHash<QString, QString> ids;
+	foreach (const QString& file, files) {
+		QString id = QFileInfo(file).completeBaseName();
+		QString name = QSettings(dir.filePath(file), QSettings::IniFormat).value("Name").toString();
+		if (name == Session::tr("Default")) {
 			continue;
 		}
+		ids.insert(name, id);
+	}
+
+	files = ids.keys();
+	std::sort(files.begin(), files.end(), localeAwareSort);
+
+	ids.insert(Session::tr("Default"), QString());
+	files.prepend(Session::tr("Default"));
+
+	foreach (const QString& name, files) {
+		QString id = ids.value(name);
 
 		QAction* action = m_sessions_menu->addAction(fontMetrics().elidedText(name, Qt::ElideRight, 3 * logicalDpiX()));
-		action->setData(name);
+		action->setData(id);
 		action->setCheckable(true);
 		m_sessions_actions->addAction(action);
-		QListWidgetItem* item = new QListWidgetItem(QIcon::fromTheme("folder"), name, m_sessions_list);
-		item->setData(Qt::UserRole, name);
 
-		if (name == m_session->name()) {
+		QListWidgetItem* item = new QListWidgetItem(QIcon::fromTheme("folder"), name, m_sessions_list);
+		item->setData(Qt::UserRole, id);
+
+		if (id == m_session->id()) {
 			action->setChecked(true);
 			item->setIcon(QIcon::fromTheme("folder-open"));
 		}
 
-		if (name == selected) {
+		if (id == selected) {
 			m_sessions_list->setCurrentItem(item);
 			m_sessions_list->scrollToItem(item);
 		}

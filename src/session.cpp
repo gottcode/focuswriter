@@ -19,10 +19,10 @@
 
 #include "session.h"
 
+#include <QDir>
 #include <QFile>
-#include <QFileInfo>
 #include <QSettings>
-#include <QUrl>
+#include <QUuid>
 
 //-----------------------------------------------------------------------------
 
@@ -30,13 +30,14 @@ QString Session::m_path;
 
 //-----------------------------------------------------------------------------
 
-Session::Session(const QString& name)
-	: m_name(name),
-	m_default(name == tr("Default"))
+Session::Session(const QString& id) :
+	m_id(id),
+	m_default(id.isEmpty())
 {
-	QString path = pathFromName(m_name);
-	if (QFile::exists(path)) {
+	QString path = pathFromId(m_id);
+	if (!m_id.isEmpty() && QFile::exists(path)) {
 		m_data = new QSettings(path, QSettings::IniFormat);
+		m_name = m_data->value("Name").toString();
 	} else {
 		m_data = new QSettings;
 		m_name = tr("Default");
@@ -75,6 +76,13 @@ QStringList Session::files() const
 
 //-----------------------------------------------------------------------------
 
+QString Session::id() const
+{
+	return m_id;
+}
+
+//-----------------------------------------------------------------------------
+
 QString Session::name() const
 {
 	return m_name;
@@ -109,16 +117,8 @@ void Session::setName(const QString& name)
 		return;
 	}
 
-	QString old_file = m_data->fileName();
-	delete m_data;
-	m_data = 0;
-
 	m_name = name;
-	QString file = pathFromName(m_name);
-	QFile::remove(file);
-	QFile::rename(old_file, file);
-
-	m_data = new QSettings(file, QSettings::IniFormat);
+	m_data->setValue("Name", m_name);
 }
 
 //-----------------------------------------------------------------------------
@@ -131,6 +131,28 @@ void Session::setTheme(const QString& theme, bool is_default)
 
 //-----------------------------------------------------------------------------
 
+QString Session::createId()
+{
+	return QUuid::createUuid().toString().mid(1, 36);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Session::exists(const QString& name)
+{
+	QDir dir(m_path, "*.session");
+	QStringList sessions = dir.entryList(QDir::Files);
+	foreach (const QString& id, sessions) {
+		QSettings session(dir.filePath(id), QSettings::IniFormat);
+		if (session.value("Name").toString() == name) {
+			return true;
+		}
+	}
+	return false;
+}
+
+//-----------------------------------------------------------------------------
+
 QString Session::path()
 {
 	return m_path;
@@ -138,16 +160,9 @@ QString Session::path()
 
 //-----------------------------------------------------------------------------
 
-QString Session::pathFromName(const QString& name)
+QString Session::pathFromId(const QString& id)
 {
-	return m_path + "/" + QUrl::toPercentEncoding(name, " ") + ".session";
-}
-
-//-----------------------------------------------------------------------------
-
-QString Session::pathToName(const QString& path)
-{
-	return QUrl::fromPercentEncoding(QFileInfo(path).completeBaseName().toUtf8());
+	return m_path + "/" + id + ".session";
 }
 
 //-----------------------------------------------------------------------------
