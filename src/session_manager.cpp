@@ -87,6 +87,7 @@ SessionManager::SessionManager(Window* parent)
 	m_sessions_list->setMovement(QListWidget::Static);
 	m_sessions_list->setResizeMode(QListWidget::Adjust);
 	m_sessions_list->setSelectionMode(QListWidget::SingleSelection);
+	m_sessions_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	connect(m_sessions_list, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(selectedSessionChanged(QListWidgetItem*)));
 	connect(m_sessions_list, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(switchSession()));
 
@@ -466,6 +467,7 @@ void SessionManager::updateList(const QString& selected)
 		m_sessions_actions->addAction(action);
 
 		QListWidgetItem* item = new QListWidgetItem(QIcon::fromTheme("folder"), name, m_sessions_list);
+		item->setToolTip(name);
 		item->setData(Qt::UserRole, id);
 
 		if (id == m_session->id()) {
