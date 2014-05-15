@@ -861,14 +861,12 @@
 <context>
     <name>Session</name>
     <message>
-        <location filename="../src/main.cpp" line="186"/>
-        <location filename="../src/session.cpp" line="35"/>
-        <location filename="../src/session.cpp" line="42"/>
-        <location filename="../src/session_manager.cpp" line="155"/>
-        <location filename="../src/session_manager.cpp" line="367"/>
-        <location filename="../src/session_manager.cpp" line="384"/>
-        <location filename="../src/session_manager.cpp" line="387"/>
-        <location filename="../src/theme_manager.cpp" line="229"/>
+        <location filename="../src/session.cpp" line="43"/>
+        <location filename="../src/session_manager.cpp" line="55"/>
+        <location filename="../src/session_manager.cpp" line="426"/>
+        <location filename="../src/session_manager.cpp" line="449"/>
+        <location filename="../src/session_manager.cpp" line="458"/>
+        <location filename="../src/session_manager.cpp" line="459"/>
         <source>Default</source>
         <translation>기본 세션</translation>
     </message>
@@ -876,97 +874,97 @@
 <context>
     <name>SessionManager</name>
     <message>
-        <location filename="../src/session_manager.cpp" line="47"/>
+        <location filename="../src/session_manager.cpp" line="50"/>
         <source>Manage Sessions</source>
         <translation>세션 관리</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="51"/>
+        <location filename="../src/session_manager.cpp" line="81"/>
         <source>S&amp;essions</source>
         <translation>&amp;세션</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="64"/>
+        <location filename="../src/session_manager.cpp" line="95"/>
         <source>New</source>
         <translation>새로 만들기</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="67"/>
+        <location filename="../src/session_manager.cpp" line="98"/>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/session_manager.cpp" line="101"/>
         <source>Rename</source>
         <translation>이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="70"/>
-        <source>Clone</source>
-        <translation>복제하기</translation>
-    </message>
-    <message>
-        <location filename="../src/session_manager.cpp" line="73"/>
+        <location filename="../src/session_manager.cpp" line="104"/>
         <source>Delete</source>
         <translation>지우기</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="76"/>
+        <location filename="../src/session_manager.cpp" line="107"/>
         <source>Switch To</source>
         <translation>서로 바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="178"/>
+        <location filename="../src/session_manager.cpp" line="218"/>
         <source>New Session</source>
         <translation>새 세션</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="224"/>
-        <source>Clone Session</source>
-        <translation>세션 복제</translation>
+        <location filename="../src/session_manager.cpp" line="277"/>
+        <source>Duplicate Session</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="264"/>
+        <location filename="../src/session_manager.cpp" line="322"/>
         <source>Rename Session</source>
         <translation>세션 이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="291"/>
+        <location filename="../src/session_manager.cpp" line="349"/>
         <source>Question</source>
         <translation>물어볼 것이 있습니다</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="291"/>
+        <location filename="../src/session_manager.cpp" line="349"/>
         <source>Delete selected session?</source>
         <translation>선택한 세션을 지우시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="362"/>
+        <location filename="../src/session_manager.cpp" line="421"/>
         <source>Session name:</source>
         <translation>세션 이름</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="370"/>
+        <location filename="../src/session_manager.cpp" line="429"/>
         <source>Sorry</source>
         <translation>죄송합니다.</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="370"/>
+        <location filename="../src/session_manager.cpp" line="429"/>
         <source>The requested session name is already in use.</source>
         <translation>요청하신 세션 이름은 이미 사용 중입니다.</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="410"/>
+        <location filename="../src/session_manager.cpp" line="485"/>
         <source>&amp;New...</source>
         <translation>&amp;새로 만들기...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="410"/>
+        <location filename="../src/session_manager.cpp" line="485"/>
         <source>Ctrl+Shift+N</source>
         <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="411"/>
+        <location filename="../src/session_manager.cpp" line="486"/>
         <source>&amp;Manage...</source>
         <translation>&amp;관리하기...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="411"/>
+        <location filename="../src/session_manager.cpp" line="486"/>
         <source>Ctrl+Shift+M</source>
         <translation>Ctrl+Shift+M</translation>
     </message>
@@ -1120,248 +1118,242 @@
 <context>
     <name>Theme</name>
     <message>
-        <location filename="../src/theme.cpp" line="126"/>
+        <location filename="../src/theme.cpp" line="103"/>
         <source>Untitled %1</source>
         <translation>제목 없음 %1</translation>
-    </message>
-    <message>
-        <location filename="../src/theme.cpp" line="160"/>
-        <source>%1 %2</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ThemeDialog</name>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="101"/>
+        <location filename="../src/theme_dialog.cpp" line="103"/>
         <source>Name:</source>
         <translation>이름:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>No Image</source>
         <translation>이미지 없음</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Tiled</source>
         <translation>타일 붙임</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
-        <location filename="../src/theme_dialog.cpp" line="194"/>
+        <location filename="../src/theme_dialog.cpp" line="164"/>
+        <location filename="../src/theme_dialog.cpp" line="196"/>
         <source>Centered</source>
         <translation>가운데 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
-        <location filename="../src/theme_dialog.cpp" line="194"/>
+        <location filename="../src/theme_dialog.cpp" line="164"/>
+        <location filename="../src/theme_dialog.cpp" line="196"/>
         <source>Stretched</source>
         <translation>늘이기</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Scaled</source>
         <translation>비율 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>Zoomed</source>
         <translation>확대 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="209"/>
+        <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Opacity:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="210"/>
+        <location filename="../src/theme_dialog.cpp" line="212"/>
         <source>Position:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="211"/>
+        <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <location filename="../src/theme_dialog.cpp" line="217"/>
         <source>Round Text Background Corners</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="229"/>
-        <location filename="../src/theme_dialog.cpp" line="247"/>
-        <location filename="../src/theme_dialog.cpp" line="277"/>
+        <location filename="../src/theme_dialog.cpp" line="231"/>
+        <location filename="../src/theme_dialog.cpp" line="249"/>
+        <location filename="../src/theme_dialog.cpp" line="279"/>
         <source>Radius:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="233"/>
+        <location filename="../src/theme_dialog.cpp" line="235"/>
         <source>Blur Text Background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="251"/>
+        <location filename="../src/theme_dialog.cpp" line="253"/>
         <source>Text Background Drop Shadow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="278"/>
+        <location filename="../src/theme_dialog.cpp" line="280"/>
         <source>Vertical Offset:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="282"/>
+        <location filename="../src/theme_dialog.cpp" line="284"/>
         <source>Margins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="300"/>
+        <location filename="../src/theme_dialog.cpp" line="302"/>
         <source>Window:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="301"/>
+        <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Page:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="359"/>
+        <location filename="../src/theme_dialog.cpp" line="361"/>
         <source>Indent first line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="366"/>
+        <location filename="../src/theme_dialog.cpp" line="368"/>
         <source>Above:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="367"/>
+        <location filename="../src/theme_dialog.cpp" line="369"/>
         <source>Below:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="158"/>
+        <location filename="../src/theme_dialog.cpp" line="160"/>
         <source>Remove</source>
         <translation>지우기</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="91"/>
+        <location filename="../src/theme_dialog.cpp" line="93"/>
         <source>Edit Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="148"/>
+        <location filename="../src/theme_dialog.cpp" line="150"/>
         <source>Window Background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="176"/>
-        <location filename="../src/theme_dialog.cpp" line="330"/>
+        <location filename="../src/theme_dialog.cpp" line="178"/>
+        <location filename="../src/theme_dialog.cpp" line="332"/>
         <source>Type:</source>
         <translation>종류</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="142"/>
-        <location filename="../src/theme_dialog.cpp" line="174"/>
-        <location filename="../src/theme_dialog.cpp" line="208"/>
-        <location filename="../src/theme_dialog.cpp" line="276"/>
+        <location filename="../src/theme_dialog.cpp" line="144"/>
+        <location filename="../src/theme_dialog.cpp" line="176"/>
+        <location filename="../src/theme_dialog.cpp" line="210"/>
+        <location filename="../src/theme_dialog.cpp" line="278"/>
         <source>Color:</source>
         <translation>색상</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="175"/>
+        <location filename="../src/theme_dialog.cpp" line="177"/>
         <source>Image:</source>
         <translation>이미지</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="200"/>
-        <location filename="../src/theme_dialog.cpp" line="222"/>
-        <location filename="../src/theme_dialog.cpp" line="240"/>
-        <location filename="../src/theme_dialog.cpp" line="262"/>
-        <location filename="../src/theme_dialog.cpp" line="269"/>
-        <location filename="../src/theme_dialog.cpp" line="286"/>
-        <location filename="../src/theme_dialog.cpp" line="293"/>
-        <location filename="../src/theme_dialog.cpp" line="342"/>
-        <location filename="../src/theme_dialog.cpp" line="348"/>
-        <location filename="../src/theme_dialog.cpp" line="354"/>
+        <location filename="../src/theme_dialog.cpp" line="202"/>
+        <location filename="../src/theme_dialog.cpp" line="224"/>
+        <location filename="../src/theme_dialog.cpp" line="242"/>
+        <location filename="../src/theme_dialog.cpp" line="264"/>
+        <location filename="../src/theme_dialog.cpp" line="271"/>
+        <location filename="../src/theme_dialog.cpp" line="288"/>
+        <location filename="../src/theme_dialog.cpp" line="295"/>
+        <location filename="../src/theme_dialog.cpp" line="344"/>
+        <location filename="../src/theme_dialog.cpp" line="350"/>
+        <location filename="../src/theme_dialog.cpp" line="356"/>
         <source> pixels</source>
         <translation>pixels</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="194"/>
+        <location filename="../src/theme_dialog.cpp" line="196"/>
         <source>Left</source>
         <translation>왼쪽</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="180"/>
+        <location filename="../src/theme_dialog.cpp" line="182"/>
         <source>Text Background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="194"/>
+        <location filename="../src/theme_dialog.cpp" line="196"/>
         <source>Right</source>
         <translation>오른쪽</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="114"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Text</source>
         <translation>글자</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="143"/>
+        <location filename="../src/theme_dialog.cpp" line="145"/>
         <source>Font:</source>
         <translation>글꼴:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="144"/>
+        <location filename="../src/theme_dialog.cpp" line="146"/>
         <source>Misspelled:</source>
         <translation>오자 표시:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="305"/>
+        <location filename="../src/theme_dialog.cpp" line="307"/>
         <source>Line Spacing</source>
         <translation>줄 띄우기</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="309"/>
+        <location filename="../src/theme_dialog.cpp" line="311"/>
         <source>Single</source>
         <translation>한 줄</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="309"/>
+        <location filename="../src/theme_dialog.cpp" line="311"/>
         <source>1.5 Lines</source>
         <translation>1.5 줄</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="309"/>
+        <location filename="../src/theme_dialog.cpp" line="311"/>
         <source>Double</source>
         <translation> 두 줄</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="309"/>
+        <location filename="../src/theme_dialog.cpp" line="311"/>
         <source>Proportional</source>
         <translation>비율 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="331"/>
+        <location filename="../src/theme_dialog.cpp" line="333"/>
         <source>Height:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="339"/>
+        <location filename="../src/theme_dialog.cpp" line="341"/>
         <source>Paragraph Spacing</source>
         <translation>문단 사이 띄기</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="365"/>
+        <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Tab Width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="149"/>
-        <location filename="../src/theme_manager.cpp" line="200"/>
+        <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1369,68 +1361,95 @@
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/theme_manager.cpp" line="53"/>
+        <location filename="../src/theme_manager.cpp" line="78"/>
         <source>Themes</source>
         <translation>테마</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="79"/>
+        <location filename="../src/theme_manager.cpp" line="92"/>
+        <source>Default</source>
+        <translation type="unfinished">기본 세션</translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="107"/>
+        <source>Gentle Blues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="108"/>
+        <source>Old School</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="109"/>
+        <source>Space Dreams</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="110"/>
+        <source>Writing Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="113"/>
+        <location filename="../src/theme_manager.cpp" line="174"/>
         <source>New</source>
         <translation type="unfinished">새로 만들기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="83"/>
+        <location filename="../src/theme_manager.cpp" line="117"/>
+        <location filename="../src/theme_manager.cpp" line="178"/>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="131"/>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="183"/>
         <source>Edit</source>
         <translation type="unfinished">수정</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="87"/>
-        <source>Clone</source>
-        <translation type="unfinished">복제하기</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_manager.cpp" line="91"/>
+        <location filename="../src/theme_manager.cpp" line="188"/>
         <source>Delete</source>
         <translation type="unfinished">지우기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="95"/>
+        <location filename="../src/theme_manager.cpp" line="193"/>
         <source>Import</source>
         <translation>가져오기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="99"/>
+        <location filename="../src/theme_manager.cpp" line="197"/>
         <source>Export</source>
         <translation>내보내기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="103"/>
-        <source>Close</source>
-        <translation>닫기</translation>
-    </message>
-    <message>
-        <location filename="../src/theme_manager.cpp" line="220"/>
+        <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Question</source>
         <translation>물어볼 것이 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="220"/>
+        <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Delete theme &apos;%1&apos;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="250"/>
-        <location filename="../src/theme_manager.cpp" line="323"/>
+        <location filename="../src/theme_manager.cpp" line="339"/>
+        <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Themes (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="250"/>
+        <location filename="../src/theme_manager.cpp" line="339"/>
         <source>Import Theme</source>
         <translation>테마 가져오기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="323"/>
+        <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Export Theme</source>
         <translation>테마 내보내기</translation>
     </message>
@@ -1577,634 +1596,634 @@
 <context>
     <name>Window</name>
     <message>
-        <location filename="../src/window.cpp" line="297"/>
+        <location filename="../src/window.cpp" line="296"/>
         <source>Loading themes</source>
         <translation>테마 불러오는 중</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1144"/>
+        <location filename="../src/window.cpp" line="1142"/>
         <source>Loading sounds</source>
         <translation>소리 불러오는 중</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="307"/>
-        <location filename="../src/window.cpp" line="1063"/>
+        <location filename="../src/window.cpp" line="305"/>
+        <location filename="../src/window.cpp" line="1061"/>
         <source>Untitled</source>
         <translation>제목 없음</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="680"/>
+        <location filename="../src/window.cpp" line="678"/>
         <source>Open File</source>
         <translation>파일 열기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="862"/>
+        <location filename="../src/window.cpp" line="860"/>
         <source>About FocusWriter</source>
         <translation>포커스 라이터 란</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="865"/>
+        <location filename="../src/window.cpp" line="863"/>
         <source>FocusWriter</source>
         <translation>포커스 라이터</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="866"/>
+        <location filename="../src/window.cpp" line="864"/>
         <source>A simple fullscreen word processor</source>
         <translation>간편한 풀스크린 워드 프로세서</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="867"/>
+        <location filename="../src/window.cpp" line="865"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
         <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="868"/>
+        <location filename="../src/window.cpp" line="866"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
         <translation> &lt;a href=%1&gt;GPL 3&lt;/a&gt; 라이선스에 따라 배포됩니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="869"/>
+        <location filename="../src/window.cpp" line="867"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
         <translation>&lt;a href=%1&gt;Oxygen&lt;/a&gt;의 아이콘 테마를 이용합니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="870"/>
+        <location filename="../src/window.cpp" line="868"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
         <translation>&lt;a href=%1&gt;LGPL 3&lt;/a&gt; 의 라이선스를 준수합니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="171"/>
-        <location filename="../src/window.cpp" line="926"/>
+        <location filename="../src/window.cpp" line="170"/>
+        <location filename="../src/window.cpp" line="924"/>
         <source>Characters: %L1 / %L2</source>
         <translation>문자: %L1 / %L2</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="169"/>
-        <location filename="../src/window.cpp" line="927"/>
+        <location filename="../src/window.cpp" line="168"/>
+        <location filename="../src/window.cpp" line="925"/>
         <source>Pages: %L1</source>
         <translation>페이지: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="170"/>
-        <location filename="../src/window.cpp" line="928"/>
+        <location filename="../src/window.cpp" line="169"/>
+        <location filename="../src/window.cpp" line="926"/>
         <source>Paragraphs: %L1</source>
         <translation>문단: % L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="168"/>
-        <location filename="../src/window.cpp" line="929"/>
+        <location filename="../src/window.cpp" line="167"/>
+        <location filename="../src/window.cpp" line="927"/>
         <source>Words: %L1</source>
         <translation>단어: %L1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="525"/>
-        <location filename="../src/window.cpp" line="1018"/>
+        <location filename="../src/window.cpp" line="1016"/>
         <source>Opening %1</source>
         <translation>%1 열기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="330"/>
+        <location filename="../src/window.cpp" line="328"/>
         <source>(Untitled %1)</source>
         <translation>(제목없음 %1)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="204"/>
+        <location filename="../src/window.cpp" line="203"/>
         <source>List all documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="207"/>
+        <location filename="../src/window.cpp" line="206"/>
         <source>Switch to Next Document</source>
         <translation>다음 문서로 이동</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="213"/>
+        <location filename="../src/window.cpp" line="212"/>
         <source>Switch to Previous Document</source>
         <translation>이전 문서로 이동</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="219"/>
+        <location filename="../src/window.cpp" line="218"/>
         <source>Switch to First Document</source>
         <translation>처음 문서로 이동</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="225"/>
+        <location filename="../src/window.cpp" line="224"/>
         <source>Switch to Last Document</source>
         <translation>마지막 문서로 이동</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="233"/>
+        <location filename="../src/window.cpp" line="232"/>
         <source>Switch to Document %1</source>
         <translation>%1 문서로 이동</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="293"/>
+        <location filename="../src/window.cpp" line="292"/>
         <source>Loading settings</source>
         <translation>설정 불러오는 중</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="316"/>
+        <location filename="../src/window.cpp" line="314"/>
         <source>Emergency cache is not writable.</source>
         <translation>비상 캐시가 작성되지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="336"/>
-        <location filename="../src/window.cpp" line="1032"/>
+        <location filename="../src/window.cpp" line="334"/>
+        <location filename="../src/window.cpp" line="1030"/>
         <source>Warning</source>
         <translation>알림</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="337"/>
+        <location filename="../src/window.cpp" line="335"/>
         <source>FocusWriter was not shut down cleanly.</source>
         <translation>포커스 라이터가 제대로 꺼지지 않았습니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="338"/>
+        <location filename="../src/window.cpp" line="336"/>
         <source>Restore from the emergency cache?</source>
         <translation>비상 캐시를 이용해서 복구할까요?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="465"/>
+        <location filename="../src/window.cpp" line="463"/>
         <source>Some files could not be opened.</source>
         <translation>몇몇 파일들이 열리지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="468"/>
+        <location filename="../src/window.cpp" line="466"/>
         <source>Some files were opened Read-Only.</source>
         <translation>몇몇 파일들이 일기 전용으로 열렸습니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1033"/>
+        <location filename="../src/window.cpp" line="1031"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; 이 캐시에 복사된 것보다 새것입니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1034"/>
+        <location filename="../src/window.cpp" line="1032"/>
         <source>Overwrite newer file?</source>
         <translation>새 파일로 덮어쓸까요?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1119"/>
+        <location filename="../src/window.cpp" line="1117"/>
         <source>Save Changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1120"/>
+        <location filename="../src/window.cpp" line="1118"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1121"/>
+        <location filename="../src/window.cpp" line="1119"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1151"/>
+        <location filename="../src/window.cpp" line="1149"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>타자기 소리가 나지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1152"/>
+        <location filename="../src/window.cpp" line="1150"/>
         <source>Please make sure that SDL_mixer is installed.</source>
         <translation>SDL_mixer 이 설치되어있나 확인해 주세요</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1288"/>
+        <location filename="../src/window.cpp" line="1286"/>
         <source>&amp;File</source>
         <translation>&amp;파일</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1289"/>
+        <location filename="../src/window.cpp" line="1287"/>
         <source>&amp;New</source>
         <translation>&amp;새로 만들기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1290"/>
+        <location filename="../src/window.cpp" line="1288"/>
         <source>&amp;Open...</source>
         <translation>&amp;열기...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1291"/>
+        <location filename="../src/window.cpp" line="1289"/>
         <source>Reloa&amp;d</source>
         <translation>&amp;새로 고침</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1293"/>
+        <location filename="../src/window.cpp" line="1291"/>
         <source>&amp;Save</source>
         <translation>&amp;저장</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1295"/>
+        <location filename="../src/window.cpp" line="1293"/>
         <source>Save &amp;As...</source>
         <translation>&amp;다른 이름으로 저장...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1296"/>
+        <location filename="../src/window.cpp" line="1294"/>
         <source>&amp;Rename...</source>
         <translation>&amp;이름 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1298"/>
+        <location filename="../src/window.cpp" line="1296"/>
         <source>Save A&amp;ll</source>
         <translation>&amp;모두 저장하기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1301"/>
+        <location filename="../src/window.cpp" line="1299"/>
         <source>Manage Sessions</source>
         <translation>세션 관리하기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1303"/>
+        <location filename="../src/window.cpp" line="1301"/>
         <source>New Session</source>
         <translation>새 세션</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1306"/>
+        <location filename="../src/window.cpp" line="1304"/>
         <source>&amp;Print...</source>
         <translation>&amp;프린트...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1308"/>
+        <location filename="../src/window.cpp" line="1306"/>
         <source>&amp;Close</source>
         <translation>&amp;닫기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1309"/>
+        <location filename="../src/window.cpp" line="1307"/>
         <source>&amp;Quit</source>
         <translation>&amp;끝내기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1309"/>
+        <location filename="../src/window.cpp" line="1307"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1313"/>
+        <location filename="../src/window.cpp" line="1311"/>
         <source>&amp;Edit</source>
         <translation>&amp;편집</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1314"/>
+        <location filename="../src/window.cpp" line="1312"/>
         <source>&amp;Undo</source>
         <translation>&amp;뒤로 무르기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1317"/>
+        <location filename="../src/window.cpp" line="1315"/>
         <source>&amp;Redo</source>
         <translation>&amp;다시 적용</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1319"/>
         <source>Cu&amp;t</source>
         <translation>&amp;자르기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1322"/>
         <source>&amp;Copy</source>
         <translation>&amp;복사</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1327"/>
+        <location filename="../src/window.cpp" line="1325"/>
         <source>&amp;Paste</source>
         <translation>&amp;붙여넣기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1326"/>
         <source>Paste &amp;Unformatted</source>
         <translation>&amp;서식을 유지한 채 붙여넣기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1326"/>
         <source>Ctrl+Shift+V</source>
         <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1330"/>
+        <location filename="../src/window.cpp" line="1328"/>
         <source>Select &amp;All</source>
         <translation>&amp;모두 선택</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1329"/>
         <source>Select &amp;Scene</source>
         <translation>&amp;화면 선택</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1329"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1334"/>
+        <location filename="../src/window.cpp" line="1332"/>
         <source>Fo&amp;rmat</source>
         <translation>&amp;형식</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1336"/>
+        <location filename="../src/window.cpp" line="1334"/>
         <source>&amp;Bold</source>
         <translation>&amp;볼드</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1338"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>&amp;Italic</source>
         <translation>&amp;이탤릭</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1340"/>
+        <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Underline</source>
         <translation>&amp;밑줄 긋기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1342"/>
+        <location filename="../src/window.cpp" line="1340"/>
         <source>Stri&amp;kethrough</source>
         <translation>&amp;가운데 줄긋기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1342"/>
+        <location filename="../src/window.cpp" line="1340"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1344"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>Sup&amp;erscript</source>
         <translation>&amp;위 첨자</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1344"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1346"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>&amp;Subscript</source>
         <translation>&amp;아래 첨자</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1346"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1350"/>
+        <location filename="../src/window.cpp" line="1348"/>
         <source>Align &amp;Left</source>
         <translation>&amp;왼쪽 끝 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1350"/>
+        <location filename="../src/window.cpp" line="1348"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1352"/>
+        <location filename="../src/window.cpp" line="1350"/>
         <source>Align &amp;Center</source>
         <translation>&amp;가운데 줄맞춤</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1352"/>
+        <location filename="../src/window.cpp" line="1350"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1354"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Align &amp;Right</source>
         <translation>&amp;오른쪽 끝 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1354"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1356"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>Align &amp;Justify</source>
         <translation>&amp;양끝 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1356"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1366"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>&amp;Decrease Indent</source>
         <translation>&amp;들여 쓰기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1366"/>
+        <location filename="../src/window.cpp" line="1364"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1367"/>
+        <location filename="../src/window.cpp" line="1365"/>
         <source>I&amp;ncrease Indent</source>
         <translation>&amp;내어 쓰기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1367"/>
+        <location filename="../src/window.cpp" line="1365"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1370"/>
+        <location filename="../src/window.cpp" line="1368"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>&amp;왼쪽에서 오른쪽으로 쓰기 시작</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1372"/>
+        <location filename="../src/window.cpp" line="1370"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>&amp;오른쪽에서 왼쪽으로 쓰기 시작</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1380"/>
+        <location filename="../src/window.cpp" line="1378"/>
         <source>&amp;Tools</source>
         <translation>&amp;도구</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1381"/>
+        <location filename="../src/window.cpp" line="1379"/>
         <source>&amp;Find...</source>
         <translation>&amp;찾기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1382"/>
+        <location filename="../src/window.cpp" line="1380"/>
         <source>Find &amp;Next</source>
         <translation>&amp;다음에서 찾기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1385"/>
+        <location filename="../src/window.cpp" line="1383"/>
         <source>Find Pre&amp;vious</source>
         <translation>&amp;이전에서 찾기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1388"/>
+        <location filename="../src/window.cpp" line="1386"/>
         <source>&amp;Replace...</source>
         <translation>&amp;바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1388"/>
+        <location filename="../src/window.cpp" line="1386"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1390"/>
+        <location filename="../src/window.cpp" line="1388"/>
         <source>Smart &amp;Quotes</source>
         <translation>&amp;지능형 따옴표</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1391"/>
+        <location filename="../src/window.cpp" line="1389"/>
         <source>Update &amp;Document</source>
         <translation>&amp;문서에 적용</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1394"/>
+        <location filename="../src/window.cpp" line="1392"/>
         <source>Update &amp;Selection</source>
         <translation>&amp;선택한 내용 적용</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1398"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>&amp;Spelling...</source>
         <translation>&amp;맞춤법</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1398"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1399"/>
+        <location filename="../src/window.cpp" line="1397"/>
         <source>Set &amp;Language...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1401"/>
+        <location filename="../src/window.cpp" line="1399"/>
         <source>&amp;Timers...</source>
         <translation>&amp;타이머</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1402"/>
+        <location filename="../src/window.cpp" line="1400"/>
         <source>S&amp;ymbols...</source>
         <translation>&amp;부호들...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1403"/>
+        <location filename="../src/window.cpp" line="1401"/>
         <source>&amp;Daily Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1406"/>
+        <location filename="../src/window.cpp" line="1404"/>
         <source>&amp;Settings</source>
         <translation>&amp;설정</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1407"/>
+        <location filename="../src/window.cpp" line="1405"/>
         <source>Show &amp;Toolbar</source>
         <translation>&amp;툴바 보이기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1412"/>
+        <location filename="../src/window.cpp" line="1410"/>
         <source>Show &amp;Menu Icons</source>
         <translation>&amp;메뉴 아이콘 보이기</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1418"/>
+        <location filename="../src/window.cpp" line="1416"/>
         <source>F&amp;ocused Text</source>
         <translation>&amp;포커스 텍스트</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1420"/>
+        <location filename="../src/window.cpp" line="1418"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;전체 화면</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1420"/>
+        <location filename="../src/window.cpp" line="1418"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1422"/>
+        <location filename="../src/window.cpp" line="1420"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1426"/>
+        <location filename="../src/window.cpp" line="1424"/>
         <source>M&amp;inimize</source>
         <translation>&amp;최소화</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1426"/>
+        <location filename="../src/window.cpp" line="1424"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1428"/>
+        <location filename="../src/window.cpp" line="1426"/>
         <source>&amp;Themes...</source>
         <translation>&amp;테마</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1431"/>
+        <location filename="../src/window.cpp" line="1429"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;설정</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1437"/>
+        <location filename="../src/window.cpp" line="1435"/>
         <source>Focus Off</source>
         <translation>포커스 끔</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1439"/>
+        <location filename="../src/window.cpp" line="1437"/>
         <source>Focus One Line</source>
         <translation>한 줄 포커스 </translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1441"/>
+        <location filename="../src/window.cpp" line="1439"/>
         <source>Focus Three Lines</source>
         <translation>세 줄 포커스 </translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1442"/>
+        <location filename="../src/window.cpp" line="1440"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;문단</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1443"/>
+        <location filename="../src/window.cpp" line="1441"/>
         <source>Focus Paragraph</source>
         <translation>문단 포커스 </translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1456"/>
+        <location filename="../src/window.cpp" line="1454"/>
         <source>&amp;Help</source>
         <translation>&amp;도움말</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1430"/>
+        <location filename="../src/window.cpp" line="1428"/>
         <source>Application &amp;Language...</source>
         <translation>&amp;프로그램 언어 설정</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="398"/>
+        <location filename="../src/window.cpp" line="396"/>
         <source>Some files were unsupported and could not be opened.</source>
         <translation>지원되지 않는 파일이 있어서 열 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1436"/>
+        <location filename="../src/window.cpp" line="1434"/>
         <source>&amp;Off</source>
         <translation>&amp;사용 안함</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1438"/>
+        <location filename="../src/window.cpp" line="1436"/>
         <source>One &amp;Line</source>
         <translation>&amp;한 줄</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1440"/>
+        <location filename="../src/window.cpp" line="1438"/>
         <source>&amp;Three Lines</source>
         <translation>&amp;세 줄</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1457"/>
+        <location filename="../src/window.cpp" line="1455"/>
         <source>&amp;About</source>
         <translation>&amp;FocusWriter 소개</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1465"/>
+        <location filename="../src/window.cpp" line="1463"/>
         <source>About &amp;Qt</source>
         <translation>&amp;Qt 소개</translation>
     </message>
