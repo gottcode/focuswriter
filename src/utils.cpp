@@ -53,6 +53,13 @@ bool compareFiles(const QString& filename1, const QString& filename2)
 
 //-----------------------------------------------------------------------------
 
+bool localeAwareSort(const QString& lhs, const QString& rhs)
+{
+	return QString::localeAwareCompare(lhs, rhs) < 0;
+}
+
+//-----------------------------------------------------------------------------
+
 QStringList splitStringAtLastNumber(const QString& string)
 {
 	QStringList result;

@@ -50,6 +50,27 @@
 
 //-----------------------------------------------------------------------------
 
+namespace
+{
+
+class ThemeItem : public QListWidgetItem
+{
+public:
+	ThemeItem(const QIcon& icon, const QString& text, QListWidget* view) :
+		QListWidgetItem(icon, text, view)
+	{
+	}
+
+	bool operator<(const QListWidgetItem& other) const
+	{
+		return localeAwareSort(text(), other.text());
+	}
+};
+
+}
+
+//-----------------------------------------------------------------------------
+
 ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
 	m_settings(settings)
@@ -439,7 +460,7 @@ QListWidgetItem* ThemeManager::addItem(const QString& theme, bool is_default, co
 	if (!QFile::exists(icon) || QImageReader(icon).size() != QSize(258, 153)) {
 		ThemeDialog::createPreview(theme, is_default);
 	}
-	QListWidgetItem* item = new QListWidgetItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);
+	QListWidgetItem* item = new ThemeItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);
 	item->setToolTip(name);
 	item->setData(Qt::UserRole, theme);
 	return item;
