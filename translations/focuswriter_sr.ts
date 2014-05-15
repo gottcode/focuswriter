@@ -38,36 +38,36 @@
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% of %Ln минут(и)</numerusform>
-            <numerusform>%1% of %Ln минута(и)</numerusform>
-            <numerusform>%1% of %Ln минути(и)</numerusform>
+            <numerusform>%1% од %Ln минута</numerusform>
+            <numerusform>%1% од %Ln минута</numerusform>
+            <numerusform>%1% од %Ln минута</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% of %Ln реч(и)</numerusform>
-            <numerusform>%1% of %Ln речи(и)</numerusform>
-            <numerusform>%1% of %Ln речи(и)</numerusform>
+            <numerusform>%1% од %Ln речи</numerusform>
+            <numerusform>%1% од %Ln речи</numerusform>
+            <numerusform>%1% од %Ln речи</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
         <translation>
-            <numerusform>%Ln реч(и)</numerusform>
-            <numerusform>%Ln речи(и)</numerusform>
-            <numerusform>%Ln речи(и)</numerusform>
+            <numerusform>%Ln реч</numerusform>
+            <numerusform>%Ln речи</numerusform>
+            <numerusform>%Ln речи</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln минут(а)</numerusform>
-            <numerusform>%Ln минута(и)</numerusform>
-            <numerusform>%Ln минута(и)</numerusform>
+            <numerusform>%Ln минут</numerusform>
+            <numerusform>%Ln минута</numerusform>
+            <numerusform>%Ln минути</numerusform>
         </translation>
     </message>
     <message>
@@ -102,9 +102,9 @@
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
         <translation>
-            <numerusform>%n дан(и)</numerusform>
-            <numerusform>%n дана(и)</numerusform>
-            <numerusform>%n дани(и)</numerusform>
+            <numerusform>%n дан</numerusform>
+            <numerusform>%n дана</numerusform>
+            <numerusform>%n дана</numerusform>
         </translation>
     </message>
     <message>
@@ -1139,7 +1139,7 @@
     <message>
         <location filename="../src/theme.cpp" line="160"/>
         <source>%1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2</translation>
     </message>
 </context>
 <context>
@@ -1184,74 +1184,74 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Непрозирност:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="210"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Позиција:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ширина:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="215"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Заокружи углове позадине текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="229"/>
         <location filename="../src/theme_dialog.cpp" line="247"/>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Радијус:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="233"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Замути позадину текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="251"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Осенчи позадину текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="278"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Вертикално:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="282"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Ивице:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="300"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Прозор:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="301"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Страна:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="359"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Увлачење прве линије</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="366"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Изнад:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Испод:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="158"/>
@@ -1261,12 +1261,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="91"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Измени тему</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Позадина прозора</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="176"/>
@@ -1309,7 +1309,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="180"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Позадина текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="194"/>
@@ -1359,7 +1359,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Висина:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="339"/>
@@ -1375,7 +1375,7 @@
         <location filename="../src/theme_manager.cpp" line="149"/>
         <location filename="../src/theme_manager.cpp" line="200"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Нова тема</translation>
     </message>
 </context>
 <context>
@@ -1388,22 +1388,22 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="79"/>
         <source>New</source>
-        <translation type="unfinished">Нови</translation>
+        <translation>Нови</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="83"/>
         <source>Edit</source>
-        <translation type="unfinished">Измени</translation>
+        <translation>Измени</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="87"/>
         <source>Clone</source>
-        <translation type="unfinished">Клонирај</translation>
+        <translation>Клонирај</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="91"/>
         <source>Delete</source>
-        <translation type="unfinished">Избриши</translation>
+        <translation>Избриши</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="95"/>
@@ -1428,13 +1428,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="220"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Подразумевана тема &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>
         <location filename="../src/theme_manager.cpp" line="323"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Теме (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>

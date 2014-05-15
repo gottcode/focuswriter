@@ -37,33 +37,33 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1%/%Ln minuutti</numerusform>
-            <numerusform>%1%/%Ln minuuttia</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% of %Ln sana</numerusform>
-            <numerusform>%1% of %Ln sanaa</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation>
-            <numerusform>%Ln sana</numerusform>
-            <numerusform>%Ln sanaa</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation>
-            <numerusform>%Ln minuutti</numerusform>
-            <numerusform>%Ln minuuttia</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -97,9 +97,9 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation>
-            <numerusform>%n päivä</numerusform>
-            <numerusform>%n päivää</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -114,7 +114,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation>%1% päivittäisestä tavoitteesta</translation>
+        <translation>%1 % päivittäisestä tavoitteesta</translation>
     </message>
 </context>
 <context>
@@ -122,7 +122,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation>Aseta Kieli</translation>
+        <translation>Aseta kieli</translation>
     </message>
 </context>
 <context>
@@ -174,7 +174,7 @@
     <message>
         <location filename="../src/document.cpp" line="508"/>
         <source>Reload File?</source>
-        <translation>Lataa tiedosto uudelleen?</translation>
+        <translation>Ladataanko tiedosto uudelleen?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="509"/>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="51"/>
         <source>Ignore case</source>
-        <translation>Kirjainkoolla ei väliä</translation>
+        <translation>Aakkoskoolla ei ole väliä</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="52"/>
@@ -361,12 +361,12 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation>Muotoiltu teksti (*.rtf)</translation>
+        <translation>Muotoiltu teksti</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation>Pelkkä teksti (*.txt)</translation>
+        <translation>Pelkkä teksti</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
@@ -1757,12 +1757,12 @@
     <message>
         <location filename="../src/window.cpp" line="1120"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation>Tallennetaanko muutokset tiedostoon &apos;%1&apos; ennen sulkemista?</translation>
+        <translation>Tallennetaanko muutokset tiedostoon ”%1” ennen sulkemista?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1121"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Muutoksesi häviävät jollet tallenna niitä.</translation>
+        <translation>Muutoksesi häviävät, jollet tallenna niitä.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1151"/>
@@ -2077,7 +2077,7 @@
     <message>
         <location filename="../src/window.cpp" line="1399"/>
         <source>Set &amp;Language...</source>
-        <translation>Aseta &amp;Kieli...</translation>
+        <translation>Ase&amp;ta kieli…</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1401"/>

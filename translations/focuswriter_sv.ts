@@ -37,39 +37,39 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% av %Ln minut</numerusform>
+            <numerusform>%1% av %Ln minuter</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% av %Ln ord</numerusform>
+            <numerusform>%1% av %Ln ord</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln ord</numerusform>
+            <numerusform>%Ln ord</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minut</numerusform>
+            <numerusform>%Ln minuter</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="511"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -77,35 +77,35 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="146"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Dagliga framsteg</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Längsta svit</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="285"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Pågående svit</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="298"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/A</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n dag</numerusform>
+            <numerusform>%n dagar</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -114,7 +114,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% av dagligt mål</translation>
     </message>
 </context>
 <context>
@@ -122,7 +122,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Ställ in språk</translation>
     </message>
 </context>
 <context>
@@ -130,12 +130,12 @@
     <message>
         <location filename="../src/document.cpp" line="348"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Namnlös %1)</translation>
+        <translation>(Namnlös %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="351"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Skrivskyddad)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="415"/>
@@ -174,12 +174,12 @@
     <message>
         <location filename="../src/document.cpp" line="508"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs om fil?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="509"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs om filen &quot;%1&quot; från disk?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="510"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/document.cpp" line="1210"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Namnlös %1</translation>
+        <translation>Namnlös %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1264"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen &quot;%1&quot; har ändrats av ett annat program.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="94"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Kunde inte öppna arkivet.</translation>
+        <translation>Kunde inte öppna arkiv.</translation>
     </message>
 </context>
 <context>
@@ -351,32 +351,32 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument text</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Rich Text Format</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Vanlig text</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla filer</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="106"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla filer som stöds</translation>
     </message>
 </context>
 <context>
@@ -438,7 +438,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="68"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Kunde inte öppna arkivet.</translation>
+        <translation>Kunde inte öppna arkiv</translation>
     </message>
 </context>
 <context>
@@ -635,42 +635,42 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Återställ dagligt mål för idag till noll?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv byteordningsmärke i vanliga textfiler</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="757"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardformat:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Återställ idag</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="831"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historik</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="833"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Kom ihåg historik</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="836"/>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa sviter</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="851"/>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minsta framsteg för sviter:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="886"/>
@@ -685,12 +685,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Räkna varje bokstav som ett ord</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidräkningsalgoritm</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1039"/>
@@ -800,7 +800,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="209"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="213"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inte en stödd RTF-fil.</translation>
     </message>
 </context>
 <context>
@@ -808,7 +808,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nådde oväntat filslut.</translation>
     </message>
 </context>
 <context>
@@ -1069,7 +1069,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortsätt kontrollera i början av filen?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1133,7 +1133,7 @@
     <message>
         <location filename="../src/theme.cpp" line="160"/>
         <source>%1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2</translation>
     </message>
 </context>
 <context>
@@ -1178,74 +1178,74 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacitet:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="210"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Position:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bredd:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="215"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Runda textbakgrundshörn</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="229"/>
         <location filename="../src/theme_dialog.cpp" line="247"/>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Radie:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="233"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Gör textbakgrund suddig</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="251"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Texbakgrundsskugga</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="278"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertikal förskjutning:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="282"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Marginaler</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="300"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fönster:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="301"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sida:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="359"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Gör indrag första raden</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="366"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ovanför:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Under:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="158"/>
@@ -1255,12 +1255,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="91"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera tema</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Fönsterbakgrund</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="176"/>
@@ -1303,7 +1303,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="180"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Textbakgrund</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="194"/>
@@ -1353,7 +1353,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höjd</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="339"/>
@@ -1363,13 +1363,13 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="365"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabbredd:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="149"/>
         <location filename="../src/theme_manager.cpp" line="200"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Nytt tema</translation>
     </message>
 </context>
 <context>
@@ -1382,22 +1382,22 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="79"/>
         <source>New</source>
-        <translation type="unfinished">Ny</translation>
+        <translation>Nytt</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="83"/>
         <source>Edit</source>
-        <translation type="unfinished">Redigera</translation>
+        <translation>Redigera</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="87"/>
         <source>Clone</source>
-        <translation type="unfinished">Klona</translation>
+        <translation>Klona</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="91"/>
         <source>Delete</source>
-        <translation type="unfinished">Ta bort</translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="95"/>
@@ -1422,13 +1422,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="220"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort tema &quot;%1&quot;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>
         <location filename="../src/theme_manager.cpp" line="323"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Teman (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>
@@ -1676,7 +1676,7 @@
     <message>
         <location filename="../src/window.cpp" line="204"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista alla dokument</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="207"/>
@@ -1752,17 +1752,17 @@
     <message>
         <location filename="../src/window.cpp" line="1119"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara ändringar?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1120"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara ändringar till filen &quot;%1&quot; innan stängning?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1121"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dina ändringar kommer att förloras om du inte sparar dem.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1151"/>
@@ -2077,7 +2077,7 @@
     <message>
         <location filename="../src/window.cpp" line="1399"/>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ställ in &amp;Språk...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1401"/>
@@ -2092,7 +2092,7 @@
     <message>
         <location filename="../src/window.cpp" line="1403"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dagliga framsteg</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1406"/>

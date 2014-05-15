@@ -38,28 +38,28 @@
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln 里的 %1% 分钟(s)</numerusform>
+            <numerusform>%1%/%Ln 分钟</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%Ln 里的%1% 字(s)</numerusform>
+            <numerusform>%1%/%Ln 字</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
         <translation>
-            <numerusform>%Ln 字(s)</numerusform>
+            <numerusform>%Ln 个字</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln 分钟(s)</numerusform>
+            <numerusform>%Ln 分钟</numerusform>
         </translation>
     </message>
     <message>
@@ -94,7 +94,7 @@
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
         <translation>
-            <numerusform>%n 天(s)</numerusform>
+            <numerusform>%n 天</numerusform>
         </translation>
     </message>
     <message>
@@ -1127,7 +1127,7 @@
     <message>
         <location filename="../src/theme.cpp" line="160"/>
         <source>%1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2</translation>
     </message>
 </context>
 <context>
@@ -1172,74 +1172,74 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>不透明度：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="210"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>位置：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>宽度：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="215"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>圆滑文字背景边角</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="229"/>
         <location filename="../src/theme_dialog.cpp" line="247"/>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>半径：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="233"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>模糊文字背景</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="251"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>文字背景阴影</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="278"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>垂直偏移量：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="282"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>页边距</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="300"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>窗口：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="301"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>页面：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="359"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>首行缩进</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="366"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>段前：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>段后：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="158"/>
@@ -1249,12 +1249,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="91"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑主题</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>窗口背景</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="176"/>
@@ -1297,7 +1297,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="180"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>文字背景</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="194"/>
@@ -1347,7 +1347,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>高度：</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="339"/>
@@ -1363,7 +1363,7 @@
         <location filename="../src/theme_manager.cpp" line="149"/>
         <location filename="../src/theme_manager.cpp" line="200"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>新建主题</translation>
     </message>
 </context>
 <context>
@@ -1376,22 +1376,22 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="79"/>
         <source>New</source>
-        <translation type="unfinished">新建</translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="83"/>
         <source>Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="87"/>
         <source>Clone</source>
-        <translation type="unfinished">克隆</translation>
+        <translation>克隆</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="91"/>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="95"/>
@@ -1416,13 +1416,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="220"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>删除主题 &apos;%1&apos;？</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>
         <location filename="../src/theme_manager.cpp" line="323"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>主题 (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>

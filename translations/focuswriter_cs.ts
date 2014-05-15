@@ -37,37 +37,37 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln minuty</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln slova</numerusform>
-            <numerusform>%1% ze %Ln slov</numerusform>
-            <numerusform>%1% z %Ln slov</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation>
-            <numerusform>%Ln slovo</numerusform>
-            <numerusform>%Ln slova</numerusform>
-            <numerusform>%Ln slov</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation>
-            <numerusform>%Ln minuta</numerusform>
-            <numerusform>%Ln minuty</numerusform>
-            <numerusform>%Ln minut</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -101,10 +101,10 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation>
-            <numerusform>%n den</numerusform>
-            <numerusform>%n dny</numerusform>
-            <numerusform>%n dnů</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>

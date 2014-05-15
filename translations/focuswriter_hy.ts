@@ -143,7 +143,7 @@
     <message>
         <location filename="../src/document.cpp" line="415"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Պահպանումը հնարավոր չէ&apos;%1&apos;։</translation>
+        <translation>«%1» նիշքի պահպանումը հնարավոր չէ։</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="430"/>
@@ -154,7 +154,7 @@
         <location filename="../src/document.cpp" line="440"/>
         <location filename="../src/document.cpp" line="476"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Վերագրանցումը հնարավոր չէ&apos;%1&apos;։</translation>
+        <translation>«%1» նիշքի վերագրանցումը հնարավոր չէ։</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="469"/>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../src/document.cpp" line="482"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Վերանվանումը հնարավոր չէ։</translation>
+        <translation>«%1» նիշքի վերանվանումը հնարավոր չէ։</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="508"/>
@@ -174,7 +174,7 @@
     <message>
         <location filename="../src/document.cpp" line="509"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>Նիշքը նորի՞ց բացել &apos;%1&apos; սկավառակից։</translation>
+        <translation>«%1» նիշքը նորի՞ց բացել սկավառակից։</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="510"/>
@@ -212,7 +212,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>Նիշքը &apos;%1&apos;  մեկ այլ ծրագրով փոփոխվել է։</translation>
+        <translation>«%1» նիշքը մեկ այլ ծրագրով փոփոխվել է։</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="210"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Նիշքը %1 մեկ այլ ծրագրով ջնջվել է։</translation>
+        <translation>%1 նիշքը մեկ այլ ծրագրով ջնջվել է։</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
@@ -293,7 +293,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="64"/>
         <source>&amp;Find</source>
-        <translation>&amp;Գտնել</translation>
+        <translation>Գ&amp;տնել</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="68"/>
@@ -440,7 +440,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation>Ընտրանքներ</translation>
+        <translation>Նախընտրանքներ</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
@@ -503,7 +503,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Բառարանն &quot;%1&quot; արդեն կա։ Փոխարինել այն նորո՞վ։</translation>
+        <translation>&quot;%1&quot; բառարանն արդեն կա։ Փոխարինել այն նորո՞վ։</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
@@ -883,7 +883,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>Գ&amp;ործաժամեր</translation>
+        <translation>&amp;Գործաժամեր</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
@@ -953,7 +953,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="410"/>
         <source>&amp;New...</source>
-        <translation>&amp;Նոր...</translation>
+        <translation>Ն&amp;որ...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="410"/>
@@ -1018,12 +1018,12 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="145"/>
         <source>&amp;Ignore</source>
-        <translation>&amp;Անտեսել</translation>
+        <translation>Անտեսել</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="148"/>
         <source>I&amp;gnore All</source>
-        <translation>Ա&amp;նտեսել ամբողջը</translation>
+        <translation>Ան&amp;տեսել ամբողջը</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="153"/>
@@ -1033,12 +1033,12 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="156"/>
         <source>C&amp;hange All</source>
-        <translation>Փ&amp;ոխել ամբողջը</translation>
+        <translation>Փո&amp;խել ամբողջը</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="171"/>
         <source>Not in dictionary:</source>
-        <translation>Բառարանում բացակայում է</translation>
+        <translation>Բառարանում բացակայում է՝</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="179"/>
@@ -1048,7 +1048,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Checking spelling...</source>
-        <translation>Ուղղագրությունը ստուգվում է...</translation>
+        <translation>Ուղղագրության ստուգում...</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
@@ -1127,7 +1127,7 @@
     <message>
         <location filename="../src/theme.cpp" line="160"/>
         <source>%1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2</translation>
     </message>
 </context>
 <context>
@@ -1172,74 +1172,74 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="209"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Անթափանցություն՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="210"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Դիրք՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Լայնք՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="215"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեքստի խորքի անկյունները կլորացնել</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="229"/>
         <location filename="../src/theme_dialog.cpp" line="247"/>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Շառավիղ՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="233"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեքստի խորքն աղոտացնել</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="251"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեքստի խորքի ստվերանկում</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="278"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ուղղահայաց շեղում՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="282"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Լուսանցքներ</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="300"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Պատուհան՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="301"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Էջ՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="359"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Առաջին տողագլուխը՝ ներքաշված</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="366"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Վերևից՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներքևից՝</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="158"/>
@@ -1249,12 +1249,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="91"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Թեմայի խմբագրում</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Պատուհանի խորք</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="176"/>
@@ -1297,7 +1297,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="180"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեքստի խորք</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="194"/>
@@ -1347,7 +1347,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Բարձրություն</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="339"/>
@@ -1357,13 +1357,13 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="365"/>
         <source>Tab Width:</source>
-        <translation>Ներքաշվածքի լայնություն</translation>
+        <translation>Սյունատի լայնք</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="149"/>
         <location filename="../src/theme_manager.cpp" line="200"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Նոր թեմա</translation>
     </message>
 </context>
 <context>
@@ -1376,22 +1376,22 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="79"/>
         <source>New</source>
-        <translation type="unfinished">Նոր</translation>
+        <translation>Նոր</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="83"/>
         <source>Edit</source>
-        <translation type="unfinished">Խմբագրել</translation>
+        <translation>Խմբագրել</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="87"/>
         <source>Clone</source>
-        <translation type="unfinished">Կրկնօրինակել</translation>
+        <translation>Կրկնօրինակել</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="91"/>
         <source>Delete</source>
-        <translation type="unfinished">Ջնջել</translation>
+        <translation>Ջնջել</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="95"/>
@@ -1416,13 +1416,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="220"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ջնջե՞լ «%1» թեման։</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>
         <location filename="../src/theme_manager.cpp" line="323"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Թեմաներ (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>
@@ -1630,7 +1630,7 @@
     <message>
         <location filename="../src/window.cpp" line="870"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Դրանք գործածված են &lt;a href=%1&gt;LGPL 3&lt;/a&gt;-ի արտոնագրով։</translation>
+        <translation>Պատկերակները գործածված են &lt;a href=%1&gt;LGPL 3&lt;/a&gt;-ի արտոնագրով։</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="171"/>
@@ -1695,7 +1695,7 @@
     <message>
         <location filename="../src/window.cpp" line="233"/>
         <source>Switch to Document %1</source>
-        <translation>Անցնել փաստաթղթին %1</translation>
+        <translation>Անցնել %1 փաստաթղթին </translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="293"/>
@@ -1736,7 +1736,7 @@
     <message>
         <location filename="../src/window.cpp" line="1033"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos;-ը պահեստային օրինակից նոր է։</translation>
+        <translation>«%1» նիշքը պահեստային օրինակից նոր է։</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1034"/>
@@ -1751,12 +1751,12 @@
     <message>
         <location filename="../src/window.cpp" line="1120"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation>Փակելուց առաջ &apos;%1&apos; նիշքի փոփոխությունները պահպանե՞լ։</translation>
+        <translation>Փակելուց առաջ «%1» նիշքի փոփոխությունները պահպանե՞լ։</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1121"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Փոփոխությունները կկորչեն, եթե դրանք չ&apos;պահպանեք։</translation>
+        <translation>Փոփոխությունները կկորչեն, եթե դրանք չպահպանեք։</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1151"/>
@@ -1776,7 +1776,7 @@
     <message>
         <location filename="../src/window.cpp" line="1289"/>
         <source>&amp;New</source>
-        <translation>&amp;Նոր</translation>
+        <translation>Ն&amp;որ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1290"/>
@@ -1791,12 +1791,12 @@
     <message>
         <location filename="../src/window.cpp" line="1293"/>
         <source>&amp;Save</source>
-        <translation>&amp;Պահպանել</translation>
+        <translation>Պահպանել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1295"/>
         <source>Save &amp;As...</source>
-        <translation>Պահպանել &amp;որպես</translation>
+        <translation>&amp;Պահպանել որպես</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1296"/>
@@ -1806,17 +1806,17 @@
     <message>
         <location filename="../src/window.cpp" line="1298"/>
         <source>Save A&amp;ll</source>
-        <translation>Պահպանել բո&amp;լորը</translation>
+        <translation>Պա&amp;հպանել բոլորը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1301"/>
         <source>Manage Sessions</source>
-        <translation>Կառավարել գործաժամերը</translation>
+        <translation>Կա&amp;ռավարել գործաժամերը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1303"/>
         <source>New Session</source>
-        <translation>Նոր գործաժամ</translation>
+        <translation>Նոր գո&amp;րծաժամ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1306"/>
@@ -1856,7 +1856,7 @@
     <message>
         <location filename="../src/window.cpp" line="1321"/>
         <source>Cu&amp;t</source>
-        <translation>Կտ&amp;րել</translation>
+        <translation>Կ&amp;տրել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1324"/>
@@ -1881,7 +1881,7 @@
     <message>
         <location filename="../src/window.cpp" line="1330"/>
         <source>Select &amp;All</source>
-        <translation>Ընտրել &amp;ամբողջը</translation>
+        <translation>&amp;Ընտրել ամբողջը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1331"/>
@@ -1896,7 +1896,7 @@
     <message>
         <location filename="../src/window.cpp" line="1334"/>
         <source>Fo&amp;rmat</source>
-        <translation>Ձևա&amp;վորում</translation>
+        <translation>Ձևավորում</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1336"/>
@@ -1916,7 +1916,7 @@
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Ջնջ&amp;ագծված</translation>
+        <translation>&amp;Ջնջագծված</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
@@ -1926,7 +1926,7 @@
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>Sup&amp;erscript</source>
-        <translation>Վեր&amp;տողագիր</translation>
+        <translation>&amp;Վերտողագիր</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
@@ -1946,7 +1946,7 @@
     <message>
         <location filename="../src/window.cpp" line="1350"/>
         <source>Align &amp;Left</source>
-        <translation>Ուղղել &amp;ձախից</translation>
+        <translation>Ուղղել ձա&amp;խից</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
@@ -1966,7 +1966,7 @@
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>Align &amp;Right</source>
-        <translation>Ուղղել &amp;աջից</translation>
+        <translation>Ուղղել աջ&amp;ից</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1354"/>
@@ -1996,7 +1996,7 @@
     <message>
         <location filename="../src/window.cpp" line="1367"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Մ&amp;եծացնել տողագլխի խորքը</translation>
+        <translation>Մե&amp;ծացնել տողագլխի խորքը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1367"/>
@@ -2006,12 +2006,12 @@
     <message>
         <location filename="../src/window.cpp" line="1370"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Ձա&amp;խից աջ տանել</translation>
+        <translation>Ձախից աջ &amp;տանել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1372"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Աջ&amp;ից ձախ տանել</translation>
+        <translation>Աջից ձախ տա&amp;նել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
@@ -2021,17 +2021,17 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Գտնել...</translation>
+        <translation>Գ&amp;տնել...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1382"/>
         <source>Find &amp;Next</source>
-        <translation>Գտնել հա&amp;ջորդը</translation>
+        <translation>Գտնել &amp;հաջորդը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1385"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Գտնել նա&amp;խորդը</translation>
+        <translation>Գտնել &amp;նախորդը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1388"/>
@@ -2046,12 +2046,12 @@
     <message>
         <location filename="../src/window.cpp" line="1390"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Չակերտները փոխել</translation>
+        <translation>&amp;Չակերտները փոխել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1391"/>
         <source>Update &amp;Document</source>
-        <translation>Թարմացնել &amp;փաստաթուղթը</translation>
+        <translation>&amp;Թարմացնել փաստաթուղթը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1394"/>
@@ -2061,7 +2061,7 @@
     <message>
         <location filename="../src/window.cpp" line="1398"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Ուղղագրություն...</translation>
+        <translation>Ու&amp;ղղագրություն...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1398"/>
@@ -2106,12 +2106,12 @@
     <message>
         <location filename="../src/window.cpp" line="1418"/>
         <source>F&amp;ocused Text</source>
-        <translation>Տ&amp;եքստային հատվածի ընդգծում</translation>
+        <translation>&amp;Տեքստային հատվածի ընդգծում</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1420"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Ամբողջ էկրանով</translation>
+        <translation>Ամբողջ &amp;էկրանով</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1420"/>
@@ -2126,7 +2126,7 @@
     <message>
         <location filename="../src/window.cpp" line="1426"/>
         <source>M&amp;inimize</source>
-        <translation>Ամ&amp;փոփել</translation>
+        <translation>&amp;Ամփոփել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1426"/>
@@ -2141,7 +2141,7 @@
     <message>
         <location filename="../src/window.cpp" line="1431"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Ընտրանքներ...</translation>
+        <translation>&amp;Նախընտրանքներ...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1437"/>
@@ -2186,12 +2186,12 @@
     <message>
         <location filename="../src/window.cpp" line="1436"/>
         <source>&amp;Off</source>
-        <translation>&amp;Անջատված է</translation>
+        <translation>Ան&amp;ջատված է</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1438"/>
         <source>One &amp;Line</source>
-        <translation>Մեկ &amp;տող</translation>
+        <translation>&amp;Մեկ տող</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1440"/>
