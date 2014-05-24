@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="358"/>
-        <location filename="../src/document.cpp" line="383"/>
-        <location filename="../src/document.cpp" line="414"/>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="402"/>
+        <location filename="../src/document.cpp" line="427"/>
+        <location filename="../src/document.cpp" line="458"/>
+        <location filename="../src/document.cpp" line="464"/>
         <source>Sorry</source>
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="358"/>
+        <location filename="../src/document.cpp" line="402"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>No se puede guardar «%1».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="373"/>
+        <location filename="../src/document.cpp" line="417"/>
         <source>Save File As</source>
         <translation>Guardar archivo como</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="383"/>
-        <location filename="../src/document.cpp" line="414"/>
+        <location filename="../src/document.cpp" line="427"/>
+        <location filename="../src/document.cpp" line="458"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>No se puede sobrescribir «%1».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="407"/>
+        <location filename="../src/document.cpp" line="451"/>
         <source>Rename File</source>
         <translation>Renombrar el archivo</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="464"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>No se puede renombrar «%1».</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="445"/>
+        <location filename="../src/document.cpp" line="489"/>
         <source>Reload File</source>
         <translation>Volver a cargar el archivo</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="446"/>
+        <location filename="../src/document.cpp" line="490"/>
         <source>Reload the file %1 from disk?</source>
         <translation>¿Desea volver a cargar el archivo %1 del disco?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="447"/>
+        <location filename="../src/document.cpp" line="491"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Se perderán todos los cambios no guardados.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="449"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Reload</source>
         <translation>Volver a cargar</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1198"/>
+        <location filename="../src/document.cpp" line="1242"/>
         <source>Plain Text (*.txt)</source>
         <translation>Texto plano (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1257"/>
+        <location filename="../src/document.cpp" line="1301"/>
         <source>Question</source>
         <translation>Confirmación</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1258"/>
+        <location filename="../src/document.cpp" line="1302"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Al guardar como texto plano se descartarán todos los cambios de formato. ¿Desea continuar?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1196"/>
+        <location filename="../src/document.cpp" line="1240"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>Texto de OpenDocument (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1197"/>
+        <location filename="../src/document.cpp" line="1241"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Texto enriquecido (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1199"/>
+        <location filename="../src/document.cpp" line="1243"/>
         <source>All Files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
@@ -634,8 +634,8 @@
 <context>
     <name>Reader</name>
     <message>
-        <location filename="../src/rtf/reader.cpp" line="226"/>
-        <location filename="../src/rtf/reader.cpp" line="230"/>
+        <location filename="../src/rtf/reader.cpp" line="225"/>
+        <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
         <translation>No es un archivo RTF compatible.</translation>
     </message>
@@ -1479,7 +1479,7 @@
         <translation>%1% del objetivo diario</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="462"/>
+        <location filename="../src/document.cpp" line="506"/>
         <location filename="../src/window.cpp" line="1056"/>
         <source>Opening %1</source>
         <translation>Abriendo %1</translation>

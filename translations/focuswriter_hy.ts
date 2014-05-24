@@ -35,86 +35,86 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="358"/>
-        <location filename="../src/document.cpp" line="383"/>
-        <location filename="../src/document.cpp" line="414"/>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="402"/>
+        <location filename="../src/document.cpp" line="427"/>
+        <location filename="../src/document.cpp" line="458"/>
+        <location filename="../src/document.cpp" line="464"/>
         <source>Sorry</source>
         <translation>Ներողություն։</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="358"/>
+        <location filename="../src/document.cpp" line="402"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Պահպանումը հնարավոր չէ &apos;%1&apos;։</translation>
+        <translation> «%1» նիշքի պահպանումը հնարավոր չէ։</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="373"/>
+        <location filename="../src/document.cpp" line="417"/>
         <source>Save File As</source>
         <translation>Պահպանել նիշքը որպես</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="383"/>
-        <location filename="../src/document.cpp" line="414"/>
+        <location filename="../src/document.cpp" line="427"/>
+        <location filename="../src/document.cpp" line="458"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Վերագրանցումը հնարավոր չէ &apos;%1&apos;։</translation>
+        <translation>«%1» նիշքի վերագրանցումը հնարավոր չէ։</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="407"/>
+        <location filename="../src/document.cpp" line="451"/>
         <source>Rename File</source>
         <translation>Վերանվանել նիշքը</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="464"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Վերանվանումը հնարավոր չէ &apos;%1&apos;։</translation>
+        <translation>«%1» նիշքի վերանվանումը հնարավոր չէ։</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="445"/>
+        <location filename="../src/document.cpp" line="489"/>
         <source>Reload File</source>
         <translation>Նիշքը նորից բացել</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="446"/>
+        <location filename="../src/document.cpp" line="490"/>
         <source>Reload the file %1 from disk?</source>
-        <translation>Նիշքը նորի՞ց բացել %1։</translation>
+        <translation>%1 նիշքը նորի՞ց բացել։</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="447"/>
+        <location filename="../src/document.cpp" line="491"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Չպահպանված բոլոր փոփոխությունները կկորչեն։</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="449"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Reload</source>
         <translation>Նորից բացել</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1198"/>
+        <location filename="../src/document.cpp" line="1242"/>
         <source>Plain Text (*.txt)</source>
         <translation>Հասարակ տեքստի ձևաչափ (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1257"/>
+        <location filename="../src/document.cpp" line="1301"/>
         <source>Question</source>
         <translation>Հարց</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1258"/>
+        <location filename="../src/document.cpp" line="1302"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Հասարակ տեքստի ձևաչափով պահպանումը կվերացնի ձևավորումը։ Վերացնե՞լ ձևավորումը։</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1196"/>
+        <location filename="../src/document.cpp" line="1240"/>
         <source>OpenDocument Text (*.odt)</source>
         <translation>OpenDocument Text (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1197"/>
+        <location filename="../src/document.cpp" line="1241"/>
         <source>Rich Text (*.rtf)</source>
         <translation>Rich Text (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1199"/>
+        <location filename="../src/document.cpp" line="1243"/>
         <source>All Files (*)</source>
         <translation>Բոլոր նիշքերը (*)</translation>
     </message>
@@ -129,7 +129,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file %1 was changed by another program.</source>
-        <translation>Նիշքը %1 փոփոխվել է մեկ այլ ծրագրով։</translation>
+        <translation>%1 նիշքը փոփոխվել է մեկ այլ ծրագրով։</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="210"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Նիշքը %1 մեկ այլ ծրագրով ջնջվել է։</translation>
+        <translation>%1 նիշքը մեկ այլ ծրագրով ջնջվել է։</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
@@ -308,7 +308,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation>Ընտրանքներ</translation>
+        <translation>Նախընտրանքներ</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
@@ -359,12 +359,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="496"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Նիշքը բացել հնարավոր չէ &apos;%1&apos;։</translation>
+        <translation>«%1» նիշքը բացել հնարավոր չէ։</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="507"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Նիշքը փակել հնարավոր չէ &apos;%1&apos;։</translation>
+        <translation>«%1» նիշքը փակել հնարավոր չէ։</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="243"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="527"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Բառարանն &quot;%1&quot; արդեն կա։ Փոխարինել այն նորո՞վ։</translation>
+        <translation>«%1» բառարանն արդեն կա։ Փոխարինել այն նորո՞վ։</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="676"/>
@@ -633,8 +633,8 @@
 <context>
     <name>Reader</name>
     <message>
-        <location filename="../src/rtf/reader.cpp" line="226"/>
-        <location filename="../src/rtf/reader.cpp" line="230"/>
+        <location filename="../src/rtf/reader.cpp" line="225"/>
+        <location filename="../src/rtf/reader.cpp" line="229"/>
         <source>Not a supported RTF file.</source>
         <translation>Անհամապատասխան RTF նիշք</translation>
     </message>
@@ -646,12 +646,12 @@
     <message>
         <location filename="../src/odt_reader.cpp" line="78"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Նիշքի բացումը հնարավոր չէ &apos;%1&apos;։</translation>
+        <translation>«%1» նիշքի բացումը հնարավոր չէ։</translation>
     </message>
     <message>
         <location filename="../src/odt_reader.cpp" line="89"/>
         <source>Unable to close file &apos;%1&apos;.</source>
-        <translation>Նիշքի փակումը հնարավոր չէ &apos;%1&apos;։</translation>
+        <translation>«%1» նիշքի փակումը հնարավոր չէ։</translation>
     </message>
 </context>
 <context>
@@ -732,7 +732,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="51"/>
         <source>S&amp;essions</source>
-        <translation>Գ&amp;ործաժամեր</translation>
+        <translation>Գործաժամեր</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="64"/>
@@ -802,7 +802,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
         <source>&amp;New...</source>
-        <translation>&amp;Նոր...</translation>
+        <translation>Նոր...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="403"/>
@@ -812,7 +812,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="404"/>
         <source>&amp;Manage...</source>
-        <translation>&amp;Կառավարում...</translation>
+        <translation>Կառավարում...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="404"/>
@@ -862,27 +862,27 @@
     <message>
         <location filename="../src/spell_checker.cpp" line="138"/>
         <source>&amp;Add</source>
-        <translation>&amp;Ավելացնել</translation>
+        <translation>Ավելացնել</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="141"/>
         <source>&amp;Ignore</source>
-        <translation>&amp;Անտեսել</translation>
+        <translation>Անտեսել</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="144"/>
         <source>I&amp;gnore All</source>
-        <translation>Ա&amp;նտեսել ամբողջը</translation>
+        <translation>Անտեսել ամբողջը</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="149"/>
         <source>&amp;Change</source>
-        <translation>&amp;Փոխել</translation>
+        <translation>Փոխել</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="152"/>
         <source>C&amp;hange All</source>
-        <translation>Փ&amp;ոխել ամբողջը</translation>
+        <translation>Փոխել ամբողջը</translation>
     </message>
     <message>
         <location filename="../src/spell_checker.cpp" line="167"/>
@@ -1445,7 +1445,7 @@
     <message>
         <location filename="../src/window.cpp" line="896"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Դրանք գործածված են &lt;a href=%1&gt;LGPL 3&lt;/a&gt;-ի արտոնագրով։</translation>
+        <translation>Պատկերակները գործածված են &lt;a href=%1&gt;LGPL 3&lt;/a&gt;-ի արտոնագրով։</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="164"/>
@@ -1478,7 +1478,7 @@
         <translation>Օրական սահմանաքանակի %1%</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="462"/>
+        <location filename="../src/document.cpp" line="506"/>
         <location filename="../src/window.cpp" line="1056"/>
         <source>Opening %1</source>
         <translation>Բացվում է %1-ը</translation>
@@ -1522,7 +1522,7 @@
     <message>
         <location filename="../src/window.cpp" line="217"/>
         <source>Switch to Document %1</source>
-        <translation>Անցնել փաստաթղթին %1</translation>
+        <translation>Անցնել %1 փաստաթղթին</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="284"/>
@@ -1568,7 +1568,7 @@
     <message>
         <location filename="../src/window.cpp" line="1071"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos;-ը պահեստային օրինակից նոր է։</translation>
+        <translation>«%1» նիշքը պահեստային օրինակից նոր է։</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1072"/>
@@ -1598,7 +1598,7 @@
     <message>
         <location filename="../src/window.cpp" line="1313"/>
         <source>&amp;New</source>
-        <translation>&amp;Նոր</translation>
+        <translation>Ն&amp;որ</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1314"/>
@@ -1613,12 +1613,12 @@
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Save</source>
-        <translation>&amp;Պահպանել</translation>
+        <translation>Պահպանել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1319"/>
         <source>Save &amp;As...</source>
-        <translation>Պահպանել &amp;որպես</translation>
+        <translation>&amp;Պահպանել որպես</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1320"/>
@@ -1628,7 +1628,7 @@
     <message>
         <location filename="../src/window.cpp" line="1322"/>
         <source>Save A&amp;ll</source>
-        <translation>Պահպանել բո&amp;լորը</translation>
+        <translation>Պա&amp;հպանել բոլորը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1325"/>
@@ -1678,7 +1678,7 @@
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Cu&amp;t</source>
-        <translation>Կտ&amp;րել</translation>
+        <translation>Կ&amp;տրել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
@@ -1703,7 +1703,7 @@
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>Select &amp;All</source>
-        <translation>Ընտրել &amp;ամբողջը</translation>
+        <translation>&amp;Ընտրել ամբողջը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1355"/>
@@ -1718,7 +1718,7 @@
     <message>
         <location filename="../src/window.cpp" line="1358"/>
         <source>Fo&amp;rmat</source>
-        <translation>Ձևա&amp;վորում</translation>
+        <translation>&amp;Ձևավորում</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1360"/>
@@ -1738,7 +1738,7 @@
     <message>
         <location filename="../src/window.cpp" line="1366"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Ջնջ&amp;ագծված</translation>
+        <translation>&amp;Ջնջագծված</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1366"/>
@@ -1748,7 +1748,7 @@
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>Sup&amp;erscript</source>
-        <translation>Վեր&amp;տողագիր</translation>
+        <translation>&amp;Վերտողագիր</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
@@ -1768,7 +1768,7 @@
     <message>
         <location filename="../src/window.cpp" line="1374"/>
         <source>Align &amp;Left</source>
-        <translation>Ուղղել &amp;ձախից</translation>
+        <translation>Ուղղել ձա&amp;խից</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1374"/>
@@ -1788,7 +1788,7 @@
     <message>
         <location filename="../src/window.cpp" line="1378"/>
         <source>Align &amp;Right</source>
-        <translation>Ուղղել &amp;աջից</translation>
+        <translation>Ուղղել աջ&amp;ից</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1378"/>
@@ -1808,7 +1808,7 @@
     <message>
         <location filename="../src/window.cpp" line="1390"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Փոքրացնել տողագլխի խորքը</translation>
+        <translation>Փո&amp;քրացնել տողագլխի խորքը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1390"/>
@@ -1818,7 +1818,7 @@
     <message>
         <location filename="../src/window.cpp" line="1391"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Մ&amp;եծացնել տողագլխի խորքը</translation>
+        <translation>Մե&amp;ծացնել տողագլխի խորքը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1391"/>
@@ -1828,12 +1828,12 @@
     <message>
         <location filename="../src/window.cpp" line="1394"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Ձա&amp;խից աջ տանել</translation>
+        <translation>Ձախից աջ &amp;տանել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Աջ&amp;ից ձախ տանել</translation>
+        <translation>Աջից ձախ տա&amp;նել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1404"/>
@@ -1848,12 +1848,12 @@
     <message>
         <location filename="../src/window.cpp" line="1406"/>
         <source>Find &amp;Next</source>
-        <translation>Գտնել հա&amp;ջորդը</translation>
+        <translation>Գտնել &amp;հաջորդը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1409"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Գտնել նա&amp;խորդը</translation>
+        <translation>Գտնել &amp;նախորդը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1412"/>
@@ -1868,12 +1868,12 @@
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Չակերտները փոխել</translation>
+        <translation>&amp;Չակերտները փոխել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1415"/>
         <source>Update &amp;Document</source>
-        <translation>Թարմացնել &amp;փաստաթուղթը</translation>
+        <translation>&amp;Թարմացնել փաստաթուղթը</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1418"/>
@@ -1883,7 +1883,7 @@
     <message>
         <location filename="../src/window.cpp" line="1422"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Ուղղագրություն...</translation>
+        <translation>Ու&amp;ղղագրություն...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1422"/>
@@ -1918,12 +1918,12 @@
     <message>
         <location filename="../src/window.cpp" line="1439"/>
         <source>F&amp;ocused Text</source>
-        <translation>Տ&amp;եքստային հատվածի ընդգծում</translation>
+        <translation>&amp;Տեքստային հատվածի ընդգծում</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Ամբողջ էկրանով</translation>
+        <translation>Ամբողջ &amp;էկրանով</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
@@ -1938,7 +1938,7 @@
     <message>
         <location filename="../src/window.cpp" line="1447"/>
         <source>M&amp;inimize</source>
-        <translation>Ամ&amp;փոփել</translation>
+        <translation>&amp;Ամփոփել</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
@@ -1953,7 +1953,7 @@
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Ընտրանքներ...</translation>
+        <translation>&amp;Նախընտրանքներ...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1458"/>
@@ -1998,12 +1998,12 @@
     <message>
         <location filename="../src/window.cpp" line="1457"/>
         <source>&amp;Off</source>
-        <translation>&amp;Անջատված է</translation>
+        <translation>Ան&amp;ջատված է</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1459"/>
         <source>One &amp;Line</source>
-        <translation>Մեկ &amp;տող</translation>
+        <translation>&amp;Մեկ տող</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1461"/>
