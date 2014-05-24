@@ -903,7 +903,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="98"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Дупликат</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="101"/>
@@ -928,7 +928,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="277"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Дупликат сесија</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="322"/>
@@ -984,12 +984,12 @@
 <context>
     <name>ShortcutEdit</name>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="36"/>
+        <location filename="../src/shortcut_edit.cpp" line="126"/>
         <source>Clear</source>
         <translation>Очисти</translation>
     </message>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="39"/>
+        <location filename="../src/shortcut_edit.cpp" line="129"/>
         <source>Reset to Default</source>
         <translation>Ресетуј на подразумевано</translation>
     </message>
@@ -1380,27 +1380,27 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Default</source>
-        <translation type="unfinished">Подразумевано</translation>
+        <translation>Подразумевано</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Блуз</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Стара школа</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Свемирски снови</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Писаћи сто</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
@@ -1412,12 +1412,12 @@
         <location filename="../src/theme_manager.cpp" line="117"/>
         <location filename="../src/theme_manager.cpp" line="178"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Дупликат</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="131"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагођено</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="183"/>

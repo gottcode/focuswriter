@@ -972,12 +972,12 @@
 <context>
     <name>ShortcutEdit</name>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="36"/>
+        <location filename="../src/shortcut_edit.cpp" line="126"/>
         <source>Clear</source>
         <translation>지우기</translation>
     </message>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="39"/>
+        <location filename="../src/shortcut_edit.cpp" line="129"/>
         <source>Reset to Default</source>
         <translation>기본 설정으로 되돌리기</translation>
     </message>

@@ -37,33 +37,33 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% מתוך דקה %Ln</numerusform>
+            <numerusform>%1% מתוך %Ln דקות</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% מתוך %Ln מילים</numerusform>
+            <numerusform>%1% מתוך %Ln מילים</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>מילה %Ln</numerusform>
+            <numerusform>%Ln מילים</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>דקה %Ln</numerusform>
+            <numerusform>%Ln דקות</numerusform>
         </translation>
     </message>
     <message>
@@ -97,9 +97,9 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>יום %n</numerusform>
+            <numerusform>%n ימים</numerusform>
         </translation>
     </message>
     <message>
@@ -114,7 +114,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% מתוך היעד היומי</translation>
     </message>
 </context>
 <context>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>הקובץ &apos;%1&apos; שונה על ידי תוכנית אחרת.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -635,7 +635,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>לאפס התקדמות יומית להיום אל אפס?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
@@ -650,7 +650,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>איפוס היום</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="831"/>
@@ -897,7 +897,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="98"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>שכפול</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="101"/>
@@ -922,7 +922,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="277"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>שכפול סשן</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="322"/>
@@ -978,12 +978,12 @@
 <context>
     <name>ShortcutEdit</name>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="36"/>
+        <location filename="../src/shortcut_edit.cpp" line="126"/>
         <source>Clear</source>
         <translation>טהר</translation>
     </message>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="39"/>
+        <location filename="../src/shortcut_edit.cpp" line="129"/>
         <source>Reset to Default</source>
         <translation>אפס</translation>
     </message>
@@ -1171,17 +1171,17 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>עמימות:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="212"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>מיקום:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>רוחב:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="217"/>
@@ -1193,7 +1193,7 @@
         <location filename="../src/theme_dialog.cpp" line="249"/>
         <location filename="../src/theme_dialog.cpp" line="279"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>רדיוס:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="235"/>
@@ -1213,32 +1213,32 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="284"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>שוליים</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="302"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>חלון:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>עמוד:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="361"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>הזח שורה ראשונה</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="368"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>מעלה:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="369"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>מטה:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="160"/>
@@ -1248,12 +1248,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="93"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>עריכת מוטיב</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="150"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>רקע חלון</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="178"/>
@@ -1296,7 +1296,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="182"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>רקע טקסט</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="196"/>
@@ -1346,7 +1346,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="333"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>גובה:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="341"/>
@@ -1356,12 +1356,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>רוחב כרטיסייה:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>מוטיב חדש</translation>
     </message>
 </context>
 <context>
@@ -1374,54 +1374,54 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Default</source>
-        <translation type="unfinished">ברירת מחדל</translation>
+        <translation>ברירת מחדל</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>כחולים עדינים</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>בית ספר ותיק</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>פנטזיות חלל</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>שולחן כתיבה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
         <location filename="../src/theme_manager.cpp" line="174"/>
         <source>New</source>
-        <translation type="unfinished">חדש</translation>
+        <translation>חדש</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="117"/>
         <location filename="../src/theme_manager.cpp" line="178"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>שכפול</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="131"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>מותאם</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="183"/>
         <source>Edit</source>
-        <translation type="unfinished">עריכה</translation>
+        <translation>עריכה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="188"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>מחיקה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="193"/>
@@ -1441,13 +1441,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>למחוק את מוטיב &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
         <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>מוטיבים (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
@@ -1535,7 +1535,7 @@
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation>תזכיר:</translation>
+        <translation>מזכר:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
@@ -1695,7 +1695,7 @@
     <message>
         <location filename="../src/window.cpp" line="203"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>מנה את כל המסמכים</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="206"/>
@@ -1776,12 +1776,12 @@
     <message>
         <location filename="../src/window.cpp" line="1118"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>לשמור שינויים לתוך הקובץ &apos;%1&apos; טרם סגירה?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1119"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>השינויים שלך יאבדו אם תא תשמור אותם.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1149"/>
@@ -2096,7 +2096,7 @@
     <message>
         <location filename="../src/window.cpp" line="1397"/>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>קביעת &amp;שפה...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1399"/>
@@ -2111,7 +2111,7 @@
     <message>
         <location filename="../src/window.cpp" line="1401"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>התקדמות &amp;יומית</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1404"/>

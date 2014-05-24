@@ -669,7 +669,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="886"/>
         <source>Detect word boundaries</source>
-        <translation>Հաշվի առնել բառերի սահմանները</translation>
+        <translation>Հաշվել բառերի սահմանները</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="887"/>
@@ -891,7 +891,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="98"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Կրկնօրինակել</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="101"/>
@@ -916,7 +916,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="277"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Կրկնօրինակել գործաժամը</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="322"/>
@@ -972,12 +972,12 @@
 <context>
     <name>ShortcutEdit</name>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="36"/>
+        <location filename="../src/shortcut_edit.cpp" line="126"/>
         <source>Clear</source>
         <translation>Մաքրել</translation>
     </message>
     <message>
-        <location filename="../src/shortcut_edit.cpp" line="39"/>
+        <location filename="../src/shortcut_edit.cpp" line="129"/>
         <source>Reset to Default</source>
         <translation>Վերականգնել լռելյայն կարգավորումը</translation>
     </message>
@@ -1368,27 +1368,27 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Default</source>
-        <translation type="unfinished">Լռելյայն</translation>
+        <translation>Լռելյայն</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Մեղմ բլյուզ</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Հին դպրոց</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Տիեզերական երազներ</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Գրասեղան</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
@@ -1400,12 +1400,12 @@
         <location filename="../src/theme_manager.cpp" line="117"/>
         <location filename="../src/theme_manager.cpp" line="178"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Կրկնօրինակել</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="131"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Ուրիշ</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="183"/>
