@@ -88,7 +88,12 @@ DictionaryHunspell::DictionaryHunspell(const QString& language) :
 	}
 
 	// Create dictionary
+#ifndef Q_WIN32
 	m_dictionary = new Hunspell(QFile::encodeName(aff).constData(), QFile::encodeName(dic).constData());
+#else
+	m_dictionary = new Hunspell( ("\\\\?\\" + QDir::toNativeSeparators(aff)).toUtf8().constData(),
+			("\\\\?\\" + QDir::toNativeSeparators(dic)).toUtf8().constData() );
+#endif
 	m_codec = QTextCodec::codecForName(m_dictionary->get_dic_encoding());
 	if (!m_codec) {
 		delete m_dictionary;

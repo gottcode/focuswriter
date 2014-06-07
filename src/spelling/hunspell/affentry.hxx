@@ -11,6 +11,10 @@
 
 class LIBHUNSPELL_DLL_EXPORTED PfxEntry : protected AffEntry
 {
+private:
+       PfxEntry(const PfxEntry&);
+       PfxEntry& operator = (const PfxEntry&);
+private:
        AffixMgr*    pmyMgr;
 
        PfxEntry * next;
@@ -27,7 +31,7 @@ public:
   struct hentry *      checkword(const char * word, int len, char in_compound, 
                             const FLAG needflag = FLAG_NULL);
 
-  struct hentry *      check_twosfx(const char * word, int len, char in_compound, const FLAG needflag = 0);
+  struct hentry *      check_twosfx(const char * word, int len, char in_compound, const FLAG needflag = NULL);
 
   char *      check_morph(const char * word, int len, char in_compound,
                             const FLAG needflag = FLAG_NULL);
@@ -67,6 +71,10 @@ public:
 
 class LIBHUNSPELL_DLL_EXPORTED SfxEntry : protected AffEntry
 {
+private:
+       SfxEntry(const SfxEntry&);
+       SfxEntry& operator = (const SfxEntry&);
+private:
        AffixMgr*    pmyMgr;
        char *       rappnd;
 
@@ -90,7 +98,7 @@ public:
 //                    const FLAG cclass = FLAG_NULL, const FLAG needflag = FLAG_NULL, char in_compound=IN_CPD_NOT);
                     const FLAG cclass = FLAG_NULL, const FLAG needflag = FLAG_NULL, const FLAG badflag = 0);
 
-  struct hentry *   check_twosfx(const char * word, int len, int optflags, PfxEntry* ppfx, const FLAG needflag = 0);
+  struct hentry *   check_twosfx(const char * word, int len, int optflags, PfxEntry* ppfx, const FLAG needflag = NULL);
 
   char *      check_twosfx_morph(const char * word, int len, int optflags,
                  PfxEntry* ppfx, const FLAG needflag = FLAG_NULL);
