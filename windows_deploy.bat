@@ -33,7 +33,7 @@ MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
 ECHO Copying symbols
-COPY resources\symbols\symbols510.dat %APP% >nul
+COPY resources\symbols\symbols630.dat %APP% >nul
 
 ECHO Copying themes
 SET THEMES=%APP%\themes
@@ -41,32 +41,35 @@ MKDIR %THEMES%
 XCOPY /Q /S /Y resources\themes\* %THEMES% >nul
 
 ECHO Copying Qt libraries
+COPY %QTDIR%\bin\icu*.dll %APP% >nul
 COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul
-COPY %QTDIR%\bin\mingwm10.dll %APP% >nul
-COPY %QTDIR%\bin\QtCore4.dll %APP% >nul
-COPY %QTDIR%\bin\QtGui4.dll %APP% >nul
-COPY %QTDIR%\bin\QtNetwork4.dll %APP% >nul
+COPY "%QTDIR%\bin\libstdc++-6.dll" %APP% >nul
+COPY %QTDIR%\bin\libwinpthread-1.dll %APP% >nul
+COPY %QTDIR%\bin\Qt5Core.dll %APP% >nul
+COPY %QTDIR%\bin\Qt5Gui.dll %APP% >nul
+COPY %QTDIR%\bin\Qt5Multimedia.dll %APP% >nul
+COPY %QTDIR%\bin\Qt5Network.dll %APP% >nul
+COPY %QTDIR%\bin\Qt5PrintSupport.dll %APP% >nul
+COPY %QTDIR%\bin\Qt5Widgets.dll %APP% >nul
 
 ECHO Copying Qt plugins
 MKDIR %APP%\accessible
 XCOPY /Q /S /Y %QTDIR%\plugins\accessible %APP%\accessible >nul
-DEL %APP%\accessible\*.a >nul
-DEL %APP%\accessible\*d4.dll >nul
+DEL %APP%\accessible\*d.dll >nul
 
 MKDIR %APP%\bearer
 XCOPY /Q /S /Y %QTDIR%\plugins\bearer %APP%\bearer >nul
-DEL %APP%\bearer\*.a >nul
-DEL %APP%\bearer\*d4.dll >nul
+DEL %APP%\bearer\*d.dll >nul
 
-MKDIR %APP%\codecs
-XCOPY /Q /S /Y %QTDIR%\plugins\codecs %APP%\codecs >nul
-DEL %APP%\codecs\*.a >nul
-DEL %APP%\codecs\*d4.dll >nul
+MKDIR %APP%\platforms
+COPY %QTDIR%\plugins\platforms\qwindows.dll %APP%\platforms >nul
 
 MKDIR %APP%\imageformats
 XCOPY /Q /S /Y %QTDIR%\plugins\imageformats %APP%\imageformats >nul
-DEL %APP%\imageformats\*.a >nul
-DEL %APP%\imageformats\*d4.dll >nul
+DEL %APP%\imageformats\*d.dll >nul
+
+ECHO Making portable
+MKDIR %APP%\Data
 
 ECHO Creating compressed file
 CD %APP%
