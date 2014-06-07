@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='4.2.3.1'
+loversion='4.2.5.1'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	wget "http://download.documentfoundation.org/libreoffice/src/4.2.3/${lodict}.tar.xz"
+	curl -s -O -L "http://download.documentfoundation.org/libreoffice/src/4.2.5/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -23,7 +23,7 @@ fi
 
 echo -n 'Downloading Finnish dictionary...'
 if [ ! -e 'voikko.oxt' ]; then
-	wget 'http://www.puimula.org/htp/ooo/voikko-win/3.4.0.20140310/voikko.oxt'
+	curl -s -O 'http://www.puimula.org/htp/ooo/voikko-win/3.4.0.20140310/voikko.oxt'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -33,7 +33,7 @@ echo -n 'Downloading Korean dictionary...'
 kodict='korean_spell-checker-0-5-6_ooo'
 kofiles='korean_spell-checker-0-5-6_ooo/dictionaries'
 if [ ! -e "${kodict}.oxt" ]; then
-	wget "http://extensions.libreoffice.org/extension-center/korean-spellchecker/releases/0.5.6/${kodict}.oxt"
+	curl -s -O "http://extensions.libreoffice.org/extension-center/korean-spellchecker/releases/0.5.6/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -43,7 +43,7 @@ echo -n 'Downloading Turkish dictionary... '
 trdict='firefox-tr-dict-v0.3.2'
 trfiles="${trdict}/dictionaries"
 if [ ! -e "${trdict}.xpi" ]; then
-	wget "http://tr-spell.googlecode.com/files/${trdict}.xpi"
+	curl -s -O "http://tr-spell.googlecode.com/files/${trdict}.xpi"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -91,8 +91,8 @@ echo -n ' ar'
 cp -a $lofiles/ar/ar.aff dicts/ca.aff
 cp -a $lofiles/ar/ar.dic dicts/ca.dic
 echo -n ' ca'
-cp -a $lofiles/ca/ca.aff dicts/ca.aff
-cp -a $lofiles/ca/ca.dic dicts/ca.dic
+cp -a $lofiles/ca/dictionaries/ca.aff dicts/ca.aff
+cp -a $lofiles/ca/dictionaries/ca.dic dicts/ca.dic
 echo -n ' cs'
 cp -a $lofiles/cs_CZ/cs_CZ.aff dicts/cs.aff
 cp -a $lofiles/cs_CZ/cs_CZ.dic dicts/cs.dic
