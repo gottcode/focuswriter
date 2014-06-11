@@ -59,6 +59,7 @@
 #else
 #include <QDesktopServices>
 #endif
+#include <QShortcut>
 #include <QStyle>
 #include <QTextBlock>
 #include <QTextDocumentFragment>
@@ -174,7 +175,9 @@ namespace
 					|| ke == QKeySequence::Paste
 					|| ke == QKeySequence::Redo
 					|| ke == QKeySequence::Undo
-					|| ke == QKeySequence::SelectAll) {
+					|| ke == QKeySequence::SelectAll
+					|| ke == QKeySequence::MoveToEndOfBlock
+					|| ke == QKeySequence::MoveToStartOfBlock) {
 				event->ignore();
 				return true;
 			}
@@ -189,7 +192,9 @@ namespace
 				|| event == QKeySequence::Paste
 				|| event == QKeySequence::Redo
 				|| event == QKeySequence::Undo
-				|| event == QKeySequence::SelectAll) {
+				|| event == QKeySequence::SelectAll
+				|| event == QKeySequence::MoveToEndOfBlock
+				|| event == QKeySequence::MoveToStartOfBlock) {
 			event->ignore();
 			return;
 		}
@@ -285,6 +290,18 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
 	connect(m_text->document(), SIGNAL(modificationChanged(bool)), this, SIGNAL(modificationChanged(bool)));
+
+	QShortcut* shortcut_down = new QShortcut(m_text);
+	QShortcut* shortcut_up = new QShortcut(m_text);
+#ifndef Q_OS_MAC
+	shortcut_down->setKey(Qt::CTRL + Qt::Key_Down);
+	shortcut_up->setKey(Qt::CTRL + Qt::Key_Up);
+#else
+	shortcut_down->setKey(Qt::ALT + Qt::Key_Down);
+	shortcut_up->setKey(Qt::ALT + Qt::Key_Up);
+#endif
+	connect(shortcut_down, SIGNAL(activated()), this, SLOT(moveToBlockEnd()));
+	connect(shortcut_up, SIGNAL(activated()), this, SLOT(moveToBlockStart()));
 
 	m_scene_model = new SceneModel(m_text, this);
 
@@ -1000,6 +1017,40 @@ void Document::hideMouse()
 		m_text->viewport()->setCursor(Qt::BlankCursor);
 		setCursor(Qt::BlankCursor);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::moveToBlockEnd()
+{
+	QTextCursor cursor = m_text->textCursor();
+	if (cursor.atEnd()) {
+		return;
+	}
+
+	if (cursor.atBlockEnd()) {
+		cursor.movePosition(QTextCursor::NextCharacter);
+	}
+	cursor.movePosition(QTextCursor::EndOfBlock);
+
+	m_text->setTextCursor(cursor);
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::moveToBlockStart()
+{
+	QTextCursor cursor = m_text->textCursor();
+	if (cursor.atStart()) {
+		return;
+	}
+
+	if (cursor.atBlockStart()) {
+		cursor.movePosition(QTextCursor::PreviousCharacter);
+	}
+	cursor.movePosition(QTextCursor::StartOfBlock);
+
+	m_text->setTextCursor(cursor);
 }
 
 //-----------------------------------------------------------------------------

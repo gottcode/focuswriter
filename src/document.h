@@ -108,6 +108,8 @@ private slots:
 	void cursorPositionChanged();
 	void focusText();
 	void hideMouse();
+	void moveToBlockEnd();
+	void moveToBlockStart();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);
 	void dictionaryChanged();
