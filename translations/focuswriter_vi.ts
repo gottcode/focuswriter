@@ -123,81 +123,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="348"/>
+        <location filename="../src/document.cpp" line="365"/>
         <source>(Untitled %1)</source>
         <translation type="unfinished">(Chưa đặt tiêu đề %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="351"/>
+        <location filename="../src/document.cpp" line="368"/>
         <source>%1 (Read-Only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="432"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Sorry</source>
         <translation>Rất tiếc</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="432"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Không thể lưu &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="430"/>
+        <location filename="../src/document.cpp" line="447"/>
         <source>Save File As</source>
         <translation>Lưu tập tin thành</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Không thể ghi đè lên &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="469"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Rename File</source>
         <translation>Đổi tên tập tin</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Không thể đổi tên &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="508"/>
+        <location filename="../src/document.cpp" line="525"/>
         <source>Reload File?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="509"/>
+        <location filename="../src/document.cpp" line="526"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="527"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Tất cả các thay đổi chưa lưu sẽ bị mất.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
+        <location filename="../src/document.cpp" line="529"/>
         <source>Reload</source>
         <translation>Tải lại</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1210"/>
+        <location filename="../src/document.cpp" line="1261"/>
         <source>Untitled %1</source>
         <translation type="unfinished">Chưa đặt tiêu đề %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1264"/>
+        <location filename="../src/document.cpp" line="1315"/>
         <source>Question</source>
         <translation>Câu hỏi</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1265"/>
+        <location filename="../src/document.cpp" line="1316"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Lưu dưới dạng văn bản thông thường sẽ bỏ qua tất cả các chỉnh sửa về hiển thị. Bỏ qua toàn bộ các hiển thị?</translation>
     </message>
@@ -1676,7 +1676,7 @@
         <translation>Số từ: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="525"/>
+        <location filename="../src/document.cpp" line="542"/>
         <location filename="../src/window.cpp" line="1016"/>
         <source>Opening %1</source>
         <translation>Đang mở %1</translation>

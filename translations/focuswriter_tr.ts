@@ -51,15 +51,15 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln kelime</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln dakika</numerusform>
         </translation>
     </message>
     <message>
@@ -78,12 +78,12 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>En uzun seri</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="285"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Şu anki seri</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="298"/>
@@ -93,14 +93,14 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n gün</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -123,81 +123,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="348"/>
+        <location filename="../src/document.cpp" line="365"/>
         <source>(Untitled %1)</source>
         <translation>(Başlıksız %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="351"/>
+        <location filename="../src/document.cpp" line="368"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Salt Okunur)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="432"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Sorry</source>
         <translation>Üzgünüm</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="432"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kaydedilemedi.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="430"/>
+        <location filename="../src/document.cpp" line="447"/>
         <source>Save File As</source>
         <translation>Dosyayı Farklı Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; üzerine yazılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="469"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Rename File</source>
         <translation>Dosyayı Yeniden Adlandır</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; yeniden adlandırılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="508"/>
+        <location filename="../src/document.cpp" line="525"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya Yeniden Yüklensin mi?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="509"/>
+        <location filename="../src/document.cpp" line="526"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; dosyası diskten yeniden yüklensin mi?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="527"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Tüm kaydedilmemiş değişiklikler kaybedilecektir.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
+        <location filename="../src/document.cpp" line="529"/>
         <source>Reload</source>
         <translation>Yeniden Yükle</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1210"/>
+        <location filename="../src/document.cpp" line="1261"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Başlıksız %1</translation>
+        <translation>Başlıksız %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1264"/>
+        <location filename="../src/document.cpp" line="1315"/>
         <source>Question</source>
         <translation>Soru</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1265"/>
+        <location filename="../src/document.cpp" line="1316"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Düz metin olarak kaydetmek tüm biçimlendirleri geçersiz kılacaktır. Biçimlendirmeler geçersiz kılınsın mı?</translation>
     </message>
@@ -212,7 +212,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="190"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; dosyası başka bir program tarafından değiştirilmiş.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
@@ -1676,7 +1676,7 @@
         <translation>Kelime: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="525"/>
+        <location filename="../src/document.cpp" line="542"/>
         <location filename="../src/window.cpp" line="1016"/>
         <source>Opening %1</source>
         <translation>%1 açılıyor</translation>

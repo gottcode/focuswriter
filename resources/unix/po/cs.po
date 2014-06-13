@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# fri <pavelfric@seznam.cz>, 2014
+# fri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 11:50+0000\n"
-"PO-Revision-Date: 2014-03-26 11:46+0000\n"
-"Last-Translator: fri <pavelfric@seznam.cz>\n"
+"PO-Revision-Date: 2014-05-30 20:30+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/focuswriter/"
 "language/cs/)\n"
 "Language: cs\n"
@@ -30,6 +30,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter je jednoduchý, nerozptylující zpracovatel textu. Používá "
+"schovávající se rozhraní, ke kterému se dostanete pohybem ukazovátka vaší "
+"myši k okrajům obrazovky, čímž programu umožňuje mít důvěrně známý vzhled a "
+"dojem z něj, a přitom být z dohledu, takže se můžete ponořit do své práce."
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -38,6 +42,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter vám umožňuje si své prostředí přizpůsobit vytvořením vzhledů, "
+"jež řídí písmo, barvy, a obrázek na pozadí, čímž se pracovnímu prostředí "
+"přidá určitá nálada. Nabízí také za běhu se obnovující statistikou, denní "
+"cíle, možnost mít více otevřených dokumentů, ověřování pravopisu, a mnohé "
+"další."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -45,6 +54,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Navíc, když otevřete program, vaše rozdělaná práce se automaticky nahraje a "
+"otevře se na místě, kde jste ji naposledy opustily, takže se do ní zase "
+"budete moci okamžitě dát."
 
 #: ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"

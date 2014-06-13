@@ -4,12 +4,13 @@
 #
 # Translators:
 # seda <sedastam@yandex.com>, 2014
+# Seda Stamboltsyan<sedastam@yandex.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 11:50+0000\n"
-"PO-Revision-Date: 2014-03-29 11:28+0000\n"
+"PO-Revision-Date: 2014-05-08 14:39+0000\n"
 "Last-Translator: sedas\n"
 "Language-Team: Armenian (http://www.transifex.com/projects/p/focuswriter/"
 "language/hy/)\n"

@@ -128,81 +128,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="348"/>
+        <location filename="../src/document.cpp" line="365"/>
         <source>(Untitled %1)</source>
         <translation>(naamloos %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="351"/>
+        <location filename="../src/document.cpp" line="368"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Alleen lezen)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="432"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Sorry</source>
         <translation>Sorry</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="432"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kan niet opgeslagen worden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="430"/>
+        <location filename="../src/document.cpp" line="447"/>
         <source>Save File As</source>
         <translation>Opslaan als</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kan niet overschreven worden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="469"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Rename File</source>
         <translation>Bestand hernoemen</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kan niet hernoemd worden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="508"/>
+        <location filename="../src/document.cpp" line="525"/>
         <source>Reload File?</source>
         <translation>Herladen bestamd</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="509"/>
+        <location filename="../src/document.cpp" line="526"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Bestand &apos;%1&apos; herladen van disk</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="527"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Alle niet bewaarde wijzigingen zullen verloren gaan</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
+        <location filename="../src/document.cpp" line="529"/>
         <source>Reload</source>
         <translation>Herladen</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1210"/>
+        <location filename="../src/document.cpp" line="1261"/>
         <source>Untitled %1</source>
         <translation>Geen naam %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1264"/>
+        <location filename="../src/document.cpp" line="1315"/>
         <source>Question</source>
         <translation>Vraag</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1265"/>
+        <location filename="../src/document.cpp" line="1316"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Opslaan als kale tekst zal alle opmaak verwijderen. Opmaak verwijderen ?</translation>
     </message>
@@ -1682,7 +1682,7 @@
         <translation>Woorden: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="525"/>
+        <location filename="../src/document.cpp" line="542"/>
         <location filename="../src/window.cpp" line="1016"/>
         <source>Opening %1</source>
         <translation>Bestand %1 wordt geopend</translation>

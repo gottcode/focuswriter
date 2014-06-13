@@ -37,37 +37,37 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% z %Ln minut</numerusform>
+            <numerusform>%1% z %Ln minut</numerusform>
+            <numerusform>%1% z %Ln minut</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% z %Ln slov</numerusform>
+            <numerusform>%1% z %Ln slov</numerusform>
+            <numerusform>%1% z %Ln slov</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln slovo</numerusform>
+            <numerusform>%Ln slova</numerusform>
+            <numerusform>%Ln slov</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minuta</numerusform>
+            <numerusform>%Ln minuty</numerusform>
+            <numerusform>%Ln minut</numerusform>
         </translation>
     </message>
     <message>
@@ -101,10 +101,10 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n den</numerusform>
+            <numerusform>%n dny</numerusform>
+            <numerusform>%n dnů</numerusform>
         </translation>
     </message>
     <message>
@@ -133,81 +133,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="348"/>
+        <location filename="../src/document.cpp" line="365"/>
         <source>(Untitled %1)</source>
         <translation>(Bez názvu %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="351"/>
+        <location filename="../src/document.cpp" line="368"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (pouze pro čtení)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="432"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Sorry</source>
         <translation>Promiňte</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="432"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Nelze uložit &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="430"/>
+        <location filename="../src/document.cpp" line="447"/>
         <source>Save File As</source>
         <translation>Uložit soubor jako</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Nelze přepsat &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="469"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Rename File</source>
         <translation>Přejmenovat soubor</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Nelze přejmenovat &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="508"/>
+        <location filename="../src/document.cpp" line="525"/>
         <source>Reload File?</source>
         <translation>Nahrát soubor znovu?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="509"/>
+        <location filename="../src/document.cpp" line="526"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Nahrát soubor &apos;%1&apos; znovu z disku?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="527"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Všechny neuložené změny budou ztraceny.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
+        <location filename="../src/document.cpp" line="529"/>
         <source>Reload</source>
         <translation>Nahrát znovu</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1210"/>
+        <location filename="../src/document.cpp" line="1261"/>
         <source>Untitled %1</source>
         <translation>Bez názvu %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1264"/>
+        <location filename="../src/document.cpp" line="1315"/>
         <source>Question</source>
         <translation>Otázka</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1265"/>
+        <location filename="../src/document.cpp" line="1316"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Uložení v prostém textu zahodí všechno formátování. Zahodit formátování?</translation>
     </message>
@@ -903,7 +903,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="98"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdvojit</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="101"/>
@@ -928,7 +928,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="277"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdvojit sezení</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="322"/>
@@ -1177,74 +1177,74 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Neprůhlednost:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="212"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poloha:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Šířka:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="217"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Kulaté rohy pozadí textu</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="231"/>
         <location filename="../src/theme_dialog.cpp" line="249"/>
         <location filename="../src/theme_dialog.cpp" line="279"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poloměr:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="235"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmazané pozadí textu</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="253"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Stín pozadí textu</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="280"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Svislý posun:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="284"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Okraje</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="302"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Strana:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="361"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Odsadit první řádek</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="368"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nad:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="369"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pod:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="160"/>
@@ -1254,12 +1254,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="93"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit vzhled</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="150"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozadí okna</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="178"/>
@@ -1302,7 +1302,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="182"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozadí textu</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="196"/>
@@ -1352,7 +1352,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="333"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Výška:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="341"/>
@@ -1367,7 +1367,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový vzhled</translation>
     </message>
 </context>
 <context>
@@ -1380,54 +1380,54 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Default</source>
-        <translation type="unfinished">Výchozí</translation>
+        <translation>Výchozí</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Něžné blues</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Stará škola</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Vesmírné sny</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Psací stůl</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
         <location filename="../src/theme_manager.cpp" line="174"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="117"/>
         <location filename="../src/theme_manager.cpp" line="178"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdvojit</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="131"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastní</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="183"/>
         <source>Edit</source>
-        <translation type="unfinished">Upravit</translation>
+        <translation>Upravit</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="188"/>
         <source>Delete</source>
-        <translation type="unfinished">Smazat</translation>
+        <translation>Smazat</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="193"/>
@@ -1447,13 +1447,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat vzhled &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
         <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzhledy (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
@@ -1688,7 +1688,7 @@
         <translation>Slova: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="525"/>
+        <location filename="../src/document.cpp" line="542"/>
         <location filename="../src/window.cpp" line="1016"/>
         <source>Opening %1</source>
         <translation>Otevírá se %1</translation>

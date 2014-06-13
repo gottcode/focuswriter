@@ -37,37 +37,37 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% din %Ln minut</numerusform>
+            <numerusform>%1% din %Ln minute</numerusform>
+            <numerusform>%1% din %Ln minute</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% of %Ln cuvînt</numerusform>
+            <numerusform>%1% of %Ln cuvinte</numerusform>
+            <numerusform>%1% of %Ln cuvinte</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln cuvînt</numerusform>
+            <numerusform>%Ln cuvinte</numerusform>
+            <numerusform>%Ln cuvinte</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minut</numerusform>
+            <numerusform>%Ln minute</numerusform>
+            <numerusform>%Ln minute</numerusform>
         </translation>
     </message>
     <message>
@@ -101,10 +101,10 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n zi(le)</numerusform>
+            <numerusform>%n zi</numerusform>
+            <numerusform>%n zile</numerusform>
         </translation>
     </message>
     <message>
@@ -133,81 +133,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="348"/>
+        <location filename="../src/document.cpp" line="365"/>
         <source>(Untitled %1)</source>
         <translation>(Fără titlu %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="351"/>
+        <location filename="../src/document.cpp" line="368"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Doar-citire)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="432"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Sorry</source>
         <translation>Scuze</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="415"/>
+        <location filename="../src/document.cpp" line="432"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Nu se poate salva &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="430"/>
+        <location filename="../src/document.cpp" line="447"/>
         <source>Save File As</source>
         <translation>Salvează fişierul ca</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="440"/>
-        <location filename="../src/document.cpp" line="476"/>
+        <location filename="../src/document.cpp" line="457"/>
+        <location filename="../src/document.cpp" line="493"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Nu se poate suprascrie&apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="469"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Rename File</source>
         <translation>Redenumire fişier</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="482"/>
+        <location filename="../src/document.cpp" line="499"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Nu se poate redenumi &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="508"/>
+        <location filename="../src/document.cpp" line="525"/>
         <source>Reload File?</source>
         <translation>Reîncarcă fişier?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="509"/>
+        <location filename="../src/document.cpp" line="526"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Reîncarcă fişierul &apos;%1&apos; de pe disc?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="527"/>
         <source>All unsaved changes will be lost.</source>
-        <translation>Toate modificările nesalvate vor fi pierdute</translation>
+        <translation>Toate modificările nesalvate vor fi pierdute.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
+        <location filename="../src/document.cpp" line="529"/>
         <source>Reload</source>
         <translation>Reîncarcă</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1210"/>
+        <location filename="../src/document.cpp" line="1261"/>
         <source>Untitled %1</source>
         <translation>FărăTitlu %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1264"/>
+        <location filename="../src/document.cpp" line="1315"/>
         <source>Question</source>
         <translation>Întrebare</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1265"/>
+        <location filename="../src/document.cpp" line="1316"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Salvînd ca text simplu se vor pierde toate formatările. Renunţaţi la formatare?</translation>
     </message>
@@ -313,7 +313,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="72"/>
         <source>Replace &amp;All</source>
-        <translation>Înlocuieşte toate</translation>
+        <translation>Înlocuieşte to&amp;ate</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="134"/>
@@ -903,7 +903,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="98"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicat</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="101"/>
@@ -928,7 +928,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="277"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplică sesiune</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="322"/>
@@ -1177,74 +1177,74 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacitate:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="212"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poziţie:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lăţime:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="217"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Text fundal colţuri rotunjite </translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="231"/>
         <location filename="../src/theme_dialog.cpp" line="249"/>
         <location filename="../src/theme_dialog.cpp" line="279"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rază:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="235"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Estompare text fundal</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="253"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Umbră text fundal</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="280"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Offset vertical:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="284"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Margini</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="302"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fereastră:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagină:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="361"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Indentare prima linie</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="368"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Deasupra:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="369"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sub:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="160"/>
@@ -1254,12 +1254,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="93"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Editare temă</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="150"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Fundal fereastră</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="178"/>
@@ -1302,7 +1302,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="182"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Text fundal</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="196"/>
@@ -1352,7 +1352,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="333"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Înălţime:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="341"/>
@@ -1367,7 +1367,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Temă nouă</translation>
     </message>
 </context>
 <context>
@@ -1380,54 +1380,54 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Default</source>
-        <translation type="unfinished">Iniţial</translation>
+        <translation>Iniţial</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Albatru gentil</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Vechea şcoală</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Vise spaţiale</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Birou de scris</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
         <location filename="../src/theme_manager.cpp" line="174"/>
         <source>New</source>
-        <translation type="unfinished">Nou</translation>
+        <translation>Nou</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="117"/>
         <location filename="../src/theme_manager.cpp" line="178"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicat</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="131"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizată</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="183"/>
         <source>Edit</source>
-        <translation type="unfinished">Editare</translation>
+        <translation>Editare</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="188"/>
         <source>Delete</source>
-        <translation type="unfinished">Ştergere</translation>
+        <translation>Ştergere</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="193"/>
@@ -1447,13 +1447,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ştergeţi tema &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
         <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Teme (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
@@ -1688,7 +1688,7 @@
         <translation>Cuvinte: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="525"/>
+        <location filename="../src/document.cpp" line="542"/>
         <location filename="../src/window.cpp" line="1016"/>
         <source>Opening %1</source>
         <translation>Deschidere %1</translation>
@@ -1837,7 +1837,7 @@
     <message>
         <location filename="../src/window.cpp" line="1296"/>
         <source>Save A&amp;ll</source>
-        <translation>Salvează tot</translation>
+        <translation>Sa&amp;lvează tot</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1299"/>
