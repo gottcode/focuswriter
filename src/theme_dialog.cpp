@@ -580,15 +580,20 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 {
 	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
 
+	// Position preview text
+	int padding = theme.foregroundPadding();
+	int x = foreground.x() + padding;
+	int y = foreground.y() + padding + theme.spacingAboveParagraph();
+	int width = foreground.width() - (padding * 2);
+	int height = foreground.height() - (padding * 2) - theme.spacingAboveParagraph();
+	m_preview_text->setGeometry(x, y, width, height);
+
 	// Set colors
-	QColor color = theme.foregroundColor();
-	color.setAlpha(0);
 	QColor text_color = theme.textColor();
 	text_color.setAlpha(255);
 
 	QPalette p = m_preview_text->palette();
-	p.setColor(QPalette::Window, Qt::transparent);
-	p.setColor(QPalette::Base, color);
+	p.setBrush(QPalette::Base, preview.copy(x, y, width, height));
 	p.setColor(QPalette::Text, text_color);
 	p.setColor(QPalette::Highlight, text_color);
 	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
@@ -615,14 +620,6 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 
 	// Set font
 	m_preview_text->setFont(theme.textFont());
-
-	// Position preview text
-	int padding = theme.foregroundPadding();
-	int x = foreground.x() + padding;
-	int y = foreground.y() + padding + theme.spacingAboveParagraph();
-	int width = foreground.width() - (padding * 2);
-	int height = foreground.height() - (padding * 2) - theme.spacingAboveParagraph();
-	m_preview_text->setGeometry(x, y, width, height);
 
 	// Render text
 	m_preview_text->render(&preview, m_preview_text->pos());
