@@ -489,7 +489,7 @@ void Theme::reload()
 	d->blur_enabled = settings.value("ForegroundBlur/Enabled", false).toBool();
 	d->blur_radius = settings.value("ForegroundBlur/Radius", 32).toInt();
 
-	d->shadow_enabled = settings.value("ForegroundShadow/Enabled", true).toBool();
+	d->shadow_enabled = settings.value("ForegroundShadow/Enabled", !settings.contains("Foreground/Color")).toBool();
 	d->shadow_color = settings.value("ForegroundShadow/Color", "#000000").toString();
 	d->shadow_radius = settings.value("ForegroundShadow/Radius", 8).toInt();
 	d->shadow_offset = settings.value("ForegroundShadow/Offset", 2).toInt();
