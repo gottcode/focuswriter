@@ -26,7 +26,10 @@ macx {
 }
 
 # Set program version
-VERSION = 1.5.0
+VERSION = $$system(git rev-parse --short HEAD)
+isEmpty(VERSION) {
+	VERSION = 0
+}
 DEFINES += VERSIONSTR=\\\"git.$${VERSION}\\\"
 
 # Set program name
