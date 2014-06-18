@@ -115,7 +115,11 @@ Window::Window(const QStringList& command_line_files) :
 	new ActionManager(this);
 
 	// Create window contents first so they stack behind documents
+#ifndef Q_OS_MAC
+	menuBar()->setNativeMenuBar(false);
+#else
 	menuBar();
+#endif
 	m_toolbar = new QToolBar(this);
 	m_toolbar->setFloatable(false);
 	m_toolbar->setMovable(false);
