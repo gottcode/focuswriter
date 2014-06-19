@@ -69,6 +69,23 @@
 #include <algorithm>
 #include <ctime>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
+//-----------------------------------------------------------------------------
+
+static inline int cursorWidth()
+{
+#ifdef Q_OS_WIN
+	DWORD width = 1;
+	if (SystemParametersInfo(SPI_GETCARETWIDTH, 0, &width, 0))
+		return int(width);
+	else
+#endif
+		return -1;
+}
+
 //-----------------------------------------------------------------------------
 
 namespace
@@ -733,7 +750,7 @@ void Document::loadTheme(const Theme& theme, const QBrush& foreground)
 		QEvent e(QEvent::FontChange);
 		QApplication::sendEvent(m_text, &e);
 	}
-	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
+	m_text->setCursorWidth(!m_block_cursor ? cursorWidth() : m_text->fontMetrics().averageCharWidth());
 
 	int padding = theme.foregroundPadding();
 	m_layout->setRowMinimumHeight(0, padding);
@@ -797,7 +814,7 @@ void Document::loadPreferences()
 	}
 
 	m_block_cursor = Preferences::instance().blockCursor();
-	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
+	m_text->setCursorWidth(!m_block_cursor ? cursorWidth() : m_text->fontMetrics().averageCharWidth());
 	QFont font = m_text->font();
 	font.setStyleStrategy(Preferences::instance().smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
 	m_text->setFont(font);
