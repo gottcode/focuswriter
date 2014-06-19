@@ -184,6 +184,9 @@ Section "install"
 	SetOutPath $INSTDIR\accessible
 	File $%QTDIR%\plugins\accessible\qtaccessiblewidgets.dll
 
+	SetOutPath $INSTDIR\audio
+	File $%QTDIR%\plugins\audio\qtaudio_windows.dll
+
 	SetOutPath $INSTDIR\bearer
 	File $%QTDIR%\plugins\bearer\qgenericbearer.dll
 	File $%QTDIR%\plugins\bearer\qnativewifibearer.dll
@@ -209,8 +212,15 @@ Section "install"
 	File $%QTDIR%\plugins\imageformats\qwbmp.dll
 	File $%QTDIR%\plugins\imageformats\qwebp.dll
 
+	SetOutPath $INSTDIR\mediaservice
+	File $%QTDIR%\plugins\mediaservice\dsengine.dll
+	File $%QTDIR%\plugins\mediaservice\qtmedia_audioengine.dll
+
 	SetOutPath $INSTDIR\platforms
 	File $%QTDIR%\plugins\platforms\qwindows.dll
+
+	SetOutPath $INSTDIR\printsupport
+	File $%QTDIR%\plugins\printsupport\windowsprintersupport.dll
 
 	SetOutPath $INSTDIR\sounds
 	File ..\sounds\*.wav
@@ -295,11 +305,14 @@ Section "Uninstall"
 	Delete $INSTDIR\ReadMe.txt
 	Delete $INSTDIR\*.dll
 	Delete $INSTDIR\accessible\*.dll
+	Delete $INSTDIR\audio\*.dll
 	Delete $INSTDIR\bearer\*.dll
 	Delete $INSTDIR\dictionaries\*\*\*
 	Delete $INSTDIR\icons\hicolor\*\*
 	Delete $INSTDIR\imageformats\*.dll
+	Delete $INSTDIR\mediaservice\*.dll
 	Delete $INSTDIR\platforms\qwindows.dll
+	Delete $INSTDIR\printsupport\*.dll
 	Delete $INSTDIR\sounds\*.wav
 	Delete $INSTDIR\themes\*\*
 	Delete $INSTDIR\translations\*.qm
@@ -310,9 +323,12 @@ Section "Uninstall"
 	RMDir /r $INSTDIR\icons
 	RMDir /r $INSTDIR\themes
 	RMDir $INSTDIR\accessible
+	RMDir $INSTDIR\audio
 	RMDir $INSTDIR\bearer
 	RMDir $INSTDIR\imageformats
+	RMDir $INSTDIR\mediaservice
 	RMDir $INSTDIR\platforms
+	RMDir $INSTDIR\printsupport
 	RMDir $INSTDIR\sounds
 	RMDir $INSTDIR\translations
 	RMDir $INSTDIR
