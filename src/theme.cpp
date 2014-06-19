@@ -259,7 +259,7 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 {
 	// Create image
 	QImage image(background, QImage::Format_ARGB32_Premultiplied);
-	image.fill(backgroundColor());
+	image.fill(backgroundColor().rgb());
 
 	QPainter painter(&image);
 	painter.setPen(Qt::NoPen);
@@ -321,7 +321,7 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 		QImage copy = image.copy(foreground);
 
 		QImage shadow(background, QImage::Format_ARGB32_Premultiplied);
-		shadow.fill(Qt::transparent);
+		shadow.fill(0);
 
 		QPainter shadow_painter(&shadow);
 		shadow_painter.setRenderHint(QPainter::Antialiasing);

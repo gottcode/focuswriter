@@ -40,6 +40,8 @@
 #include <QMessageBox>
 #include <QPushButton>
 
+#include <algorithm>
+
 //-----------------------------------------------------------------------------
 
 SessionManager::SessionManager(Window* parent)

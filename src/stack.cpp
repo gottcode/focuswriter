@@ -696,7 +696,7 @@ void Stack::updateBackground()
 	QRect foreground = m_theme.foregroundRect(size());
 
 	QImage image(size(), QImage::Format_ARGB32_Premultiplied);
-	image.fill(m_theme.loadColor());
+	image.fill(m_theme.loadColor().rgb());
 	{
 		QPainter painter(&image);
 		QColor color = m_theme.foregroundColor();

@@ -125,8 +125,10 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	translator.load(m_appname + current, m_path);
 	QCoreApplication::installTranslator(&translator);
 
+#if (QT_VERSION >= (QT_VERSION_CHECK(5,0,0)))
 	// Work around bug in Qt 5 where text direction is not loaded
 	QApplication::setLayoutDirection(QLocale(current).textDirection());
+#endif
 }
 
 //-----------------------------------------------------------------------------
