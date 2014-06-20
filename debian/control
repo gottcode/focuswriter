@@ -4,10 +4,12 @@ Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
 Build-Depends: debhelper (>= 9),
-	       libqt4-dev,
-	       libenchant-dev,
-	       libzip-dev,
-	       pkg-config
+		qt5-default,
+		qtbase5-dev,
+		qtmultimedia5-dev,
+		libhunspell-dev,
+		pkg-config,
+		zlib1g-dev
 Standards-Version: 3.9.5
 Homepage: http://gottcode.org/focuswriter/
 Vcs-Git: git://anonscm.debian.org/collab-maint/focuswriter.git
