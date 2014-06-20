@@ -8,11 +8,11 @@ silence lintian desktop-entry-lacks-keywords-entry
  1 file changed, 1 insertion(+)
 
 diff --git a/resources/unix/focuswriter.desktop b/resources/unix/focuswriter.desktop
-index e9bb6bb..5aa0c1e 100644
+index d27d6bb..dcdaa97 100644
 --- a/resources/unix/focuswriter.desktop
 +++ b/resources/unix/focuswriter.desktop
 @@ -81,3 +81,4 @@ Exec=focuswriter %F
  Terminal=false
- MimeType=application/rtf;application/vnd.oasis.opendocument.text;text/plain;text/rtf;
+ MimeType=application/rtf;application/vnd.oasis.opendocument.text;vnd.openxmlformats-officedocument.wordprocessingml.document;text/plain;text/rtf;
  Categories=Qt;Office;WordProcessor;
 +Keywords=fullscreen editor typewriter keyclick distraction concentration focused monomaniacal writing
