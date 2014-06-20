@@ -1,7 +1,7 @@
 @ECHO OFF
 
 SET APP=FocusWriter
-FOR /f %%i IN ('git rev-parse --short HEAD') DO SET VERSION=%%i
+FOR /f %%i IN ('git describe') DO SET VERSION=%%i
 
 ECHO Copying executable
 MKDIR %APP%

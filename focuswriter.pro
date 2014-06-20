@@ -26,11 +26,11 @@ macx {
 }
 
 # Set program version
-VERSION = $$system(git rev-parse --short HEAD)
+VERSION = $$system(git describe)
 isEmpty(VERSION) {
-	VERSION = 0
+	VERSION = 1.5.0
 }
-DEFINES += VERSIONSTR=\\\"git.$${VERSION}\\\"
+DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
 unix: !macx {
