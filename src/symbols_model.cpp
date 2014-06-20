@@ -308,7 +308,7 @@ void SymbolsModel::setData(const QStringList& datadirs)
 {
 	QStringList files = QStringList()
 #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-			<< "symbols620.dat"
+			<< "symbols630.dat"
 #endif
 			<< "symbols510.dat";
 	foreach (const QString& path, datadirs) {

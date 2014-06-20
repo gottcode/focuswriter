@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
 
 #include "preferences.h"
 
-#include "dictionary.h"
 #include "dictionary_manager.h"
+#include "format_manager.h"
 #include "scene_model.h"
 
 #include <QApplication>
@@ -30,126 +30,68 @@
 
 //-----------------------------------------------------------------------------
 
-Preferences::Preferences()
+Preferences::Preferences() :
+	m_goal_type(0, 2),
+	m_goal_minutes(5, 1440),
+	m_goal_words(100, 100000),
+	m_goal_streak_minimum(1, 100),
+	m_page_type(0, 2),
+	m_page_characters(500, 10000),
+	m_page_paragraphs(1, 100),
+	m_page_words(100, 2000),
+	m_wordcount_type(0, 2),
+	m_save_format(FormatManager::types())
 {
-	QSettings settings;
-
-	m_goal_type = settings.value("Goal/Type", 1).toInt();
-	m_goal_minutes = settings.value("Goal/Minutes", 30).toInt();
-	m_goal_words = settings.value("Goal/Words", 1000).toInt();
-
-	m_show_characters = settings.value("Stats/ShowCharacters", false).toBool();
-	m_show_pages = settings.value("Stats/ShowPages", false).toBool();
-	m_show_paragraphs = settings.value("Stats/ShowParagraphs", false).toBool();
-	m_show_words = settings.value("Stats/ShowWords", true).toBool();
-
-	m_page_type = settings.value("Stats/PageSizeType", 2).toInt();
-	m_page_characters = settings.value("Stats/CharactersPerPage", 1500).toInt();
-	m_page_paragraphs = settings.value("Stats/ParagraphsPerPage", 5).toInt();
-	m_page_words = settings.value("Stats/WordsPerPage", 250).toInt();
-
-	m_accurate_wordcount = settings.value("Stats/AccurateWordcount", true).toBool();
-
-	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
-	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
-	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
-	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
-	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
-	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
-	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", false).toBool();
-
-	m_scene_divider = settings.value("SceneList/Divider", QLatin1String("##")).toString();
-	SceneModel::setSceneDivider(m_scene_divider);
-
-	m_auto_save = settings.value("Save/Auto", false).toBool();
-	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
-
-	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
-	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace" << "|" << "Themes";
-	m_toolbar_actions = settings.value("Toolbar/Actions", m_toolbar_actions).toStringList();
-
-	m_highlight_misspelled = settings.value("Spelling/HighlightMisspelled", true).toBool();
-	m_ignore_numbers = settings.value("Spelling/IgnoreNumbers", true).toBool();
-	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
-	m_language = settings.value("Spelling/Language", QLocale().name()).toString();
-
-	QStringList languages = DictionaryManager::instance().availableDictionaries();
-	if (!languages.isEmpty() && !languages.contains(m_language)) {
-		int close = languages.indexOf(QRegExp(m_language.left(2) + ".*"));
-		m_language = (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
-	}
-	DictionaryManager::instance().setDefaultLanguage(m_language);
-	Dictionary::setIgnoreNumbers(m_ignore_numbers);
-	Dictionary::setIgnoreUppercase(m_ignore_uppercase);
+	forgetChanges();
 }
 
 //-----------------------------------------------------------------------------
 
 Preferences::~Preferences()
 {
-	if (!isChanged()) {
-		return;
-	}
-
-	QSettings settings;
-
-	settings.setValue("Goal/Type", m_goal_type);
-	settings.setValue("Goal/Minutes", m_goal_minutes);
-	settings.setValue("Goal/Words", m_goal_words);
-
-	settings.setValue("Stats/ShowCharacters", m_show_characters);
-	settings.setValue("Stats/ShowPages", m_show_pages);
-	settings.setValue("Stats/ShowParagraphs", m_show_paragraphs);
-	settings.setValue("Stats/ShowWords", m_show_words);
-
-	settings.setValue("Stats/PageSizeType", m_page_type);
-	settings.setValue("Stats/CharactersPerPage", m_page_characters);
-	settings.setValue("Stats/ParagraphsPerPage", m_page_paragraphs);
-	settings.setValue("Stats/WordsPerPage", m_page_words);
-
-	settings.setValue("Stats/AccurateWordcount", m_accurate_wordcount);
-
-	settings.setValue("Edit/AlwaysCenter", m_always_center);
-	settings.setValue("Edit/BlockCursor", m_block_cursor);
-	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
-	settings.setValue("Edit/SmartQuotes", m_smart_quotes);
-	settings.setValue("Edit/SmartDoubleQuotes", m_double_quotes);
-	settings.setValue("Edit/SmartSingleQuotes", m_single_quotes);
-	settings.setValue("Edit/TypewriterSounds", m_typewriter_sounds);
-
-	settings.setValue("SceneList/Divider", m_scene_divider);
-
-	settings.setValue("Save/Auto", m_auto_save);
-	settings.setValue("Save/RememberPositions", m_save_positions);
-
-	settings.setValue("Toolbar/Style", m_toolbar_style);
-	settings.setValue("Toolbar/Actions", m_toolbar_actions);
-
-	settings.setValue("Spelling/HighlightMisspelled", m_highlight_misspelled);
-	settings.setValue("Spelling/IgnoreNumbers", m_ignore_numbers);
-	settings.setValue("Spelling/IgnoreUppercase", m_ignore_uppercase);
-	settings.setValue("Spelling/Language", m_language);
+	saveChanges();
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::goalType() const
+RangedInt Preferences::goalType() const
 {
 	return m_goal_type;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::goalMinutes() const
+RangedInt Preferences::goalMinutes() const
 {
 	return m_goal_minutes;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::goalWords() const
+RangedInt Preferences::goalWords() const
 {
 	return m_goal_words;
+}
+
+//-----------------------------------------------------------------------------
+
+bool Preferences::goalHistory() const
+{
+	return m_goal_history;
+}
+
+//-----------------------------------------------------------------------------
+
+bool Preferences::goalStreaks() const
+{
+	return m_goal_streaks;
+}
+
+//-----------------------------------------------------------------------------
+
+RangedInt Preferences::goalStreakMinimum() const
+{
+	return m_goal_streak_minimum;
 }
 
 //-----------------------------------------------------------------------------
@@ -171,6 +113,27 @@ void Preferences::setGoalMinutes(int goal)
 void Preferences::setGoalWords(int goal)
 {
 	setValue(m_goal_words, goal);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setGoalHistory(bool enable)
+{
+	setValue(m_goal_history, enable);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setGoalStreaks(bool enable)
+{
+	setValue(m_goal_streaks, enable);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setGoalStreakMinimum(int percent)
+{
+	setValue(m_goal_streak_minimum, percent);
 }
 
 //-----------------------------------------------------------------------------
@@ -231,28 +194,28 @@ void Preferences::setShowWords(bool show)
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageType() const
+RangedInt Preferences::pageType() const
 {
 	return m_page_type;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageCharacters() const
+RangedInt Preferences::pageCharacters() const
 {
 	return m_page_characters;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageParagraphs() const
+RangedInt Preferences::pageParagraphs() const
 {
 	return m_page_paragraphs;
 }
 
 //-----------------------------------------------------------------------------
 
-int Preferences::pageWords() const
+RangedInt Preferences::pageWords() const
 {
 	return m_page_words;
 }
@@ -287,16 +250,16 @@ void Preferences::setPageWords(int words)
 
 //-----------------------------------------------------------------------------
 
-bool Preferences::accurateWordcount() const
+RangedInt Preferences::wordcountType() const
 {
-	return m_accurate_wordcount;
+	return m_wordcount_type;
 }
 
 //-----------------------------------------------------------------------------
 
-void Preferences::setAccurateWordcount(bool accurate)
+void Preferences::setWordcountType(int type)
 {
-	setValue(m_accurate_wordcount, accurate);
+	setValue(m_wordcount_type, type);
 }
 
 //-----------------------------------------------------------------------------
@@ -428,6 +391,20 @@ bool Preferences::savePositions() const
 
 //-----------------------------------------------------------------------------
 
+bool Preferences::writeByteOrderMark() const
+{
+	return m_write_bom;
+}
+
+//-----------------------------------------------------------------------------
+
+RangedString Preferences::saveFormat() const
+{
+	return m_save_format;
+}
+
+//-----------------------------------------------------------------------------
+
 void Preferences::setAutoSave(bool save)
 {
 	setValue(m_auto_save, save);
@@ -438,6 +415,20 @@ void Preferences::setAutoSave(bool save)
 void Preferences::setSavePositions(bool save)
 {
 	setValue(m_save_positions, save);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setWriteByteOrderMark(bool write_bom)
+{
+	setValue(m_write_bom, write_bom);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setSaveFormat(const QString& format)
+{
+	setValue(m_save_format, format);
 }
 
 //-----------------------------------------------------------------------------
@@ -521,7 +512,131 @@ void Preferences::setIgnoreUppercaseWords(bool ignore)
 
 void Preferences::setLanguage(const QString& language)
 {
-	setValue(m_language, language);
+	setValue(m_language, DictionaryManager::instance().availableDictionary(language));
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::reload()
+{
+	QSettings settings;
+
+	m_goal_type = settings.value("Goal/Type", 1).toInt();
+	m_goal_minutes = settings.value("Goal/Minutes", 30).toInt();
+	m_goal_words = settings.value("Goal/Words", 1000).toInt();
+	m_goal_history = settings.value("Goal/History", true).toBool();
+	m_goal_streaks = settings.value("Goal/Streaks", true).toBool();
+	m_goal_streak_minimum = settings.value("Goal/StreakMinimum", 100).toInt();
+
+	m_show_characters = settings.value("Stats/ShowCharacters", false).toBool();
+	m_show_pages = settings.value("Stats/ShowPages", false).toBool();
+	m_show_paragraphs = settings.value("Stats/ShowParagraphs", false).toBool();
+	m_show_words = settings.value("Stats/ShowWords", true).toBool();
+
+	m_page_type = settings.value("Stats/PageSizeType", 2).toInt();
+	m_page_characters = settings.value("Stats/CharactersPerPage", 1500).toInt();
+	m_page_paragraphs = settings.value("Stats/ParagraphsPerPage", 5).toInt();
+	m_page_words = settings.value("Stats/WordsPerPage", 250).toInt();
+
+	int old_wordcount_type = !settings.value("Stats/AccurateWordcount", true).toBool();
+	QLocale::Language language = QLocale().language();
+	if (language == QLocale::Chinese ||
+			language == QLocale::Japanese ||
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+			language == QLocale::Khmer ||
+			language == QLocale::Lao ||
+#endif
+			language == QLocale::Thai) {
+		old_wordcount_type = 2;
+	}
+	m_wordcount_type = settings.value("Stats/WordcountType", old_wordcount_type).toInt();
+
+	m_always_center = settings.value("Edit/AlwaysCenter", false).toBool();
+	m_block_cursor = settings.value("Edit/BlockCursor", false).toBool();
+	m_smooth_fonts = settings.value("Edit/SmoothFonts", true).toBool();
+	m_smart_quotes = settings.value("Edit/SmartQuotes", true).toBool();
+	m_double_quotes = settings.value("Edit/SmartDoubleQuotes", -1).toInt();
+	m_single_quotes = settings.value("Edit/SmartSingleQuotes", -1).toInt();
+	m_typewriter_sounds = settings.value("Edit/TypewriterSounds", false).toBool();
+
+	m_scene_divider = settings.value("SceneList/Divider", QLatin1String("##")).toString();
+	SceneModel::setSceneDivider(m_scene_divider);
+
+	m_auto_save = settings.value("Save/Auto", false).toBool();
+	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
+	m_write_bom = settings.value("Save/WriteBOM", true).toBool();
+	m_save_format = settings.value("Save/DefaultFormat", "odt").toString();
+	const QStringList formats = QStringList() << "odt" << "rtf" << "txt";
+	if (!formats.contains(m_save_format)) {
+		m_save_format = "odt";
+	}
+
+	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
+	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace" << "|" << "Themes";
+	m_toolbar_actions = settings.value("Toolbar/Actions", m_toolbar_actions).toStringList();
+
+	m_highlight_misspelled = settings.value("Spelling/HighlightMisspelled", true).toBool();
+	m_ignore_numbers = settings.value("Spelling/IgnoreNumbers", true).toBool();
+	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
+	m_language = DictionaryManager::instance().availableDictionary(settings.value("Spelling/Language", QLocale().name()).toString());
+
+	DictionaryManager::instance().setDefaultLanguage(m_language);
+	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
+	DictionaryManager::instance().setIgnoreUppercase(m_ignore_uppercase);
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::write()
+{
+	QSettings settings;
+
+	settings.setValue("Goal/Type", m_goal_type.value());
+	settings.setValue("Goal/Minutes", m_goal_minutes.value());
+	settings.setValue("Goal/Words", m_goal_words.value());
+	settings.setValue("Goal/History", m_goal_history);
+	settings.setValue("Goal/Streaks", m_goal_streaks);
+	settings.setValue("Goal/StreakMinimum", m_goal_streak_minimum.value());
+
+	settings.setValue("Stats/ShowCharacters", m_show_characters);
+	settings.setValue("Stats/ShowPages", m_show_pages);
+	settings.setValue("Stats/ShowParagraphs", m_show_paragraphs);
+	settings.setValue("Stats/ShowWords", m_show_words);
+
+	settings.setValue("Stats/PageSizeType", m_page_type.value());
+	settings.setValue("Stats/CharactersPerPage", m_page_characters.value());
+	settings.setValue("Stats/ParagraphsPerPage", m_page_paragraphs.value());
+	settings.setValue("Stats/WordsPerPage", m_page_words.value());
+
+	settings.setValue("Stats/WordcountType", m_wordcount_type.value());
+
+	settings.setValue("Edit/AlwaysCenter", m_always_center);
+	settings.setValue("Edit/BlockCursor", m_block_cursor);
+	settings.setValue("Edit/SmoothFonts", m_smooth_fonts);
+	settings.setValue("Edit/SmartQuotes", m_smart_quotes);
+	settings.setValue("Edit/SmartDoubleQuotes", m_double_quotes);
+	settings.setValue("Edit/SmartSingleQuotes", m_single_quotes);
+	settings.setValue("Edit/TypewriterSounds", m_typewriter_sounds);
+
+	settings.setValue("SceneList/Divider", m_scene_divider);
+
+	settings.setValue("Save/Auto", m_auto_save);
+	settings.setValue("Save/RememberPositions", m_save_positions);
+	settings.setValue("Save/WriteBOM", m_write_bom);
+	settings.setValue("Save/DefaultFormat", m_save_format.value());
+
+	settings.setValue("Toolbar/Style", m_toolbar_style);
+	settings.setValue("Toolbar/Actions", m_toolbar_actions);
+
+	settings.setValue("Spelling/HighlightMisspelled", m_highlight_misspelled);
+	settings.setValue("Spelling/IgnoreNumbers", m_ignore_numbers);
+	settings.setValue("Spelling/IgnoreUppercase", m_ignore_uppercase);
+	settings.setValue("Spelling/Language", m_language);
+
+	DictionaryManager::instance().addProviders();
+	DictionaryManager::instance().setDefaultLanguage(m_language);
+	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
+	DictionaryManager::instance().setIgnoreUppercase(m_ignore_uppercase);
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,12 +21,16 @@
 
 #include "alert.h"
 #include "block_stats.h"
+#include "daily_progress.h"
 #include "dictionary_manager.h"
 #include "document_watcher.h"
 #include "document_writer.h"
+#include "format_manager.h"
 #include "highlighter.h"
 #include "odt_reader.h"
 #include "preferences.h"
+#include "rtf_reader.h"
+#include "rtf_writer.h"
 #include "scene_list.h"
 #include "scene_model.h"
 #include "smart_quotes.h"
@@ -34,8 +38,6 @@
 #include "spell_checker.h"
 #include "theme.h"
 #include "window.h"
-#include "rtf/reader.h"
-#include "rtf/writer.h"
 
 #include <QApplication>
 #include <QBuffer>
@@ -52,13 +54,19 @@
 #include <QPushButton>
 #include <QScrollBar>
 #include <QSettings>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QStandardPaths>
+#else
+#include <QDesktopServices>
+#endif
+#include <QShortcut>
 #include <QStyle>
 #include <QTextBlock>
 #include <QTextDocumentFragment>
 #include <QTextEdit>
-#include <QTextStream>
 #include <QTimer>
 
+#include <algorithm>
 #include <ctime>
 
 //-----------------------------------------------------------------------------
@@ -66,24 +74,6 @@
 namespace
 {
 	QList<int> g_untitled_indexes = QList<int>() << 0;
-
-	QString g_cache_path;
-
-	QString randomCacheFilename()
-	{
-		static time_t seed = 0;
-		if (seed == 0) {
-			seed = time(0);
-			qsrand(seed);
-		}
-
-		QString filename;
-		QDir dir(g_cache_path);
-		do {
-			filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
-		} while (dir.exists(filename));
-		return filename;
-	}
 
 	class TextEdit : public QTextEdit
 	{
@@ -144,6 +134,12 @@ namespace
 				richtext = source->data(QLatin1String("application/rtf"));
 			} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
 				richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
+			} else if (source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))) {
+				QBuffer buffer;
+				buffer.setData(source->data(QLatin1String("application/vnd.oasis.opendocument.text")));
+				buffer.open(QIODevice::ReadOnly);
+				OdtReader reader;
+				reader.read(&buffer, cursor);
 			} else if (source->hasHtml()) {
 				richtext = mimeToRtf(source);
 			} else {
@@ -151,11 +147,13 @@ namespace
 				return;
 			}
 
-			RTF::Reader reader;
-			QBuffer buffer(&richtext);
-			buffer.open(QIODevice::ReadOnly);
-			reader.read(&buffer, cursor);
-			buffer.close();
+			if (!richtext.isEmpty()) {
+				RtfReader reader;
+				QBuffer buffer(&richtext);
+				buffer.open(QIODevice::ReadOnly);
+				reader.read(&buffer, cursor);
+				buffer.close();
+			}
 
 			if (!m_document->isRichText()) {
 				if (document.allFormats().size() > formats) {
@@ -177,7 +175,9 @@ namespace
 					|| ke == QKeySequence::Paste
 					|| ke == QKeySequence::Redo
 					|| ke == QKeySequence::Undo
-					|| ke == QKeySequence::SelectAll) {
+					|| ke == QKeySequence::SelectAll
+					|| ke == QKeySequence::MoveToEndOfBlock
+					|| ke == QKeySequence::MoveToStartOfBlock) {
 				event->ignore();
 				return true;
 			}
@@ -192,7 +192,9 @@ namespace
 				|| event == QKeySequence::Paste
 				|| event == QKeySequence::Redo
 				|| event == QKeySequence::Undo
-				|| event == QKeySequence::SelectAll) {
+				|| event == QKeySequence::SelectAll
+				|| event == QKeySequence::MoveToEndOfBlock
+				|| event == QKeySequence::MoveToStartOfBlock) {
 			event->ignore();
 			return;
 		}
@@ -233,7 +235,7 @@ namespace
 		}
 
 		// Convert to RTF
-		RTF::Writer writer;
+		RtfWriter writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
 		writer.write(&buffer, &document, false);
@@ -245,24 +247,24 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-Document::Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent)
+Document::Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent)
 	: QWidget(parent),
-	m_cache_filename(randomCacheFilename()),
 	m_cache_outdated(false),
 	m_index(0),
 	m_always_center(false),
+	m_mouse_button_down(false),
 	m_rich_text(false),
 	m_spacings_loaded(false),
 	m_focus_mode(0),
 	m_scene_list(0),
+	m_dictionary(DictionaryManager::instance().requestDictionary()),
 	m_cached_block_count(-1),
 	m_cached_current_block(-1),
 	m_saved_wordcount(0),
 	m_page_type(0),
 	m_page_amount(0),
-	m_accurate_wordcount(true),
-	m_current_wordcount(current_wordcount),
-	m_current_time(current_time)
+	m_wordcount_type(0),
+	m_daily_progress(daily_progress)
 {
 	setMouseTracking(true);
 
@@ -281,24 +283,35 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->setTabStopWidth(48);
-	m_text->document()->setIndentWidth(1);
+	m_text->document()->setIndentWidth(48);
 	m_text->horizontalScrollBar()->setAttribute(Qt::WA_NoMousePropagation);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
 	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
+	connect(m_text->document(), SIGNAL(modificationChanged(bool)), this, SIGNAL(modificationChanged(bool)));
+
+	QShortcut* shortcut_down = new QShortcut(m_text);
+	QShortcut* shortcut_up = new QShortcut(m_text);
+#ifndef Q_OS_MAC
+	shortcut_down->setKey(Qt::CTRL + Qt::Key_Down);
+	shortcut_up->setKey(Qt::CTRL + Qt::Key_Up);
+#else
+	shortcut_down->setKey(Qt::ALT + Qt::Key_Down);
+	shortcut_up->setKey(Qt::ALT + Qt::Key_Up);
+#endif
+	connect(shortcut_down, SIGNAL(activated()), this, SLOT(moveToBlockEnd()));
+	connect(shortcut_up, SIGNAL(activated()), this, SLOT(moveToBlockStart()));
 
 	m_scene_model = new SceneModel(m_text, this);
 
-	m_dictionary = DictionaryManager::instance().requestDictionary();
 	m_highlighter = new Highlighter(m_text, m_dictionary);
 	connect(&DictionaryManager::instance(), SIGNAL(changed()), this, SLOT(dictionaryChanged()));
 
 	// Set filename
 	if (!filename.isEmpty()) {
-		QString suffix = filename.section(QLatin1Char('.'), -1).toLower();
-		m_rich_text = (suffix == "odt") || (suffix == "rtf");
-		m_filename = QFileInfo(filename).canonicalFilePath();
+		m_rich_text = FormatManager::isRichText(filename);
+		m_filename = QFileInfo(filename).absoluteFilePath();
 		updateState();
 	}
 
@@ -321,12 +334,11 @@ Document::Document(const QString& filename, int& current_wordcount, int& current
 	m_layout = new QGridLayout(this);
 	m_layout->setSpacing(0);
 	m_layout->setMargin(0);
-	m_layout->addWidget(m_text, 0, 1);
-	m_layout->addWidget(m_scrollbar, 0, 2, Qt::AlignRight);
+	m_layout->addWidget(m_text, 1, 1);
+	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
 
 	// Load settings
-	Preferences preferences;
-	loadPreferences(preferences);
+	loadPreferences();
 
 	// Make it read-only until content is loaded
 	m_text->setReadOnly(true);
@@ -342,7 +354,27 @@ Document::~Document()
 
 	DocumentWatcher::instance()->removeWatch(this);
 	clearIndex();
-	emit removeCacheFile(g_cache_path + m_cache_filename);
+}
+
+//-----------------------------------------------------------------------------
+
+QString Document::title() const
+{
+	QString name = QFileInfo(m_filename).fileName();
+	if (name.isEmpty()) {
+		name = tr("(Untitled %1)").arg(m_index);
+	}
+	if (isReadOnly()) {
+		name = tr("%1 (Read-Only)").arg(name);
+	}
+	return name;
+}
+
+//-----------------------------------------------------------------------------
+
+bool Document::isModified() const
+{
+	return m_text->document()->isModified();
 }
 
 //-----------------------------------------------------------------------------
@@ -359,11 +391,11 @@ void Document::cache()
 	if (m_cache_outdated) {
 		m_cache_outdated = false;
 		DocumentWriter* writer = new DocumentWriter;
-		writer->setFileName(g_cache_path + m_cache_filename);
 		writer->setType(!m_filename.isEmpty() ? m_filename.section(QLatin1Char('.'), -1) : "odt");
-		writer->setCodePage(m_codepage);
+		writer->setEncoding(m_encoding);
+		writer->setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 		writer->setDocument(m_text->document()->clone());
-		emit cacheFile(writer);
+		emit writeCacheFile(this, writer);
 	}
 }
 
@@ -372,9 +404,7 @@ void Document::cache()
 bool Document::save()
 {
 	// Save progress
-	QSettings settings;
-	settings.setValue("Progress/Words", m_current_wordcount);
-	settings.setValue("Progress/Time", m_current_time);
+	m_daily_progress->save();
 
 	if (m_filename.isEmpty() || !processFileName(m_filename)) {
 		return saveAs();
@@ -385,14 +415,14 @@ bool Document::save()
 	DocumentWriter writer;
 	writer.setFileName(m_filename);
 	writer.setType(m_filename.section(QLatin1Char('.'), -1));
-	writer.setCodePage(m_codepage);
+	writer.setEncoding(m_encoding);
+	writer.setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 	writer.setDocument(m_text->document());
 	bool saved = writer.write();
-	m_codepage = writer.codePage();
+	m_encoding = writer.encoding();
 	if (saved) {
 		m_cache_outdated = false;
-		QFile::remove(g_cache_path + m_cache_filename);
-		QFile::copy(m_filename, g_cache_path + m_cache_filename);
+		emit replaceCacheFile(this, m_filename);
 	} else {
 		cache();
 	}
@@ -427,11 +457,16 @@ bool Document::saveAs()
 		QMessageBox::critical(window(), tr("Sorry"), tr("Unable to overwrite '%1'.").arg(QDir::toNativeSeparators(filename)));
 		return false;
 	}
-	qSwap(m_filename, filename);
+
+	QByteArray encoding;
+	std::swap(m_filename, filename);
+	std::swap(m_encoding, encoding);
 	if (!save()) {
-		m_filename = filename;
+		std::swap(m_filename, filename);
+		std::swap(m_encoding, encoding);
 		return false;
 	}
+
 	clearIndex();
 	updateSaveLocation();
 	m_text->setReadOnly(false);
@@ -466,6 +501,7 @@ bool Document::rename()
 	}
 	DocumentWatcher::instance()->resumeWatch(this);
 	m_filename = filename;
+	m_encoding.clear();
 	save();
 	updateSaveLocation();
 	m_text->document()->setModified(false);
@@ -486,8 +522,8 @@ void Document::reload(bool prompt)
 	if (prompt) {
 		QMessageBox mbox(window());
 		mbox.setIcon(QMessageBox::Question);
-		mbox.setWindowTitle(tr("Reload File"));
-		mbox.setText(tr("Reload the file %1 from disk?").arg("<i>" + QFileInfo(m_filename).fileName() + "</i>"));
+		mbox.setWindowTitle(tr("Reload File?"));
+		mbox.setText(tr("Reload the file '%1' from disk?").arg(QFileInfo(m_filename).fileName()));
 		mbox.setInformativeText(tr("All unsaved changes will be lost."));
 
 		QPushButton* reload_button = mbox.addButton(tr("Reload"), QMessageBox::AcceptRole);
@@ -507,8 +543,7 @@ void Document::reload(bool prompt)
 	m_text->setReadOnly(true);
 	disconnect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	disconnect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
-	m_current_wordcount -= wordCountDelta();
-	emit changed();
+	m_daily_progress->increaseWordCount(-wordCountDelta());
 	loadFile(m_filename, -1);
 	emit loadFinished();
 }
@@ -568,21 +603,13 @@ bool Document::loadFile(const QString& filename, int position)
 	m_highlighter->setEnabled(false);
 
 	// Cache contents
-	QFile::copy(filename, g_cache_path + m_cache_filename);
+	emit replaceCacheFile(this, filename);
 
-	// Determine file type from contents
-	QString type;
+	// Fetch reader for file
+	FormatReader* reader = 0;
 	QFile file(filename);
 	if (file.open(QIODevice::ReadOnly)) {
-		if (file.peek(2) == "PK") {
-			file.seek(30);
-			if (file.read(47) == "mimetypeapplication/vnd.oasis.opendocument.text") {
-				type = "odt";
-			}
-			file.reset();
-		} else if (file.peek(5) == "{\\rtf") {
-			type = "rtf";
-		}
+		reader = FormatManager::createReader(&file, filename.section(QLatin1Char('.'), -1).toLower());
 	}
 
 	// Load text area contents
@@ -593,42 +620,16 @@ bool Document::loadFile(const QString& filename, int position)
 	document->setUndoRedoEnabled(false);
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
-	if (file.isOpen()) {
+	if (reader) {
 		QString error;
-		if (type == "odt") {
-			file.close();
-			ODT::Reader reader;
-			reader.read(filename, document);
-			if (reader.hasError()) {
-				error = reader.errorString();
-				loaded = false;
-				position = -1;
-			}
-		} else if (type == "rtf") {
-			RTF::Reader reader;
-			QTextCursor cursor(document);
-			reader.read(&file, cursor);
-			m_codepage = reader.codePage();
-			file.close();
-			if (reader.hasError()) {
-				error = reader.errorString();
-				loaded = false;
-				position = -1;
-			}
-		} else {
-			file.setTextModeEnabled(true);
-			QTextStream stream(&file);
-			stream.setCodec("UTF-8");
-			stream.setAutoDetectUnicode(true);
+		reader->read(&file, document);
+		file.close();
+		m_encoding = reader->encoding();
 
-			QTextCursor cursor(document);
-			cursor.beginEditBlock();
-			while (!stream.atEnd()) {
-				cursor.insertText(stream.read(8192));
-				QApplication::processEvents();
-			}
-			cursor.endEditBlock();
-			file.close();
+		if (reader->hasError()) {
+			error = reader->errorString();
+			loaded = false;
+			position = -1;
 		}
 
 		if (!loaded) {
@@ -677,39 +678,32 @@ bool Document::loadFile(const QString& filename, int position)
 
 //-----------------------------------------------------------------------------
 
-void Document::loadTheme(const Theme& theme)
+void Document::loadTheme(const Theme& theme, const QBrush& foreground)
 {
 	m_text->document()->blockSignals(true);
 
 	// Update colors
-	QString contrast = (qGray(theme.textColor().rgb()) > 127) ? "black" : "white";
-	QColor color = theme.foregroundColor();
-	color.setAlpha(theme.foregroundOpacity() * 2.55f);
 	m_text_color = theme.textColor();
 	m_text_color.setAlpha(255);
-	m_text->setStyleSheet(
-		QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
-			.arg(color.red())
-			.arg(color.green())
-			.arg(color.blue())
-			.arg(color.alpha())
-			.arg(m_text_color.red())
-			.arg(m_text_color.green())
-			.arg(m_text_color.blue())
-			.arg(m_focus_mode ? "128" : "255")
-			.arg(theme.textColor().name())
-			.arg(contrast)
-			.arg(theme.foregroundPadding())
-			.arg(theme.foregroundRounding())
-	);
+	QColor text_color = m_text_color;
+	text_color.setAlpha(m_focus_mode ? 128 : 255);
+
+	QPalette p = m_text->palette();
+	p.setBrush(QPalette::Base, foreground);
+	p.setColor(QPalette::Text, text_color);
+	p.setColor(QPalette::Highlight, m_text_color);
+	p.setColor(QPalette::HighlightedText, (qGray(m_text_color.rgb()) > 127) ? Qt::black : Qt::white);
+	m_text->setPalette(p);
+
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update spacings
+	int tab_width = theme.tabWidth();
 	m_block_format = QTextBlockFormat();
 #if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	m_block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
 #endif
-	m_block_format.setTextIndent(48 * theme.indentFirstLine());
+	m_block_format.setTextIndent(tab_width * theme.indentFirstLine());
 	m_block_format.setTopMargin(theme.spacingAboveParagraph());
 	m_block_format.setBottomMargin(theme.spacingBelowParagraph());
 	if (m_spacings_loaded) {
@@ -726,6 +720,8 @@ void Document::loadTheme(const Theme& theme)
 		m_text->document()->setModified(false);
 		m_spacings_loaded = true;
 	}
+	m_text->setTabStopWidth(tab_width);
+	m_text->document()->setIndentWidth(tab_width);
 
 	// Update text
 	QFont font = theme.textFont();
@@ -739,35 +735,33 @@ void Document::loadTheme(const Theme& theme)
 	}
 	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
 
-	int margin = theme.foregroundMargin();
+	int padding = theme.foregroundPadding();
+	m_layout->setRowMinimumHeight(0, padding);
+	m_layout->setRowMinimumHeight(2, padding);
+	int margin = theme.foregroundMargin() + padding;
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
-	if (theme.foregroundPosition() < 3) {
-		m_text->setFixedWidth(theme.foregroundWidth());
-
-		switch (theme.foregroundPosition()) {
-		case 0:
-			m_layout->setColumnStretch(0, 0);
-			m_layout->setColumnStretch(2, 1);
-			break;
-
-		case 2:
-			m_layout->setColumnStretch(0, 1);
-			m_layout->setColumnStretch(2, 0);
-			break;
-
-		case 1:
-		default:
-			m_layout->setColumnStretch(0, 1);
-			m_layout->setColumnStretch(2, 1);
-			break;
-		};
-	} else {
-		m_text->setMinimumWidth(theme.foregroundWidth());
-		m_text->setMaximumWidth(maximumSize().height());
-
+	switch (theme.foregroundPosition()) {
+	case 0:
+		// Left
+		m_layout->setColumnStretch(0, 0);
+		m_layout->setColumnStretch(2, 1);
+		break;
+	case 2:
+		// Right
+		m_layout->setColumnStretch(0, 1);
+		m_layout->setColumnStretch(2, 0);
+		break;
+	case 3:
+		// Stretched
 		m_layout->setColumnStretch(0, 0);
 		m_layout->setColumnStretch(2, 0);
+	case 1:
+	default:
+		// Centered
+		m_layout->setColumnStretch(0, 1);
+		m_layout->setColumnStretch(2, 1);
+		break;
 	}
 
 	if (m_focus_mode) {
@@ -780,35 +774,37 @@ void Document::loadTheme(const Theme& theme)
 
 //-----------------------------------------------------------------------------
 
-void Document::loadPreferences(const Preferences& preferences)
+void Document::loadPreferences()
 {
-	m_always_center = preferences.alwaysCenter();
+	m_always_center = Preferences::instance().alwaysCenter();
 
-	m_page_type = preferences.pageType();
+	m_page_type = Preferences::instance().pageType();
 	switch (m_page_type) {
 	case 1:
-		m_page_amount = preferences.pageParagraphs();
+		m_page_amount = Preferences::instance().pageParagraphs();
 		break;
 	case 2:
-		m_page_amount = preferences.pageWords();
+		m_page_amount = Preferences::instance().pageWords();
 		break;
 	default:
-		m_page_amount = preferences.pageCharacters();
+		m_page_amount = Preferences::instance().pageCharacters();
 		break;
 	}
 
-	m_accurate_wordcount = preferences.accurateWordcount();
+	m_wordcount_type = Preferences::instance().wordcountType();
 	if (m_cached_block_count != -1) {
 		calculateWordCount();
 	}
 
-	m_block_cursor = preferences.blockCursor();
+	m_block_cursor = Preferences::instance().blockCursor();
 	m_text->setCursorWidth(!m_block_cursor ? style()->pixelMetric(QStyle::PM_TextCursorWidth) : m_text->fontMetrics().averageCharWidth());
 	QFont font = m_text->font();
-	font.setStyleStrategy(preferences.smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
+	font.setStyleStrategy(Preferences::instance().smoothFonts() ? QFont::PreferAntialias : QFont::NoAntialias);
 	m_text->setFont(font);
 
-	m_highlighter->setEnabled(!isReadOnly() ? preferences.highlightMisspelled() : false);
+	m_highlighter->setEnabled(!isReadOnly() ? Preferences::instance().highlightMisspelled() : false);
+
+	m_default_format = Preferences::instance().saveFormat();
 }
 
 //-----------------------------------------------------------------------------
@@ -817,11 +813,11 @@ void Document::setFocusMode(int focus_mode)
 {
 	m_focus_mode = focus_mode;
 
-	QString style_sheet = m_text->styleSheet();
-	int end = style_sheet.lastIndexOf(QChar(')'));
-	int start = style_sheet.lastIndexOf(QChar(','), end);
-	style_sheet.replace(start + 1, end - start - 1, m_focus_mode ? "128" : "255");
-	m_text->setStyleSheet(style_sheet);
+	QColor text_color = m_text_color;
+	text_color.setAlpha(m_focus_mode ? 128 : 255);
+	QPalette p = m_text->palette();
+	p.setColor(QPalette::Text, text_color);
+	m_text->setPalette(p);
 
 	if (m_focus_mode) {
 		connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(focusText()));
@@ -861,6 +857,13 @@ void Document::setRichText(bool rich_text)
 
 //-----------------------------------------------------------------------------
 
+void Document::setModified(bool modified)
+{
+	m_text->document()->setModified(modified);
+}
+
+//-----------------------------------------------------------------------------
+
 void Document::setScrollBarVisible(bool visible)
 {
 	if (!visible) {
@@ -885,10 +888,7 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 	if (event->type() == QEvent::MouseMove) {
 		mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (event->type() == QEvent::KeyPress && watched == m_text) {
-		int msecs = m_time.restart();
-		if (msecs < 30000) {
-			m_current_time += msecs;
-		}
+		m_daily_progress->increaseTime();
 		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
 			return true;
 		}
@@ -898,7 +898,12 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 			return true;
 		}
 	} else if (event->type() == QEvent::MouseButtonPress) {
+		m_mouse_button_down = true;
 		m_scene_list->hideScenes();
+	} else if (event->type() == QEvent::MouseButtonRelease) {
+		m_mouse_button_down = false;
+	} else if (event->type() == QEvent::MouseButtonDblClick) {
+		m_mouse_button_down = true;
 	}
 	return QWidget::eventFilter(watched, event);
 }
@@ -925,23 +930,6 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 
 //-----------------------------------------------------------------------------
 
-QString Document::cachePath()
-{
-	return g_cache_path;
-}
-
-//-----------------------------------------------------------------------------
-
-void Document::setCachePath(const QString& path)
-{
-	g_cache_path = path;
-	if (!g_cache_path.endsWith(QLatin1Char('/'))) {
-		g_cache_path += QLatin1Char('/');
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 void Document::centerCursor(bool force)
 {
 	QRect cursor = m_text->cursorRect();
@@ -963,14 +951,6 @@ void Document::mousePressEvent(QMouseEvent* event)
 
 //-----------------------------------------------------------------------------
 
-void Document::resizeEvent(QResizeEvent* event)
-{
-	centerCursor(true);
-	QWidget::resizeEvent(event);
-}
-
-//-----------------------------------------------------------------------------
-
 void Document::wheelEvent(QWheelEvent* event)
 {
 	if (event->orientation() == Qt::Vertical) {
@@ -988,7 +968,7 @@ void Document::cursorPositionChanged()
 {
 	emit indentChanged(m_text->textCursor().blockFormat().indent());
 	emit alignmentChanged();
-	if (QApplication::mouseButtons() == Qt::NoButton) {
+	if (!m_mouse_button_down) {
 		centerCursor();
 	}
 }
@@ -1041,6 +1021,40 @@ void Document::hideMouse()
 
 //-----------------------------------------------------------------------------
 
+void Document::moveToBlockEnd()
+{
+	QTextCursor cursor = m_text->textCursor();
+	if (cursor.atEnd()) {
+		return;
+	}
+
+	if (cursor.atBlockEnd()) {
+		cursor.movePosition(QTextCursor::NextCharacter);
+	}
+	cursor.movePosition(QTextCursor::EndOfBlock);
+
+	m_text->setTextCursor(cursor);
+}
+
+//-----------------------------------------------------------------------------
+
+void Document::moveToBlockStart()
+{
+	QTextCursor cursor = m_text->textCursor();
+	if (cursor.atStart()) {
+		return;
+	}
+
+	if (cursor.atBlockStart()) {
+		cursor.movePosition(QTextCursor::PreviousCharacter);
+	}
+	cursor.movePosition(QTextCursor::StartOfBlock);
+
+	m_text->setTextCursor(cursor);
+}
+
+//-----------------------------------------------------------------------------
+
 void Document::scrollBarActionTriggered(int action)
 {
 	if (action == QAbstractSlider::SliderToMinimum) {
@@ -1083,9 +1097,7 @@ void Document::selectionChanged()
 			temp.update(string);
 			m_selected_stats.append(&temp);
 		}
-		if (!m_accurate_wordcount) {
-			m_selected_stats.calculateEstimatedWordCount();
-		}
+		m_selected_stats.calculateWordCount(m_wordcount_type);
 		m_selected_stats.calculatePageCount(m_page_type, m_page_amount);
 		m_stats = &m_selected_stats;
 	} else {
@@ -1172,7 +1184,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	// Update document stats and daily word count
 	int words = m_document_stats.wordCount();
 	calculateWordCount();
-	m_current_wordcount += (m_document_stats.wordCount() - words);
+	m_daily_progress->increaseWordCount(m_document_stats.wordCount() - words);
 	emit changed();
 }
 
@@ -1205,9 +1217,7 @@ void Document::calculateWordCount()
 	if (data) {
 		m_document_stats.append(static_cast<BlockStats*>(data));
 	}
-	if (!m_accurate_wordcount) {
-		m_document_stats.calculateEstimatedWordCount();
-	}
+	m_document_stats.calculateWordCount(m_wordcount_type);
 	m_document_stats.calculatePageCount(m_page_type, m_page_amount);
 }
 
@@ -1234,32 +1244,28 @@ void Document::findIndex()
 QString Document::getSaveFileName(const QString& title)
 {
 	// Determine filter
-	QString filter;
-	QString default_filter;
-	{
-		QString opendocumenttext = tr("OpenDocument Text (*.odt)");
-		QString richtext = tr("Rich Text (*.rtf)");
-		QString plaintext = tr("Plain Text (*.txt)");
-		QString all = tr("All Files (*)");
-		default_filter = opendocumenttext + ";;" + richtext + ";;" + plaintext + ";;" + all;
+	QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
+	if (type.isEmpty()) {
+		type = m_default_format;
+	}
+	QString filter = FormatManager::filters(type).join(";;");
 
-		QString type = m_filename.section(QLatin1Char('.'), -1).toLower();
-		if (type == "rtf") {
-			filter = richtext + ";;" + opendocumenttext + ";;" + plaintext + ";;" + all;
-		} else if ((type == "odt") || m_rich_text || m_filename.isEmpty()) {
-			filter = default_filter;
-		} else if (type == "txt") {
-			filter = plaintext + ";;" + opendocumenttext + ";;" + richtext + ";;" + all;
-		} else {
-			filter = all + ";;" + opendocumenttext + ";;" + richtext + ";;" + plaintext;
-		}
+	// Determine location
+	QString path = m_filename;
+	if (m_filename.isEmpty()) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+#else
+		QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+#endif
+		path = QSettings().value("Save/Location", default_path).toString() + "/" + tr("Untitled %1").arg(m_index);
 	}
 
 	// Prompt for filename
 	QString filename;
 	while (filename.isEmpty()) {
 		QString selected;
-		filename = QFileDialog::getSaveFileName(window(), title, m_filename, filter, &selected);
+		filename = QFileDialog::getSaveFileName(window(), title, path, filter, &selected, QFileDialog::DontResolveSymlinks);
 		if (filename.isEmpty()) {
 			break;
 		}
@@ -1267,17 +1273,26 @@ QString Document::getSaveFileName(const QString& title)
 		// Append file extension
 		QString type;
 		QRegExp exp("\\*(\\.\\w+)");
-		int index = exp.indexIn(selected);
-		if (index != -1) {
+		bool append_extension = false;
+		QStringList types;
+		int index = selected.indexOf(QLatin1Char('(')) + 1;
+		while ((index = exp.indexIn(selected, index)) != -1) {
 			type = exp.cap(1);
+			if (filename.endsWith(type)) {
+				append_extension = false;
+				break;
+			}
+
+			append_extension = true;
+			types.append(type);
+			index += types.last().length();
 		}
-		if (!filename.endsWith(type)) {
-			filename.append(type);
+		if (append_extension) {
+			filename.append(types.first());
 		}
 
 		// Handle rich text in plain text file
 		if (!processFileName(filename)) {
-			filter = default_filter;
 			filename.clear();
 		}
 	}
@@ -1290,8 +1305,7 @@ QString Document::getSaveFileName(const QString& title)
 bool Document::processFileName(const QString& filename)
 {
 	// Check if rich text status is the same
-	QString type = filename.section(QLatin1Char('.'), -1).toLower();
-	bool rich_text = (type == "odt") || (type == "rtf");
+	bool rich_text = FormatManager::isRichText(filename);
 	if (m_rich_text == rich_text) {
 		return true;
 	}
@@ -1314,9 +1328,8 @@ bool Document::processFileName(const QString& filename)
 
 void Document::updateSaveLocation()
 {
-	QString path = QFileInfo(m_filename).canonicalPath();
+	QString path = QFileInfo(m_filename).absolutePath();
 	QSettings().setValue("Save/Location", path);
-	QDir::setCurrent(path);
 	updateState();
 	updateSaveName();
 }
@@ -1330,7 +1343,7 @@ void Document::updateSaveName()
 		return;
 	}
 	QList<int> keys = m_old_states.keys();
-	qSort(keys);
+	std::sort(keys.begin(), keys.end());
 	int count = keys.count();
 
 	// Find undo states nearest to current

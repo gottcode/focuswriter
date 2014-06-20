@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@
 #include <QTextCursor>
 #include <QTextDocumentFragment>
 #include <QTextEdit>
+
+#include <algorithm>
 
 //-----------------------------------------------------------------------------
 
@@ -83,7 +85,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	if (scenes.isEmpty()) {
 		return;
 	}
-	qSort(scenes);
+	std::sort(scenes.begin(), scenes.end());
 
 	// Copy text fragments of scenes
 	QTextCursor cursor = m_document->textCursor();

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
+#include "ranged_int.h"
+#include "ranged_string.h"
 #include "settings_file.h"
 
 #include <QStringList>
@@ -27,15 +29,26 @@
 class Preferences : public SettingsFile
 {
 public:
-	Preferences();
 	~Preferences();
 
-	int goalType() const;
-	int goalMinutes() const;
-	int goalWords() const;
+	static Preferences& instance()
+	{
+		static Preferences preferences;
+		return preferences;
+	}
+
+	RangedInt goalType() const;
+	RangedInt goalMinutes() const;
+	RangedInt goalWords() const;
+	bool goalHistory() const;
+	bool goalStreaks() const;
+	RangedInt goalStreakMinimum() const;
 	void setGoalType(int goal);
 	void setGoalMinutes(int goal);
 	void setGoalWords(int goal);
+	void setGoalHistory(bool enable);
+	void setGoalStreaks(bool enable);
+	void setGoalStreakMinimum(int percent);
 
 	bool showCharacters() const;
 	bool showPages() const;
@@ -46,17 +59,17 @@ public:
 	void setShowParagraphs(bool show);
 	void setShowWords(bool show);
 
-	int pageType() const;
-	int pageCharacters() const;
-	int pageParagraphs() const;
-	int pageWords() const;
+	RangedInt pageType() const;
+	RangedInt pageCharacters() const;
+	RangedInt pageParagraphs() const;
+	RangedInt pageWords() const;
 	void setPageType(int type);
 	void setPageCharacters(int characters);
 	void setPageParagraphs(int paragraphs);
 	void setPageWords(int words);
 
-	bool accurateWordcount() const;
-	void setAccurateWordcount(bool accurate);
+	RangedInt wordcountType() const;
+	void setWordcountType(int type);
 
 	bool alwaysCenter() const;
 	bool blockCursor() const;
@@ -78,8 +91,12 @@ public:
 
 	bool autoSave() const;
 	bool savePositions() const;
+	bool writeByteOrderMark() const;
+	RangedString saveFormat() const;
 	void setAutoSave(bool save);
 	void setSavePositions(bool save);
+	void setWriteByteOrderMark(bool write_bom);
+	void setSaveFormat(const QString& format);
 
 	int toolbarStyle() const;
 	QStringList toolbarActions() const;
@@ -96,21 +113,30 @@ public:
 	void setLanguage(const QString& language);
 
 private:
-	int m_goal_type;
-	int m_goal_minutes;
-	int m_goal_words;
+	Preferences();
+
+	void reload();
+	void write();
+
+private:
+	RangedInt m_goal_type;
+	RangedInt m_goal_minutes;
+	RangedInt m_goal_words;
+	bool m_goal_history;
+	bool m_goal_streaks;
+	RangedInt m_goal_streak_minimum;
 
 	bool m_show_characters;
 	bool m_show_pages;
 	bool m_show_paragraphs;
 	bool m_show_words;
 
-	int m_page_type;
-	int m_page_characters;
-	int m_page_paragraphs;
-	int m_page_words;
+	RangedInt m_page_type;
+	RangedInt m_page_characters;
+	RangedInt m_page_paragraphs;
+	RangedInt m_page_words;
 
-	bool m_accurate_wordcount;
+	RangedInt m_wordcount_type;
 
 	bool m_always_center;
 	bool m_block_cursor;
@@ -124,6 +150,8 @@ private:
 
 	bool m_auto_save;
 	bool m_save_positions;
+	RangedString m_save_format;
+	bool m_write_bom;
 
 	int m_toolbar_style;
 	QStringList m_toolbar_actions;

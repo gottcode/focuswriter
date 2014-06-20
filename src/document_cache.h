@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,11 @@
 #ifndef DOCUMENT_CACHE_H
 #define DOCUMENT_CACHE_H
 
+class Document;
 class DocumentWriter;
+class Stack;
 
+#include <QHash>
 #include <QObject>
 
 class DocumentCache : public QObject
@@ -32,9 +35,34 @@ public:
 	DocumentCache(QObject* parent = 0);
 	~DocumentCache();
 
+	bool isClean() const;
+	bool isWritable() const;
+	void parseMapping(QStringList& files, QStringList& datafiles) const;
+
+	void add(Document* document);
+	void remove(Document* document);
+	void setOrdering(Stack* ordering);
+
+	static void setPath(const QString& path);
+
 public slots:
-	void cacheFile(DocumentWriter* document);
-	void removeCacheFile(const QString& document);
+	void updateMapping();
+
+private slots:
+	void replaceCacheFile(Document* document, const QString& file);
+	void writeCacheFile(Document* document, DocumentWriter* writer);
+
+private:
+	QString backupCache();
+	QString createFileName();
+	void updateCacheFile(Document* document, const QString& cache_file);
+
+private:
+	Stack* m_ordering;
+	QHash<Document*, QString> m_filenames;
+	QString m_previous_cache;
+
+	static QString m_path;
 };
 
 #endif

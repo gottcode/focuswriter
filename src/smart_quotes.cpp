@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -234,11 +234,11 @@ namespace
 	};
 }
 
-void SmartQuotes::loadPreferences(Preferences& preferences)
+void SmartQuotes::loadPreferences()
 {
-	m_enabled = preferences.smartQuotes();
-	size_t double_index = preferences.doubleQuotes();
-	size_t single_index = preferences.singleQuotes();
+	m_enabled = Preferences::instance().smartQuotes();
+	size_t double_index = Preferences::instance().doubleQuotes();
+	size_t single_index = Preferences::instance().singleQuotes();
 	if (double_index < count() && single_index < count()) {
 		setQuotes(double_index, single_index);
 		return;
@@ -308,8 +308,8 @@ void SmartQuotes::loadPreferences(Preferences& preferences)
 		}
 	}
 
-	preferences.setDoubleQuotes(double_index);
-	preferences.setSingleQuotes(single_index);
+	Preferences::instance().setDoubleQuotes(double_index);
+	Preferences::instance().setSingleQuotes(single_index);
 	setQuotes(double_index, single_index);
 }
 

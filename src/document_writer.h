@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,30 +29,32 @@ public:
 	DocumentWriter();
 	~DocumentWriter();
 
-	QByteArray codePage() const;
+	QByteArray encoding() const;
 
-	void setCodePage(const QByteArray& codepage);
+	void setEncoding(const QByteArray& encoding);
 	void setDocument(QTextDocument* document);
 	void setFileName(const QString& filename);
 	void setType(const QString& type);
+	void setWriteByteOrderMark(bool write_bom);
 
 	bool write();
 
 private:
 	QString m_filename;
 	QString m_type;
-	QByteArray m_codepage;
+	QByteArray m_encoding;
 	QTextDocument* m_document;
+	bool m_write_bom;
 };
 
-inline QByteArray DocumentWriter::codePage() const
+inline QByteArray DocumentWriter::encoding() const
 {
-	return m_codepage;
+	return m_encoding;
 }
 
-inline void DocumentWriter::setCodePage(const QByteArray& codepage)
+inline void DocumentWriter::setEncoding(const QByteArray& encoding)
 {
-	m_codepage = codepage;
+	m_encoding = encoding;
 }
 
 inline void DocumentWriter::setDocument(QTextDocument* document)
@@ -68,6 +70,11 @@ inline void DocumentWriter::setFileName(const QString& filename)
 inline void DocumentWriter::setType(const QString& type)
 {
 	m_type = type.toLower();
+}
+
+inline void DocumentWriter::setWriteByteOrderMark(bool write_bom)
+{
+	m_write_bom = write_bom;
 }
 
 #endif

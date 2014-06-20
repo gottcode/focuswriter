@@ -8,7 +8,7 @@ macx:greaterThan(QT_MAJOR_VERSION, 4):lessThan(QT_VERSION, 5.2) {
 TEMPLATE = app
 QT += network
 greaterThan(QT_MAJOR_VERSION, 4) {
-	QT += widgets printsupport multimedia
+	QT += widgets printsupport multimedia concurrent
 	macx {
 		QT += macextras
 	}
@@ -18,76 +18,87 @@ macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
 
+# Allow in-tree builds
 !win32 {
-	LIBS += -lz
+	MOC_DIR = build
+	OBJECTS_DIR = build
+	RCC_DIR = build
 }
 
-VERSION = 1.4.6
-DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
+# Set program version
+VERSION = 1.5.0
+DEFINES += VERSIONSTR=\\\"git.$${VERSION}\\\"
 
+# Set program name
 unix: !macx {
 	TARGET = focuswriter
 } else {
 	TARGET = FocusWriter
 }
 
+# Add dependencies
 macx {
 	DEFINES += RTFCLIPBOARD
 
-	INCLUDEPATH += src/nsspellchecker src/rtf /Library/Frameworks/libzip.framework/Headers
-	LIBS += -framework libzip -framework AppKit
+	LIBS += -lz -framework AppKit
 
-	HEADERS += src/nsspellchecker/dictionary.h \
-		src/nsspellchecker/dictionary_data.h \
-		src/nsspellchecker/dictionary_manager.h \
-		src/rtf/clipboard_mac.h
+	HEADERS += src/fileformats/clipboard_mac.h \
+		src/spelling/dictionary_provider_nsspellchecker.h
 
-	OBJECTIVE_SOURCES += src/nsspellchecker/dictionary.mm \
-		src/nsspellchecker/dictionary_data.mm \
-		src/nsspellchecker/dictionary_manager.mm \
-		src/nssound/sound.mm
+	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm
 
-	SOURCES += src/rtf/clipboard_mac.cpp
+	SOURCES += src/fileformats/clipboard_mac.cpp \
+		src/sound.cpp
 } else:win32 {
-	INCLUDEPATH += enchant libzip src/enchant src/rtf
-	LIBS += ./enchant/libenchant.dll ./libzip/libzip0.dll
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
 	}
 
-	HEADERS += src/enchant/dictionary.h \
-		src/enchant/dictionary_data.h \
-		src/enchant/dictionary_manager.h
+	INCLUDEPATH += src/spelling/hunspell
 
-	SOURCES += src/enchant/dictionary.cpp \
-		src/enchant/dictionary_data.cpp \
-		src/enchant/dictionary_manager.cpp \
-		src/qsound/sound.cpp
+	HEADERS += src/spelling/dictionary_provider_hunspell.h \
+		src/spelling/dictionary_provider_voikko.h
+
+	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
+		src/spelling/dictionary_provider_voikko.cpp \
+		src/spelling/hunspell/affentry.cxx \
+		src/spelling/hunspell/affixmgr.cxx \
+		src/spelling/hunspell/csutil.cxx \
+		src/spelling/hunspell/filemgr.cxx \
+		src/spelling/hunspell/hashmgr.cxx \
+		src/spelling/hunspell/hunspell.cxx \
+		src/spelling/hunspell/hunzip.cxx \
+		src/spelling/hunspell/phonet.cxx \
+		src/spelling/hunspell/replist.cxx \
+		src/spelling/hunspell/suggestmgr.cxx \
+		src/sound.cpp
 
 	lessThan(QT_MAJOR_VERSION, 5) {
 		DEFINES += RTFCLIPBOARD
 		LIBS += -lOle32
-		HEADERS += src/rtf/clipboard_windows.h
-		SOURCES += src/rtf/clipboard_windows.cpp
+		HEADERS += src/fileformats/clipboard_windows.h
+		SOURCES += src/fileformats/clipboard_windows.cpp
 	}
-} else {
-	INCLUDEPATH += src/enchant
-
+} else:unix {
 	CONFIG += link_pkgconfig
-	PKGCONFIG += enchant libzip
+	PKGCONFIG += hunspell zlib
 
-	HEADERS += src/enchant/dictionary.h \
-		src/enchant/dictionary_data.h \
-		src/enchant/dictionary_manager.h
+	HEADERS += src/spelling/dictionary_provider_hunspell.h \
+		src/spelling/dictionary_provider_voikko.h
 
-	SOURCES += src/enchant/dictionary.cpp \
-		src/enchant/dictionary_data.cpp \
-		src/enchant/dictionary_manager.cpp \
-		src/sdl/sound.cpp
+	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
+		src/spelling/dictionary_provider_voikko.cpp
+
+	lessThan(QT_MAJOR_VERSION, 5) {
+		SOURCES += src/sdl/sound.cpp
+	} else {
+		SOURCES += src/sound.cpp
+	}
 }
 
-INCLUDEPATH += src/qtsingleapplication
+INCLUDEPATH += src src/fileformats src/qtsingleapplication src/qtzip src/spelling
 
+# Specify program sources
 HEADERS += src/action_manager.h \
 	src/alert.h \
 	src/alert_layer.h \
@@ -95,6 +106,9 @@ HEADERS += src/action_manager.h \
 	src/block_stats.h \
 	src/color_button.h \
 	src/deltas.h \
+	src/daily_progress.h \
+	src/daily_progress_dialog.h \
+	src/daily_progress_label.h \
 	src/document.h \
 	src/document_cache.h \
 	src/document_watcher.h \
@@ -102,14 +116,14 @@ HEADERS += src/action_manager.h \
 	src/find_dialog.h \
 	src/font_combobox.h \
 	src/gzip.h \
-	src/highlighter.h \
 	src/image_button.h \
 	src/load_screen.h \
 	src/locale_dialog.h \
-	src/odt_reader.h \
 	src/paths.h \
 	src/preferences.h \
 	src/preferences_dialog.h \
+	src/ranged_int.h \
+	src/ranged_string.h \
 	src/scene_list.h \
 	src/scene_model.h \
 	src/session.h \
@@ -118,7 +132,6 @@ HEADERS += src/action_manager.h \
 	src/shortcut_edit.h \
 	src/smart_quotes.h \
 	src/sound.h \
-	src/spell_checker.h \
 	src/stack.h \
 	src/stats.h \
 	src/symbols_dialog.h \
@@ -126,15 +139,33 @@ HEADERS += src/action_manager.h \
 	src/theme.h \
 	src/theme_dialog.h \
 	src/theme_manager.h \
+	src/theme_renderer.h \
 	src/timer.h \
 	src/timer_display.h \
 	src/timer_manager.h \
+	src/utils.h \
 	src/window.h \
+	src/fileformats/docx_reader.h \
+	src/fileformats/docx_writer.h \
+	src/fileformats/format_manager.h \
+	src/fileformats/format_reader.h \
+	src/fileformats/odt_reader.h \
+	src/fileformats/odt_writer.h \
+	src/fileformats/rtf_reader.h \
+	src/fileformats/rtf_tokenizer.h \
+	src/fileformats/rtf_writer.h \
+	src/fileformats/txt_reader.h \
 	src/qtsingleapplication/qtsingleapplication.h \
 	src/qtsingleapplication/qtlocalpeer.h \
-	src/rtf/reader.h \
-	src/rtf/tokenizer.h \
-	src/rtf/writer.h
+	src/qtzip/qtzipreader.h \
+	src/qtzip/qtzipwriter.h \
+	src/spelling/abstract_dictionary.h \
+	src/spelling/abstract_dictionary_provider.h \
+	src/spelling/dictionary_dialog.h \
+	src/spelling/dictionary_manager.h \
+	src/spelling/dictionary_ref.h \
+	src/spelling/highlighter.h \
+	src/spelling/spell_checker.h
 
 SOURCES += src/action_manager.cpp \
 	src/alert.cpp \
@@ -143,6 +174,9 @@ SOURCES += src/action_manager.cpp \
 	src/block_stats.cpp \
 	src/color_button.cpp \
 	src/deltas.cpp \
+	src/daily_progress.cpp \
+	src/daily_progress_dialog.cpp \
+	src/daily_progress_label.cpp \
 	src/document.cpp \
 	src/document_cache.cpp \
 	src/document_watcher.cpp \
@@ -150,12 +184,10 @@ SOURCES += src/action_manager.cpp \
 	src/find_dialog.cpp \
 	src/font_combobox.cpp \
 	src/gzip.cpp \
-	src/highlighter.cpp \
 	src/image_button.cpp \
 	src/load_screen.cpp \
 	src/locale_dialog.cpp \
 	src/main.cpp \
-	src/odt_reader.cpp \
 	src/paths.cpp \
 	src/preferences.cpp \
 	src/preferences_dialog.cpp \
@@ -165,7 +197,6 @@ SOURCES += src/action_manager.cpp \
 	src/session_manager.cpp \
 	src/shortcut_edit.cpp \
 	src/smart_quotes.cpp \
-	src/spell_checker.cpp \
 	src/stack.cpp \
 	src/stats.cpp \
 	src/symbols_dialog.cpp \
@@ -173,27 +204,38 @@ SOURCES += src/action_manager.cpp \
 	src/theme.cpp \
 	src/theme_dialog.cpp \
 	src/theme_manager.cpp \
+	src/theme_renderer.cpp \
 	src/timer.cpp \
 	src/timer_display.cpp \
 	src/timer_manager.cpp \
+	src/utils.cpp \
 	src/window.cpp \
+	src/fileformats/docx_reader.cpp \
+	src/fileformats/docx_writer.cpp \
+	src/fileformats/format_manager.cpp \
+	src/fileformats/odt_reader.cpp \
+	src/fileformats/odt_writer.cpp \
+	src/fileformats/rtf_reader.cpp \
+	src/fileformats/rtf_tokenizer.cpp \
+	src/fileformats/rtf_writer.cpp \
+	src/fileformats/txt_reader.cpp \
 	src/qtsingleapplication/qtsingleapplication.cpp \
 	src/qtsingleapplication/qtlocalpeer.cpp \
-	src/rtf/reader.cpp \
-	src/rtf/tokenizer.cpp \
-	src/rtf/writer.cpp
+	src/qtzip/qtzip.cpp \
+	src/spelling/dictionary_dialog.cpp \
+	src/spelling/dictionary_manager.cpp \
+	src/spelling/highlighter.cpp \
+	src/spelling/spell_checker.cpp
 
+# Allow for updating translations
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
 
+# Install program data
 RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
-macx {
-	ICON = resources/mac/focuswriter.icns
-}
-win32 {
-	RC_FILE = resources/windows/icon.rc
-}
 
 macx {
+	ICON = resources/mac/focuswriter.icns
+
 	ICONS.files = resources/images/icons/oxygen/hicolor
 	ICONS.path = Contents/Resources/icons
 
@@ -201,16 +243,19 @@ macx {
 	SOUNDS.path = Contents/Resources
 
 	greaterThan(QT_MAJOR_VERSION, 4) {
-		SYMBOLS.files = resources/symbols/symbols620.dat
+		SYMBOLS.files = resources/symbols/symbols630.dat
 	} else {
 		SYMBOLS.files = resources/symbols/symbols510.dat
 	}
 	SYMBOLS.path = Contents/Resources
 
-	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS
-}
+	THEMES.files = resources/themes
+	THEMES.path = Contents/Resources
 
-unix: !macx {
+	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS THEMES
+} else:win32 {
+	RC_FILE = resources/windows/icon.rc
+} else:unix {
 	isEmpty(PREFIX) {
 		PREFIX = /usr/local
 	}
@@ -248,12 +293,15 @@ unix: !macx {
 	sounds.files = resources/sounds/*
 	sounds.path = $$DATADIR/focuswriter/sounds
 
+	themes.files = resources/themes/*
+	themes.path = $$DATADIR/focuswriter/themes
+
 	greaterThan(QT_MAJOR_VERSION, 4) {
-		symbols.files = resources/symbols/symbols620.dat
+		symbols.files = resources/symbols/symbols630.dat
 	} else {
 		symbols.files = resources/symbols/symbols510.dat
 	}
 	symbols.path = $$DATADIR/focuswriter
 
-	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols
+	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes
 }

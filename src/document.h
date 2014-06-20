@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
-#include "dictionary.h"
+#include "dictionary_ref.h"
 #include "stats.h"
 class Alert;
+class DailyProgress;
 class DocumentWriter;
 class Highlighter;
-class Preferences;
 class SceneList;
 class SceneModel;
 class Theme;
@@ -44,12 +44,13 @@ class Document : public QWidget
 	Q_OBJECT
 
 public:
-	Document(const QString& filename, int& current_wordcount, int& current_time, QWidget* parent = 0);
+	Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent = 0);
 	~Document();
 
-	QString cacheFilename() const;
 	QString filename() const;
+	QString title() const;
 	int untitledIndex() const;
+	bool isModified() const;
 	bool isReadOnly() const;
 	bool isRichText() const;
 	int characterCount() const;
@@ -70,9 +71,10 @@ public:
 	void checkSpelling();
 	void print();
 	bool loadFile(const QString& filename, int position);
-	void loadTheme(const Theme& theme);
-	void loadPreferences(const Preferences& preferences);
+	void loadTheme(const Theme& theme, const QBrush& foreground);
+	void loadPreferences();
 	void setFocusMode(int focus_mode);
+	void setModified(bool modified);
 	void setRichText(bool rich_text);
 	void setScrollBarVisible(bool visible);
 	void setSceneList(SceneList* scene_list);
@@ -80,16 +82,13 @@ public:
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 	virtual void mouseMoveEvent(QMouseEvent* event);
 
-	static QString cachePath();
-	static void setCachePath(const QString& path);
-
 public slots:
 	void centerCursor(bool force = false);
 
 signals:
 	void alert(Alert* alert);
-	void cacheFile(DocumentWriter* file);
-	void removeCacheFile(const QString& file);
+	void replaceCacheFile(Document* document, const QString& file);
+	void writeCacheFile(Document* document, DocumentWriter* writer);
 	void changed();
 	void changedName();
 	void loadStarted(const QString& path);
@@ -98,17 +97,19 @@ signals:
 	void headerVisible(bool visible);
 	void scenesVisible(bool visible);
 	void indentChanged(bool indented);
+	void modificationChanged(bool modified);
 	void alignmentChanged();
 
 protected:
 	virtual void mousePressEvent(QMouseEvent* event);
-	virtual void resizeEvent(QResizeEvent* event);
 	virtual void wheelEvent(QWheelEvent* event);
 
 private slots:
 	void cursorPositionChanged();
 	void focusText();
 	void hideMouse();
+	void moveToBlockEnd();
+	void moveToBlockStart();
 	void scrollBarActionTriggered(int action);
 	void scrollBarRangeChanged(int min, int max);
 	void dictionaryChanged();
@@ -128,12 +129,13 @@ private:
 
 private:
 	QString m_filename;
-	QString m_cache_filename;
+	QString m_default_format;
 	bool m_cache_outdated;
-	QByteArray m_codepage;
+	QByteArray m_encoding;
 	QHash<int, QPair<QString, bool> > m_old_states;
 	int m_index;
 	bool m_always_center;
+	bool m_mouse_button_down;
 	bool m_block_cursor;
 	bool m_rich_text;
 	bool m_spacings_loaded;
@@ -147,7 +149,7 @@ private:
 	QScrollBar* m_scrollbar;
 	SceneList* m_scene_list;
 	SceneModel* m_scene_model;
-	Dictionary m_dictionary;
+	DictionaryRef m_dictionary;
 	Highlighter* m_highlighter;
 	QColor m_text_color;
 
@@ -162,19 +164,10 @@ private:
 	int m_page_type;
 	float m_page_amount;
 
-	bool m_accurate_wordcount;
+	int m_wordcount_type;
 
-	// Daily progress
-	int& m_current_wordcount;
-	int m_wordcount_goal;
-	QTime m_time;
-	int& m_current_time;
-	int m_time_goal;
+	DailyProgress* m_daily_progress;
 };
-
-inline QString Document::cacheFilename() const {
-	return m_cache_filename;
-}
 
 inline QString Document::filename() const {
 	return m_filename;

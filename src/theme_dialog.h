@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,11 +24,13 @@ class ColorButton;
 class FontComboBox;
 class ImageButton;
 class Theme;
+class ThemeRenderer;
 
 #include <QDialog>
+#include <QFuture>
 class QCheckBox;
 class QComboBox;
-class QFrame;
+class QGroupBox;
 class QLabel;
 class QLineEdit;
 class QPushButton;
@@ -43,20 +45,26 @@ public:
 	ThemeDialog(Theme& theme, QWidget* parent = 0);
 	~ThemeDialog();
 
-	static void createPreview(const QString& name);
+	static void createPreview(const QString& id, bool is_default);
 
 public slots:
 	virtual void accept();
+
+protected:
+	virtual void hideEvent(QHideEvent* event);
 
 private slots:
 	void checkNameAvailable();
 	void fontChanged();
 	void imageChanged();
 	void lineSpacingChanged(int index);
+	void positionChanged(int index);
 	void renderPreview();
+	void renderPreview(QImage preview, const QRect& foreground, const Theme& theme);
 
 private:
 	void savePreview();
+	void setValues(Theme& theme);
 
 private:
 	Theme& m_theme;
@@ -64,33 +72,48 @@ private:
 	QLineEdit* m_name;
 	QPushButton* m_ok;
 
+	ThemeRenderer* m_theme_renderer;
 	QLabel* m_preview;
-	QLabel* m_preview_background;
+	QImage m_preview_icon;
 	QTextEdit* m_preview_text;
-
-	QComboBox* m_background_type;
-	ColorButton* m_background_color;
-	ImageButton* m_background_image;
-	QPushButton* m_clear_image;
-
-	ColorButton* m_foreground_color;
-	QSpinBox* m_foreground_opacity;
-	QSpinBox* m_foreground_width;
-	QSpinBox* m_foreground_rounding;
-	QSpinBox* m_foreground_margin;
-	QSpinBox* m_foreground_padding;
-	QComboBox* m_foreground_position;
+	QFuture<QColor> m_load_color;
 
 	ColorButton* m_text_color;
 	FontComboBox* m_font_names;
 	QComboBox* m_font_sizes;
 	ColorButton* m_misspelled_color;
 
-	QCheckBox* m_indent_first_line;
+	ColorButton* m_background_color;
+	ImageButton* m_background_image;
+	QPushButton* m_clear_image;
+	QComboBox* m_background_type;
+
+	ColorButton* m_foreground_color;
+	QSpinBox* m_foreground_opacity;
+	QComboBox* m_foreground_position;
+	QSpinBox* m_foreground_width;
+
+	QGroupBox* m_round_corners;
+	QSpinBox* m_corner_radius;
+
+	QGroupBox* m_blur;
+	QSpinBox* m_blur_radius;
+
+	QGroupBox* m_shadow;
+	ColorButton* m_shadow_color;
+	QSpinBox* m_shadow_radius;
+	QSpinBox* m_shadow_offset;
+
+	QSpinBox* m_foreground_margin;
+	QSpinBox* m_foreground_padding;
+
 	QComboBox* m_line_spacing_type;
 	QSpinBox* m_line_spacing;
+
+	QSpinBox* m_tab_width;
 	QSpinBox* m_spacing_above_paragraph;
 	QSpinBox* m_spacing_below_paragraph;
+	QCheckBox* m_indent_first_line;
 };
 
 #endif

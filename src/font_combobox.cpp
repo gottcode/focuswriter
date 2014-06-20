@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,10 +48,11 @@ void FontComboBox::setWritingSystem(QFontDatabase::WritingSystem system)
 
 void FontComboBox::setCurrentFont(const QFont& font)
 {
-	QString family = font.family();
+	QString family = QFontInfo(font).family();
+	QString foundryfamily = family + QLatin1String(" [");
 	QStringList families = m_font_model->stringList();
 	for (int i = 0; i < families.size(); ++i) {
-		if (family == families.at(i)) {
+		if (family == families.at(i) || families.at(i).startsWith(foundryfamily)) {
 			setCurrentIndex(i);
 			break;
 		}
@@ -72,7 +73,6 @@ void FontComboBox::updateModel()
 {
 	QFontDatabase database;
 	QStringList fonts = database.families(m_system);
-	fonts.sort();
 	m_font_model->setStringList(fonts);
 }
 

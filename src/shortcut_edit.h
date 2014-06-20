@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #define SHORTCUT_EDIT_H
 
 #include <QWidget>
-class QLineEdit;
+class QKeySequenceEdit;
 class QPushButton;
 
 class ShortcutEdit : public QWidget
@@ -33,9 +33,7 @@ public:
 
 	QKeySequence shortcut() const;
 
-	bool eventFilter(QObject* watched, QEvent* event);
-	void setShortcut(const QKeySequence& shortcut);
-	void setShortcut(const QKeySequence& shortcut, const QKeySequence& default_shortcut);
+	void setShortcut(const QKeySequence& shortcut, const QKeySequence& default_shortcut = QKeySequence());
 
 signals:
 	void changed();
@@ -45,12 +43,8 @@ public slots:
 	void reset();
 
 private:
-	void setText();
-
-private:
-	QKeySequence m_shortcut;
 	QKeySequence m_default_shortcut;
-	QLineEdit* m_edit;
+	QKeySequenceEdit* m_edit;
 	QPushButton* m_reset_button;
 };
 

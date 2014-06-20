@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,16 +19,15 @@
 
 #include "document_writer.h"
 
-#include "rtf/writer.h"
+#include "docx_writer.h"
+#include "odt_writer.h"
+#include "rtf_writer.h"
 
 #include <QFile>
 #include <QTextDocument>
-#include <QTextDocumentWriter>
 #include <QTextStream>
 
-#if defined(Q_OS_MAC)
-#include <sys/fcntl.h>
-#elif defined(Q_OS_UNIX)
+#if defined(Q_OS_UNIX)
 #include <unistd.h>
 #elif defined(Q_OS_WIN)
 #include <windows.h>
@@ -39,7 +38,8 @@
 
 DocumentWriter::DocumentWriter() :
 	m_type("odt"),
-	m_document(0)
+	m_document(0),
+	m_write_bom(false)
 {
 }
 
@@ -60,42 +60,41 @@ bool DocumentWriter::write()
 	Q_ASSERT(!m_filename.isEmpty());
 
 	bool saved = false;
-	QFile file(m_filename);
-	if (m_type == "odt") {
-		if (file.open(QFile::WriteOnly)) {
-			QTextDocumentWriter writer(&file, "ODT");
-			saved = writer.write(m_document);
-		}
-	} else if (m_type == "rtf") {
-		if (file.open(QFile::WriteOnly)) {
-			RTF::Writer writer(m_codepage);
-			if (m_codepage.isEmpty()) {
-				m_codepage = writer.codePage();
-			}
-			saved = writer.write(&file, m_document);
-		}
-	} else {
-		if (file.open(QFile::WriteOnly | QFile::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec("UTF-8");
-			if (m_type == "txt") {
-				stream.setGenerateByteOrderMark(true);
-			}
-			stream << m_document->toPlainText();
-			saved = true;
-		}
-	}
 
-	if (file.isOpen()) {
-#if defined(Q_OS_MAC)
-		saved &= (fsync(file.handle()) == 0);
-#elif defined(Q_OS_UNIX)
-		saved &= (fsync(file.handle()) == 0);
+	if (m_type == "odt") {
+		OdtWriter writer;
+		saved = writer.write(m_filename, m_document);
+	} else if (m_type == "docx") {
+		DocxWriter writer;
+		saved = writer.write(m_filename, m_document);
+	} else {
+		QFile file(m_filename);
+		if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+			if (m_type == "rtf") {
+				RtfWriter writer(m_encoding);
+				if (m_encoding.isEmpty()) {
+					m_encoding = writer.encoding();
+				}
+				saved = writer.write(&file, m_document);
+			} else {
+				QTextStream stream(&file);
+				QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
+				stream.setCodec(encoding);
+				if (m_write_bom || (encoding != "UTF-8")) {
+					stream.setGenerateByteOrderMark(true);
+				}
+				stream << m_document->toPlainText();
+				saved = true;
+			}
+
+#if defined(Q_OS_UNIX)
+			saved &= (fsync(file.handle()) == 0);
 #elif defined(Q_OS_WIN)
-		saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
+			saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
 #endif
-		saved &= (file.error() == QFile::NoError);
-		file.close();
+			saved &= (file.error() == QFile::NoError);
+			file.close();
+		}
 	}
 
 	return saved;

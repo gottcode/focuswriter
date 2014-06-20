@@ -26,6 +26,7 @@ class Theme;
 class QListWidget;
 class QListWidgetItem;
 class QSettings;
+class QTabWidget;
 
 class ThemeManager : public QDialog
 {
@@ -41,20 +42,29 @@ protected:
 	virtual void hideEvent(QHideEvent* event);
 
 private slots:
-	void addTheme();
-	void modifyTheme();
-	void removeTheme();
+	void newTheme();
+	void editTheme();
+	void cloneTheme();
+	void deleteTheme();
 	void importTheme();
 	void exportTheme();
 	void currentThemeChanged(QListWidgetItem* current);
 
 private:
-	void addItem(const QString& name);
+	QListWidgetItem* addItem(const QString& id, bool is_default, const QString& name);
+	bool selectItem(const QString& id, bool is_default);
+	void selectionChanged(bool is_default);
 
 private:
+	QTabWidget* m_tabs;
+	QListWidget* m_default_themes;
 	QListWidget* m_themes;
 	QSettings& m_settings;
+	QPushButton* m_clone_default_button;
+	QPushButton* m_clone_button;
+	QPushButton* m_edit_button;
 	QPushButton* m_remove_button;
+	QPushButton* m_export_button;
 };
 
 #endif

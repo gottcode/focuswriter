@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,14 @@
 
 #include "block_stats.h"
 
-#include "dictionary.h"
+#include "dictionary_ref.h"
 #include "scene_model.h"
 
 //-----------------------------------------------------------------------------
 
 BlockStats::BlockStats(SceneModel* scene_model) :
 	m_characters(0),
+	m_letters(0),
 	m_spaces(0),
 	m_words(0),
 	m_scene(false),
@@ -45,7 +46,7 @@ BlockStats::~BlockStats()
 
 //-----------------------------------------------------------------------------
 
-void BlockStats::checkSpelling(const QString& text, const Dictionary& dictionary)
+void BlockStats::checkSpelling(const QString& text, const DictionaryRef& dictionary)
 {
 	m_misspelled.clear();
 	if (!text.isEmpty()) {
@@ -63,6 +64,7 @@ void BlockStats::update(const QString& text)
 {
 	m_checked = Unchecked;
 	m_characters = text.length();
+	m_letters = 0;
 	m_spaces = 0;
 	m_words = 0;
 	bool word = false;
@@ -73,6 +75,7 @@ void BlockStats::update(const QString& text)
 				word = true;
 				m_words++;
 			}
+			m_letters += (i->category() != QChar::Punctuation_Dash);
 		} else if (i->isSpace()) {
 			word = false;
 			m_spaces++;

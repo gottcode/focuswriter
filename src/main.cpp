@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,9 @@
  ***********************************************************************/
 
 #include "application.h"
+#include "daily_progress.h"
 #include "dictionary_manager.h"
-#include "document.h"
+#include "document_cache.h"
 #include "locale_dialog.h"
 #include "paths.h"
 #include "session.h"
@@ -42,6 +43,9 @@ int main(int argc, char** argv)
 		return 0;
 	}
 	QString appdir = app.applicationDirPath();
+
+	// Allow passing Theme as signal parameter
+	qRegisterMetaType<Theme>("Theme");
 
 	// Find application data dirs
 	QStringList datadirs;
@@ -135,7 +139,7 @@ int main(int argc, char** argv)
 	if (!dir.exists("Cache/Files")) {
 		dir.mkpath("Cache/Files");
 	}
-	Document::setCachePath(dir.filePath("Cache/Files"));
+	DocumentCache::setPath(dir.filePath("Cache/Files"));
 
 	// Set sessions path
 	if (!dir.exists("Sessions")) {
@@ -154,7 +158,18 @@ int main(int argc, char** argv)
 	if (!dir.exists("Themes/Images")) {
 		dir.mkdir("Themes/Images");
 	}
+	if (!dir.exists("Themes/Previews/Default")) {
+		dir.mkpath("Themes/Previews/Default");
+	}
 	Theme::setPath(dir.absoluteFilePath("Themes"));
+
+	foreach (const QString& datadir, datadirs) {
+		QFileInfo info(datadir + "/themes");
+		if (info.exists()) {
+			Theme::setDefaultPath(info.absoluteFilePath());
+			break;
+		}
+	}
 
 	// Set dictionary paths
 	if (!dir.exists("Dictionaries")) {
@@ -165,12 +180,20 @@ int main(int argc, char** argv)
 		}
 	}
 	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
+	QStringList dictdirs;
+	dictdirs.append(DictionaryManager::path());
+#ifdef Q_OS_WIN
+	dictdirs.append(appdir + "/dictionaries");
+#endif
+	QDir::setSearchPaths("dict", dictdirs);
+
+	// Set location for daily progress
+	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
 		QSettings settings;
-		Theme theme;
-		theme.setName(Session::tr("Default"));
+		Theme theme(QString(), false);
 
 		theme.setBackgroundType(settings.value("Background/Position", theme.backgroundType()).toInt());
 		theme.setBackgroundColor(settings.value("Background/Color", theme.backgroundColor()).toString());
@@ -178,15 +201,17 @@ int main(int argc, char** argv)
 		settings.remove("Background");
 
 		theme.setForegroundColor(settings.value("Page/Color", theme.foregroundColor()).toString());
-		theme.setForegroundWidth(settings.value("Page/Width", theme.foregroundWidth()).toInt());
-		theme.setForegroundOpacity(settings.value("Page/Opacity", theme.foregroundOpacity()).toInt());
+		theme.setForegroundWidth(settings.value("Page/Width", theme.foregroundWidth().value()).toInt());
+		theme.setForegroundOpacity(settings.value("Page/Opacity", theme.foregroundOpacity().value()).toInt());
 		settings.remove("Page");
 
 		theme.setTextColor(settings.value("Text/Color", theme.textColor()).toString());
 		theme.setTextFont(settings.value("Text/Font", theme.textFont()).value<QFont>());
 		settings.remove("Text");
 
-		settings.setValue("ThemeManager/Theme", theme.name());
+		if (theme.isChanged()) {
+			settings.setValue("ThemeManager/Theme", theme.name());
+		}
 	}
 
 	// Create main window

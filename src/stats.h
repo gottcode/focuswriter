@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,12 +35,13 @@ public:
 
 	void append(const BlockStats* block);
 	void calculatePageCount(int type, float page_amount);
-	void calculateEstimatedWordCount();
+	void calculateWordCount(int type);
 	void clear();
 
 private:
 	bool m_valid;
 	int m_character_count;
+	int m_letter_count;
 	int m_page_count;
 	int m_paragraph_count;
 	int m_space_count;

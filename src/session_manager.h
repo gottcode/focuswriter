@@ -42,7 +42,8 @@ public:
 	QMenu* menu() const;
 
 	bool closeCurrent();
-	void setCurrent(const QString& session, const QStringList& files = QStringList(), const QStringList& datafiles = QStringList());
+	bool saveCurrent();
+	void setCurrent(const QString& id, const QStringList& files = QStringList(), const QStringList& datafiles = QStringList());
 
 public slots:
 	void newSession();

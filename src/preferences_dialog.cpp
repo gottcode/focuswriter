@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,9 @@
 #include "preferences_dialog.h"
 
 #include "action_manager.h"
-#include "dictionary.h"
+#include "daily_progress.h"
 #include "dictionary_manager.h"
+#include "format_manager.h"
 #include "locale_dialog.h"
 #include "preferences.h"
 #include "shortcut_edit.h"
@@ -48,8 +49,7 @@
 #include <QTabWidget>
 #include <QTreeWidget>
 #include <QVBoxLayout>
-
-#include <zip.h>
+#include <QtZipReader>
 
 //-----------------------------------------------------------------------------
 
@@ -101,15 +101,16 @@ namespace
 
 //-----------------------------------------------------------------------------
 
-PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) :
+PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* parent) :
 	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_preferences(preferences),
+	m_daily_progress(daily_progress),
 	m_shortcut_conflicts(false)
 {
 	setWindowTitle(tr("Preferences"));
 
 	m_tabs = new QTabWidget(this);
 	m_tabs->addTab(initGeneralTab(), tr("General"));
+	m_tabs->addTab(initDailyGoalTab(), tr("Daily Goal"));
 	m_tabs->addTab(initStatisticsTab(), tr("Statistics"));
 	m_tabs->addTab(initSpellingTab(), tr("Spell Checking"));
 	m_tabs->addTab(initToolbarTab(), tr("Toolbar"));
@@ -125,7 +126,7 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 	layout->addWidget(buttons);
 
 	// Load settings
-	switch (m_preferences.goalType()) {
+	switch (Preferences::instance().goalType()) {
 	case 1:
 		m_option_time->setChecked(true);
 		break;
@@ -136,15 +137,19 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 		m_option_none->setChecked(true);
 		break;
 	}
-	m_time->setValue(m_preferences.goalMinutes());
-	m_wordcount->setValue(m_preferences.goalWords());
+	m_time->setValue(Preferences::instance().goalMinutes());
+	m_wordcount->setValue(Preferences::instance().goalWords());
 
-	m_show_characters->setChecked(m_preferences.showCharacters());
-	m_show_pages->setChecked(m_preferences.showPages());
-	m_show_paragraphs->setChecked(m_preferences.showParagraphs());
-	m_show_words->setChecked(m_preferences.showWords());
+	m_goal_history->setChecked(Preferences::instance().goalHistory());
+	m_goal_streaks->setChecked(Preferences::instance().goalStreaks());
+	m_streak_minimum->setValue(Preferences::instance().goalStreakMinimum());
 
-	switch (m_preferences.pageType()) {
+	m_show_characters->setChecked(Preferences::instance().showCharacters());
+	m_show_pages->setChecked(Preferences::instance().showPages());
+	m_show_paragraphs->setChecked(Preferences::instance().showParagraphs());
+	m_show_words->setChecked(Preferences::instance().showWords());
+
+	switch (Preferences::instance().pageType()) {
 	case 1:
 		m_option_paragraphs->setChecked(true);
 		break;
@@ -155,43 +160,51 @@ PreferencesDialog::PreferencesDialog(Preferences& preferences, QWidget* parent) 
 		m_option_characters->setChecked(true);
 		break;
 	}
-	m_page_characters->setValue(m_preferences.pageCharacters());
-	m_page_paragraphs->setValue(m_preferences.pageParagraphs());
-	m_page_words->setValue(m_preferences.pageWords());
+	m_page_characters->setValue(Preferences::instance().pageCharacters());
+	m_page_paragraphs->setValue(Preferences::instance().pageParagraphs());
+	m_page_words->setValue(Preferences::instance().pageWords());
 
-	if (m_preferences.accurateWordcount()) {
-		m_option_accurate_wordcount->setChecked(true);
-	} else {
+	switch (Preferences::instance().wordcountType()) {
+	case 1:
 		m_option_estimate_wordcount->setChecked(true);
+		break;
+	case 2:
+		m_option_singlechar_wordcount->setChecked(true);
+		break;
+	default:
+		m_option_accurate_wordcount->setChecked(true);
+		break;
 	}
 
-	m_always_center->setChecked(m_preferences.alwaysCenter());
-	m_block_cursor->setChecked(m_preferences.blockCursor());
-	m_smooth_fonts->setChecked(m_preferences.smoothFonts());
-	m_smart_quotes->setChecked(m_preferences.smartQuotes());
-	m_double_quotes->setCurrentIndex(m_preferences.doubleQuotes());
-	m_single_quotes->setCurrentIndex(m_preferences.singleQuotes());
-	m_typewriter_sounds->setChecked(m_preferences.typewriterSounds());
+	m_always_center->setChecked(Preferences::instance().alwaysCenter());
+	m_block_cursor->setChecked(Preferences::instance().blockCursor());
+	m_smooth_fonts->setChecked(Preferences::instance().smoothFonts());
+	m_smart_quotes->setChecked(Preferences::instance().smartQuotes());
+	m_double_quotes->setCurrentIndex(Preferences::instance().doubleQuotes());
+	m_single_quotes->setCurrentIndex(Preferences::instance().singleQuotes());
+	m_typewriter_sounds->setChecked(Preferences::instance().typewriterSounds());
 
-	m_scene_divider->setText(m_preferences.sceneDivider());
+	m_scene_divider->setText(Preferences::instance().sceneDivider());
 
-	m_auto_save->setChecked(m_preferences.autoSave());
-	m_save_positions->setChecked(m_preferences.savePositions());
+	m_auto_save->setChecked(Preferences::instance().autoSave());
+	m_save_positions->setChecked(Preferences::instance().savePositions());
+	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat().value()));
+	m_write_bom->setChecked(Preferences::instance().writeByteOrderMark());
 
-	m_highlight_misspelled->setChecked(m_preferences.highlightMisspelled());
-	m_ignore_numbers->setChecked(m_preferences.ignoredWordsWithNumbers());
-	m_ignore_uppercase->setChecked(m_preferences.ignoredUppercaseWords());
-	int index = m_languages->findData(m_preferences.language());
+	m_highlight_misspelled->setChecked(Preferences::instance().highlightMisspelled());
+	m_ignore_numbers->setChecked(Preferences::instance().ignoredWordsWithNumbers());
+	m_ignore_uppercase->setChecked(Preferences::instance().ignoredUppercaseWords());
+	int index = m_languages->findData(Preferences::instance().language());
 	if (index != -1) {
 		m_languages->setCurrentIndex(index);
 	}
 
-	int style = m_toolbar_style->findData(m_preferences.toolbarStyle());
+	int style = m_toolbar_style->findData(Preferences::instance().toolbarStyle());
 	if (style == -1) {
 		style = m_toolbar_style->findData(Qt::ToolButtonTextUnderIcon);
 	}
 	m_toolbar_style->setCurrentIndex(style);
-	QStringList actions = m_preferences.toolbarActions();
+	QStringList actions = Preferences::instance().toolbarActions();
 	int pos = 0;
 	foreach (const QString& action, actions) {
 		QString text = action;
@@ -250,47 +263,58 @@ void PreferencesDialog::accept()
 
 	// Save settings
 	if (m_option_time->isChecked()) {
-		m_preferences.setGoalType(1);
+		Preferences::instance().setGoalType(1);
 	} else if (m_option_wordcount->isChecked()) {
-		m_preferences.setGoalType(2);
+		Preferences::instance().setGoalType(2);
 	} else {
-		m_preferences.setGoalType(0);
+		Preferences::instance().setGoalType(0);
 	}
-	m_preferences.setGoalMinutes(m_time->value());
-	m_preferences.setGoalWords(m_wordcount->value());
+	Preferences::instance().setGoalMinutes(m_time->value());
+	Preferences::instance().setGoalWords(m_wordcount->value());
+	Preferences::instance().setGoalHistory(m_goal_history->isChecked());
+	Preferences::instance().setGoalStreaks(m_goal_streaks->isChecked());
+	Preferences::instance().setGoalStreakMinimum(m_streak_minimum->value());
 
-	m_preferences.setShowCharacters(m_show_characters->isChecked());
-	m_preferences.setShowPages(m_show_pages->isChecked());
-	m_preferences.setShowParagraphs(m_show_paragraphs->isChecked());
-	m_preferences.setShowWords(m_show_words->isChecked());
+	Preferences::instance().setShowCharacters(m_show_characters->isChecked());
+	Preferences::instance().setShowPages(m_show_pages->isChecked());
+	Preferences::instance().setShowParagraphs(m_show_paragraphs->isChecked());
+	Preferences::instance().setShowWords(m_show_words->isChecked());
 
 	if (m_option_paragraphs->isChecked()) {
-		m_preferences.setPageType(1);
+		Preferences::instance().setPageType(1);
 	} else if (m_option_words->isChecked()) {
-		m_preferences.setPageType(2);
+		Preferences::instance().setPageType(2);
 	} else {
-		m_preferences.setPageType(0);
+		Preferences::instance().setPageType(0);
 	}
-	m_preferences.setPageCharacters(m_page_characters->value());
-	m_preferences.setPageParagraphs(m_page_paragraphs->value());
-	m_preferences.setPageWords(m_page_words->value());
+	Preferences::instance().setPageCharacters(m_page_characters->value());
+	Preferences::instance().setPageParagraphs(m_page_paragraphs->value());
+	Preferences::instance().setPageWords(m_page_words->value());
 
-	m_preferences.setAccurateWordcount(m_option_accurate_wordcount->isChecked());
+	if (m_option_accurate_wordcount->isChecked()) {
+		Preferences::instance().setWordcountType(0);
+	} else if (m_option_estimate_wordcount->isChecked()) {
+		Preferences::instance().setWordcountType(1);
+	} else {
+		Preferences::instance().setWordcountType(2);
+	}
 
-	m_preferences.setAlwaysCenter(m_always_center->isChecked());
-	m_preferences.setBlockCursor(m_block_cursor->isChecked());
-	m_preferences.setSmoothFonts(m_smooth_fonts->isChecked());
-	m_preferences.setSmartQuotes(m_smart_quotes->isChecked());
-	m_preferences.setDoubleQuotes(m_double_quotes->currentIndex());
-	m_preferences.setSingleQuotes(m_single_quotes->currentIndex());
-	m_preferences.setTypewriterSounds(m_typewriter_sounds->isChecked());
+	Preferences::instance().setAlwaysCenter(m_always_center->isChecked());
+	Preferences::instance().setBlockCursor(m_block_cursor->isChecked());
+	Preferences::instance().setSmoothFonts(m_smooth_fonts->isChecked());
+	Preferences::instance().setSmartQuotes(m_smart_quotes->isChecked());
+	Preferences::instance().setDoubleQuotes(m_double_quotes->currentIndex());
+	Preferences::instance().setSingleQuotes(m_single_quotes->currentIndex());
+	Preferences::instance().setTypewriterSounds(m_typewriter_sounds->isChecked());
 
-	m_preferences.setSceneDivider(m_scene_divider->text());
+	Preferences::instance().setSceneDivider(m_scene_divider->text());
 
-	m_preferences.setAutoSave(m_auto_save->isChecked());
-	m_preferences.setSavePositions(m_save_positions->isChecked());
+	Preferences::instance().setAutoSave(m_auto_save->isChecked());
+	Preferences::instance().setSavePositions(m_save_positions->isChecked());
+	Preferences::instance().setWriteByteOrderMark(m_write_bom->isChecked());
+	Preferences::instance().setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
 
-	m_preferences.setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
+	Preferences::instance().setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
 	int count = m_toolbar_actions->count();
 	for (int i = 0; i < count; ++i) {
@@ -300,7 +324,7 @@ void PreferencesDialog::accept()
 			actions.append(action);
 		}
 	}
-	m_preferences.setToolbarActions(actions);
+	Preferences::instance().setToolbarActions(actions);
 
 	ActionManager::instance()->setShortcuts(m_new_shortcuts);
 
@@ -323,17 +347,16 @@ void PreferencesDialog::accept()
 	dir.rmdir("install");
 
 	// Set dictionary
-	m_preferences.setHighlightMisspelled(m_highlight_misspelled->isChecked());
-	m_preferences.setIgnoreWordsWithNumbers(m_ignore_numbers->isChecked());
-	m_preferences.setIgnoreUppercaseWords(m_ignore_uppercase->isChecked());
+	Preferences::instance().setHighlightMisspelled(m_highlight_misspelled->isChecked());
+	Preferences::instance().setIgnoreWordsWithNumbers(m_ignore_numbers->isChecked());
+	Preferences::instance().setIgnoreUppercaseWords(m_ignore_uppercase->isChecked());
 	if (m_languages->count()) {
-		m_preferences.setLanguage(m_languages->itemData(m_languages->currentIndex()).toString());
+		Preferences::instance().setLanguage(m_languages->itemData(m_languages->currentIndex()).toString());
 	} else {
-		m_preferences.setLanguage(QString());
+		Preferences::instance().setLanguage(QString());
 	}
-	Dictionary::setIgnoreNumbers(m_preferences.ignoredWordsWithNumbers());
-	Dictionary::setIgnoreUppercase(m_preferences.ignoredUppercaseWords());
-	DictionaryManager::instance().setDefaultLanguage(m_preferences.language());
+
+	Preferences::instance().saveChanges();
 
 	// Save personal dictionary
 	QStringList words;
@@ -353,6 +376,30 @@ void PreferencesDialog::reject()
 		qWarning("Failed to clean up dictionary install path");
 	}
 	QDialog::reject();
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::goalHistoryToggled()
+{
+	m_goal_streaks->setEnabled(m_goal_history->isChecked());
+	m_streak_minimum->setEnabled(m_goal_streaks->isChecked() && m_goal_streaks->isEnabled());
+	m_streak_minimum_label->setEnabled(m_goal_streaks->isChecked() && m_goal_streaks->isEnabled());
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::resetDailyGoal()
+{
+	if (QMessageBox::question(this,
+			tr("Question"),
+			tr("Reset daily progress for today to zero?"),
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No)
+		== QMessageBox::Yes)
+	{
+		m_daily_progress->resetToday();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -409,103 +456,87 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// File lists
-	QHash<QString, int> aff_files;
-	QHash<QString, int> dic_files;
-	QHash<QString, int> files;
+	QStringList aff_files;
+	QStringList dic_files;
+	QStringList files;
 	QStringList dictionaries;
 
 	// Open archive
-	zip* archive = zip_open(QFile::encodeName(path).constData(), 0, 0);
-	if (!archive) {
+	QtZipReader zip(path);
+	if (!zip.isReadable()) {
 		QMessageBox::warning(this, tr("Sorry"), tr("Unable to open archive."));
 		return;
 	}
 
-	try {
-		// List files
-		int count = zip_get_num_files(archive);
-		if (count == -1) {
-			throw tr("Unable to read archive metadata.");
-		}
-		for (int i = 0; i < count; ++i) {
-			QString name = QString::fromUtf8(zip_get_name(archive, i, 0));
-			if (name.endsWith(".aff")) {
-				aff_files[name] = i;
-			} else if (name.endsWith(".dic")) {
-				dic_files[name] = i;
+	// List files
+	QStringList entries = zip.fileList();
+	for (int i = 0; i < entries.count(); ++i) {
+		QString name = entries.at(i);
+		if (name.endsWith(".aff")) {
+			aff_files += name;
+		} else if (name.endsWith(".dic")) {
+			dic_files += name;
 #ifdef Q_OS_WIN
-			} else if (name.contains("mor-")) {
-				files[name] = i;
+		// Find Voikko files
+		} else if (name.contains("mor-") || (name == "libvoikko-1.dll")) {
+			files += name;
 #endif
-			}
 		}
+	}
 
-		// Find Voikko dictionaries
-		if (!files.isEmpty()) {
-			QStringList keys = files.keys();
-			foreach (const QString& file, keys) {
-				QString name = file.section('/', -1).section('.', 0);
-				name.replace("voikko-", "");
-				if (!dictionaries.contains(name)) {
-					dictionaries += name;
-				}
-			}
+#ifdef Q_OS_WIN
+	// Find Voikko dictionaries
+	foreach (const QString& file, files) {
+		if (file.endsWith(".dll")) {
+			continue;
 		}
-
-		// Find Hunspell dictionary files
-		foreach (const QString& dic, dic_files.keys()) {
-			QString aff = dic;
-			aff.replace(".dic", ".aff");
-			if (aff_files.contains(aff)) {
-				files[dic] = dic_files[dic];
-				files[aff] = aff_files[aff];
-				QString dictionary = dic.section('/', -1);
-				dictionary.chop(4);
-				dictionaries += dictionary;
-			}
+		QString name = file.section('/', -1).section('.', 0);
+		name.replace("voikko-", "");
+		if (!dictionaries.contains(name)) {
+			dictionaries += name;
 		}
+	}
+#endif
 
-		// Check for dictionaries
-		if (dictionaries.isEmpty()) {
-			throw tr("The archive does not contain a usable dictionary.");
+	// Find Hunspell dictionary files
+	foreach (const QString& dic, dic_files) {
+		QString aff = dic;
+		aff.replace(".dic", ".aff");
+		if (aff_files.contains(aff)) {
+			files += dic;
+			files += aff;
+			QString dictionary = dic.section('/', -1);
+			dictionary.chop(4);
+			dictionaries += dictionary;
 		}
+	}
 
+	// Check for dictionaries
+	if (!dictionaries.isEmpty()) {
 		// Extract files
 		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
-		QHashIterator<QString, int> i(files);
-		while (i.hasNext()) {
-			i.next();
-
-			QString filename = i.key();
+		foreach (const QString& file, files) {
+			QString filename = file;
 			if (filename.endsWith(".dic") || filename.endsWith(".aff")) {
 				// Ignore path for Hunspell dictionaries
 				filename = filename.section('/', -1);
 				filename.replace(QChar('-'), QChar('_'));
+#ifdef Q_OS_WIN
+			} else if (filename.endsWith(".dll")) {
+				// Ignore path for Voikko library
+				dir.setPath(install);
 			} else {
 				// Create path for Voikko dictionary
 				dir.setPath(install + filename + "/..");
 				dir.mkpath(dir.absolutePath());
+#endif
 			}
 
-			QFile file(install + filename);
-			if (file.open(QIODevice::WriteOnly)) {
-				zip_file* zfile = zip_fopen_index(archive, i.value(), 0);
-				if (zfile == 0) {
-					throw tr("Unable to open file '%1'.").arg(i.key());
-				}
-
-				char buffer[8192];
-				int len;
-				while ((len = zip_fread(zfile, &buffer, sizeof(buffer))) > 0) {
-					file.write(buffer, len);
-				}
-				file.close();
-
-				if (zip_fclose(zfile) != 0) {
-					throw tr("Unable to close file '%1'.").arg(i.key());
-				}
+			QFile out(install + filename);
+			if (out.open(QIODevice::WriteOnly)) {
+				out.write(zip.fileData(file));
 			}
 		}
 
@@ -535,14 +566,12 @@ void PreferencesDialog::addLanguage()
 			m_languages->setCurrentIndex(m_languages->count() - 1);
 		}
 		m_languages->model()->sort(0);
-	}
-
-	catch (QString error) {
-		QMessageBox::warning(this, tr("Sorry"), error);
+	} else {
+		QMessageBox::warning(this, tr("Sorry"), tr("The archive does not contain a usable dictionary."));
 	}
 
 	// Close archive
-	zip_close(archive);
+	zip.close();
 }
 
 //-----------------------------------------------------------------------------
@@ -672,40 +701,6 @@ QWidget* PreferencesDialog::initGeneralTab()
 {
 	QWidget* tab = new QWidget(this);
 
-	// Create goal options
-	QGroupBox* goals_group = new QGroupBox(tr("Daily Goal"), tab);
-
-	m_option_none = new QRadioButton(tr("None"), goals_group);
-
-	m_option_time = new QRadioButton(tr("Minutes:"), goals_group);
-
-	m_time = new QSpinBox(goals_group);
-	m_time->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_time->setRange(5, 1440);
-	m_time->setSingleStep(5);
-
-	QHBoxLayout* time_layout = new QHBoxLayout;
-	time_layout->addWidget(m_option_time);
-	time_layout->addWidget(m_time);
-	time_layout->addStretch();
-
-	m_option_wordcount = new QRadioButton(tr("Words:"), goals_group);
-
-	m_wordcount = new QSpinBox(goals_group);
-	m_wordcount->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_wordcount->setRange(100, 100000);
-	m_wordcount->setSingleStep(100);
-
-	QHBoxLayout* wordcount_layout = new QHBoxLayout;
-	wordcount_layout->addWidget(m_option_wordcount);
-	wordcount_layout->addWidget(m_wordcount);
-	wordcount_layout->addStretch();
-
-	QVBoxLayout* goals_layout = new QVBoxLayout(goals_group);
-	goals_layout->addWidget(m_option_none);
-	goals_layout->addLayout(time_layout);
-	goals_layout->addLayout(wordcount_layout);
-
 	// Create edit options
 	QGroupBox* edit_group = new QGroupBox(tr("Editing"), tab);
 
@@ -757,17 +752,111 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	m_auto_save = new QCheckBox(tr("Automatically save changes"), save_group);
 	m_save_positions = new QCheckBox(tr("Remember cursor position"), save_group);
+	m_write_bom = new QCheckBox(tr("Write byte order mark in plain text files"), save_group);
+
+	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
+	m_save_format = new QComboBox(save_group);
+	QStringList types = Preferences::instance().saveFormat().allowedValues();
+	foreach (const QString& type, types) {
+		m_save_format->addItem(FormatManager::filter(type), type);
+	}
+
+	QHBoxLayout* save_format_layout = new QHBoxLayout;
+	save_format_layout->setMargin(0);
+	save_format_layout->addWidget(save_format_label);
+	save_format_layout->addWidget(m_save_format);
+	save_format_layout->addStretch();
 
 	QVBoxLayout* save_layout = new QVBoxLayout(save_group);
 	save_layout->addWidget(m_auto_save);
 	save_layout->addWidget(m_save_positions);
+	save_layout->addWidget(m_write_bom);
+	save_layout->addLayout(save_format_layout);
 
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
-	layout->addWidget(goals_group);
 	layout->addWidget(edit_group);
 	layout->addWidget(scene_group);
 	layout->addWidget(save_group);
+	layout->addStretch();
+
+	return makeScrollable(tab);
+}
+
+//-----------------------------------------------------------------------------
+
+QWidget* PreferencesDialog::initDailyGoalTab()
+{
+	QWidget* tab = new QWidget(this);
+
+	// Create goal options
+	m_option_none = new QRadioButton(tr("None"), tab);
+
+	m_option_time = new QRadioButton(tr("Minutes:"), tab);
+	m_time = new QSpinBox(tab);
+	m_time->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_time->setRange(Preferences::instance().goalMinutes().minimumValue(), Preferences::instance().goalMinutes().maximumValue());
+	m_time->setSingleStep(5);
+	m_time->setEnabled(false);
+
+	m_option_wordcount = new QRadioButton(tr("Words:"), tab);
+	m_wordcount = new QSpinBox(tab);
+	m_wordcount->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_wordcount->setRange(Preferences::instance().goalWords().minimumValue(), Preferences::instance().goalWords().maximumValue());
+	m_wordcount->setSingleStep(100);
+	m_wordcount->setEnabled(false);
+
+	connect(m_option_none, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
+	connect(m_option_none, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
+
+	connect(m_option_time, SIGNAL(toggled(bool)), m_time, SLOT(setEnabled(bool)));
+	connect(m_option_time, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
+
+	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
+	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_wordcount, SLOT(setEnabled(bool)));
+
+	QPushButton* reset_today_button = new QPushButton(tr("Reset Today"), tab);
+	connect(reset_today_button, SIGNAL(clicked()), this, SLOT(resetDailyGoal()));
+
+	QGridLayout* goal_layout = new QGridLayout;
+	goal_layout->setColumnStretch(2, 1);
+	goal_layout->addWidget(m_option_none, 0, 0);
+	goal_layout->addWidget(m_option_time, 1, 0);
+	goal_layout->addWidget(m_time, 1, 1);
+	goal_layout->addWidget(m_option_wordcount, 2, 0);
+	goal_layout->addWidget(m_wordcount, 2, 1);
+	goal_layout->addWidget(reset_today_button, 3, 0, 1, 2, Qt::AlignLeft | Qt::AlignVCenter);
+
+	// Create history options
+	QGroupBox* history_group = new QGroupBox(tr("History"), tab);
+
+	m_goal_history = new QCheckBox(tr("Remember history"), history_group);
+	connect(m_goal_history, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
+
+	m_goal_streaks = new QCheckBox(tr("Show streaks"), history_group);
+	m_goal_streaks->setEnabled(false);
+	connect(m_goal_streaks, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
+
+	m_streak_minimum = new QSpinBox(history_group);
+	m_streak_minimum->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_streak_minimum->setRange(Preferences::instance().goalStreakMinimum().minimumValue(), Preferences::instance().goalStreakMinimum().maximumValue());
+	m_streak_minimum->setSuffix(QLocale().percent());
+	m_streak_minimum->setEnabled(false);
+
+	QFormLayout* history_layout = new QFormLayout(history_group);
+	history_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	history_layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
+	history_layout->addRow(m_goal_history);
+	history_layout->addRow(m_goal_streaks);
+	history_layout->addRow(tr("Minimum progress for streaks:"), m_streak_minimum);
+
+	m_streak_minimum_label = history_layout->labelForField(m_streak_minimum);
+	m_streak_minimum_label->setEnabled(false);
+
+	// Lay out daily goal options
+	QVBoxLayout* layout = new QVBoxLayout(tab);
+	layout->addLayout(goal_layout);
+	layout->addWidget(history_group);
 	layout->addStretch();
 
 	return makeScrollable(tab);
@@ -780,72 +869,79 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	QWidget* tab = new QWidget(this);
 
 	// Create statistics options
-	QGroupBox* counts_group = new QGroupBox(tr("Contents"), tab);
+	m_show_words = new QCheckBox(tr("Word count"), tab);
+	m_show_pages = new QCheckBox(tr("Page count"), tab);
+	m_show_paragraphs = new QCheckBox(tr("Paragraph count"), tab);
+	m_show_characters = new QCheckBox(tr("Character count"), tab);
 
-	m_show_words = new QCheckBox(tr("Word count"), counts_group);
-	m_show_pages = new QCheckBox(tr("Page count"), counts_group);
-	m_show_paragraphs = new QCheckBox(tr("Paragraph count"), counts_group);
-	m_show_characters = new QCheckBox(tr("Character count"), counts_group);
-
-	QVBoxLayout* counts_layout = new QVBoxLayout(counts_group);
+	QVBoxLayout* counts_layout = new QVBoxLayout;
 	counts_layout->addWidget(m_show_words);
 	counts_layout->addWidget(m_show_pages);
 	counts_layout->addWidget(m_show_paragraphs);
 	counts_layout->addWidget(m_show_characters);
 
-	// Create page algorithm options
-	QGroupBox* page_group = new QGroupBox(tr("Page Size"), tab);
-
-	m_option_characters = new QRadioButton(tr("Characters:"), page_group);
-	m_page_characters = new QSpinBox(page_group);
-	m_page_characters->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_page_characters->setRange(500, 10000);
-	m_page_characters->setSingleStep(250);
-	QHBoxLayout* characters_layout = new QHBoxLayout;
-	characters_layout->addWidget(m_option_characters);
-	characters_layout->addWidget(m_page_characters);
-	characters_layout->addStretch();
-
-	m_option_paragraphs = new QRadioButton(tr("Paragraphs:"), page_group);
-	m_page_paragraphs = new QSpinBox(page_group);
-	m_page_paragraphs->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_page_paragraphs->setRange(1, 100);
-	m_page_paragraphs->setSingleStep(1);
-	QHBoxLayout* paragraphs_layout = new QHBoxLayout;
-	paragraphs_layout->addWidget(m_option_paragraphs);
-	paragraphs_layout->addWidget(m_page_paragraphs);
-	paragraphs_layout->addStretch();
-
-	m_option_words = new QRadioButton(tr("Words:"), page_group);
-	m_page_words = new QSpinBox(page_group);
-	m_page_words->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_page_words->setRange(100, 2000);
-	m_page_words->setSingleStep(50);
-	QHBoxLayout* words_layout = new QHBoxLayout;
-	words_layout->addWidget(m_option_words);
-	words_layout->addWidget(m_page_words);
-	words_layout->addStretch();
-
-	QVBoxLayout* page_layout = new QVBoxLayout(page_group);
-	page_layout->addLayout(characters_layout);
-	page_layout->addLayout(paragraphs_layout);
-	page_layout->addLayout(words_layout);
-
-	// Create wordcount options
+	// Create word count algorithm options
 	QGroupBox* wordcount_group = new QGroupBox(tr("Word Count Algorithm"), this);
 
 	m_option_accurate_wordcount = new QRadioButton(tr("Detect word boundaries"), wordcount_group);
 	m_option_estimate_wordcount = new QRadioButton(tr("Divide character count by six"), wordcount_group);
+	m_option_singlechar_wordcount = new QRadioButton(tr("Count each letter as a word"), wordcount_group);
 
 	QVBoxLayout* wordcount_layout = new QVBoxLayout(wordcount_group);
 	wordcount_layout->addWidget(m_option_accurate_wordcount);
 	wordcount_layout->addWidget(m_option_estimate_wordcount);
+	wordcount_layout->addWidget(m_option_singlechar_wordcount);
+
+	// Create page count algorithm options
+	QGroupBox* page_group = new QGroupBox(tr("Page Count Algorithm"), tab);
+
+	m_option_characters = new QRadioButton(tr("Characters:"), page_group);
+	m_page_characters = new QSpinBox(page_group);
+	m_page_characters->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_page_characters->setRange(Preferences::instance().pageCharacters().minimumValue(), Preferences::instance().pageCharacters().maximumValue());
+	m_page_characters->setSingleStep(250);
+	m_page_characters->setEnabled(false);
+
+	m_option_paragraphs = new QRadioButton(tr("Paragraphs:"), page_group);
+	m_page_paragraphs = new QSpinBox(page_group);
+	m_page_paragraphs->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_page_paragraphs->setRange(Preferences::instance().pageParagraphs().minimumValue(), Preferences::instance().pageParagraphs().maximumValue());
+	m_page_paragraphs->setSingleStep(1);
+	m_page_paragraphs->setEnabled(false);
+
+	m_option_words = new QRadioButton(tr("Words:"), page_group);
+	m_page_words = new QSpinBox(page_group);
+	m_page_words->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_page_words->setRange(Preferences::instance().pageWords().minimumValue(), Preferences::instance().pageWords().maximumValue());
+	m_page_words->setSingleStep(50);
+	m_page_words->setEnabled(false);
+
+	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_characters, SLOT(setEnabled(bool)));
+	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setDisabled(bool)));
+	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_words, SLOT(setDisabled(bool)));
+
+	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_characters, SLOT(setDisabled(bool)));
+	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setEnabled(bool)));
+	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_words, SLOT(setDisabled(bool)));
+
+	connect(m_option_words, SIGNAL(toggled(bool)), m_page_characters, SLOT(setDisabled(bool)));
+	connect(m_option_words, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setDisabled(bool)));
+	connect(m_option_words, SIGNAL(toggled(bool)), m_page_words, SLOT(setEnabled(bool)));
+
+	QGridLayout* page_layout = new QGridLayout(page_group);
+	page_layout->setColumnStretch(2, 1);
+	page_layout->addWidget(m_option_characters, 0, 0);
+	page_layout->addWidget(m_page_characters, 0, 1);
+	page_layout->addWidget(m_option_paragraphs, 1, 0);
+	page_layout->addWidget(m_page_paragraphs, 1, 1);
+	page_layout->addWidget(m_option_words, 2, 0);
+	page_layout->addWidget(m_page_words, 2, 1);
 
 	// Lay out statistics options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
-	layout->addWidget(counts_group);
-	layout->addWidget(page_group);
+	layout->addLayout(counts_layout);
 	layout->addWidget(wordcount_group);
+	layout->addWidget(page_group);
 	layout->addStretch();
 
 	return makeScrollable(tab);

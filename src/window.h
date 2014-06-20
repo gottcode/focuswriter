@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,12 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+class DailyProgress;
+class DailyProgressDialog;
+class DailyProgressLabel;
 class Document;
 class DocumentCache;
 class DocumentWatcher;
-class Preferences;
 class SessionManager;
 class Sound;
 class Stack;
@@ -47,7 +49,8 @@ public:
 
 	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);
-	bool closeDocuments(QSettings* session = 0);
+	bool closeDocuments(QSettings* session);
+	bool saveDocuments(QSettings* session);
 
 public slots:
 	void addDocuments(const QString& documents);
@@ -73,6 +76,7 @@ private slots:
 	void previousDocument();
 	void firstDocument();
 	void lastDocument();
+	void setLanguageClicked();
 	void minimize();
 	void toggleFullscreen();
 	void toggleToolbar(bool visible);
@@ -88,14 +92,14 @@ private slots:
 	void updateDetails();
 	void updateFormatActions();
 	void updateFormatAlignmentActions();
-	void updateProgress();
 	void updateSave();
 
 private:
 	bool addDocument(const QString& file = QString(), const QString& datafile = QString(), int position = -1);
+	void closeDocument(int index, bool allow_empty = false);
 	void queueDocuments(const QStringList& files);
 	bool saveDocument(int index);
-	void loadPreferences(Preferences& preferences);
+	void loadPreferences();
 	void hideInterface();
 	void updateMargin();
 	void updateTab(int index);
@@ -128,7 +132,7 @@ private:
 	QLabel* m_page_label;
 	QLabel* m_paragraph_label;
 	QLabel* m_wordcount_label;
-	QLabel* m_progress_label;
+	DailyProgressLabel* m_progress_label;
 	QLabel* m_clock_label;
 	QTimer* m_clock_timer;
 	QTimer* m_save_timer;
@@ -136,11 +140,8 @@ private:
 	bool m_fullscreen;
 	bool m_auto_save;
 	bool m_save_positions;
-	int m_goal_type;
-	int m_time_goal;
-	int m_wordcount_goal;
-	int m_current_time;
-	int m_current_wordcount;
+	DailyProgress* m_daily_progress;
+	DailyProgressDialog* m_daily_progress_dialog;
 };
 
 #endif

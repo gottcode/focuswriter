@@ -5,6 +5,7 @@
   <summary>Fullscreen word processor</summary>
   <summary xml:lang="cs">Textový procesor v režimu na celou obrazovku</summary>
   <summary xml:lang="de">Vollbild-Textverarbeitungsprogramm</summary>
+  <summary xml:lang="el">Επεξεργαστής κειμένου σε πλήρης οθόνη</summary>
   <summary xml:lang="fi">Koko näytön tekstinkäsittelyohjelma</summary>
   <summary xml:lang="he">מעבד תמלילים במסך מלא</summary>
   <summary xml:lang="hy">Լիէկրան տեքստային խմբագրիչ</summary>
@@ -14,9 +15,11 @@
   <summary xml:lang="ro">Procesor de text pe tot ecranul</summary>
   <summary xml:lang="sr">Обрађивач текста у пуном екрану</summary>
   <summary xml:lang="sv">Ordbehandlare med helskärmsläge</summary>
+  <summary xml:lang="tr">Tam ekran kelime işlemci</summary>
   <summary xml:lang="zh_CN">全屏文字编辑器</summary>
   <description>
     <p>FocusWriter is a simple, distraction-free word processor. It utilizes a hide-away interface that you access by moving your mouse to the edges of the screen, allowing the program to have a familiar look and feel to it while still getting out of the way so that you can immerse yourself in your work.</p>
+    <p xml:lang="cs">FocusWriter je jednoduchý, nerozptylující zpracovatel textu. Používá schovávající se rozhraní, ke kterému se dostanete pohybem ukazovátka vaší myši k okrajům obrazovky, čímž programu umožňuje mít důvěrně známý vzhled a dojem z něj, a přitom být z dohledu, takže se můžete ponořit do své práce.</p>
     <p xml:lang="de">FocusWriter ist ein einfaches, ablenkungsfreies Textverarbeitungsprogramm. Die Bedienoberfläche ist nur dann sichtbar, wenn man den Mauszeiger an den Rand des Bildschirms bewegt. Auf dieses Weise lässt sich das Programm intuitiv benutzen, ohne dass die Programmoberfläche ihnen die Sicht auf das versperrt, was eigentlich zählt: Ihre Arbeit.</p>
     <p xml:lang="fi">FocusWriter on yksinkertainen ja häiriötekijätön tekstinkäsittelyohjelma. Siinä on automaattisesti piiloutuva käyttöliittymä, johon pääsee siirtämällä hiiren näytön laitoihin. Sen ansiosta ohjelmassa on tuttu ulkoasu ja käyttötuntuma. Samalla käyttöliittymä väistyy työhön uppoutumisen tieltä.</p>
     <p xml:lang="hy">FocusWriter-ն արտաքին շեղումներից ուշադրությունը զերծ պահող պարզ տեքստային խմբագրիչ է։ Այն գործածում է թաքնվող միջերես, որը հասանելի է դառնում էկրանի ծայրերին մկնիկի շարժմամբ հպվելու միջոցով։ Սա թե՛ ծրագրին տալիս է գործածողի աչքի համար սովորական տեսք ու զգացողություն, թե՛ միաժամանակ նրան թույլ տալիս խորասուզվել աշխատանքի մեջ, առանց ուշադրությունն արտաքին հանգամանքներով շեղելու։</p>
@@ -28,8 +31,9 @@
     <p xml:lang="sv">FocusWriter är en enkel, distraktionsfri ordbehandlare. Den utnyttjar ett dolt gränssnitt som du kommer åt genom att flytta din mus till skärmkanterna, vilket tillåter programmet att ha välbekant utseende och känsla, medan det håller sig ur vägen så att du kan fördjupa dig i ditt arbete. </p>
     <p xml:lang="zh_CN">FocusWriter 是个简洁的，让您专心于写作的文字编辑器。所有菜单默认隐藏，当鼠标滑动到屏幕边缘时会显示。这样既提供所需功能，又能保证让您专注于写作。</p>
     <p>FocusWriter allows you to customize your environment by creating themes that control the font, colors, and background image to add ambiance. It also features on-the-fly updating statistics, daily goals, multiple open documents, spell-checking, and much more.</p>
+    <p xml:lang="cs">FocusWriter vám umožňuje si své prostředí přizpůsobit vytvořením vzhledů, jež řídí písmo, barvy, a obrázek na pozadí, čímž se pracovnímu prostředí přidá určitá nálada. Nabízí také za běhu se obnovující statistikou, denní cíle, možnost mít více otevřených dokumentů, ověřování pravopisu, a mnohé další.</p>
     <p xml:lang="de">FocusWriter erlaubt es Ihnen, die Benutzeroberfläche anzupassen. indem Sie mittel selbst erstellter Themen die Schriftart, Farben und das Hintergrundbild des Programms einstellen, schaffen Sie ihre eigene Arbeitsatmosphäre. Weitere Bestandteile sind Echtzeit-Statistiken, Tagesziele, das Öffnen mehrerer Dokumente gleichzeitig, Rechtschreibkorrektur und vieles mehr.</p>
-    <p xml:lang="fi">FocusWriterin ympäristöä voi muokata luomaan tunnelmaa tekemällä teemoja, jotka säätävät fontit, värit ja taustakuvan. FocusWriterissa on myös automaattisesti päivittyvät tilastot, päivittäiset tavoitteet, tuki useille avoimille tiedostoille, oikeinkirjoituksen tarkistus ja paljon muuta.</p>
+    <p xml:lang="fi">FocusWriterin ympäristöä voi muokata luomaan tunnelmaa tekemällä teemoja, jotka vaihtavat fontit, värit ja taustakuvan. FocusWriterissa on myös automaattisesti päivittyvät tilastot, päivittäiset tavoitteet, tuki useille avoimille tiedostoille, oikeinkirjoituksen tarkistus ja paljon muuta.</p>
     <p xml:lang="hy">FocusWriter-ը գործածողին թույլ է տալիս ստեղծել աշխատանքի սեփական միջավայր՝ թեմաների միջոցով, որոնցով կարելի է ընտրել տառատեսակը, գույները և որևէ նկարով խորապատկեր՝ որոշակի տրամադրություն ստեղծելու համար։ Այն նաև ցույց է տալիս մուտքագրվող նյութի մանրամասն վիճակագրությունը, թույլ տալիս սահմանել աշխատանքի օրական սահմանաքանակ, հնարավորություն ունի մեկ պատուհանում միանգամից շատ նիշքեր բացելու, ուղղագրությունը ստուգելու և այլն։</p>
     <p xml:lang="ja">FocusWriter ではフォント・色・背景画像などテーマとして作り、それを使って作業環境をカスタマイズすることができます。またリアルタイムな文書の統計情報の表示、進捗管理、複数文書の編集、スペル・チェッカーなどといった機能もあります。</p>
     <p xml:lang="nl">Focuswriter stelt je in staan om de applicatie aan te passen aan de wensen van lettertype, kleuren, achtergrond plaatjes om de gewenste ambiance te creëren. Het heeft direct bijgewerkte statistieken, dagelijkse doelen, meerdere open documenten, spellingscorrectie en nog veel meer.</p>
@@ -39,6 +43,7 @@
     <p xml:lang="sv">FocusWriter tillåter dig att anpassa din miljö genom att skapa teman som kontrollerar typsnitt, färger, och bakgrundsbilden för att lägga till atmosfär. Den har även automatisk statistikuppdatering, dagliga mål, flera öppna dokument, stavningskontroll och mycket mer.</p>
     <p xml:lang="zh_CN">FocusWriter 支持自定义主题，可以调整字体，颜色，背景图像等。还有很多其他功能，如动态更新统计，每日计划，多标签页，拼写检查等。</p>
     <p>Additionally, when you open the program your current work in progress will automatically load and position you where you last left off so that you can immediately jump back in.</p>
+    <p xml:lang="cs">Navíc, když otevřete program, vaše rozdělaná práce se automaticky nahraje a otevře se na místě, kde jste ji naposledy opustily, takže se do ní zase budete moci okamžitě dát.</p>
     <p xml:lang="de">Darüberhinaus lädt das Programm beim Start automatisch ihr zuletzt geöffnetes Dokument an der Stelle, an der Sie zuletzt gearbeitet haben, sodass Sie ihre Arbeit direkt fortsetzen können.</p>
     <p xml:lang="fi">Lisäksi ohjelman käynnistyessä kesken jäänyt työ ladataan automaattisesti siltä kohtaa, mihin viimeksi jäit, jotta työn jatkaminen on helppoa.</p>
     <p xml:lang="hy">Բացի դրանից, ծրագիրը բացվելիս լռելյայն ցուցադրում է այն վերջին նիշքը, որի վրա գործածողն աշխատել է, և հենց այն հատվածում, որում նա վերջին անգամ փոփոխություն է կատարել, ինչը հնարավորություն է տալիս շարունակելու աշխատանքն այնտեղից, որտեղ այն վերջին անգամ ընդհատվել էր։</p>

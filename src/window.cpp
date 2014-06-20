@@ -22,9 +22,14 @@
 #include "action_manager.h"
 #include "alert.h"
 #include "alert_layer.h"
+#include "daily_progress.h"
+#include "daily_progress_dialog.h"
+#include "daily_progress_label.h"
+#include "dictionary_dialog.h"
 #include "document.h"
 #include "document_cache.h"
 #include "document_watcher.h"
+#include "format_manager.h"
 #include "load_screen.h"
 #include "locale_dialog.h"
 #include "preferences.h"
@@ -39,11 +44,11 @@
 #include "theme_manager.h"
 #include "timer_display.h"
 #include "timer_manager.h"
+#include "utils.h"
 
 #include <QAction>
 #include <QApplication>
 #include <QCloseEvent>
-#include <QDate>
 #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QStandardPaths>
 #else
@@ -62,17 +67,15 @@
 #include <QScrollBar>
 #include <QSettings>
 #include <QSignalMapper>
+#include <QSizeGrip>
 #include <QTabBar>
-#include <QTextCodec>
-#include <QTextStream>
 #include <QThread>
 #include <QTimer>
 #include <QToolBar>
+#include <QToolButton>
 #include <QUrl>
 
 //-----------------------------------------------------------------------------
-
-extern bool compareFiles(const QString& filename1, const QString& filename2);
 
 namespace
 {
@@ -95,12 +98,7 @@ Window::Window(const QStringList& command_line_files) :
 	m_enter_key_sound(0),
 	m_fullscreen(true),
 	m_auto_save(true),
-	m_save_positions(true),
-	m_goal_type(0),
-	m_time_goal(0),
-	m_wordcount_goal(0),
-	m_current_time(0),
-	m_current_wordcount(0)
+	m_save_positions(true)
 {
 	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -138,6 +136,7 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Create documents
 	m_documents = new Stack(this);
+	m_document_cache->setOrdering(m_documents);
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
 	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
@@ -148,12 +147,19 @@ Window::Window(const QStringList& command_line_files) :
 	contents->setMouseTracking(true);
 	contents->installEventFilter(m_documents);
 
+	// Set up daily progress tracking
+	m_daily_progress = new DailyProgress(this);
+	m_daily_progress_dialog = new DailyProgressDialog(m_daily_progress, this);
+	connect(m_documents, SIGNAL(footerVisible(bool)), m_daily_progress, SLOT(setProgressEnabled(bool)));
+	connect(m_daily_progress_dialog, SIGNAL(visibleChanged(bool)), m_daily_progress, SLOT(setProgressEnabled(bool)));
+
 	// Set up menubar and toolbar
 	initMenus();
 
 	// Set up cache timer
 	m_save_timer = new QTimer(this);
 	m_save_timer->setInterval(600000);
+	connect(m_save_timer, SIGNAL(timeout()), m_daily_progress, SLOT(save()));
 
 	// Set up details
 	m_footer = new QWidget(contents);
@@ -162,7 +168,7 @@ Window::Window(const QStringList& command_line_files) :
 	m_page_label = new QLabel(tr("Pages: %L1").arg(0), details);
 	m_paragraph_label = new QLabel(tr("Paragraphs: %L1").arg(0), details);
 	m_character_label = new QLabel(tr("Characters: %L1 / %L2").arg(0).arg(0), details);
-	m_progress_label = new QLabel(tr("%1% of daily goal").arg(0), details);
+	m_progress_label = new DailyProgressLabel(m_daily_progress, details);
 	m_clock_label = new QLabel(details);
 	updateClock();
 
@@ -186,6 +192,15 @@ Window::Window(const QStringList& command_line_files) :
 	connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabClicked(int)));
 	connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosed(int)));
 	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
+	connect(m_documents, SIGNAL(documentSelected(int)), m_tabs, SLOT(setCurrentIndex(int)));
+
+	QToolButton* tabs_menu = new QToolButton(m_tabs);
+	tabs_menu->setArrowType(Qt::UpArrow);
+	tabs_menu->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+	tabs_menu->setPopupMode(QToolButton::InstantPopup);
+	tabs_menu->setMenu(m_documents->menu());
+	tabs_menu->setStyleSheet("QToolButton::menu-indicator { image: none; }");
+	tabs_menu->setToolTip(tr("List all documents"));
 
 	// Set up tab navigation
 	QAction* action = new QAction(tr("Switch to Next Document"), this);
@@ -248,11 +263,14 @@ Window::Window(const QStringList& command_line_files) :
 	details_layout->addLayout(clock_layout);
 
 	// Lay out footer
-	QVBoxLayout* footer_layout = new QVBoxLayout(m_footer);
+	QGridLayout* footer_layout = new QGridLayout(m_footer);
 	footer_layout->setSpacing(0);
 	footer_layout->setMargin(0);
-	footer_layout->addWidget(details);
-	footer_layout->addWidget(m_tabs);
+	footer_layout->setColumnStretch(0, 1);
+	footer_layout->addWidget(details, 0, 0, 1, 3);
+	footer_layout->addWidget(m_tabs, 1, 0, 1, 1);
+	footer_layout->addWidget(tabs_menu, 1, 1, 1, 1);
+	footer_layout->addWidget(new QSizeGrip(this), 1, 2, 1, 1, Qt::AlignBottom);
 
 	// Lay out window
 	QVBoxLayout* layout = new QVBoxLayout(contents);
@@ -261,19 +279,9 @@ Window::Window(const QStringList& command_line_files) :
 	layout->addStretch();
 	layout->addWidget(m_footer);
 
-	// Load current daily progress
-	QSettings settings;
-	if (settings.value("Progress/Date").toDate() != QDate::currentDate()) {
-		settings.remove("Progress");
-	}
-	settings.setValue("Progress/Date", QDate::currentDate().toString(Qt::ISODate));
-	m_current_wordcount = settings.value("Progress/Words", 0).toInt();
-	m_current_time = settings.value("Progress/Time", 0).toInt();
-	updateProgress();
-
 	// Restore window geometry
-	setMinimumSize(640, 480);
-	resize(800, 600);
+	QSettings settings;
+	resize(1280, 720);
 	restoreGeometry(settings.value("Window/Geometry").toByteArray());
 	show();
 	m_fullscreen = !settings.value("Window/Fullscreen", true).toBool();
@@ -282,13 +290,15 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Load settings
 	m_documents->loadScreen()->setText(tr("Loading settings"));
-	Preferences preferences;
-	loadPreferences(preferences);
+	loadPreferences();
 
 	// Update and load theme
 	m_documents->loadScreen()->setText(tr("Loading themes"));
-	m_documents->themeSelected(settings.value("ThemeManager/Theme").toString());
 	Theme::copyBackgrounds();
+	{
+		// Force a reload of previews
+		ThemeManager manager(settings);
+	}
 
 	// Update margin
 	m_tabs->blockSignals(true);
@@ -298,48 +308,13 @@ Window::Window(const QStringList& command_line_files) :
 	m_tabs->blockSignals(false);
 
 	// Restore after crash
-	bool writable = QFileInfo(Document::cachePath()).isWritable() && QFileInfo(Document::cachePath() + "/../").isWritable();
-	if (!writable) {
-		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Emergency cache is not writable."), QStringList(), true));
-	}
 	QStringList files, datafiles;
-	QString cachepath;
-	QStringList entries = QDir(Document::cachePath()).entryList(QDir::Files);
-	if (writable && (entries.count() > 1) && entries.contains("mapping")) {
-		// Find cachedir
-		QString date = QDate::currentDate().toString("yyyyMMdd");
-		int extra = 0;
-		QDir dir(QDir::cleanPath(Document::cachePath() + "/../"));
-		QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-		foreach (const QString& subdir, subdirs) {
-			if (subdir.startsWith(date)) {
-				extra = qMax(extra, subdir.mid(9).toInt() + 1);
-			}
-		}
-		cachepath = dir.absoluteFilePath(date + ((extra > 0) ? QString("-%1").arg(extra) : ""));
-
-		// Move cache out of the way
-		dir.rename("Files", cachepath);
-		dir.mkdir("Files");
-
+	if (!m_document_cache->isWritable()) {
+		// Warn user that cache can't be used
+		m_documents->alerts()->addAlert(new Alert(Alert::Critical, tr("Emergency cache is not writable."), QStringList(), true));
+	} else if (!m_document_cache->isClean()) {
 		// Read mapping of cached files
-		QFile file(cachepath + "/mapping");
-		if (file.open(QFile::ReadOnly | QFile::Text)) {
-			QTextStream stream(&file);
-			stream.setCodec(QTextCodec::codecForName("UTF-8"));
-			stream.setAutoDetectUnicode(true);
-
-			while (!stream.atEnd()) {
-				QString line = stream.readLine();
-				QString datafile = line.section(' ', 0, 0);
-				QString path = line.section(' ', 1);
-				if (!datafile.isEmpty()) {
-					files.append(path);
-					datafiles.append(cachepath + "/" + datafile);
-				}
-			}
-			file.close();
-		}
+		m_document_cache->parseMapping(files, datafiles);
 
 		// Ask if they want to use cached files
 		if (!files.isEmpty()) {
@@ -380,14 +355,8 @@ Window::Window(const QStringList& command_line_files) :
 	}
 	m_sessions->setCurrent(session, files, datafiles);
 
-	// Remove old cache
-	if (!cachepath.isEmpty()) {
-		QDir cachedir(cachepath);
-		if ((cachedir.count() == 3) && (cachedir.entryList(QDir::Files).first() == "mapping")) {
-			cachedir.remove("mapping");
-			cachedir.rmdir(cachepath);
-		}
-	}
+	// Prevent tabs menu from increasing height
+	tabs_menu->setMaximumHeight(m_tabs->sizeHint().height());
 
 	// Bring to front
 	activateWindow();
@@ -409,7 +378,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 
 	// Skip loading files of unsupported formats
 	static const QStringList suffixes = QStringList()
-		<< "abw" << "awt" << "zabw" << "doc" << "dot" << "docx" << "docm" << "dotx" << "dotm" << "kwd" << "ott" << "wpd"
+		<< "abw" << "awt" << "zabw" << "doc" << "dot" << "docm" << "dotx" << "dotm" << "kwd" << "ott" << "wpd"
 		<< "bmp" << "dds" << "gif" << "icns" << "ico" << "jng" << "jp2" << "jpg" << "jpeg" << "jps" << "mng" << "png" << "tga" << "tif" << "tiff" << "xcf"
 		<< "aac" << "aif" << "aifc" << "aiff" << "asf" << "au" << "flac" << "mid" << "midi" << "mod" << "mp2" << "mp3" << "m4a" << "ogg" << "s3m" << "snd" << "spx" << "wav" << "wma"
 		<< "avi" << "m1v" << "m2ts" << "m4v" << "mkv" << "mov" << "mp4" << "mp4v" << "mpa" << "mpe" << "mpg" << "mpeg" << "mpv2" << "wm" << "wmv";
@@ -440,7 +409,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	if (m_documents->count()) {
 		current_index = m_documents->currentIndex();
 		Document* document = m_documents->currentDocument();
-		if (document->untitledIndex() && !document->text()->document()->isModified()) {
+		if (document->untitledIndex() && !document->isModified()) {
 			untitled_index = m_documents->currentIndex();
 		}
 	}
@@ -463,8 +432,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			// Track if unable to read file
 			int index = m_documents->currentIndex();
 			errors.append(QDir::toNativeSeparators(files.at(i)));
-			m_documents->removeDocument(index);
-			m_tabs->removeTab(index);
+			closeDocument(index, true);
 		} else if (m_documents->currentDocument()->isReadOnly() && (m_documents->count() > open_files)) {
 			// Track if file is read-only and not already open
 			readonly.append(QDir::toNativeSeparators(files.at(i)));
@@ -532,6 +500,24 @@ void Window::addDocuments(QDropEvent* event)
 
 bool Window::closeDocuments(QSettings* session)
 {
+	// Save files
+	if (!saveDocuments(session)) {
+		return false;
+	}
+
+	// Close files
+	int count = m_documents->count();
+	for (int i = 0; i < count; ++i) {
+		closeDocument(0, true);
+	}
+
+	return true;
+}
+
+//-----------------------------------------------------------------------------
+
+bool Window::saveDocuments(QSettings* session)
+{
 	if (m_documents->count() == 0) {
 		return true;
 	}
@@ -559,13 +545,6 @@ bool Window::closeDocuments(QSettings* session)
 	session->setValue("Save/Current", files);
 	session->setValue("Save/Positions", positions);
 	session->setValue("Save/Active", active);
-
-	// Close files
-	int count = m_documents->count();
-	for (int i = 0; i < count; ++i) {
-		m_documents->removeDocument(0);
-		m_tabs->removeTab(0);
-	}
 
 	return true;
 }
@@ -621,9 +600,15 @@ bool Window::event(QEvent* event)
 void Window::closeEvent(QCloseEvent* event)
 {
 	// Confirm discarding any unsaved changes
-	if (!m_timers->cancelEditing() || !m_sessions->closeCurrent()) {
+	if (!m_timers->cancelEditing() || !m_sessions->saveCurrent()) {
 		event->ignore();
 		return;
+	}
+
+	// Close documents but keep them cached
+	int count = m_documents->count();
+	for (int i = 0; i < count; ++i) {
+		m_documents->removeDocument(0);
 	}
 
 	// Save window settings
@@ -682,22 +667,18 @@ void Window::newDocument()
 
 void Window::openDocument()
 {
+	QSettings settings;
 #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-	static QString oldpath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+	QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 #else
-	static QString oldpath = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+	QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
 #endif
-	QString path = m_documents->currentDocument()->filename();
-	if (!path.isEmpty()) {
-		path = QFileInfo(path).dir().path();
-	} else {
-		path = oldpath;
-	}
+	QString path = settings.value("Save/Location", default_path).toString();
 
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, tr("Text Files (%1);;All Files (*)").arg("*.txt *.text *.odt *.rtf"));
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"), 0, QFileDialog::DontResolveSymlinks);
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
-		oldpath = QFileInfo(filenames.last()).dir().path();
+		settings.setValue("Save/Location", QFileInfo(filenames.last()).absolutePath());
 	}
 }
 
@@ -735,33 +716,17 @@ void Window::closeDocument()
 	if (!saveDocument(index)) {
 		return;
 	}
-
-	m_documents->removeDocument(index);
-	m_tabs->removeTab(index);
-	if (m_documents->count() == 0) {
-		newDocument();
-	}
+	closeDocument(index);
 }
 
 //-----------------------------------------------------------------------------
 
 void Window::closeDocument(Document* document)
 {
-	int index = -1;
 	for (int i = 0; i < m_documents->count(); ++i) {
 		if (m_documents->document(i) == document) {
-			index = i;
-			break;
+			return closeDocument(i);
 		}
-	}
-	if (index == -1) {
-		return;
-	}
-
-	m_documents->removeDocument(index);
-	m_tabs->removeTab(index);
-	if (m_documents->count() == 0) {
-		newDocument();
 	}
 }
 
@@ -811,6 +776,14 @@ void Window::firstDocument()
 void Window::lastDocument()
 {
 	m_tabs->setCurrentIndex(m_tabs->count() - 1);
+}
+
+//-----------------------------------------------------------------------------
+
+void Window::setLanguageClicked()
+{
+	DictionaryDialog dialog(this);
+	dialog.exec();
 }
 
 //-----------------------------------------------------------------------------
@@ -874,10 +847,9 @@ void Window::themeClicked()
 
 void Window::preferencesClicked()
 {
-	Preferences preferences;
-	PreferencesDialog dialog(preferences, this);
+	PreferencesDialog dialog(m_daily_progress, this);
 	if (dialog.exec() == QDialog::Accepted) {
-		loadPreferences(preferences);
+		loadPreferences();
 	}
 }
 
@@ -890,7 +862,7 @@ void Window::aboutClicked()
 		"<p align='center'>%6<br/><small>%7</small></p>")
 		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
 			tr("A simple fullscreen word processor"),
-			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2013"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2014"),
 			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
 			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
 			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
@@ -934,6 +906,7 @@ void Window::tabMoved(int from, int to)
 {
 	m_documents->moveDocument(from, to);
 	m_documents->setCurrentDocument(m_tabs->currentIndex());
+	m_document_cache->updateMapping();
 }
 
 //-----------------------------------------------------------------------------
@@ -1005,22 +978,9 @@ void Window::updateFormatAlignmentActions()
 
 //-----------------------------------------------------------------------------
 
-void Window::updateProgress()
-{
-	int progress = 0;
-	if (m_goal_type == 1) {
-		progress = (m_current_time * 100) / (m_time_goal * 60000);
-	} else if (m_goal_type == 2) {
-		progress = (m_current_wordcount * 100) / m_wordcount_goal;
-	}
-	m_progress_label->setText(tr("%1% of daily goal").arg(progress));
-}
-
-//-----------------------------------------------------------------------------
-
 void Window::updateSave()
 {
-	m_actions["Save"]->setEnabled(m_documents->currentDocument()->text()->document()->isModified());
+	m_actions["Save"]->setEnabled(m_documents->currentDocument()->isModified());
 	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->isReadOnly() || m_documents->currentDocument()->filename().isEmpty());
 	for (int i = 0; i < m_documents->count(); ++i) {
 		updateTab(i);
@@ -1036,7 +996,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 		// Check if already open
 		QString canonical_filename = info.canonicalFilePath();
 		for (int i = 0; i < m_documents->count(); ++i) {
-			if (m_documents->document(i)->filename() == canonical_filename) {
+			if (QFileInfo(m_documents->document(i)->filename()).canonicalFilePath() == canonical_filename) {
 				m_tabs->setCurrentIndex(i);
 				return true;
 			}
@@ -1081,25 +1041,21 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	} else {
 		path = datafile;
 	}
-	Document* document = new Document(file, m_current_wordcount, m_current_time, this);
+	Document* document = new Document(file, m_daily_progress, this);
 	m_documents->addDocument(document);
-	document->loadTheme(m_sessions->current()->theme());
+	m_document_cache->add(document);
 	document->setFocusMode(m_focus_actions->checkedAction()->data().toInt());
 	if (document->loadFile(path, m_save_positions ? position : -1)) {
 		if (datafile != file) {
-			document->text()->document()->setModified(!compareFiles(file, datafile));
-			QFile::remove(datafile);
+			document->setModified(!compareFiles(file, datafile));
 		}
 	} else if (path != file) {
 		document->loadFile(file, m_save_positions ? position : -1);
 	}
 	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
-	connect(document, SIGNAL(changed()), this, SLOT(updateProgress()));
 	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
 	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
-	connect(document->text()->document(), SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
-	connect(document, SIGNAL(cacheFile(DocumentWriter*)), m_document_cache, SLOT(cacheFile(DocumentWriter*)));
-	connect(document, SIGNAL(removeCacheFile(QString)), m_document_cache, SLOT(removeCacheFile(QString)));
+	connect(document, SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
 
 	// Add tab for document
 	int index = m_tabs->addTab(tr("Untitled"));
@@ -1120,6 +1076,19 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 
 //-----------------------------------------------------------------------------
 
+void Window::closeDocument(int index, bool allow_empty)
+{
+	m_document_cache->remove(m_documents->document(index));
+	m_documents->removeDocument(index);
+	m_tabs->removeTab(index);
+
+	if (!allow_empty && !m_documents->count()) {
+		newDocument();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 void Window::queueDocuments(const QStringList& files)
 {
 	if (m_loading) {
@@ -1134,22 +1103,29 @@ void Window::queueDocuments(const QStringList& files)
 bool Window::saveDocument(int index)
 {
 	Document* document = m_documents->document(index);
-	if (!document->text()->document()->isModified()) {
+	if (!document->isModified()) {
 		return true;
 	}
 
 	// Auto-save document
-	if (m_auto_save && document->text()->document()->isModified() && !document->filename().isEmpty()) {
+	if (m_auto_save && document->isModified() && !document->filename().isEmpty()) {
 		return document->save();
 	}
 
 	// Prompt about saving changes
-	switch (QMessageBox::question(this, tr("Question"), tr("Save changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Cancel)) {
+	QMessageBox mbox(window());
+	mbox.setWindowTitle(tr("Save Changes?"));
+	mbox.setText(tr("Save changes to the file '%1' before closing?").arg(document->title()));
+	mbox.setInformativeText(tr("Your changes will be lost if you don't save them."));
+	mbox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+	mbox.setDefaultButton(QMessageBox::Save);
+	mbox.setIcon(QMessageBox::Warning);
+	switch (mbox.exec()) {
 	case QMessageBox::Save:
 		return document->save();
 	case QMessageBox::Discard:
-		document->text()->document()->setModified(false);
-		m_current_wordcount -= document->wordCountDelta();
+		document->setModified(false);
+		m_daily_progress->increaseWordCount(-document->wordCountDelta());
 		return true;
 	case QMessageBox::Cancel:
 	default:
@@ -1159,9 +1135,9 @@ bool Window::saveDocument(int index)
 
 //-----------------------------------------------------------------------------
 
-void Window::loadPreferences(Preferences& preferences)
+void Window::loadPreferences()
 {
-	if (preferences.typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
+	if (Preferences::instance().typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
 		if (m_documents->loadScreen()->isVisible()) {
 			m_documents->loadScreen()->setText(tr("Loading sounds"));
 		}
@@ -1176,12 +1152,12 @@ void Window::loadPreferences(Preferences& preferences)
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
-			preferences.setTypewriterSounds(false);
+			Preferences::instance().setTypewriterSounds(false);
 		}
 	}
-	Sound::setEnabled(preferences.typewriterSounds());
+	Sound::setEnabled(Preferences::instance().typewriterSounds());
 
-	m_auto_save = preferences.autoSave();
+	m_auto_save = Preferences::instance().autoSave();
 	if (m_auto_save) {
 		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
@@ -1189,25 +1165,30 @@ void Window::loadPreferences(Preferences& preferences)
 		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
 		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
 	}
-	m_save_positions = preferences.savePositions();
+	m_save_positions = Preferences::instance().savePositions();
 
-	SmartQuotes::loadPreferences(preferences);
+	SmartQuotes::loadPreferences();
 
-	m_character_label->setVisible(preferences.showCharacters());
-	m_page_label->setVisible(preferences.showPages());
-	m_paragraph_label->setVisible(preferences.showParagraphs());
-	m_wordcount_label->setVisible(preferences.showWords());
-	m_progress_label->setVisible(preferences.goalType() != 0);
+	m_character_label->setVisible(Preferences::instance().showCharacters());
+	m_page_label->setVisible(Preferences::instance().showPages());
+	m_paragraph_label->setVisible(Preferences::instance().showParagraphs());
+	m_wordcount_label->setVisible(Preferences::instance().showWords());
+	m_progress_label->setVisible(Preferences::instance().goalType() != 0);
 
-	m_goal_type = preferences.goalType();
-	m_wordcount_goal = preferences.goalWords();
-	m_time_goal = preferences.goalMinutes();
-	updateProgress();
+	m_daily_progress->loadPreferences();
+	m_daily_progress_dialog->loadPreferences();
+	m_actions["DailyProgress"]->setEnabled(Preferences::instance().goalHistory());
+	if (Preferences::instance().goalHistory()) {
+		connect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));
+	} else {
+		disconnect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));
+		m_daily_progress_dialog->hide();
+	}
 
 	m_toolbar->clear();
 	m_toolbar->hide();
-	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(preferences.toolbarStyle()));
-	QStringList actions = preferences.toolbarActions();
+	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(Preferences::instance().toolbarStyle()));
+	QStringList actions = Preferences::instance().toolbarActions();
 	foreach (const QString action, actions) {
 		if (action == "|") {
 			m_toolbar->addSeparator();
@@ -1219,14 +1200,14 @@ void Window::loadPreferences(Preferences& preferences)
 	updateMargin();
 
 	for (int i = 0; i < m_documents->count(); ++i) {
-		m_documents->document(i)->loadPreferences(preferences);
+		m_documents->document(i)->loadPreferences();
 	}
 	if (m_documents->count() > 0) {
 		updateDetails();
 	}
 
-	m_replace_document_quotes->setEnabled(preferences.smartQuotes());
-	m_replace_selection_quotes->setEnabled(preferences.smartQuotes());
+	m_replace_document_quotes->setEnabled(Preferences::instance().smartQuotes());
+	m_replace_selection_quotes->setEnabled(Preferences::instance().smartQuotes());
 }
 
 //-----------------------------------------------------------------------------
@@ -1256,20 +1237,13 @@ void Window::updateMargin()
 void Window::updateTab(int index)
 {
 	Document* document = m_documents->document(index);
-	QString filename = document->filename();
-	QString name = QFileInfo(filename).fileName();
-	if (name.isEmpty()) {
-		name = tr("(Untitled %1)").arg(document->untitledIndex());
-	}
-	if (document->isReadOnly()) {
-		name = tr("%1 (Read-Only)").arg(name);
-	}
-	bool modified = document->text()->document()->isModified();
-	m_tabs->setTabText(index, name + (modified ? "*" : ""));
-	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(filename));
+	QString name = document->title();
+	m_tabs->setTabText(index, name + (document->isModified() ? "*" : ""));
+	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(document->filename()));
+	m_documents->updateDocument(index);
 	if (document == m_documents->currentDocument()) {
 		setWindowFilePath(name);
-		setWindowModified(modified);
+		setWindowModified(document->isModified());
 		updateWriteState(index);
 	}
 }
@@ -1420,8 +1394,11 @@ void Window::initMenus()
 	ActionManager::instance()->addAction("SmartQuotesUpdateSelection", m_replace_selection_quotes);
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
+	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("accessories-dictionary"), tr("Set &Language..."), this, SLOT(setLanguageClicked()));
+	tools_menu->addSeparator();
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, SLOT(show()));
 	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, SLOT(showSymbols()));
+	m_actions["DailyProgress"] = tools_menu->addAction(QIcon::fromTheme("view-calendar"), tr("&Daily Progress"), m_daily_progress_dialog, SLOT(show()));
 
 	// Create settings menu
 	QMenu* settings_menu = menuBar()->addMenu(tr("&Settings"));

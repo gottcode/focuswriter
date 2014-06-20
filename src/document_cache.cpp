@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,42 +21,234 @@
 
 #include "document.h"
 #include "document_writer.h"
+#include "stack.h"
 
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
+#include <QTextStream>
+
+#include <ctime>
+
+//-----------------------------------------------------------------------------
+
+QString DocumentCache::m_path;
 
 //-----------------------------------------------------------------------------
 
 DocumentCache::DocumentCache(QObject* parent) :
-	QObject(parent)
+	QObject(parent),
+	m_ordering(0)
 {
+	QStringList entries = QDir(m_path).entryList(QDir::Files);
+	if ((entries.count() >= 1) && entries.contains("mapping")) {
+		m_previous_cache = backupCache();
+	}
 }
 
 //-----------------------------------------------------------------------------
 
 DocumentCache::~DocumentCache()
 {
-	// Empty cache
-	QDir dir(Document::cachePath());
-	QStringList files = dir.entryList(QDir::Files);
-	foreach (const QString& file, files) {
-		dir.remove(file);
+	backupCache();
+}
+
+//-----------------------------------------------------------------------------
+
+bool DocumentCache::isClean() const
+{
+	return m_previous_cache.isEmpty();
+}
+
+//-----------------------------------------------------------------------------
+
+bool DocumentCache::isWritable() const
+{
+	return QFileInfo(m_path).isWritable() && QFileInfo(m_path + "/../").isWritable();
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) const
+{
+	QString cache_path = isClean() ? m_path : m_previous_cache;
+	QFile file(cache_path + "/mapping");
+	if (file.open(QFile::ReadOnly | QFile::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec("UTF-8");
+		stream.setAutoDetectUnicode(true);
+
+		while (!stream.atEnd()) {
+			QString line = stream.readLine();
+			QString datafile = line.section(' ', 0, 0);
+			QString path = line.section(' ', 1);
+			if (!datafile.isEmpty()) {
+				files.append(path);
+				datafiles.append(cache_path + "/" + datafile);
+			}
+		}
+		file.close();
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::cacheFile(DocumentWriter* document)
+void DocumentCache::add(Document* document)
 {
-	document->write();
-	delete document;
+	m_filenames[document] = createFileName();
+	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
+	connect(document, SIGNAL(replaceCacheFile(Document*, QString)), this, SLOT(replaceCacheFile(Document*, QString)));
+	connect(document, SIGNAL(writeCacheFile(Document*, DocumentWriter*)), this, SLOT(writeCacheFile(Document*, DocumentWriter*)));
+	updateMapping();
 }
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::removeCacheFile(const QString& document)
+void DocumentCache::remove(Document* document)
 {
-	QFile::remove(document);
+	if (m_filenames.contains(document)) {
+		QString cache_file = m_filenames.take(document);
+		updateMapping();
+		QFile::remove(cache_file);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::setOrdering(Stack* ordering)
+{
+	m_ordering = ordering;
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::setPath(const QString& path)
+{
+	m_path = path;
+	if (!m_path.endsWith(QLatin1Char('/'))) {
+		m_path += QLatin1Char('/');
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::updateMapping()
+{
+	QFile file(m_path + "/mapping");
+	if (file.open(QFile::WriteOnly | QFile::Text)) {
+		QTextStream stream(&file);
+		stream.setCodec("UTF-8");
+		stream.setGenerateByteOrderMark(true);
+
+		for (int i = 0; i < m_ordering->count(); ++i) {
+			Document* document = m_ordering->document(i);
+			if (!m_filenames.contains(document)) {
+				continue;
+			}
+			stream << QFileInfo(m_filenames[document]).baseName() << " " << document->filename() << endl;
+		}
+		file.close();
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::replaceCacheFile(Document* document, const QString& file)
+{
+	QString cache_file = createFileName();
+	if (QFile::copy(file, m_path + cache_file)) {
+		updateCacheFile(document, cache_file);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::writeCacheFile(Document* document, DocumentWriter* writer)
+{
+	QString cache_file = createFileName();
+	writer->setFileName(m_path + cache_file);
+	if (writer->write()) {
+		updateCacheFile(document, cache_file);
+	}
+	delete writer;
+}
+
+//-----------------------------------------------------------------------------
+
+QString DocumentCache::backupCache()
+{
+	// Find backup location
+#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
+	QString date = QDateTime::currentDateTimeUtc().toString("yyyyMMddhhmmss");
+#else
+	QString date = QDateTime::currentDateTime().toUTC().toString("yyyyMMddhhmmss");
+#endif
+	int extra = 0;
+	QDir dir(QDir::cleanPath(m_path + "/../"));
+	QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::LocaleAware);
+	subdirs.removeAll("Files");
+	foreach (const QString& subdir, subdirs) {
+		if (subdir.startsWith(date)) {
+			extra = qMax(extra, subdir.mid(15).toInt() + 1);
+		}
+	}
+	QString cachepath = dir.absoluteFilePath(date + ((extra == 0) ? "" : QString("-%1").arg(extra)));
+
+	// Move cache files to backup location
+	dir.rename("Files", cachepath);
+	dir.mkdir("Files");
+
+	// Limit to five backups
+	while (subdirs.count() > 4) {
+		QString subdir_name = subdirs.takeAt(0);
+		QDir subdir(dir.absoluteFilePath(subdir_name));
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+		subdir.removeRecursively();
+#else
+		QStringList files = subdir.entryList(QDir::Files);
+		foreach (const QString& file, files) {
+			subdir.remove(file);
+		}
+		dir.rmdir(subdir_name);
+#endif
+	}
+
+	return cachepath;
+}
+
+//-----------------------------------------------------------------------------
+
+QString DocumentCache::createFileName()
+{
+	static time_t seed = 0;
+	if (seed == 0) {
+		seed = time(0);
+		qsrand(seed);
+	}
+
+	QString filename;
+	QDir dir(m_path);
+	do {
+		filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
+	} while (dir.exists(filename));
+
+	return filename;
+}
+
+//-----------------------------------------------------------------------------
+
+void DocumentCache::updateCacheFile(Document* document, const QString& cache_file)
+{
+	// Swap cache filename
+	QFile old_cache_file(m_path + m_filenames[document]);
+	m_filenames[document] = cache_file;
+	updateMapping();
+
+	// Delete old cache file
+	if (old_cache_file.exists()) {
+		old_cache_file.remove();
+	}
 }
 
 //-----------------------------------------------------------------------------

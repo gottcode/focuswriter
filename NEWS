@@ -1,3 +1,25 @@
+1.5.0
+-----
+* Added daily progress dialog.
+* Added default themes.
+* Added blurring behind text area.
+* Added drop shadow behind text area.
+* Added duplicating themes.
+* Added keyboard shortcuts to move between paragraphs.
+* Added option to disable byte order mark.
+* Added basic support for Office Open XML files.
+* Added Windows installer.
+* Include dictionaries on Windows.
+* Improved theme dialog.
+* Improved background color when loading theme.
+* Stopped clearing document cache across runs.
+* Synchronized location for open and save dialogs.
+* Switched to hunspell.
+* Switched to QtZip.
+* Refactored daily progress.
+* Refactored document cache.
+* Refactored spell checking code.
+
 1.4.6
 -----
 * FIXED: Formatting was lost when saving pasted text in new document.

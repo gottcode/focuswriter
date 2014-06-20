@@ -23,8 +23,10 @@
 #include "font_combobox.h"
 #include "image_button.h"
 #include "theme.h"
+#include "theme_renderer.h"
 
 #include <QApplication>
+#include <QtConcurrentRun>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDesktopWidget>
@@ -33,9 +35,12 @@
 #include <QFile>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QImageReader>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPainter>
+#include <QScrollArea>
+#include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
 #include <QTextEdit>
@@ -43,11 +48,49 @@
 
 //-----------------------------------------------------------------------------
 
+static QColor averageImage(const QString& filename, const QColor& color)
+{
+	QImageReader reader(filename);
+	if (!reader.canRead()) {
+		return color;
+	}
+
+	QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
+	image.fill(color);
+	{
+		QPainter painter(&image);
+		painter.drawImage(0, 0, reader.read());
+	}
+	const unsigned int width = image.width();
+	const unsigned int height = image.height();
+
+	quint64 sum_r = 0;
+	quint64 sum_g = 0;
+	quint64 sum_b = 0;
+	quint64 sum_a = 0;
+
+	for (unsigned int y = 0; y < height; ++y) {
+		const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
+		for (unsigned int x = 0; x < width; ++x) {
+			QRgb pixel = scanline[x];
+			sum_r += qRed(pixel);
+			sum_g += qGreen(pixel);
+			sum_b += qBlue(pixel);
+			sum_a += qAlpha(pixel);
+		}
+	}
+
+	const qreal divisor = 1.0 / (width * height);
+	return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
+}
+
+//-----------------------------------------------------------------------------
+
 ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
 	m_theme(theme)
 {
-	setWindowTitle(tr("Modify Theme"));
+	setWindowTitle(tr("Edit Theme"));
 	setWindowModality(Qt::WindowModal);
 
 	// Create name edit
@@ -61,131 +104,34 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	name_layout->addWidget(m_name);
 
 
-	QTabWidget* tabs = new QTabWidget(this);
+	// Create scrollarea
+	QWidget* contents = new QWidget(this);
 
-	// Create background group
-	QWidget* tab = new QWidget(this);
-	tabs->addTab(tab, tr("Background"));
-
-	m_background_type = new QComboBox(tab);
-	m_background_type->addItems(QStringList() << tr("No Image") << tr("Tiled") << tr("Centered") << tr("Stretched") << tr("Scaled") << tr("Zoomed"));
-	m_background_type->setCurrentIndex(m_theme.backgroundType());
-	connect(m_background_type, SIGNAL(activated(int)), this, SLOT(renderPreview()));
-
-	m_background_color = new ColorButton(tab);
-	m_background_color->setColor(m_theme.backgroundColor());
-	connect(m_background_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
-
-	m_background_image = new ImageButton(tab);
-	m_background_image->setImage(m_theme.backgroundImage(), m_theme.backgroundPath());
-	connect(m_background_image, SIGNAL(changed(QString)), this, SLOT(imageChanged()));
-
-	m_clear_image = new QPushButton(tr("Remove"), this);
-	connect(m_clear_image, SIGNAL(clicked()), m_background_image, SLOT(unsetImage()));
-
-	QVBoxLayout* image_layout = new QVBoxLayout;
-	image_layout->setSpacing(0);
-	image_layout->addWidget(m_background_image);
-	image_layout->addWidget(m_clear_image);
-
-	QFormLayout* background_layout = new QFormLayout(tab);
-	background_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-	background_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
-	background_layout->setLabelAlignment(Qt::AlignRight);
-	background_layout->addRow(tr("Type:"), m_background_type);
-	background_layout->addRow(tr("Color:"), m_background_color);
-	background_layout->addRow(tr("Image:"), image_layout);
-
-
-	// Create foreground group
-	tab = new QWidget(this);
-	tabs->addTab(tab, tr("Foreground"));
-
-	m_foreground_color = new ColorButton(tab);
-	m_foreground_color->setColor(m_theme.foregroundColor());
-	connect(m_foreground_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
-
-	m_foreground_opacity = new QSpinBox(tab);
-	m_foreground_opacity->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_opacity->setSuffix("%");
-	m_foreground_opacity->setRange(0, 100);
-	m_foreground_opacity->setValue(m_theme.foregroundOpacity());
-	m_foreground_opacity->setToolTip(tr("Opacity"));
-	connect(m_foreground_opacity, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
-	m_foreground_width = new QSpinBox(tab);
-	m_foreground_width->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_width->setSuffix(tr(" pixels"));
-	m_foreground_width->setRange(500, 2000);
-	m_foreground_width->setValue(m_theme.foregroundWidth());
-
-	m_foreground_position = new QComboBox(tab);
-	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
-	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
-	m_foreground_position->setToolTip(tr("Position"));
-
-	m_foreground_rounding = new QSpinBox(tab);
-	m_foreground_rounding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_rounding->setSuffix(tr(" pixels"));
-	m_foreground_rounding->setRange(0, 100);
-	m_foreground_rounding->setValue(m_theme.foregroundRounding());
-	connect(m_foreground_rounding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
-	m_foreground_margin = new QSpinBox(tab);
-	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_margin->setSuffix(tr(" pixels"));
-	m_foreground_margin->setRange(1, 250);
-	m_foreground_margin->setValue(m_theme.foregroundMargin());
-
-	m_foreground_padding = new QSpinBox(tab);
-	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
-	m_foreground_padding->setSuffix(tr(" pixels"));
-	m_foreground_padding->setRange(0, 250);
-	m_foreground_padding->setValue(m_theme.foregroundPadding());
-	connect(m_foreground_padding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
-	QHBoxLayout* color_layout = new QHBoxLayout;
-	color_layout->setMargin(0);
-	color_layout->addWidget(m_foreground_color);
-	color_layout->addWidget(m_foreground_opacity);
-
-	QHBoxLayout* size_layout = new QHBoxLayout;
-	size_layout->setMargin(0);
-	size_layout->addWidget(m_foreground_width);
-	size_layout->addWidget(m_foreground_position);
-
-	QFormLayout* foreground_layout = new QFormLayout(tab);
-	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-	foreground_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
-	foreground_layout->setLabelAlignment(Qt::AlignRight);
-	foreground_layout->addRow(tr("Color:"), color_layout);
-	foreground_layout->addRow(tr("Size:"), size_layout);
-	foreground_layout->addRow(tr("Rounding:"), m_foreground_rounding);
-	foreground_layout->addRow(tr("Margin:"), m_foreground_margin);
-	foreground_layout->addRow(tr("Padding:"), m_foreground_padding);
+	QScrollArea* scroll = new QScrollArea(this);
+	scroll->setWidget(contents);
+	scroll->setWidgetResizable(true);
 
 
 	// Create text group
-	tab = new QWidget(this);
-	tabs->addTab(tab, tr("Text"));
+	QGroupBox* text_group = new QGroupBox(tr("Text"), contents);
 
-	m_text_color = new ColorButton(tab);
+	m_text_color = new ColorButton(text_group);
 	m_text_color->setColor(m_theme.textColor());
 	connect(m_text_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
-	m_font_names = new FontComboBox(tab);
+	m_font_names = new FontComboBox(text_group);
 	m_font_names->setEditable(false);
 	m_font_names->setCurrentFont(m_theme.textFont());
 	connect(m_font_names, SIGNAL(activated(int)), this, SLOT(fontChanged()));
 	connect(m_font_names, SIGNAL(activated(int)), this, SLOT(renderPreview()));
 
-	m_font_sizes = new QComboBox(tab);
+	m_font_sizes = new QComboBox(text_group);
 	m_font_sizes->setEditable(true);
 	m_font_sizes->setMinimumContentsLength(3);
 	connect(m_font_sizes, SIGNAL(editTextChanged(QString)), this, SLOT(renderPreview()));
 	fontChanged();
 
-	m_misspelled_color = new ColorButton(tab);
+	m_misspelled_color = new ColorButton(text_group);
 	m_misspelled_color->setColor(m_theme.misspelledColor());
 	connect(m_misspelled_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
 
@@ -193,20 +139,172 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	font_layout->addWidget(m_font_names);
 	font_layout->addWidget(m_font_sizes);
 
-	QFormLayout* text_layout = new QFormLayout(tab);
+	QFormLayout* text_layout = new QFormLayout(text_group);
 	text_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-	text_layout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
-	text_layout->setLabelAlignment(Qt::AlignRight);
 	text_layout->addRow(tr("Color:"), m_text_color);
 	text_layout->addRow(tr("Font:"), font_layout);
 	text_layout->addRow(tr("Misspelled:"), m_misspelled_color);
 
 
-	// Create spacing group
-	tab = new QWidget(this);
-	tabs->addTab(tab, tr("Spacings"));
+	// Create background group
+	QGroupBox* background_group = new QGroupBox(tr("Window Background"), contents);
 
-	QGroupBox* line_spacing = new QGroupBox(tr("Line Spacing"), tab);
+	m_background_color = new ColorButton(background_group);
+	m_background_color->setColor(m_theme.backgroundColor());
+	connect(m_background_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
+
+	m_background_image = new ImageButton(background_group);
+	m_background_image->setImage(m_theme.backgroundImage(), m_theme.backgroundPath());
+	connect(m_background_image, SIGNAL(changed(QString)), this, SLOT(imageChanged()));
+
+	m_clear_image = new QPushButton(tr("Remove"), background_group);
+	connect(m_clear_image, SIGNAL(clicked()), m_background_image, SLOT(unsetImage()));
+
+	m_background_type = new QComboBox(background_group);
+	m_background_type->addItems(QStringList() << tr("No Image") << tr("Tiled") << tr("Centered") << tr("Stretched") << tr("Scaled") << tr("Zoomed"));
+	m_background_type->setCurrentIndex(m_theme.backgroundType());
+	connect(m_background_type, SIGNAL(activated(int)), this, SLOT(renderPreview()));
+
+	QVBoxLayout* image_layout = new QVBoxLayout;
+	image_layout->setSpacing(0);
+	image_layout->setMargin(0);
+	image_layout->addWidget(m_background_image);
+	image_layout->addWidget(m_clear_image);
+
+	QFormLayout* background_layout = new QFormLayout(background_group);
+	background_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	background_layout->addRow(tr("Color:"), m_background_color);
+	background_layout->addRow(tr("Image:"), image_layout);
+	background_layout->addRow(tr("Type:"), m_background_type);
+
+
+	// Create foreground group
+	QGroupBox* foreground_group = new QGroupBox(tr("Text Background"), contents);
+
+	m_foreground_color = new ColorButton(foreground_group);
+	m_foreground_color->setColor(m_theme.foregroundColor());
+	connect(m_foreground_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
+
+	m_foreground_opacity = new QSpinBox(foreground_group);
+	m_foreground_opacity->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_foreground_opacity->setSuffix(QLocale().percent());
+	m_foreground_opacity->setRange(theme.foregroundOpacity().minimumValue(), theme.foregroundOpacity().maximumValue());
+	m_foreground_opacity->setValue(m_theme.foregroundOpacity());
+	connect(m_foreground_opacity, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_foreground_position = new QComboBox(foreground_group);
+	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
+	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
+	connect(m_foreground_position, SIGNAL(currentIndexChanged(int)), this, SLOT(positionChanged(int)));
+
+	m_foreground_width = new QSpinBox(foreground_group);
+	m_foreground_width->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_foreground_width->setSuffix(tr(" pixels"));
+	m_foreground_width->setRange(theme.foregroundWidth().minimumValue(), theme.foregroundWidth().maximumValue());
+	m_foreground_width->setValue(m_theme.foregroundWidth());
+	m_foreground_width->setEnabled(m_theme.foregroundPosition() != 3);
+	connect(m_foreground_width, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	QFormLayout* foreground_layout = new QFormLayout(foreground_group);
+	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	foreground_layout->addRow(tr("Color:"), m_foreground_color);
+	foreground_layout->addRow(tr("Opacity:"), m_foreground_opacity);
+	foreground_layout->addRow(tr("Position:"), m_foreground_position);
+	foreground_layout->addRow(tr("Width:"), m_foreground_width);
+
+
+	// Create rounding group
+	m_round_corners = new QGroupBox(tr("Round Text Background Corners"), contents);
+	m_round_corners->setCheckable(true);
+	m_round_corners->setChecked(m_theme.roundCornersEnabled());
+	connect(m_round_corners, SIGNAL(clicked()), this, SLOT(renderPreview()));
+
+	m_corner_radius = new QSpinBox(m_round_corners);
+	m_corner_radius->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_corner_radius->setSuffix(tr(" pixels"));
+	m_corner_radius->setRange(theme.cornerRadius().minimumValue(), theme.cornerRadius().maximumValue());
+	m_corner_radius->setValue(m_theme.cornerRadius());
+	connect(m_corner_radius, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	QFormLayout* corner_layout = new QFormLayout(m_round_corners);
+	corner_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	corner_layout->addRow(tr("Radius:"), m_corner_radius);
+
+
+	// Create blur group
+	m_blur = new QGroupBox(tr("Blur Text Background"), contents);
+	m_blur->setCheckable(true);
+	m_blur->setChecked(m_theme.blurEnabled());
+	connect(m_blur, SIGNAL(clicked()), this, SLOT(renderPreview()));
+
+	m_blur_radius = new QSpinBox(m_blur);
+	m_blur_radius->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_blur_radius->setSuffix(tr(" pixels"));
+	m_blur_radius->setRange(theme.blurRadius().minimumValue(), theme.blurRadius().maximumValue());
+	m_blur_radius->setValue(m_theme.blurRadius());
+	connect(m_blur_radius, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	QFormLayout* blur_layout = new QFormLayout(m_blur);
+	blur_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	blur_layout->addRow(tr("Radius:"), m_blur_radius);
+
+
+	// Create shadow group
+	m_shadow = new QGroupBox(tr("Text Background Drop Shadow"), contents);
+	m_shadow->setCheckable(true);
+	m_shadow->setChecked(m_theme.shadowEnabled());
+	connect(m_shadow, SIGNAL(clicked()), this, SLOT(renderPreview()));
+
+	m_shadow_color = new ColorButton(m_shadow);
+	m_shadow_color->setColor(m_theme.shadowColor());
+	connect(m_shadow_color, SIGNAL(changed(QColor)), this, SLOT(renderPreview()));
+
+	m_shadow_radius = new QSpinBox(m_shadow);
+	m_shadow_radius->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_shadow_radius->setSuffix(tr(" pixels"));
+	m_shadow_radius->setRange(theme.shadowRadius().minimumValue(), theme.shadowRadius().maximumValue());
+	m_shadow_radius->setValue(m_theme.shadowRadius());
+	connect(m_shadow_radius, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_shadow_offset = new QSpinBox(m_shadow);
+	m_shadow_offset->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_shadow_offset->setSuffix(tr(" pixels"));
+	m_shadow_offset->setRange(theme.shadowOffset().minimumValue(), theme.shadowOffset().maximumValue());
+	m_shadow_offset->setValue(m_theme.shadowOffset());
+	connect(m_shadow_offset, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	QFormLayout* shadow_layout = new QFormLayout(m_shadow);
+	shadow_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	shadow_layout->addRow(tr("Color:"), m_shadow_color);
+	shadow_layout->addRow(tr("Radius:"), m_shadow_radius);
+	shadow_layout->addRow(tr("Vertical Offset:"), m_shadow_offset);
+
+
+	// Create margins group
+	QGroupBox* margins_group = new QGroupBox(tr("Margins"), contents);
+
+	m_foreground_margin = new QSpinBox(margins_group);
+	m_foreground_margin->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_foreground_margin->setSuffix(tr(" pixels"));
+	m_foreground_margin->setRange(theme.foregroundMargin().minimumValue(), theme.foregroundMargin().maximumValue());
+	m_foreground_margin->setValue(m_theme.foregroundMargin());
+	connect(m_foreground_margin, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_foreground_padding = new QSpinBox(margins_group);
+	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
+	m_foreground_padding->setSuffix(tr(" pixels"));
+	m_foreground_padding->setRange(theme.foregroundPadding().minimumValue(), theme.foregroundPadding().maximumValue());
+	m_foreground_padding->setValue(m_theme.foregroundPadding());
+	connect(m_foreground_padding, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	QFormLayout* margins_layout = new QFormLayout(margins_group);
+	margins_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	margins_layout->addRow(tr("Window:"), m_foreground_margin);
+	margins_layout->addRow(tr("Page:"), m_foreground_padding);
+
+
+	// Create line spacing group
+	QGroupBox* line_spacing = new QGroupBox(tr("Line Spacing"), contents);
 
 	m_line_spacing_type = new QComboBox(line_spacing);
 	m_line_spacing_type->setEditable(false);
@@ -215,7 +313,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_line_spacing = new QSpinBox(line_spacing);
 	m_line_spacing->setSuffix(QLocale().percent());
-	m_line_spacing->setRange(85, 1000);
+	m_line_spacing->setRange(theme.lineSpacing().minimumValue(), theme.lineSpacing().maximumValue());
 	m_line_spacing->setValue(m_theme.lineSpacing());
 	m_line_spacing->setEnabled(false);
 
@@ -229,53 +327,70 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_line_spacing_type, SIGNAL(currentIndexChanged(int)), this, SLOT(renderPreview()));
 	connect(m_line_spacing, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
 
-	QGroupBox* paragraph_spacing = new QGroupBox(tr("Paragraph Spacing"), tab);
-
-	m_indent_first_line = new QCheckBox(tab);
-	m_indent_first_line->setChecked(m_theme.indentFirstLine());
-	connect(m_indent_first_line, SIGNAL(toggled(bool)), this, SLOT(renderPreview()));
-
-	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
-	m_spacing_above_paragraph->setRange(0, 1000);
-	m_spacing_above_paragraph->setValue(m_theme.spacingAboveParagraph());
-	connect(m_spacing_above_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
-	m_spacing_below_paragraph = new QSpinBox(paragraph_spacing);
-	m_spacing_below_paragraph->setRange(0, 1000);
-	m_spacing_below_paragraph->setValue(m_theme.spacingBelowParagraph());
-	connect(m_spacing_below_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
-
-	QHBoxLayout* line_spacing_layout = new QHBoxLayout(line_spacing);
-	line_spacing_layout->addWidget(m_line_spacing_type);
-	line_spacing_layout->addWidget(m_line_spacing);
-	line_spacing_layout->addStretch();
-
-	QFormLayout* paragraph_spacing_layout = new QFormLayout(paragraph_spacing);
-	paragraph_spacing_layout->addRow(tr("Indent First Line:"), m_indent_first_line);
-	paragraph_spacing_layout->addRow(tr("Pixels Above:"), m_spacing_above_paragraph);
-	paragraph_spacing_layout->addRow(tr("Pixels Below:"), m_spacing_below_paragraph);
-
-	QVBoxLayout* spacing_layout = new QVBoxLayout(tab);
-	spacing_layout->addWidget(line_spacing);
-	spacing_layout->addWidget(paragraph_spacing);
-	spacing_layout->addStretch();
+	QFormLayout* line_spacing_layout = new QFormLayout(line_spacing);
+	line_spacing_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	line_spacing_layout->addRow(tr("Type:"), m_line_spacing_type);
+	line_spacing_layout->addRow(tr("Height:"), m_line_spacing);
 
 #if (QT_VERSION < QT_VERSION_CHECK(4,8,0))
 	line_spacing->hide();
 #endif
 
 
-	// Create preview
-	m_preview_background = new QLabel;
+	// Create paragraph spacing group
+	QGroupBox* paragraph_spacing = new QGroupBox(tr("Paragraph Spacing"), contents);
 
-	m_preview_text = new QTextEdit(m_preview_background);
-	m_preview_text->setGeometry(20, 20, 160, 110);
+	m_tab_width = new QSpinBox(paragraph_spacing);
+	m_tab_width->setSuffix(tr(" pixels"));
+	m_tab_width->setRange(theme.tabWidth().minimumValue(), theme.tabWidth().maximumValue());
+	m_tab_width->setValue(m_theme.tabWidth());
+	connect(m_tab_width, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
+	m_spacing_above_paragraph->setSuffix(tr(" pixels"));
+	m_spacing_above_paragraph->setRange(theme.spacingAboveParagraph().minimumValue(), theme.spacingAboveParagraph().maximumValue());
+	m_spacing_above_paragraph->setValue(m_theme.spacingAboveParagraph());
+	connect(m_spacing_above_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_spacing_below_paragraph = new QSpinBox(paragraph_spacing);
+	m_spacing_below_paragraph->setSuffix(tr(" pixels"));
+	m_spacing_below_paragraph->setRange(theme.spacingBelowParagraph().minimumValue(), theme.spacingBelowParagraph().maximumValue());
+	m_spacing_below_paragraph->setValue(m_theme.spacingBelowParagraph());
+	connect(m_spacing_below_paragraph, SIGNAL(valueChanged(int)), this, SLOT(renderPreview()));
+
+	m_indent_first_line = new QCheckBox(tr("Indent first line"), paragraph_spacing);
+	m_indent_first_line->setChecked(m_theme.indentFirstLine());
+	connect(m_indent_first_line, SIGNAL(toggled(bool)), this, SLOT(renderPreview()));
+
+	QFormLayout* paragraph_spacing_layout = new QFormLayout(paragraph_spacing);
+	paragraph_spacing_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	paragraph_spacing_layout->addRow(tr("Tab Width:"), m_tab_width);
+	paragraph_spacing_layout->addRow(tr("Above:"), m_spacing_above_paragraph);
+	paragraph_spacing_layout->addRow(tr("Below:"), m_spacing_below_paragraph);
+	paragraph_spacing_layout->addRow("", m_indent_first_line);
+
+
+	// Create preview
+	m_preview_text = new QTextEdit;
 	m_preview_text->setFrameStyle(QFrame::NoFrame);
 	m_preview_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_preview_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	QFile file(":/lorem.txt");
+	if (file.open(QFile::ReadOnly)) {
+		m_preview_text->setPlainText(QString::fromLatin1(file.readAll()));
+		file.close();
+	}
 
 	m_preview = new QLabel(this);
 	m_preview->setAlignment(Qt::AlignCenter);
+	m_preview->setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
+
+	QPixmap pixmap(480, 270);
+	pixmap.fill(palette().window().color());
+	m_preview->setPixmap(pixmap);
+
+	m_theme_renderer = new ThemeRenderer(this);
+	connect(m_theme_renderer, SIGNAL(rendered(QImage,QRect,Theme)), this, SLOT(renderPreview(QImage,QRect,Theme)));
 	renderPreview();
 
 
@@ -285,31 +400,46 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
 	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
 
-	QHBoxLayout* contents_layout = new QHBoxLayout;
-	contents_layout->setMargin(0);
-	contents_layout->addWidget(tabs);
-	contents_layout->addWidget(m_preview);
+	QVBoxLayout* groups_layout = new QVBoxLayout(contents);
+	groups_layout->addWidget(text_group);
+	groups_layout->addWidget(background_group);
+	groups_layout->addWidget(foreground_group);
+	groups_layout->addWidget(m_round_corners);
+	groups_layout->addWidget(m_blur);
+	groups_layout->addWidget(m_shadow);
+	groups_layout->addWidget(margins_group);
+	groups_layout->addWidget(line_spacing);
+	groups_layout->addWidget(paragraph_spacing);
 
-	QVBoxLayout* layout = new QVBoxLayout(this);
-	layout->setSpacing(12);
-	layout->addLayout(name_layout);
-	layout->addLayout(contents_layout);
-	layout->addWidget(buttons);
+	QGridLayout* layout = new QGridLayout(this);
+	layout->setColumnStretch(0, 1);
+	layout->setRowStretch(1, 1);
+	layout->setRowMinimumHeight(2, layout->margin());
+	layout->addLayout(name_layout, 0, 0, 1, 2);
+	layout->addWidget(scroll, 1, 0, 1, 1);
+	layout->addWidget(m_preview, 1, 1, 1, 1, Qt::AlignCenter);
+	layout->addWidget(buttons, 3, 0, 1, 2);
+
+	resize(QSettings().value("ThemeDialog/Size", sizeHint()).toSize());
 }
 
 //-----------------------------------------------------------------------------
 
 ThemeDialog::~ThemeDialog()
 {
-	delete m_preview_background;
+	m_theme_renderer->wait();
+
+	delete m_preview_text;
 }
 
 //-----------------------------------------------------------------------------
 
-void ThemeDialog::createPreview(const QString& name)
+void ThemeDialog::createPreview(const QString& id, bool is_default)
 {
-	Theme theme(name);
+	Theme theme(id, is_default);
 	ThemeDialog dialog(theme);
+	dialog.m_theme_renderer->wait();
+	QCoreApplication::processEvents();
 	dialog.savePreview();
 }
 
@@ -318,33 +448,20 @@ void ThemeDialog::createPreview(const QString& name)
 void ThemeDialog::accept()
 {
 	m_theme.setName(m_name->text().simplified());
-
-	m_theme.setBackgroundType(m_background_type->currentIndex());
-	m_theme.setBackgroundColor(m_background_color->color());
-	m_theme.setBackgroundImage(m_background_image->toString());
-
-	m_theme.setForegroundColor(m_foreground_color->color());
-	m_theme.setForegroundOpacity(m_foreground_opacity->value());
-	m_theme.setForegroundWidth(m_foreground_width->value());
-	m_theme.setForegroundRounding(m_foreground_rounding->value());
-	m_theme.setForegroundMargin(m_foreground_margin->value());
-	m_theme.setForegroundPadding(m_foreground_padding->value());
-	m_theme.setForegroundPosition(m_foreground_position->currentIndex());
-
-	m_theme.setTextColor(m_text_color->color());
-	QFont font = m_font_names->currentFont();
-	font.setPointSizeF(m_font_sizes->currentText().toDouble());
-	m_theme.setTextFont(font);
-	m_theme.setMisspelledColor(m_misspelled_color->color());
-
-	m_theme.setIndentFirstLine(m_indent_first_line->isChecked());
-	m_theme.setLineSpacing(m_line_spacing->value());
-	m_theme.setSpacingAboveParagraph(m_spacing_above_paragraph->value());
-	m_theme.setSpacingBelowParagraph(m_spacing_below_paragraph->value());
+	setValues(m_theme);
+	m_theme.saveChanges();
 
 	savePreview();
 
 	QDialog::accept();
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::hideEvent(QHideEvent* event)
+{
+	QSettings().setValue("ThemeDialog/Size", size());
+	QDialog::hideEvent(event);
 }
 
 //-----------------------------------------------------------------------------
@@ -354,7 +471,7 @@ void ThemeDialog::checkNameAvailable()
 	QString name = m_name->text().simplified();
 	bool empty = name.isEmpty();
 	bool changed = (name != m_theme.name());
-	bool exists = QFile::exists(Theme::filePath(name));
+	bool exists = Theme::exists(name);
 	m_ok->setEnabled(!changed || (!empty && !exists));
 }
 
@@ -395,7 +512,11 @@ void ThemeDialog::fontChanged()
 void ThemeDialog::imageChanged()
 {
 	if (!m_background_image->image().isEmpty()) {
-		if (m_background_type->currentIndex() == 0) {
+		QSize image = QImageReader(m_background_image->image()).size();
+		QSize desktop = QApplication::desktop()->size();
+		if ((image.width() * image.height() * 4) <= (desktop.width() * desktop.height())) {
+			m_background_type->setCurrentIndex(1);
+		} else if (m_background_type->currentIndex() < 2) {
 			m_background_type->setCurrentIndex(5);
 		}
 	} else {
@@ -432,80 +553,153 @@ void ThemeDialog::lineSpacingChanged(int index)
 
 //-----------------------------------------------------------------------------
 
+void ThemeDialog::positionChanged(int index)
+{
+	m_foreground_width->setEnabled(index != 3);
+	renderPreview();
+}
+
+//-----------------------------------------------------------------------------
+
 void ThemeDialog::renderPreview()
 {
-	QPixmap preview(":/shadow.png");
-	{
-		// Set up painter inside of shadow
-		QPainter painter(&preview);
-		painter.translate(9, 6);
-		painter.setClipRect(0, 0, 200, 150);
+	m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
 
-		// Create background, zoomed to fit preview image
-		int type = m_background_type->currentIndex();
-		m_clear_image->setEnabled(m_background_image->isEnabled() && !m_background_image->image().isEmpty());
+	// Load theme
+	Theme theme;
+	setValues(theme);
+	theme.setBackgroundImage(m_background_image->image());
 
-		QRect rect = QApplication::desktop()->screenGeometry();
-		QImage background = Theme::renderBackground(m_background_image->image(), type, m_background_color->color(), rect.size());
-		background = background.scaled(200, 150, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-		background = background.copy((background.width() - 200) / 2, (background.height() - 150) / 2, 200, 150);
-		m_preview_background->setPixmap(QPixmap::fromImage(background));
+	// Render theme
+	m_theme_renderer->create(theme, QSize(1920, 1080));
+}
 
-		// Set up colors
-		QColor color = m_foreground_color->color();
-		color.setAlpha(m_foreground_opacity->value() * 2.55f);
-		QColor text_color = m_text_color->color();
-		text_color.setAlpha(255);
-		QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
+//-----------------------------------------------------------------------------
 
-		m_preview_text->clear();
-		m_preview_text->setStyleSheet(
-			QString("QTextEdit { background:rgba(%1,%2,%3,%4); color:rgba(%5,%6,%7,%8); selection-background-color:%9; selection-color:%10; padding:%11px; border-radius:%12px; }")
-				.arg(color.red())
-				.arg(color.green())
-				.arg(color.blue())
-				.arg(color.alpha())
-				.arg(text_color.red())
-				.arg(text_color.green())
-				.arg(text_color.blue())
-				.arg(text_color.alpha())
-				.arg(text_color.name())
-				.arg(contrast)
-				.arg(m_foreground_padding->value())
-				.arg(m_foreground_rounding->value())
-		);
+void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const Theme& theme)
+{
+	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
 
-		// Set up spacings
-		QTextBlockFormat block_format;
+	// Position preview text
+	int padding = theme.foregroundPadding();
+	int x = foreground.x() + padding;
+	int y = foreground.y() + padding + theme.spacingAboveParagraph();
+	int width = foreground.width() - (padding * 2);
+	int height = foreground.height() - (padding * 2) - theme.spacingAboveParagraph();
+	m_preview_text->setGeometry(x, y, width, height);
+
+	// Set colors
+	QColor text_color = theme.textColor();
+	text_color.setAlpha(255);
+
+	QPalette p = m_preview_text->palette();
+	p.setBrush(QPalette::Base, preview.copy(x, y, width, height));
+	p.setColor(QPalette::Text, text_color);
+	p.setColor(QPalette::Highlight, text_color);
+	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
+	m_preview_text->setPalette(p);
+
+	// Set spacings
+	int tab_width = theme.tabWidth();
+	QTextBlockFormat block_format;
 #if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
-		block_format.setLineHeight(m_line_spacing->value(), (m_line_spacing->value() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
+	block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
 #endif
-		block_format.setTextIndent(48 * m_indent_first_line->isChecked());
-		block_format.setTopMargin(m_spacing_above_paragraph->value());
-		block_format.setBottomMargin(m_spacing_below_paragraph->value());
-		m_preview_text->textCursor().mergeBlockFormat(block_format);
-
-		// Set up text
-		QFont font = m_font_names->currentFont();
-		font.setPointSizeF(m_font_sizes->currentText().toDouble());
-		m_preview_text->setFont(font);
-		m_preview_text->append(tr("The quick brown fox jumps over the lazy dog"));
-
-		// Create preview pixmap
-		m_preview_background->render(&painter);
+	block_format.setTextIndent(tab_width * theme.indentFirstLine());
+	block_format.setTopMargin(theme.spacingAboveParagraph());
+	block_format.setBottomMargin(theme.spacingBelowParagraph());
+	m_preview_text->textCursor().mergeBlockFormat(block_format);
+	for (int i = 0, count = m_preview_text->document()->allFormats().count(); i < count; ++i) {
+		QTextFormat& f = m_preview_text->document()->allFormats()[i];
+		if (f.isBlockFormat()) {
+			f.merge(block_format);
+		}
 	}
-	m_preview->setPixmap(preview);
+	m_preview_text->setTabStopWidth(tab_width);
+	m_preview_text->document()->setIndentWidth(tab_width);
+
+	// Set font
+	m_preview_text->setFont(theme.textFont());
+
+	// Render text
+	m_preview_text->render(&preview, m_preview_text->pos());
+
+	// Create zoomed text cutout
+	int x2 = (x >= 24) ? (x - 24) : 0;
+	int y2 = (y >= 24) ? (y - 24) : 0;
+	QImage text_cutout = preview.copy(x2, y2, 162, 110);
+
+	// Create preview icon
+	m_preview_icon = QImage(":/shadow.png").convertToFormat(QImage::Format_ARGB32_Premultiplied);
+	{
+		QPainter painter(&m_preview_icon);
+		painter.drawImage(9, 9, preview.scaled(240, 135, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+		painter.fillRect(20, 32, 85, 59, QColor(0, 0, 0, 32));
+		painter.fillRect(21, 33, 83, 57, Qt::white);
+		int x3 = (x >= 24) ? (x - 12 + theme.tabWidth()) : 12 + theme.tabWidth();
+		int y3 = (y >= 24) ? (y - 6) : 0;
+		painter.drawImage(22, 34, preview, x3, y3, 81, 55);
+	}
+
+	// Create preview pixmap
+	preview = preview.scaled(480, 270, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	{
+		QPainter painter(&preview);
+		painter.setPen(Qt::NoPen);
+		painter.fillRect(22, 46, 170, 118, QColor(0, 0, 0, 32));
+		painter.fillRect(24, 48, 166, 114, Qt::white);
+		painter.drawImage(26, 50, text_cutout);
+	}
+	m_preview->setPixmap(QPixmap::fromImage(preview));
 }
 
 //-----------------------------------------------------------------------------
 
 void ThemeDialog::savePreview()
 {
-	if (m_preview->pixmap()) {
-		m_preview->pixmap()->save(Theme::iconPath(m_theme.name()));
-	} else {
-		qWarning("Theme preview was not created.");
+	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault()), "", 0);
+	if (!m_theme.isDefault()) {
+		m_theme.setLoadColor(m_load_color);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::setValues(Theme& theme)
+{
+	theme.setBackgroundType(m_background_type->currentIndex());
+	theme.setBackgroundColor(m_background_color->color());
+	theme.setBackgroundImage(m_background_image->toString());
+
+	theme.setForegroundColor(m_foreground_color->color());
+	theme.setForegroundOpacity(m_foreground_opacity->value());
+	theme.setForegroundWidth(m_foreground_width->value());
+	theme.setForegroundMargin(m_foreground_margin->value());
+	theme.setForegroundPadding(m_foreground_padding->value());
+	theme.setForegroundPosition(m_foreground_position->currentIndex());
+
+	theme.setRoundCornersEnabled(m_round_corners->isChecked());
+	theme.setCornerRadius(m_corner_radius->value());
+
+	theme.setBlurEnabled(m_blur->isChecked());
+	theme.setBlurRadius(m_blur_radius->value());
+
+	theme.setShadowEnabled(m_shadow->isChecked());
+	theme.setShadowColor(m_shadow_color->color());
+	theme.setShadowRadius(m_shadow_radius->value());
+	theme.setShadowOffset(m_shadow_offset->value());
+
+	theme.setTextColor(m_text_color->color());
+	QFont font = m_font_names->currentFont();
+	font.setPointSizeF(m_font_sizes->currentText().toDouble());
+	theme.setTextFont(font);
+	theme.setMisspelledColor(m_misspelled_color->color());
+
+	theme.setIndentFirstLine(m_indent_first_line->isChecked());
+	theme.setLineSpacing(m_line_spacing->value());
+	theme.setSpacingAboveParagraph(m_spacing_above_paragraph->value());
+	theme.setSpacingBelowParagraph(m_spacing_below_paragraph->value());
+	theme.setTabWidth(m_tab_width->value());
 }
 
 //-----------------------------------------------------------------------------

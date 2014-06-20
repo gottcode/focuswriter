@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef PREFERENCES_DIALOG_H
 #define PREFERENCES_DIALOG_H
 
-class Preferences;
+class DailyProgress;
 class ShortcutEdit;
 
 #include <QDialog>
@@ -41,7 +41,7 @@ class PreferencesDialog : public QDialog
 	Q_OBJECT
 
 public:
-	PreferencesDialog(Preferences& preferences, QWidget* parent = 0);
+	PreferencesDialog(DailyProgress* daily_progress, QWidget* parent = 0);
 	~PreferencesDialog();
 
 public slots:
@@ -49,6 +49,8 @@ public slots:
 	virtual void reject();
 
 private slots:
+	void goalHistoryToggled();
+	void resetDailyGoal();
 	void moveActionUp();
 	void moveActionDown();
 	void addSeparatorAction();
@@ -65,21 +67,15 @@ private slots:
 private:
 	void highlightShortcutConflicts();
 	QWidget* initGeneralTab();
+	QWidget* initDailyGoalTab();
 	QWidget* initStatisticsTab();
 	QWidget* initSpellingTab();
 	QWidget* initToolbarTab();
 	QWidget* initShortcutsTab();
 
 private:
-	Preferences& m_preferences;
-
 	QTabWidget* m_tabs;
 
-	QRadioButton* m_option_none;
-	QRadioButton* m_option_time;
-	QRadioButton* m_option_wordcount;
-	QSpinBox* m_time;
-	QSpinBox* m_wordcount;
 	QCheckBox* m_always_center;
 	QCheckBox* m_block_cursor;
 	QCheckBox* m_smooth_fonts;
@@ -90,19 +86,33 @@ private:
 	QLineEdit* m_scene_divider;
 	QCheckBox* m_auto_save;
 	QCheckBox* m_save_positions;
+	QCheckBox* m_write_bom;
+	QComboBox* m_save_format;
+
+	DailyProgress* m_daily_progress;
+	QRadioButton* m_option_none;
+	QRadioButton* m_option_time;
+	QRadioButton* m_option_wordcount;
+	QSpinBox* m_time;
+	QSpinBox* m_wordcount;
+	QCheckBox* m_goal_history;
+	QWidget* m_streak_minimum_label;
+	QSpinBox* m_streak_minimum;
+	QCheckBox* m_goal_streaks;
 
 	QCheckBox* m_show_characters;
 	QCheckBox* m_show_pages;
 	QCheckBox* m_show_paragraphs;
 	QCheckBox* m_show_words;
+	QRadioButton* m_option_accurate_wordcount;
+	QRadioButton* m_option_estimate_wordcount;
+	QRadioButton* m_option_singlechar_wordcount;
 	QRadioButton* m_option_characters;
 	QRadioButton* m_option_paragraphs;
 	QRadioButton* m_option_words;
 	QSpinBox* m_page_characters;
 	QSpinBox* m_page_paragraphs;
 	QSpinBox* m_page_words;
-	QRadioButton* m_option_accurate_wordcount;
-	QRadioButton* m_option_estimate_wordcount;
 
 	QCheckBox* m_highlight_misspelled;
 	QCheckBox* m_ignore_uppercase;

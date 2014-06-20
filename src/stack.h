@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,16 +20,19 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include "theme.h"
 class AlertLayer;
 class Document;
 class FindDialog;
 class LoadScreen;
 class SceneList;
 class SymbolsDialog;
-class Theme;
+class ThemeRenderer;
 
 #include <QWidget>
+class QActionGroup;
 class QGridLayout;
+class QMenu;
 class QStackedWidget;
 
 class Stack : public QWidget
@@ -44,6 +47,7 @@ public:
 
 	AlertLayer* alerts() const;
 	LoadScreen* loadScreen() const;
+	QMenu* menu() const;
 	SymbolsDialog* symbols() const;
 
 	int count() const;
@@ -53,6 +57,7 @@ public:
 
 	void moveDocument(int from, int to);
 	void removeDocument(int index);
+	void updateDocument(int index);
 	void setCurrentDocument(int index);
 	void setMargins(int footer, int header);
 	void waitForThemeBackground();
@@ -67,6 +72,7 @@ signals:
 	void headerVisible(bool);
 	void documentAdded(Document* document);
 	void documentRemoved(Document* document);
+	void documentSelected(int index);
 	void findNextAvailable(bool available);
 	void updateFormatActions();
 	void updateFormatAlignmentActions();
@@ -121,29 +127,35 @@ protected:
 	virtual void resizeEvent(QResizeEvent* event);
 
 private slots:
+	void actionTriggered(QAction* action);
 	void insertSymbol(const QString& text);
 	void updateBackground();
+	void updateBackground(const QImage& image, const QRect& foreground);
 	void updateMask();
-	void updateMapping();
+	void updateMenuIndexes();
 
 private:
 	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
 	SceneList* m_scenes;
+	QMenu* m_menu;
+	QActionGroup* m_menu_group;
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
 	SymbolsDialog* m_symbols_dialog;
 
 	QStackedWidget* m_contents;
 	QList<Document*> m_documents;
+	QList<QAction*> m_document_actions;
 	Document* m_current_document;
 
+	ThemeRenderer* m_theme_renderer;
 	QPixmap m_background;
-	int m_background_position;
-	QString m_background_path;
+	QBrush m_foreground;
+	QSize m_foreground_size;
+	Theme m_theme;
 	QTimer* m_resize_timer;
 
-	int m_margin;
 	int m_footer_margin;
 	int m_header_margin;
 	int m_footer_visible;
@@ -156,6 +168,10 @@ inline AlertLayer* Stack::alerts() const {
 
 inline LoadScreen* Stack::loadScreen() const {
 	return m_load_screen;
+}
+
+inline QMenu* Stack::menu() const {
+	return m_menu;
 }
 
 inline SymbolsDialog* Stack::symbols() const {
