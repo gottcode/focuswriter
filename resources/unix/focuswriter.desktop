@@ -81,3 +81,4 @@ Exec=focuswriter %F
 Terminal=false
 MimeType=application/rtf;application/vnd.oasis.opendocument.text;vnd.openxmlformats-officedocument.wordprocessingml.document;text/plain;text/rtf;
 Categories=Qt;Office;WordProcessor;
+Keywords=fullscreen editor typewriter keyclick distraction concentration focused monomaniacal writing
