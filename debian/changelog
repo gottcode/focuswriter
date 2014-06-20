@@ -1,3 +1,12 @@
+focuswriter (1.4.6-2) unstable; urgency=medium
+
+  * New upstream release
+    - switched some libraries
+    - supports qt5
+  * Compile against qt5
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 20 Jun 2014 10:41:54 +0200
+
 focuswriter (1.4.6-1) unstable; urgency=medium
 
   * New upstream release
