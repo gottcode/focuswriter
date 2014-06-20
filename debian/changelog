@@ -1,11 +1,18 @@
-focuswriter (1.4.6-2) unstable; urgency=medium
+focuswriter (1.5.0-1) unstable; urgency=medium
 
   * New upstream release
     - switched some libraries
     - supports qt5
   * Compile against qt5
+  * Track upstream maintenance branch
+    git merge --no-edit upstream/release-1.5
+    git log --oneline -4 upstream/release-1.5 | tac
+    - 2a14309 FIXED: Regression where menubar was not shown in Ubuntu.
+    - 120d9af FIXED: Regression with default cursor width on Windows.
+    - 7a80d49 FIXED: Missing libraries on Windows.
+    - 392c386 FIXED: Compile issues with Qt 4.6.
 
- -- Barak A. Pearlmutter <bap@debian.org>  Fri, 20 Jun 2014 10:41:54 +0200
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 20 Jun 2014 11:07:50 +0200
 
 focuswriter (1.4.6-1) unstable; urgency=medium
 
