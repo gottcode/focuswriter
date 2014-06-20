@@ -27,7 +27,7 @@ macx {
 
 # Set program version
 VERSION = 1.5.0
-DEFINES += VERSIONSTR=\\\"git.$${VERSION}\\\"
+DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
 unix: !macx {
