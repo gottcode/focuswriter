@@ -18,7 +18,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/focuswriter.git
 Package: focuswriter
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: hunspell-dictionary, myspell-dictionary, libsdl-mixer1.2
+Suggests: hunspell-dictionary, myspell-dictionary
 Description: Fullscreen distraction-free writing program
  Focuswriter is a fullscreen writing program designed to be
  distraction free.  You can customize your environment by changing the
