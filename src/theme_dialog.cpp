@@ -56,7 +56,7 @@ static QColor averageImage(const QString& filename, const QColor& color)
 	}
 
 	QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
-	image.fill(color);
+	image.fill(color.rgb());
 	{
 		QPainter painter(&image);
 		painter.drawImage(0, 0, reader.read());
