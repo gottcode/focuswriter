@@ -1,0 +1,30 @@
+Source: focuswriter
+Section: editors
+Priority: optional
+Maintainer: Barak A. Pearlmutter <bap@debian.org>
+Uploaders: Graeme Gott <graeme@gottcode.org>
+Build-Depends: debhelper (>= 9),
+		qt5-default,
+		qtbase5-dev,
+		qtmultimedia5-dev,
+		libhunspell-dev,
+		pkg-config,
+		zlib1g-dev
+Standards-Version: 3.9.5
+Homepage: http://gottcode.org/focuswriter/
+Vcs-Git: git://anonscm.debian.org/collab-maint/focuswriter.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/focuswriter.git
+
+Package: focuswriter
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: hunspell-dictionary, myspell-dictionary
+Description: Fullscreen distraction-free writing program
+ Focuswriter is a fullscreen writing program designed to be
+ distraction free.  You can customize your environment by changing the
+ font, colors, and background image to add ambiance.  FocusWriter
+ features an on-the-fly updating wordcount, optional auto-save,
+ optional daily goals, and toolbars that hide away to allow you to
+ focus more clearly.  Additionally, when you open the program your
+ current work in progress will automatically load and position you at
+ the end of your document, so that you can immediately jump back in.

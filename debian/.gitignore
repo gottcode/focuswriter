@@ -1,0 +1,7 @@
+/*.debhelper
+/*.log
+/*.substvars
+/files
+/focuswriter/
+/stamp-makefile-build
+/stamp-makefile-install

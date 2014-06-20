@@ -1,0 +1,3 @@
+version=3
+# http://gottcode.org/focuswriter/focuswriter-([\d\.]+)-src.tar.bz2
+http://githubredir.debian.net/github/gottcode/focuswriter/ .*/v(.*)\.tar\.gz

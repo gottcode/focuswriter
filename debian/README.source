@@ -1,0 +1,10 @@
+Un-official upstream releases created with, eg
+
+u=1.3.5
+r=$(git show-ref upstream/master | head -c8)
+v=$u+git.$r
+p=focuswriter
+git tag -s -u<KEY> -m 'unofficial upstream release' upstream/$v
+git archive --format tar --prefix $p/ $r | gzip -9 > ../$p_$v.orig.tar.gz
+
+ -- Barak A. Pearlmutter <bap@debian.org>, Sun,  4 Dec 2011 11:45:01 +0000

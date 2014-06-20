@@ -1,0 +1,269 @@
+focuswriter (1.5.0-1) unstable; urgency=medium
+
+  * New upstream release
+    - switched some libraries
+    - supports qt5
+  * Compile against qt5
+  * Track upstream maintenance branch
+    git merge --no-edit upstream/release-1.5
+    git log --oneline -4 upstream/release-1.5 | tac
+    - 2a14309 FIXED: Regression where menubar was not shown in Ubuntu.
+    - 120d9af FIXED: Regression with default cursor width on Windows.
+    - 7a80d49 FIXED: Missing libraries on Windows.
+    - 392c386 FIXED: Compile issues with Qt 4.6.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 20 Jun 2014 11:07:50 +0200
+
+focuswriter (1.4.6-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 15 Apr 2014 09:12:39 +0100
+
+focuswriter (1.4.5-1) unstable; urgency=medium
+
+  * New upstream release
+  * Track upstream maintenance branch
+    - da6b829 FIXED: Long session names made session menu unworkable.
+    - d3d8119 FIXED: Theme names could not contain periods.
+    - bb84e4e FIXED: Session names could not contain periods.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Wed, 26 Mar 2014 20:45:31 +0000
+
+focuswriter (1.4.4+git.5.56edf89-1) unstable; urgency=medium
+
+  * Track upstream maintenance branch
+    - e47f5f2 Sync translations with Transifex.
+    - 70ddae7 FIXED: Paragraphs not always focused properly when merged.
+    - 47cd508 FIXED: Regexp searches did not ignore whole words option.
+    - 56edf89 FIXED: Closing last empty document increased untitled count.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 20 Mar 2014 14:03:57 +0000
+
+focuswriter (1.4.4+git.4.0c3b3c1-1) unstable; urgency=low
+
+  * Track upstream maintenance branch
+    - 0c3b3c1 FIXED: Selected session was incorrect when switching sessions
+      was canceled.
+    - a51290e Prevent opening unsupported multimedia files.
+    - 77b3da5 Fix linker error with Qt 5 on Windows.
+    - bb69d83 Update QtSingleApplication.
+    - cb19614 Fix compilation error with Qt 5 on Windows.
+  
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 11 Feb 2014 11:44:36 +0000
+
+focuswriter (1.4.4+git.3.ec86fd40-1) unstable; urgency=low
+  
+  * Track upstream maintenance branch
+    - c0ceb94a Sync translations with Transifex.
+    - 9b365049 FIXED: Hyphenated lines were not focused properly.
+    - ec86fd40 Update translations.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 13 Jan 2014 17:00:32 +0000
+
+focuswriter (1.4.4-1) unstable; urgency=low
+
+  * new upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 07 Jun 2013 19:12:56 +0100
+
+focuswriter (1.4.3.2013.04.25-1) unstable; urgency=low
+
+  * merge upstream maintenance branch
+    - FIXED: Did not always ignore changes made by program.
+  * tweak VCS entry in debian/control to appease lintian
+  * quilt patch that adds keywords to desktop file to appease lintian
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 13 May 2013 12:31:45 +0100
+
+focuswriter (1.4.3.2013.04.15-1) unstable; urgency=low
+
+  * merge upstream maintenance branch
+    - FIXED: Smart quotes were incorrect after opening punctuation.
+    - Allow margins smaller than 10 pixels.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 02 May 2013 14:57:52 +0100
+
+focuswriter (1.4.3-1) unstable; urgency=low
+
+  * new upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 15 Apr 2013 13:28:29 +0100
+
+focuswriter (1.4.2-1) unstable; urgency=low
+
+  * new upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 02 Apr 2013 13:25:25 +0100
+
+focuswriter (1.4.1-1) unstable; urgency=low
+
+  * new upstream release
+  * fix debian/watch file
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 30 Nov 2012 23:03:48 +0000
+
+focuswriter (1.4.0.2012.11.18-1) unstable; urgency=low
+
+  * merge upstream changes on branch release-1.4
+    - Sync translations with Transifex.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 19 Nov 2012 19:52:37 +0000
+
+focuswriter (1.4.0.2012.11.04-1) unstable; urgency=low
+
+  * merge upstream bug fixes on branch release-1.4
+    - FIXED: Played sounds constantly in Ubuntu 10.04.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sat, 17 Nov 2012 18:17:59 +0000
+
+focuswriter (1.4.0.2012.10.15-1) unstable; urgency=low
+
+  * merge upstream bug fixes on branch release-1.4
+    - FIXED: Could drag scenes in Read-Only files.
+    - FIXED: Could insert symbols in Read-Only files.
+    - FIXED: Could paste unformatted in Read-Only files.
+    - FIXED: Could check spelling of Read-Only files.
+    - FIXED: Cleared keyboard shortcuts not saved.
+    - FIXED: Cannot add new keyboard shortcuts with the Shift key.
+  * bump debian standards version, no changes needed
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 09 Nov 2012 13:38:35 +0000
+
+focuswriter (1.4.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 25 Sep 2012 15:05:55 +0100
+
+focuswriter (1.3.90-2) unstable; urgency=low
+
+  * merge upstream proper sound fix
+  * remove corresponding quilt patch 0001-revert-SDL-load-fix.patch
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 31 Aug 2012 09:44:20 +0200
+
+focuswriter (1.3.90-1) unstable; urgency=low
+
+  * New upstream release
+  * Quilt patch reverting 3da303ed which broke typewriter sounds
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 26 Aug 2012 15:01:16 +0200
+
+focuswriter (1.3.80-1) unstable; urgency=low
+
+  * New upstream release
+    - uses libenchant for spell checking
+    - includes translation patches, no need to represent binary changes
+    - renamed bitmap icon, no longer need to rename
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 19 Aug 2012 11:19:41 +0200
+
+focuswriter (1.3.6-2) unstable; urgency=low
+
+  * Stop using cdbs in debian/rules to fix hardening flags pass-through issue
+  * Merge post-release upstream translations
+  * Include documentation file CREDITS, and continue to include README
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 17 Jul 2012 11:32:40 +0200
+
+focuswriter (1.3.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 24 Jun 2012 00:25:52 +0100
+
+focuswriter (1.3.5.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Wed, 18 Jan 2012 14:02:40 +0000
+
+focuswriter (1.3.5.1-1) unstable; urgency=low
+
+  * Document vcs snapshot tarball creation procedure
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 04 Dec 2011 22:30:26 +0000
+
+focuswriter (1.3.5+git.a0b47c53-1) unstable; urgency=low
+
+  * use new upstream scalable icon
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sat, 12 Nov 2011 22:40:14 +0000
+
+focuswriter (1.3.5-2) unstable; urgency=low
+
+  * use upstream xpm icon
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 10 Nov 2011 16:41:54 +0000
+
+focuswriter (1.3.5-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 10 Nov 2011 12:34:53 +0000
+
+focuswriter (1.3.4.1-2) unstable; urgency=low
+
+  * Build no longer depends upon libao-dev
+  * Suggest libsdl-mixer1.2 which is dynamically loaded if available
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 28 Oct 2011 09:30:16 +0100
+
+focuswriter (1.3.4.1-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 18 Oct 2011 10:22:21 +0100
+
+focuswriter (1.3.4-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 16 Oct 2011 18:11:31 +0100
+
+focuswriter (1.3.3-2) unstable; urgency=low
+
+  * single debian patch source option (closes: #643117)
+  * silence lintian: rephrase description and add minimal man page
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 02 Oct 2011 22:53:46 +0100
+
+focuswriter (1.3.3-1) unstable; urgency=low
+
+  * update debian/watch for uscan to github redir
+  * New upstream version
+  * merge post-release fixes: icon location, no-sound crash
+  
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 11 Jul 2011 20:14:38 +0200
+
+focuswriter (1.3.2.1+git.daa4c602-1) unstable; urgency=low
+
+  * Merge many upstream enhancements and bug fixes
+  * Bump debian standards version
+  * Account for shifted upstream icon file directory (rules, install)
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 10 Jun 2011 09:51:13 +0100
+
+focuswriter (1.3.2.1-1) unstable; urgency=low
+
+  * New upstream version (same as 1.3.2.git.69e4975b but bumps version)
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Wed, 29 Dec 2010 21:28:37 -0500
+
+focuswriter (1.3.2.git.69e4975b-1) unstable; urgency=low
+
+  * New upstream version
+  * Include post-release upstream mods
+    - crash fix
+    - es_MX (Mexican spanish) translation
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Wed, 29 Dec 2010 12:15:47 -0500
+
+focuswriter (1.3.1-1) unstable; urgency=low
+
+  * Initial release for Debian, based on Ubuntu packaging (closes: #580763)
+  * Packaging updated from Ubuntu debian, thanks to Graeme Gott
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 14 Nov 2010 15:53:39 +0000
