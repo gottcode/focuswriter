@@ -113,6 +113,7 @@ private:
 	QAction* m_replace_document_quotes;
 	QAction* m_replace_selection_quotes;
 	QActionGroup* m_focus_actions;
+	QActionGroup* m_headings_actions;
 
 	Stack* m_documents;
 	DocumentCache* m_document_cache;

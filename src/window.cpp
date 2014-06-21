@@ -960,7 +960,9 @@ void Window::updateFormatAlignmentActions()
 		return;
 	}
 
-	if (document->text()->textCursor().blockFormat().layoutDirection() == Qt::LeftToRight) {
+	QTextBlockFormat format = document->text()->textCursor().blockFormat();
+
+	if (format.layoutDirection() == Qt::LeftToRight) {
 		m_actions["FormatDirectionLTR"]->setChecked(true);
 	} else if (document->text()->textCursor().blockFormat().layoutDirection() == Qt::RightToLeft) {
 		m_actions["FormatDirectionRTL"]->setChecked(true);
@@ -978,6 +980,9 @@ void Window::updateFormatAlignmentActions()
 	} else if (alignment & Qt::AlignJustify) {
 		m_actions["FormatAlignJustify"]->setChecked(true);
 	}
+
+	int heading = format.property(QTextFormat::UserProperty).toInt();
+	m_headings_actions->actions().at(heading)->setChecked(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -1335,6 +1340,32 @@ void Window::initMenus()
 	// Create format menu
 	QMenu* format_menu = menuBar()->addMenu(tr("Fo&rmat"));
 
+	QMenu* headings_menu = format_menu->addMenu(tr("&Heading"));
+	QAction* headings[7];
+	headings[1] = headings_menu->addAction(tr("Heading &1"));
+	headings[2] = headings_menu->addAction(tr("Heading &2"));
+	headings[3] = headings_menu->addAction(tr("Heading &3"));
+	headings[4] = headings_menu->addAction(tr("Heading &4"));
+	headings[5] = headings_menu->addAction(tr("Heading &5"));
+	headings[6] = headings_menu->addAction(tr("Heading &6"));
+	headings[0] = headings_menu->addAction(tr("&Normal"));
+	m_headings_actions = new QActionGroup(this);
+	QSignalMapper* headings_mapper = new QSignalMapper(this);
+	for (int i = 0; i < 7; ++i) {
+		headings[i]->setCheckable(true);
+		headings[i]->setData(i);
+		m_headings_actions->addAction(headings[i]);
+		connect(headings[i], SIGNAL(triggered()), headings_mapper, SLOT(map()));
+		headings_mapper->setMapping(headings[i], i);
+	}
+	for (int i = 1; i < 7; ++i) {
+		ActionManager::instance()->addAction(QString("FormatBlockHeading%1").arg(i), headings[i]);
+	}
+	ActionManager::instance()->addAction(QString("FormatBlockNormal"), headings[0]);
+	headings[0]->setChecked(true);
+	connect(headings_mapper, SIGNAL(mapped(int)), m_documents, SLOT(setBlockHeading(int)));
+
+	format_menu->addSeparator();
 	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, SLOT(setFontBold(bool)), QKeySequence::Bold);
 	m_actions["FormatBold"]->setCheckable(true);
 	m_actions["FormatItalic"] = format_menu->addAction(QIcon::fromTheme("format-text-italic"), tr("&Italic"), m_documents, SLOT(setFontItalic(bool)), QKeySequence::Italic);

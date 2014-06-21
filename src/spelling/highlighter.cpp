@@ -148,6 +148,14 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 void Highlighter::highlightBlock(const QString& text)
 {
+	int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
+	if (heading) {
+		QTextCharFormat style;
+		style.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
+		style.setFontWeight(QFont::Bold);
+		setFormat(0, text.length(), style);
+	}
+
 	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
 #if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	if (!m_enabled || m_text->isReadOnly() || !stats || (stats->spellingStatus() == BlockStats::Unchecked)) {

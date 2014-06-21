@@ -103,6 +103,7 @@ public slots:
 	void selectAll();
 	void selectScene();
 	void setFocusMode(QAction* action);
+	void setBlockHeading(int heading);
 	void setFontBold(bool bold);
 	void setFontItalic(bool italic);
 	void setFontStrikeOut(bool strikeout);

@@ -441,6 +441,16 @@ void Stack::setFocusMode(QAction* action)
 
 //-----------------------------------------------------------------------------
 
+void Stack::setBlockHeading(int heading)
+{
+	QTextCursor cursor = m_current_document->text()->textCursor();
+	QTextBlockFormat block_format = cursor.blockFormat();
+	block_format.setProperty(QTextFormat::UserProperty, heading);
+	cursor.setBlockFormat(block_format);
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::setFontBold(bool bold)
 {
 	m_current_document->setRichText(true);
