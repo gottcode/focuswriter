@@ -25,6 +25,7 @@
 #include "dictionary_manager.h"
 #include "document_watcher.h"
 #include "document_writer.h"
+#include "docx_reader.h"
 #include "format_manager.h"
 #include "highlighter.h"
 #include "odt_reader.h"
@@ -156,6 +157,12 @@ namespace
 				buffer.setData(source->data(QLatin1String("application/vnd.oasis.opendocument.text")));
 				buffer.open(QIODevice::ReadOnly);
 				OdtReader reader;
+				reader.read(&buffer, cursor);
+			} else if (source->hasFormat(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))) {
+				QBuffer buffer;
+				buffer.setData(source->data(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document")));
+				buffer.open(QIODevice::ReadOnly);
+				DocxReader reader;
 				reader.read(&buffer, cursor);
 			} else if (source->hasHtml()) {
 				richtext = mimeToRtf(source);
