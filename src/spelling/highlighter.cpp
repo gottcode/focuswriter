@@ -24,9 +24,11 @@
 #include "spell_checker.h"
 
 #include <QAction>
+#include <QApplication>
 #include <QContextMenuEvent>
 #include <QEvent>
 #include <QMenu>
+#include <QStyle>
 #include <QTextEdit>
 #include <QTimer>
 
@@ -165,7 +167,7 @@ void Highlighter::highlightBlock(const QString& text)
 
 	QTextCharFormat error;
 	error.setUnderlineColor(m_misspelled);
-	error.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
+	error.setUnderlineStyle((QTextCharFormat::UnderlineStyle)QApplication::style()->styleHint(QStyle::SH_SpellCheckUnderlineStyle));
 
 	int cursor = m_text->textCursor().position() - currentBlock().position();
 	QVector<QStringRef> words = stats->misspelled();
