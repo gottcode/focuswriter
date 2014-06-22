@@ -137,6 +137,11 @@ void OdtReader::readStyle()
 		parent.children += name;
 	}
 
+	if (name.startsWith("Head")) {
+		int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
+		style.block_format.setProperty(QTextFormat::UserProperty, heading);
+	}
+
 	while (m_xml.readNextStartElement()) {
 		if (m_xml.qualifiedName() == "style:paragraph-properties") {
 			readStyleParagraphProperties(style.block_format);
@@ -218,6 +223,12 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 		format.setIndent(qMax(0, indent));
 	}
 
+	if (attributes.hasAttribute(QLatin1String("style:default-outline-level"))) {
+		QString level = attributes.value(QLatin1String("style:default-outline-level")).toString();
+		int heading = qBound(1, level.toInt(), 6);
+		format.setProperty(QTextFormat::UserProperty, heading);
+	}
+
 	m_xml.skipCurrentElement();
 }
 
@@ -287,8 +298,16 @@ void OdtReader::readBody()
 void OdtReader::readBodyText()
 {
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "text:p" || m_xml.qualifiedName() == "text:h") {
+		if (m_xml.qualifiedName() == "text:p") {
 			readParagraph();
+		} else if (m_xml.qualifiedName() == "text:h") {
+			int heading = -1;
+			QXmlStreamAttributes attributes = m_xml.attributes();
+			if (attributes.hasAttribute(QLatin1String("text:outline-level"))) {
+				QString level = attributes.value(QLatin1String("text:outline-level")).toString();
+				heading = qBound(1, level.toInt(), 6);
+			}
+			readParagraph(heading);
 		} else if (m_xml.qualifiedName() == "text:section") {
 			readBodyText();
 		} else {
@@ -299,7 +318,7 @@ void OdtReader::readBodyText()
 
 //-----------------------------------------------------------------------------
 
-void OdtReader::readParagraph()
+void OdtReader::readParagraph(int level)
 {
 	QTextBlockFormat block_format;
 	QTextCharFormat char_format;
@@ -310,6 +329,16 @@ void OdtReader::readParagraph()
 		const Style& style = m_styles[0][attributes.value(QLatin1String("text:style-name")).toString()];
 		block_format = style.block_format;
 		char_format = style.char_format;
+	}
+
+	if (level == -1) {
+		level = qBound(1, block_format.property(QTextFormat::UserProperty).toInt(), 6);
+	} else if (level == 0) {
+		level = qBound(0, block_format.property(QTextFormat::UserProperty).toInt(), 6);
+	}
+	if (level) {
+		block_format.setProperty(QTextFormat::UserProperty, level);
+		char_format = QTextCharFormat();
 	}
 
 	// Create paragraph

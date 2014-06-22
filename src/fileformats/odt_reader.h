@@ -50,7 +50,7 @@ private:
 	void readStyleTextProperties(QTextCharFormat& format);
 	void readBody();
 	void readBodyText();
-	void readParagraph();
+	void readParagraph(int level = 0);
 	void readSpan();
 	void readText();
 
