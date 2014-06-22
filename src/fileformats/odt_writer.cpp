@@ -60,7 +60,35 @@ bool OdtWriter::write(QIODevice* device, const QTextDocument* document)
 
 	zip.addFile(QString::fromLatin1("styles.xml"),
 		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-		"<office:document-styles xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" office:version=\"1.2\"/>\n");
+		"<office:document-styles "
+		"xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" "
+		"xmlns:style=\"urn:oasis:names:tc:opendocument:xmlns:style:1.0\" "
+		"xmlns:fo=\"urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0\" "
+		"office:version=\"1.2\">\n"
+		" <office:styles>\n"
+		"  <style:style style:name=\"Normal\" style:display-name=\"Normal\" style:family=\"paragraph\">\n"
+		"   <style:text-properties fo:font-size=\"12pt\" fo:font-weight=\"normal\"/>\n"
+		"  </style:style>\n"
+		"  <style:style style:name=\"Heading-1\" style:display-name=\"Heading 1\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"1\">\n"
+		"   <style:text-properties fo:font-size=\"18pt\" fo:font-weight=\"bold\"/>\n"
+		"  </style:style>\n"
+		"  <style:style style:name=\"Heading-2\" style:display-name=\"Heading 2\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"2\">\n"
+		"   <style:text-properties fo:font-size=\"16pt\" fo:font-weight=\"bold\"/>\n"
+		"  </style:style>\n"
+		"  <style:style style:name=\"Heading-3\" style:display-name=\"Heading 3\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"3\">\n"
+		"   <style:text-properties fo:font-size=\"14pt\" fo:font-weight=\"bold\"/>\n"
+		"  </style:style>\n"
+		"  <style:style style:name=\"Heading-4\" style:display-name=\"Heading 4\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"4\">\n"
+		"   <style:text-properties fo:font-size=\"12pt\" fo:font-weight=\"bold\"/>\n"
+		"  </style:style>\n"
+		"  <style:style style:name=\"Heading-5\" style:display-name=\"Heading 5\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"5\">\n"
+		"   <style:text-properties fo:font-size=\"10pt\" fo:font-weight=\"bold\"/>\n"
+		"  </style:style>\n"
+		"  <style:style style:name=\"Heading-6\" style:display-name=\"Heading 6\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"6\">\n"
+		"   <style:text-properties fo:font-size=\"8pt\" fo:font-weight=\"bold\"/>\n"
+		"  </style:style>\n"
+		" </office:styles>\n"
+		"</office:document-styles>\n");
 
 	zip.close();
 
@@ -114,7 +142,12 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		index = block.blockFormatIndex();
 		if (!paragraph_styles.contains(index)) {
-			paragraph_styles.append(index);
+			int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+			if (!heading) {
+				paragraph_styles.append(index);
+			} else {
+				m_styles.insert(index, QString("Heading-%1").arg(heading));
+			}
 		}
 		for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
 			index = iter.fragment().charFormatIndex();
@@ -154,6 +187,7 @@ void OdtWriter::writeParagraphStyle(const QTextBlockFormat& format, const QStrin
 	m_xml.writeStartElement(QString::fromLatin1("style:style"));
 	m_xml.writeAttribute(QString::fromLatin1("style:name"), name);
 	m_xml.writeAttribute(QString::fromLatin1("style:family"), QString::fromLatin1("paragraph"));
+	m_xml.writeAttribute(QString::fromLatin1("style:parent-style-name"), QString::fromLatin1("Normal"));
 
 	m_xml.writeEmptyElement(QString::fromLatin1("style:paragraph-properties"));
 
@@ -220,7 +254,13 @@ void OdtWriter::writeBody(const QTextDocument* document)
 	m_xml.writeStartElement(QString::fromLatin1("office:text"));
 
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
-		m_xml.writeStartElement(QString::fromLatin1("text:p"));
+		int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+		if (!heading) {
+			m_xml.writeStartElement(QString::fromLatin1("text:p"));
+		} else {
+			m_xml.writeStartElement(QString::fromLatin1("text:h"));
+			m_xml.writeAttribute(QString::fromLatin1("text:outline-level"), QString::number(heading));
+		}
 		m_xml.writeAttribute(QString::fromLatin1("text:style-name"), m_styles.value(block.blockFormatIndex()));
 		m_xml.setAutoFormatting(false);
 
