@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -260,6 +260,15 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 	case 2009: m_header = "{\\rtf1\\pca\\ansicpg850\n"; break;
 	default: m_header = "{\\rtf1\\ansi\\ansicpg" + m_encoding.mid(2) + "\n"; break;
 	}
+	m_header += "{\\stylesheet\n"
+		"{\\s0 Normal;}\n"
+		"{\\s1\\snext0\\outlinelevel0\\fs36\\b Heading 1;}\n"
+		"{\\s2\\snext0\\outlinelevel1\\fs32\\b Heading 2;}\n"
+		"{\\s3\\snext0\\outlinelevel2\\fs28\\b Heading 3;}\n"
+		"{\\s4\\snext0\\outlinelevel3\\fs24\\b Heading 4;}\n"
+		"{\\s5\\snext0\\outlinelevel4\\fs20\\b Heading 5;}\n"
+		"{\\s6\\snext0\\outlinelevel5\\fs16\\b Heading 6;}\n"
+		"}\n";
 }
 
 //-----------------------------------------------------------------------------
@@ -275,6 +284,15 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
 		QByteArray par("{\\pard\\plain");
 		QTextBlockFormat block_format = block.blockFormat();
+		int heading = block_format.property(QTextFormat::UserProperty).toInt();
+		if (heading) {
+			par += "\\s" + QByteArray::number(heading)
+				+ "\\outlinelevel" + QByteArray::number(heading - 1)
+				+ "\\fs" + QByteArray::number((10 - heading) * 4)
+				+ "\\b";
+		} else {
+			par += "\\s0";
+		}
 		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
 		if (rtl) {
 			par += "\\rtlpar";
