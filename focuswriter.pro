@@ -28,7 +28,7 @@ macx {
 # Set program version
 VERSION = $$system(git describe)
 isEmpty(VERSION) {
-	VERSION = 1.5.0
+	VERSION = 1.5.1
 }
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
