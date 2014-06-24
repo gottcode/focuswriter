@@ -1,3 +1,15 @@
+1.5.1
+-----
+* Added keywords to .desktop file.
+* FIXED: Spelling underline was broken.
+* FIXED: Incorrect MIME type for Office Open XML.
+* FIXED: Incorrect version number string.
+* FIXED: Compile issues with Qt 4.6.
+* FIXED: Regression with sound effects on Windows.
+* FIXED: Regression with default cursor width on Windows.
+* FIXED: Regression where menubar was not shown in Ubuntu.
+* Translation updates: Spanish (Mexico), Korean, Swedish
+
 1.5.0
 -----
 * Added daily progress dialog.
@@ -19,6 +31,7 @@
 * Refactored daily progress.
 * Refactored document cache.
 * Refactored spell checking code.
+* Translation updates: Armenian, Czech, Dutch, Greek, Finnish, Hebrew, Hungarian, Japanese, Romanian, Serbian, Turkish, Chinese (China)
 
 1.4.6
 -----
