@@ -128,81 +128,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="365"/>
+        <location filename="../src/document.cpp" line="389"/>
         <source>(Untitled %1)</source>
         <translation>(ללא כותרת %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="368"/>
+        <location filename="../src/document.cpp" line="392"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (קריאה-בלבד)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="432"/>
-        <location filename="../src/document.cpp" line="457"/>
-        <location filename="../src/document.cpp" line="493"/>
-        <location filename="../src/document.cpp" line="499"/>
+        <location filename="../src/document.cpp" line="456"/>
+        <location filename="../src/document.cpp" line="481"/>
+        <location filename="../src/document.cpp" line="517"/>
+        <location filename="../src/document.cpp" line="523"/>
         <source>Sorry</source>
         <translation>צר לי</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="432"/>
+        <location filename="../src/document.cpp" line="456"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>אין אפשרות לשמור &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="447"/>
+        <location filename="../src/document.cpp" line="471"/>
         <source>Save File As</source>
         <translation>שמירת קובץ בשם</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="457"/>
-        <location filename="../src/document.cpp" line="493"/>
+        <location filename="../src/document.cpp" line="481"/>
+        <location filename="../src/document.cpp" line="517"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>אין אפשרות להחליף את &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="486"/>
+        <location filename="../src/document.cpp" line="510"/>
         <source>Rename File</source>
         <translation>שינוי שם קובץ</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="499"/>
+        <location filename="../src/document.cpp" line="523"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>אין אפשרות לשנות שם &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="525"/>
+        <location filename="../src/document.cpp" line="549"/>
         <source>Reload File?</source>
         <translation>לטעון מחדש קובץ?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="526"/>
+        <location filename="../src/document.cpp" line="550"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>לטעון מחדש קובץ &apos;%1&apos; מתוך כונן?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="527"/>
+        <location filename="../src/document.cpp" line="551"/>
         <source>All unsaved changes will be lost.</source>
         <translation>כל השינויים שלא נשמרו יאבדו.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="529"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Reload</source>
         <translation>טעינה מחדש</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1261"/>
+        <location filename="../src/document.cpp" line="1285"/>
         <source>Untitled %1</source>
         <translation>ללא כותרת %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1315"/>
+        <location filename="../src/document.cpp" line="1339"/>
         <source>Question</source>
         <translation>שאלה</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1316"/>
+        <location filename="../src/document.cpp" line="1340"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>שמירה כתמליל גלוי תתעלם מכל העיצוב. האם להתעלם מן עיצוב?</translation>
     </message>
@@ -382,17 +382,17 @@
 <context>
     <name>Highlighter</name>
     <message>
-        <location filename="../src/spelling/highlighter.cpp" line="52"/>
+        <location filename="../src/spelling/highlighter.cpp" line="54"/>
         <source>Add</source>
         <translation>הוסף</translation>
     </message>
     <message>
-        <location filename="../src/spelling/highlighter.cpp" line="53"/>
+        <location filename="../src/spelling/highlighter.cpp" line="55"/>
         <source>Check Spelling...</source>
         <translation>בדיקת איות...</translation>
     </message>
     <message>
-        <location filename="../src/spelling/highlighter.cpp" line="127"/>
+        <location filename="../src/spelling/highlighter.cpp" line="129"/>
         <source>(No suggestions found)</source>
         <translation>(לא נמצאו הצעות)</translation>
     </message>
@@ -423,12 +423,12 @@
         <translation>&lt;שפת מערכת&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="187"/>
+        <location filename="../src/locale_dialog.cpp" line="189"/>
         <source>Note</source>
         <translation>הערה</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="187"/>
+        <location filename="../src/locale_dialog.cpp" line="189"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>נא לאתחל את יישום זה כדי להחיל את השינוי בשפה.</translation>
     </message>
@@ -868,11 +868,11 @@
     <name>Session</name>
     <message>
         <location filename="../src/session.cpp" line="43"/>
-        <location filename="../src/session_manager.cpp" line="55"/>
-        <location filename="../src/session_manager.cpp" line="426"/>
-        <location filename="../src/session_manager.cpp" line="449"/>
-        <location filename="../src/session_manager.cpp" line="458"/>
-        <location filename="../src/session_manager.cpp" line="459"/>
+        <location filename="../src/session_manager.cpp" line="57"/>
+        <location filename="../src/session_manager.cpp" line="428"/>
+        <location filename="../src/session_manager.cpp" line="451"/>
+        <location filename="../src/session_manager.cpp" line="460"/>
+        <location filename="../src/session_manager.cpp" line="461"/>
         <source>Default</source>
         <translation>ברירת מחדל</translation>
     </message>
@@ -880,97 +880,97 @@
 <context>
     <name>SessionManager</name>
     <message>
-        <location filename="../src/session_manager.cpp" line="50"/>
+        <location filename="../src/session_manager.cpp" line="52"/>
         <source>Manage Sessions</source>
         <translation>ניהול סשנים</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="81"/>
+        <location filename="../src/session_manager.cpp" line="83"/>
         <source>S&amp;essions</source>
         <translation>ס&amp;שנים</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="95"/>
+        <location filename="../src/session_manager.cpp" line="97"/>
         <source>New</source>
         <translation>חדש</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="98"/>
+        <location filename="../src/session_manager.cpp" line="100"/>
         <source>Duplicate</source>
         <translation>שכפול</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="101"/>
+        <location filename="../src/session_manager.cpp" line="103"/>
         <source>Rename</source>
         <translation>שנה שם</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="104"/>
+        <location filename="../src/session_manager.cpp" line="106"/>
         <source>Delete</source>
         <translation>מחק</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="107"/>
+        <location filename="../src/session_manager.cpp" line="109"/>
         <source>Switch To</source>
         <translation>החלף אל</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="218"/>
+        <location filename="../src/session_manager.cpp" line="220"/>
         <source>New Session</source>
         <translation>סשן חדש</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="277"/>
+        <location filename="../src/session_manager.cpp" line="279"/>
         <source>Duplicate Session</source>
         <translation>שכפול סשן</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="322"/>
+        <location filename="../src/session_manager.cpp" line="324"/>
         <source>Rename Session</source>
         <translation>שינוי שם סשן</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="349"/>
+        <location filename="../src/session_manager.cpp" line="351"/>
         <source>Question</source>
         <translation>שאלה</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="349"/>
+        <location filename="../src/session_manager.cpp" line="351"/>
         <source>Delete selected session?</source>
         <translation>למחוק סשן נבחר?</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="421"/>
+        <location filename="../src/session_manager.cpp" line="423"/>
         <source>Session name:</source>
         <translation>שם סשן:</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="429"/>
+        <location filename="../src/session_manager.cpp" line="431"/>
         <source>Sorry</source>
         <translation>צר לי</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="429"/>
+        <location filename="../src/session_manager.cpp" line="431"/>
         <source>The requested session name is already in use.</source>
         <translation>שם הסשן המבוקש כבר מצוי בשימוש.</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="485"/>
+        <location filename="../src/session_manager.cpp" line="487"/>
         <source>&amp;New...</source>
         <translation>&amp;חדש...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="485"/>
+        <location filename="../src/session_manager.cpp" line="487"/>
         <source>Ctrl+Shift+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="486"/>
+        <location filename="../src/session_manager.cpp" line="488"/>
         <source>&amp;Manage...</source>
         <translation>&amp;ניהול...</translation>
     </message>
     <message>
-        <location filename="../src/session_manager.cpp" line="486"/>
+        <location filename="../src/session_manager.cpp" line="488"/>
         <source>Ctrl+Shift+M</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1602,634 +1602,634 @@
 <context>
     <name>Window</name>
     <message>
-        <location filename="../src/window.cpp" line="296"/>
+        <location filename="../src/window.cpp" line="300"/>
         <source>Loading themes</source>
         <translation>מטעין כעת מוטיבים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1142"/>
+        <location filename="../src/window.cpp" line="1146"/>
         <source>Loading sounds</source>
         <translation>מטעין כעת צלילים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="305"/>
-        <location filename="../src/window.cpp" line="1061"/>
+        <location filename="../src/window.cpp" line="309"/>
+        <location filename="../src/window.cpp" line="1065"/>
         <source>Untitled</source>
         <translation>ללא כותרת</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="678"/>
+        <location filename="../src/window.cpp" line="682"/>
         <source>Open File</source>
         <translation>פתיחת קובץ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="860"/>
+        <location filename="../src/window.cpp" line="864"/>
         <source>About FocusWriter</source>
         <translation>אדות ‫FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="863"/>
+        <location filename="../src/window.cpp" line="867"/>
         <source>FocusWriter</source>
         <translation>‫FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="864"/>
+        <location filename="../src/window.cpp" line="868"/>
         <source>A simple fullscreen word processor</source>
         <translation>עורך תמלילים פשוט במסך מלא</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="865"/>
+        <location filename="../src/window.cpp" line="869"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
         <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="866"/>
+        <location filename="../src/window.cpp" line="870"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
         <translation>משוחרר תחת הרשיון ‫&lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="867"/>
+        <location filename="../src/window.cpp" line="871"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
         <translation>הצלמיות נלקחו מן הפרויקט &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="868"/>
+        <location filename="../src/window.cpp" line="872"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
         <translation>בשימוש תחת הרשיון &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="170"/>
-        <location filename="../src/window.cpp" line="924"/>
+        <location filename="../src/window.cpp" line="174"/>
+        <location filename="../src/window.cpp" line="928"/>
         <source>Characters: %L1 / %L2</source>
         <translation>תווים: %L1 / %L2</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="168"/>
-        <location filename="../src/window.cpp" line="925"/>
+        <location filename="../src/window.cpp" line="172"/>
+        <location filename="../src/window.cpp" line="929"/>
         <source>Pages: %L1</source>
         <translation>עמודים: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="169"/>
-        <location filename="../src/window.cpp" line="926"/>
+        <location filename="../src/window.cpp" line="173"/>
+        <location filename="../src/window.cpp" line="930"/>
         <source>Paragraphs: %L1</source>
         <translation>פסקאות: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="167"/>
-        <location filename="../src/window.cpp" line="927"/>
+        <location filename="../src/window.cpp" line="171"/>
+        <location filename="../src/window.cpp" line="931"/>
         <source>Words: %L1</source>
         <translation>מילים: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="542"/>
-        <location filename="../src/window.cpp" line="1016"/>
+        <location filename="../src/document.cpp" line="566"/>
+        <location filename="../src/window.cpp" line="1020"/>
         <source>Opening %1</source>
         <translation>‫‭%1‬ נפתח כעת</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="328"/>
+        <location filename="../src/window.cpp" line="332"/>
         <source>(Untitled %1)</source>
         <translation>(ללא כותרת %1)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="203"/>
+        <location filename="../src/window.cpp" line="207"/>
         <source>List all documents</source>
         <translation>מנה את כל המסמכים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="206"/>
+        <location filename="../src/window.cpp" line="210"/>
         <source>Switch to Next Document</source>
         <translation>עבור אל מסמך בא</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="212"/>
+        <location filename="../src/window.cpp" line="216"/>
         <source>Switch to Previous Document</source>
         <translation>עבור אל מסמך קודם</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="218"/>
+        <location filename="../src/window.cpp" line="222"/>
         <source>Switch to First Document</source>
         <translation>עבור אל מסמך ראשון</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="224"/>
+        <location filename="../src/window.cpp" line="228"/>
         <source>Switch to Last Document</source>
         <translation>עבור אל מסמך אחרון</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="232"/>
+        <location filename="../src/window.cpp" line="236"/>
         <source>Switch to Document %1</source>
         <translation>עבור אל מסמך %1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="292"/>
+        <location filename="../src/window.cpp" line="296"/>
         <source>Loading settings</source>
         <translation>טוען כעת הגדרות</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="314"/>
+        <location filename="../src/window.cpp" line="318"/>
         <source>Emergency cache is not writable.</source>
         <translation>מטמון חירום אינו בר כתיבה.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="334"/>
-        <location filename="../src/window.cpp" line="1030"/>
+        <location filename="../src/window.cpp" line="338"/>
+        <location filename="../src/window.cpp" line="1034"/>
         <source>Warning</source>
         <translation>אזהרה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="335"/>
+        <location filename="../src/window.cpp" line="339"/>
         <source>FocusWriter was not shut down cleanly.</source>
         <translation>‫FocusWriter לא סוים באופן מוסדר.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="336"/>
+        <location filename="../src/window.cpp" line="340"/>
         <source>Restore from the emergency cache?</source>
         <translation>לשחזר מן מטמון חירום?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="463"/>
+        <location filename="../src/window.cpp" line="467"/>
         <source>Some files could not be opened.</source>
         <translation>קבצים מסוימים לא יכלו להיפתח.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="466"/>
+        <location filename="../src/window.cpp" line="470"/>
         <source>Some files were opened Read-Only.</source>
         <translation>קבצים מסוימים נפתחו לקריאה-בלבד.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1031"/>
+        <location filename="../src/window.cpp" line="1035"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; הינו חדש יותר מן העותק המוטמן.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1032"/>
+        <location filename="../src/window.cpp" line="1036"/>
         <source>Overwrite newer file?</source>
         <translation>להחליף קובץ חדש?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1117"/>
+        <location filename="../src/window.cpp" line="1121"/>
         <source>Save Changes?</source>
         <translation>לשמור שינויים?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1118"/>
+        <location filename="../src/window.cpp" line="1122"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
         <translation>לשמור שינויים לתוך הקובץ &apos;%1&apos; טרם סגירה?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1119"/>
+        <location filename="../src/window.cpp" line="1123"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
         <translation>השינויים שלך יאבדו אם תא תשמור אותם.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1149"/>
+        <location filename="../src/window.cpp" line="1153"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>אין אפשרות לטעון צלילי מכונת כתיבה.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1150"/>
+        <location filename="../src/window.cpp" line="1154"/>
         <source>Please make sure that SDL_mixer is installed.</source>
         <translation>נא לוודא שהרכיב SDL_mixer הינו מותקן.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1286"/>
+        <location filename="../src/window.cpp" line="1290"/>
         <source>&amp;File</source>
         <translation>&amp;קובץ</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1287"/>
+        <location filename="../src/window.cpp" line="1291"/>
         <source>&amp;New</source>
         <translation>&amp;חדש</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1288"/>
+        <location filename="../src/window.cpp" line="1292"/>
         <source>&amp;Open...</source>
         <translation>&amp;פתיחה...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1289"/>
+        <location filename="../src/window.cpp" line="1293"/>
         <source>Reloa&amp;d</source>
         <translation>&amp;טען מחדש</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1291"/>
+        <location filename="../src/window.cpp" line="1295"/>
         <source>&amp;Save</source>
         <translation>&amp;שמור</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1293"/>
+        <location filename="../src/window.cpp" line="1297"/>
         <source>Save &amp;As...</source>
         <translation>שמירה &amp;בשם...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1294"/>
+        <location filename="../src/window.cpp" line="1298"/>
         <source>&amp;Rename...</source>
         <translation>שי&amp;נוי שם...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1296"/>
+        <location filename="../src/window.cpp" line="1300"/>
         <source>Save A&amp;ll</source>
         <translation>שמור ה&amp;כל</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1299"/>
+        <location filename="../src/window.cpp" line="1303"/>
         <source>Manage Sessions</source>
         <translation>נהל סשנים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1301"/>
+        <location filename="../src/window.cpp" line="1305"/>
         <source>New Session</source>
         <translation>סשן חדש</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1304"/>
+        <location filename="../src/window.cpp" line="1308"/>
         <source>&amp;Print...</source>
         <translation>ה&amp;דפסה...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1306"/>
+        <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;Close</source>
         <translation>&amp;סגור</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1307"/>
+        <location filename="../src/window.cpp" line="1311"/>
         <source>&amp;Quit</source>
         <translation>י&amp;ציאה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1307"/>
+        <location filename="../src/window.cpp" line="1311"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1311"/>
+        <location filename="../src/window.cpp" line="1315"/>
         <source>&amp;Edit</source>
         <translation>ע&amp;ריכה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1312"/>
+        <location filename="../src/window.cpp" line="1316"/>
         <source>&amp;Undo</source>
         <translation>בט&amp;ל</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1315"/>
+        <location filename="../src/window.cpp" line="1319"/>
         <source>&amp;Redo</source>
         <translation>ב&amp;צע שוב</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1319"/>
+        <location filename="../src/window.cpp" line="1323"/>
         <source>Cu&amp;t</source>
         <translation>&amp;גזור</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1322"/>
+        <location filename="../src/window.cpp" line="1326"/>
         <source>&amp;Copy</source>
         <translation>הע&amp;תק</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1325"/>
+        <location filename="../src/window.cpp" line="1329"/>
         <source>&amp;Paste</source>
         <translation>ה&amp;דבק</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1326"/>
+        <location filename="../src/window.cpp" line="1330"/>
         <source>Paste &amp;Unformatted</source>
         <translation>הדבק בלי &amp;עיצוב</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1326"/>
+        <location filename="../src/window.cpp" line="1330"/>
         <source>Ctrl+Shift+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1332"/>
         <source>Select &amp;All</source>
         <translation>בחר ה&amp;כל</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1329"/>
+        <location filename="../src/window.cpp" line="1333"/>
         <source>Select &amp;Scene</source>
         <translation>בחר &amp;מקטע</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1329"/>
+        <location filename="../src/window.cpp" line="1333"/>
         <source>Ctrl+Shift+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1332"/>
+        <location filename="../src/window.cpp" line="1336"/>
         <source>Fo&amp;rmat</source>
         <translation>עי&amp;צוב</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1334"/>
+        <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Bold</source>
         <translation>&amp;מודגש</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1336"/>
+        <location filename="../src/window.cpp" line="1340"/>
         <source>&amp;Italic</source>
         <translation>&amp;נטוי</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1338"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>&amp;Underline</source>
         <translation>&amp;קו תחתון</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1340"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>Stri&amp;kethrough</source>
         <translation>קו &amp;חוצה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1340"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>Ctrl+K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1342"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>Sup&amp;erscript</source>
         <translation>כיתוב &amp;עילי</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1342"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>Ctrl+^</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1344"/>
+        <location filename="../src/window.cpp" line="1348"/>
         <source>&amp;Subscript</source>
         <translation>כיתוב &amp;תחתי</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1344"/>
+        <location filename="../src/window.cpp" line="1348"/>
         <source>Ctrl+_</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1348"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Align &amp;Left</source>
         <translation>יישור &amp;שמאל</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1348"/>
+        <location filename="../src/window.cpp" line="1352"/>
         <source>Ctrl+{</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1350"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>Align &amp;Center</source>
         <translation>יישור מ&amp;רכז</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1350"/>
+        <location filename="../src/window.cpp" line="1354"/>
         <source>Ctrl+|</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1352"/>
+        <location filename="../src/window.cpp" line="1356"/>
         <source>Align &amp;Right</source>
         <translation>יישור &amp;ימין</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1352"/>
+        <location filename="../src/window.cpp" line="1356"/>
         <source>Ctrl+}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1354"/>
+        <location filename="../src/window.cpp" line="1358"/>
         <source>Align &amp;Justify</source>
         <translation>יישור מ&amp;אוזן</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1354"/>
+        <location filename="../src/window.cpp" line="1358"/>
         <source>Ctrl+J</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1364"/>
+        <location filename="../src/window.cpp" line="1368"/>
         <source>&amp;Decrease Indent</source>
         <translation>&amp;צמצם שוליים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1364"/>
+        <location filename="../src/window.cpp" line="1368"/>
         <source>Ctrl+&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1365"/>
+        <location filename="../src/window.cpp" line="1369"/>
         <source>I&amp;ncrease Indent</source>
         <translation>&amp;גידול שוליים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1365"/>
+        <location filename="../src/window.cpp" line="1369"/>
         <source>Ctrl+&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1368"/>
+        <location filename="../src/window.cpp" line="1372"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>בלוק שמ&amp;אל אל ימין</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1370"/>
+        <location filename="../src/window.cpp" line="1374"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>בלוק י&amp;מין אל שמאל</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1378"/>
+        <location filename="../src/window.cpp" line="1382"/>
         <source>&amp;Tools</source>
         <translation>&amp;כלים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1379"/>
+        <location filename="../src/window.cpp" line="1383"/>
         <source>&amp;Find...</source>
         <translation>&amp;חיפוש...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1380"/>
+        <location filename="../src/window.cpp" line="1384"/>
         <source>Find &amp;Next</source>
         <translation>מצא את ה&amp;בא</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1383"/>
+        <location filename="../src/window.cpp" line="1387"/>
         <source>Find Pre&amp;vious</source>
         <translation>מצא את ה&amp;קודם</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1386"/>
+        <location filename="../src/window.cpp" line="1390"/>
         <source>&amp;Replace...</source>
         <translation>&amp;החלפה...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1386"/>
+        <location filename="../src/window.cpp" line="1390"/>
         <source>Ctrl+R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1388"/>
+        <location filename="../src/window.cpp" line="1392"/>
         <source>Smart &amp;Quotes</source>
         <translation>מר&amp;כאות חכמות</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1389"/>
+        <location filename="../src/window.cpp" line="1393"/>
         <source>Update &amp;Document</source>
         <translation>עדכן &amp;מסמך</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1392"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>Update &amp;Selection</source>
         <translation>עדכן &amp;בחירה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1396"/>
+        <location filename="../src/window.cpp" line="1400"/>
         <source>&amp;Spelling...</source>
         <translation>&amp;איות...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1396"/>
+        <location filename="../src/window.cpp" line="1400"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1397"/>
+        <location filename="../src/window.cpp" line="1401"/>
         <source>Set &amp;Language...</source>
         <translation>קביעת &amp;שפה...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1399"/>
+        <location filename="../src/window.cpp" line="1403"/>
         <source>&amp;Timers...</source>
         <translation>&amp;שעוני עצר...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1400"/>
+        <location filename="../src/window.cpp" line="1404"/>
         <source>S&amp;ymbols...</source>
         <translation>&amp;סמלים...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1401"/>
+        <location filename="../src/window.cpp" line="1405"/>
         <source>&amp;Daily Progress</source>
         <translation>התקדמות &amp;יומית</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1404"/>
+        <location filename="../src/window.cpp" line="1408"/>
         <source>&amp;Settings</source>
         <translation>&amp;הגדרות</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1405"/>
+        <location filename="../src/window.cpp" line="1409"/>
         <source>Show &amp;Toolbar</source>
         <translation>הצג &amp;סרגל כלים</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1410"/>
+        <location filename="../src/window.cpp" line="1414"/>
         <source>Show &amp;Menu Icons</source>
         <translation>הצג &amp;צלמיות תפריט</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1416"/>
+        <location filename="../src/window.cpp" line="1420"/>
         <source>F&amp;ocused Text</source>
         <translation>תמליל ממור&amp;כז</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1418"/>
+        <location filename="../src/window.cpp" line="1422"/>
         <source>&amp;Fullscreen</source>
         <translation>&amp;מסך מלא</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1418"/>
+        <location filename="../src/window.cpp" line="1422"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1420"/>
+        <location filename="../src/window.cpp" line="1424"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1428"/>
         <source>M&amp;inimize</source>
         <translation>מ&amp;זער</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1428"/>
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1426"/>
+        <location filename="../src/window.cpp" line="1430"/>
         <source>&amp;Themes...</source>
         <translation>מו&amp;טיבים...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1429"/>
+        <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;העדפות...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1435"/>
+        <location filename="../src/window.cpp" line="1439"/>
         <source>Focus Off</source>
         <translation>בטל מרכוז</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1437"/>
+        <location filename="../src/window.cpp" line="1441"/>
         <source>Focus One Line</source>
         <translation>מרכז שורה אחת</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1439"/>
+        <location filename="../src/window.cpp" line="1443"/>
         <source>Focus Three Lines</source>
         <translation>מרכז שלוש שורות</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1440"/>
+        <location filename="../src/window.cpp" line="1444"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;פסקה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1441"/>
+        <location filename="../src/window.cpp" line="1445"/>
         <source>Focus Paragraph</source>
         <translation>מרכז פסקה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1454"/>
+        <location filename="../src/window.cpp" line="1458"/>
         <source>&amp;Help</source>
         <translation>&amp;עזרה</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1428"/>
+        <location filename="../src/window.cpp" line="1432"/>
         <source>Application &amp;Language...</source>
         <translation>&amp;שפת יישום...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="396"/>
+        <location filename="../src/window.cpp" line="400"/>
         <source>Some files were unsupported and could not be opened.</source>
         <translation>קבצים מסוימים לא נתמכו ולא היתה אפשרות לפתוח אותם.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1434"/>
+        <location filename="../src/window.cpp" line="1438"/>
         <source>&amp;Off</source>
         <translation>&amp;כבוי</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1436"/>
+        <location filename="../src/window.cpp" line="1440"/>
         <source>One &amp;Line</source>
         <translation>שורה &amp;אחת</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1438"/>
+        <location filename="../src/window.cpp" line="1442"/>
         <source>&amp;Three Lines</source>
         <translation>&amp;שלוש שורות</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1455"/>
+        <location filename="../src/window.cpp" line="1459"/>
         <source>&amp;About</source>
         <translation>&amp;אודות</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1463"/>
+        <location filename="../src/window.cpp" line="1467"/>
         <source>About &amp;Qt</source>
         <translation>אודות &amp;Qt</translation>
     </message>
