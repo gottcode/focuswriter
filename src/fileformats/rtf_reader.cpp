@@ -136,7 +136,8 @@ private:
 	QHash<QByteArray, Function> m_functions;
 }
 functions,
-stylesheet_functions;
+stylesheet_functions,
+heading_functions;
 
 //-----------------------------------------------------------------------------
 
@@ -213,6 +214,8 @@ RtfReader::RtfReader() :
 		functions.set("super", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSuperScript);
 		functions.set("nosupersub", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignNormal);
 
+		functions.set("outlinelevel", &RtfReader::setOutlineLevel, 0);
+
 		functions.set("ansicpg", &RtfReader::setCodepage);
 		functions.set("ansi", &RtfReader::setCodepage, 1252);
 		functions.set("mac", &RtfReader::setCodepage, 10000);
@@ -269,6 +272,13 @@ RtfReader::RtfReader() :
 		stylesheet_functions.set("sub", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSubScript);
 		stylesheet_functions.set("super", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSuperScript);
 		stylesheet_functions.set("nosupersub", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignNormal);
+
+		stylesheet_functions.set("outlinelevel", &RtfReader::setOutlineLevel, 0);
+	}
+
+	if (heading_functions.isEmpty()) {
+		heading_functions = functions;
+		heading_functions.unset("b");
 	}
 
 	m_state.ignore_control_word = false;
@@ -644,6 +654,14 @@ void RtfReader::setCodec(QTextCodec* codec)
 
 //-----------------------------------------------------------------------------
 
+void RtfReader::setOutlineLevel(qint32 value)
+{
+	m_state.block_format.setProperty(QTextFormat::UserProperty, qBound(1, value + 1, 6));
+	m_cursor.mergeBlockFormat(m_state.block_format);
+}
+
+//-----------------------------------------------------------------------------
+
 void RtfReader::setStyle(qint32 value)
 {
 	m_state.style = value;
@@ -655,6 +673,8 @@ void RtfReader::setStyle(qint32 value)
 
 		m_state.char_format.merge(style->char_format);
 		m_cursor.mergeCharFormat(m_state.char_format);
+
+		m_state.functions = style->functions;
 	}
 }
 
@@ -694,8 +714,15 @@ void RtfReader::setStyleParent(qint32 value)
 
 //-----------------------------------------------------------------------------
 
-void RtfReader::setStyleName(const QString&)
+void RtfReader::setStyleName(const QString& style)
 {
+	int heading = -1;
+	if (style.startsWith("Head")) {
+		heading = qBound(1, style.at(style.length() - 2).digitValue(), 6);
+	}
+	if (heading != -1) {
+		m_styles[m_state.style].block_format.setProperty(QTextFormat::UserProperty, heading);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -705,6 +732,12 @@ void RtfReader::setStyleEnd()
 	Style& style = m_styles[m_state.style];
 	style.block_format.merge(m_state.block_format);
 	style.char_format.merge(m_state.char_format);
+	if (style.block_format.property(QTextFormat::UserProperty).toInt() != 0) {
+		style.char_format.setFontWeight(QFont::Normal);
+		style.functions = &heading_functions;
+	} else {
+		style.functions = &functions;
+	}
 
 	QSetIterator<int> iter(style.children);
 	while (iter.hasNext()) {

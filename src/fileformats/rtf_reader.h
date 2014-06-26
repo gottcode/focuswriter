@@ -74,6 +74,7 @@ private:
 	void setFontCharset(qint32 value);
 	void setFontCodepage(qint32 value);
 	void setCodec(QTextCodec* codec);
+	void setOutlineLevel(qint32 value);
 	void setStyle(qint32 value);
 
 	void startStyleSheet(qint32);
@@ -93,6 +94,7 @@ private:
 	{
 		QTextCharFormat char_format;
 		QTextBlockFormat block_format;
+		const FunctionTable* functions;
 		QSet<int> children;
 	};
 	QHash<int, Style> m_styles;
