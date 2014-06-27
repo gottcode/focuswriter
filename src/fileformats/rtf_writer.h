@@ -33,7 +33,7 @@ public:
 
 	QByteArray encoding() const;
 
-	bool write(QIODevice* device, const QTextDocument* text, bool full = true);
+	bool write(QIODevice* device, const QTextDocument* text);
 
 private:
 	void setCodec(QTextCodec* codec);

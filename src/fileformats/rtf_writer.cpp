@@ -264,7 +264,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 
 //-----------------------------------------------------------------------------
 
-bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
+bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 {
 	if (m_codec == 0) {
 		return false;
@@ -273,35 +273,29 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 	device->write(m_header);
 
 	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
-		if (full) {
-			QByteArray par("{\\pard\\plain");
-			QTextBlockFormat block_format = block.blockFormat();
-			bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
-			if (rtl) {
-				par += "\\rtlpar";
-			}
-			Qt::Alignment align = block_format.alignment();
-			if (rtl && (align & Qt::AlignLeft)) {
-				par += "\\ql";
-			} else if (align & Qt::AlignRight) {
-				par += "\\qr";
-			} else if (align & Qt::AlignCenter) {
-				par += "\\qc";
-			} else if (align & Qt::AlignJustify) {
-				par += "\\qj";
-			}
-			if (block_format.indent() > 0) {
-				par += "\\li" + QByteArray::number(block_format.indent() * 720);
-			}
-			device->write(par);
-		} else {
-			device->write("{");
+		QByteArray par("{\\pard\\plain");
+		QTextBlockFormat block_format = block.blockFormat();
+		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+		if (rtl) {
+			par += "\\rtlpar";
 		}
+		Qt::Alignment align = block_format.alignment();
+		if (rtl && (align & Qt::AlignLeft)) {
+			par += "\\ql";
+		} else if (align & Qt::AlignRight) {
+			par += "\\qr";
+		} else if (align & Qt::AlignCenter) {
+			par += "\\qc";
+		} else if (align & Qt::AlignJustify) {
+			par += "\\qj";
+		}
+		if (block_format.indent() > 0) {
+			par += "\\li" + QByteArray::number(block_format.indent() * 720);
+		}
+		device->write(par);
 
 		if (block.begin() != block.end()) {
-			if (full) {
-				device->write(" ");
-			}
+			device->write(" ");
 			for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
 				QTextFragment fragment = iter.fragment();
 				QTextCharFormat char_format = fragment.charFormat();
@@ -332,11 +326,7 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 			}
 		}
 
-		if (full || block.next().isValid()) {
-			device->write("\\par}\n");
-		} else {
-			device->write("}");
-		}
+		device->write("\\par}\n");
 	}
 
 	device->write("}");

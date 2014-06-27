@@ -298,7 +298,7 @@ namespace
 		RtfWriter writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
-		writer.write(&buffer, &document, false);
+		writer.write(&buffer, &document);
 		buffer.close();
 
 		return buffer.data();
