@@ -42,9 +42,9 @@ void DocxWriter::setStrict(bool strict)
 
 //-----------------------------------------------------------------------------
 
-bool DocxWriter::write(const QString& filename, QTextDocument* document)
+bool DocxWriter::write(QIODevice* device, const QTextDocument* document)
 {
-	QtZipWriter zip(filename);
+	QtZipWriter zip(device);
 	if (zip.status() != QtZipWriter::NoError) {
 		return false;
 	}
@@ -83,7 +83,7 @@ bool DocxWriter::write(const QString& filename, QTextDocument* document)
 
 //-----------------------------------------------------------------------------
 
-QByteArray DocxWriter::writeDocument(QTextDocument* document)
+QByteArray DocxWriter::writeDocument(const QTextDocument* document)
 {
 	QByteArray data;
 	QBuffer buffer(&data);

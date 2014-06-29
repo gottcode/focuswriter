@@ -264,7 +264,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 
 //-----------------------------------------------------------------------------
 
-bool RtfWriter::write(QIODevice* device, QTextDocument* text, bool full)
+bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 {
 	if (m_codec == 0) {
 		return false;
