@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -217,24 +217,20 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 		return;
 	}
 
-	QLibrary voikko_lib("libvoikko");
-	if (!voikko_lib.load()) {
+	QString lib = "libvoikko";
 #ifdef Q_OS_WIN
-		QLibrary voikko_lib;
-		QStringList dictdirs = QDir::searchPaths("dict");
-		foreach (const QString dictdir, dictdirs) {
-			voikko_lib.setFileName(dictdir + "/libvoikko-1.dll");
-			if (voikko_lib.load()) {
-				f_voikko_path = QFile::encodeName(QFileInfo(voikko_lib.fileName()).path());
-				break;
-			}
+	QStringList dictdirs = QDir::searchPaths("dict");
+	foreach (const QString dictdir, dictdirs) {
+		lib = dictdir + "/libvoikko-1.dll";
+		if (QLibrary(lib).load()) {
+			f_voikko_path = QFile::encodeName(QDir::toNativeSeparators(QFileInfo(lib).path()));
+			break;
 		}
-		if (!voikko_lib.isLoaded()) {
-			return;
-		}
-#else
-		return;
+	}
 #endif
+	QLibrary voikko_lib(lib);
+	if (!voikko_lib.load()) {
+		return;
 	}
 
 	voikkoInit = (VoikkoInitFunction) voikko_lib.resolve("voikkoInit");
