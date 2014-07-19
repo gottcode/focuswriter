@@ -274,10 +274,12 @@ Section "install"
 	WriteUninstaller "$INSTDIR\Uninstall.exe"
 
 	;Create shortcut
+	SetShellVarContext all
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
 	CreateShortCut "$SMPROGRAMS\$StartMenuFolder\${APPNAME}.lnk" "$INSTDIR\FocusWriter.exe"
 	!insertmacro MUI_STARTMENU_WRITE_END
+	SetShellVarContext current
 
 SectionEnd
 
@@ -334,8 +336,10 @@ Section "Uninstall"
 	RMDir $INSTDIR
 
 	;Remove shortcut
+	SetShellVarContext all
 	!insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
 	Delete "$SMPROGRAMS\$StartMenuFolder\${APPNAME}.lnk"
 	RMDir "$SMPROGRAMS\$StartMenuFolder"
+	SetShellVarContext current
 
 SectionEnd
