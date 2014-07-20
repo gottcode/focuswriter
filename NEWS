@@ -1,3 +1,12 @@
+1.5.2
+-----
+* FIXED: Regression with RtfWriter encoding characters in Windows.
+* FIXED: Windows installer did not install shortcut for all users.
+* FIXED: Finnish spellchecking did not work in Windows.
+* FIXED: Incorrect handling of mimetypes in copy-paste.
+* FIXED: Keywords in .desktop file should be separated by semicolons.
+* Translation updates: French, Hebrew, Korean, Polish, Portuguese (Brazil).
+
 1.5.1
 -----
 * Added keywords to .desktop file.
