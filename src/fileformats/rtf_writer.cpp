@@ -264,7 +264,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 
 //-----------------------------------------------------------------------------
 
-bool RtfWriter::write(QIODevice* device, QTextDocument* text, bool full)
+bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 {
 	if (m_codec == 0) {
 		return false;
@@ -386,7 +386,7 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 			}
 
 			encoded = m_codec->fromUnicode(i, 1, &state);
-			if (state.invalidChars == 0) {
+			if ((state.invalidChars == 0) && (encoded.at(0) != 0)) {
 				if (encoded.count() == 1 && encoded.at(0) >= 0x20) {
 					text += encoded;
 				} else {

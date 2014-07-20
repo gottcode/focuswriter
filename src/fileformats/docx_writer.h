@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,10 +42,10 @@ public:
 	}
 
 	void setStrict(bool strict);
-	bool write(const QString& filename, QTextDocument* document);
+	bool write(QIODevice* device, const QTextDocument* document);
 
 private:
-	QByteArray writeDocument(QTextDocument* document);
+	QByteArray writeDocument(const QTextDocument* document);
 	void writeParagraph(const QTextBlock& block);
 	void writeText(const QString& text, int start, int end);
 	void writeParagraphProperties(const QTextBlockFormat& block_format, const QTextCharFormat& char_format);

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Lorram Lomeu de Souza Rampi <lorrampi@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 11:50+0000\n"
-"PO-Revision-Date: 2014-03-25 21:48+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2014-07-16 22:27+0000\n"
+"Last-Translator: Lorram Lomeu de Souza Rampi <lorrampi@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/"
 "focuswriter/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Processador de texto em tela cheia"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""
@@ -29,6 +30,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter é um simples, processador de texto simples livre de distrações. "
+"Ele Ele utiliza uma interface oculta, acessível ao mover o mouse para os "
+"cantos da interface da tela, o que dá ao programa um olhar amigável, "
+"mantendo-se discreto, assim você pode mergulhar em seu trabalho."
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -37,6 +42,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter permite que você personalize o seu ambiente, criando temas que "
+"controlam a fonte, cores, e imagem de fundo para adicionar ao ambiente. "
+"Também possui rápida atualização de estatísticas, metas diárias, vários "
+"documentos abertos, verificação ortográfica e muito mais."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -44,6 +53,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Além disso, quando você abrir o programa seu trabalho atual em andamento irá "
+"automaticamente carregar e posicioná-lo onde você parou de modo que você "
+"pode  pular imediatamente de volta nele."
 
 #: ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"

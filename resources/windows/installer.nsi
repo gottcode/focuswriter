@@ -4,7 +4,7 @@
 !define APPNAME "FocusWriter"
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 5
-!define VERSIONPATCH 1
+!define VERSIONPATCH 2
 !define APPVERSION "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONPATCH}"
 !define ABOUTURL "http://gottcode.org/focuswriter/"
 
@@ -274,10 +274,12 @@ Section "install"
 	WriteUninstaller "$INSTDIR\Uninstall.exe"
 
 	;Create shortcut
+	SetShellVarContext all
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 	CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
 	CreateShortCut "$SMPROGRAMS\$StartMenuFolder\${APPNAME}.lnk" "$INSTDIR\FocusWriter.exe"
 	!insertmacro MUI_STARTMENU_WRITE_END
+	SetShellVarContext current
 
 SectionEnd
 
@@ -334,8 +336,10 @@ Section "Uninstall"
 	RMDir $INSTDIR
 
 	;Remove shortcut
+	SetShellVarContext all
 	!insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
 	Delete "$SMPROGRAMS\$StartMenuFolder\${APPNAME}.lnk"
 	RMDir "$SMPROGRAMS\$StartMenuFolder"
+	SetShellVarContext current
 
 SectionEnd

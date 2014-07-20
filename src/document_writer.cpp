@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,41 +61,43 @@ bool DocumentWriter::write()
 
 	bool saved = false;
 
+	QFile file(m_filename);
+	if (!file.open(QFile::WriteOnly | QFile::Truncate)) {
+		return false;
+	}
+
 	if (m_type == "odt") {
 		OdtWriter writer;
-		saved = writer.write(m_filename, m_document);
+		saved = writer.write(&file, m_document);
 	} else if (m_type == "docx") {
 		DocxWriter writer;
-		saved = writer.write(m_filename, m_document);
+		saved = writer.write(&file, m_document);
 	} else {
-		QFile file(m_filename);
-		if (file.open(QFile::WriteOnly | QFile::Truncate)) {
-			if (m_type == "rtf") {
-				RtfWriter writer(m_encoding);
-				if (m_encoding.isEmpty()) {
-					m_encoding = writer.encoding();
-				}
-				saved = writer.write(&file, m_document);
-			} else {
-				QTextStream stream(&file);
-				QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
-				stream.setCodec(encoding);
-				if (m_write_bom || (encoding != "UTF-8")) {
-					stream.setGenerateByteOrderMark(true);
-				}
-				stream << m_document->toPlainText();
-				saved = true;
+		if (m_type == "rtf") {
+			RtfWriter writer(m_encoding);
+			if (m_encoding.isEmpty()) {
+				m_encoding = writer.encoding();
 			}
+			saved = writer.write(&file, m_document);
+		} else {
+			QTextStream stream(&file);
+			QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
+			stream.setCodec(encoding);
+			if (m_write_bom || (encoding != "UTF-8")) {
+				stream.setGenerateByteOrderMark(true);
+			}
+			stream << m_document->toPlainText();
+			saved = true;
+		}
 
 #if defined(Q_OS_UNIX)
-			saved &= (fsync(file.handle()) == 0);
+		saved &= (fsync(file.handle()) == 0);
 #elif defined(Q_OS_WIN)
-			saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
+		saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
 #endif
-			saved &= (file.error() == QFile::NoError);
-			file.close();
-		}
+		saved &= (file.error() == QFile::NoError);
 	}
+	file.close();
 
 	return saved;
 }

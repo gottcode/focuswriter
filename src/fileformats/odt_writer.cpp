@@ -35,9 +35,9 @@ OdtWriter::OdtWriter()
 
 //-----------------------------------------------------------------------------
 
-bool OdtWriter::write(const QString& filename, QTextDocument* document)
+bool OdtWriter::write(QIODevice* device, const QTextDocument* document)
 {
-	QtZipWriter zip(filename);
+	QtZipWriter zip(device);
 	if (zip.status() != QtZipWriter::NoError) {
 		return false;
 	}
@@ -69,7 +69,7 @@ bool OdtWriter::write(const QString& filename, QTextDocument* document)
 
 //-----------------------------------------------------------------------------
 
-QByteArray OdtWriter::writeDocument(QTextDocument* document)
+QByteArray OdtWriter::writeDocument(const QTextDocument* document)
 {
 	QByteArray data;
 	QBuffer buffer(&data);
@@ -101,7 +101,7 @@ QByteArray OdtWriter::writeDocument(QTextDocument* document)
 
 //-----------------------------------------------------------------------------
 
-void OdtWriter::writeAutomaticStyles(QTextDocument* document)
+void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 {
 	m_xml.writeStartElement(QString::fromLatin1("office:automatic-styles"));
 
@@ -214,7 +214,7 @@ void OdtWriter::writeTextStyle(const QTextCharFormat& format, const QString& nam
 
 //-----------------------------------------------------------------------------
 
-void OdtWriter::writeBody(QTextDocument* document)
+void OdtWriter::writeBody(const QTextDocument* document)
 {
 	m_xml.writeStartElement(QString::fromLatin1("office:body"));
 	m_xml.writeStartElement(QString::fromLatin1("office:text"));
