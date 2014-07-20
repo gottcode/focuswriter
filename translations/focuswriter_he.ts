@@ -122,87 +122,87 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation>קבע שפה</translation>
+        <translation>קביעת שפה</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="389"/>
+        <location filename="../src/document.cpp" line="425"/>
         <source>(Untitled %1)</source>
         <translation>(ללא כותרת %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="392"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (קריאה-בלבד)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
-        <location filename="../src/document.cpp" line="481"/>
+        <location filename="../src/document.cpp" line="492"/>
         <location filename="../src/document.cpp" line="517"/>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Sorry</source>
         <translation>צר לי</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
+        <location filename="../src/document.cpp" line="492"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>אין אפשרות לשמור &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="471"/>
+        <location filename="../src/document.cpp" line="507"/>
         <source>Save File As</source>
         <translation>שמירת קובץ בשם</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="481"/>
         <location filename="../src/document.cpp" line="517"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>אין אפשרות להחליף את &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="546"/>
         <source>Rename File</source>
         <translation>שינוי שם קובץ</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>אין אפשרות לשנות שם &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="549"/>
+        <location filename="../src/document.cpp" line="585"/>
         <source>Reload File?</source>
         <translation>לטעון מחדש קובץ?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="550"/>
+        <location filename="../src/document.cpp" line="586"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>לטעון מחדש קובץ &apos;%1&apos; מתוך כונן?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="551"/>
+        <location filename="../src/document.cpp" line="587"/>
         <source>All unsaved changes will be lost.</source>
         <translation>כל השינויים שלא נשמרו יאבדו.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="589"/>
         <source>Reload</source>
         <translation>טעינה מחדש</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1285"/>
+        <location filename="../src/document.cpp" line="1321"/>
         <source>Untitled %1</source>
         <translation>ללא כותרת %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1339"/>
+        <location filename="../src/document.cpp" line="1375"/>
         <source>Question</source>
         <translation>שאלה</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1340"/>
+        <location filename="../src/document.cpp" line="1376"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>שמירה כתמליל גלוי תתעלם מכל העיצוב. האם להתעלם מן עיצוב?</translation>
     </message>
@@ -897,7 +897,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="100"/>
         <source>Duplicate</source>
-        <translation>שכפול</translation>
+        <translation>שכפל</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="103"/>
@@ -1406,7 +1406,7 @@
         <location filename="../src/theme_manager.cpp" line="117"/>
         <location filename="../src/theme_manager.cpp" line="178"/>
         <source>Duplicate</source>
-        <translation>שכפול</translation>
+        <translation>שכפל</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="131"/>
@@ -1416,12 +1416,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="183"/>
         <source>Edit</source>
-        <translation>עריכה</translation>
+        <translation>ערוך</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="188"/>
         <source>Delete</source>
-        <translation>מחיקה</translation>
+        <translation>מחק</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="193"/>
@@ -1540,12 +1540,12 @@
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation>עריכה</translation>
+        <translation>ערוך</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation>מחיקה</translation>
+        <translation>מחק</translation>
     </message>
 </context>
 <context>
@@ -1682,7 +1682,7 @@
         <translation>מילים: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="566"/>
+        <location filename="../src/document.cpp" line="602"/>
         <location filename="../src/window.cpp" line="1020"/>
         <source>Opening %1</source>
         <translation>‫‭%1‬ נפתח כעת</translation>
@@ -1746,7 +1746,7 @@
     <message>
         <location filename="../src/window.cpp" line="340"/>
         <source>Restore from the emergency cache?</source>
-        <translation>לשחזר מן מטמון חירום?</translation>
+        <translation>לשחזר מתוך מטמון חירום?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="467"/>
@@ -1781,7 +1781,7 @@
     <message>
         <location filename="../src/window.cpp" line="1123"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>השינויים שלך יאבדו אם תא תשמור אותם.</translation>
+        <translation>השינויים שלך יאבדו אם לא תשמור אותם.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1153"/>

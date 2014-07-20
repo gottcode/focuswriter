@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Łukasz Jurczak <jurczak@poczta.fm>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 11:50+0000\n"
-"PO-Revision-Date: 2014-03-25 21:48+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2014-07-08 19:33+0000\n"
+"Last-Translator: Łukasz Jurczak <jurczak@poczta.fm>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/focuswriter/"
 "language/pl/)\n"
 "Language: pl\n"
@@ -21,7 +22,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Pełnoekranowy edytor tekstu"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""

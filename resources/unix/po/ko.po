@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# 박정규(Jung Kyu Park) <bagjunggyu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 11:50+0000\n"
-"PO-Revision-Date: 2014-03-25 21:48+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2014-06-26 15:33+0000\n"
+"Last-Translator: 박정규(Jung Kyu Park) <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/focuswriter/"
 "language/ko/)\n"
 "Language: ko\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "풀스크린 워드 프로세서"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""
@@ -29,6 +30,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"포커스 라이터는, 글쓰기에 집중하게 해주는 간단한 워드 프로세서입니다. 마우스"
+"를 화면 끝에 대면 작동하는 하이드-어웨이 방식을 적용해서, 프로그램이 익숙한 "
+"모양과 느낌을 유지하게 해, 잠시 방해를 받아도 금방 하던 작업에 몰두하게 합니"
+"다."
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -37,6 +42,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"포커스 라이터는 폰트와, 색상을 조절하고, 배경 그림을 추가해 테마를 만들어서 "
+"작업 환경을 직접 만들 수 있게 되어있습니다. 포커스 라이터는 때에 따라서 이용"
+"할 수 있는 통계 업데이트, 오늘의 목표, 여러 건의 문서 열기, 맞춤법 검사, 등"
+"과 그 외에 아주 많은 기능을 갖고 있습니다.  "
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -44,6 +53,8 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"그리고, 프로그램을 열면 작업하던 내용이 일을 멈추고 떠났던 그때 그대로 자동으"
+"로 복귀되어서 돌아오면 바로 하던 작업으로 다시 돌아갈 수 있습니다."
 
 #: ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
@@ -55,4 +66,4 @@ msgstr "풀스크린 워드 프로세서"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr "타이핑하는 부분에 집중해서 글을 쓸 수 있는"
+msgstr "글쓰기에 집중할 수 있는 "
