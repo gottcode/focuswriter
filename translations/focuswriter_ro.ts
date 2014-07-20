@@ -133,81 +133,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="389"/>
+        <location filename="../src/document.cpp" line="425"/>
         <source>(Untitled %1)</source>
         <translation>(Fără titlu %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="392"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Doar-citire)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
-        <location filename="../src/document.cpp" line="481"/>
+        <location filename="../src/document.cpp" line="492"/>
         <location filename="../src/document.cpp" line="517"/>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Sorry</source>
         <translation>Scuze</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
+        <location filename="../src/document.cpp" line="492"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Nu se poate salva &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="471"/>
+        <location filename="../src/document.cpp" line="507"/>
         <source>Save File As</source>
         <translation>Salvează fişierul ca</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="481"/>
         <location filename="../src/document.cpp" line="517"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Nu se poate suprascrie&apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="546"/>
         <source>Rename File</source>
         <translation>Redenumire fişier</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Nu se poate redenumi &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="549"/>
+        <location filename="../src/document.cpp" line="585"/>
         <source>Reload File?</source>
         <translation>Reîncarcă fişier?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="550"/>
+        <location filename="../src/document.cpp" line="586"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Reîncarcă fişierul &apos;%1&apos; de pe disc?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="551"/>
+        <location filename="../src/document.cpp" line="587"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Toate modificările nesalvate vor fi pierdute.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="589"/>
         <source>Reload</source>
         <translation>Reîncarcă</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1285"/>
+        <location filename="../src/document.cpp" line="1321"/>
         <source>Untitled %1</source>
         <translation>FărăTitlu %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1339"/>
+        <location filename="../src/document.cpp" line="1375"/>
         <source>Question</source>
         <translation>Întrebare</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1340"/>
+        <location filename="../src/document.cpp" line="1376"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Salvînd ca text simplu se vor pierde toate formatările. Renunţaţi la formatare?</translation>
     </message>
@@ -1688,7 +1688,7 @@
         <translation>Cuvinte: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="566"/>
+        <location filename="../src/document.cpp" line="602"/>
         <location filename="../src/window.cpp" line="1020"/>
         <source>Opening %1</source>
         <translation>Deschidere %1</translation>

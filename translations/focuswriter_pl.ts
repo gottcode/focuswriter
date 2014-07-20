@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="146"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Dzienny postęp</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
@@ -127,87 +127,87 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw język</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="389"/>
+        <location filename="../src/document.cpp" line="425"/>
         <source>(Untitled %1)</source>
         <translation type="unfinished">(Bez tytułu %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="392"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>%1 (Read-Only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
-        <location filename="../src/document.cpp" line="481"/>
+        <location filename="../src/document.cpp" line="492"/>
         <location filename="../src/document.cpp" line="517"/>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Sorry</source>
         <translation>Przepraszam</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
+        <location filename="../src/document.cpp" line="492"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Nie można zapisać pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="471"/>
+        <location filename="../src/document.cpp" line="507"/>
         <source>Save File As</source>
         <translation>Zapisz plik jako</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="481"/>
         <location filename="../src/document.cpp" line="517"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Nie można nadpisać pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="546"/>
         <source>Rename File</source>
         <translation>Zmień nazwę pliku</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Nie można zmienić nazwy pliku &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="549"/>
+        <location filename="../src/document.cpp" line="585"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytać ponownie?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="550"/>
+        <location filename="../src/document.cpp" line="586"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="551"/>
+        <location filename="../src/document.cpp" line="587"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Wszystkie niezapisane zmiany zostaną utracone</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="589"/>
         <source>Reload</source>
         <translation>Wczytaj ponownie</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1285"/>
+        <location filename="../src/document.cpp" line="1321"/>
         <source>Untitled %1</source>
         <translation type="unfinished">Bez nazwy %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1339"/>
+        <location filename="../src/document.cpp" line="1375"/>
         <source>Question</source>
         <translation>Pytanie</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1340"/>
+        <location filename="../src/document.cpp" line="1376"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Zapisanie jako zwykły tekst usunie całe formatowanie. Usunąć formatowanie?</translation>
     </message>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="94"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Nie można otworzyć archiwum.</translation>
+        <translation>Nie można otworzyć archiwum.</translation>
     </message>
 </context>
 <context>
@@ -372,17 +372,17 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwykły tekst</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie pliki</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="106"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie obsługiwane typy plików</translation>
     </message>
 </context>
 <context>
@@ -444,7 +444,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="68"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Nie można otworzyć archiwum.</translation>
+        <translation>Nie można otworzyć archiwum.</translation>
     </message>
 </context>
 <context>
@@ -641,7 +641,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy zresetować licznik dziennego postępu?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
@@ -651,7 +651,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="757"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślny format:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
@@ -661,12 +661,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="831"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historia</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="833"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Pamiętaj historię</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="836"/>
@@ -691,12 +691,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Zliczaj każdą literę jako slowo</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Algorytm zliczania słów</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1039"/>
@@ -814,7 +814,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niespodziewanie osiągnięto koniec pliku.</translation>
     </message>
 </context>
 <context>
@@ -903,7 +903,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="100"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Stwórz kopię </translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="103"/>
@@ -1177,17 +1177,17 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="211"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieprzezroczystość:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="212"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Położenie:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerokość:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="217"/>
@@ -1199,7 +1199,7 @@
         <location filename="../src/theme_dialog.cpp" line="249"/>
         <location filename="../src/theme_dialog.cpp" line="279"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Promień:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="235"/>
@@ -1229,7 +1229,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="361"/>
@@ -1254,12 +1254,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="93"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj motyw</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="150"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Tło okna</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="178"/>
@@ -1302,7 +1302,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="182"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Tło tekstu</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="196"/>
@@ -1352,7 +1352,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="333"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wysokość:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="341"/>
@@ -1367,7 +1367,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy motyw</translation>
     </message>
 </context>
 <context>
@@ -1380,7 +1380,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
         <source>Default</source>
-        <translation type="unfinished">Domyślna</translation>
+        <translation>Domyślny</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
@@ -1406,13 +1406,13 @@
         <location filename="../src/theme_manager.cpp" line="113"/>
         <location filename="../src/theme_manager.cpp" line="174"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="117"/>
         <location filename="../src/theme_manager.cpp" line="178"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stwórz kopię </translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="131"/>
@@ -1422,12 +1422,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="183"/>
         <source>Edit</source>
-        <translation type="unfinished">Edytuj</translation>
+        <translation>Edytuj</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="188"/>
         <source>Delete</source>
-        <translation type="unfinished">Usuń</translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="193"/>
@@ -1447,13 +1447,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunąć motyw &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
         <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Motywy (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
@@ -1688,7 +1688,7 @@
         <translation>Słowa: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="566"/>
+        <location filename="../src/document.cpp" line="602"/>
         <location filename="../src/window.cpp" line="1020"/>
         <source>Opening %1</source>
         <translation>Otwieranie %1</translation>
@@ -1777,7 +1777,7 @@
     <message>
         <location filename="../src/window.cpp" line="1121"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisać zmiany?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1122"/>

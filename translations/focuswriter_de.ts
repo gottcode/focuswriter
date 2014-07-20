@@ -128,81 +128,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="389"/>
+        <location filename="../src/document.cpp" line="425"/>
         <source>(Untitled %1)</source>
         <translation>(Unbenannt %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="392"/>
+        <location filename="../src/document.cpp" line="428"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Schreibgeschützt)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
-        <location filename="../src/document.cpp" line="481"/>
+        <location filename="../src/document.cpp" line="492"/>
         <location filename="../src/document.cpp" line="517"/>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Sorry</source>
         <translation>Entschuldigung</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="456"/>
+        <location filename="../src/document.cpp" line="492"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kann nicht gespeichert werden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="471"/>
+        <location filename="../src/document.cpp" line="507"/>
         <source>Save File As</source>
         <translation>Datei speichern unter</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="481"/>
         <location filename="../src/document.cpp" line="517"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kann nicht überschrieben werden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="510"/>
+        <location filename="../src/document.cpp" line="546"/>
         <source>Rename File</source>
         <translation>Datei umbenennen</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="523"/>
+        <location filename="../src/document.cpp" line="559"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; kann nicht umbenannt werden.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="549"/>
+        <location filename="../src/document.cpp" line="585"/>
         <source>Reload File?</source>
         <translation>Datei neu laden?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="550"/>
+        <location filename="../src/document.cpp" line="586"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Datei &apos;%1&apos; von der Festplatte neu laden?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="551"/>
+        <location filename="../src/document.cpp" line="587"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Alle ungespeicherten Änderungen werden verloren gehen.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="553"/>
+        <location filename="../src/document.cpp" line="589"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1285"/>
+        <location filename="../src/document.cpp" line="1321"/>
         <source>Untitled %1</source>
         <translation>Unbenannt %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1339"/>
+        <location filename="../src/document.cpp" line="1375"/>
         <source>Question</source>
         <translation>Frage</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1340"/>
+        <location filename="../src/document.cpp" line="1376"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Durch das Soeichern als einfacher Text werden alle Formatierungen entfernt. Formatierungen entfernen?</translation>
     </message>
@@ -1682,7 +1682,7 @@
         <translation>Wörter: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="566"/>
+        <location filename="../src/document.cpp" line="602"/>
         <location filename="../src/window.cpp" line="1020"/>
         <source>Opening %1</source>
         <translation>Datei %1 wird geöffnet</translation>

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 11:50+0000\n"
-"PO-Revision-Date: 2014-03-25 21:47+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2014-07-04 15:09+0000\n"
+"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/focuswriter/"
 "language/fr/)\n"
 "Language: fr\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Traitement de texte plein écran"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid ""
@@ -29,6 +30,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter est un traitement de texte simple et non intrusif. Il utilise "
+"une interface masquée, accessible en déplaçant votre souris vers les coins "
+"de l'écran, ce qui confère au programme un aspect convivial tout en restant "
+"discret afin que vous puissiez vous plonger dans votre travail."
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -37,6 +42,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter vous permet de personnaliser votre environnement en créant des "
+"thèmes composés de polices, de couleurs et d'images d'arrière-plan afin "
+"d'agrémenter votre interface. Il inclut également des statistiques mises à "
+"jour à la volée, des objectifs quotidiens, l'ouverture de documents "
+"multiples, une vérification orthographique, et bien plus encore."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -44,6 +54,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"De plus, lorsque vous lancez le programme, votre travail en cours sera "
+"automatiquement chargé et vous vous retrouverez là où vous vous étiez "
+"arrêté, de sorte que vous puissiez immédiament vous remettre à l'ouvrage."
 
 #: ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
