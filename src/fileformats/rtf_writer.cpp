@@ -386,7 +386,7 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 			}
 
 			encoded = m_codec->fromUnicode(i, 1, &state);
-			if (state.invalidChars == 0) {
+			if ((state.invalidChars == 0) && (encoded.at(0) != 0)) {
 				if (encoded.count() == 1 && encoded.at(0) >= 0x20) {
 					text += encoded;
 				} else {
