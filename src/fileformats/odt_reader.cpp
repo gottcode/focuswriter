@@ -273,6 +273,8 @@ void OdtReader::readBodyText()
 	while (m_xml.readNextStartElement()) {
 		if (m_xml.qualifiedName() == "text:p" || m_xml.qualifiedName() == "text:h") {
 			readParagraph();
+		} else if (m_xml.qualifiedName() == "text:section") {
+			readBodyText();
 		} else {
 			m_xml.skipCurrentElement();
 		}
