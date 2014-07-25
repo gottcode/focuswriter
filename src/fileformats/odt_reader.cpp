@@ -131,11 +131,10 @@ void OdtReader::readStyle()
 
 	QString parent_style = attributes.value(QLatin1String("style:parent-style-name")).toString();
 	if (!parent_style.isEmpty()) {
-		if (m_styles[0].contains(parent_style)) {
-			style = m_styles[0][parent_style];
-		} else if (m_styles[1].contains(parent_style)) {
-			style = m_styles[1][parent_style];
-		}
+		Style& parent = m_styles[type][parent_style];
+		style.block_format = parent.block_format;
+		style.char_format = parent.char_format;
+		parent.children += name;
 	}
 
 	while (m_xml.readNextStartElement()) {
@@ -146,6 +145,22 @@ void OdtReader::readStyle()
 		} else {
 			m_xml.skipCurrentElement();
 		}
+	}
+
+	// Recursively apply style to children
+	QStringList children = style.children;
+	while (!children.isEmpty()) {
+		Style& childstyle = m_styles[type][children.takeFirst()];
+
+		QTextBlockFormat block_format = style.block_format;
+		block_format.merge(childstyle.block_format);
+		childstyle.block_format = block_format;
+
+		QTextCharFormat char_format = style.char_format;
+		char_format.merge(childstyle.char_format);
+		childstyle.char_format = char_format;
+
+		children.append(childstyle.children);
 	}
 }
 
@@ -212,23 +227,24 @@ void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 {
 	QXmlStreamAttributes attributes = m_xml.attributes();
 
-	if (attributes.value(QLatin1String("fo:font-weight")) == "bold") {
-		format.setFontWeight(QFont::Bold);
+	if (attributes.hasAttribute(QLatin1String("fo:font-weight"))) {
+		if (attributes.value(QLatin1String("fo:font-weight")) == "bold") {
+			format.setFontWeight(QFont::Bold);
+		} else {
+			format.setFontWeight(QFont::Normal);
+		}
 	}
-	if (attributes.value(QLatin1String("fo:font-style")) == "italic") {
-		format.setFontItalic(true);
+
+	if (attributes.hasAttribute(QLatin1String("fo:font-style"))) {
+		format.setFontItalic(attributes.value(QLatin1String("fo:font-style")) != "normal");
 	}
-	if (attributes.hasAttribute(QLatin1String("style:text-underline-style")) &&
-			attributes.value(QLatin1String("style:text-underline-style")) != "none") {
-		format.setFontUnderline(true);
+
+	if (attributes.hasAttribute(QLatin1String("style:text-underline-style"))) {
+		format.setFontUnderline(attributes.value(QLatin1String("style:text-underline-style")) != "none");
 	}
-	if (attributes.hasAttribute((QLatin1String("style:text-underline-type"))) &&
-			attributes.value(QLatin1String("style:text-underline-type")) != "none") {
-		format.setFontUnderline(true);
-	}
-	if (attributes.hasAttribute((QLatin1String("style:text-line-through-type"))) &&
-			attributes.value(QLatin1String("style:text-line-through-type")) != "none") {
-		format.setFontStrikeOut(true);
+
+	if (attributes.hasAttribute(QLatin1String("style:text-line-through-type"))) {
+		format.setFontStrikeOut(attributes.value(QLatin1String("style:text-line-through-type")) != "none");
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-position"))) {
