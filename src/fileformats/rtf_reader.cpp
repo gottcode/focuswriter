@@ -33,26 +33,6 @@
 
 namespace
 {
-	class RtfFunction
-	{
-	public:
-		RtfFunction(void (RtfReader::*func)(qint32) = 0, qint32 value = 0)
-			: m_func(func),
-			m_value(value)
-		{
-		}
-
-		void call(RtfReader* reader, const RtfTokenizer& token) const
-		{
-			(reader->*m_func)(token.hasValue() ? token.value() : m_value);
-		}
-
-	private:
-		void (RtfReader::*m_func)(qint32);
-		qint32 m_value;
-	};
-	QHash<QByteArray, RtfFunction> functions;
-
 	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = 0)
 	{
 		QByteArray name = "CP" + QByteArray::number(value);
@@ -75,101 +55,228 @@ namespace
 
 //-----------------------------------------------------------------------------
 
+class RtfReader::FunctionTable
+{
+public:
+	FunctionTable() :
+		m_group_end_func(0),
+		m_insert_text_func(0)
+	{
+	}
+
+	void call(RtfReader* reader, const RtfTokenizer& token) const
+	{
+		m_functions[token.text()].call(reader, token);
+	}
+
+	bool contains(const QByteArray& name) const
+	{
+		return m_functions.contains(name);
+	}
+
+	void groupEnd(RtfReader* reader) const
+	{
+		if (m_group_end_func) {
+			(reader->*m_group_end_func)();
+		}
+	}
+
+	void insertText(RtfReader* reader, const QString& text) const
+	{
+		(reader->*m_insert_text_func)(text);
+	}
+
+	bool isEmpty() const
+	{
+		return m_functions.isEmpty();
+	}
+
+	void set(const QByteArray& name, void (RtfReader::*func)(qint32), qint32 value = 0)
+	{
+		m_functions[name] = Function(func, value);
+	}
+
+	void setGroupEnd(void (RtfReader::*groupEndFunc)())
+	{
+		m_group_end_func = groupEndFunc;
+	}
+
+	void setInsertText(void (RtfReader::*insertTextFunc)(const QString&))
+	{
+		m_insert_text_func = insertTextFunc;
+	}
+
+	void unset(const QByteArray& name)
+	{
+		m_functions.remove(name);
+	}
+
+private:
+	void (RtfReader::*m_group_end_func)();
+	void (RtfReader::*m_insert_text_func)(const QString&);
+
+	class Function
+	{
+	public:
+		Function(void (RtfReader::*func)(qint32) = 0, qint32 value = 0) :
+			m_func(func),
+			m_value(value)
+		{
+		}
+
+		void call(RtfReader* reader, const RtfTokenizer& token) const
+		{
+			(reader->*m_func)(token.hasValue() ? token.value() : m_value);
+		}
+
+	private:
+		void (RtfReader::*m_func)(qint32);
+		qint32 m_value;
+	};
+	QHash<QByteArray, Function> m_functions;
+}
+functions,
+stylesheet_functions;
+
+//-----------------------------------------------------------------------------
+
 RtfReader::RtfReader() :
 	m_in_block(true),
 	m_codec(0),
 	m_decoder(0)
 {
 	if (functions.isEmpty()) {
-		functions["\\"] = RtfFunction(&RtfReader::insertSymbol, '\\');
-		functions["_"] = RtfFunction(&RtfReader::insertSymbol, 0x2011);
-		functions["{"] = RtfFunction(&RtfReader::insertSymbol, '{');
-		functions["|"] = RtfFunction(&RtfReader::insertSymbol, 0x00b7);
-		functions["}"] = RtfFunction(&RtfReader::insertSymbol, '}');
-		functions["~"] = RtfFunction(&RtfReader::insertSymbol, 0x00a0);
-		functions["-"] = RtfFunction(&RtfReader::insertSymbol, 0x00ad);
+		functions.setInsertText(&RtfReader::insertText);
 
-		functions["bullet"] = RtfFunction(&RtfReader::insertSymbol, 0x2022);
-		functions["emdash"] = RtfFunction(&RtfReader::insertSymbol, 0x2014);
-		functions["emspace"] = RtfFunction(&RtfReader::insertSymbol, 0x2003);
-		functions["endash"] = RtfFunction(&RtfReader::insertSymbol, 0x2013);
-		functions["enspace"] = RtfFunction(&RtfReader::insertSymbol, 0x2002);
-		functions["ldblquote"] = RtfFunction(&RtfReader::insertSymbol, 0x201c);
-		functions["lquote"] = RtfFunction(&RtfReader::insertSymbol, 0x2018);
-		functions["line"] = RtfFunction(&RtfReader::insertSymbol, 0x2028);
-		functions["ltrmark"] = RtfFunction(&RtfReader::insertSymbol, 0x200e);
-		functions["qmspace"] = RtfFunction(&RtfReader::insertSymbol, 0x2004);
-		functions["rdblquote"] = RtfFunction(&RtfReader::insertSymbol, 0x201d);
-		functions["rquote"] = RtfFunction(&RtfReader::insertSymbol, 0x2019);
-		functions["rtlmark"] = RtfFunction(&RtfReader::insertSymbol, 0x200f);
-		functions["tab"] = RtfFunction(&RtfReader::insertSymbol, 0x0009);
-		functions["zwj"] = RtfFunction(&RtfReader::insertSymbol, 0x200d);
-		functions["zwnj"] = RtfFunction(&RtfReader::insertSymbol, 0x200c);
+		functions.set("\\", &RtfReader::insertSymbol, '\\');
+		functions.set("_", &RtfReader::insertSymbol, 0x2011);
+		functions.set("{", &RtfReader::insertSymbol, '{');
+		functions.set("|", &RtfReader::insertSymbol, 0x00b7);
+		functions.set("}", &RtfReader::insertSymbol, '}');
+		functions.set("~", &RtfReader::insertSymbol, 0x00a0);
+		functions.set("-", &RtfReader::insertSymbol, 0x00ad);
 
-		functions["\'"] = RtfFunction(&RtfReader::insertHexSymbol);
-		functions["u"] = RtfFunction(&RtfReader::insertUnicodeSymbol);
-		functions["uc"] = RtfFunction(&RtfReader::setSkipCharacters);
-		functions["par"] = RtfFunction(&RtfReader::endBlock);
-		functions["\n"] = RtfFunction(&RtfReader::endBlock);
-		functions["\r"] = RtfFunction(&RtfReader::endBlock);
+		functions.set("bullet", &RtfReader::insertSymbol, 0x2022);
+		functions.set("emdash", &RtfReader::insertSymbol, 0x2014);
+		functions.set("emspace", &RtfReader::insertSymbol, 0x2003);
+		functions.set("endash", &RtfReader::insertSymbol, 0x2013);
+		functions.set("enspace", &RtfReader::insertSymbol, 0x2002);
+		functions.set("ldblquote", &RtfReader::insertSymbol, 0x201c);
+		functions.set("lquote", &RtfReader::insertSymbol, 0x2018);
+		functions.set("line", &RtfReader::insertSymbol, 0x2028);
+		functions.set("ltrmark", &RtfReader::insertSymbol, 0x200e);
+		functions.set("qmspace", &RtfReader::insertSymbol, 0x2004);
+		functions.set("rdblquote", &RtfReader::insertSymbol, 0x201d);
+		functions.set("rquote", &RtfReader::insertSymbol, 0x2019);
+		functions.set("rtlmark", &RtfReader::insertSymbol, 0x200f);
+		functions.set("tab", &RtfReader::insertSymbol, 0x0009);
+		functions.set("zwj", &RtfReader::insertSymbol, 0x200d);
+		functions.set("zwnj", &RtfReader::insertSymbol, 0x200c);
 
-		functions["pard"] = RtfFunction(&RtfReader::resetBlockFormatting);
-		functions["plain"] = RtfFunction(&RtfReader::resetTextFormatting);
+		functions.set("\'", &RtfReader::insertHexSymbol);
+		functions.set("u", &RtfReader::insertUnicodeSymbol);
+		functions.set("uc", &RtfReader::setSkipCharacters);
+		functions.set("par", &RtfReader::endBlock);
+		functions.set("\n", &RtfReader::endBlock);
+		functions.set("\r", &RtfReader::endBlock);
 
-		functions["qc"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignHCenter);
-		functions["qj"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignJustify);
-		functions["ql"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignLeft | Qt::AlignAbsolute);
-		functions["qr"] = RtfFunction(&RtfReader::setBlockAlignment, Qt::AlignRight | Qt::AlignAbsolute);
+		functions.set("pard", &RtfReader::resetBlockFormatting);
+		functions.set("plain", &RtfReader::resetTextFormatting);
 
-		functions["li"] = RtfFunction(&RtfReader::setBlockIndent);
+		functions.set("qc", &RtfReader::setBlockAlignment, Qt::AlignHCenter);
+		functions.set("qj", &RtfReader::setBlockAlignment, Qt::AlignJustify);
+		functions.set("ql", &RtfReader::setBlockAlignment, Qt::AlignLeft | Qt::AlignAbsolute);
+		functions.set("qr", &RtfReader::setBlockAlignment, Qt::AlignRight | Qt::AlignAbsolute);
 
-		functions["ltrpar"] = RtfFunction(&RtfReader::setBlockDirection, Qt::LeftToRight);
-		functions["rtlpar"] = RtfFunction(&RtfReader::setBlockDirection, Qt::RightToLeft);
+		functions.set("li", &RtfReader::setBlockIndent);
 
-		functions["b"] = RtfFunction(&RtfReader::setTextBold, true);
-		functions["i"] = RtfFunction(&RtfReader::setTextItalic, true);
-		functions["strike"] = RtfFunction(&RtfReader::setTextStrikeOut, true);
-		functions["striked"] = RtfFunction(&RtfReader::setTextStrikeOut, true);
-		functions["ul"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["uld"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["uldash"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["uldashd"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["uldb"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["ulnone"] = RtfFunction(&RtfReader::setTextUnderline, false);
-		functions["ulth"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["ulw"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["ulwave"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["ulhwave"] = RtfFunction(&RtfReader::setTextUnderline, true);
-		functions["ululdbwave"] = RtfFunction(&RtfReader::setTextUnderline, true);
+		functions.set("ltrpar", &RtfReader::setBlockDirection, Qt::LeftToRight);
+		functions.set("rtlpar", &RtfReader::setBlockDirection, Qt::RightToLeft);
 
-		functions["sub"] = RtfFunction(&RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSubScript);
-		functions["super"] = RtfFunction(&RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSuperScript);
-		functions["nosupersub"] = RtfFunction(&RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignNormal);
+		functions.set("b", &RtfReader::setTextBold, true);
+		functions.set("i", &RtfReader::setTextItalic, true);
+		functions.set("strike", &RtfReader::setTextStrikeOut, true);
+		functions.set("striked", &RtfReader::setTextStrikeOut, true);
+		functions.set("ul", &RtfReader::setTextUnderline, true);
+		functions.set("uld", &RtfReader::setTextUnderline, true);
+		functions.set("uldash", &RtfReader::setTextUnderline, true);
+		functions.set("uldashd", &RtfReader::setTextUnderline, true);
+		functions.set("uldb", &RtfReader::setTextUnderline, true);
+		functions.set("ulnone", &RtfReader::setTextUnderline, false);
+		functions.set("ulth", &RtfReader::setTextUnderline, true);
+		functions.set("ulw", &RtfReader::setTextUnderline, true);
+		functions.set("ulwave", &RtfReader::setTextUnderline, true);
+		functions.set("ulhwave", &RtfReader::setTextUnderline, true);
+		functions.set("ululdbwave", &RtfReader::setTextUnderline, true);
 
-		functions["ansicpg"] = RtfFunction(&RtfReader::setCodepage);
-		functions["ansi"] = RtfFunction(&RtfReader::setCodepage, 1252);
-		functions["mac"] = RtfFunction(&RtfReader::setCodepage, 10000);
-		functions["pc"] = RtfFunction(&RtfReader::setCodepage, 850);
-		functions["pca"] = RtfFunction(&RtfReader::setCodepage, 850);
+		functions.set("sub", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSubScript);
+		functions.set("super", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSuperScript);
+		functions.set("nosupersub", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignNormal);
 
-		functions["deff"] = RtfFunction(&RtfReader::setFont);
-		functions["f"] = RtfFunction(&RtfReader::setFont);
-		functions["cpg"] = RtfFunction(&RtfReader::setFontCodepage);
-		functions["fcharset"] = RtfFunction(&RtfReader::setFontCharset);
+		functions.set("ansicpg", &RtfReader::setCodepage);
+		functions.set("ansi", &RtfReader::setCodepage, 1252);
+		functions.set("mac", &RtfReader::setCodepage, 10000);
+		functions.set("pc", &RtfReader::setCodepage, 850);
+		functions.set("pca", &RtfReader::setCodepage, 850);
 
-		functions["filetbl"] = RtfFunction(&RtfReader::ignoreGroup);
-		functions["colortbl"] = RtfFunction(&RtfReader::ignoreGroup);
-		functions["fonttbl"] = RtfFunction(&RtfReader::ignoreText);
-		functions["stylesheet"] = RtfFunction(&RtfReader::ignoreGroup);
-		functions["info"] = RtfFunction(&RtfReader::ignoreGroup);
-		functions["pict"] = RtfFunction(&RtfReader::ignoreGroup);
-		functions["*"] = RtfFunction(&RtfReader::ignoreGroup);
+		functions.set("deff", &RtfReader::setFont);
+		functions.set("f", &RtfReader::setFont);
+		functions.set("cpg", &RtfReader::setFontCodepage);
+		functions.set("fcharset", &RtfReader::setFontCharset);
+
+		functions.set("stylesheet", &RtfReader::startStyleSheet);
+		functions.set("s", &RtfReader::setStyle);
+
+		functions.set("filetbl", &RtfReader::ignoreGroup);
+		functions.set("colortbl", &RtfReader::ignoreGroup);
+		functions.set("fonttbl", &RtfReader::ignoreText);
+		functions.set("info", &RtfReader::ignoreGroup);
+		functions.set("pict", &RtfReader::ignoreGroup);
+		functions.set("*", &RtfReader::ignoreGroup);
+	}
+
+	if (stylesheet_functions.isEmpty()) {
+		stylesheet_functions.set("s", &RtfReader::setStyleId, 0);
+		stylesheet_functions.set("sbasedon", &RtfReader::setStyleParent, 0);
+		stylesheet_functions.setInsertText(&RtfReader::setStyleName);
+
+		stylesheet_functions.set("qc", &RtfReader::setBlockAlignment, Qt::AlignHCenter);
+		stylesheet_functions.set("qj", &RtfReader::setBlockAlignment, Qt::AlignJustify);
+		stylesheet_functions.set("ql", &RtfReader::setBlockAlignment, Qt::AlignLeft | Qt::AlignAbsolute);
+		stylesheet_functions.set("qr", &RtfReader::setBlockAlignment, Qt::AlignRight | Qt::AlignAbsolute);
+
+		stylesheet_functions.set("li", &RtfReader::setBlockIndent);
+
+		stylesheet_functions.set("ltrpar", &RtfReader::setBlockDirection, Qt::LeftToRight);
+		stylesheet_functions.set("rtlpar", &RtfReader::setBlockDirection, Qt::RightToLeft);
+
+		stylesheet_functions.set("b", &RtfReader::setTextBold, true);
+		stylesheet_functions.set("i", &RtfReader::setTextItalic, true);
+		stylesheet_functions.set("strike", &RtfReader::setTextStrikeOut, true);
+		stylesheet_functions.set("striked", &RtfReader::setTextStrikeOut, true);
+		stylesheet_functions.set("ul", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("uld", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("uldash", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("uldashd", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("uldb", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("ulnone", &RtfReader::setTextUnderline, false);
+		stylesheet_functions.set("ulth", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("ulw", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("ulwave", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("ulhwave", &RtfReader::setTextUnderline, true);
+		stylesheet_functions.set("ululdbwave", &RtfReader::setTextUnderline, true);
+
+		stylesheet_functions.set("sub", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSubScript);
+		stylesheet_functions.set("super", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignSuperScript);
+		stylesheet_functions.set("nosupersub", &RtfReader::setTextVerticalAlignment, QTextCharFormat::AlignNormal);
 	}
 
 	m_state.ignore_control_word = false;
 	m_state.ignore_text = false;
 	m_state.skip = 1;
 	m_state.active_codepage = 0;
+	m_state.functions = &functions;
+	m_state.style = 0;
 
 	setCodepage(1252);
 }
@@ -225,14 +332,15 @@ void RtfReader::readData(QIODevice* device)
 			if (m_token.type() == StartGroupToken) {
 				pushState();
 			} else if (m_token.type() == EndGroupToken) {
+				m_state.functions->groupEnd(this);
 				popState();
 			} else if (m_token.type() == ControlWordToken) {
-				if (!m_state.ignore_control_word && functions.contains(m_token.text())) {
-					functions[m_token.text()].call(this, m_token);
+				if (!m_state.ignore_control_word && m_state.functions->contains(m_token.text())) {
+					m_state.functions->call(this, m_token);
 				}
 			} else if (m_token.type() == TextToken) {
 				if (!m_state.ignore_text) {
-					m_cursor.insertText(m_decoder->toUnicode(m_token.text()));
+					m_state.functions->insertText(this, m_decoder->toUnicode(m_token.text()));
 				}
 			}
 		}
@@ -276,6 +384,13 @@ void RtfReader::insertHexSymbol(qint32)
 void RtfReader::insertSymbol(qint32 value)
 {
 	m_cursor.insertText(QChar(value));
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::insertText(const QString& text)
+{
+	m_cursor.insertText(text);
 }
 
 //-----------------------------------------------------------------------------
@@ -525,6 +640,93 @@ void RtfReader::setCodec(QTextCodec* codec)
 			m_decoder = m_codec->makeDecoder();
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::setStyle(qint32 value)
+{
+	m_state.style = value;
+
+	QHash<int, Style>::const_iterator style = m_styles.find(m_state.style);
+	if (style != m_styles.end()) {
+		m_state.block_format.merge(style->block_format);
+		m_cursor.mergeBlockFormat(m_state.block_format);
+
+		m_state.char_format.merge(style->char_format);
+		m_cursor.mergeCharFormat(m_state.char_format);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::startStyleSheet(qint32)
+{
+	m_state.functions = &stylesheet_functions;
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::setStyleId(qint32 value)
+{
+	m_state.style = value;
+	stylesheet_functions.setGroupEnd(&RtfReader::setStyleEnd);
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::setStyleParent(qint32 value)
+{
+	Style& style = m_styles[m_state.style];
+
+	Style& parent = m_styles[value];
+
+	QTextBlockFormat block_format = parent.block_format;
+	block_format.merge(style.block_format);
+	style.block_format = block_format;
+
+	QTextCharFormat char_format = parent.char_format;
+	char_format.merge(style.char_format);
+	style.char_format = char_format;
+
+	parent.children.insert(m_state.style);
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::setStyleName(const QString&)
+{
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::setStyleEnd()
+{
+	Style& style = m_styles[m_state.style];
+	style.block_format.merge(m_state.block_format);
+	style.char_format.merge(m_state.char_format);
+
+	QSetIterator<int> iter(style.children);
+	while (iter.hasNext()) {
+		Style& child = m_styles[iter.next()];
+
+		QTextBlockFormat block_format = style.block_format;
+		block_format.merge(child.block_format);
+		child.block_format = block_format;
+
+		QTextCharFormat char_format = style.char_format;
+		char_format.merge(child.block_format);
+		child.char_format = char_format;
+	}
+
+	stylesheet_functions.setGroupEnd(&RtfReader::setStyleSheetEnd);
+}
+
+//-----------------------------------------------------------------------------
+
+void RtfReader::setStyleSheetEnd()
+{
+	stylesheet_functions.setGroupEnd(0);
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include "rtf_tokenizer.h"
 
 #include <QCoreApplication>
+#include <QSet>
 #include <QStack>
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
@@ -54,6 +55,7 @@ private:
 	void insertHexSymbol(qint32);
 	void insertSymbol(qint32 value);
 	void insertUnicodeSymbol(qint32 value);
+	void insertText(const QString& text);
 	void pushState();
 	void popState();
 	void resetBlockFormatting(qint32);
@@ -72,10 +74,28 @@ private:
 	void setFontCharset(qint32 value);
 	void setFontCodepage(qint32 value);
 	void setCodec(QTextCodec* codec);
+	void setStyle(qint32 value);
+
+	void startStyleSheet(qint32);
+	void setStyleId(qint32 value);
+	void setStyleParent(qint32 value);
+	void setStyleName(const QString& style);
+	void setStyleEnd();
+	void setStyleSheetEnd();
 
 private:
 	RtfTokenizer m_token;
 	bool m_in_block;
+
+	class FunctionTable;
+
+	struct Style
+	{
+		QTextCharFormat char_format;
+		QTextBlockFormat block_format;
+		QSet<int> children;
+	};
+	QHash<int, Style> m_styles;
 
 	struct State
 	{
@@ -85,6 +105,8 @@ private:
 		bool ignore_text;
 		int skip;
 		int active_codepage;
+		const FunctionTable* functions;
+		int style;
 	};
 	QStack<State> m_states;
 	State m_state;
