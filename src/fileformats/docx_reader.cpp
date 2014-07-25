@@ -123,7 +123,7 @@ void DocxReader::readStyles()
 	// Read document defaults
 	if (m_xml.qualifiedName() == "w:docDefaults") {
 		while (m_xml.readNextStartElement()) {
-			if (m_xml.qualifiedName() == "w:rPrDefault ") {
+			if (m_xml.qualifiedName() == "w:rPrDefault") {
 				if (m_xml.readNextStartElement()) {
 					if (m_xml.qualifiedName() == "w:rPr") {
 						readRunProperties(m_current_style);
@@ -143,6 +143,7 @@ void DocxReader::readStyles()
 				m_xml.skipCurrentElement();
 			}
 		}
+		m_xml.skipCurrentElement();
 	}
 
 	// Read styles
@@ -177,7 +178,7 @@ void DocxReader::readStyles()
 			}
 
 			// Determine if this is the default style
-			if (readBool(m_xml.attributes().value("w:default"))) {
+			if (m_xml.attributes().hasAttribute("w:default") && readBool(m_xml.attributes().value("w:default"))) {
 				default_style[style.type] = style_id;
 			}
 
@@ -192,6 +193,7 @@ void DocxReader::readStyles()
 						style = newstyle;
 					}
 					style_tree[parent_style_id] += style_id;
+					m_xml.skipCurrentElement();
 				} else if ((style.type == Style::Paragraph) && (m_xml.qualifiedName() == "w:pPr")) {
 					readParagraphProperties(style, false);
 				} else if (m_xml.qualifiedName() == "w:rPr") {
