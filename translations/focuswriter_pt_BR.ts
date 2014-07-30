@@ -105,7 +105,7 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation>%1 &amp;ntraço; %2</translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -361,7 +361,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation>Rich Text Format</translation>
+        <translation>Formato Rich Text</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
@@ -635,12 +635,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Redefinir o progresso diário para hoje a zero?</translation>
+        <translation>Redefinir o progresso diário de hoje para zero?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Write byte order mark in plain text files</source>
-        <translation>Escrever a ordem de bytes em arquivos de texto sem formatação</translation>
+        <translation>Escrever a marca de ordem de bytes (BOM) em arquivos de texto sem formatação</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="757"/>
@@ -1228,7 +1228,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="361"/>
         <source>Indent first line</source>
-        <translation>Recuar a primeira linha</translation>
+        <translation>Indentar a primeira linha</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="368"/>
@@ -1356,7 +1356,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Tab Width:</source>
-        <translation>Largura de Retirada:</translation>
+        <translation>Largura da Tabulação:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
@@ -1379,22 +1379,22 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation>Azuis Suaves</translation>
+        <translation>Gentle Blues</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation>Velha Guarda</translation>
+        <translation>Old School</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation>Sonhos Espaciais </translation>
+        <translation>Space Dreams</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation>Escrivaninha</translation>
+        <translation>Writing Desk</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
@@ -1635,7 +1635,7 @@
     <message>
         <location filename="../src/window.cpp" line="868"/>
         <source>A simple fullscreen word processor</source>
-        <translation>Um processador de textos simples para escrita em modo Tela cheia</translation>
+        <translation>Um processador de textos simples para escrita em modo tela cheia</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="869"/>

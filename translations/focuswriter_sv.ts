@@ -1203,7 +1203,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="253"/>
         <source>Text Background Drop Shadow</source>
-        <translation>Texbakgrundsskugga</translation>
+        <translation>Bakgrundsskugga för text</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="280"/>
