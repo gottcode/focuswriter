@@ -386,7 +386,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_scrollbar->setAutoFillBackground(true);
 	m_scrollbar->setMouseTracking(true);
 	m_scrollbar->installEventFilter(this);
-	setScrollBarVisible(false);
+	setScrollBarVisible(Preferences::instance().alwaysShowScrollBar());
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
 
@@ -865,6 +865,8 @@ void Document::loadPreferences()
 	m_highlighter->setEnabled(!isReadOnly() ? Preferences::instance().highlightMisspelled() : false);
 
 	m_default_format = Preferences::instance().saveFormat();
+
+	setScrollBarVisible(Preferences::instance().alwaysShowScrollBar());
 }
 
 //-----------------------------------------------------------------------------
@@ -926,8 +928,8 @@ void Document::setModified(bool modified)
 
 void Document::setScrollBarVisible(bool visible)
 {
-	if (!visible) {
-		m_scrollbar->setMask(QRect(-1,-1,1,1));
+	if (!visible && !Preferences::instance().alwaysShowScrollBar()) {
+		m_scrollbar->setMask(QRegion(-1,-1,1,1));
 		update();
 	} else {
 		m_scrollbar->clearMask();

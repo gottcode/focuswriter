@@ -433,6 +433,20 @@ void Preferences::setSaveFormat(const QString& format)
 
 //-----------------------------------------------------------------------------
 
+bool Preferences::alwaysShowScrollBar() const
+{
+	return m_always_show_scrollbar;
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setAlwaysShowScrollbar(bool show_scrollbar)
+{
+	setValue(m_always_show_scrollbar, show_scrollbar);
+}
+
+//-----------------------------------------------------------------------------
+
 int Preferences::toolbarStyle() const
 {
 	return m_toolbar_style;
@@ -580,6 +594,8 @@ void Preferences::reload()
 	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
 	m_language = DictionaryManager::instance().availableDictionary(settings.value("Spelling/Language", QLocale().name()).toString());
 
+	m_always_show_scrollbar = settings.value("View/AlwaysShowScrollbar",false).toBool();
+
 	DictionaryManager::instance().setDefaultLanguage(m_language);
 	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
 	DictionaryManager::instance().setIgnoreUppercase(m_ignore_uppercase);
@@ -632,6 +648,8 @@ void Preferences::write()
 	settings.setValue("Spelling/IgnoreNumbers", m_ignore_numbers);
 	settings.setValue("Spelling/IgnoreUppercase", m_ignore_uppercase);
 	settings.setValue("Spelling/Language", m_language);
+
+	settings.setValue("View/AlwaysShowScrollbar",m_always_show_scrollbar);
 
 	DictionaryManager::instance().addProviders();
 	DictionaryManager::instance().setDefaultLanguage(m_language);

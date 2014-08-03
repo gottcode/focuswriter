@@ -98,6 +98,9 @@ public:
 	void setWriteByteOrderMark(bool write_bom);
 	void setSaveFormat(const QString& format);
 
+	bool alwaysShowScrollBar() const;
+	void setAlwaysShowScrollbar(bool show_scrollbar);
+
 	int toolbarStyle() const;
 	QStringList toolbarActions() const;
 	void setToolbarStyle(int style);
@@ -160,6 +163,8 @@ private:
 	bool m_ignore_uppercase;
 	bool m_ignore_numbers;
 	QString m_language;
+
+	bool m_always_show_scrollbar;
 };
 
 #endif
