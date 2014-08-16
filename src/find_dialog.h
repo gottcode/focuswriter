@@ -35,6 +35,8 @@ class FindDialog : public QDialog
 public:
 	FindDialog(Stack* documents);
 
+	virtual bool eventFilter(QObject* watched, QEvent* event);
+
 public slots:
 	void findNext();
 	void findPrevious();
