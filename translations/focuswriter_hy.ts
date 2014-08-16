@@ -256,86 +256,86 @@
 <context>
     <name>FindDialog</name>
     <message>
-        <location filename="../src/find_dialog.cpp" line="45"/>
+        <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
         <translation>Փնտրել</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="47"/>
+        <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
         <translation>Փոխարինել հետևյալով՝</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="51"/>
+        <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
         <translation>Մեծատառ թե փոքրատառ՝ կարևոր չէ։</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="52"/>
+        <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
         <translation>Միայն ամբողջական բառեր</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="53"/>
+        <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
         <translation>Կանոնավոր արտահայտություններ</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="56"/>
+        <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
         <translation>Փնտրել վերևում</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="57"/>
+        <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
         <translation>Փնտրել ներքևում</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
+        <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
         <translation>Գ&amp;տնել</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
+        <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
         <translation>&amp;Փոխարինել</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="72"/>
+        <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
         <translation>Փոխարինել &amp;բոլորը</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="134"/>
+        <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
         <translation>Գտնել</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="142"/>
+        <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
         <translation>Փոխարինել</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>Փոխարինե՞լ %n համընկումը։</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
         <translation>Հարց</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
         <translation>Ներողություն։</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
         <translation>Փնտրվածը չի գտնվել։</translation>
     </message>
@@ -991,12 +991,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="116"/>
+        <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
         <translation>Չակերտների փոփոխում...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="117"/>
+        <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
         <translation>Խնդրում ենք սպասել</translation>
     </message>
@@ -1920,42 +1920,42 @@
     <message>
         <location filename="../src/window.cpp" line="1343"/>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Գլխագիր</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Գլխագիր &amp;1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1346"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Գլխագիր &amp;2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1347"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Գլխագիր &amp;3</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Գլխագիր &amp;4</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1349"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Գլխագիր &amp;5</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Գլխագիր &amp;6</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1351"/>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Սովորական</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1369"/>

@@ -266,67 +266,67 @@
 <context>
     <name>FindDialog</name>
     <message>
-        <location filename="../src/find_dialog.cpp" line="45"/>
+        <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
         <translation>Caută:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="47"/>
+        <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
         <translation>Înlocuieşte cu:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="51"/>
+        <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
         <translation>Ignoră minuscule/majuscule</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="52"/>
+        <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
         <translation>Doar cuvinte întregi</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="53"/>
+        <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
         <translation>Expresii regulate</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="56"/>
+        <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
         <translation>Caută în sus</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="57"/>
+        <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
         <translation>Caută în jos</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
+        <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
         <translation>Caută</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
+        <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
         <translation>Înlocuieşte</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="72"/>
+        <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
         <translation>Înlocuieşte to&amp;ate</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="134"/>
+        <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
         <translation>Căutare</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="142"/>
+        <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
         <translation>Înlocuire</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>Înlocuire %n o dată?</numerusform>
@@ -335,19 +335,19 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
         <translation>Întrebare</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
         <translation>Scuze</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
         <translation>Fraza nu a fost găsită.</translation>
     </message>
@@ -1003,12 +1003,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="116"/>
+        <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
         <translation>Înlocuire ghilimele...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="117"/>
+        <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
         <translation>Vă rugăm aşteptaţi</translation>
     </message>
@@ -1932,42 +1932,42 @@
     <message>
         <location filename="../src/window.cpp" line="1343"/>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrică</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrică &amp;1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1346"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrică &amp;2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1347"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrică &amp;3</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrică &amp;4</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1349"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrică &amp;5</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrică &amp;6</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1351"/>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normal</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1369"/>

@@ -256,86 +256,86 @@
 <context>
     <name>FindDialog</name>
     <message>
-        <location filename="../src/find_dialog.cpp" line="45"/>
+        <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
         <translation>搜索：</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="47"/>
+        <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
         <translation>替换为：</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="51"/>
+        <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
         <translation>忽略大小写</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="52"/>
+        <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
         <translation>全字匹配</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="53"/>
+        <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
         <translation>正则表达式</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="56"/>
+        <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
         <translation>向上搜索</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="57"/>
+        <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
         <translation>向下搜索</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
+        <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
         <translation>查找(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
+        <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
         <translation>替换(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="72"/>
+        <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
         <translation>替换全部(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="134"/>
+        <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="142"/>
+        <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
         <translation>替换</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>替换 %n 个实例？</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
         <translation>询问</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
         <translation>抱歉</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
         <translation>没找到词组。</translation>
     </message>
@@ -991,12 +991,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="116"/>
+        <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
         <translation>更换引号...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="117"/>
+        <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
         <translation>请等待</translation>
     </message>
@@ -1920,42 +1920,42 @@
     <message>
         <location filename="../src/window.cpp" line="1343"/>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>标题(&amp;H)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>标题 &amp;1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1346"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>标题 &amp;2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1347"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>标题 &amp;3</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>标题 &amp;4</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1349"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>标题 &amp;5</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1350"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>标题 &amp;6</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1351"/>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>普通 (&amp;N)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1369"/>
