@@ -20,6 +20,7 @@
 #include "find_dialog.h"
 
 #include "document.h"
+#include "smart_quotes.h"
 #include "stack.h"
 
 #include <QApplication>
@@ -27,6 +28,7 @@
 #include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QGridLayout>
+#include <QKeyEvent>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
@@ -99,6 +101,21 @@ FindDialog::FindDialog(Stack* documents)
 	m_whole_words->setChecked(settings.value("FindDialog/WholeWords", false).toBool());
 	m_regular_expressions->setChecked(settings.value("FindDialog/RegularExpressions", false).toBool());
 	m_search_backwards->setChecked(settings.value("FindDialog/SearchBackwards", false).toBool());
+
+	m_find_string->installEventFilter(this);
+	m_replace_string->installEventFilter(this);
+}
+
+//-----------------------------------------------------------------------------
+
+bool FindDialog::eventFilter(QObject* watched, QEvent* event)
+{
+	if ((event->type() == QEvent::KeyPress) && qobject_cast<QLineEdit*>(watched)) {
+		if (SmartQuotes::isEnabled() && SmartQuotes::insert(static_cast<QLineEdit*>(watched), static_cast<QKeyEvent*>(event))) {
+			return true;
+		}
+	}
+	return QDialog::eventFilter(watched, event);
 }
 
 //-----------------------------------------------------------------------------
