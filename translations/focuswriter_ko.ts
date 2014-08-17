@@ -256,86 +256,86 @@
 <context>
     <name>FindDialog</name>
     <message>
-        <location filename="../src/find_dialog.cpp" line="45"/>
+        <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
         <translation>검색 :</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="47"/>
+        <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
         <translation>다음과 바꿈 :  </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="51"/>
+        <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
         <translation>대/소문자 구분 안함</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="52"/>
+        <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
         <translation>단어로 검색</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="53"/>
+        <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
         <translation>일반적인 표현</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="56"/>
+        <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
         <translation>위로 검색</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="57"/>
+        <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
         <translation>아래로 검색</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
+        <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
         <translation>&amp;찾기</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
+        <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
         <translation>&amp;바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="72"/>
+        <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
         <translation>&amp;모두 바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="134"/>
+        <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
         <translation>찾기</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="142"/>
+        <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
         <translation>바꾸기</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>%n 의 사례를 바꿀까요?</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
         <translation>물어볼 것이 있습니다</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
         <translation>죄송합니다</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
         <translation>문장이 없습니다.</translation>
     </message>
@@ -991,12 +991,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="116"/>
+        <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
         <translation>따옴표 바꾸기...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="117"/>
+        <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
         <translation>기다려 주세요</translation>
     </message>

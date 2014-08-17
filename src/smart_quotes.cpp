@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 #include "preferences.h"
 
 #include <QKeyEvent>
+#include <QLineEdit>
 #include <QLocale>
 #include <QProgressDialog>
 #include <QTextCursor>
@@ -68,6 +69,39 @@ const SmartQuotes::Quotes SmartQuotes::m_quotes_list[] = {
 	{ QLatin1String(">"), QLatin1String(">") }
 };
 const size_t SmartQuotes::m_quotes_list_count = sizeof(m_quotes_list) / sizeof(Quotes);
+
+//-----------------------------------------------------------------------------
+
+bool SmartQuotes::insert(QLineEdit* edit, QKeyEvent* key)
+{
+	if (key->modifiers() & Qt::ControlModifier) {
+		return false;
+	}
+
+	int quote = 2;
+	if (key->key() == Qt::Key_QuoteDbl) {
+		quote = 0;
+	} else if (key->key() != Qt::Key_Apostrophe) {
+		return false;
+	}
+
+	int position = edit->cursorPosition() - 1;
+	if (position >= 0) {
+		QChar c = edit->text().at(position);
+		if (!c.isSpace() && !c.isNull() && (c.category() != QChar::Punctuation_Open)) {
+			quote++;
+		}
+	}
+
+	if (key->text().right(1) != m_quotes[quote]) {
+		edit->del();
+		edit->insert(m_quotes[quote]);
+	} else {
+		edit->insert(key->text());
+	}
+
+	return true;
+}
 
 //-----------------------------------------------------------------------------
 

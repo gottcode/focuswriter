@@ -261,67 +261,67 @@
 <context>
     <name>FindDialog</name>
     <message>
-        <location filename="../src/find_dialog.cpp" line="45"/>
+        <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
         <translation>Sök efter:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="47"/>
+        <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
         <translation>Ersätt med:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="51"/>
+        <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
         <translation>Ignorera skiftläge</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="52"/>
+        <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
         <translation>Endast hela ord</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="53"/>
+        <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
         <translation>Reguljära uttryck</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="56"/>
+        <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
         <translation>Sök uppåt</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="57"/>
+        <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
         <translation>Sök nedåt</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
+        <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
         <translation>&amp;Sök</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
+        <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
         <translation>&amp;Ersätt</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="72"/>
+        <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
         <translation>Ersätt &amp;alla</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="134"/>
+        <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
         <translation>Sök</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="142"/>
+        <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
         <translation>Ersätt</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>Ersätt %n förekomst?</numerusform>
@@ -329,19 +329,19 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
         <translation>Fråga</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
         <translation>Tyvärr</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
         <translation>Frasen hittades inte.</translation>
     </message>
@@ -997,12 +997,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="116"/>
+        <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
         <translation>Ersätter citationstecken...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="117"/>
+        <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
         <translation>Vänta</translation>
     </message>
@@ -1203,7 +1203,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="253"/>
         <source>Text Background Drop Shadow</source>
-        <translation>Texbakgrundsskugga</translation>
+        <translation>Bakgrundsskugga för text</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="280"/>

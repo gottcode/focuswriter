@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <QChar>
 #include <QCoreApplication>
 class QKeyEvent;
+class QLineEdit;
 class QTextEdit;
 
 class SmartQuotes
@@ -33,6 +34,7 @@ public:
 	static size_t count();
 	static bool isEnabled();
 
+	static bool insert(QLineEdit* edit, QKeyEvent* key);
 	static bool insert(QTextEdit* text, QKeyEvent* key);
 	static void replace(QTextEdit* text, int start, int end);
 	static void replace(QString& string);

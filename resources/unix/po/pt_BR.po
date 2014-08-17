@@ -4,13 +4,14 @@
 #
 # Translators:
 # Lorram Lomeu de Souza Rampi <lorrampi@gmail.com>, 2014
+# Márcio Massula Jr. <marciomassulajr@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 11:50+0000\n"
-"PO-Revision-Date: 2014-07-16 22:27+0000\n"
-"Last-Translator: Lorram Lomeu de Souza Rampi <lorrampi@gmail.com>\n"
+"PO-Revision-Date: 2014-07-21 16:57+0000\n"
+"Last-Translator: Márcio Massula Jr. <marciomassulajr@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/"
 "focuswriter/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -30,10 +31,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
-"FocusWriter é um simples, processador de texto simples livre de distrações. "
-"Ele Ele utiliza uma interface oculta, acessível ao mover o mouse para os "
-"cantos da interface da tela, o que dá ao programa um olhar amigável, "
-"mantendo-se discreto, assim você pode mergulhar em seu trabalho."
+"FocusWriter é um processador de texto simples livre de distrações. Ele "
+"utiliza uma interface oculta, acessível ao mover o mouse para os cantos da "
+"tela, o que dá ao programa um visual familiar, mas discreto. Assim você pode "
+"mergulhar em seu trabalho."
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -43,9 +44,9 @@ msgid ""
 "documents, spell-checking, and much more."
 msgstr ""
 "FocusWriter permite que você personalize o seu ambiente, criando temas que "
-"controlam a fonte, cores, e imagem de fundo para adicionar ao ambiente. "
-"Também possui rápida atualização de estatísticas, metas diárias, vários "
-"documentos abertos, verificação ortográfica e muito mais."
+"possibilitam a mudança da fonte, cores e imagem de fundo, para criar a "
+"atmosfera ideal. Também permite atualização de estatísticas, metas diárias, "
+"vários documentos abertos, verificação ortográfica e muito mais."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -53,9 +54,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
-"Além disso, quando você abrir o programa seu trabalho atual em andamento irá "
-"automaticamente carregar e posicioná-lo onde você parou de modo que você "
-"pode  pular imediatamente de volta nele."
+"Além disso, quando você abrir o programa, seu trabalho em andamento será "
+"automaticamente carregado e posicionado onde você parou, de modo que você "
+"pode reiniciá-lo imediatamente."
 
 #: ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"

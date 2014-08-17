@@ -105,7 +105,7 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation>%1 &amp;ntraço; %2</translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -261,67 +261,67 @@
 <context>
     <name>FindDialog</name>
     <message>
-        <location filename="../src/find_dialog.cpp" line="45"/>
+        <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
         <translation>Procurar por:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="47"/>
+        <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
         <translation>Substituir por:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="51"/>
+        <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
         <translation>Ignorar capitalização</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="52"/>
+        <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
         <translation>Somente palavras inteiras</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="53"/>
+        <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
         <translation>Expressões regulares</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="56"/>
+        <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
         <translation>Pesquisar para trás</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="57"/>
+        <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
         <translation>Pesquisar para frente</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
+        <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
         <translation>&amp;Localizar</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
+        <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
         <translation>&amp;Substituir</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="72"/>
+        <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
         <translation>Substituir &amp;todos</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="134"/>
+        <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
         <translation>Localizar</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="142"/>
+        <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
         <translation>Substituir</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>Substituir %n ocorrência?</numerusform>
@@ -329,19 +329,19 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
         <translation>Pergunta</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
         <translation>Desculpe</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
         <translation>A frase não foi encontrada.</translation>
     </message>
@@ -361,7 +361,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation>Rich Text Format</translation>
+        <translation>Formato Rich Text</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
@@ -635,12 +635,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Redefinir o progresso diário para hoje a zero?</translation>
+        <translation>Redefinir o progresso diário de hoje para zero?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Write byte order mark in plain text files</source>
-        <translation>Escrever a ordem de bytes em arquivos de texto sem formatação</translation>
+        <translation>Escrever a marca de ordem de bytes (BOM) em arquivos de texto sem formatação</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="757"/>
@@ -997,12 +997,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="116"/>
+        <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
         <translation>Substituindo aspas...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="117"/>
+        <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
         <translation>Por favor, aguarde</translation>
     </message>
@@ -1228,7 +1228,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="361"/>
         <source>Indent first line</source>
-        <translation>Recuar a primeira linha</translation>
+        <translation>Indentar a primeira linha</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="368"/>
@@ -1356,7 +1356,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Tab Width:</source>
-        <translation>Largura de Retirada:</translation>
+        <translation>Largura da Tabulação:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
@@ -1379,22 +1379,22 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation>Azuis Suaves</translation>
+        <translation>Gentle Blues</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation>Velha Guarda</translation>
+        <translation>Old School</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation>Sonhos Espaciais </translation>
+        <translation>Space Dreams</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation>Escrivaninha</translation>
+        <translation>Writing Desk</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
@@ -1635,7 +1635,7 @@
     <message>
         <location filename="../src/window.cpp" line="868"/>
         <source>A simple fullscreen word processor</source>
-        <translation>Um processador de textos simples para escrita em modo Tela cheia</translation>
+        <translation>Um processador de textos simples para escrita em modo tela cheia</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="869"/>

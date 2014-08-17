@@ -261,67 +261,67 @@
 <context>
     <name>FindDialog</name>
     <message>
-        <location filename="../src/find_dialog.cpp" line="45"/>
+        <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
         <translation>Cerca:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="47"/>
+        <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
         <translation>Sostituire con:</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="51"/>
+        <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
         <translation>Ignora maiuscole/minuscole</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="52"/>
+        <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
         <translation>Solo parole intere</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="53"/>
+        <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
         <translation>Espressioni regolari</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="56"/>
+        <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
         <translation>Cerca su</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="57"/>
+        <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
         <translation>Cerca giù</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="64"/>
+        <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
         <translation>&amp;Cerca</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="68"/>
+        <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
         <translation>&amp;Sostituisci</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="72"/>
+        <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
         <translation>Sostitusci &amp;tutto</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="134"/>
+        <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
         <translation>Trova</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="142"/>
+        <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
         <translation>Sostituisci</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>Sostituire %n istanze?</numerusform>
@@ -329,19 +329,19 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="258"/>
+        <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
         <translation>Domanda</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
         <translation>Spiacente</translation>
     </message>
     <message>
-        <location filename="../src/find_dialog.cpp" line="262"/>
-        <location filename="../src/find_dialog.cpp" line="337"/>
+        <location filename="../src/find_dialog.cpp" line="279"/>
+        <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
         <translation>Frase non trovata.</translation>
     </message>
@@ -997,12 +997,12 @@
 <context>
     <name>SmartQuote</name>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="116"/>
+        <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
         <translation>Sostituzione virgolette ...</translation>
     </message>
     <message>
-        <location filename="../src/smart_quotes.cpp" line="117"/>
+        <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
         <translation>Attendere prego</translation>
     </message>
