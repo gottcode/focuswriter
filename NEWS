@@ -1,3 +1,11 @@
+1.5.3
+-----
+* FIXED: Find did not take smart quotes into account.
+* FIXED: Style hierarchy was not always loaded in ODT
+* FIXED: Ignored text sections in ODT files.
+* FIXED: Was not reading styles for OOXML files.
+* Translation updates: Hebrew, Portuguese (Brazil), Swedish.
+
 1.5.2
 -----
 * FIXED: Regression with RtfWriter encoding characters in Windows.
