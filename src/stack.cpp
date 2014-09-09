@@ -24,6 +24,7 @@
 #include "document.h"
 #include "find_dialog.h"
 #include "load_screen.h"
+#include "preferences.h"
 #include "scene_list.h"
 #include "scene_model.h"
 #include "smart_quotes.h"
@@ -100,6 +101,9 @@ Stack::Stack(QWidget* parent) :
 
 	m_theme_renderer = new ThemeRenderer(this);
 	connect(m_theme_renderer, SIGNAL(rendered(QImage,QRect,Theme)), this, SLOT(updateBackground(QImage,QRect)));
+
+	setHeaderVisible(Preferences::instance().alwaysShowHeader());
+	setFooterVisible(Preferences::instance().alwaysShowFooter());
 
 	// Always draw background
 	setAttribute(Qt::WA_OpaquePaintEvent);
@@ -606,6 +610,7 @@ void Stack::updateSmartQuotesSelection()
 
 void Stack::setFooterVisible(bool visible)
 {
+	visible |= Preferences::instance().alwaysShowFooter();
 	int footer_visible = visible * -m_footer_margin;
 	if (m_footer_visible != footer_visible) {
 		emit footerVisible(visible);
@@ -618,6 +623,7 @@ void Stack::setFooterVisible(bool visible)
 
 void Stack::setHeaderVisible(bool visible)
 {
+	visible |= Preferences::instance().alwaysShowHeader();
 	int header_visible = visible * m_header_margin;
 	if (m_header_visible != header_visible) {
 		emit headerVisible(visible);
@@ -770,20 +776,17 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 
 void Stack::updateMask()
 {
+	clearMask();
+	raise();
+
+	if (m_scenes->isVisible()) {
+		QApplication::processEvents();
+		m_scenes->update();
+		m_scenes->clearFocus();
+		m_scenes->setFocus();
+	}
 	if (m_header_visible || m_footer_visible) {
 		setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
-		setAttribute(Qt::WA_TransparentForMouseEvents, true);
-	} else {
-		clearMask();
-		setAttribute(Qt::WA_TransparentForMouseEvents, false);
-		raise();
-
-		if (m_scenes->isVisible()) {
-			QApplication::processEvents();
-			m_scenes->update();
-			m_scenes->clearFocus();
-			m_scenes->setFocus();
-		}
 	}
 }
 

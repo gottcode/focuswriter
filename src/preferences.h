@@ -100,6 +100,10 @@ public:
 
 	bool alwaysShowScrollBar() const;
 	void setAlwaysShowScrollbar(bool show_scrollbar);
+	bool alwaysShowHeader() const;
+	void setAlwaysShowHeader(bool show_header);
+	bool alwaysShowFooter() const;
+	void setAlwaysShowFooter(bool show_footer);
 
 	int toolbarStyle() const;
 	QStringList toolbarActions() const;
@@ -165,6 +169,8 @@ private:
 	QString m_language;
 
 	bool m_always_show_scrollbar;
+	bool m_always_show_header;
+	bool m_always_show_footer;
 };
 
 #endif

@@ -1208,6 +1208,8 @@ void Window::loadPreferences()
 	m_toolbar->setVisible(QSettings().value("Toolbar/Shown", true).toBool());
 	updateMargin();
 
+	m_documents->setHeaderVisible(Preferences::instance().alwaysShowHeader());
+	m_documents->setFooterVisible(Preferences::instance().alwaysShowFooter());
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->loadPreferences();
 	}

@@ -89,6 +89,8 @@ private:
 	QCheckBox* m_write_bom;
 	QComboBox* m_save_format;
 	QCheckBox* m_always_show_scrollbar;
+	QCheckBox* m_always_show_header;
+	QCheckBox* m_always_show_footer;
 
 	DailyProgress* m_daily_progress;
 	QRadioButton* m_option_none;
