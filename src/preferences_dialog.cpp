@@ -191,6 +191,10 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat().value()));
 	m_write_bom->setChecked(Preferences::instance().writeByteOrderMark());
 
+	m_always_show_scrollbar->setChecked(Preferences::instance().alwaysShowScrollBar());
+	m_always_show_header->setChecked(Preferences::instance().alwaysShowHeader());
+	m_always_show_footer->setChecked(Preferences::instance().alwaysShowFooter());
+
 	m_highlight_misspelled->setChecked(Preferences::instance().highlightMisspelled());
 	m_ignore_numbers->setChecked(Preferences::instance().ignoredWordsWithNumbers());
 	m_ignore_uppercase->setChecked(Preferences::instance().ignoredUppercaseWords());
@@ -313,6 +317,10 @@ void PreferencesDialog::accept()
 	Preferences::instance().setSavePositions(m_save_positions->isChecked());
 	Preferences::instance().setWriteByteOrderMark(m_write_bom->isChecked());
 	Preferences::instance().setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
+
+	Preferences::instance().setAlwaysShowScrollbar(m_always_show_scrollbar->isChecked());
+	Preferences::instance().setAlwaysShowHeader(m_always_show_header->isChecked());
+	Preferences::instance().setAlwaysShowFooter(m_always_show_footer->isChecked());
 
 	Preferences::instance().setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
@@ -773,11 +781,24 @@ QWidget* PreferencesDialog::initGeneralTab()
 	save_layout->addWidget(m_write_bom);
 	save_layout->addLayout(save_format_layout);
 
+	// Create view options
+	QGroupBox* view_group = new QGroupBox(tr("View"), tab);
+
+	m_always_show_scrollbar = new QCheckBox(tr("Always show scrollbar"), view_group);
+	m_always_show_header = new QCheckBox(tr("Always show top bar"), view_group);
+	m_always_show_footer = new QCheckBox(tr("Always show bottom bar"), view_group);
+
+	QVBoxLayout* view_layout = new QVBoxLayout(view_group);
+	view_layout->addWidget(m_always_show_scrollbar);
+	view_layout->addWidget(m_always_show_header);
+	view_layout->addWidget(m_always_show_footer);
+
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
 	layout->addWidget(edit_group);
 	layout->addWidget(scene_group);
 	layout->addWidget(save_group);
+	layout->addWidget(view_group);
 	layout->addStretch();
 
 	return makeScrollable(tab);
