@@ -439,7 +439,9 @@ void ThemeDialog::createPreview(const QString& id, bool is_default)
 	Theme theme(id, is_default);
 	ThemeDialog dialog(theme);
 	dialog.m_theme_renderer->wait();
-	QCoreApplication::processEvents();
+	while (!dialog.m_load_color.resultCount()) {
+		QCoreApplication::processEvents();
+	}
 	dialog.savePreview();
 }
 
