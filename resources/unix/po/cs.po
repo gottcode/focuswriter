@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-05 11:50+0000\n"
+"POT-Creation-Date: 2014-11-14 20:43+0000\n"
 "PO-Revision-Date: 2014-05-30 20:30+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/focuswriter/"
@@ -19,11 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../focuswriter.appdata.xml.in.h:1
+#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
 msgstr "Textový procesor v režimu na celou obrazovku"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -35,7 +39,7 @@ msgstr ""
 "myši k okrajům obrazovky, čímž programu umožňuje mít důvěrně známý vzhled a "
 "dojem z něj, a přitom být z dohledu, takže se můžete ponořit do své práce."
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -48,7 +52,7 @@ msgstr ""
 "cíle, možnost mít více otevřených dokumentů, ověřování pravopisu, a mnohé "
 "další."
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in.h:5
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -57,10 +61,6 @@ msgstr ""
 "Navíc, když otevřete program, vaše rozdělaná práce se automaticky nahraje a "
 "otevře se na místě, kde jste ji naposledy opustily, takže se do ní zase "
 "budete moci okamžitě dát."
-
-#: ../focuswriter.desktop.in.h:1
-msgid "FocusWriter"
-msgstr "FocusWriter"
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
