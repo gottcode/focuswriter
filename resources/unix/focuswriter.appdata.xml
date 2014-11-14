@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-  <id type="desktop">focuswriter.desktop</id>
-  <licence>CC0</licence>
+<component type="desktop">
+  <id>focuswriter.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
   <summary>Fullscreen word processor</summary>
   <summary xml:lang="cs">Textový procesor v režimu na celou obrazovku</summary>
   <summary xml:lang="de">Vollbild-Textverarbeitungsprogramm</summary>
@@ -73,7 +74,16 @@
     <p xml:lang="zh_CN">另外，打开软件后会自动跳到上次编辑的位置，让您立刻继续投入工作</p>
   </description>
   <screenshots>
-    <screenshot type="default" width="1280" height="720">http://gottcode.org/focuswriter/screenshots/appdata.png</screenshot>
+    <screenshot type="default" width="1280" height="720">
+      <image>http://gottcode.org/focuswriter/screenshots/appdata.png</image>
+    </screenshot>
   </screenshots>
   <url type="homepage">http://gottcode.org/focuswriter/</url>
-</application>
+  <url type="bugtracker">http://gottcode.org/focuswriter/bugs/</url>
+  <url type="donation">http://gottcode.org/tip/</url>
+  <developer_name>Graeme Gott</developer_name>
+  <updatecontact>graeme@gottcode.org</updatecontact>
+  <provides>
+    <binary>focuswriter</binary>
+  </provides>
+</component>
