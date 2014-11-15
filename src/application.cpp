@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,21 +43,9 @@ Application::Application(int& argc, char** argv) :
 	setApplicationVersion(VERSIONSTR);
 	setOrganizationDomain("gottcode.org");
 	setOrganizationName("GottCode");
-	{
-		QIcon fallback(":/hicolor/256x256/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/128x128/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/64x64/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/48x48/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/32x32/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/24x24/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/22x22/apps/focuswriter.png");
-		fallback.addFile(":/hicolor/16x16/apps/focuswriter.png");
-		if (!QIcon::themeName().isEmpty() && (QIcon::themeName() != "hicolor")) {
-			setWindowIcon(QIcon::fromTheme("focuswriter", fallback));
-		} else {
-			setWindowIcon(fallback);
-		}
-	}
+#if !defined(Q_OS_WIN) && !defined(Q_OS_MAC)
+	setWindowIcon(QIcon::fromTheme("focuswriter", QIcon(":/focuswriter.png")));
+#endif
 
 #ifndef Q_OS_MAC
 	setAttribute(Qt::AA_DontUseNativeMenuBar);

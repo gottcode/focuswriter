@@ -234,7 +234,7 @@ SOURCES += src/action_manager.cpp \
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
 
 # Install program data
-RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
+RESOURCES = resources/images/images.qrc
 
 macx {
 	ICON = resources/mac/focuswriter.icns
@@ -259,6 +259,8 @@ macx {
 } else:win32 {
 	RC_FILE = resources/windows/icon.rc
 } else:unix {
+	RESOURCES += resources/images/icons/icons.qrc
+
 	isEmpty(PREFIX) {
 		PREFIX = /usr/local
 	}
