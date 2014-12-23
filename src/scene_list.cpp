@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,9 @@
 #include <QTextBlock>
 #include <QTextEdit>
 #include <QToolButton>
+
+#include <algorithm>
+#include <cmath>
 
 //-----------------------------------------------------------------------------
 
@@ -77,7 +80,7 @@ SceneList::SceneList(QWidget* parent) :
 	m_document(0),
 	m_resizing(false)
 {
-	m_width = qBound(0, QSettings().value("SceneList/Width", qRound(3.5 * logicalDpiX())).toInt(), maximumWidth());
+	m_width = qBound(0, QSettings().value("SceneList/Width", (int)std::lround(3.5 * logicalDpiX())).toInt(), maximumWidth());
 
 	// Configure sidebar
 	setFrameStyle(QFrame::Panel | QFrame::Raised);
@@ -247,7 +250,7 @@ void SceneList::showScenes()
 
 	m_show_button->hide();
 
-	setMinimumWidth(qRound(1.5 * logicalDpiX()));
+	setMinimumWidth(std::lround(1.5 * logicalDpiX()));
 	setMaximumWidth(m_width);
 
 	if (m_document) {
@@ -270,7 +273,7 @@ void SceneList::mouseMoveEvent(QMouseEvent* event)
 		m_mouse_current = event->pos();
 
 		m_width += delta;
-		m_width = qMax(minimumWidth(), m_width);
+		m_width = std::max(minimumWidth(), m_width);
 		setMaximumWidth(m_width);
 
 		event->accept();
@@ -417,11 +420,11 @@ void SceneList::moveSelectedScenes(int movement)
 	int index_row = 0;
 	for (int i = 0, count = indexes.count(); i < count; ++i) {
 		index_row = indexes.at(i).row();
-		first_row = qMin(first_row, index_row);
-		last_row = qMax(last_row, index_row);
+		first_row = std::min(first_row, index_row);
+		last_row = std::max(last_row, index_row);
 		scenes.append(index_row);
 	}
-	int row = qMax(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
+	int row = std::max(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
 
 	// Move scenes
 	m_document->sceneModel()->moveScenes(scenes, row);

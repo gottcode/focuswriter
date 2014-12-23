@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,8 @@
 #include <QFile>
 
 #include <zlib.h>
+
+#include <algorithm>
 
 //-----------------------------------------------------------------------------
 
@@ -68,7 +70,7 @@ QByteArray gunzip(const QString& path)
 	int read = 0;
 	do {
 		data.append(buffer, read);
-		read = qMin(gzread(gz, buffer, buffer_size), buffer_size);
+		read = std::min(gzread(gz, buffer, buffer_size), buffer_size);
 	} while (read > 0);
 	gzclose(gz);
 

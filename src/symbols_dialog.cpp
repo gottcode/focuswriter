@@ -42,6 +42,8 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 
+#include <algorithm>
+
 //-----------------------------------------------------------------------------
 
 class SymbolsDialog::ElideLabel : public QFrame
@@ -252,7 +254,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 
 	// Fetch list of recently used symbols
 	QList<QVariant> recent = settings.value("SymbolsDialog/Recent").toList();
-	for (int i = 0, count = qMin(16, recent.count()); i < count; ++i) {
+	for (int i = 0, count = std::min(16, recent.count()); i < count; ++i) {
 		quint32 unicode = recent.at(i).toUInt();
 		QTableWidgetItem* item = new QTableWidgetItem(QString::fromUcs4(&unicode, 1));
 		item->setTextAlignment(Qt::AlignCenter);
@@ -369,7 +371,7 @@ void SymbolsDialog::showFilter(QListWidgetItem* filter)
 
 void SymbolsDialog::showGroup(int group)
 {
-	foreach (QListWidget* filters, m_filters) {
+	for (QListWidget* filters : m_filters) {
 		disconnect(filters, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(showFilter(QListWidgetItem*)));
 		filters->clearSelection();
 	}

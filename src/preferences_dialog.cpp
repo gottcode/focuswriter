@@ -80,7 +80,7 @@ namespace
 
 		// Remove subdirectories
 		QStringList contents = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Hidden | QDir::System);
-		foreach (const QString& entry, contents) {
+		for (const QString& entry : contents) {
 			if (!recursivelyRemove(dir.absoluteFilePath(entry))) {
 				return false;
 			}
@@ -88,7 +88,7 @@ namespace
 
 		// Remove all files
 		contents = dir.entryList(QDir::Files | QDir::Hidden | QDir::System);
-		foreach (const QString& entry, contents) {
+		for (const QString& entry : contents) {
 			if (!QFile::remove(dir.absoluteFilePath(entry))) {
 				return false;
 			}
@@ -210,7 +210,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_toolbar_style->setCurrentIndex(style);
 	QStringList actions = Preferences::instance().toolbarActions();
 	int pos = 0;
-	foreach (const QString& action, actions) {
+	for (const QString& action : actions) {
 		QString text = action;
 		bool checked = !text.startsWith("^");
 		if (!checked) {
@@ -342,12 +342,12 @@ void PreferencesDialog::accept()
 	QDir dir(path);
 #ifdef Q_OS_WIN
 	QStringList dirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-	foreach (const QString& file, dirs) {
+	for (const QString& file : dirs) {
 		QFile::rename(path + file, new_path + file);
 	}
 #endif
 	QStringList files = dir.entryList(QDir::Files);
-	foreach (const QString& file, files) {
+	for (const QString& file : files) {
 		QFile::remove(new_path + file);
 		QFile::rename(path + file, new_path + file);
 	}
@@ -494,7 +494,7 @@ void PreferencesDialog::addLanguage()
 
 #ifdef Q_OS_WIN
 	// Find Voikko dictionaries
-	foreach (const QString& file, files) {
+	for (const QString& file : files) {
 		if (file.endsWith(".dll")) {
 			continue;
 		}
@@ -507,7 +507,7 @@ void PreferencesDialog::addLanguage()
 #endif
 
 	// Find Hunspell dictionary files
-	foreach (const QString& dic, dic_files) {
+	for (const QString& dic : dic_files) {
 		QString aff = dic;
 		aff.replace(".dic", ".aff");
 		if (aff_files.contains(aff)) {
@@ -525,7 +525,7 @@ void PreferencesDialog::addLanguage()
 		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
-		foreach (const QString& file, files) {
+		for (const QString& file : files) {
 			QString filename = file;
 			if (filename.endsWith(".dic") || filename.endsWith(".aff")) {
 				// Ignore path for Hunspell dictionaries
@@ -551,7 +551,7 @@ void PreferencesDialog::addLanguage()
 		// Add to language selection
 		QString dictionary_path = DictionaryManager::path() + "/install/";
 		QString dictionary_new_path = DictionaryManager::installedPath() + "/";
-		foreach (const QString& dictionary, dictionaries) {
+		for (const QString& dictionary : dictionaries) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
 			QString name = LocaleDialog::languageName(language);
@@ -765,7 +765,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
 	m_save_format = new QComboBox(save_group);
 	QStringList types = Preferences::instance().saveFormat().allowedValues();
-	foreach (const QString& type, types) {
+	for (const QString& type : types) {
 		m_save_format->addItem(FormatManager::filter(type), type);
 	}
 
@@ -1001,7 +1001,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	connect(m_add_language_button, SIGNAL(clicked()), this, SLOT(addLanguage()));
 
 	QStringList languages = DictionaryManager::instance().availableDictionaries();
-	foreach (const QString& language, languages) {
+	for (const QString& language : languages) {
 		m_languages->addItem(LocaleDialog::languageName(language), language);
 	}
 	m_languages->model()->sort(0);
@@ -1024,7 +1024,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
 	QStringList words = DictionaryManager::instance().personal();
-	foreach (const QString& word, words) {
+	for (const QString& word : words) {
 		m_personal_dictionary->addItem(word);
 	}
 	connect(m_personal_dictionary, SIGNAL(itemSelectionChanged()), this, SLOT(selectedWordChanged()));
@@ -1075,7 +1075,7 @@ QWidget* PreferencesDialog::initToolbarTab()
 	m_toolbar_actions = new QListWidget(actions_group);
 	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
 	QList<QAction*> actions = parentWidget()->window()->actions();
-	foreach (QAction* action, actions) {
+	for (QAction* action : actions) {
 		if (action->data().isNull()) {
 			continue;
 		}
@@ -1140,7 +1140,7 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	QPixmap empty_icon(m_shortcuts->iconSize());
 	empty_icon.fill(Qt::transparent);
 	QList<QString> actions = ActionManager::instance()->actions();
-	foreach (const QString& name, actions) {
+	for (const QString& name : actions) {
 		QAction* action = ActionManager::instance()->action(name);
 		QIcon icon = action->icon();
 		if (icon.isNull()) {

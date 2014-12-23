@@ -21,6 +21,7 @@
 
 #include "block_stats.h"
 
+#include <algorithm>
 #include <cmath>
 
 //-----------------------------------------------------------------------------
@@ -91,7 +92,7 @@ void Stats::calculatePageCount(int type, float page_amount)
 		amount = m_character_count;
 		break;
 	}
-	m_page_count = qMax(1.0f, std::ceil(amount / page_amount));
+	m_page_count = std::max(1.0f, std::ceil(amount / page_amount));
 }
 
 //-----------------------------------------------------------------------------

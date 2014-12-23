@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	// Copy text fragments of scenes
 	QTextCursor cursor = m_document->textCursor();
 	QList<QTextDocumentFragment> fragments;
-	foreach (int scene, scenes) {
+	for (int scene : scenes) {
 		selectScene(m_scenes.at(scene), cursor);
 		fragments += cursor.selection();
 	}
@@ -131,7 +131,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	}
 
 	// Insert text fragments; will indirectly create scenes
-	foreach (const QTextDocumentFragment& fragment, fragments) {
+	for (const QTextDocumentFragment& fragment : fragments) {
 		cursor.insertFragment(fragment);
 		if (!cursor.atBlockStart()) {
 			cursor.insertBlock();
@@ -316,7 +316,7 @@ QMimeData* SceneModel::mimeData(const QModelIndexList& indexes) const
 	QByteArray bytes;
 	QDataStream stream(&bytes, QIODevice::WriteOnly);
 	QList<int> scenes;
-	foreach (const QModelIndex& index, indexes) {
+	for (const QModelIndex& index : indexes) {
 		scenes += index.row();
 	}
 	stream << scenes;
@@ -359,7 +359,7 @@ void SceneModel::setSceneDivider(const QString& divider)
 	f_scene_divider = divider;
 	f_scene_divider.replace(QLatin1String("\\t"), QLatin1String("\t"));
 
-	foreach (SceneModel* model, f_scene_models) {
+	for (SceneModel* model : f_scene_models) {
 		model->resetScenes();
 	}
 }

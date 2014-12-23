@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ ActionManager::ActionManager(QWidget* parent) :
 	QSettings settings;
 	settings.beginGroup("Shortcuts");
 	QStringList keys = settings.childKeys();
-	foreach (const QString& name, keys) {
+	for (const QString& name : keys) {
 		m_actions[name].shortcut = settings.value(name).value<QKeySequence>();
 	}
 

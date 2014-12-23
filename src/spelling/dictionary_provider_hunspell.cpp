@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -213,7 +213,7 @@ void DictionaryHunspell::addToPersonal(const QString& word)
 
 void DictionaryHunspell::addToSession(const QStringList& words)
 {
-	foreach (const QString& word, words) {
+	for (const QString& word : words) {
 		m_dictionary->add(m_codec->fromUnicode(word).constData());
 	}
 }
@@ -222,7 +222,7 @@ void DictionaryHunspell::addToSession(const QStringList& words)
 
 void DictionaryHunspell::removeFromSession(const QStringList& words)
 {
-	foreach (const QString& word, words) {
+	for (const QString& word : words) {
 		m_dictionary->remove(m_codec->fromUnicode(word).constData());
 	}
 }
@@ -241,8 +241,8 @@ DictionaryProviderHunspell::DictionaryProviderHunspell()
 		xdg.append("/usr/share");
 	}
 	QStringList subdirs = QStringList() << "/hunspell" << "/myspell/dicts" << "/myspell";
-	foreach (const QString& subdir, subdirs) {
-		foreach (const QString& dir, xdg) {
+	for (const QString& subdir : subdirs) {
+		for (const QString& dir : xdg) {
 			QString path = dir + subdir;
 			if (!dictdirs.contains(path)) {
 				dictdirs.append(path);
@@ -268,7 +268,7 @@ QStringList DictionaryProviderHunspell::availableDictionaries() const
 		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
 		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
 
-		foreach (const QString& language, dic_files) {
+		for (const QString& language : dic_files) {
 			if (aff_files.contains(language) && !result.contains(language)) {
 				result.append(language);
 			}

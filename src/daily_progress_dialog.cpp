@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@
 #include <QTableView>
 #include <QVBoxLayout>
 
+#include <algorithm>
 #include <cmath>
 
 //-----------------------------------------------------------------------------
@@ -77,9 +78,9 @@ public:
 				qreal ik = 1.0 - k;
 				QColor base = opt.palette.color(QPalette::Active, QPalette::AlternateBase);
 				QColor highlight = opt.palette.color(QPalette::Active, QPalette::Highlight);
-				opt.backgroundBrush = QColor(qRound((highlight.red() * k) + (base.red() * ik)),
-						qRound((highlight.green() * k) + (base.green() * ik)),
-						qRound((highlight.blue() * k) + (base.blue() * ik)));
+				opt.backgroundBrush = QColor(std::lround((highlight.red() * k) + (base.red() * ik)),
+						std::lround((highlight.green() * k) + (base.green() * ik)),
+						std::lround((highlight.blue() * k) + (base.blue() * ik)));
 				opt.palette.setColor(QPalette::Text, opt.palette.color(QPalette::Active, QPalette::Text));
 			}
 
@@ -160,7 +161,7 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->horizontalHeader()->setMinimumSectionSize(0);
 	int size = 0;
 	for (int i = 1; i < 8; ++i) {
-		size = qMax(size, m_display->horizontalHeader()->sectionSizeHint(i));
+		size = std::max(size, m_display->horizontalHeader()->sectionSizeHint(i));
 	}
 
 	// Set rows to all be the same height

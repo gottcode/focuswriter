@@ -44,7 +44,7 @@ namespace
 		// Check if already copied
 		QDir images(Theme::path() + "/Images/");
 		QStringList filenames = images.entryList(QDir::Files);
-		foreach (const QString& filename, filenames) {
+		for (const QString& filename : filenames) {
 			if (compareFiles(image, images.filePath(filename))) {
 				return filename;
 			}
@@ -172,7 +172,7 @@ void Theme::copyBackgrounds()
 
 	// Copy images
 	QStringList themes = QDir(path(), "*.theme").entryList(QDir::Files);
-	foreach (const QString& theme, themes) {
+	for (const QString& theme : themes) {
 		QSettings settings(path() + "/" + theme, QSettings::IniFormat);
 		QString background_path = settings.value("Background/Image").toString();
 		QString background_image = settings.value("Background/ImageFile").toString();
@@ -188,7 +188,7 @@ void Theme::copyBackgrounds()
 
 	// Delete unused images
 	QStringList files = dir.entryList(QDir::Files);
-	foreach (const QString& file, files) {
+	for (const QString& file : files) {
 		if (!images.contains(file)) {
 			QFile::remove(path() + "/Images/" + file);
 		}
@@ -213,7 +213,7 @@ bool Theme::exists(const QString& name)
 {
 	QDir dir(m_path, "*.theme");
 	QStringList themes = dir.entryList(QDir::Files);
-	foreach (const QString& theme, themes) {
+	for (const QString& theme : themes) {
 		QSettings settings(dir.filePath(theme), QSettings::IniFormat);
 		if (settings.value("Name").toString() == name) {
 			return true;

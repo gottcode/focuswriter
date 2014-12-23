@@ -46,6 +46,8 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 
+#include <cmath>
+
 //-----------------------------------------------------------------------------
 
 static QColor averageImage(const QString& filename, const QColor& color)
@@ -490,7 +492,7 @@ void ThemeDialog::fontChanged()
 	}
 	qreal font_size = m_font_sizes->currentText().toDouble();
 	if (font_size < 0.1) {
-		font_size = qRound(m_theme.textFont().pointSizeF() * 10.0) * 0.1;
+		font_size = std::lround(m_theme.textFont().pointSizeF() * 10.0) * 0.1;
 	}
 
 	m_font_sizes->blockSignals(true);

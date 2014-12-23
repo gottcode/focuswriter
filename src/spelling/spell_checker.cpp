@@ -263,7 +263,7 @@ void SpellChecker::check()
 			m_suggestions->clear();
 			QStringList words = m_dictionary.suggestions(m_word);
 			if (!words.isEmpty()) {
-				foreach (const QString& word, words) {
+				for (const QString& word : words) {
 					m_suggestions->addItem(word);
 				}
 				m_suggestions->setCurrentRow(0);

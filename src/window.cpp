@@ -394,7 +394,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	}
 	if (!skip.isEmpty()) {
 		QStringList skipped;
-		foreach (int i, skip) {
+		for (int i : skip) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
 		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Some files were unsupported and could not be opened."), skipped, true));
@@ -492,7 +492,7 @@ void Window::addDocuments(QDropEvent* event)
 {
 	if (event->mimeData()->hasUrls()) {
 		QStringList files;
-		foreach (QUrl url, event->mimeData()->urls()) {
+		for (const QUrl& url : event->mimeData()->urls()) {
 			files.append(url.toLocalFile());
 		}
 		queueDocuments(files);
@@ -1198,7 +1198,7 @@ void Window::loadPreferences()
 	m_toolbar->hide();
 	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(Preferences::instance().toolbarStyle()));
 	QStringList actions = Preferences::instance().toolbarActions();
-	foreach (const QString action, actions) {
+	for (const QString action : actions) {
 		if (action == "|") {
 			m_toolbar->addSeparator();
 		} else if (!action.startsWith("^")) {
@@ -1283,7 +1283,7 @@ void Window::updateWriteState(int index)
 		m_documents->symbols()->setInsertEnabled(writable);
 	}
 
-	foreach (QAction* action, m_format_actions) {
+	for (QAction* action : m_format_actions) {
 		action->setEnabled(writable);
 	}
 	m_actions["FormatIndentDecrease"]->setEnabled(writable && document->text()->textCursor().blockFormat().indent() > 0);

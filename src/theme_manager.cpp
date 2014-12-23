@@ -145,7 +145,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes->setWordWrap(true);
 	QDir dir(Theme::path(), "*.theme");
 	QStringList themes = dir.entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
-	foreach (const QString& theme, themes) {
+	for (const QString& theme : themes) {
 		QString name = QSettings(dir.filePath(theme), QSettings::IniFormat).value("Name").toString();
 		if (!name.isEmpty()) {
 			addItem(QFileInfo(theme).completeBaseName(), false, name);
@@ -159,7 +159,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 
 			QStringList sessions = QDir(Session::path(), "*.session").entryList(QDir::Files);
 			sessions.prepend("");
-			foreach (const QString& file, sessions) {
+			for (const QString& file : sessions) {
 				Session session(file);
 				if ((session.theme() == name) && (session.themeDefault() == false)) {
 					session.setTheme(id, false);

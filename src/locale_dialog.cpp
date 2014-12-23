@@ -34,6 +34,8 @@
 #include <QTranslator>
 #include <QVBoxLayout>
 
+#include <algorithm>
+
 //-----------------------------------------------------------------------------
 
 QString LocaleDialog::m_current;
@@ -52,16 +54,15 @@ LocaleDialog::LocaleDialog(QWidget* parent) :
 
 	m_translations = new QComboBox(this);
 	m_translations->addItem(tr("<System Language>"), "");
-	QString translation;
 	QStringList translations = findTranslations();
-	foreach (translation, translations) {
+	for (QString translation : translations) {
 		if (translation.startsWith("qt")) {
 			continue;
 		}
 		translation.remove(m_appname);
 		m_translations->addItem(languageName(translation), translation);
 	}
-	int index = qMax(0, m_translations->findData(m_current));
+	int index = std::max(0, m_translations->findData(m_current));
 	m_translations->setCurrentIndex(index);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -89,7 +90,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 		paths.append(appdir + "/../share/" + QCoreApplication::applicationName().toLower());
 		paths.append(appdir + "/../Resources");
 	}
-	foreach (const QString& path, paths) {
+	for (const QString& path : paths) {
 		if (QFile::exists(path + "/translations/")) {
 			m_path = path + "/translations/";
 			break;

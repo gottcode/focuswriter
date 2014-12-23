@@ -46,6 +46,8 @@
 #include <QTextEdit>
 #include <QTimer>
 
+#include <algorithm>
+
 //-----------------------------------------------------------------------------
 
 Stack::Stack(QWidget* parent) :
@@ -274,7 +276,7 @@ void Stack::alignRight()
 
 void Stack::autoCache()
 {
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		if (document->isModified()) {
 			document->cache();
 		}
@@ -285,7 +287,7 @@ void Stack::autoCache()
 
 void Stack::autoSave()
 {
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		if (document->isModified()) {
 			if (!document->filename().isEmpty()) {
 				document->save();
@@ -324,7 +326,7 @@ void Stack::decreaseIndent()
 	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
-	format.setIndent(qMax(0, format.indent() - 1));
+	format.setIndent(std::max(0, format.indent() - 1));
 	cursor.setBlockFormat(format);
 	emit updateFormatActions();
 }
@@ -438,7 +440,7 @@ void Stack::selectScene()
 void Stack::setFocusMode(QAction* action)
 {
 	int focus_mode = action->data().toInt();
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		document->setFocusMode(focus_mode);
 	}
 }
@@ -578,7 +580,7 @@ void Stack::themeSelected(const Theme& theme)
 
 	updateBackground();
 
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		document->loadTheme(theme, m_foreground);
 	}
 }
@@ -758,7 +760,7 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 	m_foreground = image.copy(foreground_rect);
 
 	// Configure text area
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		QPalette p = document->text()->palette();
 		p.setBrush(QPalette::Base, m_foreground);
 		document->text()->setPalette(p);

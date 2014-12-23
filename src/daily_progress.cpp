@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ DailyProgress::DailyProgress(QObject* parent) :
 
 		// Load all daily progress from 1.5
 		QStringList keys = m_file->childKeys();
-		foreach (const QString& key, keys) {
+		for (const QString& key : keys) {
 			QDate date = QDate::fromString(key, Qt::ISODate);
 			if (!date.isValid()) {
 				continue;

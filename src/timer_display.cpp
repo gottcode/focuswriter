@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -144,7 +144,7 @@ void TimerDisplay::paintEvent(QPaintEvent* event)
 
 		if (m_show_tip) {
 			QStringList timers;
-			foreach (Timer* timer, m_timers) {
+			for (Timer* timer : m_timers) {
 				if (timer->isRunning()) {
 					int msecs = timer->msecsFrom(current);
 					timers += Timer::toString(QTime().addMSecs(msecs).toString(tr("HH:mm:ss")), timer->memoShort());

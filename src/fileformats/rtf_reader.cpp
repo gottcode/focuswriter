@@ -29,6 +29,8 @@
 #include <QTextCodec>
 #include <QTextDecoder>
 
+#include <cmath>
+
 //-----------------------------------------------------------------------------
 
 namespace
@@ -492,7 +494,7 @@ void RtfReader::setBlockDirection(qint32 value)
 
 void RtfReader::setBlockIndent(qint32 value)
 {
-	m_state.block_format.setIndent(qRound(static_cast<double>(value) / 720.0));
+	m_state.block_format.setIndent(std::lround(static_cast<double>(value) / 720.0));
 	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 

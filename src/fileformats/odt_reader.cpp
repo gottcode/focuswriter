@@ -22,6 +22,9 @@
 #include <QTextDocument>
 #include <QtZipReader>
 
+#include <algorithm>
+#include <cmath>
+
 //-----------------------------------------------------------------------------
 
 OdtReader::OdtReader() :
@@ -205,22 +208,22 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 		// Internal indent units are 0.5in
 		int indent = 0;
 		if (type == QLatin1String("in")) {
-			indent = qRound(margin.toDouble() * 2.0);
+			indent = std::lround(margin.toDouble() * 2.0);
 		} else if (type == QLatin1String("cm")) {
-			indent = qRound(margin.toDouble() / 1.27);
+			indent = std::lround(margin.toDouble() / 1.27);
 		} else if (type == QLatin1String("mm")) {
-			indent = qRound(margin.toDouble() / 12.7);
+			indent = std::lround(margin.toDouble() / 12.7);
 		} else if (type == QLatin1String("pt")) {
 			// 72pt to inch
-			indent = qRound(margin.toDouble() / 36.0);
+			indent = std::lround(margin.toDouble() / 36.0);
 		} else if (type == QLatin1String("pc")) {
 			// 6pc to inch
-			indent = qRound(margin.toDouble() / 3.0);
+			indent = std::lround(margin.toDouble() / 3.0);
 		} else if (type == QLatin1String("px")) {
 			// 96px to inch
-			indent = qRound(margin.toDouble() / 48.0);
+			indent = std::lround(margin.toDouble() / 48.0);
 		}
-		format.setIndent(qMax(0, indent));
+		format.setIndent(std::max(0, indent));
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:default-outline-level"))) {
@@ -401,7 +404,7 @@ void OdtReader::readText()
 				--depth;
 			} else if (m_xml.qualifiedName() == "text:s") {
 				int spaces = m_xml.attributes().value(QLatin1String("text:c")).toString().toInt();
-				m_cursor.insertText(QString(qMax(1, spaces), QLatin1Char(' ')));
+				m_cursor.insertText(QString(std::max(1, spaces), QLatin1Char(' ')));
 			} else if (m_xml.qualifiedName() == "text:tab") {
 				m_cursor.insertText(QLatin1String("\t"));
 			} else if (m_xml.qualifiedName() == "text:line-break") {

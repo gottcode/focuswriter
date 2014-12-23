@@ -122,7 +122,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 			QMenu* menu = new QMenu;
 			QStringList guesses = m_dictionary.suggestions(m_word);
 			if (!guesses.isEmpty()) {
-				foreach (const QString& guess, guesses) {
+				for (const QString& guess : guesses) {
 					menu->addAction(guess);
 				}
 			} else {

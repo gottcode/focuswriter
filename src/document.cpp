@@ -984,7 +984,7 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 		emit footerVisible(false);
 	}
 	if (m_scene_list && !m_scene_list->scenesVisible()) {
-		int sidebar_region = qMin(m_scene_list->width(), m_layout->cellRect(0,0).width());
+		int sidebar_region = std::min(m_scene_list->width(), m_layout->cellRect(0,0).width());
 		emit scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
 	}
 	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
@@ -1155,7 +1155,7 @@ void Document::selectionChanged()
 	if (m_text->textCursor().hasSelection()) {
 		BlockStats temp(0);
 		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
-		foreach (const QString& string, selection) {
+		for (const QString& string : selection) {
 			temp.update(string);
 			m_selected_stats.append(&temp);
 		}

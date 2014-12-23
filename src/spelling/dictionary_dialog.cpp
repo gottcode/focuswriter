@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ DictionaryDialog::DictionaryDialog(QWidget* parent) :
 	m_languages = new QListWidget(this);
 	QStringList languages = DictionaryManager::instance().availableDictionaries();
 	QString current_language = Preferences::instance().language();
-	foreach (const QString& language, languages) {
+	for (const QString& language : languages) {
 		QListWidgetItem* item = new QListWidgetItem(LocaleDialog::languageName(language), m_languages);
 		item->setData(Qt::UserRole, language);
 		if (language == current_language) {

@@ -80,7 +80,7 @@ void ImageButton::onClicked()
 {
 	QStringList filters;
 	QList<QByteArray> formats = QImageReader::supportedImageFormats();
-	foreach (QByteArray type, formats) {
+	for (const QByteArray& type : formats) {
 		filters.append("*." + type);
 	}
 

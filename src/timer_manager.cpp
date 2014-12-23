@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -98,7 +98,7 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 
 	// Load currently running timers
 	QStringList ids = settings.childKeys();
-	foreach (const QString& id, ids) {
+	for (const QString& id : ids) {
 		int i = id.mid(5).toInt();
 		if (!id.startsWith("Timer") || i == 0) {
 			continue;
@@ -116,14 +116,14 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 bool TimerManager::cancelEditing()
 {
 	bool check = false;
-	foreach (Timer* timer, m_timers) {
+	for (Timer* timer : m_timers) {
 		check |= timer->isEditing();
 	}
 	if (check) {
 		if (QMessageBox::question(this, tr("Question"), tr("Cancel editing timers?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return false;
 		} else {
-			foreach (Timer* timer, m_timers) {
+			for (Timer* timer : m_timers) {
 				timer->cancelEditing();
 			}
 		}
@@ -142,7 +142,7 @@ TimerDisplay* TimerManager::display() const
 
 void TimerManager::saveTimers()
 {
-	foreach (Timer* timer, m_timers) {
+	for (Timer* timer : m_timers) {
 		timer->save();
 	}
 }
@@ -305,7 +305,7 @@ void TimerManager::setupRecentMenu()
 	for (int i = 0; i < 2; ++i) {
 		QString type = QString::number(i);
 		QStringList recent = QSettings().value(QString("Timers/Recent%1").arg(i)).toStringList();
-		foreach (const QString& timer, recent) {
+		for (const QString& timer : recent) {
 			QString time = timer.section(' ', 0, 0);
 			QString memo = timer.section(' ', 1).simplified();
 			memo.truncate(140);
@@ -325,11 +325,11 @@ void TimerManager::setupRecentMenu()
 	}
 
 	m_recent_timers->clear();
-	foreach (QAction* action, delay_timers) {
+	for (QAction* action : delay_timers) {
 		m_recent_timers->addAction(action);
 	}
 	m_recent_timers->addSeparator();
-	foreach (QAction* action, end_timers) {
+	for (QAction* action : end_timers) {
 		m_recent_timers->addAction(action);
 	}
 
@@ -350,7 +350,7 @@ void TimerManager::startClock()
 
 void TimerManager::updateDisplay()
 {
-	foreach (Timer* timer, m_timers) {
+	for (Timer* timer : m_timers) {
 		if (timer->isRunning()) {
 			m_display->setTimer(timer);
 			return;

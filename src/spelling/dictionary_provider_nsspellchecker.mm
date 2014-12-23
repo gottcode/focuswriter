@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 static NSArray* convertList(const QStringList& words)
 {
 	QVector<NSString*> strings;
-	foreach (const QString& word, words) {
+	for (const QString& word : words) {
 		strings.append([NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()]);
 	}
 
@@ -184,7 +184,7 @@ void DictionaryNSSpellChecker::removeFromSession(const QStringList& words)
 		for (unsigned int i = 0; i < [array count]; ++i) {
 			session += QString::fromUtf8([[array objectAtIndex: i] UTF8String]);
 		}
-		foreach (const QString& word, words) {
+		for (const QString& word : words) {
 			session.removeAll(word);
 		}
 	}
