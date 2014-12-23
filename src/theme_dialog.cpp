@@ -334,10 +334,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	line_spacing_layout->addRow(tr("Type:"), m_line_spacing_type);
 	line_spacing_layout->addRow(tr("Height:"), m_line_spacing);
 
-#if (QT_VERSION < QT_VERSION_CHECK(4,8,0))
-	line_spacing->hide();
-#endif
-
 
 	// Create paragraph spacing group
 	QGroupBox* paragraph_spacing = new QGroupBox(tr("Paragraph Spacing"), contents);
@@ -606,9 +602,7 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 	// Set spacings
 	int tab_width = theme.tabWidth();
 	QTextBlockFormat block_format;
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
-#endif
 	block_format.setTextIndent(tab_width * theme.indentFirstLine());
 	block_format.setTopMargin(theme.spacingAboveParagraph());
 	block_format.setBottomMargin(theme.spacingBelowParagraph());

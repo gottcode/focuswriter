@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,14 @@
 
 #include "clipboard_windows.h"
 
+#include <QMimeData>
+
 //-----------------------------------------------------------------------------
 
-RTF::Clipboard::Clipboard()
-	: QWindowsMime()
+RTF::Clipboard::Clipboard() :
+	QWinMime()
 {
-	CF_RTF = QWindowsMime::registerMimeType(QLatin1String("Rich Text Format"));
+	CF_RTF = QWinMime::registerMimeType(QLatin1String("Rich Text Format"));
 }
 
 //-----------------------------------------------------------------------------

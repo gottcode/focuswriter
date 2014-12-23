@@ -1125,15 +1125,9 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	m_shortcuts->setColumnCount(3);
 	m_shortcuts->setColumnHidden(2, true);
 	m_shortcuts->setHeaderLabels(QStringList() << tr("Command") << tr("Shortcut") << tr("Action"));
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	m_shortcuts->header()->setSectionsClickable(false);
 	m_shortcuts->header()->setSectionsMovable(false);
 	m_shortcuts->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-#else
-	m_shortcuts->header()->setClickable(false);
-	m_shortcuts->header()->setMovable(false);
-	m_shortcuts->header()->setResizeMode(0, QHeaderView::ResizeToContents);
-#endif
 	connect(m_shortcuts, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(shortcutDoubleClicked()));
 
 	// List shortcuts

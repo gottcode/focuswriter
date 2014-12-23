@@ -114,11 +114,7 @@ DailyProgress::DailyProgress(QObject* parent) :
 
 	// Add null entries before data to make it week-based
 	QLocale locale;
-#if (QT_VERSION >= (QT_VERSION_CHECK(4,8,0)))
 	int start_of_week = locale.firstDayOfWeek();
-#else
-	int start_of_week = Qt::Sunday;
-#endif
 	int day_of_week = m_progress.first().date().dayOfWeek();
 	int null_days = 0;
 	if (day_of_week < start_of_week) {

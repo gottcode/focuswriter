@@ -57,11 +57,7 @@
 #include <QPushButton>
 #include <QScrollBar>
 #include <QSettings>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QShortcut>
 #include <QStyle>
 #include <QTextBlock>
@@ -201,8 +197,6 @@ namespace
 			richtext = source->data(QLatin1String("text/richtext"));
 		} else if (source->hasFormat(QLatin1String("application/rtf"))) {
 			richtext = source->data(QLatin1String("application/rtf"));
-		} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
-			richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
 		} else if (source->hasHtml()) {
 			richtext = mimeToRtf(source);
 		} else {
@@ -760,9 +754,7 @@ void Document::loadTheme(const Theme& theme, const QBrush& foreground)
 	// Update spacings
 	int tab_width = theme.tabWidth();
 	m_block_format = QTextBlockFormat();
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	m_block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
-#endif
 	m_block_format.setTextIndent(tab_width * theme.indentFirstLine());
 	m_block_format.setTopMargin(theme.spacingAboveParagraph());
 	m_block_format.setBottomMargin(theme.spacingBelowParagraph());
@@ -1315,11 +1307,7 @@ QString Document::getSaveFileName(const QString& title)
 	// Determine location
 	QString path = m_filename;
 	if (m_filename.isEmpty()) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-		QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 		path = QSettings().value("Save/Location", default_path).toString() + "/" + tr("Untitled %1").arg(m_index);
 	}
 

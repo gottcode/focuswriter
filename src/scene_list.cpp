@@ -59,7 +59,7 @@ public:
 
 QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-	QStyleOptionViewItemV4 opt = option;
+	QStyleOptionViewItem opt = option;
 	initStyleOption(&opt, index);
 	const QWidget* widget = opt.widget;
 	const QStyle* style = widget ? widget->style() : QApplication::style();
@@ -146,9 +146,7 @@ SceneList::SceneList(QWidget* parent) :
 
 	// Create filter widget
 	m_filter = new QLineEdit(this);
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	m_filter->setPlaceholderText(tr("Filter"));
-#endif
 	connect(m_filter, SIGNAL(textChanged(QString)), this, SLOT(setFilter(QString)));
 
 	// Create widget for resizing

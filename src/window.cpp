@@ -49,11 +49,6 @@
 #include <QAction>
 #include <QApplication>
 #include <QCloseEvent>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-#include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QFileDialog>
 #include <QFileOpenEvent>
 #include <QGridLayout>
@@ -68,6 +63,7 @@
 #include <QSettings>
 #include <QSignalMapper>
 #include <QSizeGrip>
+#include <QStandardPaths>
 #include <QTabBar>
 #include <QThread>
 #include <QTimer>
@@ -672,11 +668,7 @@ void Window::newDocument()
 void Window::openDocument()
 {
 	QSettings settings;
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-	QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 	QString path = settings.value("Save/Location", default_path).toString();
 
 	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"), 0, QFileDialog::DontResolveSymlinks);
@@ -1156,8 +1148,8 @@ void Window::loadPreferences()
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
 			m_documents->alerts()->addAlert(new Alert(Alert::Warning,
 				tr("Unable to load typewriter sounds."),
-				QStringList(tr("Please make sure that SDL_mixer is installed.")),
-				true));
+				QStringList(),
+				false));
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
@@ -1492,11 +1484,7 @@ void Window::initMenus()
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
 	m_actions["About"]->setMenuRole(QAction::AboutRole);
 	m_actions["AboutQt"] = help_menu->addAction(
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"),
-#else
-		QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"),
-#endif
 		tr("About &Qt"), qApp, SLOT(aboutQt()));
 	m_actions["AboutQt"]->setMenuRole(QAction::AboutQtRole);
 

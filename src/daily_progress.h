@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,7 @@
 #include <QAbstractTableModel>
 #include <QDate>
 #include <QStringList>
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 #include <QElapsedTimer>
-#else
-#include <QTime>
-#endif
 #include <QVector>
 class QSettings;
 
@@ -76,11 +72,7 @@ private:
 	int m_type;
 	int m_goal;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	QElapsedTimer m_typing_timer;
-#else
-	QTime m_typing_timer;
-#endif
 
 	class Progress
 	{

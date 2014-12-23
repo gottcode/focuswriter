@@ -126,10 +126,8 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	translator.load(m_appname + current, m_path);
 	QCoreApplication::installTranslator(&translator);
 
-#if (QT_VERSION >= (QT_VERSION_CHECK(5,0,0)))
 	// Work around bug in Qt 5 where text direction is not loaded
 	QApplication::setLayoutDirection(QLocale(current).textDirection());
-#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -139,7 +137,6 @@ QString LocaleDialog::languageName(const QString& language)
 	QString lang_code = language.left(5);
 	QLocale locale(lang_code);
 	QString name;
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	if (lang_code.length() > 2) {
 		if (locale.name() == lang_code) {
 			name = locale.nativeLanguageName() + " (" + locale.nativeCountryName() + ")";
@@ -152,17 +149,6 @@ QString LocaleDialog::languageName(const QString& language)
 	if (locale.textDirection() == Qt::RightToLeft) {
 		name.prepend(QChar(0x202b));
 	}
-#else
-	if (lang_code.length() > 2) {
-		if (locale.name() == lang_code) {
-			name = QLocale::languageToString(locale.language()) + " (" + QLocale::countryToString(locale.country()) + ")";
-		} else {
-			name = QLocale::languageToString(locale.language()) + " (" + language + ")";
-		}
-	} else {
-		name = QLocale::languageToString(locale.language());
-	}
-#endif
 	return name;
 }
 

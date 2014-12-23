@@ -66,14 +66,9 @@ SymbolsModel::SymbolsModel(QObject* parent) :
 
 	const int unicode_version = m_path.mid(m_path.length() - 7, 3).toInt();
 	switch (unicode_version) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-	case 620:
-		stream.setVersion(QDataStream::Qt_5_0);
-		break;
-#endif
-	case 510:
+	case 630:
 	default:
-		stream.setVersion(QDataStream::Qt_4_6);
+		stream.setVersion(QDataStream::Qt_5_2);
 		break;
 	}
 
@@ -307,10 +302,7 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 void SymbolsModel::setData(const QStringList& datadirs)
 {
 	QStringList files = QStringList()
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-			<< "symbols630.dat"
-#endif
-			<< "symbols510.dat";
+			<< "symbols630.dat";
 	for (const QString& path : datadirs) {
 		for (const QString& file : files) {
 			QFileInfo info(path + "/" + file);

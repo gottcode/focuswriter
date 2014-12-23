@@ -37,11 +37,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QStyle>
 #include <QTabWidget>
 #include <QTemporaryFile>
@@ -330,11 +326,7 @@ void ThemeManager::importTheme()
 	QSettings settings;
 	QString path = settings.value("ThemeManager/Location").toString();
 	if (path.isEmpty() || !QFile::exists(path)) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-		path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 	}
 	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), path, tr("Themes (%1)").arg("*.fwtz *.theme"), 0, QFileDialog::DontResolveSymlinks);
 	if (filename.isEmpty()) {
@@ -406,11 +398,7 @@ void ThemeManager::exportTheme()
 	QSettings settings;
 	QString path = settings.value("ThemeManager/Location").toString();
 	if (path.isEmpty() || !QFile::exists(path)) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-		path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 	}
 	path = path + "/" + item->text() + ".fwtz";
 	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), path, tr("Themes (%1)").arg("*.fwtz"), 0, QFileDialog::DontResolveSymlinks);

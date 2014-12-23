@@ -180,11 +180,7 @@ void DocumentCache::writeCacheFile(Document* document, DocumentWriter* writer)
 QString DocumentCache::backupCache()
 {
 	// Find backup location
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	QString date = QDateTime::currentDateTimeUtc().toString("yyyyMMddhhmmss");
-#else
-	QString date = QDateTime::currentDateTime().toUTC().toString("yyyyMMddhhmmss");
-#endif
 	int extra = 0;
 	QDir dir(QDir::cleanPath(m_path + "/../"));
 	QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::LocaleAware);
@@ -204,15 +200,7 @@ QString DocumentCache::backupCache()
 	while (subdirs.count() > 4) {
 		QString subdir_name = subdirs.takeAt(0);
 		QDir subdir(dir.absoluteFilePath(subdir_name));
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		subdir.removeRecursively();
-#else
-		QStringList files = subdir.entryList(QDir::Files);
-		for (const QString& file : files) {
-			subdir.remove(file);
-		}
-		dir.rmdir(subdir_name);
-#endif
 	}
 
 	return cachepath;

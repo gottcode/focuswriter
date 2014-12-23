@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,14 +20,11 @@
 #ifndef RTF_CLIPBOARD_WINDOWS_H
 #define RTF_CLIPBOARD_WINDOWS_H
 
-#include <QWindowsMime>
-#include <QVector>
-
-#include <windows.h>
+#include <QWinMime>
 
 namespace RTF
 {
-	class Clipboard : public QWindowsMime
+	class Clipboard : public QWinMime
 	{
 	public:
 		Clipboard();

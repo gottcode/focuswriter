@@ -41,6 +41,7 @@ Application::Application(int& argc, char** argv) :
 {
 	setApplicationName("FocusWriter");
 	setApplicationVersion(VERSIONSTR);
+	setApplicationDisplayName(Window::tr("FocusWriter"));
 	setOrganizationDomain("gottcode.org");
 	setOrganizationName("GottCode");
 #if !defined(Q_OS_WIN) && !defined(Q_OS_MAC)

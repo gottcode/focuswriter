@@ -117,12 +117,10 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Latvian] = "CP1257";
 	codepages[QLocale::Lithuanian] = "CP1257";
 	codepages[QLocale::Vietnamese] = "CP1258";
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 	codepages[QLocale::CentralMoroccoTamazight] = "CP1252";
 	codepages[QLocale::LowGerman] = "CP1252";
 	codepages[QLocale::NorthernSami] = "CP1252";
 	codepages[QLocale::SwissGerman] = "CP1252";
-#endif
 	return codepages;
 }
 

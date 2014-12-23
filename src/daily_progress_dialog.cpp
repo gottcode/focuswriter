@@ -59,7 +59,7 @@ public:
 
 	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 	{
-		QStyleOptionViewItemV4 opt = option;
+		QStyleOptionViewItem opt = option;
 		initStyleOption(&opt, index);
 
 		if (opt.text.isEmpty()) {
@@ -96,11 +96,11 @@ public:
 	}
 
 private:
-	QPixmap fetchStarBackground(const QStyleOptionViewItemV4& option) const
+	QPixmap fetchStarBackground(const QStyleOptionViewItem& option) const
 	{
 		if (m_pixmap.size() != option.rect.size()) {
 			// Create success background image
-			QStyleOptionViewItemV4 opt = option;
+			QStyleOptionViewItem opt = option;
 			opt.rect = QRect(QPoint(0,0), opt.rect.size());
 			m_pixmap = QPixmap(opt.rect.size());
 
@@ -170,7 +170,6 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	}
 
 	// Make outside columns stretch and data columns fixed in size
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	m_display->horizontalHeader()->setSectionsClickable(false);
 	m_display->horizontalHeader()->setSectionsMovable(false);
 	m_display->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
@@ -181,18 +180,6 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	}
 	m_display->horizontalHeader()->setSectionResizeMode(8, QHeaderView::Stretch);
 	m_display->setColumnWidth(8, 0);
-#else
-	m_display->horizontalHeader()->setClickable(false);
-	m_display->horizontalHeader()->setMovable(false);
-	m_display->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-	m_display->setColumnWidth(0, 0);
-	for (int c = 1; c < 8; ++c) {
-		m_display->horizontalHeader()->setResizeMode(c, QHeaderView::Fixed);
-		m_display->setColumnWidth(c, size);
-	}
-	m_display->horizontalHeader()->setResizeMode(8, QHeaderView::Stretch);
-	m_display->setColumnWidth(8, 0);
-#endif
 
 	// Set minimum size to always show up to 5 weeks of data
 	int frame = (m_display->style()->pixelMetric(QStyle::PM_DefaultFrameWidth) * 2) + 4;

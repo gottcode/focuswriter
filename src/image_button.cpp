@@ -19,14 +19,10 @@
 
 #include "image_button.h"
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-#include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QFileDialog>
 #include <QImageReader>
 #include <QSettings>
+#include <QStandardPaths>
 
 //-----------------------------------------------------------------------------
 
@@ -89,11 +85,7 @@ void ImageButton::onClicked()
 	if (path.isEmpty() || !QFile::exists(path)) {
 		path = settings.value("ImageButton/Location").toString();
 		if (path.isEmpty() || !QFile::exists(path)) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 			path = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
-#else
-			path = QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
-#endif
 		}
 	}
 

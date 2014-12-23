@@ -157,21 +157,12 @@ void Highlighter::highlightBlock(const QString& text)
 	}
 
 	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	if (!m_enabled || m_text->isReadOnly() || !stats || (stats->spellingStatus() == BlockStats::Unchecked)) {
 		return;
 	}
 	if (stats->spellingStatus() == BlockStats::CheckSpelling) {
 		stats->checkSpelling(text, m_dictionary);
 	}
-#else
-	if (!m_enabled || m_text->isReadOnly() || !stats) {
-		return;
-	}
-	if (stats->spellingStatus() != BlockStats::Checked) {
-		stats->checkSpelling(text, m_dictionary);
-	}
-#endif
 
 	QTextCharFormat error;
 	error.setUnderlineColor(m_misspelled);
@@ -198,7 +189,6 @@ void Highlighter::updateSpelling()
 		return;
 	}
 
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	QTextBlock block = m_text->textCursor().block();
 	bool found = false;
 
@@ -228,9 +218,6 @@ void Highlighter::updateSpelling()
 	if (found) {
 		m_spell_timer->start();
 	}
-#else
-	rehighlight();
-#endif
 }
 
 //-----------------------------------------------------------------------------
