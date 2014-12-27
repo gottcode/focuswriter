@@ -46,6 +46,9 @@
 #include <QFile>
 #include <QString>
 
+namespace QtZip
+{
+
 class QtZipWriterPrivate;
 
 class QtZipWriter
@@ -96,5 +99,7 @@ private:
     QtZipWriterPrivate *d;
     Q_DISABLE_COPY(QtZipWriter)
 };
+
+}
 
 #endif // QTZIPWRITER_H

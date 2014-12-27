@@ -303,6 +303,9 @@ static QDateTime readMSDosDate(const uchar *src)
 
 // for details, see http://www.pkware.com/documents/casestudies/APPNOTE.TXT
 
+namespace QtZip
+{
+
 enum HostOS {
     HostFAT      = 0,
     HostAMIGA    = 1,
@@ -1408,4 +1411,6 @@ void QtZipWriter::close()
     d->device->write((const char *)&eod, sizeof(EndOfDirectory));
     d->device->write(d->comment);
     d->device->close();
+}
+
 }

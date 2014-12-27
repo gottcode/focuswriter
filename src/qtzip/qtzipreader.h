@@ -48,6 +48,9 @@
 #include <QFile>
 #include <QString>
 
+namespace QtZip
+{
+
 class QtZipReaderPrivate;
 
 class QtZipReader
@@ -107,5 +110,7 @@ private:
     QtZipReaderPrivate *d;
     Q_DISABLE_COPY(QtZipReader)
 };
+
+}
 
 #endif // QTZIPREADER_H

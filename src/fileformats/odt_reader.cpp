@@ -34,7 +34,7 @@ OdtReader::OdtReader() :
 
 bool OdtReader::canRead(QIODevice* device)
 {
-	return QtZipReader::canRead(device) &&
+	return QtZip::QtZipReader::canRead(device) &&
 			(device->peek(77).right(47) == "mimetypeapplication/vnd.oasis.opendocument.text");
 }
 
@@ -46,7 +46,7 @@ void OdtReader::readData(QIODevice* device)
 	m_block_format = m_cursor.blockFormat();
 
 	// Open archive
-	QtZipReader zip(device);
+	QtZip::QtZipReader zip(device);
 
 	// Read archive
 	if (zip.isReadable()) {
