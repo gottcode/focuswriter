@@ -1381,7 +1381,7 @@ void QtZipWriter::addSymLink(const QString &fileName, const QString &destination
 void QtZipWriter::close()
 {
     if (!(d->device->openMode() & QIODevice::WriteOnly)) {
-        d->device->close();
+        //d->device->close();
         return;
     }
 
@@ -1410,7 +1410,7 @@ void QtZipWriter::close()
 
     d->device->write((const char *)&eod, sizeof(EndOfDirectory));
     d->device->write(d->comment);
-    d->device->close();
+    //d->device->close();
 }
 
 }

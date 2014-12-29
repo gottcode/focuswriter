@@ -23,16 +23,9 @@
 #include "odt_writer.h"
 #include "rtf_writer.h"
 
-#include <QFile>
+#include <QSaveFile>
 #include <QTextDocument>
 #include <QTextStream>
-
-#if defined(Q_OS_UNIX)
-#include <unistd.h>
-#elif defined(Q_OS_WIN)
-#include <windows.h>
-#include <io.h>
-#endif
 
 //-----------------------------------------------------------------------------
 
@@ -61,8 +54,8 @@ bool DocumentWriter::write()
 
 	bool saved = false;
 
-	QFile file(m_filename);
-	if (!file.open(QFile::WriteOnly | QFile::Truncate)) {
+	QSaveFile file(m_filename);
+	if (!file.open(QSaveFile::WriteOnly | QSaveFile::Truncate)) {
 		return false;
 	}
 
@@ -72,32 +65,28 @@ bool DocumentWriter::write()
 	} else if (m_type == "docx") {
 		DocxWriter writer;
 		saved = writer.write(&file, m_document);
-	} else {
-		if (m_type == "rtf") {
-			RtfWriter writer(m_encoding);
-			if (m_encoding.isEmpty()) {
-				m_encoding = writer.encoding();
-			}
-			saved = writer.write(&file, m_document);
-		} else {
-			QTextStream stream(&file);
-			QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
-			stream.setCodec(encoding);
-			if (m_write_bom || (encoding != "UTF-8")) {
-				stream.setGenerateByteOrderMark(true);
-			}
-			stream << m_document->toPlainText();
-			saved = true;
+	} else if (m_type == "rtf") {
+		RtfWriter writer(m_encoding);
+		if (m_encoding.isEmpty()) {
+			m_encoding = writer.encoding();
 		}
-
-#if defined(Q_OS_UNIX)
-		saved &= (fsync(file.handle()) == 0);
-#elif defined(Q_OS_WIN)
-		saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
-#endif
-		saved &= (file.error() == QFile::NoError);
+		saved = writer.write(&file, m_document);
+	} else {
+		QTextStream stream(&file);
+		QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
+		stream.setCodec(encoding);
+		if (m_write_bom || (encoding != "UTF-8")) {
+			stream.setGenerateByteOrderMark(true);
+		}
+		stream << m_document->toPlainText();
+		saved = true;
 	}
-	file.close();
+
+	if (saved) {
+		saved = file.commit();
+	} else {
+		file.cancelWriting();
+	}
 
 	return saved;
 }
