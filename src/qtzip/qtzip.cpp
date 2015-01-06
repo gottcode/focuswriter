@@ -303,6 +303,9 @@ static QDateTime readMSDosDate(const uchar *src)
 
 // for details, see http://www.pkware.com/documents/casestudies/APPNOTE.TXT
 
+namespace
+{
+
 enum HostOS {
     HostFAT      = 0,
     HostAMIGA    = 1,
@@ -424,6 +427,8 @@ struct FileHeader
     QByteArray extra_field;
     QByteArray file_comment;
 };
+
+}
 
 QtZipReader::FileInfo::FileInfo()
     : isDir(false), isFile(false), isSymLink(false), crc(0), size(0)
