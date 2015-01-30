@@ -52,12 +52,19 @@ ActionManager::ActionManager(QWidget* parent) :
 	}
 
 	// Load symbol shortcuts
-	QVariantHash shortcuts;
-	shortcuts.insert("2014", "Ctrl+-");
-	shortcuts.insert("2019", "Ctrl+Shift+=");
-	shortcuts.insert("2022", "Ctrl+*");
-	shortcuts.insert("2026", "Ctrl+.");
-	shortcuts = QSettings().value("SymbolsDialog/Shortcuts", shortcuts).toHash();
+	QVariantHash defshortcuts;
+	defshortcuts.insert("2014", "Ctrl+-");
+	defshortcuts.insert("2019", "Ctrl+Shift+=");
+	defshortcuts.insert("2022", "Ctrl+*");
+	defshortcuts.insert("2026", "Ctrl+.");
+	QVariantHash shortcuts = QSettings().value("SymbolsDialog/Shortcuts", defshortcuts).toHash();
+	QHashIterator<QString, QVariant> defiter(defshortcuts);
+	while (defiter.hasNext()) {
+		defiter.next();
+		if (!shortcuts.contains(defiter.key())) {
+			shortcuts.insert(defiter.key(), defiter.value());
+		}
+	}
 	QHashIterator<QString, QVariant> iter(shortcuts);
 	while (iter.hasNext()) {
 		iter.next();
