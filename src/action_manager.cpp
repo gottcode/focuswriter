@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,6 +54,7 @@ ActionManager::ActionManager(QWidget* parent) :
 	// Load symbol shortcuts
 	QVariantHash shortcuts;
 	shortcuts.insert("2014", "Ctrl+-");
+	shortcuts.insert("2019", "Ctrl+Shift+=");
 	shortcuts.insert("2022", "Ctrl+*");
 	shortcuts.insert("2026", "Ctrl+.");
 	shortcuts = QSettings().value("SymbolsDialog/Shortcuts", shortcuts).toHash();
