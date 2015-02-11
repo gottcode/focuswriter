@@ -1,3 +1,11 @@
+focuswriter (1.5.3-2) unstable; urgency=medium
+
+  * Scrape bit rot off debian/watch
+  * Bumps standards version, no changes required
+  * Gentler mechanism for specifying qt5
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Wed, 11 Feb 2015 21:34:10 +0000
+
 focuswriter (1.5.3-1) unstable; urgency=medium
 
   * New upstream release
