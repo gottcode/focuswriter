@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,10 +40,16 @@ public:
 		return m_error;
 	}
 
+	void setFlatXML(bool flat);
+
 	bool write(QIODevice* device, const QTextDocument* document);
 
 private:
+	bool writeCompressed(QIODevice* device, const QTextDocument* document);
+	bool writeUncompressed(QIODevice* device, const QTextDocument* document);
 	QByteArray writeDocument(const QTextDocument* document);
+	QByteArray writeStylesDocument(const QTextDocument* document);
+	void writeStyles(const QTextDocument* document);
 	void writeAutomaticStyles(const QTextDocument* document);
 	bool writeParagraphStyle(const QTextBlockFormat& format, const QString& name);
 	bool writeTextStyle(const QTextCharFormat& format, const QString& name);
@@ -53,6 +59,7 @@ private:
 	QXmlStreamWriter m_xml;
 	QHash<int, QString> m_styles;
 	QString m_error;
+	bool m_flat;
 };
 
 #endif

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,13 +29,32 @@
 
 //-----------------------------------------------------------------------------
 
-OdtWriter::OdtWriter()
+OdtWriter::OdtWriter() :
+	m_flat(false)
 {
 }
 
 //-----------------------------------------------------------------------------
 
+void OdtWriter::setFlatXML(bool flat)
+{
+	m_flat = flat;
+}
+
+//-----------------------------------------------------------------------------
+
 bool OdtWriter::write(QIODevice* device, const QTextDocument* document)
+{
+	if (!m_flat) {
+		return writeCompressed(device, document);
+	} else {
+		return writeUncompressed(device, document);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+bool OdtWriter::writeCompressed(QIODevice* device, const QTextDocument* document)
 {
 	QtZip::QtZipWriter zip(device);
 	if (zip.status() != QtZip::QtZipWriter::NoError) {
@@ -59,40 +78,40 @@ bool OdtWriter::write(QIODevice* device, const QTextDocument* document)
 		writeDocument(document));
 
 	zip.addFile(QString::fromLatin1("styles.xml"),
-		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-		"<office:document-styles "
-		"xmlns:office=\"urn:oasis:names:tc:opendocument:xmlns:office:1.0\" "
-		"xmlns:style=\"urn:oasis:names:tc:opendocument:xmlns:style:1.0\" "
-		"xmlns:fo=\"urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0\" "
-		"office:version=\"1.2\">\n"
-		" <office:styles>\n"
-		"  <style:style style:name=\"Normal\" style:display-name=\"Normal\" style:family=\"paragraph\">\n"
-		"   <style:text-properties fo:font-size=\"12pt\" fo:font-weight=\"normal\"/>\n"
-		"  </style:style>\n"
-		"  <style:style style:name=\"Heading-1\" style:display-name=\"Heading 1\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"1\">\n"
-		"   <style:text-properties fo:font-size=\"18pt\" fo:font-weight=\"bold\"/>\n"
-		"  </style:style>\n"
-		"  <style:style style:name=\"Heading-2\" style:display-name=\"Heading 2\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"2\">\n"
-		"   <style:text-properties fo:font-size=\"16pt\" fo:font-weight=\"bold\"/>\n"
-		"  </style:style>\n"
-		"  <style:style style:name=\"Heading-3\" style:display-name=\"Heading 3\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"3\">\n"
-		"   <style:text-properties fo:font-size=\"14pt\" fo:font-weight=\"bold\"/>\n"
-		"  </style:style>\n"
-		"  <style:style style:name=\"Heading-4\" style:display-name=\"Heading 4\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"4\">\n"
-		"   <style:text-properties fo:font-size=\"12pt\" fo:font-weight=\"bold\"/>\n"
-		"  </style:style>\n"
-		"  <style:style style:name=\"Heading-5\" style:display-name=\"Heading 5\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"5\">\n"
-		"   <style:text-properties fo:font-size=\"10pt\" fo:font-weight=\"bold\"/>\n"
-		"  </style:style>\n"
-		"  <style:style style:name=\"Heading-6\" style:display-name=\"Heading 6\" style:family=\"paragraph\" style:parent-style-name=\"Normal\" style:next-style-name=\"Normal\" style:default-outline-level=\"6\">\n"
-		"   <style:text-properties fo:font-size=\"8pt\" fo:font-weight=\"bold\"/>\n"
-		"  </style:style>\n"
-		" </office:styles>\n"
-		"</office:document-styles>\n");
+		writeStylesDocument(document));
 
 	zip.close();
 
 	return zip.status() == QtZip::QtZipWriter::NoError;
+}
+
+//-----------------------------------------------------------------------------
+
+bool OdtWriter::writeUncompressed(QIODevice* device, const QTextDocument* document)
+{
+	m_xml.setDevice(device);
+	m_xml.setCodec("UTF-8");
+	m_xml.setAutoFormatting(true);
+	m_xml.setAutoFormattingIndent(1);
+
+	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:office:1.0"), QString::fromLatin1("office"));
+	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:style:1.0"), QString::fromLatin1("style"));
+	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:text:1.0"), QString::fromLatin1("text"));
+	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"), QString::fromLatin1("fo"));
+
+	m_xml.writeStartDocument();
+	m_xml.writeStartElement(QString::fromLatin1("office:document"));
+	m_xml.writeAttribute(QString::fromLatin1("office:mimetype"), QString::fromLatin1("application/vnd.oasis.opendocument.text"));
+	m_xml.writeAttribute(QString::fromLatin1("office:version"), QString::fromLatin1("1.2"));
+
+	writeStyles(document);
+	writeAutomaticStyles(document);
+	writeBody(document);
+
+	m_xml.writeEndElement();
+	m_xml.writeEndDocument();
+
+	return !m_xml.hasError();
 }
 
 //-----------------------------------------------------------------------------
@@ -125,6 +144,72 @@ QByteArray OdtWriter::writeDocument(const QTextDocument* document)
 
 	buffer.close();
 	return data;
+}
+
+//-----------------------------------------------------------------------------
+
+QByteArray OdtWriter::writeStylesDocument(const QTextDocument* document)
+{
+	QByteArray data;
+	QBuffer buffer(&data);
+	buffer.open(QIODevice::WriteOnly);
+
+	m_xml.setDevice(&buffer);
+	m_xml.setCodec("UTF-8");
+	m_xml.setAutoFormatting(true);
+	m_xml.setAutoFormattingIndent(1);
+
+	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:office:1.0"), QString::fromLatin1("office"));
+	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:style:1.0"), QString::fromLatin1("style"));
+	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"), QString::fromLatin1("fo"));
+
+	m_xml.writeStartDocument();
+	m_xml.writeStartElement(QString::fromLatin1("document-styles"));
+	m_xml.writeAttribute(QString::fromLatin1("office:version"), QString::fromLatin1("1.2"));
+
+	writeStyles(document);
+
+	m_xml.writeEndElement();
+	m_xml.writeEndDocument();
+
+	buffer.close();
+	return data;
+}
+
+//-----------------------------------------------------------------------------
+
+void OdtWriter::writeStyles(const QTextDocument*)
+{
+	static const std::vector<std::vector<QString>> styles = {
+		{"Normal", "Normal", "0", "12pt", "normal"},
+		{"Heading-1", "Heading 1", "1", "18pt", "bold"},
+		{"Heading-2", "Heading 2", "2", "16pt", "bold"},
+		{"Heading-3", "Heading 3", "3", "14pt", "bold"},
+		{"Heading-4", "Heading 4", "4", "12pt", "bold"},
+		{"Heading-5", "Heading 5", "5", "10pt", "bold"},
+		{"Heading-6", "Heading 6", "6", "8pt", "bold"}
+	};
+
+	m_xml.writeStartElement("office:styles");
+	for (const auto& style : styles) {
+		m_xml.writeStartElement("style:style");
+		m_xml.writeAttribute("style:name", style[0]);
+		m_xml.writeAttribute("style:display-name", style[1]);
+		m_xml.writeAttribute("style:family", "paragraph");
+		if (style[0] != "Normal") {
+			m_xml.writeAttribute("style:parent-style-name", "Normal");
+			m_xml.writeAttribute("style:next-style-name", "Normal");
+			m_xml.writeAttribute("style:default-outline-level", style[2]);
+		}
+
+		m_xml.writeStartElement("style:text-properties");
+		m_xml.writeAttribute("fo:font-size", style[3]);
+		m_xml.writeAttribute("fo:font-weight", style[4]);
+		m_xml.writeEndElement();
+
+		m_xml.writeEndElement();
+	}
+	m_xml.writeEndElement();
 }
 
 //-----------------------------------------------------------------------------

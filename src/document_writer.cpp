@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,6 +61,10 @@ bool DocumentWriter::write()
 
 	if (m_type == "odt") {
 		OdtWriter writer;
+		saved = writer.write(&file, m_document);
+	} else if (m_type == "fodt") {
+		OdtWriter writer;
+		writer.setFlatXML(true);
 		saved = writer.write(&file, m_document);
 	} else if (m_type == "docx") {
 		DocxWriter writer;
