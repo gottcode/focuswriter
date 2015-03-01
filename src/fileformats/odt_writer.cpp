@@ -158,13 +158,15 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	}
 
 	// Write text styles
-	int text_style = 0;
+	int text_style = 1;
 	for (int i = 0; i < text_styles.size(); ++i) {
 		int index = text_styles.at(i);
 		const QTextFormat& format = formats.at(index);
-		QString name = QString::fromLatin1("T") + QString::number(++text_style);
-		m_styles.insert(index, name);
-		writeTextStyle(format.toCharFormat(), name);
+		QString name = QString::fromLatin1("T") + QString::number(text_style);
+		if (writeTextStyle(format.toCharFormat(), name)) {
+			m_styles.insert(index, name);
+			++text_style;
+		}
 	}
 
 	// Write paragraph styles
@@ -216,34 +218,42 @@ void OdtWriter::writeParagraphStyle(const QTextBlockFormat& format, const QStrin
 
 //-----------------------------------------------------------------------------
 
-void OdtWriter::writeTextStyle(const QTextCharFormat& format, const QString& name)
+bool OdtWriter::writeTextStyle(const QTextCharFormat& format, const QString& name)
 {
+	QXmlStreamAttributes attributes;
+	if (format.fontWeight() == QFont::Bold) {
+		attributes.append(QString::fromLatin1("fo:font-weight"), QString::fromLatin1("bold"));
+	}
+	if (format.fontItalic()) {
+		attributes.append(QString::fromLatin1("fo:font-style"), QString::fromLatin1("italic"));
+	}
+	if (format.fontUnderline()) {
+		attributes.append(QString::fromLatin1("style:text-underline-type"), QString::fromLatin1("single"));
+		attributes.append(QString::fromLatin1("style:text-underline-style"), QString::fromLatin1("solid"));
+	}
+	if (format.fontStrikeOut()) {
+		attributes.append(QString::fromLatin1("style:text-line-through-type"), QString::fromLatin1("single"));
+	}
+	if (format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
+		attributes.append(QString::fromLatin1("style:text-position"), QString::fromLatin1("super"));
+	} else if (format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
+		attributes.append(QString::fromLatin1("style:text-position"), QString::fromLatin1("sub"));
+	}
+
+	if (attributes.isEmpty()) {
+		return false;
+	}
+
 	m_xml.writeStartElement(QString::fromLatin1("style:style"));
 	m_xml.writeAttribute(QString::fromLatin1("style:name"), name);
 	m_xml.writeAttribute(QString::fromLatin1("style:family"), QString::fromLatin1("text"));
 
 	m_xml.writeEmptyElement(QString::fromLatin1("style:text-properties"));
-
-	if (format.fontWeight() == QFont::Bold) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:font-weight"), QString::fromLatin1("bold"));
-	}
-	if (format.fontItalic()) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:font-style"), QString::fromLatin1("italic"));
-	}
-	if (format.fontUnderline()) {
-		m_xml.writeAttribute(QString::fromLatin1("style:text-underline-type"), QString::fromLatin1("single"));
-		m_xml.writeAttribute(QString::fromLatin1("style:text-underline-style"), QString::fromLatin1("solid"));
-	}
-	if (format.fontStrikeOut()) {
-		m_xml.writeAttribute(QString::fromLatin1("style:text-line-through-type"), QString::fromLatin1("single"));
-	}
-	if (format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
-		m_xml.writeAttribute(QString::fromLatin1("style:text-position"), QString::fromLatin1("super"));
-	} else if (format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
-		m_xml.writeAttribute(QString::fromLatin1("style:text-position"), QString::fromLatin1("sub"));
-	}
+	m_xml.writeAttributes(attributes);
 
 	m_xml.writeEndElement();
+
+	return true;
 }
 
 //-----------------------------------------------------------------------------
