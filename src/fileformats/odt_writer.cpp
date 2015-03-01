@@ -170,13 +170,17 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	}
 
 	// Write paragraph styles
-	int paragraph_style = 0;
+	int paragraph_style = 1;
 	for (int i = 0; i < paragraph_styles.size(); ++i) {
 		int index = paragraph_styles.at(i);
 		const QTextFormat& format = formats.at(index);
-		QString name = QString::fromLatin1("P") + QString::number(++paragraph_style);
-		m_styles.insert(index, name);
-		writeParagraphStyle(format.toBlockFormat(), name);
+		QString name = QString::fromLatin1("P") + QString::number(paragraph_style);
+		if (writeParagraphStyle(format.toBlockFormat(), name)) {
+			m_styles.insert(index, name);
+			++paragraph_style;
+		} else {
+			m_styles.insert(index, "Normal");
+		}
 	}
 
 	m_xml.writeEndElement();
@@ -184,36 +188,43 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 
 //-----------------------------------------------------------------------------
 
-void OdtWriter::writeParagraphStyle(const QTextBlockFormat& format, const QString& name)
+bool OdtWriter::writeParagraphStyle(const QTextBlockFormat& format, const QString& name)
 {
+	QXmlStreamAttributes attributes;
+	bool rtl = format.layoutDirection() == Qt::RightToLeft;
+	if (rtl) {
+		attributes.append(QString::fromLatin1("style:writing-mode"), QString::fromLatin1("rl"));
+	}
+
+	Qt::Alignment align = format.alignment();
+	if (rtl && (align & Qt::AlignLeft)) {
+		attributes.append(QString::fromLatin1("fo:text-align"), QString::fromLatin1("left"));
+	} else if (align & Qt::AlignRight) {
+		attributes.append(QString::fromLatin1("fo:text-align"), QString::fromLatin1("right"));
+	} else if (align & Qt::AlignCenter) {
+		attributes.append(QString::fromLatin1("fo:text-align"), QString::fromLatin1("center"));
+	} else if (align & Qt::AlignJustify) {
+		attributes.append(QString::fromLatin1("fo:text-align"), QString::fromLatin1("justify"));
+	}
+
+	if (format.indent() > 0) {
+		attributes.append(QString::fromLatin1("fo:margin-left"), QString::number(format.indent() * 0.5) + QString::fromLatin1("in"));
+	}
+
+	if (attributes.isEmpty()) {
+		return false;
+	}
+
 	m_xml.writeStartElement(QString::fromLatin1("style:style"));
 	m_xml.writeAttribute(QString::fromLatin1("style:name"), name);
 	m_xml.writeAttribute(QString::fromLatin1("style:family"), QString::fromLatin1("paragraph"));
 	m_xml.writeAttribute(QString::fromLatin1("style:parent-style-name"), QString::fromLatin1("Normal"));
 
 	m_xml.writeEmptyElement(QString::fromLatin1("style:paragraph-properties"));
-
-	bool rtl = format.layoutDirection() == Qt::RightToLeft;
-	if (rtl) {
-		m_xml.writeAttribute(QString::fromLatin1("style:writing-mode"), QString::fromLatin1("rl"));
-	}
-
-	Qt::Alignment align = format.alignment();
-	if (rtl && (align & Qt::AlignLeft)) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:text-align"), QString::fromLatin1("left"));
-	} else if (align & Qt::AlignRight) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:text-align"), QString::fromLatin1("right"));
-	} else if (align & Qt::AlignCenter) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:text-align"), QString::fromLatin1("center"));
-	} else if (align & Qt::AlignJustify) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:text-align"), QString::fromLatin1("justify"));
-	}
-
-	if (format.indent() > 0) {
-		m_xml.writeAttribute(QString::fromLatin1("fo:margin-left"), QString::number(format.indent() * 0.5) + QString::fromLatin1("in"));
-	}
-
+	m_xml.writeAttributes(attributes);
 	m_xml.writeEndElement();
+
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -250,7 +261,6 @@ bool OdtWriter::writeTextStyle(const QTextCharFormat& format, const QString& nam
 
 	m_xml.writeEmptyElement(QString::fromLatin1("style:text-properties"));
 	m_xml.writeAttributes(attributes);
-
 	m_xml.writeEndElement();
 
 	return true;

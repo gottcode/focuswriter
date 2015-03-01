@@ -45,7 +45,7 @@ public:
 private:
 	QByteArray writeDocument(const QTextDocument* document);
 	void writeAutomaticStyles(const QTextDocument* document);
-	void writeParagraphStyle(const QTextBlockFormat& format, const QString& name);
+	bool writeParagraphStyle(const QTextBlockFormat& format, const QString& name);
 	bool writeTextStyle(const QTextCharFormat& format, const QString& name);
 	void writeBody(const QTextDocument* document);
 
