@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,8 +37,31 @@ OdtReader::OdtReader() :
 
 bool OdtReader::canRead(QIODevice* device)
 {
-	return QtZip::QtZipReader::canRead(device) &&
-			(device->peek(77).right(47) == "mimetypeapplication/vnd.oasis.opendocument.text");
+	QByteArray data = device->peek(77);
+	if (QtZip::QtZipReader::canRead(device) && (data.right(47) == "mimetypeapplication/vnd.oasis.opendocument.text")) {
+		return true;
+	} else {
+		data = data.trimmed();
+		if (!data.startsWith("<?xml")) {
+			return false;
+		}
+
+		int index = data.indexOf("?>");
+		if (index == -1) {
+			return false;
+		}
+
+		int tagindex = data.indexOf("<", index);
+		if (tagindex == -1) {
+			return false;
+		}
+
+		index = data.indexOf("<office:document", index);
+		if (index != tagindex) {
+			return false;
+		}
+	}
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -48,6 +71,19 @@ void OdtReader::readData(QIODevice* device)
 	m_in_block = m_cursor.document()->blockCount();
 	m_block_format = m_cursor.blockFormat();
 
+	if (QtZip::QtZipReader::canRead(device)) {
+		readDataCompressed(device);
+	} else {
+		readDataUncompressed(device);
+	}
+
+	QCoreApplication::processEvents();
+}
+
+//-----------------------------------------------------------------------------
+
+void OdtReader::readDataCompressed(QIODevice* device)
+{
 	// Open archive
 	QtZip::QtZipReader zip(device);
 
@@ -73,8 +109,17 @@ void OdtReader::readData(QIODevice* device)
 
 	// Close archive
 	zip.close();
+}
 
-	QCoreApplication::processEvents();
+//-----------------------------------------------------------------------------
+
+void OdtReader::readDataUncompressed(QIODevice* device)
+{
+	m_xml.setDevice(device);
+	readDocument();
+	if (m_xml.hasError()) {
+		m_error = m_xml.errorString();
+	}
 }
 
 //-----------------------------------------------------------------------------

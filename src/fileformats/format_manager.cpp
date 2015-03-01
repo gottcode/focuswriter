@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ FormatReader* FormatManager::createReader(QIODevice* device, const QString& type
 	FormatReader* reader = 0;
 
 	// Try file extension first
-	if (type == "odt") {
+	if (type == "odt" || type == "fodt") {
 		if (OdtReader::canRead(device)) {
 			reader = new OdtReader;
 		}
@@ -69,6 +69,8 @@ QString FormatManager::filter(const QString& type)
 {
 	if (type == "odt") {
 		return tr("OpenDocument Text") + QLatin1String(" (*.odt)");
+	} else if (type == "fodt") {
+		return tr("OpenDocument Flat XML") + QLatin1String(" (*.fodt)");
 	} else if (type == "docx") {
 		return tr("Office Open XML") + QLatin1String(" (*.docx)");
 	} else if (type == "rtf") {
@@ -86,6 +88,7 @@ QStringList FormatManager::filters(const QString& type)
 {
 	static const QStringList default_filters = QStringList()
 			<< filter("odt")
+			<< filter("fodt")
 			<< filter("docx")
 			<< filter("rtf")
 			<< filter("txt")
@@ -93,17 +96,19 @@ QStringList FormatManager::filters(const QString& type)
 
 	QStringList result = default_filters;
 	if (!type.isEmpty()) {
-		if (type == "docx") {
+		if (type == "fodt") {
 			result.move(1, 0);
-		} else if (type == "rtf") {
+		} else if (type == "docx") {
 			result.move(2, 0);
-		} else if ((type == "txt") || (type == "text")) {
+		} else if (type == "rtf") {
 			result.move(3, 0);
-		} else if (type != "odt") {
+		} else if ((type == "txt") || (type == "text")) {
 			result.move(4, 0);
+		} else if (type != "odt") {
+			result.move(5, 0);
 		}
 	} else {
-		result.prepend(tr("All Supported Files") + QLatin1String(" (*.docx *.odt *.rtf *.txt *.text)"));
+		result.prepend(tr("All Supported Files") + QLatin1String(" (*.docx *.fodt *.odt *.rtf *.txt *.text)"));
 	}
 	return result;
 }
@@ -113,14 +118,14 @@ QStringList FormatManager::filters(const QString& type)
 bool FormatManager::isRichText(const QString& filename)
 {
 	QString type = filename.section(QLatin1Char('.'), -1).toLower();
-	return (type == "odt") || (type == "docx") || (type == "rtf");
+	return (type == "odt") || (type == "fodt") || (type == "docx") || (type == "rtf");
 }
 
 //-----------------------------------------------------------------------------
 
 QStringList FormatManager::types()
 {
-	return QStringList() << "odt" << "docx" << "rtf" << "txt";
+	return QStringList() << "odt" << "fodt" << "docx" << "rtf" << "txt";
 }
 
 //-----------------------------------------------------------------------------

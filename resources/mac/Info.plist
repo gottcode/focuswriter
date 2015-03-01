@@ -36,6 +36,22 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>fodt</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/xml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>text.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>OpenDocument Text (Flat XML) document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Microsoft Word 2007 document</string>
 			<key>CFBundleTypeRole</key>
