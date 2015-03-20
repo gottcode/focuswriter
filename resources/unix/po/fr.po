@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-05 11:50+0000\n"
+"POT-Creation-Date: 2014-11-14 20:43+0000\n"
 "PO-Revision-Date: 2014-07-04 15:09+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/focuswriter/"
@@ -19,11 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../focuswriter.appdata.xml.in.h:1
+#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
 msgstr "Traitement de texte plein écran"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -35,7 +39,7 @@ msgstr ""
 "de l'écran, ce qui confère au programme un aspect convivial tout en restant "
 "discret afin que vous puissiez vous plonger dans votre travail."
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -48,7 +52,7 @@ msgstr ""
 "jour à la volée, des objectifs quotidiens, l'ouverture de documents "
 "multiples, une vérification orthographique, et bien plus encore."
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in.h:5
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -57,10 +61,6 @@ msgstr ""
 "De plus, lorsque vous lancez le programme, votre travail en cours sera "
 "automatiquement chargé et vous vous retrouverez là où vous vous étiez "
 "arrêté, de sorte que vous puissiez immédiament vous remettre à l'ouvrage."
-
-#: ../focuswriter.desktop.in.h:1
-msgid "FocusWriter"
-msgstr "FocusWriter"
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"

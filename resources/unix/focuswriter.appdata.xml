@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-  <id type="desktop">focuswriter.desktop</id>
-  <licence>CC0</licence>
+<component type="desktop">
+  <id>focuswriter.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>FocusWriter</name>
+  <name xml:lang="cs">FocusWriter</name>
+  <name xml:lang="da">FocusWriter</name>
+  <name xml:lang="de">FocusWriter</name>
+  <name xml:lang="el">FocusWriter</name>
+  <name xml:lang="en_GB">FocusWriter</name>
+  <name xml:lang="es">FocusWriter</name>
+  <name xml:lang="es_MX">FocusWriter</name>
+  <name xml:lang="fi">FocusWriter</name>
+  <name xml:lang="fr">FocusWriter</name>
+  <name xml:lang="he">FocusWriter</name>
+  <name xml:lang="hu">FocusWriter</name>
+  <name xml:lang="hy">FocusWriter</name>
+  <name xml:lang="id">FocusWriter</name>
+  <name xml:lang="ja">FocusWriter</name>
+  <name xml:lang="ko">포커스 라이터</name>
+  <name xml:lang="nl">FocusWriter</name>
+  <name xml:lang="pl">FocusWriter</name>
+  <name xml:lang="pt">FocusWriter</name>
+  <name xml:lang="pt_BR">FocusWriter</name>
+  <name xml:lang="ro">FocusWriter</name>
+  <name xml:lang="sr">FocusWriter</name>
+  <name xml:lang="sv">FocusWriter</name>
+  <name xml:lang="tr">FocusWriter</name>
+  <name xml:lang="vi">FocusWriter</name>
+  <name xml:lang="zh_CN">FocusWriter</name>
   <summary>Fullscreen word processor</summary>
   <summary xml:lang="cs">Textový procesor v režimu na celou obrazovku</summary>
   <summary xml:lang="de">Vollbild-Textverarbeitungsprogramm</summary>
@@ -73,7 +100,16 @@
     <p xml:lang="zh_CN">另外，打开软件后会自动跳到上次编辑的位置，让您立刻继续投入工作</p>
   </description>
   <screenshots>
-    <screenshot type="default" width="1280" height="720">http://gottcode.org/focuswriter/screenshots/appdata.png</screenshot>
+    <screenshot type="default">
+      <image>http://gottcode.org/focuswriter/screenshots/appdata.png</image>
+    </screenshot>
   </screenshots>
   <url type="homepage">http://gottcode.org/focuswriter/</url>
-</application>
+  <url type="bugtracker">http://gottcode.org/focuswriter/bugs/</url>
+  <url type="donation">http://gottcode.org/tip/</url>
+  <developer_name>Graeme Gott</developer_name>
+  <updatecontact>graeme@gottcode.org</updatecontact>
+  <provides>
+    <binary>focuswriter</binary>
+  </provides>
+</component>
