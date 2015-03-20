@@ -1,3 +1,12 @@
+focuswriter (1.5.3-3) unstable; urgency=medium
+
+  * Merge upstream fixes:
+    - 76b99d0 FIXED: Crash when importing themes.
+    - ca223c5 Update format of appdata.
+    - 8f6e993 Update appdata file.
+  
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 20 Mar 2015 10:29:46 +0000
+
 focuswriter (1.5.3-2) unstable; urgency=medium
 
   * Scrape bit rot off debian/watch
