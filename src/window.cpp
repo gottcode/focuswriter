@@ -349,9 +349,7 @@ Window::Window(const QStringList& command_line_files) :
 	QString session = settings.value("SessionManager/Session").toString();
 	if (files.isEmpty() && !command_line_files.isEmpty()) {
 		session.clear();
-		settings.setValue("Save/Current", command_line_files);
-		settings.setValue("Save/Positions", QStringList());
-		settings.setValue("Save/Active", 0);
+		settings.setValue("Save/Current", settings.value("Save/Current").toStringList() + command_line_files);
 	}
 	m_sessions->setCurrent(session, files, datafiles);
 
