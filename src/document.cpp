@@ -622,15 +622,19 @@ void Document::checkSpelling()
 void Document::print(QPrinter* printer)
 {
 	QPrintDialog dialog(printer, this);
-	if (dialog.exec() == QDialog::Accepted) {
-		bool enabled = m_highlighter->enabled();
-		m_highlighter->setEnabled(false);
-		m_text->print(printer);
-		if (enabled) {
-			m_highlighter->setEnabled(true);
-		}
-		printer->setFromTo(0, 0);
+	if (dialog.exec() != QDialog::Accepted) {
+		return;
 	}
+
+	// Clone document
+	QTextDocument* document = m_text->document()->clone();
+
+	// Print document
+	document->print(printer);
+	delete document;
+
+	// Reset pages
+	printer->setFromTo(0, 0);
 }
 
 //-----------------------------------------------------------------------------
