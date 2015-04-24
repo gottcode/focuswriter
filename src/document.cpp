@@ -629,6 +629,18 @@ void Document::print(QPrinter* printer)
 	// Clone document
 	QTextDocument* document = m_text->document()->clone();
 
+	// Apply spacings
+	const int tab_width = (document->indentWidth() / 96.0) * printer->resolution();
+	QTextBlockFormat block_format;
+	block_format.setTextIndent(tab_width);
+	for (int i = 0, count = document->allFormats().count(); i < count; ++i) {
+		QTextFormat& f = document->allFormats()[i];
+		if (f.isBlockFormat()) {
+			f.merge(block_format);
+		}
+	}
+	document->setIndentWidth(tab_width);
+
 	// Apply headings
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
