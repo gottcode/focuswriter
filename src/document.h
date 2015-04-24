@@ -36,6 +36,7 @@ class Theme;
 #include <QWidget>
 class QGridLayout;
 class QScrollBar;
+class QPrinter;
 class QTextEdit;
 class QTimer;
 
@@ -69,7 +70,7 @@ public:
 	void reload(bool prompt = true);
 	void close();
 	void checkSpelling();
-	void print();
+	void print(QPrinter* printer);
 	bool loadFile(const QString& filename, int position);
 	void loadTheme(const Theme& theme, const QBrush& foreground);
 	void loadPreferences();

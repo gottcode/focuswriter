@@ -40,6 +40,7 @@
 #include <QMessageBox>
 #include <QPainter>
 #include <QPaintEvent>
+#include <QPrinter>
 #include <QStackedWidget>
 #include <QTextBlock>
 #include <QTextCursor>
@@ -77,6 +78,17 @@ Stack::Stack(QWidget* parent) :
 
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
+
+	m_printer = new QPrinter(QPrinter::HighResolution);
+#if (QT_VERSION >= QT_VERSION_CHECK(5,3,0))
+	m_printer->setPageSize(QPageSize(QPageSize::Letter));
+	m_printer->setPageOrientation(QPageLayout::Portrait);
+	m_printer->setPageMargins(QMarginsF(1.0, 1.0, 1.0, 1.0), QPageLayout::Inch);
+#else
+	m_printer->setPageSize(QPrinter::Letter);
+	m_printer->setOrientation(QPrinter::Portrait);
+	m_printer->setPageMargins(1.0, 1.0, 1.0, 1.0, QPrinter::Inch);
+#endif
 
 	connect(ActionManager::instance(), SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 
@@ -118,6 +130,8 @@ Stack::Stack(QWidget* parent) :
 Stack::~Stack()
 {
 	m_theme_renderer->wait();
+
+	delete m_printer;
 }
 
 //-----------------------------------------------------------------------------
@@ -383,7 +397,7 @@ void Stack::pasteUnformatted()
 
 void Stack::print()
 {
-	m_current_document->print();
+	m_current_document->print(m_printer);
 }
 
 //-----------------------------------------------------------------------------

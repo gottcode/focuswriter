@@ -619,19 +619,17 @@ void Document::checkSpelling()
 
 //-----------------------------------------------------------------------------
 
-void Document::print()
+void Document::print(QPrinter* printer)
 {
-	QPrinter printer;
-	printer.setPageSize(QPrinter::Letter);
-	printer.setPageMargins(0.5, 0.5, 0.5, 0.5, QPrinter::Inch);
-	QPrintDialog dialog(&printer, this);
+	QPrintDialog dialog(printer, this);
 	if (dialog.exec() == QDialog::Accepted) {
 		bool enabled = m_highlighter->enabled();
 		m_highlighter->setEnabled(false);
-		m_text->print(&printer);
+		m_text->print(printer);
 		if (enabled) {
 			m_highlighter->setEnabled(true);
 		}
+		printer->setFromTo(0, 0);
 	}
 }
 

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@ class ThemeRenderer;
 class QActionGroup;
 class QGridLayout;
 class QMenu;
+class QPrinter;
 class QStackedWidget;
 
 class Stack : public QWidget
@@ -144,6 +145,7 @@ private:
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
 	SymbolsDialog* m_symbols_dialog;
+	QPrinter* m_printer;
 
 	QStackedWidget* m_contents;
 	QList<Document*> m_documents;
