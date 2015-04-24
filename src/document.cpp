@@ -629,6 +629,23 @@ void Document::print(QPrinter* printer)
 	// Clone document
 	QTextDocument* document = m_text->document()->clone();
 
+	// Apply headings
+	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
+		const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+		if (!heading) {
+			continue;
+		}
+
+		QTextCharFormat format = block.charFormat();
+		format.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
+		format.setFontWeight(QFont::Bold);
+
+		QTextCursor cursor(document);
+		cursor.setPosition(block.position());
+		cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
+		cursor.mergeCharFormat(format);
+	}
+
 	// Print document
 	document->print(printer);
 	delete document;
