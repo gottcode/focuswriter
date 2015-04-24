@@ -95,6 +95,7 @@ public slots:
 	void increaseIndent();
 	void paste();
 	void pasteUnformatted();
+	void pageSetup();
 	void print();
 	void redo();
 	void reload();

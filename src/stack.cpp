@@ -38,6 +38,7 @@
 #include <QGridLayout>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPageSetupDialog>
 #include <QPainter>
 #include <QPaintEvent>
 #include <QPrinter>
@@ -391,6 +392,14 @@ void Stack::pasteUnformatted()
 {
 	QString text = QApplication::clipboard()->text(QClipboard::Clipboard);
 	m_current_document->text()->insertPlainText(text);
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::pageSetup()
+{
+	QPageSetupDialog dialog(m_printer, this);
+	dialog.exec();
 }
 
 //-----------------------------------------------------------------------------

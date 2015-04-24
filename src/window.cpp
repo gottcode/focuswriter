@@ -1303,6 +1303,7 @@ void Window::initMenus()
 	connect(m_actions["NewSession"], SIGNAL(triggered()), m_sessions, SLOT(newSession()));
 	file_menu->addSeparator();
 	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
+	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, SLOT(pageSetup()));
 	file_menu->addSeparator();
 	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, SLOT(close()), keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
