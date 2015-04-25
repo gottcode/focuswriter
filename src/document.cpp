@@ -42,6 +42,7 @@
 #include "theme.h"
 #include "window.h"
 
+#include <QAbstractTextDocumentLayout>
 #include <QApplication>
 #include <QBuffer>
 #include <QDir>
@@ -619,6 +620,102 @@ void Document::checkSpelling()
 
 //-----------------------------------------------------------------------------
 
+// Copied and modified from QTextDocument
+static void printPage(int index, QPainter *painter, const QTextDocument *doc, const QRectF &body, const QPointF &pageNumberPos)
+{
+	painter->save();
+	painter->translate(body.left(), body.top() - (index - 1) * body.height());
+	QRectF view(0, (index - 1) * body.height(), body.width(), body.height());
+
+	QAbstractTextDocumentLayout *layout = doc->documentLayout();
+	QAbstractTextDocumentLayout::PaintContext ctx;
+
+	painter->setClipRect(view);
+	ctx.clip = view;
+
+	// don't use the system palette text as default text color, on HP/UX
+	// for example that's white, and white text on white paper doesn't
+	// look that nice
+	ctx.palette.setColor(QPalette::Text, Qt::black);
+
+	layout->draw(painter, ctx);
+
+	if (!pageNumberPos.isNull()) {
+		painter->setClipping(false);
+		painter->setFont(QFont(doc->defaultFont()));
+		const QString pageString = QString::number(index);
+
+		painter->drawText(qRound(pageNumberPos.x() - painter->fontMetrics().width(pageString)),
+			qRound(pageNumberPos.y() + view.top()),
+			pageString);
+	}
+
+	painter->restore();
+}
+
+// Copied and modified from QTextDocument
+static void printDocument(QPrinter* printer, QTextDocument* doc)
+{
+	QPainter p(printer);
+
+	// Check that there is a valid device to print to.
+	if (!p.isActive())
+		return;
+
+	// Make sure that there is a layout
+	doc->documentLayout();
+
+	QAbstractTextDocumentLayout *layout = doc->documentLayout();
+	layout->setPaintDevice(p.device());
+
+	int dpiy = p.device()->logicalDpiY();
+	int margin = 0;
+	QTextFrameFormat fmt = doc->rootFrame()->frameFormat();
+	fmt.setMargin(margin);
+	doc->rootFrame()->setFrameFormat(fmt);
+
+	QRectF body = QRectF(0, 0, printer->width(), printer->height());
+	QPointF pageNumberPos = QPointF(body.width() - margin,
+		body.height() - margin
+		+ QFontMetrics(doc->defaultFont(), p.device()).ascent()
+		+ 5 * dpiy / 72.0);
+	doc->setPageSize(body.size());
+
+	int fromPage = printer->fromPage();
+	int toPage = printer->toPage();
+	bool ascending = true;
+
+	if (fromPage == 0 && toPage == 0) {
+		fromPage = 1;
+		toPage = doc->pageCount();
+	}
+	// paranoia check
+	fromPage = qMax(1, fromPage);
+	toPage = qMin(doc->pageCount(), toPage);
+
+	if (toPage < fromPage) {
+		// if the user entered a page range outside the actual number
+		// of printable pages, just return
+		return;
+	}
+
+	int page = fromPage;
+	while (true) {
+		printPage(page, &p, doc, body, pageNumberPos);
+
+		if (page == toPage)
+			break;
+
+		if (ascending)
+			++page;
+		else
+			--page;
+
+		if (!printer->newPage())
+			return;
+	}
+}
+
 void Document::print(QPrinter* printer)
 {
 	QPrintDialog dialog(printer, this);
@@ -659,7 +756,7 @@ void Document::print(QPrinter* printer)
 	}
 
 	// Print document
-	document->print(printer);
+	printDocument(printer, document);
 	delete document;
 
 	// Reset pages
