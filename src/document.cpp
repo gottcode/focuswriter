@@ -669,16 +669,13 @@ static void printDocument(QPrinter* printer, QTextDocument* doc)
 	layout->setPaintDevice(p.device());
 
 	int dpiy = p.device()->logicalDpiY();
-	int margin = 0;
 	QTextFrameFormat fmt = doc->rootFrame()->frameFormat();
-	fmt.setMargin(margin);
+	fmt.setMargin(0);
 	doc->rootFrame()->setFrameFormat(fmt);
 
-	QRectF body = QRectF(0, 0, printer->width(), printer->height());
-	QPointF pageNumberPos = QPointF(body.width() - margin,
-		body.height() - margin
-		+ QFontMetrics(doc->defaultFont(), p.device()).ascent()
-		+ 5 * dpiy / 72.0);
+	qreal pageNumberHeight = QFontMetrics(doc->defaultFont(), p.device()).ascent() + 5 * dpiy / 72.0;
+	QRectF body = QRectF(0, 0, printer->width(), printer->height() - pageNumberHeight);
+	QPointF pageNumberPos = QPointF(body.width(), body.height() + pageNumberHeight);
 	doc->setPageSize(body.size());
 
 	int fromPage = printer->fromPage();
