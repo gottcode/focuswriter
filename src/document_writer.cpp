@@ -23,9 +23,16 @@
 #include "odt_writer.h"
 #include "rtf_writer.h"
 
-#include <QSaveFile>
+#include <QFile>
 #include <QTextDocument>
 #include <QTextStream>
+
+#if defined(Q_OS_UNIX)
+#include <unistd.h>
+#elif defined(Q_OS_WIN)
+#include <windows.h>
+#include <io.h>
+#endif
 
 //-----------------------------------------------------------------------------
 
@@ -54,8 +61,8 @@ bool DocumentWriter::write()
 
 	bool saved = false;
 
-	QSaveFile file(m_filename);
-	if (!file.open(QSaveFile::WriteOnly | QSaveFile::Truncate)) {
+	QFile file(m_filename);
+	if (!file.open(QFile::WriteOnly | QFile::Truncate)) {
 		return false;
 	}
 
@@ -86,11 +93,13 @@ bool DocumentWriter::write()
 		saved = true;
 	}
 
-	if (saved) {
-		saved = file.commit();
-	} else {
-		file.cancelWriting();
-	}
+#if defined(Q_OS_UNIX)
+	saved &= (fsync(file.handle()) == 0);
+#elif defined(Q_OS_WIN)
+	saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
+#endif
+	saved &= (file.error() == QFile::NoError);
+	file.close();
 
 	return saved;
 }
