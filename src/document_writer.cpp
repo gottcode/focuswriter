@@ -73,6 +73,7 @@ bool DocumentWriter::write()
 		DocxWriter writer;
 		saved = writer.write(&file, m_document);
 	} else {
+		file.setTextModeEnabled(true);
 		if (m_type == "rtf") {
 			RtfWriter writer(m_encoding);
 			if (m_encoding.isEmpty()) {
