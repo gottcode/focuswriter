@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #include <QFileInfo>
 #include <QListIterator>
 #include <QRegExp>
+#include <QStandardPaths>
 #include <QStringList>
 #include <QTextCodec>
 
@@ -234,22 +235,11 @@ void DictionaryHunspell::removeFromSession(const QStringList& words)
 DictionaryProviderHunspell::DictionaryProviderHunspell()
 {
 	QStringList dictdirs = QDir::searchPaths("dict");
-#if !defined(Q_OS_MAC) && defined(Q_OS_UNIX)
-	QStringList xdg = QString(qgetenv("XDG_DATA_DIRS")).split(QChar(':'), QString::SkipEmptyParts);
-	if (xdg.isEmpty()) {
-		xdg.append("/usr/local/share");
-		xdg.append("/usr/share");
-	}
-	QStringList subdirs = QStringList() << "/hunspell" << "/myspell/dicts" << "/myspell";
-	for (const QString& subdir : subdirs) {
-		for (const QString& dir : xdg) {
-			QString path = dir + subdir;
-			if (!dictdirs.contains(path)) {
-				dictdirs.append(path);
-			}
-		}
-	}
-#endif
+
+	dictdirs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "hunspell", QStandardPaths::LocateDirectory);
+	dictdirs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "myspell/dicts", QStandardPaths::LocateDirectory);
+	dictdirs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "myspell", QStandardPaths::LocateDirectory);
+
 	QDir::setSearchPaths("dict", dictdirs);
 }
 
