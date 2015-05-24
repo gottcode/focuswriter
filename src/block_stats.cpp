@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ void BlockStats::update(const QString& text)
 	bool word = false;
 	QString::const_iterator end = text.constEnd();
 	for (QString::const_iterator i = text.constBegin(); i != end; ++i) {
-		if (i->isLetterOrNumber() || i->category() == QChar::Punctuation_Dash) {
+		if (i->isLetterOrNumber()) {
 			if (word == false) {
 				word = true;
 				m_words++;
@@ -79,7 +79,7 @@ void BlockStats::update(const QString& text)
 		} else if (i->isSpace()) {
 			word = false;
 			m_spaces++;
-		} else if (*i != 0x2019 && *i != 0x0027) {
+		} else if (*i != 0x2019 && *i != 0x0027 && *i != 0x002d) {
 			word = false;
 		}
 	}
