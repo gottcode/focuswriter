@@ -164,7 +164,7 @@ QByteArray OdtWriter::writeStylesDocument(const QTextDocument* document)
 	m_xml.writeNamespace(QString::fromLatin1("urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"), QString::fromLatin1("fo"));
 
 	m_xml.writeStartDocument();
-	m_xml.writeStartElement(QString::fromLatin1("document-styles"));
+	m_xml.writeStartElement(QString::fromLatin1("office:document-styles"));
 	m_xml.writeAttribute(QString::fromLatin1("office:version"), QString::fromLatin1("1.2"));
 
 	writeStyles(document);
