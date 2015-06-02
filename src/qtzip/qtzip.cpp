@@ -303,7 +303,7 @@ static QDateTime readMSDosDate(const uchar *src)
 
 // for details, see http://www.pkware.com/documents/casestudies/APPNOTE.TXT
 
-namespace QtZip
+namespace
 {
 
 enum HostOS {
@@ -427,6 +427,8 @@ struct FileHeader
     QByteArray extra_field;
     QByteArray file_comment;
 };
+
+}
 
 QtZipReader::FileInfo::FileInfo()
     : isDir(false), isFile(false), isSymLink(false), crc(0), size(0)
@@ -1410,6 +1412,4 @@ void QtZipWriter::close()
     d->device->write((const char *)&eod, sizeof(EndOfDirectory));
     d->device->write(d->comment);
     //d->device->close();
-}
-
 }

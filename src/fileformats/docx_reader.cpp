@@ -63,7 +63,7 @@ DocxReader::DocxReader() :
 
 bool DocxReader::canRead(QIODevice* device)
 {
-	return QtZip::QtZipReader::canRead(device);
+	return QtZipReader::canRead(device);
 }
 
 //-----------------------------------------------------------------------------
@@ -74,7 +74,7 @@ void DocxReader::readData(QIODevice* device)
 	m_current_style.block_format = m_cursor.blockFormat();
 
 	// Open archive
-	QtZip::QtZipReader zip(device);
+	QtZipReader zip(device);
 
 	// Read archive
 	if (zip.isReadable()) {

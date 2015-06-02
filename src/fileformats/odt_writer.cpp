@@ -56,15 +56,15 @@ bool OdtWriter::write(QIODevice* device, const QTextDocument* document)
 
 bool OdtWriter::writeCompressed(QIODevice* device, const QTextDocument* document)
 {
-	QtZip::QtZipWriter zip(device);
-	if (zip.status() != QtZip::QtZipWriter::NoError) {
+	QtZipWriter zip(device);
+	if (zip.status() != QtZipWriter::NoError) {
 		return false;
 	}
 
-	zip.setCompressionPolicy(QtZip::QtZipWriter::NeverCompress);
+	zip.setCompressionPolicy(QtZipWriter::NeverCompress);
 	zip.addFile(QString::fromLatin1("mimetype"),
 		"application/vnd.oasis.opendocument.text");
-	zip.setCompressionPolicy(QtZip::QtZipWriter::AlwaysCompress);
+	zip.setCompressionPolicy(QtZipWriter::AlwaysCompress);
 
 	zip.addFile(QString::fromLatin1("META-INF/manifest.xml"),
 		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -82,7 +82,7 @@ bool OdtWriter::writeCompressed(QIODevice* device, const QTextDocument* document
 
 	zip.close();
 
-	return zip.status() == QtZip::QtZipWriter::NoError;
+	return zip.status() == QtZipWriter::NoError;
 }
 
 //-----------------------------------------------------------------------------

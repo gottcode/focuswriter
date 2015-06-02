@@ -44,8 +44,8 @@ void DocxWriter::setStrict(bool strict)
 
 bool DocxWriter::write(QIODevice* device, const QTextDocument* document)
 {
-	QtZip::QtZipWriter zip(device);
-	if (zip.status() != QtZip::QtZipWriter::NoError) {
+	QtZipWriter zip(device);
+	if (zip.status() != QtZipWriter::NoError) {
 		return false;
 	}
 
@@ -158,7 +158,7 @@ bool DocxWriter::write(QIODevice* device, const QTextDocument* document)
 
 	zip.close();
 
-	return zip.status() == QtZip::QtZipWriter::NoError;
+	return zip.status() == QtZipWriter::NoError;
 }
 
 //-----------------------------------------------------------------------------

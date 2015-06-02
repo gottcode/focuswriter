@@ -38,7 +38,7 @@ OdtReader::OdtReader() :
 bool OdtReader::canRead(QIODevice* device)
 {
 	QByteArray data = device->peek(77);
-	if (QtZip::QtZipReader::canRead(device) && (data.right(47) == "mimetypeapplication/vnd.oasis.opendocument.text")) {
+	if (QtZipReader::canRead(device) && (data.right(47) == "mimetypeapplication/vnd.oasis.opendocument.text")) {
 		return true;
 	} else {
 		data = data.trimmed();
@@ -71,7 +71,7 @@ void OdtReader::readData(QIODevice* device)
 	m_in_block = m_cursor.document()->blockCount();
 	m_block_format = m_cursor.blockFormat();
 
-	if (QtZip::QtZipReader::canRead(device)) {
+	if (QtZipReader::canRead(device)) {
 		readDataCompressed(device);
 	} else {
 		readDataUncompressed(device);
@@ -85,7 +85,7 @@ void OdtReader::readData(QIODevice* device)
 void OdtReader::readDataCompressed(QIODevice* device)
 {
 	// Open archive
-	QtZip::QtZipReader zip(device);
+	QtZipReader zip(device);
 
 	// Read archive
 	if (zip.isReadable()) {

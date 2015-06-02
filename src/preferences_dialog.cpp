@@ -470,7 +470,7 @@ void PreferencesDialog::addLanguage()
 	QStringList dictionaries;
 
 	// Open archive
-	QtZip::QtZipReader zip(path);
+	QtZipReader zip(path);
 	if (!zip.isReadable()) {
 		QMessageBox::warning(this, tr("Sorry"), tr("Unable to open archive."));
 		return;
