@@ -1474,6 +1474,7 @@ void Window::initMenus()
 		m_focus_actions->addAction(focus_mode[i]);
 		ActionManager::instance()->addAction(QString("FocusedText%1").arg(i), focus_mode[i]);
 	}
+	focus_mode[0]->setShortcut(tr("Ctrl+Shift+`"));
 	focus_mode[qBound(0, QSettings().value("Window/FocusedText").toInt(), 3)]->setChecked(true);
 	connect(m_focus_actions, SIGNAL(triggered(QAction*)), m_documents, SLOT(setFocusMode(QAction*)));
 
