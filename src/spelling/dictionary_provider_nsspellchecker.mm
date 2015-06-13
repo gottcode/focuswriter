@@ -131,15 +131,10 @@ QStringList DictionaryNSSpellChecker::suggestions(const QString& word) const
 
 	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(word.unicode()) length:word.length()];
 
-	NSArray* array;
-	if ([[NSSpellChecker sharedSpellChecker] respondsToSelector:@selector(guessesForWordRange)]) {
-		array = [[NSSpellChecker sharedSpellChecker] guessesForWordRange:range
-			inString:nsstring
-			language:m_language
-			inSpellDocumentWithTag:m_tag];
-	} else {
-		array = [[NSSpellChecker sharedSpellChecker] guessesForWord:nsstring];
-	}
+	NSArray* array = [[NSSpellChecker sharedSpellChecker] guessesForWordRange:range
+		inString:nsstring
+		language:m_language
+		inSpellDocumentWithTag:m_tag];
 
 	QStringList suggestions;
 	if (array) {
