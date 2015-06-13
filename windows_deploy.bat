@@ -1,7 +1,7 @@
 @ECHO OFF
 
 SET APP=FocusWriter
-SET VERSION=1.5.3
+SET VERSION=1.5.4
 
 ECHO Copying executable
 MKDIR %APP%
@@ -39,44 +39,6 @@ ECHO Copying themes
 SET THEMES=%APP%\themes
 MKDIR %THEMES%
 XCOPY /Q /S /Y resources\themes\* %THEMES% >nul
-
-ECHO Copying Qt libraries
-COPY %QTDIR%\bin\icu*.dll %APP% >nul
-COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul
-COPY "%QTDIR%\bin\libstdc++-6.dll" %APP% >nul
-COPY %QTDIR%\bin\libwinpthread-1.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Core.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Gui.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Multimedia.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Network.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5PrintSupport.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Widgets.dll %APP% >nul
-
-ECHO Copying Qt plugins
-MKDIR %APP%\accessible
-XCOPY /Q /S /Y %QTDIR%\plugins\accessible %APP%\accessible >nul
-DEL %APP%\accessible\*d.dll >nul
-
-MKDIR %APP%\audio
-COPY %QTDIR%\plugins\audio\qtaudio_windows.dll %APP%\audio >nul
-
-MKDIR %APP%\bearer
-XCOPY /Q /S /Y %QTDIR%\plugins\bearer %APP%\bearer >nul
-DEL %APP%\bearer\*d.dll >nul
-
-MKDIR %APP%\platforms
-COPY %QTDIR%\plugins\platforms\qwindows.dll %APP%\platforms >nul
-
-MKDIR %APP%\imageformats
-XCOPY /Q /S /Y %QTDIR%\plugins\imageformats %APP%\imageformats >nul
-DEL %APP%\imageformats\*d.dll >nul
-
-MKDIR %APP%\mediaservice
-XCOPY /Q /S /Y %QTDIR%\plugins\mediaservice %APP%\mediaservice >nul
-DEL %APP%\mediaservice\*d.dll >nul
-
-MKDIR %APP%\printsupport
-COPY %QTDIR%\plugins\printsupport\windowsprintersupport.dll %APP%\printsupport >nul
 
 ECHO Making portable
 MKDIR %APP%\Data

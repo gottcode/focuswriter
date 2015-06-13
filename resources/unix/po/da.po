@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Morten Juhl-Johansen Zölde-Fejér <morten@writtenandread.net>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:46+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2015-06-13 17:41+0000\n"
+"PO-Revision-Date: 2015-02-20 17:29+0000\n"
+"Last-Translator: Morten Juhl-Johansen Zölde-Fejér <morten@writtenandread."
+"net>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/focuswriter/"
 "language/da/)\n"
 "Language: da\n"
@@ -24,7 +26,7 @@ msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Tekstbehandling i fuldskærm"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# M. Ridwan Hakim <adminrescen@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:47+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2015-06-13 17:41+0000\n"
+"PO-Revision-Date: 2014-10-17 03:28+0000\n"
+"Last-Translator: M. Ridwan Hakim <adminrescen@gmail.com>\n"
 "Language-Team: Indonesian (Indonesia) (http://www.transifex.com/projects/p/"
 "focuswriter/language/id_ID/)\n"
 "Language: id\n"
@@ -24,7 +25,7 @@ msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Layar Penuh"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -33,6 +34,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter merupakan pengolah kata yang bebas pengalihan dan sederhana. "
+"Menggunakan antarmuka yang Anda akses dengan cara menggerakkan mouse ke tepi "
+"layar, membuat program ini memilik tampilan yang familiar dan memudahkan "
+"Anda untuk menyelam ke dalam pekerjaan Anda."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -41,6 +46,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter membuat Anda untuk menciptakan lingkungan Anda sendiri dengan "
+"cara membuat tema yang mengatur jenis huruf, warna, dan gambar latar untuk "
+"menambah suasana. Program ini juga dilengkapi oleh statistika yang selalu "
+"diperbarui setiap saat, tujuan sehari-hari, membuka banyak dokumen "
+"sekaligus, pengecekan ejaan, dan masih banyak lagi."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -48,6 +58,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Ditambah lagi, ketika Anda membuka program, pekerjaan Anda yang sedang "
+"dikerjaan akan otomatis dimuat dan memulai di mana Anda terakhir "
+"meninggalkannya sehingga Anda bisa memulainya lagi lebih cepat."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"

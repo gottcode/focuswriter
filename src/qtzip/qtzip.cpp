@@ -303,6 +303,9 @@ static QDateTime readMSDosDate(const uchar *src)
 
 // for details, see http://www.pkware.com/documents/casestudies/APPNOTE.TXT
 
+namespace
+{
+
 enum HostOS {
     HostFAT      = 0,
     HostAMIGA    = 1,
@@ -424,6 +427,8 @@ struct FileHeader
     QByteArray extra_field;
     QByteArray file_comment;
 };
+
+}
 
 QtZipReader::FileInfo::FileInfo()
     : isDir(false), isFile(false), isSymLink(false), crc(0), size(0)
@@ -986,8 +991,7 @@ QByteArray QtZipReader::fileData(const QString &fileName) const
 
     ushort version_needed = readUShort(header.h.version_needed);
     if (version_needed > ZIP_VERSION) {
-        qWarning("QtZip: .ZIP specification version %d implementationis needed to extract the data.", version_needed);
-        return QByteArray();
+        qWarning("QtZip: .ZIP specification version %d implementation is needed to extract the data.", version_needed);
     }
 
     ushort general_purpose_bits = readUShort(header.h.general_purpose_bits);

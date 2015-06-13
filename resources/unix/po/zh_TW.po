@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Jeff Huang <s8321414@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:45+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2015-06-13 17:41+0000\n"
+"PO-Revision-Date: 2014-10-29 14:09+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/"
 "focuswriter/language/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -20,11 +21,11 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "全螢幕文字處理器"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -33,6 +34,9 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter 是一個簡潔、讓您不受干擾的文字處理器。除了寫作區域以外，其他介面"
+"均在您將滑鼠移到螢幕邊緣時才會顯示，這樣既能提供所需的功能，又能讓您專心寫"
+"作。"
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -41,6 +45,8 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter 可以自訂主題、更改字體、顏色、以及背景圖片等等。也有如動態更新統"
+"計；每日目標、多重開啟文件、拼寫檢查等等的多種功能。"
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -48,11 +54,13 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"另外，打開您正在撰寫的文件會自動跳至您最後一次編輯的位置，讓您可以繼續進行工"
+"作。"
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "全螢幕文字處理器"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr ""
+msgstr "專心寫作"
