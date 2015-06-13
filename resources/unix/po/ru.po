@@ -3,29 +3,31 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Serhii Haifullin <apexpredator@ya.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:45+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"POT-Creation-Date: 2015-06-13 17:41+0000\n"
+"PO-Revision-Date: 2014-08-27 08:35+0000\n"
+"Last-Translator: Serhii Haifullin <apexpredator@ya.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/focuswriter/"
 "language/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Полноэкранный текстовый редактор"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -34,6 +36,12 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter это простой текстовый редактор, позволяющий полностью "
+"сосредоточиться на работе. В нем используется выдвижной интерфейс, "
+"управляющие элементы которого становятся доступными при наведении стрелки "
+"мыши к краям экрана. Это дает возможность добиться максимально "
+"располагающего к пользователю внешнего вида и полностью погрузиться в вашу "
+"работу."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -42,6 +50,12 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter позволит вам настроить свое рабочее окружение путем создания "
+"тем, в которых можно,  для добавления нужной атмосферы, управлять шрифтами, "
+"цветами и фоновыми изображениями. Также текстовый редактор умеет вести "
+"статистику, обновляемую в реальном времени, ставить ежедневные рабочие цели, "
+"открывать сразу несколько документов одновременно, проверять орфографию и "
+"много чего еще."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -49,11 +63,15 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Кроме того, когда вы откроете программу, сразу же будет загружен прогресс "
+"вашей текущей работы и курсор перейдет на ту позицию, на которой в последний "
+"раз работа была прервана. Так вы сможете практически мгновенно вернуться к "
+"делу."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "Полноэкранный текстовый редактор"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr ""
+msgstr "Писать не отвлекаясь"

@@ -1991,7 +1991,7 @@
     <message>
         <location filename="../src/window.cpp" line="1356"/>
         <source>Align &amp;Right</source>
-        <translation>Alinhar à &amp;esquerda</translation>
+        <translation>Alinhar à &amp;direita</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1356"/>
@@ -2194,7 +2194,12 @@
         <translation>Focar parágrafo</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1458"/>
+        <location filename="../src/window.cpp" line="1454"/>
+        <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1459"/>
         <source>&amp;Help</source>
         <translation>A&amp;juda</translation>
     </message>
@@ -2224,12 +2229,12 @@
         <translation>&amp;Três linhas</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1459"/>
+        <location filename="../src/window.cpp" line="1460"/>
         <source>&amp;About</source>
         <translation>&amp;Sobre</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1467"/>
+        <location filename="../src/window.cpp" line="1468"/>
         <source>About &amp;Qt</source>
         <translation>Sobre o &amp;Qt</translation>
     </message>

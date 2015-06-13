@@ -2194,7 +2194,12 @@
         <translation>Focus op paragraaf</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1458"/>
+        <location filename="../src/window.cpp" line="1454"/>
+        <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1459"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
@@ -2224,12 +2229,12 @@
         <translation>&amp;Drie lijnen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1459"/>
+        <location filename="../src/window.cpp" line="1460"/>
         <source>&amp;About</source>
         <translation>&amp;Over</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1467"/>
+        <location filename="../src/window.cpp" line="1468"/>
         <source>About &amp;Qt</source>
         <translation>Over &amp;Qt</translation>
     </message>

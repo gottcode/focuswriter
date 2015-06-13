@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Łukasz Jurczak <jurczak@poczta.fm>, 2014
+# Łukasz Jurczak, 2014
+# M T <michtrz@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-07-08 19:33+0000\n"
-"Last-Translator: Łukasz Jurczak <jurczak@poczta.fm>\n"
+"POT-Creation-Date: 2015-06-13 17:41+0000\n"
+"PO-Revision-Date: 2014-10-17 23:50+0000\n"
+"Last-Translator: M T <michtrz@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/focuswriter/"
 "language/pl/)\n"
 "Language: pl\n"
@@ -35,6 +36,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter to prosty, pełnoekranowy edytor tekstu. Korzysta z ukrytego "
+"interfejsu, do którego otrzymujesz dostęp przesuwając kursor myszkę do "
+"krawędzi ekranu. W ten sposób program skupia twoją uwagę na to, co naprawdę "
+"jest najważniejsze: twoja praca."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -43,6 +48,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter umożliwia dostosowanie wyglądu poprzez tworzenie motywów, które "
+"ustawiają czcionkę, kolory i obraz tła, aby stworzyć własną atmosferę. "
+"Posiada również aktualizację statystyk w locie, codzienne cele, otwieranie "
+"wielu dokumentów jednocześnie, sprawdzanie pisowni i dużo więcej."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -50,6 +59,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Ponadto, program automatycznie ładuje przy starcie ostatni otworzony "
+"dokument i pozycję, na której ostatnio przerwano, aby można od razu "
+"kontynuować pracę."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"

@@ -2188,7 +2188,12 @@
         <translation>段落フォーカス</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1458"/>
+        <location filename="../src/window.cpp" line="1454"/>
+        <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1459"/>
         <source>&amp;Help</source>
         <translation>ヘルプ (&amp;H)</translation>
     </message>
@@ -2218,12 +2223,12 @@
         <translation>三行 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1459"/>
+        <location filename="../src/window.cpp" line="1460"/>
         <source>&amp;About</source>
         <translation>FocusWriter について (&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1467"/>
+        <location filename="../src/window.cpp" line="1468"/>
         <source>About &amp;Qt</source>
         <translation>Qt について (&amp;Q)</translation>
     </message>

@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Wasilis Mandratzis-Walz, 2015
 # Γιάννης Ανθυμίδης <yannanth@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-05-30 01:33+0000\n"
-"Last-Translator: Γιάννης Ανθυμίδης <yannanth@gmail.com>\n"
+"POT-Creation-Date: 2015-06-13 17:41+0000\n"
+"PO-Revision-Date: 2015-04-19 03:50+0000\n"
+"Last-Translator: Wasilis Mandratzis-Walz\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/focuswriter/"
 "language/el/)\n"
 "Language: el\n"
@@ -34,6 +35,11 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"Το FocusWriter είναι ένα απλό, χωρίς περισπασμούς πρόγραμμα επεξεργασίας "
+"κειμένου. Χρησιμοποιεί μια κρυφή διεπαφή που μπορείτε να αποκτήσετε πρόσβαση "
+"μετακινώντας το ποντίκι σας προς τα άκρα της οθόνης, επιτρέποντας στο "
+"πρόγραμμα να έχει μια οικεία εμφάνιση και αίσθηση σε αυτόενώ εξακολουθεί να "
+"πάρει έξω από το δρόμο, έτσι ώστε να μπορείτε να αφεθείτε στην εργασία σας."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -42,6 +48,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"Το FocusWriter σας επιτρέπει να προσαρμόσετε το περιβάλλον σας, "
+"δημιουργώντας θέματα που ελέγχουν την γραμματοσειρά, τα χρώματα και το φόντο "
+"της εικόνας για να προσθέσετε ατμόσφαιρα. Διαθέτει επίσης on-the-fly "
+"στατιστικές ενημέρωσης, καθημερινούς στόχους, πολλά ανοικτά έγγραφα, "
+"ορθογραφικό έλεγχο, και πολλά άλλα."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -49,6 +60,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Επιπλέον, όταν ανοίγετε στο πρόγραμμα την τρέχουσα εργασία σας θα φορτώσει "
+"αυτόματα και την θέση όπου σταματήσατε, έτσι ώστε να μπορείτε να μεταβείτε "
+"αμέσως πίσω."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
