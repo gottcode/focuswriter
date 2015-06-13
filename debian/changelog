@@ -1,3 +1,9 @@
+focuswriter (1.5.4-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Graeme Gott <graeme@gottcode.org>  Sat, 13 Jun 2015 18:21:20 +0000
+
 focuswriter (1.5.3-3) unstable; urgency=medium
 
   * Merge upstream fixes:
