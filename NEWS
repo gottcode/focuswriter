@@ -1,3 +1,19 @@
+1.5.4.1
+-------
+* FIXED: Compile failure with Qt 5.5.
+
+1.5.4
+-----
+* Relax version check of ZIP to handle broken ZIP files.
+* Remove deprecated code for unsupported Mac OS X versions.
+* Switch to static builds for Windows.
+* FIXED: Broken shortcut for disabling focused text in Windows.
+* FIXED: Word count did not handle dashes correctly.
+* FIXED: Did not use correct line endings in Windows.
+* FIXED: Incorrectly sized icon for daily progress.
+* FIXED: Crash when importing themes.
+* Translation updates: Esperanto, German, Greek, Indonesian, Italian, Lithuanian, Polish, Portuguese, Portuguese (Brazil), Russian, Turkish, Ukrainian.
+
 1.5.3
 -----
 * FIXED: Find did not take smart quotes into account.
