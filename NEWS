@@ -1,3 +1,7 @@
+1.5.4.1
+-------
+* FIXED: Compile failure with Qt 5.5.
+
 1.5.4
 -----
 * Relax version check of ZIP to handle broken ZIP files.
