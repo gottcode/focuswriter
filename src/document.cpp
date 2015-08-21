@@ -284,9 +284,9 @@ namespace
 		// Parse HTML
 		QTextDocument document;
 		if (source->hasHtml()) {
-			document.setHtml(source->html());
+			document.setHtml(source->html().remove(QChar(0x0)));
 		} else {
-			document.setPlainText(source->text());
+			document.setPlainText(source->text().remove(QChar(0x0)));
 		}
 
 		// Convert to RTF
