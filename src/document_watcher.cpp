@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -166,7 +166,7 @@ void DocumentWatcher::processUpdates()
 		QFileInfo info(path);
 		QString filename = info.fileName();
 
-		// Show document
+		// Find document
 		Document* document = m_paths.value(path);
 		if (!document) {
 			continue;
@@ -175,14 +175,16 @@ void DocumentWatcher::processUpdates()
 		if (details.ignored) {
 			continue;
 		}
+
+		// Ignore unchanged documents
+		if (info.exists() && (details.modified == info.lastModified()) && (details.permissions == info.permissions())) {
+			continue;
+		}
+
+		// Show document
 		emit showDocument(document);
 
 		if (info.exists()) {
-			// Ignore unchanged files
-			if ((details.modified == info.lastModified()) && (details.permissions == info.permissions())) {
-				continue;
-			}
-
 			// Process changed file
 			QMessageBox mbox(document->window());
 			mbox.setIcon(QMessageBox::Warning);
