@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='4.2.5.1'
+loversion='5.0.1.2'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "http://download.documentfoundation.org/libreoffice/src/4.2.5/${lodict}.tar.xz"
+	curl -s -O -L "http://download.documentfoundation.org/libreoffice/src/5.0.1/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -23,7 +23,7 @@ fi
 
 echo -n 'Downloading Finnish dictionary...'
 if [ ! -e 'voikko.oxt' ]; then
-	curl -s -O 'http://www.puimula.org/htp/ooo/voikko-win/3.4.0.20140310/voikko.oxt'
+	curl -s -O 'http://www.puimula.org/htp/ooo/voikko-win/4.1.0.20150125/voikko.oxt'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -39,11 +39,21 @@ else
 	echo ' SKIPPED'
 fi
 
-echo -n 'Downloading Turkish dictionary... '
-trdict='firefox-tr-dict-v0.3.2'
+echo -n 'Downloading Indonesian dictionary...'
+iddict='id_id'
+idfiles='id_id'
+if [ ! -e "${iddict}.oxt" ]; then
+	curl -s -O "http://extensions.libreoffice.org/extension-center/indonesian-dictionary-kamus-indonesia-by-benitius/releases/2.0/${iddict}.oxt"
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
+echo -n 'Downloading Turkish dictionary...'
+trdict='oo-turkish-dict-v1-2'
 trfiles="${trdict}/dictionaries"
-if [ ! -e "${trdict}.xpi" ]; then
-	curl -s -O "http://tr-spell.googlecode.com/files/${trdict}.xpi"
+if [ ! -e "${trdict}.oxt" ]; then
+	curl -s -O "http://extensions.libreoffice.org/extension-center/turkish-spellcheck-dictionary/releases/1.2/${trdict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -75,9 +85,17 @@ else
 	echo ' SKIPPED'
 fi
 
+echo -n 'Extracting Indonesian dictionary...'
+if [ ! -e "${iddict}" ]; then
+	unzip -qq "${iddict}.oxt" -d "${iddict}"
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
 echo -n 'Extracting Turkish dictionary...'
 if [ ! -e "${trdict}" ]; then
-	unzip -qq "${trdict}.xpi" -d "${trdict}"
+	unzip -qq "${trdict}.oxt" -d "${trdict}"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -141,12 +159,18 @@ cp -a $lofiles/he_IL/he_IL.dic dicts/he.dic
 echo -n ' hu'
 cp -a $lofiles/hu_HU/hu_HU.aff dicts/hu.aff
 cp -a $lofiles/hu_HU/hu_HU.dic dicts/hu.dic
+echo -n ' id'
+cp -a $idfiles/id_ID.aff dicts/id.aff
+cp -a $idfiles/id_ID.dic dicts/id.dic
 echo -n ' it'
 cp -a $lofiles/it_IT/it_IT.aff dicts/it.aff
 cp -a $lofiles/it_IT/it_IT.dic dicts/it.dic
 echo -n ' ko'
 cp -a $kofiles/ko-KR.aff dicts/ko.aff
 cp -a $kofiles/ko-KR.dic dicts/ko.dic
+echo -n ' lt'
+cp -a $lofiles/lt_LT/lt.aff dicts/lt.aff
+cp -a $lofiles/lt_LT/lt.dic dicts/lt.dic
 echo -n ' nl'
 cp -a $lofiles/nl_NL/nl_NL.aff dicts/nl.aff
 cp -a $lofiles/nl_NL/nl_NL.dic dicts/nl.dic
@@ -177,8 +201,8 @@ echo -n ' sv'
 cp -a $lofiles/sv_SE/sv_SE.aff dicts/sv.aff
 cp -a $lofiles/sv_SE/sv_SE.dic dicts/sv.dic
 echo -n ' tr'
-cp -a $trfiles/tr.aff dicts/tr.aff
-cp -a $trfiles/tr.dic dicts/tr.dic
+cp -a $trfiles/tr-TR.aff dicts/tr.aff
+cp -a $trfiles/tr-TR.dic dicts/tr.dic
 echo -n ' uk'
 cp -a $lofiles/uk_UA/uk_UA.aff dicts/uk.aff
 cp -a $lofiles/uk_UA/uk_UA.dic dicts/uk.dic
