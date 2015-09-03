@@ -4,6 +4,9 @@ lessThan(QT_VERSION, 4.6) {
 macx:greaterThan(QT_MAJOR_VERSION, 4):lessThan(QT_VERSION, 5.2) {
 	error("FocusWriter requires Qt 5.2 or greater")
 }
+win32:greaterThan(QT_MAJOR_VERSION, 4):lessThan(QT_VERSION, 5.4) {
+	error("FocusWriter requires Qt 5.4 or greater")
+}
 
 TEMPLATE = app
 QT += network
@@ -11,6 +14,9 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 	QT += widgets printsupport multimedia concurrent
 	macx {
 		QT += macextras
+	}
+	win32 {
+		QT += winextras
 	}
 }
 CONFIG += warn_on
@@ -50,16 +56,21 @@ macx {
 	SOURCES += src/fileformats/clipboard_mac.cpp \
 		src/sound.cpp
 } else:win32 {
+	DEFINES += RTFCLIPBOARD
+
 	greaterThan(QT_MAJOR_VERSION, 4) {
 		LIBS += -lz
 	}
+	LIBS += -lole32
 
 	INCLUDEPATH += src/spelling/hunspell
 
-	HEADERS += src/spelling/dictionary_provider_hunspell.h \
+	HEADERS += src/fileformats/clipboard_windows.h \
+		src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
 
-	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
+	SOURCES += src/fileformats/clipboard_windows.cpp \
+		src/spelling/dictionary_provider_hunspell.cpp \
 		src/spelling/dictionary_provider_voikko.cpp \
 		src/spelling/hunspell/affentry.cxx \
 		src/spelling/hunspell/affixmgr.cxx \
@@ -72,13 +83,6 @@ macx {
 		src/spelling/hunspell/replist.cxx \
 		src/spelling/hunspell/suggestmgr.cxx \
 		src/sound.cpp
-
-	lessThan(QT_MAJOR_VERSION, 5) {
-		DEFINES += RTFCLIPBOARD
-		LIBS += -lOle32
-		HEADERS += src/fileformats/clipboard_windows.h
-		SOURCES += src/fileformats/clipboard_windows.cpp
-	}
 } else:unix {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell zlib

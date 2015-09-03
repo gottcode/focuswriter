@@ -19,12 +19,13 @@
 
 #include "clipboard_windows.h"
 
+#include <QMimeData>
+
 //-----------------------------------------------------------------------------
 
 RTF::Clipboard::Clipboard()
-	: QWindowsMime()
 {
-	CF_RTF = QWindowsMime::registerMimeType(QLatin1String("Rich Text Format"));
+	CF_RTF = QWinMime::registerMimeType(QLatin1String("Rich Text Format"));
 }
 
 //-----------------------------------------------------------------------------

@@ -20,14 +20,19 @@
 #ifndef RTF_CLIPBOARD_WINDOWS_H
 #define RTF_CLIPBOARD_WINDOWS_H
 
-#include <QWindowsMime>
 #include <QVector>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#include <QWinMime>
+#else
+#include <QWindowsMime>
+typedef QWindowsMime QWinMime;
+#endif
 
 #include <windows.h>
 
 namespace RTF
 {
-	class Clipboard : public QWindowsMime
+	class Clipboard : public QWinMime
 	{
 	public:
 		Clipboard();
