@@ -163,6 +163,16 @@ Section "install"
 	SetOutPath $INSTDIR
 	File ..\..\release\FocusWriter.exe
 	File ..\symbols\symbols630.dat
+	File $%QTDIR%\bin\libgcc_s_dw2-1.dll
+	File $%QTDIR%\bin\libstdc++-6.dll
+	File $%QTDIR%\bin\libwinpthread-1.dll
+	File $%QTDIR%\bin\Qt5Core.dll
+	File $%QTDIR%\bin\Qt5Gui.dll
+	File $%QTDIR%\bin\Qt5Multimedia.dll
+	File $%QTDIR%\bin\Qt5Network.dll
+	File $%QTDIR%\bin\Qt5PrintSupport.dll
+	File $%QTDIR%\bin\Qt5Widgets.dll
+	File $%QTDIR%\bin\Qt5WinExtras.dll
 
 	SetOutPath $INSTDIR\dictionaries
 	File dicts\*.aff
@@ -171,12 +181,43 @@ Section "install"
 	SetOutPath $INSTDIR\dictionaries\2\mor-standard
 	File dicts\2\mor-standard\*
 
+	SetOutPath $INSTDIR\audio
+	File $%QTDIR%\plugins\audio\qtaudio_windows.dll
+
+	SetOutPath $INSTDIR\bearer
+	File $%QTDIR%\plugins\bearer\qgenericbearer.dll
+	File $%QTDIR%\plugins\bearer\qnativewifibearer.dll
+
 	SetOutPath $INSTDIR\icons\hicolor
 	File ..\images\icons\oxygen\hicolor\index.theme
 	SetOutPath $INSTDIR\icons\hicolor\16
 	File ..\images\icons\oxygen\hicolor\16\*
 	SetOutPath $INSTDIR\icons\hicolor\22
 	File ..\images\icons\oxygen\hicolor\22\*
+
+	SetOutPath $INSTDIR\imageformats
+	File $%QTDIR%\plugins\imageformats\qdds.dll
+	File $%QTDIR%\plugins\imageformats\qgif.dll
+	File $%QTDIR%\plugins\imageformats\qicns.dll
+	File $%QTDIR%\plugins\imageformats\qico.dll
+	File $%QTDIR%\plugins\imageformats\qjp2.dll
+	File $%QTDIR%\plugins\imageformats\qjpeg.dll
+	File $%QTDIR%\plugins\imageformats\qmng.dll
+	File $%QTDIR%\plugins\imageformats\qsvg.dll
+	File $%QTDIR%\plugins\imageformats\qtga.dll
+	File $%QTDIR%\plugins\imageformats\qtiff.dll
+	File $%QTDIR%\plugins\imageformats\qwbmp.dll
+	File $%QTDIR%\plugins\imageformats\qwebp.dll
+
+	SetOutPath $INSTDIR\mediaservice
+	File $%QTDIR%\plugins\mediaservice\dsengine.dll
+	File $%QTDIR%\plugins\mediaservice\qtmedia_audioengine.dll
+
+	SetOutPath $INSTDIR\platforms
+	File $%QTDIR%\plugins\platforms\qwindows.dll
+
+	SetOutPath $INSTDIR\printsupport
+	File $%QTDIR%\plugins\printsupport\windowsprintersupport.dll
 
 	SetOutPath $INSTDIR\sounds
 	File ..\sounds\*.wav
@@ -261,6 +302,15 @@ Section "Uninstall"
 	Delete $INSTDIR\FocusWriter.exe
 	Delete $INSTDIR\symbols*.dat
 	Delete $INSTDIR\ReadMe.txt
+	Delete $INSTDIR\*.dll
+	Delete $INSTDIR\audio\*.dll
+	Delete $INSTDIR\bearer\*.dll
+	Delete $INSTDIR\dictionaries\*\*\*
+	Delete $INSTDIR\icons\hicolor\*\*
+	Delete $INSTDIR\imageformats\*.dll
+	Delete $INSTDIR\mediaservice\*.dll
+	Delete $INSTDIR\platforms\qwindows.dll
+	Delete $INSTDIR\printsupport\*.dll
 	Delete $INSTDIR\sounds\*.wav
 	Delete $INSTDIR\themes\*\*
 	Delete $INSTDIR\translations\*.qm
@@ -270,6 +320,12 @@ Section "Uninstall"
 	RMDir /r $INSTDIR\dictionaries
 	RMDir /r $INSTDIR\icons
 	RMDir /r $INSTDIR\themes
+	RMDir $INSTDIR\audio
+	RMDir $INSTDIR\bearer
+	RMDir $INSTDIR\imageformats
+	RMDir $INSTDIR\mediaservice
+	RMDir $INSTDIR\platforms
+	RMDir $INSTDIR\printsupport
 	RMDir $INSTDIR\sounds
 	RMDir $INSTDIR\translations
 	RMDir $INSTDIR
