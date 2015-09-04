@@ -205,42 +205,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="189"/>
+        <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
         <translation>文件已更改</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="190"/>
+        <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
         <translation>文件  &apos;%1&apos;  已由其他程序更改。</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="191"/>
+        <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Do you want to reload the file?</source>
         <translation>您要重新加载文件吗？</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="193"/>
+        <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
         <translation>重新加载</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="198"/>
+        <location filename="../src/document_watcher.cpp" line="200"/>
         <source>Ignore</source>
         <translation>忽略</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="209"/>
+        <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
         <translation>文件已删除</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="210"/>
+        <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>文件 %1 已经由其他程序删除。</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="211"/>
+        <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
         <translation>您要保存或关闭该文件？</translation>
     </message>

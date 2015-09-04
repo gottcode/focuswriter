@@ -215,42 +215,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="189"/>
+        <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
         <translation>Failas Pasikeitė</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="190"/>
+        <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
         <translation>Failas &apos;%1&apos; buvo pakeistas kita programa.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="191"/>
+        <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Do you want to reload the file?</source>
         <translation>Ar norite įkelti failą iš naujo?</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="193"/>
+        <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
         <translation>įkelti iš naujo</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="198"/>
+        <location filename="../src/document_watcher.cpp" line="200"/>
         <source>Ignore</source>
-        <translation>Ignoruoti</translation>
+        <translation>Nepaisyti</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="209"/>
+        <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
         <translation>Failas Ištrintas</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="210"/>
+        <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>Failas %1 buvo ištrintas kita programa.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="211"/>
+        <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
         <translation>Jūs norite išsaugoti ar uždaryti failą?</translation>
     </message>
@@ -278,7 +278,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
-        <translation>Ignoruoti raidžių lygį</translation>
+        <translation>Nepaisyti raidžių lygio</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="54"/>
@@ -766,17 +766,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="959"/>
         <source>Check spelling as you type</source>
-        <translation>Tikrinti rašybą renkant</translation>
+        <translation>Tikrinti rašybą, renkant tekstą</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="960"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ignoruoti žodžius, parašytus DIDŽIOSIOMIS RAIDĖMIS</translation>
+        <translation>Nepaisyti žodžių, parašytų DIDŽIOSIOMIS RAIDĖMIS</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="961"/>
         <source>Ignore words with numbers</source>
-        <translation>Ignoruoti žodžius su skaičiais</translation>
+        <translation>Nepaisyti žodžių su skaičiais</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="974"/>
@@ -1028,7 +1028,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="145"/>
         <source>&amp;Ignore</source>
-        <translation>&amp;Ignoruoti</translation>
+        <translation>Nepa&amp;isyti</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="148"/>

@@ -205,42 +205,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="189"/>
+        <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
         <translation>파일 변환 완료</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="190"/>
+        <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
         <translation>&apos;%1&apos; 파일이 다른 프로그램에 의해서 변경되었습니다.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="191"/>
+        <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Do you want to reload the file?</source>
         <translation>파일을 다시 불러올까요?</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="193"/>
+        <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
         <translation>새로 고침</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="198"/>
+        <location filename="../src/document_watcher.cpp" line="200"/>
         <source>Ignore</source>
         <translation>그대로 둠</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="209"/>
+        <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
         <translation>파일이 지워졌습니다.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="210"/>
+        <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>%1 파일이 다른 프로그램에 의해서 지워졌습니다.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="211"/>
+        <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
         <translation>파일을 저장할까요? 닫을까요?</translation>
     </message>

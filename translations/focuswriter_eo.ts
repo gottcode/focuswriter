@@ -210,42 +210,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="189"/>
+        <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
         <translation>Dosiero Ŝanĝiĝis</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="190"/>
+        <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
         <translation>La dosiero &apos;%1&apos; ŝanĝiĝis de alia programaro.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="191"/>
+        <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Do you want to reload the file?</source>
         <translation>Ĉu vi volas reŝargi la dosieron?</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="193"/>
+        <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
         <translation>Reŝargi</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="198"/>
+        <location filename="../src/document_watcher.cpp" line="200"/>
         <source>Ignore</source>
         <translation>Malatenti</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="209"/>
+        <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
         <translation>Dosiero Foriĝis</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="210"/>
+        <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>La dosiero %1 foriĝis de alia programaro.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="211"/>
+        <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
         <translation>Ĉu vi volas konservi aŭ fermi la dosieron?</translation>
     </message>
@@ -1248,7 +1248,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="93"/>
         <source>Edit Theme</source>
-        <translation>Redakti Haŭton</translation>
+        <translation>Redakti Etoson</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="150"/>
@@ -1361,7 +1361,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
-        <translation>Nova Haŭto</translation>
+        <translation>Nova Etoso</translation>
     </message>
 </context>
 <context>
@@ -1369,7 +1369,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="78"/>
         <source>Themes</source>
-        <translation>Haŭtoj</translation>
+        <translation>Etosoj</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="92"/>
@@ -1384,7 +1384,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation>Maljuna Lernejo</translation>
+        <translation>Malnova Lernejo</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
@@ -1441,23 +1441,23 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation>Forigi haŭton &apos;%1&apos;?</translation>
+        <translation>Forigi etoson &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
         <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Themes (%1)</source>
-        <translation>Haŭtoj (%1)</translation>
+        <translation>Etosoj (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
         <source>Import Theme</source>
-        <translation>Elporti Haŭton</translation>
+        <translation>Elporti Etoson</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="416"/>
         <source>Export Theme</source>
-        <translation>Elporti Haŭton</translation>
+        <translation>Elporti Etoson</translation>
     </message>
 </context>
 <context>
@@ -1604,7 +1604,7 @@
     <message>
         <location filename="../src/window.cpp" line="300"/>
         <source>Loading themes</source>
-        <translation>Ŝargante haŭtojn</translation>
+        <translation>Ŝargante etosojn</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1146"/>
@@ -1650,7 +1650,7 @@
     <message>
         <location filename="../src/window.cpp" line="871"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Uzas bildsimboloj de la &lt;a href=%1&gt;Oxygen&lt;/a&gt; bildsimbola haŭto</translation>
+        <translation>Uzas bildsimbolojn de la &lt;a href=%1&gt;Oxygen&lt;/a&gt; bildsimbola etoso</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="872"/>
@@ -2161,7 +2161,7 @@
     <message>
         <location filename="../src/window.cpp" line="1430"/>
         <source>&amp;Themes...</source>
-        <translation>Haŭtoj...</translation>
+        <translation>Etosoj...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1433"/>

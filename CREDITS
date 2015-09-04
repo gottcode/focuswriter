@@ -21,6 +21,9 @@ Danish:
 Dutch:
 * Robert Borst
 
+Esperanto:
+* Synteq
+
 German:
 * Dennis Peteranderl
 * Eduard Bruckner
@@ -54,6 +57,9 @@ Japanese:
 
 Korean:
 * Hwang In Tak
+
+Lithuanian:
+* Moo
 
 Polish:
 * Jakub Kowalski
@@ -110,11 +116,10 @@ Chinese (China):
 
 Icons
 -----
-* Oxygen, http://www.oxygen-icons.org/
+* Oxygen, https://techbase.kde.org/Projects/Oxygen
 
 
 Libraries
 ---------
-* Qt, http://qt-project.org/
+* Qt, https://www.qt.io/
 * hunspell, http://hunspell.sourceforge.net/
-* SDL_mixer, http://www.libsdl.org/projects/SDL_mixer/
