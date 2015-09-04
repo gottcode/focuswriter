@@ -1,3 +1,14 @@
+1.5.5
+-----
+* Added support for pasting RTF in Windows.
+* Switched back to dynamic builds for Windows.
+* Updated dictionaries.
+* FIXED: Themes did not always forget changes.
+* FIXED: Treated every paragraph as a scene when divider is empty.
+* FIXED: Switched tabs during autosave.
+* FIXED: Allowed pasting and saving invalid null character.
+* Translation updates: Catalan, Esperanto, Lithuanian, Portuguese (Brazil).
+
 1.5.4.1
 -------
 * FIXED: Compile failure with Qt 5.5.
