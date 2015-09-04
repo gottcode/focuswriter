@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Zoriana Zaiats, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:45+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2014-12-09 14:09+0000\n"
+"Last-Translator: Zoriana Zaiats\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/focuswriter/"
 "language/uk/)\n"
 "Language: uk\n"
@@ -21,11 +22,11 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Повноекранний текстовий редактор"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -34,6 +35,11 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter це простий текстовий редактор, що дозволяє повністю зосередитися "
+"на роботі. Він використовує висувний інтерфейс, який з’являється при "
+"наведенні стрілки миші до країв екрану. Це дає можливість досягти "
+"максимально зручного для користувача зовнішнього вигляду, який не "
+"відволікає, а дозволяє повністю зануритися в роботу."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -42,6 +48,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter дозволить вам налаштувати своє робоче оточення шляхом створення "
+"тем, в яких можна управляти шрифтами, кольорами та фоновими зображеннями. "
+"Також текстовий редактор вміє вести статистику, оновлювану в реальному часі, "
+"ставити щоденні робочі цілі, відкривати декілька документів одночасно, "
+"перевіряти орфографію і багато чого ще."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -49,11 +60,15 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Крім того, коли ви відкриєте програму, відразу ж буде завантажений прогрес "
+"вашої поточної роботи і курсор перейде на ту позицію, на якій в останній раз "
+"робота була перервана. Так ви зможете практично миттєво повернутися до "
+"справи."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "Повноекранний текстовий редактор"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr ""
+msgstr "Писати не відволікаючись"

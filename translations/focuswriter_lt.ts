@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en" sourcelanguage="en">
+<TS version="2.1" language="lt" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uždaryti (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
         <source>Collapse</source>
-        <translation type="unfinished"></translation>
+        <translation>Suskleisti</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation type="unfinished"></translation>
+        <translation>Išskleisti</translation>
     </message>
 </context>
 <context>
@@ -24,12 +24,12 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Pašalinti Įspėjimą</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+D</translation>
     </message>
 </context>
 <context>
@@ -38,32 +38,36 @@
         <location filename="../src/daily_progress.cpp" line="499"/>
         <source>%1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% of %Ln minute</numerusform>
-            <numerusform>%1% of %Ln minutes</numerusform>
+            <numerusform>%1% iš %Ln minutės</numerusform>
+            <numerusform>%1% iš %Ln minučių</numerusform>
+            <numerusform>%1% of %Ln minučių</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="501"/>
         <source>%1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% of %Ln word</numerusform>
-            <numerusform>%1% of %Ln words</numerusform>
+            <numerusform>%1% iš %Ln žodžio</numerusform>
+            <numerusform>%1% iš %Ln žodžių</numerusform>
+            <numerusform>%1% iš %Ln žodžių</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="503"/>
         <source>%Ln word(s)</source>
         <translation>
-            <numerusform>%Ln word</numerusform>
-            <numerusform>%Ln words</numerusform>
+            <numerusform>%Ln žodis</numerusform>
+            <numerusform>%Ln žodžiai</numerusform>
+            <numerusform>%Ln žodžių</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln minute</numerusform>
-            <numerusform>%Ln minutes</numerusform>
+            <numerusform>%Ln minutė</numerusform>
+            <numerusform>%Ln minutės</numerusform>
+            <numerusform>%Ln minučių</numerusform>
         </translation>
     </message>
     <message>
@@ -77,35 +81,36 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="147"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Kasdienė Eiga</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="270"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilgiausias ruožas</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="273"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Dabartinis ruožas</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="286"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="291"/>
         <source>%n day(s)</source>
         <translation>
-            <numerusform>%n day</numerusform>
-            <numerusform>%n days</numerusform>
+            <numerusform>%n diena</numerusform>
+            <numerusform>%n dienos</numerusform>
+            <numerusform>%n dienų</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="292"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -114,7 +119,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% kasdienio tikslo</translation>
     </message>
 </context>
 <context>
@@ -122,7 +127,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti Kalbą</translation>
     </message>
 </context>
 <context>
@@ -130,12 +135,12 @@
     <message>
         <location filename="../src/document.cpp" line="420"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Be pavadinimo %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="423"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Tik-Skaitymui)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="487"/>
@@ -143,68 +148,68 @@
         <location filename="../src/document.cpp" line="548"/>
         <location filename="../src/document.cpp" line="554"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsiprašome</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="487"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko išsaugoti &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="502"/>
         <source>Save File As</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsaugoti Failą Kaip</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="512"/>
         <location filename="../src/document.cpp" line="548"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko pakeisti &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="541"/>
         <source>Rename File</source>
-        <translation type="unfinished"></translation>
+        <translation>Pervadinti Failą</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="554"/>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko pervadinti &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="580"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkelti Failą iš naujo?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="581"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkelti iš disko iš naujo failą &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="582"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi neišsaugoti pakeitimai bus prarasti.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="584"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkelti iš naujo</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1436"/>
         <source>Untitled %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Be pavadinimo %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1490"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1491"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsaugojimas grynu tekstu pašalins visą formatavimą. Pašalinti formatavimą?</translation>
     </message>
 </context>
 <context>
@@ -212,42 +217,42 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas Pasikeitė</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas &apos;%1&apos; buvo pakeistas kita programa.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar norite įkelti failą iš naujo?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>įkelti iš naujo</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="200"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepaisyti</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas Ištrintas</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas %1 buvo ištrintas kita programa.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūs norite išsaugoti ar uždaryti failą?</translation>
     </message>
 </context>
 <context>
@@ -255,7 +260,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="96"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko atidaryti archyvo.</translation>
     </message>
 </context>
 <context>
@@ -263,87 +268,88 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieškoti:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakeisti tekstu:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepaisyti raidžių lygio</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tik pilni žodžiai</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguliarios išraiškos</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieškoti aukštyn</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieškoti žemyn</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rasti</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pakeisti</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakeisti &amp;Visus</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasti</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakeisti</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Replace %n instance?</numerusform>
-            <numerusform>Replace %n instances?</numerusform>
+            <numerusform>Pakeisti %n egzempliorių?</numerusform>
+            <numerusform>Pakeisti %n egzempliorius?</numerusform>
+            <numerusform>Pakeisti %n egzempliorių?</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
         <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsiprašome</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
         <location filename="../src/find_dialog.cpp" line="354"/>
         <source>Phrase not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Frazė nerasta.</translation>
     </message>
 </context>
 <context>
@@ -351,7 +357,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation>ODT Formatas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
@@ -361,27 +367,27 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX Formatas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>RTF Formatas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="79"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Grynas Tekstas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="95"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi Failai</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="111"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi Palaikomi Failai</translation>
     </message>
 </context>
 <context>
@@ -389,17 +395,17 @@
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="54"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti</translation>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="55"/>
         <source>Check Spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikrinti Rašybą...</translation>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="129"/>
         <source>(No suggestions found)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Jokių pasiūlymų nerasta)</translation>
     </message>
 </context>
 <context>
@@ -407,12 +413,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="92"/>
         <source>Open Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Atidaryti Paveikslą </translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="92"/>
         <source>Images(%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Paveikslai(%1)</translation>
     </message>
 </context>
 <context>
@@ -420,22 +426,22 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="53"/>
         <source>Select application language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkite programos kalbą:</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="56"/>
         <source>&lt;System Language&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Sistemos Kalba&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="176"/>
         <source>Note</source>
-        <translation type="unfinished"></translation>
+        <translation>Pastaba</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="176"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kad įsigaliotų kalbos pakeitimai, prašome paleisti programą iš naujo.</translation>
     </message>
 </context>
 <context>
@@ -443,7 +449,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="107"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko atidaryti archyvo.</translation>
     </message>
 </context>
 <context>
@@ -451,206 +457,206 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuostatos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Bendra</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistika</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrankių Juosta</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Spell Checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Rašybos Tikrinimas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="461"/>
         <source>Select Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasirinkite Žodyną</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="475"/>
         <location filename="../src/preferences_dialog.cpp" line="578"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Atleiskite</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="475"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko atidaryti archyvo.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="578"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Archyve nėra naudoti tinkamo žodyno.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="260"/>
         <location filename="../src/preferences_dialog.cpp" line="403"/>
         <location filename="../src/preferences_dialog.cpp" line="566"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="117"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Spartieji klavišai</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="261"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vienas ar daugiau sparčiųjų klavišų konfliktuoja. Ar norite tęsti?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="566"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;%1&quot; žodynas jau yra. Ar norite jį pakeisti?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Daily Goal</source>
-        <translation type="unfinished"></translation>
+        <translation>Kasdienis Tikslas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="814"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Jokio</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="816"/>
         <source>Minutes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minučių:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="823"/>
         <location filename="../src/preferences_dialog.cpp" line="933"/>
         <source>Words:</source>
-        <translation type="unfinished"></translation>
+        <translation>Žodžių:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="713"/>
         <source>Editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Redagavimas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Always vertically center</source>
-        <translation type="unfinished"></translation>
+        <translation>Visuomet vertikaliai centruoti</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="716"/>
         <source>Block insertion cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokuoti įterpimo žymeklį</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="717"/>
         <source>Smooth fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Glotninti šriftus</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="718"/>
         <source>Typewriter sounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Spausdinimo mašinėlės garsai</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="720"/>
         <source>Smart quotes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Protingosios kabutės:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="727"/>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation>Dvigubos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="728"/>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation>Viengubos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="749"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Scenos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="756"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dalytuvas:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="759"/>
         <source>Saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsaugojimas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="761"/>
         <source>Automatically save changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatiškai išsaugoti pakeitimus</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="762"/>
         <source>Remember cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Įsiminti žymeklio vietą</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="893"/>
         <source>Word count</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaičiuoti žodžius</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="894"/>
         <source>Page count</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaičiuoti puslapius</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="895"/>
         <source>Paragraph count</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaičiuoti pastraipas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
         <source>Character count</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaičiuoti simbolius</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="919"/>
         <source>Characters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Simbolių</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="926"/>
         <source>Paragraphs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pastraipų</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="905"/>
         <source>Word Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Žodžių Skaičiavimo Algoritmas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="404"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Atstatyti kasdienę eiga šiandienai iki nulio?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="763"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Įrašyti baitų tvarkos žymę gryno teksto failuose</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="765"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numatytasis formatas:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="785"/>
@@ -675,148 +681,148 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="839"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Atstatyti Šiandieną</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="852"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Žurnalas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="854"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Įsiminti žurnalą</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="857"/>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti ruožus</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="872"/>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimali eiga ruožui:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="907"/>
         <source>Detect word boundaries</source>
-        <translation type="unfinished"></translation>
+        <translation>Aptikti žodžio ribas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="908"/>
         <source>Divide character count by six</source>
-        <translation type="unfinished"></translation>
+        <translation>Dalinti simbolių skaičių iš šešių</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="909"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaičiuoti kiekvieną raidę kaip žodį</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="917"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Puslapių Skaičiavimo Algoritmas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1060"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Stilius</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1063"/>
         <source>Icons Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tik Piktogramos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1064"/>
         <source>Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tik Tekstas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1065"/>
         <source>Text Alongside Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstas šalia piktogramų</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1066"/>
         <source>Text Under Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstas po piktogramomis</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1070"/>
         <source>Text Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Teksto Vieta:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1073"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Veiksmai</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1089"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Kelti Aukštyn</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1091"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuleisti Žemyn</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1093"/>
         <source>Add Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti Skirtuką</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1127"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Komanda</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1127"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Spartusis klavišas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1127"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Veiksmas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="980"/>
         <source>Check spelling as you type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikrinti rašybą, renkant tekstą</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="981"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepaisyti žodžių, parašytų DIDŽIOSIOMIS RAIDĖMIS</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="982"/>
         <source>Ignore words with numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepaisyti žodžių su skaičiais</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="995"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalba</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="999"/>
         <location filename="../src/preferences_dialog.cpp" line="1020"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridėti</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1032"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Šalinti</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1015"/>
         <source>Personal Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Asmeninis Žodynas</translation>
     </message>
 </context>
 <context>
@@ -825,7 +831,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="328"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="332"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepalaikomas RTF failas.</translation>
     </message>
 </context>
 <context>
@@ -833,7 +839,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Netikėtai pasiekta failo pabaiga.</translation>
     </message>
 </context>
 <context>
@@ -841,52 +847,52 @@
     <message>
         <location filename="../src/scene_list.cpp" line="92"/>
         <source>Ctrl+Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="97"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Kelti Scenas Aukštyn</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="98"/>
         <source>Ctrl+Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="118"/>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation>Perjungti Scenų Sąrašą</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="119"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="400"/>
         <source>Show scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti scenų sąrašą (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="401"/>
         <source>Hide scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Slėpti scenų sąrašą (%1)</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="149"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruoti</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="91"/>
         <source>Move Scenes Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Leisti Scenas Žemyn</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="156"/>
         <source>Resize scene list</source>
-        <translation type="unfinished"></translation>
+        <translation>Keisti scenų sąrašo dydį</translation>
     </message>
 </context>
 <context>
@@ -899,7 +905,7 @@
         <location filename="../src/session_manager.cpp" line="460"/>
         <location filename="../src/session_manager.cpp" line="461"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Numatytoji</translation>
     </message>
 </context>
 <context>
@@ -907,97 +913,97 @@
     <message>
         <location filename="../src/session_manager.cpp" line="52"/>
         <source>Manage Sessions</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvarkyti Sesijas</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="83"/>
         <source>S&amp;essions</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;esijos</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="97"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauja</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="100"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubliuoti</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="103"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Pervadinti</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="106"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="109"/>
         <source>Switch To</source>
-        <translation type="unfinished"></translation>
+        <translation>Perjungti į</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="220"/>
         <source>New Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauja Sesija</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="279"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubliuoti Sesiją</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="324"/>
         <source>Rename Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Pervadinti Sesiją</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
         <source>Delete selected session?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti pasirinktą sesiją?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="423"/>
         <source>Session name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesijos pavadinimas:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Atleiskite</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
         <source>The requested session name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Užklaustas sesijos pavadinimas jau yra naudojamas.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
         <source>&amp;New...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nauja...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
         <source>&amp;Manage...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tvarkyti...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
         <source>Ctrl+Shift+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+M</translation>
     </message>
 </context>
 <context>
@@ -1005,18 +1011,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Išvalyti</translation>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Atstatyti numatytąsias reikšmes</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1164"/>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spartusis klavišas:</translation>
     </message>
 </context>
 <context>
@@ -1024,12 +1030,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Keičiamos kabutės...</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Prašome Palaukti</translation>
     </message>
 </context>
 <context>
@@ -1037,67 +1043,67 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="134"/>
         <source>Check Spelling</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikrinama Rašyba</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="142"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pridėti</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="145"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepa&amp;isyti</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="148"/>
         <source>I&amp;gnore All</source>
-        <translation type="unfinished"></translation>
+        <translation>I&amp;gnoruoti Visus</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="153"/>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pakeisti</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="156"/>
         <source>C&amp;hange All</source>
-        <translation type="unfinished"></translation>
+        <translation>Pa&amp;keisti Visus</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="171"/>
         <source>Not in dictionary:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra žodyne:</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="179"/>
         <source>Change to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakeisti į:</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Checking spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikrinama rašyba...</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Atšaukti</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="196"/>
         <source>Please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Prašome palaukti</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tęsti tikrinimą failo pradžioje?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
         <source>Spell check complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rašybos tikrinimas užbaigtas.</translation>
     </message>
 </context>
 <context>
@@ -1105,32 +1111,32 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="98"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Simboliai</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="105"/>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Neseniai naudoti simboliai</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="128"/>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi simboliai</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="181"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsamiau</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="207"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pavadinimas:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="217"/>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Įterpti</translation>
     </message>
 </context>
 <context>
@@ -1138,12 +1144,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="102"/>
         <source>Blocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokai</translation>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="102"/>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Scenarijai</translation>
     </message>
 </context>
 <context>
@@ -1151,7 +1157,7 @@
     <message>
         <location filename="../src/theme.cpp" line="103"/>
         <source>Untitled %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Be pavadinimo %1</translation>
     </message>
 </context>
 <context>
@@ -1159,132 +1165,132 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="105"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pavadinimas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="166"/>
         <source>No Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra Paveikslo</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="166"/>
         <source>Tiled</source>
-        <translation type="unfinished"></translation>
+        <translation>Iškloti</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="166"/>
         <location filename="../src/theme_dialog.cpp" line="198"/>
         <source>Centered</source>
-        <translation type="unfinished"></translation>
+        <translation>Centruoti</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="166"/>
         <location filename="../src/theme_dialog.cpp" line="198"/>
         <source>Stretched</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištempti</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="166"/>
         <source>Scaled</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištempti proporcingai</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="166"/>
         <source>Zoomed</source>
-        <translation type="unfinished"></translation>
+        <translation>Pritraukti</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="213"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dengiamumas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="214"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vieta:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="215"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Plotis:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="219"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Apvalinti Teksto Fono Kampus</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="233"/>
         <location filename="../src/theme_dialog.cpp" line="251"/>
         <location filename="../src/theme_dialog.cpp" line="281"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Plotas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="237"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulieti Teksto Foną</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="255"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Teksto Fonas Numeta Šešėlį</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="282"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertikalus Poslinkis:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="286"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Paraštės</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="304"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Langas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="305"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Puslapis:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="359"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Įtraukti pirmą eilutę</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="366"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prieš:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Po:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Pašalinti</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="95"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Redaguoti Temą</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="152"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Lango Fonas</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="180"/>
         <location filename="../src/theme_dialog.cpp" line="334"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="146"/>
@@ -1292,12 +1298,12 @@
         <location filename="../src/theme_dialog.cpp" line="212"/>
         <location filename="../src/theme_dialog.cpp" line="280"/>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalva:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="179"/>
         <source>Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Paveikslas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="204"/>
@@ -1311,82 +1317,82 @@
         <location filename="../src/theme_dialog.cpp" line="348"/>
         <location filename="../src/theme_dialog.cpp" line="354"/>
         <source> pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>taškelių</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="198"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Kairėje</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="184"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Teksto Fonas</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="198"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Dešinėje</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="118"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstas</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="147"/>
         <source>Font:</source>
-        <translation type="unfinished"></translation>
+        <translation>Šriftas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Misspelled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Neteisingai parašytas:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="309"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Eilučių Intervalai</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="313"/>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation>Viengubas</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="313"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1.5 Eilutės</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="313"/>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation>Dvigubas</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="313"/>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation>Proporcionalus</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="335"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aukštis:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="339"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Pastraipos Tarpai</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="365"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuliacijos Plotis</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="249"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauja Tema</translation>
     </message>
 </context>
 <context>
@@ -1394,95 +1400,95 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="74"/>
         <source>Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Temos</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="88"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Numatytoji</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="103"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Švelni Mėlyna</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Senoji Mokykla</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Kosminės Svajonės</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Rašomasis Stalas</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <location filename="../src/theme_manager.cpp" line="170"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauja</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
         <location filename="../src/theme_manager.cpp" line="174"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubliuoti</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="127"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Tinkinta</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="179"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Keisti</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="189"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuoti</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="193"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuoti</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="307"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="307"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti temą &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="331"/>
         <location filename="../src/theme_manager.cpp" line="404"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Temos (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="331"/>
         <source>Import Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuoti Temą</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="404"/>
         <source>Export Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuoti Temą</translation>
     </message>
 </context>
 <context>
@@ -1490,87 +1496,87 @@
     <message>
         <location filename="../src/timer.cpp" line="255"/>
         <source>&lt;b&gt;%1&lt;/b&gt; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; - %2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti laikmatį?</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Žodžių:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Puslapių:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Pastraipų:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="358"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Simbolių:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti Delsimą</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti Laiką</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Delsimas:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="409"/>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Laikas:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="418"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="431"/>
         <source>Alarm</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliarmas</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="444"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipas:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation type="unfinished"></translation>
+        <translation>Raštelis:</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Redaguoti</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti</translation>
     </message>
 </context>
 <context>
@@ -1578,12 +1584,12 @@
     <message>
         <location filename="../src/timer_display.cpp" line="150"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra aktyvių laikmačių</translation>
     </message>
 </context>
 <context>
@@ -1591,37 +1597,37 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation type="unfinished"></translation>
+        <translation>Laikmačiai</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Naujas</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="83"/>
         <source>Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Paskiausi</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Klausimas</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Atšaukti laikmačių redagavimą?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
         <source>+HH:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>+HH:mm:ss</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="323"/>
         <source>%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - %2</translation>
     </message>
 </context>
 <context>
@@ -1629,245 +1635,245 @@
     <message>
         <location filename="../src/window.cpp" line="296"/>
         <source>Loading themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkeliamos temos</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1141"/>
         <source>Loading sounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkeliami garsai</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="305"/>
         <location filename="../src/window.cpp" line="1060"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>Be pavadinimo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="672"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Atidaryti Failą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="854"/>
         <source>About FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>Apie FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/application.cpp" line="44"/>
         <location filename="../src/window.cpp" line="857"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="858"/>
         <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <translation>Paprasta viso ekrano žodžių doroklė</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="859"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorinės Teisės &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="860"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Išleista pagal &lt;a href=%1&gt;GPL 3&lt;/a&gt; licenciją</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="861"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Naudoja piktogramas iš &lt;a href=%1&gt;Oxygen&lt;/a&gt; piktogramų temos</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="862"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation>Išleista pagal &lt;a href=%1&gt;LGPL 3&lt;/a&gt; licenciją</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="170"/>
         <location filename="../src/window.cpp" line="918"/>
         <source>Characters: %L1 / %L2</source>
-        <translation type="unfinished"></translation>
+        <translation>Simbolių: %L1 / %L2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="168"/>
         <location filename="../src/window.cpp" line="919"/>
         <source>Pages: %L1</source>
-        <translation type="unfinished"></translation>
+        <translation>Puslapių: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="169"/>
         <location filename="../src/window.cpp" line="920"/>
         <source>Paragraphs: %L1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pastraipų: %L1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="167"/>
         <location filename="../src/window.cpp" line="921"/>
         <source>Words: %L1</source>
-        <translation type="unfinished"></translation>
+        <translation>Žodžių: %L1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="597"/>
         <location filename="../src/window.cpp" line="1015"/>
         <source>Opening %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Atidaroma %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="328"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Be pavadinimo %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="203"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Pateikti visus dokumentus</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="206"/>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Perjungti į Kitą Dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="212"/>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Perjungti į Ankstesnį Dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="218"/>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Perjungti į Pirmą Dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="224"/>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Perjungti į Paskutinį Dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="232"/>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Perjungti į Dokumentą %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="292"/>
         <source>Loading settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Įkeliami nustatymai</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="314"/>
         <source>Emergency cache is not writable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avarinė talpykla nėra tinkama įrašymui.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="334"/>
         <location filename="../src/window.cpp" line="1029"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Įspėjimas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="335"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter nebaigė darbo sklandžiai.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="336"/>
         <source>Restore from the emergency cache?</source>
-        <translation type="unfinished"></translation>
+        <translation>Atkurti iš avarinės talpyklos?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="461"/>
         <source>Some files could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kai kurie failai negalėjo būti atidaryti.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="464"/>
         <source>Some files were opened Read-Only.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kai kurie failai buvo atidaryti Tik Skaitymui.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1030"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; yra naujesnis negu talpinama kopija.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1031"/>
         <source>Overwrite newer file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakeisti naujesnį failą?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1116"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsaugoti Pakeitimus?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1117"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Prieš uždarant, išsaugoti pakeitimus į failą &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1118"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeigu neišsaugosite, jūsų pakeitimai bus prarasti.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1148"/>
         <source>Unable to load typewriter sounds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko įkelti spausdinimo mašinėlės garsus.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1287"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Failas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1288"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Naujas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1289"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Atidaryti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1290"/>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>Į&amp;kelti iš naujo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1292"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Išsaugoti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1294"/>
         <source>Save &amp;As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsaugoti Kai&amp;p...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1295"/>
         <source>&amp;Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pe&amp;rvadinti...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1297"/>
         <source>Save A&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Išsaugoti &amp;Visus</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1300"/>
         <source>Manage Sessions</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvarkyti Sesijas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1302"/>
         <source>New Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Nauja Sesija</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spausdinti...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1306"/>
@@ -1877,387 +1883,387 @@
     <message>
         <location filename="../src/window.cpp" line="1308"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uždaryti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Išei&amp;ti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1313"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Keisti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1314"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Anuliuoti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;tkurti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1321"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iškirpti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1324"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>K&amp;opijuoti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1327"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Į&amp;dėti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1328"/>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Įdėti &amp;Neformatuotą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1328"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1330"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Pažymėti &amp;Viską</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Pažymėti &amp;Sceną</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1334"/>
         <source>Fo&amp;rmat</source>
-        <translation type="unfinished"></translation>
+        <translation>Fo&amp;rmatas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1336"/>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Antraštė</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1338"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Antraštė &amp;1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1339"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Antraštė &amp;2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1340"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Antraštė &amp;3</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1341"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Antraštė &amp;4</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Antraštė &amp;5</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1343"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Antraštė &amp;6</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normalus</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1362"/>
         <source>&amp;Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Paryškintas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1364"/>
         <source>&amp;Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kursyvu</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1366"/>
         <source>&amp;Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Pa&amp;brauktas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>Stri&amp;kethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>Perbr&amp;auktas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1370"/>
         <source>Sup&amp;erscript</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Viršutiniame indekse</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1370"/>
         <source>Ctrl+^</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+^</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1372"/>
         <source>&amp;Subscript</source>
-        <translation type="unfinished"></translation>
+        <translation>Apa&amp;tiniame indekse</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1372"/>
         <source>Ctrl+_</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+_</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1376"/>
         <source>Align &amp;Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Lygiuoti Kairė&amp;je</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1376"/>
         <source>Ctrl+{</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+{</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1378"/>
         <source>Align &amp;Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Lygiuoti &amp;Centre</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1378"/>
         <source>Ctrl+|</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+|</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>Align &amp;Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Lygiuoti &amp;Dešinėje</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1380"/>
         <source>Ctrl+}</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+}</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1382"/>
         <source>Align &amp;Justify</source>
-        <translation type="unfinished"></translation>
+        <translation>Lygiuoti &amp;iš abiejų pusių</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1382"/>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+J</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1392"/>
         <source>&amp;Decrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Mažinti Įtrauką</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1392"/>
         <source>Ctrl+&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+&lt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1393"/>
         <source>I&amp;ncrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Didi&amp;nti Įtrauką</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1393"/>
         <source>Ctrl+&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokas iš Kairė&amp;s į Dešinę</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1398"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokas iš D&amp;ešinės į Kairę</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1406"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Įr&amp;ankiai</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1407"/>
         <source>&amp;Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rasti...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1408"/>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasti &amp;Kitą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1411"/>
         <source>Find Pre&amp;vious</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasti A&amp;nkstesnį</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>&amp;Replace...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pakeisti...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1416"/>
         <source>Smart &amp;Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Protingosios Ka&amp;butės</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1417"/>
         <source>Update &amp;Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Atnaujinti &amp;Dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1420"/>
         <source>Update &amp;Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Atnaujinti Žymėji&amp;mą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1424"/>
         <source>&amp;Spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Raš&amp;ybos Tikrinimas...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1424"/>
         <source>F7</source>
-        <translation type="unfinished"></translation>
+        <translation>F7</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1425"/>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nustatyti Ka&amp;lbą...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
         <source>&amp;Timers...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Laikmačiai...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1428"/>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Simboliai...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1429"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas&amp;dienė Eiga</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1432"/>
         <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nustatymai</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1433"/>
         <source>Show &amp;Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti Įrankių &amp;Juostą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1438"/>
         <source>Show &amp;Menu Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti Meniu &amp;Piktogramas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1444"/>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Teksto &amp;Dėmesio Centras</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1446"/>
         <source>&amp;Fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Visas Ekranas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1446"/>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>F11</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1448"/>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>M&amp;inimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Sumaž&amp;inti langą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1452"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1454"/>
         <source>&amp;Themes...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Temos...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1457"/>
         <source>&amp;Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nuostatos...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1463"/>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Dėmesio Centras Išjungtas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1465"/>
         <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Dėmesio Centras - Viena Eilutė</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1467"/>
         <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Dėmesio Centras - Trys Eilutės</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1468"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pastraipa</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1469"/>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Dėmesio Centras - Pastraipa</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1478"/>
@@ -2267,42 +2273,42 @@
     <message>
         <location filename="../src/window.cpp" line="1483"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pagalba</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1456"/>
         <source>Application &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Programos Ka&amp;lba...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="394"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kai kurie failai buvo nepalaikomi, todėl negalėjo būti atidaryti.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1462"/>
         <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Išj&amp;ungtas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1464"/>
         <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Viena Ei&amp;lutė</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1466"/>
         <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Trys Eilutės</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1484"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Apie</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Apie &amp;Qt</translation>
     </message>
 </context>
 </TS>

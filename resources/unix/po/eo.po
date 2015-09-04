@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# marco <oelimar@email.it>, 2014
+# Synteq, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-10-04 19:01+0000\n"
-"Last-Translator: marco <oelimar@email.it>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/focuswriter/"
-"language/it/)\n"
-"Language: it\n"
+"PO-Revision-Date: 2015-07-05 02:45+0000\n"
+"Last-Translator: Synteq\n"
+"Language-Team: Esperanto (http://www.transifex.com/gottcode/focuswriter/"
+"language/eo/)\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr "Un semplice editor di testo a pieno schermo"
+msgstr "Plenekrana tekstoprilaborilo"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -34,6 +34,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter estas simpla senmalatentiga tekstoprilaborilo. Ĝi uzas kaŝatan "
+"interfacon, kion vi atingas per movi vian muson al la randoj de la ekrano. "
+"Tiel la programaro eblas havi kutiman fasadon, dum ankoraŭ estas "
+"malobstrukciĝante por ke vi povas ĉirkaŭi vin en via laboro."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -42,6 +46,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter ebligas vin agordi vian verkejon per kreado de etosoj, kiuj "
+"agordas la tiparon, kolorojn, kaj fonan bildon por ŝanĝi etoson. Ĝi ankaŭ "
+"havas funkciojn por tuje ĝisdatiganta statistiko, ĉiutagaj celoj, plure da "
+"malfermataj dokumentoj, literumada kontrolo, kaj multe pli."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -49,11 +57,13 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Plue, kiam vi lanĉas la programaron, via lasta malpreta verko aŭtomate "
+"ŝarĝas kaj allokas vin, kie vi laste ĉesis, por ke vi povas daŭri verki tuj."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "Plenekrana Tekstoprilaborilo"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr ""
+msgstr "Skribu sen malatentigoj"

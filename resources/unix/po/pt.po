@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# tiago <tiagob3lo@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:48+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2014-11-09 15:45+0000\n"
+"Last-Translator: tiago <tiagob3lo@gmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/focuswriter/"
 "language/pt/)\n"
 "Language: pt\n"
@@ -24,7 +25,7 @@ msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr "Processador de textos em ecrã completo"
+msgstr "Processador de texto em ecrã completo"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -33,10 +34,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
-"FocusWriter é um processador de textos simples e sem distracções. A "
-"interface só aparece quando o apontador do rato se aproximar das margens do "
-"ecrã, proporcionando um aspecto familiar que ao mesmo tempo não ocupa o "
-"espaço e permite ao utilizador focar-se no seu trabalho."
+"FocusWriter é um processador de texto simples e sem distrações. A interface "
+"só aparece quando o cursor se aproxima das margens do ecrã, proporcionando "
+"um aspeto familiar que ao mesmo tempo não ocupa espaço e lhe permite focar-"
+"se no seu trabalho."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -45,10 +46,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
-"FocusWriter permite personalizar o ambiente de trabalho com a criação de "
-"temas incluindo fonte tipográfica, cores e uma imagem de fundo. Também "
-"mostra estatísticas actualizadas em directo, objectivos diários, também abre "
-"vários documentos ao mesmo tempo, faz verificação ortográfica, e muito mais."
+"FocusWriter permite-lhe personalizar o ambiente de trabalho com a criação de "
+"temas, controlando a fonte tipográfica, cores e imagem de fundo. Também "
+"dispõe de estatísticas atualizadas, objetivos diários, vários documentos "
+"abertos ao mesmo tempo, verificação ortográfica, e muito mais."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -56,13 +57,13 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
-"Além do resto, o programa abre automaticamente o último trabalho em curso e "
-"coloca o cursor na sua posição em que este esteve quando a sessão anterior "
-"terminou, para assim poder voltar ao assunto sem demoras."
+"Além disto, o programa abre automaticamente o trabalho em curso e posiciona "
+"o cursor na posição em que se encontrava na sessão anterior, para que possa "
+"voltar ao trabalho sem demoras."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr "Processador de textos em ecrã completo"
+msgstr "Processador de texto em ecrã completo"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
