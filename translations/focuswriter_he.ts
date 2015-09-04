@@ -210,42 +210,42 @@
 <context>
     <name>DocumentWatcher</name>
     <message>
-        <location filename="../src/document_watcher.cpp" line="189"/>
+        <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
         <translation>קובץ שונה</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="190"/>
+        <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
         <translation>הקובץ &apos;%1&apos; שונה על ידי תוכנית אחרת.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="191"/>
+        <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Do you want to reload the file?</source>
         <translation>האם ברצונך להטעין את הקובץ מחדש?</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="193"/>
+        <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
         <translation>טעינה מחדש</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="198"/>
+        <location filename="../src/document_watcher.cpp" line="200"/>
         <source>Ignore</source>
         <translation>התעלם מן אירוע</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="209"/>
+        <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
         <translation>קובץ נמחק</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="210"/>
+        <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
         <translation>הקובץ %1 נמחק על ידי תוכנית אחרת.</translation>
     </message>
     <message>
-        <location filename="../src/document_watcher.cpp" line="211"/>
+        <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
         <translation>האם ברצונך לשמור או לסגור את הקובץ?</translation>
     </message>

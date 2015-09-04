@@ -135,6 +135,9 @@ void DocxWriter::writeParagraph(const QTextBlock& block)
 				writeText(text, start, i);
 				m_xml.writeEmptyElement(QString::fromLatin1("w:br"));
 				start = i + 1;
+			} else if (c.unicode() == 0x0) {
+				writeText(text, start, i);
+				start = i + 1;
 			}
 		}
 		writeText(text, start, count);

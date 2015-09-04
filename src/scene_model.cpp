@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -205,7 +205,7 @@ void SceneModel::updateScene(BlockStats* stats, const QTextBlock& block)
 
 	QString text = block.text();
 	bool was_scene = stats->isScene();
-	bool is_scene = text.startsWith(f_scene_divider);
+	bool is_scene = !f_scene_divider.isEmpty() && text.startsWith(f_scene_divider);
 	stats->setScene(is_scene || (block.blockNumber() == 0));
 	if (stats->isScene()) {
 		// Add or update scene divider block
@@ -477,7 +477,7 @@ void SceneModel::resetScenes()
 		if (stats) {
 			// Check if block is a scene
 			QString text = block.text();
-			bool is_scene = text.startsWith(f_scene_divider);
+			bool is_scene = !f_scene_divider.isEmpty() && text.startsWith(f_scene_divider);
 			stats->setScene(is_scene || (block.blockNumber() == 0));
 
 			// Add scene

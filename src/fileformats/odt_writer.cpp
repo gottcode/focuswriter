@@ -237,7 +237,10 @@ void OdtWriter::writeBody(const QTextDocument* document)
 			int spaces = -1;
 			for (int i = 0; i < text.length(); ++i) {
 				QChar c = text.at(i);
-				if (c.unicode() == 0x0009) {
+				if (c.unicode() == 0x0) {
+					m_xml.writeCharacters(text.mid(start, i - start));
+					start = i + 1;
+				} else if (c.unicode() == 0x0009) {
 					m_xml.writeCharacters(text.mid(start, i - start));
 					m_xml.writeEmptyElement(QString::fromLatin1("text:tab"));
 					start = i + 1;

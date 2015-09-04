@@ -49,6 +49,7 @@ public:
 
 public slots:
 	virtual void accept();
+	virtual void reject();
 
 protected:
 	virtual void hideEvent(QHideEvent* event);

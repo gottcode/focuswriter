@@ -394,7 +394,7 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 						text += "\\'" + QByteArray::number(static_cast<unsigned char>(encoded.at(j)), 16).toUpper();
 					}
 				}
-			} else {
+			} else if (i->unicode()) {
 				text += "\\u" + QByteArray::number(i->unicode()) + "?";
 			}
 		}
