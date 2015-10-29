@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,9 +60,13 @@ signals:
 	void progressChanged();
 	void streaksChanged();
 
+private slots:
+	void updateDay();
+
 private:
 	void findStreak(int pos, int& start, int& end) const;
 	void updateProgress();
+	void updateRows();
 
 private:
 	QSettings* m_file;

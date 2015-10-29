@@ -153,6 +153,7 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->verticalHeader()->hide();
 	m_display->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_display->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+	connect(progress, SIGNAL(modelReset()), this, SLOT(modelReset()));
 
 	m_delegate = new Delegate(this);
 	m_display->setItemDelegate(m_delegate);
@@ -258,6 +259,17 @@ void DailyProgressDialog::showEvent(QShowEvent* event)
 	m_display->scrollToBottom();
 
 	QDialog::showEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgressDialog::modelReset()
+{
+	const int size = m_display->rowHeight(0);
+	for (int r = 0, count = m_progress->rowCount(); r < count; ++r) {
+		m_display->setRowHeight(r, size);
+	}
+	m_display->scrollToBottom();
 }
 
 //-----------------------------------------------------------------------------

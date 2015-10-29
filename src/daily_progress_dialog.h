@@ -46,6 +46,7 @@ protected:
 	void showEvent(QShowEvent* event);
 
 private slots:
+	void modelReset();
 	void streaksChanged();
 
 private:

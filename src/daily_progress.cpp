@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include <QFile>
 #include <QLocale>
 #include <QSettings>
+#include <QTimer>
 
 //-----------------------------------------------------------------------------
 
@@ -98,20 +99,6 @@ DailyProgress::DailyProgress(QObject* parent) :
 		m_progress.append(Progress(date));
 	}
 
-	// Add empty entries for days without data
-	QDate previous = m_progress.last().date();
-	for (int i = m_progress.size() - 2; i >= 0; --i) {
-		QDate next = m_progress.at(i).date();
-		int type = m_progress.at(i).type();
-		int goal = m_progress.at(i).goal();
-		int count = next.daysTo(previous) - 1;
-		for (int j = 0; j < count; ++j) {
-			previous = previous.addDays(-1);
-			m_progress.insert(i + 1, Progress(previous, 0, 0, type, goal));
-		}
-		previous = next;
-	}
-
 	// Add null entries before data to make it week-based
 	QLocale locale;
 	int start_of_week = locale.firstDayOfWeek();
@@ -124,22 +111,6 @@ DailyProgress::DailyProgress(QObject* parent) :
 	}
 	for (int i = 0; i < null_days; ++i) {
 		m_progress.insert(0, Progress());
-	}
-
-	// Add null entries after data to make it week-based
-	null_days = 7 - (m_progress.size() % 7);
-	if (null_days < 7) {
-		for (int i = 0; i < null_days; ++i) {
-			m_progress.append(Progress());
-		}
-	}
-
-	// Fetch current daily progress
-	for (m_current_pos = m_progress.size() - 1; m_current_pos >= 0; --m_current_pos) {
-		if (m_progress.at(m_current_pos).date() == date) {
-			m_current = &m_progress[m_current_pos];
-			break;
-		}
 	}
 
 	// Fetch day names
@@ -155,35 +126,13 @@ DailyProgress::DailyProgress(QObject* parent) :
 	}
 	m_day_names.append(QString());
 
-	// Fetch row month and year names
-	int month = -1;
-	int year = -1;
-	int offset = 0;
-	for (int i = 0; i < m_progress.size(); i += 7) {
-		const Progress& progress = m_progress.at(i);
-		if (progress.date().isNull()) {
-			i -= 6;
-			++offset;
-			continue;
-		} else if (offset) {
-			i -= offset;
-			offset = 0;
-		}
-
-		int row = i / 7;
-		if (progress.date().month() != month) {
-			month = progress.date().month();
-			QString name = locale.standaloneMonthName(progress.date().month(), QLocale::ShortFormat);
-			m_row_month_names.insert(row, name);
-		}
-		if (progress.date().year() != year) {
-			year = progress.date().year();
-			QString name = QString::number(year);
-			m_row_year_names.insert(row, name);
-		}
-	}
+	updateRows();
 
 	m_typing_timer.start();
+
+	QTimer* day_timer = new QTimer(this);
+	connect(day_timer, SIGNAL(timeout()), this, SLOT(updateDay()));
+	day_timer->start(86400000);
 }
 
 //-----------------------------------------------------------------------------
@@ -267,11 +216,14 @@ int DailyProgress::percentComplete()
 
 void DailyProgress::increaseTime()
 {
-	qint64 msecs = m_typing_timer.restart();
+	const qint64 msecs = m_typing_timer.restart();
+
 	if (msecs < 30000) {
 		m_msecs += msecs;
 		m_current_valid = false;
 		updateProgress();
+	} else if (msecs >= 7200000) {
+		updateDay();
 	}
 }
 
@@ -432,7 +384,7 @@ QVariant DailyProgress::headerData(int section, Qt::Orientation orientation, int
 
 int DailyProgress::rowCount(const QModelIndex& parent) const
 {
-	return parent.isValid() ? 0 : (m_progress.size() / 7);
+	return parent.isValid() ? 0 : std::ceil(m_progress.size() / 7.0);
 }
 
 //-----------------------------------------------------------------------------
@@ -467,6 +419,35 @@ void DailyProgress::setPath(const QString& path)
 
 //-----------------------------------------------------------------------------
 
+void DailyProgress::updateDay()
+{
+	if (m_current->date() == QDate::currentDate()) {
+		return;
+	}
+
+	// Store current progress
+	if (Preferences::instance().goalHistory()) {
+		save();
+	} else {
+		m_words = 0;
+		m_msecs = 0;
+		m_current->setProgress(m_words, m_msecs, m_type, m_goal);
+		m_file->remove(m_current->date().toString(Qt::ISODate));
+		m_file->setValue(QLatin1String("HistoryDisabled"), QDate::currentDate().toString(Qt::ISODate));
+	}
+
+	// Make sure all days are accounted for
+	updateRows();
+
+	// Reset current progress
+	m_words = 0;
+	m_msecs = 0;
+	m_current_valid = false;
+	updateProgress();
+}
+
+//-----------------------------------------------------------------------------
+
 void DailyProgress::findStreak(int pos, int& start, int& end) const
 {
 	start = end = -1;
@@ -489,6 +470,72 @@ void DailyProgress::updateProgress()
 	if (m_progress_enabled) {
 		percentComplete();
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgress::updateRows()
+{
+	beginResetModel();
+
+	// Make sure current date exists
+	const QDate date = QDate::currentDate();
+	const Progress& progress = m_progress.last();
+	if (progress.date() != date) {
+		const int type = progress.type();
+		const int goal = progress.goal();
+		m_progress.append(Progress(date, 0, 0, type, goal));
+	}
+
+	// Add empty entries for days without data
+	QDate previous = m_progress.last().date();
+	for (int i = m_progress.size() - 2; i >= 0; --i) {
+		const Progress& progress = m_progress.at(i);
+		const QDate next = progress.date();
+		const int type = progress.type();
+		const int goal = progress.goal();
+		const int count = next.daysTo(previous) - 1;
+		for (int j = 0; j < count; ++j) {
+			previous = previous.addDays(-1);
+			m_progress.insert(i + 1, Progress(previous, 0, 0, type, goal));
+		}
+		previous = next;
+	}
+
+	// Fetch current daily progress
+	m_current_pos = m_progress.size() - 1;
+	m_current = &m_progress[m_current_pos];
+
+	// Fetch row month and year names
+	QLocale locale;
+	int month = -1;
+	int year = -1;
+	int offset = 0;
+	for (int i = 0; i < m_progress.size(); i += 7) {
+		const Progress& progress = m_progress.at(i);
+		if (progress.date().isNull()) {
+			i -= 6;
+			++offset;
+			continue;
+		} else if (offset) {
+			i -= offset;
+			offset = 0;
+		}
+
+		const int row = i / 7;
+		if (progress.date().month() != month) {
+			month = progress.date().month();
+			const QString name = locale.standaloneMonthName(progress.date().month(), QLocale::ShortFormat);
+			m_row_month_names.insert(row, name);
+		}
+		if (progress.date().year() != year) {
+			year = progress.date().year();
+			const QString name = QString::number(year);
+			m_row_year_names.insert(row, name);
+		}
+	}
+
+	endResetModel();
 }
 
 //-----------------------------------------------------------------------------
