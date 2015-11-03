@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -231,6 +231,7 @@ void Stack::setMargins(int footer, int header)
 	m_header_margin = header;
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
 	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
+	updateMargin();
 	updateMask();
 	showHeader();
 }
@@ -592,15 +593,7 @@ void Stack::themeSelected(const Theme& theme)
 		m_symbols_dialog->setPreviewFont(m_theme.textFont());
 	}
 
-	int margin = theme.foregroundMargin();
-	m_layout->setRowMinimumHeight(0, margin);
-	m_layout->setRowMinimumHeight(5, margin);
-	m_layout->setColumnMinimumWidth(0, margin);
-	m_layout->setColumnMinimumWidth(5, margin);
-
-	int minimum_size = (margin * 2) + (theme.foregroundPadding() * 2) + 100;
-	window()->setMinimumSize(minimum_size, minimum_size);
-
+	updateMargin();
 	updateBackground();
 
 	for (Document* document : m_documents) {
@@ -795,6 +788,26 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 	}
 
 	update();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::updateMargin()
+{
+	int margin = m_theme.foregroundMargin();
+	if (Preferences::instance().alwaysShowFooter()) {
+		margin = m_footer_margin;
+	}
+	if (Preferences::instance().alwaysShowHeader()) {
+		margin = std::max(m_header_margin, margin);
+	}
+	m_layout->setRowMinimumHeight(0, margin);
+	m_layout->setRowMinimumHeight(5, margin);
+	m_layout->setColumnMinimumWidth(0, margin);
+	m_layout->setColumnMinimumWidth(5, margin);
+
+	int minimum_size = (margin * 2) + (m_theme.foregroundPadding() * 2) + 100;
+	window()->setMinimumSize(minimum_size, minimum_size);
 }
 
 //-----------------------------------------------------------------------------

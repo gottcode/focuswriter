@@ -134,6 +134,7 @@ private slots:
 	void insertSymbol(const QString& text);
 	void updateBackground();
 	void updateBackground(const QImage& image, const QRect& foreground);
+	void updateMargin();
 	void updateMask();
 	void updateMenuIndexes();
 
