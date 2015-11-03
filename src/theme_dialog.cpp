@@ -580,7 +580,7 @@ void ThemeDialog::renderPreview()
 	theme.forgetChanges();
 
 	// Render theme
-	m_theme_renderer->create(theme, QSize(1920, 1080));
+	m_theme_renderer->create(theme, QSize(1920, 1080), 0);
 }
 
 //-----------------------------------------------------------------------------

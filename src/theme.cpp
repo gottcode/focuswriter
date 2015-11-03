@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -255,7 +255,7 @@ void Theme::setPath(const QString& path)
 
 //-----------------------------------------------------------------------------
 
-QImage Theme::render(const QSize& background, QRect& foreground) const
+QImage Theme::render(const QSize& background, QRect& foreground, const int margin) const
 {
 	// Create image
 	QImage image(background, QImage::Format_ARGB32_Premultiplied);
@@ -293,7 +293,7 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 	}
 
 	// Determine foreground rectangle
-	foreground = foregroundRect(background);
+	foreground = foregroundRect(background, margin);
 
 	// Set clipping for rounded themes
 	QPainterPath path;
@@ -374,9 +374,9 @@ void Theme::setBackgroundImage(const QString& path)
 
 //-----------------------------------------------------------------------------
 
-QRect Theme::foregroundRect(const QSize& size) const
+QRect Theme::foregroundRect(const QSize& size, int margin) const
 {
-	int margin = d->foreground_margin;
+	margin = std::max(margin, d->foreground_margin.value());
 	int x = 0;
 	int y = margin;
 	int width = std::min(d->foreground_width.value(), size.width() - (margin * 2));

@@ -232,6 +232,7 @@ void Stack::setMargins(int footer, int header)
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
 	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
 	updateMargin();
+	updateBackground();
 	updateMask();
 	showHeader();
 }
@@ -726,8 +727,10 @@ void Stack::insertSymbol(const QString& text)
 
 void Stack::updateBackground()
 {
+	const int margin = m_layout->rowMinimumHeight(0);
+
 	// Create temporary background
-	QRect foreground = m_theme.foregroundRect(size());
+	QRect foreground = m_theme.foregroundRect(size(), margin);
 
 	QImage image(size(), QImage::Format_ARGB32_Premultiplied);
 	image.fill(m_theme.loadColor().rgb());
@@ -750,7 +753,7 @@ void Stack::updateBackground()
 
 	// Create proper background
 	if (!m_resize_timer->isActive()) {
-		m_theme_renderer->create(m_theme, size());
+		m_theme_renderer->create(m_theme, size(), margin);
 	}
 }
 

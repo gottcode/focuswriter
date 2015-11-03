@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ class ThemeRenderer : public QThread
 public:
 	ThemeRenderer(QObject* parent = 0);
 
-	void create(const Theme& theme, const QSize& background);
+	void create(const Theme& theme, const QSize& background, const int margin);
 
 signals:
 	void rendered(const QImage& image, const QRect& foreground, const Theme& theme);
@@ -49,10 +49,11 @@ private:
 		QSize background;
 		QRect foreground;
 		QImage image;
+		int margin;
 
 		bool operator==(const CacheFile& other) const
 		{
-			return (theme == other.theme) && (background == other.background);
+			return (theme == other.theme) && (background == other.background) && (margin == other.margin);
 		}
 	};
 	QList<CacheFile> m_files;

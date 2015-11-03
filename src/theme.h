@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,7 +97,7 @@ public:
 	static void setDefaultPath(const QString& path);
 	static void setPath(const QString& path);
 
-	QImage render(const QSize& background, QRect& foreground) const;
+	QImage render(const QSize& background, QRect& foreground, const int margin) const;
 
 	// Name settings
 	bool isDefault() const { return d->is_default; }
@@ -125,7 +125,7 @@ public:
 	RangedInt foregroundMargin() const { return d->foreground_margin; }
 	RangedInt foregroundPadding() const { return d->foreground_padding; }
 	RangedInt foregroundPosition() const { return d->foreground_position; }
-	QRect foregroundRect(const QSize& size) const;
+	QRect foregroundRect(const QSize& size, int margin) const;
 
 	void setForegroundColor(const QColor& color) { setValue(d->foreground_color, color); }
 	void setForegroundOpacity(int opacity) { setValue(d->foreground_opacity, opacity); }

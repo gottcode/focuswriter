@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,10 +28,10 @@ ThemeRenderer::ThemeRenderer(QObject* parent) :
 
 //-----------------------------------------------------------------------------
 
-void ThemeRenderer::create(const Theme& theme, const QSize& background)
+void ThemeRenderer::create(const Theme& theme, const QSize& background, const int margin)
 {
 	// Check if already rendered
-	CacheFile file = { theme, background, QRect(), QImage() };
+	CacheFile file = { theme, background, QRect(), QImage(), margin };
 	if (!isRunning()) {
 		int index = m_cache.indexOf(file);
 		if (index != -1) {
@@ -61,7 +61,7 @@ void ThemeRenderer::run()
 		m_file_mutex.unlock();
 
 		// Render theme
-		file.image = file.theme.render(file.background, file.foreground);
+		file.image = file.theme.render(file.background, file.foreground, file.margin);
 		m_cache.prepend(file);
 		while (m_cache.size() > 10) {
 			m_cache.removeLast();
