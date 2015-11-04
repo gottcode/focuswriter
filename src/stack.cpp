@@ -43,6 +43,7 @@
 #include <QPaintEvent>
 #include <QPrinter>
 #include <QStackedWidget>
+#include <QStyle>
 #include <QTextBlock>
 #include <QTextCursor>
 #include <QTextEdit>
@@ -797,9 +798,9 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 
 void Stack::updateMargin()
 {
-	int margin = m_theme.foregroundMargin();
+	int margin = std::max(m_theme.foregroundMargin().value(), style()->pixelMetric(QStyle::PM_ScrollBarExtent));
 	if (Preferences::instance().alwaysShowFooter()) {
-		margin = m_footer_margin;
+		margin = std::max(m_footer_margin, margin);
 	}
 	if (Preferences::instance().alwaysShowHeader()) {
 		margin = std::max(m_header_margin, margin);
