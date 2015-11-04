@@ -24,7 +24,6 @@
 class AlertLayer;
 class Document;
 class FindDialog;
-class LoadScreen;
 class SceneList;
 class SymbolsDialog;
 class ThemeRenderer;
@@ -47,7 +46,6 @@ public:
 	void addDocument(Document* document);
 
 	AlertLayer* alerts() const;
-	LoadScreen* loadScreen() const;
 	QMenu* menu() const;
 	SymbolsDialog* symbols() const;
 
@@ -139,7 +137,6 @@ private slots:
 	void updateMenuIndexes();
 
 private:
-	LoadScreen* m_load_screen;
 	AlertLayer* m_alerts;
 	SceneList* m_scenes;
 	QMenu* m_menu;
@@ -169,10 +166,6 @@ private:
 
 inline AlertLayer* Stack::alerts() const {
 	return m_alerts;
-}
-
-inline LoadScreen* Stack::loadScreen() const {
-	return m_load_screen;
 }
 
 inline QMenu* Stack::menu() const {

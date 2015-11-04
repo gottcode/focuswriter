@@ -101,6 +101,8 @@ Window::Window(const QStringList& command_line_files) :
 	setContextMenuPolicy(Qt::NoContextMenu);
 	setCursor(Qt::WaitCursor);
 
+	m_load_screen = new LoadScreen(this);
+
 	// Set up icons
 	if (QIcon::themeName().isEmpty()) {
 		QIcon::setThemeName("hicolor");
@@ -289,11 +291,11 @@ Window::Window(const QStringList& command_line_files) :
 	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 
 	// Load settings
-	m_documents->loadScreen()->setText(tr("Loading settings"));
+	m_load_screen->setText(tr("Loading settings"));
 	loadPreferences();
 
 	// Update and load theme
-	m_documents->loadScreen()->setText(tr("Loading themes"));
+	m_load_screen->setText(tr("Loading themes"));
 	Theme::copyBackgrounds();
 	{
 		// Force a reload of previews
@@ -329,7 +331,7 @@ Window::Window(const QStringList& command_line_files) :
 					untitled++;
 				}
 			}
-			m_documents->loadScreen()->setText("");
+			m_load_screen->setText("");
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
@@ -397,7 +399,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	// Show load screen if switching sessions or opening more than one file
 	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()));
 	if (show_load) {
-		m_documents->loadScreen()->setText("");
+		m_load_screen->setText("");
 		setCursor(Qt::WaitCursor);
 	}
 
@@ -465,9 +467,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	}
 
 	// Hide load screen
-	if (m_documents->loadScreen()->isVisible()) {
+	if (m_load_screen->isVisible()) {
 		m_documents->waitForThemeBackground();
-		m_documents->loadScreen()->finish();
+		m_load_screen->finish();
 		unsetCursor();
 	}
 
@@ -642,6 +644,7 @@ void Window::resizeEvent(QResizeEvent* event)
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
+	m_load_screen->resize(size());
 	m_documents->resize(size());
 	QMainWindow::resizeEvent(event);
 }
@@ -1009,12 +1012,12 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 
 	// Show filename in load screen
 	bool show_load = false;
-	show_load = !file.isEmpty() && !m_documents->loadScreen()->isVisible() && (info.size() > 100000);
-	if (m_documents->loadScreen()->isVisible() || show_load) {
+	show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
+	if (m_load_screen->isVisible() || show_load) {
 		if (!file.isEmpty()) {
-			m_documents->loadScreen()->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
+			m_load_screen->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
 		} else {
-			m_documents->loadScreen()->setText("");
+			m_load_screen->setText("");
 		}
 	}
 
@@ -1062,12 +1065,12 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	m_tabs->setCurrentIndex(index);
 
 	if (show_load) {
-		m_documents->loadScreen()->finish();
+		m_load_screen->finish();
 	}
 
 	// Allow documents to show load screen on reload
-	connect(document, SIGNAL(loadStarted(QString)), m_documents->loadScreen(), SLOT(setText(QString)));
-	connect(document, SIGNAL(loadFinished()), m_documents->loadScreen(), SLOT(finish()));
+	connect(document, SIGNAL(loadStarted(QString)), m_load_screen, SLOT(setText(QString)));
+	connect(document, SIGNAL(loadFinished()), m_load_screen, SLOT(finish()));
 	connect(document, SIGNAL(loadFinished()), this, SLOT(updateSave()));
 
 	return true;
@@ -1137,8 +1140,8 @@ bool Window::saveDocument(int index)
 void Window::loadPreferences()
 {
 	if (Preferences::instance().typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
-		if (m_documents->loadScreen()->isVisible()) {
-			m_documents->loadScreen()->setText(tr("Loading sounds"));
+		if (m_load_screen->isVisible()) {
+			m_load_screen->setText(tr("Loading sounds"));
 		}
 		m_key_sound = new Sound(Qt::Key_Any, "keyany.wav", this);
 		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
