@@ -460,14 +460,6 @@ void ThemeDialog::accept()
 
 //-----------------------------------------------------------------------------
 
-void ThemeDialog::reject()
-{
-	m_theme.forgetChanges();
-	QDialog::reject();
-}
-
-//-----------------------------------------------------------------------------
-
 void ThemeDialog::hideEvent(QHideEvent* event)
 {
 	QSettings().setValue("ThemeDialog/Size", size());
@@ -579,7 +571,6 @@ void ThemeDialog::renderPreview()
 	Theme theme;
 	setValues(theme);
 	theme.setBackgroundImage(m_background_image->image());
-	theme.forgetChanges();
 
 	// Render theme
 	m_theme_renderer->create(theme, QSize(1920, 1080));
