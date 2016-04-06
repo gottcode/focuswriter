@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -116,6 +116,13 @@ Theme::Theme()
 
 //-----------------------------------------------------------------------------
 
+Theme::Theme(const Theme& theme) :
+	d(theme.d)
+{
+}
+
+//-----------------------------------------------------------------------------
+
 Theme::Theme(const QString& id, bool is_default)
 {
 	d = new ThemeData(id, is_default, true);
@@ -126,7 +133,6 @@ Theme::Theme(const QString& id, bool is_default)
 
 Theme::~Theme()
 {
-	saveChanges();
 }
 
 //-----------------------------------------------------------------------------
@@ -152,6 +158,7 @@ QString Theme::clone(const QString& id, bool is_default, const QString& name)
 		Theme duplicate(id, is_default);
 		duplicate.setValue(duplicate.d->name, new_name);
 		duplicate.setValue(duplicate.d->id, new_id);
+		duplicate.saveChanges();
 	}
 
 	// Copy icon

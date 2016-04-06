@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,10 +79,11 @@ class Theme : public SettingsFile
 		RangedInt paragraph_spacing_below;
 		RangedInt tab_width;
 	};
-	QExplicitlySharedDataPointer<ThemeData> d;
+	QSharedDataPointer<ThemeData> d;
 
 public:
 	Theme();
+	Theme(const Theme& theme);
 	Theme(const QString& id, bool is_default);
 	~Theme();
 
