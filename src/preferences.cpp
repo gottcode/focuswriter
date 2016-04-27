@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -606,10 +606,6 @@ void Preferences::reload()
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
 	m_write_bom = settings.value("Save/WriteBOM", true).toBool();
 	m_save_format = settings.value("Save/DefaultFormat", "odt").toString();
-	const QStringList formats = QStringList() << "odt" << "rtf" << "txt";
-	if (!formats.contains(m_save_format)) {
-		m_save_format = "odt";
-	}
 
 	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
 	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace" << "|" << "Themes";
