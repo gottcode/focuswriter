@@ -731,9 +731,10 @@ void Stack::updateBackground()
 	const qreal pixelratio = devicePixelRatioF();
 
 	// Create temporary background
-	QRect foreground = m_theme.foregroundRect(size(), margin, pixelratio);
+	const QRectF foreground = m_theme.foregroundRect(size(), margin, pixelratio);
 
-	QImage image(size(), QImage::Format_ARGB32_Premultiplied);
+	QImage image(size() * pixelratio, QImage::Format_ARGB32_Premultiplied);
+	image.setDevicePixelRatio(pixelratio);
 	image.fill(m_theme.loadColor().rgb());
 	{
 		QPainter painter(&image);
@@ -750,7 +751,7 @@ void Stack::updateBackground()
 		}
 	}
 
-	updateBackground(image, foreground);
+	updateBackground(image, foreground.toRect());
 
 	// Create proper background
 	if (!m_resize_timer->isActive()) {
@@ -763,7 +764,7 @@ void Stack::updateBackground()
 void Stack::updateBackground(const QImage& image, const QRect& foreground)
 {
 	// Make sure image is correct size
-	if (image.size() != size()) {
+	if (image.size() != (size() * devicePixelRatioF())) {
 		return;
 	}
 
