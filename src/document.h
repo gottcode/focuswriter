@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ public:
 	void checkSpelling();
 	void print(QPrinter* printer);
 	bool loadFile(const QString& filename, int position);
-	void loadTheme(const Theme& theme, const QBrush& foreground);
+	void loadTheme(const Theme& theme);
 	void loadPreferences();
 	void setFocusMode(int focus_mode);
 	void setModified(bool modified);

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -159,7 +159,7 @@ void Stack::addDocument(Document* document)
 	m_menu->addAction(action);
 	updateMenuIndexes();
 
-	document->loadTheme(m_theme, m_foreground);
+	document->loadTheme(m_theme);
 	document->text()->setFixedSize(m_foreground_size);
 
 	emit documentAdded(document);
@@ -596,7 +596,7 @@ void Stack::themeSelected(const Theme& theme)
 	updateBackground();
 
 	for (Document* document : m_documents) {
-		document->loadTheme(theme, m_foreground);
+		document->loadTheme(theme);
 	}
 }
 
@@ -764,25 +764,16 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 		return;
 	}
 
+	// Load background
+	m_background = QPixmap::fromImage(image, Qt::AutoColor | Qt::AvoidDither);
+
 	// Determine text area size
 	int padding = m_theme.foregroundPadding();
 	QRect foreground_rect = foreground.adjusted(padding, padding, -padding, -padding);
-	bool resize = !m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size);
-	if (resize) {
+	if (!m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size)) {
 		m_foreground_size = foreground_rect.size();
-	}
 
-	// Load background and foreground
-	m_background = QPixmap::fromImage(image, Qt::AutoColor | Qt::AvoidDither);
-	m_foreground = image.copy(foreground_rect);
-
-	// Configure text area
-	for (Document* document : m_documents) {
-		QPalette p = document->text()->palette();
-		p.setBrush(QPalette::Base, m_foreground);
-		document->text()->setPalette(p);
-
-		if (resize) {
+		for (Document* document : m_documents) {
 			document->text()->setFixedSize(m_foreground_size);
 			document->centerCursor(true);
 		}
