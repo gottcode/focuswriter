@@ -770,10 +770,11 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 
 	// Load background
 	m_background = QPixmap::fromImage(image, Qt::AutoColor | Qt::AvoidDither);
+	m_background.setDevicePixelRatio(devicePixelRatioF());
 
 	// Determine text area size
-	int padding = m_theme.foregroundPadding();
-	QRect foreground_rect = foreground.adjusted(padding, padding, -padding, -padding);
+	const int padding = m_theme.foregroundPadding();
+	const QRect foreground_rect = foreground.adjusted(padding, padding, -padding, -padding);
 	if (!m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size)) {
 		m_foreground_size = foreground_rect.size();
 

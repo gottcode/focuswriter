@@ -267,7 +267,8 @@ void Theme::setPath(const QString& path)
 QImage Theme::render(const QSize& background, QRect& foreground, const int margin, const qreal pixelratio) const
 {
 	// Create image
-	QImage image(background, QImage::Format_ARGB32_Premultiplied);
+	QImage image(background * pixelratio, QImage::Format_ARGB32_Premultiplied);
+	image.setDevicePixelRatio(pixelratio);
 	image.fill(backgroundColor().rgb());
 
 	QPainter painter(&image);
@@ -294,11 +295,21 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 			// Centered
 			break;
 		}
-		source.setScaledSize(scaled);
-		painter.drawImage((background.width() - scaled.width()) / 2, (background.height() - scaled.height()) / 2, source.read());
+		source.setScaledSize(scaled * pixelratio);
+
+		QImage back = source.read();
+		back.setDevicePixelRatio(pixelratio);
+
+		const qreal scale = pixelratio / 2.0;
+		painter.drawImage(QPointF((background.width() - scaled.width()) * scale, (background.height() - scaled.height()) * scale), back);
 	} else if (backgroundType() == 1) {
 		// Tiled
-		painter.fillRect(image.rect(), QImage(backgroundImage()));
+		QImage back(backgroundImage());
+		back.setDevicePixelRatio(pixelratio);
+		painter.save();
+		painter.scale(1.0 / pixelratio, 1.0 / pixelratio);
+		painter.fillRect(QRectF(image.rect()), back);
+		painter.restore();
 	}
 
 	// Determine foreground rectangle
@@ -308,7 +319,7 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 	QPainterPath path;
 	if (roundCornersEnabled()) {
 		painter.setRenderHint(QPainter::Antialiasing);
-		path.addRoundedRect(foreground, cornerRadius(), cornerRadius());
+		path.addRoundedRect(QRectF(foreground), cornerRadius(), cornerRadius());
 		painter.setClipPath(path);
 	} else {
 		path.addRect(foreground);
@@ -327,7 +338,7 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 	// Draw drop shadow
 	int shadow_radius = shadowEnabled() ? shadowRadius() : 0;
 	if (shadow_radius) {
-		QImage copy = image.copy(foreground);
+		QImage copy = image.copy(QRect(foreground.topLeft() * pixelratio, foreground.bottomRight() * pixelratio));
 
 		QImage shadow(background, QImage::Format_ARGB32_Premultiplied);
 		shadow.fill(0);
@@ -345,13 +356,13 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 		painter.setClipping(roundCornersEnabled());
 		painter.restore();
 
-		painter.drawImage(foreground.x(), foreground.y(), copy);
+		painter.drawImage(QPointF(foreground.x(), foreground.y()), copy);
 	}
 
 	// Draw foreground
 	QColor color = foregroundColor();
 	color.setAlpha(foregroundOpacity() * 2.55f);
-	painter.fillRect(foreground, color);
+	painter.fillRect(QRectF(foreground), color);
 
 	return image;
 }
