@@ -693,7 +693,9 @@ void Stack::mouseMoveEvent(QMouseEvent* event)
 void Stack::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
-	painter.drawPixmap(event->rect(), m_background, event->rect());
+	const qreal pixelratio = devicePixelRatioF();
+	const QRectF rect(event->rect().topLeft() * pixelratio, event->rect().size() * pixelratio);
+	painter.drawPixmap(event->rect(), m_background, rect);
 	painter.end();
 }
 
