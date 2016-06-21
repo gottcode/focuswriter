@@ -98,7 +98,7 @@ public:
 	static void setDefaultPath(const QString& path);
 	static void setPath(const QString& path);
 
-	QImage render(const QSize& background, QRect& foreground, const int margin) const;
+	QImage render(const QSize& background, QRect& foreground, const int margin, const qreal pixelratio) const;
 
 	// Name settings
 	bool isDefault() const { return d->is_default; }

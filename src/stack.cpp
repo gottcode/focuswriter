@@ -726,6 +726,7 @@ void Stack::insertSymbol(const QString& text)
 void Stack::updateBackground()
 {
 	const int margin = m_layout->rowMinimumHeight(0);
+	const qreal pixelratio = devicePixelRatioF();
 
 	// Create temporary background
 	QRect foreground = m_theme.foregroundRect(size(), margin);
@@ -751,7 +752,7 @@ void Stack::updateBackground()
 
 	// Create proper background
 	if (!m_resize_timer->isActive()) {
-		m_theme_renderer->create(m_theme, size(), margin);
+		m_theme_renderer->create(m_theme, size(), margin, pixelratio);
 	}
 }
 

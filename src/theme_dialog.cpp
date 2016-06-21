@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -571,7 +571,7 @@ void ThemeDialog::renderPreview()
 	theme.setBackgroundImage(m_background_image->image());
 
 	// Render theme
-	m_theme_renderer->create(theme, QSize(1920, 1080), 0);
+	m_theme_renderer->create(theme, QSize(1920, 1080), 0, devicePixelRatioF());
 }
 
 //-----------------------------------------------------------------------------

@@ -262,7 +262,7 @@ void Theme::setPath(const QString& path)
 
 //-----------------------------------------------------------------------------
 
-QImage Theme::render(const QSize& background, QRect& foreground, const int margin) const
+QImage Theme::render(const QSize& background, QRect& foreground, const int margin, const qreal pixelratio) const
 {
 	// Create image
 	QImage image(background, QImage::Format_ARGB32_Premultiplied);
