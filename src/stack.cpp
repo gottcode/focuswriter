@@ -729,7 +729,7 @@ void Stack::updateBackground()
 	const qreal pixelratio = devicePixelRatioF();
 
 	// Create temporary background
-	QRect foreground = m_theme.foregroundRect(size(), margin);
+	QRect foreground = m_theme.foregroundRect(size(), margin, pixelratio);
 
 	QImage image(size(), QImage::Format_ARGB32_Premultiplied);
 	image.fill(m_theme.loadColor().rgb());

@@ -126,7 +126,7 @@ public:
 	RangedInt foregroundMargin() const { return d->foreground_margin; }
 	RangedInt foregroundPadding() const { return d->foreground_padding; }
 	RangedInt foregroundPosition() const { return d->foreground_position; }
-	QRect foregroundRect(const QSize& size, int margin) const;
+	QRect foregroundRect(const QSize& size, int margin, const qreal pixelratio) const;
 
 	void setForegroundColor(const QColor& color) { setValue(d->foreground_color, color); }
 	void setForegroundOpacity(int opacity) { setValue(d->foreground_opacity, opacity); }

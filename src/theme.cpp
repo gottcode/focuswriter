@@ -30,6 +30,8 @@
 #include <QSettings>
 #include <QUuid>
 
+#include <cmath>
+
 //-----------------------------------------------------------------------------
 
 // Exported by QtGui
@@ -300,7 +302,7 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 	}
 
 	// Determine foreground rectangle
-	foreground = foregroundRect(background, margin);
+	foreground = foregroundRect(background, margin, pixelratio);
 
 	// Set clipping for rounded themes
 	QPainterPath path;
@@ -381,7 +383,7 @@ void Theme::setBackgroundImage(const QString& path)
 
 //-----------------------------------------------------------------------------
 
-QRect Theme::foregroundRect(const QSize& size, int margin) const
+QRect Theme::foregroundRect(const QSize& size, int margin, const qreal pixelratio) const
 {
 	margin = std::max(margin, d->foreground_margin.value());
 	int x = 0;
@@ -409,6 +411,9 @@ QRect Theme::foregroundRect(const QSize& size, int margin) const
 		x = (size.width() - width) / 2;
 		break;
 	};
+
+	width = std::floor(std::floor(width / pixelratio) * pixelratio);
+	height = std::floor(std::floor(height / pixelratio) * pixelratio);
 
 	return QRect(x, y, width, height);
 }
