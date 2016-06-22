@@ -35,7 +35,7 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="503"/>
+        <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln minute(s)</source>
         <translation>
             <numerusform>%1% de %Ln minuto</numerusform>
@@ -43,7 +43,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="505"/>
+        <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%1% of %Ln word(s)</source>
         <translation>
             <numerusform>%1% de %Ln vorto</numerusform>
@@ -51,7 +51,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="507"/>
+        <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln vorto</numerusform>
@@ -59,7 +59,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="509"/>
+        <location filename="../src/daily_progress.cpp" line="511"/>
         <source>%Ln minute(s)</source>
         <translation>
             <numerusform>%Ln minuto</numerusform>
@@ -67,7 +67,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress.cpp" line="511"/>
+        <location filename="../src/daily_progress.cpp" line="513"/>
         <source>0%</source>
         <translation>0%</translation>
     </message>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/document.cpp" line="507"/>
         <source>Save File As</source>
-        <translation>Konservi Dosieron Kiel</translation>
+        <translation>Konservi dosieron kiel...</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="517"/>
@@ -204,7 +204,7 @@
     <message>
         <location filename="../src/document.cpp" line="1376"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Savi kiel plata teksto ne konservos ĉiun tekstaranĝon. Ne konservi tekstaranĝon?</translation>
+        <translation>Konservi kiel plata teksto ne konservos ĉiun tekstaranĝon. Ne konservu tekstaranĝon?</translation>
     </message>
 </context>
 <context>
@@ -298,17 +298,17 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
-        <translation>Trovi</translation>
+        <translation>&amp;Trovi</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
-        <translation>Anstataŭigi</translation>
+        <translation>&amp;Anstataŭigi</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
-        <translation>Anstataŭigi Ĉiujn</translation>
+        <translation>Anstataŭigi ĉiu&amp;jn</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="151"/>
@@ -335,13 +335,13 @@
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Sorry</source>
         <translation>Pardonu</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Phrase not found.</source>
         <translation>Frazero ne troviĝis.</translation>
     </message>
@@ -685,7 +685,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="888"/>
         <source>Count each letter as a word</source>
-        <translation>Kompti ĉiun literon kiel vorto</translation>
+        <translation>Nombri ĉiun literon kiel vorton</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
@@ -887,7 +887,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="83"/>
         <source>S&amp;essions</source>
-        <translation>Seancojn</translation>
+        <translation>S&amp;eancoj</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="97"/>
@@ -917,7 +917,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="220"/>
         <source>New Session</source>
-        <translation>Nova Seanco</translation>
+        <translation>Nova seanco</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="279"/>
@@ -957,7 +957,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
         <source>&amp;New...</source>
-        <translation>Nova...</translation>
+        <translation>&amp;Nova...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
@@ -967,7 +967,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
         <source>&amp;Manage...</source>
-        <translation>Administri</translation>
+        <translation>&amp;Administri...</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
@@ -1017,27 +1017,27 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="142"/>
         <source>&amp;Add</source>
-        <translation>Aldoni</translation>
+        <translation>&amp;Aldoni</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="145"/>
         <source>&amp;Ignore</source>
-        <translation>Malatenti</translation>
+        <translation>&amp;Malatenti</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="148"/>
         <source>I&amp;gnore All</source>
-        <translation>Malatenti Ĉiujn</translation>
+        <translation>Malatenti ĉ&amp;iujn</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="153"/>
         <source>&amp;Change</source>
-        <translation>Ŝanĝi</translation>
+        <translation>Ŝa&amp;nĝi</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="156"/>
         <source>C&amp;hange All</source>
-        <translation>Ŝanĝi Ĉiujn</translation>
+        <translation>Ŝanĝi ĉiu&amp;jn</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="171"/>
@@ -1361,7 +1361,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
-        <translation>Nova Etoso</translation>
+        <translation>Nova etoso</translation>
     </message>
 </context>
 <context>
@@ -1384,7 +1384,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation>Malnova Lernejo</translation>
+        <translation>Malnoveca stilo</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
@@ -1445,7 +1445,7 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Themes (%1)</source>
         <translation>Etosoj (%1)</translation>
     </message>
@@ -1455,7 +1455,7 @@
         <translation>Elporti Etoson</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Export Theme</source>
         <translation>Elporti Etoson</translation>
     </message>
@@ -1796,42 +1796,42 @@
     <message>
         <location filename="../src/window.cpp" line="1290"/>
         <source>&amp;File</source>
-        <translation>Dosiero</translation>
+        <translation>&amp;Dosiero</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1291"/>
         <source>&amp;New</source>
-        <translation>Nova</translation>
+        <translation>&amp;Nova</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1292"/>
         <source>&amp;Open...</source>
-        <translation>Malfermi...</translation>
+        <translation>&amp;Malfermi...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1293"/>
         <source>Reloa&amp;d</source>
-        <translation>Reŝargi</translation>
+        <translation>Reŝar&amp;gi</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1295"/>
         <source>&amp;Save</source>
-        <translation>Konservi</translation>
+        <translation>&amp;Konservi</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1297"/>
         <source>Save &amp;As...</source>
-        <translation>Konservi Kiel</translation>
+        <translation>Konservi kie&amp;l...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1298"/>
         <source>&amp;Rename...</source>
-        <translation>Renomi...</translation>
+        <translation>&amp;Renomi...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1300"/>
         <source>Save A&amp;ll</source>
-        <translation>Konservi Ĉiujn</translation>
+        <translation>Konservi ĉiu&amp;jn</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1303"/>
@@ -1841,22 +1841,22 @@
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>New Session</source>
-        <translation>Nova Seanco</translation>
+        <translation>Nova seanco</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1308"/>
         <source>&amp;Print...</source>
-        <translation>Presi..</translation>
+        <translation>&amp;Presi...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;Close</source>
-        <translation>Fermi...</translation>
+        <translation>&amp;Fermi...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
         <source>&amp;Quit</source>
-        <translation>Ĉesi</translation>
+        <translation>Ĉ&amp;esi</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -1866,37 +1866,37 @@
     <message>
         <location filename="../src/window.cpp" line="1315"/>
         <source>&amp;Edit</source>
-        <translation>Redakti</translation>
+        <translation>&amp;Redakti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1316"/>
         <source>&amp;Undo</source>
-        <translation>Malfari</translation>
+        <translation>&amp;Malfari</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1319"/>
         <source>&amp;Redo</source>
-        <translation>Refari</translation>
+        <translation>&amp;Refari</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1323"/>
         <source>Cu&amp;t</source>
-        <translation>Etondi</translation>
+        <translation>E&amp;tondi</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1326"/>
         <source>&amp;Copy</source>
-        <translation>Kopii</translation>
+        <translation>&amp;Kopii</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1329"/>
         <source>&amp;Paste</source>
-        <translation>Enmeti</translation>
+        <translation>E&amp;nmeti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1330"/>
         <source>Paste &amp;Unformatted</source>
-        <translation>Enmeti Senaranĝe</translation>
+        <translation>Enmeti sen&amp;aranĝe</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1330"/>
@@ -1906,12 +1906,12 @@
     <message>
         <location filename="../src/window.cpp" line="1332"/>
         <source>Select &amp;All</source>
-        <translation>Elekti Ĉion</translation>
+        <translation>Elekti ĉi&amp;on</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
         <source>Select &amp;Scene</source>
-        <translation>Elekti Scenon</translation>
+        <translation>Elekti &amp;scenon</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
@@ -1921,27 +1921,27 @@
     <message>
         <location filename="../src/window.cpp" line="1336"/>
         <source>Fo&amp;rmat</source>
-        <translation>Aranĝo</translation>
+        <translation>&amp;Aranĝo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1338"/>
         <source>&amp;Bold</source>
-        <translation>Grasa</translation>
+        <translation>&amp;Grasa</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1340"/>
         <source>&amp;Italic</source>
-        <translation>Kursiva</translation>
+        <translation>K&amp;ursiva</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>&amp;Underline</source>
-        <translation>Substreki</translation>
+        <translation>&amp;Substreki</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Trastreki</translation>
+        <translation>Trast&amp;reki</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
@@ -1951,7 +1951,7 @@
     <message>
         <location filename="../src/window.cpp" line="1346"/>
         <source>Sup&amp;erscript</source>
-        <translation>Supra indico</translation>
+        <translation>Su&amp;pra indico</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1346"/>
@@ -1961,7 +1961,7 @@
     <message>
         <location filename="../src/window.cpp" line="1348"/>
         <source>&amp;Subscript</source>
-        <translation>Suba indico</translation>
+        <translation>Su&amp;ba indico</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1348"/>
@@ -1971,7 +1971,7 @@
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>Align &amp;Left</source>
-        <translation>Ĝisrandigi Maldekstren</translation>
+        <translation>Ĝisrandigi &amp;maldekstren</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
@@ -1981,7 +1981,7 @@
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>Align &amp;Center</source>
-        <translation>Centrigi</translation>
+        <translation>&amp;Centrigi</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1354"/>
@@ -1991,7 +1991,7 @@
     <message>
         <location filename="../src/window.cpp" line="1356"/>
         <source>Align &amp;Right</source>
-        <translation>Ĝisrandigi Dekstren</translation>
+        <translation>Ĝisrandigi &amp;dekstren</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1356"/>
@@ -2001,7 +2001,7 @@
     <message>
         <location filename="../src/window.cpp" line="1358"/>
         <source>Align &amp;Justify</source>
-        <translation>Ĝisrandigi</translation>
+        <translation>&amp;Ĝisrandigi</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1358"/>
@@ -2011,7 +2011,7 @@
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>&amp;Decrease Indent</source>
-        <translation>Malgrandigi Krommarĝenon</translation>
+        <translation>Ma&amp;lgrandigi krommarĝenon</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
@@ -2021,7 +2021,7 @@
     <message>
         <location filename="../src/window.cpp" line="1369"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Grandigi Krommarĝenon</translation>
+        <translation>Grand&amp;igi krommarĝenon</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1369"/>
@@ -2031,37 +2031,37 @@
     <message>
         <location filename="../src/window.cpp" line="1372"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Demaldekstra Bloko</translation>
+        <translation>Demaldekstra bl&amp;oko</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1374"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Dedekstra Bloko</translation>
+        <translation>Dedekstra blo&amp;ko</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1382"/>
         <source>&amp;Tools</source>
-        <translation>Iloj</translation>
+        <translation>&amp;Iloj</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1383"/>
         <source>&amp;Find...</source>
-        <translation>Trovi...</translation>
+        <translation>&amp;Trovi...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1384"/>
         <source>Find &amp;Next</source>
-        <translation>Trovi Sekve</translation>
+        <translation>Trovi &amp;sekve</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1387"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Trovi Antaŭe</translation>
+        <translation>Tro&amp;vi antaŭe</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1390"/>
         <source>&amp;Replace...</source>
-        <translation>Antaŭigi...</translation>
+        <translation>&amp;Anstataŭigi...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1390"/>
@@ -2071,12 +2071,12 @@
     <message>
         <location filename="../src/window.cpp" line="1392"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Inteligentaj Citiloj</translation>
+        <translation>Inteligentaj citiloj</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1393"/>
         <source>Update &amp;Document</source>
-        <translation>Ĝisdatigi Dokumenton</translation>
+        <translation>Ĝisdatigi la &amp;dokumenton</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
@@ -2096,7 +2096,7 @@
     <message>
         <location filename="../src/window.cpp" line="1401"/>
         <source>Set &amp;Language...</source>
-        <translation>Agordi Lingvon...</translation>
+        <translation>Agordi &amp;lingvon...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1403"/>
@@ -2166,7 +2166,7 @@
     <message>
         <location filename="../src/window.cpp" line="1433"/>
         <source>&amp;Preferences...</source>
-        <translation>Agordoj...</translation>
+        <translation>A&amp;gordoj...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1439"/>
@@ -2201,12 +2201,12 @@
     <message>
         <location filename="../src/window.cpp" line="1459"/>
         <source>&amp;Help</source>
-        <translation>Helpo</translation>
+        <translation>&amp;Helpo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1432"/>
         <source>Application &amp;Language...</source>
-        <translation>Lingvo de la Aplikaĵo...</translation>
+        <translation>&amp;Lingvo de la aplikaĵo...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="400"/>

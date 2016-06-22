@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_TW" sourcelanguage="en">
+<TS version="2.1" language="af_ZA" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -11,12 +11,12 @@
     <message>
         <location filename="../src/alert.cpp" line="177"/>
         <source>Collapse</source>
-        <translation type="unfinished"></translation>
+        <translation>Vou op</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="181"/>
         <source>Expand</source>
-        <translation type="unfinished"></translation>
+        <translation>Brei uit</translation>
     </message>
 </context>
 <context>
@@ -24,48 +24,52 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Wys waarskuwing van die hand</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+D</translation>
     </message>
 </context>
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="503"/>
+        <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln minute(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="505"/>
-        <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="507"/>
-        <source>%Ln word(s)</source>
+        <source>%1% of %Ln word(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="509"/>
+        <source>%Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/daily_progress.cpp" line="511"/>
         <source>%Ln minute(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress.cpp" line="511"/>
+        <location filename="../src/daily_progress.cpp" line="513"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -73,12 +77,12 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="146"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Daaglikse vordering</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Langste </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="285"/>
@@ -88,12 +92,13 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="298"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/B</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
         <translation type="unfinished">
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -109,7 +114,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% van daaglikse doelwit</translation>
     </message>
 </context>
 <context>
@@ -117,7 +122,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Wysig taal</translation>
     </message>
 </context>
 <context>
@@ -125,12 +130,12 @@
     <message>
         <location filename="../src/document.cpp" line="425"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Ongetiteld %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="428"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Lees slegs)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="492"/>
@@ -138,28 +143,28 @@
         <location filename="../src/document.cpp" line="553"/>
         <location filename="../src/document.cpp" line="559"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Jammer</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="492"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan nie &apos;%1&apos; stoor nie.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="507"/>
         <source>Save File As</source>
-        <translation type="unfinished"></translation>
+        <translation>Stoor dokument as</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="517"/>
         <location filename="../src/document.cpp" line="553"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan nie oor &apos;%1&apos; skryf nie</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="546"/>
         <source>Rename File</source>
-        <translation type="unfinished"></translation>
+        <translation>Herbenoem dokument</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="559"/>
@@ -169,7 +174,7 @@
     <message>
         <location filename="../src/document.cpp" line="585"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Herbenoem dokument?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="586"/>
@@ -179,12 +184,12 @@
     <message>
         <location filename="../src/document.cpp" line="587"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle ongestoorde veranderinge sal verloor word.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="589"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Herlaai</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1321"/>
@@ -194,7 +199,7 @@
     <message>
         <location filename="../src/document.cpp" line="1375"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1376"/>
@@ -207,7 +212,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument verander</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="192"/>
@@ -217,32 +222,32 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
         <source>Do you want to reload the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wil jy werklik die dokument herlaai?</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Herlaai</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="200"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignoreer</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument uitgewis</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die dokument %1 is deur &apos;n ander program uitgewis.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wil jy die dokument stoor of toe maak?</translation>
     </message>
 </context>
 <context>
@@ -250,7 +255,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="94"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan nie die argief oopmaak nie.</translation>
     </message>
 </context>
 <context>
@@ -258,12 +263,12 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="47"/>
         <source>Search for:</source>
-        <translation type="unfinished"></translation>
+        <translation>Soek vir:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="49"/>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vervang met:</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
@@ -273,71 +278,72 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
-        <translation type="unfinished"></translation>
+        <translation>Slegs volle woorde</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Gereelde uitdrukkings</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="58"/>
         <source>Search up</source>
-        <translation type="unfinished"></translation>
+        <translation>Soek boontoe</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="59"/>
         <source>Search down</source>
-        <translation type="unfinished"></translation>
+        <translation>Soek ondertoe</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="66"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vind</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="70"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vervang</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Vervang &amp;alle</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="151"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Vind</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="159"/>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Vervang</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
         <translation type="unfinished">
             <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Jammer</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Phrase not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Frase nie gevind nie</translation>
     </message>
 </context>
 <context>
@@ -345,27 +351,27 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Teks</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Rich Text Format</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Suiwer teks</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle dokument</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="106"/>
@@ -378,17 +384,17 @@
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="54"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Voeg by</translation>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="55"/>
         <source>Check Spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kyk na spelling...</translation>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="129"/>
         <source>(No suggestions found)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Geen aanbevelings gevind)</translation>
     </message>
 </context>
 <context>
@@ -396,12 +402,12 @@
     <message>
         <location filename="../src/image_button.cpp" line="100"/>
         <source>Open Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Maak foto oop</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="100"/>
         <source>Images(%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Foto&apos;s(%1)</translation>
     </message>
 </context>
 <context>
@@ -409,22 +415,22 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="51"/>
         <source>Select application language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wysig toepassingtaal</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="54"/>
         <source>&lt;System Language&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Sisteemtaal&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="189"/>
         <source>Note</source>
-        <translation type="unfinished"></translation>
+        <translation>Nota</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="189"/>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Herlaai asseblief hierdie toepassing vir die taalwysiging om pos te vat.</translation>
     </message>
 </context>
 <context>
@@ -432,7 +438,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="68"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan nie die argief oopmaak nie.</translation>
     </message>
 </context>
 <context>
@@ -440,17 +446,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="109"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Voorkeure</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="112"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Algemeen</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="114"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistiek</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
@@ -460,81 +466,81 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Spell Checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Speltoetsing</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="453"/>
         <source>Select Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies woordeboek</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="467"/>
         <location filename="../src/preferences_dialog.cpp" line="570"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Jammer</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="467"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan nie die argief oopmaak nie.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="570"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die argief bevat nie &apos;n bruikbare woordeboek nie.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="256"/>
         <location filename="../src/preferences_dialog.cpp" line="395"/>
         <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="117"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Kortpaaie</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="257"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Een of meer kortpaaie veroorsaak konflik. Wil jy voortgaan?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="558"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Die woordeboek &quot;%1&quot; bestaan reeds. Wil jy dit vervang?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Daily Goal</source>
-        <translation type="unfinished"></translation>
+        <translation>Daaglikse doelwit</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="793"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="795"/>
         <source>Minutes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minute:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="802"/>
         <location filename="../src/preferences_dialog.cpp" line="912"/>
         <source>Words:</source>
-        <translation type="unfinished"></translation>
+        <translation>Woorde:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="705"/>
         <source>Editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigering</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="707"/>
         <source>Always vertically center</source>
-        <translation type="unfinished"></translation>
+        <translation>Altyd vertikaalgesentreerd</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="708"/>
@@ -549,22 +555,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="710"/>
         <source>Typewriter sounds</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikmasjienklanke</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="712"/>
         <source>Smart quotes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Slim aanhalings:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="719"/>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubbel</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="720"/>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkel</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="741"/>
@@ -579,12 +585,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>Saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Stoor tans</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Automatically save changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Stoor vanself veranderinge</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
@@ -594,22 +600,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="872"/>
         <source>Word count</source>
-        <translation type="unfinished"></translation>
+        <translation>Woordtelling</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="873"/>
         <source>Page count</source>
-        <translation type="unfinished"></translation>
+        <translation>Bladsytelling</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Paragraph count</source>
-        <translation type="unfinished"></translation>
+        <translation>Paragraaftelling</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Character count</source>
-        <translation type="unfinished"></translation>
+        <translation>Karaktertelling</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
@@ -629,7 +635,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstel daaglike vordering vir vandag na nul?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
@@ -639,22 +645,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="757"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verstek formaat:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstel vandag</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="831"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Geskiedenis</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="833"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Onthou geskiedenis</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="836"/>
@@ -775,7 +781,7 @@
         <location filename="../src/preferences_dialog.cpp" line="978"/>
         <location filename="../src/preferences_dialog.cpp" line="999"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Voeg by</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1011"/>
@@ -926,7 +932,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
@@ -941,7 +947,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation>Jammer</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
@@ -993,12 +999,12 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vervang tans aanhalingstekens</translation>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Wag asseblief</translation>
     </message>
 </context>
 <context>
@@ -1011,12 +1017,12 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="142"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Voeg by</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="145"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ignoreer</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="148"/>
@@ -1026,7 +1032,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="153"/>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wysig</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="156"/>
@@ -1036,37 +1042,37 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="171"/>
         <source>Not in dictionary:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie in woordeboek:</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="179"/>
         <source>Change to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verander na:</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Checking spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaan tans spelling na</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanselleer</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="196"/>
         <source>Please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Wag asseblief</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Gaan voort om die begin van dokument na te gaan?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
         <source>Spell check complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaar spelling nagegaan</translation>
     </message>
 </context>
 <context>
@@ -1089,12 +1095,12 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="195"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Besonderhede</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="221"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naam:</translation>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="231"/>
@@ -1128,7 +1134,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="103"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naam:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
@@ -1320,7 +1326,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="311"/>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkel</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="311"/>
@@ -1330,7 +1336,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="311"/>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubbel</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="311"/>
@@ -1430,7 +1436,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="311"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="311"/>
@@ -1439,7 +1445,7 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Themes (%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1449,7 +1455,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Export Theme</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1464,7 +1470,7 @@
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
@@ -1575,7 +1581,7 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Vraag</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
@@ -1624,7 +1630,7 @@
     <message>
         <location filename="../src/window.cpp" line="867"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="868"/>
@@ -1684,7 +1690,7 @@
     <message>
         <location filename="../src/window.cpp" line="332"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Ongetiteld %1)</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="207"/>
