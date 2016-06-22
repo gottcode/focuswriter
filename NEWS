@@ -1,3 +1,11 @@
+1.5.6
+-----
+* Updated included hunspell.
+* FIXED: Did not remember some default formats.
+* FIXED: Replace all did not update spellchecking.
+* FIXED: Themes still did not always forget changes.
+* Translation updates: Afrikaans (South Africa), Danish, Esperanto, Hebrew, Lithuanian, Spanish.
+
 1.5.5
 -----
 * Added support for pasting RTF in Windows.
