@@ -578,6 +578,8 @@ void ThemeDialog::renderPreview()
 
 void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const Theme& theme)
 {
+	const qreal pixelratio = devicePixelRatioF();
+
 	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
 
 	// Position preview text
@@ -593,7 +595,8 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 	text_color.setAlpha(255);
 
 	QPalette p = m_preview_text->palette();
-	p.setBrush(QPalette::Base, preview.copy(x, y, width, height));
+	p.setBrush(QPalette::Window, Qt::transparent);
+	p.setBrush(QPalette::Base, Qt::transparent);
 	p.setColor(QPalette::Text, text_color);
 	p.setColor(QPalette::Highlight, text_color);
 	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
@@ -622,11 +625,6 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 	// Render text
 	m_preview_text->render(&preview, m_preview_text->pos());
 
-	// Create zoomed text cutout
-	int x2 = (x >= 24) ? (x - 24) : 0;
-	int y2 = (y >= 24) ? (y - 24) : 0;
-	QImage text_cutout = preview.copy(x2, y2, 162, 110);
-
 	// Create preview icon
 	m_preview_icon = QImage(":/shadow.png").convertToFormat(QImage::Format_ARGB32_Premultiplied);
 	{
@@ -640,15 +638,21 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 	}
 
 	// Create preview pixmap
-	preview = preview.scaled(480, 270, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	QImage preview_image = preview.scaled(480 * pixelratio, 270 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	{
-		QPainter painter(&preview);
+		QPainter painter(&preview_image);
 		painter.setPen(Qt::NoPen);
-		painter.fillRect(22, 46, 170, 118, QColor(0, 0, 0, 32));
-		painter.fillRect(24, 48, 166, 114, Qt::white);
-		painter.drawImage(26, 50, text_cutout);
+
+		// Draw text cutout shadow
+		painter.fillRect(QRectF(22, 46, 170, 118), QColor(0, 0, 0, 32));
+		painter.fillRect(QRectF(24, 48, 166, 114), Qt::white);
+
+		// Draw text cutout
+		int x2 = (x >= 24) ? (x - 24) : 0;
+		int y2 = (y >= 24) ? (y - 24) : 0;
+		painter.drawImage(QPointF(26, 50), preview, QRectF(x2 * pixelratio, y2 * pixelratio, 162 * pixelratio, 110 * pixelratio));
 	}
-	m_preview->setPixmap(QPixmap::fromImage(preview));
+	m_preview->setPixmap(QPixmap::fromImage(preview_image));
 }
 
 //-----------------------------------------------------------------------------
