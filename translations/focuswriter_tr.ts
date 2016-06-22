@@ -35,35 +35,35 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="499"/>
+        <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="501"/>
+        <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="503"/>
+        <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln kelime</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="505"/>
+        <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
         <translation>
             <numerusform>%Ln dakika</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress.cpp" line="507"/>
+        <location filename="../src/daily_progress.cpp" line="556"/>
         <source>0%</source>
         <translation>0%</translation>
     </message>
@@ -76,29 +76,29 @@
         <translation>Günlük İlerleme</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="270"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="282"/>
         <source>Longest streak</source>
         <translation>En uzun seri</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="273"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="285"/>
         <source>Current streak</source>
         <translation>Şu anki seri</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="286"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="298"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress_dialog.cpp" line="291"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="303"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n gün</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="292"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="304"/>
         <source>%1 &amp;ndash; %2</source>
         <translation>%1 &amp;ndash; %2</translation>
     </message>
@@ -329,13 +329,13 @@
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Sorry</source>
         <translation>Üzgünüm</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Phrase not found.</source>
         <translation>İfade bulunamadı.</translation>
     </message>
@@ -1464,7 +1464,7 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="331"/>
-        <location filename="../src/theme_manager.cpp" line="404"/>
+        <location filename="../src/theme_manager.cpp" line="405"/>
         <source>Themes (%1)</source>
         <translation>Temalar (%1)</translation>
     </message>
@@ -1474,7 +1474,7 @@
         <translation>Temayı Al</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="404"/>
+        <location filename="../src/theme_manager.cpp" line="405"/>
         <source>Export Theme</source>
         <translation>Temayı Ver</translation>
     </message>
@@ -1621,680 +1621,680 @@
 <context>
     <name>Window</name>
     <message>
-        <location filename="../src/window.cpp" line="296"/>
+        <location filename="../src/window.cpp" line="298"/>
         <source>Loading themes</source>
         <translation>Temalar yükleniyor</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1141"/>
+        <location filename="../src/window.cpp" line="1144"/>
         <source>Loading sounds</source>
         <translation>Sesler yükleniyor</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="305"/>
-        <location filename="../src/window.cpp" line="1060"/>
+        <location filename="../src/window.cpp" line="307"/>
+        <location filename="../src/window.cpp" line="1063"/>
         <source>Untitled</source>
         <translation>Başlıksız</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="672"/>
+        <location filename="../src/window.cpp" line="675"/>
         <source>Open File</source>
         <translation>Dosyayı Aç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="854"/>
+        <location filename="../src/window.cpp" line="857"/>
         <source>About FocusWriter</source>
         <translation>FocusWriter Hakkında</translation>
     </message>
     <message>
         <location filename="../src/application.cpp" line="44"/>
-        <location filename="../src/window.cpp" line="857"/>
+        <location filename="../src/window.cpp" line="860"/>
         <source>FocusWriter</source>
         <translation>FocusWriter</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="858"/>
+        <location filename="../src/window.cpp" line="861"/>
         <source>A simple fullscreen word processor</source>
         <translation>Basit bir tam ekran kelime işlemci</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="859"/>
+        <location filename="../src/window.cpp" line="862"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
         <translation>Telif hakları saklıdır &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="860"/>
+        <location filename="../src/window.cpp" line="863"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
         <translation>&lt;a href=%1&gt;GPL 3&lt;/a&gt; lisansı altında yayınlanmıştır</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="861"/>
+        <location filename="../src/window.cpp" line="864"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
         <translation>&lt;a href=%1&gt;Oxygen&lt;/a&gt; simge temasından simgeler kullanılıyor</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="862"/>
+        <location filename="../src/window.cpp" line="865"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
         <translation>&lt;a href=%1&gt;GPL 3&lt;/a&gt; lisansı altında kullanılıyor</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="170"/>
-        <location filename="../src/window.cpp" line="918"/>
+        <location filename="../src/window.cpp" line="172"/>
+        <location filename="../src/window.cpp" line="921"/>
         <source>Characters: %L1 / %L2</source>
         <translation>Karakter: %L1 / %L2</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="168"/>
-        <location filename="../src/window.cpp" line="919"/>
+        <location filename="../src/window.cpp" line="170"/>
+        <location filename="../src/window.cpp" line="922"/>
         <source>Pages: %L1</source>
         <translation>Sayfa: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="169"/>
-        <location filename="../src/window.cpp" line="920"/>
+        <location filename="../src/window.cpp" line="171"/>
+        <location filename="../src/window.cpp" line="923"/>
         <source>Paragraphs: %L1</source>
         <translation>Paragraf: %L1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="167"/>
-        <location filename="../src/window.cpp" line="921"/>
+        <location filename="../src/window.cpp" line="169"/>
+        <location filename="../src/window.cpp" line="924"/>
         <source>Words: %L1</source>
         <translation>Kelime: %L1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="597"/>
-        <location filename="../src/window.cpp" line="1015"/>
+        <location filename="../src/window.cpp" line="1018"/>
         <source>Opening %1</source>
         <translation>%1 açılıyor</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="328"/>
+        <location filename="../src/window.cpp" line="330"/>
         <source>(Untitled %1)</source>
         <translation>(Başlıksız %1)</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="203"/>
+        <location filename="../src/window.cpp" line="205"/>
         <source>List all documents</source>
         <translation>Tüm dokümanları listele</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="206"/>
+        <location filename="../src/window.cpp" line="208"/>
         <source>Switch to Next Document</source>
         <translation>Sonraki Belgeye Geç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="212"/>
+        <location filename="../src/window.cpp" line="214"/>
         <source>Switch to Previous Document</source>
         <translation>Önceki Belgeye Geç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="218"/>
+        <location filename="../src/window.cpp" line="220"/>
         <source>Switch to First Document</source>
         <translation>İlk Belgeye Geç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="224"/>
+        <location filename="../src/window.cpp" line="226"/>
         <source>Switch to Last Document</source>
         <translation>Son Belgeye Geç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="232"/>
+        <location filename="../src/window.cpp" line="234"/>
         <source>Switch to Document %1</source>
         <translation>%1. Belgeye Geç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="292"/>
+        <location filename="../src/window.cpp" line="294"/>
         <source>Loading settings</source>
         <translation>Ayarlar yükleniyor</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="314"/>
+        <location filename="../src/window.cpp" line="316"/>
         <source>Emergency cache is not writable.</source>
         <translation>Acil önbellek yazılabilir değil.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="334"/>
-        <location filename="../src/window.cpp" line="1029"/>
+        <location filename="../src/window.cpp" line="336"/>
+        <location filename="../src/window.cpp" line="1032"/>
         <source>Warning</source>
         <translation>Uyarı</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="335"/>
+        <location filename="../src/window.cpp" line="337"/>
         <source>FocusWriter was not shut down cleanly.</source>
         <translation>FocusWriter temiz bir şekilde kapatılmadı.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="336"/>
+        <location filename="../src/window.cpp" line="338"/>
         <source>Restore from the emergency cache?</source>
         <translation>Acil önbellekten kurtarılsın mı?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="461"/>
+        <location filename="../src/window.cpp" line="463"/>
         <source>Some files could not be opened.</source>
         <translation>Bazı dosyalar açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="464"/>
+        <location filename="../src/window.cpp" line="466"/>
         <source>Some files were opened Read-Only.</source>
         <translation>Bazı dosyalar salt okunur olarak açıldı.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1030"/>
+        <location filename="../src/window.cpp" line="1033"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
         <translation>&apos;%1&apos; önbelleğe alınmış kopyadan daha yeni.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1031"/>
+        <location filename="../src/window.cpp" line="1034"/>
         <source>Overwrite newer file?</source>
         <translation>Daha yeni dosyanın üzerine yazılsın mı?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1116"/>
+        <location filename="../src/window.cpp" line="1119"/>
         <source>Save Changes?</source>
         <translation>Değişiklikler Kaydedilsin mi?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1117"/>
+        <location filename="../src/window.cpp" line="1120"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
         <translation>Değişiklikler kapatılmadan önce &apos;%1&apos; dosyasına kaydedilsin mi?</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1118"/>
+        <location filename="../src/window.cpp" line="1121"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
         <translation>Kaydetmezsen değişiklikler kaybedilecek.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1148"/>
+        <location filename="../src/window.cpp" line="1151"/>
         <source>Unable to load typewriter sounds.</source>
         <translation>Daktilo sesleri yüklenemiyor.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1287"/>
+        <location filename="../src/window.cpp" line="1290"/>
         <source>&amp;File</source>
         <translation>&amp;Dosya</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1288"/>
+        <location filename="../src/window.cpp" line="1291"/>
         <source>&amp;New</source>
         <translation>&amp;Yeni</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1289"/>
+        <location filename="../src/window.cpp" line="1292"/>
         <source>&amp;Open...</source>
         <translation>&amp;Aç...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1290"/>
+        <location filename="../src/window.cpp" line="1293"/>
         <source>Reloa&amp;d</source>
         <translation>&amp;Yeniden Yükle</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1292"/>
+        <location filename="../src/window.cpp" line="1295"/>
         <source>&amp;Save</source>
         <translation>&amp;Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1294"/>
+        <location filename="../src/window.cpp" line="1297"/>
         <source>Save &amp;As...</source>
         <translation>&amp;Farklı Kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1295"/>
+        <location filename="../src/window.cpp" line="1298"/>
         <source>&amp;Rename...</source>
         <translation>Yeni &amp;İsim Ver...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1297"/>
+        <location filename="../src/window.cpp" line="1300"/>
         <source>Save A&amp;ll</source>
         <translation>&amp;Tümünü Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1300"/>
+        <location filename="../src/window.cpp" line="1303"/>
         <source>Manage Sessions</source>
         <translation>Oturumları Yönet</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1302"/>
+        <location filename="../src/window.cpp" line="1305"/>
         <source>New Session</source>
         <translation>Yeni Oturum</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1305"/>
+        <location filename="../src/window.cpp" line="1308"/>
         <source>&amp;Print...</source>
         <translation>Ya&amp;zdır...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1306"/>
+        <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1308"/>
+        <location filename="../src/window.cpp" line="1311"/>
         <source>&amp;Close</source>
         <translation>Ka&amp;pat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1309"/>
+        <location filename="../src/window.cpp" line="1312"/>
         <source>&amp;Quit</source>
         <translation>&amp;Çık</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1309"/>
+        <location filename="../src/window.cpp" line="1312"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1313"/>
+        <location filename="../src/window.cpp" line="1316"/>
         <source>&amp;Edit</source>
         <translation>D&amp;üzen</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1314"/>
+        <location filename="../src/window.cpp" line="1317"/>
         <source>&amp;Undo</source>
         <translation>&amp;Geri Al</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1317"/>
+        <location filename="../src/window.cpp" line="1320"/>
         <source>&amp;Redo</source>
         <translation>&amp;Yinele</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1321"/>
+        <location filename="../src/window.cpp" line="1324"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Kes</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1324"/>
+        <location filename="../src/window.cpp" line="1327"/>
         <source>&amp;Copy</source>
         <translation>K&amp;opyala</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1327"/>
+        <location filename="../src/window.cpp" line="1330"/>
         <source>&amp;Paste</source>
         <translation>Y&amp;apıştır</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>Paste &amp;Unformatted</source>
         <translation>&amp;Biçimlendirme Olmadan Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1328"/>
+        <location filename="../src/window.cpp" line="1331"/>
         <source>Ctrl+Shift+V</source>
         <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1330"/>
+        <location filename="../src/window.cpp" line="1333"/>
         <source>Select &amp;All</source>
         <translation>&amp;Tümünü Seç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1334"/>
         <source>Select &amp;Scene</source>
         <translation>&amp;Sahneyi Seç</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1331"/>
+        <location filename="../src/window.cpp" line="1334"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1334"/>
+        <location filename="../src/window.cpp" line="1337"/>
         <source>Fo&amp;rmat</source>
         <translation>&amp;Biçim</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1336"/>
+        <location filename="../src/window.cpp" line="1339"/>
         <source>&amp;Heading</source>
         <translation>Başlık</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1338"/>
+        <location filename="../src/window.cpp" line="1341"/>
         <source>Heading &amp;1</source>
         <translation>Başlık &amp;1</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1339"/>
+        <location filename="../src/window.cpp" line="1342"/>
         <source>Heading &amp;2</source>
         <translation>Başlık &amp;2</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1340"/>
+        <location filename="../src/window.cpp" line="1343"/>
         <source>Heading &amp;3</source>
         <translation>Başlık &amp;3</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1341"/>
+        <location filename="../src/window.cpp" line="1344"/>
         <source>Heading &amp;4</source>
         <translation>Başlık &amp;4</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1342"/>
+        <location filename="../src/window.cpp" line="1345"/>
         <source>Heading &amp;5</source>
         <translation>Başlık &amp;5</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1343"/>
+        <location filename="../src/window.cpp" line="1346"/>
         <source>Heading &amp;6</source>
         <translation>Başlık &amp;6</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1344"/>
+        <location filename="../src/window.cpp" line="1347"/>
         <source>&amp;Normal</source>
         <translation>&amp;Normal</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1362"/>
+        <location filename="../src/window.cpp" line="1365"/>
         <source>&amp;Bold</source>
         <translation>&amp;Kalın</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1364"/>
+        <location filename="../src/window.cpp" line="1367"/>
         <source>&amp;Italic</source>
         <translation>&amp;İtalik</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1366"/>
+        <location filename="../src/window.cpp" line="1369"/>
         <source>&amp;Underline</source>
         <translation>&amp;Altı Çizili</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1368"/>
+        <location filename="../src/window.cpp" line="1371"/>
         <source>Stri&amp;kethrough</source>
         <translation>&amp;Üstü Çizili</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1368"/>
+        <location filename="../src/window.cpp" line="1371"/>
         <source>Ctrl+K</source>
         <translation>Ctrl+K</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1370"/>
+        <location filename="../src/window.cpp" line="1373"/>
         <source>Sup&amp;erscript</source>
         <translation>Ü&amp;st Simge</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1370"/>
+        <location filename="../src/window.cpp" line="1373"/>
         <source>Ctrl+^</source>
         <translation>Ctrl+^</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1372"/>
+        <location filename="../src/window.cpp" line="1375"/>
         <source>&amp;Subscript</source>
         <translation>A&amp;lt Simge</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1372"/>
+        <location filename="../src/window.cpp" line="1375"/>
         <source>Ctrl+_</source>
         <translation>Ctrl+_</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1376"/>
+        <location filename="../src/window.cpp" line="1379"/>
         <source>Align &amp;Left</source>
         <translation>So&amp;la Yasla</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1376"/>
+        <location filename="../src/window.cpp" line="1379"/>
         <source>Ctrl+{</source>
         <translation>Ctrl+{</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1378"/>
+        <location filename="../src/window.cpp" line="1381"/>
         <source>Align &amp;Center</source>
         <translation>&amp;Ortala</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1378"/>
+        <location filename="../src/window.cpp" line="1381"/>
         <source>Ctrl+|</source>
         <translation>Ctrl+|</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1380"/>
+        <location filename="../src/window.cpp" line="1383"/>
         <source>Align &amp;Right</source>
         <translation>Sa&amp;ğa  Yasla</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1380"/>
+        <location filename="../src/window.cpp" line="1383"/>
         <source>Ctrl+}</source>
         <translation>Ctrl+}</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1382"/>
+        <location filename="../src/window.cpp" line="1385"/>
         <source>Align &amp;Justify</source>
         <translation>İki &amp;Yana Yasla</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1382"/>
+        <location filename="../src/window.cpp" line="1385"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1392"/>
+        <location filename="../src/window.cpp" line="1395"/>
         <source>&amp;Decrease Indent</source>
         <translation>&amp;Girintiyi Azalt</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1392"/>
+        <location filename="../src/window.cpp" line="1395"/>
         <source>Ctrl+&lt;</source>
         <translation>Ctrl+&lt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1393"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>I&amp;ncrease Indent</source>
         <translation>Gi&amp;rintiyi Arttır</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1393"/>
+        <location filename="../src/window.cpp" line="1396"/>
         <source>Ctrl+&gt;</source>
         <translation>Ctrl+&gt;</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1396"/>
+        <location filename="../src/window.cpp" line="1399"/>
         <source>Le&amp;ft to Right Block</source>
         <translation>S&amp;oldan Sağa Blok</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1398"/>
+        <location filename="../src/window.cpp" line="1401"/>
         <source>Ri&amp;ght to Left Block</source>
         <translation>Sa&amp;ğdan Sola Blok</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1406"/>
+        <location filename="../src/window.cpp" line="1409"/>
         <source>&amp;Tools</source>
         <translation>&amp;Araçlar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1407"/>
+        <location filename="../src/window.cpp" line="1410"/>
         <source>&amp;Find...</source>
         <translation>&amp;Bul...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1408"/>
+        <location filename="../src/window.cpp" line="1411"/>
         <source>Find &amp;Next</source>
         <translation>&amp;Sonrakini Bul</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1411"/>
+        <location filename="../src/window.cpp" line="1414"/>
         <source>Find Pre&amp;vious</source>
         <translation>&amp;Öncekini Bul</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1414"/>
+        <location filename="../src/window.cpp" line="1417"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Değiştir...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1414"/>
+        <location filename="../src/window.cpp" line="1417"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1416"/>
+        <location filename="../src/window.cpp" line="1419"/>
         <source>Smart &amp;Quotes</source>
         <translation>&amp;Akıllı Tırnaklar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1417"/>
+        <location filename="../src/window.cpp" line="1420"/>
         <source>Update &amp;Document</source>
         <translation>&amp;Dökümanı Güncelle</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1420"/>
+        <location filename="../src/window.cpp" line="1423"/>
         <source>Update &amp;Selection</source>
         <translation>&amp;Seçilimi Güncelle</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1427"/>
         <source>&amp;Spelling...</source>
         <translation>&amp;Yazım Denetimi...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1424"/>
+        <location filename="../src/window.cpp" line="1427"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1425"/>
+        <location filename="../src/window.cpp" line="1428"/>
         <source>Set &amp;Language...</source>
         <translation>Dili &amp;Ayarla...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1427"/>
+        <location filename="../src/window.cpp" line="1430"/>
         <source>&amp;Timers...</source>
         <translation>&amp;Zamanlayıcılar...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1428"/>
+        <location filename="../src/window.cpp" line="1431"/>
         <source>S&amp;ymbols...</source>
         <translation>&amp;Simgeler...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1429"/>
+        <location filename="../src/window.cpp" line="1432"/>
         <source>&amp;Daily Progress</source>
         <translation>&amp;Günlük İlerleme</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1432"/>
+        <location filename="../src/window.cpp" line="1435"/>
         <source>&amp;Settings</source>
         <translation>&amp;Ayarlar</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1433"/>
+        <location filename="../src/window.cpp" line="1436"/>
         <source>Show &amp;Toolbar</source>
         <translation>&amp;Araç Çubuğunu Göster</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1438"/>
+        <location filename="../src/window.cpp" line="1441"/>
         <source>Show &amp;Menu Icons</source>
         <translation>&amp;Menü Simgelerini Göster</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1444"/>
+        <location filename="../src/window.cpp" line="1447"/>
         <source>F&amp;ocused Text</source>
         <translation>&amp;Odaklanılan Metin</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1446"/>
+        <location filename="../src/window.cpp" line="1449"/>
         <source>&amp;Fullscreen</source>
         <translation>Tam &amp;Ekran</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1446"/>
+        <location filename="../src/window.cpp" line="1449"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1448"/>
+        <location filename="../src/window.cpp" line="1451"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1452"/>
+        <location filename="../src/window.cpp" line="1455"/>
         <source>M&amp;inimize</source>
         <translation>&amp;Küçült</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1452"/>
+        <location filename="../src/window.cpp" line="1455"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1454"/>
+        <location filename="../src/window.cpp" line="1457"/>
         <source>&amp;Themes...</source>
         <translation>&amp;Temalar...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1457"/>
+        <location filename="../src/window.cpp" line="1460"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Tercihler...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1463"/>
+        <location filename="../src/window.cpp" line="1466"/>
         <source>Focus Off</source>
         <translation>Odaklanmayı Kapat</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1465"/>
+        <location filename="../src/window.cpp" line="1468"/>
         <source>Focus One Line</source>
         <translation>Bir Satıra Odaklan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1467"/>
+        <location filename="../src/window.cpp" line="1470"/>
         <source>Focus Three Lines</source>
         <translation>Üç Satıra Odaklan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1468"/>
+        <location filename="../src/window.cpp" line="1471"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;Paragraf</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1469"/>
+        <location filename="../src/window.cpp" line="1472"/>
         <source>Focus Paragraph</source>
         <translation>Paragrafa Odaklan</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1478"/>
+        <location filename="../src/window.cpp" line="1481"/>
         <source>Ctrl+Shift+`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1483"/>
+        <location filename="../src/window.cpp" line="1486"/>
         <source>&amp;Help</source>
         <translation>&amp;Yardım</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1456"/>
+        <location filename="../src/window.cpp" line="1459"/>
         <source>Application &amp;Language...</source>
         <translation>&amp;Uygulama Dili ...</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="394"/>
+        <location filename="../src/window.cpp" line="396"/>
         <source>Some files were unsupported and could not be opened.</source>
         <translation>Bazı dosyalar desteklenmiyor ve açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1462"/>
+        <location filename="../src/window.cpp" line="1465"/>
         <source>&amp;Off</source>
         <translation>&amp;Kapalı</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1464"/>
+        <location filename="../src/window.cpp" line="1467"/>
         <source>One &amp;Line</source>
         <translation>&amp;Bir Satır</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1466"/>
+        <location filename="../src/window.cpp" line="1469"/>
         <source>&amp;Three Lines</source>
         <translation>&amp;Üç Satır</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1484"/>
+        <location filename="../src/window.cpp" line="1487"/>
         <source>&amp;About</source>
         <translation>&amp;Hakkında</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1488"/>
+        <location filename="../src/window.cpp" line="1491"/>
         <source>About &amp;Qt</source>
         <translation>&amp;Qt Hakkında</translation>
     </message>

@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# GenghisKhan <genghiskhan@gmx.ca>, 2014-2015
+# Hardus <hardusludus@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2015-09-14 14:06+0000\n"
-"Last-Translator: GenghisKhan <genghiskhan@gmx.ca>\n"
-"Language-Team: Hebrew (http://www.transifex.com/gottcode/focuswriter/"
-"language/he/)\n"
-"Language: he\n"
+"PO-Revision-Date: 2015-10-04 19:02+0000\n"
+"Last-Translator: Hardus <hardusludus@gmail.com>\n"
+"Language-Team: Afrikaans (South Africa) (http://www.transifex.com/gottcode/"
+"focuswriter/language/af_ZA/)\n"
+"Language: af_ZA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +25,7 @@ msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr "מעבד תמלילים במסך מלא"
+msgstr "Volskerm woordverwerker"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -34,10 +34,11 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
-"‏FocusWriter הינו מעבד תמלילים פשוט, נטול הפרעה. זה מנצל ממשק מחבוא (hide-"
-"away) אשר אליו ניגשים בעזרת הזזת עכבר על קצות המסך, מה שמתיר לתוכנית לקבל "
-"מראה ותחושה מוכרים בעוד שזה עדיין נותר באין מפריע כך שהתהא באפשרותך להשקיע "
-"את עצמך לתוך עבודתך."
+"FocusWriter is 'n eenvoudige woordverwerker sonder enige afleidings. Dit "
+"maak gebruik van 'n wegsteek-koppelvlak wat jy kan gebruik deur jou muis na "
+"die kante van die skerm te beweeg en verskaf sodoende 'n bekende en "
+"gebruiklike voorkoms en gevoel, terwyl die program uit jou pad bly dat jy "
+"jou in jou werk kan verdiep. "
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -46,9 +47,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
-"‏FocusWriter מאפשר לך להתאים את סביבתך על ידי יצירת ערכות נושא אשר שולטות על "
-"הגופן, הצבעים ועל תמונת הרקע כדי להוסיף אווירה. זה גם טומן בחובו עדכון "
-"סטטיסטיקה, יעדים יומיים, פתיחה מרובה של מסמכים, בדיקת-איות, ועוד הרבה יותר."
+"FocusWriter laat jou toe om jou omgewing te verpersoonlik. Jy kan tema's "
+"gebruik wat die lettertipe, kleure, en agtergrondfoto verander om 'n eie "
+"atmosfeer te skep. Die program ondersteun statistiek wat deurlopend "
+"opdateer, daaglikse doelwitte, veelvoudige oop dokumente, speltoetsing, en "
+"vele meer."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -56,14 +59,14 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
-"נוסף על כך, כאשר תפתח את התוכנית העבודה שלך אשר מצויה בתהליך תיטען מחדש "
-"וימקם אותך היכן שנותרת בפעם אחרונה בה עזבת כך שתהא באפשרותך לקפוץ בחזרה "
-"מיידית."
+"Voorts laai die program die dokument waarmee jy besig was, asook presies "
+"waar in die dokument jy besig was, wanneer jy die program oopmaak. So kan jy "
+"dadelik aan die werk spring."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr "מעבד תמלילים במסך מלא"
+msgstr "Volskerm woordverwerker"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr "כתיבה ללא הסחות דעת"
+msgstr "Skryf sonder afleidings"
