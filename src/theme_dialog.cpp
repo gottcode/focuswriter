@@ -50,6 +50,11 @@
 
 //-----------------------------------------------------------------------------
 
+// Exported by QtGui
+void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bool alphaOnly, int transposed = 0);
+
+//-----------------------------------------------------------------------------
+
 static QColor averageImage(const QString& filename, const QColor& color)
 {
 	QImageReader reader(filename);
@@ -626,15 +631,35 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 	m_preview_text->render(&preview, m_preview_text->pos());
 
 	// Create preview icon
-	m_preview_icon = QImage(":/shadow.png").convertToFormat(QImage::Format_ARGB32_Premultiplied);
+	m_preview_icon = QImage(258 * pixelratio, 153 * pixelratio, QImage::Format_ARGB32_Premultiplied);
+	m_preview_icon.fill(Qt::transparent);
 	{
-		QPainter painter(&m_preview_icon);
-		painter.drawImage(9, 9, preview.scaled(240, 135, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-		painter.fillRect(20, 32, 85, 59, QColor(0, 0, 0, 32));
-		painter.fillRect(21, 33, 83, 57, Qt::white);
-		int x3 = (x >= 24) ? (x - 12 + theme.tabWidth()) : 12 + theme.tabWidth();
-		int y3 = (y >= 24) ? (y - 6) : 0;
-		painter.drawImage(22, 34, preview, x3, y3, 81, 55);
+		// Draw shadow
+		QImage shadow(m_preview_icon);
+
+		QPainter painter(&shadow);
+		painter.setPen(Qt::NoPen);
+		painter.scale(pixelratio, pixelratio);
+		painter.fillRect(QRectF(9, 10, 240, 135), Qt::black);
+		painter.end();
+
+		painter.begin(&m_preview_icon);
+		qt_blurImage(&painter, shadow, 10 * pixelratio, true, false);
+		painter.end();
+
+		// Draw preview
+		m_preview_icon.setDevicePixelRatio(pixelratio);
+		painter.begin(&m_preview_icon);
+		painter.drawImage(QPointF(9, 9), preview.scaled(240 * pixelratio, 135 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+		// Draw text cutout shadow
+		painter.fillRect(QRectF(20, 32, 85, 59), QColor(0, 0, 0, 32));
+		painter.fillRect(QRectF(21, 33, 83, 57), Qt::white);
+
+		// Draw text cutout
+		int x2 = (x >= 24) ? (x - 12 + theme.tabWidth()) : 12 + theme.tabWidth();
+		int y2 = (y >= 24) ? (y - 6) : 0;
+		painter.drawImage(QPointF(22, 34), preview, QRectF(x2 * pixelratio, y2 * pixelratio, 81 * pixelratio, 55 * pixelratio));
 	}
 
 	// Create preview pixmap
@@ -659,7 +684,7 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 
 void ThemeDialog::savePreview()
 {
-	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault()), "", 0);
+	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault(), devicePixelRatioF()), "", 0);
 	if (!m_theme.isDefault()) {
 		m_theme.setLoadColor(m_load_color);
 	}

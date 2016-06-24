@@ -2,6 +2,5 @@
 <qresource>
 	<file>load.png</file>
 	<file>lorem.txt</file>
-	<file>shadow.png</file>
 </qresource>
 </RCC>

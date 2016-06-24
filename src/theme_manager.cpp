@@ -273,7 +273,7 @@ void ThemeManager::editTheme()
 	}
 
 	item->setText(theme.name());
-	item->setIcon(QIcon(Theme::iconPath(theme.id(), false)));
+	item->setIcon(QIcon(Theme::iconPath(theme.id(), false, devicePixelRatioF())));
 	emit themeSelected(theme);
 }
 
@@ -307,7 +307,7 @@ void ThemeManager::deleteTheme()
 	if (QMessageBox::question(this, tr("Question"), tr("Delete theme '%1'?").arg(item->text()), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
 		QString id = item->data(Qt::UserRole).toString();
 		QFile::remove(Theme::filePath(id));
-		QFile::remove(Theme::iconPath(id));
+		QFile::remove(Theme::iconPath(id, false, devicePixelRatioF()));
 		delete item;
 		item = 0;
 
@@ -459,8 +459,9 @@ void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 
 QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const QString& name)
 {
-	QString icon = Theme::iconPath(id, is_default);
-	if (!QFile::exists(icon) || QImageReader(icon).size() != QSize(258, 153)) {
+	const qreal pixelratio = devicePixelRatioF();
+	QString icon = Theme::iconPath(id, is_default, pixelratio);
+	if (!QFile::exists(icon) || QImageReader(icon).size() != (QSize(258, 153) * pixelratio)) {
 		ThemeDialog::createPreview(id, is_default);
 	}
 	QListWidgetItem* item = new ThemeItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);

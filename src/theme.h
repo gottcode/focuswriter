@@ -93,7 +93,7 @@ public:
 	static QString defaultId() { return "writingdesk"; }
 	static bool exists(const QString& name);
 	static QString filePath(const QString& id, bool is_default = false);
-	static QString iconPath(const QString& id, bool is_default = false);
+	static QString iconPath(const QString& id, bool is_default, qreal pixelratio);
 	static QString path() { return m_path; }
 	static void setDefaultPath(const QString& path);
 	static void setPath(const QString& path);
