@@ -684,6 +684,7 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 
 void ThemeDialog::savePreview()
 {
+	Theme::removeIcon(m_theme.id(), m_theme.isDefault());
 	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault(), devicePixelRatioF()), "", 0);
 	if (!m_theme.isDefault()) {
 		m_theme.setLoadColor(m_load_color);

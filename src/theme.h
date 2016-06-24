@@ -95,6 +95,7 @@ public:
 	static QString filePath(const QString& id, bool is_default = false);
 	static QString iconPath(const QString& id, bool is_default, qreal pixelratio);
 	static QString path() { return m_path; }
+	static void removeIcon(const QString& id, bool is_default);
 	static void setDefaultPath(const QString& path);
 	static void setPath(const QString& path);
 

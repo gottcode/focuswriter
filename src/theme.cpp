@@ -67,6 +67,17 @@ namespace
 		QFile::copy(image, images.filePath(filename));
 		return filename;
 	}
+
+	QDir listIcons(const QString& id, bool is_default)
+	{
+		const QString icon = Theme::iconPath(id, is_default, 1.0);
+
+		const int dirindex = icon.lastIndexOf('/');
+		const int baseindex = icon.lastIndexOf('.');
+		const QString basename = icon.mid(dirindex + 1, baseindex - dirindex - 1);
+
+		return QDir(icon.left(dirindex), basename + "*");
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -164,15 +175,9 @@ QString Theme::clone(const QString& id, bool is_default, const QString& name)
 	}
 
 	// Copy icon
-	const QString icon = iconPath(id, is_default, 1.0);
-
-	const int dirindex = icon.lastIndexOf('/');
-	QDir dir(icon.left(dirindex));
-
-	const int suffix = icon.lastIndexOf('.');
-	const QString basename = icon.mid(dirindex + 1, suffix - dirindex - 1);
-
-	const QStringList files = dir.entryList({basename + "*"});
+	const QDir dir = listIcons(id, is_default);
+	const int suffix = dir.nameFilters().first().length() -1;
+	const QStringList files = dir.entryList();
 	for (const QString& file : files) {
 		QFile::copy(dir.filePath(file), dir.filePath(new_id + file.mid(suffix)));
 	}
@@ -255,6 +260,17 @@ QString Theme::iconPath(const QString& id, bool is_default, qreal pixelratio)
 		pixel = QString("@%1x").arg(pixelratio);
 	}
 	return m_path + (!is_default ? "/Previews/" : "/Previews/Default/") + id + pixel + ".png";
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::removeIcon(const QString& id, bool is_default)
+{
+	QDir dir = listIcons(id, is_default);
+	const QStringList files = dir.entryList();
+	for (const QString& file : files) {
+		dir.remove(file);
+	}
 }
 
 //-----------------------------------------------------------------------------

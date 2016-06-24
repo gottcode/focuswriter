@@ -307,7 +307,7 @@ void ThemeManager::deleteTheme()
 	if (QMessageBox::question(this, tr("Question"), tr("Delete theme '%1'?").arg(item->text()), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
 		QString id = item->data(Qt::UserRole).toString();
 		QFile::remove(Theme::filePath(id));
-		QFile::remove(Theme::iconPath(id, false, devicePixelRatioF()));
+		Theme::removeIcon(id, false);
 		delete item;
 		item = 0;
 
