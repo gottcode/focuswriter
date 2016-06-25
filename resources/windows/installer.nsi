@@ -194,15 +194,19 @@ Section "install"
 	File ..\images\icons\oxygen\hicolor\16\*
 	SetOutPath $INSTDIR\icons\hicolor\22
 	File ..\images\icons\oxygen\hicolor\22\*
+	SetOutPath $INSTDIR\icons\hicolor\32
+	File ..\images\icons\oxygen\hicolor\32\*
+	SetOutPath $INSTDIR\icons\hicolor\48
+	File ..\images\icons\oxygen\hicolor\48\*
+	SetOutPath $INSTDIR\icons\hicolor\64
+	File ..\images\icons\oxygen\hicolor\64\*
 
 	SetOutPath $INSTDIR\imageformats
 	File $%QTDIR%\plugins\imageformats\qdds.dll
 	File $%QTDIR%\plugins\imageformats\qgif.dll
 	File $%QTDIR%\plugins\imageformats\qicns.dll
 	File $%QTDIR%\plugins\imageformats\qico.dll
-	File $%QTDIR%\plugins\imageformats\qjp2.dll
 	File $%QTDIR%\plugins\imageformats\qjpeg.dll
-	File $%QTDIR%\plugins\imageformats\qmng.dll
 	File $%QTDIR%\plugins\imageformats\qsvg.dll
 	File $%QTDIR%\plugins\imageformats\qtga.dll
 	File $%QTDIR%\plugins\imageformats\qtiff.dll
