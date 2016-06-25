@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include <QApplication>
 #include <QGraphicsOpacityEffect>
+#include <QPainter>
 #include <QTimer>
 #include <QVBoxLayout>
 
@@ -30,7 +31,26 @@ LoadScreen::LoadScreen(QWidget* parent) :
 	QLabel(parent)
 {
 	setCursor(Qt::WaitCursor);
-	setStyleSheet("LoadScreen {background: #666 url(':/load.png') no-repeat center;}");
+
+	QPalette p = palette();
+	p.setColor(backgroundRole(), "#666");
+	setPalette(p);
+	setAutoFillBackground(true);
+
+	QString px;
+	qreal pixelratio = devicePixelRatioF();
+	if (pixelratio > 2.0) {
+		pixelratio = 3.0;
+		px = "@3x";
+	} else if (pixelratio > 1.0) {
+		pixelratio = 2.0;
+		px = "@2x";
+	} else {
+		pixelratio = 1.0;
+	}
+	m_pixmap.load(QString(":/load%1.png").arg(px));
+	m_pixmap.setDevicePixelRatio(pixelratio);
+	m_pixmap_center = m_pixmap.size() / (2 * pixelratio);
 
 	m_text = new QLabel(this);
 	m_text->hide();
@@ -116,6 +136,16 @@ void LoadScreen::showEvent(QShowEvent* event)
 {
 	QLabel::showEvent(event);
 	QApplication::instance()->installEventFilter(this);
+}
+
+//-----------------------------------------------------------------------------
+
+void LoadScreen::paintEvent(QPaintEvent* event)
+{
+	QLabel::paintEvent(event);
+	QPainter painter(this);
+	const QSizeF sz = size() / 2;
+	painter.drawPixmap(sz.width() - m_pixmap_center.width(), sz.height() - m_pixmap_center.height(), m_pixmap);
 }
 
 //-----------------------------------------------------------------------------
