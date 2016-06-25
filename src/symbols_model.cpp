@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,16 +62,9 @@ SymbolsModel::SymbolsModel(QObject* parent) :
 	if (!buffer.open(QBuffer::ReadOnly)) {
 		return;
 	}
+
 	QDataStream stream(&buffer);
-
-	const int unicode_version = m_path.mid(m_path.length() - 7, 3).toInt();
-	switch (unicode_version) {
-	case 630:
-	default:
-		stream.setVersion(QDataStream::Qt_5_2);
-		break;
-	}
-
+	stream.setVersion(QDataStream::Qt_5_2);
 	stream >> m_names;
 	stream >> m_groups;
 	buffer.close();
@@ -301,15 +294,11 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 
 void SymbolsModel::setData(const QStringList& datadirs)
 {
-	QStringList files = QStringList()
-			<< "symbols630.dat";
 	for (const QString& path : datadirs) {
-		for (const QString& file : files) {
-			QFileInfo info(path + "/" + file);
-			if (info.exists()) {
-				m_path = info.absoluteFilePath();
-				break;
-			}
+		QFileInfo info(path + "/symbols900.dat");
+		if (info.exists()) {
+			m_path = info.absoluteFilePath();
+			break;
 		}
 	}
 }

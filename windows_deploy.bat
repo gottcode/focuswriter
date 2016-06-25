@@ -33,7 +33,7 @@ MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
 ECHO Copying symbols
-COPY resources\symbols\symbols630.dat %APP% >nul
+COPY resources\symbols\symbols900.dat %APP% >nul
 
 ECHO Copying themes
 SET THEMES=%APP%\themes

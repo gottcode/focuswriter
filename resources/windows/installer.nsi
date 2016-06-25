@@ -162,7 +162,7 @@ Section "install"
 	;Copy files
 	SetOutPath $INSTDIR
 	File ..\..\release\FocusWriter.exe
-	File ..\symbols\symbols630.dat
+	File ..\symbols\symbols900.dat
 	File $%QTDIR%\bin\libgcc_s_dw2-1.dll
 	File $%QTDIR%\bin\libstdc++-6.dll
 	File $%QTDIR%\bin\libwinpthread-1.dll

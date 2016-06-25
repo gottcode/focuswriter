@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -84,9 +84,7 @@ QDataStream& operator<<(QDataStream& stream, const Filter& filter)
 
 int downloadAndParse(const QString& unicode_version, QDataStream::Version data_version)
 {
-	QString path = unicode_version;
-	path = path.remove('.');
-	path = path.prepend("symbols");
+	const QString path = QString(unicode_version).remove('.').prepend("symbols");
 
 	// Create location for data
 	{
@@ -98,11 +96,8 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 	{
 		QScopedPointer<QNetworkAccessManager> manager(new QNetworkAccessManager);
 
-		const QStringList filenames = QStringList()
-				<< "UnicodeData.txt"
-				<< "Blocks.txt"
-				<< "Scripts.txt";
-		foreach (const QString& filename, filenames) {
+		const QStringList filenames{"UnicodeData.txt", "Blocks.txt", "Scripts.txt"};
+		for (const QString& filename : filenames) {
 			std::cout << "Downloading " << filename.toStdString() << "... " << std::flush;
 			if (QFile::exists(path + "/" + filename)) {
 				std::cout << "SKIPPED" << std::endl;
@@ -114,7 +109,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			QNetworkReply* reply = manager->get(QNetworkRequest(url));
 
 			QEventLoop loop;
-			QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+			QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
 			loop.exec();
 
 			// Write file to disk
@@ -145,8 +140,8 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 
 		QTextStream stream(&file);
 		while (!stream.atEnd()) {
-			QStringList parts = stream.readLine().split(";");
-			quint32 code = parts.at(0).toUInt(0, 16);
+			const QStringList parts = stream.readLine().split(";");
+			const quint32 code = parts.at(0).toUInt(0, 16);
 			QString name = parts.at(1);
 			if (name.startsWith('<')) {
 				name = parts.at(10);
@@ -179,14 +174,14 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			}
 
 			// Remove comment
-			int comment_start = line.indexOf('#');
+			const int comment_start = line.indexOf('#');
 			if (comment_start != -1) {
 				line = line.left(comment_start);
 			}
-			QStringList parts = line.split(";");
+			const QStringList parts = line.split(";");
 
 			// Find block code point range
-			QStringList range = parts.at(0).trimmed().split('.', QString::SkipEmptyParts);
+			const QStringList range = parts.at(0).trimmed().split('.', QString::SkipEmptyParts);
 			if (range.count() != 2) {
 				continue;
 			}
@@ -226,11 +221,11 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			}
 
 			// Remove comment
-			int comment_start = line.indexOf('#');
+			const int comment_start = line.indexOf('#');
 			if (comment_start != -1) {
 				line = line.left(comment_start);
 			}
-			QStringList parts = line.split(";");
+			const QStringList parts = line.split(";");
 
 			// Find script code point range
 			quint32 start, end;
@@ -298,5 +293,5 @@ int main(int argc, char** argv)
 {
 	QCoreApplication app(argc, argv);
 
-	downloadAndParse("6.3.0", QDataStream::Qt_5_2);
+	downloadAndParse("9.0.0", QDataStream::Qt_5_2);
 }
