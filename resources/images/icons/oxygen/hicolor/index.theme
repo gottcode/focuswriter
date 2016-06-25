@@ -1,5 +1,5 @@
 [Icon Theme]
-Directories=16,22
+Directories=16,22,32,48,64
 
 [16]
 Size=16
@@ -8,5 +8,20 @@ Type=Threshold
 
 [22]
 Size=22
+Context=Actions
+Type=Threshold
+
+[32]
+Size=32
+Context=Actions
+Type=Threshold
+
+[48]
+Size=48
+Context=Actions
+Type=Threshold
+
+[64]
+Size=64
 Context=Actions
 Type=Threshold
