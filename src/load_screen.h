@@ -47,6 +47,11 @@ private slots:
 	void fade();
 
 private:
+#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
+	qreal devicePixelRatioF() const { return devicePixelRatio(); }
+#endif
+
+private:
 	QPixmap m_pixmap;
 	QSizeF m_pixmap_center;
 	QLabel* m_text;

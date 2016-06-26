@@ -137,6 +137,11 @@ private slots:
 	void updateMenuIndexes();
 
 private:
+#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
+	qreal devicePixelRatioF() const { return devicePixelRatio(); }
+#endif
+
+private:
 	AlertLayer* m_alerts;
 	SceneList* m_scenes;
 	QMenu* m_menu;
