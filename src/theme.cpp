@@ -41,31 +41,28 @@ void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bo
 
 namespace
 {
+	QString checksumName(const QString& image)
+	{
+		QCryptographicHash hash(QCryptographicHash::Sha1);
+		QFile file(image);
+		if (file.open(QFile::ReadOnly)) {
+			hash.addData(&file);
+			file.close();
+		}
+
+		const QString suffix = QFileInfo(image).suffix().toLower();
+
+		return "2-" + hash.result().toHex() + "." + suffix;
+	}
+
 	QString copyImage(const QString& image)
 	{
-		// Check if already copied
-		QDir images(Theme::path() + "/Images/");
-		QStringList filenames = images.entryList(QDir::Files);
-		for (const QString& filename : filenames) {
-			if (compareFiles(image, images.filePath(filename))) {
-				return filename;
-			}
+		const QString name = checksumName(image);
+		const QString path = Theme::path() + "/Images/" + name;
+		if (!QFile::exists(path)) {
+			QFile::copy(image, path);
 		}
-
-		// Find file name
-		QString base = QCryptographicHash::hash(image.toUtf8(), QCryptographicHash::Sha1).toHex();
-		QString suffix = QFileInfo(image).suffix().toLower();
-		QString filename = QString("%1.%2").arg(base, suffix);
-
-		// Handle file name collisions
-		int id = 0;
-		while (images.exists(filename)) {
-			id++;
-			filename = QString("%1-%2.%3").arg(base).arg(id).arg(suffix);
-		}
-
-		QFile::copy(image, images.filePath(filename));
-		return filename;
+		return name;
 	}
 
 	QDir listIcons(const QString& id, bool is_default)
@@ -191,9 +188,14 @@ void Theme::copyBackgrounds()
 {
 	QDir dir(path() + "/Images");
 	QStringList images;
+	QHash<QString, QString> old_images;
+	const QHash<QString, QString> source_images = {
+		{ "2-77534bf3da7fb42c830772be8d279be79869deb7.jpg", m_path_default + "/images/spacedreams.jpg" },
+		{ "2-1ccf9867f755b306830852e8fbf36952f93ab3fe.jpg", m_path_default + "/images/writingdesk.jpg" }
+	};
 
 	// Copy images
-	QStringList themes = QDir(path(), "*.theme").entryList(QDir::Files);
+	const QStringList themes = QDir(path(), "*.theme").entryList(QDir::Files);
 	for (const QString& theme : themes) {
 		QSettings settings(path() + "/" + theme, QSettings::IniFormat);
 		QString background_path = settings.value("Background/Image").toString();
@@ -205,14 +207,32 @@ void Theme::copyBackgrounds()
 			background_image = copyImage(background_path);
 			settings.setValue("Background/ImageFile", background_image);
 		}
+
+		// Set image filename to checksum of image contents
+		if (!background_image.startsWith("2-")) {
+			if (!old_images.contains(background_image)) {
+				const QString file = checksumName(dir.filePath(background_image));
+				old_images.insert(background_image, file);
+				dir.rename(background_image, file);
+			}
+			background_image = old_images[background_image];
+			settings.setValue("Background/ImageFile", background_image);
+		}
+
+		// Replace lower resolution copies of default images
+		if (source_images.contains(background_image)) {
+			background_image = copyImage(source_images[background_image]);
+			settings.setValue("Background/ImageFile", background_image);
+		}
+
 		images.append(background_image);
 	}
 
 	// Delete unused images
-	QStringList files = dir.entryList(QDir::Files);
+	const QStringList files = dir.entryList(QDir::Files);
 	for (const QString& file : files) {
 		if (!images.contains(file)) {
-			QFile::remove(path() + "/Images/" + file);
+			dir.remove(file);
 		}
 	}
 }
