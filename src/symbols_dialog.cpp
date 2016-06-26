@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ void SymbolsDialog::ElideLabel::paintEvent(QPaintEvent* event)
 	QFontMetrics metrics = painter.fontMetrics();
 
 	QString text = metrics.elidedText(m_text, Qt::ElideRight, width());
-	painter.drawText(QPoint(0, metrics.ascent()), text);
+	painter.drawText(QPointF(0, metrics.ascent()), text);
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -106,7 +106,7 @@ private:
 
 			// Draw view item background
 			QPainter p(&m_pixmap);
-			p.fillRect(opt.rect, opt.palette.color(QPalette::Active, QPalette::Base));
+			p.fillRect(QRectF(opt.rect), opt.palette.color(QPalette::Active, QPalette::Base));
 			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Highlight);
 			QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 			style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, &p, opt.widget);
