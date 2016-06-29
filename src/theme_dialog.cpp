@@ -442,9 +442,9 @@ void ThemeDialog::createPreview(const QString& id, bool is_default)
 	Theme theme(id, is_default);
 	ThemeDialog dialog(theme);
 	dialog.m_theme_renderer->wait();
-	while (!dialog.m_load_color.resultCount()) {
+	do {
 		QCoreApplication::processEvents();
-	}
+	} while (dialog.m_load_color.isRunning());
 	dialog.savePreview();
 }
 
@@ -575,6 +575,9 @@ void ThemeDialog::renderPreview()
 	setValues(theme);
 	theme.setBackgroundImage(m_background_image->image());
 
+	// Fetch load color
+	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
+
 	// Render theme
 	m_theme_renderer->create(theme, QSize(1920, 1080), 0, devicePixelRatioF());
 }
@@ -584,8 +587,6 @@ void ThemeDialog::renderPreview()
 void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const Theme& theme)
 {
 	const qreal pixelratio = devicePixelRatioF();
-
-	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
 
 	// Position preview text
 	int padding = theme.foregroundPadding();
