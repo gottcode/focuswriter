@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2012, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include <QFileDialog>
 #include <QImageReader>
+#include <QPainter>
 #include <QSettings>
 #include <QStandardPaths>
 
@@ -42,12 +43,26 @@ void ImageButton::setImage(const QString& image, const QString& path)
 	QImageReader source(image);
 	if (source.canRead()) {
 		m_image = image;
+
+		// Find scaled size
+		const qreal pixelratio = devicePixelRatioF();
+		const int edge = 100 * pixelratio;
 		QSize size = source.size();
-		if (size.width() > 100 || size.height() > 100) {
-			size.scale(100, 100, Qt::KeepAspectRatio);
+		if (size.width() > edge || size.height() > edge) {
+			size.scale(QSize(edge, edge), Qt::KeepAspectRatio);
 			source.setScaledSize(size);
 		}
-		setIcon(QPixmap::fromImage(source.read(), Qt::AutoColor | Qt::AvoidDither));
+
+		// Create square icon with image centered
+		QImage icon(QSize(edge, edge), QImage::Format_ARGB32_Premultiplied);
+		icon.fill(Qt::transparent);
+		QPainter painter(&icon);
+		painter.drawImage((edge - size.width()) / 2, (edge - size.height()) / 2, source.read());
+		painter.end();
+
+		// Load icon
+		icon.setDevicePixelRatio(pixelratio);
+		setIcon(QPixmap::fromImage(icon, Qt::AutoColor | Qt::AvoidDither));
 
 		m_path = (!path.isEmpty() && QImageReader(path).canRead()) ? path : QString();
 		emit changed(m_path);
@@ -63,7 +78,9 @@ void ImageButton::unsetImage()
 	m_image.clear();
 	m_path.clear();
 
-	QPixmap icon(100,100);
+	const qreal pixelratio = devicePixelRatioF();
+	QPixmap icon(QSize(100, 100) * pixelratio);
+	icon.setDevicePixelRatio(pixelratio);
 	icon.fill(Qt::transparent);
 	setIcon(icon);
 

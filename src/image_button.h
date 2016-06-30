@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,11 @@ public slots:
 
 private slots:
 	void onClicked();
+
+private:
+#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
+	qreal devicePixelRatioF() const { return devicePixelRatio(); }
+#endif
 
 private:
 	QString m_image;
