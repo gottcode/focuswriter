@@ -25,6 +25,7 @@
 #include "theme_dialog.h"
 #include "utils.h"
 
+#include <QApplication>
 #include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
@@ -462,8 +463,31 @@ QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const
 	const qreal pixelratio = devicePixelRatioF();
 	QString icon = Theme::iconPath(id, is_default, pixelratio);
 	if (!QFile::exists(icon) || QImageReader(icon).size() != (QSize(258, 153) * pixelratio)) {
-		ThemeDialog::createPreview(id, is_default);
+		Theme theme(id, is_default);
+
+		// Find load color in separate thread
+		QFuture<QColor> load_color;
+		if (!theme.isDefault() && (theme.loadColor() == theme.backgroundColor())) {
+			load_color = theme.calculateLoadColor();
+		}
+
+		// Generate preview
+		QRect foreground;
+		QImage background = theme.render(QSize(1920, 1080), foreground, 0, pixelratio);
+		QImage icon;
+		theme.renderText(background, foreground, pixelratio, nullptr, &icon);
+		icon.save(Theme::iconPath(theme.id(), theme.isDefault(), pixelratio));
+
+		// Save load color
+		load_color.waitForFinished();
+		if (load_color.resultCount()) {
+			theme.setLoadColor(load_color);
+			theme.saveChanges();
+		}
+
+		QApplication::processEvents();
 	}
+
 	QListWidgetItem* item = new ThemeItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);
 	item->setToolTip(name);
 	item->setData(Qt::UserRole, id);

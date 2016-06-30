@@ -37,12 +37,10 @@
 #include <QImageReader>
 #include <QLabel>
 #include <QLineEdit>
-#include <QPainter>
 #include <QScrollArea>
 #include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
-#include <QTextEdit>
 #include <QVBoxLayout>
 
 #include <cmath>
@@ -335,16 +333,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 
 	// Create preview
-	m_preview_text = new QTextEdit;
-	m_preview_text->setFrameStyle(QFrame::NoFrame);
-	m_preview_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_preview_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	QFile file(":/lorem.txt");
-	if (file.open(QFile::ReadOnly)) {
-		m_preview_text->setPlainText(QString::fromLatin1(file.readAll()));
-		file.close();
-	}
-
 	m_preview = new QLabel(this);
 	m_preview->setAlignment(Qt::AlignCenter);
 	m_preview->setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
@@ -392,21 +380,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 ThemeDialog::~ThemeDialog()
 {
 	m_theme_renderer->wait();
-
-	delete m_preview_text;
-}
-
-//-----------------------------------------------------------------------------
-
-void ThemeDialog::createPreview(const QString& id, bool is_default)
-{
-	Theme theme(id, is_default);
-	ThemeDialog dialog(theme);
-	dialog.m_theme_renderer->wait();
-	do {
-		QCoreApplication::processEvents();
-	} while (dialog.m_load_color.isRunning());
-	dialog.savePreview();
 }
 
 //-----------------------------------------------------------------------------
@@ -545,101 +518,11 @@ void ThemeDialog::renderPreview()
 
 //-----------------------------------------------------------------------------
 
-void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const Theme& theme)
+void ThemeDialog::renderPreview(const QImage& background, const QRect& foreground, const Theme& theme)
 {
-	const qreal pixelratio = devicePixelRatioF();
-
-	// Position preview text
-	int padding = theme.foregroundPadding();
-	int x = foreground.x() + padding;
-	int y = foreground.y() + padding + theme.spacingAboveParagraph();
-	int width = foreground.width() - (padding * 2);
-	int height = foreground.height() - (padding * 2) - theme.spacingAboveParagraph();
-	m_preview_text->setGeometry(x, y, width, height);
-
-	// Set colors
-	QColor text_color = theme.textColor();
-	text_color.setAlpha(255);
-
-	QPalette p = m_preview_text->palette();
-	p.setBrush(QPalette::Window, Qt::transparent);
-	p.setBrush(QPalette::Base, Qt::transparent);
-	p.setColor(QPalette::Text, text_color);
-	p.setColor(QPalette::Highlight, text_color);
-	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
-	m_preview_text->setPalette(p);
-
-	// Set spacings
-	int tab_width = theme.tabWidth();
-	QTextBlockFormat block_format;
-	block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
-	block_format.setTextIndent(tab_width * theme.indentFirstLine());
-	block_format.setTopMargin(theme.spacingAboveParagraph());
-	block_format.setBottomMargin(theme.spacingBelowParagraph());
-	m_preview_text->textCursor().mergeBlockFormat(block_format);
-	for (int i = 0, count = m_preview_text->document()->allFormats().count(); i < count; ++i) {
-		QTextFormat& f = m_preview_text->document()->allFormats()[i];
-		if (f.isBlockFormat()) {
-			f.merge(block_format);
-		}
-	}
-	m_preview_text->setTabStopWidth(tab_width);
-	m_preview_text->document()->setIndentWidth(tab_width);
-
-	// Set font
-	m_preview_text->setFont(theme.textFont());
-
-	// Render text
-	m_preview_text->render(&preview, m_preview_text->pos());
-
-	// Create preview icon
-	m_preview_icon = QImage(258 * pixelratio, 153 * pixelratio, QImage::Format_ARGB32_Premultiplied);
-	m_preview_icon.fill(Qt::transparent);
-	{
-		// Draw shadow
-		QImage shadow(m_preview_icon);
-
-		QPainter painter(&shadow);
-		painter.setPen(Qt::NoPen);
-		painter.scale(pixelratio, pixelratio);
-		painter.fillRect(QRectF(9, 10, 240, 135), Qt::black);
-		painter.end();
-
-		painter.begin(&m_preview_icon);
-		qt_blurImage(&painter, shadow, 10 * pixelratio, true, false);
-		painter.end();
-
-		// Draw preview
-		m_preview_icon.setDevicePixelRatio(pixelratio);
-		painter.begin(&m_preview_icon);
-		painter.drawImage(QPointF(9, 9), preview.scaled(240 * pixelratio, 135 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-
-		// Draw text cutout shadow
-		painter.fillRect(QRectF(20, 32, 85, 59), QColor(0, 0, 0, 32));
-		painter.fillRect(QRectF(21, 33, 83, 57), Qt::white);
-
-		// Draw text cutout
-		int x2 = (x >= 24) ? (x - 12 + theme.tabWidth()) : 12 + theme.tabWidth();
-		int y2 = (y >= 24) ? (y - 6) : 0;
-		painter.drawImage(QPointF(22, 34), preview, QRectF(x2 * pixelratio, y2 * pixelratio, 81 * pixelratio, 55 * pixelratio));
-	}
-
-	// Create preview pixmap
-	QImage preview_image = preview.scaled(480 * pixelratio, 270 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-	{
-		QPainter painter(&preview_image);
-		painter.setPen(Qt::NoPen);
-
-		// Draw text cutout shadow
-		painter.fillRect(QRectF(22, 46, 170, 118), QColor(0, 0, 0, 32));
-		painter.fillRect(QRectF(24, 48, 166, 114), Qt::white);
-
-		// Draw text cutout
-		int x2 = (x >= 24) ? (x - 24) : 0;
-		int y2 = (y >= 24) ? (y - 24) : 0;
-		painter.drawImage(QPointF(26, 50), preview, QRectF(x2 * pixelratio, y2 * pixelratio, 162 * pixelratio, 110 * pixelratio));
-	}
-	m_preview->setPixmap(QPixmap::fromImage(preview_image));
+	QImage preview;
+	theme.renderText(background, foreground, devicePixelRatioF(), &preview, &m_preview_icon);
+	m_preview->setPixmap(QPixmap::fromImage(preview));
 }
 
 //-----------------------------------------------------------------------------

@@ -29,6 +29,7 @@
 #include <QImageReader>
 #include <QPainter>
 #include <QSettings>
+#include <QTextEdit>
 #include <QUuid>
 
 #include <cmath>
@@ -450,6 +451,115 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 	painter.fillRect(QRectF(foreground), color);
 
 	return image;
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::renderText(QImage background, const QRect& foreground, const qreal pixelratio, QImage* preview, QImage* icon) const
+{
+	// Create preview text
+	QTextEdit preview_text;
+	preview_text.setFrameStyle(QFrame::NoFrame);
+	preview_text.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	preview_text.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	QFile file(":/lorem.txt");
+	if (file.open(QFile::ReadOnly)) {
+		preview_text.setPlainText(QString::fromLatin1(file.readAll()));
+		file.close();
+	}
+
+	// Position preview text
+	int padding = foregroundPadding();
+	int x = foreground.x() + padding;
+	int y = foreground.y() + padding + spacingAboveParagraph();
+	int width = foreground.width() - (padding * 2);
+	int height = foreground.height() - (padding * 2) - spacingAboveParagraph();
+	preview_text.setGeometry(x, y, width, height);
+
+	// Set colors
+	QColor text_color = textColor();
+	text_color.setAlpha(255);
+
+	QPalette p = preview_text.palette();
+	p.setBrush(QPalette::Window, Qt::transparent);
+	p.setBrush(QPalette::Base, Qt::transparent);
+	p.setColor(QPalette::Text, text_color);
+	p.setColor(QPalette::Highlight, text_color);
+	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
+	preview_text.setPalette(p);
+
+	// Set spacings
+	int tab_width = tabWidth();
+	QTextBlockFormat block_format;
+	block_format.setLineHeight(lineSpacing(), (lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
+	block_format.setTextIndent(tab_width * indentFirstLine());
+	block_format.setTopMargin(spacingAboveParagraph());
+	block_format.setBottomMargin(spacingBelowParagraph());
+	preview_text.textCursor().mergeBlockFormat(block_format);
+	for (int i = 0, count = preview_text.document()->allFormats().count(); i < count; ++i) {
+		QTextFormat& f = preview_text.document()->allFormats()[i];
+		if (f.isBlockFormat()) {
+			f.merge(block_format);
+		}
+	}
+	preview_text.setTabStopWidth(tab_width);
+	preview_text.document()->setIndentWidth(tab_width);
+
+	// Set font
+	preview_text.setFont(textFont());
+
+	// Render text
+	preview_text.render(&background, preview_text.pos());
+
+	// Create preview pixmap
+	if (preview) {
+		*preview = background.scaled(480 * pixelratio, 270 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+		QPainter painter(preview);
+		painter.setPen(Qt::NoPen);
+
+		// Draw text cutout shadow
+		painter.fillRect(QRectF(22, 46, 170, 118), QColor(0, 0, 0, 32));
+		painter.fillRect(QRectF(24, 48, 166, 114), Qt::white);
+
+		// Draw text cutout
+		int x2 = (x >= 24) ? (x - 24) : 0;
+		int y2 = (y >= 24) ? (y - 24) : 0;
+		painter.drawImage(QPointF(26, 50), background, QRectF(x2 * pixelratio, y2 * pixelratio, 162 * pixelratio, 110 * pixelratio));
+	}
+
+	// Create preview icon
+	if (icon) {
+		*icon = QImage(258 * pixelratio, 153 * pixelratio, QImage::Format_ARGB32_Premultiplied);
+		icon->fill(Qt::transparent);
+
+		// Draw shadow
+		QImage shadow(*icon);
+
+		QPainter painter(&shadow);
+		painter.setPen(Qt::NoPen);
+		painter.scale(pixelratio, pixelratio);
+		painter.fillRect(QRectF(9, 10, 240, 135), Qt::black);
+		painter.end();
+
+		painter.begin(icon);
+		qt_blurImage(&painter, shadow, 10 * pixelratio, true, false);
+		painter.end();
+
+		// Draw preview
+		icon->setDevicePixelRatio(pixelratio);
+		painter.begin(icon);
+		painter.drawImage(QPointF(9, 9), background.scaled(240 * pixelratio, 135 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+		// Draw text cutout shadow
+		painter.fillRect(QRectF(20, 32, 85, 59), QColor(0, 0, 0, 32));
+		painter.fillRect(QRectF(21, 33, 83, 57), Qt::white);
+
+		// Draw text cutout
+		int x2 = (x >= 24) ? (x - 12 + tabWidth()) : 12 + tabWidth();
+		int y2 = (y >= 24) ? (y - 6) : 0;
+		painter.drawImage(QPointF(22, 34), background, QRectF(x2 * pixelratio, y2 * pixelratio, 81 * pixelratio, 55 * pixelratio));
+	}
 }
 
 //-----------------------------------------------------------------------------
