@@ -26,7 +26,6 @@
 #include "theme_renderer.h"
 
 #include <QApplication>
-#include <QtConcurrentRun>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDesktopWidget>
@@ -52,44 +51,6 @@
 
 // Exported by QtGui
 void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bool alphaOnly, int transposed = 0);
-
-//-----------------------------------------------------------------------------
-
-static QColor averageImage(const QString& filename, const QColor& color)
-{
-	QImageReader reader(filename);
-	if (!reader.canRead()) {
-		return color;
-	}
-
-	QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
-	image.fill(color.rgb());
-	{
-		QPainter painter(&image);
-		painter.drawImage(0, 0, reader.read());
-	}
-	const unsigned int width = image.width();
-	const unsigned int height = image.height();
-
-	quint64 sum_r = 0;
-	quint64 sum_g = 0;
-	quint64 sum_b = 0;
-	quint64 sum_a = 0;
-
-	for (unsigned int y = 0; y < height; ++y) {
-		const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
-		for (unsigned int x = 0; x < width; ++x) {
-			QRgb pixel = scanline[x];
-			sum_r += qRed(pixel);
-			sum_g += qGreen(pixel);
-			sum_b += qBlue(pixel);
-			sum_a += qAlpha(pixel);
-		}
-	}
-
-	const qreal divisor = 1.0 / (width * height);
-	return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
-}
 
 //-----------------------------------------------------------------------------
 
@@ -576,7 +537,7 @@ void ThemeDialog::renderPreview()
 	theme.setBackgroundImage(m_background_image->image());
 
 	// Fetch load color
-	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
+	m_load_color = theme.calculateLoadColor();
 
 	// Render theme
 	m_theme_renderer->create(theme, QSize(1920, 1080), 0, devicePixelRatioF());

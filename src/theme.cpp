@@ -22,6 +22,7 @@
 #include "session.h"
 #include "utils.h"
 
+#include <QtConcurrentRun>
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
@@ -41,6 +42,42 @@ void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bo
 
 namespace
 {
+	QColor averageImage(const QString& filename, const QColor& fallback)
+	{
+		QImageReader reader(filename);
+		if (!reader.canRead()) {
+			return fallback;
+		}
+
+		QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
+		image.fill(fallback.rgb());
+		{
+			QPainter painter(&image);
+			painter.drawImage(0, 0, reader.read());
+		}
+		const unsigned int width = image.width();
+		const unsigned int height = image.height();
+
+		quint64 sum_r = 0;
+		quint64 sum_g = 0;
+		quint64 sum_b = 0;
+		quint64 sum_a = 0;
+
+		for (unsigned int y = 0; y < height; ++y) {
+			const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
+			for (unsigned int x = 0; x < width; ++x) {
+				QRgb pixel = scanline[x];
+				sum_r += qRed(pixel);
+				sum_g += qGreen(pixel);
+				sum_b += qBlue(pixel);
+				sum_a += qAlpha(pixel);
+			}
+		}
+
+		const qreal divisor = 1.0 / (width * height);
+		return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
+	}
+
 	QString checksumName(const QString& image)
 	{
 		QCryptographicHash hash(QCryptographicHash::Sha1);
@@ -413,6 +450,13 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 	painter.fillRect(QRectF(foreground), color);
 
 	return image;
+}
+
+//-----------------------------------------------------------------------------
+
+QFuture<QColor> Theme::calculateLoadColor() const
+{
+	return QtConcurrent::run(averageImage, backgroundImage(), backgroundColor());
 }
 
 //-----------------------------------------------------------------------------

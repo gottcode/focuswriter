@@ -27,6 +27,7 @@
 #include <QCoreApplication>
 #include <QExplicitlySharedDataPointer>
 #include <QFont>
+#include <QFuture>
 #include <QSharedData>
 class QImage;
 class QSize;
@@ -107,6 +108,7 @@ public:
 	QString name() const { return d->name; }
 	void setName(const QString& name) { setValue(d->name, name); }
 
+	QFuture<QColor> calculateLoadColor() const;
 	QColor loadColor() const { return d->load_color; }
 	void setLoadColor(const QColor& color) { setValue(d->load_color, color); }
 
