@@ -92,7 +92,7 @@ bool DocumentWriter::write()
 			stream.setGenerateByteOrderMark(true);
 		}
 		stream << m_document->toPlainText();
-		saved = true;
+		saved = stream.status() == QTextStream::Ok;
 	}
 
 #if defined(Q_OS_UNIX)
