@@ -69,34 +69,6 @@ namespace
 
 		return area;
 	}
-
-	bool recursivelyRemove(const QString& path)
-	{
-		// Abort early if directory doesn't exist
-		QDir dir(path);
-		if (!dir.exists()) {
-			return true;
-		}
-
-		// Remove subdirectories
-		QStringList contents = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Hidden | QDir::System);
-		for (const QString& entry : contents) {
-			if (!recursivelyRemove(dir.absoluteFilePath(entry))) {
-				return false;
-			}
-		}
-
-		// Remove all files
-		contents = dir.entryList(QDir::Files | QDir::Hidden | QDir::System);
-		for (const QString& entry : contents) {
-			if (!QFile::remove(dir.absoluteFilePath(entry))) {
-				return false;
-			}
-		}
-
-		// Remove directory
-		return dir.rmdir(path);
-	}
 }
 
 //-----------------------------------------------------------------------------
@@ -340,12 +312,6 @@ void PreferencesDialog::accept()
 	QString path = DictionaryManager::path() + "/install/";
 	QString new_path = DictionaryManager::installedPath() + "/";
 	QDir dir(path);
-#ifdef Q_OS_WIN
-	QStringList dirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-	for (const QString& file : dirs) {
-		QFile::rename(path + file, new_path + file);
-	}
-#endif
 	QStringList files = dir.entryList(QDir::Files);
 	for (const QString& file : files) {
 		QFile::remove(new_path + file);
@@ -380,7 +346,7 @@ void PreferencesDialog::accept()
 
 void PreferencesDialog::reject()
 {
-	if (!recursivelyRemove(DictionaryManager::path() + "/install/")) {
+	if (!QDir(DictionaryManager::path() + "/install/").removeRecursively()) {
 		qWarning("Failed to clean up dictionary install path");
 	}
 	QDialog::reject();
@@ -484,27 +450,8 @@ void PreferencesDialog::addLanguage()
 			aff_files += name;
 		} else if (name.endsWith(".dic")) {
 			dic_files += name;
-#ifdef Q_OS_WIN
-		// Find Voikko files
-		} else if (name.contains("mor-") || (name == "libvoikko-1.dll")) {
-			files += name;
-#endif
 		}
 	}
-
-#ifdef Q_OS_WIN
-	// Find Voikko dictionaries
-	for (const QString& file : files) {
-		if (file.endsWith(".dll")) {
-			continue;
-		}
-		QString name = file.section('/', -1).section('.', 0);
-		name.replace("voikko-", "");
-		if (!dictionaries.contains(name)) {
-			dictionaries += name;
-		}
-	}
-#endif
 
 	// Find Hunspell dictionary files
 	for (const QString& dic : dic_files) {
@@ -526,21 +473,10 @@ void PreferencesDialog::addLanguage()
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
 		for (const QString& file : files) {
+			// Ignore path for Hunspell dictionaries
 			QString filename = file;
-			if (filename.endsWith(".dic") || filename.endsWith(".aff")) {
-				// Ignore path for Hunspell dictionaries
-				filename = filename.section('/', -1);
-				filename.replace(QChar('-'), QChar('_'));
-#ifdef Q_OS_WIN
-			} else if (filename.endsWith(".dll")) {
-				// Ignore path for Voikko library
-				dir.setPath(install);
-			} else {
-				// Create path for Voikko dictionary
-				dir.setPath(install + filename + "/..");
-				dir.mkpath(dir.absolutePath());
-#endif
-			}
+			filename = filename.section('/', -1);
+			filename.replace(QChar('-'), QChar('_'));
 
 			QFile out(install + filename);
 			if (out.open(QIODevice::WriteOnly)) {
