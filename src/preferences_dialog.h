@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,8 @@ private slots:
 	void addSeparatorAction();
 	void currentActionChanged(int action);
 	void addLanguage();
+	void removeLanguage();
+	void selectedLanguageChanged(int index);
 	void addWord();
 	void removeWord();
 	void selectedWordChanged();
@@ -124,8 +126,10 @@ private:
 	QLineEdit* m_word;
 	QListWidget* m_personal_dictionary;
 	QPushButton* m_add_language_button;
+	QPushButton* m_remove_language_button;
 	QPushButton* m_add_word_button;
 	QPushButton* m_remove_word_button;
+	QStringList m_uninstalled;
 
 	QComboBox* m_toolbar_style;
 	QListWidget* m_toolbar_actions;
