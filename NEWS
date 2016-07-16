@@ -1,3 +1,9 @@
+1.5.7
+-----
+* Switched to cross-compiled builds for Windows.
+* FIXED: Did not play sounds for key presses with Alt modifier.
+* FIXED: Could not change shortcut to disable focused text.
+
 1.5.6
 -----
 * Updated included hunspell.
