@@ -149,12 +149,11 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>http://gottcode.org/focuswriter/screenshots/appdata.png</image>
+      <image>https://gottcode.org/focuswriter/screenshots/appdata.png</image>
     </screenshot>
   </screenshots>
-  <url type="homepage">http://gottcode.org/focuswriter/</url>
-  <url type="bugtracker">http://gottcode.org/focuswriter/bugs/</url>
-  <url type="donation">http://gottcode.org/tip/</url>
+  <url type="homepage">https://gottcode.org/focuswriter/</url>
+  <url type="donation">https://gottcode.org/tip/</url>
   <developer_name>Graeme Gott</developer_name>
   <updatecontact>graeme@gottcode.org</updatecontact>
   <provides>
