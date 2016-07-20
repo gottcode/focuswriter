@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/alert.cpp" line="236"/>
         <source>Close (%1)</source>
-        <translation>Uždaryti (%1)</translation>
+        <translation>Užverti (%1)</translation>
     </message>
     <message>
         <location filename="../src/alert.cpp" line="177"/>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation>Pašalinti Įspėjimą</translation>
+        <translation>Pašalinti įspėjimą</translation>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -35,16 +35,16 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="503"/>
+        <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln minute(s)</source>
         <translation>
             <numerusform>%1% iš %Ln minutės</numerusform>
             <numerusform>%1% iš %Ln minučių</numerusform>
-            <numerusform>%1% of %Ln minučių</numerusform>
+            <numerusform>%1% iš %Ln minučių</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="505"/>
+        <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%1% of %Ln word(s)</source>
         <translation>
             <numerusform>%1% iš %Ln žodžio</numerusform>
@@ -53,7 +53,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="507"/>
+        <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln žodis</numerusform>
@@ -62,7 +62,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="509"/>
+        <location filename="../src/daily_progress.cpp" line="511"/>
         <source>%Ln minute(s)</source>
         <translation>
             <numerusform>%Ln minutė</numerusform>
@@ -71,7 +71,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress.cpp" line="511"/>
+        <location filename="../src/daily_progress.cpp" line="513"/>
         <source>0%</source>
         <translation>0%</translation>
     </message>
@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="146"/>
         <source>Daily Progress</source>
-        <translation>Kasdienė Eiga</translation>
+        <translation>Kasdienė eiga</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="282"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation>Nustatyti Kalbą</translation>
+        <translation>Nustatyti kalbą</translation>
     </message>
 </context>
 <context>
@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/document.cpp" line="428"/>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (Tik-Skaitymui)</translation>
+        <translation>%1 (Tik-skaitymui)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="492"/>
@@ -153,12 +153,12 @@
     <message>
         <location filename="../src/document.cpp" line="492"/>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Nepavyko išsaugoti &apos;%1&apos;.</translation>
+        <translation>Nepavyko įrašyti &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="507"/>
         <source>Save File As</source>
-        <translation>Išsaugoti Failą Kaip</translation>
+        <translation>Įrašyti failą kaip</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="517"/>
@@ -169,7 +169,7 @@
     <message>
         <location filename="../src/document.cpp" line="546"/>
         <source>Rename File</source>
-        <translation>Pervadinti Failą</translation>
+        <translation>Pervadinti failą</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="559"/>
@@ -179,17 +179,17 @@
     <message>
         <location filename="../src/document.cpp" line="585"/>
         <source>Reload File?</source>
-        <translation>Įkelti Failą iš naujo?</translation>
+        <translation>Įkelti failą iš naujo?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="586"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>Įkelti iš disko iš naujo failą &apos;%1&apos;?</translation>
+        <translation>Įkelti iš naujo failą &apos;%1&apos; iš disko?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="587"/>
         <source>All unsaved changes will be lost.</source>
-        <translation>Visi neišsaugoti pakeitimai bus prarasti.</translation>
+        <translation>Visi neįrašyti pakeitimai bus prarasti.</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="589"/>
@@ -209,7 +209,7 @@
     <message>
         <location filename="../src/document.cpp" line="1376"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Išsaugojimas grynu tekstu pašalins visą formatavimą. Pašalinti formatavimą?</translation>
+        <translation>Įrašymas grynu tekstu pašalins visą formatavimą. Pašalinti formatavimą?</translation>
     </message>
 </context>
 <context>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
-        <translation>Failas Pasikeitė</translation>
+        <translation>Failas pasikeitė</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="192"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="195"/>
         <source>Reload</source>
-        <translation>įkelti iš naujo</translation>
+        <translation>Įkelti iš naujo</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="200"/>
@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
-        <translation>Failas Ištrintas</translation>
+        <translation>Failas ištrintas</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="212"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="213"/>
         <source>Do you want to save or close the file?</source>
-        <translation>Jūs norite išsaugoti ar uždaryti failą?</translation>
+        <translation>Jūs norite failą įrašyti ar užverti?</translation>
     </message>
 </context>
 <context>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="94"/>
         <source>Unable to open archive.</source>
-        <translation>Nepavyko atidaryti archyvo.</translation>
+        <translation>Nepavyko atverti archyvo.</translation>
     </message>
 </context>
 <context>
@@ -288,7 +288,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="55"/>
         <source>Regular expressions</source>
-        <translation>Reguliarios išraiškos</translation>
+        <translation>Reguliarieji reiškiniai</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="58"/>
@@ -313,7 +313,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
-        <translation>Pakeisti &amp;Visus</translation>
+        <translation>Pakeisti &amp;visus</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="151"/>
@@ -341,13 +341,13 @@
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Sorry</source>
         <translation>Atsiprašome</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Phrase not found.</source>
         <translation>Frazė nerasta.</translation>
     </message>
@@ -357,32 +357,32 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation>ODT Formatas</translation>
+        <translation>ODT formatas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>Office Open XML</source>
-        <translation>DOCX Formatas</translation>
+        <translation>DOCX formatas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Rich Text Format</source>
-        <translation>RTF Formatas</translation>
+        <translation>RTF formatas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Plain Text</source>
-        <translation>Grynas Tekstas</translation>
+        <translation>Grynas tekstas</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="92"/>
         <source>All Files</source>
-        <translation>Visi Failai</translation>
+        <translation>Visi failai</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="106"/>
         <source>All Supported Files</source>
-        <translation>Visi Palaikomi Failai</translation>
+        <translation>Visi palaikomi failai</translation>
     </message>
 </context>
 <context>
@@ -395,7 +395,7 @@
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="55"/>
         <source>Check Spelling...</source>
-        <translation>Tikrinti Rašybą...</translation>
+        <translation>Tikrinti rašybą...</translation>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="129"/>
@@ -408,7 +408,7 @@
     <message>
         <location filename="../src/image_button.cpp" line="100"/>
         <source>Open Image</source>
-        <translation>Atidaryti Paveikslą </translation>
+        <translation>Atverti paveikslą</translation>
     </message>
     <message>
         <location filename="../src/image_button.cpp" line="100"/>
@@ -426,7 +426,7 @@
     <message>
         <location filename="../src/locale_dialog.cpp" line="54"/>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Sistemos Kalba&gt;</translation>
+        <translation>&lt;Sistemos kalba&gt;</translation>
     </message>
     <message>
         <location filename="../src/locale_dialog.cpp" line="189"/>
@@ -444,7 +444,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="68"/>
         <source>Unable to open archive.</source>
-        <translation>Nepavyko atidaryti archyvo.</translation>
+        <translation>Nepavyko atverti archyvo.</translation>
     </message>
 </context>
 <context>
@@ -467,17 +467,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="116"/>
         <source>Toolbar</source>
-        <translation>Įrankių Juosta</translation>
+        <translation>Įrankių juosta</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="115"/>
         <source>Spell Checking</source>
-        <translation>Rašybos Tikrinimas</translation>
+        <translation>Rašybos tikrinimas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="453"/>
         <source>Select Dictionary</source>
-        <translation>Pasirinkite Žodyną</translation>
+        <translation>Pasirinkite žodyną</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="467"/>
@@ -488,12 +488,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="467"/>
         <source>Unable to open archive.</source>
-        <translation>Nepavyko atidaryti archyvo.</translation>
+        <translation>Nepavyko atverti archyvo.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="570"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Archyve nėra naudoti tinkamo žodyno.</translation>
+        <translation>Archyve nėra tinkamo naudoti žodyno.</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="256"/>
@@ -520,7 +520,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="113"/>
         <source>Daily Goal</source>
-        <translation>Kasdienis Tikslas</translation>
+        <translation>Kasdienis tikslas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="793"/>
@@ -591,12 +591,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>Saving</source>
-        <translation>Išsaugojimas</translation>
+        <translation>Įrašymas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Automatically save changes</source>
-        <translation>Automatiškai išsaugoti pakeitimus</translation>
+        <translation>Automatiškai įrašyti pakeitimus</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
@@ -626,22 +626,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="898"/>
         <source>Characters:</source>
-        <translation>Simbolių</translation>
+        <translation>Simbolių:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="905"/>
         <source>Paragraphs:</source>
-        <translation>Pastraipų</translation>
+        <translation>Pastraipų:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="884"/>
         <source>Word Count Algorithm</source>
-        <translation>Žodžių Skaičiavimo Algoritmas</translation>
+        <translation>Žodžių skaičiavimo algoritmas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="396"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Atstatyti kasdienę eiga šiandienai iki nulio?</translation>
+        <translation>Atstatyti kasdienę eigą šiandienai iki nulio?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
@@ -656,7 +656,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>Reset Today</source>
-        <translation>Atstatyti Šiandieną</translation>
+        <translation>Atstatyti šiandieną</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="831"/>
@@ -696,7 +696,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="896"/>
         <source>Page Count Algorithm</source>
-        <translation>Puslapių Skaičiavimo Algoritmas</translation>
+        <translation>Puslapių skaičiavimo algoritmas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1039"/>
@@ -706,12 +706,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1042"/>
         <source>Icons Only</source>
-        <translation>Tik Piktogramos</translation>
+        <translation>Tik piktogramos</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1043"/>
         <source>Text Only</source>
-        <translation>Tik Tekstas</translation>
+        <translation>Tik tekstas</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1044"/>
@@ -726,7 +726,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1049"/>
         <source>Text Position:</source>
-        <translation>Teksto Vieta:</translation>
+        <translation>Teksto vieta:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1052"/>
@@ -736,17 +736,17 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1068"/>
         <source>Move Up</source>
-        <translation>Kelti Aukštyn</translation>
+        <translation>Kelti aukštyn</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1070"/>
         <source>Move Down</source>
-        <translation>Nuleisti Žemyn</translation>
+        <translation>Nuleisti žemyn</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1072"/>
         <source>Add Separator</source>
-        <translation>Pridėti Skirtuką</translation>
+        <translation>Pridėti skirtuką</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1106"/>
@@ -797,7 +797,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="994"/>
         <source>Personal Dictionary</source>
-        <translation>Asmeninis Žodynas</translation>
+        <translation>Asmeninis žodynas</translation>
     </message>
 </context>
 <context>
@@ -827,7 +827,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="94"/>
         <source>Move Scenes Up</source>
-        <translation>Kelti Scenas Aukštyn</translation>
+        <translation>Kelti scenas aukštyn</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="95"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="115"/>
         <source>Toggle Scene List</source>
-        <translation>Perjungti Scenų Sąrašą</translation>
+        <translation>Perjungti scenų sąrašą</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="116"/>
@@ -862,7 +862,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="88"/>
         <source>Move Scenes Down</source>
-        <translation>Leisti Scenas Žemyn</translation>
+        <translation>Leisti scenas žemyn</translation>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="155"/>
@@ -888,7 +888,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="52"/>
         <source>Manage Sessions</source>
-        <translation>Tvarkyti Sesijas</translation>
+        <translation>Tvarkyti sesijas</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="83"/>
@@ -923,17 +923,17 @@
     <message>
         <location filename="../src/session_manager.cpp" line="220"/>
         <source>New Session</source>
-        <translation>Nauja Sesija</translation>
+        <translation>Nauja sesija</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="279"/>
         <source>Duplicate Session</source>
-        <translation>Dubliuoti Sesiją</translation>
+        <translation>Dubliuoti sesiją</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="324"/>
         <source>Rename Session</source>
-        <translation>Pervadinti Sesiją</translation>
+        <translation>Pervadinti sesiją</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
@@ -1010,7 +1010,7 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="151"/>
         <source>Please Wait</source>
-        <translation>Prašome Palaukti</translation>
+        <translation>Prašome palaukti</translation>
     </message>
 </context>
 <context>
@@ -1018,7 +1018,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="134"/>
         <source>Check Spelling</source>
-        <translation>Tikrinama Rašyba</translation>
+        <translation>Tikrinama rašyba</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="142"/>
@@ -1033,7 +1033,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="148"/>
         <source>I&amp;gnore All</source>
-        <translation>I&amp;gnoruoti Visus</translation>
+        <translation>I&amp;gnoruoti visus</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="153"/>
@@ -1043,7 +1043,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="156"/>
         <source>C&amp;hange All</source>
-        <translation>Pa&amp;keisti Visus</translation>
+        <translation>Pa&amp;keisti visus</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="171"/>
@@ -1145,7 +1145,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
         <source>No Image</source>
-        <translation>Nėra Paveikslo</translation>
+        <translation>Nėra paveikslo</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="164"/>
@@ -1192,7 +1192,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="217"/>
         <source>Round Text Background Corners</source>
-        <translation>Apvalinti Teksto Fono Kampus</translation>
+        <translation>Apvalinti teksto fono kampus</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="231"/>
@@ -1204,17 +1204,17 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="235"/>
         <source>Blur Text Background</source>
-        <translation>Sulieti Teksto Foną</translation>
+        <translation>Sulieti teksto foną</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="253"/>
         <source>Text Background Drop Shadow</source>
-        <translation>Teksto Fonas Numeta Šešėlį</translation>
+        <translation>Teksto fonas numeta šešėlį</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="280"/>
         <source>Vertical Offset:</source>
-        <translation>Vertikalus Poslinkis:</translation>
+        <translation>Vertikalus poslinkis:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="284"/>
@@ -1254,12 +1254,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="93"/>
         <source>Edit Theme</source>
-        <translation>Redaguoti Temą</translation>
+        <translation>Redaguoti temą</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="150"/>
         <source>Window Background</source>
-        <translation>Lango Fonas</translation>
+        <translation>Lango fonas</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="178"/>
@@ -1302,7 +1302,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="182"/>
         <source>Text Background</source>
-        <translation>Teksto Fonas</translation>
+        <translation>Teksto fonas</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="196"/>
@@ -1327,7 +1327,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="307"/>
         <source>Line Spacing</source>
-        <translation>Eilučių Intervalai</translation>
+        <translation>Eilučių intervalai</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="311"/>
@@ -1337,7 +1337,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="311"/>
         <source>1.5 Lines</source>
-        <translation>1.5 Eilutės</translation>
+        <translation>1.5 eilutės</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="311"/>
@@ -1357,17 +1357,17 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="341"/>
         <source>Paragraph Spacing</source>
-        <translation>Pastraipos Tarpai</translation>
+        <translation>Pastraipos tarpai</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="367"/>
         <source>Tab Width:</source>
-        <translation>Tabuliacijos Plotis</translation>
+        <translation>Tabuliacijos plotis:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="253"/>
         <source>New Theme</source>
-        <translation>Nauja Tema</translation>
+        <translation>Nauja tema</translation>
     </message>
 </context>
 <context>
@@ -1385,22 +1385,22 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Gentle Blues</source>
-        <translation>Švelni Mėlyna</translation>
+        <translation>Švelniai mėlyna</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Old School</source>
-        <translation>Senoji Mokykla</translation>
+        <translation>Senoji mokykla</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Space Dreams</source>
-        <translation>Kosminės Svajonės</translation>
+        <translation>Kosminės svajonės</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Writing Desk</source>
-        <translation>Rašomasis Stalas</translation>
+        <translation>Rašomasis stalas</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="113"/>
@@ -1451,19 +1451,19 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Themes (%1)</source>
         <translation>Temos (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
         <source>Import Theme</source>
-        <translation>Importuoti Temą</translation>
+        <translation>Importuoti temą</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Export Theme</source>
-        <translation>Eksportuoti Temą</translation>
+        <translation>Eksportuoti temą</translation>
     </message>
 </context>
 <context>
@@ -1506,12 +1506,12 @@
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation>Nustatyti Delsimą</translation>
+        <translation>Nustatyti delsimą</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation>Nustatyti Laiką</translation>
+        <translation>Nustatyti laiką</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
@@ -1531,7 +1531,7 @@
     <message>
         <location filename="../src/timer.cpp" line="431"/>
         <source>Alarm</source>
-        <translation>Aliarmas</translation>
+        <translation>Signalas</translation>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="444"/>
@@ -1626,7 +1626,7 @@
     <message>
         <location filename="../src/window.cpp" line="682"/>
         <source>Open File</source>
-        <translation>Atidaryti Failą</translation>
+        <translation>Atverti failą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="864"/>
@@ -1646,7 +1646,7 @@
     <message>
         <location filename="../src/window.cpp" line="869"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Autorinės Teisės &amp;copy; 2008-%1 Graeme Gott</translation>
+        <translation>Autorių Teisės &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="870"/>
@@ -1691,7 +1691,7 @@
         <location filename="../src/document.cpp" line="602"/>
         <location filename="../src/window.cpp" line="1020"/>
         <source>Opening %1</source>
-        <translation>Atidaroma %1</translation>
+        <translation>Atveriama %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="332"/>
@@ -1706,27 +1706,27 @@
     <message>
         <location filename="../src/window.cpp" line="210"/>
         <source>Switch to Next Document</source>
-        <translation>Perjungti į Kitą Dokumentą</translation>
+        <translation>Perjungti į kitą dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="216"/>
         <source>Switch to Previous Document</source>
-        <translation>Perjungti į Ankstesnį Dokumentą</translation>
+        <translation>Perjungti į ankstesnį dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="222"/>
         <source>Switch to First Document</source>
-        <translation>Perjungti į Pirmą Dokumentą</translation>
+        <translation>Perjungti į pirmą dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="228"/>
         <source>Switch to Last Document</source>
-        <translation>Perjungti į Paskutinį Dokumentą</translation>
+        <translation>Perjungti į paskutinį dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="236"/>
         <source>Switch to Document %1</source>
-        <translation>Perjungti į Dokumentą %1</translation>
+        <translation>Perjungti į dokumentą %1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="296"/>
@@ -1757,12 +1757,12 @@
     <message>
         <location filename="../src/window.cpp" line="467"/>
         <source>Some files could not be opened.</source>
-        <translation>Kai kurie failai negalėjo būti atidaryti.</translation>
+        <translation>Kai kurie failai negalėjo būti atverti.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="470"/>
         <source>Some files were opened Read-Only.</source>
-        <translation>Kai kurie failai buvo atidaryti Tik Skaitymui.</translation>
+        <translation>Kai kurie failai buvo atverti tik skaitymui.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1035"/>
@@ -1777,17 +1777,17 @@
     <message>
         <location filename="../src/window.cpp" line="1121"/>
         <source>Save Changes?</source>
-        <translation>Išsaugoti Pakeitimus?</translation>
+        <translation>Įrašyti pakeitimus?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1122"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation>Prieš uždarant, išsaugoti pakeitimus į failą &apos;%1&apos;?</translation>
+        <translation>Prieš užveriant, įrašyti pakeitimus į failą &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1123"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Jeigu neišsaugosite, jūsų pakeitimai bus prarasti.</translation>
+        <translation>Jeigu neįrašysite, jūsų pakeitimai bus prarasti.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1153"/>
@@ -1812,7 +1812,7 @@
     <message>
         <location filename="../src/window.cpp" line="1292"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Atidaryti</translation>
+        <translation>&amp;Atverti...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1293"/>
@@ -1822,12 +1822,12 @@
     <message>
         <location filename="../src/window.cpp" line="1295"/>
         <source>&amp;Save</source>
-        <translation>&amp;Išsaugoti</translation>
+        <translation>Į&amp;rašyti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1297"/>
         <source>Save &amp;As...</source>
-        <translation>Išsaugoti Kai&amp;p...</translation>
+        <translation>Įrašyti kai&amp;p...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1298"/>
@@ -1837,17 +1837,17 @@
     <message>
         <location filename="../src/window.cpp" line="1300"/>
         <source>Save A&amp;ll</source>
-        <translation>Išsaugoti &amp;Visus</translation>
+        <translation>Įrašyti &amp;visus</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1303"/>
         <source>Manage Sessions</source>
-        <translation>Tvarkyti Sesijas</translation>
+        <translation>Tvarkyti sesijas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>New Session</source>
-        <translation>Nauja Sesija</translation>
+        <translation>Nauja sesija</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1308"/>
@@ -1857,7 +1857,7 @@
     <message>
         <location filename="../src/window.cpp" line="1310"/>
         <source>&amp;Close</source>
-        <translation>&amp;Uždaryti</translation>
+        <translation>&amp;Užverti</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -1902,7 +1902,7 @@
     <message>
         <location filename="../src/window.cpp" line="1330"/>
         <source>Paste &amp;Unformatted</source>
-        <translation>Įdėti &amp;Neformatuotą</translation>
+        <translation>Įdėti &amp;neformatuotą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1330"/>
@@ -1912,12 +1912,12 @@
     <message>
         <location filename="../src/window.cpp" line="1332"/>
         <source>Select &amp;All</source>
-        <translation>Pažymėti &amp;Viską</translation>
+        <translation>Pažymėti &amp;viską</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
         <source>Select &amp;Scene</source>
-        <translation>Pažymėti &amp;Sceną</translation>
+        <translation>Pažymėti &amp;sceną</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
@@ -1977,7 +1977,7 @@
     <message>
         <location filename="../src/window.cpp" line="1352"/>
         <source>Align &amp;Left</source>
-        <translation>Lygiuoti Kairė&amp;je</translation>
+        <translation>Lygiuoti kairė&amp;je</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1352"/>
@@ -1987,7 +1987,7 @@
     <message>
         <location filename="../src/window.cpp" line="1354"/>
         <source>Align &amp;Center</source>
-        <translation>Lygiuoti &amp;Centre</translation>
+        <translation>Lygiuoti &amp;centre</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1354"/>
@@ -1997,7 +1997,7 @@
     <message>
         <location filename="../src/window.cpp" line="1356"/>
         <source>Align &amp;Right</source>
-        <translation>Lygiuoti &amp;Dešinėje</translation>
+        <translation>Lygiuoti &amp;dešinėje</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1356"/>
@@ -2017,7 +2017,7 @@
     <message>
         <location filename="../src/window.cpp" line="1368"/>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Mažinti Įtrauką</translation>
+        <translation>&amp;Mažinti įtrauką</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1368"/>
@@ -2027,7 +2027,7 @@
     <message>
         <location filename="../src/window.cpp" line="1369"/>
         <source>I&amp;ncrease Indent</source>
-        <translation>Didi&amp;nti Įtrauką</translation>
+        <translation>Didi&amp;nti įtrauką</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1369"/>
@@ -2037,12 +2037,12 @@
     <message>
         <location filename="../src/window.cpp" line="1372"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Blokas iš Kairė&amp;s į Dešinę</translation>
+        <translation>Blokas iš kairė&amp;s į dešinę</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1374"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Blokas iš D&amp;ešinės į Kairę</translation>
+        <translation>Blokas iš d&amp;ešinės į kairę</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1382"/>
@@ -2057,12 +2057,12 @@
     <message>
         <location filename="../src/window.cpp" line="1384"/>
         <source>Find &amp;Next</source>
-        <translation>Rasti &amp;Kitą</translation>
+        <translation>Rasti &amp;kitą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1387"/>
         <source>Find Pre&amp;vious</source>
-        <translation>Rasti A&amp;nkstesnį</translation>
+        <translation>Rasti a&amp;nkstesnį</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1390"/>
@@ -2077,22 +2077,22 @@
     <message>
         <location filename="../src/window.cpp" line="1392"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Protingosios Ka&amp;butės</translation>
+        <translation>Protingosios ka&amp;butės</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1393"/>
         <source>Update &amp;Document</source>
-        <translation>Atnaujinti &amp;Dokumentą</translation>
+        <translation>Atnaujinti &amp;dokumentą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Update &amp;Selection</source>
-        <translation>Atnaujinti Žymėji&amp;mą</translation>
+        <translation>Atnaujinti žymėji&amp;mą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1400"/>
         <source>&amp;Spelling...</source>
-        <translation>Raš&amp;ybos Tikrinimas...</translation>
+        <translation>Raš&amp;ybos tikrinimas...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1400"/>
@@ -2102,7 +2102,7 @@
     <message>
         <location filename="../src/window.cpp" line="1401"/>
         <source>Set &amp;Language...</source>
-        <translation>Nustatyti Ka&amp;lbą...</translation>
+        <translation>Nustatyti ka&amp;lbą...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1403"/>
@@ -2117,7 +2117,7 @@
     <message>
         <location filename="../src/window.cpp" line="1405"/>
         <source>&amp;Daily Progress</source>
-        <translation>Kas&amp;dienė Eiga</translation>
+        <translation>Kas&amp;dienė eiga</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1408"/>
@@ -2127,22 +2127,22 @@
     <message>
         <location filename="../src/window.cpp" line="1409"/>
         <source>Show &amp;Toolbar</source>
-        <translation>Rodyti Įrankių &amp;Juostą</translation>
+        <translation>Rodyti įrankių &amp;juostą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1414"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Rodyti Meniu &amp;Piktogramas</translation>
+        <translation>Rodyti meniu &amp;piktogramas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1420"/>
         <source>F&amp;ocused Text</source>
-        <translation>Teksto &amp;Dėmesio Centras</translation>
+        <translation>Teksto &amp;dėmesio centras</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1422"/>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Visas Ekranas</translation>
+        <translation>&amp;Visas ekranas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1422"/>
@@ -2157,7 +2157,7 @@
     <message>
         <location filename="../src/window.cpp" line="1428"/>
         <source>M&amp;inimize</source>
-        <translation>Sumaž&amp;inti langą</translation>
+        <translation>Suskle&amp;isti langą</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1428"/>
@@ -2177,17 +2177,17 @@
     <message>
         <location filename="../src/window.cpp" line="1439"/>
         <source>Focus Off</source>
-        <translation>Dėmesio Centras Išjungtas</translation>
+        <translation>Dėmesio centras išjungtas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>Focus One Line</source>
-        <translation>Dėmesio Centras - Viena Eilutė</translation>
+        <translation>Dėmesio centras - viena eilutė</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1443"/>
         <source>Focus Three Lines</source>
-        <translation>Dėmesio Centras - Trys Eilutės</translation>
+        <translation>Dėmesio centras - trys eilutės</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1444"/>
@@ -2197,7 +2197,7 @@
     <message>
         <location filename="../src/window.cpp" line="1445"/>
         <source>Focus Paragraph</source>
-        <translation>Dėmesio Centras - Pastraipa</translation>
+        <translation>Dėmesio centras - pastraipa</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1454"/>
@@ -2212,12 +2212,12 @@
     <message>
         <location filename="../src/window.cpp" line="1432"/>
         <source>Application &amp;Language...</source>
-        <translation>Programos Ka&amp;lba...</translation>
+        <translation>Programos ka&amp;lba...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="400"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Kai kurie failai buvo nepalaikomi, todėl negalėjo būti atidaryti.</translation>
+        <translation>Kai kurie failai buvo nepalaikomi, todėl negalėjo būti atverti.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1438"/>
@@ -2227,12 +2227,12 @@
     <message>
         <location filename="../src/window.cpp" line="1440"/>
         <source>One &amp;Line</source>
-        <translation>Viena Ei&amp;lutė</translation>
+        <translation>Viena ei&amp;lutė</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1442"/>
         <source>&amp;Three Lines</source>
-        <translation>&amp;Trys Eilutės</translation>
+        <translation>&amp;Trys eilutės</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1460"/>

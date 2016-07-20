@@ -267,7 +267,6 @@ namespace
 			// Play sound effect
 			int key = event->key();
 			if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
-					!(event->modifiers().testFlag(Qt::AltModifier)) &&
 					!(event->modifiers().testFlag(Qt::MetaModifier))) {
 				if ((key == Qt::Key_Return) || (key == Qt::Key_Enter)) {
 					Sound::play(Qt::Key_Enter);

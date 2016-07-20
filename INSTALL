@@ -19,11 +19,13 @@ Mac OS X:
 
     3.) Type './mac_deploy.sh' to create a disk image of the program.
 
-Windows:
-    1.) Type 'qmake' to configure the program.
+Windows (cross compile from Linux):
+    1.) Type 'mingw32-qt5-qmake' to configure the program.
 
     2.) Type 'make' to compile the program.
 
-    3.) Type 'windows_deploy' to create a compressed image of the program. Note
-        that you must have the 7z executable from 7-zip.org in your %PATH% for
-        this to work.
+    3.) Type './windows_deploy.sh' to create a compressed image of the program.
+        Note that you must have p7zip installed for this to work.
+
+    4.) Browse to resources/windows/ and type 'makensis installer.nsi' to
+        create an installer of the program.

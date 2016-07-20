@@ -28,6 +28,8 @@
 
 #ifdef Q_OS_WIN
 #include <windows.h>
+#else
+#include <clocale>
 #endif
 
 //-----------------------------------------------------------------------------

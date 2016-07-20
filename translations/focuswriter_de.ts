@@ -35,7 +35,7 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="503"/>
+        <location filename="../src/daily_progress.cpp" line="505"/>
         <source>%1% of %Ln minute(s)</source>
         <translation>
             <numerusform>%1% von %Ln Minute</numerusform>
@@ -43,7 +43,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="505"/>
+        <location filename="../src/daily_progress.cpp" line="507"/>
         <source>%1% of %Ln word(s)</source>
         <translation>
             <numerusform>%1% von %Ln Wort</numerusform>
@@ -51,7 +51,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="507"/>
+        <location filename="../src/daily_progress.cpp" line="509"/>
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln Wort</numerusform>
@@ -59,7 +59,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress.cpp" line="509"/>
+        <location filename="../src/daily_progress.cpp" line="511"/>
         <source>%Ln minute(s)</source>
         <translation>
             <numerusform>%Ln Minute</numerusform>
@@ -67,7 +67,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress.cpp" line="511"/>
+        <location filename="../src/daily_progress.cpp" line="513"/>
         <source>0%</source>
         <translation>0%</translation>
     </message>
@@ -335,13 +335,13 @@
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Sorry</source>
         <translation>Entschuldigung</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
-        <location filename="../src/find_dialog.cpp" line="354"/>
+        <location filename="../src/find_dialog.cpp" line="352"/>
         <source>Phrase not found.</source>
         <translation>Ausdruck nicht gefunden.</translation>
     </message>
@@ -1445,7 +1445,7 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="339"/>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Themes (%1)</source>
         <translation>Themen (%1)</translation>
     </message>
@@ -1455,7 +1455,7 @@
         <translation>Thema importieren</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="416"/>
+        <location filename="../src/theme_manager.cpp" line="417"/>
         <source>Export Theme</source>
         <translation>Thema exportieren</translation>
     </message>
