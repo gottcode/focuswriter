@@ -1,6 +1,7 @@
 /*.debhelper
 /*.log
 /*.substvars
+/debhelper-build-stamp
 /files
 /focuswriter/
 /stamp-makefile-build
