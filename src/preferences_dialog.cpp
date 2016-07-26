@@ -748,7 +748,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	save_layout->addLayout(save_format_layout);
 
 	// Create view options
-	QGroupBox* view_group = new QGroupBox(tr("View"), tab);
+	QGroupBox* view_group = new QGroupBox(tr("User Interface"), tab);
 
 	m_always_show_scrollbar = new QCheckBox(tr("Always show scrollbar"), view_group);
 	m_always_show_header = new QCheckBox(tr("Always show top bar"), view_group);
