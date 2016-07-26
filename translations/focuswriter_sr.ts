@@ -79,27 +79,27 @@
 <context>
     <name>DailyProgressDialog</name>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="147"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="154"/>
         <source>Daily Progress</source>
         <translation>Дневни напредак</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="282"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="289"/>
         <source>Longest streak</source>
         <translation>Најдужа серија</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="285"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="292"/>
         <source>Current streak</source>
         <translation>Тренутна серија</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="298"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="305"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress_dialog.cpp" line="303"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n дан</numerusform>
@@ -108,7 +108,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="304"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="311"/>
         <source>%1 &amp;ndash; %2</source>
         <translation>%1 &amp;ndash; %2</translation>
     </message>
@@ -133,81 +133,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="419"/>
         <source>(Untitled %1)</source>
         <translation>(Без наслова %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="423"/>
+        <location filename="../src/document.cpp" line="422"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Само за читање)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="487"/>
-        <location filename="../src/document.cpp" line="512"/>
-        <location filename="../src/document.cpp" line="548"/>
-        <location filename="../src/document.cpp" line="554"/>
+        <location filename="../src/document.cpp" line="486"/>
+        <location filename="../src/document.cpp" line="511"/>
+        <location filename="../src/document.cpp" line="547"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Sorry</source>
         <translation>Извините</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="487"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Онемогућено чување &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="502"/>
+        <location filename="../src/document.cpp" line="501"/>
         <source>Save File As</source>
         <translation>Сачувај фајл као</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
-        <location filename="../src/document.cpp" line="548"/>
+        <location filename="../src/document.cpp" line="511"/>
+        <location filename="../src/document.cpp" line="547"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Онемогућено да пребрише &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="541"/>
+        <location filename="../src/document.cpp" line="540"/>
         <source>Rename File</source>
         <translation>Преименуј фајл</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="554"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Онемогућено преименовање &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="580"/>
+        <location filename="../src/document.cpp" line="579"/>
         <source>Reload File?</source>
         <translation>Поново учитај фајл?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="581"/>
+        <location filename="../src/document.cpp" line="580"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Поново учитај фајл &apos;%1&apos; са диска?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="582"/>
+        <location filename="../src/document.cpp" line="581"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Све несачуване промене ће бити изгубљене.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="584"/>
+        <location filename="../src/document.cpp" line="583"/>
         <source>Reload</source>
         <translation>Поново учитај</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1436"/>
+        <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
         <translation>Без наслова %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1490"/>
+        <location filename="../src/document.cpp" line="1489"/>
         <source>Question</source>
         <translation>Питање</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1491"/>
+        <location filename="../src/document.cpp" line="1490"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Чување као обичан текст ће одбацити сва обликовања. Одбаци обликовање?</translation>
     </message>
@@ -411,12 +411,12 @@
 <context>
     <name>ImageButton</name>
     <message>
-        <location filename="../src/image_button.cpp" line="92"/>
+        <location filename="../src/image_button.cpp" line="109"/>
         <source>Open Image</source>
         <translation>Отвори слику</translation>
     </message>
     <message>
-        <location filename="../src/image_button.cpp" line="92"/>
+        <location filename="../src/image_button.cpp" line="109"/>
         <source>Images(%1)</source>
         <translation>Слике(%1)</translation>
     </message>
@@ -455,372 +455,379 @@
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="109"/>
+        <location filename="../src/preferences_dialog.cpp" line="81"/>
         <source>Preferences</source>
         <translation>Подешавања</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="112"/>
+        <location filename="../src/preferences_dialog.cpp" line="84"/>
         <source>General</source>
         <translation>Опште</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="114"/>
+        <location filename="../src/preferences_dialog.cpp" line="86"/>
         <source>Statistics</source>
         <translation>Статистика</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="116"/>
+        <location filename="../src/preferences_dialog.cpp" line="88"/>
         <source>Toolbar</source>
         <translation>Трака алата</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="115"/>
+        <location filename="../src/preferences_dialog.cpp" line="87"/>
         <source>Spell Checking</source>
         <translation>Провера правописа</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="461"/>
+        <location filename="../src/preferences_dialog.cpp" line="433"/>
         <source>Select Dictionary</source>
         <translation>Одабери речник</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="475"/>
-        <location filename="../src/preferences_dialog.cpp" line="578"/>
+        <location filename="../src/preferences_dialog.cpp" line="447"/>
+        <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>Sorry</source>
         <translation>Извините</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="475"/>
+        <location filename="../src/preferences_dialog.cpp" line="447"/>
         <source>Unable to open archive.</source>
         <translation>Онемогућено отварање архиве.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="578"/>
+        <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>The archive does not contain a usable dictionary.</source>
         <translation>Архива не садржи уобичајен речник.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="260"/>
-        <location filename="../src/preferences_dialog.cpp" line="403"/>
-        <location filename="../src/preferences_dialog.cpp" line="566"/>
+        <location filename="../src/preferences_dialog.cpp" line="232"/>
+        <location filename="../src/preferences_dialog.cpp" line="375"/>
+        <location filename="../src/preferences_dialog.cpp" line="508"/>
+        <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Question</source>
         <translation>Питање</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="117"/>
+        <location filename="../src/preferences_dialog.cpp" line="89"/>
         <source>Shortcuts</source>
         <translation>Пречице</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="261"/>
+        <location filename="../src/preferences_dialog.cpp" line="233"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
         <translation>Један или више кофликт пречица. Да ли желите да наставите?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="566"/>
+        <location filename="../src/preferences_dialog.cpp" line="508"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
         <translation>Речник &quot;%1&quot; већ постоји. Да ли желите да га замените?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="113"/>
+        <location filename="../src/preferences_dialog.cpp" line="85"/>
         <source>Daily Goal</source>
         <translation>Дневни циљ</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="814"/>
+        <location filename="../src/preferences_dialog.cpp" line="780"/>
         <source>None</source>
         <translation>Ниједан</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="816"/>
+        <location filename="../src/preferences_dialog.cpp" line="782"/>
         <source>Minutes:</source>
         <translation>Минути:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="823"/>
-        <location filename="../src/preferences_dialog.cpp" line="933"/>
+        <location filename="../src/preferences_dialog.cpp" line="789"/>
+        <location filename="../src/preferences_dialog.cpp" line="899"/>
         <source>Words:</source>
         <translation>Речи:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="713"/>
+        <location filename="../src/preferences_dialog.cpp" line="679"/>
         <source>Editing</source>
         <translation>Измене</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="715"/>
+        <location filename="../src/preferences_dialog.cpp" line="681"/>
         <source>Always vertically center</source>
         <translation>Увек вертикални центар</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="716"/>
+        <location filename="../src/preferences_dialog.cpp" line="682"/>
         <source>Block insertion cursor</source>
         <translation>Блокирај уметање курсора</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="717"/>
+        <location filename="../src/preferences_dialog.cpp" line="683"/>
         <source>Smooth fonts</source>
         <translation>Умекшај фонтове</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="718"/>
+        <location filename="../src/preferences_dialog.cpp" line="684"/>
         <source>Typewriter sounds</source>
         <translation>Звук писаће машине</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="720"/>
+        <location filename="../src/preferences_dialog.cpp" line="686"/>
         <source>Smart quotes:</source>
         <translation>Паметни цитати:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="727"/>
+        <location filename="../src/preferences_dialog.cpp" line="693"/>
         <source>Double</source>
         <translation>Дупли</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="728"/>
+        <location filename="../src/preferences_dialog.cpp" line="694"/>
         <source>Single</source>
         <translation>Једини</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="749"/>
+        <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Scenes</source>
         <translation>Сцене</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="756"/>
+        <location filename="../src/preferences_dialog.cpp" line="722"/>
         <source>Divider:</source>
         <translation>Разделник:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="759"/>
+        <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Saving</source>
         <translation>Чување</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="761"/>
+        <location filename="../src/preferences_dialog.cpp" line="727"/>
         <source>Automatically save changes</source>
         <translation>Аутоматски чувај промене</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="762"/>
+        <location filename="../src/preferences_dialog.cpp" line="728"/>
         <source>Remember cursor position</source>
         <translation>Запамти позицију курсора</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="893"/>
+        <location filename="../src/preferences_dialog.cpp" line="859"/>
         <source>Word count</source>
         <translation>Број речи</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="894"/>
+        <location filename="../src/preferences_dialog.cpp" line="860"/>
         <source>Page count</source>
         <translation>Број страна</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="895"/>
+        <location filename="../src/preferences_dialog.cpp" line="861"/>
         <source>Paragraph count</source>
         <translation>Број параграфа</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="896"/>
+        <location filename="../src/preferences_dialog.cpp" line="862"/>
         <source>Character count</source>
         <translation>Број карактера</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="919"/>
+        <location filename="../src/preferences_dialog.cpp" line="885"/>
         <source>Characters:</source>
         <translation>Карактери:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="926"/>
+        <location filename="../src/preferences_dialog.cpp" line="892"/>
         <source>Paragraphs:</source>
         <translation>Параграфи:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="905"/>
+        <location filename="../src/preferences_dialog.cpp" line="871"/>
         <source>Word Count Algorithm</source>
         <translation>Број алторитама</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="404"/>
+        <location filename="../src/preferences_dialog.cpp" line="376"/>
         <source>Reset daily progress for today to zero?</source>
         <translation>Врати дневни напредак за данас на нулу?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="763"/>
+        <location filename="../src/preferences_dialog.cpp" line="535"/>
+        <source>Remove current dictionary?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/preferences_dialog.cpp" line="729"/>
         <source>Write byte order mark in plain text files</source>
         <translation>Напиши бајт редослед ознака у текстуалном фајлу</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="765"/>
+        <location filename="../src/preferences_dialog.cpp" line="731"/>
         <source>Default format:</source>
         <translation>Подразумевани формат:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="785"/>
-        <source>View</source>
+        <location filename="../src/preferences_dialog.cpp" line="751"/>
+        <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="787"/>
+        <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="788"/>
+        <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="789"/>
+        <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="839"/>
+        <location filename="../src/preferences_dialog.cpp" line="805"/>
         <source>Reset Today</source>
         <translation>Врати данас на почетно</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="852"/>
+        <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>History</source>
         <translation>Историја</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="854"/>
+        <location filename="../src/preferences_dialog.cpp" line="820"/>
         <source>Remember history</source>
         <translation>Запамти историју</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="857"/>
+        <location filename="../src/preferences_dialog.cpp" line="823"/>
         <source>Show streaks</source>
         <translation>Покажи серије</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="872"/>
+        <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Minimum progress for streaks:</source>
         <translation>Минимум напретка за серије:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="907"/>
+        <location filename="../src/preferences_dialog.cpp" line="873"/>
         <source>Detect word boundaries</source>
         <translation>Детектовање границе речи</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="908"/>
+        <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Divide character count by six</source>
         <translation>Подели број карактера са шест</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="909"/>
+        <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Count each letter as a word</source>
         <translation>Рачунај свако слово као реч</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="917"/>
+        <location filename="../src/preferences_dialog.cpp" line="883"/>
         <source>Page Count Algorithm</source>
         <translation>Број страна алгоритама</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1060"/>
+        <location filename="../src/preferences_dialog.cpp" line="1031"/>
         <source>Style</source>
         <translation>Изглед</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1063"/>
+        <location filename="../src/preferences_dialog.cpp" line="1034"/>
         <source>Icons Only</source>
         <translation>Само иконе</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1064"/>
+        <location filename="../src/preferences_dialog.cpp" line="1035"/>
         <source>Text Only</source>
         <translation>Само текст</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1065"/>
+        <location filename="../src/preferences_dialog.cpp" line="1036"/>
         <source>Text Alongside Icons</source>
         <translation>Текст поред икона</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1066"/>
+        <location filename="../src/preferences_dialog.cpp" line="1037"/>
         <source>Text Under Icons</source>
         <translation>Текст испод икона</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1070"/>
+        <location filename="../src/preferences_dialog.cpp" line="1041"/>
         <source>Text Position:</source>
         <translation>Позиција текста:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1073"/>
+        <location filename="../src/preferences_dialog.cpp" line="1044"/>
         <source>Actions</source>
         <translation>Акције</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1089"/>
+        <location filename="../src/preferences_dialog.cpp" line="1060"/>
         <source>Move Up</source>
         <translation>Помери горе</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1091"/>
+        <location filename="../src/preferences_dialog.cpp" line="1062"/>
         <source>Move Down</source>
         <translation>Помери доле</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1093"/>
+        <location filename="../src/preferences_dialog.cpp" line="1064"/>
         <source>Add Separator</source>
         <translation>Додај раздвајач</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Shortcut</source>
         <translation>Пречица</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Action</source>
         <translation>Акција</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="980"/>
+        <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Check spelling as you type</source>
         <translation>Проверите правопис док куцате</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="981"/>
+        <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Ignore words in UPPERCASE</source>
         <translation>Занемари речи са ВЕЛИКИМ СЛОВИМА</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="982"/>
+        <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Ignore words with numbers</source>
         <translation>Занемари речи са бројевима</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="995"/>
+        <location filename="../src/preferences_dialog.cpp" line="961"/>
         <source>Language</source>
         <translation>Језик</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="999"/>
-        <location filename="../src/preferences_dialog.cpp" line="1020"/>
+        <location filename="../src/preferences_dialog.cpp" line="966"/>
+        <location filename="../src/preferences_dialog.cpp" line="991"/>
         <source>Add</source>
         <translation>Додај</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1032"/>
+        <location filename="../src/preferences_dialog.cpp" line="969"/>
+        <location filename="../src/preferences_dialog.cpp" line="1003"/>
         <source>Remove</source>
         <translation>Уклони</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1015"/>
+        <location filename="../src/preferences_dialog.cpp" line="986"/>
         <source>Personal Dictionary</source>
         <translation>Лични речник</translation>
     </message>
@@ -1019,7 +1026,7 @@
         <translation>Ресетуј на подразумевано</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1164"/>
+        <location filename="../src/preferences_dialog.cpp" line="1135"/>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Shortcut:</source>
         <translation>Пречица:</translation>
@@ -1142,12 +1149,12 @@
 <context>
     <name>SymbolsModel</name>
     <message>
-        <location filename="../src/symbols_model.cpp" line="102"/>
+        <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Blocks</source>
         <translation>Блокови</translation>
     </message>
     <message>
-        <location filename="../src/symbols_model.cpp" line="102"/>
+        <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Scripts</source>
         <translation>Скрипте</translation>
     </message>
@@ -1155,7 +1162,7 @@
 <context>
     <name>Theme</name>
     <message>
-        <location filename="../src/theme.cpp" line="103"/>
+        <location filename="../src/theme.cpp" line="151"/>
         <source>Untitled %1</source>
         <translation>Без наслова %1</translation>
     </message>
@@ -1163,234 +1170,234 @@
 <context>
     <name>ThemeDialog</name>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="105"/>
+        <location filename="../src/theme_dialog.cpp" line="69"/>
         <source>Name:</source>
         <translation>Име:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>No Image</source>
         <translation>Без слике</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Tiled</source>
         <translation>Поплочано</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Centered</source>
         <translation>Центрирано</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Stretched</source>
         <translation>Раширено</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Scaled</source>
         <translation>Скалирано</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Zoomed</source>
         <translation>Зумирано</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="213"/>
+        <location filename="../src/theme_dialog.cpp" line="177"/>
         <source>Opacity:</source>
         <translation>Непрозирност:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="214"/>
+        <location filename="../src/theme_dialog.cpp" line="178"/>
         <source>Position:</source>
         <translation>Позиција:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <location filename="../src/theme_dialog.cpp" line="179"/>
         <source>Width:</source>
         <translation>Ширина:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="219"/>
+        <location filename="../src/theme_dialog.cpp" line="183"/>
         <source>Round Text Background Corners</source>
         <translation>Заокружи углове позадине текста</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="233"/>
-        <location filename="../src/theme_dialog.cpp" line="251"/>
-        <location filename="../src/theme_dialog.cpp" line="281"/>
+        <location filename="../src/theme_dialog.cpp" line="197"/>
+        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <location filename="../src/theme_dialog.cpp" line="245"/>
         <source>Radius:</source>
         <translation>Радијус:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="237"/>
+        <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Blur Text Background</source>
         <translation>Замути позадину текста</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="255"/>
+        <location filename="../src/theme_dialog.cpp" line="219"/>
         <source>Text Background Drop Shadow</source>
         <translation>Осенчи позадину текста</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="282"/>
+        <location filename="../src/theme_dialog.cpp" line="246"/>
         <source>Vertical Offset:</source>
         <translation>Вертикално:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="286"/>
+        <location filename="../src/theme_dialog.cpp" line="250"/>
         <source>Margins</source>
         <translation>Ивице:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="304"/>
+        <location filename="../src/theme_dialog.cpp" line="268"/>
         <source>Window:</source>
         <translation>Прозор:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="305"/>
+        <location filename="../src/theme_dialog.cpp" line="269"/>
         <source>Page:</source>
         <translation>Страна:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="359"/>
+        <location filename="../src/theme_dialog.cpp" line="323"/>
         <source>Indent first line</source>
         <translation>Увлачење прве линије</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="366"/>
+        <location filename="../src/theme_dialog.cpp" line="330"/>
         <source>Above:</source>
         <translation>Изнад:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="367"/>
+        <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Below:</source>
         <translation>Испод:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="126"/>
         <source>Remove</source>
         <translation>Уклони</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="95"/>
+        <location filename="../src/theme_dialog.cpp" line="59"/>
         <source>Edit Theme</source>
         <translation>Измени тему</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="152"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Window Background</source>
         <translation>Позадина прозора</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="180"/>
-        <location filename="../src/theme_dialog.cpp" line="334"/>
+        <location filename="../src/theme_dialog.cpp" line="144"/>
+        <location filename="../src/theme_dialog.cpp" line="298"/>
         <source>Type:</source>
         <translation>Врста:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="146"/>
-        <location filename="../src/theme_dialog.cpp" line="178"/>
-        <location filename="../src/theme_dialog.cpp" line="212"/>
-        <location filename="../src/theme_dialog.cpp" line="280"/>
+        <location filename="../src/theme_dialog.cpp" line="110"/>
+        <location filename="../src/theme_dialog.cpp" line="142"/>
+        <location filename="../src/theme_dialog.cpp" line="176"/>
+        <location filename="../src/theme_dialog.cpp" line="244"/>
         <source>Color:</source>
         <translation>Боја:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="179"/>
+        <location filename="../src/theme_dialog.cpp" line="143"/>
         <source>Image:</source>
         <translation>Слика:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="204"/>
-        <location filename="../src/theme_dialog.cpp" line="226"/>
-        <location filename="../src/theme_dialog.cpp" line="244"/>
-        <location filename="../src/theme_dialog.cpp" line="266"/>
-        <location filename="../src/theme_dialog.cpp" line="273"/>
-        <location filename="../src/theme_dialog.cpp" line="290"/>
-        <location filename="../src/theme_dialog.cpp" line="297"/>
-        <location filename="../src/theme_dialog.cpp" line="342"/>
-        <location filename="../src/theme_dialog.cpp" line="348"/>
-        <location filename="../src/theme_dialog.cpp" line="354"/>
+        <location filename="../src/theme_dialog.cpp" line="168"/>
+        <location filename="../src/theme_dialog.cpp" line="190"/>
+        <location filename="../src/theme_dialog.cpp" line="208"/>
+        <location filename="../src/theme_dialog.cpp" line="230"/>
+        <location filename="../src/theme_dialog.cpp" line="237"/>
+        <location filename="../src/theme_dialog.cpp" line="254"/>
+        <location filename="../src/theme_dialog.cpp" line="261"/>
+        <location filename="../src/theme_dialog.cpp" line="306"/>
+        <location filename="../src/theme_dialog.cpp" line="312"/>
+        <location filename="../src/theme_dialog.cpp" line="318"/>
         <source> pixels</source>
         <translation>пиксела</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Left</source>
         <translation>Лево</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="184"/>
+        <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Text Background</source>
         <translation>Позадина текста</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Right</source>
         <translation>Десно</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="118"/>
+        <location filename="../src/theme_dialog.cpp" line="82"/>
         <source>Text</source>
         <translation>Текст</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="147"/>
+        <location filename="../src/theme_dialog.cpp" line="111"/>
         <source>Font:</source>
         <translation>Фонт:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="148"/>
+        <location filename="../src/theme_dialog.cpp" line="112"/>
         <source>Misspelled:</source>
         <translation>Погрешно написано:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="309"/>
+        <location filename="../src/theme_dialog.cpp" line="273"/>
         <source>Line Spacing</source>
         <translation>Проред</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Single</source>
         <translation>Један</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>1.5 Lines</source>
         <translation>1.5 линија</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Double</source>
         <translation>Дупли</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Proportional</source>
         <translation>Пропорционалан</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="335"/>
+        <location filename="../src/theme_dialog.cpp" line="299"/>
         <source>Height:</source>
         <translation>Висина:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="339"/>
+        <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Paragraph Spacing</source>
         <translation>Пасус</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="365"/>
+        <location filename="../src/theme_dialog.cpp" line="329"/>
         <source>Tab Width:</source>
         <translation>Ширина картице:</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="249"/>
+        <location filename="../src/theme_manager.cpp" line="250"/>
         <source>New Theme</source>
         <translation>Нова тема</translation>
     </message>
@@ -1398,95 +1405,95 @@
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/theme_manager.cpp" line="74"/>
+        <location filename="../src/theme_manager.cpp" line="75"/>
         <source>Themes</source>
         <translation>Теме</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="88"/>
+        <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Default</source>
         <translation>Подразумевано</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="103"/>
+        <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Gentle Blues</source>
         <translation>Блуз</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="104"/>
+        <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Old School</source>
         <translation>Стара школа</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="105"/>
+        <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Space Dreams</source>
         <translation>Свемирски снови</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="106"/>
+        <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Writing Desk</source>
         <translation>Писаћи сто</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="109"/>
-        <location filename="../src/theme_manager.cpp" line="170"/>
+        <location filename="../src/theme_manager.cpp" line="110"/>
+        <location filename="../src/theme_manager.cpp" line="171"/>
         <source>New</source>
         <translation>Нови</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="113"/>
-        <location filename="../src/theme_manager.cpp" line="174"/>
+        <location filename="../src/theme_manager.cpp" line="114"/>
+        <location filename="../src/theme_manager.cpp" line="175"/>
         <source>Duplicate</source>
         <translation>Дупликат</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="127"/>
+        <location filename="../src/theme_manager.cpp" line="128"/>
         <source>Custom</source>
         <translation>Прилагођено</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="179"/>
+        <location filename="../src/theme_manager.cpp" line="180"/>
         <source>Edit</source>
         <translation>Измени</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="184"/>
+        <location filename="../src/theme_manager.cpp" line="185"/>
         <source>Delete</source>
         <translation>Избриши</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="189"/>
+        <location filename="../src/theme_manager.cpp" line="190"/>
         <source>Import</source>
         <translation>Увези</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="193"/>
+        <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Export</source>
         <translation>Извези</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="307"/>
+        <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Question</source>
         <translation>Питање</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="307"/>
+        <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Delete theme &apos;%1&apos;?</source>
         <translation>Подразумевана тема &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="331"/>
-        <location filename="../src/theme_manager.cpp" line="405"/>
+        <location filename="../src/theme_manager.cpp" line="332"/>
+        <location filename="../src/theme_manager.cpp" line="406"/>
         <source>Themes (%1)</source>
         <translation>Теме (%1)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="331"/>
+        <location filename="../src/theme_manager.cpp" line="332"/>
         <source>Import Theme</source>
         <translation>Увези тему</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="405"/>
+        <location filename="../src/theme_manager.cpp" line="406"/>
         <source>Export Theme</source>
         <translation>Извези тему</translation>
     </message>
@@ -1714,7 +1721,7 @@
         <translation>Речи: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="597"/>
+        <location filename="../src/document.cpp" line="596"/>
         <location filename="../src/window.cpp" line="1018"/>
         <source>Opening %1</source>
         <translation>Oтварање %1</translation>
@@ -2266,12 +2273,12 @@
         <translation>Фокусирај параграф</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1481"/>
+        <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1486"/>
+        <location filename="../src/window.cpp" line="1488"/>
         <source>&amp;Help</source>
         <translation>&amp;Помоћ</translation>
     </message>
@@ -2301,12 +2308,12 @@
         <translation>&amp;Три линије</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1487"/>
+        <location filename="../src/window.cpp" line="1489"/>
         <source>&amp;About</source>
         <translation>&amp;О програму</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1491"/>
+        <location filename="../src/window.cpp" line="1493"/>
         <source>About &amp;Qt</source>
         <translation>О &amp;Qt</translation>
     </message>

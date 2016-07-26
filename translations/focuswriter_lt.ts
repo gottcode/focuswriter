@@ -79,27 +79,27 @@
 <context>
     <name>DailyProgressDialog</name>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="147"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="154"/>
         <source>Daily Progress</source>
         <translation>Kasdienė eiga</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="282"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="289"/>
         <source>Longest streak</source>
         <translation>Ilgiausias ruožas</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="285"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="292"/>
         <source>Current streak</source>
         <translation>Dabartinis ruožas</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="298"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="305"/>
         <source>N/A</source>
         <translation>Nėra</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress_dialog.cpp" line="303"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n diena</numerusform>
@@ -108,7 +108,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="304"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="311"/>
         <source>%1 &amp;ndash; %2</source>
         <translation>%1 &amp;ndash; %2</translation>
     </message>
@@ -133,81 +133,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="419"/>
         <source>(Untitled %1)</source>
         <translation>(Be pavadinimo %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="423"/>
+        <location filename="../src/document.cpp" line="422"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (Tik-skaitymui)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="487"/>
-        <location filename="../src/document.cpp" line="512"/>
-        <location filename="../src/document.cpp" line="548"/>
-        <location filename="../src/document.cpp" line="554"/>
+        <location filename="../src/document.cpp" line="486"/>
+        <location filename="../src/document.cpp" line="511"/>
+        <location filename="../src/document.cpp" line="547"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Sorry</source>
         <translation>Atsiprašome</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="487"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Nepavyko įrašyti &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="502"/>
+        <location filename="../src/document.cpp" line="501"/>
         <source>Save File As</source>
         <translation>Įrašyti failą kaip</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
-        <location filename="../src/document.cpp" line="548"/>
+        <location filename="../src/document.cpp" line="511"/>
+        <location filename="../src/document.cpp" line="547"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Nepavyko pakeisti &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="541"/>
+        <location filename="../src/document.cpp" line="540"/>
         <source>Rename File</source>
         <translation>Pervadinti failą</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="554"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Nepavyko pervadinti &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="580"/>
+        <location filename="../src/document.cpp" line="579"/>
         <source>Reload File?</source>
         <translation>Įkelti failą iš naujo?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="581"/>
+        <location filename="../src/document.cpp" line="580"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Įkelti iš naujo failą &apos;%1&apos; iš disko?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="582"/>
+        <location filename="../src/document.cpp" line="581"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Visi neįrašyti pakeitimai bus prarasti.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="584"/>
+        <location filename="../src/document.cpp" line="583"/>
         <source>Reload</source>
         <translation>Įkelti iš naujo</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1436"/>
+        <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
         <translation>Be pavadinimo %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1490"/>
+        <location filename="../src/document.cpp" line="1489"/>
         <source>Question</source>
         <translation>Klausimas</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1491"/>
+        <location filename="../src/document.cpp" line="1490"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Įrašymas grynu tekstu pašalins visą formatavimą. Pašalinti formatavimą?</translation>
     </message>
@@ -411,12 +411,12 @@
 <context>
     <name>ImageButton</name>
     <message>
-        <location filename="../src/image_button.cpp" line="92"/>
+        <location filename="../src/image_button.cpp" line="109"/>
         <source>Open Image</source>
         <translation>Atverti paveikslą</translation>
     </message>
     <message>
-        <location filename="../src/image_button.cpp" line="92"/>
+        <location filename="../src/image_button.cpp" line="109"/>
         <source>Images(%1)</source>
         <translation>Paveikslai(%1)</translation>
     </message>
@@ -455,372 +455,379 @@
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="109"/>
+        <location filename="../src/preferences_dialog.cpp" line="81"/>
         <source>Preferences</source>
         <translation>Nuostatos</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="112"/>
+        <location filename="../src/preferences_dialog.cpp" line="84"/>
         <source>General</source>
         <translation>Bendra</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="114"/>
+        <location filename="../src/preferences_dialog.cpp" line="86"/>
         <source>Statistics</source>
         <translation>Statistika</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="116"/>
+        <location filename="../src/preferences_dialog.cpp" line="88"/>
         <source>Toolbar</source>
         <translation>Įrankių juosta</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="115"/>
+        <location filename="../src/preferences_dialog.cpp" line="87"/>
         <source>Spell Checking</source>
         <translation>Rašybos tikrinimas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="461"/>
+        <location filename="../src/preferences_dialog.cpp" line="433"/>
         <source>Select Dictionary</source>
         <translation>Pasirinkite žodyną</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="475"/>
-        <location filename="../src/preferences_dialog.cpp" line="578"/>
+        <location filename="../src/preferences_dialog.cpp" line="447"/>
+        <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>Sorry</source>
         <translation>Atleiskite</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="475"/>
+        <location filename="../src/preferences_dialog.cpp" line="447"/>
         <source>Unable to open archive.</source>
         <translation>Nepavyko atverti archyvo.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="578"/>
+        <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>The archive does not contain a usable dictionary.</source>
         <translation>Archyve nėra tinkamo naudoti žodyno.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="260"/>
-        <location filename="../src/preferences_dialog.cpp" line="403"/>
-        <location filename="../src/preferences_dialog.cpp" line="566"/>
+        <location filename="../src/preferences_dialog.cpp" line="232"/>
+        <location filename="../src/preferences_dialog.cpp" line="375"/>
+        <location filename="../src/preferences_dialog.cpp" line="508"/>
+        <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Question</source>
         <translation>Klausimas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="117"/>
+        <location filename="../src/preferences_dialog.cpp" line="89"/>
         <source>Shortcuts</source>
         <translation>Spartieji klavišai</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="261"/>
+        <location filename="../src/preferences_dialog.cpp" line="233"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
         <translation>Vienas ar daugiau sparčiųjų klavišų konfliktuoja. Ar norite tęsti?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="566"/>
+        <location filename="../src/preferences_dialog.cpp" line="508"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
         <translation>&quot;%1&quot; žodynas jau yra. Ar norite jį pakeisti?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="113"/>
+        <location filename="../src/preferences_dialog.cpp" line="85"/>
         <source>Daily Goal</source>
         <translation>Kasdienis tikslas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="814"/>
+        <location filename="../src/preferences_dialog.cpp" line="780"/>
         <source>None</source>
         <translation>Jokio</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="816"/>
+        <location filename="../src/preferences_dialog.cpp" line="782"/>
         <source>Minutes:</source>
         <translation>Minučių:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="823"/>
-        <location filename="../src/preferences_dialog.cpp" line="933"/>
+        <location filename="../src/preferences_dialog.cpp" line="789"/>
+        <location filename="../src/preferences_dialog.cpp" line="899"/>
         <source>Words:</source>
         <translation>Žodžių:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="713"/>
+        <location filename="../src/preferences_dialog.cpp" line="679"/>
         <source>Editing</source>
         <translation>Redagavimas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="715"/>
+        <location filename="../src/preferences_dialog.cpp" line="681"/>
         <source>Always vertically center</source>
         <translation>Visuomet vertikaliai centruoti</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="716"/>
+        <location filename="../src/preferences_dialog.cpp" line="682"/>
         <source>Block insertion cursor</source>
         <translation>Blokuoti įterpimo žymeklį</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="717"/>
+        <location filename="../src/preferences_dialog.cpp" line="683"/>
         <source>Smooth fonts</source>
         <translation>Glotninti šriftus</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="718"/>
+        <location filename="../src/preferences_dialog.cpp" line="684"/>
         <source>Typewriter sounds</source>
         <translation>Spausdinimo mašinėlės garsai</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="720"/>
+        <location filename="../src/preferences_dialog.cpp" line="686"/>
         <source>Smart quotes:</source>
         <translation>Protingosios kabutės:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="727"/>
+        <location filename="../src/preferences_dialog.cpp" line="693"/>
         <source>Double</source>
         <translation>Dvigubos</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="728"/>
+        <location filename="../src/preferences_dialog.cpp" line="694"/>
         <source>Single</source>
         <translation>Viengubos</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="749"/>
+        <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Scenes</source>
         <translation>Scenos</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="756"/>
+        <location filename="../src/preferences_dialog.cpp" line="722"/>
         <source>Divider:</source>
         <translation>Dalytuvas:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="759"/>
+        <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Saving</source>
         <translation>Įrašymas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="761"/>
+        <location filename="../src/preferences_dialog.cpp" line="727"/>
         <source>Automatically save changes</source>
         <translation>Automatiškai įrašyti pakeitimus</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="762"/>
+        <location filename="../src/preferences_dialog.cpp" line="728"/>
         <source>Remember cursor position</source>
         <translation>Įsiminti žymeklio vietą</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="893"/>
+        <location filename="../src/preferences_dialog.cpp" line="859"/>
         <source>Word count</source>
         <translation>Skaičiuoti žodžius</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="894"/>
+        <location filename="../src/preferences_dialog.cpp" line="860"/>
         <source>Page count</source>
         <translation>Skaičiuoti puslapius</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="895"/>
+        <location filename="../src/preferences_dialog.cpp" line="861"/>
         <source>Paragraph count</source>
         <translation>Skaičiuoti pastraipas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="896"/>
+        <location filename="../src/preferences_dialog.cpp" line="862"/>
         <source>Character count</source>
         <translation>Skaičiuoti simbolius</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="919"/>
+        <location filename="../src/preferences_dialog.cpp" line="885"/>
         <source>Characters:</source>
         <translation>Simbolių:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="926"/>
+        <location filename="../src/preferences_dialog.cpp" line="892"/>
         <source>Paragraphs:</source>
         <translation>Pastraipų:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="905"/>
+        <location filename="../src/preferences_dialog.cpp" line="871"/>
         <source>Word Count Algorithm</source>
         <translation>Žodžių skaičiavimo algoritmas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="404"/>
+        <location filename="../src/preferences_dialog.cpp" line="376"/>
         <source>Reset daily progress for today to zero?</source>
         <translation>Atstatyti kasdienę eigą šiandienai iki nulio?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="763"/>
+        <location filename="../src/preferences_dialog.cpp" line="535"/>
+        <source>Remove current dictionary?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/preferences_dialog.cpp" line="729"/>
         <source>Write byte order mark in plain text files</source>
         <translation>Įrašyti baitų tvarkos žymę gryno teksto failuose</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="765"/>
+        <location filename="../src/preferences_dialog.cpp" line="731"/>
         <source>Default format:</source>
         <translation>Numatytasis formatas:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="785"/>
-        <source>View</source>
+        <location filename="../src/preferences_dialog.cpp" line="751"/>
+        <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="787"/>
+        <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="788"/>
+        <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="789"/>
+        <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="839"/>
+        <location filename="../src/preferences_dialog.cpp" line="805"/>
         <source>Reset Today</source>
         <translation>Atstatyti šiandieną</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="852"/>
+        <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>History</source>
         <translation>Žurnalas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="854"/>
+        <location filename="../src/preferences_dialog.cpp" line="820"/>
         <source>Remember history</source>
         <translation>Įsiminti žurnalą</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="857"/>
+        <location filename="../src/preferences_dialog.cpp" line="823"/>
         <source>Show streaks</source>
         <translation>Rodyti ruožus</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="872"/>
+        <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Minimum progress for streaks:</source>
         <translation>Minimali eiga ruožui:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="907"/>
+        <location filename="../src/preferences_dialog.cpp" line="873"/>
         <source>Detect word boundaries</source>
         <translation>Aptikti žodžio ribas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="908"/>
+        <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Divide character count by six</source>
         <translation>Dalinti simbolių skaičių iš šešių</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="909"/>
+        <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Count each letter as a word</source>
         <translation>Skaičiuoti kiekvieną raidę kaip žodį</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="917"/>
+        <location filename="../src/preferences_dialog.cpp" line="883"/>
         <source>Page Count Algorithm</source>
         <translation>Puslapių skaičiavimo algoritmas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1060"/>
+        <location filename="../src/preferences_dialog.cpp" line="1031"/>
         <source>Style</source>
         <translation>Stilius</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1063"/>
+        <location filename="../src/preferences_dialog.cpp" line="1034"/>
         <source>Icons Only</source>
         <translation>Tik piktogramos</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1064"/>
+        <location filename="../src/preferences_dialog.cpp" line="1035"/>
         <source>Text Only</source>
         <translation>Tik tekstas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1065"/>
+        <location filename="../src/preferences_dialog.cpp" line="1036"/>
         <source>Text Alongside Icons</source>
         <translation>Tekstas šalia piktogramų</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1066"/>
+        <location filename="../src/preferences_dialog.cpp" line="1037"/>
         <source>Text Under Icons</source>
         <translation>Tekstas po piktogramomis</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1070"/>
+        <location filename="../src/preferences_dialog.cpp" line="1041"/>
         <source>Text Position:</source>
         <translation>Teksto vieta:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1073"/>
+        <location filename="../src/preferences_dialog.cpp" line="1044"/>
         <source>Actions</source>
         <translation>Veiksmai</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1089"/>
+        <location filename="../src/preferences_dialog.cpp" line="1060"/>
         <source>Move Up</source>
         <translation>Kelti aukštyn</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1091"/>
+        <location filename="../src/preferences_dialog.cpp" line="1062"/>
         <source>Move Down</source>
         <translation>Nuleisti žemyn</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1093"/>
+        <location filename="../src/preferences_dialog.cpp" line="1064"/>
         <source>Add Separator</source>
         <translation>Pridėti skirtuką</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Command</source>
         <translation>Komanda</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Shortcut</source>
         <translation>Spartusis klavišas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Action</source>
         <translation>Veiksmas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="980"/>
+        <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Check spelling as you type</source>
         <translation>Tikrinti rašybą, renkant tekstą</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="981"/>
+        <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Ignore words in UPPERCASE</source>
         <translation>Nepaisyti žodžių, parašytų DIDŽIOSIOMIS RAIDĖMIS</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="982"/>
+        <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Ignore words with numbers</source>
         <translation>Nepaisyti žodžių su skaičiais</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="995"/>
+        <location filename="../src/preferences_dialog.cpp" line="961"/>
         <source>Language</source>
         <translation>Kalba</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="999"/>
-        <location filename="../src/preferences_dialog.cpp" line="1020"/>
+        <location filename="../src/preferences_dialog.cpp" line="966"/>
+        <location filename="../src/preferences_dialog.cpp" line="991"/>
         <source>Add</source>
         <translation>Pridėti</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1032"/>
+        <location filename="../src/preferences_dialog.cpp" line="969"/>
+        <location filename="../src/preferences_dialog.cpp" line="1003"/>
         <source>Remove</source>
         <translation>Šalinti</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1015"/>
+        <location filename="../src/preferences_dialog.cpp" line="986"/>
         <source>Personal Dictionary</source>
         <translation>Asmeninis žodynas</translation>
     </message>
@@ -1019,7 +1026,7 @@
         <translation>Atstatyti numatytąsias reikšmes</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1164"/>
+        <location filename="../src/preferences_dialog.cpp" line="1135"/>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Shortcut:</source>
         <translation>Spartusis klavišas:</translation>
@@ -1142,12 +1149,12 @@
 <context>
     <name>SymbolsModel</name>
     <message>
-        <location filename="../src/symbols_model.cpp" line="102"/>
+        <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Blocks</source>
         <translation>Blokai</translation>
     </message>
     <message>
-        <location filename="../src/symbols_model.cpp" line="102"/>
+        <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Scripts</source>
         <translation>Scenarijai</translation>
     </message>
@@ -1155,7 +1162,7 @@
 <context>
     <name>Theme</name>
     <message>
-        <location filename="../src/theme.cpp" line="103"/>
+        <location filename="../src/theme.cpp" line="151"/>
         <source>Untitled %1</source>
         <translation>Be pavadinimo %1</translation>
     </message>
@@ -1163,234 +1170,234 @@
 <context>
     <name>ThemeDialog</name>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="105"/>
+        <location filename="../src/theme_dialog.cpp" line="69"/>
         <source>Name:</source>
         <translation>Pavadinimas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>No Image</source>
         <translation>Nėra paveikslo</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Tiled</source>
         <translation>Iškloti</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Centered</source>
         <translation>Centruoti</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Stretched</source>
         <translation>Ištempti</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Scaled</source>
         <translation>Ištempti proporcingai</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Zoomed</source>
         <translation>Pritraukti</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="213"/>
+        <location filename="../src/theme_dialog.cpp" line="177"/>
         <source>Opacity:</source>
         <translation>Dengiamumas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="214"/>
+        <location filename="../src/theme_dialog.cpp" line="178"/>
         <source>Position:</source>
         <translation>Vieta:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <location filename="../src/theme_dialog.cpp" line="179"/>
         <source>Width:</source>
         <translation>Plotis:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="219"/>
+        <location filename="../src/theme_dialog.cpp" line="183"/>
         <source>Round Text Background Corners</source>
         <translation>Apvalinti teksto fono kampus</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="233"/>
-        <location filename="../src/theme_dialog.cpp" line="251"/>
-        <location filename="../src/theme_dialog.cpp" line="281"/>
+        <location filename="../src/theme_dialog.cpp" line="197"/>
+        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <location filename="../src/theme_dialog.cpp" line="245"/>
         <source>Radius:</source>
         <translation>Plotas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="237"/>
+        <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Blur Text Background</source>
         <translation>Sulieti teksto foną</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="255"/>
+        <location filename="../src/theme_dialog.cpp" line="219"/>
         <source>Text Background Drop Shadow</source>
         <translation>Teksto fonas numeta šešėlį</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="282"/>
+        <location filename="../src/theme_dialog.cpp" line="246"/>
         <source>Vertical Offset:</source>
         <translation>Vertikalus poslinkis:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="286"/>
+        <location filename="../src/theme_dialog.cpp" line="250"/>
         <source>Margins</source>
         <translation>Paraštės</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="304"/>
+        <location filename="../src/theme_dialog.cpp" line="268"/>
         <source>Window:</source>
         <translation>Langas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="305"/>
+        <location filename="../src/theme_dialog.cpp" line="269"/>
         <source>Page:</source>
         <translation>Puslapis:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="359"/>
+        <location filename="../src/theme_dialog.cpp" line="323"/>
         <source>Indent first line</source>
         <translation>Įtraukti pirmą eilutę</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="366"/>
+        <location filename="../src/theme_dialog.cpp" line="330"/>
         <source>Above:</source>
         <translation>Prieš:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="367"/>
+        <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Below:</source>
         <translation>Po:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="126"/>
         <source>Remove</source>
         <translation>Pašalinti</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="95"/>
+        <location filename="../src/theme_dialog.cpp" line="59"/>
         <source>Edit Theme</source>
         <translation>Redaguoti temą</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="152"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Window Background</source>
         <translation>Lango fonas</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="180"/>
-        <location filename="../src/theme_dialog.cpp" line="334"/>
+        <location filename="../src/theme_dialog.cpp" line="144"/>
+        <location filename="../src/theme_dialog.cpp" line="298"/>
         <source>Type:</source>
         <translation>Tipas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="146"/>
-        <location filename="../src/theme_dialog.cpp" line="178"/>
-        <location filename="../src/theme_dialog.cpp" line="212"/>
-        <location filename="../src/theme_dialog.cpp" line="280"/>
+        <location filename="../src/theme_dialog.cpp" line="110"/>
+        <location filename="../src/theme_dialog.cpp" line="142"/>
+        <location filename="../src/theme_dialog.cpp" line="176"/>
+        <location filename="../src/theme_dialog.cpp" line="244"/>
         <source>Color:</source>
         <translation>Spalva:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="179"/>
+        <location filename="../src/theme_dialog.cpp" line="143"/>
         <source>Image:</source>
         <translation>Paveikslas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="204"/>
-        <location filename="../src/theme_dialog.cpp" line="226"/>
-        <location filename="../src/theme_dialog.cpp" line="244"/>
-        <location filename="../src/theme_dialog.cpp" line="266"/>
-        <location filename="../src/theme_dialog.cpp" line="273"/>
-        <location filename="../src/theme_dialog.cpp" line="290"/>
-        <location filename="../src/theme_dialog.cpp" line="297"/>
-        <location filename="../src/theme_dialog.cpp" line="342"/>
-        <location filename="../src/theme_dialog.cpp" line="348"/>
-        <location filename="../src/theme_dialog.cpp" line="354"/>
+        <location filename="../src/theme_dialog.cpp" line="168"/>
+        <location filename="../src/theme_dialog.cpp" line="190"/>
+        <location filename="../src/theme_dialog.cpp" line="208"/>
+        <location filename="../src/theme_dialog.cpp" line="230"/>
+        <location filename="../src/theme_dialog.cpp" line="237"/>
+        <location filename="../src/theme_dialog.cpp" line="254"/>
+        <location filename="../src/theme_dialog.cpp" line="261"/>
+        <location filename="../src/theme_dialog.cpp" line="306"/>
+        <location filename="../src/theme_dialog.cpp" line="312"/>
+        <location filename="../src/theme_dialog.cpp" line="318"/>
         <source> pixels</source>
         <translation>taškelių</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Left</source>
         <translation>Kairėje</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="184"/>
+        <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Text Background</source>
         <translation>Teksto fonas</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Right</source>
         <translation>Dešinėje</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="118"/>
+        <location filename="../src/theme_dialog.cpp" line="82"/>
         <source>Text</source>
         <translation>Tekstas</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="147"/>
+        <location filename="../src/theme_dialog.cpp" line="111"/>
         <source>Font:</source>
         <translation>Šriftas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="148"/>
+        <location filename="../src/theme_dialog.cpp" line="112"/>
         <source>Misspelled:</source>
         <translation>Neteisingai parašytas:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="309"/>
+        <location filename="../src/theme_dialog.cpp" line="273"/>
         <source>Line Spacing</source>
         <translation>Eilučių intervalai</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Single</source>
         <translation>Viengubas</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>1.5 Lines</source>
         <translation>1.5 eilutės</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Double</source>
         <translation>Dvigubas</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Proportional</source>
         <translation>Proporcionalus</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="335"/>
+        <location filename="../src/theme_dialog.cpp" line="299"/>
         <source>Height:</source>
         <translation>Aukštis:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="339"/>
+        <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Paragraph Spacing</source>
         <translation>Pastraipos tarpai</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="365"/>
+        <location filename="../src/theme_dialog.cpp" line="329"/>
         <source>Tab Width:</source>
         <translation>Tabuliacijos plotis:</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="249"/>
+        <location filename="../src/theme_manager.cpp" line="250"/>
         <source>New Theme</source>
         <translation>Nauja tema</translation>
     </message>
@@ -1398,95 +1405,95 @@
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/theme_manager.cpp" line="74"/>
+        <location filename="../src/theme_manager.cpp" line="75"/>
         <source>Themes</source>
         <translation>Temos</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="88"/>
+        <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Default</source>
         <translation>Numatytoji</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="103"/>
+        <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Gentle Blues</source>
         <translation>Švelniai mėlyna</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="104"/>
+        <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Old School</source>
         <translation>Senoji mokykla</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="105"/>
+        <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Space Dreams</source>
         <translation>Kosminės svajonės</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="106"/>
+        <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Writing Desk</source>
         <translation>Rašomasis stalas</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="109"/>
-        <location filename="../src/theme_manager.cpp" line="170"/>
+        <location filename="../src/theme_manager.cpp" line="110"/>
+        <location filename="../src/theme_manager.cpp" line="171"/>
         <source>New</source>
         <translation>Nauja</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="113"/>
-        <location filename="../src/theme_manager.cpp" line="174"/>
+        <location filename="../src/theme_manager.cpp" line="114"/>
+        <location filename="../src/theme_manager.cpp" line="175"/>
         <source>Duplicate</source>
         <translation>Dubliuoti</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="127"/>
+        <location filename="../src/theme_manager.cpp" line="128"/>
         <source>Custom</source>
         <translation>Tinkinta</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="179"/>
+        <location filename="../src/theme_manager.cpp" line="180"/>
         <source>Edit</source>
         <translation>Keisti</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="184"/>
+        <location filename="../src/theme_manager.cpp" line="185"/>
         <source>Delete</source>
         <translation>Ištrinti</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="189"/>
+        <location filename="../src/theme_manager.cpp" line="190"/>
         <source>Import</source>
         <translation>Importuoti</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="193"/>
+        <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Export</source>
         <translation>Eksportuoti</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="307"/>
+        <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Question</source>
         <translation>Klausimas</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="307"/>
+        <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Delete theme &apos;%1&apos;?</source>
         <translation>Ištrinti temą &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="331"/>
-        <location filename="../src/theme_manager.cpp" line="405"/>
+        <location filename="../src/theme_manager.cpp" line="332"/>
+        <location filename="../src/theme_manager.cpp" line="406"/>
         <source>Themes (%1)</source>
         <translation>Temos (%1)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="331"/>
+        <location filename="../src/theme_manager.cpp" line="332"/>
         <source>Import Theme</source>
         <translation>Importuoti temą</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="405"/>
+        <location filename="../src/theme_manager.cpp" line="406"/>
         <source>Export Theme</source>
         <translation>Eksportuoti temą</translation>
     </message>
@@ -1714,7 +1721,7 @@
         <translation>Žodžių: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="597"/>
+        <location filename="../src/document.cpp" line="596"/>
         <location filename="../src/window.cpp" line="1018"/>
         <source>Opening %1</source>
         <translation>Atveriama %1</translation>
@@ -2266,12 +2273,12 @@
         <translation>Dėmesio centras - pastraipa</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1481"/>
+        <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1486"/>
+        <location filename="../src/window.cpp" line="1488"/>
         <source>&amp;Help</source>
         <translation>&amp;Pagalba</translation>
     </message>
@@ -2301,12 +2308,12 @@
         <translation>&amp;Trys eilutės</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1487"/>
+        <location filename="../src/window.cpp" line="1489"/>
         <source>&amp;About</source>
         <translation>&amp;Apie</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1491"/>
+        <location filename="../src/window.cpp" line="1493"/>
         <source>About &amp;Qt</source>
         <translation>Apie &amp;Qt</translation>
     </message>

@@ -75,27 +75,27 @@
 <context>
     <name>DailyProgressDialog</name>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="147"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="154"/>
         <source>Daily Progress</source>
         <translation>Päivittäinen eteneminen</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="282"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="289"/>
         <source>Longest streak</source>
         <translation>Pisin putki</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="285"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="292"/>
         <source>Current streak</source>
         <translation>Nykyinen putki</translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="298"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="305"/>
         <source>N/A</source>
         <translation>–</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/daily_progress_dialog.cpp" line="303"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n päivä</numerusform>
@@ -103,7 +103,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/daily_progress_dialog.cpp" line="304"/>
+        <location filename="../src/daily_progress_dialog.cpp" line="311"/>
         <source>%1 &amp;ndash; %2</source>
         <translation>%1 &amp;ndash; %2</translation>
     </message>
@@ -128,81 +128,81 @@
 <context>
     <name>Document</name>
     <message>
-        <location filename="../src/document.cpp" line="420"/>
+        <location filename="../src/document.cpp" line="419"/>
         <source>(Untitled %1)</source>
         <translation>(Nimetön %1)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="423"/>
+        <location filename="../src/document.cpp" line="422"/>
         <source>%1 (Read-Only)</source>
         <translation>%1 (vain luku)</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="487"/>
-        <location filename="../src/document.cpp" line="512"/>
-        <location filename="../src/document.cpp" line="548"/>
-        <location filename="../src/document.cpp" line="554"/>
+        <location filename="../src/document.cpp" line="486"/>
+        <location filename="../src/document.cpp" line="511"/>
+        <location filename="../src/document.cpp" line="547"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Sorry</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="487"/>
+        <location filename="../src/document.cpp" line="486"/>
         <source>Unable to save &apos;%1&apos;.</source>
         <translation>Tiedoston ”%1” tallentaminen epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="502"/>
+        <location filename="../src/document.cpp" line="501"/>
         <source>Save File As</source>
         <translation>Tallenna tiedosto nimellä</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="512"/>
-        <location filename="../src/document.cpp" line="548"/>
+        <location filename="../src/document.cpp" line="511"/>
+        <location filename="../src/document.cpp" line="547"/>
         <source>Unable to overwrite &apos;%1&apos;.</source>
         <translation>Tiedoston ”%1” korvaaminen epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="541"/>
+        <location filename="../src/document.cpp" line="540"/>
         <source>Rename File</source>
         <translation>Nimeä tiedosto uudelleen</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="554"/>
+        <location filename="../src/document.cpp" line="553"/>
         <source>Unable to rename &apos;%1&apos;.</source>
         <translation>Tiedoston ”%1” uudelleennimeäminen epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="580"/>
+        <location filename="../src/document.cpp" line="579"/>
         <source>Reload File?</source>
         <translation>Ladataanko tiedosto uudelleen?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="581"/>
+        <location filename="../src/document.cpp" line="580"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
         <translation>Ladataanko tiedosto ”%1” uudelleen levyltä?</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="582"/>
+        <location filename="../src/document.cpp" line="581"/>
         <source>All unsaved changes will be lost.</source>
         <translation>Kaikki tallentamattomat muutokset menetetään.</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="584"/>
+        <location filename="../src/document.cpp" line="583"/>
         <source>Reload</source>
         <translation>Lataa uudelleen</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1436"/>
+        <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
         <translation>Nimetön %1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1490"/>
+        <location filename="../src/document.cpp" line="1489"/>
         <source>Question</source>
         <translation>Kysymys</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="1491"/>
+        <location filename="../src/document.cpp" line="1490"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
         <translation>Pelkkänä tekstinä tallennettaessa menetetään kaikki muotoilu. Poistetaanko muotoilu?</translation>
     </message>
@@ -405,12 +405,12 @@
 <context>
     <name>ImageButton</name>
     <message>
-        <location filename="../src/image_button.cpp" line="92"/>
+        <location filename="../src/image_button.cpp" line="109"/>
         <source>Open Image</source>
         <translation>Avaa kuva</translation>
     </message>
     <message>
-        <location filename="../src/image_button.cpp" line="92"/>
+        <location filename="../src/image_button.cpp" line="109"/>
         <source>Images(%1)</source>
         <translation>Kuvat (%1)</translation>
     </message>
@@ -449,372 +449,379 @@
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="109"/>
+        <location filename="../src/preferences_dialog.cpp" line="81"/>
         <source>Preferences</source>
         <translation>Asetukset</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="112"/>
+        <location filename="../src/preferences_dialog.cpp" line="84"/>
         <source>General</source>
         <translation>Yleisasetukset</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="114"/>
+        <location filename="../src/preferences_dialog.cpp" line="86"/>
         <source>Statistics</source>
         <translation>Tilastot</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="116"/>
+        <location filename="../src/preferences_dialog.cpp" line="88"/>
         <source>Toolbar</source>
         <translation>Työkalupalkki</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="115"/>
+        <location filename="../src/preferences_dialog.cpp" line="87"/>
         <source>Spell Checking</source>
         <translation>Oikeinkirjoituksen tarkistus</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="461"/>
+        <location filename="../src/preferences_dialog.cpp" line="433"/>
         <source>Select Dictionary</source>
         <translation>Valitse sanasto</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="475"/>
-        <location filename="../src/preferences_dialog.cpp" line="578"/>
+        <location filename="../src/preferences_dialog.cpp" line="447"/>
+        <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>Sorry</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="475"/>
+        <location filename="../src/preferences_dialog.cpp" line="447"/>
         <source>Unable to open archive.</source>
         <translation>Arkiston avaaminen epäonnistui.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="578"/>
+        <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>The archive does not contain a usable dictionary.</source>
         <translation>Arkisto ei sisällä käyttökelpoista sanastoa.</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="260"/>
-        <location filename="../src/preferences_dialog.cpp" line="403"/>
-        <location filename="../src/preferences_dialog.cpp" line="566"/>
+        <location filename="../src/preferences_dialog.cpp" line="232"/>
+        <location filename="../src/preferences_dialog.cpp" line="375"/>
+        <location filename="../src/preferences_dialog.cpp" line="508"/>
+        <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Question</source>
         <translation>Kysymys</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="117"/>
+        <location filename="../src/preferences_dialog.cpp" line="89"/>
         <source>Shortcuts</source>
         <translation>Pikanäppäimet</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="261"/>
+        <location filename="../src/preferences_dialog.cpp" line="233"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
         <translation>Yksi tai useampi päällekkäinen pikanäppäin. Haluatko jatkaa?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="566"/>
+        <location filename="../src/preferences_dialog.cpp" line="508"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
         <translation>Sanasto ”%1” on jo olemassa. Haluatko korvata sen?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="113"/>
+        <location filename="../src/preferences_dialog.cpp" line="85"/>
         <source>Daily Goal</source>
         <translation>Päivittäinen tavoite</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="814"/>
+        <location filename="../src/preferences_dialog.cpp" line="780"/>
         <source>None</source>
         <translation>Ei tavoitetta</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="816"/>
+        <location filename="../src/preferences_dialog.cpp" line="782"/>
         <source>Minutes:</source>
         <translation>Minuutteina:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="823"/>
-        <location filename="../src/preferences_dialog.cpp" line="933"/>
+        <location filename="../src/preferences_dialog.cpp" line="789"/>
+        <location filename="../src/preferences_dialog.cpp" line="899"/>
         <source>Words:</source>
         <translation>Sanoina:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="713"/>
+        <location filename="../src/preferences_dialog.cpp" line="679"/>
         <source>Editing</source>
         <translation>Muokkaaminen</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="715"/>
+        <location filename="../src/preferences_dialog.cpp" line="681"/>
         <source>Always vertically center</source>
         <translation>Keskitä aina pystysuunnassa</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="716"/>
+        <location filename="../src/preferences_dialog.cpp" line="682"/>
         <source>Block insertion cursor</source>
         <translation>Laatikkomainen lisäyskohdistin</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="717"/>
+        <location filename="../src/preferences_dialog.cpp" line="683"/>
         <source>Smooth fonts</source>
         <translation>Tasoitetut fontit</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="718"/>
+        <location filename="../src/preferences_dialog.cpp" line="684"/>
         <source>Typewriter sounds</source>
         <translation>Kirjoituskoneäänet</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="720"/>
+        <location filename="../src/preferences_dialog.cpp" line="686"/>
         <source>Smart quotes:</source>
         <translation>Älykkäät lainausmerkit:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="727"/>
+        <location filename="../src/preferences_dialog.cpp" line="693"/>
         <source>Double</source>
         <translation>Kokolainausmerkit</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="728"/>
+        <location filename="../src/preferences_dialog.cpp" line="694"/>
         <source>Single</source>
         <translation>Puolilainausmerkit</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="749"/>
+        <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Scenes</source>
         <translation>Kohtaukset</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="756"/>
+        <location filename="../src/preferences_dialog.cpp" line="722"/>
         <source>Divider:</source>
         <translation>Erotin:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="759"/>
+        <location filename="../src/preferences_dialog.cpp" line="725"/>
         <source>Saving</source>
         <translation>Tallennus</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="761"/>
+        <location filename="../src/preferences_dialog.cpp" line="727"/>
         <source>Automatically save changes</source>
         <translation>Tallenna muutokset automaattisesti</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="762"/>
+        <location filename="../src/preferences_dialog.cpp" line="728"/>
         <source>Remember cursor position</source>
         <translation>Muista kohdistimen sijainti</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="893"/>
+        <location filename="../src/preferences_dialog.cpp" line="859"/>
         <source>Word count</source>
         <translation>Sanamäärä</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="894"/>
+        <location filename="../src/preferences_dialog.cpp" line="860"/>
         <source>Page count</source>
         <translation>Sivumäärä</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="895"/>
+        <location filename="../src/preferences_dialog.cpp" line="861"/>
         <source>Paragraph count</source>
         <translation>Kappalemäärä</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="896"/>
+        <location filename="../src/preferences_dialog.cpp" line="862"/>
         <source>Character count</source>
         <translation>Merkkimäärä</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="919"/>
+        <location filename="../src/preferences_dialog.cpp" line="885"/>
         <source>Characters:</source>
         <translation>Merkkeinä:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="926"/>
+        <location filename="../src/preferences_dialog.cpp" line="892"/>
         <source>Paragraphs:</source>
         <translation>Kappaleina:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="905"/>
+        <location filename="../src/preferences_dialog.cpp" line="871"/>
         <source>Word Count Algorithm</source>
         <translation>Sanamäärän algoritmi</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="404"/>
+        <location filename="../src/preferences_dialog.cpp" line="376"/>
         <source>Reset daily progress for today to zero?</source>
         <translation>Nollataanko tämän päivän eteneminen?</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="763"/>
+        <location filename="../src/preferences_dialog.cpp" line="535"/>
+        <source>Remove current dictionary?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/preferences_dialog.cpp" line="729"/>
         <source>Write byte order mark in plain text files</source>
         <translation>Kirjoita tavujärjestysmerkki (BOM) tekstitiedostoihin</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="765"/>
+        <location filename="../src/preferences_dialog.cpp" line="731"/>
         <source>Default format:</source>
         <translation>Oletusmuoto:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="785"/>
-        <source>View</source>
+        <location filename="../src/preferences_dialog.cpp" line="751"/>
+        <source>User Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="787"/>
+        <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="788"/>
+        <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="789"/>
+        <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="839"/>
+        <location filename="../src/preferences_dialog.cpp" line="805"/>
         <source>Reset Today</source>
         <translation>Nollaa tämä päivä</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="852"/>
+        <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>History</source>
         <translation>Historia</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="854"/>
+        <location filename="../src/preferences_dialog.cpp" line="820"/>
         <source>Remember history</source>
         <translation>Muista historia</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="857"/>
+        <location filename="../src/preferences_dialog.cpp" line="823"/>
         <source>Show streaks</source>
         <translation>Näytä etenemisputket</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="872"/>
+        <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Minimum progress for streaks:</source>
         <translation>Vähin eteneminen voittoputkeen:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="907"/>
+        <location filename="../src/preferences_dialog.cpp" line="873"/>
         <source>Detect word boundaries</source>
         <translation>Tunnista sanojen rajat</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="908"/>
+        <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Divide character count by six</source>
         <translation>Jaa merkkimäärä kuudella</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="909"/>
+        <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Count each letter as a word</source>
         <translation>Laske jokainen kirjain sanaksi</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="917"/>
+        <location filename="../src/preferences_dialog.cpp" line="883"/>
         <source>Page Count Algorithm</source>
         <translation>Sivumäärän algoritmi</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1060"/>
+        <location filename="../src/preferences_dialog.cpp" line="1031"/>
         <source>Style</source>
         <translation>Tyyli</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1063"/>
+        <location filename="../src/preferences_dialog.cpp" line="1034"/>
         <source>Icons Only</source>
         <translation>Vain kuvakkeet</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1064"/>
+        <location filename="../src/preferences_dialog.cpp" line="1035"/>
         <source>Text Only</source>
         <translation>Vain teksti</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1065"/>
+        <location filename="../src/preferences_dialog.cpp" line="1036"/>
         <source>Text Alongside Icons</source>
         <translation>Teksti kuvakkeiden vieressä</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1066"/>
+        <location filename="../src/preferences_dialog.cpp" line="1037"/>
         <source>Text Under Icons</source>
         <translation>Teksti kuvakkeiden alla</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1070"/>
+        <location filename="../src/preferences_dialog.cpp" line="1041"/>
         <source>Text Position:</source>
         <translation>Tekstin sijainti:</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1073"/>
+        <location filename="../src/preferences_dialog.cpp" line="1044"/>
         <source>Actions</source>
         <translation>Toiminnot</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1089"/>
+        <location filename="../src/preferences_dialog.cpp" line="1060"/>
         <source>Move Up</source>
         <translation>Siirrä ylemmäs</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1091"/>
+        <location filename="../src/preferences_dialog.cpp" line="1062"/>
         <source>Move Down</source>
         <translation>Siirrä alemmas</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1093"/>
+        <location filename="../src/preferences_dialog.cpp" line="1064"/>
         <source>Add Separator</source>
         <translation>Lisää erotin</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Command</source>
         <translation>Komento</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Shortcut</source>
         <translation>Pikanäppäin</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1127"/>
+        <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Action</source>
         <translation>Toiminto</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="980"/>
+        <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Check spelling as you type</source>
         <translation>Tarkista oikeinkirjoitus kirjoitettaessa</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="981"/>
+        <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Ignore words in UPPERCASE</source>
         <translation>Ohita SUURAAKKOSIN kirjoitetut sanat</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="982"/>
+        <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Ignore words with numbers</source>
         <translation>Ohita sanat, joissa on numeroita</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="995"/>
+        <location filename="../src/preferences_dialog.cpp" line="961"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="999"/>
-        <location filename="../src/preferences_dialog.cpp" line="1020"/>
+        <location filename="../src/preferences_dialog.cpp" line="966"/>
+        <location filename="../src/preferences_dialog.cpp" line="991"/>
         <source>Add</source>
         <translation>Lisää</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1032"/>
+        <location filename="../src/preferences_dialog.cpp" line="969"/>
+        <location filename="../src/preferences_dialog.cpp" line="1003"/>
         <source>Remove</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1015"/>
+        <location filename="../src/preferences_dialog.cpp" line="986"/>
         <source>Personal Dictionary</source>
         <translation>Oma sanasto</translation>
     </message>
@@ -1013,7 +1020,7 @@
         <translation>Palauta oletusarvoon</translation>
     </message>
     <message>
-        <location filename="../src/preferences_dialog.cpp" line="1164"/>
+        <location filename="../src/preferences_dialog.cpp" line="1135"/>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Shortcut:</source>
         <translation>Pikanäppäin:</translation>
@@ -1136,12 +1143,12 @@
 <context>
     <name>SymbolsModel</name>
     <message>
-        <location filename="../src/symbols_model.cpp" line="102"/>
+        <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Blocks</source>
         <translation>Lohkot</translation>
     </message>
     <message>
-        <location filename="../src/symbols_model.cpp" line="102"/>
+        <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Scripts</source>
         <translation>Kirjoitusjärjestelmät</translation>
     </message>
@@ -1149,7 +1156,7 @@
 <context>
     <name>Theme</name>
     <message>
-        <location filename="../src/theme.cpp" line="103"/>
+        <location filename="../src/theme.cpp" line="151"/>
         <source>Untitled %1</source>
         <translation>Nimetön %1</translation>
     </message>
@@ -1157,234 +1164,234 @@
 <context>
     <name>ThemeDialog</name>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="105"/>
+        <location filename="../src/theme_dialog.cpp" line="69"/>
         <source>Name:</source>
         <translation>Nimi:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>No Image</source>
         <translation>Ei kuvaa</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Tiled</source>
         <translation>Toistettu</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Centered</source>
         <translation>Keskitetty</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Stretched</source>
         <translation>Venytetty</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Scaled</source>
         <translation>Skaalattu</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="166"/>
+        <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Zoomed</source>
         <translation>Suurennettu</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="213"/>
+        <location filename="../src/theme_dialog.cpp" line="177"/>
         <source>Opacity:</source>
         <translation>Peittävyys:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="214"/>
+        <location filename="../src/theme_dialog.cpp" line="178"/>
         <source>Position:</source>
         <translation>Sijainti:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <location filename="../src/theme_dialog.cpp" line="179"/>
         <source>Width:</source>
         <translation>Leveys:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="219"/>
+        <location filename="../src/theme_dialog.cpp" line="183"/>
         <source>Round Text Background Corners</source>
         <translation>Pyöristetyt kulmat tekstin taustassa</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="233"/>
-        <location filename="../src/theme_dialog.cpp" line="251"/>
-        <location filename="../src/theme_dialog.cpp" line="281"/>
+        <location filename="../src/theme_dialog.cpp" line="197"/>
+        <location filename="../src/theme_dialog.cpp" line="215"/>
+        <location filename="../src/theme_dialog.cpp" line="245"/>
         <source>Radius:</source>
         <translation>Säde:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="237"/>
+        <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Blur Text Background</source>
         <translation>Sumenna tekstin tausta</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="255"/>
+        <location filename="../src/theme_dialog.cpp" line="219"/>
         <source>Text Background Drop Shadow</source>
         <translation>Tekstin taustan varjo</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="282"/>
+        <location filename="../src/theme_dialog.cpp" line="246"/>
         <source>Vertical Offset:</source>
         <translation>Pystysiirtymä:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="286"/>
+        <location filename="../src/theme_dialog.cpp" line="250"/>
         <source>Margins</source>
         <translation>Reunukset</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="304"/>
+        <location filename="../src/theme_dialog.cpp" line="268"/>
         <source>Window:</source>
         <translation>Ikkuna:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="305"/>
+        <location filename="../src/theme_dialog.cpp" line="269"/>
         <source>Page:</source>
         <translation>Sivu:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="359"/>
+        <location filename="../src/theme_dialog.cpp" line="323"/>
         <source>Indent first line</source>
         <translation>Sisennä ensimmäinen rivi</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="366"/>
+        <location filename="../src/theme_dialog.cpp" line="330"/>
         <source>Above:</source>
         <translation>Yläpuolella:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="367"/>
+        <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Below:</source>
         <translation>Alapuolella:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="162"/>
+        <location filename="../src/theme_dialog.cpp" line="126"/>
         <source>Remove</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="95"/>
+        <location filename="../src/theme_dialog.cpp" line="59"/>
         <source>Edit Theme</source>
         <translation>Muokkaa teemaa</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="152"/>
+        <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Window Background</source>
         <translation>Ikkunan tausta</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="180"/>
-        <location filename="../src/theme_dialog.cpp" line="334"/>
+        <location filename="../src/theme_dialog.cpp" line="144"/>
+        <location filename="../src/theme_dialog.cpp" line="298"/>
         <source>Type:</source>
         <translation>Tyyppi:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="146"/>
-        <location filename="../src/theme_dialog.cpp" line="178"/>
-        <location filename="../src/theme_dialog.cpp" line="212"/>
-        <location filename="../src/theme_dialog.cpp" line="280"/>
+        <location filename="../src/theme_dialog.cpp" line="110"/>
+        <location filename="../src/theme_dialog.cpp" line="142"/>
+        <location filename="../src/theme_dialog.cpp" line="176"/>
+        <location filename="../src/theme_dialog.cpp" line="244"/>
         <source>Color:</source>
         <translation>Väri:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="179"/>
+        <location filename="../src/theme_dialog.cpp" line="143"/>
         <source>Image:</source>
         <translation>Kuva:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="204"/>
-        <location filename="../src/theme_dialog.cpp" line="226"/>
-        <location filename="../src/theme_dialog.cpp" line="244"/>
-        <location filename="../src/theme_dialog.cpp" line="266"/>
-        <location filename="../src/theme_dialog.cpp" line="273"/>
-        <location filename="../src/theme_dialog.cpp" line="290"/>
-        <location filename="../src/theme_dialog.cpp" line="297"/>
-        <location filename="../src/theme_dialog.cpp" line="342"/>
-        <location filename="../src/theme_dialog.cpp" line="348"/>
-        <location filename="../src/theme_dialog.cpp" line="354"/>
+        <location filename="../src/theme_dialog.cpp" line="168"/>
+        <location filename="../src/theme_dialog.cpp" line="190"/>
+        <location filename="../src/theme_dialog.cpp" line="208"/>
+        <location filename="../src/theme_dialog.cpp" line="230"/>
+        <location filename="../src/theme_dialog.cpp" line="237"/>
+        <location filename="../src/theme_dialog.cpp" line="254"/>
+        <location filename="../src/theme_dialog.cpp" line="261"/>
+        <location filename="../src/theme_dialog.cpp" line="306"/>
+        <location filename="../src/theme_dialog.cpp" line="312"/>
+        <location filename="../src/theme_dialog.cpp" line="318"/>
         <source> pixels</source>
         <translation> pikseliä</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Left</source>
         <translation>Vasemmalla</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="184"/>
+        <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Text Background</source>
         <translation>Tekstin tausta</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="198"/>
+        <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Right</source>
         <translation>Oikealla</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="118"/>
+        <location filename="../src/theme_dialog.cpp" line="82"/>
         <source>Text</source>
         <translation>Teksti</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="147"/>
+        <location filename="../src/theme_dialog.cpp" line="111"/>
         <source>Font:</source>
         <translation>Fontti:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="148"/>
+        <location filename="../src/theme_dialog.cpp" line="112"/>
         <source>Misspelled:</source>
         <translation>Kirjoitusvirheet:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="309"/>
+        <location filename="../src/theme_dialog.cpp" line="273"/>
         <source>Line Spacing</source>
         <translation>Riviväli</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Single</source>
         <translation>Yksinkertainen</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>1.5 Lines</source>
         <translation>1,5-kertainen</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Double</source>
         <translation>Kaksinkertainen</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="313"/>
+        <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Proportional</source>
         <translation>Suhteellinen</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="335"/>
+        <location filename="../src/theme_dialog.cpp" line="299"/>
         <source>Height:</source>
         <translation>Korkeus:</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="339"/>
+        <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Paragraph Spacing</source>
         <translation>Kappaleväli</translation>
     </message>
     <message>
-        <location filename="../src/theme_dialog.cpp" line="365"/>
+        <location filename="../src/theme_dialog.cpp" line="329"/>
         <source>Tab Width:</source>
         <translation>Sarkainleveys:</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="249"/>
+        <location filename="../src/theme_manager.cpp" line="250"/>
         <source>New Theme</source>
         <translation>Uusi teema</translation>
     </message>
@@ -1392,95 +1399,95 @@
 <context>
     <name>ThemeManager</name>
     <message>
-        <location filename="../src/theme_manager.cpp" line="74"/>
+        <location filename="../src/theme_manager.cpp" line="75"/>
         <source>Themes</source>
         <translation>Teemat</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="88"/>
+        <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Default</source>
         <translation>Oletusteemat</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="103"/>
+        <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Gentle Blues</source>
         <translation>Pehmeänsininen</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="104"/>
+        <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Old School</source>
         <translation>Vanhanaikainen</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="105"/>
+        <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Space Dreams</source>
         <translation>Avaruusunelma</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="106"/>
+        <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Writing Desk</source>
         <translation>Kirjoituspöytä</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="109"/>
-        <location filename="../src/theme_manager.cpp" line="170"/>
+        <location filename="../src/theme_manager.cpp" line="110"/>
+        <location filename="../src/theme_manager.cpp" line="171"/>
         <source>New</source>
         <translation>Uusi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="113"/>
-        <location filename="../src/theme_manager.cpp" line="174"/>
+        <location filename="../src/theme_manager.cpp" line="114"/>
+        <location filename="../src/theme_manager.cpp" line="175"/>
         <source>Duplicate</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="127"/>
+        <location filename="../src/theme_manager.cpp" line="128"/>
         <source>Custom</source>
         <translation>Omat teemat</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="179"/>
+        <location filename="../src/theme_manager.cpp" line="180"/>
         <source>Edit</source>
         <translation>Muokkaa</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="184"/>
+        <location filename="../src/theme_manager.cpp" line="185"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="189"/>
+        <location filename="../src/theme_manager.cpp" line="190"/>
         <source>Import</source>
         <translation>Tuo</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="193"/>
+        <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Export</source>
         <translation>Vie</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="307"/>
+        <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Question</source>
         <translation>Kysymys</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="307"/>
+        <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Delete theme &apos;%1&apos;?</source>
         <translation>Poistetaanko teema %1?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="331"/>
-        <location filename="../src/theme_manager.cpp" line="405"/>
+        <location filename="../src/theme_manager.cpp" line="332"/>
+        <location filename="../src/theme_manager.cpp" line="406"/>
         <source>Themes (%1)</source>
         <translation>Teemat (%1)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="331"/>
+        <location filename="../src/theme_manager.cpp" line="332"/>
         <source>Import Theme</source>
         <translation>Tuo teema</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="405"/>
+        <location filename="../src/theme_manager.cpp" line="406"/>
         <source>Export Theme</source>
         <translation>Vie teema</translation>
     </message>
@@ -1708,7 +1715,7 @@
         <translation>Sanoja: %L1</translation>
     </message>
     <message>
-        <location filename="../src/document.cpp" line="597"/>
+        <location filename="../src/document.cpp" line="596"/>
         <location filename="../src/window.cpp" line="1018"/>
         <source>Opening %1</source>
         <translation>Avataan %1</translation>
@@ -2260,12 +2267,12 @@
         <translation>Kohdista kappale</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1481"/>
+        <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1486"/>
+        <location filename="../src/window.cpp" line="1488"/>
         <source>&amp;Help</source>
         <translation>&amp;Ohje</translation>
     </message>
@@ -2295,12 +2302,12 @@
         <translation>Kolme &amp;riviä</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1487"/>
+        <location filename="../src/window.cpp" line="1489"/>
         <source>&amp;About</source>
         <translation>&amp;Tietoja</translation>
     </message>
     <message>
-        <location filename="../src/window.cpp" line="1491"/>
+        <location filename="../src/window.cpp" line="1493"/>
         <source>About &amp;Qt</source>
         <translation>Tietoja &amp;Qt:sta</translation>
     </message>
