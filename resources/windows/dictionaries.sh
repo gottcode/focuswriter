@@ -11,7 +11,7 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='5.2.0.1'
+loversion='5.2.0.3'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
