@@ -388,6 +388,9 @@ void ThemeDialog::accept()
 {
 	m_theme.setName(m_name->text().simplified());
 	setValues(m_theme);
+	if (!m_theme.isDefault()) {
+		m_theme.setLoadColor(m_load_color);
+	}
 	m_theme.saveChanges();
 
 	savePreview();
@@ -531,9 +534,6 @@ void ThemeDialog::savePreview()
 {
 	Theme::removeIcon(m_theme.id(), m_theme.isDefault());
 	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault(), devicePixelRatioF()), "", 0);
-	if (!m_theme.isDefault()) {
-		m_theme.setLoadColor(m_load_color);
-	}
 }
 
 //-----------------------------------------------------------------------------
