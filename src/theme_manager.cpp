@@ -101,9 +101,13 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_default_themes->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 	m_default_themes->setMinimumSize(view_size);
 	m_default_themes->setWordWrap(true);
+	addItem("bitterskies", true, tr("Bitter Skies"));
+	addItem("enchantment", true, tr("Enchantment"));
 	addItem("gentleblues", true, tr("Gentle Blues"));
 	addItem("oldschool", true, tr("Old School"));
 	addItem("spacedreams", true, tr("Space Dreams"));
+	addItem("spygames", true, tr("Spy Games"));
+	addItem("tranquility", true, tr("Tranquility"));
 	addItem("writingdesk", true, tr("Writing Desk"));
 
 	// Add default control buttons
