@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ar" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" sourcelanguage="en" version="2.1">
 <context>
     <name>Alert</name>
     <message>
@@ -24,7 +22,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="37"/>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
@@ -37,55 +35,27 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -93,39 +63,32 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="154"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="289"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="292"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="305"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -134,7 +97,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -142,7 +105,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -150,12 +113,12 @@
     <message>
         <location filename="../src/document.cpp" line="419"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(%1 غير معنون)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="486"/>
@@ -194,17 +157,17 @@
     <message>
         <location filename="../src/document.cpp" line="579"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="580"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="581"/>
         <source>All unsaved changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="583"/>
@@ -214,17 +177,17 @@
     <message>
         <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1489"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1490"/>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -232,12 +195,12 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="191"/>
         <source>File Changed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
@@ -257,12 +220,12 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="211"/>
         <source>File Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="212"/>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="213"/>
@@ -275,7 +238,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="96"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">لا يمكن فتح ملف الأرشيف</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -293,12 +256,12 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="53"/>
         <source>Ignore case</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="54"/>
         <source>Whole words only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="55"/>
@@ -343,19 +306,12 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="279"/>
@@ -375,37 +331,37 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="79"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="95"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="111"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -418,12 +374,12 @@
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="55"/>
         <source>Check Spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/highlighter.cpp" line="129"/>
         <source>(No suggestions found)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -467,7 +423,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="107"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">لا يمكن فتح ملف الأرشيف</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -485,7 +441,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="86"/>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="88"/>
@@ -495,7 +451,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="87"/>
         <source>Spell Checking</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="433"/>
@@ -506,7 +462,7 @@
         <location filename="../src/preferences_dialog.cpp" line="447"/>
         <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="447"/>
@@ -516,7 +472,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="520"/>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="232"/>
@@ -524,37 +480,37 @@
         <location filename="../src/preferences_dialog.cpp" line="508"/>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="89"/>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="233"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="508"/>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="85"/>
         <source>Daily Goal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="780"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="782"/>
         <source>Minutes:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="789"/>
@@ -570,12 +526,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="681"/>
         <source>Always vertically center</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="682"/>
         <source>Block insertion cursor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="683"/>
@@ -590,27 +546,27 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="686"/>
         <source>Smart quotes:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="693"/>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="694"/>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="715"/>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="722"/>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="725"/>
@@ -625,7 +581,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="728"/>
         <source>Remember cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="859"/>
@@ -660,92 +616,92 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="871"/>
         <source>Word Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="376"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="731"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="820"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="823"/>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="873"/>
         <source>Detect word boundaries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="874"/>
         <source>Divide character count by six</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="883"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1031"/>
@@ -765,7 +721,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1036"/>
         <source>Text Alongside Icons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1037"/>
@@ -780,7 +736,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1044"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1060"/>
@@ -800,32 +756,32 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="946"/>
         <source>Check spelling as you type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="947"/>
         <source>Ignore words in UPPERCASE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="948"/>
         <source>Ignore words with numbers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="961"/>
@@ -856,7 +812,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="328"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="332"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -864,7 +820,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -877,7 +833,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="97"/>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="98"/>
@@ -887,7 +843,7 @@
     <message>
         <location filename="../src/scene_list.cpp" line="118"/>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="119"/>
@@ -897,27 +853,27 @@
     <message>
         <location filename="../src/scene_list.cpp" line="400"/>
         <source>Show scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="401"/>
         <source>Hide scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="149"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="91"/>
         <source>Move Scenes Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scene_list.cpp" line="156"/>
         <source>Resize scene list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -953,7 +909,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="100"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="103"/>
@@ -978,7 +934,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="279"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="324"/>
@@ -988,7 +944,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
@@ -1003,12 +959,12 @@
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
         <source>Sorry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
         <source>The requested session name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
@@ -1018,7 +974,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
@@ -1036,18 +992,18 @@
     <message>
         <location filename="../src/shortcut_edit.cpp" line="36"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/shortcut_edit.cpp" line="39"/>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1135"/>
         <location filename="../src/symbols_dialog.cpp" line="205"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1055,7 +1011,7 @@
     <message>
         <location filename="../src/smart_quotes.cpp" line="150"/>
         <source>Replacing quotation marks...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/smart_quotes.cpp" line="151"/>
@@ -1068,7 +1024,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="134"/>
         <source>Check Spelling</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="142"/>
@@ -1093,22 +1049,22 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="156"/>
         <source>C&amp;hange All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="171"/>
         <source>Not in dictionary:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="179"/>
         <source>Change to:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
         <source>Checking spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
@@ -1118,17 +1074,17 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="196"/>
         <source>Please wait</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
         <source>Spell check complete.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1136,17 +1092,17 @@
     <message>
         <location filename="../src/symbols_dialog.cpp" line="98"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="105"/>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="128"/>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbols_dialog.cpp" line="181"/>
@@ -1169,12 +1125,12 @@
     <message>
         <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Blocks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbols_model.cpp" line="95"/>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1182,7 +1138,7 @@
     <message>
         <location filename="../src/theme.cpp" line="151"/>
         <source>Untitled %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1200,101 +1156,101 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Tiled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Centered</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <location filename="../src/theme_dialog.cpp" line="162"/>
         <source>Stretched</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Scaled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Zoomed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="177"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="178"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="179"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="183"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="197"/>
         <location filename="../src/theme_dialog.cpp" line="215"/>
         <location filename="../src/theme_dialog.cpp" line="245"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="219"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="246"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="250"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="268"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="269"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="323"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="330"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="126"/>
@@ -1304,18 +1260,18 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="59"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="144"/>
         <location filename="../src/theme_dialog.cpp" line="298"/>
         <source>Type:</source>
-        <translation type="unfinished">النـوع:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="110"/>
@@ -1342,7 +1298,7 @@
         <location filename="../src/theme_dialog.cpp" line="312"/>
         <location filename="../src/theme_dialog.cpp" line="318"/>
         <source> pixels</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
@@ -1352,7 +1308,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
@@ -1372,7 +1328,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="112"/>
         <source>Misspelled:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="273"/>
@@ -1382,42 +1338,42 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="299"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="329"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="250"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1430,54 +1386,54 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Default</source>
-        <translation type="unfinished">الافتراضي</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <location filename="../src/theme_manager.cpp" line="171"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="114"/>
         <location filename="../src/theme_manager.cpp" line="175"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="128"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="180"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="185"/>
         <source>Delete</source>
-        <translation type="unfinished">حـذف</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="190"/>
@@ -1492,18 +1448,18 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="308"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="332"/>
         <location filename="../src/theme_manager.cpp" line="406"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="332"/>
@@ -1521,57 +1477,57 @@
     <message>
         <location filename="../src/timer.cpp" line="255"/>
         <source>&lt;b&gt;%1&lt;/b&gt; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
         <source>Delete timer?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="355"/>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="356"/>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="357"/>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="358"/>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="402"/>
         <source>Set Delay</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="403"/>
         <source>Set Time</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="406"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="409"/>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="418"/>
@@ -1591,17 +1547,17 @@
     <message>
         <location filename="../src/timer.cpp" line="448"/>
         <source>Memo:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="459"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="461"/>
         <source>Delete</source>
-        <translation type="unfinished">حـذف</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1609,12 +1565,12 @@
     <message>
         <location filename="../src/timer_display.cpp" line="150"/>
         <source>HH:mm:ss</source>
-        <translation type="unfinished">HH:mm:ss</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer_display.cpp" line="160"/>
         <source>No timers running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1622,7 +1578,7 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="46"/>
         <source>Timers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="78"/>
@@ -1637,12 +1593,12 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1687,56 +1643,56 @@
         <location filename="../src/application.cpp" line="44"/>
         <location filename="../src/window.cpp" line="860"/>
         <source>FocusWriter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="861"/>
         <source>A simple fullscreen word processor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="862"/>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="863"/>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="864"/>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="865"/>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="172"/>
         <location filename="../src/window.cpp" line="921"/>
         <source>Characters: %L1 / %L2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="170"/>
         <location filename="../src/window.cpp" line="922"/>
         <source>Pages: %L1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="171"/>
         <location filename="../src/window.cpp" line="923"/>
         <source>Paragraphs: %L1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="169"/>
         <location filename="../src/window.cpp" line="924"/>
         <source>Words: %L1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/document.cpp" line="596"/>
@@ -1752,7 +1708,7 @@
     <message>
         <location filename="../src/window.cpp" line="205"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="208"/>
@@ -1787,58 +1743,58 @@
     <message>
         <location filename="../src/window.cpp" line="316"/>
         <source>Emergency cache is not writable.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="336"/>
         <location filename="../src/window.cpp" line="1032"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="337"/>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="338"/>
         <source>Restore from the emergency cache?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="463"/>
         <source>Some files could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="466"/>
         <source>Some files were opened Read-Only.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1033"/>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1034"/>
         <source>Overwrite newer file?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1119"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1120"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1121"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1151"/>
@@ -1903,7 +1859,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -1953,7 +1909,7 @@
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1331"/>
@@ -1968,7 +1924,7 @@
     <message>
         <location filename="../src/window.cpp" line="1334"/>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1334"/>
@@ -1983,42 +1939,42 @@
     <message>
         <location filename="../src/window.cpp" line="1339"/>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1341"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1343"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1346"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1347"/>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1365"/>
@@ -2048,7 +2004,7 @@
     <message>
         <location filename="../src/window.cpp" line="1373"/>
         <source>Sup&amp;erscript</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1373"/>
@@ -2058,7 +2014,7 @@
     <message>
         <location filename="../src/window.cpp" line="1375"/>
         <source>&amp;Subscript</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1375"/>
@@ -2108,7 +2064,7 @@
     <message>
         <location filename="../src/window.cpp" line="1395"/>
         <source>&amp;Decrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1395"/>
@@ -2118,7 +2074,7 @@
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>I&amp;ncrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
@@ -2168,22 +2124,22 @@
     <message>
         <location filename="../src/window.cpp" line="1419"/>
         <source>Smart &amp;Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1420"/>
         <source>Update &amp;Document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Update &amp;Selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
         <source>&amp;Spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
@@ -2193,22 +2149,22 @@
     <message>
         <location filename="../src/window.cpp" line="1428"/>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1430"/>
         <source>&amp;Timers...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1431"/>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1432"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1435"/>
@@ -2223,7 +2179,7 @@
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>Show &amp;Menu Icons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
@@ -2233,7 +2189,7 @@
     <message>
         <location filename="../src/window.cpp" line="1449"/>
         <source>&amp;Fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
@@ -2248,7 +2204,7 @@
     <message>
         <location filename="../src/window.cpp" line="1455"/>
         <source>M&amp;inimize</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1455"/>
@@ -2293,7 +2249,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>
@@ -2308,7 +2264,7 @@
     <message>
         <location filename="../src/window.cpp" line="396"/>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1465"/>

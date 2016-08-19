@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="he" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="he" sourcelanguage="en" version="2.1">
 <context>
     <name>Alert</name>
     <message>
@@ -29,7 +27,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -37,39 +35,27 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% מתוך דקה %Ln</numerusform>
-            <numerusform>%1% מתוך %Ln דקות</numerusform>
-        </translation>
+        <translation><numerusform>%1% מתוך דקה %Ln</numerusform><numerusform>%1% מתוך %Ln דקות</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% מתוך %Ln מילים</numerusform>
-            <numerusform>%1% מתוך %Ln מילים</numerusform>
-        </translation>
+        <translation><numerusform>%1% מתוך %Ln מילים</numerusform><numerusform>%1% מתוך %Ln מילים</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation>
-            <numerusform>מילה %Ln</numerusform>
-            <numerusform>%Ln מילים</numerusform>
-        </translation>
+        <translation><numerusform>מילה %Ln</numerusform><numerusform>%Ln מילים</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation>
-            <numerusform>דקה %Ln</numerusform>
-            <numerusform>%Ln דקות</numerusform>
-        </translation>
+        <translation><numerusform>דקה %Ln</numerusform><numerusform>%Ln דקות</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -97,15 +83,12 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation>
-            <numerusform>יום %n</numerusform>
-            <numerusform>%n ימים</numerusform>
-        </translation>
+        <translation><numerusform>יום %n</numerusform><numerusform>%n ימים</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,10 +306,7 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation>
-            <numerusform>להחליף מאורע %n?</numerusform>
-            <numerusform>להחליף %n מאורעות?</numerusform>
-        </translation>
+        <translation><numerusform>להחליף מאורע %n?</numerusform><numerusform>להחליף %n מאורעות?</numerusform></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
@@ -351,22 +331,22 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="79"/>
@@ -646,12 +626,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>להסיר מילון נוכחי?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="731"/>
@@ -661,22 +641,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>ממשק משתמש</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>הצג תמיד פס גלילה</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>הצג תמיד סרגל עליון</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>הצג תמיד סרגל תחתון</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
@@ -994,7 +974,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
@@ -1004,7 +984,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
         <source>Ctrl+Shift+M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1218,7 +1198,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="183"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>פינות רקע טקסט מעוגלות</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="197"/>
@@ -1230,17 +1210,17 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>רקע טקסט מטושטש</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="219"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>רקע טקסט עם הצלה</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="246"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>הדפסה אנכית:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="250"/>
@@ -1497,7 +1477,7 @@
     <message>
         <location filename="../src/timer.cpp" line="255"/>
         <source>&lt;b&gt;%1&lt;/b&gt; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/timer.cpp" line="340"/>
@@ -1628,7 +1608,7 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="323"/>
         <source>%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1879,7 +1859,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>ת&amp;צורת עמוד...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -1894,7 +1874,7 @@
     <message>
         <location filename="../src/window.cpp" line="1312"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1316"/>
@@ -1934,7 +1914,7 @@
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
@@ -1949,7 +1929,7 @@
     <message>
         <location filename="../src/window.cpp" line="1334"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1337"/>
@@ -2019,7 +1999,7 @@
     <message>
         <location filename="../src/window.cpp" line="1371"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1373"/>
@@ -2029,7 +2009,7 @@
     <message>
         <location filename="../src/window.cpp" line="1373"/>
         <source>Ctrl+^</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1375"/>
@@ -2039,7 +2019,7 @@
     <message>
         <location filename="../src/window.cpp" line="1375"/>
         <source>Ctrl+_</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1379"/>
@@ -2049,7 +2029,7 @@
     <message>
         <location filename="../src/window.cpp" line="1379"/>
         <source>Ctrl+{</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -2059,7 +2039,7 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>Ctrl+|</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1383"/>
@@ -2069,7 +2049,7 @@
     <message>
         <location filename="../src/window.cpp" line="1383"/>
         <source>Ctrl+}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1385"/>
@@ -2079,7 +2059,7 @@
     <message>
         <location filename="../src/window.cpp" line="1385"/>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1395"/>
@@ -2089,7 +2069,7 @@
     <message>
         <location filename="../src/window.cpp" line="1395"/>
         <source>Ctrl+&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
@@ -2099,7 +2079,7 @@
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Ctrl+&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1399"/>
@@ -2139,7 +2119,7 @@
     <message>
         <location filename="../src/window.cpp" line="1417"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1419"/>
@@ -2229,7 +2209,7 @@
     <message>
         <location filename="../src/window.cpp" line="1455"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1457"/>
@@ -2269,7 +2249,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>

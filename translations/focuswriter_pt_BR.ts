@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" sourcelanguage="en" version="2.1">
 <context>
     <name>Alert</name>
     <message>
@@ -37,34 +35,22 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% de %Ln minutoo</numerusform>
-            <numerusform>%1% de %Ln minutos</numerusform>
-        </translation>
+        <translation><numerusform>%1% de %Ln minutoo</numerusform><numerusform>%1% de %Ln minutos</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% de %Ln palavra</numerusform>
-            <numerusform>%1% de %Ln palavras</numerusform>
-        </translation>
+        <translation><numerusform>%1% de %Ln palavra</numerusform><numerusform>%1% de %Ln palavras</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation>
-            <numerusform>%Ln palavra</numerusform>
-            <numerusform>%Ln palavras</numerusform>
-        </translation>
+        <translation><numerusform>%Ln palavra</numerusform><numerusform>%Ln palavras</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation>
-            <numerusform>%Ln minuto</numerusform>
-            <numerusform>%Ln minutos</numerusform>
-        </translation>
+        <translation><numerusform>%Ln minuto</numerusform><numerusform>%Ln minutos</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
@@ -97,10 +83,7 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation>
-            <numerusform>%n dia</numerusform>
-            <numerusform>%n dias</numerusform>
-        </translation>
+        <translation><numerusform>%n dia</numerusform><numerusform>%n dias</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
@@ -323,10 +306,7 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation>
-            <numerusform>Substituir %n ocorrência?</numerusform>
-            <numerusform>Substituir %n ocorrências?</numerusform>
-        </translation>
+        <translation><numerusform>Substituir %n ocorrência?</numerusform><numerusform>Substituir %n ocorrências?</numerusform></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
@@ -356,7 +336,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>XML Plano do OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
@@ -646,7 +626,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover o dicionário atual?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
@@ -661,22 +641,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface de Usuário</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar sempre a barra de rolagem</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>MOstrar sempre a barra superior</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar sempre as barra inferior</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
@@ -1879,7 +1859,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração de Pá&amp;gina</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -2269,7 +2249,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>

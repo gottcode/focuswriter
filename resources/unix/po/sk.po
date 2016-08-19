@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Erik Bartoš <erik.bartos@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:45+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/focuswriter/"
+"PO-Revision-Date: 2016-08-10 10:36+0000\n"
+"Last-Translator: Erik Bartoš <erik.bartos@gmail.com>\n"
+"Language-Team: Slovak (http://www.transifex.com/gottcode/focuswriter/"
 "language/sk/)\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +21,11 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Celoobrazovkový textový editor"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -33,6 +34,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter je jednoduchý textový editor bez rozptýlení. Využíva skryté "
+"rozhranie, ku ktorému sa pristupuje pohybom myši na okraje obrazovky, čo "
+"umožňuje programu mať prirodzený vzhľad a dojem, zatiaľ čo si stále "
+"udržujete odstup, takže sa môžete ponoriť do svojej práce."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -41,6 +46,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter umožňuje prispôsobiť vaše prostredie vytvorením tém, ktoré "
+"ovládajú písmo, farby a obrázok na pozadí na pridanie atmosféry. Je tiež "
+"vybavený funkciami ako priebežná aktualizácia štatistík, denné ciele, viac "
+"otvorených dokumentov, kontrolu pravopisu a oveľa viac."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -48,11 +57,14 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Navyše, pri otvorení programu sa vaša aktuálne rozpracovaná práca "
+"automaticky načíta na pozícii, kde ste naposledy skončili, takže môžete "
+"okamžite skočiť naspäť."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "Celoobrazovkový textový editor"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr ""
+msgstr "Písať bez rozptýlenia"

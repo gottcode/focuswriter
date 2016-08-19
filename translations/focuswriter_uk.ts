@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" sourcelanguage="en" version="2.1">
 <context>
     <name>Alert</name>
     <message>
@@ -37,38 +35,22 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% з %Ln хвилин</numerusform>
-            <numerusform>%1% з %Ln хвилин</numerusform>
-            <numerusform>%1% з %Ln хвилин</numerusform>
-        </translation>
+        <translation><numerusform>%1% з %Ln хвилин</numerusform><numerusform>%1% з %Ln хвилин</numerusform><numerusform>%1% з %Ln хвилин</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% з %Ln слів</numerusform>
-            <numerusform>%1% з %Ln слів</numerusform>
-            <numerusform>%1% з %Ln слів</numerusform>
-        </translation>
+        <translation><numerusform>%1% з %Ln слів</numerusform><numerusform>%1% з %Ln слів</numerusform><numerusform>%1% з %Ln слів</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation>
-            <numerusform>%Ln слово</numerusform>
-            <numerusform>%Ln слів</numerusform>
-            <numerusform>%Ln слова</numerusform>
-        </translation>
+        <translation><numerusform>%Ln слово</numerusform><numerusform>%Ln слів</numerusform><numerusform>%Ln слова</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation>
-            <numerusform>%Ln хвилина</numerusform>
-            <numerusform>%Ln хвилини</numerusform>
-            <numerusform>%Ln хвилин</numerusform>
-        </translation>
+        <translation><numerusform>%Ln хвилина</numerusform><numerusform>%Ln хвилини</numerusform><numerusform>%Ln хвилин</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
@@ -101,11 +83,7 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation>
-            <numerusform>%n день</numerusform>
-            <numerusform>%n дні</numerusform>
-            <numerusform>%n днів</numerusform>
-        </translation>
+        <translation><numerusform>%n день</numerusform><numerusform>%n дні</numerusform><numerusform>%n днів</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
@@ -328,11 +306,7 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation>
-            <numerusform>Замінити %n примірник?</numerusform>
-            <numerusform>Замінити %n примірники?</numerusform>
-            <numerusform>Замінити %n примірників?</numerusform>
-        </translation>
+        <translation><numerusform>Замінити %n примірник?</numerusform><numerusform>Замінити %n примірники?</numerusform><numerusform>Замінити %n примірників?</numerusform></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
@@ -362,7 +336,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
@@ -652,7 +626,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
@@ -667,22 +641,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
@@ -1885,7 +1859,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -2275,7 +2249,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>

@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Serhii Haifullin <apexpredator@ya.ru>, 2014
+# Serhii Haifullin <apexpredator@ya.ru>, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-08-27 08:35+0000\n"
+"PO-Revision-Date: 2016-07-17 08:22+0000\n"
 "Last-Translator: Serhii Haifullin <apexpredator@ya.ru>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/focuswriter/"
+"Language-Team: Russian (http://www.transifex.com/gottcode/focuswriter/"
 "language/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
-"FocusWriter это простой текстовый редактор, позволяющий полностью "
+"FocusWriter - это простой текстовый редактор, позволяющий полностью "
 "сосредоточиться на работе. В нем используется выдвижной интерфейс, "
 "управляющие элементы которого становятся доступными при наведении стрелки "
 "мыши к краям экрана. Это дает возможность добиться максимально "

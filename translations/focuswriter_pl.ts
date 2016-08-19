@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" sourcelanguage="en" version="2.1">
 <context>
     <name>Alert</name>
     <message>
@@ -37,38 +35,22 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln minuty</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
-        </translation>
+        <translation><numerusform>%1% z %Ln minuty</numerusform><numerusform>%1% z %Ln minut</numerusform><numerusform>%1% z %Ln minut</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln słowa</numerusform>
-            <numerusform>%1% z %Ln słów</numerusform>
-            <numerusform>%1% z %Ln słów</numerusform>
-        </translation>
+        <translation><numerusform>%1% z %Ln słowa</numerusform><numerusform>%1% z %Ln słów</numerusform><numerusform>%1% z %Ln słów</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation>
-            <numerusform>%Ln słowo</numerusform>
-            <numerusform>%Ln słowa</numerusform>
-            <numerusform>%Ln słów</numerusform>
-        </translation>
+        <translation><numerusform>%Ln słowo</numerusform><numerusform>%Ln słowa</numerusform><numerusform>%Ln słów</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation>
-            <numerusform>%Ln minuta</numerusform>
-            <numerusform>%Ln minuty</numerusform>
-            <numerusform>%Ln minut</numerusform>
-        </translation>
+        <translation><numerusform>%Ln minuta</numerusform><numerusform>%Ln minuty</numerusform><numerusform>%Ln minut</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
@@ -101,11 +83,7 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation>
-            <numerusform>%n dzień</numerusform>
-            <numerusform>%n dni</numerusform>
-            <numerusform>%n dni</numerusform>
-        </translation>
+        <translation><numerusform>%n dzień</numerusform><numerusform>%n dni</numerusform><numerusform>%n dni</numerusform></translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
@@ -328,11 +306,7 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation>
-            <numerusform>Zastąpić %n wystąpienie?</numerusform>
-            <numerusform>Zastąpić %n wystąpienia?</numerusform>
-            <numerusform>Zastąpić %n wystąpień?</numerusform>
-        </translation>
+        <translation><numerusform>Zastąpić %n wystąpienie?</numerusform><numerusform>Zastąpić %n wystąpienia?</numerusform><numerusform>Zastąpić %n wystąpień?</numerusform></translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
@@ -362,7 +336,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Flat XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
@@ -652,7 +626,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunąć obecny słownik?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
@@ -667,22 +641,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejs użytkownika</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawsze wyświetlaj pasek przewijania</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawsze wyświetlaj górny pasek</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawsze wyświetlaj dolny pasek</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
@@ -1885,7 +1859,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia &amp;strony...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -2275,7 +2249,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>
