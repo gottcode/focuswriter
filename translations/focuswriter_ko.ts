@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko" sourcelanguage="en" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ko" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -35,22 +37,30 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation><numerusform>%Ln 분 중 %1%</numerusform></translation>
+        <translation>
+            <numerusform>%Ln 분 중 %1%</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation><numerusform>단어 %Ln 중 %1%</numerusform></translation>
+        <translation>
+            <numerusform>단어 %Ln 중 %1%</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation><numerusform>단어 %Ln개</numerusform></translation>
+        <translation>
+            <numerusform>단어 %Ln개</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation><numerusform>%Ln 분</numerusform></translation>
+        <translation>
+            <numerusform>%Ln 분</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
@@ -83,7 +93,9 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation><numerusform>%n 일</numerusform></translation>
+        <translation>
+            <numerusform>%n 일</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
@@ -306,7 +318,9 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation><numerusform>%n 의 사례를 바꿀까요?</numerusform></translation>
+        <translation>
+            <numerusform>%n 의 사례를 바꿀까요?</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
@@ -336,7 +350,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
@@ -626,7 +640,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
@@ -641,22 +655,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
@@ -1371,7 +1385,7 @@
         <translation>탭 너비:</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="250"/>
+        <location filename="../src/theme_manager.cpp" line="254"/>
         <source>New Theme</source>
         <translation>새로운 테마</translation>
     </message>
@@ -1390,84 +1404,104 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
+        <source>Bitter Skies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="105"/>
+        <source>Enchantment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Gentle Blues</source>
         <translation>편한 푸른색</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="105"/>
+        <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Old School</source>
         <translation>올드 스쿨</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="106"/>
+        <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Space Dreams</source>
         <translation>스페이스 드림</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="107"/>
+        <location filename="../src/theme_manager.cpp" line="109"/>
+        <source>Spy Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="110"/>
+        <source>Tranquility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="111"/>
         <source>Writing Desk</source>
         <translation>나무 책상</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="110"/>
-        <location filename="../src/theme_manager.cpp" line="171"/>
+        <location filename="../src/theme_manager.cpp" line="114"/>
+        <location filename="../src/theme_manager.cpp" line="175"/>
         <source>New</source>
         <translation>새로 만들기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="114"/>
-        <location filename="../src/theme_manager.cpp" line="175"/>
+        <location filename="../src/theme_manager.cpp" line="118"/>
+        <location filename="../src/theme_manager.cpp" line="179"/>
         <source>Duplicate</source>
         <translation>복사하기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="128"/>
+        <location filename="../src/theme_manager.cpp" line="132"/>
         <source>Custom</source>
         <translation>사용자 설정</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="180"/>
+        <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Edit</source>
         <translation>편집하기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="185"/>
+        <location filename="../src/theme_manager.cpp" line="189"/>
         <source>Delete</source>
         <translation>지우기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="190"/>
+        <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Import</source>
         <translation>가져오기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="194"/>
+        <location filename="../src/theme_manager.cpp" line="198"/>
         <source>Export</source>
         <translation>내보내기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="308"/>
+        <location filename="../src/theme_manager.cpp" line="312"/>
         <source>Question</source>
         <translation>물어볼 것이 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="308"/>
+        <location filename="../src/theme_manager.cpp" line="312"/>
         <source>Delete theme &apos;%1&apos;?</source>
         <translation>&apos;%1&apos; 테마를 지우시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="332"/>
-        <location filename="../src/theme_manager.cpp" line="406"/>
+        <location filename="../src/theme_manager.cpp" line="336"/>
+        <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Themes (%1)</source>
         <translation>테마 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="332"/>
+        <location filename="../src/theme_manager.cpp" line="336"/>
         <source>Import Theme</source>
         <translation>테마 가져오기</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="406"/>
+        <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Export Theme</source>
         <translation>테마 내보내기</translation>
     </message>
@@ -1859,7 +1893,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -2249,7 +2283,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>

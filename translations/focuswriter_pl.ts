@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" sourcelanguage="en" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pl" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -35,22 +37,38 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation><numerusform>%1% z %Ln minuty</numerusform><numerusform>%1% z %Ln minut</numerusform><numerusform>%1% z %Ln minut</numerusform></translation>
+        <translation>
+            <numerusform>%1% z %Ln minuty</numerusform>
+            <numerusform>%1% z %Ln minut</numerusform>
+            <numerusform>%1% z %Ln minut</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation><numerusform>%1% z %Ln słowa</numerusform><numerusform>%1% z %Ln słów</numerusform><numerusform>%1% z %Ln słów</numerusform></translation>
+        <translation>
+            <numerusform>%1% z %Ln słowa</numerusform>
+            <numerusform>%1% z %Ln słów</numerusform>
+            <numerusform>%1% z %Ln słów</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation><numerusform>%Ln słowo</numerusform><numerusform>%Ln słowa</numerusform><numerusform>%Ln słów</numerusform></translation>
+        <translation>
+            <numerusform>%Ln słowo</numerusform>
+            <numerusform>%Ln słowa</numerusform>
+            <numerusform>%Ln słów</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation><numerusform>%Ln minuta</numerusform><numerusform>%Ln minuty</numerusform><numerusform>%Ln minut</numerusform></translation>
+        <translation>
+            <numerusform>%Ln minuta</numerusform>
+            <numerusform>%Ln minuty</numerusform>
+            <numerusform>%Ln minut</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
@@ -83,7 +101,11 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation><numerusform>%n dzień</numerusform><numerusform>%n dni</numerusform><numerusform>%n dni</numerusform></translation>
+        <translation>
+            <numerusform>%n dzień</numerusform>
+            <numerusform>%n dni</numerusform>
+            <numerusform>%n dni</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
@@ -306,7 +328,11 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation><numerusform>Zastąpić %n wystąpienie?</numerusform><numerusform>Zastąpić %n wystąpienia?</numerusform><numerusform>Zastąpić %n wystąpień?</numerusform></translation>
+        <translation>
+            <numerusform>Zastąpić %n wystąpienie?</numerusform>
+            <numerusform>Zastąpić %n wystąpienia?</numerusform>
+            <numerusform>Zastąpić %n wystąpień?</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
@@ -1371,7 +1397,7 @@
         <translation>Szerokość zakładki:</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="250"/>
+        <location filename="../src/theme_manager.cpp" line="254"/>
         <source>New Theme</source>
         <translation>Nowy motyw</translation>
     </message>
@@ -1390,84 +1416,104 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
+        <source>Bitter Skies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="105"/>
+        <source>Enchantment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Gentle Blues</source>
         <translation>Delikatny Blues</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="105"/>
+        <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Old School</source>
         <translation>Stara szkoła</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="106"/>
+        <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Space Dreams</source>
         <translation>Marzenia kosmiczne</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="107"/>
+        <location filename="../src/theme_manager.cpp" line="109"/>
+        <source>Spy Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="110"/>
+        <source>Tranquility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="111"/>
         <source>Writing Desk</source>
         <translation>Biurko</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="110"/>
-        <location filename="../src/theme_manager.cpp" line="171"/>
+        <location filename="../src/theme_manager.cpp" line="114"/>
+        <location filename="../src/theme_manager.cpp" line="175"/>
         <source>New</source>
         <translation>Nowy</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="114"/>
-        <location filename="../src/theme_manager.cpp" line="175"/>
+        <location filename="../src/theme_manager.cpp" line="118"/>
+        <location filename="../src/theme_manager.cpp" line="179"/>
         <source>Duplicate</source>
         <translation>Stwórz kopię </translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="128"/>
+        <location filename="../src/theme_manager.cpp" line="132"/>
         <source>Custom</source>
         <translation>Własny</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="180"/>
+        <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Edit</source>
         <translation>Edytuj</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="185"/>
+        <location filename="../src/theme_manager.cpp" line="189"/>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="190"/>
+        <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Import</source>
         <translation>Importuj</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="194"/>
+        <location filename="../src/theme_manager.cpp" line="198"/>
         <source>Export</source>
         <translation>Eksportuj</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="308"/>
+        <location filename="../src/theme_manager.cpp" line="312"/>
         <source>Question</source>
         <translation>Pytanie</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="308"/>
+        <location filename="../src/theme_manager.cpp" line="312"/>
         <source>Delete theme &apos;%1&apos;?</source>
         <translation>Usunąć motyw &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="332"/>
-        <location filename="../src/theme_manager.cpp" line="406"/>
+        <location filename="../src/theme_manager.cpp" line="336"/>
+        <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Themes (%1)</source>
         <translation>Motywy (%1)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="332"/>
+        <location filename="../src/theme_manager.cpp" line="336"/>
         <source>Import Theme</source>
         <translation>Importuj motyw</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="406"/>
+        <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Export Theme</source>
         <translation>Eksportuj motyw</translation>
     </message>

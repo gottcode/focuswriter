@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" sourcelanguage="en" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fi" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
@@ -35,22 +37,34 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation><numerusform>%1 % %Ln minuutista</numerusform><numerusform>%1 % %Ln minuutista</numerusform></translation>
+        <translation>
+            <numerusform>%1 % %Ln minuutista</numerusform>
+            <numerusform>%1 % %Ln minuutista</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation><numerusform>%1 % %Ln sanasta</numerusform><numerusform>%1 % %Ln sanasta</numerusform></translation>
+        <translation>
+            <numerusform>%1 % %Ln sanasta</numerusform>
+            <numerusform>%1 % %Ln sanasta</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation><numerusform>%Ln sana</numerusform><numerusform>%Ln sanaa</numerusform></translation>
+        <translation>
+            <numerusform>%Ln sana</numerusform>
+            <numerusform>%Ln sanaa</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation><numerusform>%Ln minuutti</numerusform><numerusform>%Ln minuuttia</numerusform></translation>
+        <translation>
+            <numerusform>%Ln minuutti</numerusform>
+            <numerusform>%Ln minuuttia</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
@@ -83,7 +97,10 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation><numerusform>%n päivä</numerusform><numerusform>%n päivää</numerusform></translation>
+        <translation>
+            <numerusform>%n päivä</numerusform>
+            <numerusform>%n päivää</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
@@ -306,7 +323,10 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation><numerusform>Korvataanko %n esiintymä?</numerusform><numerusform>Korvataanko %n esiintymää?</numerusform></translation>
+        <translation>
+            <numerusform>Korvataanko %n esiintymä?</numerusform>
+            <numerusform>Korvataanko %n esiintymää?</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="275"/>
@@ -336,7 +356,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
@@ -626,7 +646,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
@@ -641,22 +661,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
@@ -1371,7 +1391,7 @@
         <translation>Sarkainleveys:</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="250"/>
+        <location filename="../src/theme_manager.cpp" line="254"/>
         <source>New Theme</source>
         <translation>Uusi teema</translation>
     </message>
@@ -1390,84 +1410,104 @@
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
+        <source>Bitter Skies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="105"/>
+        <source>Enchantment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Gentle Blues</source>
         <translation>Pehmeänsininen</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="105"/>
+        <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Old School</source>
         <translation>Vanhanaikainen</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="106"/>
+        <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Space Dreams</source>
         <translation>Avaruusunelma</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="107"/>
+        <location filename="../src/theme_manager.cpp" line="109"/>
+        <source>Spy Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="110"/>
+        <source>Tranquility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/theme_manager.cpp" line="111"/>
         <source>Writing Desk</source>
         <translation>Kirjoituspöytä</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="110"/>
-        <location filename="../src/theme_manager.cpp" line="171"/>
+        <location filename="../src/theme_manager.cpp" line="114"/>
+        <location filename="../src/theme_manager.cpp" line="175"/>
         <source>New</source>
         <translation>Uusi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="114"/>
-        <location filename="../src/theme_manager.cpp" line="175"/>
+        <location filename="../src/theme_manager.cpp" line="118"/>
+        <location filename="../src/theme_manager.cpp" line="179"/>
         <source>Duplicate</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="128"/>
+        <location filename="../src/theme_manager.cpp" line="132"/>
         <source>Custom</source>
         <translation>Omat teemat</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="180"/>
+        <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Edit</source>
         <translation>Muokkaa</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="185"/>
+        <location filename="../src/theme_manager.cpp" line="189"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="190"/>
+        <location filename="../src/theme_manager.cpp" line="194"/>
         <source>Import</source>
         <translation>Tuo</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="194"/>
+        <location filename="../src/theme_manager.cpp" line="198"/>
         <source>Export</source>
         <translation>Vie</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="308"/>
+        <location filename="../src/theme_manager.cpp" line="312"/>
         <source>Question</source>
         <translation>Kysymys</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="308"/>
+        <location filename="../src/theme_manager.cpp" line="312"/>
         <source>Delete theme &apos;%1&apos;?</source>
         <translation>Poistetaanko teema %1?</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="332"/>
-        <location filename="../src/theme_manager.cpp" line="406"/>
+        <location filename="../src/theme_manager.cpp" line="336"/>
+        <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Themes (%1)</source>
         <translation>Teemat (%1)</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="332"/>
+        <location filename="../src/theme_manager.cpp" line="336"/>
         <source>Import Theme</source>
         <translation>Tuo teema</translation>
     </message>
     <message>
-        <location filename="../src/theme_manager.cpp" line="406"/>
+        <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Export Theme</source>
         <translation>Vie teema</translation>
     </message>
@@ -1859,7 +1899,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -2249,7 +2289,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>
