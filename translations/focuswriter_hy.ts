@@ -1405,12 +1405,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Մռայլ երկինք</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Դյութանք</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="106"/>
@@ -1430,12 +1430,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Լրտեսական խաղեր</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Հանդարտություն</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="111"/>
