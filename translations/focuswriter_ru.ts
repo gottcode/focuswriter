@@ -39,17 +39,17 @@
         <source>%1% of %Ln minute(s)</source>
         <translation>
             <numerusform>%1% из %Ln минут</numerusform>
-            <numerusform>%1% of %Ln minutes</numerusform>
+            <numerusform>%1% из %Ln минут</numerusform>
             <numerusform>%1% из %Ln минут</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% из %Ln слов</numerusform>
-            <numerusform>%1% of %Ln word</numerusform>
-            <numerusform>%1% из %Ln слов</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -64,10 +64,10 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation>
-            <numerusform>%Ln минут</numerusform>
-            <numerusform>%Ln минут</numerusform>
-            <numerusform>%Ln минут</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -101,10 +101,10 @@
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation>
-            <numerusform>%n дней</numerusform>
-            <numerusform>%n days</numerusform>
-            <numerusform>%n дней</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>

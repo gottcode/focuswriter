@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/document.cpp" line="419"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Sin título %1)</translation>
+        <translation>(Sin título %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Sin título %1</translation>
+        <translation>Sin título %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1489"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="96"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">No se puede abrir el archivo.</translation>
+        <translation>No se puede abrir el archivo.</translation>
     </message>
 </context>
 <context>
@@ -308,7 +308,7 @@
     <message>
         <location filename="../src/find_dialog.cpp" line="74"/>
         <source>Replace &amp;All</source>
-        <translation>Reemplazar %todo</translation>
+        <translation>Reemplazar &amp;todo</translation>
     </message>
     <message>
         <location filename="../src/find_dialog.cpp" line="151"/>
@@ -1275,7 +1275,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="126"/>
         <source>Remove</source>
-        <translation>REmover</translation>
+        <translation>Remover</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="59"/>
@@ -1406,7 +1406,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Default</source>
-        <translation type="unfinished">Por omisión</translation>
+        <translation>Por omisión</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
@@ -1468,12 +1468,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Edit</source>
-        <translation type="unfinished">Editar</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="189"/>
         <source>Delete</source>
-        <translation type="unfinished">Borrar</translation>
+        <translation>Borrar</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="194"/>

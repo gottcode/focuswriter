@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/document.cpp" line="419"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Sin título %1)</translation>
+        <translation>(Sin título %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Sin título %1</translation>
+        <translation>Sin título %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1489"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="96"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">No se puede abrir el archivador.</translation>
+        <translation>No se puede abrir el archivador.</translation>
     </message>
 </context>
 <context>
@@ -1406,7 +1406,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Default</source>
-        <translation type="unfinished">Predeterminado</translation>
+        <translation>Predeterminado</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
@@ -1452,7 +1452,7 @@
         <location filename="../src/theme_manager.cpp" line="114"/>
         <location filename="../src/theme_manager.cpp" line="175"/>
         <source>New</source>
-        <translation type="unfinished">Nueva</translation>
+        <translation>Nueva</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="118"/>
@@ -1468,7 +1468,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Edit</source>
-        <translation type="unfinished">Editar</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="189"/>

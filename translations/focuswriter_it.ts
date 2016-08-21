@@ -1499,7 +1499,7 @@
         <location filename="../src/theme_manager.cpp" line="336"/>
         <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Themes (%1)</source>
-        <translation>Temi</translation>
+        <translation>Temi (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="336"/>
