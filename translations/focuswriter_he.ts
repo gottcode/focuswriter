@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/alert_layer.cpp" line="38"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+D</translation>
     </message>
 </context>
 <context>
@@ -69,7 +69,7 @@
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -994,7 +994,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
@@ -1004,7 +1004,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="488"/>
         <source>Ctrl+Shift+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+M</translation>
     </message>
 </context>
 <context>
@@ -1914,7 +1914,7 @@
     <message>
         <location filename="../src/window.cpp" line="1312"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1316"/>
@@ -1954,7 +1954,7 @@
     <message>
         <location filename="../src/window.cpp" line="1331"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1333"/>
@@ -1969,7 +1969,7 @@
     <message>
         <location filename="../src/window.cpp" line="1334"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1337"/>
@@ -2039,7 +2039,7 @@
     <message>
         <location filename="../src/window.cpp" line="1371"/>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1373"/>
@@ -2049,7 +2049,7 @@
     <message>
         <location filename="../src/window.cpp" line="1373"/>
         <source>Ctrl+^</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+^</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1375"/>
@@ -2059,7 +2059,7 @@
     <message>
         <location filename="../src/window.cpp" line="1375"/>
         <source>Ctrl+_</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+_</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1379"/>
@@ -2069,7 +2069,7 @@
     <message>
         <location filename="../src/window.cpp" line="1379"/>
         <source>Ctrl+{</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+{</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -2079,7 +2079,7 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>Ctrl+|</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+|</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1383"/>
@@ -2089,7 +2089,7 @@
     <message>
         <location filename="../src/window.cpp" line="1383"/>
         <source>Ctrl+}</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+}</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1385"/>
@@ -2099,7 +2099,7 @@
     <message>
         <location filename="../src/window.cpp" line="1385"/>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+J</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1395"/>
@@ -2109,7 +2109,7 @@
     <message>
         <location filename="../src/window.cpp" line="1395"/>
         <source>Ctrl+&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+&lt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1396"/>
@@ -2119,7 +2119,7 @@
     <message>
         <location filename="../src/window.cpp" line="1396"/>
         <source>Ctrl+&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+&gt;</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1399"/>
@@ -2159,7 +2159,7 @@
     <message>
         <location filename="../src/window.cpp" line="1417"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1419"/>
@@ -2249,7 +2249,7 @@
     <message>
         <location filename="../src/window.cpp" line="1455"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1457"/>

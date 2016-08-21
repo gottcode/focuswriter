@@ -39,17 +39,17 @@
         <source>%1% of %Ln minute(s)</source>
         <translation>
             <numerusform>%1% из %Ln минут</numerusform>
-            <numerusform>%1% из %Ln минут</numerusform>
+            <numerusform>%1% of %Ln minutes</numerusform>
             <numerusform>%1% из %Ln минут</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% из %Ln слов</numerusform>
+            <numerusform>%1% of %Ln word</numerusform>
+            <numerusform>%1% из %Ln слов</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -64,16 +64,16 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln минут</numerusform>
+            <numerusform>%Ln минут</numerusform>
+            <numerusform>%Ln минут</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -81,36 +81,36 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="154"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Ежедневный прогресс</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="289"/>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Наиболее долгий период рабочих дней</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="292"/>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущий период рабочих дней</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="305"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Недоступно</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n дней</numerusform>
+            <numerusform>%n days</numerusform>
+            <numerusform>%n дней</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -119,7 +119,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% от ежедневной цели</translation>
     </message>
 </context>
 <context>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../src/spelling/dictionary_dialog.cpp" line="36"/>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить язык</translation>
     </message>
 </context>
 <context>
@@ -135,12 +135,12 @@
     <message>
         <location filename="../src/document.cpp" line="419"/>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Безымянный %1)</translation>
+        <translation>(Без названия %1)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="422"/>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Только чтение)</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="486"/>
@@ -179,12 +179,12 @@
     <message>
         <location filename="../src/document.cpp" line="579"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезагрузить файл?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="580"/>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезагрузить файл &apos;%1&apos; с диска?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="581"/>
@@ -199,7 +199,7 @@
     <message>
         <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Безымянная %1</translation>
+        <translation>Без названия %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1489"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл &apos;%1&apos; был изменен в другой программе.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/fileformats/docx_reader.cpp" line="96"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Невозможно открыть архив.</translation>
+        <translation>Невозможно открыть архив.</translation>
     </message>
 </context>
 <context>
@@ -357,7 +357,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Открытый Текстовый Документ</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
@@ -367,27 +367,27 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Открытый офисный файл XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Расширенный Текстовый формат</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="79"/>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Обычный текст</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="95"/>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Все файлы</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="111"/>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Все поддерживаемые файлы</translation>
     </message>
 </context>
 <context>
@@ -449,7 +449,7 @@
     <message>
         <location filename="../src/fileformats/odt_reader.cpp" line="107"/>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Невозможно открыть архив.</translation>
+        <translation>Невозможно открыть архив.</translation>
     </message>
 </context>
 <context>
@@ -647,7 +647,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="376"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить сегодняшний ежедневный прогресс на ноль?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
@@ -657,12 +657,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Записывать метку байта в простых текстовых файлах</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="731"/>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Формат по умолчанию:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
@@ -687,27 +687,27 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить сегодняшнее</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>История</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="820"/>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Запоминать историю</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="823"/>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать рабочие дни</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="838"/>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Минимальный прогресс для зачета дня в рабочий период:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="873"/>
@@ -722,12 +722,12 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="875"/>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Считать каждую букву, как слово</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="883"/>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Алгоритм формирования страницы</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1031"/>
@@ -838,7 +838,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="328"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="332"/>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неподдерживаемый файл RTF.</translation>
     </message>
 </context>
 <context>
@@ -846,7 +846,7 @@
     <message>
         <location filename="../src/fileformats/rtf_tokenizer.cpp" line="151"/>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неожиданный конец файла.</translation>
     </message>
 </context>
 <context>
@@ -935,7 +935,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="100"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="103"/>
@@ -960,7 +960,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="279"/>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать сессию</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="324"/>
@@ -1105,7 +1105,7 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="223"/>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Продолжить проверку с начала файла?</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="282"/>
@@ -1209,74 +1209,74 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="177"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Непрозрачность:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="178"/>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Позиция:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="179"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ширина:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="183"/>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Закругление углов фона текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="197"/>
         <location filename="../src/theme_dialog.cpp" line="215"/>
         <location filename="../src/theme_dialog.cpp" line="245"/>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Радиус:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="201"/>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Размытие фона текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="219"/>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Падающая тень от текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="246"/>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Вертикальное смещение:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="250"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Границы</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="268"/>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Окно:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="269"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Страница:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="323"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Отступ первой строки:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="330"/>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Перед:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="331"/>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>После:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="126"/>
@@ -1286,12 +1286,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="59"/>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать тему</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="116"/>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон окна</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="144"/>
@@ -1334,7 +1334,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="148"/>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон текста</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="162"/>
@@ -1384,7 +1384,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="299"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Высота:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
@@ -1394,12 +1394,12 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="329"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ширина вкладки:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="254"/>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая тема</translation>
     </message>
 </context>
 <context>
@@ -1412,7 +1412,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="89"/>
         <source>Default</source>
-        <translation type="unfinished">По умолчанию</translation>
+        <translation>По умолчанию</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
@@ -1427,17 +1427,17 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="106"/>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Нежный блюз</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Старая школа</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Космические мечты</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
@@ -1452,34 +1452,34 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="111"/>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Письменный стол</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="114"/>
         <location filename="../src/theme_manager.cpp" line="175"/>
         <source>New</source>
-        <translation type="unfinished">Новый</translation>
+        <translation>Новая</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="118"/>
         <location filename="../src/theme_manager.cpp" line="179"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Дублировать</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="132"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Пользовательская</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="184"/>
         <source>Edit</source>
-        <translation type="unfinished">Редактировать</translation>
+        <translation>Редактировать</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="189"/>
         <source>Delete</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="194"/>
@@ -1499,13 +1499,13 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="312"/>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить тему &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="336"/>
         <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Темы (%1)</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="336"/>
@@ -1754,7 +1754,7 @@
     <message>
         <location filename="../src/window.cpp" line="205"/>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Список всех документов</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="208"/>
@@ -1830,17 +1830,17 @@
     <message>
         <location filename="../src/window.cpp" line="1119"/>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить изменения?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1120"/>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить изменения в файле &apos;%1&apos; перед закрытием?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1121"/>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваши изменения будут утеряны, если вы не сохраните их.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1151"/>
@@ -2195,7 +2195,7 @@
     <message>
         <location filename="../src/window.cpp" line="1428"/>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить &amp;язык...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1430"/>
@@ -2210,7 +2210,7 @@
     <message>
         <location filename="../src/window.cpp" line="1432"/>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ежедневный прогресс</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1435"/>

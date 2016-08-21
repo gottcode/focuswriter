@@ -174,7 +174,7 @@
     <message>
         <location filename="../src/document.cpp" line="579"/>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricarica File?</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="580"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../src/document.cpp" line="1435"/>
         <source>Untitled %1</source>
-        <translation type="unfinished">Senza titolo %1</translation>
+        <translation>Senza titolo %1</translation>
     </message>
     <message>
         <location filename="../src/document.cpp" line="1489"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/document_watcher.cpp" line="192"/>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file %1 è stato modificato da un altro programma.</translation>
     </message>
     <message>
         <location filename="../src/document_watcher.cpp" line="193"/>
@@ -641,7 +641,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="376"/>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Resettare a zero i progressi quotidiani?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
@@ -1378,7 +1378,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="299"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Altezza:</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="303"/>
@@ -1473,7 +1473,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="189"/>
         <source>Delete</source>
-        <translation type="unfinished">Elimina</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="194"/>
@@ -1499,7 +1499,7 @@
         <location filename="../src/theme_manager.cpp" line="336"/>
         <location filename="../src/theme_manager.cpp" line="410"/>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Temi</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="336"/>

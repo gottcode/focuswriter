@@ -37,39 +37,39 @@
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="548"/>
         <source>%1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% de %Ln minuto</numerusform>
+            <numerusform>%1% de %Ln minutos</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="550"/>
         <source>%1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%1% de %Ln palabra</numerusform>
+            <numerusform>%1% de %Ln palabras</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="552"/>
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln palabra</numerusform>
+            <numerusform>%Ln palabras</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress.cpp" line="554"/>
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minuto</numerusform>
+            <numerusform>%Ln minutos</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress.cpp" line="556"/>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="154"/>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progreso diario</translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="289"/>
@@ -92,20 +92,20 @@
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="305"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/A</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/daily_progress_dialog.cpp" line="310"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n día</numerusform>
+            <numerusform>%n días</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../src/daily_progress_dialog.cpp" line="311"/>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
@@ -114,7 +114,7 @@
         <location filename="../src/daily_progress_label.cpp" line="30"/>
         <location filename="../src/daily_progress_label.cpp" line="47"/>
         <source>%1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%1% de meta diaria</translation>
     </message>
 </context>
 <context>

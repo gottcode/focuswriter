@@ -318,8 +318,8 @@
     <message numerus="yes">
         <location filename="../src/find_dialog.cpp" line="275"/>
         <source>Replace %n instance(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Kicseréljünk %n előfordulást?</numerusform>
         </translation>
     </message>
     <message>

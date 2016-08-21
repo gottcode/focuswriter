@@ -1239,7 +1239,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="250"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Kenarlıklar</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="268"/>
@@ -1254,7 +1254,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="323"/>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>İlk satır girintisi</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="330"/>
@@ -1420,7 +1420,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="107"/>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Eski Okul</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="108"/>
