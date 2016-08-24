@@ -1411,12 +1411,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>שמים מרים</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>קסם</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="106"/>
@@ -1436,12 +1436,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>משחקי ריגול</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>שלווה</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="111"/>
