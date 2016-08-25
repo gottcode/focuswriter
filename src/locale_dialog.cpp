@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -145,6 +145,13 @@ QString LocaleDialog::languageName(const QString& language)
 		}
 	} else {
 		name = locale.nativeLanguageName();
+	}
+	if (name.isEmpty() || name == "C") {
+		if (language == "eo") {
+			name = "Esperanto";
+		} else {
+			name = language;
+		}
 	}
 	if (locale.textDirection() == Qt::RightToLeft) {
 		name.prepend(QChar(0x202b));
