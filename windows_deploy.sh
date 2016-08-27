@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP='FocusWriter'
-VERSION='1.6.0'
+VERSION=$(git describe)
 
 echo -n 'Preparing... '
 QTDIR=$(mingw32-qmake-qt5 -query QT_INSTALL_PREFIX)
