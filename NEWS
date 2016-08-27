@@ -1,3 +1,20 @@
+1.6.0
+-----
+Added always showing interface.
+Added headings.
+Added new default themes.
+Added removing user-installed dictionaries.
+Added shortcut for typographical apostrophe.
+Added support for ODT Flat XML files.
+Added support for high DPI displays.
+Switched to QSoundEffect.
+Updated dictionaries.
+FIXED: Daily progress did not reset when run longer than a day.
+FIXED: Printer margins were too big.
+FIXED: Was replacing session files with command-line files.
+FIXED: Did not add new default symbol shortcuts.
+Translation updates: Arabic, Armenian, Catalan, Chinese (China), Dutch, English (United Kingdom), French, German, Hebrew, Hungarian, Italian, Lithuanian, Polish, Portuguese (Brazil), Romanian, Russian, Slovak, Spanish, Spanish (Mexico), Turkish, Vietnamese.
+
 1.5.7
 -----
 * Switched to cross-compiled builds for Windows.

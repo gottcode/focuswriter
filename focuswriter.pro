@@ -26,10 +26,7 @@ macx {
 }
 
 # Set program version
-VERSION = $$system(git describe)
-isEmpty(VERSION) {
-	VERSION = 1.5.1
-}
+VERSION = 1.6.0
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
