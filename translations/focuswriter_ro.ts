@@ -434,12 +434,12 @@
         <translation>&lt;Limbaj Sistem&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Note</source>
         <translation>Notă</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Vă rugăm reporniţi această aplicaţie pentru ca schimbarea limbii să aibă efect.</translation>
     </message>
@@ -1417,12 +1417,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Cer morocănos</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Încîntare</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="106"/>
@@ -1442,12 +1442,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Jocuri spion</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Linişte</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="111"/>

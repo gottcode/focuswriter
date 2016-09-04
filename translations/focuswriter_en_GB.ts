@@ -428,12 +428,12 @@
         <translation>&lt;System Language&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Note</source>
         <translation>Note</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Please restart the application for the language change to take effect.</translation>
     </message>

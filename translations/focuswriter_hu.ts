@@ -422,12 +422,12 @@
         <translation>&lt;A rendszer nyelve&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Note</source>
         <translation>Megjegyzés</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Indítsd újra az alkalmazást, hogy a változtatások érvénybe lépjenek.</translation>
     </message>
