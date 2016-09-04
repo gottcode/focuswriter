@@ -3,8 +3,8 @@
 
 !define APPNAME "FocusWriter"
 !define VERSIONMAJOR 1
-!define VERSIONMINOR 5
-!define VERSIONPATCH 7
+!define VERSIONMINOR 6
+!define VERSIONPATCH 0
 !define APPVERSION "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONPATCH}"
 !define ABOUTURL "https://gottcode.org/focuswriter/"
 
@@ -208,7 +208,7 @@ Section "install"
 	;Copy files
 	SetOutPath $INSTDIR
 	File ..\..\release\FocusWriter.exe
-	File ..\symbols\symbols630.dat
+	File ..\symbols\symbols900.dat
 	File $%QTDIR%\bin\iconv.dll
 	File $%QTDIR%\bin\libgcc_s_sjlj-1.dll
 	File $%QTDIR%\bin\libGLESv2.dll
@@ -264,6 +264,12 @@ Section "install"
 	File ..\images\icons\oxygen\hicolor\16\*
 	SetOutPath $INSTDIR\icons\hicolor\22
 	File ..\images\icons\oxygen\hicolor\22\*
+	SetOutPath $INSTDIR\icons\hicolor\32
+	File ..\images\icons\oxygen\hicolor\32\*
+	SetOutPath $INSTDIR\icons\hicolor\48
+	File ..\images\icons\oxygen\hicolor\48\*
+	SetOutPath $INSTDIR\icons\hicolor\64
+	File ..\images\icons\oxygen\hicolor\64\*
 
 	SetOutPath $INSTDIR\sounds
 	File ..\sounds\*.wav

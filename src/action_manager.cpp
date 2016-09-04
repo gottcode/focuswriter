@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,16 +47,24 @@ ActionManager::ActionManager(QWidget* parent) :
 	QSettings settings;
 	settings.beginGroup("Shortcuts");
 	QStringList keys = settings.childKeys();
-	foreach (const QString& name, keys) {
+	for (const QString& name : keys) {
 		m_actions[name].shortcut = settings.value(name).value<QKeySequence>();
 	}
 
 	// Load symbol shortcuts
-	QVariantHash shortcuts;
-	shortcuts.insert("2014", "Ctrl+-");
-	shortcuts.insert("2022", "Ctrl+*");
-	shortcuts.insert("2026", "Ctrl+.");
-	shortcuts = QSettings().value("SymbolsDialog/Shortcuts", shortcuts).toHash();
+	QVariantHash defshortcuts;
+	defshortcuts.insert("2014", "Ctrl+-");
+	defshortcuts.insert("2019", "Ctrl+Shift+=");
+	defshortcuts.insert("2022", "Ctrl+*");
+	defshortcuts.insert("2026", "Ctrl+.");
+	QVariantHash shortcuts = QSettings().value("SymbolsDialog/Shortcuts", defshortcuts).toHash();
+	QHashIterator<QString, QVariant> defiter(defshortcuts);
+	while (defiter.hasNext()) {
+		defiter.next();
+		if (!shortcuts.contains(defiter.key())) {
+			shortcuts.insert(defiter.key(), defiter.value());
+		}
+	}
 	QHashIterator<QString, QVariant> iter(shortcuts);
 	while (iter.hasNext()) {
 		iter.next();

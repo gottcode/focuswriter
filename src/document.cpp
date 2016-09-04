@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@
 #include "theme.h"
 #include "window.h"
 
+#include <QAbstractTextDocumentLayout>
 #include <QApplication>
 #include <QBuffer>
 #include <QDir>
@@ -57,11 +58,7 @@
 #include <QPushButton>
 #include <QScrollBar>
 #include <QSettings>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QShortcut>
 #include <QStyle>
 #include <QTextBlock>
@@ -201,8 +198,6 @@ namespace
 			richtext = source->data(QLatin1String("text/richtext"));
 		} else if (source->hasFormat(QLatin1String("application/rtf"))) {
 			richtext = source->data(QLatin1String("application/rtf"));
-		} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
-			richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
 		} else if (source->hasHtml()) {
 			richtext = mimeToRtf(source);
 		} else {
@@ -297,7 +292,7 @@ namespace
 		RtfWriter writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
-		writer.write(&buffer, &document, false);
+		writer.write(&buffer, &document);
 		buffer.close();
 
 		return buffer.data();
@@ -385,7 +380,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_scrollbar->setAutoFillBackground(true);
 	m_scrollbar->setMouseTracking(true);
 	m_scrollbar->installEventFilter(this);
-	setScrollBarVisible(false);
+	setScrollBarVisible(Preferences::instance().alwaysShowScrollBar());
 	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
 	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
 
@@ -624,20 +619,144 @@ void Document::checkSpelling()
 
 //-----------------------------------------------------------------------------
 
-void Document::print()
+// Copied and modified from QTextDocument
+static void printPage(int index, QPainter *painter, const QTextDocument *doc, const QRectF &body, const QPointF &pageNumberPos)
 {
-	QPrinter printer;
-	printer.setPageSize(QPrinter::Letter);
-	printer.setPageMargins(0.5, 0.5, 0.5, 0.5, QPrinter::Inch);
-	QPrintDialog dialog(&printer, this);
-	if (dialog.exec() == QDialog::Accepted) {
-		bool enabled = m_highlighter->enabled();
-		m_highlighter->setEnabled(false);
-		m_text->print(&printer);
-		if (enabled) {
-			m_highlighter->setEnabled(true);
+	painter->save();
+	painter->translate(body.left(), body.top() - (index - 1) * body.height());
+	QRectF view(0, (index - 1) * body.height(), body.width(), body.height());
+
+	QAbstractTextDocumentLayout *layout = doc->documentLayout();
+	QAbstractTextDocumentLayout::PaintContext ctx;
+
+	painter->setClipRect(view);
+	ctx.clip = view;
+
+	// don't use the system palette text as default text color, on HP/UX
+	// for example that's white, and white text on white paper doesn't
+	// look that nice
+	ctx.palette.setColor(QPalette::Text, Qt::black);
+
+	layout->draw(painter, ctx);
+
+	if (!pageNumberPos.isNull()) {
+		painter->setClipping(false);
+		painter->setFont(QFont(doc->defaultFont()));
+		const QString pageString = QString::number(index);
+
+		painter->drawText(qRound(pageNumberPos.x() - painter->fontMetrics().width(pageString)),
+			qRound(pageNumberPos.y() + view.top()),
+			pageString);
+	}
+
+	painter->restore();
+}
+
+// Copied and modified from QTextDocument
+static void printDocument(QPrinter* printer, QTextDocument* doc)
+{
+	QPainter p(printer);
+
+	// Check that there is a valid device to print to.
+	if (!p.isActive())
+		return;
+
+	// Make sure that there is a layout
+	doc->documentLayout();
+
+	QAbstractTextDocumentLayout *layout = doc->documentLayout();
+	layout->setPaintDevice(p.device());
+
+	int dpiy = p.device()->logicalDpiY();
+	QTextFrameFormat fmt = doc->rootFrame()->frameFormat();
+	fmt.setMargin(0);
+	doc->rootFrame()->setFrameFormat(fmt);
+
+	qreal pageNumberHeight = QFontMetrics(doc->defaultFont(), p.device()).ascent() + 5 * dpiy / 72.0;
+	QRectF body = QRectF(0, 0, printer->width(), printer->height() - pageNumberHeight);
+	QPointF pageNumberPos = QPointF(body.width(), body.height() + pageNumberHeight);
+	doc->setPageSize(body.size());
+
+	int fromPage = printer->fromPage();
+	int toPage = printer->toPage();
+	bool ascending = true;
+
+	if (fromPage == 0 && toPage == 0) {
+		fromPage = 1;
+		toPage = doc->pageCount();
+	}
+	// paranoia check
+	fromPage = qMax(1, fromPage);
+	toPage = qMin(doc->pageCount(), toPage);
+
+	if (toPage < fromPage) {
+		// if the user entered a page range outside the actual number
+		// of printable pages, just return
+		return;
+	}
+
+	int page = fromPage;
+	while (true) {
+		printPage(page, &p, doc, body, pageNumberPos);
+
+		if (page == toPage)
+			break;
+
+		if (ascending)
+			++page;
+		else
+			--page;
+
+		if (!printer->newPage())
+			return;
+	}
+}
+
+void Document::print(QPrinter* printer)
+{
+	QPrintDialog dialog(printer, this);
+	if (dialog.exec() != QDialog::Accepted) {
+		return;
+	}
+
+	// Clone document
+	QTextDocument* document = m_text->document()->clone();
+
+	// Apply spacings
+	const int tab_width = (document->indentWidth() / 96.0) * printer->resolution();
+	QTextBlockFormat block_format;
+	block_format.setTextIndent(tab_width);
+	for (int i = 0, count = document->allFormats().count(); i < count; ++i) {
+		QTextFormat& f = document->allFormats()[i];
+		if (f.isBlockFormat()) {
+			f.merge(block_format);
 		}
 	}
+	document->setIndentWidth(tab_width);
+
+	// Apply headings
+	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
+		const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+		if (!heading) {
+			continue;
+		}
+
+		QTextCharFormat format = block.charFormat();
+		format.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
+		format.setFontWeight(QFont::Bold);
+
+		QTextCursor cursor(document);
+		cursor.setPosition(block.position());
+		cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
+		cursor.mergeCharFormat(format);
+	}
+
+	// Print document
+	printDocument(printer, document);
+	delete document;
+
+	// Reset pages
+	printer->setFromTo(0, 0);
 }
 
 //-----------------------------------------------------------------------------
@@ -737,7 +856,7 @@ bool Document::loadFile(const QString& filename, int position)
 
 //-----------------------------------------------------------------------------
 
-void Document::loadTheme(const Theme& theme, const QBrush& foreground)
+void Document::loadTheme(const Theme& theme)
 {
 	m_text->document()->blockSignals(true);
 
@@ -748,7 +867,7 @@ void Document::loadTheme(const Theme& theme, const QBrush& foreground)
 	text_color.setAlpha(m_focus_mode ? 128 : 255);
 
 	QPalette p = m_text->palette();
-	p.setBrush(QPalette::Base, foreground);
+	p.setBrush(QPalette::Base, Qt::transparent);
 	p.setColor(QPalette::Text, text_color);
 	p.setColor(QPalette::Highlight, m_text_color);
 	p.setColor(QPalette::HighlightedText, (qGray(m_text_color.rgb()) > 127) ? Qt::black : Qt::white);
@@ -759,9 +878,7 @@ void Document::loadTheme(const Theme& theme, const QBrush& foreground)
 	// Update spacings
 	int tab_width = theme.tabWidth();
 	m_block_format = QTextBlockFormat();
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	m_block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
-#endif
 	m_block_format.setTextIndent(tab_width * theme.indentFirstLine());
 	m_block_format.setTopMargin(theme.spacingAboveParagraph());
 	m_block_format.setBottomMargin(theme.spacingBelowParagraph());
@@ -864,6 +981,8 @@ void Document::loadPreferences()
 	m_highlighter->setEnabled(!isReadOnly() ? Preferences::instance().highlightMisspelled() : false);
 
 	m_default_format = Preferences::instance().saveFormat();
+
+	setScrollBarVisible(Preferences::instance().alwaysShowScrollBar());
 }
 
 //-----------------------------------------------------------------------------
@@ -925,8 +1044,8 @@ void Document::setModified(bool modified)
 
 void Document::setScrollBarVisible(bool visible)
 {
-	if (!visible) {
-		m_scrollbar->setMask(QRect(-1,-1,1,1));
+	if (!visible && !Preferences::instance().alwaysShowScrollBar()) {
+		m_scrollbar->setMask(QRegion(-1,-1,1,1));
 		update();
 	} else {
 		m_scrollbar->clearMask();
@@ -981,7 +1100,7 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 		emit footerVisible(false);
 	}
 	if (m_scene_list && !m_scene_list->scenesVisible()) {
-		int sidebar_region = qMin(m_scene_list->width(), m_layout->cellRect(0,0).width());
+		int sidebar_region = std::min(m_scene_list->width(), m_layout->cellRect(0,0).width());
 		emit scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
 	}
 	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
@@ -1152,7 +1271,7 @@ void Document::selectionChanged()
 	if (m_text->textCursor().hasSelection()) {
 		BlockStats temp(0);
 		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
-		foreach (const QString& string, selection) {
+		for (const QString& string : selection) {
 			temp.update(string);
 			m_selected_stats.append(&temp);
 		}
@@ -1312,11 +1431,7 @@ QString Document::getSaveFileName(const QString& title)
 	// Determine location
 	QString path = m_filename;
 	if (m_filename.isEmpty()) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-		QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 		path = QSettings().value("Save/Location", default_path).toString() + "/" + tr("Untitled %1").arg(m_index);
 	}
 

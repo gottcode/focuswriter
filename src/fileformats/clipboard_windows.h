@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,15 +20,7 @@
 #ifndef RTF_CLIPBOARD_WINDOWS_H
 #define RTF_CLIPBOARD_WINDOWS_H
 
-#include <QVector>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QWinMime>
-#else
-#include <QWindowsMime>
-typedef QWindowsMime QWinMime;
-#endif
-
-#include <windows.h>
 
 namespace RTF
 {

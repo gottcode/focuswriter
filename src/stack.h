@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,6 @@
 class AlertLayer;
 class Document;
 class FindDialog;
-class LoadScreen;
 class SceneList;
 class SymbolsDialog;
 class ThemeRenderer;
@@ -33,6 +32,7 @@ class ThemeRenderer;
 class QActionGroup;
 class QGridLayout;
 class QMenu;
+class QPrinter;
 class QStackedWidget;
 
 class Stack : public QWidget
@@ -46,7 +46,6 @@ public:
 	void addDocument(Document* document);
 
 	AlertLayer* alerts() const;
-	LoadScreen* loadScreen() const;
 	QMenu* menu() const;
 	SymbolsDialog* symbols() const;
 
@@ -94,6 +93,7 @@ public slots:
 	void increaseIndent();
 	void paste();
 	void pasteUnformatted();
+	void pageSetup();
 	void print();
 	void redo();
 	void reload();
@@ -103,6 +103,7 @@ public slots:
 	void selectAll();
 	void selectScene();
 	void setFocusMode(QAction* action);
+	void setBlockHeading(int heading);
 	void setFontBold(bool bold);
 	void setFontItalic(bool italic);
 	void setFontStrikeOut(bool strikeout);
@@ -131,11 +132,16 @@ private slots:
 	void insertSymbol(const QString& text);
 	void updateBackground();
 	void updateBackground(const QImage& image, const QRect& foreground);
+	void updateMargin();
 	void updateMask();
 	void updateMenuIndexes();
 
 private:
-	LoadScreen* m_load_screen;
+#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
+	qreal devicePixelRatioF() const { return devicePixelRatio(); }
+#endif
+
+private:
 	AlertLayer* m_alerts;
 	SceneList* m_scenes;
 	QMenu* m_menu;
@@ -143,6 +149,7 @@ private:
 	QGridLayout* m_layout;
 	FindDialog* m_find_dialog;
 	SymbolsDialog* m_symbols_dialog;
+	QPrinter* m_printer;
 
 	QStackedWidget* m_contents;
 	QList<Document*> m_documents;
@@ -151,7 +158,6 @@ private:
 
 	ThemeRenderer* m_theme_renderer;
 	QPixmap m_background;
-	QBrush m_foreground;
 	QSize m_foreground_size;
 	Theme m_theme;
 	QTimer* m_resize_timer;
@@ -164,10 +170,6 @@ private:
 
 inline AlertLayer* Stack::alerts() const {
 	return m_alerts;
-}
-
-inline LoadScreen* Stack::loadScreen() const {
-	return m_load_screen;
 }
 
 inline QMenu* Stack::menu() const {

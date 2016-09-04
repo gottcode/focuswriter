@@ -433,6 +433,48 @@ void Preferences::setSaveFormat(const QString& format)
 
 //-----------------------------------------------------------------------------
 
+bool Preferences::alwaysShowScrollBar() const
+{
+	return m_always_show_scrollbar;
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setAlwaysShowScrollbar(bool show_scrollbar)
+{
+	setValue(m_always_show_scrollbar, show_scrollbar);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Preferences::alwaysShowHeader() const
+{
+	return m_always_show_header;
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setAlwaysShowHeader(bool show_header)
+{
+	setValue(m_always_show_header, show_header);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Preferences::alwaysShowFooter() const
+{
+	return m_always_show_footer;
+}
+
+//-----------------------------------------------------------------------------
+
+void Preferences::setAlwaysShowFooter(bool show_footer)
+{
+	setValue(m_always_show_footer, show_footer);
+}
+
+//-----------------------------------------------------------------------------
+
 int Preferences::toolbarStyle() const
 {
 	return m_toolbar_style;
@@ -542,10 +584,8 @@ void Preferences::reload()
 	QLocale::Language language = QLocale().language();
 	if (language == QLocale::Chinese ||
 			language == QLocale::Japanese ||
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 			language == QLocale::Khmer ||
 			language == QLocale::Lao ||
-#endif
 			language == QLocale::Thai) {
 		old_wordcount_type = 2;
 	}
@@ -575,6 +615,10 @@ void Preferences::reload()
 	m_ignore_numbers = settings.value("Spelling/IgnoreNumbers", true).toBool();
 	m_ignore_uppercase = settings.value("Spelling/IgnoreUppercase", true).toBool();
 	m_language = DictionaryManager::instance().availableDictionary(settings.value("Spelling/Language", QLocale().name()).toString());
+
+	m_always_show_scrollbar = settings.value("View/AlwaysShowScrollbar",false).toBool();
+	m_always_show_header = settings.value("View/AlwaysShowHeader",false).toBool();
+	m_always_show_footer = settings.value("View/AlwaysShowFooter",false).toBool();
 
 	DictionaryManager::instance().setDefaultLanguage(m_language);
 	DictionaryManager::instance().setIgnoreNumbers(m_ignore_numbers);
@@ -628,6 +672,10 @@ void Preferences::write()
 	settings.setValue("Spelling/IgnoreNumbers", m_ignore_numbers);
 	settings.setValue("Spelling/IgnoreUppercase", m_ignore_uppercase);
 	settings.setValue("Spelling/Language", m_language);
+
+	settings.setValue("View/AlwaysShowScrollbar",m_always_show_scrollbar);
+	settings.setValue("View/AlwaysShowHeader",m_always_show_header);
+	settings.setValue("View/AlwaysShowFooter",m_always_show_footer);
 
 	DictionaryManager::instance().addProviders();
 	DictionaryManager::instance().setDefaultLanguage(m_language);

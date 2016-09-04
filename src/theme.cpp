@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +22,17 @@
 #include "session.h"
 #include "utils.h"
 
+#include <QtConcurrentRun>
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
 #include <QImageReader>
 #include <QPainter>
 #include <QSettings>
+#include <QTextEdit>
 #include <QUuid>
+
+#include <cmath>
 
 //-----------------------------------------------------------------------------
 
@@ -39,31 +43,75 @@ void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bo
 
 namespace
 {
-	QString copyImage(const QString& image)
+	QColor averageImage(const QString& filename, const QColor& fallback)
 	{
-		// Check if already copied
-		QDir images(Theme::path() + "/Images/");
-		QStringList filenames = images.entryList(QDir::Files);
-		foreach (const QString& filename, filenames) {
-			if (compareFiles(image, images.filePath(filename))) {
-				return filename;
+		QImageReader reader(filename);
+		if (!reader.canRead()) {
+			return fallback;
+		}
+
+		QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
+		image.fill(fallback.rgb());
+		{
+			QPainter painter(&image);
+			painter.drawImage(0, 0, reader.read());
+		}
+		const unsigned int width = image.width();
+		const unsigned int height = image.height();
+
+		quint64 sum_r = 0;
+		quint64 sum_g = 0;
+		quint64 sum_b = 0;
+		quint64 sum_a = 0;
+
+		for (unsigned int y = 0; y < height; ++y) {
+			const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
+			for (unsigned int x = 0; x < width; ++x) {
+				QRgb pixel = scanline[x];
+				sum_r += qRed(pixel);
+				sum_g += qGreen(pixel);
+				sum_b += qBlue(pixel);
+				sum_a += qAlpha(pixel);
 			}
 		}
 
-		// Find file name
-		QString base = QCryptographicHash::hash(image.toUtf8(), QCryptographicHash::Sha1).toHex();
-		QString suffix = QFileInfo(image).suffix().toLower();
-		QString filename = QString("%1.%2").arg(base, suffix);
+		const qreal divisor = 1.0 / (width * height);
+		return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
+	}
 
-		// Handle file name collisions
-		int id = 0;
-		while (images.exists(filename)) {
-			id++;
-			filename = QString("%1-%2.%3").arg(base).arg(id).arg(suffix);
+	QString checksumName(const QString& image)
+	{
+		QCryptographicHash hash(QCryptographicHash::Sha1);
+		QFile file(image);
+		if (file.open(QFile::ReadOnly)) {
+			hash.addData(&file);
+			file.close();
 		}
 
-		QFile::copy(image, images.filePath(filename));
-		return filename;
+		const QString suffix = QFileInfo(image).suffix().toLower();
+
+		return "2-" + hash.result().toHex() + "." + suffix;
+	}
+
+	QString copyImage(const QString& image)
+	{
+		const QString name = checksumName(image);
+		const QString path = Theme::path() + "/Images/" + name;
+		if (!QFile::exists(path)) {
+			QFile::copy(image, path);
+		}
+		return name;
+	}
+
+	QDir listIcons(const QString& id, bool is_default)
+	{
+		const QString icon = Theme::iconPath(id, is_default, 1.0);
+
+		const int dirindex = icon.lastIndexOf('/');
+		const int baseindex = icon.lastIndexOf('.');
+		const QString basename = icon.mid(dirindex + 1, baseindex - dirindex - 1);
+
+		return QDir(icon.left(dirindex), basename + "*");
 	}
 }
 
@@ -162,9 +210,11 @@ QString Theme::clone(const QString& id, bool is_default, const QString& name)
 	}
 
 	// Copy icon
-	QString icon = iconPath(id, is_default);
-	if (QFile::exists(icon)) {
-		QFile::copy(icon, iconPath(new_id));
+	const QDir dir = listIcons(id, is_default);
+	const int suffix = dir.nameFilters().first().length() -1;
+	const QStringList files = dir.entryList();
+	for (const QString& file : files) {
+		QFile::copy(dir.filePath(file), dir.filePath(new_id + file.mid(suffix)));
 	}
 
 	return new_id;
@@ -176,10 +226,15 @@ void Theme::copyBackgrounds()
 {
 	QDir dir(path() + "/Images");
 	QStringList images;
+	QHash<QString, QString> old_images;
+	const QHash<QString, QString> source_images = {
+		{ "2-77534bf3da7fb42c830772be8d279be79869deb7.jpg", m_path_default + "/images/spacedreams.jpg" },
+		{ "2-1ccf9867f755b306830852e8fbf36952f93ab3fe.jpg", m_path_default + "/images/writingdesk.jpg" }
+	};
 
 	// Copy images
-	QStringList themes = QDir(path(), "*.theme").entryList(QDir::Files);
-	foreach (const QString& theme, themes) {
+	const QStringList themes = QDir(path(), "*.theme").entryList(QDir::Files);
+	for (const QString& theme : themes) {
 		QSettings settings(path() + "/" + theme, QSettings::IniFormat);
 		QString background_path = settings.value("Background/Image").toString();
 		QString background_image = settings.value("Background/ImageFile").toString();
@@ -190,14 +245,32 @@ void Theme::copyBackgrounds()
 			background_image = copyImage(background_path);
 			settings.setValue("Background/ImageFile", background_image);
 		}
+
+		// Set image filename to checksum of image contents
+		if (!background_image.startsWith("2-")) {
+			if (!old_images.contains(background_image)) {
+				const QString file = checksumName(dir.filePath(background_image));
+				old_images.insert(background_image, file);
+				dir.rename(background_image, file);
+			}
+			background_image = old_images[background_image];
+			settings.setValue("Background/ImageFile", background_image);
+		}
+
+		// Replace lower resolution copies of default images
+		if (source_images.contains(background_image)) {
+			background_image = copyImage(source_images[background_image]);
+			settings.setValue("Background/ImageFile", background_image);
+		}
+
 		images.append(background_image);
 	}
 
 	// Delete unused images
-	QStringList files = dir.entryList(QDir::Files);
-	foreach (const QString& file, files) {
+	const QStringList files = dir.entryList(QDir::Files);
+	for (const QString& file : files) {
 		if (!images.contains(file)) {
-			QFile::remove(path() + "/Images/" + file);
+			dir.remove(file);
 		}
 	}
 }
@@ -220,7 +293,7 @@ bool Theme::exists(const QString& name)
 {
 	QDir dir(m_path, "*.theme");
 	QStringList themes = dir.entryList(QDir::Files);
-	foreach (const QString& theme, themes) {
+	for (const QString& theme : themes) {
 		QSettings settings(dir.filePath(theme), QSettings::IniFormat);
 		if (settings.value("Name").toString() == name) {
 			return true;
@@ -238,9 +311,24 @@ QString Theme::filePath(const QString& id, bool is_default)
 
 //-----------------------------------------------------------------------------
 
-QString Theme::iconPath(const QString& id, bool is_default)
+QString Theme::iconPath(const QString& id, bool is_default, qreal pixelratio)
 {
-	return m_path + (!is_default ? "/Previews/" : "/Previews/Default/") + id + ".png";
+	QString pixel;
+	if (pixelratio > 1.0) {
+		pixel = QString("@%1x").arg(pixelratio);
+	}
+	return m_path + (!is_default ? "/Previews/" : "/Previews/Default/") + id + pixel + ".png";
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::removeIcon(const QString& id, bool is_default)
+{
+	QDir dir = listIcons(id, is_default);
+	const QStringList files = dir.entryList();
+	for (const QString& file : files) {
+		dir.remove(file);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -262,10 +350,11 @@ void Theme::setPath(const QString& path)
 
 //-----------------------------------------------------------------------------
 
-QImage Theme::render(const QSize& background, QRect& foreground) const
+QImage Theme::render(const QSize& background, QRect& foreground, const int margin, const qreal pixelratio) const
 {
 	// Create image
-	QImage image(background, QImage::Format_ARGB32_Premultiplied);
+	QImage image(background * pixelratio, QImage::Format_ARGB32_Premultiplied);
+	image.setDevicePixelRatio(pixelratio);
 	image.fill(backgroundColor().rgb());
 
 	QPainter painter(&image);
@@ -292,21 +381,31 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 			// Centered
 			break;
 		}
-		source.setScaledSize(scaled);
-		painter.drawImage((background.width() - scaled.width()) / 2, (background.height() - scaled.height()) / 2, source.read());
+		source.setScaledSize(scaled * pixelratio);
+
+		QImage back = source.read();
+		back.setDevicePixelRatio(pixelratio);
+
+		const qreal scale = pixelratio / 2.0;
+		painter.drawImage(QPointF((background.width() - scaled.width()) * scale, (background.height() - scaled.height()) * scale), back);
 	} else if (backgroundType() == 1) {
 		// Tiled
-		painter.fillRect(image.rect(), QImage(backgroundImage()));
+		QImage back(backgroundImage());
+		back.setDevicePixelRatio(pixelratio);
+		painter.save();
+		painter.scale(1.0 / pixelratio, 1.0 / pixelratio);
+		painter.fillRect(QRectF(image.rect()), back);
+		painter.restore();
 	}
 
 	// Determine foreground rectangle
-	foreground = foregroundRect(background);
+	foreground = foregroundRect(background, margin, pixelratio);
 
 	// Set clipping for rounded themes
 	QPainterPath path;
 	if (roundCornersEnabled()) {
 		painter.setRenderHint(QPainter::Antialiasing);
-		path.addRoundedRect(foreground, cornerRadius(), cornerRadius());
+		path.addRoundedRect(QRectF(foreground), cornerRadius(), cornerRadius());
 		painter.setClipPath(path);
 	} else {
 		path.addRect(foreground);
@@ -325,7 +424,7 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 	// Draw drop shadow
 	int shadow_radius = shadowEnabled() ? shadowRadius() : 0;
 	if (shadow_radius) {
-		QImage copy = image.copy(foreground);
+		QImage copy = image.copy(QRect(foreground.topLeft() * pixelratio, foreground.bottomRight() * pixelratio));
 
 		QImage shadow(background, QImage::Format_ARGB32_Premultiplied);
 		shadow.fill(0);
@@ -343,15 +442,131 @@ QImage Theme::render(const QSize& background, QRect& foreground) const
 		painter.setClipping(roundCornersEnabled());
 		painter.restore();
 
-		painter.drawImage(foreground.x(), foreground.y(), copy);
+		painter.drawImage(QPointF(foreground.x(), foreground.y()), copy);
 	}
 
 	// Draw foreground
 	QColor color = foregroundColor();
 	color.setAlpha(foregroundOpacity() * 2.55f);
-	painter.fillRect(foreground, color);
+	painter.fillRect(QRectF(foreground), color);
 
 	return image;
+}
+
+//-----------------------------------------------------------------------------
+
+void Theme::renderText(QImage background, const QRect& foreground, const qreal pixelratio, QImage* preview, QImage* icon) const
+{
+	// Create preview text
+	QTextEdit preview_text;
+	preview_text.setFrameStyle(QFrame::NoFrame);
+	preview_text.setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	preview_text.setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	QFile file(":/lorem.txt");
+	if (file.open(QFile::ReadOnly)) {
+		preview_text.setPlainText(QString::fromLatin1(file.readAll()));
+		file.close();
+	}
+
+	// Position preview text
+	int padding = foregroundPadding();
+	int x = foreground.x() + padding;
+	int y = foreground.y() + padding + spacingAboveParagraph();
+	int width = foreground.width() - (padding * 2);
+	int height = foreground.height() - (padding * 2) - spacingAboveParagraph();
+	preview_text.setGeometry(x, y, width, height);
+
+	// Set colors
+	QColor text_color = textColor();
+	text_color.setAlpha(255);
+
+	QPalette p = preview_text.palette();
+	p.setBrush(QPalette::Window, Qt::transparent);
+	p.setBrush(QPalette::Base, Qt::transparent);
+	p.setColor(QPalette::Text, text_color);
+	p.setColor(QPalette::Highlight, text_color);
+	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
+	preview_text.setPalette(p);
+
+	// Set spacings
+	int tab_width = tabWidth();
+	QTextBlockFormat block_format;
+	block_format.setLineHeight(lineSpacing(), (lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
+	block_format.setTextIndent(tab_width * indentFirstLine());
+	block_format.setTopMargin(spacingAboveParagraph());
+	block_format.setBottomMargin(spacingBelowParagraph());
+	preview_text.textCursor().mergeBlockFormat(block_format);
+	for (int i = 0, count = preview_text.document()->allFormats().count(); i < count; ++i) {
+		QTextFormat& f = preview_text.document()->allFormats()[i];
+		if (f.isBlockFormat()) {
+			f.merge(block_format);
+		}
+	}
+	preview_text.setTabStopWidth(tab_width);
+	preview_text.document()->setIndentWidth(tab_width);
+
+	// Set font
+	preview_text.setFont(textFont());
+
+	// Render text
+	preview_text.render(&background, preview_text.pos());
+
+	// Create preview pixmap
+	if (preview) {
+		*preview = background.scaled(480 * pixelratio, 270 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+		QPainter painter(preview);
+		painter.setPen(Qt::NoPen);
+
+		// Draw text cutout shadow
+		painter.fillRect(QRectF(22, 46, 170, 118), QColor(0, 0, 0, 32));
+		painter.fillRect(QRectF(24, 48, 166, 114), Qt::white);
+
+		// Draw text cutout
+		int x2 = (x >= 24) ? (x - 24) : 0;
+		int y2 = (y >= 24) ? (y - 24) : 0;
+		painter.drawImage(QPointF(26, 50), background, QRectF(x2 * pixelratio, y2 * pixelratio, 162 * pixelratio, 110 * pixelratio));
+	}
+
+	// Create preview icon
+	if (icon) {
+		*icon = QImage(258 * pixelratio, 153 * pixelratio, QImage::Format_ARGB32_Premultiplied);
+		icon->fill(Qt::transparent);
+
+		// Draw shadow
+		QImage shadow(*icon);
+
+		QPainter painter(&shadow);
+		painter.setPen(Qt::NoPen);
+		painter.scale(pixelratio, pixelratio);
+		painter.fillRect(QRectF(9, 10, 240, 135), Qt::black);
+		painter.end();
+
+		painter.begin(icon);
+		qt_blurImage(&painter, shadow, 10 * pixelratio, true, false);
+		painter.end();
+
+		// Draw preview
+		icon->setDevicePixelRatio(pixelratio);
+		painter.begin(icon);
+		painter.drawImage(QPointF(9, 9), background.scaled(240 * pixelratio, 135 * pixelratio, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+		// Draw text cutout shadow
+		painter.fillRect(QRectF(20, 32, 85, 59), QColor(0, 0, 0, 32));
+		painter.fillRect(QRectF(21, 33, 83, 57), Qt::white);
+
+		// Draw text cutout
+		int x2 = (x >= 24) ? (x - 12 + tabWidth()) : 12 + tabWidth();
+		int y2 = (y >= 24) ? (y - 6) : 0;
+		painter.drawImage(QPointF(22, 34), background, QRectF(x2 * pixelratio, y2 * pixelratio, 81 * pixelratio, 55 * pixelratio));
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+QFuture<QColor> Theme::calculateLoadColor() const
+{
+	return QtConcurrent::run(averageImage, backgroundImage(), backgroundColor());
 }
 
 //-----------------------------------------------------------------------------
@@ -381,9 +596,9 @@ void Theme::setBackgroundImage(const QString& path)
 
 //-----------------------------------------------------------------------------
 
-QRect Theme::foregroundRect(const QSize& size) const
+QRect Theme::foregroundRect(const QSize& size, int margin, const qreal pixelratio) const
 {
-	int margin = d->foreground_margin;
+	margin = std::max(margin, d->foreground_margin.value());
 	int x = 0;
 	int y = margin;
 	int width = std::min(d->foreground_width.value(), size.width() - (margin * 2));
@@ -409,6 +624,9 @@ QRect Theme::foregroundRect(const QSize& size) const
 		x = (size.width() - width) / 2;
 		break;
 	};
+
+	width = std::floor(std::floor(width / pixelratio) * pixelratio);
+	height = std::floor(std::floor(height / pixelratio) * pixelratio);
 
 	return QRect(x, y, width, height);
 }

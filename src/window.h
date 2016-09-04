@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ class DailyProgressLabel;
 class Document;
 class DocumentCache;
 class DocumentWatcher;
+class LoadScreen;
 class SessionManager;
 class Sound;
 class Stack;
@@ -113,12 +114,15 @@ private:
 	QAction* m_replace_document_quotes;
 	QAction* m_replace_selection_quotes;
 	QActionGroup* m_focus_actions;
+	QActionGroup* m_headings_actions;
 
 	Stack* m_documents;
 	DocumentCache* m_document_cache;
 	DocumentWatcher* m_document_watcher;
 	QThread* m_document_cache_thread;
 	QStringList m_queued_documents;
+
+	LoadScreen* m_load_screen;
 	bool m_loading;
 
 	QTabBar* m_tabs;

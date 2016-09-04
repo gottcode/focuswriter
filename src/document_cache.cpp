@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,8 @@
 #include <QFileInfo>
 #include <QTextStream>
 
-#include <ctime>
+#include <algorithm>
+#include <random>
 
 //-----------------------------------------------------------------------------
 
@@ -179,18 +180,14 @@ void DocumentCache::writeCacheFile(Document* document, DocumentWriter* writer)
 QString DocumentCache::backupCache()
 {
 	// Find backup location
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	QString date = QDateTime::currentDateTimeUtc().toString("yyyyMMddhhmmss");
-#else
-	QString date = QDateTime::currentDateTime().toUTC().toString("yyyyMMddhhmmss");
-#endif
 	int extra = 0;
 	QDir dir(QDir::cleanPath(m_path + "/../"));
 	QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::LocaleAware);
 	subdirs.removeAll("Files");
-	foreach (const QString& subdir, subdirs) {
+	for (const QString& subdir : subdirs) {
 		if (subdir.startsWith(date)) {
-			extra = qMax(extra, subdir.mid(15).toInt() + 1);
+			extra = std::max(extra, subdir.mid(15).toInt() + 1);
 		}
 	}
 	QString cachepath = dir.absoluteFilePath(date + ((extra == 0) ? "" : QString("-%1").arg(extra)));
@@ -203,15 +200,7 @@ QString DocumentCache::backupCache()
 	while (subdirs.count() > 4) {
 		QString subdir_name = subdirs.takeAt(0);
 		QDir subdir(dir.absoluteFilePath(subdir_name));
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		subdir.removeRecursively();
-#else
-		QStringList files = subdir.entryList(QDir::Files);
-		foreach (const QString& file, files) {
-			subdir.remove(file);
-		}
-		dir.rmdir(subdir_name);
-#endif
 	}
 
 	return cachepath;
@@ -221,16 +210,12 @@ QString DocumentCache::backupCache()
 
 QString DocumentCache::createFileName()
 {
-	static time_t seed = 0;
-	if (seed == 0) {
-		seed = time(0);
-		qsrand(seed);
-	}
+	std::random_device rd;
 
 	QString filename;
 	QDir dir(m_path);
 	do {
-		filename = QString("fw_%1").arg(qrand(), 6, 36, QLatin1Char('0'));
+		filename = QString("fw_%1").arg(rd(), 6, 36, QLatin1Char('0'));
 	} while (dir.exists(filename));
 
 	return filename;

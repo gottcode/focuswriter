@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,34 +68,6 @@ namespace
 		area->setPalette(p);
 
 		return area;
-	}
-
-	bool recursivelyRemove(const QString& path)
-	{
-		// Abort early if directory doesn't exist
-		QDir dir(path);
-		if (!dir.exists()) {
-			return true;
-		}
-
-		// Remove subdirectories
-		QStringList contents = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Hidden | QDir::System);
-		foreach (const QString& entry, contents) {
-			if (!recursivelyRemove(dir.absoluteFilePath(entry))) {
-				return false;
-			}
-		}
-
-		// Remove all files
-		contents = dir.entryList(QDir::Files | QDir::Hidden | QDir::System);
-		foreach (const QString& entry, contents) {
-			if (!QFile::remove(dir.absoluteFilePath(entry))) {
-				return false;
-			}
-		}
-
-		// Remove directory
-		return dir.rmdir(path);
 	}
 }
 
@@ -191,6 +163,10 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat().value()));
 	m_write_bom->setChecked(Preferences::instance().writeByteOrderMark());
 
+	m_always_show_scrollbar->setChecked(Preferences::instance().alwaysShowScrollBar());
+	m_always_show_header->setChecked(Preferences::instance().alwaysShowHeader());
+	m_always_show_footer->setChecked(Preferences::instance().alwaysShowFooter());
+
 	m_highlight_misspelled->setChecked(Preferences::instance().highlightMisspelled());
 	m_ignore_numbers->setChecked(Preferences::instance().ignoredWordsWithNumbers());
 	m_ignore_uppercase->setChecked(Preferences::instance().ignoredUppercaseWords());
@@ -206,7 +182,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_toolbar_style->setCurrentIndex(style);
 	QStringList actions = Preferences::instance().toolbarActions();
 	int pos = 0;
-	foreach (const QString& action, actions) {
+	for (const QString& action : actions) {
 		QString text = action;
 		bool checked = !text.startsWith("^");
 		if (!checked) {
@@ -314,6 +290,10 @@ void PreferencesDialog::accept()
 	Preferences::instance().setWriteByteOrderMark(m_write_bom->isChecked());
 	Preferences::instance().setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
 
+	Preferences::instance().setAlwaysShowScrollbar(m_always_show_scrollbar->isChecked());
+	Preferences::instance().setAlwaysShowHeader(m_always_show_header->isChecked());
+	Preferences::instance().setAlwaysShowFooter(m_always_show_footer->isChecked());
+
 	Preferences::instance().setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
 	int count = m_toolbar_actions->count();
@@ -328,18 +308,18 @@ void PreferencesDialog::accept()
 
 	ActionManager::instance()->setShortcuts(m_new_shortcuts);
 
+	// Uninstall languages
+	for (const QString& language : m_uninstalled) {
+		QFile::remove("dict:" + language + ".aff");
+		QFile::remove("dict:" + language + ".dic");
+	}
+
 	// Install languages
 	QString path = DictionaryManager::path() + "/install/";
 	QString new_path = DictionaryManager::installedPath() + "/";
 	QDir dir(path);
-#ifdef Q_OS_WIN
-	QStringList dirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-	foreach (const QString& file, dirs) {
-		QFile::rename(path + file, new_path + file);
-	}
-#endif
 	QStringList files = dir.entryList(QDir::Files);
-	foreach (const QString& file, files) {
+	for (const QString& file : files) {
 		QFile::remove(new_path + file);
 		QFile::rename(path + file, new_path + file);
 	}
@@ -372,7 +352,7 @@ void PreferencesDialog::accept()
 
 void PreferencesDialog::reject()
 {
-	if (!recursivelyRemove(DictionaryManager::path() + "/install/")) {
+	if (!QDir(DictionaryManager::path() + "/install/").removeRecursively()) {
 		qWarning("Failed to clean up dictionary install path");
 	}
 	QDialog::reject();
@@ -476,30 +456,11 @@ void PreferencesDialog::addLanguage()
 			aff_files += name;
 		} else if (name.endsWith(".dic")) {
 			dic_files += name;
-#ifdef Q_OS_WIN
-		// Find Voikko files
-		} else if (name.contains("mor-") || (name == "libvoikko-1.dll")) {
-			files += name;
-#endif
 		}
 	}
-
-#ifdef Q_OS_WIN
-	// Find Voikko dictionaries
-	foreach (const QString& file, files) {
-		if (file.endsWith(".dll")) {
-			continue;
-		}
-		QString name = file.section('/', -1).section('.', 0);
-		name.replace("voikko-", "");
-		if (!dictionaries.contains(name)) {
-			dictionaries += name;
-		}
-	}
-#endif
 
 	// Find Hunspell dictionary files
-	foreach (const QString& dic, dic_files) {
+	for (const QString& dic : dic_files) {
 		QString aff = dic;
 		aff.replace(".dic", ".aff");
 		if (aff_files.contains(aff)) {
@@ -517,22 +478,11 @@ void PreferencesDialog::addLanguage()
 		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
-		foreach (const QString& file, files) {
+		for (const QString& file : files) {
+			// Ignore path for Hunspell dictionaries
 			QString filename = file;
-			if (filename.endsWith(".dic") || filename.endsWith(".aff")) {
-				// Ignore path for Hunspell dictionaries
-				filename = filename.section('/', -1);
-				filename.replace(QChar('-'), QChar('_'));
-#ifdef Q_OS_WIN
-			} else if (filename.endsWith(".dll")) {
-				// Ignore path for Voikko library
-				dir.setPath(install);
-			} else {
-				// Create path for Voikko dictionary
-				dir.setPath(install + filename + "/..");
-				dir.mkpath(dir.absolutePath());
-#endif
-			}
+			filename = filename.section('/', -1);
+			filename.replace(QChar('-'), QChar('_'));
 
 			QFile out(install + filename);
 			if (out.open(QIODevice::WriteOnly)) {
@@ -543,7 +493,7 @@ void PreferencesDialog::addLanguage()
 		// Add to language selection
 		QString dictionary_path = DictionaryManager::path() + "/install/";
 		QString dictionary_new_path = DictionaryManager::installedPath() + "/";
-		foreach (const QString& dictionary, dictionaries) {
+		for (const QString& dictionary : dictionaries) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
 			QString name = LocaleDialog::languageName(language);
@@ -554,7 +504,7 @@ void PreferencesDialog::addLanguage()
 			QString new_aff_file = dictionary_new_path + language + ".aff";
 			QString new_dic_file = dictionary_new_path + language + ".dic";
 
-			if ((QFile::exists(new_aff_file) || QFile::exists(new_dic_file))) {
+			if (!m_uninstalled.contains(language) && (QFile::exists(new_aff_file) || QFile::exists(new_dic_file))) {
 				if (QMessageBox::question(this, tr("Question"), tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 					QFile::remove(aff_file);
 					QFile::remove(dic_file);
@@ -572,6 +522,30 @@ void PreferencesDialog::addLanguage()
 
 	// Close archive
 	zip.close();
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::removeLanguage()
+{
+	int index = m_languages->currentIndex();
+	if (index == -1) {
+		return;
+	}
+	if (QMessageBox::question(this, tr("Question"), tr("Remove current dictionary?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+		m_uninstalled.append(m_languages->itemData(index).toString());
+		m_languages->removeItem(index);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+void PreferencesDialog::selectedLanguageChanged(int index)
+{
+	if (index != -1) {
+		QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
+		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(DictionaryManager::installedPath()));
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -757,7 +731,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
 	m_save_format = new QComboBox(save_group);
 	QStringList types = Preferences::instance().saveFormat().allowedValues();
-	foreach (const QString& type, types) {
+	for (const QString& type : types) {
 		m_save_format->addItem(FormatManager::filter(type), type);
 	}
 
@@ -773,11 +747,24 @@ QWidget* PreferencesDialog::initGeneralTab()
 	save_layout->addWidget(m_write_bom);
 	save_layout->addLayout(save_format_layout);
 
+	// Create view options
+	QGroupBox* view_group = new QGroupBox(tr("User Interface"), tab);
+
+	m_always_show_scrollbar = new QCheckBox(tr("Always show scrollbar"), view_group);
+	m_always_show_header = new QCheckBox(tr("Always show top bar"), view_group);
+	m_always_show_footer = new QCheckBox(tr("Always show bottom bar"), view_group);
+
+	QVBoxLayout* view_layout = new QVBoxLayout(view_group);
+	view_layout->addWidget(m_always_show_scrollbar);
+	view_layout->addWidget(m_always_show_header);
+	view_layout->addWidget(m_always_show_footer);
+
 	// Lay out general options
 	QVBoxLayout* layout = new QVBoxLayout(tab);
 	layout->addWidget(edit_group);
 	layout->addWidget(scene_group);
 	layout->addWidget(save_group);
+	layout->addWidget(view_group);
 	layout->addStretch();
 
 	return makeScrollable(tab);
@@ -974,13 +961,17 @@ QWidget* PreferencesDialog::initSpellingTab()
 	QGroupBox* languages_group = new QGroupBox(tr("Language"), tab);
 
 	m_languages = new QComboBox(languages_group);
+	connect(m_languages, SIGNAL(currentIndexChanged(int)), this, SLOT(selectedLanguageChanged(int)));
 
 	m_add_language_button = new QPushButton(tr("Add"), languages_group);
 	m_add_language_button->setAutoDefault(false);
 	connect(m_add_language_button, SIGNAL(clicked()), this, SLOT(addLanguage()));
+	m_remove_language_button = new QPushButton(tr("Remove"), languages_group);
+	m_remove_language_button->setAutoDefault(false);
+	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
 
 	QStringList languages = DictionaryManager::instance().availableDictionaries();
-	foreach (const QString& language, languages) {
+	for (const QString& language : languages) {
 		m_languages->addItem(LocaleDialog::languageName(language), language);
 	}
 	m_languages->model()->sort(0);
@@ -989,6 +980,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	QHBoxLayout* languages_layout = new QHBoxLayout(languages_group);
 	languages_layout->addWidget(m_languages, 1);
 	languages_layout->addWidget(m_add_language_button);
+	languages_layout->addWidget(m_remove_language_button);
 
 	// Read personal dictionary
 	QGroupBox* personal_dictionary_group = new QGroupBox(tr("Personal Dictionary"), tab);
@@ -1003,7 +995,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
 	QStringList words = DictionaryManager::instance().personal();
-	foreach (const QString& word, words) {
+	for (const QString& word : words) {
 		m_personal_dictionary->addItem(word);
 	}
 	connect(m_personal_dictionary, SIGNAL(itemSelectionChanged()), this, SLOT(selectedWordChanged()));
@@ -1054,7 +1046,7 @@ QWidget* PreferencesDialog::initToolbarTab()
 	m_toolbar_actions = new QListWidget(actions_group);
 	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
 	QList<QAction*> actions = parentWidget()->window()->actions();
-	foreach (QAction* action, actions) {
+	for (QAction* action : actions) {
 		if (action->data().isNull()) {
 			continue;
 		}
@@ -1104,22 +1096,16 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	m_shortcuts->setColumnCount(3);
 	m_shortcuts->setColumnHidden(2, true);
 	m_shortcuts->setHeaderLabels(QStringList() << tr("Command") << tr("Shortcut") << tr("Action"));
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	m_shortcuts->header()->setSectionsClickable(false);
 	m_shortcuts->header()->setSectionsMovable(false);
 	m_shortcuts->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-#else
-	m_shortcuts->header()->setClickable(false);
-	m_shortcuts->header()->setMovable(false);
-	m_shortcuts->header()->setResizeMode(0, QHeaderView::ResizeToContents);
-#endif
 	connect(m_shortcuts, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(shortcutDoubleClicked()));
 
 	// List shortcuts
 	QPixmap empty_icon(m_shortcuts->iconSize());
 	empty_icon.fill(Qt::transparent);
 	QList<QString> actions = ActionManager::instance()->actions();
-	foreach (const QString& name, actions) {
+	for (const QString& name : actions) {
 		QAction* action = ActionManager::instance()->action(name);
 		QIcon icon = action->icon();
 		if (icon.isNull()) {

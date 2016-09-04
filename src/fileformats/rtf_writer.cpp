@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -119,12 +119,10 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Latvian] = "CP1257";
 	codepages[QLocale::Lithuanian] = "CP1257";
 	codepages[QLocale::Vietnamese] = "CP1258";
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
 	codepages[QLocale::CentralMoroccoTamazight] = "CP1252";
 	codepages[QLocale::LowGerman] = "CP1252";
 	codepages[QLocale::NorthernSami] = "CP1252";
 	codepages[QLocale::SwissGerman] = "CP1252";
-#endif
 	return codepages;
 }
 
@@ -262,11 +260,20 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 	case 2009: m_header = "{\\rtf1\\pca\\ansicpg850\n"; break;
 	default: m_header = "{\\rtf1\\ansi\\ansicpg" + m_encoding.mid(2) + "\n"; break;
 	}
+	m_header += "{\\stylesheet\n"
+		"{\\s0 Normal;}\n"
+		"{\\s1\\snext0\\outlinelevel0\\fs36\\b Heading 1;}\n"
+		"{\\s2\\snext0\\outlinelevel1\\fs32\\b Heading 2;}\n"
+		"{\\s3\\snext0\\outlinelevel2\\fs28\\b Heading 3;}\n"
+		"{\\s4\\snext0\\outlinelevel3\\fs24\\b Heading 4;}\n"
+		"{\\s5\\snext0\\outlinelevel4\\fs20\\b Heading 5;}\n"
+		"{\\s6\\snext0\\outlinelevel5\\fs16\\b Heading 6;}\n"
+		"}\n";
 }
 
 //-----------------------------------------------------------------------------
 
-bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
+bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 {
 	if (m_codec == 0) {
 		return false;
@@ -275,35 +282,38 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 	device->write(m_header);
 
 	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
-		if (full) {
-			QByteArray par("{\\pard\\plain");
-			QTextBlockFormat block_format = block.blockFormat();
-			bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
-			if (rtl) {
-				par += "\\rtlpar";
-			}
-			Qt::Alignment align = block_format.alignment();
-			if (rtl && (align & Qt::AlignLeft)) {
-				par += "\\ql";
-			} else if (align & Qt::AlignRight) {
-				par += "\\qr";
-			} else if (align & Qt::AlignCenter) {
-				par += "\\qc";
-			} else if (align & Qt::AlignJustify) {
-				par += "\\qj";
-			}
-			if (block_format.indent() > 0) {
-				par += "\\li" + QByteArray::number(block_format.indent() * 720);
-			}
-			device->write(par);
+		QByteArray par("{\\pard\\plain");
+		QTextBlockFormat block_format = block.blockFormat();
+		int heading = block_format.property(QTextFormat::UserProperty).toInt();
+		if (heading) {
+			par += "\\s" + QByteArray::number(heading)
+				+ "\\outlinelevel" + QByteArray::number(heading - 1)
+				+ "\\fs" + QByteArray::number((10 - heading) * 4)
+				+ "\\b";
 		} else {
-			device->write("{");
+			par += "\\s0";
 		}
+		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+		if (rtl) {
+			par += "\\rtlpar";
+		}
+		Qt::Alignment align = block_format.alignment();
+		if (rtl && (align & Qt::AlignLeft)) {
+			par += "\\ql";
+		} else if (align & Qt::AlignRight) {
+			par += "\\qr";
+		} else if (align & Qt::AlignCenter) {
+			par += "\\qc";
+		} else if (align & Qt::AlignJustify) {
+			par += "\\qj";
+		}
+		if (block_format.indent() > 0) {
+			par += "\\li" + QByteArray::number(block_format.indent() * 720);
+		}
+		device->write(par);
 
 		if (block.begin() != block.end()) {
-			if (full) {
-				device->write(" ");
-			}
+			device->write(" ");
 			for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
 				QTextFragment fragment = iter.fragment();
 				QTextCharFormat char_format = fragment.charFormat();
@@ -334,11 +344,7 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 			}
 		}
 
-		if (full || block.next().isValid()) {
-			device->write("\\par}\n");
-		} else {
-			device->write("}");
-		}
+		device->write("\\par}\n");
 	}
 
 	device->write("}");

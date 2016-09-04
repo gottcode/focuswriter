@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 #include "theme_renderer.h"
 
 #include <QApplication>
-#include <QtConcurrentRun>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDesktopWidget>
@@ -38,51 +37,18 @@
 #include <QImageReader>
 #include <QLabel>
 #include <QLineEdit>
-#include <QPainter>
 #include <QScrollArea>
 #include <QSettings>
 #include <QSpinBox>
 #include <QTabWidget>
-#include <QTextEdit>
 #include <QVBoxLayout>
+
+#include <cmath>
 
 //-----------------------------------------------------------------------------
 
-static QColor averageImage(const QString& filename, const QColor& color)
-{
-	QImageReader reader(filename);
-	if (!reader.canRead()) {
-		return color;
-	}
-
-	QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
-	image.fill(color.rgb());
-	{
-		QPainter painter(&image);
-		painter.drawImage(0, 0, reader.read());
-	}
-	const unsigned int width = image.width();
-	const unsigned int height = image.height();
-
-	quint64 sum_r = 0;
-	quint64 sum_g = 0;
-	quint64 sum_b = 0;
-	quint64 sum_a = 0;
-
-	for (unsigned int y = 0; y < height; ++y) {
-		const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
-		for (unsigned int x = 0; x < width; ++x) {
-			QRgb pixel = scanline[x];
-			sum_r += qRed(pixel);
-			sum_g += qGreen(pixel);
-			sum_b += qBlue(pixel);
-			sum_a += qAlpha(pixel);
-		}
-	}
-
-	const qreal divisor = 1.0 / (width * height);
-	return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
-}
+// Exported by QtGui
+void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bool alphaOnly, int transposed = 0);
 
 //-----------------------------------------------------------------------------
 
@@ -332,10 +298,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	line_spacing_layout->addRow(tr("Type:"), m_line_spacing_type);
 	line_spacing_layout->addRow(tr("Height:"), m_line_spacing);
 
-#if (QT_VERSION < QT_VERSION_CHECK(4,8,0))
-	line_spacing->hide();
-#endif
-
 
 	// Create paragraph spacing group
 	QGroupBox* paragraph_spacing = new QGroupBox(tr("Paragraph Spacing"), contents);
@@ -371,16 +333,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 
 	// Create preview
-	m_preview_text = new QTextEdit;
-	m_preview_text->setFrameStyle(QFrame::NoFrame);
-	m_preview_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_preview_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	QFile file(":/lorem.txt");
-	if (file.open(QFile::ReadOnly)) {
-		m_preview_text->setPlainText(QString::fromLatin1(file.readAll()));
-		file.close();
-	}
-
 	m_preview = new QLabel(this);
 	m_preview->setAlignment(Qt::AlignCenter);
 	m_preview->setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
@@ -428,21 +380,6 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 ThemeDialog::~ThemeDialog()
 {
 	m_theme_renderer->wait();
-
-	delete m_preview_text;
-}
-
-//-----------------------------------------------------------------------------
-
-void ThemeDialog::createPreview(const QString& id, bool is_default)
-{
-	Theme theme(id, is_default);
-	ThemeDialog dialog(theme);
-	dialog.m_theme_renderer->wait();
-	while (!dialog.m_load_color.resultCount()) {
-		QCoreApplication::processEvents();
-	}
-	dialog.savePreview();
 }
 
 //-----------------------------------------------------------------------------
@@ -451,6 +388,9 @@ void ThemeDialog::accept()
 {
 	m_theme.setName(m_name->text().simplified());
 	setValues(m_theme);
+	if (!m_theme.isDefault()) {
+		m_theme.setLoadColor(m_load_color);
+	}
 	m_theme.saveChanges();
 
 	savePreview();
@@ -490,7 +430,7 @@ void ThemeDialog::fontChanged()
 	}
 	qreal font_size = m_font_sizes->currentText().toDouble();
 	if (font_size < 0.1) {
-		font_size = qRound(m_theme.textFont().pointSizeF() * 10.0) * 0.1;
+		font_size = std::lround(m_theme.textFont().pointSizeF() * 10.0) * 0.1;
 	}
 
 	m_font_sizes->blockSignals(true);
@@ -572,86 +512,19 @@ void ThemeDialog::renderPreview()
 	setValues(theme);
 	theme.setBackgroundImage(m_background_image->image());
 
+	// Fetch load color
+	m_load_color = theme.calculateLoadColor();
+
 	// Render theme
-	m_theme_renderer->create(theme, QSize(1920, 1080));
+	m_theme_renderer->create(theme, QSize(1920, 1080), 0, devicePixelRatioF());
 }
 
 //-----------------------------------------------------------------------------
 
-void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const Theme& theme)
+void ThemeDialog::renderPreview(const QImage& background, const QRect& foreground, const Theme& theme)
 {
-	m_load_color = QtConcurrent::run(averageImage, theme.backgroundImage(), theme.backgroundColor());
-
-	// Position preview text
-	int padding = theme.foregroundPadding();
-	int x = foreground.x() + padding;
-	int y = foreground.y() + padding + theme.spacingAboveParagraph();
-	int width = foreground.width() - (padding * 2);
-	int height = foreground.height() - (padding * 2) - theme.spacingAboveParagraph();
-	m_preview_text->setGeometry(x, y, width, height);
-
-	// Set colors
-	QColor text_color = theme.textColor();
-	text_color.setAlpha(255);
-
-	QPalette p = m_preview_text->palette();
-	p.setBrush(QPalette::Base, preview.copy(x, y, width, height));
-	p.setColor(QPalette::Text, text_color);
-	p.setColor(QPalette::Highlight, text_color);
-	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
-	m_preview_text->setPalette(p);
-
-	// Set spacings
-	int tab_width = theme.tabWidth();
-	QTextBlockFormat block_format;
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
-	block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
-#endif
-	block_format.setTextIndent(tab_width * theme.indentFirstLine());
-	block_format.setTopMargin(theme.spacingAboveParagraph());
-	block_format.setBottomMargin(theme.spacingBelowParagraph());
-	m_preview_text->textCursor().mergeBlockFormat(block_format);
-	for (int i = 0, count = m_preview_text->document()->allFormats().count(); i < count; ++i) {
-		QTextFormat& f = m_preview_text->document()->allFormats()[i];
-		if (f.isBlockFormat()) {
-			f.merge(block_format);
-		}
-	}
-	m_preview_text->setTabStopWidth(tab_width);
-	m_preview_text->document()->setIndentWidth(tab_width);
-
-	// Set font
-	m_preview_text->setFont(theme.textFont());
-
-	// Render text
-	m_preview_text->render(&preview, m_preview_text->pos());
-
-	// Create zoomed text cutout
-	int x2 = (x >= 24) ? (x - 24) : 0;
-	int y2 = (y >= 24) ? (y - 24) : 0;
-	QImage text_cutout = preview.copy(x2, y2, 162, 110);
-
-	// Create preview icon
-	m_preview_icon = QImage(":/shadow.png").convertToFormat(QImage::Format_ARGB32_Premultiplied);
-	{
-		QPainter painter(&m_preview_icon);
-		painter.drawImage(9, 9, preview.scaled(240, 135, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-		painter.fillRect(20, 32, 85, 59, QColor(0, 0, 0, 32));
-		painter.fillRect(21, 33, 83, 57, Qt::white);
-		int x3 = (x >= 24) ? (x - 12 + theme.tabWidth()) : 12 + theme.tabWidth();
-		int y3 = (y >= 24) ? (y - 6) : 0;
-		painter.drawImage(22, 34, preview, x3, y3, 81, 55);
-	}
-
-	// Create preview pixmap
-	preview = preview.scaled(480, 270, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-	{
-		QPainter painter(&preview);
-		painter.setPen(Qt::NoPen);
-		painter.fillRect(22, 46, 170, 118, QColor(0, 0, 0, 32));
-		painter.fillRect(24, 48, 166, 114, Qt::white);
-		painter.drawImage(26, 50, text_cutout);
-	}
+	QImage preview;
+	theme.renderText(background, foreground, devicePixelRatioF(), &preview, &m_preview_icon);
 	m_preview->setPixmap(QPixmap::fromImage(preview));
 }
 
@@ -659,10 +532,8 @@ void ThemeDialog::renderPreview(QImage preview, const QRect& foreground, const T
 
 void ThemeDialog::savePreview()
 {
-	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault()), "", 0);
-	if (!m_theme.isDefault()) {
-		m_theme.setLoadColor(m_load_color);
-	}
+	Theme::removeIcon(m_theme.id(), m_theme.isDefault());
+	m_preview_icon.save(Theme::iconPath(m_theme.id(), m_theme.isDefault(), devicePixelRatioF()), "", 0);
 }
 
 //-----------------------------------------------------------------------------

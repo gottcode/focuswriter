@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "alert_layer.h"
 #include "document.h"
 #include "find_dialog.h"
-#include "load_screen.h"
+#include "preferences.h"
 #include "scene_list.h"
 #include "scene_model.h"
 #include "smart_quotes.h"
@@ -37,13 +37,18 @@
 #include <QGridLayout>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPageSetupDialog>
 #include <QPainter>
 #include <QPaintEvent>
+#include <QPrinter>
 #include <QStackedWidget>
+#include <QStyle>
 #include <QTextBlock>
 #include <QTextCursor>
 #include <QTextEdit>
 #include <QTimer>
+
+#include <algorithm>
 
 //-----------------------------------------------------------------------------
 
@@ -70,10 +75,19 @@ Stack::Stack(QWidget* parent) :
 	m_menu_group->setExclusive(true);
 	connect(m_menu_group, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
 
-	m_load_screen = new LoadScreen(this);
-
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
+
+	m_printer = new QPrinter(QPrinter::HighResolution);
+#if (QT_VERSION >= QT_VERSION_CHECK(5,3,0))
+	m_printer->setPageSize(QPageSize(QPageSize::Letter));
+	m_printer->setPageOrientation(QPageLayout::Portrait);
+	m_printer->setPageMargins(QMarginsF(1.0, 1.0, 1.0, 1.0), QPageLayout::Inch);
+#else
+	m_printer->setPageSize(QPrinter::Letter);
+	m_printer->setOrientation(QPrinter::Portrait);
+	m_printer->setPageMargins(1.0, 1.0, 1.0, 1.0, QPrinter::Inch);
+#endif
 
 	connect(ActionManager::instance(), SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 
@@ -91,7 +105,6 @@ Stack::Stack(QWidget* parent) :
 	m_layout->addWidget(m_contents, 1, 0, 4, 6);
 	m_layout->addWidget(m_scenes, 1, 0, 4, 3);
 	m_layout->addWidget(m_alerts, 3, 3);
-	m_layout->addWidget(m_load_screen, 0, 0, 6, 6);
 
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);
@@ -100,6 +113,9 @@ Stack::Stack(QWidget* parent) :
 
 	m_theme_renderer = new ThemeRenderer(this);
 	connect(m_theme_renderer, SIGNAL(rendered(QImage,QRect,Theme)), this, SLOT(updateBackground(QImage,QRect)));
+
+	setHeaderVisible(Preferences::instance().alwaysShowHeader());
+	setFooterVisible(Preferences::instance().alwaysShowFooter());
 
 	// Always draw background
 	setAttribute(Qt::WA_OpaquePaintEvent);
@@ -112,6 +128,8 @@ Stack::Stack(QWidget* parent) :
 Stack::~Stack()
 {
 	m_theme_renderer->wait();
+
+	delete m_printer;
 }
 
 //-----------------------------------------------------------------------------
@@ -141,7 +159,7 @@ void Stack::addDocument(Document* document)
 	m_menu->addAction(action);
 	updateMenuIndexes();
 
-	document->loadTheme(m_theme, m_foreground);
+	document->loadTheme(m_theme);
 	document->text()->setFixedSize(m_foreground_size);
 
 	emit documentAdded(document);
@@ -210,6 +228,8 @@ void Stack::setMargins(int footer, int header)
 	m_header_margin = header;
 	m_footer_visible = (m_footer_visible != 0) ? -m_footer_margin : 0;
 	m_header_visible = (m_header_visible != 0) ? m_header_margin : 0;
+	updateMargin();
+	updateBackground();
 	updateMask();
 	showHeader();
 }
@@ -270,7 +290,7 @@ void Stack::alignRight()
 
 void Stack::autoCache()
 {
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		if (document->isModified()) {
 			document->cache();
 		}
@@ -281,7 +301,7 @@ void Stack::autoCache()
 
 void Stack::autoSave()
 {
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		if (document->isModified()) {
 			if (!document->filename().isEmpty()) {
 				document->save();
@@ -320,7 +340,7 @@ void Stack::decreaseIndent()
 	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat format = cursor.blockFormat();
-	format.setIndent(qMax(0, format.indent() - 1));
+	format.setIndent(std::max(0, format.indent() - 1));
 	cursor.setBlockFormat(format);
 	emit updateFormatActions();
 }
@@ -375,9 +395,17 @@ void Stack::pasteUnformatted()
 
 //-----------------------------------------------------------------------------
 
+void Stack::pageSetup()
+{
+	QPageSetupDialog dialog(m_printer, this);
+	dialog.exec();
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::print()
 {
-	m_current_document->print();
+	m_current_document->print(m_printer);
 }
 
 //-----------------------------------------------------------------------------
@@ -434,9 +462,20 @@ void Stack::selectScene()
 void Stack::setFocusMode(QAction* action)
 {
 	int focus_mode = action->data().toInt();
-	foreach (Document* document, m_documents) {
+	for (Document* document : m_documents) {
 		document->setFocusMode(focus_mode);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::setBlockHeading(int heading)
+{
+	m_current_document->setRichText(true);
+	QTextCursor cursor = m_current_document->text()->textCursor();
+	QTextBlockFormat block_format = cursor.blockFormat();
+	block_format.setProperty(QTextFormat::UserProperty, heading);
+	cursor.setBlockFormat(block_format);
 }
 
 //-----------------------------------------------------------------------------
@@ -553,19 +592,11 @@ void Stack::themeSelected(const Theme& theme)
 		m_symbols_dialog->setPreviewFont(m_theme.textFont());
 	}
 
-	int margin = theme.foregroundMargin();
-	m_layout->setRowMinimumHeight(0, margin);
-	m_layout->setRowMinimumHeight(5, margin);
-	m_layout->setColumnMinimumWidth(0, margin);
-	m_layout->setColumnMinimumWidth(5, margin);
-
-	int minimum_size = (margin * 2) + (theme.foregroundPadding() * 2) + 100;
-	window()->setMinimumSize(minimum_size, minimum_size);
-
+	updateMargin();
 	updateBackground();
 
-	foreach (Document* document, m_documents) {
-		document->loadTheme(theme, m_foreground);
+	for (Document* document : m_documents) {
+		document->loadTheme(theme);
 	}
 }
 
@@ -596,6 +627,7 @@ void Stack::updateSmartQuotesSelection()
 
 void Stack::setFooterVisible(bool visible)
 {
+	visible |= Preferences::instance().alwaysShowFooter();
 	int footer_visible = visible * -m_footer_margin;
 	if (m_footer_visible != footer_visible) {
 		emit footerVisible(visible);
@@ -608,6 +640,7 @@ void Stack::setFooterVisible(bool visible)
 
 void Stack::setHeaderVisible(bool visible)
 {
+	visible |= Preferences::instance().alwaysShowHeader();
 	int header_visible = visible * m_header_margin;
 	if (m_header_visible != header_visible) {
 		emit headerVisible(visible);
@@ -660,7 +693,9 @@ void Stack::mouseMoveEvent(QMouseEvent* event)
 void Stack::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
-	painter.drawPixmap(event->rect(), m_background, event->rect());
+	const qreal pixelratio = devicePixelRatioF();
+	const QRectF rect(event->rect().topLeft() * pixelratio, event->rect().size() * pixelratio);
+	painter.drawPixmap(event->rect(), m_background, rect);
 	painter.end();
 }
 
@@ -692,10 +727,14 @@ void Stack::insertSymbol(const QString& text)
 
 void Stack::updateBackground()
 {
-	// Create temporary background
-	QRect foreground = m_theme.foregroundRect(size());
+	const int margin = m_layout->rowMinimumHeight(0);
+	const qreal pixelratio = devicePixelRatioF();
 
-	QImage image(size(), QImage::Format_ARGB32_Premultiplied);
+	// Create temporary background
+	const QRectF foreground = m_theme.foregroundRect(size(), margin, pixelratio);
+
+	QImage image(size() * pixelratio, QImage::Format_ARGB32_Premultiplied);
+	image.setDevicePixelRatio(pixelratio);
 	image.fill(m_theme.loadColor().rgb());
 	{
 		QPainter painter(&image);
@@ -712,11 +751,11 @@ void Stack::updateBackground()
 		}
 	}
 
-	updateBackground(image, foreground);
+	updateBackground(image, foreground.toRect());
 
 	// Create proper background
 	if (!m_resize_timer->isActive()) {
-		m_theme_renderer->create(m_theme, size());
+		m_theme_renderer->create(m_theme, size(), margin, pixelratio);
 	}
 }
 
@@ -725,29 +764,21 @@ void Stack::updateBackground()
 void Stack::updateBackground(const QImage& image, const QRect& foreground)
 {
 	// Make sure image is correct size
-	if (image.size() != size()) {
+	if (image.size() != (size() * devicePixelRatioF())) {
 		return;
 	}
 
-	// Determine text area size
-	int padding = m_theme.foregroundPadding();
-	QRect foreground_rect = foreground.adjusted(padding, padding, -padding, -padding);
-	bool resize = !m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size);
-	if (resize) {
-		m_foreground_size = foreground_rect.size();
-	}
-
-	// Load background and foreground
+	// Load background
 	m_background = QPixmap::fromImage(image, Qt::AutoColor | Qt::AvoidDither);
-	m_foreground = image.copy(foreground_rect);
+	m_background.setDevicePixelRatio(devicePixelRatioF());
 
-	// Configure text area
-	foreach (Document* document, m_documents) {
-		QPalette p = document->text()->palette();
-		p.setBrush(QPalette::Base, m_foreground);
-		document->text()->setPalette(p);
+	// Determine text area size
+	const int padding = m_theme.foregroundPadding();
+	const QRect foreground_rect = foreground.adjusted(padding, padding, -padding, -padding);
+	if (!m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size)) {
+		m_foreground_size = foreground_rect.size();
 
-		if (resize) {
+		for (Document* document : m_documents) {
 			document->text()->setFixedSize(m_foreground_size);
 			document->centerCursor(true);
 		}
@@ -758,22 +789,39 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 
 //-----------------------------------------------------------------------------
 
+void Stack::updateMargin()
+{
+	int margin = std::max(m_theme.foregroundMargin().value(), style()->pixelMetric(QStyle::PM_ScrollBarExtent));
+	if (Preferences::instance().alwaysShowFooter()) {
+		margin = std::max(m_footer_margin, margin);
+	}
+	if (Preferences::instance().alwaysShowHeader()) {
+		margin = std::max(m_header_margin, margin);
+	}
+	m_layout->setRowMinimumHeight(0, margin);
+	m_layout->setRowMinimumHeight(5, margin);
+	m_layout->setColumnMinimumWidth(0, margin);
+	m_layout->setColumnMinimumWidth(5, margin);
+
+	int minimum_size = (margin * 2) + (m_theme.foregroundPadding() * 2) + 100;
+	window()->setMinimumSize(minimum_size, minimum_size);
+}
+
+//-----------------------------------------------------------------------------
+
 void Stack::updateMask()
 {
+	clearMask();
+	raise();
+
+	if (m_scenes->isVisible()) {
+		QApplication::processEvents();
+		m_scenes->update();
+		m_scenes->clearFocus();
+		m_scenes->setFocus();
+	}
 	if (m_header_visible || m_footer_visible) {
 		setMask(rect().adjusted(0, m_header_visible, 0, m_footer_visible));
-		setAttribute(Qt::WA_TransparentForMouseEvents, true);
-	} else {
-		clearMask();
-		setAttribute(Qt::WA_TransparentForMouseEvents, false);
-		raise();
-
-		if (m_scenes->isVisible()) {
-			QApplication::processEvents();
-			m_scenes->update();
-			m_scenes->clearFocus();
-			m_scenes->setFocus();
-		}
 	}
 }
 

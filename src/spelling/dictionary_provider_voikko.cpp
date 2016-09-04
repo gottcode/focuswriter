@@ -220,7 +220,7 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 	QString lib = "libvoikko";
 #ifdef Q_OS_WIN
 	QStringList dictdirs = QDir::searchPaths("dict");
-	foreach (const QString dictdir, dictdirs) {
+	for (const QString dictdir : dictdirs) {
 		lib = dictdir + "/libvoikko-1.dll";
 		if (QLibrary(lib).load()) {
 			f_voikko_path = QFile::encodeName(QDir::toNativeSeparators(QFileInfo(lib).path()));
@@ -300,7 +300,7 @@ AbstractDictionary* DictionaryProviderVoikko::requestDictionary(const QString& l
 void DictionaryProviderVoikko::setIgnoreNumbers(bool ignore)
 {
 	f_ignore_numbers = ignore;
-	foreach (VoikkoHandle* handle, f_handles) {
+	for (VoikkoHandle* handle : f_handles) {
 		voikkoSetBooleanOption(handle, VOIKKO_OPT_IGNORE_NUMBERS, ignore);
 	}
 }
@@ -310,7 +310,7 @@ void DictionaryProviderVoikko::setIgnoreNumbers(bool ignore)
 void DictionaryProviderVoikko::setIgnoreUppercase(bool ignore)
 {
 	f_ignore_uppercase = ignore;
-	foreach (VoikkoHandle* handle, f_handles) {
+	for (VoikkoHandle* handle : f_handles) {
 		voikkoSetBooleanOption(handle, VOIKKO_OPT_IGNORE_UPPERCASE, ignore);
 	}
 }

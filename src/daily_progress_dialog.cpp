@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@
 #include <QTableView>
 #include <QVBoxLayout>
 
+#include <algorithm>
 #include <cmath>
 
 //-----------------------------------------------------------------------------
@@ -58,7 +59,7 @@ public:
 
 	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 	{
-		QStyleOptionViewItemV4 opt = option;
+		QStyleOptionViewItem opt = option;
 		initStyleOption(&opt, index);
 
 		if (opt.text.isEmpty()) {
@@ -70,16 +71,22 @@ public:
 			if (progress == 0) {
 				opt.backgroundBrush = opt.palette.alternateBase();
 			} else if (progress == 100) {
-				opt.backgroundBrush.setTexture(fetchStarBackground(opt));
+#if (QT_VERSION >= QT_VERSION_CHECK(5,6,0))
+				const qreal pixelratio = painter->device()->devicePixelRatioF();
+#else
+				const qreal pixelratio = painter->device()->devicePixelRatio();
+#endif
+				painter->drawPixmap(QPointF(opt.rect.topLeft()), fetchStarBackground(opt, pixelratio));
+				opt.backgroundBrush = Qt::transparent;
 				opt.font.setBold(true);
 			} else {
 				qreal k = (progress * 0.009) + 0.1;
 				qreal ik = 1.0 - k;
 				QColor base = opt.palette.color(QPalette::Active, QPalette::AlternateBase);
 				QColor highlight = opt.palette.color(QPalette::Active, QPalette::Highlight);
-				opt.backgroundBrush = QColor(qRound((highlight.red() * k) + (base.red() * ik)),
-						qRound((highlight.green() * k) + (base.green() * ik)),
-						qRound((highlight.blue() * k) + (base.blue() * ik)));
+				opt.backgroundBrush = QColor(std::lround((highlight.red() * k) + (base.red() * ik)),
+						std::lround((highlight.green() * k) + (base.green() * ik)),
+						std::lround((highlight.blue() * k) + (base.blue() * ik)));
 				opt.palette.setColor(QPalette::Text, opt.palette.color(QPalette::Active, QPalette::Text));
 			}
 
@@ -95,17 +102,18 @@ public:
 	}
 
 private:
-	QPixmap fetchStarBackground(const QStyleOptionViewItemV4& option) const
+	QPixmap fetchStarBackground(const QStyleOptionViewItem& option, const qreal pixelratio) const
 	{
-		if (m_pixmap.size() != option.rect.size()) {
+		if (m_pixmap.size() != (option.rect.size() * pixelratio)) {
 			// Create success background image
-			QStyleOptionViewItemV4 opt = option;
+			QStyleOptionViewItem opt = option;
 			opt.rect = QRect(QPoint(0,0), opt.rect.size());
-			m_pixmap = QPixmap(opt.rect.size());
+			m_pixmap = QPixmap(opt.rect.size() * pixelratio);
+			m_pixmap.setDevicePixelRatio(pixelratio);
 
 			// Draw view item background
 			QPainter p(&m_pixmap);
-			p.fillRect(opt.rect, opt.palette.color(QPalette::Active, QPalette::Base));
+			p.fillRect(QRectF(opt.rect), opt.palette.color(QPalette::Active, QPalette::Base));
 			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Highlight);
 			QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 			style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, &p, opt.widget);
@@ -152,6 +160,7 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->verticalHeader()->hide();
 	m_display->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_display->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+	connect(progress, SIGNAL(modelReset()), this, SLOT(modelReset()));
 
 	m_delegate = new Delegate(this);
 	m_display->setItemDelegate(m_delegate);
@@ -160,7 +169,7 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->horizontalHeader()->setMinimumSectionSize(0);
 	int size = 0;
 	for (int i = 1; i < 8; ++i) {
-		size = qMax(size, m_display->horizontalHeader()->sectionSizeHint(i));
+		size = std::max(size, m_display->horizontalHeader()->sectionSizeHint(i));
 	}
 
 	// Set rows to all be the same height
@@ -169,7 +178,6 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	}
 
 	// Make outside columns stretch and data columns fixed in size
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	m_display->horizontalHeader()->setSectionsClickable(false);
 	m_display->horizontalHeader()->setSectionsMovable(false);
 	m_display->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
@@ -180,18 +188,6 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	}
 	m_display->horizontalHeader()->setSectionResizeMode(8, QHeaderView::Stretch);
 	m_display->setColumnWidth(8, 0);
-#else
-	m_display->horizontalHeader()->setClickable(false);
-	m_display->horizontalHeader()->setMovable(false);
-	m_display->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch);
-	m_display->setColumnWidth(0, 0);
-	for (int c = 1; c < 8; ++c) {
-		m_display->horizontalHeader()->setResizeMode(c, QHeaderView::Fixed);
-		m_display->setColumnWidth(c, size);
-	}
-	m_display->horizontalHeader()->setResizeMode(8, QHeaderView::Stretch);
-	m_display->setColumnWidth(8, 0);
-#endif
 
 	// Set minimum size to always show up to 5 weeks of data
 	int frame = (m_display->style()->pixelMetric(QStyle::PM_DefaultFrameWidth) * 2) + 4;
@@ -270,6 +266,17 @@ void DailyProgressDialog::showEvent(QShowEvent* event)
 	m_display->scrollToBottom();
 
 	QDialog::showEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+
+void DailyProgressDialog::modelReset()
+{
+	const int size = m_display->rowHeight(0);
+	for (int r = 0, count = m_progress->rowCount(); r < count; ++r) {
+		m_display->setRowHeight(r, size);
+	}
+	m_display->scrollToBottom();
 }
 
 //-----------------------------------------------------------------------------

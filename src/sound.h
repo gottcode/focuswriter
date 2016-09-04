@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@
 #define SOUND_H
 
 #include <QObject>
+#include <QVector>
+class QSoundEffect;
 
 class Sound : public QObject
 {
@@ -29,19 +31,15 @@ public:
 	~Sound();
 
 	bool isValid() const;
+	void play();
 
 	static void play(int name);
 	static void setEnabled(bool enabled);
 	static void setPath(const QString& path);
 
 private:
-	int m_id;
 	int m_name;
+	QVector<QSoundEffect*> m_sounds;
 };
-
-inline bool Sound::isValid() const
-{
-	return m_id != -1;
-}
 
 #endif

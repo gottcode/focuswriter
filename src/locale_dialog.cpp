@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,6 +34,8 @@
 #include <QTranslator>
 #include <QVBoxLayout>
 
+#include <algorithm>
+
 //-----------------------------------------------------------------------------
 
 QString LocaleDialog::m_current;
@@ -52,16 +54,15 @@ LocaleDialog::LocaleDialog(QWidget* parent) :
 
 	m_translations = new QComboBox(this);
 	m_translations->addItem(tr("<System Language>"), "");
-	QString translation;
 	QStringList translations = findTranslations();
-	foreach (translation, translations) {
+	for (QString translation : translations) {
 		if (translation.startsWith("qt")) {
 			continue;
 		}
 		translation.remove(m_appname);
 		m_translations->addItem(languageName(translation), translation);
 	}
-	int index = qMax(0, m_translations->findData(m_current));
+	int index = std::max(0, m_translations->findData(m_current));
 	m_translations->setCurrentIndex(index);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -89,7 +90,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 		paths.append(appdir + "/../share/" + QCoreApplication::applicationName().toLower());
 		paths.append(appdir + "/../Resources");
 	}
-	foreach (const QString& path, paths) {
+	for (const QString& path : paths) {
 		if (QFile::exists(path + "/translations/")) {
 			m_path = path + "/translations/";
 			break;
@@ -125,10 +126,8 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	translator.load(m_appname + current, m_path);
 	QCoreApplication::installTranslator(&translator);
 
-#if (QT_VERSION >= (QT_VERSION_CHECK(5,0,0)))
 	// Work around bug in Qt 5 where text direction is not loaded
 	QApplication::setLayoutDirection(QLocale(current).textDirection());
-#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -138,7 +137,6 @@ QString LocaleDialog::languageName(const QString& language)
 	QString lang_code = language.left(5);
 	QLocale locale(lang_code);
 	QString name;
-#if (QT_VERSION >= QT_VERSION_CHECK(4,8,0))
 	if (lang_code.length() > 2) {
 		if (locale.name() == lang_code) {
 			name = locale.nativeLanguageName() + " (" + locale.nativeCountryName() + ")";
@@ -148,20 +146,16 @@ QString LocaleDialog::languageName(const QString& language)
 	} else {
 		name = locale.nativeLanguageName();
 	}
+	if (name.isEmpty() || name == "C") {
+		if (language == "eo") {
+			name = "Esperanto";
+		} else {
+			name = language;
+		}
+	}
 	if (locale.textDirection() == Qt::RightToLeft) {
 		name.prepend(QChar(0x202b));
 	}
-#else
-	if (lang_code.length() > 2) {
-		if (locale.name() == lang_code) {
-			name = QLocale::languageToString(locale.language()) + " (" + QLocale::countryToString(locale.country()) + ")";
-		} else {
-			name = QLocale::languageToString(locale.language()) + " (" + language + ")";
-		}
-	} else {
-		name = QLocale::languageToString(locale.language());
-	}
-#endif
 	return name;
 }
 

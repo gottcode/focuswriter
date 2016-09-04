@@ -25,6 +25,7 @@
 #include "theme_dialog.h"
 #include "utils.h"
 
+#include <QApplication>
 #include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
@@ -37,11 +38,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSettings>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QStyle>
 #include <QTabWidget>
 #include <QTemporaryFile>
@@ -104,9 +101,13 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_default_themes->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 	m_default_themes->setMinimumSize(view_size);
 	m_default_themes->setWordWrap(true);
+	addItem("bitterskies", true, tr("Bitter Skies"));
+	addItem("enchantment", true, tr("Enchantment"));
 	addItem("gentleblues", true, tr("Gentle Blues"));
 	addItem("oldschool", true, tr("Old School"));
 	addItem("spacedreams", true, tr("Space Dreams"));
+	addItem("spygames", true, tr("Spy Games"));
+	addItem("tranquility", true, tr("Tranquility"));
 	addItem("writingdesk", true, tr("Writing Desk"));
 
 	// Add default control buttons
@@ -145,7 +146,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes->setWordWrap(true);
 	QDir dir(Theme::path(), "*.theme");
 	QStringList themes = dir.entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
-	foreach (const QString& theme, themes) {
+	for (const QString& theme : themes) {
 		QString name = QSettings(dir.filePath(theme), QSettings::IniFormat).value("Name").toString();
 		if (!name.isEmpty()) {
 			addItem(QFileInfo(theme).completeBaseName(), false, name);
@@ -159,7 +160,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 
 			QStringList sessions = QDir(Session::path(), "*.session").entryList(QDir::Files);
 			sessions.prepend("");
-			foreach (const QString& file, sessions) {
+			for (const QString& file : sessions) {
 				Session session(file);
 				if ((session.theme() == name) && (session.themeDefault() == false)) {
 					session.setTheme(id, false);
@@ -277,7 +278,7 @@ void ThemeManager::editTheme()
 	}
 
 	item->setText(theme.name());
-	item->setIcon(QIcon(Theme::iconPath(theme.id(), false)));
+	item->setIcon(QIcon(Theme::iconPath(theme.id(), false, devicePixelRatioF())));
 	emit themeSelected(theme);
 }
 
@@ -311,7 +312,7 @@ void ThemeManager::deleteTheme()
 	if (QMessageBox::question(this, tr("Question"), tr("Delete theme '%1'?").arg(item->text()), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
 		QString id = item->data(Qt::UserRole).toString();
 		QFile::remove(Theme::filePath(id));
-		QFile::remove(Theme::iconPath(id));
+		Theme::removeIcon(id, false);
 		delete item;
 		item = 0;
 
@@ -330,11 +331,7 @@ void ThemeManager::importTheme()
 	QSettings settings;
 	QString path = settings.value("ThemeManager/Location").toString();
 	if (path.isEmpty() || !QFile::exists(path)) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-		path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 	}
 	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), path, tr("Themes (%1)").arg("*.fwtz *.theme"), 0, QFileDialog::DontResolveSymlinks);
 	if (filename.isEmpty()) {
@@ -407,11 +404,7 @@ void ThemeManager::exportTheme()
 	QSettings settings;
 	QString path = settings.value("ThemeManager/Location").toString();
 	if (path.isEmpty() || !QFile::exists(path)) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-		path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 	}
 	path = path + "/" + item->text() + ".fwtz";
 	QString filename = QFileDialog::getSaveFileName(this, tr("Export Theme"), path, tr("Themes (%1)").arg("*.fwtz"), 0, QFileDialog::DontResolveSymlinks);
@@ -471,10 +464,34 @@ void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 
 QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const QString& name)
 {
-	QString icon = Theme::iconPath(id, is_default);
-	if (!QFile::exists(icon) || QImageReader(icon).size() != QSize(258, 153)) {
-		ThemeDialog::createPreview(id, is_default);
+	const qreal pixelratio = devicePixelRatioF();
+	QString icon = Theme::iconPath(id, is_default, pixelratio);
+	if (!QFile::exists(icon) || QImageReader(icon).size() != (QSize(258, 153) * pixelratio)) {
+		Theme theme(id, is_default);
+
+		// Find load color in separate thread
+		QFuture<QColor> load_color;
+		if (!theme.isDefault() && (theme.loadColor() == theme.backgroundColor())) {
+			load_color = theme.calculateLoadColor();
+		}
+
+		// Generate preview
+		QRect foreground;
+		QImage background = theme.render(QSize(1920, 1080), foreground, 0, pixelratio);
+		QImage icon;
+		theme.renderText(background, foreground, pixelratio, nullptr, &icon);
+		icon.save(Theme::iconPath(theme.id(), theme.isDefault(), pixelratio));
+
+		// Save load color
+		load_color.waitForFinished();
+		if (load_color.resultCount()) {
+			theme.setLoadColor(load_color);
+			theme.saveChanges();
+		}
+
+		QApplication::processEvents();
 	}
+
 	QListWidgetItem* item = new ThemeItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);
 	item->setToolTip(name);
 	item->setData(Qt::UserRole, id);

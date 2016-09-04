@@ -66,7 +66,87 @@ bool DocxWriter::write(QIODevice* device, const QTextDocument* document)
 
 	zip.addFile(QString::fromLatin1("word/styles.xml"),
 		"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
-		"<w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"/>");
+		"<w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">"
+		"<w:style w:type=\"paragraph\" w:styleId=\"Normal\">"
+			"<w:name w:val=\"Normal\"/>"
+			"<w:pPr/>"
+			"<w:rPr>"
+				"<w:sz w:val=\"24\"/>"
+			"</w:rPr>"
+		"</w:style>"
+		"<w:style w:type=\"paragraph\" w:styleId=\"Heading1\">"
+			"<w:name w:val=\"Heading 1\"/>"
+			"<w:basedOn w:val=\"Normal\"/>"
+			"<w:next w:val=\"Normal\"/>"
+			"<w:pPr>"
+				"<w:outlineLvl w:val=\"0\"/>"
+			"</w:pPr>"
+			"<w:rPr>"
+				"<w:b/>"
+				"<w:sz w:val=\"36\"/>"
+			"</w:rPr>"
+		"</w:style>"
+		"<w:style w:type=\"paragraph\" w:styleId=\"Heading2\">"
+			"<w:name w:val=\"Heading 2\"/>"
+			"<w:basedOn w:val=\"Normal\"/>"
+			"<w:next w:val=\"Normal\"/>"
+			"<w:pPr>"
+				"<w:outlineLvl w:val=\"1\"/>"
+			"</w:pPr>"
+			"<w:rPr>"
+				"<w:b/>"
+				"<w:sz w:val=\"32\"/>"
+			"</w:rPr>"
+		"</w:style>"
+		"<w:style w:type=\"paragraph\" w:styleId=\"Heading3\">"
+			"<w:name w:val=\"Heading 3\"/>"
+			"<w:basedOn w:val=\"Normal\"/>"
+			"<w:next w:val=\"Normal\"/>"
+			"<w:pPr>"
+				"<w:outlineLvl w:val=\"2\"/>"
+			"</w:pPr>"
+			"<w:rPr>"
+				"<w:b/>"
+				"<w:sz w:val=\"28\"/>"
+			"</w:rPr>"
+		"</w:style>"
+		"<w:style w:type=\"paragraph\" w:styleId=\"Heading4\">"
+			"<w:name w:val=\"Heading 4\"/>"
+			"<w:basedOn w:val=\"Normal\"/>"
+			"<w:next w:val=\"Normal\"/>"
+			"<w:pPr>"
+				"<w:outlineLvl w:val=\"3\"/>"
+			"</w:pPr>"
+			"<w:rPr>"
+				"<w:b/>"
+				"<w:sz w:val=\"24\"/>"
+			"</w:rPr>"
+		"</w:style>"
+		"<w:style w:type=\"paragraph\" w:styleId=\"Heading5\">"
+			"<w:name w:val=\"Heading 5\"/>"
+			"<w:basedOn w:val=\"Normal\"/>"
+			"<w:next w:val=\"Normal\"/>"
+			"<w:pPr>"
+				"<w:outlineLvl w:val=\"4\"/>"
+			"</w:pPr>"
+			"<w:rPr>"
+				"<w:b/>"
+				"<w:sz w:val=\"20\"/>"
+			"</w:rPr>"
+		"</w:style>"
+		"<w:style w:type=\"paragraph\" w:styleId=\"Heading6\">"
+			"<w:name w:val=\"Heading 6\"/>"
+			"<w:basedOn w:val=\"Normal\"/>"
+			"<w:next w:val=\"Normal\"/>"
+			"<w:pPr>"
+				"<w:outlineLvl w:val=\"5\"/>"
+			"</w:pPr>"
+			"<w:rPr>"
+				"<w:b/>"
+				"<w:sz w:val=\"16\"/>"
+			"</w:rPr>"
+		"</w:style>"
+		"</w:styles>");
 
 	zip.addFile(QString::fromLatin1("[Content_Types].xml"),
 		"<?xml version=\"1.0\"?>"
@@ -165,6 +245,13 @@ void DocxWriter::writeText(const QString& text, int start, int end)
 void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, const QTextCharFormat& char_format)
 {
 	bool empty = true;
+
+	int heading = block_format.property(QTextFormat::UserProperty).toInt();
+	if (heading) {
+		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
+		m_xml.writeEmptyElement(QString::fromLatin1("w:pStyle"));
+		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString("Heading%1").arg(heading));
+	}
 
 	bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
 	if (rtl) {

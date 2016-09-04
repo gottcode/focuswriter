@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2012, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 #define LOAD_SCREEN_H
 
 #include <QLabel>
+#include <QPixmap>
 class QGraphicsOpacityEffect;
 class QTimer;
 
@@ -40,11 +41,19 @@ public slots:
 protected:
 	void hideEvent(QHideEvent* event);
 	void showEvent(QShowEvent* event);
+	void paintEvent(QPaintEvent* event);
 
 private slots:
 	void fade();
 
 private:
+#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
+	qreal devicePixelRatioF() const { return devicePixelRatio(); }
+#endif
+
+private:
+	QPixmap m_pixmap;
+	QSizeF m_pixmap_center;
 	QLabel* m_text;
 	QGraphicsOpacityEffect* m_hide_effect;
 	QTimer* m_hide_timer;

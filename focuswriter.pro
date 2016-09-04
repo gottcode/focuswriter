@@ -1,25 +1,19 @@
-lessThan(QT_VERSION, 4.6) {
-	error("FocusWriter requires Qt 4.6 or greater")
-}
-macx:greaterThan(QT_MAJOR_VERSION, 4):lessThan(QT_VERSION, 5.2) {
+lessThan(QT_VERSION, 5.2) {
 	error("FocusWriter requires Qt 5.2 or greater")
 }
-win32:greaterThan(QT_MAJOR_VERSION, 4):lessThan(QT_VERSION, 5.4) {
+win32:lessThan(QT_VERSION, 5.4) {
 	error("FocusWriter requires Qt 5.4 or greater")
 }
 
 TEMPLATE = app
-QT += network
-greaterThan(QT_MAJOR_VERSION, 4) {
-	QT += widgets printsupport multimedia concurrent
-	macx {
-		QT += macextras
-	}
-	win32 {
-		QT += winextras
-	}
+QT += network widgets printsupport multimedia concurrent
+macx {
+	QT += macextras
 }
-CONFIG += warn_on
+win32 {
+	QT += winextras
+}
+CONFIG += warn_on c++11
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
@@ -32,7 +26,7 @@ macx {
 }
 
 # Set program version
-VERSION = 1.5.7
+VERSION = 1.6.0
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
@@ -53,15 +47,11 @@ macx {
 
 	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm
 
-	SOURCES += src/fileformats/clipboard_mac.cpp \
-		src/sound.cpp
+	SOURCES += src/fileformats/clipboard_mac.cpp
 } else:win32 {
 	DEFINES += RTFCLIPBOARD
 
-	greaterThan(QT_MAJOR_VERSION, 4) {
-		LIBS += -lz
-	}
-	LIBS += -lole32
+	LIBS += -lz -lole32
 
 	INCLUDEPATH += src/spelling/hunspell
 
@@ -81,8 +71,7 @@ macx {
 		src/spelling/hunspell/hunzip.cxx \
 		src/spelling/hunspell/phonet.cxx \
 		src/spelling/hunspell/replist.cxx \
-		src/spelling/hunspell/suggestmgr.cxx \
-		src/sound.cpp
+		src/spelling/hunspell/suggestmgr.cxx
 } else:unix {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell zlib
@@ -92,12 +81,6 @@ macx {
 
 	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
 		src/spelling/dictionary_provider_voikko.cpp
-
-	lessThan(QT_MAJOR_VERSION, 5) {
-		SOURCES += src/sdl/sound.cpp
-	} else {
-		SOURCES += src/sound.cpp
-	}
 }
 
 INCLUDEPATH += src src/fileformats src/qtsingleapplication src/qtzip src/spelling
@@ -201,6 +184,7 @@ SOURCES += src/action_manager.cpp \
 	src/session_manager.cpp \
 	src/shortcut_edit.cpp \
 	src/smart_quotes.cpp \
+	src/sound.cpp \
 	src/stack.cpp \
 	src/stats.cpp \
 	src/symbols_dialog.cpp \
@@ -235,7 +219,7 @@ SOURCES += src/action_manager.cpp \
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
 
 # Install program data
-RESOURCES = resources/images/images.qrc resources/images/icons/icons.qrc
+RESOURCES = resources/images/images.qrc
 
 macx {
 	ICON = resources/mac/focuswriter.icns
@@ -246,11 +230,7 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	greaterThan(QT_MAJOR_VERSION, 4) {
-		SYMBOLS.files = resources/symbols/symbols630.dat
-	} else {
-		SYMBOLS.files = resources/symbols/symbols510.dat
-	}
+	SYMBOLS.files = resources/symbols/symbols900.dat
 	SYMBOLS.path = Contents/Resources
 
 	THEMES.files = resources/themes
@@ -260,6 +240,8 @@ macx {
 } else:win32 {
 	RC_FILE = resources/windows/icon.rc
 } else:unix {
+	RESOURCES += resources/images/icons/icons.qrc
+
 	isEmpty(PREFIX) {
 		PREFIX = /usr/local
 	}
@@ -300,11 +282,7 @@ macx {
 	themes.files = resources/themes/*
 	themes.path = $$DATADIR/focuswriter/themes
 
-	greaterThan(QT_MAJOR_VERSION, 4) {
-		symbols.files = resources/symbols/symbols630.dat
-	} else {
-		symbols.files = resources/symbols/symbols510.dat
-	}
+	symbols.files = resources/symbols/symbols900.dat
 	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes

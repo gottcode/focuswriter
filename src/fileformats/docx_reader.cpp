@@ -23,6 +23,8 @@
 #include <QXmlStreamAttributes>
 #include <QtZipReader>
 
+#include <cmath>
+
 //-----------------------------------------------------------------------------
 
 static bool readBool(const QStringRef& value)
@@ -184,7 +186,14 @@ void DocxReader::readStyles()
 
 			// Read style contents
 			while (m_xml.readNextStartElement()) {
-				if (m_xml.qualifiedName() == "w:basedOn") {
+				if (m_xml.qualifiedName() == "w:name") {
+					QString name = m_xml.attributes().value("w:val").toString();
+					if (name.startsWith("Head")) {
+						int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
+						style.block_format.setProperty(QTextFormat::UserProperty, heading);
+					}
+					m_xml.skipCurrentElement();
+				} else if (m_xml.qualifiedName() == "w:basedOn") {
 					QString parent_style_id = m_xml.attributes().value("w:val").toString();
 					if (m_styles.contains(parent_style_id) && (style.type == m_styles[parent_style_id].type)) {
 						Style newstyle = m_styles[parent_style_id];
@@ -325,10 +334,10 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 			}
 		} else if (m_xml.qualifiedName() == "w:ind") {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
-			left_indent = qRound(m_xml.attributes().value("w:left").toString().toDouble() / 720.0);
-			right_indent = qRound(m_xml.attributes().value("w:right").toString().toDouble() / 720.0);
+			left_indent = std::lround(m_xml.attributes().value("w:left").toString().toDouble() / 720.0);
+			right_indent = std::lround(m_xml.attributes().value("w:right").toString().toDouble() / 720.0);
 			// ECMA-376 2nd edition, ISO/IEC 29500 strict
-			indent = qRound(m_xml.attributes().value("w:start").toString().toDouble() / 720.0);
+			indent = std::lround(m_xml.attributes().value("w:start").toString().toDouble() / 720.0);
 			if (indent) {
 				style.block_format.setIndent(indent);
 				left_indent = right_indent = 0;
@@ -339,6 +348,9 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 			} else if (value == "lr") {
 				style.block_format.setLayoutDirection(Qt::LeftToRight);
 			}
+		} else if (m_xml.qualifiedName() == "w:outlineLvl") {
+			int heading = qBound(1, m_xml.attributes().value("w:val").toString().toInt() + 1, 6);
+			style.block_format.setProperty(QTextFormat::UserProperty, heading);
 		} else if ((m_xml.qualifiedName() == "w:pStyle") && allowstyles) {
 			Style pstyle = m_styles.value(value.toString());
 			pstyle.merge(style);
@@ -361,6 +373,10 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 				style.block_format.setIndent(right_indent);
 			}
 		}
+	}
+
+	if (style.block_format.property(QTextFormat::UserProperty).toInt()) {
+		style.char_format.setFontWeight(QFont::Normal);
 	}
 }
 

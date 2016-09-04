@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -562,7 +562,7 @@ bool Timer::startTimer()
 void Timer::updateCounts()
 {
 	QList<Deltas*> deltas = m_deltas.values();
-	foreach (Deltas* delta, deltas) {
+	for (Deltas* delta : deltas) {
 		m_character_count += delta->characterCount();
 		m_character_and_space_count += delta->characterAndSpaceCount();
 		m_page_count += delta->pageCount();

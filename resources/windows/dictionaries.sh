@@ -11,11 +11,31 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='5.0.1.2'
+loversion='5.2.0.3'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "http://download.documentfoundation.org/libreoffice/src/5.0.1/${lodict}.tar.xz"
+	curl -s -O -L "http://download.documentfoundation.org/libreoffice/src/5.2.0/${lodict}.tar.xz"
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
+echo -n 'Downloading Armenian dictionary...'
+hydict='hy_am_e_1940_dict-1.1'
+hyfiles='hy_am_e_1940_dict-1.1'
+if [ ! -e "${hydict}.oxt" ]; then
+	curl -s -L -o "${hydict}.oxt" 'http://extensions.openoffice.org/en/download/4838'
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
+echo -n 'Downloading Esperanto dictionary...'
+eodict='esperantilo'
+eofiles='esperantilo'
+if [ ! -e "${eodict}.oxt" ]; then
+	curl -s -L -o "${eodict}.oxt" 'http://extensions.openoffice.org/en/download/4561'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -23,17 +43,17 @@ fi
 
 echo -n 'Downloading Finnish dictionary...'
 if [ ! -e 'voikko.oxt' ]; then
-	curl -s -O 'http://www.puimula.org/htp/ooo/voikko-win/4.1.0.20150125/voikko.oxt'
+	curl -s -O 'http://www.puimula.org/htp/ooo/voikko-win/5.0.0.20151123/voikko.oxt'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
 fi
 
 echo -n 'Downloading Korean dictionary...'
-kodict='korean_spell-checker-0-5-6_ooo'
-kofiles='korean_spell-checker-0-5-6_ooo/dictionaries'
+kodict='korean_spell-checker-0-5-6-1_libo'
+kofiles='korean_spell-checker-0-5-6-1_libo/dictionaries'
 if [ ! -e "${kodict}.oxt" ]; then
-	curl -s -O "http://extensions.libreoffice.org/extension-center/korean-spellchecker/releases/0.5.6/${kodict}.oxt"
+	curl -s -O "http://extensions.libreoffice.org/extension-center/korean-spellchecker/releases/0.5.6.1/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -64,6 +84,22 @@ fi
 echo -n 'Extracting LibreOffice dictionaries...'
 if [ ! -e "libreoffice-${loversion}" ]; then
 	tar -xaf "${lodict}.tar.xz"
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
+echo -n 'Extracting Armenian dictionary...'
+if [ ! -e "${hydict}" ]; then
+	unzip -qq "${hydict}.oxt" -d "${hydict}"
+	echo ' DONE'
+else
+	echo ' SKIPPED'
+fi
+
+echo -n 'Extracting Esperanto dictionary...'
+if [ ! -e "${eodict}" ]; then
+	unzip -qq "${eodict}.oxt" -d "${eodict}"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -105,9 +141,12 @@ fi
 # Copy files
 echo -n 'Copying...'
 mkdir dicts
+echo -n ' af_ZA'
+cp -a $lofiles/af_ZA/af_ZA.aff dicts/af_ZA.aff
+cp -a $lofiles/af_ZA/af_ZA.dic dicts/af_ZA.dic
 echo -n ' ar'
-cp -a $lofiles/ar/ar.aff dicts/ca.aff
-cp -a $lofiles/ar/ar.dic dicts/ca.dic
+cp -a $lofiles/ar/ar.aff dicts/ar.aff
+cp -a $lofiles/ar/ar.dic dicts/ar.dic
 echo -n ' ca'
 cp -a $lofiles/ca/dictionaries/ca.aff dicts/ca.aff
 cp -a $lofiles/ca/dictionaries/ca.dic dicts/ca.dic
@@ -144,12 +183,15 @@ cp -a $lofiles/en/en_US.dic dicts/en_US.dic
 echo -n ' en_ZA'
 cp -a $lofiles/en/en_ZA.aff dicts/en_ZA.aff
 cp -a $lofiles/en/en_ZA.dic dicts/en_ZA.dic
+echo -n ' eo'
+cp -a $eofiles/eo_ilo.aff dicts/eo.aff
+cp -a $eofiles/eo_ilo.dic dicts/eo.dic
 echo -n ' es'
 cp -a $lofiles/es/es_ANY.aff dicts/es.aff
 cp -a $lofiles/es/es_ANY.dic dicts/es.dic
 echo -n ' fi'
-cp -a voikko/2 dicts
-cp -a voikko/libvoikko-1.dll dicts
+cp -a voikko/voikko/2 dicts
+cp -a voikko/voikko/Windows-32bit-WindowsPE/libvoikko-1.dll dicts
 echo -n ' fr'
 cp -a $lofiles/fr_FR/fr.aff dicts/fr.aff
 cp -a $lofiles/fr_FR/fr.dic dicts/fr.dic
@@ -159,6 +201,9 @@ cp -a $lofiles/he_IL/he_IL.dic dicts/he.dic
 echo -n ' hu'
 cp -a $lofiles/hu_HU/hu_HU.aff dicts/hu.aff
 cp -a $lofiles/hu_HU/hu_HU.dic dicts/hu.dic
+echo -n ' hy'
+cp -a $hyfiles/hy_am_e_1940.aff dicts/hy.aff
+cp -a $hyfiles/hy_am_e_1940.dic dicts/hy.dic
 echo -n ' id'
 cp -a $idfiles/id_ID.aff dicts/id.aff
 cp -a $idfiles/id_ID.dic dicts/id.dic

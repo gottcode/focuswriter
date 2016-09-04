@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,21 +62,9 @@ SymbolsModel::SymbolsModel(QObject* parent) :
 	if (!buffer.open(QBuffer::ReadOnly)) {
 		return;
 	}
+
 	QDataStream stream(&buffer);
-
-	const int unicode_version = m_path.mid(m_path.length() - 7, 3).toInt();
-	switch (unicode_version) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-	case 620:
-		stream.setVersion(QDataStream::Qt_5_0);
-		break;
-#endif
-	case 510:
-	default:
-		stream.setVersion(QDataStream::Qt_4_6);
-		break;
-	}
-
+	stream.setVersion(QDataStream::Qt_5_2);
 	stream >> m_names;
 	stream >> m_groups;
 	buffer.close();
@@ -94,7 +82,7 @@ QStringList SymbolsModel::filters(int group) const
 	const FilterGroup& filters = m_groups.at(group);
 
 	// List names of all filters in group
-	foreach (const Filter& filter, filters) {
+	for (const Filter& filter : filters) {
 		names += QLatin1String(filter.name);
 	}
 	return names;
@@ -164,7 +152,7 @@ int SymbolsModel::symbolFilter(int group, quint32 unicode) const
 	// Check for filter whose ranges contain symbol
 	for (int i = 0, count = filters.count(); i < count; ++i) {
 		const Filter& filter = filters.at(i);
-		foreach (const Filter::Range& range, filter.ranges) {
+		for (const Filter::Range& range : filter.ranges) {
 			if ((range.start <= unicode) && (range.end >= unicode)) {
 				index = i;
 				break;
@@ -306,18 +294,11 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 
 void SymbolsModel::setData(const QStringList& datadirs)
 {
-	QStringList files = QStringList()
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-			<< "symbols630.dat"
-#endif
-			<< "symbols510.dat";
-	foreach (const QString& path, datadirs) {
-		foreach (const QString& file, files) {
-			QFileInfo info(path + "/" + file);
-			if (info.exists()) {
-				m_path = info.absoluteFilePath();
-				break;
-			}
+	for (const QString& path : datadirs) {
+		QFileInfo info(path + "/symbols900.dat");
+		if (info.exists()) {
+			m_path = info.absoluteFilePath();
+			break;
 		}
 	}
 }

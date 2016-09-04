@@ -122,7 +122,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 			QMenu* menu = new QMenu;
 			QStringList guesses = m_dictionary.suggestions(m_word);
 			if (!guesses.isEmpty()) {
-				foreach (const QString& guess, guesses) {
+				for (const QString& guess : guesses) {
 					menu->addAction(guess);
 				}
 			} else {
@@ -148,22 +148,21 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 void Highlighter::highlightBlock(const QString& text)
 {
+	int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
+	if (heading) {
+		QTextCharFormat style;
+		style.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
+		style.setFontWeight(QFont::Bold);
+		setFormat(0, text.length(), style);
+	}
+
 	BlockStats* stats = static_cast<BlockStats*>(currentBlockUserData());
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	if (!m_enabled || m_text->isReadOnly() || !stats || (stats->spellingStatus() == BlockStats::Unchecked)) {
 		return;
 	}
 	if (stats->spellingStatus() == BlockStats::CheckSpelling) {
 		stats->checkSpelling(text, m_dictionary);
 	}
-#else
-	if (!m_enabled || m_text->isReadOnly() || !stats) {
-		return;
-	}
-	if (stats->spellingStatus() != BlockStats::Checked) {
-		stats->checkSpelling(text, m_dictionary);
-	}
-#endif
 
 	QTextCharFormat error;
 	error.setUnderlineColor(m_misspelled);
@@ -190,7 +189,6 @@ void Highlighter::updateSpelling()
 		return;
 	}
 
-#if (QT_VERSION >= QT_VERSION_CHECK(4,7,0))
 	QTextBlock block = m_text->textCursor().block();
 	bool found = false;
 
@@ -220,9 +218,6 @@ void Highlighter::updateSpelling()
 	if (found) {
 		m_spell_timer->start();
 	}
-#else
-	rehighlight();
-#endif
 }
 
 //-----------------------------------------------------------------------------

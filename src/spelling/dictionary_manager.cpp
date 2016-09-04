@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -110,7 +110,7 @@ DictionaryManager& DictionaryManager::instance()
 QStringList DictionaryManager::availableDictionaries() const
 {
 	QStringList result;
-	foreach (AbstractDictionaryProvider* provider, m_providers) {
+	for (AbstractDictionaryProvider* provider : m_providers) {
 		result += provider->availableDictionaries();
 	}
 	result.sort();
@@ -151,7 +151,7 @@ void DictionaryManager::addProviders()
 	bool has_hunspell = false;
 	bool has_voikko = false;
 
-	foreach (AbstractDictionaryProvider* provider, m_providers) {
+	for (AbstractDictionaryProvider* provider : m_providers) {
 		if (dynamic_cast<DictionaryProviderHunspell*>(provider) != NULL) {
 			has_hunspell = true;
 		} else if (dynamic_cast<DictionaryProviderVoikko*>(provider) != NULL) {
@@ -168,7 +168,7 @@ void DictionaryManager::addProviders()
 #else
 	bool has_nsspellchecker = false;
 
-	foreach (AbstractDictionaryProvider* provider, m_providers) {
+	for (AbstractDictionaryProvider* provider : m_providers) {
 		if (dynamic_cast<DictionaryProviderNSSpellChecker*>(provider) != NULL) {
 			has_nsspellchecker = true;
 		}
@@ -215,7 +215,7 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 void DictionaryManager::setIgnoreNumbers(bool ignore)
 {
-	foreach (AbstractDictionaryProvider* provider, m_providers) {
+	for (AbstractDictionaryProvider* provider : m_providers) {
 		provider->setIgnoreNumbers(ignore);
 	}
 
@@ -227,7 +227,7 @@ void DictionaryManager::setIgnoreNumbers(bool ignore)
 
 void DictionaryManager::setIgnoreUppercase(bool ignore)
 {
-	foreach (AbstractDictionaryProvider* provider, m_providers) {
+	for (AbstractDictionaryProvider* provider : m_providers) {
 		provider->setIgnoreUppercase(ignore);
 	}
 
@@ -265,7 +265,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	}
 
 	// Remove current personal dictionary
-	foreach (AbstractDictionary* dictionary, m_dictionaries) {
+	for (AbstractDictionary* dictionary : m_dictionaries) {
 		dictionary->removeFromSession(m_personal);
 	}
 
@@ -275,13 +275,13 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
 		stream.setCodec("UTF-8");
-		foreach (const QString& word, m_personal) {
+		for (const QString& word : m_personal) {
 			stream << word << "\n";
 		}
 	}
 
 	// Add personal dictionary
-	foreach (AbstractDictionary* dictionary, m_dictionaries) {
+	for (AbstractDictionary* dictionary : m_dictionaries) {
 		dictionary->addToSession(m_personal);
 	}
 
@@ -311,7 +311,7 @@ DictionaryManager::DictionaryManager()
 
 DictionaryManager::~DictionaryManager()
 {
-	foreach (AbstractDictionary* dictionary, m_dictionaries) {
+	for (AbstractDictionary* dictionary : m_dictionaries) {
 		delete dictionary;
 	}
 	m_dictionaries.clear();
@@ -338,7 +338,7 @@ AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& lan
 {
 	if (!m_dictionaries.contains(language)) {
 		AbstractDictionary* dictionary = 0;
-		foreach (AbstractDictionaryProvider* provider, m_providers) {
+		for (AbstractDictionaryProvider* provider : m_providers) {
 			dictionary = provider->requestDictionary(language);
 			if (dictionary && dictionary->isValid()) {
 				break;

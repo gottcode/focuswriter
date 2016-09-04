@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 #include <QCoreApplication>
 #include <QExplicitlySharedDataPointer>
 #include <QFont>
+#include <QFuture>
 #include <QSharedData>
 class QImage;
 class QSize;
@@ -93,12 +94,14 @@ public:
 	static QString defaultId() { return "writingdesk"; }
 	static bool exists(const QString& name);
 	static QString filePath(const QString& id, bool is_default = false);
-	static QString iconPath(const QString& id, bool is_default = false);
+	static QString iconPath(const QString& id, bool is_default, qreal pixelratio);
 	static QString path() { return m_path; }
+	static void removeIcon(const QString& id, bool is_default);
 	static void setDefaultPath(const QString& path);
 	static void setPath(const QString& path);
 
-	QImage render(const QSize& background, QRect& foreground) const;
+	QImage render(const QSize& background, QRect& foreground, const int margin, const qreal pixelratio) const;
+	void renderText(QImage background, const QRect& foreground, const qreal pixelratio, QImage* preview, QImage* icon) const;
 
 	// Name settings
 	bool isDefault() const { return d->is_default; }
@@ -106,6 +109,7 @@ public:
 	QString name() const { return d->name; }
 	void setName(const QString& name) { setValue(d->name, name); }
 
+	QFuture<QColor> calculateLoadColor() const;
 	QColor loadColor() const { return d->load_color; }
 	void setLoadColor(const QColor& color) { setValue(d->load_color, color); }
 
@@ -126,7 +130,7 @@ public:
 	RangedInt foregroundMargin() const { return d->foreground_margin; }
 	RangedInt foregroundPadding() const { return d->foreground_padding; }
 	RangedInt foregroundPosition() const { return d->foreground_position; }
-	QRect foregroundRect(const QSize& size) const;
+	QRect foregroundRect(const QSize& size, int margin, const qreal pixelratio) const;
 
 	void setForegroundColor(const QColor& color) { setValue(d->foreground_color, color); }
 	void setForegroundOpacity(int opacity) { setValue(d->foreground_opacity, opacity); }

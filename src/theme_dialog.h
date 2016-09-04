@@ -35,7 +35,6 @@ class QLabel;
 class QLineEdit;
 class QPushButton;
 class QSpinBox;
-class QTextEdit;
 
 class ThemeDialog : public QDialog
 {
@@ -45,7 +44,6 @@ public:
 	ThemeDialog(Theme& theme, QWidget* parent = 0);
 	~ThemeDialog();
 
-	static void createPreview(const QString& id, bool is_default);
 
 public slots:
 	virtual void accept();
@@ -60,11 +58,14 @@ private slots:
 	void lineSpacingChanged(int index);
 	void positionChanged(int index);
 	void renderPreview();
-	void renderPreview(QImage preview, const QRect& foreground, const Theme& theme);
+	void renderPreview(const QImage& background, const QRect& foreground, const Theme& theme);
 
 private:
 	void savePreview();
 	void setValues(Theme& theme);
+#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
+	qreal devicePixelRatioF() const { return devicePixelRatio(); }
+#endif
 
 private:
 	Theme& m_theme;
@@ -75,7 +76,6 @@ private:
 	ThemeRenderer* m_theme_renderer;
 	QLabel* m_preview;
 	QImage m_preview_icon;
-	QTextEdit* m_preview_text;
 	QFuture<QColor> m_load_color;
 
 	ColorButton* m_text_color;

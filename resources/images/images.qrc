@@ -1,7 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 	<file>load.png</file>
+	<file>load@2x.png</file>
+	<file>load@3x.png</file>
 	<file>lorem.txt</file>
-	<file>shadow.png</file>
 </qresource>
 </RCC>

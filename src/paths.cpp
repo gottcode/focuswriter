@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,30 +17,18 @@
  *
  ***********************************************************************/
 
-// Need this to find the old data locations from Qt 4 when using Qt 5.
-// QDesktopServices::storageLocation() is deprecated and returns a different
-// path than QStandardPaths::writableLocation().
-#define QT_DISABLE_DEPRECATED_BEFORE 0x000000
-
 #include "paths.h"
 
-#include <QDesktopServices>
 #include <QDir>
 #include <QFile>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QStandardPaths>
-#endif
 #include <QStringList>
 
 //-----------------------------------------------------------------------------
 
 QString Paths::dataPath()
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	static QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-	static QString path = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
 	return path;
 }
 
@@ -51,9 +39,9 @@ QString Paths::oldDataPath()
 	QStringList oldpaths;
 	QString oldpath;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
 	// Data path from Qt 4 version of 1.4
-	oldpaths.append(QDesktopServices::storageLocation(QDesktopServices::DataLocation));
+	oldpaths.append(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/GottCode/FocusWriter");
 #endif
 
 	// Data path from 1.0
@@ -74,7 +62,7 @@ QString Paths::oldDataPath()
 
 	// Check if an old data location exists
 	oldpath.clear();
-	foreach (const QString& testpath, oldpaths) {
+	for (const QString& testpath : oldpaths) {
 		if (QFile::exists(testpath)) {
 			oldpath = testpath;
 			break;

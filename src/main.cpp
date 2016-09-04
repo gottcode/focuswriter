@@ -72,14 +72,14 @@ int main(int argc, char** argv)
 	// Set locations of fallback icons
 	{
 		QStringList paths = QIcon::themeSearchPaths();
-		foreach (const QString& path, datadirs) {
+		for (const QString& path : datadirs) {
 			paths.prepend(path + "/icons");
 		}
 		QIcon::setThemeSearchPaths(paths);
 	}
 
 	// Find sounds
-	foreach (const QString& path, datadirs) {
+	for (const QString& path : datadirs) {
 		if (QFile::exists(path + "/sounds/")) {
 			Sound::setPath(path + "/sounds/");
 			break;
@@ -111,12 +111,12 @@ int main(int argc, char** argv)
 					olddir.setPath(oldpath + "/" + subpath);
 
 					QStringList subdirs = olddir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-					foreach (const QString& subdir, subdirs) {
+					for (const QString& subdir : subdirs) {
 						old_dirs.append(subpath + "/" + subdir);
 					}
 
 					QStringList files = olddir.entryList(QDir::Files);
-					foreach (const QString& file, files) {
+					for (const QString& file : files) {
 						QFile::rename(olddir.absoluteFilePath(file), userdir + "/" + subpath + "/" + file);
 					}
 				}
@@ -163,7 +163,7 @@ int main(int argc, char** argv)
 	}
 	Theme::setPath(dir.absoluteFilePath("Themes"));
 
-	foreach (const QString& datadir, datadirs) {
+	for (const QString& datadir : datadirs) {
 		QFileInfo info(datadir + "/themes");
 		if (info.exists()) {
 			Theme::setDefaultPath(info.absoluteFilePath());

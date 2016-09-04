@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,9 +53,9 @@ void ColorButton::setColor(const QColor& color)
 	{
 		QPainter painter(&swatch);
 		painter.setPen(m_color.darker());
-		painter.drawRect(0, 0, swatch.width() - 1, swatch.height() - 1);
+		painter.drawRect(QRectF(0, 0, swatch.width() - 1, swatch.height() - 1));
 		painter.setPen(m_color.lighter());
-		painter.drawRect(1, 1, swatch.width() - 3, swatch.height() - 3);
+		painter.drawRect(QRectF(1, 1, swatch.width() - 3, swatch.height() - 3));
 	}
 	setIconSize(swatch.size());
 	setIcon(swatch);

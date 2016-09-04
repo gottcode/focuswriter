@@ -49,11 +49,6 @@
 #include <QAction>
 #include <QApplication>
 #include <QCloseEvent>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
-#include <QStandardPaths>
-#else
-#include <QDesktopServices>
-#endif
 #include <QFileDialog>
 #include <QFileOpenEvent>
 #include <QGridLayout>
@@ -68,6 +63,7 @@
 #include <QSettings>
 #include <QSignalMapper>
 #include <QSizeGrip>
+#include <QStandardPaths>
 #include <QTabBar>
 #include <QThread>
 #include <QTimer>
@@ -104,6 +100,8 @@ Window::Window(const QStringList& command_line_files) :
 	setAttribute(Qt::WA_DeleteOnClose);
 	setContextMenuPolicy(Qt::NoContextMenu);
 	setCursor(Qt::WaitCursor);
+
+	m_load_screen = new LoadScreen(this);
 
 	// Set up icons
 	if (QIcon::themeName().isEmpty()) {
@@ -293,11 +291,11 @@ Window::Window(const QStringList& command_line_files) :
 	m_actions["Fullscreen"]->setChecked(m_fullscreen);
 
 	// Load settings
-	m_documents->loadScreen()->setText(tr("Loading settings"));
+	m_load_screen->setText(tr("Loading settings"));
 	loadPreferences();
 
 	// Update and load theme
-	m_documents->loadScreen()->setText(tr("Loading themes"));
+	m_load_screen->setText(tr("Loading themes"));
 	Theme::copyBackgrounds();
 	{
 		// Force a reload of previews
@@ -333,7 +331,7 @@ Window::Window(const QStringList& command_line_files) :
 					untitled++;
 				}
 			}
-			m_documents->loadScreen()->setText("");
+			m_load_screen->setText("");
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
@@ -353,9 +351,7 @@ Window::Window(const QStringList& command_line_files) :
 	QString session = settings.value("SessionManager/Session").toString();
 	if (files.isEmpty() && !command_line_files.isEmpty()) {
 		session.clear();
-		settings.setValue("Save/Current", command_line_files);
-		settings.setValue("Save/Positions", QStringList());
-		settings.setValue("Save/Active", 0);
+		settings.setValue("Save/Current", settings.value("Save/Current").toStringList() + command_line_files);
 	}
 	m_sessions->setCurrent(session, files, datafiles);
 
@@ -394,7 +390,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	}
 	if (!skip.isEmpty()) {
 		QStringList skipped;
-		foreach (int i, skip) {
+		for (int i : skip) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
 		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Some files were unsupported and could not be opened."), skipped, true));
@@ -403,7 +399,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	// Show load screen if switching sessions or opening more than one file
 	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()));
 	if (show_load) {
-		m_documents->loadScreen()->setText("");
+		m_load_screen->setText("");
 		setCursor(Qt::WaitCursor);
 	}
 
@@ -471,9 +467,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	}
 
 	// Hide load screen
-	if (m_documents->loadScreen()->isVisible()) {
+	if (m_load_screen->isVisible()) {
 		m_documents->waitForThemeBackground();
-		m_documents->loadScreen()->finish();
+		m_load_screen->finish();
 		unsetCursor();
 	}
 
@@ -492,7 +488,7 @@ void Window::addDocuments(QDropEvent* event)
 {
 	if (event->mimeData()->hasUrls()) {
 		QStringList files;
-		foreach (QUrl url, event->mimeData()->urls()) {
+		for (const QUrl& url : event->mimeData()->urls()) {
 			files.append(url.toLocalFile());
 		}
 		queueDocuments(files);
@@ -648,6 +644,7 @@ void Window::resizeEvent(QResizeEvent* event)
 	if (!m_fullscreen) {
 		QSettings().setValue("Window/Geometry", saveGeometry());
 	}
+	m_load_screen->resize(size());
 	m_documents->resize(size());
 	QMainWindow::resizeEvent(event);
 }
@@ -672,11 +669,7 @@ void Window::newDocument()
 void Window::openDocument()
 {
 	QSettings settings;
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-#else
-	QString default_path = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#endif
 	QString path = settings.value("Save/Location", default_path).toString();
 
 	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"), 0, QFileDialog::DontResolveSymlinks);
@@ -960,7 +953,9 @@ void Window::updateFormatAlignmentActions()
 		return;
 	}
 
-	if (document->text()->textCursor().blockFormat().layoutDirection() == Qt::LeftToRight) {
+	QTextBlockFormat format = document->text()->textCursor().blockFormat();
+
+	if (format.layoutDirection() == Qt::LeftToRight) {
 		m_actions["FormatDirectionLTR"]->setChecked(true);
 	} else if (document->text()->textCursor().blockFormat().layoutDirection() == Qt::RightToLeft) {
 		m_actions["FormatDirectionRTL"]->setChecked(true);
@@ -978,6 +973,9 @@ void Window::updateFormatAlignmentActions()
 	} else if (alignment & Qt::AlignJustify) {
 		m_actions["FormatAlignJustify"]->setChecked(true);
 	}
+
+	int heading = format.property(QTextFormat::UserProperty).toInt();
+	m_headings_actions->actions().at(heading)->setChecked(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -1014,12 +1012,12 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 
 	// Show filename in load screen
 	bool show_load = false;
-	show_load = !file.isEmpty() && !m_documents->loadScreen()->isVisible() && (info.size() > 100000);
-	if (m_documents->loadScreen()->isVisible() || show_load) {
+	show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
+	if (m_load_screen->isVisible() || show_load) {
 		if (!file.isEmpty()) {
-			m_documents->loadScreen()->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
+			m_load_screen->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
 		} else {
-			m_documents->loadScreen()->setText("");
+			m_load_screen->setText("");
 		}
 	}
 
@@ -1067,12 +1065,12 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	m_tabs->setCurrentIndex(index);
 
 	if (show_load) {
-		m_documents->loadScreen()->finish();
+		m_load_screen->finish();
 	}
 
 	// Allow documents to show load screen on reload
-	connect(document, SIGNAL(loadStarted(QString)), m_documents->loadScreen(), SLOT(setText(QString)));
-	connect(document, SIGNAL(loadFinished()), m_documents->loadScreen(), SLOT(finish()));
+	connect(document, SIGNAL(loadStarted(QString)), m_load_screen, SLOT(setText(QString)));
+	connect(document, SIGNAL(loadFinished()), m_load_screen, SLOT(finish()));
 	connect(document, SIGNAL(loadFinished()), this, SLOT(updateSave()));
 
 	return true;
@@ -1142,8 +1140,8 @@ bool Window::saveDocument(int index)
 void Window::loadPreferences()
 {
 	if (Preferences::instance().typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
-		if (m_documents->loadScreen()->isVisible()) {
-			m_documents->loadScreen()->setText(tr("Loading sounds"));
+		if (m_load_screen->isVisible()) {
+			m_load_screen->setText(tr("Loading sounds"));
 		}
 		m_key_sound = new Sound(Qt::Key_Any, "keyany.wav", this);
 		m_enter_key_sound = new Sound(Qt::Key_Enter, "keyenter.wav", this);
@@ -1151,8 +1149,8 @@ void Window::loadPreferences()
 		if (!m_key_sound->isValid() || !m_enter_key_sound->isValid()) {
 			m_documents->alerts()->addAlert(new Alert(Alert::Warning,
 				tr("Unable to load typewriter sounds."),
-				QStringList(tr("Please make sure that SDL_mixer is installed.")),
-				true));
+				QStringList(),
+				false));
 			delete m_key_sound;
 			delete m_enter_key_sound;
 			m_key_sound = m_enter_key_sound = 0;
@@ -1193,7 +1191,7 @@ void Window::loadPreferences()
 	m_toolbar->hide();
 	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(Preferences::instance().toolbarStyle()));
 	QStringList actions = Preferences::instance().toolbarActions();
-	foreach (const QString action, actions) {
+	for (const QString action : actions) {
 		if (action == "|") {
 			m_toolbar->addSeparator();
 		} else if (!action.startsWith("^")) {
@@ -1203,6 +1201,8 @@ void Window::loadPreferences()
 	m_toolbar->setVisible(QSettings().value("Toolbar/Shown", true).toBool());
 	updateMargin();
 
+	m_documents->setHeaderVisible(Preferences::instance().alwaysShowHeader());
+	m_documents->setFooterVisible(Preferences::instance().alwaysShowFooter());
 	for (int i = 0; i < m_documents->count(); ++i) {
 		m_documents->document(i)->loadPreferences();
 	}
@@ -1276,7 +1276,7 @@ void Window::updateWriteState(int index)
 		m_documents->symbols()->setInsertEnabled(writable);
 	}
 
-	foreach (QAction* action, m_format_actions) {
+	for (QAction* action : m_format_actions) {
 		action->setEnabled(writable);
 	}
 	m_actions["FormatIndentDecrease"]->setEnabled(writable && document->text()->textCursor().blockFormat().indent() > 0);
@@ -1306,6 +1306,7 @@ void Window::initMenus()
 	connect(m_actions["NewSession"], SIGNAL(triggered()), m_sessions, SLOT(newSession()));
 	file_menu->addSeparator();
 	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
+	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, SLOT(pageSetup()));
 	file_menu->addSeparator();
 	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, SLOT(close()), keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
@@ -1335,6 +1336,32 @@ void Window::initMenus()
 	// Create format menu
 	QMenu* format_menu = menuBar()->addMenu(tr("Fo&rmat"));
 
+	QMenu* headings_menu = format_menu->addMenu(tr("&Heading"));
+	QAction* headings[7];
+	headings[1] = headings_menu->addAction(tr("Heading &1"));
+	headings[2] = headings_menu->addAction(tr("Heading &2"));
+	headings[3] = headings_menu->addAction(tr("Heading &3"));
+	headings[4] = headings_menu->addAction(tr("Heading &4"));
+	headings[5] = headings_menu->addAction(tr("Heading &5"));
+	headings[6] = headings_menu->addAction(tr("Heading &6"));
+	headings[0] = headings_menu->addAction(tr("&Normal"));
+	m_headings_actions = new QActionGroup(this);
+	QSignalMapper* headings_mapper = new QSignalMapper(this);
+	for (int i = 0; i < 7; ++i) {
+		headings[i]->setCheckable(true);
+		headings[i]->setData(i);
+		m_headings_actions->addAction(headings[i]);
+		connect(headings[i], SIGNAL(triggered()), headings_mapper, SLOT(map()));
+		headings_mapper->setMapping(headings[i], i);
+	}
+	for (int i = 1; i < 7; ++i) {
+		ActionManager::instance()->addAction(QString("FormatBlockHeading%1").arg(i), headings[i]);
+	}
+	ActionManager::instance()->addAction(QString("FormatBlockNormal"), headings[0]);
+	headings[0]->setChecked(true);
+	connect(headings_mapper, SIGNAL(mapped(int)), m_documents, SLOT(setBlockHeading(int)));
+
+	format_menu->addSeparator();
 	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, SLOT(setFontBold(bool)), QKeySequence::Bold);
 	m_actions["FormatBold"]->setCheckable(true);
 	m_actions["FormatItalic"] = format_menu->addAction(QIcon::fromTheme("format-text-italic"), tr("&Italic"), m_documents, SLOT(setFontItalic(bool)), QKeySequence::Italic);
@@ -1462,11 +1489,7 @@ void Window::initMenus()
 	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
 	m_actions["About"]->setMenuRole(QAction::AboutRole);
 	m_actions["AboutQt"] = help_menu->addAction(
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 		QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"),
-#else
-		QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"),
-#endif
 		tr("About &Qt"), qApp, SLOT(aboutQt()));
 	m_actions["AboutQt"]->setMenuRole(QAction::AboutQtRole);
 

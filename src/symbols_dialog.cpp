@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,8 @@
 #include <QTableView>
 #include <QTableWidget>
 #include <QVBoxLayout>
+
+#include <algorithm>
 
 //-----------------------------------------------------------------------------
 
@@ -85,7 +87,7 @@ void SymbolsDialog::ElideLabel::paintEvent(QPaintEvent* event)
 	QFontMetrics metrics = painter.fontMetrics();
 
 	QString text = metrics.elidedText(m_text, Qt::ElideRight, width());
-	painter.drawText(QPoint(0, metrics.ascent()), text);
+	painter.drawText(QPointF(0, metrics.ascent()), text);
 }
 
 //-----------------------------------------------------------------------------
@@ -107,17 +109,10 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	m_recent->setRowCount(1);
 	m_recent->setSelectionMode(QAbstractItemView::SingleSelection);
 	m_recent->setTabKeyNavigation(false);
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	m_recent->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	m_recent->verticalHeader()->setSectionsClickable(false);
 	m_recent->verticalHeader()->setSectionsMovable(false);
 	m_recent->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-	m_recent->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-	m_recent->verticalHeader()->setClickable(false);
-	m_recent->verticalHeader()->setMovable(false);
-	m_recent->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
 	m_recent->setMaximumHeight(m_recent->verticalHeader()->sectionSize(0));
 	m_recent->horizontalHeader()->hide();
 	m_recent->verticalHeader()->hide();
@@ -164,21 +159,12 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	m_view->setSelectionMode(QAbstractItemView::SingleSelection);
 	m_view->setTabKeyNavigation(false);
 	m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 	m_view->horizontalHeader()->setSectionsClickable(false);
 	m_view->horizontalHeader()->setSectionsMovable(false);
 	m_view->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	m_view->verticalHeader()->setSectionsClickable(false);
 	m_view->verticalHeader()->setSectionsMovable(false);
 	m_view->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-#else
-	m_view->horizontalHeader()->setClickable(false);
-	m_view->horizontalHeader()->setMovable(false);
-	m_view->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-	m_view->verticalHeader()->setClickable(false);
-	m_view->verticalHeader()->setMovable(false);
-	m_view->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-#endif
 	m_view->horizontalHeader()->hide();
 	m_view->verticalHeader()->hide();
 	m_view->setModel(m_model);
@@ -252,7 +238,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 
 	// Fetch list of recently used symbols
 	QList<QVariant> recent = settings.value("SymbolsDialog/Recent").toList();
-	for (int i = 0, count = qMin(16, recent.count()); i < count; ++i) {
+	for (int i = 0, count = std::min(16, recent.count()); i < count; ++i) {
 		quint32 unicode = recent.at(i).toUInt();
 		QTableWidgetItem* item = new QTableWidgetItem(QString::fromUcs4(&unicode, 1));
 		item->setTextAlignment(Qt::AlignCenter);
@@ -369,7 +355,7 @@ void SymbolsDialog::showFilter(QListWidgetItem* filter)
 
 void SymbolsDialog::showGroup(int group)
 {
-	foreach (QListWidget* filters, m_filters) {
+	for (QListWidget* filters : m_filters) {
 		disconnect(filters, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(showFilter(QListWidgetItem*)));
 		filters->clearSelection();
 	}
