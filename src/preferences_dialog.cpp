@@ -227,7 +227,7 @@ void PreferencesDialog::accept()
 {
 	// Confirm close even with shortcut conflicts
 	if (m_shortcut_conflicts) {
-		m_tabs->setCurrentIndex(4);
+		m_tabs->setCurrentIndex(5);
 		if (QMessageBox::question(this,
 				tr("Question"),
 				tr("One or more shortcuts conflict. Do you wish to proceed?"),
