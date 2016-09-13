@@ -653,7 +653,7 @@ void PreferencesDialog::highlightShortcutConflicts()
 		// Find shortcut
 		QString name = item->text(2);
 		QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
-		if (shortcut.isEmpty()) {
+		if (shortcut.isEmpty() || (shortcut == Qt::Key_unknown)) {
 			continue;
 		}
 
