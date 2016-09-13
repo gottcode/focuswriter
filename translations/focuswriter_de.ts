@@ -510,7 +510,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="233"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Eine oder mehrere Verknüpfungen Konflikte. Möchten Sie fortfahren?</translation>
+        <translation>Eine oder mehrere Verknüpfungen verursachen Konflikte. Möchten Sie fortfahren?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="508"/>
