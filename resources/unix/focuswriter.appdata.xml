@@ -66,6 +66,7 @@
   <summary xml:lang="uk">Повноекранний текстовий редактор</summary>
   <summary xml:lang="zh_CN">全屏文字编辑器</summary>
   <summary xml:lang="zh_TW">全螢幕文字處理器</summary>
+
   <description>
     <p>FocusWriter is a simple, distraction-free word processor. It utilizes a hide-away interface that you access by moving your mouse to the edges of the screen, allowing the program to have a familiar look and feel to it while still getting out of the way so that you can immerse yourself in your work.</p>
     <p xml:lang="af_ZA">FocusWriter is 'n eenvoudige woordverwerker sonder enige afleidings. Dit maak gebruik van 'n wegsteek-koppelvlak wat jy kan gebruik deur jou muis na die kante van die skerm te beweeg en verskaf sodoende 'n bekende en gebruiklike voorkoms en gevoel, terwyl die program uit jou pad bly dat jy jou in jou werk kan verdiep. </p>
@@ -152,16 +153,29 @@
     <p xml:lang="zh_CN">另外，打开软件后会自动跳到上次编辑的位置，让您立刻继续投入工作</p>
     <p xml:lang="zh_TW">另外，打開您正在撰寫的文件會自動跳至您最後一次編輯的位置，讓您可以繼續進行工作。</p>
   </description>
+
   <screenshots>
     <screenshot type="default">
       <image>https://gottcode.org/focuswriter/screenshots/appdata.png</image>
     </screenshot>
   </screenshots>
+
   <url type="homepage">https://gottcode.org/focuswriter/</url>
+  <url type="bugtracker">https://gottcode.org/focuswriter/bugs/</url>
   <url type="donation">https://gottcode.org/tip/</url>
+  <url type="translate">https://www.transifex.com/projects/p/focuswriter/</url>
+
   <developer_name>Graeme Gott</developer_name>
-  <updatecontact>graeme@gottcode.org</updatecontact>
+  <update_contact>graeme@gottcode.org</update_contact>
+
+  <translation type="qt">focuswriter</translation>
+
   <provides>
     <binary>focuswriter</binary>
   </provides>
+
+  <kudos>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
 </component>
