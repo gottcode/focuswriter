@@ -355,8 +355,10 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 				style.block_format.setLayoutDirection(Qt::LeftToRight);
 			}
 		} else if (m_xml.qualifiedName() == "w:outlineLvl") {
-			int heading = qBound(1, m_xml.attributes().value("w:val").toString().toInt() + 1, 6);
-			style.block_format.setProperty(QTextFormat::UserProperty, heading);
+			int heading = m_xml.attributes().value("w:val").toString().toInt();
+			if (heading != 9) {
+				style.block_format.setProperty(QTextFormat::UserProperty, qBound(1, heading + 1, 6));
+			}
 		} else if ((m_xml.qualifiedName() == "w:pStyle") && allowstyles) {
 			Style pstyle = m_styles.value(value.toString());
 			pstyle.merge(style);
