@@ -261,7 +261,7 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 	}
 
 	Qt::Alignment align = block_format.alignment();
-	if ((align & Qt::AlignLeft) || (rtl && (align & Qt::AlignRight))) {
+	if (rtl && (align & Qt::AlignRight)) {
 		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
 		m_xml.writeEmptyElement(QString::fromLatin1("w:jc"));
 		m_xml.writeAttribute(QString::fromLatin1("w:val"), m_strict ? QString::fromLatin1("start") : QString::fromLatin1("left"));
