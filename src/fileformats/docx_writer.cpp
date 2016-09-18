@@ -292,7 +292,11 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 		}
 	}
 
-	empty &= writeRunProperties(char_format, QString::fromLatin1("w:pPr"));
+	if (!empty) {
+		writeRunProperties(char_format);
+	} else {
+		empty = writeRunProperties(char_format, QString::fromLatin1("w:pPr"));
+	}
 
 	if (!empty) {
 		m_xml.writeEndElement();
