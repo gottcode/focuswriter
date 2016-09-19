@@ -1,3 +1,13 @@
+1.6.1
+-----
+* FIXED: Incorrectly handled non-heading text in OOXML.
+* FIXED: Misspelled words did not follow heading style.
+* FIXED: Did not always close OOXML paragraph properties correctly.
+* FIXED: Did not correctly store RTL in OOXML.
+* FIXED: Reported conflicts for empty shortcuts.
+* FIXED: Switched to incorrect tab to show conflicting shortcuts.
+* Translation updates: German, Romanian.
+
 1.6.0
 -----
 * Added always showing interface.
