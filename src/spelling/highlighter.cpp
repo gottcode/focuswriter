@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -148,9 +148,9 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 void Highlighter::highlightBlock(const QString& text)
 {
+	QTextCharFormat style;
 	int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
 	if (heading) {
-		QTextCharFormat style;
 		style.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
 		style.setFontWeight(QFont::Bold);
 		setFormat(0, text.length(), style);
@@ -164,9 +164,8 @@ void Highlighter::highlightBlock(const QString& text)
 		stats->checkSpelling(text, m_dictionary);
 	}
 
-	QTextCharFormat error;
-	error.setUnderlineColor(m_misspelled);
-	error.setUnderlineStyle((QTextCharFormat::UnderlineStyle)QApplication::style()->styleHint(QStyle::SH_SpellCheckUnderlineStyle));
+	style.setUnderlineColor(m_misspelled);
+	style.setUnderlineStyle((QTextCharFormat::UnderlineStyle)QApplication::style()->styleHint(QStyle::SH_SpellCheckUnderlineStyle));
 
 	int cursor = m_text->textCursor().position() - currentBlock().position();
 	QVector<QStringRef> words = stats->misspelled();
@@ -174,7 +173,7 @@ void Highlighter::highlightBlock(const QString& text)
 		const QStringRef& word = words.at(i);
 		int delta = cursor - word.position();
 		if (!m_changed || (delta < 0 || delta > word.length())) {
-			setFormat(word.position(), word.length(), error);
+			setFormat(word.position(), word.length(), style);
 		}
 	}
 

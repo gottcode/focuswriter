@@ -4,7 +4,7 @@
 !define APPNAME "FocusWriter"
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 6
-!define VERSIONPATCH 0
+!define VERSIONPATCH 1
 !define APPVERSION "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONPATCH}"
 !define ABOUTURL "https://gottcode.org/focuswriter/"
 
@@ -138,6 +138,7 @@ Var StartMenuFolder
 !insertmacro MUI_LANGUAGE "Afrikaans"
 !insertmacro MUI_LANGUAGE "Catalan"
 !insertmacro MUI_LANGUAGE "Esperanto"
+!insertmacro MUI_LANGUAGE "Asturian"
 
 ;--------------------------------
 ;Reserve Files
@@ -153,53 +154,6 @@ Function .onInit
 
 FunctionEnd
 
-Function ConvertUnixNewLines
-
-	Exch $R0 ;file #1 path
-	Push $R1 ;file #1 handle
-	Push $R2 ;file #2 path
-	Push $R3 ;file #2 handle
-	Push $R4 ;data
-	Push $R5
-
-	FileOpen $R1 $R0 r
-	GetTempFileName $R2
-	FileOpen $R3 $R2 w
-
-	loopRead:
-		ClearErrors
-		FileRead $R1 $R4
-		IfErrors doneRead
-
-		StrCpy $R5 $R4 1 -1
-		StrCmp $R5 $\n 0 +4
-		StrCpy $R5 $R4 1 -2
-		StrCmp $R5 $\r +3
-		StrCpy $R4 $R4 -1
-		StrCpy $R4 "$R4$\r$\n"
-
-		FileWrite $R3 $R4
-
-	Goto loopRead
-	doneRead:
-
-	FileClose $R3
-	FileClose $R1
-
-	SetDetailsPrint none
-	Delete $R0
-	Rename $R2 $R0
-	SetDetailsPrint both
-
-	Pop $R5
-	Pop $R4
-	Pop $R3
-	Pop $R2
-	Pop $R1
-	Pop $R0
-
-FunctionEnd
-
 ;--------------------------------
 ;Installer Section
 
@@ -209,21 +163,9 @@ Section "install"
 	SetOutPath $INSTDIR
 	File ..\..\release\FocusWriter.exe
 	File ..\symbols\symbols900.dat
-	File $%QTDIR%\bin\iconv.dll
-	File $%QTDIR%\bin\libgcc_s_sjlj-1.dll
-	File $%QTDIR%\bin\libGLESv2.dll
-	File $%QTDIR%\bin\libglib-2.0-0.dll
-	File $%QTDIR%\bin\libharfbuzz-0.dll
-	File $%QTDIR%\bin\libintl-8.dll
-	File $%QTDIR%\bin\libpcre-1.dll
-	File $%QTDIR%\bin\libpcre16-0.dll
-	File $%QTDIR%\bin\libpng16-16.dll
-	File $%QTDIR%\bin\libjpeg-62.dll
+	File $%QTDIR%\bin\libgcc_s_dw2-1.dll
 	File $%QTDIR%\bin\libstdc++-6.dll
-	File $%QTDIR%\bin\libtiff-5.dll
-	File $%QTDIR%\bin\libwebp-6.dll
 	File $%QTDIR%\bin\libwinpthread-1.dll
-	File $%QTDIR%\bin\zlib1.dll
 	File $%QTDIR%\bin\Qt5Core.dll
 	File $%QTDIR%\bin\Qt5Gui.dll
 	File $%QTDIR%\bin\Qt5Multimedia.dll
@@ -234,22 +176,33 @@ Section "install"
 	File $%QTDIR%\bin\Qt5WinExtras.dll
 
 	SetOutPath $INSTDIR\audio
-	File $%QTDIR%\lib\qt5\plugins\audio\*.dll
+	File $%QTDIR%\plugins\audio\qtaudio_windows.dll
 
 	SetOutPath $INSTDIR\bearer
-	File $%QTDIR%\lib\qt5\plugins\bearer\*.dll
+	File $%QTDIR%\plugins\bearer\qgenericbearer.dll
+	File $%QTDIR%\plugins\bearer\qnativewifibearer.dll
 
 	SetOutPath $INSTDIR\imageformats
-	File $%QTDIR%\lib\qt5\plugins\imageformats\*.dll
+	File $%QTDIR%\plugins\imageformats\qdds.dll
+	File $%QTDIR%\plugins\imageformats\qgif.dll
+	File $%QTDIR%\plugins\imageformats\qicns.dll
+	File $%QTDIR%\plugins\imageformats\qico.dll
+	File $%QTDIR%\plugins\imageformats\qjpeg.dll
+	File $%QTDIR%\plugins\imageformats\qsvg.dll
+	File $%QTDIR%\plugins\imageformats\qtga.dll
+	File $%QTDIR%\plugins\imageformats\qtiff.dll
+	File $%QTDIR%\plugins\imageformats\qwbmp.dll
+	File $%QTDIR%\plugins\imageformats\qwebp.dll
 
 	SetOutPath $INSTDIR\mediaservice
-	File $%QTDIR%\lib\qt5\plugins\mediaservice\*.dll
+	File $%QTDIR%\plugins\mediaservice\dsengine.dll
+	File $%QTDIR%\plugins\mediaservice\qtmedia_audioengine.dll
 
 	SetOutPath $INSTDIR\platforms
-	File $%QTDIR%\lib\qt5\plugins\platforms\*.dll
+	File $%QTDIR%\plugins\platforms\qwindows.dll
 
 	SetOutPath $INSTDIR\printsupport
-	File $%QTDIR%\lib\qt5\plugins\printsupport\*.dll
+	File $%QTDIR%\plugins\printsupport\windowsprintersupport.dll
 
 	SetOutPath $INSTDIR\dictionaries
 	File dicts\*.aff
@@ -281,29 +234,27 @@ Section "install"
 
 	SetOutPath $INSTDIR\translations
 	File ..\..\translations\*.qm
-	File $%QTDIR%\share\qt5\translations\qt_*.qm
-	File $%QTDIR%\share\qt5\translations\qtbase_*.qm
-	File $%QTDIR%\share\qt5\translations\qtmultimedia_*.qm
+	File $%QTDIR%\translations\qt_*.qm
+	File $%QTDIR%\translations\qtbase_*.qm
+	File $%QTDIR%\translations\qtmultimedia_*.qm
 
 	;Create ReadMe file
 	SetOutPath $INSTDIR
 	File /oname=ReadMe.txt ..\..\README
 	FileOpen $4 "ReadMe.txt" a
 	FileSeek $4 0 END
-	FileWrite $4 "$\n$\nCredits$\n=======$\n$\n"
+	FileWrite $4 "$\r$\n$\r$\nCredits$\r$\n=======$\r$\n$\r$\n"
 	FileClose $4
 	File ..\..\CREDITS
 	${FileJoin} "ReadMe.txt" "CREDITS" "ReadMe.txt"
 	Delete $INSTDIR\CREDITS
 	FileOpen $4 "ReadMe.txt" a
 	FileSeek $4 0 END
-	FileWrite $4 "$\n$\nNews$\n====$\n$\n"
+	FileWrite $4 "$\r$\n$\r$\nNews$\r$\n====$\r$\n$\r$\n"
 	FileClose $4
 	File ..\..\NEWS
 	${FileJoin} "ReadMe.txt" "NEWS" "ReadMe.txt"
 	Delete $INSTDIR\NEWS
-	Push $INSTDIR\ReadMe.txt
-	Call ConvertUnixNewLines
 
 	;Registry information for add/remove programs
 	WriteRegStr HKLM "Software\${APPNAME}" "" "$INSTDIR"

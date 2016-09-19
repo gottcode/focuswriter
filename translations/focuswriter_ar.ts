@@ -452,12 +452,12 @@
         <translation>&lt;لغة النظام&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Note</source>
         <translation>ملاحظة</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="176"/>
+        <location filename="../src/locale_dialog.cpp" line="183"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>من فضلك، أعد تشغيل البرنامج ليتم تفعيل اللغة المختارة.</translation>
     </message>

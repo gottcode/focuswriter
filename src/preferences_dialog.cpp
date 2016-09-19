@@ -227,7 +227,7 @@ void PreferencesDialog::accept()
 {
 	// Confirm close even with shortcut conflicts
 	if (m_shortcut_conflicts) {
-		m_tabs->setCurrentIndex(4);
+		m_tabs->setCurrentIndex(5);
 		if (QMessageBox::question(this,
 				tr("Question"),
 				tr("One or more shortcuts conflict. Do you wish to proceed?"),
@@ -653,7 +653,7 @@ void PreferencesDialog::highlightShortcutConflicts()
 		// Find shortcut
 		QString name = item->text(2);
 		QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
-		if (shortcut.isEmpty()) {
+		if (shortcut.isEmpty() || (shortcut == Qt::Key_unknown)) {
 			continue;
 		}
 

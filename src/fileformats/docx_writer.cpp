@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -256,16 +256,16 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 	bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
 	if (rtl) {
 		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:textDirection"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("rl"));
+		m_xml.writeEmptyElement(QString::fromLatin1("w:bidi"));
+		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("1"));
 	}
 
 	Qt::Alignment align = block_format.alignment();
-	if (rtl && (align & Qt::AlignLeft)) {
+	if (rtl && (align & Qt::AlignRight)) {
 		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
 		m_xml.writeEmptyElement(QString::fromLatin1("w:jc"));
 		m_xml.writeAttribute(QString::fromLatin1("w:val"), m_strict ? QString::fromLatin1("start") : QString::fromLatin1("left"));
-	} else if (align & Qt::AlignRight) {
+	} else if ((align & Qt::AlignRight) || (rtl && (align & Qt::AlignLeft))) {
 		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
 		m_xml.writeEmptyElement(QString::fromLatin1("w:jc"));
 		m_xml.writeAttribute(QString::fromLatin1("w:val"), m_strict ? QString::fromLatin1("end") : QString::fromLatin1("right"));
@@ -292,7 +292,11 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 		}
 	}
 
-	empty &= writeRunProperties(char_format, QString::fromLatin1("w:pPr"));
+	if (!empty) {
+		writeRunProperties(char_format);
+	} else {
+		empty = writeRunProperties(char_format, QString::fromLatin1("w:pPr"));
+	}
 
 	if (!empty) {
 		m_xml.writeEndElement();

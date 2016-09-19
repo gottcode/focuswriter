@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -313,14 +313,15 @@ void DocxReader::readParagraph()
 void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 {
 	int left_indent = 0, right_indent = 0, indent = 0;
+	bool textdir = false;
 	while (m_xml.readNextStartElement()) {
 		QStringRef value = m_xml.attributes().value("w:val");
 		if (m_xml.qualifiedName() == "w:jc") {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
 			if (value == "left") {
-				style.block_format.setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
+				style.block_format.setAlignment(!textdir ? Qt::AlignLeading : (Qt::AlignLeft | Qt::AlignAbsolute));
 			} else if (value == "right") {
-				style.block_format.setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
+				style.block_format.setAlignment(!textdir ? Qt::AlignTrailing : (Qt::AlignRight | Qt::AlignAbsolute));
 			// ECMA-376, ISO/IEC 29500 strict
 			} else if (value == "center") {
 				style.block_format.setAlignment(Qt::AlignCenter);
@@ -328,9 +329,9 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 				style.block_format.setAlignment(Qt::AlignJustify);
 			// ECMA-376 2nd edition, ISO/IEC 29500 strict
 			} else if (value == "start") {
-				style.block_format.setAlignment(Qt::AlignLeft);
+				style.block_format.setAlignment(Qt::AlignLeading);
 			} else if (value == "end") {
-				style.block_format.setAlignment(Qt::AlignRight);
+				style.block_format.setAlignment(Qt::AlignTrailing);
 			}
 		} else if (m_xml.qualifiedName() == "w:ind") {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
@@ -342,15 +343,22 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 				style.block_format.setIndent(indent);
 				left_indent = right_indent = 0;
 			}
+		} else if (m_xml.qualifiedName() == "w:bidi") {
+			if (readBool(m_xml.attributes().value("w:val"))) {
+				style.block_format.setLayoutDirection(Qt::RightToLeft);
+			}
 		} else if (m_xml.qualifiedName() == "w:textDirection") {
 			if (value == "rl") {
+				textdir = true;
 				style.block_format.setLayoutDirection(Qt::RightToLeft);
 			} else if (value == "lr") {
 				style.block_format.setLayoutDirection(Qt::LeftToRight);
 			}
 		} else if (m_xml.qualifiedName() == "w:outlineLvl") {
-			int heading = qBound(1, m_xml.attributes().value("w:val").toString().toInt() + 1, 6);
-			style.block_format.setProperty(QTextFormat::UserProperty, heading);
+			int heading = m_xml.attributes().value("w:val").toString().toInt();
+			if (heading != 9) {
+				style.block_format.setProperty(QTextFormat::UserProperty, qBound(1, heading + 1, 6));
+			}
 		} else if ((m_xml.qualifiedName() == "w:pStyle") && allowstyles) {
 			Style pstyle = m_styles.value(value.toString());
 			pstyle.merge(style);
