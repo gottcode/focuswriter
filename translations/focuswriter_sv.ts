@@ -356,7 +356,7 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Flat XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
@@ -646,7 +646,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="535"/>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort aktuell ordlista?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="729"/>
@@ -661,22 +661,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="751"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Användargränssnitt</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alltid rullist</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alltid topplist</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alltid bottenlist</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
@@ -1411,12 +1411,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="104"/>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittra himlar</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="105"/>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Förtrollning</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="106"/>
@@ -1436,12 +1436,12 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spionspel</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Fridfullhet</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="111"/>
@@ -1899,7 +1899,7 @@
     <message>
         <location filename="../src/window.cpp" line="1309"/>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Si&amp;dinställning...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1311"/>
@@ -1979,42 +1979,42 @@
     <message>
         <location filename="../src/window.cpp" line="1339"/>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rubrik</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1341"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;1</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1342"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;2</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1343"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;3</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1344"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;4</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1345"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;5</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1346"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;6</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1347"/>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normal</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1365"/>
@@ -2289,7 +2289,7 @@
     <message>
         <location filename="../src/window.cpp" line="1480"/>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1488"/>
