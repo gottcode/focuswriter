@@ -19,6 +19,7 @@
   <name xml:lang="hu">FocusWriter</name>
   <name xml:lang="hy">FocusWriter</name>
   <name xml:lang="id">FocusWriter</name>
+  <name xml:lang="it">FocusWriter</name>
   <name xml:lang="ja">FocusWriter</name>
   <name xml:lang="ko">포커스 라이터</name>
   <name xml:lang="lt">FocusWriter</name>
@@ -49,7 +50,7 @@
   <summary xml:lang="he">מעבד תמלילים במסך מלא</summary>
   <summary xml:lang="hy">Լիէկրան տեքստային խմբագրիչ</summary>
   <summary xml:lang="id">Layar Penuh</summary>
-  <summary xml:lang="it">Un semplice editor di testo a pieno schermo</summary>
+  <summary xml:lang="it">Un semplice elaboratore di testi a schermo intero</summary>
   <summary xml:lang="ja">フルスクリーン・ワードプロセッサ</summary>
   <summary xml:lang="ko">풀스크린 워드 프로세서</summary>
   <summary xml:lang="lt">Viso ekrano žodžių doroklė</summary>
@@ -81,6 +82,7 @@
     <p xml:lang="he">‏FocusWriter הינו מעבד תמלילים פשוט, נטול הפרעה. זה מנצל ממשק מחבוא (hide-away) אשר אליו ניגשים בעזרת הזזת עכבר על קצות המסך, מה שמתיר לתוכנית לקבל מראה ותחושה מוכרים בעוד שזה עדיין נותר באין מפריע כך שהתהא באפשרותך להשקיע את עצמך לתוך עבודתך.</p>
     <p xml:lang="hy">FocusWriter-ն արտաքին շեղումներից ուշադրությունը զերծ պահող պարզ տեքստային խմբագրիչ է։ Այն գործածում է թաքնվող միջերես, որը հասանելի է դառնում էկրանի ծայրերին մկնիկի շարժմամբ հպվելու միջոցով։ Սա թե՛ ծրագրին տալիս է գործածողի աչքի համար սովորական տեսք ու զգացողություն, թե՛ միաժամանակ նրան թույլ տալիս խորասուզվել աշխատանքի մեջ, առանց ուշադրությունն արտաքին հանգամանքներով շեղելու։</p>
     <p xml:lang="id">FocusWriter merupakan pengolah kata yang bebas pengalihan dan sederhana. Menggunakan antarmuka yang Anda akses dengan cara menggerakkan mouse ke tepi layar, membuat program ini memilik tampilan yang familiar dan memudahkan Anda untuk menyelam ke dalam pekerjaan Anda.</p>
+    <p xml:lang="it">FocusWriter è un elaboratore di testi semplice e senza distrazioni. Impiega un'interfaccia nascosta accessibile muovendo il puntatore del mouse ai lati dello schermo, dando al programma un aspetto familiare, rimanendo semplice e pulito, in modo che tu possa immergerti completamente nel tuo lavoro.</p>
     <p xml:lang="ja">FocusWriter はシンプルなディストラクション・フリーのワード・プロセッサーです。普段は隠されているインターフェイスにはマウスを画面端に動かすだけでアクセスできるようになっているので、プログラムの基本的なルック・アンド・フィールは維持したまま、作業に没頭することができるでしょう。</p>
     <p xml:lang="ko">포커스 라이터는, 글쓰기에 집중하게 해주는 간단한 워드 프로세서입니다. 마우스를 화면 끝에 대면 작동하는 하이드-어웨이 방식을 적용해서, 프로그램이 익숙한 모양과 느낌을 유지하게 해, 잠시 방해를 받아도 금방 하던 작업에 몰두하게 합니다.</p>
     <p xml:lang="lt">FocusWriter yra paprasta žodžių doroklė be išblaškymų. Ji naudoja besislepiančią sąsają, kurią galima pasiekti, nuvedant pelės žymeklį prie ekrano ribų. Ši sąsaja suteikia programai pažįstamą išvaizdą ir jausmą, todėl programa jums netrukdo, o jūs galite pilnai pasinerti į savo darbą.</p>
@@ -109,6 +111,7 @@
     <p xml:lang="he">‏FocusWriter מאפשר לך להתאים את סביבתך על ידי יצירת ערכות נושא אשר שולטות על הגופן, הצבעים ועל תמונת הרקע כדי להוסיף אווירה. זה גם טומן בחובו עדכון סטטיסטיקה, יעדים יומיים, פתיחה מרובה של מסמכים, בדיקת-איות, ועוד הרבה יותר.</p>
     <p xml:lang="hy">FocusWriter-ը գործածողին թույլ է տալիս ստեղծել աշխատանքի սեփական միջավայր՝ թեմաների միջոցով, որոնցով կարելի է ընտրել տառատեսակը, գույները և որևէ նկարով խորապատկեր՝ որոշակի տրամադրություն ստեղծելու համար։ Այն նաև ցույց է տալիս մուտքագրվող նյութի մանրամասն վիճակագրությունը, թույլ տալիս սահմանել աշխատանքի օրական սահմանաքանակ, հնարավորություն ունի մեկ պատուհանում միանգամից շատ նիշքեր բացելու, ուղղագրությունը ստուգելու և այլն։</p>
     <p xml:lang="id">FocusWriter membuat Anda untuk menciptakan lingkungan Anda sendiri dengan cara membuat tema yang mengatur jenis huruf, warna, dan gambar latar untuk menambah suasana. Program ini juga dilengkapi oleh statistika yang selalu diperbarui setiap saat, tujuan sehari-hari, membuka banyak dokumen sekaligus, pengecekan ejaan, dan masih banyak lagi.</p>
+    <p xml:lang="it">FocusWriter ti consente di personalizzare il tuo ambiente di lavoro attraverso la creazione ti temi con carattere, colori, e immagine di sfondo scelti da te, creando un'atmosfera personale per immergerti nel tuo lavoro. Il programma include anche statistiche in tempo reale, obiettivi giornalieri, più documenti aperti contemporaneamente, controllo ortografico, e molto altro.</p>
     <p xml:lang="ja">FocusWriter ではフォント・色・背景画像などテーマとして作り、それを使って作業環境をカスタマイズすることができます。またリアルタイムな文書の統計情報の表示、進捗管理、複数文書の編集、スペル・チェッカーなどといった機能もあります。</p>
     <p xml:lang="ko">포커스 라이터는 폰트와, 색상을 조절하고, 배경 그림을 추가해 테마를 만들어서 작업 환경을 직접 만들 수 있게 되어있습니다. 포커스 라이터는 때에 따라서 이용할 수 있는 통계 업데이트, 오늘의 목표, 여러 건의 문서 열기, 맞춤법 검사, 등과 그 외에 아주 많은 기능을 갖고 있습니다.  </p>
     <p xml:lang="lt">FocusWriter leidžia jums tinkinti savo aplinką, kuriant temas, kurios kontroliuoja šriftą, spalvas ir fono paveikslą bei sukuria norimą atmosferą. Programoje yra statistikos atnaujinimo, kasdienio tikslo, kelių atvertų dokumentų, rašybos tikrinimo ir daugybė kitų funkcijų.</p>
@@ -137,6 +140,7 @@
     <p xml:lang="he">נוסף על כך, כאשר תפתח את התוכנית העבודה שלך אשר מצויה בתהליך תיטען מחדש וימקם אותך היכן שנותרת בפעם אחרונה בה עזבת כך שתהא באפשרותך לקפוץ בחזרה מיידית.</p>
     <p xml:lang="hy">Բացի դրանից, ծրագիրը բացվելիս լռելյայն ցուցադրում է այն վերջին նիշքը, որի վրա գործածողն աշխատել է, և հենց այն հատվածում, որում նա վերջին անգամ փոփոխություն է կատարել, ինչը հնարավորություն է տալիս շարունակելու աշխատանքն այնտեղից, որտեղ այն վերջին անգամ ընդհատվել էր։</p>
     <p xml:lang="id">Ditambah lagi, ketika Anda membuka program, pekerjaan Anda yang sedang dikerjaan akan otomatis dimuat dan memulai di mana Anda terakhir meninggalkannya sehingga Anda bisa memulainya lagi lebih cepat.</p>
+    <p xml:lang="it">Inoltre, quando apri il programma il tuo lavoro in corso d'opera si apre automaticamente nella posizione in cui l'avevi lasciato, in modo che possa riprendere immediatamente a lavorarci.</p>
     <p xml:lang="ja">更には、現在のプロジェクトをプログラム開くと、以前の作業状況がカーソル位置も含め復元されるので、直ぐに続きを書き始めることが出来ます。</p>
     <p xml:lang="ko">그리고, 프로그램을 열면 작업하던 내용이 일을 멈추고 떠났던 그때 그대로 자동으로 복귀되어서 돌아오면 바로 하던 작업으로 다시 돌아갈 수 있습니다.</p>
     <p xml:lang="lt">Be to, kai atidarote programą, jūsų dabartinis darbas yra automatiškai įkeliamas toje vietoje, kurioje paskutinį kartą užbaigėte, todėl nedvejodami galite vėl kibti į darbą.</p>
