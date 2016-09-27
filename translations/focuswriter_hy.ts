@@ -2166,9 +2166,19 @@
         <translation>&amp;Թարմացնել փաստաթուղթը</translation>
     </message>
     <message>
+        <location filename="../src/window.cpp" line="1421"/>
+        <source>Update Document Smart Quotes</source>
+        <translation>Ուղղել փաստաթղթի չակերտները</translation>
+    </message>
+    <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Update &amp;Selection</source>
         <translation>Թարմացնել &amp;ընտրված հատվածը</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1424"/>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Ուղղել ընտրված մասի չակերտները</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>

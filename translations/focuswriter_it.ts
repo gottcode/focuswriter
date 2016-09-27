@@ -351,12 +351,12 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="71"/>
         <source>OpenDocument Text</source>
-        <translation>OpenDocument (*.odt)</translation>
+        <translation>OpenDocument Text</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="73"/>
         <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument (*.xml)</translation>
+        <translation>OpenDocument Flat XML</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="75"/>
@@ -366,12 +366,12 @@
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="77"/>
         <source>Rich Text Format</source>
-        <translation>Rich Text Format (*.rtf)</translation>
+        <translation>Rich Text Format</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="79"/>
         <source>Plain Text</source>
-        <translation>Documenti di testo (*.txt)</translation>
+        <translation>Documenti di testo</translation>
     </message>
     <message>
         <location filename="../src/fileformats/format_manager.cpp" line="95"/>
@@ -510,7 +510,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="233"/>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>C&apos;è un conflitto tra tra i tasti di scelta rapida. Continuare comunque?</translation>
+        <translation>C&apos;è un conflitto tra i tasti di scelta rapida. Continuare comunque?</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="508"/>
@@ -666,22 +666,22 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="753"/>
         <source>Always show scrollbar</source>
-        <translation>Mostra sempre barra di scorrimento</translation>
+        <translation>Mostra sempre la barra di scorrimento</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="754"/>
         <source>Always show top bar</source>
-        <translation>Mostra sempre barra superiore</translation>
+        <translation>Mostra sempre la barra superiore</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="755"/>
         <source>Always show bottom bar</source>
-        <translation>Mostra sempre barra inferiore</translation>
+        <translation>Mostra sempre la barra inferiore</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="805"/>
         <source>Reset Today</source>
-        <translation>Azzera Oggi</translation>
+        <translation>Azzera le statistiche di oggi</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="818"/>
@@ -691,7 +691,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="820"/>
         <source>Remember history</source>
-        <translation>Ricorda cronologia</translation>
+        <translation>Salva cronologia</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="823"/>
@@ -741,7 +741,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1036"/>
         <source>Text Alongside Icons</source>
-        <translation>Testo allineato alle icone</translation>
+        <translation>Allinea testo alle icone</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1037"/>
@@ -781,7 +781,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1098"/>
         <source>Shortcut</source>
-        <translation>Tasti di scelta rapida</translation>
+        <translation>Tasto di scelta rapida</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1098"/>
@@ -832,7 +832,7 @@
         <location filename="../src/fileformats/rtf_reader.cpp" line="328"/>
         <location filename="../src/fileformats/rtf_reader.cpp" line="332"/>
         <source>Not a supported RTF file.</source>
-        <translation>Non è un file RTF supportato.</translation>
+        <translation>Questo file non è un file RTF supportato.</translation>
     </message>
 </context>
 <context>
@@ -974,7 +974,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="423"/>
         <source>Session name:</source>
-        <translation>Nome sessione:</translation>
+        <translation>Nome della sessione:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
@@ -984,7 +984,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
         <source>The requested session name is already in use.</source>
-        <translation>Il nome di sessione richiesto è già in uso.</translation>
+        <translation>Il nome della sessione richiesto è già in uso.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
@@ -1064,22 +1064,22 @@
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="153"/>
         <source>&amp;Change</source>
-        <translation>&amp;Cambia</translation>
+        <translation>&amp;Sostituisci</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="156"/>
         <source>C&amp;hange All</source>
-        <translation>Cambia t&amp;utto</translation>
+        <translation>Sostituisci t&amp;utto</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="171"/>
         <source>Not in dictionary:</source>
-        <translation>Non nel dizionario:</translation>
+        <translation>La parola evidenziata in rosso non è presente nel dizionario:</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="179"/>
         <source>Change to:</source>
-        <translation>Cambia in:</translation>
+        <translation>Sostituisci con:</translation>
     </message>
     <message>
         <location filename="../src/spelling/spell_checker.cpp" line="195"/>
@@ -1260,7 +1260,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="323"/>
         <source>Indent first line</source>
-        <translation>Applica rientro ad ogni prima riga</translation>
+        <translation>Applica rientro ad ogni a capo</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="330"/>
@@ -1363,7 +1363,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="277"/>
         <source>1.5 Lines</source>
-        <translation>1.5 linee</translation>
+        <translation>1,5 righe</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="277"/>
@@ -1388,7 +1388,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="329"/>
         <source>Tab Width:</source>
-        <translation>Larghezza scheda:</translation>
+        <translation>Rientro prima riga:</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="254"/>
@@ -1436,7 +1436,7 @@
     <message>
         <location filename="../src/theme_manager.cpp" line="109"/>
         <source>Spy Games</source>
-        <translation>Giochi da spia</translation>
+        <translation>Giochiamo alla spia</translation>
     </message>
     <message>
         <location filename="../src/theme_manager.cpp" line="110"/>
@@ -1638,7 +1638,7 @@
     <message>
         <location filename="../src/timer_manager.cpp" line="123"/>
         <source>Cancel editing timers?</source>
-        <translation>Annullare la modifica al timer?</translation>
+        <translation>Annullare le modifiche al timer?</translation>
     </message>
     <message>
         <location filename="../src/timer_manager.cpp" line="316"/>
@@ -1656,12 +1656,12 @@
     <message>
         <location filename="../src/window.cpp" line="298"/>
         <source>Loading themes</source>
-        <translation>Carica tema</translation>
+        <translation>Caricamento del tema</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1144"/>
         <source>Loading sounds</source>
-        <translation>Carica suoni</translation>
+        <translation>Caricamento dei suoni</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="307"/>
@@ -1783,7 +1783,7 @@
     <message>
         <location filename="../src/window.cpp" line="316"/>
         <source>Emergency cache is not writable.</source>
-        <translation>La cache di emergenza non è scrivibile.</translation>
+        <translation>La cache di ripristino non è scrivibile.</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="336"/>
@@ -1799,7 +1799,7 @@
     <message>
         <location filename="../src/window.cpp" line="338"/>
         <source>Restore from the emergency cache?</source>
-        <translation>Ripristinare i file dalla cache di emergenza?</translation>
+        <translation>Ripristinare i file dalla cache?</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="463"/>
@@ -1974,7 +1974,7 @@
     <message>
         <location filename="../src/window.cpp" line="1337"/>
         <source>Fo&amp;rmat</source>
-        <translation>For&amp;matta</translation>
+        <translation>For&amp;mattazione</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1339"/>
@@ -2064,7 +2064,7 @@
     <message>
         <location filename="../src/window.cpp" line="1379"/>
         <source>Align &amp;Left</source>
-        <translation>Allinea a &amp;sinistra</translation>
+        <translation>Allinea testo a &amp;sinistra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1379"/>
@@ -2074,7 +2074,7 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>Align &amp;Center</source>
-        <translation>Allinea al &amp;centro</translation>
+        <translation>&amp;Centra testo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -2084,7 +2084,7 @@
     <message>
         <location filename="../src/window.cpp" line="1383"/>
         <source>Align &amp;Right</source>
-        <translation>Allinea a &amp;destra</translation>
+        <translation>Allinea testo a &amp;destra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1383"/>
@@ -2094,7 +2094,7 @@
     <message>
         <location filename="../src/window.cpp" line="1385"/>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Giustificato</translation>
+        <translation>&amp;Giustifica testo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1385"/>
@@ -2124,12 +2124,12 @@
     <message>
         <location filename="../src/window.cpp" line="1399"/>
         <source>Le&amp;ft to Right Block</source>
-        <translation>&amp;Blocco da sinistra a destra</translation>
+        <translation>&amp;Blocca testo a sinistra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1401"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Blo&amp;cco da destra a sinistra</translation>
+        <translation>Blo&amp;cca testo a destra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1409"/>
@@ -2172,14 +2172,24 @@
         <translation>Aggiorna &amp;documento</translation>
     </message>
     <message>
+        <location filename="../src/window.cpp" line="1421"/>
+        <source>Update Document Smart Quotes</source>
+        <translation>Aggiorna virgolette nel documento</translation>
+    </message>
+    <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Update &amp;Selection</source>
         <translation>Aggiorna &amp;selezione</translation>
     </message>
     <message>
+        <location filename="../src/window.cpp" line="1424"/>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Aggiorna virgolette nel testo selezionato</translation>
+    </message>
+    <message>
         <location filename="../src/window.cpp" line="1427"/>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Ortografia...</translation>
+        <translation>Controllo &amp;ortografico...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
@@ -2189,7 +2199,7 @@
     <message>
         <location filename="../src/window.cpp" line="1428"/>
         <source>Set &amp;Language...</source>
-        <translation>Scegli la &amp;lingua</translation>
+        <translation>Imposta &amp;lingua</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1430"/>
@@ -2219,7 +2229,7 @@
     <message>
         <location filename="../src/window.cpp" line="1441"/>
         <source>Show &amp;Menu Icons</source>
-        <translation>Mostra &amp;icone del menu</translation>
+        <translation>Mostra &amp;icone nei menu</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1447"/>
