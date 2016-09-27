@@ -2172,8 +2172,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/window.cpp" line="1421"/>
+        <source>Update Document Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Update &amp;Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1424"/>
+        <source>Update Selection Smart Quotes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

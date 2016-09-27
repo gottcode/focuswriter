@@ -2172,9 +2172,19 @@
         <translation>Atualizar &amp;documento</translation>
     </message>
     <message>
+        <location filename="../src/window.cpp" line="1421"/>
+        <source>Update Document Smart Quotes</source>
+        <translation>Atualizar aspas duplas no documento</translation>
+    </message>
+    <message>
         <location filename="../src/window.cpp" line="1423"/>
         <source>Update &amp;Selection</source>
         <translation>Atualizar &amp;seleção</translation>
+    </message>
+    <message>
+        <location filename="../src/window.cpp" line="1424"/>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Atualizar aspas duplas na seleção</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
