@@ -572,7 +572,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="686"/>
         <source>Smart quotes:</source>
-        <translation>Protingosios kabutės:</translation>
+        <translation>Išmaniosios kabutės:</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="693"/>
@@ -920,7 +920,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="52"/>
         <source>Manage Sessions</source>
-        <translation>Tvarkyti sesijas</translation>
+        <translation>Tvarkyti seansus</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="83"/>
@@ -955,17 +955,17 @@
     <message>
         <location filename="../src/session_manager.cpp" line="220"/>
         <source>New Session</source>
-        <translation>Nauja sesija</translation>
+        <translation>Naujas seansas</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="279"/>
         <source>Duplicate Session</source>
-        <translation>Dubliuoti sesiją</translation>
+        <translation>Dubliuoti seansą</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="324"/>
         <source>Rename Session</source>
-        <translation>Pervadinti sesiją</translation>
+        <translation>Pervadinti seansą</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
@@ -975,12 +975,12 @@
     <message>
         <location filename="../src/session_manager.cpp" line="351"/>
         <source>Delete selected session?</source>
-        <translation>Ištrinti pasirinktą sesiją?</translation>
+        <translation>Ištrinti pasirinktą seansą?</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="423"/>
         <source>Session name:</source>
-        <translation>Sesijos pavadinimas:</translation>
+        <translation>Seanso pavadinimas:</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
@@ -990,7 +990,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="431"/>
         <source>The requested session name is already in use.</source>
-        <translation>Užklaustas sesijos pavadinimas jau yra naudojamas.</translation>
+        <translation>Užklaustas seanso pavadinimas jau yra naudojamas.</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="487"/>
@@ -1890,12 +1890,12 @@
     <message>
         <location filename="../src/window.cpp" line="1303"/>
         <source>Manage Sessions</source>
-        <translation>Tvarkyti sesijas</translation>
+        <translation>Tvarkyti seansus</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1305"/>
         <source>New Session</source>
-        <translation>Nauja sesija</translation>
+        <translation>Naujas seansas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1308"/>
@@ -1925,7 +1925,7 @@
     <message>
         <location filename="../src/window.cpp" line="1316"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Keisti</translation>
+        <translation>&amp;Taisa</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1317"/>
@@ -1965,12 +1965,12 @@
     <message>
         <location filename="../src/window.cpp" line="1333"/>
         <source>Select &amp;All</source>
-        <translation>Pažymėti &amp;viską</translation>
+        <translation>Žymėti &amp;viską</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1334"/>
         <source>Select &amp;Scene</source>
-        <translation>Pažymėti &amp;sceną</translation>
+        <translation>Žymėti &amp;sceną</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1334"/>
@@ -2170,7 +2170,7 @@
     <message>
         <location filename="../src/window.cpp" line="1419"/>
         <source>Smart &amp;Quotes</source>
-        <translation>Protingosios ka&amp;butės</translation>
+        <translation>Išmaniosios ka&amp;butės</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1420"/>
@@ -2180,7 +2180,7 @@
     <message>
         <location filename="../src/window.cpp" line="1421"/>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Atnaujinti dokumento išmaniąsias kabutes</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1423"/>
@@ -2190,7 +2190,7 @@
     <message>
         <location filename="../src/window.cpp" line="1424"/>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Atnaujinti žymėjimo išmaniąsias kabutes</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1427"/>
@@ -2310,7 +2310,7 @@
     <message>
         <location filename="../src/window.cpp" line="1488"/>
         <source>&amp;Help</source>
-        <translation>&amp;Pagalba</translation>
+        <translation>Ž&amp;inynas</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1459"/>
