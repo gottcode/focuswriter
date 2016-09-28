@@ -114,13 +114,16 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	}
 
 	// Load translators
-	static QTranslator qt_translator;
-	if (translations.contains("qt_" + current) || translations.contains("qt_" + current.left(2))) {
-		qt_translator.load("qt_" + current, m_path);
-	} else {
-		qt_translator.load("qt_" + current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+	const QStringList qtbasenames({"qt_", "qtbase_", "qtmultimedia_"});
+	for (const QString& basename : qtbasenames) {
+		QTranslator* qt_translator = new QTranslator(QCoreApplication::instance());
+		if (translations.contains(basename + current) || translations.contains(basename + current.left(2))) {
+			qt_translator->load(basename + current, m_path);
+		} else {
+			qt_translator->load(basename + current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+		}
+		QCoreApplication::installTranslator(qt_translator);
 	}
-	QCoreApplication::installTranslator(&qt_translator);
 
 	static QTranslator translator;
 	translator.load(m_appname + current, m_path);
