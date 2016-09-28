@@ -428,12 +428,12 @@
         <translation>&lt;Lingua di sistema&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Note</source>
         <translation>Nota</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Per modificare la lingua è necessario riavviare l&apos;applicazione.</translation>
     </message>
@@ -1974,7 +1974,7 @@
     <message>
         <location filename="../src/window.cpp" line="1337"/>
         <source>Fo&amp;rmat</source>
-        <translation>For&amp;mattazione</translation>
+        <translation>For&amp;mato</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1339"/>
