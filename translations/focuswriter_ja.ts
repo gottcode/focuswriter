@@ -422,12 +422,12 @@
         <translation>&lt;システムの言語&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Note</source>
         <translation>注意</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>言語の変更を反映させるためにアプリケーションを再起動してください。</translation>
     </message>

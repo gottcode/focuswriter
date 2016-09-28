@@ -422,12 +422,12 @@
         <translation>&lt; 시스템 언어 &gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Note</source>
         <translation>노트</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>바뀐 언어로 적용하기 위해 프로그램을 다시 시작 해주세요.</translation>
     </message>

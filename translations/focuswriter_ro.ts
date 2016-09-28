@@ -434,12 +434,12 @@
         <translation>&lt;Limbaj Sistem&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Note</source>
         <translation>Notă</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Vă rugăm reporniţi această aplicaţie pentru ca schimbarea limbii să aibă efect.</translation>
     </message>

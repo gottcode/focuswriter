@@ -434,12 +434,12 @@
         <translation>&lt;Системски језик&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Note</source>
         <translation>Напомена</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Молимо рестартујте програм да би се видела промена језика.</translation>
     </message>

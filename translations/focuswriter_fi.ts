@@ -428,12 +428,12 @@
         <translation>&lt;Järjestelmän kieli&gt;</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Note</source>
         <translation>Huomaa</translation>
     </message>
     <message>
-        <location filename="../src/locale_dialog.cpp" line="183"/>
+        <location filename="../src/locale_dialog.cpp" line="186"/>
         <source>Please restart this application for the change in language to take effect.</source>
         <translation>Ole hyvä ja käynnistä ohjelma uudelleen, jotta kielen muutos tulee voimaan.</translation>
     </message>
