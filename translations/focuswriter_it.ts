@@ -741,7 +741,7 @@
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1036"/>
         <source>Text Alongside Icons</source>
-        <translation>Allinea testo alle icone</translation>
+        <translation>Testo affiancato alle icone</translation>
     </message>
     <message>
         <location filename="../src/preferences_dialog.cpp" line="1037"/>
@@ -906,7 +906,7 @@
         <location filename="../src/session_manager.cpp" line="460"/>
         <location filename="../src/session_manager.cpp" line="461"/>
         <source>Default</source>
-        <translation>Predefinito</translation>
+        <translation>Predefinita</translation>
     </message>
 </context>
 <context>
@@ -919,7 +919,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="83"/>
         <source>S&amp;essions</source>
-        <translation>S&amp;essioni</translation>
+        <translation>Sess&amp;ioni</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="97"/>
@@ -929,7 +929,7 @@
     <message>
         <location filename="../src/session_manager.cpp" line="100"/>
         <source>Duplicate</source>
-        <translation>Duplicato</translation>
+        <translation>Duplica</translation>
     </message>
     <message>
         <location filename="../src/session_manager.cpp" line="103"/>
@@ -1198,7 +1198,7 @@
     <message>
         <location filename="../src/theme_dialog.cpp" line="130"/>
         <source>Zoomed</source>
-        <translation>Zoommato</translation>
+        <translation>Zoomato</translation>
     </message>
     <message>
         <location filename="../src/theme_dialog.cpp" line="177"/>
@@ -1869,7 +1869,7 @@
     <message>
         <location filename="../src/window.cpp" line="1297"/>
         <source>Save &amp;As...</source>
-        <translation>Salva &amp;con nome...</translation>
+        <translation>Sal&amp;va con nome...</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1298"/>
@@ -1974,7 +1974,7 @@
     <message>
         <location filename="../src/window.cpp" line="1337"/>
         <source>Fo&amp;rmat</source>
-        <translation>For&amp;mato</translation>
+        <translation>Fo&amp;rmato</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1339"/>
@@ -2034,7 +2034,7 @@
     <message>
         <location filename="../src/window.cpp" line="1371"/>
         <source>Stri&amp;kethrough</source>
-        <translation>Bar&amp;rato</translation>
+        <translation>B&amp;arrato</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1371"/>
@@ -2064,7 +2064,7 @@
     <message>
         <location filename="../src/window.cpp" line="1379"/>
         <source>Align &amp;Left</source>
-        <translation>Allinea testo a &amp;sinistra</translation>
+        <translation>A&amp;llinea testo a sinistra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1379"/>
@@ -2074,7 +2074,7 @@
     <message>
         <location filename="../src/window.cpp" line="1381"/>
         <source>Align &amp;Center</source>
-        <translation>&amp;Centra testo</translation>
+        <translation>C&amp;entra testo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1381"/>
@@ -2094,7 +2094,7 @@
     <message>
         <location filename="../src/window.cpp" line="1385"/>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Giustifica testo</translation>
+        <translation>Giustifica &amp;testo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1385"/>
@@ -2129,7 +2129,7 @@
     <message>
         <location filename="../src/window.cpp" line="1401"/>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Blo&amp;cca testo a destra</translation>
+        <translation>Bl&amp;occa testo a destra</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1409"/>
@@ -2144,7 +2144,7 @@
     <message>
         <location filename="../src/window.cpp" line="1411"/>
         <source>Find &amp;Next</source>
-        <translation>Trova &amp;successivo</translation>
+        <translation>Trova succ&amp;essivo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1414"/>
@@ -2234,7 +2234,7 @@
     <message>
         <location filename="../src/window.cpp" line="1447"/>
         <source>F&amp;ocused Text</source>
-        <translation>Testo a fuoco</translation>
+        <translation>Testo a &amp;fuoco</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1449"/>
@@ -2254,7 +2254,7 @@
     <message>
         <location filename="../src/window.cpp" line="1455"/>
         <source>M&amp;inimize</source>
-        <translation>M&amp;inimizza</translation>
+        <translation>&amp;Minimizza</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1455"/>
@@ -2274,7 +2274,7 @@
     <message>
         <location filename="../src/window.cpp" line="1466"/>
         <source>Focus Off</source>
-        <translation>Messa a fuoco disattivata</translation>
+        <translation>Disattiva messa a fuoco</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1468"/>
@@ -2294,7 +2294,7 @@
     <message>
         <location filename="../src/window.cpp" line="1472"/>
         <source>Focus Paragraph</source>
-        <translation>Paragrafo a fuoco</translation>
+        <translation>Metti a fuoco il paragrafo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1480"/>
@@ -2319,12 +2319,12 @@
     <message>
         <location filename="../src/window.cpp" line="1465"/>
         <source>&amp;Off</source>
-        <translation>Non &amp;attivo</translation>
+        <translation>&amp;Non attivo</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1467"/>
         <source>One &amp;Line</source>
-        <translation>Una &amp;linea</translation>
+        <translation>&amp;Una linea</translation>
     </message>
     <message>
         <location filename="../src/window.cpp" line="1469"/>
