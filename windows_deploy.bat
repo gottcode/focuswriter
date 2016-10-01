@@ -15,9 +15,7 @@ ECHO Copying translations
 SET TRANSLATIONS=%APP%\translations
 MKDIR %TRANSLATIONS%
 COPY translations\*.qm %TRANSLATIONS% >nul
-COPY %QTDIR%\translations\qt_*.qm %TRANSLATIONS% >nul
 COPY %QTDIR%\translations\qtbase_*.qm %TRANSLATIONS% >nul
-COPY %QTDIR%\translations\qtmultimedia_*.qm %TRANSLATIONS% >nul
 
 ECHO Copying icons
 SET ICONS=%APP%\icons\hicolor
