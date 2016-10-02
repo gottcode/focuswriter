@@ -215,15 +215,12 @@ SOURCES += src/action_manager.cpp \
 	src/spelling/highlighter.cpp \
 	src/spelling/spell_checker.cpp
 
-# Allow for updating translations
+# Generate translations
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
-isEmpty(QMAKE_LRELEASE) {
-	win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
-	else:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
-}
+qtPrepareTool(LRELEASE, lrelease)
 updateqm.input = TRANSLATIONS
 updateqm.output = ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qm
-updateqm.commands = $$QMAKE_LRELEASE -silent ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qm
+updateqm.commands = $$LRELEASE -silent ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
 updateqm.CONFIG += no_link target_predeps
 QMAKE_EXTRA_COMPILERS += updateqm
 
