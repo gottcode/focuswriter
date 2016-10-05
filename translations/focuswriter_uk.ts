@@ -526,7 +526,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Видалити поточний словник?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -538,19 +538,19 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Інтерфейс користувача</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Завжди відображати прокрутку</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Завжди відображати верхню панель</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Завжди відображати нижню панель</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -1106,7 +1106,7 @@
     </message>
     <message>
         <source>Tab Width:</source>
-        <translation>Ширина вкладки</translation>
+        <translation>Ширина вкладки:</translation>
     </message>
     <message>
         <source>New Theme</source>
@@ -1125,11 +1125,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Різкі небеса</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Чарівність</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1145,11 +1145,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Шпигунські ігри</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Спокій</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1441,7 +1441,7 @@
     </message>
     <message>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; новіше резервної копії</translation>
+        <translation>&apos;%1&apos; новіше резервної копії.</translation>
     </message>
     <message>
         <source>Overwrite newer file?</source>
@@ -1509,7 +1509,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Налаштування сто&amp;рінки...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1749,7 +1749,7 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Встановити &amp;мову</translation>
+        <translation>Встановити &amp;мову...</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
@@ -1829,7 +1829,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>
