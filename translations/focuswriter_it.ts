@@ -1851,7 +1851,7 @@
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Informazioni su</translation>
+        <translation>&amp;Informazioni su FocusWriter</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
