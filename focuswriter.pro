@@ -281,6 +281,7 @@ macx {
 
 	qm.files = translations/*.qm
 	qm.path = $$DATADIR/focuswriter/translations
+	qm.CONFIG += no_check_exist
 
 	sounds.files = resources/sounds/*
 	sounds.path = $$DATADIR/focuswriter/sounds
