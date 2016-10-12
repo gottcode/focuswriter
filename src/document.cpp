@@ -1166,8 +1166,8 @@ void Document::focusText()
 		break;
 
 	case 2: // Current line and previous two lines
-		selection.cursor.movePosition(QTextCursor::StartOfLine);
 		selection.cursor.movePosition(QTextCursor::Up);
+		selection.cursor.movePosition(QTextCursor::StartOfLine);
 		selection.cursor.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, 2);
 		selection.cursor.movePosition(QTextCursor::EndOfLine, QTextCursor::KeepAnchor);
 		break;
