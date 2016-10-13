@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкрити документ Flat XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -534,7 +534,7 @@
     </message>
     <message>
         <source>Default format:</source>
-        <translation>Формат за замовчуванням:</translation>
+        <translation>Формат типово:</translation>
     </message>
     <message>
         <source>User Interface</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Reset to Default</source>
-        <translation>Скинути до значень за замовчуванням</translation>
+        <translation>Скинути до типових значень</translation>
     </message>
     <message>
         <source>Shortcut:</source>
@@ -1121,7 +1121,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation>За замовчуванням</translation>
+        <translation>Типово</translation>
     </message>
     <message>
         <source>Bitter Skies</source>
@@ -1693,7 +1693,7 @@
     </message>
     <message>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Фрагмент справа нал&amp;іво</translation>
+        <translation>Фрагмент зправа нал&amp;іво</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
