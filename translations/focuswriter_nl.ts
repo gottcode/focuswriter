@@ -1723,7 +1723,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Bijwerken slimme quotes document</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1731,7 +1731,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Bijwerken slimme quotes selectie</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
