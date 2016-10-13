@@ -1,3 +1,10 @@
+focuswriter (1.6.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Use build system to generate translations
+
+ -- Graeme Gott <graeme@gottcode.org>  Thu, 13 Oct 2016 12:20:12 +0000
+
 focuswriter (1.6.1-1) unstable; urgency=medium
 
   [ Graeme Gott ]
