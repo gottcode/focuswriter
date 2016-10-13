@@ -1,3 +1,10 @@
+1.6.2
+-----
+* Generate binary translations at build time.
+* FIXED: Focused text did not handle first-line indent.
+* FIXED: Was not properly loading Qt translations.
+* Translation updates: Armenian, Dutch, Italian, Lithuanian, Portuguese (Brazil), Romanian, Swedish, Ukrainian.
+
 1.6.1
 -----
 * FIXED: Incorrectly handled non-heading text in OOXML.

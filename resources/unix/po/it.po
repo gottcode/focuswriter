@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Joe Potsdam, 2016
 # marco <oelimar@email.it>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-10-04 19:01+0000\n"
-"Last-Translator: marco <oelimar@email.it>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/focuswriter/"
+"POT-Creation-Date: 2016-08-19 15:40+0000\n"
+"PO-Revision-Date: 2016-09-26 10:44+0000\n"
+"Last-Translator: Joe Potsdam\n"
+"Language-Team: Italian (http://www.transifex.com/gottcode/focuswriter/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +22,11 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in.h:2
 msgid "Fullscreen word processor"
-msgstr "Un semplice editor di testo a pieno schermo"
+msgstr "Un semplice elaboratore di testi a schermo intero"
 
 #: ../focuswriter.appdata.xml.in.h:3
 msgid ""
@@ -34,6 +35,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter è un elaboratore di testi semplice e senza distrazioni. Impiega "
+"un'interfaccia nascosta accessibile muovendo il puntatore del mouse ai lati "
+"dello schermo, dando al programma un aspetto familiare, rimanendo semplice e "
+"pulito, in modo che tu possa immergerti completamente nel tuo lavoro."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -42,6 +47,12 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter ti consente di personalizzare il tuo ambiente di lavoro "
+"attraverso la creazione ti temi con carattere, colori, e immagine di sfondo "
+"scelti da te, creando un'atmosfera personale per immergerti nel tuo lavoro. "
+"Il programma include anche statistiche in tempo reale, obiettivi "
+"giornalieri, più documenti aperti contemporaneamente, controllo ortografico, "
+"e molto altro."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
@@ -49,11 +60,14 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Inoltre, quando apri il programma il tuo lavoro in corso d'opera si apre "
+"automaticamente nella posizione in cui l'avevi lasciato, in modo che possa "
+"riprendere immediatamente a lavorarci."
 
 #: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "Elaboratore di testi a schermo intero"
 
 #: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
-msgstr ""
+msgstr "Scrivi senza distrazioni"

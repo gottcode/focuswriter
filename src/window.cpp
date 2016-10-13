@@ -1418,10 +1418,10 @@ void Window::initMenus()
 	tools_menu->addSeparator();
 	QMenu* quotes_menu = tools_menu->addMenu(tr("Smart &Quotes"));
 	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, SLOT(updateSmartQuotes()));
-	m_replace_document_quotes->setStatusTip("Update Document Smart Quotes");
+	m_replace_document_quotes->setStatusTip(tr("Update Document Smart Quotes"));
 	ActionManager::instance()->addAction("SmartQuotesUpdateDocument", m_replace_document_quotes);
 	m_replace_selection_quotes = quotes_menu->addAction(tr("Update &Selection"), m_documents, SLOT(updateSmartQuotesSelection()));
-	m_replace_selection_quotes->setStatusTip("Update Selection Smart Quotes");
+	m_replace_selection_quotes->setStatusTip(tr("Update Selection Smart Quotes"));
 	ActionManager::instance()->addAction("SmartQuotesUpdateSelection", m_replace_selection_quotes);
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));

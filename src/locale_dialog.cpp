@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,11 @@
 
 #include "locale_dialog.h"
 
-#include <QApplication>
 #include <QComboBox>
-#include <QCoreApplication>
 #include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
+#include <QGuiApplication>
 #include <QHash>
 #include <QLabel>
 #include <QLibraryInfo>
@@ -53,7 +52,7 @@ LocaleDialog::LocaleDialog(QWidget* parent) :
 	QLabel* text = new QLabel(tr("Select application language:"), this);
 
 	m_translations = new QComboBox(this);
-	m_translations->addItem(tr("<System Language>"), "");
+	m_translations->addItem(tr("<System Language>"));
 	QStringList translations = findTranslations();
 	for (QString translation : translations) {
 		if (translation.startsWith("qt")) {
@@ -66,8 +65,8 @@ LocaleDialog::LocaleDialog(QWidget* parent) :
 	m_translations->setCurrentIndex(index);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
-	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
-	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
+	connect(buttons, &QDialogButtonBox::accepted, this, &LocaleDialog::accept);
+	connect(buttons, &QDialogButtonBox::rejected, this, &LocaleDialog::reject);
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->setSizeConstraint(QLayout::SetFixedSize);
@@ -115,10 +114,10 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 
 	// Load translators
 	static QTranslator qt_translator;
-	if (translations.contains("qt_" + current) || translations.contains("qt_" + current.left(2))) {
-		qt_translator.load("qt_" + current, m_path);
+	if (translations.contains("qtbase_" + current) || translations.contains("qtbase_" + current.left(2))) {
+		qt_translator.load("qtbase_" + current, m_path);
 	} else {
-		qt_translator.load("qt_" + current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+		qt_translator.load("qtbase_" + current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 	}
 	QCoreApplication::installTranslator(&qt_translator);
 
@@ -127,7 +126,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	QCoreApplication::installTranslator(&translator);
 
 	// Work around bug in Qt 5 where text direction is not loaded
-	QApplication::setLayoutDirection(QLocale(current).textDirection());
+	QGuiApplication::setLayoutDirection(QLocale(current).textDirection());
 }
 
 //-----------------------------------------------------------------------------

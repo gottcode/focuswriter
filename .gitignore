@@ -1,4 +1,5 @@
 *.o
+*.qm
 moc_*.cpp
 qrc_*.cpp
 /Makefile

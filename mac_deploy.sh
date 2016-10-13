@@ -2,7 +2,7 @@
 
 APP='FocusWriter'
 BUNDLE="$APP.app"
-VERSION='1.6.1'
+VERSION='1.6.2'
 
 # Remove any previous disk folder or DMG
 echo -n 'Preparing... '
@@ -38,12 +38,12 @@ do
 	mkdir "$LPROJ"
 	sed "s/????/${translation}/" < 'resources/mac/locversion.plist' > "${LPROJ}/locversion.plist"
 
-	QT_TRANSLATION="${QTDIR}/translations/qt_${translation}.qm"
+	QT_TRANSLATION="${QTDIR}/translations/qtbase_${translation}.qm"
 	if [ -e "$QT_TRANSLATION" ]; then
 		cp -f "$QT_TRANSLATION" "$TRANSLATIONS"
 	fi
 
-	QT_TRANSLATION="${QTDIR}/translations/qt_${translation:0:2}.qm"
+	QT_TRANSLATION="${QTDIR}/translations/qtbase_${translation:0:2}.qm"
 	if [ -e "$QT_TRANSLATION" ]; then
 		cp -f "$QT_TRANSLATION" "$TRANSLATIONS"
 	fi
