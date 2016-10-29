@@ -117,7 +117,7 @@
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>不能保存 &apos;%1&apos;。</translation>
+        <translation>无法保存 &apos;%1&apos;。</translation>
     </message>
     <message>
         <source>Save File As</source>
@@ -125,7 +125,7 @@
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>不能覆盖 &apos;%1&apos;。</translation>
+        <translation>无法覆盖 &apos;%1&apos;。</translation>
     </message>
     <message>
         <source>Rename File</source>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>不能重命名 &apos;%1&apos;。</translation>
+        <translation>无法重命名 &apos;%1&apos;。</translation>
     </message>
     <message>
         <source>Reload File?</source>
@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>保存为纯文本将丢弃全部格式。丢弃格式吗？</translation>
+        <translation>保存为纯文本将丢弃全部格式。是否要丢弃格式？</translation>
     </message>
 </context>
 <context>
@@ -172,7 +172,7 @@
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>文件  &apos;%1&apos;  已由其他程序更改。</translation>
+        <translation>文件  &apos;%1&apos;  已被其他程序更改。</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
@@ -192,18 +192,18 @@
     </message>
     <message>
         <source>The file %1 was deleted by another program.</source>
-        <translation>文件 %1 已经由其他程序删除。</translation>
+        <translation>文件 %1 已被其他程序删除。</translation>
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
-        <translation>您要保存或关闭该文件？</translation>
+        <translation>您是否要保存或关闭该文件？</translation>
     </message>
 </context>
 <context>
     <name>DocxReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>不能打开存档。</translation>
+        <translation>无法打开存档。</translation>
     </message>
 </context>
 <context>
@@ -348,7 +348,7 @@
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>要使语言的变化生效，请重新启动该应用程序。</translation>
+        <translation>要使语言的变化生效，请重新启动本程序。</translation>
     </message>
 </context>
 <context>
@@ -390,7 +390,7 @@
     </message>
     <message>
         <source>Unable to open archive.</source>
-        <translation>不能打开存档。</translation>
+        <translation>无法打开存档。</translation>
     </message>
     <message>
         <source>The archive does not contain a usable dictionary.</source>
@@ -1113,11 +1113,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>愤怒的天神</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>魔幻之境</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1133,15 +1133,15 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>谍战</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>静谧的云端</translation>
     </message>
     <message>
         <source>Writing Desk</source>
-        <translation>写字台</translation>
+        <translation>书桌</translation>
     </message>
     <message>
         <source>New</source>
@@ -1661,7 +1661,7 @@
     </message>
     <message>
         <source>&amp;Decrease Indent</source>
-        <translation>减少缩进(&amp;D)</translation>
+        <translation>减小缩进(&amp;D)</translation>
     </message>
     <message>
         <source>Ctrl+&lt;</source>
@@ -1669,7 +1669,7 @@
     </message>
     <message>
         <source>I&amp;ncrease Indent</source>
-        <translation>增加缩进(&amp;N)</translation>
+        <translation>增大缩进(&amp;N)</translation>
     </message>
     <message>
         <source>Ctrl+&gt;</source>
@@ -1717,7 +1717,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>将文档中所有引号更新为智能引号</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1725,7 +1725,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>将选中的引号更新为智能引号</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1829,7 +1829,7 @@
     </message>
     <message>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>某些文件不受支持，不能打开。</translation>
+        <translation>某些文件不受支持，无法打开。</translation>
     </message>
     <message>
         <source>&amp;Off</source>
