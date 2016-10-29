@@ -1113,11 +1113,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="愤怒的天神"></translation>
+        <translation>愤怒的天神</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="魔幻之境"></translation>
+        <translation>魔幻之境</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1133,11 +1133,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="谍战"></translation>
+        <translation>谍战</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="静谧的云端"></translation>
+        <translation>静谧的云端</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1717,7 +1717,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="将文档中所有引号更新为智能引号"></translation>
+        <translation>将文档中所有引号更新为智能引号</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1725,7 +1725,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="将选中的引号更新为智能引号"></translation>
+        <translation>将选中的引号更新为智能引号</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
