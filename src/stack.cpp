@@ -830,6 +830,10 @@ void Stack::updateMenuIndexes()
 
 void Stack::initPrinter()
 {
+	if (m_printer) {
+		return;
+	}
+
 	m_printer = new QPrinter(QPrinter::HighResolution);
 #if (QT_VERSION >= QT_VERSION_CHECK(5,3,0))
 	m_printer->setPageSize(QPageSize(QPageSize::Letter));
