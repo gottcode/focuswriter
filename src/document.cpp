@@ -176,8 +176,12 @@ namespace
 		}
 
 		QTextDocument document;
+		QTextCursor cursor(&document);
+		cursor.mergeBlockFormat(textCursor().blockFormat());
 		int formats = document.allFormats().size();
-		QTextCursor cursor = m_document->isRichText() ? textCursor() : QTextCursor(&document);
+		if (m_document->isRichText()) {
+			cursor = textCursor();
+		}
 
 		QByteArray richtext;
 		if (source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))) {
@@ -896,6 +900,7 @@ void Document::loadTheme(const Theme& theme)
 		m_text->document()->setModified(false);
 		m_spacings_loaded = true;
 	}
+
 	m_text->setTabStopWidth(tab_width);
 	m_text->document()->setIndentWidth(tab_width);
 
