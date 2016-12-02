@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -167,7 +167,11 @@ QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 				QStringRef check(&string, index, length);
 				QString word = check.toString();
 				word.replace(QChar(0x2019), QLatin1Char('\''));
+#ifdef H_DEPRECATED
+				if (!m_dictionary->spell(m_codec->fromUnicode(word).toStdString())) {
+#else
 				if (!m_dictionary->spell(m_codec->fromUnicode(word).constData())) {
+#endif
 					return check;
 				}
 			}
@@ -188,6 +192,16 @@ QStringList DictionaryHunspell::suggestions(const QString& word) const
 	QStringList result;
 	QString check = word;
 	check.replace(QChar(0x2019), QLatin1Char('\''));
+#ifdef H_DEPRECATED
+	const auto suggestions = m_dictionary->suggest(m_codec->fromUnicode(check).toStdString());
+	for (const auto& suggestion : suggestions) {
+		QString word = m_codec->toUnicode(suggestion.c_str());
+		if (SmartQuotes::isEnabled()) {
+			SmartQuotes::replace(word);
+		}
+		result.append(word);
+	}
+#else
 	char** suggestions = 0;
 	int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(check).constData());
 	if (suggestions != 0) {
@@ -200,6 +214,7 @@ QStringList DictionaryHunspell::suggestions(const QString& word) const
 		}
 		m_dictionary->free_list(&suggestions, count);
 	}
+#endif
 	return result;
 }
 
