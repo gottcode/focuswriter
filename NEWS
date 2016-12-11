@@ -1,3 +1,11 @@
+1.6.3
+-----
+* Updated included hunspell.
+* FIXED: Line spacing was ignored when pasting in new documents.
+* FIXED: Pasting text always made document rich text.
+* FIXED: Possible delay on start when creating non-native printer.
+* Translation updates: Chinese (China), Japanese, Korean, Lithuanian, Polish, Russian, Ukrainian.
+
 1.6.2
 -----
 * Generate binary translations at build time.
