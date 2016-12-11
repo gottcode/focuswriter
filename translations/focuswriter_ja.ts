@@ -283,7 +283,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Flat XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -514,7 +514,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>現在の辞書を削除しますか？</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -526,19 +526,19 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>ユーザインタフェース</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>常にスクロール・バーを表示</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>常にトップ・バーを表示</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>常にボトム・バーを表示</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -1113,11 +1113,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitter Skies</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Enchantment</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1133,11 +1133,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spy Games</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Tranquility</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1433,7 +1433,7 @@
     </message>
     <message>
         <source>Overwrite newer file?</source>
-        <translation>新しいファイルを上書きしますか？</translation>
+        <translation>新しいファイルの上から書き込みますか？</translation>
     </message>
     <message>
         <source>Save Changes?</source>
@@ -1497,7 +1497,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>ページ設定</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1717,7 +1717,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>文書全体にスマート引用符を適用</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1725,7 +1725,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>選択範囲にスマート引用符を適用</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1817,7 +1817,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>

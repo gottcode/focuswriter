@@ -1433,7 +1433,7 @@
     </message>
     <message>
         <source>Some files could not be opened.</source>
-        <translation>Kai kurie failai negalėjo būti atidaryti.</translation>
+        <translation>Kai kurių failų nepavyko atverti.</translation>
     </message>
     <message>
         <source>Some files were opened Read-Only.</source>
