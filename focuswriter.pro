@@ -26,7 +26,7 @@ macx {
 }
 
 # Set program version
-VERSION = 1.6.2
+VERSION = 1.6.3
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name

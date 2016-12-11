@@ -283,7 +283,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>오픈도큐먼트 플랫 XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -514,7 +514,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>이 사전을 지울까요?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -526,19 +526,19 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>사용자 인터페이스</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>스크롤바 항상 보이기</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>제목 줄 항상 보이기</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>내용 표시 줄 항상 보이기</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -1113,11 +1113,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>비터 스카이</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>마법</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1133,11 +1133,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>스파이 게임</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>고요</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1497,7 +1497,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>쪽 설정...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1717,7 +1717,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>지능형 따옴표 문서에 적용</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1725,7 +1725,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>선택한 내용에 지능형 따옴표 적용</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1817,7 +1817,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>

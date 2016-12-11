@@ -55,6 +55,7 @@
 Stack::Stack(QWidget* parent) :
 	QWidget(parent),
 	m_symbols_dialog(0),
+	m_printer(0),
 	m_current_document(0),
 	m_footer_margin(0),
 	m_header_margin(0),
@@ -77,17 +78,6 @@ Stack::Stack(QWidget* parent) :
 
 	m_find_dialog = new FindDialog(this);
 	connect(m_find_dialog, SIGNAL(findNextAvailable(bool)), this, SIGNAL(findNextAvailable(bool)));
-
-	m_printer = new QPrinter(QPrinter::HighResolution);
-#if (QT_VERSION >= QT_VERSION_CHECK(5,3,0))
-	m_printer->setPageSize(QPageSize(QPageSize::Letter));
-	m_printer->setPageOrientation(QPageLayout::Portrait);
-	m_printer->setPageMargins(QMarginsF(1.0, 1.0, 1.0, 1.0), QPageLayout::Inch);
-#else
-	m_printer->setPageSize(QPrinter::Letter);
-	m_printer->setOrientation(QPrinter::Portrait);
-	m_printer->setPageMargins(1.0, 1.0, 1.0, 1.0, QPrinter::Inch);
-#endif
 
 	connect(ActionManager::instance(), SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 
@@ -397,6 +387,7 @@ void Stack::pasteUnformatted()
 
 void Stack::pageSetup()
 {
+	initPrinter();
 	QPageSetupDialog dialog(m_printer, this);
 	dialog.exec();
 }
@@ -405,6 +396,7 @@ void Stack::pageSetup()
 
 void Stack::print()
 {
+	initPrinter();
 	m_current_document->print(m_printer);
 }
 
@@ -832,6 +824,26 @@ void Stack::updateMenuIndexes()
 	for (int i = 0; i < m_document_actions.size(); ++i) {
 		m_document_actions[i]->setData(i);
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::initPrinter()
+{
+	if (m_printer) {
+		return;
+	}
+
+	m_printer = new QPrinter(QPrinter::HighResolution);
+#if (QT_VERSION >= QT_VERSION_CHECK(5,3,0))
+	m_printer->setPageSize(QPageSize(QPageSize::Letter));
+	m_printer->setPageOrientation(QPageLayout::Portrait);
+	m_printer->setPageMargins(QMarginsF(1.0, 1.0, 1.0, 1.0), QPageLayout::Inch);
+#else
+	m_printer->setPageSize(QPrinter::Letter);
+	m_printer->setOrientation(QPrinter::Portrait);
+	m_printer->setPageMargins(1.0, 1.0, 1.0, 1.0, QPrinter::Inch);
+#endif
 }
 
 //-----------------------------------------------------------------------------

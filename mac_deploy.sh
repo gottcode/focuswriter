@@ -2,7 +2,7 @@
 
 APP='FocusWriter'
 BUNDLE="$APP.app"
-VERSION='1.6.2'
+VERSION='1.6.3'
 
 # Remove any previous disk folder or DMG
 echo -n 'Preparing... '

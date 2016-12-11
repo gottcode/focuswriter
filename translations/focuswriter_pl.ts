@@ -1125,11 +1125,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Gorzkie Nieba</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Oczarowanie</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1145,11 +1145,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Szpiegowskie gry</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Spokój</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1729,7 +1729,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuj cudzysłowy drukarskie dokumentu</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1737,7 +1737,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuj cudzysłowy drukarskie wyboru</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>

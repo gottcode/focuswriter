@@ -1,18 +1,19 @@
-lib_LTLIBRARIES = libhunspell-1.4.la
-libhunspell_1_4_includedir = $(includedir)/hunspell
-libhunspell_1_4_la_SOURCES=affentry.cxx affixmgr.cxx csutil.cxx \
+lib_LTLIBRARIES = libhunspell-1.5.la
+libhunspell_1_5_includedir = $(includedir)/hunspell
+libhunspell_1_5_la_SOURCES=affentry.cxx affixmgr.cxx csutil.cxx \
 		     hashmgr.cxx hunspell.cxx \
 	             suggestmgr.cxx license.myspell license.hunspell \
-	             phonet.cxx filemgr.cxx hunzip.cxx replist.cxx
+	             phonet.cxx filemgr.cxx hunzip.cxx replist.cxx \
+	             affentry.hxx htypes.hxx affixmgr.hxx \
+	             csutil.hxx atypes.hxx suggestmgr.hxx \
+	             baseaffix.hxx hashmgr.hxx langnum.hxx \
+	             phonet.hxx filemgr.hxx hunzip.hxx replist.hxx
 
-libhunspell_1_4_include_HEADERS=affentry.hxx htypes.hxx affixmgr.hxx \
-	        csutil.hxx hunspell.hxx atypes.hxx hunspell.h \
-		suggestmgr.hxx baseaffix.hxx hashmgr.hxx langnum.hxx \
-		phonet.hxx filemgr.hxx hunzip.hxx w_char.hxx replist.hxx \
-		hunvisapi.h
+libhunspell_1_5_include_HEADERS=hunspell.hxx hunspell.h hunvisapi.h \
+		                w_char.hxx atypes.hxx csutil.hxx htypes.hxx
 
-libhunspell_1_4_la_DEPENDENCIES=utf_info.cxx
-libhunspell_1_4_la_LDFLAGS=-no-undefined
+libhunspell_1_5_la_DEPENDENCIES=utf_info.cxx
+libhunspell_1_5_la_LDFLAGS=-no-undefined
 
 AM_CXXFLAGS=$(CFLAG_VISIBILITY) -DBUILDING_LIBHUNSPELL
 
