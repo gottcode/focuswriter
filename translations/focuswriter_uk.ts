@@ -1729,7 +1729,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Оновити розумні цитати документу</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1737,7 +1737,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Оновити розумні цитати виділеного</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>

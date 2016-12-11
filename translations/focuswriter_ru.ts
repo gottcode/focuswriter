@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Открытый текстовый документ XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -526,7 +526,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить текущий словарь?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -538,19 +538,19 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Интерфейс пользователя</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда показывать полосу прокрутки</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда показывать полосу вверху</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда показывать полосу внизу</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -1125,11 +1125,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Горькие небеса</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Очарование</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1145,11 +1145,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Шпионские игры</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Спокойствие</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1509,7 +1509,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ус&amp;тановки страницы...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1573,35 +1573,35 @@
     </message>
     <message>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Заголовок</translation>
     </message>
     <message>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;1</translation>
     </message>
     <message>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;2</translation>
     </message>
     <message>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;3</translation>
     </message>
     <message>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;4</translation>
     </message>
     <message>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;5</translation>
     </message>
     <message>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;6</translation>
     </message>
     <message>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Нормальный</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1729,7 +1729,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить умные цитаты документа</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1737,7 +1737,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить умные цитаты выделения</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1829,7 +1829,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>
