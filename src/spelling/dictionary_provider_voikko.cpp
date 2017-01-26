@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -144,7 +144,7 @@ QStringRef DictionaryVoikko::check(const QString& string, int start_at) const
 			}
 			length += chars;
 			chars = 1;
-		} else if (c != 0x2019 && c != 0x0027) {
+		} else if (c != '\'' && c != u'’') {
 			if (index != -1) {
 				is_word = true;
 			}
