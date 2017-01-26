@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -150,7 +150,7 @@ QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 
 			case QChar::Punctuation_FinalQuote:
 			case QChar::Punctuation_Other:
-				if (c == 0x0027 || c == 0x2019) {
+				if (c == '\'' || c == u'’') {
 					chars++;
 					break;
 				}
