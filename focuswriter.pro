@@ -277,7 +277,7 @@ macx {
 	desktop.path = $$DATADIR/applications/
 
 	appdata.files = resources/unix/focuswriter.appdata.xml
-	appdata.path = $$DATADIR/appdata/
+	appdata.path = $$DATADIR/metainfo/
 
 	man.files = resources/unix/focuswriter.1
 	man.path = $$PREFIX/share/man/man1
