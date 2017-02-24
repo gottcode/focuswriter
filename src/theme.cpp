@@ -378,6 +378,7 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 			break;
 		default:
 			// Centered
+			scaled /= pixelratio;
 			break;
 		}
 		source.setScaledSize(scaled * pixelratio);
