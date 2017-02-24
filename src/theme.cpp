@@ -412,10 +412,11 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 
 	// Blur behind foreground
 	if (blurEnabled()) {
-		QImage blurred = image.copy(foreground);
+		QImage blurred = image.copy(QRect(foreground.topLeft() * pixelratio, foreground.bottomRight() * pixelratio));
 
 		painter.save();
 		painter.translate(foreground.x(), foreground.y());
+		painter.scale(1.0 / pixelratio, 1.0 / pixelratio);
 		qt_blurImage(&painter, blurred, blurRadius() * 2, true, false);
 		painter.restore();
 	}
