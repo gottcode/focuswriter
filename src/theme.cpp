@@ -385,8 +385,7 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 		QImage back = source.read();
 		back.setDevicePixelRatio(pixelratio);
 
-		const qreal scale = pixelratio / 2.0;
-		painter.drawImage(QPointF((background.width() - scaled.width()) * scale, (background.height() - scaled.height()) * scale), back);
+		painter.drawImage(QPointF((background.width() - scaled.width()) / 2, (background.height() - scaled.height()) / 2), back);
 	} else if (backgroundType() == 1) {
 		// Tiled
 		QImage back(backgroundImage());
