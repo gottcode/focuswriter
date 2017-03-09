@@ -4,7 +4,7 @@
 !define APPNAME "FocusWriter"
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 6
-!define VERSIONPATCH 3
+!define VERSIONPATCH 4
 !define APPVERSION "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONPATCH}"
 !define ABOUTURL "https://gottcode.org/focuswriter/"
 
@@ -183,7 +183,6 @@ Section "install"
 	File $%QTDIR%\plugins\bearer\qnativewifibearer.dll
 
 	SetOutPath $INSTDIR\imageformats
-	File $%QTDIR%\plugins\imageformats\qdds.dll
 	File $%QTDIR%\plugins\imageformats\qgif.dll
 	File $%QTDIR%\plugins\imageformats\qicns.dll
 	File $%QTDIR%\plugins\imageformats\qico.dll

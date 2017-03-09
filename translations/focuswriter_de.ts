@@ -1119,11 +1119,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Bittere Himmel</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzauberung</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1139,11 +1139,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spionagespiele</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruhe</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1723,7 +1723,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Typographische Anführungszeichen des Dokuments aktualisieren</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1731,7 +1731,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Typographische Anführungszeichen der Auswahl aktualisieren</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>

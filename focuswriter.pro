@@ -18,6 +18,9 @@ macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
 
+DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050800
+
 # Allow in-tree builds
 !win32 {
 	MOC_DIR = build
@@ -26,7 +29,7 @@ macx {
 }
 
 # Set program version
-VERSION = 1.6.3
+VERSION = 1.6.4
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
@@ -274,7 +277,7 @@ macx {
 	desktop.path = $$DATADIR/applications/
 
 	appdata.files = resources/unix/focuswriter.appdata.xml
-	appdata.path = $$DATADIR/appdata/
+	appdata.path = $$DATADIR/metainfo/
 
 	man.files = resources/unix/focuswriter.1
 	man.path = $$PREFIX/share/man/man1
