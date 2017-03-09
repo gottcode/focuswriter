@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fi" sourcelanguage="en">
+<TS version="2.1" language="zh_TW" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <source>Close (%1)</source>
-        <translation>Sulje (%1)</translation>
+        <translation>關閉 (%1)</translation>
     </message>
     <message>
         <source>Collapse</source>
-        <translation>Pienennä</translation>
+        <translation>摺疊</translation>
     </message>
     <message>
         <source>Expand</source>
-        <translation>Laajenna</translation>
+        <translation>展開</translation>
     </message>
 </context>
 <context>
     <name>AlertLayer</name>
     <message>
         <source>Dismiss Alert</source>
-        <translation>Kuittaa hälytys</translation>
+        <translation>忽略警告</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -32,264 +32,258 @@
     <message numerus="yes">
         <source>%1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1 % %Ln minuutista</numerusform>
-            <numerusform>%1 % %Ln minuutista</numerusform>
+            <numerusform>%1%/%Ln 分鐘</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1 % %Ln sanasta</numerusform>
-            <numerusform>%1 % %Ln sanasta</numerusform>
+            <numerusform>%1%/%Ln 字</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
-            <numerusform>%Ln sana</numerusform>
-            <numerusform>%Ln sanaa</numerusform>
+            <numerusform>%Ln 個字</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln minuutti</numerusform>
-            <numerusform>%Ln minuuttia</numerusform>
+            <numerusform>%Ln 分鐘</numerusform>
         </translation>
     </message>
     <message>
         <source>0%</source>
-        <translation>0 %</translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
     <name>DailyProgressDialog</name>
     <message>
         <source>Daily Progress</source>
-        <translation>Päivittäinen eteneminen</translation>
+        <translation>每日進度</translation>
     </message>
     <message>
         <source>Longest streak</source>
-        <translation>Pisin putki</translation>
+        <translation>終極目標</translation>
     </message>
     <message>
         <source>Current streak</source>
-        <translation>Nykyinen putki</translation>
+        <translation>當前目標</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation>–</translation>
+        <translation>不可用</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
         <translation>
-            <numerusform>%n päivä</numerusform>
-            <numerusform>%n päivää</numerusform>
+            <numerusform>%n 天</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 &amp;ndash; %2</source>
-        <translation>%1 &amp;ndash; %2</translation>
+        <translation>%1 &amp;n破折號; %2</translation>
     </message>
 </context>
 <context>
     <name>DailyProgressLabel</name>
     <message>
         <source>%1% of daily goal</source>
-        <translation>%1 % päivittäisestä tavoitteesta</translation>
+        <translation>每日目標的 %1%</translation>
     </message>
 </context>
 <context>
     <name>DictionaryDialog</name>
     <message>
         <source>Set Language</source>
-        <translation>Aseta kieli</translation>
+        <translation>設定語言</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Nimetön %1)</translation>
+        <translation>(無標題 %1)</translation>
     </message>
     <message>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (vain luku)</translation>
+        <translation>%1 (唯讀)</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Virhe</translation>
+        <translation>抱歉</translation>
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” tallentaminen epäonnistui.</translation>
+        <translation>無法儲存 &apos;%1&apos;。</translation>
     </message>
     <message>
         <source>Save File As</source>
-        <translation>Tallenna tiedosto nimellä</translation>
+        <translation>儲存檔案為</translation>
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” korvaaminen epäonnistui.</translation>
+        <translation>無法覆蓋 &apos;%1&apos;。</translation>
     </message>
     <message>
         <source>Rename File</source>
-        <translation>Nimeä tiedosto uudelleen</translation>
+        <translation>重新命名檔案</translation>
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Tiedoston ”%1” uudelleennimeäminen epäonnistui.</translation>
+        <translation>無法重命名 &apos;%1&apos;。</translation>
     </message>
     <message>
         <source>Reload File?</source>
-        <translation>Ladataanko tiedosto uudelleen?</translation>
+        <translation>重新載入檔案？</translation>
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>Ladataanko tiedosto ”%1” uudelleen levyltä?</translation>
+        <translation>重新從磁碟中載入檔案 &apos;%1&apos; ？</translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
-        <translation>Kaikki tallentamattomat muutokset menetetään.</translation>
+        <translation>將遺失所有未儲存的變更。</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Lataa uudelleen</translation>
+        <translation>重新載入</translation>
     </message>
     <message>
         <source>Untitled %1</source>
-        <translation>Nimetön %1</translation>
+        <translation>無標題 %1</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>問題</translation>
     </message>
     <message>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Pelkkänä tekstinä tallennettaessa menetetään kaikki muotoilu. Poistetaanko muotoilu?</translation>
+        <translation>儲存為純文字將丟棄全部格式。是否要丟棄格式？</translation>
     </message>
 </context>
 <context>
     <name>DocumentWatcher</name>
     <message>
         <source>File Changed</source>
-        <translation>Tiedosto muuttui</translation>
+        <translation>檔案已更改</translation>
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>Toinen ohjelma on muuttanut tiedostoa %1.</translation>
+        <translation>檔案  &apos;%1&apos;  已被其他程式更改。</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
-        <translation>Haluatko ladata tiedoston uudelleen?</translation>
+        <translation>您要重新載入檔案嗎？</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Lataa uudelleen</translation>
+        <translation>重新載入</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation>Jätä huomiotta</translation>
+        <translation>忽略</translation>
     </message>
     <message>
         <source>File Deleted</source>
-        <translation>Tiedosto poistettu</translation>
+        <translation>檔案已刪除</translation>
     </message>
     <message>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Toinen ohjelma on poistanut tiedoston %1.</translation>
+        <translation>檔案 %1 已被其他程式刪除。</translation>
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
-        <translation>Haluatko tallentaa vai sulkea tiedoston?</translation>
+        <translation>您是否要儲存或關閉該檔案？</translation>
     </message>
 </context>
 <context>
     <name>DocxReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Arkiston avaaminen epäonnistui.</translation>
+        <translation>無法開啟存檔。</translation>
     </message>
 </context>
 <context>
     <name>FindDialog</name>
     <message>
         <source>Search for:</source>
-        <translation>Etsi:</translation>
+        <translation>搜尋：</translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Korvaa:</translation>
+        <translation>取代為：</translation>
     </message>
     <message>
         <source>Ignore case</source>
-        <translation>Aakkoskoolla ei ole merkitystä</translation>
+        <translation>忽略大小寫</translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation>Vain kokonaiset sanat</translation>
+        <translation>僅限完整單字</translation>
     </message>
     <message>
         <source>Regular expressions</source>
-        <translation>Säännölliset lausekkeet</translation>
+        <translation>正規表示式</translation>
     </message>
     <message>
         <source>Search up</source>
-        <translation>Etsi ylös</translation>
+        <translation>向上搜尋</translation>
     </message>
     <message>
         <source>Search down</source>
-        <translation>Etsi alas</translation>
+        <translation>向下搜尋</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation>&amp;Etsi</translation>
+        <translation>尋找 (&amp;F)</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
-        <translation>&amp;Korvaa</translation>
+        <translation>取代 (&amp;R)</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
-        <translation>Korvaa k&amp;aikki</translation>
+        <translation>取代全部 (&amp;A)</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>Etsi</translation>
+        <translation>尋找</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation>Korvaa</translation>
+        <translation>取代</translation>
     </message>
     <message numerus="yes">
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Korvataanko %n esiintymä?</numerusform>
-            <numerusform>Korvataanko %n esiintymää?</numerusform>
+            <numerusform>取代 %n 個項目？</numerusform>
         </translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>問題</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Virhe</translation>
+        <translation>抱歉</translation>
     </message>
     <message>
         <source>Phrase not found.</source>
-        <translation>Fraasia ei löydy.</translation>
+        <translation>沒找到詞彙。</translation>
     </message>
 </context>
 <context>
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>OpenDocument-teksti</translation>
+        <translation>odf 文字</translation>
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation>Litteä OpenDocument-XML</translation>
+        <translation>OpenDocument 普通 XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -297,384 +291,384 @@
     </message>
     <message>
         <source>Rich Text Format</source>
-        <translation>Muotoiltu teksti</translation>
+        <translation>RTF 文字格式</translation>
     </message>
     <message>
         <source>Plain Text</source>
-        <translation>Pelkkä teksti</translation>
+        <translation>純文字</translation>
     </message>
     <message>
         <source>All Files</source>
-        <translation>Kaikki tiedostot</translation>
+        <translation>所有檔案</translation>
     </message>
     <message>
         <source>All Supported Files</source>
-        <translation>Kaikki tuetut tiedostot</translation>
+        <translation>所有支援的檔案</translation>
     </message>
 </context>
 <context>
     <name>Highlighter</name>
     <message>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>新增</translation>
     </message>
     <message>
         <source>Check Spelling...</source>
-        <translation>Tarkista oikeinkirjoitus…</translation>
+        <translation>拼字校正中…</translation>
     </message>
     <message>
         <source>(No suggestions found)</source>
-        <translation>(Ei ehdotuksia)</translation>
+        <translation>（找不到建議的詞彙）</translation>
     </message>
 </context>
 <context>
     <name>ImageButton</name>
     <message>
         <source>Open Image</source>
-        <translation>Avaa kuva</translation>
+        <translation>打開圖像</translation>
     </message>
     <message>
         <source>Images(%1)</source>
-        <translation>Kuvat (%1)</translation>
+        <translation>圖像(%1)</translation>
     </message>
 </context>
 <context>
     <name>LocaleDialog</name>
     <message>
         <source>Select application language:</source>
-        <translation>Valitse ohjelman kieli:</translation>
+        <translation>選擇程式語言：</translation>
     </message>
     <message>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Järjestelmän kieli&gt;</translation>
+        <translation>&lt;系統語言&gt;</translation>
     </message>
     <message>
         <source>Note</source>
-        <translation>Huomaa</translation>
+        <translation>注意</translation>
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Ole hyvä ja käynnistä ohjelma uudelleen, jotta kielen muutos tulee voimaan.</translation>
+        <translation>請重新啟動本程式，以使語言的設定生效。</translation>
     </message>
 </context>
 <context>
     <name>OdtReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Arkiston avaaminen epäonnistui.</translation>
+        <translation>無法打開封存檔</translation>
     </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Asetukset</translation>
+        <translation>偏好設定</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Yleisasetukset</translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation>Tilastot</translation>
+        <translation>統計</translation>
     </message>
     <message>
         <source>Toolbar</source>
-        <translation>Työkalupalkki</translation>
+        <translation>工具列</translation>
     </message>
     <message>
         <source>Spell Checking</source>
-        <translation>Oikeinkirjoituksen tarkistus</translation>
+        <translation>拼字校正</translation>
     </message>
     <message>
         <source>Select Dictionary</source>
-        <translation>Valitse sanasto</translation>
+        <translation>選擇詞典</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Virhe</translation>
+        <translation>抱歉</translation>
     </message>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Arkiston avaaminen epäonnistui.</translation>
+        <translation>無法打開封存檔。</translation>
     </message>
     <message>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Arkisto ei sisällä käyttökelpoista sanastoa.</translation>
+        <translation>封存檔不包含可用的詞典。</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>問題</translation>
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Pikanäppäimet</translation>
+        <translation>快捷鍵</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Yksi tai useampi päällekkäinen pikanäppäin. Haluatko jatkaa?</translation>
+        <translation>一個或多個快捷鍵衝突。您要繼續嗎？</translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Sanasto ”%1” on jo olemassa. Haluatko korvata sen?</translation>
+        <translation>詞典 &quot;%1&quot; 已經存在。您要取代它嗎？</translation>
     </message>
     <message>
         <source>Daily Goal</source>
-        <translation>Päivittäinen tavoite</translation>
+        <translation>每日目標</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ei tavoitetta</translation>
+        <translation>無</translation>
     </message>
     <message>
         <source>Minutes:</source>
-        <translation>Minuutteina:</translation>
+        <translation>分鐘：</translation>
     </message>
     <message>
         <source>Words:</source>
-        <translation>Sanoina:</translation>
+        <translation>字數：</translation>
     </message>
     <message>
         <source>Editing</source>
-        <translation>Muokkaaminen</translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <source>Always vertically center</source>
-        <translation>Keskitä aina pystysuunnassa</translation>
+        <translation>始終垂直置中</translation>
     </message>
     <message>
         <source>Block insertion cursor</source>
-        <translation>Laatikkomainen lisäyskohdistin</translation>
+        <translation>塊狀游標</translation>
     </message>
     <message>
         <source>Smooth fonts</source>
-        <translation>Tasoitetut fontit</translation>
+        <translation>平滑字體</translation>
     </message>
     <message>
         <source>Typewriter sounds</source>
-        <translation>Kirjoituskoneäänet</translation>
+        <translation>打字機音效</translation>
     </message>
     <message>
         <source>Smart quotes:</source>
-        <translation>Älykkäät lainausmerkit:</translation>
+        <translation>智慧引號：</translation>
     </message>
     <message>
         <source>Double</source>
-        <translation>Kokolainausmerkit</translation>
+        <translation>雙倍行距</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation>Puolilainausmerkit</translation>
+        <translation>單線</translation>
     </message>
     <message>
         <source>Scenes</source>
-        <translation>Kohtaukset</translation>
+        <translation>場景</translation>
     </message>
     <message>
         <source>Divider:</source>
-        <translation>Erotin:</translation>
+        <translation>分隔符:</translation>
     </message>
     <message>
         <source>Saving</source>
-        <translation>Tallennus</translation>
+        <translation>儲存</translation>
     </message>
     <message>
         <source>Automatically save changes</source>
-        <translation>Tallenna muutokset automaattisesti</translation>
+        <translation>自動儲存更改</translation>
     </message>
     <message>
         <source>Remember cursor position</source>
-        <translation>Muista kohdistimen sijainti</translation>
+        <translation>記住游標位置</translation>
     </message>
     <message>
         <source>Word count</source>
-        <translation>Sanamäärä</translation>
+        <translation>字數</translation>
     </message>
     <message>
         <source>Page count</source>
-        <translation>Sivumäärä</translation>
+        <translation>頁數</translation>
     </message>
     <message>
         <source>Paragraph count</source>
-        <translation>Kappalemäärä</translation>
+        <translation>段落數</translation>
     </message>
     <message>
         <source>Character count</source>
-        <translation>Merkkimäärä</translation>
+        <translation>字元數</translation>
     </message>
     <message>
         <source>Characters:</source>
-        <translation>Merkkeinä:</translation>
+        <translation>字元：</translation>
     </message>
     <message>
         <source>Paragraphs:</source>
-        <translation>Kappaleina:</translation>
+        <translation>段落：</translation>
     </message>
     <message>
         <source>Word Count Algorithm</source>
-        <translation>Sanamäärän algoritmi</translation>
+        <translation>字數統計規則</translation>
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Nollataanko tämän päivän eteneminen?</translation>
+        <translation>將今天的計劃進度歸零？</translation>
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation>Poistetaanko nykyinen sanakirja?</translation>
+        <translation>移除當前詞典？</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation>Kirjoita tavujärjestysmerkki (BOM) tekstitiedostoihin</translation>
+        <translation>對純文字檔案寫入位元組順序記號 (BOM)</translation>
     </message>
     <message>
         <source>Default format:</source>
-        <translation>Oletusmuoto:</translation>
+        <translation>預設格式：</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Käyttöliittymä</translation>
+        <translation>介面</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation>Näytä vierityspalkki aina</translation>
+        <translation>總是顯示滾動條</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>Näytä yläpalkki aina</translation>
+        <translation>總是顯示置頂欄</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation>Näytä alapalkki aina</translation>
+        <translation>總是顯示底邊欄</translation>
     </message>
     <message>
         <source>Reset Today</source>
-        <translation>Nollaa tämä päivä</translation>
+        <translation>重設今日</translation>
     </message>
     <message>
         <source>History</source>
-        <translation>Historia</translation>
+        <translation>歷史</translation>
     </message>
     <message>
         <source>Remember history</source>
-        <translation>Muista historia</translation>
+        <translation>記住歷史</translation>
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Näytä etenemisputket</translation>
+        <translation>顯示目標</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation>Vähin eteneminen voittoputkeen:</translation>
+        <translation>達到目標的最小進度：</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
-        <translation>Tunnista sanojen rajat</translation>
+        <translation>偵測單詞邊界</translation>
     </message>
     <message>
         <source>Divide character count by six</source>
-        <translation>Jaa merkkimäärä kuudella</translation>
+        <translation>字元數除以6</translation>
     </message>
     <message>
         <source>Count each letter as a word</source>
-        <translation>Laske jokainen kirjain sanaksi</translation>
+        <translation>將每個字母都計算為一個詞</translation>
     </message>
     <message>
         <source>Page Count Algorithm</source>
-        <translation>Sivumäärän algoritmi</translation>
+        <translation>頁數統計演算法</translation>
     </message>
     <message>
         <source>Style</source>
-        <translation>Tyyli</translation>
+        <translation>樣式</translation>
     </message>
     <message>
         <source>Icons Only</source>
-        <translation>Vain kuvakkeet</translation>
+        <translation>僅圖示</translation>
     </message>
     <message>
         <source>Text Only</source>
-        <translation>Vain teksti</translation>
+        <translation>僅文字</translation>
     </message>
     <message>
         <source>Text Alongside Icons</source>
-        <translation>Teksti kuvakkeiden vieressä</translation>
+        <translation>文字在圖示旁</translation>
     </message>
     <message>
         <source>Text Under Icons</source>
-        <translation>Teksti kuvakkeiden alla</translation>
+        <translation>文字在圖示下</translation>
     </message>
     <message>
         <source>Text Position:</source>
-        <translation>Tekstin sijainti:</translation>
+        <translation>文字位置：</translation>
     </message>
     <message>
         <source>Actions</source>
-        <translation>Toiminnot</translation>
+        <translation>動作</translation>
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Siirrä ylemmäs</translation>
+        <translation>上移</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Siirrä alemmas</translation>
+        <translation>下移</translation>
     </message>
     <message>
         <source>Add Separator</source>
-        <translation>Lisää erotin</translation>
+        <translation>新增分隔符</translation>
     </message>
     <message>
         <source>Command</source>
-        <translation>Komento</translation>
+        <translation>命令</translation>
     </message>
     <message>
         <source>Shortcut</source>
-        <translation>Pikanäppäin</translation>
+        <translation>快捷鍵</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Toiminto</translation>
+        <translation>動作</translation>
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Tarkista oikeinkirjoitus kirjoitettaessa</translation>
+        <translation>輸入時校正拼字</translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ohita SUURAAKKOSIN kirjoitetut sanat</translation>
+        <translation>忽略大寫單詞</translation>
     </message>
     <message>
         <source>Ignore words with numbers</source>
-        <translation>Ohita sanat, joissa on numeroita</translation>
+        <translation>忽略帶數字的單詞</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Kieli</translation>
+        <translation>語言</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Lisää</translation>
+        <translation>新增</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>移除</translation>
     </message>
     <message>
         <source>Personal Dictionary</source>
-        <translation>Oma sanasto</translation>
+        <translation>個人詞典</translation>
     </message>
 </context>
 <context>
     <name>RtfReader</name>
     <message>
         <source>Not a supported RTF file.</source>
-        <translation>Ei tuettu RTF-tiedosto.</translation>
+        <translation>不支援的RTF檔案。</translation>
     </message>
 </context>
 <context>
     <name>RtfTokenizer</name>
     <message>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Tiedosto loppui yllättäen.</translation>
+        <translation>不可預期的終止檔案。</translation>
     </message>
 </context>
 <context>
@@ -685,15 +679,15 @@
     </message>
     <message>
         <source>Move Scenes Up</source>
-        <translation>Siirrä kohtauksia ylemmäs</translation>
+        <translation>向上移動場景</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Shift+Up</translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <source>Toggle Scene List</source>
-        <translation>Näytä tai piilota kohtausluettelo</translation>
+        <translation>打開/關閉場景列表</translation>
     </message>
     <message>
         <source>Shift+F4</source>
@@ -701,97 +695,97 @@
     </message>
     <message>
         <source>Show scene list (%1)</source>
-        <translation>Näytä kohtausluettelo (%1)</translation>
+        <translation>顯示場景列表(%1)</translation>
     </message>
     <message>
         <source>Hide scene list (%1)</source>
-        <translation>Piilota kohtausluettelo (%1)</translation>
+        <translation>隱藏場景列表(%1)</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation>Suodatin</translation>
+        <translation>過濾器</translation>
     </message>
     <message>
         <source>Move Scenes Down</source>
-        <translation>Siirrä kohtauksia alemmas</translation>
+        <translation>向下移動場景</translation>
     </message>
     <message>
         <source>Resize scene list</source>
-        <translation>Muuta kohtausluettelon kokoa</translation>
+        <translation>調整場景列表大小</translation>
     </message>
 </context>
 <context>
     <name>Session</name>
     <message>
         <source>Default</source>
-        <translation>Oletus</translation>
+        <translation>預設</translation>
     </message>
 </context>
 <context>
     <name>SessionManager</name>
     <message>
         <source>Manage Sessions</source>
-        <translation>Hallitse istuntoja</translation>
+        <translation>管理工作階段</translation>
     </message>
     <message>
         <source>S&amp;essions</source>
-        <translation>&amp;Istunnot</translation>
+        <translation>工作階段 (&amp;E)</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Uusi</translation>
+        <translation>建立</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Kopioi</translation>
+        <translation>再製</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Nimeä uudelleen</translation>
+        <translation>重新命名</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Switch To</source>
-        <translation>Siirry</translation>
+        <translation>切換到</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Uusi istunto</translation>
+        <translation>新工作階段</translation>
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation>Kopioi istunto</translation>
+        <translation>再製工作階段</translation>
     </message>
     <message>
         <source>Rename Session</source>
-        <translation>Nimeä istunto uudelleen</translation>
+        <translation>重命名工作階段</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>問題</translation>
     </message>
     <message>
         <source>Delete selected session?</source>
-        <translation>Poistetaanko valittu istunto?</translation>
+        <translation>刪除所選工作階段？</translation>
     </message>
     <message>
         <source>Session name:</source>
-        <translation>Istunnon nimi:</translation>
+        <translation>工作階段名稱：</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Virhe</translation>
+        <translation>抱歉</translation>
     </message>
     <message>
         <source>The requested session name is already in use.</source>
-        <translation>Pyytämäsi istunnon nimi on jo käytössä.</translation>
+        <translation>請求的工作階段名稱已在使用中。</translation>
     </message>
     <message>
         <source>&amp;New...</source>
-        <translation>&amp;Uusi…</translation>
+        <translation>建立 (&amp;N)...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
@@ -799,7 +793,7 @@
     </message>
     <message>
         <source>&amp;Manage...</source>
-        <translation>&amp;Hallitse…</translation>
+        <translation>管理 (&amp;M)...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
@@ -810,439 +804,439 @@
     <name>ShortcutEdit</name>
     <message>
         <source>Clear</source>
-        <translation>Tyhjennä</translation>
+        <translation>清除</translation>
     </message>
     <message>
         <source>Reset to Default</source>
-        <translation>Palauta oletusarvoon</translation>
+        <translation>恢復預設</translation>
     </message>
     <message>
         <source>Shortcut:</source>
-        <translation>Pikanäppäin:</translation>
+        <translation>快捷鍵：</translation>
     </message>
 </context>
 <context>
     <name>SmartQuote</name>
     <message>
         <source>Replacing quotation marks...</source>
-        <translation>Korvataan lainausmerkkejä…</translation>
+        <translation>更換引號...</translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation>Odota hetki</translation>
+        <translation>請等待</translation>
     </message>
 </context>
 <context>
     <name>SpellChecker</name>
     <message>
         <source>Check Spelling</source>
-        <translation>Tarkista oikeinkirjoitus</translation>
+        <translation>拼字校正</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation>&amp;Lisää</translation>
+        <translation>新增 (&amp;A)</translation>
     </message>
     <message>
         <source>&amp;Ignore</source>
-        <translation>Jätä &amp;huomiotta</translation>
+        <translation>忽略 (&amp;I)</translation>
     </message>
     <message>
         <source>I&amp;gnore All</source>
-        <translation>&amp;Jätä kaikki huomiotta</translation>
+        <translation>忽略全部 (&amp;g)</translation>
     </message>
     <message>
         <source>&amp;Change</source>
-        <translation>&amp;Muuta</translation>
+        <translation>更改 (&amp;C)</translation>
     </message>
     <message>
         <source>C&amp;hange All</source>
-        <translation>Muuta &amp;kaikki</translation>
+        <translation>更改全部 (&amp;h)</translation>
     </message>
     <message>
         <source>Not in dictionary:</source>
-        <translation>Ei sanastossa:</translation>
+        <translation>不在詞典中：</translation>
     </message>
     <message>
         <source>Change to:</source>
-        <translation>Vaihda muotoon:</translation>
+        <translation>更改為：</translation>
     </message>
     <message>
         <source>Checking spelling...</source>
-        <translation>Tarkistetaan oikeinkirjoitusta…</translation>
+        <translation>拼字校正…</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Peru</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Please wait</source>
-        <translation>Odota hetki</translation>
+        <translation>請稍候</translation>
     </message>
     <message>
         <source>Continue checking at beginning of file?</source>
-        <translation>Jatketaanko tarkistamista tiedoston alusta?</translation>
+        <translation>從檔案起始點繼續檢查？</translation>
     </message>
     <message>
         <source>Spell check complete.</source>
-        <translation>Oikeinkirjoituksen tarkistus valmis.</translation>
+        <translation>拼字校正完成。</translation>
     </message>
 </context>
 <context>
     <name>SymbolsDialog</name>
     <message>
         <source>Symbols</source>
-        <translation>Symbolit</translation>
+        <translation>符號</translation>
     </message>
     <message>
         <source>Recently used symbols</source>
-        <translation>Viimeksi käytetyt symbolit</translation>
+        <translation>最近使用過的符號</translation>
     </message>
     <message>
         <source>All symbols</source>
-        <translation>Kaikki symbolit</translation>
+        <translation>全部符號</translation>
     </message>
     <message>
         <source>Details</source>
-        <translation>Tiedot</translation>
+        <translation>詳情</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Nimi:</translation>
+        <translation>名稱：</translation>
     </message>
     <message>
         <source>Insert</source>
-        <translation>Lisää</translation>
+        <translation>插入</translation>
     </message>
 </context>
 <context>
     <name>SymbolsModel</name>
     <message>
         <source>Blocks</source>
-        <translation>Lohkot</translation>
+        <translation>塊</translation>
     </message>
     <message>
         <source>Scripts</source>
-        <translation>Kirjoitusjärjestelmät</translation>
+        <translation>文字</translation>
     </message>
 </context>
 <context>
     <name>Theme</name>
     <message>
         <source>Untitled %1</source>
-        <translation>Nimetön %1</translation>
+        <translation>無標題 %1</translation>
     </message>
 </context>
 <context>
     <name>ThemeDialog</name>
     <message>
         <source>Name:</source>
-        <translation>Nimi:</translation>
+        <translation>名稱：</translation>
     </message>
     <message>
         <source>No Image</source>
-        <translation>Ei kuvaa</translation>
+        <translation>無圖像</translation>
     </message>
     <message>
         <source>Tiled</source>
-        <translation>Toistettu</translation>
+        <translation>平鋪</translation>
     </message>
     <message>
         <source>Centered</source>
-        <translation>Keskitetty</translation>
+        <translation>置中</translation>
     </message>
     <message>
         <source>Stretched</source>
-        <translation>Venytetty</translation>
+        <translation>拉伸</translation>
     </message>
     <message>
         <source>Scaled</source>
-        <translation>Skaalattu</translation>
+        <translation>比例</translation>
     </message>
     <message>
         <source>Zoomed</source>
-        <translation>Suurennettu</translation>
+        <translation>縮放</translation>
     </message>
     <message>
         <source>Opacity:</source>
-        <translation>Peittävyys:</translation>
+        <translation>不透明度：</translation>
     </message>
     <message>
         <source>Position:</source>
-        <translation>Sijainti:</translation>
+        <translation>位置：</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation>Leveys:</translation>
+        <translation>寬度：</translation>
     </message>
     <message>
         <source>Round Text Background Corners</source>
-        <translation>Pyöristetyt kulmat tekstin taustassa</translation>
+        <translation>文字背景圓潤化</translation>
     </message>
     <message>
         <source>Radius:</source>
-        <translation>Säde:</translation>
+        <translation>半徑：</translation>
     </message>
     <message>
         <source>Blur Text Background</source>
-        <translation>Sumenna tekstin tausta</translation>
+        <translation>模糊文字背景</translation>
     </message>
     <message>
         <source>Text Background Drop Shadow</source>
-        <translation>Tekstin taustan varjo</translation>
+        <translation>文字背景陰影</translation>
     </message>
     <message>
         <source>Vertical Offset:</source>
-        <translation>Pystysiirtymä:</translation>
+        <translation>垂直偏移量：</translation>
     </message>
     <message>
         <source>Margins</source>
-        <translation>Reunukset</translation>
+        <translation>頁邊距</translation>
     </message>
     <message>
         <source>Window:</source>
-        <translation>Ikkuna:</translation>
+        <translation>視窗：</translation>
     </message>
     <message>
         <source>Page:</source>
-        <translation>Sivu:</translation>
+        <translation>頁面：</translation>
     </message>
     <message>
         <source>Indent first line</source>
-        <translation>Sisennä ensimmäinen rivi</translation>
+        <translation>首行縮排</translation>
     </message>
     <message>
         <source>Above:</source>
-        <translation>Yläpuolella:</translation>
+        <translation>段前：</translation>
     </message>
     <message>
         <source>Below:</source>
-        <translation>Alapuolella:</translation>
+        <translation>段後：</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Poista</translation>
+        <translation>移除</translation>
     </message>
     <message>
         <source>Edit Theme</source>
-        <translation>Muokkaa teemaa</translation>
+        <translation>編輯主題</translation>
     </message>
     <message>
         <source>Window Background</source>
-        <translation>Ikkunan tausta</translation>
+        <translation>視窗背景</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Tyyppi:</translation>
+        <translation>類型：</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation>Väri:</translation>
+        <translation>顏色：</translation>
     </message>
     <message>
         <source>Image:</source>
-        <translation>Kuva:</translation>
+        <translation>圖像：</translation>
     </message>
     <message>
         <source> pixels</source>
-        <translation> pikseliä</translation>
+        <translation>像素</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation>Vasemmalla</translation>
+        <translation>左</translation>
     </message>
     <message>
         <source>Text Background</source>
-        <translation>Tekstin tausta</translation>
+        <translation>文字背景</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>Oikealla</translation>
+        <translation>右</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation>Teksti</translation>
+        <translation>文字</translation>
     </message>
     <message>
         <source>Font:</source>
-        <translation>Fontti:</translation>
+        <translation>字體：</translation>
     </message>
     <message>
         <source>Misspelled:</source>
-        <translation>Kirjoitusvirheet:</translation>
+        <translation>拼字錯誤：</translation>
     </message>
     <message>
         <source>Line Spacing</source>
-        <translation>Riviväli</translation>
+        <translation>行距</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation>Yksinkertainen</translation>
+        <translation>單線</translation>
     </message>
     <message>
         <source>1.5 Lines</source>
-        <translation>1,5-kertainen</translation>
+        <translation>1.5 倍行距</translation>
     </message>
     <message>
         <source>Double</source>
-        <translation>Kaksinkertainen</translation>
+        <translation>雙倍行距</translation>
     </message>
     <message>
         <source>Proportional</source>
-        <translation>Suhteellinen</translation>
+        <translation>比例行距</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation>Korkeus:</translation>
+        <translation>高度：</translation>
     </message>
     <message>
         <source>Paragraph Spacing</source>
-        <translation>Kappaleväli</translation>
+        <translation>段落間距</translation>
     </message>
     <message>
         <source>Tab Width:</source>
-        <translation>Sarkainleveys:</translation>
+        <translation>Tab 寬度：</translation>
     </message>
     <message>
         <source>New Theme</source>
-        <translation>Uusi teema</translation>
+        <translation>建立主題</translation>
     </message>
 </context>
 <context>
     <name>ThemeManager</name>
     <message>
         <source>Themes</source>
-        <translation>Teemat</translation>
+        <translation>主題</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Oletusteemat</translation>
+        <translation>預設</translation>
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation>Karvaat taivaat</translation>
+        <translation>天打雷劈</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation>Lumous</translation>
+        <translation>魔幻魅力</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
-        <translation>Pehmeänsininen</translation>
+        <translation>溫和藍調</translation>
     </message>
     <message>
         <source>Old School</source>
-        <translation>Vanhanaikainen</translation>
+        <translation>古早駭客</translation>
     </message>
     <message>
         <source>Space Dreams</source>
-        <translation>Avaruusunelma</translation>
+        <translation>太空夢遊</translation>
     </message>
     <message>
         <source>Spy Games</source>
-        <translation>Vakoojaleikit</translation>
+        <translation>諜報遊戲</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation>Rauha</translation>
+        <translation>寧靜雲海</translation>
     </message>
     <message>
         <source>Writing Desk</source>
-        <translation>Kirjoituspöytä</translation>
+        <translation>書桌</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Uusi</translation>
+        <translation>新增</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Kopioi</translation>
+        <translation>再製</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation>Omat teemat</translation>
+        <translation>自訂</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Muokkaa</translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation>Tuo</translation>
+        <translation>匯入</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation>Vie</translation>
+        <translation>匯出</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>問題</translation>
     </message>
     <message>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation>Poistetaanko teema %1?</translation>
+        <translation>確定要刪除 &apos;%1&apos; 這個主題嗎？</translation>
     </message>
     <message>
         <source>Themes (%1)</source>
-        <translation>Teemat (%1)</translation>
+        <translation>主題 (%1)</translation>
     </message>
     <message>
         <source>Import Theme</source>
-        <translation>Tuo teema</translation>
+        <translation>匯入主題</translation>
     </message>
     <message>
         <source>Export Theme</source>
-        <translation>Vie teema</translation>
+        <translation>匯出主題</translation>
     </message>
 </context>
 <context>
     <name>Timer</name>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; - %2</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; – %2</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; - %2</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>問題</translation>
     </message>
     <message>
         <source>Delete timer?</source>
-        <translation>Poistetaanko ajastin?</translation>
+        <translation>刪除定時器？</translation>
     </message>
     <message>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sanoja:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;單詞數：&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sivuja:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;頁數：&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Kappaleita:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;段落數：&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Merkkejä:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;字元數：&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <source>Set Delay</source>
-        <translation>Aseta viive</translation>
+        <translation>設定延遲</translation>
     </message>
     <message>
         <source>Set Time</source>
-        <translation>Aseta aika</translation>
+        <translation>設定時間</translation>
     </message>
     <message>
         <source>Delay:</source>
-        <translation>Viive:</translation>
+        <translation>延遲：</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Aika:</translation>
+        <translation>時間：</translation>
     </message>
     <message>
         <source>HH:mm:ss</source>
@@ -1250,23 +1244,23 @@
     </message>
     <message>
         <source>Alarm</source>
-        <translation>Hälytys</translation>
+        <translation>鬧鈴</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Tyyppi:</translation>
+        <translation>類型：</translation>
     </message>
     <message>
         <source>Memo:</source>
-        <translation>Lisätieto:</translation>
+        <translation>備忘錄：</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Muokkaa</translation>
+        <translation>編輯</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Poista</translation>
+        <translation>刪除</translation>
     </message>
 </context>
 <context>
@@ -1277,30 +1271,30 @@
     </message>
     <message>
         <source>No timers running</source>
-        <translation>Ei ajastimia käynnissä</translation>
+        <translation>無定時器執行</translation>
     </message>
 </context>
 <context>
     <name>TimerManager</name>
     <message>
         <source>Timers</source>
-        <translation>Ajastimet</translation>
+        <translation>定時器</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Uusi</translation>
+        <translation>建立</translation>
     </message>
     <message>
         <source>Recent</source>
-        <translation>Viimeisimmät</translation>
+        <translation>最近的</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Kysymys</translation>
+        <translation>問題</translation>
     </message>
     <message>
         <source>Cancel editing timers?</source>
-        <translation>Perutaanko ajastimien muokkaus?</translation>
+        <translation>取消編輯定時器嗎？</translation>
     </message>
     <message>
         <source>+HH:mm:ss</source>
@@ -1308,210 +1302,210 @@
     </message>
     <message>
         <source>%1 - %2</source>
-        <translation>%1 – %2</translation>
+        <translation>%1 - %2</translation>
     </message>
 </context>
 <context>
     <name>Window</name>
     <message>
         <source>Loading themes</source>
-        <translation>Ladataan teemoja</translation>
+        <translation>載入主題</translation>
     </message>
     <message>
         <source>Loading sounds</source>
-        <translation>Ladataan ääniä</translation>
+        <translation>載入音效</translation>
     </message>
     <message>
         <source>Untitled</source>
-        <translation>Nimetön</translation>
+        <translation>無標題</translation>
     </message>
     <message>
         <source>Open File</source>
-        <translation>Avaa tiedosto</translation>
+        <translation>打開檔案</translation>
     </message>
     <message>
         <source>About FocusWriter</source>
-        <translation>Tietoja FocusWriterista</translation>
+        <translation>關於「焦點作家」</translation>
     </message>
     <message>
         <source>FocusWriter</source>
-        <translation>FocusWriter</translation>
+        <translation>焦點作家</translation>
     </message>
     <message>
         <source>A simple fullscreen word processor</source>
-        <translation>Yksinkertainen koko näytön tekstinkäsittelyohjelma</translation>
+        <translation>一個簡潔的全螢幕文字處理軟體</translation>
     </message>
     <message>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Copyright &amp;copy; 2008–%1 Graeme Gott</translation>
+        <translation>&amp;copy; 2008-%1 Graeme Gott 版權所有</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Julkaistu &lt;a href=%1&gt;GPL 3&lt;/a&gt;-lisenssillä</translation>
+        <translation>以 &lt;a href=%1&gt;GPL 3&lt;/a&gt; 許可協議發布</translation>
     </message>
     <message>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Käyttää &lt;a href=%1&gt;Oxygen&lt;/a&gt;-kuvaketeemaa</translation>
+        <translation>使用 &lt;a href=%1&gt;Oxygen&lt;/a&gt; 圖示主題</translation>
     </message>
     <message>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Käytetty &lt;a href=%1&gt;LGPL 3&lt;/a&gt;-lisenssin mukaisesti</translation>
+        <translation>遵照 &lt;a href=%1&gt;LGPL 3&lt;/a&gt; 許可使用</translation>
     </message>
     <message>
         <source>Characters: %L1 / %L2</source>
-        <translation>Merkkejä: %L1 / %L2</translation>
+        <translation>字元數：%L1 / %L2</translation>
     </message>
     <message>
         <source>Pages: %L1</source>
-        <translation>Sivuja: %L1</translation>
+        <translation>頁數：%L1</translation>
     </message>
     <message>
         <source>Paragraphs: %L1</source>
-        <translation>Kappaleita: %L1</translation>
+        <translation>段落數：%L1</translation>
     </message>
     <message>
         <source>Words: %L1</source>
-        <translation>Sanoja: %L1</translation>
+        <translation>單詞數：%L1</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Avataan %1</translation>
+        <translation>正在打開 %1</translation>
     </message>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Nimetön %1)</translation>
+        <translation>（無標題 %1）</translation>
     </message>
     <message>
         <source>List all documents</source>
-        <translation>Luettele kaikki asiakirjat</translation>
+        <translation>列出所有檔案</translation>
     </message>
     <message>
         <source>Switch to Next Document</source>
-        <translation>Siirry seuraavaan asiakirjaan</translation>
+        <translation>切換到下一檔案</translation>
     </message>
     <message>
         <source>Switch to Previous Document</source>
-        <translation>Siirry edelliseen asiakirjaan</translation>
+        <translation>切換到上一檔案</translation>
     </message>
     <message>
         <source>Switch to First Document</source>
-        <translation>Siirry ensimmäiseen asiakirjaan</translation>
+        <translation>切換到第一個檔案</translation>
     </message>
     <message>
         <source>Switch to Last Document</source>
-        <translation>Siirry viimeiseen asiakirjaan</translation>
+        <translation>切換到最後一個檔案</translation>
     </message>
     <message>
         <source>Switch to Document %1</source>
-        <translation>Siirry asiakirjaan %1</translation>
+        <translation>切換到檔案 %1</translation>
     </message>
     <message>
         <source>Loading settings</source>
-        <translation>Ladataan asetuksia</translation>
+        <translation>載入設定中</translation>
     </message>
     <message>
         <source>Emergency cache is not writable.</source>
-        <translation>Varavälimuistiin ei voida kirjoittaa.</translation>
+        <translation>緊急快取是不可寫的。</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Varoitus</translation>
+        <translation>警告</translation>
     </message>
     <message>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter ei sulkeutunut oikein.</translation>
+        <translation>焦點作家沒有完全關閉。</translation>
     </message>
     <message>
         <source>Restore from the emergency cache?</source>
-        <translation>Palautetaanko tilanne varavälimuistista?</translation>
+        <translation>從緊急快取中還原？</translation>
     </message>
     <message>
         <source>Some files could not be opened.</source>
-        <translation>Joitain tiedostoja ei saatu avattua.</translation>
+        <translation>有些檔案無法打開。</translation>
     </message>
     <message>
         <source>Some files were opened Read-Only.</source>
-        <translation>Osa tiedostoista avattiin vain luku -tilassa.</translation>
+        <translation>一些檔案以唯讀方式打開。</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>%1 on uudempi kuin välimuistin versio.</translation>
+        <translation>&apos;%1&apos; 比快取的副本新。</translation>
     </message>
     <message>
         <source>Overwrite newer file?</source>
-        <translation>Korvataanko uudempi tiedosto?</translation>
+        <translation>覆蓋較新的檔案？</translation>
     </message>
     <message>
         <source>Save Changes?</source>
-        <translation>Tallennetaanko muutokset?</translation>
+        <translation>儲存更改？</translation>
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation>Tallennetaanko muutokset tiedostoon ”%1” ennen sulkemista?</translation>
+        <translation>在關閉之前儲存檔案 &apos;%1&apos; ？</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Muutoksesi häviävät, jollet tallenna niitä.</translation>
+        <translation>如果你選擇不儲存，所有更改都會丟失。</translation>
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Kirjoituskoneäänien lataaminen epäonnistui.</translation>
+        <translation>無法載入打字機音效。</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Tiedosto</translation>
+        <translation>檔案 (&amp;F)</translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;Uusi</translation>
+        <translation>新增 (&amp;N)</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation>&amp;Avaa…</translation>
+        <translation>開啟 (&amp;O)...</translation>
     </message>
     <message>
         <source>Reloa&amp;d</source>
-        <translation>Lataa uu&amp;delleen</translation>
+        <translation>重新載入 (&amp;d)</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Tallenna</translation>
+        <translation>儲存 (&amp;S)</translation>
     </message>
     <message>
         <source>Save &amp;As...</source>
-        <translation>Tallenna &amp;nimellä…</translation>
+        <translation>另存為 (&amp;A)...</translation>
     </message>
     <message>
         <source>&amp;Rename...</source>
-        <translation>Ni&amp;meä uudelleen…</translation>
+        <translation>重新命名 (&amp;R)...</translation>
     </message>
     <message>
         <source>Save A&amp;ll</source>
-        <translation>Tallenna &amp;kaikki</translation>
+        <translation>全部儲存 (&amp;L)</translation>
     </message>
     <message>
         <source>Manage Sessions</source>
-        <translation>Hallitse istuntoja</translation>
+        <translation>管理工作階段</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Uusi istunto</translation>
+        <translation>新工作階段</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>Tul&amp;osta…</translation>
+        <translation>列印 (&amp;P)</translation>
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation>Sivuasetukset...</translation>
+        <translation>頁面設定 (&amp;g)</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sulje</translation>
+        <translation>關閉 (&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Lopeta</translation>
+        <translation>退出 (&amp;Q)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -1519,31 +1513,31 @@
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Muokkaa</translation>
+        <translation>編輯 (&amp;E)</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation>&amp;Peru</translation>
+        <translation>復原 (&amp;U)</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation>&amp;Tee uudelleen</translation>
+        <translation>取消復原 (&amp;R)</translation>
     </message>
     <message>
         <source>Cu&amp;t</source>
-        <translation>L&amp;eikkaa</translation>
+        <translation>剪下 (&amp;T)</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopioi</translation>
+        <translation>複製 (&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Paste</source>
-        <translation>&amp;Liitä</translation>
+        <translation>貼上 (&amp;P)</translation>
     </message>
     <message>
         <source>Paste &amp;Unformatted</source>
-        <translation>Liitä &amp;muotoilematta</translation>
+        <translation>無格式貼上 (&amp;U)</translation>
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
@@ -1551,11 +1545,11 @@
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation>Valitse k&amp;aikki</translation>
+        <translation>全選 (&amp;A)</translation>
     </message>
     <message>
         <source>Select &amp;Scene</source>
-        <translation>&amp;Valitse kohtaus</translation>
+        <translation>選擇場景 (&amp;S)</translation>
     </message>
     <message>
         <source>Ctrl+Shift+A</source>
@@ -1563,55 +1557,55 @@
     </message>
     <message>
         <source>Fo&amp;rmat</source>
-        <translation>M&amp;uotoilu</translation>
+        <translation>格式 (&amp;R)</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
-        <translation>Otsikko</translation>
+        <translation>標題 (&amp;H)</translation>
     </message>
     <message>
         <source>Heading &amp;1</source>
-        <translation>Otsikko &amp;1</translation>
+        <translation>標題 &amp;1</translation>
     </message>
     <message>
         <source>Heading &amp;2</source>
-        <translation>Otsikko &amp;2</translation>
+        <translation>標題 &amp;2</translation>
     </message>
     <message>
         <source>Heading &amp;3</source>
-        <translation>Otsikko &amp;3</translation>
+        <translation>標題 &amp;3</translation>
     </message>
     <message>
         <source>Heading &amp;4</source>
-        <translation>Otsikko &amp;4</translation>
+        <translation>標題 &amp;4</translation>
     </message>
     <message>
         <source>Heading &amp;5</source>
-        <translation>Otsikko &amp;5</translation>
+        <translation>標題 &amp;5</translation>
     </message>
     <message>
         <source>Heading &amp;6</source>
-        <translation>Otsikko &amp;6</translation>
+        <translation>標題 &amp;6</translation>
     </message>
     <message>
         <source>&amp;Normal</source>
-        <translation>&amp;Tavallinen</translation>
+        <translation>普通 (&amp;N)</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
-        <translation>Li&amp;havointi</translation>
+        <translation>粗體 (&amp;B)</translation>
     </message>
     <message>
         <source>&amp;Italic</source>
-        <translation>Ku&amp;rsivointi</translation>
+        <translation>斜體 (&amp;I)</translation>
     </message>
     <message>
         <source>&amp;Underline</source>
-        <translation>All&amp;eviivaus</translation>
+        <translation>底線 (&amp;U)</translation>
     </message>
     <message>
         <source>Stri&amp;kethrough</source>
-        <translation>Yl&amp;iviivaus</translation>
+        <translation>刪除線 (&amp;K)</translation>
     </message>
     <message>
         <source>Ctrl+K</source>
@@ -1619,7 +1613,7 @@
     </message>
     <message>
         <source>Sup&amp;erscript</source>
-        <translation>&amp;Yläindeksi</translation>
+        <translation>上標 (&amp;E)</translation>
     </message>
     <message>
         <source>Ctrl+^</source>
@@ -1627,7 +1621,7 @@
     </message>
     <message>
         <source>&amp;Subscript</source>
-        <translation>&amp;Alaindeksi</translation>
+        <translation>下標 (&amp;S)</translation>
     </message>
     <message>
         <source>Ctrl+_</source>
@@ -1635,7 +1629,7 @@
     </message>
     <message>
         <source>Align &amp;Left</source>
-        <translation>Tasaa &amp;vasemmalle</translation>
+        <translation>向左對齊 (&amp;L)</translation>
     </message>
     <message>
         <source>Ctrl+{</source>
@@ -1643,7 +1637,7 @@
     </message>
     <message>
         <source>Align &amp;Center</source>
-        <translation>Tasaa &amp;keskelle</translation>
+        <translation>置中 (&amp;C)</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -1651,7 +1645,7 @@
     </message>
     <message>
         <source>Align &amp;Right</source>
-        <translation>Tasaa &amp;oikealle</translation>
+        <translation>向右對齊 (&amp;R)</translation>
     </message>
     <message>
         <source>Ctrl+}</source>
@@ -1659,7 +1653,7 @@
     </message>
     <message>
         <source>Align &amp;Justify</source>
-        <translation>&amp;Tasaa molemmat reunat</translation>
+        <translation>兩側對齊 (&amp;J)</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -1667,7 +1661,7 @@
     </message>
     <message>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Ulonna</translation>
+        <translation>減少縮排 (&amp;D)</translation>
     </message>
     <message>
         <source>Ctrl+&lt;</source>
@@ -1675,7 +1669,7 @@
     </message>
     <message>
         <source>I&amp;ncrease Indent</source>
-        <translation>&amp;Sisennä</translation>
+        <translation>增加縮排 (&amp;N)</translation>
     </message>
     <message>
         <source>Ctrl+&gt;</source>
@@ -1683,31 +1677,31 @@
     </message>
     <message>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Vase&amp;mmalta oikealle</translation>
+        <translation>從左到右 (&amp;F)</translation>
     </message>
     <message>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Oikea&amp;lta vasemmalle</translation>
+        <translation>從右到左 (&amp;G)</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation>T&amp;yökalut</translation>
+        <translation>工具(&amp;T)</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation>&amp;Etsi…</translation>
+        <translation>尋找(&amp;F)...</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation>Etsi &amp;seuraava</translation>
+        <translation>尋找下一個(&amp;N)</translation>
     </message>
     <message>
         <source>Find Pre&amp;vious</source>
-        <translation>Etsi edelli&amp;nen</translation>
+        <translation>尋找上一個(&amp;V)</translation>
     </message>
     <message>
         <source>&amp;Replace...</source>
-        <translation>&amp;Korvaa…</translation>
+        <translation>取代(&amp;R)…</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -1715,27 +1709,27 @@
     </message>
     <message>
         <source>Smart &amp;Quotes</source>
-        <translation>Älykkäät &amp;lainausmerkit</translation>
+        <translation>智慧引號(&amp;Q)</translation>
     </message>
     <message>
         <source>Update &amp;Document</source>
-        <translation>Päivitä &amp;asiakirja</translation>
+        <translation>更新檔案(&amp;D)</translation>
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation>Päivitä dokumentin älykkäät lainausmerkit</translation>
+        <translation>將檔案中所有引號更新為智慧引號</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
-        <translation>Päivitä &amp;valinta</translation>
+        <translation>更新所選(&amp;S)</translation>
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation>Päivitä valinnan älykkäät lainausmerkit</translation>
+        <translation>將選取的引號更新為智慧引號</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Oikeinkirjoitus…</translation>
+        <translation>拼字 (&amp;S)…</translation>
     </message>
     <message>
         <source>F7</source>
@@ -1743,39 +1737,39 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Ase&amp;ta kieli…</translation>
+        <translation>設定語言(&amp;L)</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
-        <translation>&amp;Ajastimet…</translation>
+        <translation>定時器(&amp;T)…</translation>
     </message>
     <message>
         <source>S&amp;ymbols...</source>
-        <translation>S&amp;ymbolit…</translation>
+        <translation>符號…(&amp;y)</translation>
     </message>
     <message>
         <source>&amp;Daily Progress</source>
-        <translation>&amp;Päivittäinen eteneminen</translation>
+        <translation>每日進度(&amp;D)</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Asetukset</translation>
+        <translation>設定(&amp;S)</translation>
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation>Näytä &amp;työkalupalkki</translation>
+        <translation>顯示工具列(&amp;T)</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
-        <translation>Näytä &amp;valikkokuvakkeet</translation>
+        <translation>顯示選單圖示(&amp;M)</translation>
     </message>
     <message>
         <source>F&amp;ocused Text</source>
-        <translation>K&amp;ohdistettu teksti</translation>
+        <translation>聚焦文字(&amp;F)</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <translation>Koko &amp;näyttö</translation>
+        <translation>全螢幕(&amp;F)</translation>
     </message>
     <message>
         <source>F11</source>
@@ -1787,7 +1781,7 @@
     </message>
     <message>
         <source>M&amp;inimize</source>
-        <translation>P&amp;ienennä</translation>
+        <translation>最小化 (&amp;I)</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -1795,31 +1789,31 @@
     </message>
     <message>
         <source>&amp;Themes...</source>
-        <translation>T&amp;eemat…</translation>
+        <translation>主題 (&amp;T)…</translation>
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Asetukset…</translation>
+        <translation>偏好設定 (&amp;P)…</translation>
     </message>
     <message>
         <source>Focus Off</source>
-        <translation>Kohdistus pois päältä</translation>
+        <translation>關閉聚焦</translation>
     </message>
     <message>
         <source>Focus One Line</source>
-        <translation>Kohdista yksi rivi</translation>
+        <translation>聚焦一行</translation>
     </message>
     <message>
         <source>Focus Three Lines</source>
-        <translation>Kohdista kolme riviä</translation>
+        <translation>聚焦三行</translation>
     </message>
     <message>
         <source>&amp;Paragraph</source>
-        <translation>&amp;Kappale</translation>
+        <translation>段落 (&amp;P)</translation>
     </message>
     <message>
         <source>Focus Paragraph</source>
-        <translation>Kohdista kappale</translation>
+        <translation>聚焦段落</translation>
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
@@ -1827,35 +1821,35 @@
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Ohje</translation>
+        <translation>幫助 (&amp;H)</translation>
     </message>
     <message>
         <source>Application &amp;Language...</source>
-        <translation>Ohjelman &amp;kieli…</translation>
+        <translation>程式語言 (&amp;L)…</translation>
     </message>
     <message>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Joidenkin tiedostojen tiedostomuotoja ei tueta; niiden avaaminen epäonnistui.</translation>
+        <translation>某些檔案不受支援，無法開啟。</translation>
     </message>
     <message>
         <source>&amp;Off</source>
-        <translation>&amp;Ei kohdistusta</translation>
+        <translation>關閉 (&amp;O)</translation>
     </message>
     <message>
         <source>One &amp;Line</source>
-        <translation>&amp;Yksi rivi</translation>
+        <translation>單行 (&amp;L)</translation>
     </message>
     <message>
         <source>&amp;Three Lines</source>
-        <translation>Kolme &amp;riviä</translation>
+        <translation>三行 (&amp;T)</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Tietoja</translation>
+        <translation>關於 (&amp;A)</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>Tietoja &amp;Qt:sta</translation>
+        <translation>關於 &amp;Qt</translation>
     </message>
 </context>
 </TS>
