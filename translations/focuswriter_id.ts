@@ -283,7 +283,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Buka berkas XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -514,7 +514,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hilangkan kamus ini?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -526,19 +526,19 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Tampilan pengguna</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Scrollbar selalu tampak</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilah atas selalu tampak</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilah bawah selalu tampak</translation>
     </message>
     <message>
         <source>Reset Today</source>

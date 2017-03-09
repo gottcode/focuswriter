@@ -36,7 +36,7 @@
   <name xml:lang="uk">FocusWriter</name>
   <name xml:lang="vi">FocusWriter</name>
   <name xml:lang="zh_CN">FocusWriter</name>
-  <name xml:lang="zh_TW">FocusWriter</name>
+  <name xml:lang="zh_TW">焦點作家</name>
   <summary>Fullscreen word processor</summary>
   <summary xml:lang="af_ZA">Volskerm woordverwerker</summary>
   <summary xml:lang="cs">Textový procesor v režimu na celou obrazovku</summary>
@@ -66,7 +66,7 @@
   <summary xml:lang="tr">Tam ekran kelime işlemci</summary>
   <summary xml:lang="uk">Повноекранний текстовий редактор</summary>
   <summary xml:lang="zh_CN">全屏文字编辑器</summary>
-  <summary xml:lang="zh_TW">全螢幕文字處理器</summary>
+  <summary xml:lang="zh_TW">全螢幕的文字處理器</summary>
 
   <description>
     <p>FocusWriter is a simple, distraction-free word processor. It utilizes a hide-away interface that you access by moving your mouse to the edges of the screen, allowing the program to have a familiar look and feel to it while still getting out of the way so that you can immerse yourself in your work.</p>
@@ -97,7 +97,7 @@
     <p xml:lang="sv">FocusWriter är en enkel, distraktionsfri ordbehandlare. Den utnyttjar ett dolt gränssnitt som du kommer åt genom att flytta din mus till skärmkanterna, vilket tillåter programmet att ha välbekant utseende och känsla, medan det håller sig ur vägen så att du kan fördjupa dig i ditt arbete. </p>
     <p xml:lang="uk">FocusWriter це простий текстовий редактор, що дозволяє повністю зосередитися на роботі. Він використовує висувний інтерфейс, який з’являється при наведенні стрілки миші до країв екрану. Це дає можливість досягти максимально зручного для користувача зовнішнього вигляду, який не відволікає, а дозволяє повністю зануритися в роботу.</p>
     <p xml:lang="zh_CN">FocusWriter 是个简洁的，让您专心于写作的文字编辑器。所有菜单默认隐藏，当鼠标滑动到屏幕边缘时会显示。这样既提供所需功能，又能保证让您专注于写作。</p>
-    <p xml:lang="zh_TW">FocusWriter 是一個簡潔、讓您不受干擾的文字處理器。除了寫作區域以外，其他介面均在您將滑鼠移到螢幕邊緣時才會顯示，這樣既能提供所需的功能，又能讓您專心寫作。</p>
+    <p xml:lang="zh_TW">「焦點作家」是一個簡潔、讓您不受干擾的文字處理器。除了寫作區域以外，其他介面均在您將滑鼠移到螢幕邊緣時才會顯示，這樣既能提供所需的功能，又能讓您專心寫作。</p>
     <p>FocusWriter allows you to customize your environment by creating themes that control the font, colors, and background image to add ambiance. It also features on-the-fly updating statistics, daily goals, multiple open documents, spell-checking, and much more.</p>
     <p xml:lang="af_ZA">FocusWriter laat jou toe om jou omgewing te verpersoonlik. Jy kan tema's gebruik wat die lettertipe, kleure, en agtergrondfoto verander om 'n eie atmosfeer te skep. Die program ondersteun statistiek wat deurlopend opdateer, daaglikse doelwitte, veelvoudige oop dokumente, speltoetsing, en vele meer.</p>
     <p xml:lang="cs">FocusWriter vám umožňuje si své prostředí přizpůsobit vytvořením vzhledů, jež řídí písmo, barvy, a obrázek na pozadí, čímž se pracovnímu prostředí přidá určitá nálada. Nabízí také za běhu se obnovující statistikou, denní cíle, možnost mít více otevřených dokumentů, ověřování pravopisu, a mnohé další.</p>
@@ -126,7 +126,7 @@
     <p xml:lang="sv">FocusWriter tillåter dig att anpassa din miljö genom att skapa teman som kontrollerar typsnitt, färger, och bakgrundsbilden för att lägga till atmosfär. Den har även automatisk statistikuppdatering, dagliga mål, flera öppna dokument, stavningskontroll och mycket mer.</p>
     <p xml:lang="uk">FocusWriter дозволить вам налаштувати своє робоче оточення шляхом створення тем, в яких можна управляти шрифтами, кольорами та фоновими зображеннями. Також текстовий редактор вміє вести статистику, оновлювану в реальному часі, ставити щоденні робочі цілі, відкривати декілька документів одночасно, перевіряти орфографію і багато чого ще.</p>
     <p xml:lang="zh_CN">FocusWriter 支持自定义主题，可以调整字体，颜色，背景图像等。还有很多其他功能，如动态更新统计，每日计划，多标签页，拼写检查等。</p>
-    <p xml:lang="zh_TW">FocusWriter 可以自訂主題、更改字體、顏色、以及背景圖片等等。也有如動態更新統計；每日目標、多重開啟文件、拼寫檢查等等的多種功能。</p>
+    <p xml:lang="zh_TW">「焦點作家」可以自訂主題、更改字體、顏色、以及背景圖片等等。也有如動態更新統計；每日目標、多重開啟文件、拼字校正等等的多種功能。</p>
     <p>Additionally, when you open the program your current work in progress will automatically load and position you where you last left off so that you can immediately jump back in.</p>
     <p xml:lang="af_ZA">Voorts laai die program die dokument waarmee jy besig was, asook presies waar in die dokument jy besig was, wanneer jy die program oopmaak. So kan jy dadelik aan die werk spring.</p>
     <p xml:lang="cs">Navíc, když otevřete program, vaše rozdělaná práce se automaticky nahraje a otevře se na místě, kde jste ji naposledy opustily, takže se do ní zase budete moci okamžitě dát.</p>
