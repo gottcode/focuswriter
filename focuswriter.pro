@@ -29,7 +29,7 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050800
 }
 
 # Set program version
-VERSION = 1.6.3
+VERSION = 1.6.4
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name

@@ -1,3 +1,11 @@
+1.6.4
+-----
+* Updated AppData installation directory.
+* FIXED: HiDPI blurred text backgrounds were offset and scaled.
+* FIXED: HiDPI backgrounds were not centered properly.
+* FIXED: HiDPI centered backgrounds were also scaled.
+* Translation updates: Chinese (Taiwan), Finnish, German, Indonesian.
+
 1.6.3
 -----
 * Updated included hunspell.
