@@ -92,7 +92,6 @@ Window::Window(const QStringList& command_line_files) :
 	m_key_sound(0),
 	m_enter_key_sound(0),
 	m_fullscreen(true),
-	m_auto_save(true),
 	m_save_positions(true)
 {
 	setAcceptDrops(true);
@@ -1105,11 +1104,6 @@ bool Window::saveDocument(int index)
 		return true;
 	}
 
-	// Auto-save document
-	if (m_auto_save && document->isModified() && !document->filename().isEmpty()) {
-		return document->save();
-	}
-
 	// Prompt about saving changes
 	QMessageBox mbox(window());
 	mbox.setWindowTitle(tr("Save Changes?"));
@@ -1155,14 +1149,6 @@ void Window::loadPreferences()
 	}
 	Sound::setEnabled(Preferences::instance().typewriterSounds());
 
-	m_auto_save = Preferences::instance().autoSave();
-	if (m_auto_save) {
-		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
-		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
-	} else {
-		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
-		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
-	}
 	m_save_positions = Preferences::instance().savePositions();
 
 	SmartQuotes::loadPreferences();

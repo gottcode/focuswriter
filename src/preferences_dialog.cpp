@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -158,7 +158,6 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 
 	m_scene_divider->setText(Preferences::instance().sceneDivider());
 
-	m_auto_save->setChecked(Preferences::instance().autoSave());
 	m_save_positions->setChecked(Preferences::instance().savePositions());
 	m_save_format->setCurrentIndex(m_save_format->findData(Preferences::instance().saveFormat().value()));
 	m_write_bom->setChecked(Preferences::instance().writeByteOrderMark());
@@ -285,7 +284,6 @@ void PreferencesDialog::accept()
 
 	Preferences::instance().setSceneDivider(m_scene_divider->text());
 
-	Preferences::instance().setAutoSave(m_auto_save->isChecked());
 	Preferences::instance().setSavePositions(m_save_positions->isChecked());
 	Preferences::instance().setWriteByteOrderMark(m_write_bom->isChecked());
 	Preferences::instance().setSaveFormat(m_save_format->itemData(m_save_format->currentIndex()).toString());
@@ -724,7 +722,6 @@ QWidget* PreferencesDialog::initGeneralTab()
 	// Create save options
 	QGroupBox* save_group = new QGroupBox(tr("Saving"), tab);
 
-	m_auto_save = new QCheckBox(tr("Automatically save changes"), save_group);
 	m_save_positions = new QCheckBox(tr("Remember cursor position"), save_group);
 	m_write_bom = new QCheckBox(tr("Write byte order mark in plain text files"), save_group);
 
@@ -742,7 +739,6 @@ QWidget* PreferencesDialog::initGeneralTab()
 	save_format_layout->addStretch();
 
 	QVBoxLayout* save_layout = new QVBoxLayout(save_group);
-	save_layout->addWidget(m_auto_save);
 	save_layout->addWidget(m_save_positions);
 	save_layout->addWidget(m_write_bom);
 	save_layout->addLayout(save_format_layout);

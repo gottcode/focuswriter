@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -142,7 +142,6 @@ private:
 	QTimer* m_save_timer;
 
 	bool m_fullscreen;
-	bool m_auto_save;
 	bool m_save_positions;
 	DailyProgress* m_daily_progress;
 	DailyProgressDialog* m_daily_progress_dialog;
