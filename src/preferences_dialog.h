@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,7 +86,6 @@ private:
 	QComboBox* m_single_quotes;
 	QCheckBox* m_typewriter_sounds;
 	QLineEdit* m_scene_divider;
-	QCheckBox* m_auto_save;
 	QCheckBox* m_save_positions;
 	QCheckBox* m_write_bom;
 	QComboBox* m_save_format;
