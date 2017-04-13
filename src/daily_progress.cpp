@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -150,6 +150,10 @@ void DailyProgress::findCurrentStreak(QDate& start, QDate& end) const
 {
 	int start_pos = -1, end_pos = -1;
 	findStreak(m_current_pos, start_pos, end_pos);
+
+	if ((start_pos == -1) && (m_current_pos > 0)) {
+		findStreak(m_current_pos - 1, start_pos, end_pos);
+	}
 
 	if (start_pos != -1) {
 		start = m_progress.at(start_pos).date();

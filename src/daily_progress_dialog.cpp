@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -287,9 +287,11 @@ void DailyProgressDialog::streaksChanged()
 
 	m_progress->findLongestStreak(streak_start, streak_end);
 	m_longest_streak->setText(createStreakText(tr("Longest streak"), streak_start, streak_end));
+	m_longest_streak->setEnabled(streak_end.isValid());
 
 	m_progress->findCurrentStreak(streak_start, streak_end);
 	m_current_streak->setText(createStreakText(tr("Current streak"), streak_start, streak_end));
+	m_current_streak->setEnabled(streak_end == QDate::currentDate());
 }
 
 //-----------------------------------------------------------------------------
