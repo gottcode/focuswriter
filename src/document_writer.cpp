@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2015, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,16 +23,9 @@
 #include "odt_writer.h"
 #include "rtf_writer.h"
 
-#include <QFile>
+#include <QSaveFile>
 #include <QTextDocument>
 #include <QTextStream>
-
-#if defined(Q_OS_UNIX)
-#include <unistd.h>
-#elif defined(Q_OS_WIN)
-#include <windows.h>
-#include <io.h>
-#endif
 
 //-----------------------------------------------------------------------------
 
@@ -61,8 +54,8 @@ bool DocumentWriter::write()
 
 	bool saved = false;
 
-	QFile file(m_filename);
-	if (!file.open(QFile::WriteOnly | QFile::Truncate)) {
+	QSaveFile file(m_filename);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
 		return false;
 	}
 
@@ -95,13 +88,11 @@ bool DocumentWriter::write()
 		saved = stream.status() == QTextStream::Ok;
 	}
 
-#if defined(Q_OS_UNIX)
-	saved &= (fsync(file.handle()) == 0);
-#elif defined(Q_OS_WIN)
-	saved &= (FlushFileBuffers(reinterpret_cast<HANDLE>(_get_osfhandle(file.handle()))) != 0);
-#endif
-	saved &= (file.error() == QFile::NoError);
-	file.close();
+	if (saved) {
+		saved = file.commit();
+	} else {
+		file.cancelWriting();
+	}
 
 	return saved;
 }
