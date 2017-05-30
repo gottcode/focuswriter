@@ -1159,7 +1159,7 @@
     </message>
     <message>
         <source>Custom</source>
-        <translation>Standard</translation>
+        <translation>Anpassade</translation>
     </message>
     <message>
         <source>Edit</source>
