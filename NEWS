@@ -1,3 +1,10 @@
+1.6.5
+-----
+* FIXED: Data loss when program crashed.
+* Updated included hunspell.
+* Updated dictionaries.
+* Translation updates: Greek, Swedish.
+
 1.6.4
 -----
 * Updated AppData installation directory.
