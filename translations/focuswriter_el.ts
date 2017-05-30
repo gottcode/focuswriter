@@ -532,7 +532,7 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Διεπαφή Χρήστη</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
@@ -1119,11 +1119,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Πικρά Ουράνια</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Μαγεία</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1139,11 +1139,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Παιχνίδια Κατασκοπίας</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Ηρεμία</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1823,7 +1823,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>

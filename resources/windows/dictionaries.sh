@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='5.2.1.2'
+loversion='5.3.3.2'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "http://download.documentfoundation.org/libreoffice/src/5.2.1/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/5.3.3/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -25,7 +25,7 @@ echo -n 'Downloading Armenian dictionary...'
 hydict='hy_am_e_1940_dict-1.1'
 hyfiles='hy_am_e_1940_dict-1.1'
 if [ ! -e "${hydict}.oxt" ]; then
-	curl -s -L -o "${hydict}.oxt" 'http://extensions.openoffice.org/en/download/4838'
+	curl -s -L -o "${hydict}.oxt" 'https://extensions.openoffice.org/en/download/4838'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -35,7 +35,7 @@ echo -n 'Downloading Esperanto dictionary...'
 eodict='esperantilo'
 eofiles='esperantilo'
 if [ ! -e "${eodict}.oxt" ]; then
-	curl -s -L -o "${eodict}.oxt" 'http://extensions.openoffice.org/en/download/4561'
+	curl -s -L -o "${eodict}.oxt" 'https://extensions.openoffice.org/en/download/4561'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -50,10 +50,10 @@ else
 fi
 
 echo -n 'Downloading Korean dictionary...'
-kodict='korean_spell-checker-0-5-6-1_libo'
-kofiles='korean_spell-checker-0-5-6-1_libo/dictionaries'
+kodict='Korean_spell-checker-0.6.0-1_LibO'
+kofiles='Korean_spell-checker-0.6.0-1_LibO/dictionaries'
 if [ ! -e "${kodict}.oxt" ]; then
-	curl -s -O "http://extensions.libreoffice.org/extension-center/korean-spellchecker/releases/0.5.6.1/${kodict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker//0-6-0-1/@@download/file/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -63,7 +63,7 @@ echo -n 'Downloading Indonesian dictionary...'
 iddict='id_id'
 idfiles='id_id'
 if [ ! -e "${iddict}.oxt" ]; then
-	curl -s -O "http://extensions.libreoffice.org/extension-center/indonesian-dictionary-kamus-indonesia-by-benitius/releases/2.0/${iddict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/extensions/indonesian-dictionary-kamus-indonesia-by-benitius/2.0/@@download/file/${iddict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -73,7 +73,7 @@ echo -n 'Downloading Turkish dictionary...'
 trdict='oo-turkish-dict-v1-2'
 trfiles="${trdict}/dictionaries"
 if [ ! -e "${trdict}.oxt" ]; then
-	curl -s -O "http://extensions.libreoffice.org/extension-center/turkish-spellcheck-dictionary/releases/1.2/${trdict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/extensions/turkish-spellcheck-dictionary/1.2/@@download/file/${trdict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
