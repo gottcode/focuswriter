@@ -1,0 +1,31 @@
+{
+	"app-id": "org.gottcode.focuswriter",
+	"runtime": "org.kde.Platform",
+	"runtime-version": "master",
+	"sdk": "org.kde.Sdk",
+	"command": "focuswriter",
+	"rename-icon": "focuswriter",
+	"rename-appdata": "focuswriter",
+	"finish-args":[
+		"--socket=x11",
+		"--share=network"
+	],
+	"modules":[
+		{
+			"name": "focuswriter",
+			"buildsystem": "simple",
+			"sources":[
+				{
+					"type":"git",
+					"url": "git://github.com/gottcode/focuswriter"
+				}
+			],
+			"build-commands": [
+			"find . -type f -name \"focuswriter.desktop\" -execdir rename focuswriter org.gottcode.focuswriter {} \+",
+			"sed -i 's/focuswriter.desktop/org.gottcode.focuswriter.desktop/g' ./focuswriter.pro",
+			"qmake -makefile PREFIX=/app",
+			"make",
+			"make install"]
+		}
+	]
+}
