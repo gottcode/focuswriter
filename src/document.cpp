@@ -937,6 +937,7 @@ void Document::loadTheme(const Theme& theme)
 		// Stretched
 		m_layout->setColumnStretch(0, 0);
 		m_layout->setColumnStretch(2, 0);
+		break;
 	case 1:
 	default:
 		// Centered
