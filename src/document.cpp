@@ -844,6 +844,8 @@ bool Document::loadFile(const QString& filename, int position)
 	m_saved_wordcount = m_document_stats.wordCount();
 	if (enabled) {
 		m_highlighter->setEnabled(true);
+	} else {
+		m_highlighter->rehighlight();
 	}
 	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
 	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
