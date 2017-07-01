@@ -282,7 +282,7 @@ macx {
 	man.files = resources/unix/focuswriter.1
 	man.path = $$PREFIX/share/man/man1
 
-	qm.files = translations/*.qm
+	qm.files = $$replace(TRANSLATIONS, .ts, .qm)
 	qm.path = $$DATADIR/focuswriter/translations
 	qm.CONFIG += no_check_exist
 
