@@ -1,3 +1,11 @@
+1.6.6
+-----
+* FIXED: Did not always install translations in Linux.
+* FIXED: Unneccessary compiler warning about switch fallthrough.
+* FIXED: Did not show headings when automatic spellchecking was disabled.
+* FIXED: Foreground incorrectly placed when load stretched themes.
+* Translation updates: Czech, Armenian.
+
 1.6.5
 -----
 * FIXED: Data loss when program crashed.
