@@ -131,7 +131,8 @@ QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 				goto Letter;
 			case QChar::Letter_Lowercase:
 				is_uppercase = false;
-				Letter:
+				goto Letter;
+			Letter:
 			case QChar::Letter_Uppercase:
 			case QChar::Letter_Titlecase:
 			case QChar::Letter_Modifier:
@@ -154,7 +155,9 @@ QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 					chars++;
 					break;
 				}
+				goto NotWord;
 
+			NotWord:
 			default:
 				if (index != -1) {
 					is_word = true;

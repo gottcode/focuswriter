@@ -19,7 +19,8 @@ macx {
 }
 
 DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050800
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050900
+DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 
 # Allow in-tree builds
 !win32 {
@@ -29,7 +30,7 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050800
 }
 
 # Set program version
-VERSION = 1.6.5
+VERSION = 1.6.6
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
@@ -282,7 +283,7 @@ macx {
 	man.files = resources/unix/focuswriter.1
 	man.path = $$PREFIX/share/man/man1
 
-	qm.files = translations/*.qm
+	qm.files = $$replace(TRANSLATIONS, .ts, .qm)
 	qm.path = $$DATADIR/focuswriter/translations
 	qm.CONFIG += no_check_exist
 
