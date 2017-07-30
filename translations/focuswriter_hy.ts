@@ -33,11 +33,13 @@
         <source>%1% of %Ln minute(s)</source>
         <translation>
             <numerusform>%Ln րոպեի %1%-ը</numerusform>
+            <numerusform>%Ln րոպեի %1%-ը</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%1% of %Ln word(s)</source>
         <translation>
+            <numerusform>%Ln բառի %1%-ը</numerusform>
             <numerusform>%Ln բառի %1%-ը</numerusform>
         </translation>
     </message>
@@ -45,11 +47,13 @@
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln բառ</numerusform>
+            <numerusform>%Ln բառ</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
         <translation>
+            <numerusform>%Ln րոպե</numerusform>
             <numerusform>%Ln րոպե</numerusform>
         </translation>
     </message>
@@ -79,6 +83,7 @@
     <message numerus="yes">
         <source>%n day(s)</source>
         <translation>
+            <numerusform>%n օր</numerusform>
             <numerusform>%n օր</numerusform>
         </translation>
     </message>
@@ -259,6 +264,7 @@
     <message numerus="yes">
         <source>Replace %n instance(s)?</source>
         <translation>
+            <numerusform>Փոխարինե՞լ %n համընկումը։</numerusform>
             <numerusform>Փոխարինե՞լ %n համընկումը։</numerusform>
         </translation>
     </message>

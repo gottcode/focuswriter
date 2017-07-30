@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Plochý XML OpenDocument</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -462,7 +462,7 @@
     </message>
     <message>
         <source>Smart quotes:</source>
-        <translation>Chytré uvozovky:</translation>
+        <translation>Typografické uvozovky:</translation>
     </message>
     <message>
         <source>Double</source>
@@ -526,7 +526,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit nynější slovník?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -538,19 +538,19 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelské rozhraní</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy ukázat posuvník</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy ukázat horní pruh</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vždy ukázat dolní pruh</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -1125,11 +1125,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Mrazivé nebe</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Okouzlení</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1145,11 +1145,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Výzvědné hry</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Mír a klid</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1509,7 +1509,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení &amp;stránky...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1721,7 +1721,7 @@
     </message>
     <message>
         <source>Smart &amp;Quotes</source>
-        <translation>Chytré &amp;uvozovky</translation>
+        <translation>Typografické &amp;uvozovky</translation>
     </message>
     <message>
         <source>Update &amp;Document</source>
@@ -1729,7 +1729,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnovit typografické uvozovky dokumentu</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1737,7 +1737,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnovit typografické uvozovky výběru</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1829,7 +1829,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>
