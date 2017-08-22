@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -783,7 +783,7 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 
 void Stack::updateMargin()
 {
-	int margin = std::max(m_theme.foregroundMargin().value(), style()->pixelMetric(QStyle::PM_ScrollBarExtent));
+	int margin = std::max(m_theme.foregroundMargin().value(), 1);
 	if (Preferences::instance().alwaysShowFooter()) {
 		margin = std::max(m_footer_margin, margin);
 	}

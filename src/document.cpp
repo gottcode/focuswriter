@@ -393,7 +393,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_layout->setSpacing(0);
 	m_layout->setMargin(0);
 	m_layout->addWidget(m_text, 1, 1);
-	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
+	m_layout->addWidget(m_scrollbar, 1, 1, 1, 2, Qt::AlignRight);
 
 	// Load settings
 	loadPreferences();
