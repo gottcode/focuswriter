@@ -416,7 +416,9 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 
 		painter.save();
 		painter.translate(foreground.x(), foreground.y());
+#if (QT_VERSION < QT_VERSION_CHECK(5,9,0))
 		painter.scale(1.0 / pixelratio, 1.0 / pixelratio);
+#endif
 		qt_blurImage(&painter, blurred, blurRadius() * 2, true, false);
 		painter.restore();
 	}
