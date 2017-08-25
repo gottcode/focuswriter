@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -393,7 +393,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_layout->setSpacing(0);
 	m_layout->setMargin(0);
 	m_layout->addWidget(m_text, 1, 1);
-	m_layout->addWidget(m_scrollbar, 1, 2, Qt::AlignRight);
+	m_layout->addWidget(m_scrollbar, 1, 1, 1, 2, Qt::AlignRight);
 
 	// Load settings
 	loadPreferences();
@@ -728,8 +728,9 @@ void Document::print(QPrinter* printer)
 
 	// Apply spacings
 	const int tab_width = (document->indentWidth() / 96.0) * printer->resolution();
+	const bool indent_first_line = !qFuzzyIsNull(document->begin().blockFormat().textIndent());
 	QTextBlockFormat block_format;
-	block_format.setTextIndent(tab_width);
+	block_format.setTextIndent(tab_width * indent_first_line);
 	for (int i = 0, count = document->allFormats().count(); i < count; ++i) {
 		QTextFormat& f = document->allFormats()[i];
 		if (f.isBlockFormat()) {
