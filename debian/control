@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 10),
 		libhunspell-dev,
 		pkg-config,
 		zlib1g-dev
-Standards-Version: 4.0.1
+Standards-Version: 4.1.0
 Homepage: https://gottcode.org/focuswriter/
 Vcs-Git: https://anonscm.debian.org/git/collab-maint/focuswriter.git
 Vcs-Browser: https://anonscm.debian.org/gitweb/?p=collab-maint/focuswriter.git
