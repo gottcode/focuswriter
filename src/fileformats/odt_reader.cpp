@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -311,11 +311,12 @@ void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 		} else if (position == "sub") {
 			format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
 		} else {
-			QString value = position.toString();
+			QString value = position.toString().split(' ', QString::SkipEmptyParts).first();
 			value.chop(1);
-			if (value.toInt() > 0) {
+			const int vertical = value.toInt();
+			if (vertical > 0) {
 				format.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
-			} else {
+			} else if (vertical < 0) {
 				format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
 			}
 		}
