@@ -75,8 +75,8 @@ QString FormatManager::filter(const QString& type)
 		return tr("Office Open XML") + QLatin1String(" (*.docx)");
 	} else if (type == "rtf") {
 		return tr("Rich Text Format") + QLatin1String(" (*.rtf)");
-	} else if ((type == "txt") || (type == "text")) {
-		return tr("Plain Text") + QLatin1String(" (*.txt *.text)");
+	} else if ((type == "txt") || (type == "text") || (type == "md") || (type == "mmd")) {
+		return tr("Plain Text") + QLatin1String(" (*.txt *.text *.md *.mmd)");
 	} else {
 		return QString();
 	}
@@ -92,6 +92,8 @@ QStringList FormatManager::filters(const QString& type)
 			<< filter("docx")
 			<< filter("rtf")
 			<< filter("txt")
+			<< filter("md")
+			<< filter("mmd")
 			<< (tr("All Files") + QLatin1String(" (*)"));
 
 	QStringList result = default_filters;
@@ -102,13 +104,13 @@ QStringList FormatManager::filters(const QString& type)
 			result.move(2, 0);
 		} else if (type == "rtf") {
 			result.move(3, 0);
-		} else if ((type == "txt") || (type == "text")) {
+		} else if ((type == "txt") || (type == "text") || (type == "md") || (type == "mmd")) {
 			result.move(4, 0);
 		} else if (type != "odt") {
 			result.move(5, 0);
 		}
 	} else {
-		result.prepend(tr("All Supported Files") + QLatin1String(" (*.docx *.fodt *.odt *.rtf *.txt *.text)"));
+		result.prepend(tr("All Supported Files") + QLatin1String(" (*.docx *.fodt *.odt *.rtf *.txt *.text *.md *.mmd)"));
 	}
 	return result;
 }
@@ -125,7 +127,7 @@ bool FormatManager::isRichText(const QString& filename)
 
 QStringList FormatManager::types()
 {
-	return QStringList() << "odt" << "fodt" << "docx" << "rtf" << "txt";
+	return QStringList() << "odt" << "fodt" << "docx" << "rtf" << "txt" << "md" << "mmd";
 }
 
 //-----------------------------------------------------------------------------
