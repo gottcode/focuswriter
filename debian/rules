@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-export QT_SELECT = 5
+export QT_SELECT = qt5
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 DPKG_EXPORT_BUILDFLAGS = 1
