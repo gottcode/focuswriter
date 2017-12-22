@@ -1,7 +1,10 @@
-lessThan(QT_VERSION, 5.2) {
+lessThan(QT_MAJOR_VERSION, 5) {
 	error("FocusWriter requires Qt 5.2 or greater")
 }
-win32:lessThan(QT_VERSION, 5.4) {
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 2) {
+	error("FocusWriter requires Qt 5.2 or greater")
+}
+win32:equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 4) {
 	error("FocusWriter requires Qt 5.4 or greater")
 }
 
@@ -19,7 +22,7 @@ macx {
 }
 
 DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050900
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051000
 DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 
 # Allow in-tree builds

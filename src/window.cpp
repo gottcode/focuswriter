@@ -61,7 +61,6 @@
 #include <QPlainTextEdit>
 #include <QScrollBar>
 #include <QSettings>
-#include <QSignalMapper>
 #include <QSizeGrip>
 #include <QStandardPaths>
 #include <QTabBar>
@@ -229,16 +228,13 @@ Window::Window(const QStringList& command_line_files) :
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchLastDocument", action);
 
-	QSignalMapper* mapper = new QSignalMapper(this);
 	for (int i = 2; i < 10 ; ++i) {
 		action = new QAction(tr("Switch to Document %1").arg(i), this);
 		action->setShortcut(Qt::CTRL + Qt::Key_0 + i);
-		connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
-		mapper->setMapping(action, i - 1);
+		connect(action, &QAction::triggered, [=] { m_tabs->setCurrentIndex(i - 1); });
 		addAction(action);
 		ActionManager::instance()->addAction(QString("SwitchDocument%1").arg(i), action);
 	}
-	connect(mapper, SIGNAL(mapped(int)), m_tabs, SLOT(setCurrentIndex(int)));
 
 	// Always bring interface to front
 	connect(m_documents, SIGNAL(headerVisible(bool)), menuBar(), SLOT(raise()));
@@ -1346,20 +1342,17 @@ void Window::initMenus()
 	headings[6] = headings_menu->addAction(tr("Heading &6"));
 	headings[0] = headings_menu->addAction(tr("&Normal"));
 	m_headings_actions = new QActionGroup(this);
-	QSignalMapper* headings_mapper = new QSignalMapper(this);
 	for (int i = 0; i < 7; ++i) {
 		headings[i]->setCheckable(true);
 		headings[i]->setData(i);
 		m_headings_actions->addAction(headings[i]);
-		connect(headings[i], SIGNAL(triggered()), headings_mapper, SLOT(map()));
-		headings_mapper->setMapping(headings[i], i);
+		connect(headings[i], &QAction::triggered, [=] { m_documents->setBlockHeading(i); });
 	}
 	for (int i = 1; i < 7; ++i) {
 		ActionManager::instance()->addAction(QString("FormatBlockHeading%1").arg(i), headings[i]);
 	}
 	ActionManager::instance()->addAction(QString("FormatBlockNormal"), headings[0]);
 	headings[0]->setChecked(true);
-	connect(headings_mapper, SIGNAL(mapped(int)), m_documents, SLOT(setBlockHeading(int)));
 
 	format_menu->addSeparator();
 	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, SLOT(setFontBold(bool)), QKeySequence::Bold);
