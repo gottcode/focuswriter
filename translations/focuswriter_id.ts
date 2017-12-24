@@ -1725,7 +1725,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Perbarui Pilhan Kutipan Cerdas</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
