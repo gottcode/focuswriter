@@ -1,3 +1,9 @@
+1.6.8
+-----
+* FIXED: Could not compile with Qt 5.10.
+* FIXED: Did not handle ODT line position with two values.
+* Translation updates: German, Indonesian.
+
 1.6.7
 -----
 * Updated dictionaries.
