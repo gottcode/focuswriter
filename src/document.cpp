@@ -340,7 +340,11 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_text->setFrameStyle(QFrame::NoFrame);
 	m_text->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_text->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+	m_text->setTabStopDistance(48);
+#else
 	m_text->setTabStopWidth(48);
+#endif
 	m_text->document()->setIndentWidth(48);
 	m_text->horizontalScrollBar()->setAttribute(Qt::WA_NoMousePropagation);
 	m_text->viewport()->setMouseTracking(true);
@@ -904,7 +908,11 @@ void Document::loadTheme(const Theme& theme)
 		m_spacings_loaded = true;
 	}
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+	m_text->setTabStopDistance(tab_width);
+#else
 	m_text->setTabStopWidth(tab_width);
+#endif
 	m_text->document()->setIndentWidth(tab_width);
 
 	// Update text

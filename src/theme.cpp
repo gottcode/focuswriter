@@ -504,7 +504,11 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 			f.merge(block_format);
 		}
 	}
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+	preview_text.setTabStopDistance(tab_width);
+#else
 	preview_text.setTabStopWidth(tab_width);
+#endif
 	preview_text.document()->setIndentWidth(tab_width);
 
 	// Set font
