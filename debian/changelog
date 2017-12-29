@@ -1,8 +1,14 @@
 focuswriter (1.6.8-1) unstable; urgency=medium
 
+  [ Graeme Gott ]
   * New upstream release
 
- -- Graeme Gott <graeme@gottcode.org>  Wed, 27 Dec 2017 21:34:47 +0000
+  [ Barak A. Pearlmutter ]
+  * bump policy version
+  * trim changelog whitespace
+  * add git buildpackage configuration to conform git names with upstream
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 29 Dec 2017 19:59:16 +0000
 
 focuswriter (1.6.7-1) unstable; urgency=medium
 
