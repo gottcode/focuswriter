@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2015, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2015, 2017, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,6 +55,7 @@ bool DocumentWriter::write()
 	bool saved = false;
 
 	QSaveFile file(m_filename);
+	file.setDirectWriteFallback(true);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
 		return false;
 	}
