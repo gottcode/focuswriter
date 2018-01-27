@@ -1,3 +1,10 @@
+focuswriter (1.6.8-2) unstable; urgency=medium
+
+  * Merge minor upstream fixes
+  * bump to debhelper 11
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sat, 27 Jan 2018 21:54:21 +0000
+
 focuswriter (1.6.8-1) unstable; urgency=medium
 
   [ Graeme Gott ]
