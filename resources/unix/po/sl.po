@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Graeme Gott
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+# Roman Bobnaric <roman.bobnaric@gmail.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: FocusWriter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-05 11:50+0000\n"
+"PO-Revision-Date: 2018-01-02 12:37+0000\n"
+"Last-Translator: Roman Bobnaric <roman.bobnaric@gmail.com>\n"
+"Language-Team: Slovenian (Slovenia) (http://www.transifex.com/gottcode/"
+"focuswriter/language/sl_SI/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#: ../focuswriter.appdata.xml.in.h:1
+msgid "Fullscreen word processor"
+msgstr "Polnozaslonski program za pisanje"
+
+#: ../focuswriter.appdata.xml.in.h:2
+msgid ""
+"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
+"away interface that you access by moving your mouse to the edges of the "
+"screen, allowing the program to have a familiar look and feel to it while "
+"still getting out of the way so that you can immerse yourself in your work."
+msgstr ""
+"FocusWriter je enostaven urejevalnik besedil. Uporablja skrit uporabniški "
+"vmesnik do katerega dostopamo tako, da miško pomaknemo ob rob zaslona, kar "
+"omogoča, da ima program domač/znan izgled, medtem, ko omogoča nemoteno delo "
+"in se lahko pisanju popolnoma posvetimo."
+
+#: ../focuswriter.appdata.xml.in.h:3
+msgid ""
+"FocusWriter allows you to customize your environment by creating themes that "
+"control the font, colors, and background image to add ambiance. It also "
+"features on-the-fly updating statistics, daily goals, multiple open "
+"documents, spell-checking, and much more."
+msgstr ""
+"FocusWriter omogoča prilagajanje okolja z uporabo tem, ki omogočajo nadzor "
+"pisav, barv in slike za ozadje urejevalnika. Omogoča tudi takojšnjo "
+"statistiko, dnevne cilje, več odprtih dokumentov, preverjanje pravopisa in "
+"še veliko več."
+
+#: ../focuswriter.appdata.xml.in.h:4
+msgid ""
+"Additionally, when you open the program your current work in progress will "
+"automatically load and position you where you last left off so that you can "
+"immediately jump back in."
+msgstr ""
+"Dodatno, ko zaženemo program se bo vaše zadnje delo samodejno naložilo in "
+"postavilo delovno mesto na zadnjo znano pozicijo, tako, da lahko takoj "
+"nadaljujete kjer ste ostali prejšnjič."
+
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
+msgid "Fullscreen Word Processor"
+msgstr "Polnozaslonski urejevalnik besedila"
+
+#: ../focuswriter.desktop.in.h:3
+msgid "Write without distractions"
+msgstr "Pišite brez motenj"
