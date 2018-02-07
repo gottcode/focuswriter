@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='5.4.1.1'
+loversion='6.0.0.3'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/5.4.1/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.0.0/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -43,7 +43,7 @@ fi
 
 echo -n 'Downloading Finnish dictionary...'
 if [ ! -e 'voikko.oxt' ]; then
-	curl -s -O 'http://www.puimula.org/htp/ooo/voikko-win/5.0.0.20151123/voikko.oxt'
+	curl -s -O 'https://www.puimula.org/htp/ooo/voikko-win/5.0.0.20151123/voikko.oxt'
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -53,7 +53,7 @@ echo -n 'Downloading Korean dictionary...'
 kodict='Korean_spell-checker-0.6.0-1_LibO'
 kofiles='Korean_spell-checker-0.6.0-1_LibO/dictionaries'
 if [ ! -e "${kodict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker//0-6-0-1/@@download/file/${kodict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker/0-6-0-1/@@download/file/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -237,6 +237,9 @@ cp -a $lofiles/ru_RU/ru_RU.dic dicts/ru.dic
 echo -n ' sk'
 cp -a $lofiles/sk_SK/sk_SK.aff dicts/sk.aff
 cp -a $lofiles/sk_SK/sk_SK.dic dicts/sk.dic
+echo -n ' sl'
+cp -a $lofiles/sl_SI/sl_SI.aff dicts/sl.aff
+cp -a $lofiles/sl_SI/sl_SI.dic dicts/sl.dic
 echo -n ' sr'
 cp -a $lofiles/sr/sr.aff dicts/sr.aff
 cp -a $lofiles/sr/sr.dic dicts/sr.dic
