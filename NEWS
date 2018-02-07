@@ -1,3 +1,9 @@
+1.6.9
+-----
+* Updated dictionaries.
+* FIXED: Could not save to network devices.
+* Translation updates: Igbo, Slovenian.
+
 1.6.8
 -----
 * FIXED: Could not compile with Qt 5.10.
