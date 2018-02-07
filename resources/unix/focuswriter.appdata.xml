@@ -19,6 +19,7 @@
   <name xml:lang="hu">FocusWriter</name>
   <name xml:lang="hy">FocusWriter</name>
   <name xml:lang="id">FocusWriter</name>
+  <name xml:lang="ig">FocusWriter</name>
   <name xml:lang="it">FocusWriter</name>
   <name xml:lang="ja">FocusWriter</name>
   <name xml:lang="ko">포커스 라이터</name>
@@ -30,6 +31,7 @@
   <name xml:lang="ro">FocusWriter</name>
   <name xml:lang="ru">FocusWriter</name>
   <name xml:lang="sk">FocusWriter</name>
+  <name xml:lang="sl">FocusWriter</name>
   <name xml:lang="sr">FocusWriter</name>
   <name xml:lang="sv">FocusWriter</name>
   <name xml:lang="tr">FocusWriter</name>
@@ -61,6 +63,7 @@
   <summary xml:lang="ro">Procesor de text pe tot ecranul</summary>
   <summary xml:lang="ru">Полноэкранный текстовый редактор</summary>
   <summary xml:lang="sk">Celoobrazovkový textový editor</summary>
+  <summary xml:lang="sl">Polnozaslonski program za pisanje</summary>
   <summary xml:lang="sr">Обрађивач текста у пуном екрану</summary>
   <summary xml:lang="sv">Ordbehandlare med helskärmsläge</summary>
   <summary xml:lang="tr">Tam ekran kelime işlemci</summary>
@@ -93,6 +96,7 @@
     <p xml:lang="ro">FocusWriter este un procesor de text simplu, fără distragerea atenţiei. Acesta folosește o interfaţă ascunsă pe care o accesaţi prin mutarea mouse-ului pe marginile ecranului, care permite programului să aibă un aspect şi un simţămînt familiar în timp ce se dă la o parte, astfel încît să vă puteţi cufunda în munca dvs.</p>
     <p xml:lang="ru">FocusWriter - это простой текстовый редактор, позволяющий полностью сосредоточиться на работе. В нем используется выдвижной интерфейс, управляющие элементы которого становятся доступными при наведении стрелки мыши к краям экрана. Это дает возможность добиться максимально располагающего к пользователю внешнего вида и полностью погрузиться в вашу работу.</p>
     <p xml:lang="sk">FocusWriter je jednoduchý textový editor bez rozptýlení. Využíva skryté rozhranie, ku ktorému sa pristupuje pohybom myši na okraje obrazovky, čo umožňuje programu mať prirodzený vzhľad a dojem, zatiaľ čo si stále udržujete odstup, takže sa môžete ponoriť do svojej práce.</p>
+    <p xml:lang="sl">FocusWriter je enostaven urejevalnik besedil. Uporablja skrit uporabniški vmesnik do katerega dostopamo tako, da miško pomaknemo ob rob zaslona, kar omogoča, da ima program domač/znan izgled, medtem, ko omogoča nemoteno delo in se lahko pisanju popolnoma posvetimo.</p>
     <p xml:lang="sr">FocusWriter је једноставан, слободан уређивач текста. Он користи скривени интерфејс коме се приступа померањем миша на ивице екрана, омогућавајући програму да добије познати изглед и тако вам обезбеди да се посветите вашем раду.</p>
     <p xml:lang="sv">FocusWriter är en enkel, distraktionsfri ordbehandlare. Den utnyttjar ett dolt gränssnitt som du kommer åt genom att flytta din mus till skärmkanterna, vilket tillåter programmet att ha välbekant utseende och känsla, medan det håller sig ur vägen så att du kan fördjupa dig i ditt arbete. </p>
     <p xml:lang="uk">FocusWriter це простий текстовий редактор, що дозволяє повністю зосередитися на роботі. Він використовує висувний інтерфейс, який з’являється при наведенні стрілки миші до країв екрану. Це дає можливість досягти максимально зручного для користувача зовнішнього вигляду, який не відволікає, а дозволяє повністю зануритися в роботу.</p>
@@ -122,6 +126,7 @@
     <p xml:lang="ro">FocusWriter vă permite să personalizaţi mediul prin crearea de teme care controlează font-ul, culorile şi imaginea de fundal pentru a adăuga ambianţă. Acesta oferă, de asemenea, statistici de actualizare, obiective de zi cu zi, mai multe documente deschise, verificare ortografică, şi mult mai mult.</p>
     <p xml:lang="ru">FocusWriter позволит вам настроить свое рабочее окружение путем создания тем, в которых можно,  для добавления нужной атмосферы, управлять шрифтами, цветами и фоновыми изображениями. Также текстовый редактор умеет вести статистику, обновляемую в реальном времени, ставить ежедневные рабочие цели, открывать сразу несколько документов одновременно, проверять орфографию и много чего еще.</p>
     <p xml:lang="sk">FocusWriter umožňuje prispôsobiť vaše prostredie vytvorením tém, ktoré ovládajú písmo, farby a obrázok na pozadí na pridanie atmosféry. Je tiež vybavený funkciami ako priebežná aktualizácia štatistík, denné ciele, viac otvorených dokumentov, kontrolu pravopisu a oveľa viac.</p>
+    <p xml:lang="sl">FocusWriter omogoča prilagajanje okolja z uporabo tem, ki omogočajo nadzor pisav, barv in slike za ozadje urejevalnika. Omogoča tudi takojšnjo statistiko, dnevne cilje, več odprtih dokumentov, preverjanje pravopisa in še veliko več.</p>
     <p xml:lang="sr">FocusWriter вам омогућава да прилагодите окружење креирањем теме са фонтом, бојама и позадинском сликом. Такође, поседује ажурирање статистике, дневне циљеве, истовремено отварање више докумената, проверу правописа и још много тога.</p>
     <p xml:lang="sv">FocusWriter tillåter dig att anpassa din miljö genom att skapa teman som kontrollerar typsnitt, färger, och bakgrundsbilden för att lägga till atmosfär. Den har även automatisk statistikuppdatering, dagliga mål, flera öppna dokument, stavningskontroll och mycket mer.</p>
     <p xml:lang="uk">FocusWriter дозволить вам налаштувати своє робоче оточення шляхом створення тем, в яких можна управляти шрифтами, кольорами та фоновими зображеннями. Також текстовий редактор вміє вести статистику, оновлювану в реальному часі, ставити щоденні робочі цілі, відкривати декілька документів одночасно, перевіряти орфографію і багато чого ще.</p>
@@ -151,6 +156,7 @@
     <p xml:lang="ro">În plus, atunci când deschideţi programul, lucrul dvs. în curs de execuţie va fi încărcat automat şi poziția unde aţi rămas ultima dată, astfel încît să puteţi trece imediat la treabă.</p>
     <p xml:lang="ru">Кроме того, когда вы откроете программу, сразу же будет загружен прогресс вашей текущей работы и курсор перейдет на ту позицию, на которой в последний раз работа была прервана. Так вы сможете практически мгновенно вернуться к делу.</p>
     <p xml:lang="sk">Navyše, pri otvorení programu sa vaša aktuálne rozpracovaná práca automaticky načíta na pozícii, kde ste naposledy skončili, takže môžete okamžite skočiť naspäť.</p>
+    <p xml:lang="sl">Dodatno, ko zaženemo program se bo vaše zadnje delo samodejno naložilo in postavilo delovno mesto na zadnjo znano pozicijo, tako, da lahko takoj nadaljujete kjer ste ostali prejšnjič.</p>
     <p xml:lang="sr">Поред тога, када отворите програм, ваш тренутни посао ће се аутоматски учитати на месту где сте последњи пут стали, тако да га можете одмах наставити.</p>
     <p xml:lang="sv">Dessutom, när du öppnar programmet kommer ditt pågående arbete att laddas automatiskt där du slutade senast så att du omedelbart kan fortsätta</p>
     <p xml:lang="uk">Крім того, коли ви відкриєте програму, відразу ж буде завантажений прогрес вашої поточної роботи і курсор перейде на ту позицію, на якій в останній раз робота була перервана. Так ви зможете практично миттєво повернутися до справи.</p>
