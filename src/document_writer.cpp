@@ -30,7 +30,7 @@
 //-----------------------------------------------------------------------------
 
 DocumentWriter::DocumentWriter() :
-	m_type("odt"),
+	m_type("fodt"),
 	m_document(0),
 	m_write_bom(false)
 {
