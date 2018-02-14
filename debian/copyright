@@ -1,8 +1,8 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: FocusWriter
 Upstream-Contact: Graeme Gott <graeme@gottcode.org>
 Source: http://gottcode.org/focuswriter/
-        git://github.com/gottcode/focuswriter.git
+        https://github.com/gottcode/focuswriter
 
 Files: *
 Copyright: 2008-2014, Graeme Gott <graeme@gottcode.org>
