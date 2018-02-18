@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -187,6 +187,7 @@ void Alert::expanderToggled()
 
 void Alert::fadeInFinished()
 {
+	m_fade_effect->setEnabled(false);
 	setAttribute(Qt::WA_TransparentForMouseEvents, false);
 	disconnect(m_fade_timer, SIGNAL(finished()), this, SLOT(fadeInFinished()));
 }
@@ -195,6 +196,7 @@ void Alert::fadeInFinished()
 
 void Alert::fadeOut()
 {
+	m_fade_effect->setEnabled(true);
 	setAttribute(Qt::WA_TransparentForMouseEvents);
 	m_fade_timer->setDirection(QTimeLine::Backward);
 	connect(m_fade_timer, SIGNAL(finished()), this, SLOT(deleteLater()));
@@ -244,12 +246,12 @@ void Alert::init()
 	layout->addWidget(m_text, 1);
 	layout->addWidget(close, 0, Qt::AlignHCenter | Qt::AlignTop);
 
-	QGraphicsOpacityEffect* fade_effect = new QGraphicsOpacityEffect(this);
-	fade_effect->setOpacity(0.0);
-	setGraphicsEffect(fade_effect);
+	m_fade_effect = new QGraphicsOpacityEffect(this);
+	m_fade_effect->setOpacity(0.0);
+	setGraphicsEffect(m_fade_effect);
 
 	m_fade_timer = new QTimeLine(240, this);
-	connect(m_fade_timer, SIGNAL(valueChanged(qreal)), fade_effect, SLOT(setOpacity(qreal)));
+	connect(m_fade_timer, &QTimeLine::valueChanged, m_fade_effect, &QGraphicsOpacityEffect::setOpacity);
 }
 
 //-----------------------------------------------------------------------------
