@@ -289,7 +289,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Flat XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -520,7 +520,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Να αφαιρεθεί το υπάρχον λεξικό;</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -536,15 +536,15 @@
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση πάντα της γραμμής κύλισης</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση πάντα τού top bar</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση πάντα τού bottom bar</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -1503,7 +1503,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Δι&amp;αμόρφωση Σελίδας...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1723,7 +1723,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ενημέρωση εισαγωγικών εγγράφου</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1731,7 +1731,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ενημέρωση επιλογής εισαγωγικών εγγράφου</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
