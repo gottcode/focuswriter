@@ -180,7 +180,6 @@ Section "install"
 
 	SetOutPath $INSTDIR\bearer
 	File $%QTDIR%\plugins\bearer\qgenericbearer.dll
-	File $%QTDIR%\plugins\bearer\qnativewifibearer.dll
 
 	SetOutPath $INSTDIR\imageformats
 	File $%QTDIR%\plugins\imageformats\qgif.dll
