@@ -1,3 +1,13 @@
+focuswriter (1.6.10-1) unstable; urgency=medium
+
+  [ Graeme Gott ]
+  * New upstream release
+
+  [ Barak A. Pearlmutter ]
+  * secure some URLs in debian/copyright
+
+ -- Graeme Gott <graeme@gottcode.org>  Wed, 21 Feb 2018 13:17:00 +0000
+
 focuswriter (1.6.9-1) unstable; urgency=medium
 
   * New upstream release
