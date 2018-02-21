@@ -1,3 +1,11 @@
+1.6.10
+-----
+* Default to Flat ODT for cache files.
+* Reduce time between cache writes to 5 minutes.
+* FIXED: Fade effect broke alerts.
+* FIXED: Fade effect hid text on load screen.
+* Translation updates: Greek.
+
 1.6.9
 -----
 * Updated dictionaries.
