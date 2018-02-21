@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>@SHORT_VERSION@</string>
 	<key>CFBundleVersion</key>
-	<string>@SHORT_VERSION@</string>
+	<string>@VERSION@</string>
 	<key>CFBundleName</key>
 	<string>FocusWriter</string>
 
