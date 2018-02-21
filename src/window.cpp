@@ -159,7 +159,7 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Set up cache timer
 	m_save_timer = new QTimer(this);
-	m_save_timer->setInterval(600000);
+	m_save_timer->setInterval(300000);
 	connect(m_save_timer, SIGNAL(timeout()), m_daily_progress, SLOT(save()));
 
 	// Set up details
