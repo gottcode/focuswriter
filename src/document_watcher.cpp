@@ -97,7 +97,15 @@ void DocumentWatcher::addWatch(Document* document)
 
 void DocumentWatcher::pauseWatch(Document* document)
 {
-	m_documents[document].ignored = true;
+	// Ignore path
+	Details& details = m_documents[document];
+	details.ignored = true;
+
+	// Remove watch
+	if (!details.path.isEmpty()) {
+		m_watcher->removePath(details.path);
+		details.path.clear();
+	}
 }
 
 //-----------------------------------------------------------------------------
