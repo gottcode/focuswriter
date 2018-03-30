@@ -289,7 +289,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument flad XML</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -520,7 +520,7 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern nuværende mappe?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -532,19 +532,19 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Brugerflade</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis altid scrollbar</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis altid øverste bjælke</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis altid nederste bjælke</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -1119,11 +1119,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitter Skies</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Enchantment</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1139,11 +1139,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spy Games</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Tranquility</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1503,7 +1503,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Si&amp;deopsætning...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1723,7 +1723,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdater dokumentet med Smart Quotes</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1731,7 +1731,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdater markeringen med Smart Quotes</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1823,7 +1823,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>
