@@ -1080,7 +1080,7 @@
     </message>
     <message>
         <source>Misspelled:</source>
-        <translation type="unfinished"></translation>
+        <translation>Narobe črkovano:</translation>
     </message>
     <message>
         <source>Line Spacing</source>
@@ -1131,11 +1131,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Grenko nebo</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Začarano</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1395,127 +1395,127 @@
     </message>
     <message>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam vseh dokumentov</translation>
     </message>
     <message>
         <source>Switch to Next Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Preklopi na naslednji dokument</translation>
     </message>
     <message>
         <source>Switch to Previous Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Preklopi na prejšnji dokument</translation>
     </message>
     <message>
         <source>Switch to First Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Preklopi na prvi dokument</translation>
     </message>
     <message>
         <source>Switch to Last Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Preklopi na zadnji dokument</translation>
     </message>
     <message>
         <source>Switch to Document %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Preklopi na dokument %1</translation>
     </message>
     <message>
         <source>Loading settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nalaganje nastavitev</translation>
     </message>
     <message>
         <source>Emergency cache is not writable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zasilni spomin ni zapisljiv.</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Opozorilo</translation>
     </message>
     <message>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>FocusWriter ni bil pravilno izklopljen.</translation>
     </message>
     <message>
         <source>Restore from the emergency cache?</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnovi iz začasne kopije?</translation>
     </message>
     <message>
         <source>Some files could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nekaterih datotek ni bilo mogoče odpreti.</translation>
     </message>
     <message>
         <source>Some files were opened Read-Only.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nekatere datoteke so odprte le za branje.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; je novejše kot kopija v spominu.</translation>
     </message>
     <message>
         <source>Overwrite newer file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepišem novejšo datoteko?</translation>
     </message>
     <message>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Shranim spremembe?</translation>
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Shranim spremembe v datoteko &apos;%1&apos; pred zapiranjem?</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaše spremembe bodo izgubljene, če jih ne shranite.</translation>
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nalaganje zvokov pisalnega stroja ni bilo uspešno.</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Datoteka</translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Novo</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Odpri...</translation>
     </message>
     <message>
         <source>Reloa&amp;d</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponovno na&amp;loži</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Shrani</translation>
     </message>
     <message>
         <source>Save &amp;As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Shr&amp;ani kot...</translation>
     </message>
     <message>
         <source>&amp;Rename...</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;reimenuj</translation>
     </message>
     <message>
         <source>Save A&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Shrani &amp;vse</translation>
     </message>
     <message>
         <source>Manage Sessions</source>
-        <translation type="unfinished">Upravljaj seje</translation>
+        <translation>Upravjanje seje</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation type="unfinished">Nova seja</translation>
+        <translation>Nova seja</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>Natisni...(&amp;P)</translation>
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Postavitev st&amp;rani...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
