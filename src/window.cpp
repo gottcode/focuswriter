@@ -313,19 +313,26 @@ Window::Window(const QStringList& command_line_files) :
 		// Read mapping of cached files
 		m_document_cache->parseMapping(files, datafiles);
 
-		// Ask if they want to use cached files
-		if (!files.isEmpty()) {
-			QStringList filenames;
-			int untitled = 1;
-			int count = files.count();
-			for (int i = 0; i < count; ++i) {
-				if (!files.at(i).isEmpty()) {
-					filenames.append(QDir::toNativeSeparators(files.at(i)));
-				} else {
-					filenames.append(tr("(Untitled %1)").arg(untitled));
-					untitled++;
+		// Find proper names of cache files
+		QStringList filenames;
+		int untitled = 1;
+		for (int i = 0, count = files.count(); i < count; ++i) {
+			if (!files.at(i).isEmpty()) {
+				// Ignore empty cache files
+				if (QFileInfo(datafiles.at(i)).size() == 0) {
+					datafiles[i] = files[i];
+					continue;
 				}
+
+				filenames.append(QDir::toNativeSeparators(files.at(i)));
+			} else {
+				filenames.append(tr("(Untitled %1)").arg(untitled));
+				untitled++;
 			}
+		}
+
+		// Ask if they want to use cached files
+		if (!filenames.isEmpty()) {
 			m_load_screen->setText("");
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
