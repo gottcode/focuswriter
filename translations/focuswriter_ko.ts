@@ -473,10 +473,6 @@
         <translation>저장하기</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>자동으로 저장하기</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>커서 위치 저장하기</translation>
     </message>

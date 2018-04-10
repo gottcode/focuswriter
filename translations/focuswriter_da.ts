@@ -479,10 +479,6 @@
         <translation>Gemmer</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Gem automatisk</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Husk markørens placering</translation>
     </message>

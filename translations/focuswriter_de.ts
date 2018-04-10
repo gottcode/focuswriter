@@ -479,10 +479,6 @@
         <translation>Speichern</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Änderungen automatisch speichern</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Position der Eingabemarkierung merken</translation>
     </message>

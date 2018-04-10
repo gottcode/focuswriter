@@ -485,10 +485,6 @@
         <translation>Сохранение</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Автоматически сохранять изменения</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Запоминать позицию курсора</translation>
     </message>

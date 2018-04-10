@@ -473,10 +473,6 @@
         <translation>Kaydetme</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Değişiklikleri otomatik olarak kaydet</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>İmleç konumu hatırla</translation>
     </message>

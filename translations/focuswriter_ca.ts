@@ -479,10 +479,6 @@
         <translation>S&apos;està desant</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Desa els canvis automàticament</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Recorda la posició del cursor</translation>
     </message>

@@ -485,10 +485,6 @@
         <translation>Įrašymas</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Automatiškai įrašyti pakeitimus</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Įsiminti žymeklio vietą</translation>
     </message>

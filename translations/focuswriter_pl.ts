@@ -485,10 +485,6 @@
         <translation>Zapisywanie</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Automatycznie zapisuj zmiany</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Pamiętaj pozycję kursora</translation>
     </message>

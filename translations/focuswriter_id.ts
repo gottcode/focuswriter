@@ -473,10 +473,6 @@
         <translation>Menyimpan</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Menyimpan perubahan secara otomatis</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Ingat posisi kursor</translation>
     </message>

@@ -479,10 +479,6 @@
         <translation>Konservante</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Aŭtomate konservi ŝanĝojn</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Memori kursoran pozicion</translation>
     </message>

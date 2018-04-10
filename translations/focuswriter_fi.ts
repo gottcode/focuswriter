@@ -479,10 +479,6 @@
         <translation>Tallennus</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Tallenna muutokset automaattisesti</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Muista kohdistimen sijainti</translation>
     </message>

@@ -473,10 +473,6 @@
         <translation>儲存</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>自動儲存更改</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>記住游標位置</translation>
     </message>

@@ -485,10 +485,6 @@
         <translation>Чување</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Аутоматски чувај промене</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Запамти позицију курсора</translation>
     </message>
