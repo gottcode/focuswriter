@@ -479,10 +479,6 @@
         <translation>Guardado</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Guardar los cambios automáticamente</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Recordar la posición del cursor</translation>
     </message>

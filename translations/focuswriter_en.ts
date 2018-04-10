@@ -479,10 +479,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation type="unfinished"></translation>
     </message>

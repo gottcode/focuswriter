@@ -479,10 +479,6 @@
         <translation>Αποθήκευση</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Αυτόματη αποθήκευση αλλαγών</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Μνημόνευση θέσης δρομέα</translation>
     </message>

@@ -479,10 +479,6 @@
         <translation>Spara</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Spara automatiskt ändringar</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Kom ihåg markörposition</translation>
     </message>

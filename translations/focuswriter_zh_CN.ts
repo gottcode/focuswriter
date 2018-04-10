@@ -473,10 +473,6 @@
         <translation>保存</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>自动保存更改</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>记住光标位置</translation>
     </message>

@@ -485,10 +485,6 @@
         <translation>Збереження</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Зміни зберігати автоматично</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Пам&apos;ятати позицію курсору</translation>
     </message>

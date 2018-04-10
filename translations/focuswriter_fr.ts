@@ -479,10 +479,6 @@
         <translation>Enregistrement</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Automatique</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Se souvenir de la position du curseur</translation>
     </message>

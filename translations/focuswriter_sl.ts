@@ -491,10 +491,6 @@
         <translation>Shranjevanje</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Samodejno shrani spremembe</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Zapomni si položaj utripača</translation>
     </message>

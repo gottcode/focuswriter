@@ -473,10 +473,6 @@
         <translation>保存</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>変更を自動的に保存する</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>カーソル位置を記憶する</translation>
     </message>

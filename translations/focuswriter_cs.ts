@@ -485,10 +485,6 @@
         <translation>Ukládání</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Automaticky uložit změny</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Zapamatovat si polohu ukazatele</translation>
     </message>
