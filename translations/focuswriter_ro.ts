@@ -485,10 +485,6 @@
         <translation>Salvare</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Salvează automat modificările</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Amintire poziţie cursor</translation>
     </message>

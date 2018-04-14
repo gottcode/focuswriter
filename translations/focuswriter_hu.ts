@@ -473,10 +473,6 @@
         <translation>Mentés</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>A változtatások automatikus mentése</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>A kurzor pozíciójának megjegyzése</translation>
     </message>

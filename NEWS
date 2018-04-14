@@ -1,3 +1,9 @@
+1.6.12
+------
+* Ignore empty cache files.
+* Remove auto save.
+* Translation updates: Slovenian.
+
 1.6.11
 ------
 * FIXED: File monitoring prevented saving in Windows.

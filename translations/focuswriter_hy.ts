@@ -479,10 +479,6 @@
         <translation>Պահպանում</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Փոփոխությունները լռելյայն պահպանել</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Հիշել շարժագծի դիրքը</translation>
     </message>

@@ -479,10 +479,6 @@
         <translation>Stoor tans</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Stoor vanself veranderinge</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation type="unfinished"></translation>
     </message>

@@ -479,10 +479,6 @@
         <translation>Opslaan</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Automatisch veranderingen opslaan</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Onthou cursor positie</translation>
     </message>

@@ -92,7 +92,6 @@ Window::Window(const QStringList& command_line_files) :
 	m_key_sound(0),
 	m_enter_key_sound(0),
 	m_fullscreen(true),
-	m_auto_save(true),
 	m_save_positions(true)
 {
 	setAcceptDrops(true);
@@ -314,19 +313,26 @@ Window::Window(const QStringList& command_line_files) :
 		// Read mapping of cached files
 		m_document_cache->parseMapping(files, datafiles);
 
-		// Ask if they want to use cached files
-		if (!files.isEmpty()) {
-			QStringList filenames;
-			int untitled = 1;
-			int count = files.count();
-			for (int i = 0; i < count; ++i) {
-				if (!files.at(i).isEmpty()) {
-					filenames.append(QDir::toNativeSeparators(files.at(i)));
-				} else {
-					filenames.append(tr("(Untitled %1)").arg(untitled));
-					untitled++;
+		// Find proper names of cache files
+		QStringList filenames;
+		int untitled = 1;
+		for (int i = 0, count = files.count(); i < count; ++i) {
+			if (!files.at(i).isEmpty()) {
+				// Ignore empty cache files
+				if (QFileInfo(datafiles.at(i)).size() == 0) {
+					datafiles[i] = files[i];
+					continue;
 				}
+
+				filenames.append(QDir::toNativeSeparators(files.at(i)));
+			} else {
+				filenames.append(tr("(Untitled %1)").arg(untitled));
+				untitled++;
 			}
+		}
+
+		// Ask if they want to use cached files
+		if (!filenames.isEmpty()) {
 			m_load_screen->setText("");
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
@@ -1105,11 +1111,6 @@ bool Window::saveDocument(int index)
 		return true;
 	}
 
-	// Auto-save document
-	if (m_auto_save && document->isModified() && !document->filename().isEmpty()) {
-		return document->save();
-	}
-
 	// Prompt about saving changes
 	QMessageBox mbox(window());
 	mbox.setWindowTitle(tr("Save Changes?"));
@@ -1155,14 +1156,6 @@ void Window::loadPreferences()
 	}
 	Sound::setEnabled(Preferences::instance().typewriterSounds());
 
-	m_auto_save = Preferences::instance().autoSave();
-	if (m_auto_save) {
-		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
-		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
-	} else {
-		disconnect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoSave()));
-		connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
-	}
 	m_save_positions = Preferences::instance().savePositions();
 
 	SmartQuotes::loadPreferences();

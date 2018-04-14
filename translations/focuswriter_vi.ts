@@ -473,10 +473,6 @@
         <translation>Đang lưu</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Tự động lưu các thay đổi</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Nhớ vị trí trỏ chuột</translation>
     </message>

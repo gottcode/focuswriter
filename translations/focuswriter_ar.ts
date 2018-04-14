@@ -503,10 +503,6 @@
         <translation>حفـظ</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>حفظ تلقائي للتغييرات</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation type="unfinished"></translation>
     </message>

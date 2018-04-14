@@ -491,10 +491,6 @@
         <translation>Shranjevanje</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>Samodejno shrani spremembe</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>Zapomni si položaj utripača</translation>
     </message>
@@ -1519,211 +1515,211 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapri(&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Iz&amp;hod</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ur&amp;edi</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Razveljavi(&amp;U)</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Uveljavi(&amp;R)</translation>
     </message>
     <message>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>Izreži(&amp;T)</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiraj(&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Prilepi</translation>
     </message>
     <message>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Prilepi neoblikovano(&amp;U)</translation>
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Izberi vse(&amp;A)</translation>
     </message>
     <message>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Izberi &amp;sceno</translation>
     </message>
     <message>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <source>Fo&amp;rmat</source>
-        <translation type="unfinished"></translation>
+        <translation>Fo&amp;rmat</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov (&amp;H)</translation>
     </message>
     <message>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov &amp;1</translation>
     </message>
     <message>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov &amp;2</translation>
     </message>
     <message>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov &amp;3</translation>
     </message>
     <message>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov &amp;4</translation>
     </message>
     <message>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov &amp;5</translation>
     </message>
     <message>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov &amp;6</translation>
     </message>
     <message>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normal</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;B)Krepko</translation>
     </message>
     <message>
         <source>&amp;Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;I) Poševno</translation>
     </message>
     <message>
         <source>&amp;Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;U) Podčrtano</translation>
     </message>
     <message>
         <source>Stri&amp;kethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;K)Prečrtano</translation>
     </message>
     <message>
         <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <source>Sup&amp;erscript</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;E)Nadpisano</translation>
     </message>
     <message>
         <source>Ctrl+^</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+^</translation>
     </message>
     <message>
         <source>&amp;Subscript</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;S)Podpisano</translation>
     </message>
     <message>
         <source>Ctrl+_</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+_</translation>
     </message>
     <message>
         <source>Align &amp;Left</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Leva poravnava</translation>
     </message>
     <message>
         <source>Ctrl+{</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+{</translation>
     </message>
     <message>
         <source>Align &amp;Center</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Centralna poravnava</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+|</translation>
     </message>
     <message>
         <source>Align &amp;Right</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;R)Desna poravnava</translation>
     </message>
     <message>
         <source>Ctrl+}</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+}</translation>
     </message>
     <message>
         <source>Align &amp;Justify</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;J) Obojestranska poravnava</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+J</translation>
     </message>
     <message>
         <source>&amp;Decrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;D)Zmanjšaj razmik</translation>
     </message>
     <message>
         <source>Ctrl+&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+&lt;</translation>
     </message>
     <message>
         <source>I&amp;ncrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Povečaj razm&amp;ik</translation>
     </message>
     <message>
         <source>Ctrl+&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+&gt;</translation>
     </message>
     <message>
         <source>Le&amp;ft to Right Block</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;F)Blok od leve proti desni</translation>
     </message>
     <message>
         <source>Ri&amp;ght to Left Block</source>
-        <translation type="unfinished"></translation>
+        <translation>(&amp;G)Blok od desne proti levi</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Orodja</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iskanje...</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Poišči &amp;naprej</translation>
     </message>
     <message>
         <source>Find Pre&amp;vious</source>
-        <translation type="unfinished"></translation>
+        <translation>Poišči na&amp;zaj</translation>
     </message>
     <message>
         <source>&amp;Replace...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zam&amp;enjaj...</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <source>Smart &amp;Quotes</source>

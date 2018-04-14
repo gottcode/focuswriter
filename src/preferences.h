@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2017 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,11 +89,9 @@ public:
 	QString sceneDivider() const;
 	void setSceneDivider(const QString& divider);
 
-	bool autoSave() const;
 	bool savePositions() const;
 	bool writeByteOrderMark() const;
 	RangedString saveFormat() const;
-	void setAutoSave(bool save);
 	void setSavePositions(bool save);
 	void setWriteByteOrderMark(bool write_bom);
 	void setSaveFormat(const QString& format);
@@ -155,7 +153,6 @@ private:
 
 	QString m_scene_divider;
 
-	bool m_auto_save;
 	bool m_save_positions;
 	RangedString m_save_format;
 	bool m_write_bom;

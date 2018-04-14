@@ -479,10 +479,6 @@
         <translation>שמירה</translation>
     </message>
     <message>
-        <source>Automatically save changes</source>
-        <translation>שמור שינויים אוטומטית</translation>
-    </message>
-    <message>
         <source>Remember cursor position</source>
         <translation>זכור מיקום סמן</translation>
     </message>

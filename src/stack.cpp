@@ -289,21 +289,6 @@ void Stack::autoCache()
 
 //-----------------------------------------------------------------------------
 
-void Stack::autoSave()
-{
-	for (Document* document : m_documents) {
-		if (document->isModified()) {
-			if (!document->filename().isEmpty()) {
-				document->save();
-			} else {
-				document->cache();
-			}
-		}
-	}
-}
-
-//-----------------------------------------------------------------------------
-
 void Stack::checkSpelling()
 {
 	m_current_document->checkSpelling();
