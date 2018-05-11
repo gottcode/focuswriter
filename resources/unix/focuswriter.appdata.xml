@@ -188,4 +188,16 @@
     <kudo>HiDpiIcon</kudo>
     <kudo>ModernToolkit</kudo>
   </kudos>
+
+  <releases>
+    <release version="1.6.12" date="2018-04-12">
+      <description>
+        <ul>
+          <li>Ignore empty cache files</li>
+          <li>Removed auto save</li>
+          <li>Translation updates: Slovenian</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
 </component>
