@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -293,5 +293,5 @@ int main(int argc, char** argv)
 {
 	QCoreApplication app(argc, argv);
 
-	downloadAndParse("9.0.0", QDataStream::Qt_5_2);
+	downloadAndParse("10.0.0", QDataStream::Qt_5_2);
 }
