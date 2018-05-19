@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -295,7 +295,7 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 void SymbolsModel::setData(const QStringList& datadirs)
 {
 	for (const QString& path : datadirs) {
-		QFileInfo info(path + "/symbols900.dat");
+		QFileInfo info(path + "/symbols1000.dat");
 		if (info.exists()) {
 			m_path = info.absoluteFilePath();
 			break;
