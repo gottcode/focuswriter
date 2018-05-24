@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2014, 2015, 2016, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,12 +114,16 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 
 	// Load translators
 	static QTranslator qt_translator;
-	if (translations.contains("qtbase_" + current) || translations.contains("qtbase_" + current.left(2))) {
-		qt_translator.load("qtbase_" + current, m_path);
-	} else {
-		qt_translator.load("qtbase_" + current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-	}
+	qt_translator.load("qt_" + current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 	QCoreApplication::installTranslator(&qt_translator);
+
+	static QTranslator qtbase_translator;
+	if (translations.contains("qtbase_" + current) || translations.contains("qtbase_" + current.left(2))) {
+		qtbase_translator.load("qtbase_" + current, m_path);
+	} else {
+		qtbase_translator.load("qtbase_" + current, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+	}
+	QCoreApplication::installTranslator(&qtbase_translator);
 
 	static QTranslator translator;
 	translator.load(m_appname + current, m_path);
