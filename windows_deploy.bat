@@ -1,3 +1,5 @@
+@ECHO ON>resources\windows\dirs.nsh
+@ECHO ON>resources\windows\files.nsh
 @ECHO OFF
 
 SET APP=FocusWriter
@@ -5,9 +7,6 @@ SET VERSION=1.6.12
 
 ECHO Copying executable
 MKDIR %APP%
-TYPE COPYING | FIND "" /V > %APP%\COPYING.txt
-TYPE CREDITS | FIND "" /V > %APP%\CREDITS.txt
-TYPE README | FIND "" /V > %APP%\README.txt
 COPY release\%APP%.exe %APP% >nul
 strip %APP%\%APP%.exe
 
@@ -15,7 +14,6 @@ ECHO Copying translations
 SET TRANSLATIONS=%APP%\translations
 MKDIR %TRANSLATIONS%
 COPY translations\*.qm %TRANSLATIONS% >nul
-COPY %QTDIR%\translations\qtbase_*.qm %TRANSLATIONS% >nul
 
 ECHO Copying icons
 SET ICONS=%APP%\icons\hicolor
@@ -40,43 +38,47 @@ SET THEMES=%APP%\themes
 MKDIR %THEMES%
 XCOPY /Q /S /Y resources\themes\* %THEMES% >nul
 
-ECHO Copying Qt libraries
-COPY %QTDIR%\bin\libgcc_s_dw2-1.dll %APP% >nul
-COPY "%QTDIR%\bin\libstdc++-6.dll" %APP% >nul
-COPY %QTDIR%\bin\libwinpthread-1.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Core.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Gui.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Multimedia.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Network.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5PrintSupport.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Svg.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5Widgets.dll %APP% >nul
-COPY %QTDIR%\bin\Qt5WinExtras.dll %APP% >nul
+ECHO Copying Qt
+%QTDIR%\bin\windeployqt.exe --verbose 0 --release --no-angle --no-opengl-sw %APP%\%APP%.exe
+RMDIR /S /Q %APP%\iconengines
 
-ECHO Copying Qt plugins
-MKDIR %APP%\audio
-COPY %QTDIR%\plugins\audio\qtaudio_windows.dll %APP%\audio >nul
+ECHO Creating ReadMe
+TYPE README >> %APP%\ReadMe.txt
+ECHO. >> %APP%\ReadMe.txt
+ECHO. >> %APP%\ReadMe.txt
+ECHO CREDITS >> %APP%\ReadMe.txt
+ECHO ======= >> %APP%\ReadMe.txt
+ECHO. >> %APP%\ReadMe.txt
+TYPE CREDITS >> %APP%\ReadMe.txt
+ECHO. >> %APP%\ReadMe.txt
+ECHO. >> %APP%\ReadMe.txt
+ECHO NEWS >> %APP%\ReadMe.txt
+ECHO ==== >> %APP%\ReadMe.txt
+ECHO. >> %APP%\ReadMe.txt
+TYPE NEWS >> %APP%\ReadMe.txt
 
-MKDIR %APP%\bearer
-XCOPY /Q /S /Y %QTDIR%\plugins\bearer %APP%\bearer >nul
-DEL %APP%\bearer\*d.dll >nul
-
-MKDIR %APP%\platforms
-COPY %QTDIR%\plugins\platforms\qwindows.dll %APP%\platforms >nul
-
-MKDIR %APP%\imageformats
-XCOPY /Q /S /Y %QTDIR%\plugins\imageformats %APP%\imageformats >nul
-DEL %APP%\imageformats\*d.dll >nul
-
-MKDIR %APP%\mediaservice
-XCOPY /Q /S /Y %QTDIR%\plugins\mediaservice %APP%\mediaservice >nul
-DEL %APP%\mediaservice\*d.dll >nul
-
-MKDIR %APP%\printsupport
-COPY %QTDIR%\plugins\printsupport\windowsprintersupport.dll %APP%\printsupport >nul
+ECHO Creating installer
+CD %APP%
+SETLOCAL EnableDelayedExpansion
+SET "parentfolder=%__CD__%"
+FOR /R . %%F IN (*) DO (
+  SET "var=%%F"
+  ECHO Delete "$INSTDIR\!var:%parentfolder%=!" >> ..\resources\windows\files.nsh
+)
+FOR /R /D %%F IN (*) DO (
+  TYPE ..\resources\windows\dirs.nsh > temp.txt
+  SET "var=%%F"
+  ECHO RMDir "$INSTDIR\!var:%parentfolder%=!" > ..\resources\windows\dirs.nsh
+  TYPE temp.txt >> ..\resources\windows\dirs.nsh
+)
+DEL temp.txt
+ENDLOCAL
+CD ..
+makensis.exe /V0 resources\windows\installer.nsi
 
 ECHO Making portable
 MKDIR %APP%\Data
+COPY COPYING %APP%\COPYING.txt >nul
 
 ECHO Creating compressed file
 CD %APP%
@@ -86,3 +88,5 @@ MOVE %APP%\%APP%_%VERSION%.zip . >nul
 
 ECHO Cleaning up
 RMDIR /S /Q %APP%
+DEL resources\windows\dirs.nsh
+DEL resources\windows\files.nsh
