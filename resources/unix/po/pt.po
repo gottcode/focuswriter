@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Rui <xymarior@yandex.com>, 2018
 # tiago <tiagob3lo@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-11-09 15:45+0000\n"
-"Last-Translator: tiago <tiagob3lo@gmail.com>\n"
-"Language-Team: Portuguese (http://www.transifex.com/projects/p/focuswriter/"
+"POT-Creation-Date: 2016-08-19 15:40+0000\n"
+"PO-Revision-Date: 2018-04-26 01:34+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
+"Language-Team: Portuguese (http://www.transifex.com/gottcode/focuswriter/"
 "language/pt/)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -34,10 +35,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
-"FocusWriter é um processador de texto simples e sem distrações. A interface "
-"só aparece quando o cursor se aproxima das margens do ecrã, proporcionando "
-"um aspeto familiar que ao mesmo tempo não ocupa espaço e lhe permite focar-"
-"se no seu trabalho."
+"O FocusWriter é um processador de texto simples e sem distrações. A "
+"interface só aparece quando o cursor se aproxima das margens do ecrã, "
+"proporcionando um aspeto familiar que ao mesmo tempo não ocupa espaço e lhe "
+"permite focar-se no seu trabalho."
 
 #: ../focuswriter.appdata.xml.in.h:4
 msgid ""
@@ -46,10 +47,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
-"FocusWriter permite-lhe personalizar o ambiente de trabalho com a criação de "
-"temas, controlando a fonte tipográfica, cores e imagem de fundo. Também "
+"O FocusWriter permite-lhe personalizar o ambiente de trabalho com a criação "
+"de temas, controlando a fonte tipográfica, cores e imagem de fundo. Também "
 "dispõe de estatísticas atualizadas, objetivos diários, vários documentos "
-"abertos ao mesmo tempo, verificação ortográfica, e muito mais."
+"abertos ao mesmo tempo, verificação ortográfica e muito mais."
 
 #: ../focuswriter.appdata.xml.in.h:5
 msgid ""
