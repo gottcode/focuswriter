@@ -103,7 +103,7 @@
     <name>DictionaryDialog</name>
     <message>
         <source>Set Language</source>
-        <translation>Définir le langage</translation>
+        <translation>Choisir la langue</translation>
     </message>
 </context>
 <context>
@@ -1115,11 +1115,11 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieux amers</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Enchantement</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
@@ -1135,11 +1135,11 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeux d&apos;espionnage</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Tranquilité</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1719,7 +1719,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour les apostrophes typographiques du document</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1727,7 +1727,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour les apostrophes typographiques de la sélection</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1739,7 +1739,7 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Définir le &amp;langage ...</translation>
+        <translation>Choisir la &amp;langue ...</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
