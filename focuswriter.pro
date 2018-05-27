@@ -12,18 +12,19 @@ TEMPLATE = app
 QT += network widgets printsupport multimedia concurrent
 macx {
 	QT += macextras
+	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
 win32 {
 	QT += winextras
 }
-CONFIG += warn_on c++11
-macx {
-	QMAKE_INFO_PLIST = resources/mac/Info.plist
-}
+CONFIG += c++11
 
-DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051100
-DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
+CONFIG(debug, debug|release) {
+	CONFIG += warn_on
+	DEFINES += QT_DEPRECATED_WARNINGS
+	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051100
+	DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
+}
 
 # Allow in-tree builds
 !win32 {
