@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-05-31 10:49+0000\n"
+"PO-Revision-Date: 2017-09-23 19:39+0000\n"
 "Last-Translator: Lasse Liehu <larso@gmx.com>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/focuswriter/"
+"Language-Team: Finnish (http://www.transifex.com/gottcode/focuswriter/"
 "language/fi/)\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
 msgstr "FocusWriter"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "Koko näytön tekstinkäsittelyohjelma"
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -39,7 +39,7 @@ msgstr ""
 "hiiren näytön laitoihin. Sen ansiosta ohjelmassa on tuttu ulkoasu ja "
 "käyttötuntuma. Samalla käyttöliittymä väistyy työhön uppoutumisen tieltä."
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -51,7 +51,7 @@ msgstr ""
 "automaattisesti päivittyvät tilastot, päivittäiset tavoitteet, tuki useille "
 "avoimille tiedostoille, oikeinkirjoituksen tarkistus ja paljon muuta."
 
-#: ../focuswriter.appdata.xml.in.h:5
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -60,10 +60,10 @@ msgstr ""
 "Lisäksi ohjelman käynnistyessä kesken jäänyt työ ladataan automaattisesti "
 "siltä kohtaa, mihin viimeksi jäit, jotta työn jatkaminen on helppoa."
 
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "Koko näytön tekstinkäsittelyohjelma"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "Kirjoita ilman häiriötekijöitä"

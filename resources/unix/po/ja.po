@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-25 21:48+0000\n"
+"PO-Revision-Date: 2017-09-20 01:16+0000\n"
 "Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/focuswriter/"
+"Language-Team: Japanese (http://www.transifex.com/gottcode/focuswriter/"
 "language/ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
 msgstr "FocusWriter"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "フルスクリーン・ワードプロセッサ"
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -38,7 +38,7 @@ msgstr ""
 "スできるようになっているので、プログラムの基本的なルック・アンド・フィールは"
 "維持したまま、作業に没頭することができるでしょう。"
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -49,7 +49,7 @@ msgstr ""
 "環境をカスタマイズすることができます。またリアルタイムな文書の統計情報の表"
 "示、進捗管理、複数文書の編集、スペル・チェッカーなどといった機能もあります。"
 
-#: ../focuswriter.appdata.xml.in.h:5
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -58,10 +58,10 @@ msgstr ""
 "更には、現在のプロジェクトをプログラム開くと、以前の作業状況がカーソル位置も"
 "含め復元されるので、直ぐに続きを書き始めることが出来ます。"
 
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "フルスクリーン・ワードプロセッサ"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "気を散らすことなく集中して文章を書けるワードプロセッサです"
