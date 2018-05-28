@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# min zhang <zm1990s@gmail.com>, 2014
+# zhangmin <zm1990s@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-28 02:52+0000\n"
-"Last-Translator: min zhang <zm1990s@gmail.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/"
+"PO-Revision-Date: 2017-09-20 01:16+0000\n"
+"Last-Translator: zhangmin <zm1990s@gmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/gottcode/"
 "focuswriter/language/zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
 msgstr "FocusWriter"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "全屏文字编辑器"
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -37,7 +37,7 @@ msgstr ""
 "FocusWriter 是个简洁的，让您专心于写作的文字编辑器。所有菜单默认隐藏，当鼠标"
 "滑动到屏幕边缘时会显示。这样既提供所需功能，又能保证让您专注于写作。"
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -47,17 +47,17 @@ msgstr ""
 "FocusWriter 支持自定义主题，可以调整字体，颜色，背景图像等。还有很多其他功"
 "能，如动态更新统计，每日计划，多标签页，拼写检查等。"
 
-#: ../focuswriter.appdata.xml.in.h:5
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr "另外，打开软件后会自动跳到上次编辑的位置，让您立刻继续投入工作"
 
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "全屏文本编辑器"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "专心致志地写作"

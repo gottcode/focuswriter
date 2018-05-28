@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Jaff <jaff2002@yahoo.com>, 2014
+# Oprea Nicolae <jaff2002@yahoo.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-26 08:16+0000\n"
-"Last-Translator: Jaff <jaff2002@yahoo.com>\n"
-"Language-Team: Romanian (http://www.transifex.com/projects/p/focuswriter/"
+"PO-Revision-Date: 2017-09-23 19:39+0000\n"
+"Last-Translator: Oprea Nicolae <jaff2002@yahoo.com>\n"
+"Language-Team: Romanian (http://www.transifex.com/gottcode/focuswriter/"
 "language/ro/)\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
 "2:1));\n"
 
-#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
 msgstr "FocusWriter"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "Procesor de text pe tot ecranul"
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -41,7 +41,7 @@ msgstr ""
 "un simţămînt familiar în timp ce se dă la o parte, astfel încît să vă puteţi "
 "cufunda în munca dvs."
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -54,7 +54,7 @@ msgstr ""
 "zi cu zi, mai multe documente deschise, verificare ortografică, şi mult mai "
 "mult."
 
-#: ../focuswriter.appdata.xml.in.h:5
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -64,10 +64,10 @@ msgstr ""
 "va fi încărcat automat şi poziția unde aţi rămas ultima dată, astfel încît "
 "să puteţi trece imediat la treabă."
 
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "Procesor de text pe tot ecranul"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "Scrieţi fără distrageri"

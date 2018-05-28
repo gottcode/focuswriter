@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2014-03-26 21:17+0000\n"
-"Last-Translator: PavelNicklasson <pavelnicklasson@bahnhof.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/focuswriter/"
+"PO-Revision-Date: 2017-09-20 01:16+0000\n"
+"Last-Translator: Påvel Nicklasson <pavel2@frimix.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/gottcode/focuswriter/"
 "language/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
 msgstr "FocusWriter"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "Ordbehandlare med helskärmsläge"
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -39,7 +39,7 @@ msgstr ""
 "känsla, medan det håller sig ur vägen så att du kan fördjupa dig i ditt "
 "arbete. "
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -51,7 +51,7 @@ msgstr ""
 "atmosfär. Den har även automatisk statistikuppdatering, dagliga mål, flera "
 "öppna dokument, stavningskontroll och mycket mer."
 
-#: ../focuswriter.appdata.xml.in.h:5
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -60,10 +60,10 @@ msgstr ""
 "Dessutom, när du öppnar programmet kommer ditt pågående arbete att laddas "
 "automatiskt där du slutade senast så att du omedelbart kan fortsätta"
 
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "Ordbehandlare med helskärmsläge"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "Skriv utan distraktioner"
