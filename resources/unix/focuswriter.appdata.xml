@@ -190,12 +190,17 @@
   </kudos>
 
   <releases>
-    <release version="1.6.12" date="2018-04-12">
+    <release version="1.6.13" date="2018-05-29">
       <description>
         <ul>
-          <li>Ignore empty cache files</li>
-          <li>Removed auto save</li>
-          <li>Translation updates: Slovenian</li>
+          <li>Updated dictionaries</li>
+          <li>Updated Unicode symbols database</li>
+          <li>Replaced deprecated code</li>
+          <li>Extra warnings only shown in debug build</li>
+          <li>Improved Linux deployment</li>
+          <li>Improved macOS deployment</li>
+          <li>Improved Windows deployment</li>
+          <li>Translation updates: Dutch, French, Portuguese</li>
         </ul>
       </description>
     </release>
