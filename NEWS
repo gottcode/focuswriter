@@ -1,3 +1,14 @@
+1.6.13
+------
+* Updated dictionaries.
+* Updated Unicode symbols database.
+* Replaced deprecated code.
+* Extra warnings only shown in debug build.
+* Improved Linux deployment.
+* Improved macOS deployment.
+* Improved Windows deployment.
+* Translation updates: Dutch, French, Portuguese.
+
 1.6.12
 ------
 * Ignore empty cache files.
