@@ -12,18 +12,19 @@ TEMPLATE = app
 QT += network widgets printsupport multimedia concurrent
 macx {
 	QT += macextras
+	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
 win32 {
 	QT += winextras
 }
-CONFIG += warn_on c++11
-macx {
-	QMAKE_INFO_PLIST = resources/mac/Info.plist
-}
+CONFIG += c++11
 
-DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051000
-DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
+CONFIG(debug, debug|release) {
+	CONFIG += warn_on
+	DEFINES += QT_DEPRECATED_WARNINGS
+	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051100
+	DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
+}
 
 # Allow in-tree builds
 !win32 {
@@ -33,7 +34,7 @@ DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 }
 
 # Set program version
-VERSION = 1.6.12
+VERSION = 1.6.13
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
@@ -243,7 +244,7 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	SYMBOLS.files = resources/symbols/symbols900.dat
+	SYMBOLS.files = resources/symbols/symbols1000.dat
 	SYMBOLS.path = Contents/Resources
 
 	THEMES.files = resources/themes
@@ -296,7 +297,7 @@ macx {
 	themes.files = resources/themes/*
 	themes.path = $$DATADIR/focuswriter/themes
 
-	symbols.files = resources/symbols/symbols900.dat
+	symbols.files = resources/symbols/symbols1000.dat
 	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes

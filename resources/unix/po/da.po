@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2015-11-09 20:33+0000\n"
+"PO-Revision-Date: 2017-09-20 01:16+0000\n"
 "Last-Translator: Morten Juhl-Johansen Zölde-Fejér <morten@writtenandread."
 "net>\n"
 "Language-Team: Danish (http://www.transifex.com/gottcode/focuswriter/"
@@ -20,15 +20,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
 msgstr "FocusWriter"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "Tekstbehandling i fuldskærm"
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -40,7 +40,7 @@ msgstr ""
 "føre musen til skærmens kanter, så programmet kan opsættes med kendte "
 "redskaber, men på en måde, hvor du kan fordybe dig i dit arbejde."
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -52,7 +52,7 @@ msgstr ""
 "Programmet har også statistik, der opdateres mens du arbejder, daglige mål, "
 "mulighed for flere åbne dokumenter, stavekontrol og meget andet."
 
-#: ../focuswriter.appdata.xml.in.h:5
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -62,10 +62,10 @@ msgstr ""
 "vil indlæse det seneste dokument og placere markøren hvor den var, så du med "
 "det samme kan komme tilbage i teksten."
 
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "Tekstbehandlingsprogram i fuld skærm"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "Skriv uden at blive distraheret"

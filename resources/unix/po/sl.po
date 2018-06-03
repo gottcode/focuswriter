@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-05 11:50+0000\n"
+"POT-Creation-Date: 2014-11-14 20:43+0000\n"
 "PO-Revision-Date: 2018-01-02 12:37+0000\n"
 "Last-Translator: Roman Bobnaric <roman.bobnaric@gmail.com>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/gottcode/"
@@ -20,11 +20,15 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 
-#: ../focuswriter.appdata.xml.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "Polnozaslonski program za pisanje"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -36,7 +40,7 @@ msgstr ""
 "omogoča, da ima program domač/znan izgled, medtem, ko omogoča nemoteno delo "
 "in se lahko pisanju popolnoma posvetimo."
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -48,7 +52,7 @@ msgstr ""
 "statistiko, dnevne cilje, več odprtih dokumentov, preverjanje pravopisa in "
 "še veliko več."
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -58,14 +62,10 @@ msgstr ""
 "postavilo delovno mesto na zadnjo znano pozicijo, tako, da lahko takoj "
 "nadaljujete kjer ste ostali prejšnjič."
 
-#: ../focuswriter.desktop.in.h:1
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "Polnozaslonski urejevalnik besedila"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "Pišite brez motenj"

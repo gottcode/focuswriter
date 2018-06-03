@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='6.0.0.3'
+loversion='6.0.4.2'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.0.0/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.0.4/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -50,10 +50,10 @@ else
 fi
 
 echo -n 'Downloading Korean dictionary...'
-kodict='Korean_spell-checker-0.6.0-1_LibO'
-kofiles='Korean_spell-checker-0.6.0-1_LibO/dictionaries'
+kodict='Korean_spell-checker-0.7.1-2_LibO'
+kofiles='Korean_spell-checker-0.7.1-2_LibO/dictionaries'
 if [ ! -e "${kodict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker/0-6-0-1/@@download/file/${kodict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker/0-7-1-2/@@download/file/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'

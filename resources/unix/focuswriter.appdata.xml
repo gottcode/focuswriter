@@ -89,9 +89,9 @@
     <p xml:lang="ja">FocusWriter はシンプルなディストラクション・フリーのワード・プロセッサーです。普段は隠されているインターフェイスにはマウスを画面端に動かすだけでアクセスできるようになっているので、プログラムの基本的なルック・アンド・フィールは維持したまま、作業に没頭することができるでしょう。</p>
     <p xml:lang="ko">포커스 라이터는, 글쓰기에 집중하게 해주는 간단한 워드 프로세서입니다. 마우스를 화면 끝에 대면 작동하는 하이드-어웨이 방식을 적용해서, 프로그램이 익숙한 모양과 느낌을 유지하게 해, 잠시 방해를 받아도 금방 하던 작업에 몰두하게 합니다.</p>
     <p xml:lang="lt">FocusWriter yra paprasta žodžių doroklė be išblaškymų. Ji naudoja besislepiančią sąsają, kurią galima pasiekti, nuvedant pelės žymeklį prie ekrano ribų. Ši sąsaja suteikia programai pažįstamą išvaizdą ir jausmą, todėl programa jums netrukdo, o jūs galite pilnai pasinerti į savo darbą.</p>
-    <p xml:lang="nl">Focuswriter is een eenvoudige, afleidingsvrije tekstverwerker. Het verbergt de gebruikersinterface totdat de muis naar de rand van het scherm geschoven wordt. Het programma heeft de bekende uitstraling maar stelt daarnaast in staan om complete focus te hebben op het werk</p>
+    <p xml:lang="nl">Focuswriter is een eenvoudige, afleidingsvrije tekstverwerker. Het verbergt de gebruikersomgeving totdat de cursor naar de rand van het scherm wordt geschoven. De applicatie heeft de bekende uitstraling maar stelt je tevens in staat om je volledig te focussen op je werk.</p>
     <p xml:lang="pl">FocusWriter to prosty, pełnoekranowy edytor tekstu. Korzysta z ukrytego interfejsu, do którego otrzymujesz dostęp przesuwając kursor myszkę do krawędzi ekranu. W ten sposób program skupia twoją uwagę na to, co naprawdę jest najważniejsze: twoja praca.</p>
-    <p xml:lang="pt">FocusWriter é um processador de texto simples e sem distrações. A interface só aparece quando o cursor se aproxima das margens do ecrã, proporcionando um aspeto familiar que ao mesmo tempo não ocupa espaço e lhe permite focar-se no seu trabalho.</p>
+    <p xml:lang="pt">O FocusWriter é um processador de texto simples e sem distrações. A interface só aparece quando o cursor se aproxima das margens do ecrã, proporcionando um aspeto familiar que ao mesmo tempo não ocupa espaço e lhe permite focar-se no seu trabalho.</p>
     <p xml:lang="pt_BR">FocusWriter é um processador de texto simples livre de distrações. Ele utiliza uma interface oculta, acessível ao mover o mouse para os cantos da tela, o que dá ao programa um visual familiar, mas discreto. Assim você pode mergulhar em seu trabalho.</p>
     <p xml:lang="ro">FocusWriter este un procesor de text simplu, fără distragerea atenţiei. Acesta folosește o interfaţă ascunsă pe care o accesaţi prin mutarea mouse-ului pe marginile ecranului, care permite programului să aibă un aspect şi un simţămînt familiar în timp ce se dă la o parte, astfel încît să vă puteţi cufunda în munca dvs.</p>
     <p xml:lang="ru">FocusWriter - это простой текстовый редактор, позволяющий полностью сосредоточиться на работе. В нем используется выдвижной интерфейс, управляющие элементы которого становятся доступными при наведении стрелки мыши к краям экрана. Это дает возможность добиться максимально располагающего к пользователю внешнего вида и полностью погрузиться в вашу работу.</p>
@@ -119,9 +119,9 @@
     <p xml:lang="ja">FocusWriter ではフォント・色・背景画像などテーマとして作り、それを使って作業環境をカスタマイズすることができます。またリアルタイムな文書の統計情報の表示、進捗管理、複数文書の編集、スペル・チェッカーなどといった機能もあります。</p>
     <p xml:lang="ko">포커스 라이터는 폰트와, 색상을 조절하고, 배경 그림을 추가해 테마를 만들어서 작업 환경을 직접 만들 수 있게 되어있습니다. 포커스 라이터는 때에 따라서 이용할 수 있는 통계 업데이트, 오늘의 목표, 여러 건의 문서 열기, 맞춤법 검사, 등과 그 외에 아주 많은 기능을 갖고 있습니다.  </p>
     <p xml:lang="lt">FocusWriter leidžia jums tinkinti savo aplinką, kuriant temas, kurios kontroliuoja šriftą, spalvas ir fono paveikslą bei sukuria norimą atmosferą. Programoje yra statistikos atnaujinimo, kasdienio tikslo, kelių atvertų dokumentų, rašybos tikrinimo ir daugybė kitų funkcijų.</p>
-    <p xml:lang="nl">Focuswriter stelt je in staan om de applicatie aan te passen aan de wensen van lettertype, kleuren, achtergrond plaatjes om de gewenste ambiance te creëren. Het heeft direct bijgewerkte statistieken, dagelijkse doelen, meerdere open documenten, spellingscorrectie en nog veel meer.</p>
+    <p xml:lang="nl">Focuswriter stelt je in staat om de applicatie aan te passen aan de wensen van lettertype, kleuren en achtergrondafbeeldingen om de gewenste sfeer te creëren. Het beschikt ook over direct bijgewerkte statistieken, dagelijkse doelen, meerdere geopende documenten, spellingcorrectie en nog veel meer.</p>
     <p xml:lang="pl">FocusWriter umożliwia dostosowanie wyglądu poprzez tworzenie motywów, które ustawiają czcionkę, kolory i obraz tła, aby stworzyć własną atmosferę. Posiada również aktualizację statystyk w locie, codzienne cele, otwieranie wielu dokumentów jednocześnie, sprawdzanie pisowni i dużo więcej.</p>
-    <p xml:lang="pt">FocusWriter permite-lhe personalizar o ambiente de trabalho com a criação de temas, controlando a fonte tipográfica, cores e imagem de fundo. Também dispõe de estatísticas atualizadas, objetivos diários, vários documentos abertos ao mesmo tempo, verificação ortográfica, e muito mais.</p>
+    <p xml:lang="pt">O FocusWriter permite-lhe personalizar o ambiente de trabalho com a criação de temas, controlando a fonte tipográfica, cores e imagem de fundo. Também dispõe de estatísticas atualizadas, objetivos diários, vários documentos abertos ao mesmo tempo, verificação ortográfica e muito mais.</p>
     <p xml:lang="pt_BR">FocusWriter permite que você personalize o seu ambiente, criando temas que possibilitam a mudança da fonte, cores e imagem de fundo, para criar a atmosfera ideal. Também permite atualização de estatísticas, metas diárias, vários documentos abertos, verificação ortográfica e muito mais.</p>
     <p xml:lang="ro">FocusWriter vă permite să personalizaţi mediul prin crearea de teme care controlează font-ul, culorile şi imaginea de fundal pentru a adăuga ambianţă. Acesta oferă, de asemenea, statistici de actualizare, obiective de zi cu zi, mai multe documente deschise, verificare ortografică, şi mult mai mult.</p>
     <p xml:lang="ru">FocusWriter позволит вам настроить свое рабочее окружение путем создания тем, в которых можно,  для добавления нужной атмосферы, управлять шрифтами, цветами и фоновыми изображениями. Также текстовый редактор умеет вести статистику, обновляемую в реальном времени, ставить ежедневные рабочие цели, открывать сразу несколько документов одновременно, проверять орфографию и много чего еще.</p>
@@ -149,7 +149,7 @@
     <p xml:lang="ja">更には、現在のプロジェクトをプログラム開くと、以前の作業状況がカーソル位置も含め復元されるので、直ぐに続きを書き始めることが出来ます。</p>
     <p xml:lang="ko">그리고, 프로그램을 열면 작업하던 내용이 일을 멈추고 떠났던 그때 그대로 자동으로 복귀되어서 돌아오면 바로 하던 작업으로 다시 돌아갈 수 있습니다.</p>
     <p xml:lang="lt">Be to, kai atidarote programą, jūsų dabartinis darbas yra automatiškai įkeliamas toje vietoje, kurioje paskutinį kartą užbaigėte, todėl nedvejodami galite vėl kibti į darbą.</p>
-    <p xml:lang="nl">Daar bovenop laadt het programma je huidige onderhande werk en laat het zien op de locatie waar je gebleven bent zodat je direct verder kunt</p>
+    <p xml:lang="nl">Daarnaast laadt de applicatie, na het opstarten, automatisch je huidige werk op de laatst bekende locatie zodat je direct verder kunt.</p>
     <p xml:lang="pl">Ponadto, program automatycznie ładuje przy starcie ostatni otworzony dokument i pozycję, na której ostatnio przerwano, aby można od razu kontynuować pracę.</p>
     <p xml:lang="pt">Além disto, o programa abre automaticamente o trabalho em curso e posiciona o cursor na posição em que se encontrava na sessão anterior, para que possa voltar ao trabalho sem demoras.</p>
     <p xml:lang="pt_BR">Além disso, quando você abrir o programa, seu trabalho em andamento será automaticamente carregado e posicionado onde você parou, de modo que você pode reiniciá-lo imediatamente.</p>
@@ -188,4 +188,21 @@
     <kudo>HiDpiIcon</kudo>
     <kudo>ModernToolkit</kudo>
   </kudos>
+
+  <releases>
+    <release version="1.6.13" date="2018-05-29">
+      <description>
+        <ul>
+          <li>Updated dictionaries</li>
+          <li>Updated Unicode symbols database</li>
+          <li>Replaced deprecated code</li>
+          <li>Extra warnings only shown in debug build</li>
+          <li>Improved Linux deployment</li>
+          <li>Improved macOS deployment</li>
+          <li>Improved Windows deployment</li>
+          <li>Translation updates: Dutch, French, Portuguese</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
 </component>

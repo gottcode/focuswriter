@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Synteq, 2015
+# Corey Mardix, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2015-07-05 02:45+0000\n"
-"Last-Translator: Synteq\n"
+"PO-Revision-Date: 2017-09-22 10:01+0000\n"
+"Last-Translator: Corey Mardix\n"
 "Language-Team: Esperanto (http://www.transifex.com/gottcode/focuswriter/"
 "language/eo/)\n"
 "Language: eo\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../focuswriter.appdata.xml.in.h:1 ../focuswriter.desktop.in.h:1
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
 msgstr "FocusWriter"
 
-#: ../focuswriter.appdata.xml.in.h:2
+#: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
 msgstr "Plenekrana tekstoprilaborilo"
 
-#: ../focuswriter.appdata.xml.in.h:3
+#: ../focuswriter.appdata.xml.in:10
 msgid ""
 "FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
 "away interface that you access by moving your mouse to the edges of the "
@@ -39,7 +39,7 @@ msgstr ""
 "Tiel la programaro eblas havi kutiman fasadon, dum ankoraŭ estas "
 "malobstrukciĝante por ke vi povas ĉirkaŭi vin en via laboro."
 
-#: ../focuswriter.appdata.xml.in.h:4
+#: ../focuswriter.appdata.xml.in:11
 msgid ""
 "FocusWriter allows you to customize your environment by creating themes that "
 "control the font, colors, and background image to add ambiance. It also "
@@ -51,7 +51,7 @@ msgstr ""
 "havas funkciojn por tuje ĝisdatiganta statistiko, ĉiutagaj celoj, plure da "
 "malfermataj dokumentoj, literumada kontrolo, kaj multe pli."
 
-#: ../focuswriter.appdata.xml.in.h:5
+#: ../focuswriter.appdata.xml.in:12
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
@@ -60,10 +60,10 @@ msgstr ""
 "Plue, kiam vi lanĉas la programaron, via lasta malpreta verko aŭtomate "
 "ŝarĝas kaj allokas vin, kie vi laste ĉesis, por ke vi povas daŭri verki tuj."
 
-#: ../focuswriter.desktop.in.h:2
+#: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
 msgstr "Plenekrana Tekstoprilaborilo"
 
-#: ../focuswriter.desktop.in.h:3
+#: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
 msgstr "Skribu sen malatentigoj"

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -652,7 +652,7 @@ static void printPage(int index, QPainter *painter, const QTextDocument *doc, co
 		painter->setFont(QFont(doc->defaultFont()));
 		const QString pageString = QString::number(index);
 
-		painter->drawText(qRound(pageNumberPos.x() - painter->fontMetrics().width(pageString)),
+		painter->drawText(qRound(pageNumberPos.x() - painter->fontMetrics().boundingRect(pageString).width()),
 			qRound(pageNumberPos.y() + view.top()),
 			pageString);
 	}
