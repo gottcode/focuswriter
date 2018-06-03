@@ -1,3 +1,13 @@
+focuswriter (1.6.13-1) unstable; urgency=medium
+
+  [ Graeme Gott ]
+  * New upstream release
+
+  [ Barak A. Pearlmutter ]
+  * bump policy
+
+ -- Graeme Gott <graeme@gottcode.org>  Tue, 29 May 2018 10:29:27 +0000
+
 focuswriter (1.6.12-1) unstable; urgency=medium
 
   [ Graeme Gott ]
