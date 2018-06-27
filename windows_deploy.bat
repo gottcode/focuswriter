@@ -55,7 +55,7 @@ ECHO. >> %APP%\ReadMe.txt
 ECHO NEWS >> %APP%\ReadMe.txt
 ECHO ==== >> %APP%\ReadMe.txt
 ECHO. >> %APP%\ReadMe.txt
-TYPE NEWS >> %APP%\ReadMe.txt
+TYPE ChangeLog >> %APP%\ReadMe.txt
 
 ECHO Creating installer
 CD %APP%
