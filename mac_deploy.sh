@@ -35,7 +35,7 @@ echo >> "$APP/Read Me.txt"
 echo 'NEWS' >> "$APP/Read Me.txt"
 echo '====' >> "$APP/Read Me.txt"
 echo >> "$APP/Read Me.txt"
-cat NEWS >> "$APP/Read Me.txt"
+cat ChangeLog >> "$APP/Read Me.txt"
 echo 'Done'
 
 # Copy translations
