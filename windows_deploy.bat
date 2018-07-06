@@ -3,7 +3,7 @@
 @ECHO OFF
 
 SET APP=FocusWriter
-SET VERSION=1.6.13
+SET VERSION=1.6.14
 
 ECHO Copying executable
 MKDIR %APP%
@@ -55,7 +55,7 @@ ECHO. >> %APP%\ReadMe.txt
 ECHO NEWS >> %APP%\ReadMe.txt
 ECHO ==== >> %APP%\ReadMe.txt
 ECHO. >> %APP%\ReadMe.txt
-TYPE NEWS >> %APP%\ReadMe.txt
+TYPE ChangeLog >> %APP%\ReadMe.txt
 
 ECHO Creating installer
 CD %APP%
