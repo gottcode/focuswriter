@@ -195,6 +195,15 @@
   </kudos>
 
   <releases>
+    <release version="1.6.14" date="2018-07-06">
+      <description>
+        <ul>
+          <li>FIXED: Regression where emergency cache didn't run</li>
+          <li>Renamed NEWS to ChangeLog</li>
+          <li>Translation updates: Bosnian</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.6.13" date="2018-05-29">
       <description>
         <ul>
