@@ -8,6 +8,3 @@ include /usr/share/dpkg/buildflags.mk
 
 %:
 	dh $@
-
-override_dh_installchangelogs:
-	dh_installchangelogs NEWS
