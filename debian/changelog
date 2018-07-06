@@ -1,3 +1,10 @@
+focuswriter (1.6.14-1) unstable; urgency=medium
+
+  * New upstream release
+  * Do not install old NEWS changelog
+
+ -- Graeme Gott <graeme@gottcode.org>  Fri, 06 Jul 2018 19:11:55 +0000
+
 focuswriter (1.6.13-1) unstable; urgency=medium
 
   [ Graeme Gott ]
