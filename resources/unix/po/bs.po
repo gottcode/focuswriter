@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Graeme Gott
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+# Derviš T., 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: FocusWriter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"PO-Revision-Date: 2018-06-04 03:13+0000\n"
+"Last-Translator: Derviš T.\n"
+"Language-Team: Bosnian (http://www.transifex.com/gottcode/focuswriter/"
+"language/bs/)\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.appdata.xml.in:7
+msgid "Fullscreen word processor"
+msgstr "Aplikacija za rad s tekstom na punom ekranu"
+
+#: ../focuswriter.appdata.xml.in:10
+msgid ""
+"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
+"away interface that you access by moving your mouse to the edges of the "
+"screen, allowing the program to have a familiar look and feel to it while "
+"still getting out of the way so that you can immerse yourself in your work."
+msgstr ""
+"FocusWriter je jednostavan program za rad s tekstom, bez distrakcija. Svi "
+"elementi aplikacije skriveni su iz vidokruga i pristupa im se povlačenjem "
+"kursora miša do ivica ekrana. Ovakav metod rada kreira radno okruženje na "
+"koje se lahko naviknuti i omogućava Vam potpunu koncentraciju na tekst."
+
+#: ../focuswriter.appdata.xml.in:11
+msgid ""
+"FocusWriter allows you to customize your environment by creating themes that "
+"control the font, colors, and background image to add ambiance. It also "
+"features on-the-fly updating statistics, daily goals, multiple open "
+"documents, spell-checking, and much more."
+msgstr ""
+"FocusWriter omogućava Vam da prilagodite radni ambijent vlastitom ukusu "
+"kreirajući teme koje sadržavaju različite fontove, boje i pozadinske slike. "
+"Aplikacija nudi i statistiku o tekstu, definisanje dnevnih ciljeva, "
+"otvaranje više dokumenata u isto vrijeme, provjeru pravopisa i brojne druge "
+"mogućnosti."
+
+#: ../focuswriter.appdata.xml.in:12
+msgid ""
+"Additionally, when you open the program your current work in progress will "
+"automatically load and position you where you last left off so that you can "
+"immediately jump back in."
+msgstr ""
+"Kada otvorite program, svi dokumenti na kojima trenutno radite bit će "
+"automatski učitani, a kursor će u svakom od njih biti na istoj poziciji na "
+"kojoj se nalazio kada ste zadnji put zatvorili dokument. To Vam omogućava da "
+"odmah nastavite s radom tačno ondje gdje ste zadnji put stali."
+
+#: ../focuswriter.desktop.in:5
+msgid "Fullscreen Word Processor"
+msgstr "Aplikacija za rad s tekstom na punom ekranu"
+
+#: ../focuswriter.desktop.in:6
+msgid "Write without distractions"
+msgstr "Pišite bez ometanja"
