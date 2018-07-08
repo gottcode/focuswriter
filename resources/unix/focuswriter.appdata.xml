@@ -195,7 +195,7 @@
   </kudos>
 
   <releases>
-    <release version="1.6.14" date="2018-06-07">
+    <release version="1.6.14" date="2018-07-06">
       <description>
         <ul>
           <li>FIXED: Regression where emergency cache didn't run</li>
@@ -204,7 +204,6 @@
         </ul>
       </description>
     </release>
-  </releases>
     <release version="1.6.13" date="2018-05-29">
       <description>
         <ul>
