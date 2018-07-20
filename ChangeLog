@@ -1,3 +1,8 @@
+1.6.15
+------
+* FIXED: Automatic high dpi support.
+* Translation updates: Galician, Spanish.
+
 1.6.14
 ------
 * FIXED: Regression where emergency cache didn't run.

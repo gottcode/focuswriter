@@ -201,6 +201,14 @@
   </kudos>
 
   <releases>
+    <release version="1.6.15" date="2018-07-20">
+      <description>
+        <ul>
+          <li>FIXED: Automatic high DPI support</li>
+          <li>Translation updates: Galician, Spanish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.6.14" date="2018-07-06">
       <description>
         <ul>
