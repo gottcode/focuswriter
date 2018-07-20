@@ -1,3 +1,13 @@
+focuswriter (1.6.15-1) unstable; urgency=medium
+
+  [ Graeme Gott ]
+  * New upstream release
+
+  [ Barak A. Pearlmutter ]
+  * uscan v4
+
+ -- Graeme Gott <graeme@gottcode.org>  Fri, 20 Jul 2018 16:13:30 +0000
+
 focuswriter (1.6.14-1) unstable; urgency=medium
 
   * New upstream release
