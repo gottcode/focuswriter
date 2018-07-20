@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es" sourcelanguage="en">
+<TS version="2.1" language="gl" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <source>Close (%1)</source>
-        <translation>Cerrar (%1)</translation>
+        <translation>Pechar (%1)</translation>
     </message>
     <message>
         <source>Collapse</source>
@@ -70,15 +70,15 @@
     </message>
     <message>
         <source>Longest streak</source>
-        <translation>Racha mas larga</translation>
+        <translation>Liña máis longa</translation>
     </message>
     <message>
         <source>Current streak</source>
-        <translation>Racha actual</translation>
+        <translation>Liña actual</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation>N/A</translation>
+        <translation>Non Dispoñible</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
@@ -96,96 +96,96 @@
     <name>DailyProgressLabel</name>
     <message>
         <source>%1% of daily goal</source>
-        <translation>%1% de meta diaria</translation>
+        <translation>%1% da meta diaria</translation>
     </message>
 </context>
 <context>
     <name>DictionaryDialog</name>
     <message>
         <source>Set Language</source>
-        <translation>Establecer idioma</translation>
+        <translation>Establece Linguaxe</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Sin título %1)</translation>
+        <translation type="unfinished">(Sin título %1)</translation>
     </message>
     <message>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (Solo lectura)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Aviso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>No se puede guardar «%1».</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save File As</source>
-        <translation>Guardar archivo como</translation>
+        <translation>Gardar aquivo como</translation>
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>No se puede sobrescribir «%1».</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rename File</source>
-        <translation>Renombrar el archivo</translation>
+        <translation>Renombrar arquivo</translation>
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>No se puede renombrar «%1».</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reload File?</source>
-        <translation>¿Recargar archivo?</translation>
+        <translation>Recargar arquivo?</translation>
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>¿Recargar el archivo &apos;%1&apos; desde el disco?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
-        <translation>Se perderán todos los cambios no guardados.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Volver a cargar</translation>
+        <translation>Recargar</translation>
     </message>
     <message>
         <source>Untitled %1</source>
-        <translation>Sin título %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Confirmación</translation>
+        <translation type="unfinished">Confirmación</translation>
     </message>
     <message>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Al guardar como texto plano se descartarán todos los cambios de formato. ¿Desea continuar?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DocumentWatcher</name>
     <message>
         <source>File Changed</source>
-        <translation>Archivo modificado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>El archivo &apos;%1&apos; fue modificado por otro programa.</translation>
+        <translation>O arquivo &apos;%1&apos; foi modificado por outro programa.</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
-        <translation>¿Desea volver a cargarlo?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Volver a cargar</translation>
+        <translation>Recargar</translation>
     </message>
     <message>
         <source>Ignore</source>
@@ -193,22 +193,22 @@
     </message>
     <message>
         <source>File Deleted</source>
-        <translation>Archivo eliminado</translation>
+        <translation>Arquivo borrado</translation>
     </message>
     <message>
         <source>The file %1 was deleted by another program.</source>
-        <translation>El archivo %1 ha sido eliminado por otro programa.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
-        <translation>¿Desea guardar o cerrar el archivo?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DocxReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>No se puede abrir el archivador.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -219,27 +219,27 @@
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Reemplazar por:</translation>
+        <translation>Reemprazar con:</translation>
     </message>
     <message>
         <source>Ignore case</source>
-        <translation>Ignorar mayúsculas y minúsculas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation>Solo palabras completas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Regular expressions</source>
-        <translation>Expresiones regulares</translation>
+        <translation>Expresións regulares</translation>
     </message>
     <message>
         <source>Search up</source>
-        <translation>Hacia atrás</translation>
+        <translation>Buscar arriba</translation>
     </message>
     <message>
         <source>Search down</source>
-        <translation>Hacia adelante</translation>
+        <translation>Buscar abaixo</translation>
     </message>
     <message>
         <source>&amp;Find</source>
@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>&amp;Replace</source>
-        <translation>&amp;Reemplazar</translation>
+        <translation>&amp;Reemprazar</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
-        <translation>Reemplazar &amp;todas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find</source>
@@ -259,94 +259,94 @@
     </message>
     <message>
         <source>Replace</source>
-        <translation>Reemplazar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <source>Replace %n instance(s)?</source>
-        <translation>
-            <numerusform>¿Reemplazar %n coincidencia?</numerusform>
-            <numerusform>¿Reemplazar %n coincidencias?</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Confirmación</translation>
+        <translation type="unfinished">Confirmación</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Aviso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Phrase not found.</source>
-        <translation>No se encontró la frase.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>Texto OpenDocument</translation>
+        <translation>OpenDocument - texto</translation>
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation>XML plano OpenDocument</translation>
+        <translation>OpenDocument - XML plano</translation>
     </message>
     <message>
         <source>Office Open XML</source>
-        <translation>XML Office</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rich Text Format</source>
-        <translation>Texto Enriquecido</translation>
+        <translation>formato de Texto Enriquecido</translation>
     </message>
     <message>
         <source>Plain Text</source>
-        <translation>Texto plano</translation>
+        <translation>Texto Plano</translation>
     </message>
     <message>
         <source>All Files</source>
-        <translation>Todos los archivos</translation>
+        <translation>Todos os arquivos</translation>
     </message>
     <message>
         <source>All Supported Files</source>
-        <translation>Todos los archivos soportados</translation>
+        <translation>Todos os arquivos soportados</translation>
     </message>
 </context>
 <context>
     <name>Highlighter</name>
     <message>
         <source>Add</source>
-        <translation>Añadir</translation>
+        <translation>Engadir</translation>
     </message>
     <message>
         <source>Check Spelling...</source>
-        <translation>Revisar la ortografía…</translation>
+        <translation>Comprobar ortografía...</translation>
     </message>
     <message>
         <source>(No suggestions found)</source>
-        <translation>(No se encontraron sugerencias)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ImageButton</name>
     <message>
         <source>Open Image</source>
-        <translation>Abrir imagen</translation>
+        <translation>Abrir imaxe</translation>
     </message>
     <message>
         <source>Images(%1)</source>
-        <translation>Imágenes(%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LocaleDialog</name>
     <message>
         <source>Select application language:</source>
-        <translation>Seleccione el idioma de la aplicación:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Idioma del sistema&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Note</source>
@@ -354,14 +354,14 @@
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Reinicie la aplicación para que el cambio de idioma tenga efecto.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>OdtReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Incapaz de abrir el archivo.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -372,59 +372,59 @@
     </message>
     <message>
         <source>General</source>
-        <translation>General</translation>
+        <translation>Xeral</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation>Estadísticas</translation>
+        <translation>Estatísticas</translation>
     </message>
     <message>
         <source>Toolbar</source>
-        <translation>Barra de herramientas</translation>
+        <translation>Barra de ferramentas</translation>
     </message>
     <message>
         <source>Spell Checking</source>
-        <translation>Ortografía</translation>
+        <translation>Comprobar ortografía</translation>
     </message>
     <message>
         <source>Select Dictionary</source>
-        <translation>Seleccionar diccionario</translation>
+        <translation>Escolle dicionario</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Aviso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unable to open archive.</source>
-        <translation>No se puede abrir el archivador.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>El archivador no contiene un diccionario compatible.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Confirmación</translation>
+        <translation type="unfinished">Confirmación</translation>
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Atajos</translation>
+        <translation>Atallos</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Dos o más atajos coinciden. ¿Desea continuar?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>El diccionario «%1» ya existe. ¿Quiere reemplazarlo?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Daily Goal</source>
-        <translation>Objetivo diario</translation>
+        <translation>Obxetivo diario</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ninguno</translation>
+        <translation>Ningún</translation>
     </message>
     <message>
         <source>Minutes:</source>
@@ -444,7 +444,7 @@
     </message>
     <message>
         <source>Block insertion cursor</source>
-        <translation>Bloquear el cursor de inserción</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Smooth fonts</source>
@@ -452,11 +452,11 @@
     </message>
     <message>
         <source>Typewriter sounds</source>
-        <translation>Sonidos de máquina de escribir</translation>
+        <translation>Sons de máquina de escribir</translation>
     </message>
     <message>
         <source>Smart quotes:</source>
-        <translation>Comillas tipográficas:</translation>
+        <translation>Comillas intelixentes</translation>
     </message>
     <message>
         <source>Double</source>
@@ -476,11 +476,11 @@
     </message>
     <message>
         <source>Saving</source>
-        <translation>Guardado</translation>
+        <translation>Gardando</translation>
     </message>
     <message>
         <source>Remember cursor position</source>
-        <translation>Recordar la posición del cursor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Word count</source>
@@ -488,11 +488,11 @@
     </message>
     <message>
         <source>Page count</source>
-        <translation>Número de páginas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Paragraph count</source>
-        <translation>Número de párrafos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Character count</source>
@@ -504,7 +504,7 @@
     </message>
     <message>
         <source>Paragraphs:</source>
-        <translation>Párrafos:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Word Count Algorithm</source>
@@ -512,15 +512,15 @@
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation>¿Restablecer a cero el progreso diario actual?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation>¿Borrar el diccionario actual?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation>Escribir la marca de ordenación de bytes en archivos de texto plano</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Default format:</source>
@@ -528,23 +528,23 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Interfaz de usuario</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation>Mostrar la barra de desplazamiento siempre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>Mostrar la barra superior siempre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation>Mostrar la barra inferior siempre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset Today</source>
-        <translation>Restablecer hoy</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>History</source>
@@ -552,15 +552,15 @@
     </message>
     <message>
         <source>Remember history</source>
-        <translation>Recordar historial</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Mostrar rachas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation>Progreso mínimo para las rachas:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
@@ -568,15 +568,15 @@
     </message>
     <message>
         <source>Divide character count by six</source>
-        <translation>Dividir entre seis el número de caracteres</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Count each letter as a word</source>
-        <translation>Contar cada letra como una palabra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Page Count Algorithm</source>
-        <translation>Algoritmo de conteo de palabras</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Style</source>
@@ -584,27 +584,27 @@
     </message>
     <message>
         <source>Icons Only</source>
-        <translation>Solo iconos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text Only</source>
-        <translation>Solo texto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text Alongside Icons</source>
-        <translation>Texto al lado de los iconos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text Under Icons</source>
-        <translation>Texto debajo de los iconos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text Position:</source>
-        <translation>Posición del texto:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Actions</source>
-        <translation>Acciones</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move Up</source>
@@ -612,11 +612,11 @@
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Bajar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add Separator</source>
-        <translation>Añadir separador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Command</source>
@@ -624,7 +624,7 @@
     </message>
     <message>
         <source>Shortcut</source>
-        <translation>Atajo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Action</source>
@@ -632,11 +632,11 @@
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Revisar la ortografía mientras escribe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Omitir palabras en MAYÚSCULAS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ignore words with numbers</source>
@@ -644,11 +644,11 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Añadir</translation>
+        <translation type="unfinished">Engadir</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -663,21 +663,21 @@
     <name>RtfReader</name>
     <message>
         <source>Not a supported RTF file.</source>
-        <translation>No es un archivo RTF soportado.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RtfTokenizer</name>
     <message>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Alcanzado el final del archivo de forma inesperada.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SceneList</name>
     <message>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl + Mayús + Abajo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move Scenes Up</source>
@@ -689,7 +689,7 @@
     </message>
     <message>
         <source>Toggle Scene List</source>
-        <translation>Invertir la lista de escenas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Shift+F4</source>
@@ -697,11 +697,11 @@
     </message>
     <message>
         <source>Show scene list (%1)</source>
-        <translation>Mostrar la lista de escenas (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide scene list (%1)</source>
-        <translation>Ocultar la lista de escenas (%1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Filter</source>
@@ -709,11 +709,11 @@
     </message>
     <message>
         <source>Move Scenes Down</source>
-        <translation>Bajar escenas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Resize scene list</source>
-        <translation>Cambiar el tamaño de la lista de escenas</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -727,15 +727,15 @@
     <name>SessionManager</name>
     <message>
         <source>Manage Sessions</source>
-        <translation>Gestionar sesiones</translation>
+        <translation type="unfinished">Gestionar sesiones</translation>
     </message>
     <message>
         <source>S&amp;essions</source>
-        <translation>&amp;Sesiones</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Nueva</translation>
+        <translation type="unfinished">Nueva</translation>
     </message>
     <message>
         <source>Duplicate</source>
@@ -755,88 +755,88 @@
     </message>
     <message>
         <source>New Session</source>
-        <translation>Nueva sesión</translation>
+        <translation type="unfinished">Nueva sesión</translation>
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation>Duplicar sesión</translation>
+        <translation>Duplicar Sesión</translation>
     </message>
     <message>
         <source>Rename Session</source>
-        <translation>Renombrar la sesión</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Confirmación</translation>
+        <translation type="unfinished">Confirmación</translation>
     </message>
     <message>
         <source>Delete selected session?</source>
-        <translation>¿Quiere eliminar la sesión seleccionada?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session name:</source>
-        <translation>Nombre de la sesión:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Aviso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The requested session name is already in use.</source>
-        <translation>El nombre solicitado ya está en uso.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;New...</source>
-        <translation>&amp;Nueva...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation>Ctrl+Mayús+N</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Manage...</source>
-        <translation>&amp;Gestionar...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
-        <translation>Ctrl+Mayús+M</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ShortcutEdit</name>
     <message>
         <source>Clear</source>
-        <translation>Borrar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset to Default</source>
-        <translation>Restablecer valores predeterminados</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Shortcut:</source>
-        <translation>Atajo:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SmartQuote</name>
     <message>
         <source>Replacing quotation marks...</source>
-        <translation>Reemplazando comillas...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation>Espere un momento</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SpellChecker</name>
     <message>
         <source>Check Spelling</source>
-        <translation>Revisar la ortografía</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation>&amp;Añadir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Ignore</source>
@@ -856,31 +856,31 @@
     </message>
     <message>
         <source>Not in dictionary:</source>
-        <translation>No se encontró en el diccionario:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Change to:</source>
-        <translation>Cambiar por:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Checking spelling...</source>
-        <translation>Revisando la ortografía...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please wait</source>
-        <translation>Espere un momento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Continue checking at beginning of file?</source>
-        <translation>¿Continuar comprobación al principio del archivo?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spell check complete.</source>
-        <translation>Finalizó la revisión ortográfica.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -891,11 +891,11 @@
     </message>
     <message>
         <source>Recently used symbols</source>
-        <translation>Símbolos usados recientemente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All symbols</source>
-        <translation>Todos los símbolos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Details</source>
@@ -903,7 +903,7 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation>Nombre:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Insert</source>
@@ -925,18 +925,18 @@
     <name>Theme</name>
     <message>
         <source>Untitled %1</source>
-        <translation>Sin título %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ThemeDialog</name>
     <message>
         <source>Name:</source>
-        <translation>Nombre:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No Image</source>
-        <translation>Sin imagen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Tiled</source>
@@ -960,7 +960,7 @@
     </message>
     <message>
         <source>Opacity:</source>
-        <translation>Opacidad:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Position:</source>
@@ -972,7 +972,7 @@
     </message>
     <message>
         <source>Round Text Background Corners</source>
-        <translation>Esquinas de fondo de texto redondeadas</translation>
+        <translation>Esquinas redondeadas de fondo de texto</translation>
     </message>
     <message>
         <source>Radius:</source>
@@ -980,19 +980,19 @@
     </message>
     <message>
         <source>Blur Text Background</source>
-        <translation>Desenfocar el fondo del texto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text Background Drop Shadow</source>
-        <translation>Sombrear el fondo del texto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Vertical Offset:</source>
-        <translation>Posición vertical:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Margins</source>
-        <translation>Márgenes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window:</source>
@@ -1000,15 +1000,15 @@
     </message>
     <message>
         <source>Page:</source>
-        <translation>Página</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Indent first line</source>
-        <translation>Sangría en la primera línea</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Above:</source>
-        <translation>Por encima:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Below:</source>
@@ -1020,11 +1020,11 @@
     </message>
     <message>
         <source>Edit Theme</source>
-        <translation>Editar tema</translation>
+        <translation>Editar Tema</translation>
     </message>
     <message>
         <source>Window Background</source>
-        <translation>Fondo de ventana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type:</source>
@@ -1032,11 +1032,11 @@
     </message>
     <message>
         <source>Color:</source>
-        <translation>Color:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Image:</source>
-        <translation>Imagen:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> pixels</source>
@@ -1044,15 +1044,15 @@
     </message>
     <message>
         <source>Left</source>
-        <translation>Izquierda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text Background</source>
-        <translation>Fondo del texto</translation>
+        <translation>Fondo de Texto</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>Derecha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text</source>
@@ -1072,11 +1072,11 @@
     </message>
     <message>
         <source>Single</source>
-        <translation>Sencillo</translation>
+        <translation type="unfinished">Simples</translation>
     </message>
     <message>
         <source>1.5 Lines</source>
-        <translation>1,5 líneas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Double</source>
@@ -1092,22 +1092,22 @@
     </message>
     <message>
         <source>Paragraph Spacing</source>
-        <translation>Espaciado entre párrafos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Tab Width:</source>
-        <translation>Anchura de tabulación</translation>
+        <translation>Ancho de tabulación:</translation>
     </message>
     <message>
         <source>New Theme</source>
-        <translation>Nuevo tema</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ThemeManager</name>
     <message>
         <source>Themes</source>
-        <translation>Temas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Default</source>
@@ -1135,7 +1135,7 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation>Juegos de Espías</translation>
+        <translation>Juegos de Espías.</translation>
     </message>
     <message>
         <source>Tranquility</source>
@@ -1155,7 +1155,7 @@
     </message>
     <message>
         <source>Custom</source>
-        <translation>Personalizados</translation>
+        <translation>Personalizar</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -1439,7 +1439,7 @@
     </message>
     <message>
         <source>Save Changes?</source>
-        <translation>¿Guardar cambios?</translation>
+        <translation>¿Guardar Cambios?</translation>
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
@@ -1499,7 +1499,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation>Configuración de pá&amp;gina...</translation>
+        <translation>Configuración de Pá&amp;gina...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1719,7 +1719,7 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation>Actualizar comillas inteligentes del documento</translation>
+        <translation>Actualizar Citas Inteligentes del Documento</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
@@ -1727,7 +1727,7 @@
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation>Actualizar comillas inteligentes de la selección</translation>
+        <translation>Actualizar Citas Inteligentes de la Selección</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1739,7 +1739,7 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Estab&amp;lecer idioma...</translation>
+        <translation>Establecer Idioma...</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
@@ -1751,7 +1751,7 @@
     </message>
     <message>
         <source>&amp;Daily Progress</source>
-        <translation>Progreso &amp;diario</translation>
+        <translation>Progreso &amp;Diario</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -1819,7 +1819,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Mayús+`</translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
     <message>
         <source>&amp;Help</source>
