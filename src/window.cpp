@@ -675,7 +675,7 @@ void Window::openDocument()
 	QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 	QString path = settings.value("Save/Location", default_path).toString();
 
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"), 0, QFileDialog::DontResolveSymlinks);
+	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
 		settings.setValue("Save/Location", QFileInfo(filenames.last()).absolutePath());
