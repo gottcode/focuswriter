@@ -1456,7 +1456,7 @@ QString Document::getSaveFileName(const QString& title)
 	QString filename;
 	while (filename.isEmpty()) {
 		QString selected;
-		filename = QFileDialog::getSaveFileName(window(), title, path, filter, &selected, QFileDialog::DontResolveSymlinks);
+		filename = QFileDialog::getSaveFileName(window(), title, path, filter, &selected);
 		if (filename.isEmpty()) {
 			break;
 		}
