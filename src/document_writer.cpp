@@ -29,6 +29,7 @@
 
 #if defined(Q_OS_UNIX)
 #include <unistd.h>
+#include <errno.h>
 #elif defined(Q_OS_WIN)
 #include <windows.h>
 #include <io.h>
