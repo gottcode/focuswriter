@@ -21,7 +21,7 @@ Portable Mode
 =============
 
 Create a folder named "Data" in the same folder as the executable
-(the application bundle if using Mac OS X) to run this program from a
+(the application bundle if using macOS) to run this program from a
 USB drive. Simply rename or delete the "Data" folder if you later decide
 you want it to start storing its settings and related files on the host
 computer.
@@ -34,8 +34,8 @@ following places:
   Linux:
     ~/.local/share/GottCode/FocusWriter
 
-  Mac OS X:
+  macOS:
     ~/Library/Application Support/GottCode/FocusWriter
 
   Windows:
-    ~/AppData/Local/GottCode/FocusWriter
+    %LOCALAPPDATA%\GottCode\FocusWriter
