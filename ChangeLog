@@ -1,3 +1,8 @@
+1.6.16
+------
+* FIXED: Could not always save to remote drives.
+* FIXED: Could not browse shortcuts in Windows file dialogs.
+
 1.6.15
 ------
 * FIXED: Automatic high dpi support.

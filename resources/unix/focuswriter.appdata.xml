@@ -201,6 +201,14 @@
   </kudos>
 
   <releases>
+    <release version="1.6.16" date="2018-09-03">
+      <description>
+        <ul>
+          <li>FIXED: Could not always save to remote drives</li>
+          <li>FIXED: Could not browse shortcuts in Windows file dialogs</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.6.15" date="2018-07-20">
       <description>
         <ul>
