@@ -31,14 +31,14 @@
     <name>DailyProgress</name>
     <message numerus="yes">
         <source>%1% of %Ln minute(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%1% of %Ln minute</numerusform>
             <numerusform>%1% of %Ln minutes</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%1% of %Ln word(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%1% of %Ln word</numerusform>
             <numerusform>%1% of %Ln words</numerusform>
         </translation>
@@ -60,6 +60,20 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -95,7 +109,7 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
+        <source>%L1% of daily goal</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

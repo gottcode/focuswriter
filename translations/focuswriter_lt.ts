@@ -30,19 +30,19 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% iš %Ln minutės</numerusform>
-            <numerusform>%1% iš %Ln minučių</numerusform>
-            <numerusform>%1% iš %Ln minučių</numerusform>
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% iš %Ln žodžio</numerusform>
-            <numerusform>%1% iš %Ln žodžių</numerusform>
-            <numerusform>%1% iš %Ln žodžių</numerusform>
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -100,8 +100,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% kasdienio tikslo</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% kasdienio tikslo</translation>
     </message>
 </context>
 <context>
@@ -294,10 +294,6 @@
         <translation>ODT formatas</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>DOCX formatas</translation>
     </message>
@@ -316,6 +312,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Visi palaikomi failai</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -521,32 +521,12 @@
         <translation>Atstatyti kasdienę eigą šiandienai iki nulio?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Šalinti esamą žodyną?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Įrašyti baitų tvarkos žymę gryno teksto failuose</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Numatytasis formatas:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Naudotojo sąsaja</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Visada rodyti slankjuostę</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Visada rodyti viršutinę juostą</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Visada rodyti apatinę juostą</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -663,6 +643,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Asmeninis žodynas</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Šalinti esamą žodyną?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Naudotojo sąsaja</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Visada rodyti slankjuostę</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Visada rodyti viršutinę juostą</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Visada rodyti apatinę juostą</translation>
     </message>
 </context>
 <context>
@@ -1120,14 +1120,6 @@
         <translation>Numatytoji</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Geliantis dangus</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Žavesys</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Švelniai mėlyna</translation>
     </message>
@@ -1138,14 +1130,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Kosminės svajonės</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Šnipų žaidimai</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Ramumas</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1198,6 +1182,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Eksportuoti temą</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Geliantis dangus</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Žavesys</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Šnipų žaidimai</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Ramumas</translation>
     </message>
 </context>
 <context>
@@ -1504,10 +1504,6 @@
         <translation>&amp;Spausdinti...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Pus&amp;lapio sąranka...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Užverti</translation>
     </message>
@@ -1566,38 +1562,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmatas</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Antraštė</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Antraštė &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Antraštė &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Antraštė &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Antraštė &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Antraštė &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Antraštė &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normalus</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1724,16 +1688,8 @@
         <translation>Atnaujinti &amp;dokumentą</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Atnaujinti dokumento išmaniąsias kabutes</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Atnaujinti žymėji&amp;mą</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Atnaujinti žymėjimo išmaniąsias kabutes</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1824,10 +1780,6 @@
         <translation>Dėmesio centras - pastraipa</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>Ž&amp;inynas</translation>
     </message>
@@ -1858,6 +1810,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Apie &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Pus&amp;lapio sąranka...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Antraštė</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Antraštė &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Antraštė &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Antraštė &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Antraštė &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Antraštė &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Antraštė &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normalus</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Atnaujinti dokumento išmaniąsias kabutes</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Atnaujinti žymėjimo išmaniąsias kabutes</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

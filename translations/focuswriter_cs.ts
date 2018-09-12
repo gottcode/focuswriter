@@ -30,19 +30,19 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln minut</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln slov</numerusform>
-            <numerusform>%1% z %Ln slov</numerusform>
-            <numerusform>%1% z %Ln slov</numerusform>
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -100,8 +100,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% z denního cíle</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% z denního cíle</translation>
     </message>
 </context>
 <context>
@@ -294,10 +294,6 @@
         <translation>OpenDocument Text</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>Plochý XML OpenDocument</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -316,6 +312,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Všechny podporované soubory</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>Plochý XML OpenDocument</translation>
     </message>
 </context>
 <context>
@@ -521,32 +521,12 @@
         <translation>Nastavit denní postup pro dnešek znovu na nulu?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Odstranit nynější slovník?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Zapsat značku pro pořadí bytů (BOM) do souborů prostého textu</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Výchozí formát:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Uživatelské rozhraní</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Vždy ukázat posuvník</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Vždy ukázat horní pruh</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Vždy ukázat dolní pruh</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -663,6 +643,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Osobní slovník</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Odstranit nynější slovník?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Uživatelské rozhraní</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Vždy ukázat posuvník</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Vždy ukázat horní pruh</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Vždy ukázat dolní pruh</translation>
     </message>
 </context>
 <context>
@@ -1120,14 +1120,6 @@
         <translation>Výchozí</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Mrazivé nebe</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Okouzlení</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Něžné blues</translation>
     </message>
@@ -1138,14 +1130,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Vesmírné sny</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Výzvědné hry</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Mír a klid</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1198,6 +1182,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Vyvést podobu</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Mrazivé nebe</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Okouzlení</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Výzvědné hry</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Mír a klid</translation>
     </message>
 </context>
 <context>
@@ -1504,10 +1504,6 @@
         <translation>&amp;Tisk...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Nastavení &amp;stránky...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
@@ -1566,38 +1562,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>&amp;Formát</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Nadpis</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Nadpis &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Nadpis &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Nadpis &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Nadpis &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Nadpis &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Nadpis &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normální</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1724,16 +1688,8 @@
         <translation>Obnovit &amp;dokument</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Obnovit typografické uvozovky dokumentu</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Obnovit &amp;výběr</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Obnovit typografické uvozovky výběru</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1824,10 +1780,6 @@
         <translation>Zaměření na odstavec</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
@@ -1858,6 +1810,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>O &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Nastavení &amp;stránky...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Nadpis</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Nadpis &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Nadpis &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Nadpis &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Nadpis &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Nadpis &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Nadpis &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normální</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Obnovit typografické uvozovky dokumentu</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Obnovit typografické uvozovky výběru</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

@@ -30,19 +30,19 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% з %Ln хвилин</numerusform>
-            <numerusform>%1% з %Ln хвилин</numerusform>
-            <numerusform>%1% з %Ln хвилин</numerusform>
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% з %Ln слів</numerusform>
-            <numerusform>%1% з %Ln слів</numerusform>
-            <numerusform>%1% з %Ln слів</numerusform>
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -100,8 +100,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% щоденного завдання</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% щоденного завдання</translation>
     </message>
 </context>
 <context>
@@ -294,10 +294,6 @@
         <translation>OpenDocument Text</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>Відкрити документ Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -316,6 +312,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Всі підтримувані файли</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>Відкрити документ Flat XML</translation>
     </message>
 </context>
 <context>
@@ -521,32 +521,12 @@
         <translation>Скинути сьогоднішній щоденний прогрес до нуля?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Видалити поточний словник?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Записувати мітку байта в простих текстових файлах</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Формат типово:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Інтерфейс користувача</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Завжди відображати прокрутку</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Завжди відображати верхню панель</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Завжди відображати нижню панель</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -663,6 +643,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Особистий словник</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Видалити поточний словник?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Інтерфейс користувача</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Завжди відображати прокрутку</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Завжди відображати верхню панель</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Завжди відображати нижню панель</translation>
     </message>
 </context>
 <context>
@@ -1120,14 +1120,6 @@
         <translation>Типово</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Різкі небеса</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Чарівність</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Ніжний блюз</translation>
     </message>
@@ -1138,14 +1130,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Космічні мрії</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Шпигунські ігри</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Спокій</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1198,6 +1182,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Експортувати тему</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Різкі небеса</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Чарівність</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Шпигунські ігри</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Спокій</translation>
     </message>
 </context>
 <context>
@@ -1504,10 +1504,6 @@
         <translation>&amp;Друк...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Налаштування сто&amp;рінки...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>За&amp;крити</translation>
     </message>
@@ -1566,38 +1562,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>&amp;Формат</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Заголовок</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Заголовок &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Заголовок &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Заголовок &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Заголовок &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Заголовок &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Заголовок &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Звичайний</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1724,16 +1688,8 @@
         <translation>Оновити &amp;документ</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Оновити розумні цитати документу</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Оновити &amp;виділене</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Оновити розумні цитати виділеного</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1824,10 +1780,6 @@
         <translation>На абзаці</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Довідка</translation>
     </message>
@@ -1858,6 +1810,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Про &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Налаштування сто&amp;рінки...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Заголовок</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Заголовок &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Заголовок &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Заголовок &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Заголовок &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Заголовок &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Заголовок &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Звичайний</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Оновити розумні цитати документу</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Оновити розумні цитати виділеного</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

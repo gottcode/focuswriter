@@ -30,15 +30,15 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% из %Ln минут</numerusform>
-            <numerusform>%1% из %Ln минут</numerusform>
-            <numerusform>%1% из %Ln минут</numerusform>
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -100,8 +100,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% от ежедневной цели</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% от ежедневной цели</translation>
     </message>
 </context>
 <context>
@@ -294,10 +294,6 @@
         <translation>Открытый Текстовый Документ</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>Открытый текстовый документ XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Открытый офисный файл XML</translation>
     </message>
@@ -316,6 +312,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Все поддерживаемые файлы</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>Открытый текстовый документ XML</translation>
     </message>
 </context>
 <context>
@@ -521,32 +521,12 @@
         <translation>Сбросить сегодняшний ежедневный прогресс на ноль?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Удалить текущий словарь?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Записывать метку байта в простых текстовых файлах</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Формат по умолчанию:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Интерфейс пользователя</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Всегда показывать полосу прокрутки</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Всегда показывать полосу вверху</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Всегда показывать полосу внизу</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -663,6 +643,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Пользовательский словарь</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Удалить текущий словарь?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Интерфейс пользователя</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Всегда показывать полосу прокрутки</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Всегда показывать полосу вверху</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Всегда показывать полосу внизу</translation>
     </message>
 </context>
 <context>
@@ -1120,14 +1120,6 @@
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Горькие небеса</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Очарование</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Нежный блюз</translation>
     </message>
@@ -1138,14 +1130,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Космические мечты</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Шпионские игры</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Спокойствие</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1198,6 +1182,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Экспортировать тему</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Горькие небеса</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Очарование</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Шпионские игры</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Спокойствие</translation>
     </message>
 </context>
 <context>
@@ -1504,10 +1504,6 @@
         <translation>&amp;Печать...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Ус&amp;тановки страницы...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>З&amp;акрыть</translation>
     </message>
@@ -1566,38 +1562,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Ф&amp;ормат</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Заголовок</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Заголовок &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Заголовок &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Заголовок &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Заголовок &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Заголовок &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Заголовок &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Нормальный</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1724,16 +1688,8 @@
         <translation>Во всём &amp;документе</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Обновить умные цитаты документа</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>В &amp;выделенном</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Обновить умные цитаты выделения</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1824,10 +1780,6 @@
         <translation>На абзаце</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>Спр&amp;авка</translation>
     </message>
@@ -1858,6 +1810,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Информация о &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Ус&amp;тановки страницы...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Заголовок</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Заголовок &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Заголовок &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Заголовок &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Заголовок &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Заголовок &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Заголовок &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Нормальный</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Обновить умные цитаты документа</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Обновить умные цитаты выделения</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

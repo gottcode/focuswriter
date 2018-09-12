@@ -30,17 +30,17 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln րոպեի %1%-ը</numerusform>
-            <numerusform>%Ln րոպեի %1%-ը</numerusform>
+            <numerusform>%Ln րոպեի %L1%-ը</numerusform>
+            <numerusform>%Ln րոպեի %L1%-ը</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%Ln բառի %1%-ը</numerusform>
-            <numerusform>%Ln բառի %1%-ը</numerusform>
+            <numerusform>%Ln բառի %L1%-ը</numerusform>
+            <numerusform>%Ln բառի %L1%-ը</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -95,8 +95,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>Օրական սահմանաքանակի %1%</translation>
+        <source>%L1% of daily goal</source>
+        <translation>Օրական սահմանաքանակի %L1%</translation>
     </message>
 </context>
 <context>
@@ -114,7 +114,7 @@
     </message>
     <message>
         <source>%1 (Read-Only)</source>
-        <translation>%1% (միայն ընթերցման համար)</translation>
+        <translation>%L1% (միայն ընթերցման համար)</translation>
     </message>
     <message>
         <source>Sorry</source>
@@ -288,10 +288,6 @@
         <translation>OpenDocument Text</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -310,6 +306,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Ծրագրին համապատասխանող բոլոր նիշքերը</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -515,32 +515,12 @@
         <translation>Օրական սահմանաքանակի այսօրվա բաժինը զրոյացնե՞լ։</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Հեռացնե՞լ այս բառարանը</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Հասարակ տեքստային նիշքերում գրել բայտերի կարգանիշը</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Լռելյայն ձևաչափ</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Օգտվողի միջերես</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Միշտ ցույց տալ ոլորագոտին</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Միշտ ցույց տալ վերին գոտին</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Միշտ ցույց տալ ստորին գոտին</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Անձնական բառարան</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Հեռացնե՞լ այս բառարանը</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Օգտվողի միջերես</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Միշտ ցույց տալ ոլորագոտին</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Միշտ ցույց տալ վերին գոտին</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Միշտ ցույց տալ ստորին գոտին</translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>Լռելյայն</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Մռայլ երկինք</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Դյութանք</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Մեղմ բլյուզ</translation>
     </message>
@@ -1132,14 +1124,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Տիեզերական երազներ</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Լրտեսական խաղեր</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Հանդարտություն</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Թեման արտահանել</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Մռայլ երկինք</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Դյութանք</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Լրտեսական խաղեր</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Հանդարտություն</translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>&amp;Տպել...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>&amp;Էջի կարգավորում...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Փակել</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Ձևավորում</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Գլխագիր</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Գլխագիր &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Գլխագիր &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Գլխագիր &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Գլխագիր &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Գլխագիր &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Գլխագիր &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Սովորական</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>&amp;Թարմացնել փաստաթուղթը</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Ուղղել փաստաթղթի չակերտները</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Թարմացնել &amp;ընտրված հատվածը</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Ուղղել ընտրված մասի չակերտները</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>Պարբերության ընդգծում</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Օգնություն</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Qt-ի &amp;մասին</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>&amp;Էջի կարգավորում...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Գլխագիր</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Գլխագիր &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Գլխագիր &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Գլխագիր &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Գլխագիր &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Գլխագիր &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Գլխագիր &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Սովորական</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Ուղղել փաստաթղթի չակերտները</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Ուղղել ընտրված մասի չակերտները</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

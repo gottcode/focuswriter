@@ -30,19 +30,19 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln minuty</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
-            <numerusform>%1% z %Ln minut</numerusform>
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% z %Ln słowa</numerusform>
-            <numerusform>%1% z %Ln słów</numerusform>
-            <numerusform>%1% z %Ln słów</numerusform>
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -100,8 +100,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% dziennego celu</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% dziennego celu</translation>
     </message>
 </context>
 <context>
@@ -294,10 +294,6 @@
         <translation>Dokument tekstowy OpenDocument</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -316,6 +312,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Wszystkie obsługiwane typy plików</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -521,32 +521,12 @@
         <translation>Czy zresetować licznik dziennego postępu?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Usunąć obecny słownik?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Zapisz znacznik kolejności bajtów w prostych plikach tekstowych</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Domyślny format:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Interfejs użytkownika</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Zawsze wyświetlaj pasek przewijania</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Zawsze wyświetlaj górny pasek</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Zawsze wyświetlaj dolny pasek</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -663,6 +643,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Osobisty słownik</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Usunąć obecny słownik?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Interfejs użytkownika</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Zawsze wyświetlaj pasek przewijania</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Zawsze wyświetlaj górny pasek</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Zawsze wyświetlaj dolny pasek</translation>
     </message>
 </context>
 <context>
@@ -1120,14 +1120,6 @@
         <translation>Domyślny</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Gorzkie Nieba</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Oczarowanie</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Delikatny Blues</translation>
     </message>
@@ -1138,14 +1130,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Marzenia kosmiczne</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Szpiegowskie gry</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Spokój</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1198,6 +1182,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Eksportuj motyw</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Gorzkie Nieba</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Oczarowanie</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Szpiegowskie gry</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Spokój</translation>
     </message>
 </context>
 <context>
@@ -1504,10 +1504,6 @@
         <translation>&amp;Drukuj...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Ustawienia &amp;strony...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>Z&amp;amknij</translation>
     </message>
@@ -1566,38 +1562,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>&amp;Format</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Nagłówek</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Nagłówek &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Nagłówek &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Nagłówek &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Nagłówek &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Nagłówek &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Nagłówek &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normalnie</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1724,16 +1688,8 @@
         <translation>Aktualizuj &amp;dokument</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Aktualizuj cudzysłowy drukarskie dokumentu</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Aktualizuj z&amp;aznaczenie</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Aktualizuj cudzysłowy drukarskie wyboru</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1824,10 +1780,6 @@
         <translation>Podświetl akapit</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>P&amp;omoc</translation>
     </message>
@@ -1858,6 +1810,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Informacje o &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Ustawienia &amp;strony...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Nagłówek</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Nagłówek &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Nagłówek &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Nagłówek &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Nagłówek &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Nagłówek &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Nagłówek &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normalnie</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Aktualizuj cudzysłowy drukarskie dokumentu</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Aktualizuj cudzysłowy drukarskie wyboru</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

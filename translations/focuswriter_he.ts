@@ -30,17 +30,17 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%1% מתוך דקה %Ln</numerusform>
-            <numerusform>%1% מתוך %Ln דקות</numerusform>
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%1% מתוך %Ln מילים</numerusform>
-            <numerusform>%1% מתוך %Ln מילים</numerusform>
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -95,8 +95,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% מתוך היעד היומי</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% מתוך היעד היומי</translation>
     </message>
 </context>
 <context>
@@ -288,10 +288,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation type="unfinished"></translation>
     </message>
@@ -310,6 +306,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>כל הקבצים הנתמכים</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -515,32 +515,12 @@
         <translation>לאפס התקדמות יומית להיום אל אפס?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>להסיר מילון נוכחי?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>פורמט ברירת מחדל:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>ממשק משתמש</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>הצג תמיד פס גלילה</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>הצג תמיד סרגל עליון</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>הצג תמיד סרגל תחתון</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>מילון אישי</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>להסיר מילון נוכחי?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>ממשק משתמש</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>הצג תמיד פס גלילה</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>הצג תמיד סרגל עליון</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>הצג תמיד סרגל תחתון</translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>ברירת מחדל</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>שמים מרים</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>קסם</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>כחולים עדינים</translation>
     </message>
@@ -1132,14 +1124,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>פנטזיות חלל</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>משחקי ריגול</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>שלווה</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>ייצוא מוטיב</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>שמים מרים</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>קסם</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>משחקי ריגול</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>שלווה</translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>ה&amp;דפסה...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>ת&amp;צורת עמוד...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;סגור</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>עי&amp;צוב</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;כותרת</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>כותרת &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>כותרת &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>כותרת &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>כותרת &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>כותרת &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>כותרת &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;רגיל</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>עדכן &amp;מסמך</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>עדכן &amp;בחירה</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>מרכז פסקה</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;עזרה</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>אודות &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>ת&amp;צורת עמוד...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;כותרת</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>כותרת &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>כותרת &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>כותרת &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>כותרת &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>כותרת &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>כותרת &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;רגיל</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

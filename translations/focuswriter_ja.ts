@@ -30,15 +30,15 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>全 %Ln 分中 %1%</numerusform>
+            <numerusform>全 %Ln 分中 %L1%</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>全 %Ln 単語中 %1%</numerusform>
+            <numerusform>全 %Ln 単語中 %L1%</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -90,8 +90,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>一日の目標の %1%</translation>
+        <source>%L1% of daily goal</source>
+        <translation>一日の目標の %L1%</translation>
     </message>
 </context>
 <context>
@@ -282,10 +282,6 @@
         <translation>OpenDocument 文書</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -304,6 +300,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>サポートされているすべてのファイル</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -509,32 +509,12 @@
         <translation>今日の進捗状況を0にリセットしますか？</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>現在の辞書を削除しますか？</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>プレーンテキストにも BOM を追加する</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>デフォルトの形式:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>ユーザインタフェース</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>常にスクロール・バーを表示</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>常にトップ・バーを表示</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>常にボトム・バーを表示</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -651,6 +631,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>ユーザー辞書</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>現在の辞書を削除しますか？</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>ユーザインタフェース</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>常にスクロール・バーを表示</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>常にトップ・バーを表示</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>常にボトム・バーを表示</translation>
     </message>
 </context>
 <context>
@@ -1108,14 +1108,6 @@
         <translation>デフォルト</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Bitter Skies</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Enchantment</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Gentle Blues</translation>
     </message>
@@ -1126,14 +1118,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Space Dreams</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Spy Games</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Tranquility</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1186,6 +1170,22 @@
     <message>
         <source>Export Theme</source>
         <translation>テーマのエクスポート</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Bitter Skies</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Enchantment</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Spy Games</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Tranquility</translation>
     </message>
 </context>
 <context>
@@ -1492,10 +1492,6 @@
         <translation>印刷 (&amp;P)...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>ページ設定</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>閉じる (&amp;C)</translation>
     </message>
@@ -1554,38 +1550,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>書式 (&amp;R)</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>見出し (&amp;H)</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>見出しレベル1 (&amp;1)</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>見出しレベル2 (&amp;2)</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>見出しレベル3 (&amp;3)</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>見出しレベル4 (&amp;4)</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>見出しレベル5 (&amp;5)</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>見出しレベル6 (&amp;6)</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>通常 (&amp;N)</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1712,16 +1676,8 @@
         <translation>文書全体に適用 (&amp;D)</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>文書全体にスマート引用符を適用</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>選択範囲に適用 (&amp;S)</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>選択範囲にスマート引用符を適用</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1812,10 +1768,6 @@
         <translation>段落フォーカス</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>ヘルプ (&amp;H)</translation>
     </message>
@@ -1846,6 +1798,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Qt について (&amp;Q)</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>ページ設定</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>見出し (&amp;H)</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>見出しレベル1 (&amp;1)</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>見出しレベル2 (&amp;2)</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>見出しレベル3 (&amp;3)</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>見出しレベル4 (&amp;4)</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>見出しレベル5 (&amp;5)</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>見出しレベル6 (&amp;6)</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>通常 (&amp;N)</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>文書全体にスマート引用符を適用</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>選択範囲にスマート引用符を適用</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

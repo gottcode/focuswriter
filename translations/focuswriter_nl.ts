@@ -30,17 +30,17 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% van %Ln minuut</numerusform>
-            <numerusform>%1% van %Ln minuten</numerusform>
+            <numerusform>%L1% van %Ln minuut</numerusform>
+            <numerusform>%L1% van %Ln minuten</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% van %Ln woord</numerusform>
-            <numerusform>%1% van %Ln woorden</numerusform>
+            <numerusform>%L1% van %Ln woord</numerusform>
+            <numerusform>%L1% van %Ln woorden</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -95,8 +95,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% van je dagelijkse doel</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% van je dagelijkse doel</translation>
     </message>
 </context>
 <context>
@@ -288,10 +288,6 @@
         <translation>OpenDocument Tekst</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument platte XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -310,6 +306,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Alle ondersteunde bestanden</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument platte XML</translation>
     </message>
 </context>
 <context>
@@ -515,32 +515,12 @@
         <translation>Dagelijkse voortgang voor vandaag op nul zetten?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Huidige map verwijderen?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Bytevolgorde-markering toevoegen aan platte tekst-bestanden</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Standaard formaat:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Uiterlijk</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Scrollbalk altijd weergeven</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Bovenste balk altijd weergeven</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Onderbalk altijd weergeven</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Persoonlijk woordenboek</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Huidige map verwijderen?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Uiterlijk</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Scrollbalk altijd weergeven</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Bovenste balk altijd weergeven</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Onderbalk altijd weergeven</translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>Standaard</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Bittere luchten</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Betovering</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Rustige blues</translation>
     </message>
@@ -1132,14 +1124,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Ruimtedromen</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Spionnenspel</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Kalmte</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Thema exporteren</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Bittere luchten</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Betovering</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Spionnenspel</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Kalmte</translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>A&amp;fdrukken...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Pagina-instellingen...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>Sl&amp;uiten</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>O&amp;pmaak</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Kop</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Kop &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Kop &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Kop &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Kop &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Kop &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Kop &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normaal</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>&amp;Document bijwerken</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Slimme aanhalingstekens bijwerken</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Selecti&amp;e bijwerken</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Slimme aanhalingstekens bijwerken</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>Focussen op paragraaf</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Hulp</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Over &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Pagina-instellingen...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Kop</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Kop &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Kop &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Kop &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Kop &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Kop &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Kop &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normaal</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Slimme aanhalingstekens bijwerken</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Slimme aanhalingstekens bijwerken</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

@@ -30,15 +30,15 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1%/%Ln 分鐘</numerusform>
+            <numerusform>%L1%/%Ln 分鐘</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1%/%Ln 字</numerusform>
+            <numerusform>%L1%/%Ln 字</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -90,8 +90,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>每日目標的 %1%</translation>
+        <source>%L1% of daily goal</source>
+        <translation>每日目標的 %L1%</translation>
     </message>
 </context>
 <context>
@@ -282,10 +282,6 @@
         <translation>odf 文字</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument 普通 XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -304,6 +300,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>所有支援的檔案</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument 普通 XML</translation>
     </message>
 </context>
 <context>
@@ -509,32 +509,12 @@
         <translation>將今天的計劃進度歸零？</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>移除當前詞典？</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>對純文字檔案寫入位元組順序記號 (BOM)</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>預設格式：</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>介面</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>總是顯示滾動條</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>總是顯示置頂欄</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>總是顯示底邊欄</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -651,6 +631,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>個人詞典</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>移除當前詞典？</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>介面</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>總是顯示滾動條</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>總是顯示置頂欄</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>總是顯示底邊欄</translation>
     </message>
 </context>
 <context>
@@ -1108,14 +1108,6 @@
         <translation>預設</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>天打雷劈</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>魔幻魅力</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>溫和藍調</translation>
     </message>
@@ -1126,14 +1118,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>太空夢遊</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>諜報遊戲</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>寧靜雲海</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1186,6 +1170,22 @@
     <message>
         <source>Export Theme</source>
         <translation>匯出主題</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>天打雷劈</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>魔幻魅力</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>諜報遊戲</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>寧靜雲海</translation>
     </message>
 </context>
 <context>
@@ -1492,10 +1492,6 @@
         <translation>列印 (&amp;P)</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>頁面設定 (&amp;g)</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>關閉 (&amp;C)</translation>
     </message>
@@ -1554,38 +1550,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>格式 (&amp;R)</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>標題 (&amp;H)</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>標題 &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>標題 &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>標題 &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>標題 &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>標題 &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>標題 &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>普通 (&amp;N)</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1712,16 +1676,8 @@
         <translation>更新檔案(&amp;D)</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>將檔案中所有引號更新為智慧引號</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>更新所選(&amp;S)</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>將選取的引號更新為智慧引號</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1812,10 +1768,6 @@
         <translation>聚焦段落</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>幫助 (&amp;H)</translation>
     </message>
@@ -1846,6 +1798,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>關於 &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>頁面設定 (&amp;g)</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>標題 (&amp;H)</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>標題 &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>標題 &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>標題 &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>標題 &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>標題 &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>標題 &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>普通 (&amp;N)</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>將檔案中所有引號更新為智慧引號</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>將選取的引號更新為智慧引號</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>
