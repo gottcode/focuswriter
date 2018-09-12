@@ -549,9 +549,9 @@ void DailyProgress::updateRows()
 QString DailyProgress::Progress::progressString() const
 {
 	if (m_type == 1) {
-		return DailyProgress::tr("%1% of %Ln minute(s)", "", m_goal / 60000).arg(m_progress);
+		return DailyProgress::tr("%L1% of %Ln minute(s)", "", m_goal / 60000).arg(m_progress);
 	} else if (m_type == 2) {
-		return DailyProgress::tr("%1% of %Ln word(s)", "", m_goal).arg(m_progress);
+		return DailyProgress::tr("%L1% of %Ln word(s)", "", m_goal).arg(m_progress);
 	} else if (m_words) {
 		return DailyProgress::tr("%Ln word(s)", "", m_words);
 	} else if (m_msecs) {
