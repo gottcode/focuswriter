@@ -41,7 +41,7 @@ isEmpty(VERSION) {
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
-unix: !macx {
+unix: !macx: !haiku {
 	TARGET = focuswriter
 } else {
 	TARGET = FocusWriter
