@@ -56,15 +56,6 @@ static PProcessIdToSessionId pProcessIdToSessionId = 0;
 #include <unistd.h>
 #endif
 
-namespace QtLP_Private {
-#include "qtlockedfile.cpp"
-#if defined(Q_OS_WIN)
-#include "qtlockedfile_win.cpp"
-#else
-#include "qtlockedfile_unix.cpp"
-#endif
-}
-
 const char* QtLocalPeer::ack = "ack";
 
 QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
@@ -104,18 +95,21 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     QString lockName = QDir(QDir::tempPath()).absolutePath()
                        + QLatin1Char('/') + socketName
                        + QLatin1String("-lockfile");
-    lockFile.setFileName(lockName);
-    lockFile.open(QIODevice::ReadWrite);
+    lockFile = new QLockFile(lockName);
+    lockFile->setStaleLockTime(0);
+#if defined(Q_OS_WIN)
+    lockFile->removeStaleLockFile();
+#endif
 }
 
 
 
 bool QtLocalPeer::isClient()
 {
-    if (lockFile.isLocked())
+    if (lockFile->isLocked())
         return false;
 
-    if (!lockFile.lock(QtLP_Private::QtLockedFile::WriteLock, false))
+    if (!lockFile->tryLock(50))
         return true;
 
     bool res = server->listen(socketName);
