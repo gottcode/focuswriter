@@ -41,7 +41,7 @@ isEmpty(VERSION) {
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
-unix: !macx {
+unix: !macx: !haiku {
 	TARGET = focuswriter
 } else {
 	TARGET = FocusWriter
@@ -259,6 +259,7 @@ macx {
 } else:unix {
 	RESOURCES += resources/images/icons/icons.qrc
 
+!haiku {
 	isEmpty(PREFIX) {
 		PREFIX = /usr/local
 	}
@@ -304,4 +305,41 @@ macx {
 	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes
+
+}else:haiku {
+
+	isEmpty(PREFIX) {
+		PREFIX = /boot/home/config/non-packaged/apps/FocusWriter
+	}
+	isEmpty(BINDIR) {
+		BINDIR = $$PREFIX
+	}
+	isEmpty(DATADIR) {
+		DATADIR = $$PREFIX/data
+	}
+	DEFINES += DATADIR=\\\"$$DATADIR\\\"
+	target.path = $$BINDIR
+
+	icons.files = resources/images/icons/oxygen/hicolor/*
+	icons.path = $$DATADIR/icons/hicolor
+
+	man.files = resources/unix/focuswriter.1
+	man.path = $$PREFIX/../../documentation/man/man1
+
+	qm.files = $$replace(TRANSLATIONS, .ts, .qm)
+	qm.path = $$DATADIR/translations
+	qm.CONFIG += no_check_exist
+
+	sounds.files = resources/sounds/*
+	sounds.path = $$DATADIR/sounds
+
+	themes.files = resources/themes/*
+	themes.path = $$DATADIR/themes
+
+	symbols.files = resources/symbols/symbols1000.dat
+	symbols.path = $$DATADIR
+
+	INSTALLS += target man icons qm sounds symbols themes
+	}
+
 }
