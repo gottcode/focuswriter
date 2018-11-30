@@ -60,7 +60,7 @@ macx {
 
 	SOURCES += src/fileformats/clipboard_mac.cpp
 } else:win32 {
-	DEFINES += RTFCLIPBOARD
+	DEFINES += RTFCLIPBOARD HUNSPELL_STATIC
 
 	LIBS += -lz -lole32
 
