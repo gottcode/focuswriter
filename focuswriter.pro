@@ -255,7 +255,9 @@ macx {
 
 	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS THEMES
 } else:win32 {
-	RC_FILE = resources/windows/icon.rc
+	RC_ICONS = resources/windows/focuswriter.ico
+	QMAKE_TARGET_DESCRIPTION = "Fullscreen word processor"
+	QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2018 Graeme Gott"
 } else:haiku {
 	RESOURCES += resources/images/icons/icons.qrc
 

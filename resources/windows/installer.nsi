@@ -26,7 +26,7 @@ Name "${APPNAME}"
 OutFile "${APPNAME}_${APPVERSION}.exe"
 
 ;Default installation folder
-InstallDir "$PROGRAMFILES\${APPNAME}"
+InstallDir "$PROGRAMFILES64\${APPNAME}"
 InstallDirRegKey HKLM "Software\${APPNAME}" ""
 
 ;Request application privileges for Windows Vista
