@@ -34,10 +34,7 @@ CONFIG(debug, debug|release) {
 }
 
 # Set program version
-VERSION = $$system(git describe)
-isEmpty(VERSION) {
-	VERSION = 1.6.0
-}
+VERSION = 1.7.0
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name

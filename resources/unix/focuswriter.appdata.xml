@@ -205,6 +205,19 @@
   </kudos>
 
   <releases>
+    <release version="1.7.0" date="2018-12-11">
+      <description>
+        <ul>
+          <li>FIXED: Daily progress percentages were not locale aware</li>
+          <li>FIXED: Scene list text was incorrect with Qt 5.12</li>
+          <li>Show current streak for previous day</li>
+          <li>Improved detection of running instance</li>
+          <li>Updated included hunspell</li>
+          <li>Updated dictionaries</li>
+          <li>Translation updates: Czech, Dutch, Hungarian</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.6.16" date="2018-09-03">
       <description>
         <ul>
