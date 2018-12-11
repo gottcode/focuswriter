@@ -3,7 +3,7 @@
 @ECHO OFF
 
 SET APP=FocusWriter
-SET VERSION=1.7.0
+FOR /f %%i IN ('git describe') DO SET VERSION=%%i
 
 ECHO Copying executable
 MKDIR %APP%

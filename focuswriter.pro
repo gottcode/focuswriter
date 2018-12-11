@@ -35,7 +35,11 @@ CONFIG(debug, debug|release) {
 
 # Set program version
 VERSION = 1.7.0
-DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
+VERSIONSTR = $$system(git describe)
+isEmpty(VERSIONSTR) {
+	VERSIONSTR = $$VERSION
+}
+DEFINES += VERSIONSTR=\\\"$${VERSIONSTR}\\\"
 
 # Set program name
 unix: !macx: !haiku {
