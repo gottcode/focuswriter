@@ -31,18 +31,18 @@
     <name>DailyProgress</name>
     <message numerus="yes">
         <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% z %Ln minuty</numerusform>
+            <numerusform>%L1% z %Ln minut</numerusform>
+            <numerusform>%L1% z %Ln minut</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% z %Ln słowa</numerusform>
+            <numerusform>%L1% z %Ln słów</numerusform>
+            <numerusform>%L1% z %Ln słów</numerusform>
         </translation>
     </message>
     <message numerus="yes">

@@ -31,85 +31,85 @@
     <name>DailyProgress</name>
     <message numerus="yes">
         <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% a %Ln percből</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% a %Ln szóból</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln szó</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln perc</numerusform>
         </translation>
     </message>
     <message>
         <source>0%</source>
-        <translation type="unfinished"></translation>
+        <translation>0%</translation>
     </message>
 </context>
 <context>
     <name>DailyProgressDialog</name>
     <message>
         <source>Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Napi Előrehaladás</translation>
     </message>
     <message>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Leghosszabb sorozat</translation>
     </message>
     <message>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenlegi sorozat</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/A</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n nap</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
     <name>DailyProgressLabel</name>
     <message>
         <source>%L1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>A napi cél %L1%-a</translation>
     </message>
 </context>
 <context>
     <name>DictionaryDialog</name>
     <message>
         <source>Set Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelv Beállítása</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
         <source>(Untitled %1)</source>
-        <translation type="unfinished">(Névtelen %1)</translation>
+        <translation>(Névtelen %1)</translation>
     </message>
     <message>
         <source>%1 (Read-Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Csak olvasható)</translation>
     </message>
     <message>
         <source>Sorry</source>
@@ -137,11 +137,11 @@
     </message>
     <message>
         <source>Reload File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl Újratöltése?</translation>
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Újratölti a &apos;%1&apos; fájlt a lemezről?</translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>Untitled %1</source>
-        <translation type="unfinished">Névtelen %1</translation>
+        <translation>Névtelen %1</translation>
     </message>
     <message>
         <source>Question</source>
@@ -172,7 +172,7 @@
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>A &apos;%1&apos; fájlt egy másik program módosította.</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
@@ -203,7 +203,7 @@
     <name>DocxReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Nem sikerült a csomagfájl megnyitása.</translation>
+        <translation>Archívum megnyitása sikertelen.</translation>
     </message>
 </context>
 <context>
@@ -279,31 +279,31 @@
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Szöveg</translation>
     </message>
     <message>
         <source>Office Open XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Office Nyílt XML</translation>
     </message>
     <message>
         <source>Rich Text Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formázott Szöveg Formátum</translation>
     </message>
     <message>
         <source>Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyszerű Szöveg</translation>
     </message>
     <message>
         <source>All Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden Fájl</translation>
     </message>
     <message>
         <source>All Supported Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden Támogatott Fájl</translation>
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -355,7 +355,7 @@
     <name>OdtReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation type="unfinished">Nem sikerült a csomagfájl megnyitása.</translation>
+        <translation>Archívum megnyitása sikertelen.</translation>
     </message>
 </context>
 <context>
@@ -506,35 +506,35 @@
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation type="unfinished"></translation>
+        <translation>Lenullázza a mai, napi előrehaladását?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Írjon byte sorrendet egyszerű szöveges fájlokba</translation>
     </message>
     <message>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett formátum:</translation>
     </message>
     <message>
         <source>Reset Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Mai Lenullázása</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Előzmények</translation>
     </message>
     <message>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Emlékezzen az előzményekre</translation>
     </message>
     <message>
         <source>Show streaks</source>
-        <translation type="unfinished"></translation>
+        <translation>Mutassa a sorozat sávokat</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimális haladás a sorozat eléréséhez:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
@@ -546,11 +546,11 @@
     </message>
     <message>
         <source>Count each letter as a word</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden betű szónak számítson</translation>
     </message>
     <message>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalszám Algoritmus</translation>
     </message>
     <message>
         <source>Style</source>
@@ -634,37 +634,37 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltávolítja a jelenlegi szótárat?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználói Felület</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig mutassa a görgetősávot</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig mutassa a felső eszköztárat</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig mutassa az alsó eszköztárat</translation>
     </message>
 </context>
 <context>
     <name>RtfReader</name>
     <message>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem támogatott RTF fájl.</translation>
     </message>
 </context>
 <context>
     <name>RtfTokenizer</name>
     <message>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>A fájl váratlanul véget ért.</translation>
     </message>
 </context>
 <context>
@@ -733,7 +733,7 @@
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplikálás</translation>
     </message>
     <message>
         <source>Rename</source>
@@ -753,7 +753,7 @@
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Munkamenet Duplikálása</translation>
     </message>
     <message>
         <source>Rename Session</source>
@@ -870,7 +870,7 @@
     </message>
     <message>
         <source>Continue checking at beginning of file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Folytatja a fájl ellenőrzését az elejétől?</translation>
     </message>
     <message>
         <source>Spell check complete.</source>
@@ -954,59 +954,59 @@
     </message>
     <message>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Áttetszőség:</translation>
     </message>
     <message>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozíció:</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szélesség:</translation>
     </message>
     <message>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Szövegháttér Sarkainak Lekerekítése</translation>
     </message>
     <message>
         <source>Radius:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rádiusz:</translation>
     </message>
     <message>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Szövegháttér Elmosása</translation>
     </message>
     <message>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Szövegháttér Árnyékvetése</translation>
     </message>
     <message>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Függőleges Eltolás:</translation>
     </message>
     <message>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Margók</translation>
     </message>
     <message>
         <source>Window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ablak:</translation>
     </message>
     <message>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldal:</translation>
     </message>
     <message>
         <source>Indent first line</source>
-        <translation type="unfinished"></translation>
+        <translation>Első sor behúzása</translation>
     </message>
     <message>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Felette:</translation>
     </message>
     <message>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Alatta:</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -1014,11 +1014,11 @@
     </message>
     <message>
         <source>Edit Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Téma Szerkesztése</translation>
     </message>
     <message>
         <source>Window Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Ablak Háttere</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -1042,7 +1042,7 @@
     </message>
     <message>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Szöveg Háttere</translation>
     </message>
     <message>
         <source>Right</source>
@@ -1082,7 +1082,7 @@
     </message>
     <message>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Magasság:</translation>
     </message>
     <message>
         <source>Paragraph Spacing</source>
@@ -1090,11 +1090,11 @@
     </message>
     <message>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulátor Szélessége:</translation>
     </message>
     <message>
         <source>New Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Új Téma</translation>
     </message>
 </context>
 <context>
@@ -1105,43 +1105,43 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished">Alapértelmezett</translation>
+        <translation>Alapértelmezett</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnyugtató Kékség</translation>
     </message>
     <message>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Régimódi</translation>
     </message>
     <message>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Űr Álmok</translation>
     </message>
     <message>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Íróasztal</translation>
     </message>
     <message>
         <source>New</source>
-        <translation type="unfinished">Új</translation>
+        <translation>Új</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplikálás</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyedi</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Szerkesztés</translation>
+        <translation>Szerkesztés</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Törlés</translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <source>Import</source>
@@ -1157,11 +1157,11 @@
     </message>
     <message>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Törli a &apos;%1&apos; témát?</translation>
     </message>
     <message>
         <source>Themes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Témák (%1)</translation>
     </message>
     <message>
         <source>Import Theme</source>
@@ -1173,19 +1173,19 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Keserű Egek</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Bűbáj</translation>
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Kémjátszmák </translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyugalom</translation>
     </message>
 </context>
 <context>
@@ -1373,7 +1373,7 @@
     </message>
     <message>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden dokumentum listázása</translation>
     </message>
     <message>
         <source>Switch to Next Document</source>
@@ -1433,15 +1433,15 @@
     </message>
     <message>
         <source>Save Changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Változások Mentése?</translation>
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Menti a &apos;%1&apos; változásait mielőtt bezárja?</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az Ön módosításai elvesznek ha nem menti őket.</translation>
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
@@ -1689,7 +1689,7 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nyelv Beállítása...</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
@@ -1701,7 +1701,7 @@
     </message>
     <message>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Napi &amp;Előrehaladás</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -1801,51 +1801,51 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Oldalbeállítás...</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Címsor</translation>
     </message>
     <message>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Címsor &amp;1</translation>
     </message>
     <message>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Címsor &amp;2</translation>
     </message>
     <message>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Címsor &amp;3</translation>
     </message>
     <message>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Címsor &amp;4</translation>
     </message>
     <message>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Címsor &amp;5</translation>
     </message>
     <message>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Címsor &amp;6</translation>
     </message>
     <message>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normál</translation>
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentum Intelligens Idézőjeleinek Frissítése</translation>
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Kijelölés Intelligens Idézőjeleinek Frissítése</translation>
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>
