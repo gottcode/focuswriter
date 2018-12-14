@@ -97,9 +97,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
                        + QLatin1String("-lockfile");
     lockFile = new QLockFile(lockName);
     lockFile->setStaleLockTime(0);
-#if defined(Q_OS_WIN)
     lockFile->removeStaleLockFile();
-#endif
 }
 
 
