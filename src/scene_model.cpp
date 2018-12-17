@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2015, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -275,6 +275,8 @@ QVariant SceneModel::data(const QModelIndex& index, int role) const
 			result = scene.display;
 		} else if (role == Qt::UserRole) {
 			result = scene.block_number;
+		} else if (role == Qt::TextAlignmentRole) {
+			result = int(Qt::AlignLeading | Qt::AlignTop);
 		}
 	}
 

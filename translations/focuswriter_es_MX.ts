@@ -30,14 +30,14 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -95,7 +95,7 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
+        <source>%L1% of daily goal</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -288,10 +288,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,6 +305,10 @@
     </message>
     <message>
         <source>All Supported Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -515,31 +515,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Diccionario personal</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>Por omisión</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1131,14 +1123,6 @@
     </message>
     <message>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Exportar tema</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>&amp;Imprimir...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmato</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>Actualizar &amp;documento</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Actualizar &amp;selección</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>Enfocar párrafo</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>A&amp;yuda</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Acerca de &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

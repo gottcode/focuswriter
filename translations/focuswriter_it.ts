@@ -30,17 +30,17 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% minuti su %Ln</numerusform>
-            <numerusform>%1% minuti su %Ln</numerusform>
+            <numerusform>%L1% minuti su %Ln</numerusform>
+            <numerusform>%L1% minuti su %Ln</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% su %Ln parole</numerusform>
-            <numerusform>%1% parole su %Ln</numerusform>
+            <numerusform>%L1% su %Ln parole</numerusform>
+            <numerusform>%L1% parole su %Ln</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -95,8 +95,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% dell&apos;obiettivo giornaliero</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% dell&apos;obiettivo giornaliero</translation>
     </message>
 </context>
 <context>
@@ -288,10 +288,6 @@
         <translation>OpenDocument Text</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -310,6 +306,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Tutti i formati supportati</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -515,32 +515,12 @@
         <translation>Resettare a zero i progressi di oggi?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Rimuovere il dizionario attualmente in uso?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Scrivi il BOM (Byte Order Mark) nei file di puro testo</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Formato predefinito:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Interfaccia utente</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Mostra sempre la barra di scorrimento</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Mostra sempre la barra superiore</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Mostra sempre la barra inferiore</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Dizionario personale</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Rimuovere il dizionario attualmente in uso?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Interfaccia utente</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Mostra sempre la barra di scorrimento</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Mostra sempre la barra superiore</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Mostra sempre la barra inferiore</translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>Predefinito</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Cieli amari</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Incantesimo</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Dolce blues</translation>
     </message>
@@ -1132,14 +1124,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Sogni dallo spazio</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Giochiamo alla spia</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Tranquillità</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Esporta tema</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Cieli amari</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Incantesimo</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Giochiamo alla spia</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Tranquillità</translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>Stam&amp;pa...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Imp&amp;osta pagina</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Chiudi</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmato</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Intestazione</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Intestazione &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Intestazione &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Intestazione &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Intestazione &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Intestazione &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Intestazione &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normale</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>Aggiorna &amp;documento</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Aggiorna virgolette nel documento</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Aggiorna &amp;selezione</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Aggiorna virgolette nel testo selezionato</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>Metti a fuoco il paragrafo</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Aiuto</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Informazioni su &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Imp&amp;osta pagina</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Intestazione</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Intestazione &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Intestazione &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Intestazione &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Intestazione &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Intestazione &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Intestazione &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normale</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Aggiorna virgolette nel documento</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Aggiorna virgolette nel testo selezionato</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

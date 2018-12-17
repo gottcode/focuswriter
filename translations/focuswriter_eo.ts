@@ -30,17 +30,17 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% de %Ln minuto</numerusform>
-            <numerusform>%1% de %Ln minutoj</numerusform>
+            <numerusform>%L1% de %Ln minuto</numerusform>
+            <numerusform>%L1% de %Ln minutoj</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% de %Ln vorto</numerusform>
-            <numerusform>%1% de %Ln vortoj</numerusform>
+            <numerusform>%L1% de %Ln vorto</numerusform>
+            <numerusform>%L1% de %Ln vortoj</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -95,8 +95,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% de ĉiutaga celo</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% de ĉiutaga celo</translation>
     </message>
 </context>
 <context>
@@ -288,10 +288,6 @@
         <translation>OpenDocument Teksto</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -310,6 +306,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Ĉiuj Subtenataj Dosieroj</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -515,32 +515,12 @@
         <translation>Rekomencigi ĉiutagan progreson por hodiaŭ?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Skribi bajtordo-marko en platatekstajn dosierojn</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Defaŭlta dosierformo:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Persona Vortaro</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>Defaŭlto</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Mola Bluso</translation>
     </message>
@@ -1132,14 +1124,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Kosmaj Sonĝoj</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Elporti Etoson</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>&amp;Presi...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Fermi...</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>&amp;Aranĝo</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Titolo</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Titolo &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Titolo &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Titolo &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Titolo &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Titolo &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Titolo &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normala</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>Ĝisdatigi Dokumenton</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Ĝisdatigi Elekton</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>Fokusi Alineon</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Helpo</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Pri &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Titolo</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Titolo &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Titolo &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Titolo &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Titolo &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Titolo &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Titolo &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normala</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

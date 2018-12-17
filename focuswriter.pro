@@ -22,7 +22,7 @@ CONFIG += c++11
 CONFIG(debug, debug|release) {
 	CONFIG += warn_on
 	DEFINES += QT_DEPRECATED_WARNINGS
-	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051100
+	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051200
 	DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 }
 
@@ -34,11 +34,11 @@ CONFIG(debug, debug|release) {
 }
 
 # Set program version
-VERSION = 1.6.16
+VERSION = 1.7.0
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
-unix: !macx {
+unix: !macx: !haiku {
 	TARGET = focuswriter
 } else {
 	TARGET = FocusWriter
@@ -57,7 +57,7 @@ macx {
 
 	SOURCES += src/fileformats/clipboard_mac.cpp
 } else:win32 {
-	DEFINES += RTFCLIPBOARD
+	DEFINES += RTFCLIPBOARD HUNSPELL_STATIC
 
 	LIBS += -lz -lole32
 
@@ -252,7 +252,44 @@ macx {
 
 	QMAKE_BUNDLE_DATA += ICONS SOUNDS SYMBOLS THEMES
 } else:win32 {
-	RC_FILE = resources/windows/icon.rc
+	RC_ICONS = resources/windows/focuswriter.ico
+	QMAKE_TARGET_DESCRIPTION = "Fullscreen word processor"
+	QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2018 Graeme Gott"
+} else:haiku {
+	RESOURCES += resources/images/icons/icons.qrc
+
+	isEmpty(PREFIX) {
+		PREFIX = /boot/home/config/non-packaged/apps/FocusWriter
+	}
+	isEmpty(BINDIR) {
+		BINDIR = $$PREFIX
+	}
+	isEmpty(DATADIR) {
+		DATADIR = $$PREFIX/data
+	}
+	DEFINES += DATADIR=\\\"$$DATADIR\\\"
+	target.path = $$BINDIR
+
+	icons.files = resources/images/icons/oxygen/hicolor/*
+	icons.path = $$DATADIR/icons/hicolor
+
+	man.files = resources/unix/focuswriter.1
+	man.path = $$PREFIX/../../documentation/man/man1
+
+	qm.files = $$replace(TRANSLATIONS, .ts, .qm)
+	qm.path = $$DATADIR/translations
+	qm.CONFIG += no_check_exist
+
+	sounds.files = resources/sounds/*
+	sounds.path = $$DATADIR/sounds
+
+	themes.files = resources/themes/*
+	themes.path = $$DATADIR/themes
+
+	symbols.files = resources/symbols/symbols1000.dat
+	symbols.path = $$DATADIR
+
+	INSTALLS += target man icons qm sounds symbols themes
 } else:unix {
 	RESOURCES += resources/images/icons/icons.qrc
 

@@ -3,8 +3,8 @@
 
 !define APPNAME "FocusWriter"
 !define VERSIONMAJOR 1
-!define VERSIONMINOR 6
-!define VERSIONPATCH 16
+!define VERSIONMINOR 7
+!define VERSIONPATCH 0
 !define APPVERSION "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONPATCH}"
 !define ABOUTURL "https://gottcode.org/focuswriter/"
 
@@ -26,7 +26,7 @@ Name "${APPNAME}"
 OutFile "${APPNAME}_${APPVERSION}.exe"
 
 ;Default installation folder
-InstallDir "$PROGRAMFILES\${APPNAME}"
+InstallDir "$PROGRAMFILES64\${APPNAME}"
 InstallDirRegKey HKLM "Software\${APPNAME}" ""
 
 ;Request application privileges for Windows Vista

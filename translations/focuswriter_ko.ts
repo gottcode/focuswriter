@@ -30,15 +30,15 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln 분 중 %1%</numerusform>
+            <numerusform>%Ln 분 중 %L1%</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>단어 %Ln 중 %1%</numerusform>
+            <numerusform>단어 %Ln 중 %L1%</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -90,8 +90,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>하루 목표의 %1% </translation>
+        <source>%L1% of daily goal</source>
+        <translation>하루 목표의 %L1% </translation>
     </message>
 </context>
 <context>
@@ -282,10 +282,6 @@
         <translation>오픈 다큐먼트 텍스트</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>오픈도큐먼트 플랫 XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>오피스 오픈 XML</translation>
     </message>
@@ -304,6 +300,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>모든 지원되는 파일</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>오픈도큐먼트 플랫 XML</translation>
     </message>
 </context>
 <context>
@@ -509,32 +509,12 @@
         <translation>오늘의 하루 작업량을 0으로 초기화할까요?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>이 사전을 지울까요?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>일반 텍스트 파일에 바이트 순서 표식을 사용합니다.</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>기본 포맷:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>사용자 인터페이스</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>스크롤바 항상 보이기</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>제목 줄 항상 보이기</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>내용 표시 줄 항상 보이기</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -651,6 +631,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>개인 사전</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>이 사전을 지울까요?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>사용자 인터페이스</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>스크롤바 항상 보이기</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>제목 줄 항상 보이기</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>내용 표시 줄 항상 보이기</translation>
     </message>
 </context>
 <context>
@@ -1108,14 +1108,6 @@
         <translation>기본 세션</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>비터 스카이</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>마법</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>편한 푸른색</translation>
     </message>
@@ -1126,14 +1118,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>스페이스 드림</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>스파이 게임</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>고요</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1186,6 +1170,22 @@
     <message>
         <source>Export Theme</source>
         <translation>테마 내보내기</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>비터 스카이</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>마법</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>스파이 게임</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>고요</translation>
     </message>
 </context>
 <context>
@@ -1492,10 +1492,6 @@
         <translation>&amp;출력하기...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>쪽 설정...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;닫기</translation>
     </message>
@@ -1554,38 +1550,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>&amp;양식</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;머릿글</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>머릿글 &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>머릿글 &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>머릿글 &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>머릿글 &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>머릿글 &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>머릿글 &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;기본</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1712,16 +1676,8 @@
         <translation>&amp;문서에 적용</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>지능형 따옴표 문서에 적용</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>&amp;선택한 내용 적용</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>선택한 내용에 지능형 따옴표 적용</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1812,10 +1768,6 @@
         <translation>문단 포커스 </translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;도움말</translation>
     </message>
@@ -1846,6 +1798,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>&amp;Qt 소개</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>쪽 설정...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;머릿글</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>머릿글 &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>머릿글 &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>머릿글 &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>머릿글 &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>머릿글 &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>머릿글 &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;기본</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>지능형 따옴표 문서에 적용</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>선택한 내용에 지능형 따옴표 적용</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

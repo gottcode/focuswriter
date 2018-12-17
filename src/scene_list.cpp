@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2018 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,8 +65,12 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 	const QStyle* style = widget ? widget->style() : QApplication::style();
 
 	QSize size = style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), widget);
-	int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget) * 2;
-	int height = opt.fontMetrics.lineSpacing() * 3;
+#if !defined(Q_OS_MAC)
+	int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget);
+#else
+	int margin = 0;
+#endif
+	int height = opt.fontMetrics.height() * 3;
 	size.setHeight(margin + height);
 	return size;
 }

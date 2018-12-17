@@ -30,17 +30,17 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% απο %Ln λεπτο</numerusform>
-            <numerusform>%1% απο %Ln λεπτά</numerusform>
+            <numerusform>%L1% απο %Ln λεπτο</numerusform>
+            <numerusform>%L1% απο %Ln λεπτά</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% απο %Ln λέξη</numerusform>
-            <numerusform>%1% απο %Ln λέξεις</numerusform>
+            <numerusform>%L1% απο %Ln λέξη</numerusform>
+            <numerusform>%L1% απο %Ln λέξεις</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -95,8 +95,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% του ημερήσιου στόχου</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% του ημερήσιου στόχου</translation>
     </message>
 </context>
 <context>
@@ -288,10 +288,6 @@
         <translation>Κείμενο OpenDocument </translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -310,6 +306,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Όλα τα υποστηριζόμενα αρχεία</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -515,32 +515,12 @@
         <translation>Επαναφορά καθημερινής προόδου για σήμερα στο μηδέν;</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Να αφαιρεθεί το υπάρχον λεξικό;</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Σήμανση εγγραφής σειράς byte σε αρχεία απλού κειμένου</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Προεπιλεγμένη μορφή:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Διεπαφή Χρήστη</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Εμφάνιση πάντα της γραμμής κύλισης</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Εμφάνιση πάντα τού top bar</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Εμφάνιση πάντα τού bottom bar</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Προσωπικό Λεξικό</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Να αφαιρεθεί το υπάρχον λεξικό;</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Διεπαφή Χρήστη</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Εμφάνιση πάντα της γραμμής κύλισης</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Εμφάνιση πάντα τού top bar</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Εμφάνιση πάντα τού bottom bar</translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>Προεπιλογή</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Πικρά Ουράνια</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Μαγεία</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Gentle Blues</translation>
     </message>
@@ -1132,14 +1124,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Space Dreams</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Παιχνίδια Κατασκοπίας</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Ηρεμία</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Εξαγωγή Θέματος</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Πικρά Ουράνια</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Μαγεία</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Παιχνίδια Κατασκοπίας</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Ηρεμία</translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>Εκτύ&amp;πωση...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Δι&amp;αμόρφωση Σελίδας...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>&amp;Μορφοποίηση</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>Επικεφαλίδα</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Επικεφαλίδα &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Επικεφαλίδα &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Επικεφαλίδα &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Επικεφαλίδα &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Επικεφαλίδα &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Επικεφαλίδα &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>Απλή</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>Ενη&amp;μέρωση εγγράφου</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Ενημέρωση εισαγωγικών εγγράφου</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Ε&amp;νημέρωση Επιλογής</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Ενημέρωση επιλογής εισαγωγικών εγγράφου</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>Εστίαση Παραγράφου</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>&amp;Σχετικά με το Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Δι&amp;αμόρφωση Σελίδας...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>Επικεφαλίδα</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Επικεφαλίδα &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Επικεφαλίδα &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Επικεφαλίδα &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Επικεφαλίδα &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Επικεφαλίδα &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Επικεφαλίδα &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>Απλή</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Ενημέρωση εισαγωγικών εγγράφου</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Ενημέρωση επιλογής εισαγωγικών εγγράφου</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='6.0.4.2'
+loversion='6.1.3.2'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.0.4/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.1.3/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -147,6 +147,9 @@ cp -a $lofiles/af_ZA/af_ZA.dic dicts/af_ZA.dic
 echo -n ' ar'
 cp -a $lofiles/ar/ar.aff dicts/ar.aff
 cp -a $lofiles/ar/ar.dic dicts/ar.dic
+echo -n ' bs'
+cp -a $lofiles/bs_BA/bs_BA.aff dicts/bs.aff
+cp -a $lofiles/bs_BA/bs_BA.dic dicts/bs.dic
 echo -n ' ca'
 cp -a $lofiles/ca/dictionaries/ca.aff dicts/ca.aff
 cp -a $lofiles/ca/dictionaries/ca.dic dicts/ca.dic
@@ -191,10 +194,13 @@ cp -a $lofiles/es/es_ANY.aff dicts/es.aff
 cp -a $lofiles/es/es_ANY.dic dicts/es.dic
 echo -n ' fi'
 cp -a voikko/voikko/2 dicts
-cp -a voikko/voikko/Windows-32bit-WindowsPE/libvoikko-1.dll dicts
+cp -a voikko/voikko/Windows-64bit-WindowsPE/libvoikko-1.dll dicts
 echo -n ' fr'
 cp -a $lofiles/fr_FR/fr.aff dicts/fr.aff
 cp -a $lofiles/fr_FR/fr.dic dicts/fr.dic
+echo -n ' gl'
+cp -a $lofiles/gl/gl_ES.aff dicts/gl.aff
+cp -a $lofiles/gl/gl_ES.dic dicts/gl.dic
 echo -n ' he'
 cp -a $lofiles/he_IL/he_IL.aff dicts/he.aff
 cp -a $lofiles/he_IL/he_IL.dic dicts/he.dic

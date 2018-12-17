@@ -30,17 +30,17 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% av %Ln minut</numerusform>
-            <numerusform>%1% av %Ln minuter</numerusform>
+            <numerusform>%L1% av %Ln minut</numerusform>
+            <numerusform>%L1% av %Ln minuter</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% av %Ln ord</numerusform>
-            <numerusform>%1% av %Ln ord</numerusform>
+            <numerusform>%L1% av %Ln ord</numerusform>
+            <numerusform>%L1% av %Ln ord</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -95,8 +95,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% av dagligt mål</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% av dagligt mål</translation>
     </message>
 </context>
 <context>
@@ -288,10 +288,6 @@
         <translation>OpenDocument text</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -310,6 +306,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Alla filer som stöds</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -515,32 +515,12 @@
         <translation>Återställ dagligt mål för idag till noll?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Ta bort aktuell ordlista?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Skriv byteordningsmärke i vanliga textfiler</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Standardformat:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Användargränssnitt</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Visa alltid rullist</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Visa alltid topplist</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Visa alltid bottenlist</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -657,6 +637,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Personlig ordbok</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Ta bort aktuell ordlista?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Användargränssnitt</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Visa alltid rullist</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Visa alltid topplist</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Visa alltid bottenlist</translation>
     </message>
 </context>
 <context>
@@ -1114,14 +1114,6 @@
         <translation>Standard</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Bittra himlar</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Förtrollning</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Mjukblått</translation>
     </message>
@@ -1132,14 +1124,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Rymddrömmar</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Spionspel</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Fridfullhet</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1192,6 +1176,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Exportera tema</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Bittra himlar</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Förtrollning</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Spionspel</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Fridfullhet</translation>
     </message>
 </context>
 <context>
@@ -1498,10 +1498,6 @@
         <translation>Skriv &amp;ut...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Si&amp;dinställning...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>S&amp;täng</translation>
     </message>
@@ -1560,38 +1556,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmatera</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Rubrik</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Rubrik &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Rubrik &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Rubrik &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Rubrik &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Rubrik &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Rubrik &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normal</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1718,16 +1682,8 @@
         <translation>Uppdatera &amp;dokument</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Uppdatera dokument smarta citationstecken</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Uppdatera &amp;markering</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Uptatera markering smarta citationstecken</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1818,10 +1774,6 @@
         <translation>Fokusera stycke</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Hjälp</translation>
     </message>
@@ -1852,6 +1804,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Om &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Si&amp;dinställning...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Rubrik</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Rubrik &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Rubrik &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Rubrik &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Rubrik &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Rubrik &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Rubrik &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normal</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Uppdatera dokument smarta citationstecken</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Uptatera markering smarta citationstecken</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

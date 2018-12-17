@@ -56,15 +56,6 @@ static PProcessIdToSessionId pProcessIdToSessionId = 0;
 #include <unistd.h>
 #endif
 
-namespace QtLP_Private {
-#include "qtlockedfile.cpp"
-#if defined(Q_OS_WIN)
-#include "qtlockedfile_win.cpp"
-#else
-#include "qtlockedfile_unix.cpp"
-#endif
-}
-
 const char* QtLocalPeer::ack = "ack";
 
 QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
@@ -104,29 +95,24 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     QString lockName = QDir(QDir::tempPath()).absolutePath()
                        + QLatin1Char('/') + socketName
                        + QLatin1String("-lockfile");
-    lockFile.setFileName(lockName);
-    lockFile.open(QIODevice::ReadWrite);
+    lockFile = new QLockFile(lockName);
+    lockFile->setStaleLockTime(0);
+    lockFile->removeStaleLockFile();
 }
 
 
 
 bool QtLocalPeer::isClient()
 {
-    if (lockFile.isLocked())
+    if (lockFile->isLocked())
         return false;
 
-    if (!lockFile.lock(QtLP_Private::QtLockedFile::WriteLock, false))
+    if (!lockFile->tryLock(50))
         return true;
 
-    bool res = server->listen(socketName);
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
-    // ### Workaround
-    if (!res && server->serverError() == QAbstractSocket::AddressInUseError) {
-        QFile::remove(QDir::cleanPath(QDir::tempPath())+QLatin1Char('/')+socketName);
-        res = server->listen(socketName);
-    }
-#endif
-    if (!res)
+    if (!QLocalServer::removeServer(socketName))
+        qWarning("QtSingleCoreApplication: could not clean up socket");
+    if (!server->listen(socketName))
         qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qPrintable(server->errorString()));
     QObject::connect(server, SIGNAL(newConnection()), SLOT(receiveConnection()));
     return false;

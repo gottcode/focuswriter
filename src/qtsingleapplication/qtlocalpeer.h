@@ -43,9 +43,8 @@
 
 #include <QLocalServer>
 #include <QLocalSocket>
+#include <QLockFile>
 #include <QDir>
-
-#include "qtlockedfile.h"
 
 class QtLocalPeer : public QObject
 {
@@ -53,6 +52,8 @@ class QtLocalPeer : public QObject
 
 public:
     QtLocalPeer(QObject *parent = 0, const QString &appId = QString());
+    ~QtLocalPeer()
+        { delete lockFile; }
     bool isClient();
     bool sendMessage(const QString &message, int timeout);
     QString applicationId() const
@@ -68,7 +69,7 @@ protected:
     QString id;
     QString socketName;
     QLocalServer* server;
-    QtLP_Private::QtLockedFile lockFile;
+    QLockFile* lockFile;
 
 private:
     static const char* ack;

@@ -30,15 +30,15 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% dari %Ln menit</numerusform>
+            <numerusform>%L1% dari %Ln menit</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% dari %Ln kata</numerusform>
+            <numerusform>%L1% dari %Ln kata</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -90,8 +90,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% dari target harian</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% dari target harian</translation>
     </message>
 </context>
 <context>
@@ -282,10 +282,6 @@
         <translation>Teks OpenDocument</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>Buka berkas XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -304,6 +300,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Semua File Yang Didukung</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>Buka berkas XML</translation>
     </message>
 </context>
 <context>
@@ -509,32 +509,12 @@
         <translation>Reset kemajuan harian hari ini ke nol?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Hilangkan kamus ini?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Tulis byte order mark di file teks polos</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Format standar:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Tampilan pengguna</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Scrollbar selalu tampak</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Bilah atas selalu tampak</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Bilah bawah selalu tampak</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -651,6 +631,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Kamus Pribadi</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Hilangkan kamus ini?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Tampilan pengguna</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Scrollbar selalu tampak</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Bilah atas selalu tampak</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Bilah bawah selalu tampak</translation>
     </message>
 </context>
 <context>
@@ -1108,14 +1108,6 @@
         <translation>Standar</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Gentle Blues</translation>
     </message>
@@ -1126,14 +1118,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Space Dreams</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1186,6 +1170,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Ekspor Tema</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1492,10 +1492,6 @@
         <translation>&amp;Cetak...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Tutup</translation>
     </message>
@@ -1554,38 +1550,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Fo&amp;rmat</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>&amp;Heading</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Heading &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Heading &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Heading &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Heading &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Heading &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Heading &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>&amp;Normal</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1712,16 +1676,8 @@
         <translation>Perbarui &amp;Dokumen</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Perbarui &amp;Seleksi</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Perbarui Pilhan Kutipan Cerdas</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1812,10 +1768,6 @@
         <translation>Fokus Paragraf</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>&amp;Bantuan</translation>
     </message>
@@ -1846,6 +1798,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>Tentang &amp;Qt</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>&amp;Heading</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Heading &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Heading &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Heading &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Heading &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Heading &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Heading &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>&amp;Normal</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Perbarui Pilhan Kutipan Cerdas</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

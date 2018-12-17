@@ -30,19 +30,19 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%1% of %Ln minute(s)</source>
+        <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%1% od %Ln minute</numerusform>
-            <numerusform>%1% od %Ln minute</numerusform>
-            <numerusform>%1% od %Ln minuta</numerusform>
+            <numerusform>%L1% od %Ln minute</numerusform>
+            <numerusform>%L1% od %Ln minute</numerusform>
+            <numerusform>%L1% od %Ln minuta</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <source>%1% of %Ln word(s)</source>
+        <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%1% od %Ln riječi</numerusform>
-            <numerusform>%1% od %Ln riječi</numerusform>
-            <numerusform>%1% od %Ln riječi</numerusform>
+            <numerusform>%L1% od %Ln riječi</numerusform>
+            <numerusform>%L1% od %Ln riječi</numerusform>
+            <numerusform>%L1% od %Ln riječi</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -100,8 +100,8 @@
 <context>
     <name>DailyProgressLabel</name>
     <message>
-        <source>%1% of daily goal</source>
-        <translation>%1% od dnevnog cilja</translation>
+        <source>%L1% of daily goal</source>
+        <translation>%L1% od dnevnog cilja</translation>
     </message>
 </context>
 <context>
@@ -294,10 +294,6 @@
         <translation>OpenDocument Text</translation>
     </message>
     <message>
-        <source>OpenDocument Flat XML</source>
-        <translation>OpenDocument Flat XML</translation>
-    </message>
-    <message>
         <source>Office Open XML</source>
         <translation>Office Open XML</translation>
     </message>
@@ -316,6 +312,10 @@
     <message>
         <source>All Supported Files</source>
         <translation>Sve podržane datoteke</translation>
+    </message>
+    <message>
+        <source>OpenDocument Flat XML</source>
+        <translation>OpenDocument Flat XML</translation>
     </message>
 </context>
 <context>
@@ -521,32 +521,12 @@
         <translation>Vratiti današnje dnevno napredovanje na nulu?</translation>
     </message>
     <message>
-        <source>Remove current dictionary?</source>
-        <translation>Ukloniti trenutno korišteni rječnik?</translation>
-    </message>
-    <message>
         <source>Write byte order mark in plain text files</source>
         <translation>Piši Byte Order Mark u običnim tekstualnim datotekama</translation>
     </message>
     <message>
         <source>Default format:</source>
         <translation>Podrazumijevani format:</translation>
-    </message>
-    <message>
-        <source>User Interface</source>
-        <translation>Elementi prozora</translation>
-    </message>
-    <message>
-        <source>Always show scrollbar</source>
-        <translation>Uvijek prikaži letvicu za pomjeranje teksta</translation>
-    </message>
-    <message>
-        <source>Always show top bar</source>
-        <translation>Uvijek prikaži meni i traku s alatkama</translation>
-    </message>
-    <message>
-        <source>Always show bottom bar</source>
-        <translation>Uvijek prikaži popis otvorenih datoteka i statistiku</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -663,6 +643,26 @@
     <message>
         <source>Personal Dictionary</source>
         <translation>Vlastiti rječnik</translation>
+    </message>
+    <message>
+        <source>Remove current dictionary?</source>
+        <translation>Ukloniti trenutno korišteni rječnik?</translation>
+    </message>
+    <message>
+        <source>User Interface</source>
+        <translation>Elementi prozora</translation>
+    </message>
+    <message>
+        <source>Always show scrollbar</source>
+        <translation>Uvijek prikaži letvicu za pomjeranje teksta</translation>
+    </message>
+    <message>
+        <source>Always show top bar</source>
+        <translation>Uvijek prikaži meni i traku s alatkama</translation>
+    </message>
+    <message>
+        <source>Always show bottom bar</source>
+        <translation>Uvijek prikaži popis otvorenih datoteka i statistiku</translation>
     </message>
 </context>
 <context>
@@ -1120,14 +1120,6 @@
         <translation>Osnovne</translation>
     </message>
     <message>
-        <source>Bitter Skies</source>
-        <translation>Bitter Skies</translation>
-    </message>
-    <message>
-        <source>Enchantment</source>
-        <translation>Enchantment</translation>
-    </message>
-    <message>
         <source>Gentle Blues</source>
         <translation>Gentle Blues</translation>
     </message>
@@ -1138,14 +1130,6 @@
     <message>
         <source>Space Dreams</source>
         <translation>Space Dreams</translation>
-    </message>
-    <message>
-        <source>Spy Games</source>
-        <translation>Spy Games</translation>
-    </message>
-    <message>
-        <source>Tranquility</source>
-        <translation>Tranquility</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1198,6 +1182,22 @@
     <message>
         <source>Export Theme</source>
         <translation>Iznesi temu</translation>
+    </message>
+    <message>
+        <source>Bitter Skies</source>
+        <translation>Bitter Skies</translation>
+    </message>
+    <message>
+        <source>Enchantment</source>
+        <translation>Enchantment</translation>
+    </message>
+    <message>
+        <source>Spy Games</source>
+        <translation>Spy Games</translation>
+    </message>
+    <message>
+        <source>Tranquility</source>
+        <translation>Tranquility</translation>
     </message>
 </context>
 <context>
@@ -1504,10 +1504,6 @@
         <translation>Štampaj ...</translation>
     </message>
     <message>
-        <source>Pa&amp;ge Setup...</source>
-        <translation>Podešavanje stranice ...</translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>Zatvori</translation>
     </message>
@@ -1566,38 +1562,6 @@
     <message>
         <source>Fo&amp;rmat</source>
         <translation>Oblikovanje</translation>
-    </message>
-    <message>
-        <source>&amp;Heading</source>
-        <translation>Naslov</translation>
-    </message>
-    <message>
-        <source>Heading &amp;1</source>
-        <translation>Naslov &amp;1</translation>
-    </message>
-    <message>
-        <source>Heading &amp;2</source>
-        <translation>Naslov &amp;2</translation>
-    </message>
-    <message>
-        <source>Heading &amp;3</source>
-        <translation>Naslov &amp;3</translation>
-    </message>
-    <message>
-        <source>Heading &amp;4</source>
-        <translation>Naslov &amp;4</translation>
-    </message>
-    <message>
-        <source>Heading &amp;5</source>
-        <translation>Naslov &amp;5</translation>
-    </message>
-    <message>
-        <source>Heading &amp;6</source>
-        <translation>Naslov &amp;6</translation>
-    </message>
-    <message>
-        <source>&amp;Normal</source>
-        <translation>Obični tekst</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
@@ -1724,16 +1688,8 @@
         <translation>Ispravi u cijelom dokumentu</translation>
     </message>
     <message>
-        <source>Update Document Smart Quotes</source>
-        <translation>Ispravi navodnike u cijelom dokumentu</translation>
-    </message>
-    <message>
         <source>Update &amp;Selection</source>
         <translation>Ispravi u označenom tekstu</translation>
-    </message>
-    <message>
-        <source>Update Selection Smart Quotes</source>
-        <translation>Ispravi navodnike u označenom tekstu</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
@@ -1824,10 +1780,6 @@
         <translation>Fokus na pasus</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation>Pomoć</translation>
     </message>
@@ -1858,6 +1810,54 @@
     <message>
         <source>About &amp;Qt</source>
         <translation>O Qt-u</translation>
+    </message>
+    <message>
+        <source>Pa&amp;ge Setup...</source>
+        <translation>Podešavanje stranice ...</translation>
+    </message>
+    <message>
+        <source>&amp;Heading</source>
+        <translation>Naslov</translation>
+    </message>
+    <message>
+        <source>Heading &amp;1</source>
+        <translation>Naslov &amp;1</translation>
+    </message>
+    <message>
+        <source>Heading &amp;2</source>
+        <translation>Naslov &amp;2</translation>
+    </message>
+    <message>
+        <source>Heading &amp;3</source>
+        <translation>Naslov &amp;3</translation>
+    </message>
+    <message>
+        <source>Heading &amp;4</source>
+        <translation>Naslov &amp;4</translation>
+    </message>
+    <message>
+        <source>Heading &amp;5</source>
+        <translation>Naslov &amp;5</translation>
+    </message>
+    <message>
+        <source>Heading &amp;6</source>
+        <translation>Naslov &amp;6</translation>
+    </message>
+    <message>
+        <source>&amp;Normal</source>
+        <translation>Obični tekst</translation>
+    </message>
+    <message>
+        <source>Update Document Smart Quotes</source>
+        <translation>Ispravi navodnike u cijelom dokumentu</translation>
+    </message>
+    <message>
+        <source>Update Selection Smart Quotes</source>
+        <translation>Ispravi navodnike u označenom tekstu</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>

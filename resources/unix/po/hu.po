@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# saboarpad <saboarpad@outlook.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2017-09-20 01:16+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2018-10-27 09:32+0000\n"
+"Last-Translator: saboarpad <saboarpad@outlook.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/gottcode/focuswriter/"
 "language/hu/)\n"
 "Language: hu\n"
@@ -24,7 +25,7 @@ msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Teljesképernyős szövegszerkesztő"
 
 #: ../focuswriter.appdata.xml.in:10
 msgid ""
@@ -33,6 +34,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"A FocusWriter egy egyszerű, figyelemelterelés-mentes szövegszerkesztő "
+"program. A felhasználói felületet elrejti a képernyőről, mely az egérkurzor "
+"képernyő széléhez húzva újra megjelenik. Így biztosítja a változatlan, "
+"ismerős felületet, mégsem akadályozza miközben elmerül a munkában."
 
 #: ../focuswriter.appdata.xml.in:11
 msgid ""
@@ -41,6 +46,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"A FocusWriter lehetőséget biztosít Önnek, hogy testre szabja a szoftvert "
+"témák létrehozásával, melyek szabályozzák a : betűtípusokat, színeket és a "
+"háttérképet. Mindezen felül rendelkezik még számos funkcióval: azonnal "
+"frissülő statisztikákkal, napi célkeret kijelzéssel, több dokumentumot is "
+"kezel egy időben, helyesírás ellenőrzéssel, és még sok egyébbel."
 
 #: ../focuswriter.appdata.xml.in:12
 msgid ""
@@ -48,6 +58,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Ráadásul, amikor megnyitja a programot a legutóbbi munkája automatikusan "
+"betöltődik így biztosítva, hogy azonnal fejest ugorhasson a munkába, ott "
+"ahol előzőleg abbahagyta."
 
 #: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
