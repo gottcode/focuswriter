@@ -1,3 +1,7 @@
+1.7.1
+-----
+* FIXED: Did not launch when incorrect lock file was found.
+
 1.7.0
 -----
 * FIXED: Daily progress percentages were not locale aware.
