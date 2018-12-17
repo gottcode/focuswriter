@@ -205,6 +205,13 @@
   </kudos>
 
   <releases>
+    <release version="1.7.1" date="2018-12-17">
+      <description>
+        <ul>
+          <li>FIXED: Did not launch when incorrect lock file was found</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.7.0" date="2018-12-11">
       <description>
         <ul>
