@@ -63,9 +63,6 @@ private slots:
 private:
 	void savePreview();
 	void setValues(Theme& theme);
-#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
-	qreal devicePixelRatioF() const { return devicePixelRatio(); }
-#endif
 
 private:
 	Theme& m_theme;

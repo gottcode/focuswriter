@@ -43,11 +43,6 @@ private slots:
 	void onClicked();
 
 private:
-#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
-	qreal devicePixelRatioF() const { return devicePixelRatio(); }
-#endif
-
-private:
 	QString m_image;
 	QString m_path;
 };

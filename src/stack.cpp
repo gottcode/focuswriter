@@ -820,15 +820,9 @@ void Stack::initPrinter()
 	}
 
 	m_printer = new QPrinter(QPrinter::HighResolution);
-#if (QT_VERSION >= QT_VERSION_CHECK(5,3,0))
 	m_printer->setPageSize(QPageSize(QPageSize::Letter));
 	m_printer->setPageOrientation(QPageLayout::Portrait);
 	m_printer->setPageMargins(QMarginsF(1.0, 1.0, 1.0, 1.0), QPageLayout::Inch);
-#else
-	m_printer->setPageSize(QPrinter::Letter);
-	m_printer->setOrientation(QPrinter::Portrait);
-	m_printer->setPageMargins(1.0, 1.0, 1.0, 1.0, QPrinter::Inch);
-#endif
 }
 
 //-----------------------------------------------------------------------------
