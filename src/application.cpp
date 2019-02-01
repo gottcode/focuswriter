@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012, 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ Application::Application(int& argc, char** argv) :
 	setOrganizationName("GottCode");
 #if !defined(Q_OS_WIN) && !defined(Q_OS_MAC)
 	setWindowIcon(QIcon::fromTheme("focuswriter", QIcon(":/focuswriter.png")));
+	setDesktopFileName("focuswriter");
 #endif
 
 	setAttribute(Qt::AA_UseHighDpiPixmaps, true);
