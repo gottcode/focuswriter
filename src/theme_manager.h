@@ -54,9 +54,6 @@ private:
 	QListWidgetItem* addItem(const QString& id, bool is_default, const QString& name);
 	bool selectItem(const QString& id, bool is_default);
 	void selectionChanged(bool is_default);
-#if (QT_VERSION < QT_VERSION_CHECK(5,6,0))
-	qreal devicePixelRatioF() const { return devicePixelRatio(); }
-#endif
 
 private:
 	QTabWidget* m_tabs;

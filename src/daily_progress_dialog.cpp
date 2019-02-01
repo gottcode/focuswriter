@@ -71,11 +71,7 @@ public:
 			if (progress == 0) {
 				opt.backgroundBrush = opt.palette.alternateBase();
 			} else if (progress == 100) {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,6,0))
 				const qreal pixelratio = painter->device()->devicePixelRatioF();
-#else
-				const qreal pixelratio = painter->device()->devicePixelRatio();
-#endif
 				painter->drawPixmap(QPointF(opt.rect.topLeft()), fetchStarBackground(opt, pixelratio));
 				opt.backgroundBrush = Qt::transparent;
 				opt.font.setBold(true);

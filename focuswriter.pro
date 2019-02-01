@@ -1,11 +1,8 @@
 lessThan(QT_MAJOR_VERSION, 5) {
-	error("FocusWriter requires Qt 5.2 or greater")
+	error("FocusWriter requires Qt 5.9 or greater")
 }
-equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 2) {
-	error("FocusWriter requires Qt 5.2 or greater")
-}
-win32:equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 4) {
-	error("FocusWriter requires Qt 5.4 or greater")
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 9) {
+	error("FocusWriter requires Qt 5.9 or greater")
 }
 
 TEMPLATE = app
