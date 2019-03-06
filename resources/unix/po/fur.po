@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Graeme Gott
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: FocusWriter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"PO-Revision-Date: 2019-02-18 14:18+0000\n"
+"Last-Translator: Massimo Furlani <furlani.massimo@gmail.com>\n"
+"Language-Team: Friulian (http://www.transifex.com/gottcode/focuswriter/"
+"language/fur/)\n"
+"Language: fur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.appdata.xml.in:7
+msgid "Fullscreen word processor"
+msgstr "word processor a plen schermi"
+
+#: ../focuswriter.appdata.xml.in:10
+msgid ""
+"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
+"away interface that you access by moving your mouse to the edges of the "
+"screen, allowing the program to have a familiar look and feel to it while "
+"still getting out of the way so that you can immerse yourself in your work."
+msgstr ""
+"FocusWriter al è un sempliç elaboradôr di tescj, cence distrazions. Al dopre "
+"une interface a disparizion che si mostre movint il mouse viers i ôrs dal "
+"schermi, cussì di dâ al program un aspiet e une sensazion familiâr, cussì di "
+"jessi a plen dentri intal propri lavôr."
+
+#: ../focuswriter.appdata.xml.in:11
+msgid ""
+"FocusWriter allows you to customize your environment by creating themes that "
+"control the font, colors, and background image to add ambiance. It also "
+"features on-the-fly updating statistics, daily goals, multiple open "
+"documents, spell-checking, and much more."
+msgstr ""
+"FocusWriter al permet di personalizâ l'ambient inmaneant temis che a "
+"controlin il font e i colors. Cun di plui si pues zontâ un fondâl par vê une "
+"biele atmosfere di scriture. Al à funzions di inzornament automatic des "
+"statistichis, obietîfs par zornade, vierzidure di plui documents, control "
+"ortografic e cetant ancjemò."
+
+#: ../focuswriter.appdata.xml.in:12
+msgid ""
+"Additionally, when you open the program your current work in progress will "
+"automatically load and position you where you last left off so that you can "
+"immediately jump back in."
+msgstr ""
+"Cun di plui, cuant che tu vierzis il program, il lavôr che tu puartis "
+"indenant al ven cjariât in automatic inte posizion che tu lu âs lassât, "
+"cussì che tu puedis tornâ a lavorâ fin di subit."
+
+#: ../focuswriter.desktop.in:5
+msgid "Fullscreen Word Processor"
+msgstr "Word Processor a plen schermi"
+
+#: ../focuswriter.desktop.in:6
+msgid "Write without distractions"
+msgstr "Scrîf cence distrazions"
