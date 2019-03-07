@@ -210,6 +210,17 @@
   </kudos>
 
   <releases>
+    <release version="1.7.2" date="2019-03-07">
+      <description>
+        <ul>
+          <li>FIXED: Minimum sizes for page counts were too high</li>
+          <li>FIXED: Window icon didn't work in Wayland</li>
+          <li>Require Qt 5.9</li>
+          <li>Improved loading locales</li>
+          <li>Translation updates: Friulian, Korean</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.7.1" date="2018-12-17">
       <description>
         <ul>
