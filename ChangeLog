@@ -1,3 +1,11 @@
+1.7.2
+-----
+* FIXED: Minimum sizes for page counts were too high.
+* FIXED: Window icon didn't work in Wayland.
+* Require Qt 5.9.
+* Improved loading locales.
+* Translation updates: Friulian, Korean.
+
 1.7.1
 -----
 * FIXED: Did not launch when incorrect lock file was found.
