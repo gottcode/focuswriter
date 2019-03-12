@@ -1,11 +1,8 @@
 lessThan(QT_MAJOR_VERSION, 5) {
-	error("FocusWriter requires Qt 5.2 or greater")
+	error("FocusWriter requires Qt 5.9 or greater")
 }
-equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 2) {
-	error("FocusWriter requires Qt 5.2 or greater")
-}
-win32:equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 4) {
-	error("FocusWriter requires Qt 5.4 or greater")
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 9) {
+	error("FocusWriter requires Qt 5.9 or greater")
 }
 
 TEMPLATE = app
@@ -34,7 +31,7 @@ CONFIG(debug, debug|release) {
 }
 
 # Set program version
-VERSION = 1.7.1
+VERSION = 1.7.2
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name
@@ -254,7 +251,7 @@ macx {
 } else:win32 {
 	RC_ICONS = resources/windows/focuswriter.ico
 	QMAKE_TARGET_DESCRIPTION = "Fullscreen word processor"
-	QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2018 Graeme Gott"
+	QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2019 Graeme Gott"
 } else:haiku {
 	RESOURCES += resources/images/icons/icons.qrc
 
