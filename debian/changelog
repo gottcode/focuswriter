@@ -1,3 +1,12 @@
+focuswriter (1.7.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Configure for .xz upstream tarballs
+  * bump to debhelper 12
+  * bump debian policy
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 12 Mar 2019 15:38:45 +0000
+
 focuswriter (1.7.1-1) unstable; urgency=medium
 
   * New upstream release
