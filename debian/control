@@ -3,14 +3,14 @@ Section: editors
 Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
-Build-Depends: debhelper (>= 11),
+Build-Depends: debhelper-compat (= 12),
 		qtbase5-dev,
 		qttools5-dev-tools,
 		qtmultimedia5-dev,
 		libhunspell-dev,
 		pkg-config,
 		zlib1g-dev
-Standards-Version: 4.2.1
+Standards-Version: 4.3.0
 Homepage: https://gottcode.org/focuswriter/
 Vcs-Git: https://salsa.debian.org/debian/focuswriter.git
 Vcs-Browser: https://salsa.debian.org/debian/focuswriter
