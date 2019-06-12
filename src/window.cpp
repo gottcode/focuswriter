@@ -102,10 +102,18 @@ Window::Window(const QStringList& command_line_files) :
 	m_load_screen = new LoadScreen(this);
 
 	// Set up icons
-	if (QIcon::themeName().isEmpty()) {
-		QIcon::setThemeName("hicolor");
+#if defined(Q_OS_MAC) || defined(Q_OS_WIN)
+	QIcon::setThemeName("hicolor");
+	setIconSize(QSize(22,22));
+#else
+	if (QIcon::themeName() == "hicolor") {
+		QIcon::setThemeName("Hicolor");
 		setIconSize(QSize(22,22));
 	}
+#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
+	QIcon::setFallbackThemeName("hicolor");
+#endif
+#endif
 
 	// Create actions manager
 	new ActionManager(this);
