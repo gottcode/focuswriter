@@ -439,7 +439,7 @@ void Timer::init()
 
 	// Lay out edit widgets
 	QGridLayout* edit_layout = new QGridLayout(m_edit);
-	edit_layout->setMargin(0);
+	edit_layout->setContentsMargins(0, 0, 0, 0);
 	edit_layout->setColumnStretch(1, 1);
 	edit_layout->addWidget(new QLabel(tr("Type:"), m_edit), 0, 0, Qt::AlignRight | Qt::AlignVCenter);
 	edit_layout->addWidget(m_type_box, 0, 1, Qt::AlignLeft | Qt::AlignVCenter);
@@ -464,7 +464,7 @@ void Timer::init()
 
 	// Lay out display widgets
 	QVBoxLayout* display_layout = new QVBoxLayout(m_display);
-	display_layout->setMargin(0);
+	display_layout->setContentsMargins(0, 0, 0, 0);
 	display_layout->addWidget(m_display_label);
 	display_layout->addWidget(display_buttons);
 

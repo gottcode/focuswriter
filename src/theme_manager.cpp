@@ -219,7 +219,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_tabs, 1);
-	layout->addSpacing(layout->margin());
+	layout->addSpacing(layout->contentsMargins().top());
 	layout->addWidget(buttons);
 
 	// Select theme

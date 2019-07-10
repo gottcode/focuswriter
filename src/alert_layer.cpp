@@ -32,7 +32,7 @@ AlertLayer::AlertLayer(QWidget* parent) :
 {
 	setMaximumWidth(4 * logicalDpiX());
 	m_alerts_layout = new QVBoxLayout(this);
-	m_alerts_layout->setMargin(0);
+	m_alerts_layout->setContentsMargins(0, 0, 0, 0);
 
 	QAction* action = new QAction(tr("Dismiss Alert"), this);
 	action->setShortcut(tr("Ctrl+D"));

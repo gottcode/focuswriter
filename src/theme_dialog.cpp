@@ -65,7 +65,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_name, SIGNAL(textChanged(QString)), this, SLOT(checkNameAvailable()));
 
 	QHBoxLayout* name_layout = new QHBoxLayout;
-	name_layout->setMargin(0);
+	name_layout->setContentsMargins(0, 0, 0, 0);
 	name_layout->addWidget(new QLabel(tr("Name:"), this));
 	name_layout->addWidget(m_name);
 
@@ -133,7 +133,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	QVBoxLayout* image_layout = new QVBoxLayout;
 	image_layout->setSpacing(0);
-	image_layout->setMargin(0);
+	image_layout->setContentsMargins(0, 0, 0, 0);
 	image_layout->addWidget(m_background_image);
 	image_layout->addWidget(m_clear_image);
 
@@ -366,7 +366,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	QGridLayout* layout = new QGridLayout(this);
 	layout->setColumnStretch(0, 1);
 	layout->setRowStretch(1, 1);
-	layout->setRowMinimumHeight(2, layout->margin());
+	layout->setRowMinimumHeight(2, layout->contentsMargins().top());
 	layout->addLayout(name_layout, 0, 0, 1, 2);
 	layout->addWidget(scroll, 1, 0, 1, 1);
 	layout->addWidget(m_preview, 1, 1, 1, 1, Qt::AlignCenter);

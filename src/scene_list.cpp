@@ -161,7 +161,6 @@ SceneList::SceneList(QWidget* parent) :
 
 	// Lay out widgets
 	QGridLayout* layout = new QGridLayout(this);
-	layout->setMargin(layout->spacing());
 	layout->setColumnStretch(1, 1);
 	layout->setRowStretch(0, 1);
 	layout->addWidget(m_show_button, 0, 0, 2, 1);

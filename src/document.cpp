@@ -395,7 +395,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	// Lay out window
 	m_layout = new QGridLayout(this);
 	m_layout->setSpacing(0);
-	m_layout->setMargin(0);
+	m_layout->setContentsMargins(0, 0, 0, 0);
 	m_layout->addWidget(m_text, 1, 1);
 	m_layout->addWidget(m_scrollbar, 1, 1, 1, 2, Qt::AlignRight);
 

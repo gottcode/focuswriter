@@ -82,7 +82,7 @@ Stack::Stack(QWidget* parent) :
 	connect(ActionManager::instance(), SIGNAL(insertText(QString)), this, SLOT(insertSymbol(QString)));
 
 	m_layout = new QGridLayout(this);
-	m_layout->setMargin(0);
+	m_layout->setContentsMargins(0, 0, 0, 0);
 	m_layout->setSpacing(0);
 	m_layout->setRowMinimumHeight(1, 6);
 	m_layout->setRowMinimumHeight(4, 6);

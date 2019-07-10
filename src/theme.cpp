@@ -184,6 +184,14 @@ Theme::~Theme()
 
 //-----------------------------------------------------------------------------
 
+Theme& Theme::operator=(const Theme& theme)
+{
+	d = theme.d;
+	return *this;
+}
+
+//-----------------------------------------------------------------------------
+
 QString Theme::clone(const QString& id, bool is_default, const QString& name)
 {
 	if (id.isEmpty()) {

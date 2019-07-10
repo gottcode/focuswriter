@@ -645,7 +645,7 @@ void PreferencesDialog::highlightShortcutConflicts()
 	for (int i = 0, count = m_shortcuts->topLevelItemCount(); i < count; ++i) {
 		// Reset font and highlight
 		QTreeWidgetItem* item = m_shortcuts->topLevelItem(i);
-		item->setForeground(1, palette().foreground());
+		item->setForeground(1, palette().windowText());
 		item->setFont(1, font());
 
 		// Find shortcut
@@ -733,7 +733,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	}
 
 	QHBoxLayout* save_format_layout = new QHBoxLayout;
-	save_format_layout->setMargin(0);
+	save_format_layout->setContentsMargins(0, 0, 0, 0);
 	save_format_layout->addWidget(save_format_label);
 	save_format_layout->addWidget(m_save_format);
 	save_format_layout->addStretch();
@@ -948,7 +948,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 #endif
 
 	QVBoxLayout* general_group_layout = new QVBoxLayout(general_group);
-	general_group_layout->setMargin(0);
+	general_group_layout->setContentsMargins(0, 0, 0, 0);
 	general_group_layout->addWidget(m_highlight_misspelled);
 	general_group_layout->addWidget(m_ignore_uppercase);
 	general_group_layout->addWidget(m_ignore_numbers);

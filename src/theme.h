@@ -87,6 +87,7 @@ public:
 	Theme(const Theme& theme);
 	Theme(const QString& id, bool is_default);
 	~Theme();
+	Theme& operator=(const Theme& theme);
 
 	static QString clone(const QString& id, bool is_default, const QString& name);
 	static void copyBackgrounds();

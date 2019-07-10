@@ -239,7 +239,7 @@ void Alert::init()
 	connect(close, SIGNAL(clicked()), this, SLOT(fadeOut()));
 
 	QHBoxLayout* layout = new QHBoxLayout(this);
-	layout->setMargin(7);
+	layout->setContentsMargins(7, 7, 7, 7);
 	layout->setSpacing(6);
 	layout->addWidget(m_expander, 0, Qt::AlignHCenter | Qt::AlignBottom);
 	layout->addWidget(m_pixmap);
