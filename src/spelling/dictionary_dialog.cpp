@@ -53,7 +53,7 @@ DictionaryDialog::DictionaryDialog(QWidget* parent) :
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_languages, 1);
-	layout->addSpacing(layout->margin());
+	layout->addSpacing(layout->contentsMargins().top());
 	layout->addWidget(buttons);
 }
 

@@ -59,7 +59,7 @@ LoadScreen::LoadScreen(QWidget* parent) :
 	m_text->setStyleSheet("QLabel {color: #d7d7d7; background-color: #1e1e1e; border-top-left-radius: 0.25em; border-top-right-radius: 0.25em; padding: 0.25em 0.5em;}");
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
-	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addStretch();
 	layout->addWidget(m_text, 0, Qt::AlignCenter);
 

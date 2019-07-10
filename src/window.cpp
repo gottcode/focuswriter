@@ -251,14 +251,14 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Lay out details
 	QHBoxLayout* clock_layout = new QHBoxLayout;
-	clock_layout->setMargin(0);
+	clock_layout->setContentsMargins(0, 0, 0, 0);
 	clock_layout->setSpacing(6);
 	clock_layout->addWidget(m_timers->display(), 0, Qt::AlignCenter);
 	clock_layout->addWidget(m_clock_label);
 
 	QHBoxLayout* details_layout = new QHBoxLayout(details);
 	details_layout->setSpacing(25);
-	details_layout->setMargin(6);
+	details_layout->setContentsMargins(6, 6, 6, 6);
 	details_layout->addWidget(m_wordcount_label);
 	details_layout->addWidget(m_page_label);
 	details_layout->addWidget(m_paragraph_label);
@@ -271,7 +271,7 @@ Window::Window(const QStringList& command_line_files) :
 	// Lay out footer
 	QGridLayout* footer_layout = new QGridLayout(m_footer);
 	footer_layout->setSpacing(0);
-	footer_layout->setMargin(0);
+	footer_layout->setContentsMargins(0, 0, 0, 0);
 	footer_layout->setColumnStretch(0, 1);
 	footer_layout->addWidget(details, 0, 0, 1, 3);
 	footer_layout->addWidget(m_tabs, 1, 0, 1, 1);
@@ -281,7 +281,7 @@ Window::Window(const QStringList& command_line_files) :
 	// Lay out window
 	QVBoxLayout* layout = new QVBoxLayout(contents);
 	layout->setSpacing(0);
-	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addStretch();
 	layout->addWidget(m_footer);
 

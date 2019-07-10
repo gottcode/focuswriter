@@ -168,7 +168,7 @@ SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
 
 	// Lay out dialog
 	QGridLayout* layout = new QGridLayout(this);
-	layout->setMargin(12);
+	layout->setContentsMargins(12, 12, 12, 12);
 	layout->setSpacing(6);
 	layout->setColumnMinimumWidth(2, 6);
 

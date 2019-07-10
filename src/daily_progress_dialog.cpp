@@ -204,7 +204,7 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_current_streak = new QLabel(m_streaks);
 
 	QHBoxLayout* streaks_layout = new QHBoxLayout(m_streaks);
-	streaks_layout->setMargin(0);
+	streaks_layout->setContentsMargins(0, 0, 0, 0);
 	streaks_layout->addWidget(m_longest_streak);
 	streaks_layout->addWidget(streak_divider);
 	streaks_layout->addWidget(m_current_streak);

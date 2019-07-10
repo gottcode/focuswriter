@@ -41,7 +41,7 @@ ShortcutEdit::ShortcutEdit(QWidget* parent) :
 	m_reset_button->hide();
 
 	QHBoxLayout* layout = new QHBoxLayout(this);
-	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(m_edit);
 	layout->addWidget(clear_button);
 	layout->addWidget(m_reset_button);

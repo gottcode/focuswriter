@@ -134,7 +134,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	connect(m_groups, SIGNAL(activated(int)), this, SLOT(showGroup(int)));
 
 	QVBoxLayout* sidebar_layout = new QVBoxLayout(sidebar);
-	sidebar_layout->setMargin(0);
+	sidebar_layout->setContentsMargins(0, 0, 0, 0);
 	sidebar_layout->addWidget(m_groups);
 
 	QStringList groups = m_model->filterGroups();
