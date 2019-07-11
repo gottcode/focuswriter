@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ AlertLayer::AlertLayer(QWidget* parent) :
 
 	QAction* action = new QAction(tr("Dismiss Alert"), this);
 	action->setShortcut(tr("Ctrl+D"));
-	connect(action, SIGNAL(triggered()), this, SLOT(dismissAlert()));
+	connect(action, &QAction::triggered, this, &AlertLayer::dismissAlert);
 	addAction(action);
 	ActionManager::instance()->addAction("DismissAlert", action);
 }
@@ -48,7 +48,7 @@ void AlertLayer::addAlert(Alert* alert)
 	alert->setParent(this);
 	m_alerts.append(alert);
 	m_alerts_layout->addWidget(alert);
-	connect(alert, SIGNAL(destroyed(QObject*)), this, SLOT(alertDestroyed(QObject*)));
+	connect(alert, &Alert::destroyed, this, &AlertLayer::alertDestroyed);
 	alert->fadeIn();
 }
 

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -98,9 +98,9 @@ void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) con
 void DocumentCache::add(Document* document)
 {
 	m_filenames[document] = createFileName();
-	connect(document, SIGNAL(changedName()), this, SLOT(updateMapping()));
-	connect(document, SIGNAL(replaceCacheFile(Document*, QString)), this, SLOT(replaceCacheFile(Document*, QString)));
-	connect(document, SIGNAL(writeCacheFile(Document*, DocumentWriter*)), this, SLOT(writeCacheFile(Document*, DocumentWriter*)));
+	connect(document, &Document::changedName, this, &DocumentCache::updateMapping);
+	connect(document, &Document::replaceCacheFile, this, &DocumentCache::replaceCacheFile);
+	connect(document, &Document::writeCacheFile, this, &DocumentCache::writeCacheFile);
 	updateMapping();
 }
 

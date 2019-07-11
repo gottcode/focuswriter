@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2015, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2015, 2018, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
 	m_document(document),
 	m_updates(0)
 {
-	connect(m_document->document(), SIGNAL(blockCountChanged(int)), this, SLOT(invalidateScenes()));
+	connect(m_document->document(), &QTextDocument::blockCountChanged, this, &SceneModel::invalidateScenes);
 
 	f_scene_models.append(this);
 }

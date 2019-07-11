@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2015, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -193,7 +193,7 @@ void ActionManager::symbolShortcutActivated()
 void ActionManager::addShortcut(quint32 unicode, const QKeySequence& sequence)
 {
 	QShortcut* shortcut = new QShortcut(sequence, m_widget);
-	connect(shortcut, SIGNAL(activated()), this, SLOT(symbolShortcutActivated()));
+	connect(shortcut, &QShortcut::activated, this, &ActionManager::symbolShortcutActivated);
 	m_symbol_shortcuts[unicode] = shortcut;
 	m_symbol_shortcuts_text[shortcut] = QString::fromUcs4(&unicode, 1);
 }

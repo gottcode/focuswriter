@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->verticalHeader()->hide();
 	m_display->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_display->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-	connect(progress, SIGNAL(modelReset()), this, SLOT(modelReset()));
+	connect(progress, &DailyProgress::modelReset, this, &DailyProgressDialog::modelReset);
 
 	m_delegate = new Delegate(this);
 	m_display->setItemDelegate(m_delegate);
@@ -209,7 +209,7 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	streaks_layout->addWidget(streak_divider);
 	streaks_layout->addWidget(m_current_streak);
 
-	connect(m_progress, SIGNAL(streaksChanged()), this, SLOT(streaksChanged()));
+	connect(m_progress, &DailyProgress::streaksChanged, this, &DailyProgressDialog::streaksChanged);
 	streaksChanged();
 
 	// Lay out dialog

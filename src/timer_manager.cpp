@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 
 #include "timer_manager.h"
 
+#include "document.h"
 #include "stack.h"
 #include "timer.h"
 #include "timer_display.h"
@@ -48,8 +49,8 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 	// Set up interaction with timer display
 	m_display = new TimerDisplay(m_timers, this);
 	m_display->setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(m_display, SIGNAL(clicked()), this, SLOT(toggleVisibility()));
-	connect(m_display, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(recentTimerMenuRequested(QPoint)));
+	connect(m_display, &TimerDisplay::clicked, this, &TimerManager::toggleVisibility);
+	connect(m_display, &TimerDisplay::customContextMenuRequested, this, &TimerManager::recentTimerMenuRequested);
 
 	// Create clock
 	m_clock_label = new QLabel(this);
@@ -57,7 +58,7 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 
 	m_clock_timer = new QTimer(this);
 	m_clock_timer->setInterval(1000);
-	connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(updateClock()));
+	connect(m_clock_timer, &QTimer::timeout, this, &TimerManager::updateClock);
 	startClock();
 
 	// Create timers layout
@@ -73,17 +74,17 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 
 	// Create action buttons
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
-	connect(buttons, SIGNAL(rejected()), this, SLOT(close()));
+	connect(buttons, &QDialogButtonBox::rejected, this, &TimerManager::close);
 
 	m_new_button = buttons->addButton(tr("New"), QDialogButtonBox::ActionRole);
 	m_new_button->setDefault(true);
-	connect(m_new_button, SIGNAL(clicked()), this, SLOT(newTimer()));
+	connect(m_new_button, &QPushButton::clicked, this, &TimerManager::newTimer);
 
 	m_recent_timers = new QMenu(this);
 	m_recent_button = buttons->addButton(tr("Recent"), QDialogButtonBox::ActionRole);
 	m_recent_button->setMenu(m_recent_timers);
 	setupRecentMenu();
-	connect(m_recent_timers, SIGNAL(triggered(QAction*)), this, SLOT(recentTimer(QAction*)));
+	connect(m_recent_timers, &QMenu::triggered, this, &TimerManager::recentTimer);
 
 	// Lay out window
 	QVBoxLayout* layout = new QVBoxLayout(this);
@@ -287,11 +288,11 @@ void TimerManager::addTimer(Timer* timer)
 {
 	m_timers_layout->insertWidget(0, timer);
 	m_timers.append(timer);
-	connect(timer, SIGNAL(changed(Timer*)), this, SLOT(timerChanged(Timer*)));
-	connect(timer, SIGNAL(destroyed(QObject*)), this, SLOT(timerDeleted(QObject*)));
-	connect(timer, SIGNAL(edited(Timer*)), this, SLOT(timerEdited(Timer*)));
-	connect(m_documents, SIGNAL(documentAdded(Document*)), timer, SLOT(documentAdded(Document*)));
-	connect(m_documents, SIGNAL(documentRemoved(Document*)), timer, SLOT(documentRemoved(Document*)));
+	connect(timer, &Timer::changed, this, &TimerManager::timerChanged);
+	connect(timer, &Timer::destroyed, this, &TimerManager::timerDeleted);
+	connect(timer, &Timer::edited, this, &TimerManager::timerEdited);
+	connect(m_documents, &Stack::documentAdded, timer, &Timer::documentAdded);
+	connect(m_documents, &Stack::documentRemoved, timer, &Timer::documentRemoved);
 	m_timers_area->ensureWidgetVisible(timer, 0, 0);
 }
 
@@ -342,8 +343,8 @@ void TimerManager::startClock()
 {
 	updateClock();
 	int delay = 1000 - QTime::currentTime().msec();
-	QTimer::singleShot(delay, m_clock_timer, SLOT(start()));
-	QTimer::singleShot(delay, this, SLOT(updateClock()));
+	QTimer::singleShot(delay, m_clock_timer, QOverload<>::of(&QTimer::start));
+	QTimer::singleShot(delay, this, &TimerManager::updateClock);
 }
 
 //-----------------------------------------------------------------------------

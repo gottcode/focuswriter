@@ -114,7 +114,7 @@ bool QtLocalPeer::isClient()
         qWarning("QtSingleCoreApplication: could not clean up socket");
     if (!server->listen(socketName))
         qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qPrintable(server->errorString()));
-    QObject::connect(server, SIGNAL(newConnection()), SLOT(receiveConnection()));
+    connect(server, &QLocalServer::newConnection, this, &QtLocalPeer::receiveConnection);
     return false;
 }
 
