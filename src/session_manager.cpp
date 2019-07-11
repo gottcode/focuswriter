@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ SessionManager::SessionManager(Window* parent)
 	m_sessions_menu = new QMenu(this);
 	m_sessions_menu->setTitle(tr("S&essions"));
 	m_sessions_actions = new QActionGroup(this);
-	connect(m_sessions_actions, SIGNAL(triggered(QAction*)), this, SLOT(switchSession(QAction*)));
+	connect(m_sessions_actions, &QActionGroup::triggered, this, QOverload<QAction*>::of(&SessionManager::switchSession));
 
 	m_sessions_list = new QListWidget(this);
 	m_sessions_list->setIconSize(QSize(16,16));
@@ -90,27 +90,27 @@ SessionManager::SessionManager(Window* parent)
 	m_sessions_list->setResizeMode(QListWidget::Adjust);
 	m_sessions_list->setSelectionMode(QListWidget::SingleSelection);
 	m_sessions_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	connect(m_sessions_list, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(selectedSessionChanged(QListWidgetItem*)));
-	connect(m_sessions_list, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(switchSession()));
+	connect(m_sessions_list, &QListWidget::currentItemChanged, this, &SessionManager::selectedSessionChanged);
+	connect(m_sessions_list, &QListWidget::itemActivated, this, QOverload<>::of(&SessionManager::switchSession));
 
 	// Create buttons
 	QPushButton* new_button = new QPushButton(tr("New"), this);
-	connect(new_button, SIGNAL(clicked()), this, SLOT(newSession()));
+	connect(new_button, &QPushButton::clicked, this, &SessionManager::newSession);
 
 	QPushButton* clone_button = new QPushButton(tr("Duplicate"), this);
-	connect(clone_button, SIGNAL(clicked()), this, SLOT(cloneSession()));
+	connect(clone_button, &QPushButton::clicked, this, &SessionManager::cloneSession);
 
 	m_rename_button = new QPushButton(tr("Rename"), this);
-	connect(m_rename_button, SIGNAL(clicked()), this, SLOT(renameSession()));
+	connect(m_rename_button, &QPushButton::clicked, this, &SessionManager::renameSession);
 
 	m_delete_button = new QPushButton(tr("Delete"), this);
-	connect(m_delete_button, SIGNAL(clicked()), this, SLOT(deleteSession()));
+	connect(m_delete_button, &QPushButton::clicked, this, &SessionManager::deleteSession);
 
 	m_switch_button = new QPushButton(tr("Switch To"), this);
-	connect(m_switch_button, SIGNAL(clicked()), this, SLOT(switchSession()));
+	connect(m_switch_button, &QPushButton::clicked, this, QOverload<>::of(&SessionManager::switchSession));
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
-	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
+	connect(buttons, &QDialogButtonBox::rejected, this, &SessionManager::reject);
 
 	// Lay out window
 	QGridLayout* layout = new QGridLayout(this);
@@ -484,8 +484,8 @@ void SessionManager::updateList(const QString& selected)
 	}
 
 	m_sessions_menu->addSeparator();
-	m_sessions_menu->addAction(QIcon::fromTheme("window-new"), tr("&New..."), this, SLOT(newSession()), tr("Ctrl+Shift+N"));
-	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, SLOT(exec()), tr("Ctrl+Shift+M"));
+	m_sessions_menu->addAction(QIcon::fromTheme("window-new"), tr("&New..."), this, &SessionManager::newSession, tr("Ctrl+Shift+N"));
+	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, &SessionManager::exec, tr("Ctrl+Shift+M"));
 }
 
 //-----------------------------------------------------------------------------

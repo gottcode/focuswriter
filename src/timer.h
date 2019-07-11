@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +59,10 @@ public:
 
 	static QString toString(const QString& time, const QString& memo);
 
+public slots:
+	void documentAdded(Document* document);
+	void documentRemoved(Document* document);
+
 signals:
 	void changed(Timer* timer);
 	void edited(Timer* timer);
@@ -71,8 +75,6 @@ private slots:
 	void editClicked();
 	void removeClicked();
 	void timerFinished();
-	void documentAdded(Document* document);
-	void documentRemoved(Document* document);
 
 private:
 	void init();

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ TimerDisplay::TimerDisplay(QList<Timer*>& timers, QWidget* parent)
 	m_update_timer = new QTimer(this);
 	m_update_timer->setInterval(40);
 	m_update_timer->start();
-	connect(m_update_timer, SIGNAL(timeout()), this, SLOT(update()));
+	connect(m_update_timer, &QTimer::timeout, this, QOverload<>::of(&TimerDisplay::update));
 }
 
 //-----------------------------------------------------------------------------

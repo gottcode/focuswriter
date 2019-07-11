@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ FontComboBox::FontComboBox(QWidget* parent) :
 	updateModel();
 	setModel(m_font_model);
 
-	connect(this, SIGNAL(currentIndexChanged(QString)), this, SLOT(currentFamilyChanged(QString)));
+	connect(this, &QComboBox::currentTextChanged, this, &FontComboBox::currentFamilyChanged);
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2015 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2015, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ DocumentWatcher::DocumentWatcher(QObject* parent) :
 {
 	m_instance = this;
 	m_watcher = new QFileSystemWatcher(this);
-	connect(m_watcher, SIGNAL(fileChanged(QString)), this, SLOT(documentChanged(QString)));
+	connect(m_watcher, &QFileSystemWatcher::fileChanged, this, &DocumentWatcher::documentChanged);
 }
 
 //-----------------------------------------------------------------------------
@@ -251,7 +251,7 @@ void DocumentWatcher::documentChanged(const QString& path)
 	}
 	m_updates.append(path);
 	if (parent() && (QApplication::activeWindow() == parent())) {
-		QTimer::singleShot(200, this, SLOT(processUpdates()));
+		QTimer::singleShot(200, this, &DocumentWatcher::processUpdates);
 	}
 }
 

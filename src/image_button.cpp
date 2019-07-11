@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2012, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2012, 2014, 2016, 2018, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ ImageButton::ImageButton(QWidget* parent)
 	setAutoDefault(false);
 	setIconSize(QSize(100, 100));
 	unsetImage();
-	connect(this, SIGNAL(clicked()), this, SLOT(onClicked()));
+	connect(this, &ImageButton::clicked, this, &ImageButton::onClicked);
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ private slots:
 	void lineSpacingChanged(int index);
 	void positionChanged(int index);
 	void renderPreview();
-	void renderPreview(const QImage& background, const QRect& foreground, const Theme& theme);
+	void renderText(const QImage& background, const QRect& foreground, const Theme& theme);
 
 private:
 	void savePreview();

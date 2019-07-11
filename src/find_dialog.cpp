@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,12 +48,12 @@ FindDialog::FindDialog(Stack* documents)
 	m_find_string = new QLineEdit(this);
 	m_replace_label = new QLabel(tr("Replace with:"), this);
 	m_replace_string = new QLineEdit(this);
-	connect(m_find_string, SIGNAL(textChanged(QString)), this, SLOT(findChanged(QString)));
+	connect(m_find_string, &QLineEdit::textChanged, this, &FindDialog::findChanged);
 
 	m_ignore_case = new QCheckBox(tr("Ignore case"), this);
 	m_whole_words = new QCheckBox(tr("Whole words only"), this);
 	m_regular_expressions = new QCheckBox(tr("Regular expressions"), this);
-	connect(m_regular_expressions, SIGNAL(toggled(bool)), m_whole_words, SLOT(setDisabled(bool)));
+	connect(m_regular_expressions, &QCheckBox::toggled, m_whole_words, &QCheckBox::setDisabled);
 
 	m_search_backwards = new QRadioButton(tr("Search up"), this);
 	QRadioButton* search_forwards = new QRadioButton(tr("Search down"), this);
@@ -61,19 +61,19 @@ FindDialog::FindDialog(Stack* documents)
 
 	// Create buttons
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
-	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
+	connect(buttons, &QDialogButtonBox::rejected, this, &FindDialog::reject);
 
 	m_find_button = buttons->addButton(tr("&Find"), QDialogButtonBox::ActionRole);
 	m_find_button->setEnabled(false);
-	connect(m_find_button, SIGNAL(clicked()), this, SLOT(find()));
+	connect(m_find_button, &QPushButton::clicked, this, QOverload<>::of(&FindDialog::find));
 
 	m_replace_button = buttons->addButton(tr("&Replace"), QDialogButtonBox::ActionRole);
 	m_replace_button->setEnabled(false);
-	connect(m_replace_button, SIGNAL(clicked()), this, SLOT(replace()));
+	connect(m_replace_button, &QAbstractButton::clicked, this, &FindDialog::replace);
 
 	m_replace_all_button = buttons->addButton(tr("Replace &All"), QDialogButtonBox::ActionRole);
 	m_replace_all_button->setEnabled(false);
-	connect(m_replace_all_button, SIGNAL(clicked()), this, SLOT(replaceAll()));
+	connect(m_replace_all_button, &QPushButton::clicked, this, &FindDialog::replaceAll);
 
 	if (!buttons->button(QDialogButtonBox::Close)->icon().isNull()) {
 		m_find_button->setIcon(QIcon::fromTheme("edit-find"));
