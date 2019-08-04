@@ -1,3 +1,10 @@
+focuswriter (1.7.2-2) unstable; urgency=medium
+
+  * Track upstream maintenance branch
+  * bump debian policy
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 04 Aug 2019 20:55:27 +0200
+
 focuswriter (1.7.2-1) unstable; urgency=medium
 
   * New upstream release
