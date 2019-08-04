@@ -1497,6 +1497,17 @@ void Window::initMenus()
 	connect(help_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
 #endif
 
+	// Prevent autodetection of macOS menu roles
+	file_menu->menuAction()->setMenuRole(QAction::NoRole);
+	edit_menu->menuAction()->setMenuRole(QAction::NoRole);
+	format_menu->menuAction()->setMenuRole(QAction::NoRole);
+	headings_menu->menuAction()->setMenuRole(QAction::NoRole);
+	tools_menu->menuAction()->setMenuRole(QAction::NoRole);
+	quotes_menu->menuAction()->setMenuRole(QAction::NoRole);
+	settings_menu->menuAction()->setMenuRole(QAction::NoRole);
+	focus_menu->menuAction()->setMenuRole(QAction::NoRole);
+	help_menu->menuAction()->setMenuRole(QAction::NoRole);
+
 	// Enable toolbar management in preferences dialog
 	QHashIterator<QString, QAction*> i(m_actions);
 	while (i.hasNext()) {
@@ -1510,6 +1521,11 @@ void Window::initMenus()
 
 		// Load custom shortcut
 		ActionManager::instance()->addAction(i.key(), i.value());
+
+		// Prevent autodetection of macOS menu roles
+		if (i.value()->menuRole() == QAction::TextHeuristicRole) {
+			i.value()->setMenuRole(QAction::NoRole);
+		}
 	}
 	addActions(m_actions.values());
 }
