@@ -210,6 +210,16 @@
   </kudos>
 
   <releases>
+    <release version="1.7.3" date="2019-08-07">
+      <description>
+        <ul>
+          <li>FIXED: Was not loading KDE icon theme</li>
+          <li>FIXED: Headings menu was incorrectly shown in German</li>
+          <li>Replaced deprecated code</li>
+          <li>Translations: Friulian, German, Korean</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.7.2" date="2019-03-07">
       <description>
         <ul>
