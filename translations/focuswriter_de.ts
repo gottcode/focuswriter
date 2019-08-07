@@ -30,20 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% von %Ln Minute</numerusform>
-            <numerusform>%L1% von %Ln Minuten</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% von %Ln Wort</numerusform>
-            <numerusform>%L1% von %Ln Wörtern</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln Wort</numerusform>
@@ -60,6 +46,20 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% von %Ln Minute</numerusform>
+            <numerusform>%L1% von %Ln Minuten</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% von %Ln Wort</numerusform>
+            <numerusform>%L1% von %Ln Wörtern</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1827,7 +1827,7 @@
     </message>
     <message>
         <source>Heading &amp;4</source>
-        <translation>Heading &amp;4</translation>
+        <translation>Überschrift &amp;4</translation>
     </message>
     <message>
         <source>Heading &amp;5</source>
@@ -1835,7 +1835,7 @@
     </message>
     <message>
         <source>Heading &amp;6</source>
-        <translation>Heading &amp;6</translation>
+        <translation>Überschrift &amp;6</translation>
     </message>
     <message>
         <source>&amp;Normal</source>
