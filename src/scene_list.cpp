@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2018, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,13 +94,13 @@ SceneList::SceneList(QWidget* parent) :
 	// Create actions for moving scenes
 	QAction* action = new QAction(tr("Move Scenes Down"), this);
 	action->setShortcut(tr("Ctrl+Shift+Down"));
-	connect(action, SIGNAL(triggered()), this, SLOT(moveScenesDown()));
+	connect(action, &QAction::triggered, this, &SceneList::moveScenesDown);
 	addAction(action);
 	ActionManager::instance()->addAction("MoveScenesDown", action);
 
 	action = new QAction(tr("Move Scenes Up"), this);
 	action->setShortcut(tr("Ctrl+Shift+Up"));
-	connect(action, SIGNAL(triggered()), this, SLOT(moveScenesUp()));
+	connect(action, &QAction::triggered, this, &SceneList::moveScenesUp);
 	addAction(action);
 	ActionManager::instance()->addAction("MoveScenesUp", action);
 
@@ -109,20 +109,20 @@ SceneList::SceneList(QWidget* parent) :
 	m_show_button->setAutoRaise(true);
 	m_show_button->setArrowType(Qt::RightArrow);
 	m_show_button->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
-	connect(m_show_button, SIGNAL(clicked()), this, SLOT(showScenes()));
+	connect(m_show_button, &QToolButton::clicked, this, &SceneList::showScenes);
 
 	// Create button to hide scenes
 	m_hide_button = new QToolButton(this);
 	m_hide_button->setAutoRaise(true);
 	m_hide_button->setArrowType(Qt::LeftArrow);
 	m_hide_button->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
-	connect(m_hide_button, SIGNAL(clicked()), this, SLOT(hideScenes()));
+	connect(m_hide_button, &QToolButton::clicked, this, &SceneList::hideScenes);
 
 	// Create action for toggling scenes
 	m_toggle_action = new QAction(tr("Toggle Scene List"), this);
 	m_toggle_action->setShortcut(tr("Shift+F4"));
-	connect(m_toggle_action, SIGNAL(changed()), this, SLOT(updateShortcuts()));
-	connect(m_toggle_action, SIGNAL(triggered()), this, SLOT(toggleScenes()));
+	connect(m_toggle_action, &QAction::changed, this, &SceneList::updateShortcuts);
+	connect(m_toggle_action, &QAction::triggered, this, &SceneList::toggleScenes);
 	ActionManager::instance()->addAction("ToggleScenes", m_toggle_action);
 	updateShortcuts();
 	parent->addAction(m_toggle_action);
@@ -151,7 +151,7 @@ SceneList::SceneList(QWidget* parent) :
 	// Create filter widget
 	m_filter = new QLineEdit(this);
 	m_filter->setPlaceholderText(tr("Filter"));
-	connect(m_filter, SIGNAL(textChanged(QString)), this, SLOT(setFilter(QString)));
+	connect(m_filter, &QLineEdit::textChanged, this, &SceneList::setFilter);
 
 	// Create widget for resizing
 	m_resizer = new QFrame(this);
@@ -161,7 +161,6 @@ SceneList::SceneList(QWidget* parent) :
 
 	// Lay out widgets
 	QGridLayout* layout = new QGridLayout(this);
-	layout->setMargin(layout->spacing());
 	layout->setColumnStretch(1, 1);
 	layout->setRowStretch(0, 1);
 	layout->addWidget(m_show_button, 0, 0, 2, 1);
@@ -193,7 +192,7 @@ bool SceneList::scenesVisible() const
 void SceneList::setDocument(Document* document)
 {
 	if (m_document) {
-		disconnect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+		disconnect(m_document->text(), &QTextEdit::cursorPositionChanged, this, &SceneList::selectCurrentScene);
 	}
 	m_document = 0;
 
@@ -205,7 +204,7 @@ void SceneList::setDocument(Document* document)
 	if (m_document && scenesVisible()) {
 		m_scenes->setDragDropMode(!m_document->text()->isReadOnly() ? QAbstractItemView::InternalMove : QAbstractItemView::NoDragDrop);
 		m_document->sceneModel()->setUpdatesBlocked(false);
-		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+		connect(m_document->text(), &QTextEdit::cursorPositionChanged, this, &SceneList::selectCurrentScene);
 		selectCurrentScene();
 	}
 }
@@ -215,9 +214,9 @@ void SceneList::setDocument(Document* document)
 void SceneList::hideScenes()
 {
 	if (m_document) {
-		disconnect(m_scenes->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(sceneSelected(QModelIndex)));
+		disconnect(m_scenes->selectionModel(), &QItemSelectionModel::currentChanged, this, &SceneList::sceneSelected);
 		m_document->sceneModel()->setUpdatesBlocked(true);
-		disconnect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+		disconnect(m_document->text(), &QTextEdit::cursorPositionChanged, this, &SceneList::selectCurrentScene);
 	}
 
 	m_show_button->show();
@@ -258,9 +257,9 @@ void SceneList::showScenes()
 	if (m_document) {
 		m_scenes->setDragDropMode(!m_document->text()->isReadOnly() ? QAbstractItemView::InternalMove : QAbstractItemView::NoDragDrop);
 		m_document->sceneModel()->setUpdatesBlocked(false);
-		connect(m_document->text(), SIGNAL(cursorPositionChanged()), this, SLOT(selectCurrentScene()));
+		connect(m_document->text(), &QTextEdit::cursorPositionChanged, this, &SceneList::selectCurrentScene);
 		selectCurrentScene();
-		connect(m_scenes->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(sceneSelected(QModelIndex)));
+		connect(m_scenes->selectionModel(), &QItemSelectionModel::currentChanged, this, &SceneList::sceneSelected);
 	}
 
 	m_scenes->setFocus();

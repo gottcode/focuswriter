@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2016, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ ColorButton::ColorButton(QWidget* parent)
 	: QPushButton(parent)
 {
 	setAutoDefault(false);
-	connect(this, SIGNAL(clicked()), this, SLOT(onClicked()));
+	connect(this, &ColorButton::clicked, this, &ColorButton::onClicked);
 }
 
 //-----------------------------------------------------------------------------

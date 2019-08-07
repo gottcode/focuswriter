@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,8 +90,8 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_tabs->setUsesScrollButtons(false);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
-	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
-	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
+	connect(buttons, &QDialogButtonBox::accepted, this, &PreferencesDialog::accept);
+	connect(buttons, &QDialogButtonBox::rejected, this, &PreferencesDialog::reject);
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_tabs);
@@ -645,7 +645,7 @@ void PreferencesDialog::highlightShortcutConflicts()
 	for (int i = 0, count = m_shortcuts->topLevelItemCount(); i < count; ++i) {
 		// Reset font and highlight
 		QTreeWidgetItem* item = m_shortcuts->topLevelItem(i);
-		item->setForeground(1, palette().foreground());
+		item->setForeground(1, palette().windowText());
 		item->setFont(1, font());
 
 		// Find shortcut
@@ -693,8 +693,8 @@ QWidget* PreferencesDialog::initGeneralTab()
 	}
 	m_double_quotes->setMaxVisibleItems(count);
 	m_single_quotes->setMaxVisibleItems(count);
-	connect(m_smart_quotes, SIGNAL(toggled(bool)), m_double_quotes, SLOT(setEnabled(bool)));
-	connect(m_smart_quotes, SIGNAL(toggled(bool)), m_single_quotes, SLOT(setEnabled(bool)));
+	connect(m_smart_quotes, &QCheckBox::toggled, m_double_quotes, &QComboBox::setEnabled);
+	connect(m_smart_quotes, &QCheckBox::toggled, m_single_quotes, &QComboBox::setEnabled);
 
 	QHBoxLayout* quotes_layout = new QHBoxLayout;
 	quotes_layout->addWidget(m_smart_quotes);
@@ -733,7 +733,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	}
 
 	QHBoxLayout* save_format_layout = new QHBoxLayout;
-	save_format_layout->setMargin(0);
+	save_format_layout->setContentsMargins(0, 0, 0, 0);
 	save_format_layout->addWidget(save_format_label);
 	save_format_layout->addWidget(m_save_format);
 	save_format_layout->addStretch();
@@ -789,17 +789,17 @@ QWidget* PreferencesDialog::initDailyGoalTab()
 	m_wordcount->setSingleStep(100);
 	m_wordcount->setEnabled(false);
 
-	connect(m_option_none, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
-	connect(m_option_none, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
+	connect(m_option_none, &QRadioButton::toggled, m_time, &QSpinBox::setDisabled);
+	connect(m_option_none, &QRadioButton::toggled, m_wordcount, &QSpinBox::setDisabled);
 
-	connect(m_option_time, SIGNAL(toggled(bool)), m_time, SLOT(setEnabled(bool)));
-	connect(m_option_time, SIGNAL(toggled(bool)), m_wordcount, SLOT(setDisabled(bool)));
+	connect(m_option_time, &QRadioButton::toggled, m_time, &QSpinBox::setEnabled);
+	connect(m_option_time, &QRadioButton::toggled, m_wordcount, &QSpinBox::setDisabled);
 
-	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_time, SLOT(setDisabled(bool)));
-	connect(m_option_wordcount, SIGNAL(toggled(bool)), m_wordcount, SLOT(setEnabled(bool)));
+	connect(m_option_wordcount, &QRadioButton::toggled, m_time, &QSpinBox::setDisabled);
+	connect(m_option_wordcount, &QRadioButton::toggled, m_wordcount, &QSpinBox::setEnabled);
 
 	QPushButton* reset_today_button = new QPushButton(tr("Reset Today"), tab);
-	connect(reset_today_button, SIGNAL(clicked()), this, SLOT(resetDailyGoal()));
+	connect(reset_today_button, &QPushButton::clicked, this, &PreferencesDialog::resetDailyGoal);
 
 	QGridLayout* goal_layout = new QGridLayout;
 	goal_layout->setColumnStretch(2, 1);
@@ -814,11 +814,11 @@ QWidget* PreferencesDialog::initDailyGoalTab()
 	QGroupBox* history_group = new QGroupBox(tr("History"), tab);
 
 	m_goal_history = new QCheckBox(tr("Remember history"), history_group);
-	connect(m_goal_history, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
+	connect(m_goal_history, &QCheckBox::toggled, this, &PreferencesDialog::goalHistoryToggled);
 
 	m_goal_streaks = new QCheckBox(tr("Show streaks"), history_group);
 	m_goal_streaks->setEnabled(false);
-	connect(m_goal_streaks, SIGNAL(toggled(bool)), this, SLOT(goalHistoryToggled()));
+	connect(m_goal_streaks, &QCheckBox::toggled, this, &PreferencesDialog::goalHistoryToggled);
 
 	m_streak_minimum = new QSpinBox(history_group);
 	m_streak_minimum->setCorrectionMode(QSpinBox::CorrectToNearestValue);
@@ -899,17 +899,17 @@ QWidget* PreferencesDialog::initStatisticsTab()
 	m_page_words->setSingleStep(50);
 	m_page_words->setEnabled(false);
 
-	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_characters, SLOT(setEnabled(bool)));
-	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setDisabled(bool)));
-	connect(m_option_characters, SIGNAL(toggled(bool)), m_page_words, SLOT(setDisabled(bool)));
+	connect(m_option_characters, &QRadioButton::toggled, m_page_characters, &QSpinBox::setEnabled);
+	connect(m_option_characters, &QRadioButton::toggled, m_page_paragraphs, &QSpinBox::setDisabled);
+	connect(m_option_characters, &QRadioButton::toggled, m_page_words, &QSpinBox::setDisabled);
 
-	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_characters, SLOT(setDisabled(bool)));
-	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setEnabled(bool)));
-	connect(m_option_paragraphs, SIGNAL(toggled(bool)), m_page_words, SLOT(setDisabled(bool)));
+	connect(m_option_paragraphs, &QRadioButton::toggled, m_page_characters, &QSpinBox::setDisabled);
+	connect(m_option_paragraphs, &QRadioButton::toggled, m_page_paragraphs, &QSpinBox::setEnabled);
+	connect(m_option_paragraphs, &QRadioButton::toggled, m_page_words, &QSpinBox::setDisabled);
 
-	connect(m_option_words, SIGNAL(toggled(bool)), m_page_characters, SLOT(setDisabled(bool)));
-	connect(m_option_words, SIGNAL(toggled(bool)), m_page_paragraphs, SLOT(setDisabled(bool)));
-	connect(m_option_words, SIGNAL(toggled(bool)), m_page_words, SLOT(setEnabled(bool)));
+	connect(m_option_words, &QRadioButton::toggled, m_page_characters, &QSpinBox::setDisabled);
+	connect(m_option_words, &QRadioButton::toggled, m_page_paragraphs, &QSpinBox::setDisabled);
+	connect(m_option_words, &QRadioButton::toggled, m_page_words, &QSpinBox::setEnabled);
 
 	QGridLayout* page_layout = new QGridLayout(page_group);
 	page_layout->setColumnStretch(2, 1);
@@ -948,7 +948,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 #endif
 
 	QVBoxLayout* general_group_layout = new QVBoxLayout(general_group);
-	general_group_layout->setMargin(0);
+	general_group_layout->setContentsMargins(0, 0, 0, 0);
 	general_group_layout->addWidget(m_highlight_misspelled);
 	general_group_layout->addWidget(m_ignore_uppercase);
 	general_group_layout->addWidget(m_ignore_numbers);
@@ -957,14 +957,14 @@ QWidget* PreferencesDialog::initSpellingTab()
 	QGroupBox* languages_group = new QGroupBox(tr("Language"), tab);
 
 	m_languages = new QComboBox(languages_group);
-	connect(m_languages, SIGNAL(currentIndexChanged(int)), this, SLOT(selectedLanguageChanged(int)));
+	connect(m_languages, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &PreferencesDialog::selectedLanguageChanged);
 
 	m_add_language_button = new QPushButton(tr("Add"), languages_group);
 	m_add_language_button->setAutoDefault(false);
-	connect(m_add_language_button, SIGNAL(clicked()), this, SLOT(addLanguage()));
+	connect(m_add_language_button, &QPushButton::clicked, this, &PreferencesDialog::addLanguage);
 	m_remove_language_button = new QPushButton(tr("Remove"), languages_group);
 	m_remove_language_button->setAutoDefault(false);
-	connect(m_remove_language_button, SIGNAL(clicked()), this, SLOT(removeLanguage()));
+	connect(m_remove_language_button, &QPushButton::clicked, this, &PreferencesDialog::removeLanguage);
 
 	QStringList languages = DictionaryManager::instance().availableDictionaries();
 	for (const QString& language : languages) {
@@ -982,24 +982,24 @@ QWidget* PreferencesDialog::initSpellingTab()
 	QGroupBox* personal_dictionary_group = new QGroupBox(tr("Personal Dictionary"), tab);
 
 	m_word = new QLineEdit(personal_dictionary_group);
-	connect(m_word, SIGNAL(textChanged(QString)), this, SLOT(wordEdited()));
+	connect(m_word, &QLineEdit::textChanged, this, &PreferencesDialog::wordEdited);
 
 	m_add_word_button = new QPushButton(tr("Add"), personal_dictionary_group);
 	m_add_word_button->setAutoDefault(false);
 	m_add_word_button->setDisabled(true);
-	connect(m_add_word_button, SIGNAL(clicked()), this, SLOT(addWord()));
+	connect(m_add_word_button, &QPushButton::clicked, this, &PreferencesDialog::addWord);
 
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
 	QStringList words = DictionaryManager::instance().personal();
 	for (const QString& word : words) {
 		m_personal_dictionary->addItem(word);
 	}
-	connect(m_personal_dictionary, SIGNAL(itemSelectionChanged()), this, SLOT(selectedWordChanged()));
+	connect(m_personal_dictionary, &QListWidget::itemSelectionChanged, this, &PreferencesDialog::selectedWordChanged);
 
 	m_remove_word_button = new QPushButton(tr("Remove"), personal_dictionary_group);
 	m_remove_word_button->setAutoDefault(false);
 	m_remove_word_button->setDisabled(true);
-	connect(m_remove_word_button, SIGNAL(clicked()), this, SLOT(removeWord()));
+	connect(m_remove_word_button, &QPushButton::clicked, this, &PreferencesDialog::removeWord);
 
 	// Lay out personal dictionary group
 	QGridLayout* personal_dictionary_layout = new QGridLayout(personal_dictionary_group);
@@ -1051,14 +1051,14 @@ QWidget* PreferencesDialog::initToolbarTab()
 		item->setCheckState(Qt::Unchecked);
 	}
 	m_toolbar_actions->sortItems();
-	connect(m_toolbar_actions, SIGNAL(currentRowChanged(int)), this, SLOT(currentActionChanged(int)));
+	connect(m_toolbar_actions, &QListWidget::currentRowChanged, this, &PreferencesDialog::currentActionChanged);
 
 	m_move_up_button = new QPushButton(tr("Move Up"), actions_group);
-	connect(m_move_up_button, SIGNAL(clicked()), this, SLOT(moveActionUp()));
+	connect(m_move_up_button, &QPushButton::clicked, this, &PreferencesDialog::moveActionUp);
 	m_move_down_button = new QPushButton(tr("Move Down"), actions_group);
-	connect(m_move_down_button, SIGNAL(clicked()), this, SLOT(moveActionDown()));
+	connect(m_move_down_button, &QPushButton::clicked, this, &PreferencesDialog::moveActionDown);
 	QPushButton* add_separator_button = new QPushButton(tr("Add Separator"), actions_group);
-	connect(add_separator_button, SIGNAL(clicked()), this, SLOT(addSeparatorAction()));
+	connect(add_separator_button, &QPushButton::clicked, this, &PreferencesDialog::addSeparatorAction);
 
 	// Lay out action options
 	QGridLayout* actions_layout = new QGridLayout(actions_group);
@@ -1095,7 +1095,7 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	m_shortcuts->header()->setSectionsClickable(false);
 	m_shortcuts->header()->setSectionsMovable(false);
 	m_shortcuts->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-	connect(m_shortcuts, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(shortcutDoubleClicked()));
+	connect(m_shortcuts, &QTreeWidget::itemDoubleClicked, this, &PreferencesDialog::shortcutDoubleClicked);
 
 	// List shortcuts
 	QPixmap empty_icon(m_shortcuts->iconSize());
@@ -1117,11 +1117,11 @@ QWidget* PreferencesDialog::initShortcutsTab()
 		item->setIcon(0, icon);
 	}
 	m_shortcuts->sortByColumn(0, Qt::AscendingOrder);
-	connect(m_shortcuts, SIGNAL(itemSelectionChanged()), this, SLOT(selectedShortcutChanged()));
+	connect(m_shortcuts, &QTreeWidget::itemSelectionChanged, this, &PreferencesDialog::selectedShortcutChanged);
 
 	// Create editor
 	m_shortcut_edit = new ShortcutEdit(this);
-	connect(m_shortcut_edit, SIGNAL(changed()), this, SLOT(shortcutChanged()));
+	connect(m_shortcut_edit, &ShortcutEdit::changed, this, &PreferencesDialog::shortcutChanged);
 
 	// Lay out shortcut tab
 	QGridLayout* layout = new QGridLayout(tab);

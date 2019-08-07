@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017, 2018, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -331,7 +331,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_hide_timer = new QTimer(this);
 	m_hide_timer->setInterval(5000);
 	m_hide_timer->setSingleShot(true);
-	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(hideMouse()));
+	connect(m_hide_timer, &QTimer::timeout, this, &Document::hideMouse);
 
 	// Set up text area
 	m_text = new TextEdit(this);
@@ -349,9 +349,9 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_text->horizontalScrollBar()->setAttribute(Qt::WA_NoMousePropagation);
 	m_text->viewport()->setMouseTracking(true);
 	m_text->viewport()->installEventFilter(this);
-	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
-	connect(m_text, SIGNAL(selectionChanged()), this, SLOT(selectionChanged()));
-	connect(m_text->document(), SIGNAL(modificationChanged(bool)), this, SIGNAL(modificationChanged(bool)));
+	connect(m_text, &QTextEdit::cursorPositionChanged, this, &Document::cursorPositionChanged);
+	connect(m_text, &QTextEdit::selectionChanged, this, &Document::selectionChanged);
+	connect(m_text->document(), &QTextDocument::modificationChanged, this, &Document::modificationChanged);
 
 	QShortcut* shortcut_down = new QShortcut(m_text);
 	QShortcut* shortcut_up = new QShortcut(m_text);
@@ -362,13 +362,13 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	shortcut_down->setKey(Qt::ALT + Qt::Key_Down);
 	shortcut_up->setKey(Qt::ALT + Qt::Key_Up);
 #endif
-	connect(shortcut_down, SIGNAL(activated()), this, SLOT(moveToBlockEnd()));
-	connect(shortcut_up, SIGNAL(activated()), this, SLOT(moveToBlockStart()));
+	connect(shortcut_down, &QShortcut::activated, this, &Document::moveToBlockEnd);
+	connect(shortcut_up, &QShortcut::activated, this, &Document::moveToBlockStart);
 
 	m_scene_model = new SceneModel(m_text, this);
 
 	m_highlighter = new Highlighter(m_text, m_dictionary);
-	connect(&DictionaryManager::instance(), SIGNAL(changed()), this, SLOT(dictionaryChanged()));
+	connect(&DictionaryManager::instance(), &DictionaryManager::changed, this, &Document::dictionaryChanged);
 
 	// Set filename
 	if (!filename.isEmpty()) {
@@ -389,13 +389,13 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	m_scrollbar->setMouseTracking(true);
 	m_scrollbar->installEventFilter(this);
 	setScrollBarVisible(Preferences::instance().alwaysShowScrollBar());
-	connect(m_scrollbar, SIGNAL(actionTriggered(int)), this, SLOT(scrollBarActionTriggered(int)));
-	connect(m_scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(scrollBarRangeChanged(int,int)));
+	connect(m_scrollbar, &QScrollBar::actionTriggered, this, &Document::scrollBarActionTriggered);
+	connect(m_scrollbar, &QScrollBar::rangeChanged, this, &Document::scrollBarRangeChanged);
 
 	// Lay out window
 	m_layout = new QGridLayout(this);
 	m_layout->setSpacing(0);
-	m_layout->setMargin(0);
+	m_layout->setContentsMargins(0, 0, 0, 0);
 	m_layout->addWidget(m_text, 1, 1);
 	m_layout->addWidget(m_scrollbar, 1, 1, 1, 2, Qt::AlignRight);
 
@@ -603,8 +603,8 @@ void Document::reload(bool prompt)
 	// Reload file
 	emit loadStarted(Window::tr("Opening %1").arg(QDir::toNativeSeparators(m_filename)));
 	m_text->setReadOnly(true);
-	disconnect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-	disconnect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	disconnect(m_text->document(), &QTextDocument::contentsChange, this, &Document::updateWordCount);
+	disconnect(m_text->document(), &QTextDocument::undoCommandAdded, this, &Document::undoCommandAdded);
 	m_daily_progress->increaseWordCount(-wordCountDelta());
 	loadFile(m_filename, -1);
 	emit loadFinished();
@@ -780,8 +780,8 @@ bool Document::loadFile(const QString& filename, int position)
 		scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 
 		calculateWordCount();
-		connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-		connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+		connect(m_text->document(), &QTextDocument::contentsChange, this, &Document::updateWordCount);
+		connect(m_text->document(), &QTextDocument::undoCommandAdded, this, &Document::undoCommandAdded);
 
 		return loaded;
 	}
@@ -852,8 +852,8 @@ bool Document::loadFile(const QString& filename, int position)
 	} else {
 		m_highlighter->rehighlight();
 	}
-	connect(m_text->document(), SIGNAL(contentsChange(int,int,int)), this, SLOT(updateWordCount(int,int,int)));
-	connect(m_text->document(), SIGNAL(undoCommandAdded()), this, SLOT(undoCommandAdded()));
+	connect(m_text->document(), &QTextDocument::contentsChange, this, &Document::updateWordCount);
+	connect(m_text->document(), &QTextDocument::undoCommandAdded, this, &Document::undoCommandAdded);
 
 	if (m_focus_mode) {
 		focusText();
@@ -1015,14 +1015,14 @@ void Document::setFocusMode(int focus_mode)
 	m_text->setPalette(p);
 
 	if (m_focus_mode) {
-		connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(focusText()));
-		connect(m_text, SIGNAL(selectionChanged()), this, SLOT(focusText()));
-		connect(m_text, SIGNAL(textChanged()), this, SLOT(focusText()));
+		connect(m_text, &QTextEdit::cursorPositionChanged, this, &Document::focusText);
+		connect(m_text, &QTextEdit::selectionChanged, this, &Document::focusText);
+		connect(m_text, &QTextEdit::textChanged, this, &Document::focusText);
 		focusText();
 	} else {
-		disconnect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(focusText()));
-		disconnect(m_text, SIGNAL(selectionChanged()), this, SLOT(focusText()));
-		disconnect(m_text, SIGNAL(textChanged()), this, SLOT(focusText()));
+		disconnect(m_text, &QTextEdit::cursorPositionChanged, this, &Document::focusText);
+		disconnect(m_text, &QTextEdit::selectionChanged, this, &Document::focusText);
+		disconnect(m_text, &QTextEdit::textChanged, this, &Document::focusText);
 		m_text->setExtraSelections(QList<QTextEdit::ExtraSelection>());
 	}
 }

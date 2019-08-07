@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -409,24 +409,24 @@ void Timer::init()
 	label = new QLabel(tr("Time:"), time_labels);
 	label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	time_labels->addWidget(label);
-	connect(m_type_box, SIGNAL(currentIndexChanged(int)), time_labels, SLOT(setCurrentIndex(int)));
+	connect(m_type_box, QOverload<int>::of(&QComboBox::currentIndexChanged), time_labels, &QStackedWidget::setCurrentIndex);
 
 	QStackedWidget* time_edits = new QStackedWidget(this);
-	connect(m_type_box, SIGNAL(currentIndexChanged(int)), time_edits, SLOT(setCurrentIndex(int)));
+	connect(m_type_box, QOverload<int>::of(&QComboBox::currentIndexChanged), time_edits, &QStackedWidget::setCurrentIndex);
 
 	m_delay_edit = new QTimeEdit(time_edits);
 	m_delay_edit->setDisplayFormat(tr("HH:mm:ss"));
 	m_delay_edit->setCurrentSection(QDateTimeEdit::MinuteSection);
 	m_delay_edit->setWrapping(true);
 	time_edits->addWidget(m_delay_edit);
-	connect(m_delay_edit, SIGNAL(timeChanged(QTime)), this, SLOT(delayChanged(QTime)));
+	connect(m_delay_edit, &QTimeEdit::timeChanged, this, &Timer::delayChanged);
 
 	m_end_edit = new QTimeEdit(time_edits);
 	m_end_edit->setDisplayFormat(QLocale().timeFormat(QLocale::LongFormat).contains("AP", Qt::CaseInsensitive) ? "h:mm:ss AP" : "HH:mm:ss");
 	m_end_edit->setCurrentSection(QDateTimeEdit::MinuteSection);
 	m_end_edit->setWrapping(true);
 	time_edits->addWidget(m_end_edit);
-	connect(m_end_edit, SIGNAL(timeChanged(QTime)), this, SLOT(endChanged(QTime)));
+	connect(m_end_edit, &QTimeEdit::timeChanged, this, &Timer::endChanged);
 
 	m_memo_edit = new QLineEdit(tr("Alarm"), m_edit);
 	m_memo_edit->setMaxLength(140);
@@ -434,12 +434,12 @@ void Timer::init()
 	QDialogButtonBox* edit_buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, m_edit);
 	m_ok_button = edit_buttons->button(QDialogButtonBox::Ok);
 	m_ok_button->setDefault(true);
-	connect(edit_buttons, SIGNAL(accepted()), this, SLOT(editAccepted()));
-	connect(edit_buttons, SIGNAL(rejected()), this, SLOT(editRejected()));
+	connect(edit_buttons, &QDialogButtonBox::accepted, this, &Timer::editAccepted);
+	connect(edit_buttons, &QDialogButtonBox::rejected, this, &Timer::editRejected);
 
 	// Lay out edit widgets
 	QGridLayout* edit_layout = new QGridLayout(m_edit);
-	edit_layout->setMargin(0);
+	edit_layout->setContentsMargins(0, 0, 0, 0);
 	edit_layout->setColumnStretch(1, 1);
 	edit_layout->addWidget(new QLabel(tr("Type:"), m_edit), 0, 0, Qt::AlignRight | Qt::AlignVCenter);
 	edit_layout->addWidget(m_type_box, 0, 1, Qt::AlignLeft | Qt::AlignVCenter);
@@ -459,12 +459,12 @@ void Timer::init()
 	m_edit_button = display_buttons->addButton(tr("Edit"), QDialogButtonBox::AcceptRole);
 	m_edit_button->setDefault(true);
 	display_buttons->addButton(tr("Delete"), QDialogButtonBox::RejectRole);
-	connect(display_buttons, SIGNAL(accepted()), this, SLOT(editClicked()));
-	connect(display_buttons, SIGNAL(rejected()), this, SLOT(removeClicked()));
+	connect(display_buttons, &QDialogButtonBox::accepted, this, &Timer::editClicked);
+	connect(display_buttons, &QDialogButtonBox::rejected, this, &Timer::removeClicked);
 
 	// Lay out display widgets
 	QVBoxLayout* display_layout = new QVBoxLayout(m_display);
-	display_layout->setMargin(0);
+	display_layout->setContentsMargins(0, 0, 0, 0);
 	display_layout->addWidget(m_display_label);
 	display_layout->addWidget(display_buttons);
 
@@ -476,7 +476,7 @@ void Timer::init()
 	// Add timer
 	m_timer = new QTimer(this);
 	m_timer->setSingleShot(true);
-	connect(m_timer, SIGNAL(timeout()), this, SLOT(timerFinished()));
+	connect(m_timer, &QTimer::timeout, this, &Timer::timerFinished);
 
 	// Show edit widgets by default
 	setMode(true);

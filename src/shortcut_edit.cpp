@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,17 +31,17 @@ ShortcutEdit::ShortcutEdit(QWidget* parent) :
 	QWidget(parent)
 {
 	m_edit = new QKeySequenceEdit(this);
-	connect(m_edit, SIGNAL(editingFinished()), this, SIGNAL(changed()));
+	connect(m_edit, &QKeySequenceEdit::editingFinished, this, &ShortcutEdit::changed);
 
 	QPushButton* clear_button = new QPushButton(tr("Clear"), this);
-	connect(clear_button, SIGNAL(clicked()), this, SLOT(clear()));
+	connect(clear_button, &QPushButton::clicked, this, &ShortcutEdit::clear);
 
 	m_reset_button = new QPushButton(tr("Reset to Default"), this);
-	connect(m_reset_button, SIGNAL(clicked()), this, SLOT(reset()));
+	connect(m_reset_button, &QPushButton::clicked, this, &ShortcutEdit::reset);
 	m_reset_button->hide();
 
 	QHBoxLayout* layout = new QHBoxLayout(this);
-	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(m_edit);
 	layout->addWidget(clear_button);
 	layout->addWidget(m_reset_button);

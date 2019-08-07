@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2016, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2016, 2018, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ LoadScreen::LoadScreen(QWidget* parent) :
 	m_text->setStyleSheet("QLabel {color: #d7d7d7; background-color: #1e1e1e; border-top-left-radius: 0.25em; border-top-right-radius: 0.25em; padding: 0.25em 0.5em;}");
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
-	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addStretch();
 	layout->addWidget(m_text, 0, Qt::AlignCenter);
 
@@ -70,7 +70,7 @@ LoadScreen::LoadScreen(QWidget* parent) :
 
 	m_hide_timer = new QTimer(this);
 	m_hide_timer->setInterval(30);
-	connect(m_hide_timer, SIGNAL(timeout()), this, SLOT(fade()));
+	connect(m_hide_timer, &QTimer::timeout, this, &LoadScreen::fade);
 }
 
 //-----------------------------------------------------------------------------

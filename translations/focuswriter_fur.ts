@@ -66,7 +66,7 @@
     <name>DailyProgressDialog</name>
     <message>
         <source>Daily Progress</source>
-        <translation>Progres in zornade</translation>
+        <translation>Progrès in zornade</translation>
     </message>
     <message>
         <source>Longest streak</source>
@@ -96,21 +96,21 @@
     <name>DailyProgressLabel</name>
     <message>
         <source>%L1% of daily goal</source>
-        <translation>%L1% dal progres di zornade</translation>
+        <translation>%L1% dal progrès di zornade</translation>
     </message>
 </context>
 <context>
     <name>DictionaryDialog</name>
     <message>
         <source>Set Language</source>
-        <translation>Met la lenghe</translation>
+        <translation>Selezione la lenghe</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Cemce Titul %1)</translation>
+        <translation>(Cence Titul %1)</translation>
     </message>
     <message>
         <source>%1 (Read-Only)</source>
@@ -126,7 +126,7 @@
     </message>
     <message>
         <source>Save File As</source>
-        <translation>Salve in file come</translation>
+        <translation>Salve il file come</translation>
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
@@ -166,7 +166,7 @@
     </message>
     <message>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Saving as plain text will discard all formatting. Discard formatting?</translation>
+        <translation>Salvant in test plan si pierdaran dutis lis formatazions. Lassâ stâ la formatazion?</translation>
     </message>
 </context>
 <context>
@@ -305,7 +305,7 @@
     </message>
     <message>
         <source>All Supported Files</source>
-        <translation>Ducj i files supuartâts</translation>
+        <translation>Ducj i files sopuartâts</translation>
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
@@ -354,7 +354,7 @@
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Par plasè stude e torne impie la aplicazion par che il cambiament de lenghe al vedi efiet.</translation>
+        <translation>Par plasè stude e torne impie la aplicazion parcè che il cambiament de lenghe al vedi efiet.</translation>
     </message>
 </context>
 <context>
@@ -416,7 +416,7 @@
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Il dizionari &quot;%1&quot; al esist za. Astu voie di rimplaçâlu?</translation>
+        <translation>Il dizionari &quot;%1&quot; al esist za. Âstu voie di rimplaçâlu?</translation>
     </message>
     <message>
         <source>Daily Goal</source>
@@ -448,7 +448,7 @@
     </message>
     <message>
         <source>Smooth fonts</source>
-        <translation>Fonts Molis</translation>
+        <translation>Fonts Lissis</translation>
     </message>
     <message>
         <source>Typewriter sounds</source>
@@ -480,7 +480,7 @@
     </message>
     <message>
         <source>Remember cursor position</source>
-        <translation>Visiti de posizion dal cursôr</translation>
+        <translation>Visiti la posizion dal cursôr</translation>
     </message>
     <message>
         <source>Word count</source>
@@ -512,7 +512,7 @@
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Resetâ il progres de zornade a zero?</translation>
+        <translation>Resetâ il progrès de zornade a zero?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
@@ -536,11 +536,11 @@
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Mostre Striches</translation>
+        <translation>Mostre Strichis</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation>Minim progres des strichis:</translation>
+        <translation>Minim progrès des strichis:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
@@ -652,7 +652,7 @@
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>Mostre simpri la bare par sore</translation>
+        <translation>Mostre simpri la bare sore</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
@@ -727,7 +727,7 @@
     <name>SessionManager</name>
     <message>
         <source>Manage Sessions</source>
-        <translation>Messede Sessions</translation>
+        <translation>Gjestis Sessions</translation>
     </message>
     <message>
         <source>S&amp;essions</source>
@@ -795,7 +795,7 @@
     </message>
     <message>
         <source>&amp;Manage...</source>
-        <translation>Messede...</translation>
+        <translation>Gjestis...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
@@ -876,7 +876,7 @@
     </message>
     <message>
         <source>Continue checking at beginning of file?</source>
-        <translation>Continue checking at beginning of file?</translation>
+        <translation>Continuâ il control da l&apos;inizi dal file?</translation>
     </message>
     <message>
         <source>Spell check complete.</source>
@@ -899,7 +899,7 @@
     </message>
     <message>
         <source>Details</source>
-        <translation>Pirulis</translation>
+        <translation>Detais</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -1020,7 +1020,7 @@
     </message>
     <message>
         <source>Edit Theme</source>
-        <translation>Edite Temi</translation>
+        <translation>Edite Teme</translation>
     </message>
     <message>
         <source>Window Background</source>
@@ -1092,7 +1092,7 @@
     </message>
     <message>
         <source>Paragraph Spacing</source>
-        <translation>Spaziadure Paragrafi</translation>
+        <translation>Spaziadure Paragraf</translation>
     </message>
     <message>
         <source>Tab Width:</source>
@@ -1383,23 +1383,23 @@
     </message>
     <message>
         <source>Switch to Next Document</source>
-        <translation>Sbrisse in tal prossim document</translation>
+        <translation>Cambie in tal prossim document</translation>
     </message>
     <message>
         <source>Switch to Previous Document</source>
-        <translation>Sbrisse intal document di prime</translation>
+        <translation>Cambie intal document di prime</translation>
     </message>
     <message>
         <source>Switch to First Document</source>
-        <translation>Sbrisse intal prin document</translation>
+        <translation>Cambie intal prin document</translation>
     </message>
     <message>
         <source>Switch to Last Document</source>
-        <translation>Sbrisse intal ultin document</translation>
+        <translation>Cambie intal ultin document</translation>
     </message>
     <message>
         <source>Switch to Document %1</source>
-        <translation>Sbrisse intal document %1</translation>
+        <translation>Cambie intal document %1</translation>
     </message>
     <message>
         <source>Loading settings</source>
@@ -1799,11 +1799,11 @@
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>Ce isal</translation>
+        <translation>Informazions</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>Ce isal QT</translation>
+        <translation>Informazions su QT</translation>
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>

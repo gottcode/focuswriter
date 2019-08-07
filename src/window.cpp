@@ -102,10 +102,18 @@ Window::Window(const QStringList& command_line_files) :
 	m_load_screen = new LoadScreen(this);
 
 	// Set up icons
-	if (QIcon::themeName().isEmpty()) {
-		QIcon::setThemeName("hicolor");
+#if defined(Q_OS_MAC) || defined(Q_OS_WIN)
+	QIcon::setThemeName("hicolor");
+	setIconSize(QSize(22,22));
+#else
+	if (QIcon::themeName() == "hicolor") {
+		QIcon::setThemeName("Hicolor");
 		setIconSize(QSize(22,22));
 	}
+#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
+	QIcon::setFallbackThemeName("hicolor");
+#endif
+#endif
 
 	// Create actions manager
 	new ActionManager(this);
@@ -125,8 +133,8 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Set up watcher for documents
 	m_document_watcher = new DocumentWatcher(this);
-	connect(m_document_watcher, SIGNAL(closeDocument(Document*)), this, SLOT(closeDocument(Document*)));
-	connect(m_document_watcher, SIGNAL(showDocument(Document*)), this, SLOT(showDocument(Document*)));
+	connect(m_document_watcher, &DocumentWatcher::closeDocument, this, QOverload<Document*>::of(&Window::closeDocument));
+	connect(m_document_watcher, &DocumentWatcher::showDocument, this, &Window::showDocument);
 
 	// Set up thread for caching documents
 	m_document_cache = new DocumentCache;
@@ -139,10 +147,10 @@ Window::Window(const QStringList& command_line_files) :
 	m_document_cache->setOrdering(m_documents);
 	m_sessions = new SessionManager(this);
 	m_timers = new TimerManager(m_documents, this);
-	connect(m_documents, SIGNAL(footerVisible(bool)), m_timers->display(), SLOT(setVisible(bool)));
-	connect(m_documents, SIGNAL(updateFormatActions()), this, SLOT(updateFormatActions()));
-	connect(m_documents, SIGNAL(updateFormatAlignmentActions()), this, SLOT(updateFormatAlignmentActions()));
-	connect(m_sessions, SIGNAL(themeChanged(Theme)), m_documents, SLOT(themeSelected(Theme)));
+	connect(m_documents, &Stack::footerVisible, m_timers->display(), &TimerDisplay::setVisible);
+	connect(m_documents, &Stack::updateFormatActions, this, &Window::updateFormatActions);
+	connect(m_documents, &Stack::updateFormatAlignmentActions, this, &Window::updateFormatAlignmentActions);
+	connect(m_sessions, &SessionManager::themeChanged, m_documents, &Stack::themeSelected);
 
 	contents->setMouseTracking(true);
 	contents->installEventFilter(m_documents);
@@ -150,8 +158,8 @@ Window::Window(const QStringList& command_line_files) :
 	// Set up daily progress tracking
 	m_daily_progress = new DailyProgress(this);
 	m_daily_progress_dialog = new DailyProgressDialog(m_daily_progress, this);
-	connect(m_documents, SIGNAL(footerVisible(bool)), m_daily_progress, SLOT(setProgressEnabled(bool)));
-	connect(m_daily_progress_dialog, SIGNAL(visibleChanged(bool)), m_daily_progress, SLOT(setProgressEnabled(bool)));
+	connect(m_documents, &Stack::footerVisible, m_daily_progress, &DailyProgress::setProgressEnabled);
+	connect(m_daily_progress_dialog, &DailyProgressDialog::visibleChanged, m_daily_progress, &DailyProgress::setProgressEnabled);
 
 	// Set up menubar and toolbar
 	initMenus();
@@ -159,8 +167,8 @@ Window::Window(const QStringList& command_line_files) :
 	// Set up cache timer
 	m_save_timer = new QTimer(this);
 	m_save_timer->setInterval(300000);
-	connect(m_save_timer, SIGNAL(timeout()), m_documents, SLOT(autoCache()));
-	connect(m_save_timer, SIGNAL(timeout()), m_daily_progress, SLOT(save()));
+	connect(m_save_timer, &QTimer::timeout, m_documents, &Stack::autoCache);
+	connect(m_save_timer, &QTimer::timeout, m_daily_progress, &DailyProgress::save);
 
 	// Set up details
 	m_footer = new QWidget(contents);
@@ -176,11 +184,11 @@ Window::Window(const QStringList& command_line_files) :
 	// Set up clock
 	m_clock_timer = new QTimer(this);
 	m_clock_timer->setInterval(60000);
-	connect(m_clock_timer, SIGNAL(timeout()), this, SLOT(updateClock()));
-	connect(m_clock_timer, SIGNAL(timeout()), m_timers, SLOT(saveTimers()));
+	connect(m_clock_timer, &QTimer::timeout, this, &Window::updateClock);
+	connect(m_clock_timer, &QTimer::timeout, m_timers, &TimerManager::saveTimers);
 	int delay = (60 - QTime::currentTime().second()) * 1000;
-	QTimer::singleShot(delay, m_clock_timer, SLOT(start()));
-	QTimer::singleShot(delay, this, SLOT(updateClock()));
+	QTimer::singleShot(delay, m_clock_timer, QOverload<>::of(&QTimer::start));
+	QTimer::singleShot(delay, this, &Window::updateClock);
 
 	// Set up tabs
 	m_tabs = new QTabBar(m_footer);
@@ -190,10 +198,10 @@ Window::Window(const QStringList& command_line_files) :
 	m_tabs->setMovable(true);
 	m_tabs->setTabsClosable(true);
 	m_tabs->setUsesScrollButtons(true);
-	connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabClicked(int)));
-	connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosed(int)));
-	connect(m_tabs, SIGNAL(tabMoved(int, int)), this, SLOT(tabMoved(int, int)));
-	connect(m_documents, SIGNAL(documentSelected(int)), m_tabs, SLOT(setCurrentIndex(int)));
+	connect(m_tabs, &QTabBar::currentChanged, this, &Window::tabClicked);
+	connect(m_tabs, &QTabBar::tabCloseRequested, this, &Window::tabClosed);
+	connect(m_tabs, &QTabBar::tabMoved, this, &Window::tabMoved);
+	connect(m_documents, &Stack::documentSelected, m_tabs, &QTabBar::setCurrentIndex);
 
 	QToolButton* tabs_menu = new QToolButton(m_tabs);
 	tabs_menu->setArrowType(Qt::UpArrow);
@@ -206,25 +214,25 @@ Window::Window(const QStringList& command_line_files) :
 	// Set up tab navigation
 	QAction* action = new QAction(tr("Switch to Next Document"), this);
 	action->setShortcut(QKeySequence::NextChild);
-	connect(action, SIGNAL(triggered()), this, SLOT(nextDocument()));
+	connect(action, &QAction::triggered, this, &Window::nextDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchNextDocument", action);
 
 	action = new QAction(tr("Switch to Previous Document"), this);
 	action->setShortcut(QKeySequence::PreviousChild);
-	connect(action, SIGNAL(triggered()), this, SLOT(previousDocument()));
+	connect(action, &QAction::triggered, this, &Window::previousDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchPreviousDocument", action);
 
 	action = new QAction(tr("Switch to First Document"), this);
 	action->setShortcut(Qt::CTRL + Qt::Key_1);
-	connect(action, SIGNAL(triggered()), this, SLOT(firstDocument()));
+	connect(action, &QAction::triggered, this, &Window::firstDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchFirstDocument", action);
 
 	action = new QAction(tr("Switch to Last Document"), this);
 	action->setShortcut(Qt::CTRL + Qt::Key_0);
-	connect(action, SIGNAL(triggered()), this, SLOT(lastDocument()));
+	connect(action, &QAction::triggered, this, &Window::lastDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchLastDocument", action);
 
@@ -237,20 +245,20 @@ Window::Window(const QStringList& command_line_files) :
 	}
 
 	// Always bring interface to front
-	connect(m_documents, SIGNAL(headerVisible(bool)), menuBar(), SLOT(raise()));
-	connect(m_documents, SIGNAL(headerVisible(bool)), m_toolbar, SLOT(raise()));
-	connect(m_documents, SIGNAL(footerVisible(bool)), m_footer, SLOT(raise()));
+	connect(m_documents, &Stack::headerVisible, menuBar(), &QMenuBar::raise);
+	connect(m_documents, &Stack::headerVisible, m_toolbar, &QToolBar::raise);
+	connect(m_documents, &Stack::footerVisible, m_footer, &QWidget::raise);
 
 	// Lay out details
 	QHBoxLayout* clock_layout = new QHBoxLayout;
-	clock_layout->setMargin(0);
+	clock_layout->setContentsMargins(0, 0, 0, 0);
 	clock_layout->setSpacing(6);
 	clock_layout->addWidget(m_timers->display(), 0, Qt::AlignCenter);
 	clock_layout->addWidget(m_clock_label);
 
 	QHBoxLayout* details_layout = new QHBoxLayout(details);
 	details_layout->setSpacing(25);
-	details_layout->setMargin(6);
+	details_layout->setContentsMargins(6, 6, 6, 6);
 	details_layout->addWidget(m_wordcount_label);
 	details_layout->addWidget(m_page_label);
 	details_layout->addWidget(m_paragraph_label);
@@ -263,7 +271,7 @@ Window::Window(const QStringList& command_line_files) :
 	// Lay out footer
 	QGridLayout* footer_layout = new QGridLayout(m_footer);
 	footer_layout->setSpacing(0);
-	footer_layout->setMargin(0);
+	footer_layout->setContentsMargins(0, 0, 0, 0);
 	footer_layout->setColumnStretch(0, 1);
 	footer_layout->addWidget(details, 0, 0, 1, 3);
 	footer_layout->addWidget(m_tabs, 1, 0, 1, 1);
@@ -273,7 +281,7 @@ Window::Window(const QStringList& command_line_files) :
 	// Lay out window
 	QVBoxLayout* layout = new QVBoxLayout(contents);
 	layout->setSpacing(0);
-	layout->setMargin(0);
+	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addStretch();
 	layout->addWidget(m_footer);
 
@@ -839,7 +847,7 @@ void Window::toggleMenuIcons(bool visible)
 void Window::themeClicked()
 {
 	ThemeManager manager(*m_sessions->current()->data(), this);
-	connect(&manager, SIGNAL(themeSelected(Theme)), m_documents, SLOT(themeSelected(Theme)));
+	connect(&manager, &ThemeManager::themeSelected, m_documents, &Stack::themeSelected);
 	manager.exec();
 }
 
@@ -1057,10 +1065,10 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	} else if (path != file) {
 		document->loadFile(file, m_save_positions ? position : -1);
 	}
-	connect(document, SIGNAL(changed()), this, SLOT(updateDetails()));
-	connect(document, SIGNAL(changedName()), this, SLOT(updateSave()));
-	connect(document, SIGNAL(indentChanged(bool)), m_actions["FormatIndentDecrease"], SLOT(setEnabled(bool)));
-	connect(document, SIGNAL(modificationChanged(bool)), this, SLOT(updateSave()));
+	connect(document, &Document::changed, this, &Window::updateDetails);
+	connect(document, &Document::changedName, this, &Window::updateSave);
+	connect(document, &Document::indentChanged, m_actions["FormatIndentDecrease"], &QAction::setEnabled);
+	connect(document, &Document::modificationChanged, this, &Window::updateSave);
 
 	// Add tab for document
 	int index = m_tabs->addTab(tr("Untitled"));
@@ -1072,9 +1080,9 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	}
 
 	// Allow documents to show load screen on reload
-	connect(document, SIGNAL(loadStarted(QString)), m_load_screen, SLOT(setText(QString)));
-	connect(document, SIGNAL(loadFinished()), m_load_screen, SLOT(finish()));
-	connect(document, SIGNAL(loadFinished()), this, SLOT(updateSave()));
+	connect(document, &Document::loadStarted, m_load_screen, &LoadScreen::setText);
+	connect(document, &Document::loadFinished, m_load_screen, &LoadScreen::finish);
+	connect(document, &Document::loadFinished, this, &Window::updateSave);
 
 	return true;
 }
@@ -1171,9 +1179,9 @@ void Window::loadPreferences()
 	m_daily_progress_dialog->loadPreferences();
 	m_actions["DailyProgress"]->setEnabled(Preferences::instance().goalHistory());
 	if (Preferences::instance().goalHistory()) {
-		connect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));
+		connect(m_progress_label, &DailyProgressLabel::clicked, m_actions["DailyProgress"], &QAction::trigger);
 	} else {
-		disconnect(m_progress_label, SIGNAL(clicked()), m_actions["DailyProgress"], SLOT(trigger()));
+		disconnect(m_progress_label, &DailyProgressLabel::clicked, m_actions["DailyProgress"], &QAction::trigger);
 		m_daily_progress_dialog->hide();
 	}
 
@@ -1254,9 +1262,9 @@ void Window::updateWriteState(int index)
 	m_actions["Replace"]->setEnabled(writable);
 	m_actions["CheckSpelling"]->setEnabled(writable);
 	if (writable) {
-		connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
+		connect(m_documents, &Stack::copyAvailable, m_actions["Cut"], &QAction::setEnabled);
 	} else {
-		disconnect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
+		disconnect(m_documents, &Stack::copyAvailable, m_actions["Cut"], &QAction::setEnabled);
 		m_actions["Cut"]->setEnabled(false);
 	}
 	m_replace_document_quotes->setEnabled(writable);
@@ -1278,50 +1286,50 @@ void Window::initMenus()
 {
 	// Create file menu
 	QMenu* file_menu = menuBar()->addMenu(tr("&File"));
-	m_actions["New"] = file_menu->addAction(QIcon::fromTheme("document-new"), tr("&New"), this, SLOT(newDocument()), QKeySequence::New);
-	m_actions["Open"] = file_menu->addAction(QIcon::fromTheme("document-open"), tr("&Open..."), this, SLOT(openDocument()), QKeySequence::Open);
-	m_actions["Reload"] = file_menu->addAction(QIcon::fromTheme("view-refresh"), tr("Reloa&d"), m_documents, SLOT(reload()), QKeySequence::Refresh);
+	m_actions["New"] = file_menu->addAction(QIcon::fromTheme("document-new"), tr("&New"), this, &Window::newDocument, QKeySequence::New);
+	m_actions["Open"] = file_menu->addAction(QIcon::fromTheme("document-open"), tr("&Open..."), this, &Window::openDocument, QKeySequence::Open);
+	m_actions["Reload"] = file_menu->addAction(QIcon::fromTheme("view-refresh"), tr("Reloa&d"), m_documents, &Stack::reload, QKeySequence::Refresh);
 	file_menu->addSeparator();
-	m_actions["Save"] = file_menu->addAction(QIcon::fromTheme("document-save"), tr("&Save"), m_documents, SLOT(save()), QKeySequence::Save);
+	m_actions["Save"] = file_menu->addAction(QIcon::fromTheme("document-save"), tr("&Save"), m_documents, &Stack::save, QKeySequence::Save);
 	m_actions["Save"]->setEnabled(false);
-	m_actions["SaveAs"] = file_menu->addAction(QIcon::fromTheme("document-save-as"), tr("Save &As..."), m_documents, SLOT(saveAs()), QKeySequence::SaveAs);
-	m_actions["Rename"] = file_menu->addAction(QIcon::fromTheme("edit-rename"), tr("&Rename..."), this, SLOT(renameDocument()));
+	m_actions["SaveAs"] = file_menu->addAction(QIcon::fromTheme("document-save-as"), tr("Save &As..."), m_documents, &Stack::saveAs, QKeySequence::SaveAs);
+	m_actions["Rename"] = file_menu->addAction(QIcon::fromTheme("edit-rename"), tr("&Rename..."), this, &Window::renameDocument);
 	m_actions["Rename"]->setEnabled(false);
-	m_actions["SaveAll"] = file_menu->addAction(QIcon::fromTheme("document-save-all"), tr("Save A&ll"), this, SLOT(saveAllDocuments()));
+	m_actions["SaveAll"] = file_menu->addAction(QIcon::fromTheme("document-save-all"), tr("Save A&ll"), this, &Window::saveAllDocuments);
 	file_menu->addSeparator();
 	file_menu->addMenu(m_sessions->menu());
 	m_actions["ManageSessions"] = new QAction(QIcon::fromTheme("view-choose"), tr("Manage Sessions"), this);
-	connect(m_actions["ManageSessions"], SIGNAL(triggered()), m_sessions, SLOT(exec()));
+	connect(m_actions["ManageSessions"], &QAction::triggered, m_sessions, &SessionManager::exec);
 	m_actions["NewSession"] = new QAction(QIcon::fromTheme("window-new"), tr("New Session"), this);
-	connect(m_actions["NewSession"], SIGNAL(triggered()), m_sessions, SLOT(newSession()));
+	connect(m_actions["NewSession"], &QAction::triggered, m_sessions, &SessionManager::newSession);
 	file_menu->addSeparator();
-	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, SLOT(print()), QKeySequence::Print);
-	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, SLOT(pageSetup()));
+	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, &Stack::print, QKeySequence::Print);
+	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
 	file_menu->addSeparator();
-	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, SLOT(closeDocument()), QKeySequence::Close);
-	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, SLOT(close()), keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
+	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, QOverload<>::of(&Window::closeDocument), QKeySequence::Close);
+	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, &Window::close, keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
 	m_actions["Quit"]->setMenuRole(QAction::QuitRole);
 
 	// Create edit menu
 	QMenu* edit_menu = menuBar()->addMenu(tr("&Edit"));
-	m_actions["Undo"] = edit_menu->addAction(QIcon::fromTheme("edit-undo"), tr("&Undo"), m_documents, SLOT(undo()), QKeySequence::Undo);
+	m_actions["Undo"] = edit_menu->addAction(QIcon::fromTheme("edit-undo"), tr("&Undo"), m_documents, &Stack::undo, QKeySequence::Undo);
 	m_actions["Undo"]->setEnabled(false);
-	connect(m_documents, SIGNAL(undoAvailable(bool)), m_actions["Undo"], SLOT(setEnabled(bool)));
-	m_actions["Redo"] = edit_menu->addAction(QIcon::fromTheme("edit-redo"), tr("&Redo"), m_documents, SLOT(redo()), QKeySequence::Redo);
+	connect(m_documents, &Stack::undoAvailable, m_actions["Undo"], &QAction::setEnabled);
+	m_actions["Redo"] = edit_menu->addAction(QIcon::fromTheme("edit-redo"), tr("&Redo"), m_documents, &Stack::redo, QKeySequence::Redo);
 	m_actions["Redo"]->setEnabled(false);
-	connect(m_documents, SIGNAL(redoAvailable(bool)), m_actions["Redo"], SLOT(setEnabled(bool)));
+	connect(m_documents, &Stack::redoAvailable, m_actions["Redo"], &QAction::setEnabled);
 	edit_menu->addSeparator();
-	m_actions["Cut"] = edit_menu->addAction(QIcon::fromTheme("edit-cut"), tr("Cu&t"), m_documents, SLOT(cut()), QKeySequence::Cut);
+	m_actions["Cut"] = edit_menu->addAction(QIcon::fromTheme("edit-cut"), tr("Cu&t"), m_documents, &Stack::cut, QKeySequence::Cut);
 	m_actions["Cut"]->setEnabled(false);
-	connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Cut"], SLOT(setEnabled(bool)));
-	m_actions["Copy"] = edit_menu->addAction(QIcon::fromTheme("edit-copy"), tr("&Copy"), m_documents, SLOT(copy()), QKeySequence::Copy);
+	connect(m_documents, &Stack::copyAvailable, m_actions["Cut"], &QAction::setEnabled);
+	m_actions["Copy"] = edit_menu->addAction(QIcon::fromTheme("edit-copy"), tr("&Copy"), m_documents, &Stack::copy, QKeySequence::Copy);
 	m_actions["Copy"]->setEnabled(false);
-	connect(m_documents, SIGNAL(copyAvailable(bool)), m_actions["Copy"], SLOT(setEnabled(bool)));
-	m_actions["Paste"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("&Paste"), m_documents, SLOT(paste()), QKeySequence::Paste);
-	m_actions["PasteUnformatted"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("Paste &Unformatted"), m_documents, SLOT(pasteUnformatted()), tr("Ctrl+Shift+V"));
+	connect(m_documents, &Stack::copyAvailable, m_actions["Copy"], &QAction::setEnabled);
+	m_actions["Paste"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("&Paste"), m_documents, &Stack::paste, QKeySequence::Paste);
+	m_actions["PasteUnformatted"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("Paste &Unformatted"), m_documents, &Stack::pasteUnformatted, tr("Ctrl+Shift+V"));
 	edit_menu->addSeparator();
-	m_actions["SelectAll"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &All"), m_documents, SLOT(selectAll()), QKeySequence::SelectAll);
-	m_actions["SelectScene"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &Scene"), m_documents, SLOT(selectScene()), tr("Ctrl+Shift+A"));
+	m_actions["SelectAll"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &All"), m_documents, &Stack::selectAll, QKeySequence::SelectAll);
+	m_actions["SelectScene"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &Scene"), m_documents, &Stack::selectScene, tr("Ctrl+Shift+A"));
 
 	// Create format menu
 	QMenu* format_menu = menuBar()->addMenu(tr("Fo&rmat"));
@@ -1349,27 +1357,27 @@ void Window::initMenus()
 	headings[0]->setChecked(true);
 
 	format_menu->addSeparator();
-	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, SLOT(setFontBold(bool)), QKeySequence::Bold);
+	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, &Stack::setFontBold, QKeySequence::Bold);
 	m_actions["FormatBold"]->setCheckable(true);
-	m_actions["FormatItalic"] = format_menu->addAction(QIcon::fromTheme("format-text-italic"), tr("&Italic"), m_documents, SLOT(setFontItalic(bool)), QKeySequence::Italic);
+	m_actions["FormatItalic"] = format_menu->addAction(QIcon::fromTheme("format-text-italic"), tr("&Italic"), m_documents, &Stack::setFontItalic, QKeySequence::Italic);
 	m_actions["FormatItalic"]->setCheckable(true);
-	m_actions["FormatUnderline"] = format_menu->addAction(QIcon::fromTheme("format-text-underline"), tr("&Underline"), m_documents, SLOT(setFontUnderline(bool)), QKeySequence::Underline);
+	m_actions["FormatUnderline"] = format_menu->addAction(QIcon::fromTheme("format-text-underline"), tr("&Underline"), m_documents, &Stack::setFontUnderline, QKeySequence::Underline);
 	m_actions["FormatUnderline"]->setCheckable(true);
-	m_actions["FormatStrikeOut"] = format_menu->addAction(QIcon::fromTheme("format-text-strikethrough"), tr("Stri&kethrough"), m_documents, SLOT(setFontStrikeOut(bool)), tr("Ctrl+K"));
+	m_actions["FormatStrikeOut"] = format_menu->addAction(QIcon::fromTheme("format-text-strikethrough"), tr("Stri&kethrough"), m_documents, &Stack::setFontStrikeOut, tr("Ctrl+K"));
 	m_actions["FormatStrikeOut"]->setCheckable(true);
-	m_actions["FormatSuperScript"] = format_menu->addAction(QIcon::fromTheme("format-text-superscript"), tr("Sup&erscript"), m_documents, SLOT(setFontSuperScript(bool)), tr("Ctrl+^"));
+	m_actions["FormatSuperScript"] = format_menu->addAction(QIcon::fromTheme("format-text-superscript"), tr("Sup&erscript"), m_documents, &Stack::setFontSuperScript, tr("Ctrl+^"));
 	m_actions["FormatSuperScript"]->setCheckable(true);
-	m_actions["FormatSubScript"] = format_menu->addAction(QIcon::fromTheme("format-text-subscript"), tr("&Subscript"), m_documents, SLOT(setFontSubScript(bool)), tr("Ctrl+_"));
+	m_actions["FormatSubScript"] = format_menu->addAction(QIcon::fromTheme("format-text-subscript"), tr("&Subscript"), m_documents, &Stack::setFontSubScript, tr("Ctrl+_"));
 	m_actions["FormatSubScript"]->setCheckable(true);
 
 	format_menu->addSeparator();
-	m_actions["FormatAlignLeft"] = format_menu->addAction(QIcon::fromTheme("format-justify-left"), tr("Align &Left"), m_documents, SLOT(alignLeft()), tr("Ctrl+{"));
+	m_actions["FormatAlignLeft"] = format_menu->addAction(QIcon::fromTheme("format-justify-left"), tr("Align &Left"), m_documents, &Stack::alignLeft, tr("Ctrl+{"));
 	m_actions["FormatAlignLeft"]->setCheckable(true);
-	m_actions["FormatAlignCenter"] = format_menu->addAction(QIcon::fromTheme("format-justify-center"), tr("Align &Center"), m_documents, SLOT(alignCenter()), tr("Ctrl+|"));
+	m_actions["FormatAlignCenter"] = format_menu->addAction(QIcon::fromTheme("format-justify-center"), tr("Align &Center"), m_documents, &Stack::alignCenter, tr("Ctrl+|"));
 	m_actions["FormatAlignCenter"]->setCheckable(true);
-	m_actions["FormatAlignRight"] = format_menu->addAction(QIcon::fromTheme("format-justify-right"), tr("Align &Right"), m_documents, SLOT(alignRight()), tr("Ctrl+}"));
+	m_actions["FormatAlignRight"] = format_menu->addAction(QIcon::fromTheme("format-justify-right"), tr("Align &Right"), m_documents, &Stack::alignRight, tr("Ctrl+}"));
 	m_actions["FormatAlignRight"]->setCheckable(true);
-	m_actions["FormatAlignJustify"] = format_menu->addAction(QIcon::fromTheme("format-justify-fill"), tr("Align &Justify"), m_documents, SLOT(alignJustify()), tr("Ctrl+J"));
+	m_actions["FormatAlignJustify"] = format_menu->addAction(QIcon::fromTheme("format-justify-fill"), tr("Align &Justify"), m_documents, &Stack::alignJustify, tr("Ctrl+J"));
 	m_actions["FormatAlignJustify"]->setCheckable(true);
 	QActionGroup* alignment = new QActionGroup(this);
 	alignment->addAction(m_actions["FormatAlignLeft"]);
@@ -1379,13 +1387,13 @@ void Window::initMenus()
 	m_actions["FormatAlignLeft"]->setChecked(true);
 
 	format_menu->addSeparator();
-	m_actions["FormatIndentDecrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-less"), tr("&Decrease Indent"), m_documents, SLOT(decreaseIndent()), tr("Ctrl+<"));
-	m_actions["FormatIndentIncrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-more"), tr("I&ncrease Indent"), m_documents, SLOT(increaseIndent()), tr("Ctrl+>"));
+	m_actions["FormatIndentDecrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-less"), tr("&Decrease Indent"), m_documents, &Stack::decreaseIndent, tr("Ctrl+<"));
+	m_actions["FormatIndentIncrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-more"), tr("I&ncrease Indent"), m_documents, &Stack::increaseIndent, tr("Ctrl+>"));
 
 	format_menu->addSeparator();
-	m_actions["FormatDirectionLTR"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-ltr"), tr("Le&ft to Right Block"), m_documents, SLOT(setTextDirectionLTR()));
+	m_actions["FormatDirectionLTR"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-ltr"), tr("Le&ft to Right Block"), m_documents, &Stack::setTextDirectionLTR);
 	m_actions["FormatDirectionLTR"]->setCheckable(true);
-	m_actions["FormatDirectionRTL"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-rtl"), tr("Ri&ght to Left Block"), m_documents, SLOT(setTextDirectionRTL()));
+	m_actions["FormatDirectionRTL"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-rtl"), tr("Ri&ght to Left Block"), m_documents, &Stack::setTextDirectionRTL);
 	m_actions["FormatDirectionRTL"]->setCheckable(true);
 	QActionGroup* direction = new QActionGroup(this);
 	direction->addAction(m_actions["FormatDirectionLTR"]);
@@ -1394,38 +1402,38 @@ void Window::initMenus()
 
 	// Create tools menu
 	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));
-	m_actions["Find"] = tools_menu->addAction(QIcon::fromTheme("edit-find"), tr("&Find..."), m_documents, SLOT(find()), QKeySequence::Find);
-	m_actions["FindNext"] = tools_menu->addAction(QIcon::fromTheme("go-down"), tr("Find &Next"), m_documents, SLOT(findNext()), QKeySequence::FindNext);
+	m_actions["Find"] = tools_menu->addAction(QIcon::fromTheme("edit-find"), tr("&Find..."), m_documents, &Stack::find, QKeySequence::Find);
+	m_actions["FindNext"] = tools_menu->addAction(QIcon::fromTheme("go-down"), tr("Find &Next"), m_documents, &Stack::findNext, QKeySequence::FindNext);
 	m_actions["FindNext"]->setEnabled(false);
-	connect(m_documents, SIGNAL(findNextAvailable(bool)), m_actions["FindNext"], SLOT(setEnabled(bool)));
-	m_actions["FindPrevious"] = tools_menu->addAction(QIcon::fromTheme("go-up"), tr("Find Pre&vious"), m_documents, SLOT(findPrevious()), QKeySequence::FindPrevious);
+	connect(m_documents, &Stack::findNextAvailable, m_actions["FindNext"], &QAction::setEnabled);
+	m_actions["FindPrevious"] = tools_menu->addAction(QIcon::fromTheme("go-up"), tr("Find Pre&vious"), m_documents, &Stack::findPrevious, QKeySequence::FindPrevious);
 	m_actions["FindPrevious"]->setEnabled(false);
-	connect(m_documents, SIGNAL(findNextAvailable(bool)), m_actions["FindPrevious"], SLOT(setEnabled(bool)));
-	m_actions["Replace"] = tools_menu->addAction(QIcon::fromTheme("edit-find-replace"), tr("&Replace..."), m_documents, SLOT(replace()), keyBinding(QKeySequence::Replace, tr("Ctrl+R")));
+	connect(m_documents, &Stack::findNextAvailable, m_actions["FindPrevious"], &QAction::setEnabled);
+	m_actions["Replace"] = tools_menu->addAction(QIcon::fromTheme("edit-find-replace"), tr("&Replace..."), m_documents, &Stack::replace, keyBinding(QKeySequence::Replace, tr("Ctrl+R")));
 	tools_menu->addSeparator();
 	QMenu* quotes_menu = tools_menu->addMenu(tr("Smart &Quotes"));
-	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, SLOT(updateSmartQuotes()));
+	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, &Stack::updateSmartQuotes);
 	m_replace_document_quotes->setStatusTip(tr("Update Document Smart Quotes"));
 	ActionManager::instance()->addAction("SmartQuotesUpdateDocument", m_replace_document_quotes);
-	m_replace_selection_quotes = quotes_menu->addAction(tr("Update &Selection"), m_documents, SLOT(updateSmartQuotesSelection()));
+	m_replace_selection_quotes = quotes_menu->addAction(tr("Update &Selection"), m_documents, &Stack::updateSmartQuotesSelection);
 	m_replace_selection_quotes->setStatusTip(tr("Update Selection Smart Quotes"));
 	ActionManager::instance()->addAction("SmartQuotesUpdateSelection", m_replace_selection_quotes);
 	tools_menu->addSeparator();
-	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, SLOT(checkSpelling()), tr("F7"));
-	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("accessories-dictionary"), tr("Set &Language..."), this, SLOT(setLanguageClicked()));
+	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, &Stack::checkSpelling, tr("F7"));
+	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("accessories-dictionary"), tr("Set &Language..."), this, &Window::setLanguageClicked);
 	tools_menu->addSeparator();
-	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, SLOT(show()));
-	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, SLOT(showSymbols()));
-	m_actions["DailyProgress"] = tools_menu->addAction(QIcon::fromTheme("view-calendar"), tr("&Daily Progress"), m_daily_progress_dialog, SLOT(show()));
+	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, &TimerManager::show);
+	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, &Stack::showSymbols);
+	m_actions["DailyProgress"] = tools_menu->addAction(QIcon::fromTheme("view-calendar"), tr("&Daily Progress"), m_daily_progress_dialog, &DailyProgressDialog::show);
 
 	// Create settings menu
 	QMenu* settings_menu = menuBar()->addMenu(tr("&Settings"));
-	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, SLOT(toggleToolbar(bool)));
+	QAction* action = settings_menu->addAction(tr("Show &Toolbar"), this, &Window::toggleToolbar);
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Toolbar/Shown", true).toBool());
 	ActionManager::instance()->addAction("ShowToolbar", action);
 #ifndef Q_OS_MAC
-	action = settings_menu->addAction(tr("Show &Menu Icons"), this, SLOT(toggleMenuIcons(bool)));
+	action = settings_menu->addAction(tr("Show &Menu Icons"), this, &Window::toggleMenuIcons);
 	action->setCheckable(true);
 	action->setChecked(QSettings().value("Window/MenuIcons", false).toBool());
 	ActionManager::instance()->addAction("ShowMenuIcons", action);
@@ -1433,18 +1441,18 @@ void Window::initMenus()
 	settings_menu->addSeparator();
 	QMenu* focus_menu = settings_menu->addMenu(tr("F&ocused Text"));
 	settings_menu->addSeparator();
-	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, SLOT(toggleFullscreen()), tr("F11"));
+	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, &Window::toggleFullscreen, tr("F11"));
 #ifdef Q_OS_MAC
 	m_actions["Fullscreen"]->setShortcut(tr("Esc"));
 #else
 	m_actions["Fullscreen"]->setCheckable(true);
 #endif
-	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, SLOT(minimize()), tr("Ctrl+M"));
+	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, &Window::minimize, tr("Ctrl+M"));
 	settings_menu->addSeparator();
-	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, SLOT(themeClicked()));
+	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, &Window::themeClicked);
 	settings_menu->addSeparator();
-	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, SLOT(setLocaleClicked()));
-	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, SLOT(preferencesClicked()), QKeySequence::Preferences);
+	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, &Window::setLocaleClicked);
+	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, &Window::preferencesClicked, QKeySequence::Preferences);
 	m_actions["Preferences"]->setMenuRole(QAction::PreferencesRole);
 
 	// Create focus sub-menu
@@ -1469,32 +1477,32 @@ void Window::initMenus()
 		ActionManager::instance()->addAction(QString("FocusedText%1").arg(i), focus_mode[i]);
 	}
 	focus_mode[qBound(0, QSettings().value("Window/FocusedText").toInt(), 3)]->setChecked(true);
-	connect(m_focus_actions, SIGNAL(triggered(QAction*)), m_documents, SLOT(setFocusMode(QAction*)));
+	connect(m_focus_actions, &QActionGroup::triggered, m_documents, &Stack::setFocusMode);
 
 	// Create help menu
 	QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
-	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, SLOT(aboutClicked()));
+	m_actions["About"] = help_menu->addAction(QIcon::fromTheme("help-about"), tr("&About"), this, &Window::aboutClicked);
 	m_actions["About"]->setMenuRole(QAction::AboutRole);
 	m_actions["AboutQt"] = help_menu->addAction(
 		QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"),
-		tr("About &Qt"), qApp, SLOT(aboutQt()));
+		tr("About &Qt"), qApp, &QApplication::aboutQt);
 	m_actions["AboutQt"]->setMenuRole(QAction::AboutQtRole);
 
 	// Always show menubar
 #ifndef Q_OS_MAC
-	connect(file_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
-	connect(edit_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
-	connect(format_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
-	connect(tools_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
-	connect(settings_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
-	connect(help_menu, SIGNAL(aboutToShow()), m_documents, SLOT(setHeaderVisible()));
+	connect(file_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(edit_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(format_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(tools_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(settings_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(help_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
 
-	connect(file_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
-	connect(edit_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
-	connect(format_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
-	connect(tools_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
-	connect(settings_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
-	connect(help_menu, SIGNAL(aboutToHide()), m_documents, SLOT(showHeader()));
+	connect(file_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
+	connect(edit_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
+	connect(format_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
+	connect(tools_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
+	connect(settings_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
+	connect(help_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
 #endif
 
 	// Prevent autodetection of macOS menu roles

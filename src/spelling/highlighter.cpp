@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,12 +42,12 @@ Highlighter::Highlighter(QTextEdit* text, DictionaryRef& dictionary)
 	m_misspelled("#ff0000"),
 	m_changed(false)
 {
-	connect(m_text, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+	connect(m_text, &QTextEdit::cursorPositionChanged, this, &Highlighter::cursorPositionChanged);
 
 	m_spell_timer = new QTimer(this);
 	m_spell_timer->setInterval(10);
 	m_spell_timer->setSingleShot(true);
-	connect(m_spell_timer, SIGNAL(timeout()), this, SLOT(updateSpelling()));
+	connect(m_spell_timer, &QTimer::timeout, this, &Highlighter::updateSpelling);
 
 	m_text->installEventFilter(this);
 	m_text->viewport()->installEventFilter(this);
@@ -135,7 +135,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 			menu->addAction(m_check_action);
 
 			// Show menu
-			connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(suggestion(QAction*)));
+			connect(menu, &QMenu::triggered, this, &Highlighter::suggestion);
 			menu->exec(context_event->globalPos());
 			delete menu;
 

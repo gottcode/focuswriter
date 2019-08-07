@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,12 +48,12 @@ DictionaryDialog::DictionaryDialog(QWidget* parent) :
 	m_languages->sortItems(Qt::AscendingOrder);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
-	connect(buttons, SIGNAL(accepted()), this, SLOT(accept()));
-	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
+	connect(buttons, &QDialogButtonBox::accepted, this, &DictionaryDialog::accept);
+	connect(buttons, &QDialogButtonBox::rejected, this, &DictionaryDialog::reject);
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_languages, 1);
-	layout->addSpacing(layout->margin());
+	layout->addSpacing(layout->contentsMargins().top());
 	layout->addWidget(buttons);
 }
 

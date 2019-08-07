@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -117,7 +117,7 @@ public slots:
 	void updateSmartQuotes();
 	void updateSmartQuotesSelection();
 	void setFooterVisible(bool visible);
-	void setHeaderVisible(bool visible = true);
+	void setHeaderVisible(bool visible);
 	void setScenesVisible(bool visible);
 	void showHeader();
 

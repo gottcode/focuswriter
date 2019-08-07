@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2018, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@ Alert::Alert(Icon icon, const QString& text, const QStringList& details, bool ex
 void Alert::fadeIn()
 {
 	setAttribute(Qt::WA_TransparentForMouseEvents);
-	connect(m_fade_timer, SIGNAL(finished()), this, SLOT(fadeInFinished()));
+	connect(m_fade_timer, &QTimeLine::finished, this, &Alert::fadeInFinished);
 	m_fade_timer->start();
 }
 
@@ -189,7 +189,7 @@ void Alert::fadeInFinished()
 {
 	m_fade_effect->setEnabled(false);
 	setAttribute(Qt::WA_TransparentForMouseEvents, false);
-	disconnect(m_fade_timer, SIGNAL(finished()), this, SLOT(fadeInFinished()));
+	disconnect(m_fade_timer, &QTimeLine::finished, this, &Alert::fadeInFinished);
 }
 
 //-----------------------------------------------------------------------------
@@ -199,7 +199,7 @@ void Alert::fadeOut()
 	m_fade_effect->setEnabled(true);
 	setAttribute(Qt::WA_TransparentForMouseEvents);
 	m_fade_timer->setDirection(QTimeLine::Backward);
-	connect(m_fade_timer, SIGNAL(finished()), this, SLOT(deleteLater()));
+	connect(m_fade_timer, &QTimeLine::finished, this, &Alert::deleteLater);
 	m_fade_timer->start();
 }
 
@@ -222,7 +222,7 @@ void Alert::init()
 	m_expander->setAutoRaise(true);
 	m_expander->setIconSize(QSize(16,16));
 	m_expander->hide();
-	connect(m_expander, SIGNAL(clicked()), this, SLOT(expanderToggled()));
+	connect(m_expander, &QToolButton::clicked, this, &Alert::expanderToggled);
 
 	m_pixmap = new QLabel(this);
 	m_pixmap->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
@@ -236,10 +236,10 @@ void Alert::init()
 	close->setIconSize(QSize(16,16));
 	close->setIcon(QIcon::fromTheme("window-close"));
 	close->setToolTip(tr("Close (%1)").arg(ActionManager::instance()->action("DismissAlert")->shortcut().toString(QKeySequence::NativeText)));
-	connect(close, SIGNAL(clicked()), this, SLOT(fadeOut()));
+	connect(close, &QToolButton::clicked, this, &Alert::fadeOut);
 
 	QHBoxLayout* layout = new QHBoxLayout(this);
-	layout->setMargin(7);
+	layout->setContentsMargins(7, 7, 7, 7);
 	layout->setSpacing(6);
 	layout->addWidget(m_expander, 0, Qt::AlignHCenter | Qt::AlignBottom);
 	layout->addWidget(m_pixmap);

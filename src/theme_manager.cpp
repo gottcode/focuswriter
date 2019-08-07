@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2012, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009, 2010, 2012, 2014, 2016, 2018, 2019 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -113,11 +113,11 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	// Add default control buttons
 	QPushButton* new_default_button = new QPushButton(tr("New"), tab);
 	new_default_button->setAutoDefault(false);
-	connect(new_default_button, SIGNAL(clicked()), this, SLOT(newTheme()));
+	connect(new_default_button, &QPushButton::clicked, this, &ThemeManager::newTheme);
 
 	m_clone_default_button = new QPushButton(tr("Duplicate"), tab);
 	m_clone_default_button->setAutoDefault(false);
-	connect(m_clone_default_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
+	connect(m_clone_default_button, &QPushButton::clicked, this, &ThemeManager::cloneTheme);
 
 	// Lay out default themes tab
 	QGridLayout* default_layout = new QGridLayout(tab);
@@ -174,31 +174,31 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	// Add control buttons
 	QPushButton* new_button = new QPushButton(tr("New"), tab);
 	new_button->setAutoDefault(false);
-	connect(new_button, SIGNAL(clicked()), this, SLOT(newTheme()));
+	connect(new_button, &QPushButton::clicked, this, &ThemeManager::newTheme);
 
 	m_clone_button = new QPushButton(tr("Duplicate"), tab);
 	m_clone_button->setAutoDefault(false);
 	m_clone_button->setEnabled(false);
-	connect(m_clone_button, SIGNAL(clicked()), this, SLOT(cloneTheme()));
+	connect(m_clone_button, &QPushButton::clicked, this, &ThemeManager::cloneTheme);
 
 	m_edit_button = new QPushButton(tr("Edit"), tab);
 	m_edit_button->setAutoDefault(false);
 	m_edit_button->setEnabled(false);
-	connect(m_edit_button, SIGNAL(clicked()), this, SLOT(editTheme()));
+	connect(m_edit_button, &QPushButton::clicked, this, &ThemeManager::editTheme);
 
 	m_remove_button = new QPushButton(tr("Delete"), tab);
 	m_remove_button->setAutoDefault(false);
 	m_remove_button->setEnabled(false);
-	connect(m_remove_button, SIGNAL(clicked()), this, SLOT(deleteTheme()));
+	connect(m_remove_button, &QPushButton::clicked, this, &ThemeManager::deleteTheme);
 
 	QPushButton* import_button = new QPushButton(tr("Import"), tab);
 	import_button->setAutoDefault(false);
-	connect(import_button, SIGNAL(clicked()), this, SLOT(importTheme()));
+	connect(import_button, &QPushButton::clicked, this, &ThemeManager::importTheme);
 
 	m_export_button = new QPushButton(tr("Export"), tab);
 	m_export_button->setAutoDefault(false);
 	m_export_button->setEnabled(false);
-	connect(m_export_button, SIGNAL(clicked()), this, SLOT(exportTheme()));
+	connect(m_export_button, &QPushButton::clicked, this, &ThemeManager::exportTheme);
 
 	// Lay out custom themes tab
 	QGridLayout* custom_layout = new QGridLayout(tab);
@@ -215,11 +215,11 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 
 	// Lay out dialog
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
-	connect(buttons, SIGNAL(rejected()), this, SLOT(reject()));
+	connect(buttons, &QDialogButtonBox::rejected, this, &ThemeManager::reject);
 
 	QVBoxLayout* layout = new QVBoxLayout(this);
 	layout->addWidget(m_tabs, 1);
-	layout->addSpacing(layout->margin());
+	layout->addSpacing(layout->contentsMargins().top());
 	layout->addWidget(buttons);
 
 	// Select theme
@@ -229,9 +229,9 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 		selectItem(Theme::defaultId(), true);
 	}
 	selectionChanged(is_default);
-	connect(m_default_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
-	connect(m_themes, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(currentThemeChanged(QListWidgetItem*)));
-	connect(m_themes, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(editTheme()));
+	connect(m_default_themes, &QListWidget::currentItemChanged, this, &ThemeManager::currentThemeChanged);
+	connect(m_themes, &QListWidget::currentItemChanged, this, &ThemeManager::currentThemeChanged);
+	connect(m_themes, &QListWidget::itemActivated, this, &ThemeManager::editTheme);
 
 	// Restore size
 	resize(m_settings.value("ThemeManager/Size", sizeHint()).toSize());
