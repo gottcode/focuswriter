@@ -617,6 +617,7 @@ void Window::closeEvent(QCloseEvent* event)
 	}
 
 	// Close documents but keep them cached
+	m_documents->autoCache();
 	int count = m_documents->count();
 	for (int i = 0; i < count; ++i) {
 		m_documents->removeDocument(0);
