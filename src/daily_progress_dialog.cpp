@@ -73,7 +73,6 @@ public:
 			} else if (progress == 100) {
 				const qreal pixelratio = painter->device()->devicePixelRatioF();
 				painter->drawPixmap(QPointF(opt.rect.topLeft()), fetchStarBackground(opt, pixelratio));
-				opt.backgroundBrush = Qt::transparent;
 				opt.font.setBold(true);
 			} else {
 				qreal k = (progress * 0.009) + 0.1;
