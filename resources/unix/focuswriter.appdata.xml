@@ -215,6 +215,16 @@
   </kudos>
 
   <releases>
+    <release version="1.7.4" date="2020-01-16">
+      <description>
+        <ul>
+          <li>FIXED: Broken emergency cache in Windows</li>
+          <li>FIXED: Daily progress did not show star background with some themes</li>
+          <li>Replaced deprecated code</li>
+          <li>Translations: Catalan, Swedish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.7.3" date="2019-08-07">
       <description>
         <ul>
