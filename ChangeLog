@@ -1,3 +1,10 @@
+1.7.4
+-----
+* FIXED: Broken emergency cache in Windows.
+* FIXED: Daily progress did not show star background with some themes.
+* Replaced deprecated code.
+* Translations: Catalan, Swedish.
+
 1.7.3
 -----
 * FIXED: Was not loading KDE icon theme.
