@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2019, 2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -225,6 +225,11 @@ QString DocumentCache::createFileName()
 
 void DocumentCache::updateCacheFile(Document* document, const QString& cache_file)
 {
+	// Ensure new filenames only
+	if (m_filenames[document] == cache_file) {
+		return;
+	}
+
 	// Swap cache filename
 	QFile old_cache_file(m_path + m_filenames[document]);
 	m_filenames[document] = cache_file;
