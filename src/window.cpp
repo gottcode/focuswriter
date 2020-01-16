@@ -328,7 +328,8 @@ Window::Window(const QStringList& command_line_files) :
 		for (int i = 0, count = files.count(); i < count; ++i) {
 			if (!files.at(i).isEmpty()) {
 				// Ignore empty cache files
-				if (QFileInfo(datafiles.at(i)).size() == 0) {
+				QFileInfo info(datafiles.at(i));
+				if (!info.exists() || !info.size()) {
 					datafiles[i] = files[i];
 					continue;
 				}
