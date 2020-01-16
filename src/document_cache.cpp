@@ -27,10 +27,12 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+#include <QRandomGenerator>
+#endif
 #include <QTextStream>
 
 #include <algorithm>
-#include <random>
 
 //-----------------------------------------------------------------------------
 
@@ -210,12 +212,15 @@ QString DocumentCache::backupCache()
 
 QString DocumentCache::createFileName()
 {
-	std::random_device rd;
-
 	QString filename;
 	QDir dir(m_path);
 	do {
-		filename = QString("fw_%1").arg(rd(), 6, 36, QLatin1Char('0'));
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+		quint32 value = QRandomGenerator::global()->generate();
+#else
+		int value = qrand();
+#endif
+		filename = QString("fw_%1").arg(value, 6, 36, QLatin1Char('0'));
 	} while (dir.exists(filename));
 
 	return filename;
