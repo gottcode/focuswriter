@@ -30,36 +30,36 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln paraula</numerusform>
+            <numerusform>%Ln paraules</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minut</numerusform>
+            <numerusform>%Ln minuts</numerusform>
         </translation>
     </message>
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% de %Ln minut</numerusform>
+            <numerusform>%L1% de %Ln minuts</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% de %Ln paraula</numerusform>
+            <numerusform>%L1% de %Ln paraules</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -82,9 +82,9 @@
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n dia</numerusform>
+            <numerusform>%n dies</numerusform>
         </translation>
     </message>
     <message>
@@ -285,7 +285,7 @@
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>OpenDocument Text</translation>
+        <translation>Text d&apos;OpenDocument</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -293,11 +293,11 @@
     </message>
     <message>
         <source>Rich Text Format</source>
-        <translation>Rich Text Format</translation>
+        <translation>Format de text enriquit</translation>
     </message>
     <message>
         <source>Plain Text</source>
-        <translation>Text pla</translation>
+        <translation>Text senzill</translation>
     </message>
     <message>
         <source>All Files</source>
@@ -305,11 +305,11 @@
     </message>
     <message>
         <source>All Supported Files</source>
-        <translation>Tots els fitxers suportats</translation>
+        <translation>Tots els fitxers compatibles</translation>
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>XML pla d&apos;OpenDocument</translation>
     </message>
 </context>
 <context>

@@ -1148,7 +1148,7 @@ void Document::mousePressEvent(QMouseEvent* event)
 
 void Document::wheelEvent(QWheelEvent* event)
 {
-	if (event->orientation() == Qt::Vertical) {
+	if (event->angleDelta().y() != 0) {
 		QApplication::sendEvent(m_scrollbar, event);
 	} else {
 		QApplication::sendEvent(m_text->horizontalScrollBar(), event);

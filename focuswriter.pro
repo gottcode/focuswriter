@@ -19,19 +19,17 @@ CONFIG += c++11
 CONFIG(debug, debug|release) {
 	CONFIG += warn_on
 	DEFINES += QT_DEPRECATED_WARNINGS
-	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051300
+	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051400
 	DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 }
 
 # Allow in-tree builds
-!win32 {
-	MOC_DIR = build
-	OBJECTS_DIR = build
-	RCC_DIR = build
-}
+MOC_DIR = build
+OBJECTS_DIR = build
+RCC_DIR = build
 
 # Set program version
-VERSION = 1.7.3
+VERSION = 1.7.4
 DEFINES += VERSIONSTR=\\\"$${VERSION}\\\"
 
 # Set program name

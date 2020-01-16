@@ -30,20 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% av %Ln minut</numerusform>
-            <numerusform>%L1% av %Ln minuter</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% av %Ln ord</numerusform>
-            <numerusform>%L1% av %Ln ord</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln ord</numerusform>
@@ -60,6 +46,20 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% av %Ln minut</numerusform>
+            <numerusform>%L1% av %Ln minuter</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% av %Ln ord</numerusform>
+            <numerusform>%L1% av %Ln ord</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -791,7 +791,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation>Ctrl+Shift+N</translation>
+        <translation>Ctrl+Skift+N</translation>
     </message>
     <message>
         <source>&amp;Manage...</source>
@@ -799,7 +799,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
-        <translation>Ctrl+Shift+M</translation>
+        <translation>Ctrl+Skift+N</translation>
     </message>
 </context>
 <context>
@@ -1088,7 +1088,7 @@
     </message>
     <message>
         <source>Height:</source>
-        <translation>Höjd</translation>
+        <translation>Höjd:</translation>
     </message>
     <message>
         <source>Paragraph Spacing</source>
@@ -1851,7 +1851,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Shift+`</translation>
+        <translation>Ctrl+Skift+`</translation>
     </message>
 </context>
 </TS>

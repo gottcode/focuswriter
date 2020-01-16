@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012, 2013, 2014, 2019, 2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,10 +27,12 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+#include <QRandomGenerator>
+#endif
 #include <QTextStream>
 
 #include <algorithm>
-#include <random>
 
 //-----------------------------------------------------------------------------
 
@@ -210,12 +212,15 @@ QString DocumentCache::backupCache()
 
 QString DocumentCache::createFileName()
 {
-	std::random_device rd;
-
 	QString filename;
 	QDir dir(m_path);
 	do {
-		filename = QString("fw_%1").arg(rd(), 6, 36, QLatin1Char('0'));
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+		quint32 value = QRandomGenerator::global()->generate();
+#else
+		int value = qrand();
+#endif
+		filename = QString("fw_%1").arg(value, 6, 36, QLatin1Char('0'));
 	} while (dir.exists(filename));
 
 	return filename;
@@ -225,6 +230,11 @@ QString DocumentCache::createFileName()
 
 void DocumentCache::updateCacheFile(Document* document, const QString& cache_file)
 {
+	// Ensure new filenames only
+	if (m_filenames[document] == cache_file) {
+		return;
+	}
+
 	// Swap cache filename
 	QFile old_cache_file(m_path + m_filenames[document]);
 	m_filenames[document] = cache_file;

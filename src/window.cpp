@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -328,7 +328,8 @@ Window::Window(const QStringList& command_line_files) :
 		for (int i = 0, count = files.count(); i < count; ++i) {
 			if (!files.at(i).isEmpty()) {
 				// Ignore empty cache files
-				if (QFileInfo(datafiles.at(i)).size() == 0) {
+				QFileInfo info(datafiles.at(i));
+				if (!info.exists() || !info.size()) {
 					datafiles[i] = files[i];
 					continue;
 				}
@@ -617,6 +618,7 @@ void Window::closeEvent(QCloseEvent* event)
 	}
 
 	// Close documents but keep them cached
+	m_documents->autoCache();
 	int count = m_documents->count();
 	for (int i = 0; i < count; ++i) {
 		m_documents->removeDocument(0);
@@ -870,7 +872,7 @@ void Window::aboutClicked()
 		"<p align='center'>%6<br/><small>%7</small></p>")
 		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
 			tr("A simple fullscreen word processor"),
-			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2019"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2020"),
 			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
 			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
 			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
