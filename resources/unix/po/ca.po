@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Toni Estévez <toni.estevez@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2017-08-03 17:20+0000\n"
-"Last-Translator: Graeme Gott <graeme@gottcode.org>\n"
+"PO-Revision-Date: 2019-11-03 19:23+0000\n"
+"Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/gottcode/focuswriter/"
 "language/ca/)\n"
 "Language: ca\n"
@@ -20,11 +21,11 @@ msgstr ""
 
 #: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
 msgid "FocusWriter"
-msgstr ""
+msgstr "FocusWriter"
 
 #: ../focuswriter.appdata.xml.in:7
 msgid "Fullscreen word processor"
-msgstr ""
+msgstr "Processador de textos a pantalla completa"
 
 #: ../focuswriter.appdata.xml.in:10
 msgid ""
@@ -33,6 +34,11 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter és un processador de textos senzill i lliure de distraccions. "
+"Utilitza una interfície oculta a la qual s'accedeix movent el ratolí fins a "
+"les vores de la pantalla, la qual cosa permet que el programa tingui un "
+"aspecte i un comportament familiars, al mateix temps que s'aparta de la "
+"vista perquè pugueu submergir-vos en el treball."
 
 #: ../focuswriter.appdata.xml.in:11
 msgid ""
@@ -41,6 +47,11 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter li permet personalitzar l'entorn mitjançant la creació de temes "
+"que controlen els tipus de lletra, els colors i la imatge de fons per crear "
+"un ambient més agradable. També inclou estadístiques que s'actualitzen en "
+"temps real, objectius diaris, múltiples documents oberts, correcció "
+"ortogràfica i molt més."
 
 #: ../focuswriter.appdata.xml.in:12
 msgid ""
@@ -48,11 +59,14 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"A més, en obrir el programa, es carregarà automàticament el treball en curs "
+"en la posició on el vau deixar l'última vegada perquè pugueu continuar "
+"treballant de seguida."
 
 #: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"
-msgstr ""
+msgstr "Processador de textos a pantalla completa"
 
 #: ../focuswriter.desktop.in:6
 msgid "Write without distractions"
-msgstr ""
+msgstr "Escriviu sense distraccions"
