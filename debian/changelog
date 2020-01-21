@@ -1,8 +1,14 @@
 focuswriter (1.7.4-1) unstable; urgency=medium
 
+  [ Graeme Gott ]
   * New upstream release
 
- -- Graeme Gott <graeme@gottcode.org>  Thu, 16 Jan 2020 15:14:34 +0000
+  [ Barak A. Pearlmutter ]
+  * Set upstream metadata fields: Repository, Repository-Browse.
+  * Update standards version to 4.4.1, no changes needed.
+  * Lintian suggests Rules-Requires-Root: no
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 21 Jan 2020 08:36:02 +0000
 
 focuswriter (1.7.3-1) unstable; urgency=medium
 

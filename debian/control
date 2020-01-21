@@ -10,7 +10,8 @@ Build-Depends: debhelper-compat (= 12),
 		libhunspell-dev,
 		pkg-config,
 		zlib1g-dev
-Standards-Version: 4.4.0
+Standards-Version: 4.4.1
+Rules-Requires-Root: no
 Homepage: https://gottcode.org/focuswriter/
 Vcs-Git: https://salsa.debian.org/debian/focuswriter.git
 Vcs-Browser: https://salsa.debian.org/debian/focuswriter
