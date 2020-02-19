@@ -8,7 +8,6 @@ SET VERSION=1.7.4
 ECHO Copying executable
 MKDIR %APP%
 COPY %APP%.exe %APP% >nul
-strip %APP%\%APP%.exe
 
 ECHO Copying translations
 SET TRANSLATIONS=%APP%\translations
@@ -39,7 +38,7 @@ MKDIR %THEMES%
 XCOPY /Q /S /Y resources\themes\* %THEMES% >nul
 
 ECHO Copying Qt
-%QTDIR%\bin\windeployqt.exe --verbose 0 --release --no-angle --no-opengl-sw %APP%\%APP%.exe
+%QTDIR%\bin\windeployqt.exe --verbose 0 --no-angle --no-opengl-sw %APP%\%APP%.exe
 RMDIR /S /Q %APP%\iconengines
 
 ECHO Creating ReadMe
