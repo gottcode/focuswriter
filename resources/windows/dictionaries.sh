@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='6.1.3.2'
+loversion='6.4.1.1'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.1.3/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.4.1/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -32,10 +32,10 @@ else
 fi
 
 echo -n 'Downloading Esperanto dictionary...'
-eodict='esperantilo'
-eofiles='esperantilo'
+eodict='dict-eo'
+eofiles='dict-eo/dictionaries'
 if [ ! -e "${eodict}.oxt" ]; then
-	curl -s -L -o "${eodict}.oxt" 'https://extensions.openoffice.org/en/download/4561'
+	curl -s -O "https://extensions.libreoffice.org/extensions/esperanto-spellchecker-thesaurus-and-hyphenizer/1.01/@@download/file/${eodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -50,30 +50,10 @@ else
 fi
 
 echo -n 'Downloading Korean dictionary...'
-kodict='Korean_spell-checker-0.7.1-2_LibO'
-kofiles='Korean_spell-checker-0.7.1-2_LibO/dictionaries'
+kodict='Korean_spell-checker-0.7.91_LibO'
+kofiles='Korean_spell-checker-0.7.91_LibO/dictionaries'
 if [ ! -e "${kodict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker/0-7-1-2/@@download/file/${kodict}.oxt"
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
-echo -n 'Downloading Indonesian dictionary...'
-iddict='id_id'
-idfiles='id_id'
-if [ ! -e "${iddict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/indonesian-dictionary-kamus-indonesia-by-benitius/2.0/@@download/file/${iddict}.oxt"
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
-echo -n 'Downloading Turkish dictionary...'
-trdict='oo-turkish-dict-v1-2'
-trfiles="${trdict}/dictionaries"
-if [ ! -e "${trdict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/turkish-spellcheck-dictionary/1.2/@@download/file/${trdict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker/0-7.91/@@download/file/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -116,22 +96,6 @@ fi
 echo -n 'Extracting Korean dictionary...'
 if [ ! -e "${kodict}" ]; then
 	unzip -qq "${kodict}.oxt" -d "${kodict}"
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
-echo -n 'Extracting Indonesian dictionary...'
-if [ ! -e "${iddict}" ]; then
-	unzip -qq "${iddict}.oxt" -d "${iddict}"
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
-echo -n 'Extracting Turkish dictionary...'
-if [ ! -e "${trdict}" ]; then
-	unzip -qq "${trdict}.oxt" -d "${trdict}"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -187,8 +151,8 @@ echo -n ' en_ZA'
 cp -a $lofiles/en/en_ZA.aff dicts/en_ZA.aff
 cp -a $lofiles/en/en_ZA.dic dicts/en_ZA.dic
 echo -n ' eo'
-cp -a $eofiles/eo_ilo.aff dicts/eo.aff
-cp -a $eofiles/eo_ilo.dic dicts/eo.dic
+cp -a $eofiles/eo.aff dicts/eo.aff
+cp -a $eofiles/eo.dic dicts/eo.dic
 echo -n ' es'
 cp -a $lofiles/es/es_ANY.aff dicts/es.aff
 cp -a $lofiles/es/es_ANY.dic dicts/es.dic
@@ -211,8 +175,8 @@ echo -n ' hy'
 cp -a $hyfiles/hy_am_e_1940.aff dicts/hy.aff
 cp -a $hyfiles/hy_am_e_1940.dic dicts/hy.dic
 echo -n ' id'
-cp -a $idfiles/id_ID.aff dicts/id.aff
-cp -a $idfiles/id_ID.dic dicts/id.dic
+cp -a $lofiles/id/id_ID.aff dicts/id.aff
+cp -a $lofiles/id/id_ID.dic dicts/id.dic
 echo -n ' it'
 cp -a $lofiles/it_IT/it_IT.aff dicts/it.aff
 cp -a $lofiles/it_IT/it_IT.dic dicts/it.dic
@@ -255,8 +219,8 @@ echo -n ' sv'
 cp -a $lofiles/sv_SE/sv_SE.aff dicts/sv.aff
 cp -a $lofiles/sv_SE/sv_SE.dic dicts/sv.dic
 echo -n ' tr'
-cp -a $trfiles/tr-TR.aff dicts/tr.aff
-cp -a $trfiles/tr-TR.dic dicts/tr.dic
+cp -a $lofiles/tr_TR/tr_TR.aff dicts/tr.aff
+cp -a $lofiles/tr_TR/tr_TR.dic dicts/tr.dic
 echo -n ' uk'
 cp -a $lofiles/uk_UA/uk_UA.aff dicts/uk.aff
 cp -a $lofiles/uk_UA/uk_UA.dic dicts/uk.dic
