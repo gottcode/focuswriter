@@ -1,16 +1,22 @@
+1.7.5
+-----
+* Updated Windows dictionaries.
+* Updated Windows deployment.
+* Translation updates: Ukrainian.
+
 1.7.4
 -----
 * FIXED: Broken emergency cache in Windows.
 * FIXED: Daily progress did not show star background with some themes.
 * Replaced deprecated code.
-* Translations: Catalan, Swedish.
+* Translation updates: Catalan, Swedish.
 
 1.7.3
 -----
 * FIXED: Was not loading KDE icon theme.
 * FIXED: Headings menu was incorrectly shown in German.
 * Replaced deprecated code.
-* Translations: Friulian, German, Korean.
+* Translation updates: Friulian, German, Korean.
 
 1.7.2
 -----

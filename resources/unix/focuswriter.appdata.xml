@@ -217,13 +217,22 @@
   <content_rating type="oars-1.1" />
 
   <releases>
+    <release version="1.7.5" date="2020-02-24">
+      <description>
+        <ul>
+          <li>Updated Windows dictionaries</li>
+          <li>Updated Windows deployment</li>
+          <li>Translation updates: Ukrainian</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.7.4" date="2020-01-16">
       <description>
         <ul>
           <li>FIXED: Broken emergency cache in Windows</li>
           <li>FIXED: Daily progress did not show star background with some themes</li>
           <li>Replaced deprecated code</li>
-          <li>Translations: Catalan, Swedish</li>
+          <li>Translation updates: Catalan, Swedish</li>
         </ul>
       </description>
     </release>
@@ -233,7 +242,7 @@
           <li>FIXED: Was not loading KDE icon theme</li>
           <li>FIXED: Headings menu was incorrectly shown in German</li>
           <li>Replaced deprecated code</li>
-          <li>Translations: Friulian, German, Korean</li>
+          <li>Translation updates: Friulian, German, Korean</li>
         </ul>
       </description>
     </release>
