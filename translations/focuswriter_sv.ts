@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Kunde inte spara &quot;%1&quot;.</translation>
+        <translation>Det gick inte att spara &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Save File As</source>
@@ -130,7 +130,7 @@
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Kunde inte skriva över &quot;%1&quot;.</translation>
+        <translation>Det gick inte att skriva över &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Rename File</source>
@@ -138,7 +138,7 @@
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Kunde inte byta namn på filen &quot;%1&quot;.</translation>
+        <translation>Det gick inte att byta namn på filen &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Reload File?</source>
@@ -208,7 +208,7 @@
     <name>DocxReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Kunde inte öppna arkiv.</translation>
+        <translation>Det gick inte att öppna arkiv.</translation>
     </message>
 </context>
 <context>
@@ -285,7 +285,7 @@
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>OpenDocument text</translation>
+        <translation>OpenDocument Text</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -361,7 +361,7 @@
     <name>OdtReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Kunde inte öppna arkiv</translation>
+        <translation>Det gick inte att öppna arkiv</translation>
     </message>
 </context>
 <context>
@@ -396,7 +396,7 @@
     </message>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Kunde inte öppna arkivet.</translation>
+        <translation>Det gick inte att öppna arkiv.</translation>
     </message>
     <message>
         <source>The archive does not contain a usable dictionary.</source>
@@ -408,11 +408,11 @@
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Genvägar</translation>
+        <translation>Kortkommandon</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Genvägar i konflikt. Vill du fortsätta?</translation>
+        <translation>Kortkommandon i konflikt. Vill du fortsätta?</translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
@@ -604,7 +604,7 @@
     </message>
     <message>
         <source>Shortcut</source>
-        <translation>Genväg</translation>
+        <translation>Kortkommando</translation>
     </message>
     <message>
         <source>Action</source>
@@ -814,7 +814,7 @@
     </message>
     <message>
         <source>Shortcut:</source>
-        <translation>Genväg:</translation>
+        <translation>Kortkommando:</translation>
     </message>
 </context>
 <context>
@@ -1451,7 +1451,7 @@
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Kunde inte läsa in skrivmaskinsljud.</translation>
+        <translation>Det gick inte att läsa in skrivmaskinsljud.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1467,7 +1467,7 @@
     </message>
     <message>
         <source>Reloa&amp;d</source>
-        <translation>Läs in &amp;igen</translation>
+        <translation>Läs &amp;om</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -1695,7 +1695,7 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Ställ in &amp;Språk...</translation>
+        <translation>Ställ in &amp;språk...</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
