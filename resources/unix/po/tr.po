@@ -4,13 +4,14 @@
 #
 # Translators:
 # Cuneyt Oktay <cuneytoktay@gmail.com>, 2014
+# Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-14 20:43+0000\n"
-"PO-Revision-Date: 2017-09-20 01:16+0000\n"
-"Last-Translator: Cuneyt Oktay <cuneytoktay@gmail.com>\n"
+"PO-Revision-Date: 2020-02-28 08:40+0000\n"
+"Last-Translator: Kemal Oktay Aktoğan <oktayaktogan@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/gottcode/focuswriter/"
 "language/tr/)\n"
 "Language: tr\n"
@@ -34,6 +35,10 @@ msgid ""
 "screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
 msgstr ""
+"FocusWriter, dikkat dağıtıcı olmayan basit bir kelime işlemcidir. Farenizi "
+"ekranın kenarlarına hareket ettirerek eriştiğiniz bir gizleme arabirimi "
+"kullanır ve programın tanıdık bir görünüme sahip olmasını sağlarken, yine de "
+"yoldan çıkarken kendinizi işinize sokabilirsiniz."
 
 #: ../focuswriter.appdata.xml.in:11
 msgid ""
@@ -42,6 +47,10 @@ msgid ""
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
 msgstr ""
+"FocusWriter, ortam eklemek için yazı tipini, renkleri ve arka plan resmini "
+"kontrol eden temalar oluşturarak ortamınızı özelleştirmenizi sağlar. Ayrıca "
+"anında güncelleme istatistikleri, günlük hedefler, birden çok açık belge, "
+"yazım denetimi ve çok daha fazlasını içerir."
 
 #: ../focuswriter.appdata.xml.in:12
 msgid ""
@@ -49,6 +58,9 @@ msgid ""
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
 msgstr ""
+"Ayrıca, programı açtığınızda, devam etmekte olduğunuz mevcut işiniz otomatik "
+"olarak yüklenir ve sizi en son kaldığınız yere konumlandırır, böylece hemen "
+"geri dönebilirsiniz."
 
 #: ../focuswriter.desktop.in:5
 msgid "Fullscreen Word Processor"

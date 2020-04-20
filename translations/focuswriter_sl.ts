@@ -30,24 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% od %Ln minute</numerusform>
-            <numerusform>%L1% od %Ln minut</numerusform>
-            <numerusform>%L1% od %Ln minut</numerusform>
-            <numerusform>%L1% od %Ln minut</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% od %Ln besed</numerusform>
-            <numerusform>%L1% od %Ln besed</numerusform>
-            <numerusform>%L1% od %Ln besed</numerusform>
-            <numerusform>%L1% od %Ln besed</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln besede</numerusform>
@@ -68,6 +50,24 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% od %Ln minute</numerusform>
+            <numerusform>%L1% od %Ln minut</numerusform>
+            <numerusform>%L1% od %Ln minut</numerusform>
+            <numerusform>%L1% od %Ln minut</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% od %Ln besed</numerusform>
+            <numerusform>%L1% od %Ln besed</numerusform>
+            <numerusform>%L1% od %Ln besed</numerusform>
+            <numerusform>%L1% od %Ln besed</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -528,7 +528,7 @@
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapiši vrstni red bytov kot tekst.</translation>
     </message>
     <message>
         <source>Default format:</source>
@@ -552,7 +552,7 @@
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalni napredek za etape:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
@@ -1687,135 +1687,135 @@
     </message>
     <message>
         <source>Smart &amp;Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Pametni navedki</translation>
     </message>
     <message>
         <source>Update &amp;Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobi &amp;dokument</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Po&amp;sodobi izbor</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravopi&amp;s...</translation>
     </message>
     <message>
         <source>F7</source>
-        <translation type="unfinished"></translation>
+        <translation>F7</translation>
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavi jezik(&amp;L)</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Časovniki...</translation>
     </message>
     <message>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation>Simboli...</translation>
     </message>
     <message>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dnevni napredek</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Na&amp;stavitve</translation>
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaži orodno vrs&amp;tice</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaži &amp;menijske ikone</translation>
     </message>
     <message>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Označeno besedilo</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Celoten zaslon</translation>
     </message>
     <message>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>F11</translation>
     </message>
     <message>
         <source>Esc</source>
-        <translation type="unfinished"></translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <source>M&amp;inimize</source>
-        <translation type="unfinished"></translation>
+        <translation>M&amp;inimziraj</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <source>&amp;Themes...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Teme...</translation>
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavitve...</translation>
     </message>
     <message>
         <source>Focus Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Izklopi fokus</translation>
     </message>
     <message>
         <source>Focus One Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokus na eno vrstico</translation>
     </message>
     <message>
         <source>Focus Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokus na tri vrstice</translation>
     </message>
     <message>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstavek</translation>
     </message>
     <message>
         <source>Focus Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>Fokus na odstavek</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomoč</translation>
     </message>
     <message>
         <source>Application &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Jezik ap&amp;likacije...</translation>
     </message>
     <message>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nekaj datotek je nepodprtih in jih ni bilo mogoče odpreti.</translation>
     </message>
     <message>
         <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Izkl&amp;opljeno</translation>
     </message>
     <message>
         <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Ena vrstica</translation>
     </message>
     <message>
         <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tri vrstice</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;O...</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>O &amp;Qt</translation>
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
@@ -1855,15 +1855,15 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobi pametne oznake dokumenta</translation>
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobi pametne oznake izbranega</translation>
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 </TS>
