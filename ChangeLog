@@ -1,3 +1,9 @@
+1.7.6
+-----
+* FIXED: Did not load locales with underscores.
+* FIXED: Compile failure due to missing header.
+* Translation updates: Slovenian, Swedish, Turkish.
+
 1.7.5
 -----
 * Updated Windows dictionaries.
