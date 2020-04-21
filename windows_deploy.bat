@@ -7,7 +7,7 @@ FOR /f %%i IN ('git describe') DO SET VERSION=%%i
 
 ECHO Copying executable
 MKDIR %APP%
-COPY %APP%.exe %APP% >nul
+COPY release\%APP%.exe %APP% >nul
 
 ECHO Copying translations
 SET TRANSLATIONS=%APP%\translations
