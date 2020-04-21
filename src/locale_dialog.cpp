@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2014, 2015, 2016, 2018, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010, 2011, 2012, 2014, 2015, 2016, 2018, 2019, 2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -101,22 +101,22 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	if (!m_current.isEmpty()) {
 		QLocale::setDefault(m_current);
 	}
-	const QLocale locale;
+	const QString locale = QLocale().name();
 
 	// Load translators
 	static QTranslator translator;
-	if (translator.load(locale, m_appname, "", m_path)) {
+	if (translator.load(m_appname + locale, m_path)) {
 		QCoreApplication::installTranslator(&translator);
 
 		const QString path = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
 		static QTranslator qtbase_translator;
-		if (qtbase_translator.load(locale, "qtbase", "_", m_path) || qtbase_translator.load(locale, "qtbase", "_", path)) {
+		if (qtbase_translator.load("qtbase_" + locale, m_path) || qtbase_translator.load("qtbase_" + locale, path)) {
 			QCoreApplication::installTranslator(&qtbase_translator);
 		}
 
 		static QTranslator qt_translator;
-		if (qt_translator.load(locale, "qt", "_", m_path) || qt_translator.load(locale, "qt", "_", path)) {
+		if (qt_translator.load("qt_" + locale, m_path) || qt_translator.load("qt_" + locale, path)) {
 			QCoreApplication::installTranslator(&qt_translator);
 		}
 	}

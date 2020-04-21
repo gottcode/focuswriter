@@ -114,6 +114,7 @@
     <p xml:lang="sl">FocusWriter je enostaven urejevalnik besedil. Uporablja skrit uporabniški vmesnik do katerega dostopamo tako, da miško pomaknemo ob rob zaslona, kar omogoča, da ima program domač/znan izgled, medtem, ko omogoča nemoteno delo in se lahko pisanju popolnoma posvetimo.</p>
     <p xml:lang="sr">FocusWriter је једноставан, слободан уређивач текста. Он користи скривени интерфејс коме се приступа померањем миша на ивице екрана, омогућавајући програму да добије познати изглед и тако вам обезбеди да се посветите вашем раду.</p>
     <p xml:lang="sv">FocusWriter är en enkel, distraktionsfri ordbehandlare. Den utnyttjar ett dolt gränssnitt som du kommer åt genom att flytta din mus till skärmkanterna, vilket tillåter programmet att ha välbekant utseende och känsla, medan det håller sig ur vägen så att du kan fördjupa dig i ditt arbete. </p>
+    <p xml:lang="tr">FocusWriter, dikkat dağıtıcı olmayan basit bir kelime işlemcidir. Farenizi ekranın kenarlarına hareket ettirerek eriştiğiniz bir gizleme arabirimi kullanır ve programın tanıdık bir görünüme sahip olmasını sağlarken, yine de yoldan çıkarken kendinizi işinize sokabilirsiniz.</p>
     <p xml:lang="uk">FocusWriter це простий текстовий редактор, що дозволяє повністю зосередитися на роботі. Він використовує висувний інтерфейс, який з’являється при наведенні стрілки миші до країв екрану. Це дає можливість досягти максимально зручного для користувача зовнішнього вигляду, який не відволікає, а дозволяє повністю зануритися в роботу.</p>
     <p xml:lang="zh_CN">FocusWriter 是个简洁的，让您专心于写作的文字编辑器。所有菜单默认隐藏，当鼠标滑动到屏幕边缘时会显示。这样既提供所需功能，又能保证让您专注于写作。</p>
     <p xml:lang="zh_TW">「焦點作家」是一個簡潔、讓您不受干擾的文字處理器。除了寫作區域以外，其他介面均在您將滑鼠移到螢幕邊緣時才會顯示，這樣既能提供所需的功能，又能讓您專心寫作。</p>
@@ -149,6 +150,7 @@
     <p xml:lang="sl">FocusWriter omogoča prilagajanje okolja z uporabo tem, ki omogočajo nadzor pisav, barv in slike za ozadje urejevalnika. Omogoča tudi takojšnjo statistiko, dnevne cilje, več odprtih dokumentov, preverjanje pravopisa in še veliko več.</p>
     <p xml:lang="sr">FocusWriter вам омогућава да прилагодите окружење креирањем теме са фонтом, бојама и позадинском сликом. Такође, поседује ажурирање статистике, дневне циљеве, истовремено отварање више докумената, проверу правописа и још много тога.</p>
     <p xml:lang="sv">FocusWriter tillåter dig att anpassa din miljö genom att skapa teman som kontrollerar typsnitt, färger, och bakgrundsbilden för att lägga till atmosfär. Den har även automatisk statistikuppdatering, dagliga mål, flera öppna dokument, stavningskontroll och mycket mer.</p>
+    <p xml:lang="tr">FocusWriter, ortam eklemek için yazı tipini, renkleri ve arka plan resmini kontrol eden temalar oluşturarak ortamınızı özelleştirmenizi sağlar. Ayrıca anında güncelleme istatistikleri, günlük hedefler, birden çok açık belge, yazım denetimi ve çok daha fazlasını içerir.</p>
     <p xml:lang="uk">FocusWriter дозволить вам налаштувати своє робоче оточення шляхом створення тем, в яких можна управляти шрифтами, кольорами та фоновими зображеннями. Також текстовий редактор вміє вести статистику, оновлювану в реальному часі, ставити щоденні робочі цілі, відкривати декілька документів одночасно, перевіряти орфографію і багато чого ще.</p>
     <p xml:lang="zh_CN">FocusWriter 支持自定义主题，可以调整字体，颜色，背景图像等。还有很多其他功能，如动态更新统计，每日计划，多标签页，拼写检查等。</p>
     <p xml:lang="zh_TW">「焦點作家」可以自訂主題、更改字體、顏色、以及背景圖片等等。也有如動態更新統計；每日目標、多重開啟文件、拼字校正等等的多種功能。</p>
@@ -184,6 +186,7 @@
     <p xml:lang="sl">Dodatno, ko zaženemo program se bo vaše zadnje delo samodejno naložilo in postavilo delovno mesto na zadnjo znano pozicijo, tako, da lahko takoj nadaljujete kjer ste ostali prejšnjič.</p>
     <p xml:lang="sr">Поред тога, када отворите програм, ваш тренутни посао ће се аутоматски учитати на месту где сте последњи пут стали, тако да га можете одмах наставити.</p>
     <p xml:lang="sv">Dessutom, när du öppnar programmet kommer ditt pågående arbete att laddas automatiskt där du slutade senast så att du omedelbart kan fortsätta</p>
+    <p xml:lang="tr">Ayrıca, programı açtığınızda, devam etmekte olduğunuz mevcut işiniz otomatik olarak yüklenir ve sizi en son kaldığınız yere konumlandırır, böylece hemen geri dönebilirsiniz.</p>
     <p xml:lang="uk">Крім того, коли ви відкриєте програму, відразу ж буде завантажений прогрес вашої поточної роботи і курсор перейде на ту позицію, на якій в останній раз робота була перервана. Так ви зможете практично миттєво повернутися до справи.</p>
     <p xml:lang="zh_CN">另外，打开软件后会自动跳到上次编辑的位置，让您立刻继续投入工作</p>
     <p xml:lang="zh_TW">另外，打開您正在撰寫的文件會自動跳至您最後一次編輯的位置，讓您可以繼續進行工作。</p>
@@ -214,9 +217,18 @@
     <kudo>ModernToolkit</kudo>
   </kudos>
 
-  <content_rating type="oars-1.1" />
+  <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.7.6" date="2020-04-20">
+      <description>
+        <ul>
+          <li>FIXED: Did not load locales with underscores</li>
+          <li>FIXED: Compile failure due to missing header</li>
+          <li>Translation updates: Slovenian, Swedish, Turkish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.7.5" date="2020-02-24">
       <description>
         <ul>

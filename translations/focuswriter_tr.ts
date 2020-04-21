@@ -30,18 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln kelime</numerusform>
@@ -56,6 +44,18 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument Düz XML</translation>
     </message>
 </context>
 <context>
@@ -510,7 +510,7 @@
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Düz metin dosyalarında bayt sırası işareti yaz</translation>
     </message>
     <message>
         <source>Default format:</source>
@@ -534,7 +534,7 @@
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Çizgiler için asgari ilerleme:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
@@ -634,23 +634,23 @@
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut sözlük kaldırılsın mı?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Kullanıcı Arayüzü</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Her zaman kaydırma çubuğunu göster</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Her zaman üst çubuğu göster</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Her zaman alt çubuğu göster</translation>
     </message>
 </context>
 <context>
@@ -966,7 +966,7 @@
     </message>
     <message>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Yuvarlak Metin Arka Plan Köşeleri</translation>
     </message>
     <message>
         <source>Radius:</source>
@@ -974,7 +974,7 @@
     </message>
     <message>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Metinlerin Arkaplanını Bulanıklaştırma</translation>
     </message>
     <message>
         <source>Text Background Drop Shadow</source>

@@ -27,6 +27,7 @@
 #include <QFile>
 #include <QImageReader>
 #include <QPainter>
+#include <QPainterPath>
 #include <QSettings>
 #include <QTextEdit>
 #include <QUuid>
