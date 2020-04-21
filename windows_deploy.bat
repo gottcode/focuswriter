@@ -7,7 +7,7 @@ SET VERSION=1.7.5
 
 ECHO Copying executable
 MKDIR %APP%
-COPY %APP%.exe %APP% >nul
+COPY release\%APP%.exe %APP% >nul
 
 ECHO Copying translations
 SET TRANSLATIONS=%APP%\translations
