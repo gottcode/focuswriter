@@ -1,3 +1,13 @@
+focuswriter (1.7.6-1) unstable; urgency=medium
+
+  [ Graeme Gott ]
+  * New upstream release
+
+  [ Barak A. Pearlmutter ]
+  * bump debian policy
+
+ -- Graeme Gott <graeme@gottcode.org>  Tue, 21 Apr 2020 13:38:05 +0000
+
 focuswriter (1.7.5-1) unstable; urgency=medium
 
   * New upstream release
