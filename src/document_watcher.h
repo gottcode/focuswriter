@@ -37,7 +37,9 @@ class DocumentWatcher : public QObject
 	struct Details
 	{
 		Details() :
+#if (QT_VERSION < QT_VERSION_CHECK(5,15,0))
 			permissions(0),
+#endif
 			ignored(false)
 		{ }
 

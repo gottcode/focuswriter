@@ -54,6 +54,7 @@
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
+#include <QLocale>
 #include <QMenu>
 #include <QMenuBar>
 #include <QMessageBox>
@@ -565,7 +566,13 @@ bool Window::saveDocuments(QSettings* session)
 
 void Window::addDocuments(const QString& documents)
 {
-	QStringList files = documents.split(QLatin1String("\n"), QString::SkipEmptyParts);
+	const QStringList files = documents.split(QLatin1String("\n"),
+#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
+		Qt::SkipEmptyParts
+#else
+		QString::SkipEmptyParts
+#endif
+	);
 	if (!files.isEmpty()) {
 		queueDocuments(files);
 	}
@@ -923,7 +930,7 @@ void Window::tabMoved(int from, int to)
 
 void Window::updateClock()
 {
-	m_clock_label->setText(QTime::currentTime().toString(Qt::DefaultLocaleShortDate));
+	m_clock_label->setText(QLocale().toString(QTime::currentTime(), QLocale::ShortFormat));
 }
 
 //-----------------------------------------------------------------------------
@@ -1191,7 +1198,7 @@ void Window::loadPreferences()
 	m_toolbar->hide();
 	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(Preferences::instance().toolbarStyle()));
 	QStringList actions = Preferences::instance().toolbarActions();
-	for (const QString action : actions) {
+	for (const QString& action : actions) {
 		if (action == "|") {
 			m_toolbar->addSeparator();
 		} else if (!action.startsWith("^")) {

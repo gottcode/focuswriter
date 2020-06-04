@@ -1287,7 +1287,13 @@ void Document::selectionChanged()
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
 		BlockStats temp(0);
-		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, QString::SkipEmptyParts);
+		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator,
+#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
+			Qt::SkipEmptyParts
+#else
+			QString::SkipEmptyParts
+#endif
+		);
 		for (const QString& string : selection) {
 			temp.update(string);
 			m_selected_stats.append(&temp);

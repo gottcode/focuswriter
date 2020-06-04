@@ -355,7 +355,7 @@ QVariant DailyProgress::data(const QModelIndex& index, int role) const
 
 	case Qt::ToolTipRole:
 		result = QString("<center><small><b>%1</b></small><br>%2</center>")
-				.arg(progress.date().toString(Qt::DefaultLocaleLongDate))
+				.arg(QLocale().toString(progress.date()))
 				.arg(progress.progressString());
 		break;
 

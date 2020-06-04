@@ -541,7 +541,7 @@ bool Timer::startTimer()
 	m_memo.truncate(140);
 	m_memo_short = fontMetrics().elidedText(m_memo, Qt::ElideRight, 300);
 	m_delay_msecs = m_start.secsTo(m_end) * 1000;
-	m_display_label->setText(toString(m_end.time().toString(Qt::DefaultLocaleLongDate), m_memo));
+	m_display_label->setText(toString(QLocale().toString(m_end.time()), m_memo));
 	setMode(false);
 
 	// Create document deltas

@@ -311,7 +311,13 @@ void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 		} else if (position == "sub") {
 			format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
 		} else {
-			QString value = position.toString().split(' ', QString::SkipEmptyParts).first();
+			QString value = position.toString().split(' ',
+#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
+				Qt::SkipEmptyParts
+#else
+				QString::SkipEmptyParts
+#endif
+			).first();
 			value.chop(1);
 			const int vertical = value.toInt();
 			if (vertical > 0) {
@@ -418,7 +424,13 @@ void OdtReader::readSpan()
 	}
 
 	if (attributes.hasAttribute(QLatin1String("text:class-names"))) {
-		QStringList styles = attributes.value(QLatin1String("text:class-names")).toString().simplified().split(QLatin1Char(' '), QString::SkipEmptyParts);
+		const QStringList styles = attributes.value(QLatin1String("text:class-names")).toString().simplified().split(QLatin1Char(' '),
+#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
+			Qt::SkipEmptyParts
+#else
+			QString::SkipEmptyParts
+#endif
+		);
 		int count = styles.count();
 		for (int i = 0; i < count; ++i) {
 			const Style& style = m_styles[1][styles.at(i)];

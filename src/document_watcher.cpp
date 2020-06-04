@@ -146,7 +146,11 @@ void DocumentWatcher::updateWatch(Document* document)
 	} else {
 		details.path = path;
 		details.modified = QDateTime();
+#if (QT_VERSION >= QT_VERSION_CHECK(5,15,0))
+		details.permissions = QFile::Permissions();
+#else
 		details.permissions = 0;
+#endif
 	}
 
 	// Update path

@@ -29,6 +29,7 @@
 #include <QCloseEvent>
 #include <QDialogButtonBox>
 #include <QLabel>
+#include <QLocale>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPushButton>
@@ -279,7 +280,7 @@ void TimerManager::toggleVisibility()
 
 void TimerManager::updateClock()
 {
-	m_clock_label->setText(QTime::currentTime().toString(Qt::DefaultLocaleLongDate).simplified());
+	m_clock_label->setText(QLocale().toString(QTime::currentTime()).simplified());
 }
 
 //-----------------------------------------------------------------------------
@@ -317,7 +318,7 @@ void TimerManager::setupRecentMenu()
 				time = QTime::fromString(time, Qt::ISODate).toString(tr("+HH:mm:ss")).simplified();
 				delay_timers.append(action);
 			} else {
-				time = QTime::fromString(time, Qt::ISODate).toString(Qt::DefaultLocaleLongDate).simplified();
+				time = QLocale().toString(QTime::fromString(time, Qt::ISODate)).simplified();
 				end_timers.append(action);
 			}
 			memo = fontMetrics().elidedText(memo, Qt::ElideRight, 300);

@@ -28,6 +28,7 @@
 #include <QHeaderView>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QLocale>
 #include <QPainter>
 #include <QPixmap>
 #include <QScrollBar>
@@ -296,8 +297,9 @@ QString DailyProgressDialog::createStreakText(const QString& title, const QDate&
 	int length = start.isValid() ? (start.daysTo(end) + 1) : 0;
 	QString start_str, end_str;
 	if (length > 0) {
-		start_str = start.toString(Qt::DefaultLocaleShortDate);
-		end_str = end.toString(Qt::DefaultLocaleShortDate);
+		const QLocale locale;
+		start_str = locale.toString(start, QLocale::ShortFormat);
+		end_str = locale.toString(end, QLocale::ShortFormat);
 	} else {
 		start_str = end_str = tr("N/A");
 	}
