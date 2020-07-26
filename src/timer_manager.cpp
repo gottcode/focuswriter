@@ -279,7 +279,9 @@ void TimerManager::toggleVisibility()
 
 void TimerManager::updateClock()
 {
-	m_clock_label->setText(QTime::currentTime().toString(Qt::DefaultLocaleLongDate).simplified());
+    auto format = QLocale().dateFormat(QLocale::LongFormat);
+
+    m_clock_label->setText(QTime::currentTime().toString(format).simplified());
 }
 
 //-----------------------------------------------------------------------------
@@ -317,7 +319,8 @@ void TimerManager::setupRecentMenu()
 				time = QTime::fromString(time, Qt::ISODate).toString(tr("+HH:mm:ss")).simplified();
 				delay_timers.append(action);
 			} else {
-				time = QTime::fromString(time, Qt::ISODate).toString(Qt::DefaultLocaleLongDate).simplified();
+                auto format = QLocale().dateFormat(QLocale::LongFormat);
+                time = QTime::fromString(time, Qt::ISODate).toString(format).simplified();
 				end_timers.append(action);
 			}
 			memo = fontMetrics().elidedText(memo, Qt::ElideRight, 300);

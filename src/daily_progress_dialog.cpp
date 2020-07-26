@@ -296,8 +296,10 @@ QString DailyProgressDialog::createStreakText(const QString& title, const QDate&
 	int length = start.isValid() ? (start.daysTo(end) + 1) : 0;
 	QString start_str, end_str;
 	if (length > 0) {
-		start_str = start.toString(Qt::DefaultLocaleShortDate);
-		end_str = end.toString(Qt::DefaultLocaleShortDate);
+        auto format = QLocale().dateFormat(QLocale::ShortFormat);
+
+        start_str = start.toString(format);
+        end_str = end.toString(format);
 	} else {
 		start_str = end_str = tr("N/A");
 	}

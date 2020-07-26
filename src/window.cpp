@@ -923,7 +923,8 @@ void Window::tabMoved(int from, int to)
 
 void Window::updateClock()
 {
-	m_clock_label->setText(QTime::currentTime().toString(Qt::DefaultLocaleShortDate));
+    auto format = QLocale().dateFormat(QLocale::ShortFormat);
+    m_clock_label->setText(QTime::currentTime().toString(format));
 }
 
 //-----------------------------------------------------------------------------
