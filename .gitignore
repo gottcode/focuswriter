@@ -3,3 +3,7 @@ build
 focuswriter
 *.qm
 *~
+
+# QtCreator file
+focuswriter.pro.user
+
