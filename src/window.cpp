@@ -1192,7 +1192,7 @@ void Window::loadPreferences()
 	m_toolbar->hide();
 	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(Preferences::instance().toolbarStyle()));
 	QStringList actions = Preferences::instance().toolbarActions();
-	for (const QString action : actions) {
+    for (const QString& action : actions) {
 		if (action == "|") {
 			m_toolbar->addSeparator();
 		} else if (!action.startsWith("^")) {

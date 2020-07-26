@@ -220,7 +220,7 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 	QString lib = "libvoikko";
 #ifdef Q_OS_WIN
 	QStringList dictdirs = QDir::searchPaths("dict");
-	for (const QString dictdir : dictdirs) {
+    for (const QString& dictdir : dictdirs) {
 		lib = dictdir + "/libvoikko-1.dll";
 		if (QLibrary(lib).load()) {
 			f_voikko_path = QFile::encodeName(QDir::toNativeSeparators(QFileInfo(lib).path()));
