@@ -149,7 +149,7 @@ void DocumentCache::updateMapping()
 			if (!m_filenames.contains(document)) {
 				continue;
 			}
-			stream << QFileInfo(m_filenames[document]).baseName() << " " << document->filename() << endl;
+            stream << QFileInfo(m_filenames[document]).baseName() << " " << document->filename() << Qt::endl;
 		}
 		file.close();
 	}
