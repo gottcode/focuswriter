@@ -146,7 +146,7 @@ void DocumentWatcher::updateWatch(Document* document)
     } else {
         details.path = path;
         details.modified = QDateTime();
-        details.permissions = 0;
+        details.permissions = QFile::ReadOwner | QFile::WriteOwner;
     }
 
     // Update path
