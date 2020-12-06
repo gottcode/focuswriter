@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,6 +47,7 @@
 #include "utils.h"
 
 #include <QAction>
+#include <QActionGroup>
 #include <QApplication>
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -226,20 +227,20 @@ Window::Window(const QStringList& command_line_files) :
 	ActionManager::instance()->addAction("SwitchPreviousDocument", action);
 
 	action = new QAction(tr("Switch to First Document"), this);
-	action->setShortcut(Qt::CTRL + Qt::Key_1);
+	action->setShortcut(Qt::CTRL | Qt::Key_1);
 	connect(action, &QAction::triggered, this, &Window::firstDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchFirstDocument", action);
 
 	action = new QAction(tr("Switch to Last Document"), this);
-	action->setShortcut(Qt::CTRL + Qt::Key_0);
+	action->setShortcut(Qt::CTRL | Qt::Key_0);
 	connect(action, &QAction::triggered, this, &Window::lastDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchLastDocument", action);
 
 	for (int i = 2; i < 10 ; ++i) {
 		action = new QAction(tr("Switch to Document %1").arg(i), this);
-		action->setShortcut(Qt::CTRL + Qt::Key_0 + i);
+		action->setShortcut(QKeySequence(Qt::CTRL | (Qt::Key_0 + i)));
 		connect(action, &QAction::triggered, [=] { m_tabs->setCurrentIndex(i - 1); });
 		addAction(action);
 		ActionManager::instance()->addAction(QString("SwitchDocument%1").arg(i), action);
@@ -1476,7 +1477,7 @@ void Window::initMenus()
 	focus_mode[3]->setStatusTip(tr("Focus Paragraph"));
 	m_focus_actions = new QActionGroup(this);
 	for (int i = 0; i < 4; ++i) {
-		focus_mode[i]->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + (Qt::Key_0 + i)));
+		focus_mode[i]->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | (Qt::Key_0 + i)));
 		focus_mode[i]->setCheckable(true);
 		focus_mode[i]->setData(i);
 		m_focus_actions->addAction(focus_mode[i]);

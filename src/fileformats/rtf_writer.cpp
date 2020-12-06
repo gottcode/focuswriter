@@ -198,7 +198,7 @@ QByteArray fetchCodePage()
 	TCHAR buffer[7];
 	int size = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_IDEFAULTANSICODEPAGE, buffer, sizeof(buffer) / sizeof(TCHAR));
 #if UNICODE
-	QString codepage = QLatin1String("CP") + QString::fromUtf16((ushort*)buffer, size - 1);
+	QString codepage = QLatin1String("CP") + QString::fromUtf16((char16_t*)buffer, size - 1);
 #else
 	QString codepage = QLatin1String("CP") + QString::fromLocal8Bit(buffer);
 #endif

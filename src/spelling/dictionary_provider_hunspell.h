@@ -22,9 +22,6 @@
 
 #include "abstract_dictionary_provider.h"
 
-class QString;
-class QStringList;
-
 class DictionaryProviderHunspell : public AbstractDictionaryProvider
 {
 public:

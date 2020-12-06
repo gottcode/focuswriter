@@ -164,7 +164,11 @@ namespace
 			mime->setData(QLatin1String("application/rtf"), buffer.data());
 		}
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+		mime->setData(QLatin1String("text/html"), doc.toHtml().toUtf8());
+#else
 		mime->setData(QLatin1String("text/html"), doc.toHtml("utf-8").toUtf8());
+#endif
 		mime->setText(doc.toPlainText());
 
 		return mime;
@@ -357,11 +361,11 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	QShortcut* shortcut_down = new QShortcut(m_text);
 	QShortcut* shortcut_up = new QShortcut(m_text);
 #ifndef Q_OS_MAC
-	shortcut_down->setKey(Qt::CTRL + Qt::Key_Down);
-	shortcut_up->setKey(Qt::CTRL + Qt::Key_Up);
+	shortcut_down->setKey(Qt::CTRL | Qt::Key_Down);
+	shortcut_up->setKey(Qt::CTRL | Qt::Key_Up);
 #else
-	shortcut_down->setKey(Qt::ALT + Qt::Key_Down);
-	shortcut_up->setKey(Qt::ALT + Qt::Key_Up);
+	shortcut_down->setKey(Qt::ALT | Qt::Key_Down);
+	shortcut_up->setKey(Qt::ALT | Qt::Key_Up);
 #endif
 	connect(shortcut_down, &QShortcut::activated, this, &Document::moveToBlockEnd);
 	connect(shortcut_up, &QShortcut::activated, this, &Document::moveToBlockStart);
@@ -1112,7 +1116,13 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 	unsetCursor();
 	m_hide_timer->start();
 
-	const QPoint& point = mapFromGlobal(event->globalPos());
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+	const QPoint global = event->globalPosition().toPoint();
+#else
+	const QPoint global = event->globalPos();
+#endif
+
+	const QPoint point = mapFromGlobal(global);
 	if (rect().contains(point)) {
 		emit headerVisible(false);
 		emit footerVisible(false);
@@ -1121,7 +1131,7 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 		int sidebar_region = std::min(m_scene_list->width(), m_layout->cellRect(0,0).width());
 		emit scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
 	}
-	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(event->globalPos())));
+	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(global)));
 }
 
 //-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,7 +53,11 @@ public:
 	bool eventFilter(QObject* watched, QEvent* event);
 
 protected:
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+	void enterEvent(QEnterEvent* event);
+#else
 	void enterEvent(QEvent* event);
+#endif
 	void leaveEvent(QEvent* event);
 	void paintEvent(QPaintEvent* event);
 

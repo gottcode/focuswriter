@@ -23,6 +23,7 @@
 class DictionaryRef;
 class SceneModel;
 
+#include <QStringRef>
 #include <QTextBlockUserData>
 
 class BlockStats : public QTextBlockUserData

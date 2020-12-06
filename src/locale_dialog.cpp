@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2010, 2011, 2012, 2014, 2015, 2016, 2018, 2019, 2020 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2010-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -99,7 +99,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	// Find current locale
 	m_current = QSettings().value("Locale/Language").toString();
 	if (!m_current.isEmpty()) {
-		QLocale::setDefault(m_current);
+		QLocale::setDefault(QLocale(m_current));
 	}
 	const QString locale = QLocale().name();
 
@@ -108,7 +108,11 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	if (translator.load(m_appname + locale, m_path)) {
 		QCoreApplication::installTranslator(&translator);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+		const QString path = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#else
 		const QString path = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
 
 		static QTranslator qtbase_translator;
 		if (qtbase_translator.load("qtbase_" + locale, m_path) || qtbase_translator.load("qtbase_" + locale, path)) {

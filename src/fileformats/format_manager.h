@@ -25,7 +25,6 @@ class FormatReader;
 #include <QCoreApplication>
 #include <QString>
 class QIODevice;
-class QStringList;
 
 class FormatManager
 {

@@ -238,7 +238,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 
 	// Fetch list of recently used symbols
 	QList<QVariant> recent = settings.value("SymbolsDialog/Recent").toList();
-	for (int i = 0, count = std::min(16, recent.count()); i < count; ++i) {
+	for (int i = 0, count = std::min(16, int(recent.count())); i < count; ++i) {
 		char32_t unicode = recent.at(i).toUInt();
 		QTableWidgetItem* item = new QTableWidgetItem(QString::fromUcs4(&unicode, 1));
 		item->setTextAlignment(Qt::AlignCenter);

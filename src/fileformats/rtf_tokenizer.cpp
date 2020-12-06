@@ -30,7 +30,7 @@
 //-----------------------------------------------------------------------------
 
 RtfTokenizer::RtfTokenizer() :
-	m_device(0),
+	m_device(nullptr),
 	m_position(0),
 	m_value(0),
 	m_has_value(false)

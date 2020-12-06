@@ -21,7 +21,9 @@
 
 #include <QApplication>
 #include <QHash>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QSoundEffect>
+#endif
 
 //-----------------------------------------------------------------------------
 
@@ -40,6 +42,7 @@ Sound::Sound(int name, const QString& filename, QObject* parent) :
 	QObject(parent),
 	m_name(name)
 {
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 	QSoundEffect* sound = new QSoundEffect(this);
 	sound->setSource(QUrl::fromLocalFile(f_path + "/" + filename));
 	while (sound->status() == QSoundEffect::Loading) {
@@ -51,6 +54,9 @@ Sound::Sound(int name, const QString& filename, QObject* parent) :
 	if (sound->status() != QSoundEffect::Error) {
 		f_sound_objects.insert(m_name, this);
 	}
+#else
+	Q_UNUSED(filename)
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -71,6 +77,7 @@ bool Sound::isValid() const
 
 void Sound::play()
 {
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 	QSoundEffect* sound = nullptr;
 	for (int i = 0, end = m_sounds.size(); i < end; ++i) {
 		if (!m_sounds.at(i)->isPlaying()) {
@@ -84,6 +91,7 @@ void Sound::play()
 		m_sounds.append(sound);
 	}
 	sound->play();
+#endif
 }
 
 //-----------------------------------------------------------------------------

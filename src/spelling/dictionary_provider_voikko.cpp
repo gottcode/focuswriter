@@ -27,7 +27,6 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QLibrary>
-#include <QStringList>
 #include <QStringRef>
 
 //-----------------------------------------------------------------------------

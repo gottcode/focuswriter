@@ -79,7 +79,9 @@ void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) con
 	QFile file(cache_path + "/mapping");
 	if (file.open(QFile::ReadOnly | QFile::Text)) {
 		QTextStream stream(&file);
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 		stream.setCodec("UTF-8");
+#endif
 		stream.setAutoDetectUnicode(true);
 
 		while (!stream.atEnd()) {
@@ -141,7 +143,9 @@ void DocumentCache::updateMapping()
 	QFile file(m_path + "/mapping");
 	if (file.open(QFile::WriteOnly | QFile::Text)) {
 		QTextStream stream(&file);
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 		stream.setCodec("UTF-8");
+#endif
 		stream.setGenerateByteOrderMark(true);
 
 		for (int i = 0; i < m_ordering->count(); ++i) {

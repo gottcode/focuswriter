@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@
 
 int main(int argc, char** argv)
 {
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #if !defined(Q_OS_MAC)
 	if (!qEnvironmentVariableIsSet("QT_DEVICE_PIXEL_RATIO")
 			&& !qEnvironmentVariableIsSet("QT_AUTO_SCREEN_SCALE_FACTOR")
@@ -44,6 +45,8 @@ int main(int argc, char** argv)
 			&& !qEnvironmentVariableIsSet("QT_SCREEN_SCALE_FACTORS")) {
 		QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	}
+#endif
+	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif
 	Application app(argc, argv);
 	if (app.isRunning()) {

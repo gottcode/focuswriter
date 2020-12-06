@@ -24,8 +24,6 @@
 #include "rtf_reader.h"
 #include "txt_reader.h"
 
-#include <QStringList>
-
 //-----------------------------------------------------------------------------
 
 FormatReader* FormatManager::createReader(QIODevice* device, const QString& type)

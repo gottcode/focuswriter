@@ -22,9 +22,6 @@
 
 #include "abstract_dictionary_provider.h"
 
-class QString;
-class QStringList;
-
 class DictionaryProviderVoikko : public AbstractDictionaryProvider
 {
 public:

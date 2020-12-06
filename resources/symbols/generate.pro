@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++11
+CONFIG += console
 QT += network
 
 SOURCES = main.cpp

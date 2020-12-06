@@ -23,6 +23,7 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QVariantHash>
+#include <QWidget>
 
 //-----------------------------------------------------------------------------
 

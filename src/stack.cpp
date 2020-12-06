@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
 #include "theme_renderer.h"
 
 #include <QAction>
+#include <QActionGroup>
 #include <QApplication>
 #include <QClipboard>
 #include <QDir>
@@ -650,7 +651,11 @@ void Stack::showHeader()
 
 void Stack::mouseMoveEvent(QMouseEvent* event)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+	int y = mapFromGlobal(event->globalPosition()).y();
+#else
 	int y = mapFromGlobal(event->globalPos()).y();
+#endif
 	bool header_visible = y <= m_header_margin;
 	bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);

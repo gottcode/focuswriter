@@ -20,8 +20,7 @@
 #ifndef ABSTRACT_DICTIONARY_H
 #define ABSTRACT_DICTIONARY_H
 
-class QString;
-class QStringList;
+#include <QStringList>
 class QStringRef;
 
 class AbstractDictionary

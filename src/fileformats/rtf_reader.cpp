@@ -35,7 +35,7 @@
 
 namespace
 {
-	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = 0)
+	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
 	{
 		QByteArray name = "CP" + QByteArray::number(value);
 		QByteArray codec;
@@ -61,8 +61,8 @@ class RtfReader::FunctionTable
 {
 public:
 	FunctionTable() :
-		m_group_end_func(0),
-		m_insert_text_func(0)
+		m_group_end_func(nullptr),
+		m_insert_text_func(nullptr)
 	{
 	}
 
@@ -120,7 +120,7 @@ private:
 	class Function
 	{
 	public:
-		Function(void (RtfReader::*func)(qint32) = 0, qint32 value = 0) :
+		Function(void (RtfReader::*func)(qint32) = nullptr, qint32 value = 0) :
 			m_func(func),
 			m_value(value)
 		{
@@ -554,7 +554,7 @@ void RtfReader::setCodepage(qint32 value)
 {
 	QByteArray codepage;
 	QTextCodec* codec = codecForCodePage(value, &codepage);
-	if (codec != 0) {
+	if (codec) {
 		m_codepage = codec;
 		m_encoding = codepage;
 		setCodec(codec);
@@ -574,7 +574,7 @@ void RtfReader::setFont(qint32 value)
 		m_codepages.resize(value + 1);
 	}
 
-	if (m_codec == 0) {
+	if (!m_codec) {
 		setCodec(m_codepage);
 	}
 }
@@ -590,7 +590,7 @@ void RtfReader::setFontCodepage(qint32 value)
 	}
 
 	QTextCodec* codec = codecForCodePage(value);
-	if (codec != 0) {
+	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
 		setCodec(codec);
 	}
@@ -607,7 +607,7 @@ void RtfReader::setFontCharset(qint32 value)
 		return;
 	}
 
-	if (m_codepages[m_state.active_codepage] != 0) {
+	if (m_codepages[m_state.active_codepage]) {
 		setCodec(m_codepages[m_state.active_codepage]);
 		m_state.ignore_text = true;
 		return;
@@ -637,7 +637,7 @@ void RtfReader::setFontCharset(qint32 value)
 	}
 
 	QTextCodec* codec = QTextCodec::codecForName(charset);
-	if (codec != 0) {
+	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
 		setCodec(codec);
 	}
@@ -764,7 +764,7 @@ void RtfReader::setStyleEnd()
 
 void RtfReader::setStyleSheetEnd()
 {
-	stylesheet_functions.setGroupEnd(0);
+	stylesheet_functions.setGroupEnd(nullptr);
 }
 
 //-----------------------------------------------------------------------------

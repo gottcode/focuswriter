@@ -23,7 +23,6 @@
 #include "abstract_dictionary.h"
 class DictionaryManager;
 
-#include <QStringList>
 #include <QStringRef>
 
 class DictionaryRef

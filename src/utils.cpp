@@ -20,8 +20,6 @@
 #include "utils.h"
 
 #include <QFile>
-#include <QString>
-#include <QStringList>
 
 //-----------------------------------------------------------------------------
 

@@ -29,7 +29,7 @@
 #include <QListIterator>
 #include <QRegularExpression>
 #include <QStandardPaths>
-#include <QStringList>
+#include <QStringRef>
 #include <QTextCodec>
 
 #include <hunspell.hxx>

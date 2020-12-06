@@ -29,6 +29,7 @@
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
 class QString;
+class QTextCodec;
 class QTextDecoder;
 
 class RtfReader : public FormatReader

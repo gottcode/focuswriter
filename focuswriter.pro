@@ -6,20 +6,26 @@ equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 9) {
 }
 
 TEMPLATE = app
-QT += network widgets printsupport multimedia concurrent
+QT += network widgets printsupport concurrent
+greaterThan(QT_MAJOR_VERSION, 5) {
+	QT += core5compat
+}
+lessThan(QT_MAJOR_VERSION, 6) {
+	QT += multimedia
+	macx {
+		QT += macextras
+	} else:win32 {
+		QT += winextras
+	}
+}
 macx {
-	QT += macextras
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
-win32 {
-	QT += winextras
-}
-CONFIG += c++11
 
 CONFIG(debug, debug|release) {
 	CONFIG += warn_on
 	DEFINES += QT_DEPRECATED_WARNINGS
-	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051500
+	DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 	DEFINES += QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 }
 
@@ -45,29 +51,33 @@ unix: !macx: !haiku {
 
 # Add dependencies
 macx {
-	DEFINES += RTFCLIPBOARD
+	lessThan(QT_MAJOR_VERSION, 6) {
+		DEFINES += RTFCLIPBOARD
+		HEADERS += src/fileformats/clipboard_mac.h
+		SOURCES += src/fileformats/clipboard_mac.cpp
+	}
 
 	LIBS += -lz -framework AppKit
 
-	HEADERS += src/fileformats/clipboard_mac.h \
-		src/spelling/dictionary_provider_nsspellchecker.h
-
+	HEADERS += src/spelling/dictionary_provider_nsspellchecker.h
 	OBJECTIVE_SOURCES += src/spelling/dictionary_provider_nsspellchecker.mm
-
-	SOURCES += src/fileformats/clipboard_mac.cpp
 } else:win32 {
-	DEFINES += RTFCLIPBOARD HUNSPELL_STATIC
+	lessThan(QT_MAJOR_VERSION, 6) {
+		DEFINES += RTFCLIPBOARD
+		HEADERS += src/fileformats/clipboard_windows.h
+		SOURCES += src/fileformats/clipboard_windows.cpp
+	}
+
+	DEFINES += HUNSPELL_STATIC
 
 	LIBS += -lz -lole32
 
 	INCLUDEPATH += src/spelling/hunspell
 
-	HEADERS += src/fileformats/clipboard_windows.h \
-		src/spelling/dictionary_provider_hunspell.h \
+	HEADERS += src/spelling/dictionary_provider_hunspell.h \
 		src/spelling/dictionary_provider_voikko.h
 
-	SOURCES += src/fileformats/clipboard_windows.cpp \
-		src/spelling/dictionary_provider_hunspell.cpp \
+	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
 		src/spelling/dictionary_provider_voikko.cpp \
 		src/spelling/hunspell/affentry.cxx \
 		src/spelling/hunspell/affixmgr.cxx \

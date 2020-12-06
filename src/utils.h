@@ -20,8 +20,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-class QString;
-class QStringList;
+#include <QString>
 
 bool compareFiles(const QString& filename1, const QString& filename2);
 bool localeAwareSort(const QString& lhs, const QString& rhs);
