@@ -52,7 +52,7 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Hungarian] = "CP1250";
 	codepages[QLocale::Polish] = "CP1250";
 	codepages[QLocale::Romanian] = "CP1250";
-	codepages[QLocale::SerboCroatian] = "CP1250";
+	codepages[QLocale::Serbian] = "CP1250";
 	codepages[QLocale::Slovak] = "CP1250";
 	codepages[QLocale::Slovenian] = "CP1250";
 	codepages[QLocale::Turkmen] = "CP1250";
@@ -75,6 +75,7 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Dutch] = "CP1252";
 	codepages[QLocale::English] = "CP1252";
 	codepages[QLocale::Faroese] = "CP1252";
+	codepages[QLocale::Filipino] = "CP1252";
 	codepages[QLocale::Finnish] = "CP1252";
 	codepages[QLocale::French] = "CP1252";
 	codepages[QLocale::Frisian] = "CP1252";
@@ -91,7 +92,7 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Italian] = "CP1252";
 	codepages[QLocale::Kinyarwanda] = "CP1252";
 	codepages[QLocale::Malay] = "CP1252";
-	codepages[QLocale::Norwegian] = "CP1252";
+	codepages[QLocale::NorwegianBokmal] = "CP1252";
 	codepages[QLocale::NorwegianNynorsk] = "CP1252";
 	codepages[QLocale::Occitan] = "CP1252";
 	codepages[QLocale::Portuguese] = "CP1252";
@@ -100,7 +101,6 @@ QHash<QLocale::Language, QByteArray> mapCodePages()
 	codepages[QLocale::Spanish] = "CP1252";
 	codepages[QLocale::Swahili] = "CP1252";
 	codepages[QLocale::Swedish] = "CP1252";
-	codepages[QLocale::Tagalog] = "CP1252";
 	codepages[QLocale::Welsh] = "CP1252";
 	codepages[QLocale::Wolof] = "CP1252";
 	codepages[QLocale::Xhosa] = "CP1252";
