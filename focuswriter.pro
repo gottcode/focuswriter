@@ -251,7 +251,7 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	SYMBOLS.files = resources/symbols/symbols1000.dat
+	SYMBOLS.files = resources/symbols/symbols1300.dat
 	SYMBOLS.path = Contents/Resources
 
 	THEMES.files = resources/themes
@@ -293,7 +293,7 @@ macx {
 	themes.files = resources/themes/*
 	themes.path = $$DATADIR/themes
 
-	symbols.files = resources/symbols/symbols1000.dat
+	symbols.files = resources/symbols/symbols1300.dat
 	symbols.path = $$DATADIR
 
 	INSTALLS += target man icons qm sounds symbols themes
@@ -341,7 +341,7 @@ macx {
 	themes.files = resources/themes/*
 	themes.path = $$DATADIR/focuswriter/themes
 
-	symbols.files = resources/symbols/symbols1000.dat
+	symbols.files = resources/symbols/symbols1300.dat
 	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes

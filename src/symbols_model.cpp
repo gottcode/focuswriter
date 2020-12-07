@@ -74,7 +74,7 @@ SymbolsModel::SymbolsModel(QObject* parent) :
 	}
 
 	QDataStream stream(&buffer);
-	stream.setVersion(QDataStream::Qt_5_2);
+	stream.setVersion(QDataStream::Qt_5_9);
 	stream >> m_names;
 	stream >> m_groups;
 	buffer.close();
@@ -305,7 +305,7 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 void SymbolsModel::setData(const QStringList& datadirs)
 {
 	for (const QString& path : datadirs) {
-		QFileInfo info(path + "/symbols1000.dat");
+		QFileInfo info(path + "/symbols1300.dat");
 		if (info.exists()) {
 			m_path = info.absoluteFilePath();
 			break;
