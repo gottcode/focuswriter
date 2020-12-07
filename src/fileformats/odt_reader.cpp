@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -128,11 +128,11 @@ void OdtReader::readDocument()
 {
 	m_xml.readNextStartElement();
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "office:styles") {
+		if (m_xml.qualifiedName() == QLatin1String("office:styles")) {
 			readStylesGroup();
-		} else if (m_xml.qualifiedName() == "office:automatic-styles") {
+		} else if (m_xml.qualifiedName() == QLatin1String("office:automatic-styles")) {
 			readStylesGroup();
-		} else if (m_xml.qualifiedName() == "office:body") {
+		} else if (m_xml.qualifiedName() == QLatin1String("office:body")) {
 			readBody();
 		}  else {
 			m_xml.skipCurrentElement();
@@ -145,7 +145,7 @@ void OdtReader::readDocument()
 void OdtReader::readStylesGroup()
 {
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "style:style") {
+		if (m_xml.qualifiedName() == QLatin1String("style:style")) {
 			readStyle();
 		} else {
 			m_xml.skipCurrentElement();
@@ -163,9 +163,9 @@ void OdtReader::readStyle()
 
 	int type = -1;
 	QStringRef family = attributes.value(QLatin1String("style:family"));
-	if (family == "paragraph") {
+	if (family == QLatin1String("paragraph")) {
 		type = 0;
-	} else if (family == "text") {
+	} else if (family == QLatin1String("text")) {
 		type = 1;
 	} else {
 		m_xml.skipCurrentElement();
@@ -191,9 +191,9 @@ void OdtReader::readStyle()
 	}
 
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "style:paragraph-properties") {
+		if (m_xml.qualifiedName() == QLatin1String("style:paragraph-properties")) {
 			readStyleParagraphProperties(style.block_format);
-		} else if (m_xml.qualifiedName() == "style:text-properties") {
+		} else if (m_xml.qualifiedName() == QLatin1String("style:text-properties")) {
 			readStyleTextProperties(style.char_format);
 		} else {
 			m_xml.skipCurrentElement();
@@ -224,24 +224,24 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 	QXmlStreamAttributes attributes = m_xml.attributes();
 
 	QStringRef align = attributes.value(QLatin1String("fo:text-align"));
-	if (align == "start") {
+	if (align == QLatin1String("start")) {
 		format.setAlignment(Qt::AlignLeading);
-	} else if (align == "end") {
+	} else if (align == QLatin1String("end")) {
 		format.setAlignment(Qt::AlignTrailing);
-	} else if (align == "left") {
+	} else if (align == QLatin1String("left")) {
 		format.setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
-	} else if (align == "right") {
+	} else if (align == QLatin1String("right")) {
 		format.setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
-	} else if (align == "center") {
+	} else if (align == QLatin1String("center")) {
 		format.setAlignment(Qt::AlignHCenter);
-	} else if (align == "justify") {
+	} else if (align == QLatin1String("justify")) {
 		format.setAlignment(Qt::AlignJustify);
 	}
 
 	QStringRef direction = attributes.value(QLatin1String("style:writing-mode"));
-	if (direction == "rl-tb" || direction == "rl") {
+	if (direction == QLatin1String("rl-tb") || direction == QLatin1String("rl")) {
 		format.setLayoutDirection(Qt::RightToLeft);
-	} else if (direction == "lr-tb" || direction == "lr") {
+	} else if (direction == QLatin1String("lr-tb") || direction == QLatin1String("lr")) {
 		format.setLayoutDirection(Qt::LeftToRight);
 	}
 
@@ -287,28 +287,28 @@ void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 	QXmlStreamAttributes attributes = m_xml.attributes();
 
 	if (attributes.hasAttribute(QLatin1String("fo:font-weight"))) {
-		if (attributes.value(QLatin1String("fo:font-weight")) == "bold") {
+		if (attributes.value(QLatin1String("fo:font-weight")) == QLatin1String("bold")) {
 			format.setFontWeight(QFont::Bold);
 		}
 	}
 
 	if (attributes.hasAttribute(QLatin1String("fo:font-style"))) {
-		format.setFontItalic(attributes.value(QLatin1String("fo:font-style")) != "normal");
+		format.setFontItalic(attributes.value(QLatin1String("fo:font-style")) != QLatin1String("normal"));
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-underline-style"))) {
-		format.setFontUnderline(attributes.value(QLatin1String("style:text-underline-style")) != "none");
+		format.setFontUnderline(attributes.value(QLatin1String("style:text-underline-style")) != QLatin1String("none"));
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-line-through-type"))) {
-		format.setFontStrikeOut(attributes.value(QLatin1String("style:text-line-through-type")) != "none");
+		format.setFontStrikeOut(attributes.value(QLatin1String("style:text-line-through-type")) != QLatin1String("none"));
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-position"))) {
 		QStringRef position = attributes.value((QLatin1String("style:text-position")));
-		if (position == "super") {
+		if (position == QLatin1String("super")) {
 			format.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
-		} else if (position == "sub") {
+		} else if (position == QLatin1String("sub")) {
 			format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
 		} else {
 			QString value = position.toString().split(' ',
@@ -337,7 +337,7 @@ void OdtReader::readBody()
 {
 	m_cursor.beginEditBlock();
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "office:text") {
+		if (m_xml.qualifiedName() == QLatin1String("office:text")) {
 			readBodyText();
 		} else {
 			m_xml.skipCurrentElement();
@@ -351,9 +351,9 @@ void OdtReader::readBody()
 void OdtReader::readBodyText()
 {
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "text:p") {
+		if (m_xml.qualifiedName() == QLatin1String("text:p")) {
 			readParagraph();
-		} else if (m_xml.qualifiedName() == "text:h") {
+		} else if (m_xml.qualifiedName() == QLatin1String("text:h")) {
 			int heading = -1;
 			QXmlStreamAttributes attributes = m_xml.attributes();
 			if (attributes.hasAttribute(QLatin1String("text:outline-level"))) {
@@ -361,7 +361,7 @@ void OdtReader::readBodyText()
 				heading = qBound(1, level.toInt(), 6);
 			}
 			readParagraph(heading);
-		} else if (m_xml.qualifiedName() == "text:section") {
+		} else if (m_xml.qualifiedName() == QLatin1String("text:section")) {
 			readBodyText();
 		} else {
 			m_xml.skipCurrentElement();
@@ -455,15 +455,15 @@ void OdtReader::readText()
 			m_cursor.insertText(m_xml.text().toString());
 		} else if (m_xml.isStartElement()) {
 			++depth;
-			if (m_xml.qualifiedName() == "text:span") {
+			if (m_xml.qualifiedName() == QLatin1String("text:span")) {
 				readSpan();
 				--depth;
-			} else if (m_xml.qualifiedName() == "text:s") {
+			} else if (m_xml.qualifiedName() == QLatin1String("text:s")) {
 				int spaces = m_xml.attributes().value(QLatin1String("text:c")).toString().toInt();
 				m_cursor.insertText(QString(std::max(1, spaces), QLatin1Char(' ')));
-			} else if (m_xml.qualifiedName() == "text:tab") {
+			} else if (m_xml.qualifiedName() == QLatin1String("text:tab")) {
 				m_cursor.insertText(QLatin1String("\t"));
-			} else if (m_xml.qualifiedName() == "text:line-break") {
+			} else if (m_xml.qualifiedName() == QLatin1String("text:line-break")) {
 				m_cursor.insertText(QChar(0x2028));
 			}
 		} else if (m_xml.isEndElement()) {
