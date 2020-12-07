@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,10 +57,10 @@ public:
 	}
 
 	QKeySequence shortcut(const QString& name) const;
-	QKeySequence shortcut(quint32 unicode);
+	QKeySequence shortcut(char32_t unicode);
 
 	void addAction(const QString& name, QAction* action);
-	void setShortcut(quint32 unicode, const QKeySequence& sequence);
+	void setShortcut(char32_t unicode, const QKeySequence& sequence);
 	void setShortcuts(const QHash<QString, QKeySequence>& shortcuts);
 
 	static ActionManager* instance()
@@ -75,12 +75,12 @@ private slots:
 	void symbolShortcutActivated();
 
 private:
-	void addShortcut(quint32 unicode, const QKeySequence& sequence);
+	void addShortcut(char32_t unicode, const QKeySequence& sequence);
 
 private:
 	QWidget* m_widget;
 	QHash<QString, Action> m_actions;
-	QHash<quint32, QShortcut*> m_symbol_shortcuts;
+	QHash<char32_t, QShortcut*> m_symbol_shortcuts;
 	QHash<QObject*, QString> m_symbol_shortcuts_text;
 	static ActionManager* m_instance;
 };

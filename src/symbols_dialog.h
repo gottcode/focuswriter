@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ private slots:
 	void shortcutChanged();
 
 private:
-	bool selectSymbol(quint32 unicode);
+	bool selectSymbol(char32_t unicode);
 	void saveSettings();
 
 private:

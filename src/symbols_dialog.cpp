@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -239,7 +239,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	// Fetch list of recently used symbols
 	QList<QVariant> recent = settings.value("SymbolsDialog/Recent").toList();
 	for (int i = 0, count = std::min(16, recent.count()); i < count; ++i) {
-		quint32 unicode = recent.at(i).toUInt();
+		char32_t unicode = recent.at(i).toUInt();
 		QTableWidgetItem* item = new QTableWidgetItem(QString::fromUcs4(&unicode, 1));
 		item->setTextAlignment(Qt::AlignCenter);
 		item->setData(Qt::UserRole, unicode);
@@ -289,7 +289,7 @@ void SymbolsDialog::accept()
 {
 	QModelIndex symbol = m_view->currentIndex();
 	if (symbol.isValid()) {
-		quint32 unicode = symbol.internalId();
+		char32_t unicode = symbol.internalId();
 
 		// Remove symbol from recent list
 		for (int i = 0, count = m_recent->columnCount(); i < count; ++i) {
@@ -369,7 +369,7 @@ void SymbolsDialog::showGroup(int group)
 
 	if (m_model->rowCount()) {
 		QModelIndex symbol = m_view->currentIndex();
-		quint32 unicode = symbol.internalId();
+		char32_t unicode = symbol.internalId();
 
 		if (!selectSymbol(unicode)) {
 			selectSymbol(' ');
@@ -387,7 +387,7 @@ void SymbolsDialog::symbolClicked(const QModelIndex& symbol)
 {
 	if (symbol.isValid()) {
 		// Show symbol details
-		quint32 unicode = symbol.internalId();
+		char32_t unicode = symbol.internalId();
 		QString name = m_model->symbolName(unicode);
 		m_symbol_preview_item->setText(symbol.data(Qt::DisplayRole).toString());
 		m_symbol_preview->setSceneRect(m_symbol_preview_item->boundingRect());
@@ -424,14 +424,14 @@ void SymbolsDialog::recentSymbolClicked(QTableWidgetItem* symbol)
 
 void SymbolsDialog::shortcutChanged()
 {
-	quint32 unicode = m_view->currentIndex().internalId();
+	char32_t unicode = m_view->currentIndex().internalId();
 	QKeySequence sequence = m_symbol_shortcut->shortcut();
 	ActionManager::instance()->setShortcut(unicode, sequence);
 }
 
 //-----------------------------------------------------------------------------
 
-bool SymbolsDialog::selectSymbol(quint32 unicode)
+bool SymbolsDialog::selectSymbol(char32_t unicode)
 {
 	int group = m_groups->currentIndex();
 

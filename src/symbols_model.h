@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,12 +33,12 @@ private:
 	{
 		struct Range
 		{
-			quint32 start;
-			quint32 end;
+			char32_t start;
+			char32_t end;
 		};
 
 		QByteArray name;
-		quint32 size;
+		char32_t size;
 		QVector<Range> ranges;
 	};
 	typedef QVector<Filter> FilterGroup;
@@ -49,13 +49,13 @@ public:
 	QStringList filters(int group) const;
 	QStringList filterGroups() const;
 	void setFilter(int group, int index);
-	int symbolFilter(int group, quint32 unicode) const;
-	QString symbolName(quint32 unicode) const;
+	int symbolFilter(int group, char32_t unicode) const;
+	QString symbolName(char32_t unicode) const;
 
 	int columnCount(const QModelIndex& parent = QModelIndex()) const;
 	QVariant data(const QModelIndex& index, int role) const;
 	Qt::ItemFlags flags(const QModelIndex& index) const;
-	QModelIndex index(quint32 unicode) const;
+	QModelIndex index(char32_t unicode) const;
 	QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const;
 	QModelIndex parent(const QModelIndex& child) const;
 	int rowCount(const QModelIndex& parent = QModelIndex()) const;
@@ -66,9 +66,9 @@ public:
 	friend QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter::Range& range);
 
 private:
-	QVector<quint32> m_symbols;
+	QVector<char32_t> m_symbols;
 
-	QHash<quint32, QByteArray> m_names;
+	QHash<char32_t, QByteArray> m_names;
 	QVector<FilterGroup> m_groups;
 
 	static QString m_path;

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2014, 2015, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ ActionManager::ActionManager(QWidget* parent) :
 	while (iter.hasNext()) {
 		iter.next();
 		bool ok = false;
-		quint32 unicode = iter.key().toUInt(&ok, 16);
+		char32_t unicode = iter.key().toUInt(&ok, 16);
 		QKeySequence shortcut = QKeySequence::fromString(iter.value().toString());
 		if (ok && !shortcut.isEmpty()) {
 			addShortcut(unicode, shortcut);
@@ -87,7 +87,7 @@ ActionManager::~ActionManager()
 
 	// Save symbol shortcuts
 	QVariantHash shortcuts;
-	QHashIterator<quint32, QShortcut*> iter(m_symbol_shortcuts);
+	QHashIterator<char32_t, QShortcut*> iter(m_symbol_shortcuts);
 	while (iter.hasNext()) {
 		iter.next();
 		shortcuts.insert(QString::number(iter.key(), 16), iter.value()->key().toString());
@@ -108,7 +108,7 @@ QKeySequence ActionManager::shortcut(const QString& name) const
 
 //-----------------------------------------------------------------------------
 
-QKeySequence ActionManager::shortcut(quint32 unicode)
+QKeySequence ActionManager::shortcut(char32_t unicode)
 {
 	return m_symbol_shortcuts.contains(unicode) ? m_symbol_shortcuts.value(unicode)->key() : QKeySequence();
 }
@@ -129,7 +129,7 @@ void ActionManager::addAction(const QString& name, QAction* action)
 
 //-----------------------------------------------------------------------------
 
-void ActionManager::setShortcut(quint32 unicode, const QKeySequence& sequence)
+void ActionManager::setShortcut(char32_t unicode, const QKeySequence& sequence)
 {
 	if (!sequence.isEmpty()) {
 		if (m_symbol_shortcuts.contains(unicode)) {
@@ -190,7 +190,7 @@ void ActionManager::symbolShortcutActivated()
 
 //-----------------------------------------------------------------------------
 
-void ActionManager::addShortcut(quint32 unicode, const QKeySequence& sequence)
+void ActionManager::addShortcut(char32_t unicode, const QKeySequence& sequence)
 {
 	QShortcut* shortcut = new QShortcut(sequence, m_widget);
 	connect(shortcut, &QShortcut::activated, this, &ActionManager::symbolShortcutActivated);

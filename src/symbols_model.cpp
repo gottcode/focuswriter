@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,16 @@
 #include <climits>
 
 //-----------------------------------------------------------------------------
+
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+QDataStream& operator>>(QDataStream& stream, char32_t& c)
+{
+	quint32 u;
+	stream >> u;
+	c = char32_t(u);
+	return stream;
+}
+#endif
 
 QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter::Range& range)
 {
@@ -126,7 +136,7 @@ void SymbolsModel::setFilter(int group, int index)
 	beginInsertRows(QModelIndex(), 0, (size / 16) - 1);
 	for (int i = 0, count = filter.ranges.count(); i < count; ++i) {
 		const Filter::Range& range = filter.ranges.at(i);
-		for (quint32 code = range.start; code <= range.end; ++code) {
+		for (char32_t code = range.start; code <= range.end; ++code) {
 			m_symbols.append(code);
 		}
 	}
@@ -140,7 +150,7 @@ void SymbolsModel::setFilter(int group, int index)
 
 //-----------------------------------------------------------------------------
 
-int SymbolsModel::symbolFilter(int group, quint32 unicode) const
+int SymbolsModel::symbolFilter(int group, char32_t unicode) const
 {
 	// Find group
 	int index = -1;
@@ -164,7 +174,7 @@ int SymbolsModel::symbolFilter(int group, quint32 unicode) const
 
 //-----------------------------------------------------------------------------
 
-QString SymbolsModel::symbolName(quint32 unicode) const
+QString SymbolsModel::symbolName(char32_t unicode) const
 {
 	if ((unicode >= 0x3400 && unicode <= 0x4DBF)
 			|| (unicode >= 0x4E00 && unicode <= 0x9FFF)
@@ -231,7 +241,7 @@ QVariant SymbolsModel::data(const QModelIndex& index, int role) const
 		return QVariant();
 	}
 
-	quint32 unicode = index.internalId();
+	char32_t unicode = index.internalId();
 	bool printable = QChar(unicode).isPrint();
 	switch (role) {
 	case Qt::BackgroundRole:
@@ -258,7 +268,7 @@ Qt::ItemFlags SymbolsModel::flags(const QModelIndex& index) const
 
 //-----------------------------------------------------------------------------
 
-QModelIndex SymbolsModel::index(quint32 unicode) const
+QModelIndex SymbolsModel::index(char32_t unicode) const
 {
 	int index = m_symbols.indexOf(unicode);
 	if (index != -1) {
