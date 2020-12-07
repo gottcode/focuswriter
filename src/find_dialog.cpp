@@ -25,7 +25,6 @@
 
 #include <QApplication>
 #include <QCheckBox>
-#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QGridLayout>
 #include <QKeyEvent>
@@ -36,6 +35,7 @@
 #include <QPushButton>
 #include <QRadioButton>
 #include <QRegularExpression>
+#include <QScreen>
 #include <QSettings>
 
 //-----------------------------------------------------------------------------
@@ -175,7 +175,11 @@ void FindDialog::showEvent(QShowEvent* event)
 {
 	if (!m_position.isNull()) {
 		QRect rect(m_position, sizeHint());
-		if (QApplication::desktop()->availableGeometry(this).contains(rect)) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
+		if (screen()->availableGeometry().contains(rect)) {
+#else
+		if (QApplication::primaryScreen()->availableGeometry().contains(rect)) {
+#endif
 			move(m_position);
 		}
 	}

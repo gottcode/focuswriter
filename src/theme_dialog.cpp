@@ -27,7 +27,6 @@
 #include <QApplication>
 #include <QCheckBox>
 #include <QComboBox>
-#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QFile>
@@ -37,6 +36,7 @@
 #include <QImageReader>
 #include <QLabel>
 #include <QLineEdit>
+#include <QScreen>
 #include <QScrollArea>
 #include <QSettings>
 #include <QSpinBox>
@@ -455,7 +455,7 @@ void ThemeDialog::imageChanged()
 {
 	if (!m_background_image->image().isEmpty()) {
 		QSize image = QImageReader(m_background_image->image()).size();
-		QSize desktop = QApplication::desktop()->size();
+		QSize desktop = QApplication::primaryScreen()->size();
 		if ((image.width() * image.height() * 4) <= (desktop.width() * desktop.height())) {
 			m_background_type->setCurrentIndex(1);
 		} else if (m_background_type->currentIndex() < 2) {
