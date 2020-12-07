@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017, 2018, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QPushButton>
+#include <QRegularExpression>
 #include <QScrollBar>
 #include <QSettings>
 #include <QStandardPaths>
@@ -1468,21 +1469,18 @@ QString Document::getSaveFileName(const QString& title)
 		}
 
 		// Append file extension
-		QString type;
-		QRegExp exp("\\*(\\.\\w+)");
-		bool append_extension = false;
+		QRegularExpression regex("\\*(\\.\\w+)");
+		QRegularExpressionMatchIterator i = regex.globalMatch(selected);
+		bool append_extension = i.hasNext();
 		QStringList types;
-		int index = selected.indexOf(QLatin1Char('(')) + 1;
-		while ((index = exp.indexIn(selected, index)) != -1) {
-			type = exp.cap(1);
+		while (i.hasNext()) {
+			QString type = i.next().captured(1);
+			types << type;
+
 			if (filename.endsWith(type)) {
 				append_extension = false;
 				break;
 			}
-
-			append_extension = true;
-			types.append(type);
-			index += types.last().length();
 		}
 		if (append_extension) {
 			filename.append(types.first());

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2008-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QRegularExpression>
 #include <QSettings>
 
 //-----------------------------------------------------------------------------
@@ -210,16 +211,15 @@ void FindDialog::replace()
 
 	QTextEdit* document = m_documents->currentDocument()->text();
 	QTextCursor cursor = document->textCursor();
-	Qt::CaseSensitivity cs = m_ignore_case->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive;
 	if (!m_regular_expressions->isChecked()) {
-		if (QString::compare(cursor.selectedText(), text, cs) == 0) {
+		if (QString::compare(cursor.selectedText(), text, m_ignore_case->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive) == 0) {
 			cursor.insertText(m_replace_string->text());
 			document->setTextCursor(cursor);
 		}
 	} else {
-		QRegExp regex(text, cs, QRegExp::RegExp2);
+		QRegularExpression regex("^" + text + "$", m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 		QString match = cursor.selectedText();
-		if (regex.exactMatch(match)) {
+		if (regex.match(match).hasMatch()) {
 			match.replace(regex, m_replace_string->text());
 			cursor.insertText(match);
 			document->setTextCursor(cursor);
@@ -237,7 +237,7 @@ void FindDialog::replaceAll()
 	if (text.isEmpty()) {
 		return;
 	}
-	QRegExp regex(text, !m_ignore_case->isChecked() ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp2);
+	QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {
@@ -316,7 +316,7 @@ void FindDialog::find(bool backwards)
 	if (text.isEmpty()) {
 		return;
 	}
-	QRegExp regex(text, !m_ignore_case->isChecked() ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp2);
+	QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QListIterator>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStandardPaths>
 #include <QStringList>
 #include <QTextCodec>
@@ -272,9 +272,9 @@ QStringList DictionaryProviderHunspell::availableDictionaries() const
 		QDir dir(i.next());
 
 		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
-		dic_files.replaceInStrings(QRegExp("\\.dic.*"), "");
+		dic_files.replaceInStrings(QRegularExpression("\\.dic.*"), "");
 		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
-		aff_files.replaceInStrings(QRegExp("\\.aff.*"), "");
+		aff_files.replaceInStrings(QRegularExpression("\\.aff.*"), "");
 
 		for (const QString& language : dic_files) {
 			if (aff_files.contains(language) && !result.contains(language)) {

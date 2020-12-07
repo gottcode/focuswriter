@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QRegularExpression>
 #include <QTextStream>
 
 #include <algorithm>
@@ -124,7 +125,7 @@ QString DictionaryManager::availableDictionary(const QString& language) const
 {
 	QStringList languages = availableDictionaries();
 	if (!languages.isEmpty() && !languages.contains(language)) {
-		int close = languages.indexOf(QRegExp(language.left(2) + ".*"));
+		int close = languages.indexOf(QRegularExpression(language.left(2) + ".*"));
 		return (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
 	} else {
 		return language;
