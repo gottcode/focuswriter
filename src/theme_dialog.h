@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@
 #define THEME_DIALOG_H
 
 class ColorButton;
-class FontComboBox;
 class ImageButton;
 class Theme;
 class ThemeRenderer;
@@ -30,6 +29,7 @@ class ThemeRenderer;
 #include <QFuture>
 class QCheckBox;
 class QComboBox;
+class QFontComboBox;
 class QGroupBox;
 class QLabel;
 class QLineEdit;
@@ -76,7 +76,7 @@ private:
 	QFuture<QColor> m_load_color;
 
 	ColorButton* m_text_color;
-	FontComboBox* m_font_names;
+	QFontComboBox* m_font_names;
 	QComboBox* m_font_sizes;
 	ColorButton* m_misspelled_color;
 

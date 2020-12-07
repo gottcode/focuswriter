@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #include "theme_dialog.h"
 
 #include "color_button.h"
-#include "font_combobox.h"
 #include "image_button.h"
 #include "theme.h"
 #include "theme_renderer.h"
@@ -32,6 +31,7 @@
 #include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QFile>
+#include <QFontComboBox>
 #include <QFormLayout>
 #include <QGroupBox>
 #include <QImageReader>
@@ -85,7 +85,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_text_color->setColor(m_theme.textColor());
 	connect(m_text_color, &ColorButton::changed, this, &ThemeDialog::renderPreview);
 
-	m_font_names = new FontComboBox(text_group);
+	m_font_names = new QFontComboBox(text_group);
 	m_font_names->setEditable(false);
 	m_font_names->setCurrentFont(m_theme.textFont());
 	connect(m_font_names, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ThemeDialog::fontChanged);
