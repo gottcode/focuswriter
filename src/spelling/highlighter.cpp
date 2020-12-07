@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,11 +24,9 @@
 #include "spell_checker.h"
 
 #include <QAction>
-#include <QApplication>
 #include <QContextMenuEvent>
 #include <QEvent>
 #include <QMenu>
-#include <QStyle>
 #include <QTextEdit>
 #include <QTimer>
 
@@ -165,7 +163,7 @@ void Highlighter::highlightBlock(const QString& text)
 	}
 
 	style.setUnderlineColor(m_misspelled);
-	style.setUnderlineStyle((QTextCharFormat::UnderlineStyle)QApplication::style()->styleHint(QStyle::SH_SpellCheckUnderlineStyle));
+	style.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
 	int cursor = m_text->textCursor().position() - currentBlock().position();
 	QVector<QStringRef> words = stats->misspelled();
