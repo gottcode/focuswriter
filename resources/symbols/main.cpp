@@ -188,7 +188,11 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			const QStringList parts = line.split(";");
 
 			// Find block code point range
+#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
+			const QStringList range = parts.at(0).trimmed().split('.', Qt::SkipEmptyParts);
+#else
 			const QStringList range = parts.at(0).trimmed().split('.', QString::SkipEmptyParts);
+#endif
 			if (range.count() != 2) {
 				continue;
 			}
@@ -236,7 +240,11 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 
 			// Find script code point range
 			char32_t start, end;
+#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
+			QStringList range = parts.at(0).trimmed().split('.', Qt::SkipEmptyParts);
+#else
 			QStringList range = parts.at(0).trimmed().split('.', QString::SkipEmptyParts);
+#endif
 			if (range.count() == 1) {
 				start = end = range.at(0).toUInt(0, 16);
 			} else if (range.count() == 2) {
