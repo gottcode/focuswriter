@@ -1,13 +1,15 @@
-@ECHO ON>resources\windows\dirs.nsh
-@ECHO ON>resources\windows\files.nsh
+@ECHO ON>..\focuswriter\resources\windows\dirs.nsh
+@ECHO ON>..\focuswriter\resources\windows\files.nsh
 @ECHO OFF
 
+SET SRCDIR=..\focuswriter
 SET APP=FocusWriter
 FOR /f %%i IN ('git describe') DO SET VERSION=%%i
 
 ECHO Copying executable
-MKDIR %APP%
-COPY release\%APP%.exe %APP% >nul
+MKDIR %SRCDIR%\%APP%
+COPY release\%APP%.exe %SRCDIR%\%APP% >nul
+CD %SRCDIR%
 
 ECHO Copying translations
 SET TRANSLATIONS=%APP%\translations
@@ -38,7 +40,7 @@ MKDIR %THEMES%
 XCOPY /Q /S /Y resources\themes\* %THEMES% >nul
 
 ECHO Copying Qt
-%QTDIR%\bin\windeployqt.exe --verbose 0 --no-angle --no-opengl-sw %APP%\%APP%.exe
+%QTDIR%\bin\windeployqt.exe --verbose 0 --no-opengl-sw --no-system-d3d-compiler %APP%\%APP%.exe
 RMDIR /S /Q %APP%\iconengines
 
 ECHO Creating ReadMe
