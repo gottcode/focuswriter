@@ -92,21 +92,13 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 		QTextBlock block = m_start_cursor.block();
 		int cursor = m_start_cursor.position() - block.position();
 
-		bool under_mouse = false;
-		WordRef word;
-		auto words = static_cast<BlockStats*>(block.userData())->misspelled();
-		for (int i = 0; i < words.count(); ++i) {
-			word = words.at(i);
+		const auto words = static_cast<BlockStats*>(block.userData())->misspelled();
+		for (auto word : words) {
 			int delta = cursor - word.position();
-			if (delta >= 0 && delta <= word.length()) {
-				under_mouse = true;
-				break;
+			if (delta < 0 || delta > word.length()) {
+				continue;
 			}
-		}
 
-		if (!under_mouse) {
-			return false;
-		} else {
 			// Select misspelled word
 			m_cursor = m_start_cursor;
 			m_cursor.setPosition(word.position() + block.position());
@@ -139,6 +131,8 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 			return true;
 		}
+
+		return false;
 	}
 }
 
