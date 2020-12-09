@@ -148,6 +148,7 @@ HEADERS += src/action_manager.h \
 	src/timer_manager.h \
 	src/utils.h \
 	src/window.h \
+	src/word_ref.h \
 	src/fileformats/docx_reader.h \
 	src/fileformats/docx_writer.h \
 	src/fileformats/format_manager.h \

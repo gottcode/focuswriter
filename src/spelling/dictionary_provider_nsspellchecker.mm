@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 
 #include "abstract_dictionary.h"
 #include "dictionary_manager.h"
+#include "word_ref.h"
 
-#include <QStringList>
 #include <QVector>
 
 #import <AppKit/NSSpellChecker.h>
@@ -59,7 +59,7 @@ public:
 		return true;
 	}
 
-	QStringRef check(const QString& string, int start_at) const;
+	WordRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
 	void addToPersonal(const QString& word);
@@ -95,13 +95,13 @@ DictionaryNSSpellChecker::~DictionaryNSSpellChecker()
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryNSSpellChecker::check(const QString& string, int start_at) const
+WordRef DictionaryNSSpellChecker::check(const QString& string, int start_at) const
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
 	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
 
-	QStringRef misspelled;
+	WordRef misspelled;
 
 	NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
 		startingAt:start_at
@@ -111,7 +111,7 @@ QStringRef DictionaryNSSpellChecker::check(const QString& string, int start_at) 
 		wordCount:NULL];
 
 	if (range.length > 0) {
-		misspelled = QStringRef(&string, range.location, range.length);
+		misspelled = WordRef(range.location, range.length);
 	}
 
 	[pool release];

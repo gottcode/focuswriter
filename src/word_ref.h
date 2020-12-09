@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013-2020 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,42 +17,36 @@
  *
  ***********************************************************************/
 
-#ifndef DICTIONARY_REF_H
-#define DICTIONARY_REF_H
+#ifndef WORD_REF
+#define WORD_REF
 
-#include "abstract_dictionary.h"
-#include "word_ref.h"
-class DictionaryManager;
-
-class DictionaryRef
+class WordRef
 {
 public:
-	WordRef check(const QString& string, int start_at) const
+	WordRef(int position = 0, int length = 0) :
+		m_position(position),
+		m_length(length)
 	{
-		return (*d)->check(string, start_at);
 	}
 
-	QStringList suggestions(const QString& word) const
+	bool isNull() const
 	{
-		return (*d)->suggestions(word);
+		return !m_length;
 	}
 
-	void addToPersonal(const QString& word)
+	int length() const
 	{
-		(*d)->addToPersonal(word);
+		return m_length;
 	}
 
-	friend class DictionaryManager;
-
-private:
-	DictionaryRef(AbstractDictionary** data) :
-		d(data)
+	int position() const
 	{
-		Q_ASSERT(d != 0);
+		return m_position;
 	}
 
 private:
-	AbstractDictionary** d;
+	int m_position;
+	int m_length;
 };
 
 #endif

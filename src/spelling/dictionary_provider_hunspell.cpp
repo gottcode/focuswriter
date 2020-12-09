@@ -22,6 +22,7 @@
 #include "abstract_dictionary.h"
 #include "dictionary_manager.h"
 #include "smart_quotes.h"
+#include "word_ref.h"
 
 #include <QDir>
 #include <QFile>
@@ -29,7 +30,6 @@
 #include <QListIterator>
 #include <QRegularExpression>
 #include <QStandardPaths>
-#include <QStringRef>
 #include <QTextCodec>
 
 #include <hunspell.hxx>
@@ -55,7 +55,7 @@ public:
 		return m_dictionary;
 	}
 
-	QStringRef check(const QString& string, int start_at) const;
+	WordRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
 	void addToPersonal(const QString& word);
@@ -111,7 +111,7 @@ DictionaryHunspell::~DictionaryHunspell()
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
+WordRef DictionaryHunspell::check(const QString& string, int start_at) const
 {
 	int index = -1;
 	int length = 0;
@@ -167,15 +167,14 @@ QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 
 		if (is_word || (i == count && index != -1)) {
 			if (!is_uppercase && !is_number) {
-				QStringRef check(&string, index, length);
-				QString word = check.toString();
+				auto word = string.mid(index, length);
 				word.replace(QChar(0x2019), QLatin1Char('\''));
 #ifdef H_DEPRECATED
 				if (!m_dictionary->spell(m_codec->fromUnicode(word).toStdString())) {
 #else
 				if (!m_dictionary->spell(m_codec->fromUnicode(word).constData())) {
 #endif
-					return check;
+					return WordRef(index, length);
 				}
 			}
 			index = -1;
@@ -185,7 +184,7 @@ QStringRef DictionaryHunspell::check(const QString& string, int start_at) const
 		}
 	}
 
-	return QStringRef();
+	return WordRef();
 }
 
 //-----------------------------------------------------------------------------

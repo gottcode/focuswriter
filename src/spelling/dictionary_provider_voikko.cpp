@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014, 2017 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,12 +22,12 @@
 #include "abstract_dictionary.h"
 #include "dictionary_manager.h"
 #include "smart_quotes.h"
+#include "word_ref.h"
 
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QLibrary>
-#include <QStringRef>
 
 //-----------------------------------------------------------------------------
 
@@ -86,7 +86,7 @@ public:
 		return m_handle;
 	}
 
-	QStringRef check(const QString& string, int start_at) const;
+	WordRef check(const QString& string, int start_at) const;
 	QStringList suggestions(const QString& word) const;
 
 	void addToPersonal(const QString& word);
@@ -125,7 +125,7 @@ DictionaryVoikko::~DictionaryVoikko()
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryVoikko::check(const QString& string, int start_at) const
+WordRef DictionaryVoikko::check(const QString& string, int start_at) const
 {
 	int index = -1;
 	int length = 0;
@@ -152,16 +152,15 @@ QStringRef DictionaryVoikko::check(const QString& string, int start_at) const
 		}
 
 		if (is_word || (i == count && index != -1)) {
-			QStringRef check(&string, index, length);
-			if (voikkoSpellCstr(m_handle, check.toString().toUtf8().constData()) != VOIKKO_SPELL_OK) {
-				return check;
+			if (voikkoSpellCstr(m_handle, string.mid(index, length).toUtf8().constData()) != VOIKKO_SPELL_OK) {
+				return WordRef(index, length);
 			}
 			index = -1;
 			is_word = false;
 		}
 	}
 
-	return QStringRef();
+	return WordRef();
 }
 
 //-----------------------------------------------------------------------------

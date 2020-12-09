@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,9 @@
 #ifndef ABSTRACT_DICTIONARY_H
 #define ABSTRACT_DICTIONARY_H
 
+class WordRef;
+
 #include <QStringList>
-class QStringRef;
 
 class AbstractDictionary
 {
@@ -29,7 +30,7 @@ public:
 	virtual ~AbstractDictionary() { }
 
 	virtual bool isValid() const = 0;
-	virtual QStringRef check(const QString& string, int start_at) const = 0;
+	virtual WordRef check(const QString& string, int start_at) const = 0;
 	virtual QStringList suggestions(const QString& word) const = 0;
 
 	virtual void addToPersonal(const QString& word) = 0;

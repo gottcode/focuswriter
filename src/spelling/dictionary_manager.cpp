@@ -60,11 +60,11 @@ public:
 		return true;
 	}
 
-	QStringRef check(const QString& string, int start_at) const
+	WordRef check(const QString& string, int start_at) const
 	{
 		Q_UNUSED(string);
 		Q_UNUSED(start_at);
-		return QStringRef();
+		return WordRef();
 	}
 
 	QStringList suggestions(const QString& word) const
