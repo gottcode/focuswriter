@@ -45,6 +45,15 @@ mkdir "$TRANSLATIONS"
 cp translations/*.qm "$TRANSLATIONS"
 echo 'Done'
 
+# Make macos aware that the app bundle is translated.
+# This is required to translate parts of native open/save dialogs.
+echo -n "Creating mac lproj directories for translations ..."
+for translation in $(find translations -type f -name "*.qm" -print0 | xargs -0); do
+    translation=$(sed 's/translations\/focuswriter_//g' <<< "$translation")
+    translation=$(sed 's/qm/lproj/g' <<< "$translation")
+    mkdir -p "$APP/$BUNDLE/Contents/Resources/$translation"
+done
+
 # Copy Qt translations
 echo -n 'Copying Qt translations... '
 cp $QTDIR/translations/qt_* "$TRANSLATIONS"
