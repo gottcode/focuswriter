@@ -71,7 +71,7 @@ public:
 			int progress = qBound(0, index.data(Qt::UserRole).toInt(), 100);
 			if (progress == 0) {
 				opt.backgroundBrush = opt.palette.alternateBase();
-			} else if (progress == 100) {
+			} else if (progress >= 100) {
 				const qreal pixelratio = painter->device()->devicePixelRatioF();
 				painter->drawPixmap(QPointF(opt.rect.topLeft()), fetchStarBackground(opt, pixelratio));
 				opt.font.setBold(true);
