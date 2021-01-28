@@ -262,7 +262,7 @@ macx {
 } else:win32 {
 	RC_ICONS = resources/windows/focuswriter.ico
 	QMAKE_TARGET_DESCRIPTION = "Fullscreen word processor"
-	QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2019 Graeme Gott"
+	QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2021 Graeme Gott"
 } else:haiku {
 	RESOURCES += resources/images/icons/icons.qrc
 
