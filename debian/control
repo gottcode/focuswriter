@@ -3,7 +3,7 @@ Section: editors
 Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
-Build-Depends: debhelper-compat (= 12),
+Build-Depends: debhelper-compat (= 13),
 		qtbase5-dev,
 		qttools5-dev-tools,
 		qtmultimedia5-dev,
