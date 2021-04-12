@@ -27,9 +27,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 #include <QRandomGenerator>
-#endif
 #include <QTextStream>
 
 #include <algorithm>
@@ -224,11 +222,7 @@ QString DocumentCache::createFileName()
 	QString filename;
 	QDir dir(m_path);
 	do {
-#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 		quint32 value = QRandomGenerator::global()->generate();
-#else
-		int value = qrand();
-#endif
 		filename = QString("fw_%1").arg(value, 6, 36, QLatin1Char('0'));
 	} while (dir.exists(filename));
 

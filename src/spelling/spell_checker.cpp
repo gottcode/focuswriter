@@ -138,11 +138,7 @@ SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
 	// Create widgets
 	m_context = new QTextEdit(this);
 	m_context->setReadOnly(true);
-#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 	m_context->setTabStopDistance(50);
-#else
-	m_context->setTabStopWidth(50);
-#endif
 	QPushButton* add_button = new QPushButton(tr("&Add"), this);
 	add_button->setAutoDefault(false);
 	connect(add_button, &QPushButton::clicked, this, &SpellChecker::add);

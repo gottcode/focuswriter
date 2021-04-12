@@ -112,9 +112,7 @@ Window::Window(const QStringList& command_line_files) :
 		QIcon::setThemeName("Hicolor");
 		setIconSize(QSize(22,22));
 	}
-#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
 	QIcon::setFallbackThemeName("hicolor");
-#endif
 #endif
 
 	// Create actions manager
