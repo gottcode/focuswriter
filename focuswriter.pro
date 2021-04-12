@@ -21,6 +21,7 @@ lessThan(QT_MAJOR_VERSION, 6) {
 macx {
 	QMAKE_INFO_PLIST = resources/mac/Info.plist
 }
+CONFIG += c++17
 
 CONFIG(debug, debug|release) {
 	CONFIG += warn_on
