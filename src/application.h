@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011, 2012 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011-2021 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ public:
 	QStringList files() const
 		{ return m_files; }
 
-	bool createWindow();
+	bool createWindow(const QStringList& files);
 
 protected:
 	virtual bool event(QEvent* e);
