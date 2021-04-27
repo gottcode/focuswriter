@@ -8,13 +8,14 @@ FOR /f %%i IN ('git describe') DO SET VERSION=%%i
 
 ECHO Copying executable
 MKDIR %SRCDIR%\%APP%
-COPY release\%APP%.exe %SRCDIR%\%APP% >nul
-CD %SRCDIR%
+COPY %APP%.exe %SRCDIR%\%APP%\%APP%.exe >nul
 
 ECHO Copying translations
-SET TRANSLATIONS=%APP%\translations
+SET TRANSLATIONS=%SRCDIR%\%APP%\translations
 MKDIR %TRANSLATIONS%
-COPY translations\*.qm %TRANSLATIONS% >nul
+COPY *.qm %TRANSLATIONS% >nul
+
+CD %SRCDIR%
 
 ECHO Copying icons
 SET ICONS=%APP%\icons\hicolor
