@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='7.0.4.1'
+loversion='7.1.3.1'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/7.0.4/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/7.1.3/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -35,7 +35,7 @@ echo -n 'Downloading Esperanto dictionary...'
 eodict='dict-eo'
 eofiles='dict-eo/dictionaries'
 if [ ! -e "${eodict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/esperanto-spellchecker-thesaurus-and-hyphenizer/1.01/@@download/file/${eodict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/assets/downloads/z/${eodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -50,10 +50,10 @@ else
 fi
 
 echo -n 'Downloading Korean dictionary...'
-kodict='Korean_spell-checker-0.7.91_LibO'
-kofiles='Korean_spell-checker-0.7.91_LibO/dictionaries'
+kodict='korean-spell-checker-0-7-91-libo'
+kofiles='korean-spell-checker-0-7-91-libo/dictionaries'
 if [ ! -e "${kodict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker/0-7.91/@@download/file/${kodict}.oxt"
+	curl -s -O "https://extensions.libreoffice.org/assets/downloads/z/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -154,8 +154,8 @@ echo -n ' eo'
 cp -a $eofiles/eo.aff dicts/eo.aff
 cp -a $eofiles/eo.dic dicts/eo.dic
 echo -n ' es'
-cp -a $lofiles/es/es_ANY.aff dicts/es.aff
-cp -a $lofiles/es/es_ANY.dic dicts/es.dic
+cp -a $lofiles/es/es_ES.aff dicts/es.aff
+cp -a $lofiles/es/es_ES.dic dicts/es.dic
 echo -n ' fi'
 cp -a voikko/voikko/2 dicts
 cp -a voikko/voikko/Windows-64bit-WindowsPE/libvoikko-1.dll dicts
