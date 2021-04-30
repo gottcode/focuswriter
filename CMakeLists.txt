@@ -24,10 +24,17 @@ add_compile_definitions(
 	QT_DISABLE_DEPRECATED_BEFORE=0x060000
 )
 
-# Create program
+# Create translations
 file(GLOB translations_SRCS translations/*.ts)
 qt6_add_translation(translations_QM ${translations_SRCS})
 
+add_custom_target(update_translations
+	COMMAND Qt6::lupdate -no-obsolete -locations none src -ts ${translations_SRCS}
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+	VERBATIM
+)
+
+# Create program
 qt6_add_executable(focuswriter
 	src/action_manager.cpp
 	src/alert.cpp
