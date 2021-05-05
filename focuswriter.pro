@@ -315,9 +315,6 @@ macx {
 	icon.files = resources/images/icons/hicolor/*
 	icon.path = $$DATADIR/icons/hicolor
 
-	pixmap.files = resources/unix/focuswriter.xpm
-	pixmap.path = $$DATADIR/pixmaps
-
 	icons.files = resources/images/icons/oxygen/hicolor/*
 	icons.path = $$DATADIR/focuswriter/icons/hicolor
 
@@ -343,5 +340,5 @@ macx {
 	symbols.files = resources/symbols/symbols1300.dat
 	symbols.path = $$DATADIR/focuswriter
 
-	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes
+	INSTALLS += target icon desktop appdata man icons qm sounds symbols themes
 }
