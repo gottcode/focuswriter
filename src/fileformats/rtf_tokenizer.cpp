@@ -1,26 +1,13 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2013 Graeme Gott <graeme@gottcode.org>
- *
- * Derived from KWord's rtfimport_tokenizer.cpp
- *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
- *  Copyright (C) 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
- *  Copyright (C) 2005 Tommi Rantala <tommi.rantala@cs.helsinki.fi>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2013 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
+	SPDX-FileCopyrightText: 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
+	SPDX-FileCopyrightText: 2005 Tommi Rantala <tommi.rantala@cs.helsinki.fi>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+
+	Derived from KWord's rtfimport_tokenizer.cpp
+*/
 
 #include "rtf_tokenizer.h"
 
