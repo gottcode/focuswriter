@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef RTF_CLIPBOARD_WINDOWS_H
-#define RTF_CLIPBOARD_WINDOWS_H
+#ifndef FOCUSWRITER_RTF_CLIPBOARD_WINDOWS_H
+#define FOCUSWRITER_RTF_CLIPBOARD_WINDOWS_H
 
 #include <QWinMime>
 
@@ -31,4 +31,4 @@ namespace RTF
 	};
 }
 
-#endif
+#endif // FOCUSWRITER_RTF_CLIPBOARD_WINDOWS_H

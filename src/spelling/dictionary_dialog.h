@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DICTIONARY_DIALOG
-#define DICTIONARY_DIALOG
+#ifndef FOCUSWRITER_DICTIONARY_DIALOG
+#define FOCUSWRITER_DICTIONARY_DIALOG
 
 #include <QDialog>
 class QListWidget;
@@ -24,4 +24,4 @@ private:
 	QListWidget* m_languages;
 };
 
-#endif
+#endif // FOCUSWRITER_DICTIONARY_DIALOG

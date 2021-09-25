@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SHORTCUT_EDIT_H
-#define SHORTCUT_EDIT_H
+#ifndef FOCUSWRITER_SHORTCUT_EDIT_H
+#define FOCUSWRITER_SHORTCUT_EDIT_H
 
 #include <QWidget>
 class QKeySequenceEdit;
@@ -35,4 +35,4 @@ private:
 	QPushButton* m_reset_button;
 };
 
-#endif
+#endif // FOCUSWRITER_SHORTCUT_EDIT_H

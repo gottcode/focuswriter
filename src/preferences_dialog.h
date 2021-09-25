@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef PREFERENCES_DIALOG_H
-#define PREFERENCES_DIALOG_H
+#ifndef FOCUSWRITER_PREFERENCES_DIALOG_H
+#define FOCUSWRITER_PREFERENCES_DIALOG_H
 
 class DailyProgress;
 class ShortcutEdit;
@@ -128,4 +128,4 @@ private:
 	bool m_shortcut_conflicts;
 };
 
-#endif
+#endif // FOCUSWRITER_PREFERENCES_DIALOG_H

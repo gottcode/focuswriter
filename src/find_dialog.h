@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef FIND_DIALOG_H
-#define FIND_DIALOG_H
+#ifndef FOCUSWRITER_FIND_DIALOG_H
+#define FOCUSWRITER_FIND_DIALOG_H
 
 class Stack;
 
@@ -67,4 +67,4 @@ private:
 	QPoint m_position;
 };
 
-#endif
+#endif // FOCUSWRITER_FIND_DIALOG_H

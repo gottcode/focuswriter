@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef ACTION_MANAGER_H
-#define ACTION_MANAGER_H
+#ifndef FOCUSWRITER_ACTION_MANAGER_H
+#define FOCUSWRITER_ACTION_MANAGER_H
 
 #include <QHash>
 #include <QKeySequence>
@@ -72,4 +72,4 @@ private:
 	static ActionManager* m_instance;
 };
 
-#endif
+#endif // FOCUSWRITER_ACTION_MANAGER_H

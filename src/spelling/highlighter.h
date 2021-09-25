@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef HIGHLIGHTER_H
-#define HIGHLIGHTER_H
+#ifndef FOCUSWRITER_HIGHLIGHTER_H
+#define FOCUSWRITER_HIGHLIGHTER_H
 
 class DictionaryRef;
 
@@ -57,4 +57,4 @@ inline bool Highlighter::enabled() const
 	return m_enabled;
 }
 
-#endif
+#endif // FOCUSWRITER_HIGHLIGHTER_H

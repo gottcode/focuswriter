@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DOCX_WRITER_H
-#define DOCX_WRITER_H
+#ifndef FOCUSWRITER_DOCX_WRITER_H
+#define FOCUSWRITER_DOCX_WRITER_H
 
 #include <QCoreApplication>
 #include <QString>
@@ -46,4 +46,4 @@ private:
 	QString m_error;
 };
 
-#endif
+#endif // FOCUSWRITER_DOCX_WRITER_H

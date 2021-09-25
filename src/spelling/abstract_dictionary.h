@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef ABSTRACT_DICTIONARY_H
-#define ABSTRACT_DICTIONARY_H
+#ifndef FOCUSWRITER_ABSTRACT_DICTIONARY_H
+#define FOCUSWRITER_ABSTRACT_DICTIONARY_H
 
 class WordRef;
 
@@ -25,4 +25,4 @@ public:
 	virtual void removeFromSession(const QStringList& words) = 0;
 };
 
-#endif
+#endif // FOCUSWRITER_ABSTRACT_DICTIONARY_H

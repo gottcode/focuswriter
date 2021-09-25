@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef IMAGE_BUTTON_H
-#define IMAGE_BUTTON_H
+#ifndef FOCUSWRITER_IMAGE_BUTTON_H
+#define FOCUSWRITER_IMAGE_BUTTON_H
 
 #include <QPushButton>
 
@@ -42,4 +42,4 @@ inline QString ImageButton::toString() const {
 	return m_path;
 }
 
-#endif
+#endif // FOCUSWRITER_IMAGE_BUTTON_H

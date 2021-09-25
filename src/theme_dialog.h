@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef THEME_DIALOG_H
-#define THEME_DIALOG_H
+#ifndef FOCUSWRITER_THEME_DIALOG_H
+#define FOCUSWRITER_THEME_DIALOG_H
 
 class ColorButton;
 class ImageButton;
@@ -100,4 +100,4 @@ private:
 	QCheckBox* m_indent_first_line;
 };
 
-#endif
+#endif // FOCUSWRITER_THEME_DIALOG_H

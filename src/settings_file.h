@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SETTINGS_FILE_H
-#define SETTINGS_FILE_H
+#ifndef FOCUSWRITER_SETTINGS_FILE_H
+#define FOCUSWRITER_SETTINGS_FILE_H
 
 class SettingsFile
 {
@@ -63,4 +63,4 @@ private:
 	bool m_changed;
 };
 
-#endif
+#endif // FOCUSWRITER_SETTINGS_FILE_H

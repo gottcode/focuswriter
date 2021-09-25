@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DICTIONARY_REF_H
-#define DICTIONARY_REF_H
+#ifndef FOCUSWRITER_DICTIONARY_REF_H
+#define FOCUSWRITER_DICTIONARY_REF_H
 
 #include "abstract_dictionary.h"
 #include "word_ref.h"
@@ -42,4 +42,4 @@ private:
 	AbstractDictionary** d;
 };
 
-#endif
+#endif // FOCUSWRITER_DICTIONARY_REF_H

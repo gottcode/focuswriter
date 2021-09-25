@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SYMBOLS_DIALOG_H
-#define SYMBOLS_DIALOG_H
+#ifndef FOCUSWRITER_SYMBOLS_DIALOG_H
+#define FOCUSWRITER_SYMBOLS_DIALOG_H
 
 class ShortcutEdit;
 class SymbolsModel;
@@ -75,4 +75,4 @@ private:
 	QPushButton* m_insert_button;
 };
 
-#endif
+#endif // FOCUSWRITER_SYMBOLS_DIALOG_H

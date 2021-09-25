@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef PATHS_H
-#define PATHS_H
+#ifndef FOCUSWRITER_PATHS_H
+#define FOCUSWRITER_PATHS_H
 
 class QString;
 
@@ -16,4 +16,4 @@ public:
 	static QString oldDataPath();
 };
 
-#endif
+#endif // FOCUSWRITER_PATHS_H

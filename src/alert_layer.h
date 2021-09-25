@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef ALERT_LAYER_H
-#define ALERT_LAYER_H
+#ifndef FOCUSWRITER_ALERT_LAYER_H
+#define FOCUSWRITER_ALERT_LAYER_H
 
 class Alert;
 
@@ -33,4 +33,4 @@ private:
 	QVBoxLayout* m_alerts_layout;
 };
 
-#endif
+#endif // FOCUSWRITER_ALERT_LAYER_H

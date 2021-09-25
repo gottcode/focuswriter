@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#ifndef FOCUSWRITER_APPLICATION_H
+#define FOCUSWRITER_APPLICATION_H
 
 class Window;
 
@@ -30,4 +30,4 @@ private:
 	Window* m_window;
 };
 
-#endif
+#endif // FOCUSWRITER_APPLICATION_H

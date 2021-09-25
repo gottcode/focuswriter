@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DOCUMENT_H
-#define DOCUMENT_H
+#ifndef FOCUSWRITER_DOCUMENT_H
+#define FOCUSWRITER_DOCUMENT_H
 
 #include "dictionary_ref.h"
 #include "document_writer.h"
@@ -202,4 +202,4 @@ inline QTextEdit* Document::text() const {
 	return m_text;
 }
 
-#endif
+#endif // FOCUSWRITER_DOCUMENT_H

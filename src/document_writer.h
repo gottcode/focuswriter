@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DOCUMENT_WRITER_H
-#define DOCUMENT_WRITER_H
+#ifndef FOCUSWRITER_DOCUMENT_WRITER_H
+#define FOCUSWRITER_DOCUMENT_WRITER_H
 
 #include <QString>
 class QTextDocument;
@@ -64,4 +64,4 @@ inline void DocumentWriter::setWriteByteOrderMark(bool write_bom)
 	m_write_bom = write_bom;
 }
 
-#endif
+#endif // FOCUSWRITER_DOCUMENT_WRITER_H

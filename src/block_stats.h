@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef BLOCK_STATS_H
-#define BLOCK_STATS_H
+#ifndef FOCUSWRITER_BLOCK_STATS_H
+#define FOCUSWRITER_BLOCK_STATS_H
 
 #include "word_ref.h"
 class DictionaryRef;
@@ -101,4 +101,4 @@ inline void BlockStats::recheckSpelling()
 	m_checked = CheckSpelling;
 }
 
-#endif
+#endif // FOCUSWRITER_BLOCK_STATS_H

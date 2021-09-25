@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef THEME_H
-#define THEME_H
+#ifndef FOCUSWRITER_THEME_H
+#define FOCUSWRITER_THEME_H
 
 #include "ranged_int.h"
 #include "settings_file.h"
@@ -184,4 +184,4 @@ private:
 
 Q_DECLARE_METATYPE(Theme)
 
-#endif
+#endif // FOCUSWRITER_THEME_H

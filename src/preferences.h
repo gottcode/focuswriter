@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef PREFERENCES_H
-#define PREFERENCES_H
+#ifndef FOCUSWRITER_PREFERENCES_H
+#define FOCUSWRITER_PREFERENCES_H
 
 #include "ranged_int.h"
 #include "ranged_string.h"
@@ -157,4 +157,4 @@ private:
 	bool m_always_show_footer;
 };
 
-#endif
+#endif // FOCUSWRITER_PREFERENCES_H

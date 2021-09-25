@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef FORMAT_MANAGER_H
-#define FORMAT_MANAGER_H
+#ifndef FOCUSWRITER_FORMAT_MANAGER_H
+#define FOCUSWRITER_FORMAT_MANAGER_H
 
 class FormatReader;
 
@@ -25,4 +25,4 @@ public:
 	static QStringList types();
 };
 
-#endif
+#endif // FOCUSWRITER_FORMAT_MANAGER_H

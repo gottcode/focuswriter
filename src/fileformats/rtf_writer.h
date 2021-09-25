@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef RTF_WRITER_H
-#define RTF_WRITER_H
+#ifndef FOCUSWRITER_RTF_WRITER_H
+#define FOCUSWRITER_RTF_WRITER_H
 
 #include <QByteArray>
 #include <QString>
@@ -38,4 +38,4 @@ inline QByteArray RtfWriter::encoding() const
 	return m_encoding;
 }
 
-#endif
+#endif // FOCUSWRITER_RTF_WRITER_H

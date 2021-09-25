@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef COLOR_BUTTON_H
-#define COLOR_BUTTON_H
+#ifndef FOCUSWRITER_COLOR_BUTTON_H
+#define FOCUSWRITER_COLOR_BUTTON_H
 
 #include <QColor>
 #include <QPushButton>
@@ -38,4 +38,4 @@ inline QColor ColorButton::color() const
 	return m_color;
 }
 
-#endif
+#endif // FOCUSWRITER_COLOR_BUTTON_H

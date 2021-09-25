@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef RTF_READER_H
-#define RTF_READER_H
+#ifndef FOCUSWRITER_RTF_READER_H
+#define FOCUSWRITER_RTF_READER_H
 
 #include "format_reader.h"
 #include "rtf_tokenizer.h"
@@ -108,4 +108,4 @@ private:
 	QVector<QTextCodec*> m_codepages;
 };
 
-#endif
+#endif // FOCUSWRITER_RTF_READER_H

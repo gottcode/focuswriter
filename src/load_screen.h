@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef LOAD_SCREEN_H
-#define LOAD_SCREEN_H
+#ifndef FOCUSWRITER_LOAD_SCREEN_H
+#define FOCUSWRITER_LOAD_SCREEN_H
 
 #include <QLabel>
 #include <QPixmap>
@@ -41,4 +41,4 @@ private:
 	QTimer* m_hide_timer;
 };
 
-#endif
+#endif // FOCUSWRITER_LOAD_SCREEN_H

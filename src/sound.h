@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SOUND_H
-#define SOUND_H
+#ifndef FOCUSWRITER_SOUND_H
+#define FOCUSWRITER_SOUND_H
 
 #include <QObject>
 #include <QVector>
@@ -29,4 +29,4 @@ private:
 	QVector<QSoundEffect*> m_sounds;
 };
 
-#endif
+#endif // FOCUSWRITER_SOUND_H

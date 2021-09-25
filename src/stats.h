@@ -4,6 +4,9 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
+#ifndef FOCUSWRITER_STATS_H
+#define FOCUSWRITER_STATS_H
+
 class BlockStats;
 
 class Stats
@@ -64,3 +67,5 @@ inline int Stats::wordCount() const
 {
 	return m_word_count;
 }
+
+#endif // FOCUSWRITER_STATS_H

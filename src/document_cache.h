@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DOCUMENT_CACHE_H
-#define DOCUMENT_CACHE_H
+#ifndef FOCUSWRITER_DOCUMENT_CACHE_H
+#define FOCUSWRITER_DOCUMENT_CACHE_H
 
 #include "document_writer.h"
 class Document;
@@ -53,4 +53,4 @@ private:
 	static QString m_path;
 };
 
-#endif
+#endif // FOCUSWRITER_DOCUMENT_CACHE_H

@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef ODT_READER_H
-#define ODT_READER_H
+#ifndef FOCUSWRITER_ODT_READER_H
+#define FOCUSWRITER_ODT_READER_H
 
 #include "format_reader.h"
 
@@ -63,4 +63,4 @@ private:
 	bool m_in_block;
 };
 
-#endif
+#endif // FOCUSWRITER_ODT_READER_H

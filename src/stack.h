@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef STACK_H
-#define STACK_H
+#ifndef FOCUSWRITER_STACK_H
+#define FOCUSWRITER_STACK_H
 
 #include "theme.h"
 class AlertLayer;
@@ -180,4 +180,4 @@ inline Document* Stack::document(int index) const {
 	return m_documents[index];
 }
 
-#endif
+#endif // FOCUSWRITER_STACK_H

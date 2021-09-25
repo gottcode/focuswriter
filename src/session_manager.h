@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SESSION_MANAGER_H
-#define SESSION_MANAGER_H
+#ifndef FOCUSWRITER_SESSION_MANAGER_H
+#define FOCUSWRITER_SESSION_MANAGER_H
 
 class Session;
 class Theme;
@@ -65,4 +65,4 @@ private:
 	QPushButton* m_switch_button;
 };
 
-#endif
+#endif // FOCUSWRITER_SESSION_MANAGER_H

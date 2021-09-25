@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SCENE_MODEL_H
-#define SCENE_MODEL_H
+#ifndef FOCUSWRITER_SCENE_MODEL_H
+#define FOCUSWRITER_SCENE_MODEL_H
 
 class BlockStats;
 
@@ -69,4 +69,4 @@ private:
 	int m_updates;
 };
 
-#endif
+#endif // FOCUSWRITER_SCENE_MODEL_H

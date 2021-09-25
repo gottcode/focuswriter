@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DOCUMENT_WATCHER_H
-#define DOCUMENT_WATCHER_H
+#ifndef FOCUSWRITER_DOCUMENT_WATCHER_H
+#define FOCUSWRITER_DOCUMENT_WATCHER_H
 
 class Document;
 
@@ -73,4 +73,4 @@ private:
 	static DocumentWatcher* m_instance;
 };
 
-#endif
+#endif // FOCUSWRITER_DOCUMENT_WATCHER_H

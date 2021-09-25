@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef FOCUSWRITER_WINDOW_H
+#define FOCUSWRITER_WINDOW_H
 
 class DailyProgress;
 class DailyProgressDialog;
@@ -134,4 +134,4 @@ private:
 	DailyProgressDialog* m_daily_progress_dialog;
 };
 
-#endif
+#endif // FOCUSWRITER_WINDOW_H

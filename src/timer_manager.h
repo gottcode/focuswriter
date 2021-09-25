@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef TIMER_MANAGER_H
-#define TIMER_MANAGER_H
+#ifndef FOCUSWRITER_TIMER_MANAGER_H
+#define FOCUSWRITER_TIMER_MANAGER_H
 
 class Stack;
 class Timer;
@@ -68,4 +68,4 @@ private:
 	QMenu* m_recent_timers;
 };
 
-#endif
+#endif // FOCUSWRITER_TIMER_MANAGER_H

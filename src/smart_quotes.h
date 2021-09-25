@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SMART_QUOTES_H
-#define SMART_QUOTES_H
+#ifndef FOCUSWRITER_SMART_QUOTES_H
+#define FOCUSWRITER_SMART_QUOTES_H
 
 #include <QChar>
 #include <QCoreApplication>
@@ -56,4 +56,4 @@ inline bool SmartQuotes::isEnabled()
 	return m_enabled;
 }
 
-#endif
+#endif // FOCUSWRITER_SMART_QUOTES_H

@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef THEME_MANAGER_H
-#define THEME_MANAGER_H
+#ifndef FOCUSWRITER_THEME_MANAGER_H
+#define FOCUSWRITER_THEME_MANAGER_H
 
 class Theme;
 
@@ -54,4 +54,4 @@ private:
 	QPushButton* m_export_button;
 };
 
-#endif
+#endif // FOCUSWRITER_THEME_MANAGER_H

@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SESSION_H
-#define SESSION_H
+#ifndef FOCUSWRITER_SESSION_H
+#define FOCUSWRITER_SESSION_H
 
 #include <QCoreApplication>
 #include <QStringList>
@@ -45,4 +45,4 @@ private:
 	static QString m_path;
 };
 
-#endif
+#endif // FOCUSWRITER_SESSION_H

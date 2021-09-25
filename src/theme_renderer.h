@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef THEME_RENDERER_H
-#define THEME_RENDERER_H
+#ifndef FOCUSWRITER_THEME_RENDERER_H
+#define FOCUSWRITER_THEME_RENDERER_H
 
 #include "theme.h"
 
@@ -53,4 +53,4 @@ private:
 	QList<CacheFile> m_cache;
 };
 
-#endif
+#endif // FOCUSWRITER_THEME_RENDERER_H

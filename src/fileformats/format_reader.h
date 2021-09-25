@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef FORMAT_READER_H
-#define FORMAT_READER_H
+#ifndef FOCUSWRITER_FORMAT_READER_H
+#define FOCUSWRITER_FORMAT_READER_H
 
 #include <QString>
 #include <QTextCursor>
@@ -61,4 +61,4 @@ private:
 	virtual void readData(QIODevice* device) = 0;
 };
 
-#endif
+#endif // FOCUSWRITER_FORMAT_READER_H

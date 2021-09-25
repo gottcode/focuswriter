@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DAILY_PROGRESS_H
-#define DAILY_PROGRESS_H
+#ifndef FOCUSWRITER_DAILY_PROGRESS_H
+#define FOCUSWRITER_DAILY_PROGRESS_H
 
 #include <QAbstractTableModel>
 #include <QDate>
@@ -127,4 +127,4 @@ inline void DailyProgress::increaseWordCount(int words)
 	updateProgress();
 }
 
-#endif
+#endif // FOCUSWRITER_DAILY_PROGRESS_H

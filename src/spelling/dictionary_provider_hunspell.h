@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DICTIONARY_PROVIDER_HUNSPELL_H
-#define DICTIONARY_PROVIDER_HUNSPELL_H
+#ifndef FOCUSWRITER_DICTIONARY_PROVIDER_HUNSPELL_H
+#define FOCUSWRITER_DICTIONARY_PROVIDER_HUNSPELL_H
 
 #include "abstract_dictionary_provider.h"
 
@@ -26,4 +26,4 @@ public:
 	void setIgnoreUppercase(bool ignore);
 };
 
-#endif
+#endif // FOCUSWRITER_DICTIONARY_PROVIDER_HUNSPELL_H

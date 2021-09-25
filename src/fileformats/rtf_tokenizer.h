@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef RTF_TOKENIZER_H
-#define RTF_TOKENIZER_H
+#ifndef FOCUSWRITER_RTF_TOKENIZER_H
+#define FOCUSWRITER_RTF_TOKENIZER_H
 
 #include <QByteArray>
 #include <QCoreApplication>
@@ -76,4 +76,4 @@ inline qint32 RtfTokenizer::value() const
 	return m_value;
 }
 
-#endif
+#endif // FOCUSWRITER_RTF_TOKENIZER_H

@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef ODT_WRITER_H
-#define ODT_WRITER_H
+#ifndef FOCUSWRITER_ODT_WRITER_H
+#define FOCUSWRITER_ODT_WRITER_H
 
 #include <QCoreApplication>
 #include <QHash>
@@ -49,4 +49,4 @@ private:
 	bool m_flat;
 };
 
-#endif
+#endif // FOCUSWRITER_ODT_WRITER_H

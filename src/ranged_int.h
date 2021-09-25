@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef RANGED_INT_H
-#define RANGED_INT_H
+#ifndef FOCUSWRITER_RANGED_INT_H
+#define FOCUSWRITER_RANGED_INT_H
 
 #include <QVariant>
 
@@ -59,4 +59,4 @@ private:
 	int m_max;
 };
 
-#endif
+#endif // FOCUSWRITER_RANGED_INT_H

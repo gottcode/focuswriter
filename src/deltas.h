@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DELTAS_H
-#define DELTAS_H
+#ifndef FOCUSWRITER_DELTAS_H
+#define FOCUSWRITER_DELTAS_H
 
 class Document;
 
@@ -31,4 +31,4 @@ private:
 	int m_word_count;
 };
 
-#endif
+#endif // FOCUSWRITER_DELTAS_H

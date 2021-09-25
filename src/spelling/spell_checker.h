@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SPELL_H
-#define SPELL_H
+#ifndef FOCUSWRITER_SPELL_CHECKER_H
+#define FOCUSWRITER_SPELL_CHECKER_H
 
 class DictionaryRef;
 
@@ -57,4 +57,4 @@ private:
 	QStringList m_ignored;
 };
 
-#endif
+#endif // FOCUSWRITER_SPELL_CHECKER_H

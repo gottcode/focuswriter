@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DAILY_PROGRESS_DIALOG_H
-#define DAILY_PROGRESS_DIALOG_H
+#ifndef FOCUSWRITER_DAILY_PROGRESS_DIALOG_H
+#define FOCUSWRITER_DAILY_PROGRESS_DIALOG_H
 
 class DailyProgress;
 
@@ -49,4 +49,4 @@ private:
 	QLabel* m_current_streak;
 };
 
-#endif
+#endif // FOCUSWRITER_DAILY_PROGRESS_DIALOG_H

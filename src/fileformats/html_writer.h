@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef HTML_WRITER_H
-#define HTML_WRITER_H
+#ifndef FOCUSWRITER_HTML_WRITER_H
+#define FOCUSWRITER_HTML_WRITER_H
 
 #include <QCoreApplication>
 #include <QXmlStreamWriter>
@@ -28,4 +28,4 @@ private:
 	QString m_error;
 };
 
-#endif
+#endif // FOCUSWRITER_HTML_WRITER_H

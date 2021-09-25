@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DICTIONARY_MANAGER_H
-#define DICTIONARY_MANAGER_H
+#ifndef FOCUSWRITER_DICTIONARY_MANAGER_H
+#define FOCUSWRITER_DICTIONARY_MANAGER_H
 
 class AbstractDictionary;
 class AbstractDictionaryProvider;
@@ -75,4 +75,4 @@ inline QStringList DictionaryManager::personal() const
 	return m_personal;
 }
 
-#endif
+#endif // FOCUSWRITER_DICTIONARY_MANAGER_H

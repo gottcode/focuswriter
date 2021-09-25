@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef ABSTRACT_DICTIONARY_PROVIDER_H
-#define ABSTRACT_DICTIONARY_PROVIDER_H
+#ifndef FOCUSWRITER_ABSTRACT_DICTIONARY_PROVIDER_H
+#define FOCUSWRITER_ABSTRACT_DICTIONARY_PROVIDER_H
 
 class AbstractDictionary;
 
@@ -24,4 +24,4 @@ public:
 	virtual void setIgnoreUppercase(bool ignore) = 0;
 };
 
-#endif
+#endif // FOCUSWRITER_ABSTRACT_DICTIONARY_PROVIDER_H

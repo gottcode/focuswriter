@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef WORD_REF
-#define WORD_REF
+#ifndef FOCUSWRITER_WORD_REF
+#define FOCUSWRITER_WORD_REF
 
 class WordRef
 {
@@ -36,4 +36,4 @@ private:
 	int m_length;
 };
 
-#endif
+#endif // FOCUSWRITER_WORD_REF

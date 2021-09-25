@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SCENE_LIST_H
-#define SCENE_LIST_H
+#ifndef FOCUSWRITER_SCENE_LIST_H
+#define FOCUSWRITER_SCENE_LIST_H
 
 class Document;
 
@@ -65,4 +65,4 @@ private:
 	bool m_resizing;
 };
 
-#endif
+#endif // FOCUSWRITER_SCENE_LIST_H

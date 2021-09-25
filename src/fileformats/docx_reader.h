@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef DOCX_READER_H
-#define DOCX_READER_H
+#ifndef FOCUSWRITER_DOCX_READER_H
+#define FOCUSWRITER_DOCX_READER_H
 
 #include "format_reader.h"
 
@@ -70,4 +70,4 @@ private:
 	bool m_in_block;
 };
 
-#endif
+#endif // FOCUSWRITER_DOCX_READER_H

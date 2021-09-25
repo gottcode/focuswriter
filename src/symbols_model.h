@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef SYMBOLS_MODEL_H
-#define SYMBOLS_MODEL_H
+#ifndef FOCUSWRITER_SYMBOLS_MODEL_H
+#define FOCUSWRITER_SYMBOLS_MODEL_H
 
 #include <QAbstractListModel>
 #include <QHash>
@@ -61,4 +61,4 @@ private:
 	static QString m_path;
 };
 
-#endif
+#endif // FOCUSWRITER_SYMBOLS_MODEL_H

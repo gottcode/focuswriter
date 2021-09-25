@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef RANGED_STRING_H
-#define RANGED_STRING_H
+#ifndef FOCUSWRITER_RANGED_STRING_H
+#define FOCUSWRITER_RANGED_STRING_H
 
 #include <QString>
 #include <QStringList>
@@ -50,4 +50,4 @@ private:
 	const QStringList m_allowed;
 };
 
-#endif
+#endif // FOCUSWRITER_RANGED_STRING_H

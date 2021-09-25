@@ -4,8 +4,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#ifndef ALERT_H
-#define ALERT_H
+#ifndef FOCUSWRITER_ALERT_H
+#define FOCUSWRITER_ALERT_H
 
 #include <QWidget>
 class QGraphicsOpacityEffect;
@@ -74,4 +74,4 @@ inline bool Alert::underMouse() const
 	return m_under_mouse;
 }
 
-#endif
+#endif // FOCUSWRITER_ALERT_H
