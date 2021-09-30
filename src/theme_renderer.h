@@ -27,7 +27,7 @@ signals:
 	void rendered(const QImage& image, const QRect& foreground, const Theme& theme);
 
 protected:
-	virtual void run();
+	void run() override;
 
 private:
 	struct CacheFile

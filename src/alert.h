@@ -38,16 +38,16 @@ public:
 	void setIcon(const QPixmap& pixmap);
 	void setText(const QString& text, const QStringList& details);
 
-	bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
 protected:
 #if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
-	void enterEvent(QEnterEvent* event);
+	void enterEvent(QEnterEvent* event) override;
 #else
-	void enterEvent(QEvent* event);
+	void enterEvent(QEvent* event) override;
 #endif
-	void leaveEvent(QEvent* event);
-	void paintEvent(QPaintEvent* event);
+	void leaveEvent(QEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
 
 private slots:
 	void expanderToggled();

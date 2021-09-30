@@ -19,12 +19,12 @@ namespace RTF
 		{
 		}
 
-		virtual bool canConvert(const QString &mime, QString flavor);
-		virtual QList<QByteArray> convertFromMime(const QString &mime, QVariant data, QString flavor);
-		virtual QVariant convertToMime(const QString &mime, QList<QByteArray> data, QString flavor);
-		virtual QString convertorName();
-		virtual QString flavorFor(const QString &mime);
-		virtual QString mimeFor(QString flavor);
+		bool canConvert(const QString &mime, QString flavor) override;
+		QList<QByteArray> convertFromMime(const QString &mime, QVariant data, QString flavor) override;
+		QVariant convertToMime(const QString &mime, QList<QByteArray> data, QString flavor) override;
+		QString convertorName() override;
+		QString flavorFor(const QString &mime) override;
+		QString mimeFor(QString flavor) override;
 	};
 }
 

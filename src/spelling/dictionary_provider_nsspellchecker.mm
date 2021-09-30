@@ -41,17 +41,17 @@ public:
 	explicit DictionaryNSSpellChecker(const QString& language);
 	~DictionaryNSSpellChecker();
 
-	bool isValid() const
+	bool isValid() const override
 	{
 		return true;
 	}
 
-	WordRef check(const QString& string, int start_at) const;
-	QStringList suggestions(const QString& word) const;
+	WordRef check(const QString& string, int start_at) const override;
+	QStringList suggestions(const QString& word) const override;
 
-	void addToPersonal(const QString& word);
-	void addToSession(const QStringList& words);
-	void removeFromSession(const QStringList& words);
+	void addToPersonal(const QString& word) override;
+	void addToSession(const QStringList& words) override;
+	void removeFromSession(const QStringList& words) override;
 
 private:
 	NSString* m_language;

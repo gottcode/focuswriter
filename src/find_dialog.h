@@ -22,12 +22,12 @@ class FindDialog : public QDialog
 public:
 	explicit FindDialog(Stack* documents);
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
 public slots:
 	void findNext();
 	void findPrevious();
-	void reject();
+	void reject() override;
 	void showFindMode();
 	void showReplaceMode();
 
@@ -35,8 +35,8 @@ signals:
 	void findNextAvailable(bool available);
 
 protected:
-	void moveEvent(QMoveEvent* event);
-	void showEvent(QShowEvent* event);
+	void moveEvent(QMoveEvent* event) override;
+	void showEvent(QShowEvent* event) override;
 
 private slots:
 	void find();

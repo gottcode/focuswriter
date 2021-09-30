@@ -21,7 +21,7 @@ public:
 	explicit OdtReader();
 
 	enum { Type = 3 };
-	int type() const
+	int type() const override
 	{
 		return Type;
 	}
@@ -29,7 +29,7 @@ public:
 	static bool canRead(QIODevice* device);
 
 private:
-	void readData(QIODevice* device);
+	void readData(QIODevice* device) override;
 	void readDataCompressed(QIODevice* device);
 	void readDataUncompressed(QIODevice* device);
 	void readDocument();

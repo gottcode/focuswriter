@@ -14,16 +14,16 @@ class DictionaryProviderHunspell : public AbstractDictionaryProvider
 public:
 	DictionaryProviderHunspell();
 
-	bool isValid() const
+	bool isValid() const override
 	{
 		return true;
 	}
 
-	QStringList availableDictionaries() const;
-	AbstractDictionary* requestDictionary(const QString& language) const;
+	QStringList availableDictionaries() const override;
+	AbstractDictionary* requestDictionary(const QString& language) const override;
 
-	void setIgnoreNumbers(bool ignore);
-	void setIgnoreUppercase(bool ignore);
+	void setIgnoreNumbers(bool ignore) override;
+	void setIgnoreUppercase(bool ignore) override;
 };
 
 #endif // FOCUSWRITER_DICTIONARY_PROVIDER_HUNSPELL_H

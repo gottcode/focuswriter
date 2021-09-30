@@ -68,8 +68,8 @@ public:
 	void setScrollBarVisible(bool visible);
 	void setSceneList(SceneList* scene_list);
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
-	virtual void mouseMoveEvent(QMouseEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
+	void mouseMoveEvent(QMouseEvent* event) override;
 
 public slots:
 	void centerCursor(bool force = false);
@@ -90,8 +90,8 @@ signals:
 	void alignmentChanged();
 
 protected:
-	virtual void mousePressEvent(QMouseEvent* event);
-	virtual void wheelEvent(QWheelEvent* event);
+	void mousePressEvent(QMouseEvent* event) override;
+	void wheelEvent(QWheelEvent* event) override;
 
 private slots:
 	void cursorPositionChanged();

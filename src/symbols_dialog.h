@@ -37,11 +37,11 @@ signals:
 	void insertText(const QString& text);
 
 public slots:
-	void accept();
-	void reject();
+	void accept() override;
+	void reject() override;
 
 protected:
-	void showEvent(QShowEvent* event);
+	void showEvent(QShowEvent* event) override;
 
 private slots:
 	void showFilter(QListWidgetItem* filter);

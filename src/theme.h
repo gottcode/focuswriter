@@ -174,8 +174,8 @@ public:
 	bool operator==(const Theme& theme) const;
 
 private:
-	void reload();
-	void write();
+	void reload() override;
+	void write() override;
 
 private:
 	static QString m_path_default;

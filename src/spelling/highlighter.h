@@ -26,8 +26,8 @@ public:
 	void setEnabled(bool enabled);
 	void setMisspelledColor(const QColor& color);
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
-	virtual void highlightBlock(const QString& text);
+	bool eventFilter(QObject* watched, QEvent* event) override;
+	void highlightBlock(const QString& text) override;
 
 public slots:
 	void updateSpelling();

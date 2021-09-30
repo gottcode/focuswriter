@@ -15,7 +15,7 @@ public:
 	explicit TxtReader();
 
 	enum { Type = 1 };
-	int type() const
+	int type() const override
 	{
 		return Type;
 	}
@@ -27,7 +27,7 @@ public:
 	}
 
 private:
-	void readData(QIODevice* device);
+	void readData(QIODevice* device) override;
 };
 
 #endif // FOCUSWRITER_TXT_READER_H

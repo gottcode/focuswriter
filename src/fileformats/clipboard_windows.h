@@ -16,12 +16,12 @@ namespace RTF
 	public:
 		explicit Clipboard();
 
-		virtual bool canConvertFromMime(const FORMATETC& format, const QMimeData* mime_data) const;
-		virtual bool canConvertToMime(const QString& mime_type, IDataObject* data_obj) const;
-		virtual bool convertFromMime(const FORMATETC& format, const QMimeData* mime_data, STGMEDIUM* storage_medium) const;
-		virtual QVariant convertToMime(const QString& mime, IDataObject* data_obj, QVariant::Type preferred_type) const;
-		virtual QVector<FORMATETC> formatsForMime(const QString& mime_type, const QMimeData* mime_data) const;
-		virtual QString mimeForFormat(const FORMATETC& format) const;
+		bool canConvertFromMime(const FORMATETC& format, const QMimeData* mime_data) const override;
+		bool canConvertToMime(const QString& mime_type, IDataObject* data_obj) const override;
+		bool convertFromMime(const FORMATETC& format, const QMimeData* mime_data, STGMEDIUM* storage_medium) const override;
+		QVariant convertToMime(const QString& mime, IDataObject* data_obj, QVariant::Type preferred_type) const override;
+		QVector<FORMATETC> formatsForMime(const QString& mime_type, const QMimeData* mime_data) const override;
+		QString mimeForFormat(const FORMATETC& format) const override;
 
 	private:
 		FORMATETC initFormat() const;

@@ -44,13 +44,13 @@ public slots:
 	void addDocuments(const QString& documents);
 
 protected:
-	virtual void changeEvent(QEvent* event);
-	virtual void dragEnterEvent(QDragEnterEvent* event);
-	virtual void dropEvent(QDropEvent* event);
-	virtual bool event(QEvent* event);
-	virtual void closeEvent(QCloseEvent* event);
-	virtual void leaveEvent(QEvent* event);
-	virtual void resizeEvent(QResizeEvent* event);
+	void changeEvent(QEvent* event) override;
+	void dragEnterEvent(QDragEnterEvent* event) override;
+	void dropEvent(QDropEvent* event) override;
+	bool event(QEvent* event) override;
+	void closeEvent(QCloseEvent* event) override;
+	void leaveEvent(QEvent* event) override;
+	void resizeEvent(QResizeEvent* event) override;
 
 private slots:
 	void newDocument();

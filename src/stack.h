@@ -48,7 +48,7 @@ public:
 	void setMargins(int footer, int header);
 	void waitForThemeBackground();
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
 signals:
 	void copyAvailable(bool);
@@ -109,9 +109,9 @@ public slots:
 	void showHeader();
 
 protected:
-	virtual void mouseMoveEvent(QMouseEvent* event);
-	virtual void paintEvent(QPaintEvent* event);
-	virtual void resizeEvent(QResizeEvent* event);
+	void mouseMoveEvent(QMouseEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
+	void resizeEvent(QResizeEvent* event) override;
 
 private slots:
 	void actionTriggered(QAction* action);

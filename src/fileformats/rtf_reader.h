@@ -28,7 +28,7 @@ public:
 	~RtfReader();
 
 	enum { Type = 2 };
-	int type() const
+	int type() const override
 	{
 		return Type;
 	}
@@ -36,7 +36,7 @@ public:
 	static bool canRead(QIODevice* device);
 
 private:
-	void readData(QIODevice* device);
+	void readData(QIODevice* device) override;
 	void endBlock(qint32);
 	void ignoreGroup(qint32);
 	void ignoreText(qint32);

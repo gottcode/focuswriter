@@ -39,13 +39,13 @@ public:
 	void updateScene(BlockStats* stats, const QTextBlock& block);
 	void setUpdatesBlocked(bool blocked);
 
-	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
-	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
-	Qt::ItemFlags flags(const QModelIndex& index) const;
-	QMimeData* mimeData(const QModelIndexList& indexes) const;
-	QStringList mimeTypes() const;
-	int rowCount(const QModelIndex& parent) const;
-	Qt::DropActions supportedDropActions() const;
+	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+	bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent) override;
+	Qt::ItemFlags flags(const QModelIndex& index) const override;
+	QMimeData* mimeData(const QModelIndexList& indexes) const override;
+	QStringList mimeTypes() const override;
+	int rowCount(const QModelIndex& parent) const override;
+	Qt::DropActions supportedDropActions() const override;
 
 	static void setSceneDivider(const QString& divider);
 

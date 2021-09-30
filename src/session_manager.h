@@ -39,7 +39,7 @@ signals:
 	void themeChanged(const Theme& theme);
 
 protected:
-	virtual void hideEvent(QHideEvent* event);
+	void hideEvent(QHideEvent* event) override;
 
 private slots:
 	void renameSession();

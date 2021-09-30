@@ -32,9 +32,9 @@ public slots:
 	void saveTimers();
 
 protected:
-	virtual void closeEvent(QCloseEvent* event);
-	virtual void hideEvent(QHideEvent* event);
-	virtual void showEvent(QShowEvent* event);
+	void closeEvent(QCloseEvent* event) override;
+	void hideEvent(QHideEvent* event) override;
+	void showEvent(QShowEvent* event) override;
 
 private slots:
 	void newTimer();

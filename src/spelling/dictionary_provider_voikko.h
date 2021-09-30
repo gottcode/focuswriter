@@ -14,12 +14,12 @@ class DictionaryProviderVoikko : public AbstractDictionaryProvider
 public:
 	explicit DictionaryProviderVoikko();
 
-	bool isValid() const;
-	QStringList availableDictionaries() const;
-	AbstractDictionary* requestDictionary(const QString& language) const;
+	bool isValid() const override;
+	QStringList availableDictionaries() const override;
+	AbstractDictionary* requestDictionary(const QString& language) const override;
 
-	void setIgnoreNumbers(bool ignore);
-	void setIgnoreUppercase(bool ignore);
+	void setIgnoreNumbers(bool ignore) override;
+	void setIgnoreUppercase(bool ignore) override;
 };
 
 #endif // FOCUSWRITER_DICTIONARY_PROVIDER_VOIKKO_H

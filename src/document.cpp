@@ -91,12 +91,12 @@ public:
 	}
 
 protected:
-	virtual bool canInsertFromMimeData(const QMimeData* source) const;
-	virtual QMimeData* createMimeDataFromSelection() const;
-	virtual void insertFromMimeData(const QMimeData* source);
-	virtual bool event(QEvent* event);
-	virtual void keyPressEvent(QKeyEvent* event);
-	virtual void inputMethodEvent(QInputMethodEvent* event);
+	bool canInsertFromMimeData(const QMimeData* source) const override;
+	QMimeData* createMimeDataFromSelection() const override;
+	void insertFromMimeData(const QMimeData* source) override;
+	bool event(QEvent* event) override;
+	void keyPressEvent(QKeyEvent* event) override;
+	void inputMethodEvent(QInputMethodEvent* event) override;
 
 private:
 	QByteArray mimeToRtf(const QMimeData* source) const;

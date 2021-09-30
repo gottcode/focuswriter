@@ -18,7 +18,7 @@ public:
 	explicit DictionaryDialog(QWidget* parent = nullptr);
 
 public slots:
-	void accept();
+	void accept() override;
 
 private:
 	QListWidget* m_languages;

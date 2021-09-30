@@ -107,8 +107,8 @@ public:
 private:
 	explicit Preferences();
 
-	void reload();
-	void write();
+	void reload() override;
+	void write() override;
 
 private:
 	RangedInt m_goal_type;

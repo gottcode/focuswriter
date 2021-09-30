@@ -25,7 +25,7 @@ public:
 	static void checkDocument(QTextEdit* document, DictionaryRef& dictionary);
 
 public slots:
-	virtual void reject();
+	void reject() override;
 
 private slots:
 	void suggestionChanged(QListWidgetItem* suggestion);

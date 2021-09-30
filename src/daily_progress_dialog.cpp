@@ -45,7 +45,7 @@ public:
 		}
 	}
 
-	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override
 	{
 		QStyleOptionViewItem opt = option;
 		initStyleOption(&opt, index);

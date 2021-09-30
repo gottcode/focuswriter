@@ -19,16 +19,16 @@ class LoadScreen : public QLabel
 public:
 	explicit LoadScreen(QWidget* parent);
 
-	bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
 public slots:
 	void setText(const QString& step);
 	void finish();
 
 protected:
-	void hideEvent(QHideEvent* event);
-	void showEvent(QShowEvent* event);
-	void paintEvent(QPaintEvent* event);
+	void hideEvent(QHideEvent* event) override;
+	void showEvent(QShowEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
 
 private slots:
 	void fade();

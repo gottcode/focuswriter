@@ -32,8 +32,8 @@ public:
 	~PreferencesDialog();
 
 public slots:
-	virtual void accept();
-	virtual void reject();
+	void accept() override;
+	void reject() override;
 
 private slots:
 	void goalHistoryToggled();

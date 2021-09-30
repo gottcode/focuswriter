@@ -27,10 +27,10 @@ signals:
 	void visibleChanged(bool visible);
 
 protected:
-	void changeEvent(QEvent* event);
-	void closeEvent(QCloseEvent* event);
-	void hideEvent(QHideEvent* event);
-	void showEvent(QShowEvent* event);
+	void changeEvent(QEvent* event) override;
+	void closeEvent(QCloseEvent* event) override;
+	void hideEvent(QHideEvent* event) override;
+	void showEvent(QShowEvent* event) override;
 
 private slots:
 	void modelReset();

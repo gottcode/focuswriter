@@ -42,35 +42,35 @@ public:
 		return &fallback_ptr;
 	}
 
-	bool isValid() const
+	bool isValid() const override
 	{
 		return true;
 	}
 
-	WordRef check(const QString& string, int start_at) const
+	WordRef check(const QString& string, int start_at) const override
 	{
 		Q_UNUSED(string);
 		Q_UNUSED(start_at);
 		return WordRef();
 	}
 
-	QStringList suggestions(const QString& word) const
+	QStringList suggestions(const QString& word) const override
 	{
 		Q_UNUSED(word);
 		return QStringList();
 	}
 
-	void addToPersonal(const QString& word)
+	void addToPersonal(const QString& word) override
 	{
 		Q_UNUSED(word);
 	}
 
-	void addToSession(const QStringList& words)
+	void addToSession(const QStringList& words) override
 	{
 		Q_UNUSED(words);
 	}
 
-	void removeFromSession(const QStringList& words)
+	void removeFromSession(const QStringList& words) override
 	{
 		Q_UNUSED(words);
 	}

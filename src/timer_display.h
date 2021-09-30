@@ -22,20 +22,20 @@ public:
 
 	void setTimer(Timer* timer);
 
-	virtual QSize minimumSizeHint() const;
-	virtual QSize sizeHint() const;
+	virtual QSize minimumSizeHint() const override;
+	virtual QSize sizeHint() const override;
 
 signals:
 	void clicked();
 
 protected:
-	virtual void changeEvent(QEvent* event);
-	virtual bool event(QEvent* event);
-	virtual void hideEvent(QHideEvent* event);
-	virtual void leaveEvent(QEvent* event);
-	virtual void mouseReleaseEvent(QMouseEvent* event);
-	virtual void paintEvent(QPaintEvent* event);
-	virtual void showEvent(QShowEvent* event);
+	void changeEvent(QEvent* event) override;
+	bool event(QEvent* event) override;
+	void hideEvent(QHideEvent* event) override;
+	void leaveEvent(QEvent* event) override;
+	void mouseReleaseEvent(QMouseEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
+	void showEvent(QShowEvent* event) override;
 
 private:
 	int m_size;
