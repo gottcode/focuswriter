@@ -177,10 +177,10 @@ DictionaryRef DictionaryManager::requestDictionary(const QString& language)
 		if (!m_default_dictionary) {
 			m_default_dictionary = *requestDictionaryData(m_default_language);
 		}
-		return &m_default_dictionary;
+		return DictionaryRef(&m_default_dictionary);
 	} else {
 		// Fetch specific dictionary
-		return requestDictionaryData(language);
+		return DictionaryRef(requestDictionaryData(language));
 	}
 }
 

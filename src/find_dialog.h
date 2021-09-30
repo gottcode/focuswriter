@@ -20,7 +20,7 @@ class FindDialog : public QDialog
 	Q_OBJECT
 
 public:
-	FindDialog(Stack* documents);
+	explicit FindDialog(Stack* documents);
 
 	virtual bool eventFilter(QObject* watched, QEvent* event);
 

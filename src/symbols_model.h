@@ -30,7 +30,7 @@ class SymbolsModel : public QAbstractItemModel
 	typedef QVector<Filter> FilterGroup;
 
 public:
-	SymbolsModel(QObject* parent = 0);
+	explicit SymbolsModel(QObject* parent = 0);
 
 	QStringList filters(int group) const;
 	QStringList filterGroups() const;

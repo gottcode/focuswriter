@@ -28,7 +28,7 @@ class ThemeDialog : public QDialog
 	Q_OBJECT
 
 public:
-	ThemeDialog(Theme& theme, QWidget* parent = 0);
+	explicit ThemeDialog(Theme& theme, QWidget* parent = 0);
 	~ThemeDialog();
 
 public slots:

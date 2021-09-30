@@ -12,7 +12,7 @@
 class TxtReader : public FormatReader
 {
 public:
-	TxtReader();
+	explicit TxtReader();
 
 	enum { Type = 1 };
 	int type() const

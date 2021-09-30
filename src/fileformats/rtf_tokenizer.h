@@ -24,7 +24,7 @@ class RtfTokenizer
 	Q_DECLARE_TR_FUNCTIONS(RtfTokenizer)
 
 public:
-	RtfTokenizer();
+	explicit RtfTokenizer();
 
 	bool hasNext() const;
 	bool hasValue() const;

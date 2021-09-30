@@ -14,7 +14,7 @@
 class RangedString
 {
 public:
-	RangedString(const QStringList& allowed)
+	explicit RangedString(const QStringList& allowed)
 		: m_value(!allowed.isEmpty() ? allowed.first() : "")
 		, m_allowed(allowed)
 	{

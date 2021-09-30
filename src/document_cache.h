@@ -20,7 +20,7 @@ class DocumentCache : public QObject
 	Q_OBJECT
 
 public:
-	DocumentCache(QObject* parent = 0);
+	explicit DocumentCache(QObject* parent = 0);
 	~DocumentCache();
 
 	bool isClean() const;

@@ -21,7 +21,7 @@ class DocxWriter
 	Q_DECLARE_TR_FUNCTIONS(DocxWriter)
 
 public:
-	DocxWriter();
+	explicit DocxWriter();
 
 	QString errorString() const
 	{

@@ -19,7 +19,7 @@ class DailyProgress : public QAbstractTableModel
 	Q_OBJECT
 
 public:
-	DailyProgress(QObject* parent = 0);
+	explicit DailyProgress(QObject* parent = 0);
 	~DailyProgress();
 
 	void findCurrentStreak(QDate& start, QDate& end) const;

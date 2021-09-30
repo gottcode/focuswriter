@@ -38,7 +38,7 @@ namespace
 class DictionaryNSSpellChecker : public AbstractDictionary
 {
 public:
-	DictionaryNSSpellChecker(const QString& language);
+	explicit DictionaryNSSpellChecker(const QString& language);
 	~DictionaryNSSpellChecker();
 
 	bool isValid() const

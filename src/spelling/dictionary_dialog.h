@@ -15,7 +15,7 @@ class DictionaryDialog : public QDialog
 	Q_OBJECT
 
 public:
-	DictionaryDialog(QWidget* parent = 0);
+	explicit DictionaryDialog(QWidget* parent = 0);
 
 public slots:
 	void accept();

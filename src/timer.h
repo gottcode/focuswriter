@@ -27,7 +27,7 @@ class Timer : public QFrame
 	Q_OBJECT
 
 public:
-	Timer(Stack* documents, QWidget* parent = 0);
+	explicit Timer(Stack* documents, QWidget* parent = 0);
 	Timer(int type, const QStringList& values, Stack* documents, QWidget* parent = 0);
 	Timer(const QString& id, Stack* documents, QWidget* parent = 0);
 	~Timer();

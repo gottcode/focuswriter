@@ -32,7 +32,7 @@ public:
 	friend class DictionaryManager;
 
 private:
-	DictionaryRef(AbstractDictionary** data)
+	explicit DictionaryRef(AbstractDictionary** data)
 		: d(data)
 	{
 		Q_ASSERT(d != 0);

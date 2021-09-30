@@ -27,7 +27,7 @@ class Stack : public QWidget
 	Q_OBJECT
 
 public:
-	Stack(QWidget* parent = 0);
+	explicit Stack(QWidget* parent = 0);
 	~Stack();
 
 	void addDocument(Document* document);

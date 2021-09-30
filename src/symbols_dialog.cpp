@@ -36,7 +36,7 @@
 class SymbolsDialog::ElideLabel : public QFrame
 {
 public:
-	ElideLabel(QWidget* parent = 0);
+	explicit ElideLabel(QWidget* parent = 0);
 
 	void clear();
 	void setText(const QString& text);

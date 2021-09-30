@@ -12,7 +12,7 @@
 class DictionaryProviderVoikko : public AbstractDictionaryProvider
 {
 public:
-	DictionaryProviderVoikko();
+	explicit DictionaryProviderVoikko();
 
 	bool isValid() const;
 	QStringList availableDictionaries() const;

@@ -14,7 +14,7 @@ class ImageButton : public QPushButton
 	Q_OBJECT
 
 public:
-	ImageButton(QWidget* parent = 0);
+	explicit ImageButton(QWidget* parent = 0);
 
 	QString image() const;
 	QString toString() const;

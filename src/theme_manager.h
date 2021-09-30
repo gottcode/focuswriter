@@ -20,7 +20,7 @@ class ThemeManager : public QDialog
 	Q_OBJECT
 
 public:
-	ThemeManager(QSettings& settings, QWidget* parent = 0);
+	explicit ThemeManager(QSettings& settings, QWidget* parent = 0);
 
 signals:
 	void themeSelected(const Theme& theme);

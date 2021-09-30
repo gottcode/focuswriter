@@ -70,7 +70,7 @@ class Theme : public SettingsFile
 	QSharedDataPointer<ThemeData> d;
 
 public:
-	Theme();
+	explicit Theme();
 	Theme(const Theme& theme);
 	Theme(const QString& id, bool is_default);
 	~Theme();

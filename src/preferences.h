@@ -105,7 +105,7 @@ public:
 	void setLanguage(const QString& language);
 
 private:
-	Preferences();
+	explicit Preferences();
 
 	void reload();
 	void write();

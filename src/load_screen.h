@@ -17,7 +17,7 @@ class LoadScreen : public QLabel
 	Q_OBJECT
 
 public:
-	LoadScreen(QWidget* parent);
+	explicit LoadScreen(QWidget* parent);
 
 	bool eventFilter(QObject* watched, QEvent* event);
 

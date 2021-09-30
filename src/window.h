@@ -33,7 +33,7 @@ class Window : public QMainWindow
 	Q_OBJECT
 
 public:
-	Window(const QStringList& command_line_files);
+	explicit Window(const QStringList& command_line_files);
 
 	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);

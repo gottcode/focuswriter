@@ -19,7 +19,7 @@ class DailyProgressDialog : public QDialog
 	Q_OBJECT
 
 public:
-	DailyProgressDialog(DailyProgress* progress, QWidget* parent = 0);
+	explicit DailyProgressDialog(DailyProgress* progress, QWidget* parent = 0);
 
 	void loadPreferences();
 

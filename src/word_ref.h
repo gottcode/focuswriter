@@ -10,7 +10,7 @@
 class WordRef
 {
 public:
-	WordRef(int position = 0, int length = 0) :
+	explicit WordRef(int position = 0, int length = 0) :
 		m_position(position),
 		m_length(length)
 	{

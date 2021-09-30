@@ -14,7 +14,7 @@ namespace RTF
 	class Clipboard : public QMacPasteboardMime
 	{
 	public:
-		Clipboard()
+		explicit Clipboard()
 			: QMacPasteboardMime(MIME_ALL)
 		{
 		}

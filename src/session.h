@@ -16,7 +16,7 @@ class Session
 	Q_DECLARE_TR_FUNCTIONS(Session)
 
 public:
-	Session(const QString& id);
+	explicit Session(const QString& id);
 	~Session();
 
 	int active() const;

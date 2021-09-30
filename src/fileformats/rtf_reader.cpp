@@ -49,7 +49,7 @@ QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
 class RtfReader::FunctionTable
 {
 public:
-	FunctionTable()
+	explicit FunctionTable()
 		: m_group_end_func(nullptr)
 		, m_insert_text_func(nullptr)
 	{
@@ -109,7 +109,7 @@ private:
 	class Function
 	{
 	public:
-		Function(void (RtfReader::*func)(qint32) = nullptr, qint32 value = 0)
+		explicit Function(void (RtfReader::*func)(qint32) = nullptr, qint32 value = 0)
 			: m_func(func)
 			, m_value(value)
 		{

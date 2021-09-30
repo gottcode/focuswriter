@@ -16,7 +16,7 @@ class SceneModel;
 class BlockStats : public QTextBlockUserData
 {
 public:
-	BlockStats(SceneModel* scene_model);
+	explicit BlockStats(SceneModel* scene_model);
 	~BlockStats();
 
 	bool isEmpty() const;

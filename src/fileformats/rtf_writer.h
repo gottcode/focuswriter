@@ -16,7 +16,7 @@ class QTextDocument;
 class RtfWriter
 {
 public:
-	RtfWriter(const QByteArray& encoding = QByteArray());
+	explicit RtfWriter(const QByteArray& encoding = QByteArray());
 
 	QByteArray encoding() const;
 

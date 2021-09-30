@@ -12,7 +12,7 @@ class BlockStats;
 class Stats
 {
 public:
-	Stats();
+	explicit Stats();
 	Stats(const Stats& stats);
 	Stats& operator=(const Stats& stats);
 

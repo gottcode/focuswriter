@@ -19,7 +19,7 @@ class ThemeRenderer : public QThread
 	Q_OBJECT
 
 public:
-	ThemeRenderer(QObject* parent = 0);
+	explicit ThemeRenderer(QObject* parent = 0);
 
 	void create(const Theme& theme, const QSize& background, const int margin, const qreal pixelratio);
 

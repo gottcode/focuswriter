@@ -18,7 +18,7 @@ class OdtReader : public FormatReader
 	Q_DECLARE_TR_FUNCTIONS(OdtReader)
 
 public:
-	OdtReader();
+	explicit OdtReader();
 
 	enum { Type = 3 };
 	int type() const

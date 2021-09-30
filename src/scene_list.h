@@ -21,7 +21,7 @@ class SceneList : public QFrame
 	Q_OBJECT
 
 public:
-	SceneList(QWidget* parent = 0);
+	explicit SceneList(QWidget* parent = 0);
 	~SceneList();
 
 	bool scenesVisible() const;

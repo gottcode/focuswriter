@@ -14,7 +14,7 @@ namespace RTF
 	class Clipboard : public QWinMime
 	{
 	public:
-		Clipboard();
+		explicit Clipboard();
 
 		virtual bool canConvertFromMime(const FORMATETC& format, const QMimeData* mime_data) const;
 		virtual bool canConvertToMime(const QString& mime_type, IDataObject* data_obj) const;

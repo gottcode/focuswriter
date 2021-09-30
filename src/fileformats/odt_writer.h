@@ -20,7 +20,7 @@ class OdtWriter
 	Q_DECLARE_TR_FUNCTIONS(OdtWriter)
 
 public:
-	OdtWriter();
+	explicit OdtWriter();
 
 	QString errorString() const
 	{

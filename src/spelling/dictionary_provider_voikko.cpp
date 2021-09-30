@@ -65,7 +65,7 @@ namespace
 class DictionaryVoikko : public AbstractDictionary
 {
 public:
-	DictionaryVoikko(const QString& language);
+	explicit DictionaryVoikko(const QString& language);
 	~DictionaryVoikko();
 
 	bool isValid() const

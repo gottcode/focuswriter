@@ -24,7 +24,7 @@ class RtfReader : public FormatReader
 	Q_DECLARE_TR_FUNCTIONS(RtfReader)
 
 public:
-	RtfReader();
+	explicit RtfReader();
 	~RtfReader();
 
 	enum { Type = 2 };

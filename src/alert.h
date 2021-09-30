@@ -27,7 +27,7 @@ public:
 		Question
 	};
 
-	Alert(QWidget* parent = 0);
+	explicit Alert(QWidget* parent = 0);
 	Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent = 0);
 
 	bool underMouse() const;

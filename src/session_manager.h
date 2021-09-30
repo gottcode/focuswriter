@@ -22,7 +22,7 @@ class SessionManager : public QDialog
 	Q_OBJECT
 
 public:
-	SessionManager(Window* parent);
+	explicit SessionManager(Window* parent);
 	~SessionManager();
 
 	Session* current() const;

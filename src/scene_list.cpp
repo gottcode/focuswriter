@@ -36,7 +36,7 @@ namespace
 class SceneDelegate : public QStyledItemDelegate
 {
 public:
-	SceneDelegate(QObject* parent)
+	explicit SceneDelegate(QObject* parent)
 		: QStyledItemDelegate(parent)
 	{
 	}

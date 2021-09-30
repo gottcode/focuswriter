@@ -23,7 +23,7 @@ class TimerManager : public QDialog
 	Q_OBJECT
 
 public:
-	TimerManager(Stack* documents, QWidget* parent = 0);
+	explicit TimerManager(Stack* documents, QWidget* parent = 0);
 
 	bool cancelEditing();
 	TimerDisplay* display() const;

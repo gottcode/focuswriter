@@ -16,7 +16,7 @@ class DailyProgressLabel : public QLabel
 	Q_OBJECT
 
 public:
-	DailyProgressLabel(DailyProgress* progress, QWidget* parent = 0);
+	explicit DailyProgressLabel(DailyProgress* progress, QWidget* parent = 0);
 
 signals:
 	void clicked();

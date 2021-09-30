@@ -38,7 +38,7 @@ class DocxReader : public FormatReader
 	};
 
 public:
-	DocxReader();
+	explicit DocxReader();
 
 	enum { Type = 4 };
 	int type() const

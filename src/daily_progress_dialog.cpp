@@ -33,7 +33,7 @@
 class DailyProgressDialog::Delegate : public QStyledItemDelegate
 {
 public:
-	Delegate(QObject* parent = 0)
+	explicit Delegate(QObject* parent = 0)
 		: QStyledItemDelegate(parent)
 	{
 	}

@@ -13,7 +13,7 @@ class QTextDocument;
 class DocumentWriter
 {
 public:
-	DocumentWriter();
+	explicit DocumentWriter();
 	~DocumentWriter();
 
 	QByteArray encoding() const;

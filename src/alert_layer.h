@@ -19,7 +19,7 @@ class AlertLayer : public QWidget
 	Q_OBJECT
 
 public:
-	AlertLayer(QWidget* parent);
+	explicit AlertLayer(QWidget* parent);
 
 public slots:
 	void addAlert(Alert* alert);
