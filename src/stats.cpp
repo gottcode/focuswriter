@@ -13,27 +13,27 @@
 
 //-----------------------------------------------------------------------------
 
-Stats::Stats() :
-	m_valid(false),
-	m_character_count(0),
-	m_letter_count(0),
-	m_page_count(0),
-	m_paragraph_count(0),
-	m_space_count(0),
-	m_word_count(0)
+Stats::Stats()
+	: m_valid(false)
+	, m_character_count(0)
+	, m_letter_count(0)
+	, m_page_count(0)
+	, m_paragraph_count(0)
+	, m_space_count(0)
+	, m_word_count(0)
 {
 }
 
 //-----------------------------------------------------------------------------
 
-Stats::Stats(const Stats& stats) :
-	m_valid(stats.m_valid),
-	m_character_count(stats.m_character_count),
-	m_letter_count(stats.m_letter_count),
-	m_page_count(stats.m_page_count),
-	m_paragraph_count(stats.m_paragraph_count),
-	m_space_count(stats.m_space_count),
-	m_word_count(stats.m_word_count)
+Stats::Stats(const Stats& stats)
+	: m_valid(stats.m_valid)
+	, m_character_count(stats.m_character_count)
+	, m_letter_count(stats.m_letter_count)
+	, m_page_count(stats.m_page_count)
+	, m_paragraph_count(stats.m_paragraph_count)
+	, m_space_count(stats.m_space_count)
+	, m_word_count(stats.m_word_count)
 {
 }
 

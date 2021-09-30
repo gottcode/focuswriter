@@ -12,8 +12,10 @@
 class RangedInt
 {
 public:
-	RangedInt(int min, int max) :
-		m_value(min), m_min(min), m_max(max)
+	RangedInt(int min, int max)
+		: m_value(min)
+		, m_min(min)
+		, m_max(max)
 	{
 	}
 

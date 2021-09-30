@@ -14,8 +14,8 @@
 
 //-----------------------------------------------------------------------------
 
-ShortcutEdit::ShortcutEdit(QWidget* parent) :
-	QWidget(parent)
+ShortcutEdit::ShortcutEdit(QWidget* parent)
+	: QWidget(parent)
 {
 	m_edit = new QKeySequenceEdit(this);
 	connect(m_edit, &QKeySequenceEdit::editingFinished, this, &ShortcutEdit::changed);

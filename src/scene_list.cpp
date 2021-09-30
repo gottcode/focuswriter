@@ -36,8 +36,8 @@ namespace
 class SceneDelegate : public QStyledItemDelegate
 {
 public:
-	SceneDelegate(QObject* parent) :
-		QStyledItemDelegate(parent)
+	SceneDelegate(QObject* parent)
+		: QStyledItemDelegate(parent)
 	{
 	}
 
@@ -66,10 +66,10 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 
 //-----------------------------------------------------------------------------
 
-SceneList::SceneList(QWidget* parent) :
-	QFrame(parent),
-	m_document(0),
-	m_resizing(false)
+SceneList::SceneList(QWidget* parent)
+	: QFrame(parent)
+	, m_document(0)
+	, m_resizing(false)
 {
 	m_width = qBound(0, QSettings().value("SceneList/Width", (int)std::lround(3.5 * logicalDpiX())).toInt(), maximumWidth());
 

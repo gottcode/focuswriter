@@ -30,76 +30,78 @@ void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bo
 
 namespace
 {
-	QColor averageImage(const QString& filename, const QColor& fallback)
-	{
-		QImageReader reader(filename);
-		if (!reader.canRead()) {
-			return fallback;
-		}
 
-		QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
-		image.fill(fallback.rgb());
-		{
-			QPainter painter(&image);
-			painter.drawImage(0, 0, reader.read());
-		}
-		const unsigned int width = image.width();
-		const unsigned int height = image.height();
-
-		quint64 sum_r = 0;
-		quint64 sum_g = 0;
-		quint64 sum_b = 0;
-		quint64 sum_a = 0;
-
-		for (unsigned int y = 0; y < height; ++y) {
-			const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
-			for (unsigned int x = 0; x < width; ++x) {
-				QRgb pixel = scanline[x];
-				sum_r += qRed(pixel);
-				sum_g += qGreen(pixel);
-				sum_b += qBlue(pixel);
-				sum_a += qAlpha(pixel);
-			}
-		}
-
-		const qreal divisor = 1.0 / (width * height);
-		return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
+QColor averageImage(const QString& filename, const QColor& fallback)
+{
+	QImageReader reader(filename);
+	if (!reader.canRead()) {
+		return fallback;
 	}
 
-	QString checksumName(const QString& image)
+	QImage image(reader.size(), QImage::Format_ARGB32_Premultiplied);
+	image.fill(fallback.rgb());
 	{
-		QCryptographicHash hash(QCryptographicHash::Sha1);
-		QFile file(image);
-		if (file.open(QFile::ReadOnly)) {
-			hash.addData(&file);
-			file.close();
+		QPainter painter(&image);
+		painter.drawImage(0, 0, reader.read());
+	}
+	const unsigned int width = image.width();
+	const unsigned int height = image.height();
+
+	quint64 sum_r = 0;
+	quint64 sum_g = 0;
+	quint64 sum_b = 0;
+	quint64 sum_a = 0;
+
+	for (unsigned int y = 0; y < height; ++y) {
+		const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
+		for (unsigned int x = 0; x < width; ++x) {
+			QRgb pixel = scanline[x];
+			sum_r += qRed(pixel);
+			sum_g += qGreen(pixel);
+			sum_b += qBlue(pixel);
+			sum_a += qAlpha(pixel);
 		}
-
-		const QString suffix = QFileInfo(image).suffix().toLower();
-
-		return "2-" + hash.result().toHex() + "." + suffix;
 	}
 
-	QString copyImage(const QString& image)
-	{
-		const QString name = checksumName(image);
-		const QString path = Theme::path() + "/Images/" + name;
-		if (!QFile::exists(path)) {
-			QFile::copy(image, path);
-		}
-		return name;
+	const qreal divisor = 1.0 / (width * height);
+	return QColor(sum_r * divisor, sum_g * divisor, sum_b * divisor, sum_a * divisor);
+}
+
+QString checksumName(const QString& image)
+{
+	QCryptographicHash hash(QCryptographicHash::Sha1);
+	QFile file(image);
+	if (file.open(QFile::ReadOnly)) {
+		hash.addData(&file);
+		file.close();
 	}
 
-	QDir listIcons(const QString& id, bool is_default)
-	{
-		const QString icon = Theme::iconPath(id, is_default, 1.0);
+	const QString suffix = QFileInfo(image).suffix().toLower();
 
-		const int dirindex = icon.lastIndexOf('/');
-		const int baseindex = icon.lastIndexOf('.');
-		const QString basename = icon.mid(dirindex + 1, baseindex - dirindex - 1);
+	return "2-" + hash.result().toHex() + "." + suffix;
+}
 
-		return QDir(icon.left(dirindex), basename + "*");
+QString copyImage(const QString& image)
+{
+	const QString name = checksumName(image);
+	const QString path = Theme::path() + "/Images/" + name;
+	if (!QFile::exists(path)) {
+		QFile::copy(image, path);
 	}
+	return name;
+}
+
+QDir listIcons(const QString& id, bool is_default)
+{
+	const QString icon = Theme::iconPath(id, is_default, 1.0);
+
+	const int dirindex = icon.lastIndexOf('/');
+	const int baseindex = icon.lastIndexOf('.');
+	const QString basename = icon.mid(dirindex + 1, baseindex - dirindex - 1);
+
+	return QDir(icon.left(dirindex), basename + "*");
+}
+
 }
 
 //-----------------------------------------------------------------------------
@@ -109,26 +111,26 @@ QString Theme::m_path;
 
 //-----------------------------------------------------------------------------
 
-Theme::ThemeData::ThemeData(const QString& theme_id, bool theme_default, bool create) :
-	id(theme_id),
-	is_default(theme_default),
-	background_type(0, 5),
-	foreground_opacity(0, 100),
-	foreground_width(500, 9999),
-	foreground_margin(1, 250),
-	foreground_padding(0, 250),
-	foreground_position(0, 3),
-	round_corners_enabled(false),
-	corner_radius(1, 100),
-	blur_enabled(false),
-	blur_radius(1, 128),
-	shadow_enabled(false),
-	shadow_offset(0, 128),
-	shadow_radius(1, 128),
-	line_spacing(50, 1000),
-	paragraph_spacing_above(0, 1000),
-	paragraph_spacing_below(0, 1000),
-	tab_width(1, 1000)
+Theme::ThemeData::ThemeData(const QString& theme_id, bool theme_default, bool create)
+	: id(theme_id)
+	, is_default(theme_default)
+	, background_type(0, 5)
+	, foreground_opacity(0, 100)
+	, foreground_width(500, 9999)
+	, foreground_margin(1, 250)
+	, foreground_padding(0, 250)
+	, foreground_position(0, 3)
+	, round_corners_enabled(false)
+	, corner_radius(1, 100)
+	, blur_enabled(false)
+	, blur_radius(1, 128)
+	, shadow_enabled(false)
+	, shadow_offset(0, 128)
+	, shadow_radius(1, 128)
+	, line_spacing(50, 1000)
+	, paragraph_spacing_above(0, 1000)
+	, paragraph_spacing_below(0, 1000)
+	, tab_width(1, 1000)
 {
 	if (id.isEmpty() && create) {
 		QString untitled;
@@ -151,8 +153,8 @@ Theme::Theme()
 
 //-----------------------------------------------------------------------------
 
-Theme::Theme(const Theme& theme) :
-	d(theme.d)
+Theme::Theme(const Theme& theme)
+	: d(theme.d)
 {
 }
 

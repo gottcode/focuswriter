@@ -17,9 +17,9 @@ QString Session::m_path;
 
 //-----------------------------------------------------------------------------
 
-Session::Session(const QString& id) :
-	m_id(id),
-	m_default(id.isEmpty())
+Session::Session(const QString& id)
+	: m_id(id)
+	, m_default(id.isEmpty())
 {
 	QString path = pathFromId(m_id);
 	if (!m_id.isEmpty() && QFile::exists(path)) {

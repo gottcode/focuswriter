@@ -33,8 +33,8 @@
 class DailyProgressDialog::Delegate : public QStyledItemDelegate
 {
 public:
-	Delegate(QObject* parent = 0) :
-		QStyledItemDelegate(parent)
+	Delegate(QObject* parent = 0)
+		: QStyledItemDelegate(parent)
 	{
 	}
 
@@ -130,9 +130,9 @@ private:
 
 //-----------------------------------------------------------------------------
 
-DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_progress(progress)
+DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_progress(progress)
 {
 	setWindowTitle(tr("Daily Progress"));
 

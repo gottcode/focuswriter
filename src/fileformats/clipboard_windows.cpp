@@ -10,8 +10,8 @@
 
 //-----------------------------------------------------------------------------
 
-RTF::Clipboard::Clipboard() :
-	QWinMime()
+RTF::Clipboard::Clipboard()
+	: QWinMime()
 {
 	CF_RTF = QWinMime::registerMimeType(QLatin1String("Rich Text Format"));
 }

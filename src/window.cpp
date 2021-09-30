@@ -63,25 +63,27 @@
 
 namespace
 {
-	QKeySequence keyBinding(const QKeySequence& shortcut, const QKeySequence& back)
-	{
-		if (!shortcut.isEmpty()) {
-			return shortcut;
-		} else {
-			return back;
-		}
+
+QKeySequence keyBinding(const QKeySequence& shortcut, const QKeySequence& back)
+{
+	if (!shortcut.isEmpty()) {
+		return shortcut;
+	} else {
+		return back;
 	}
+}
+
 }
 
 //-----------------------------------------------------------------------------
 
-Window::Window(const QStringList& command_line_files) :
-	m_toolbar(0),
-	m_loading(false),
-	m_key_sound(0),
-	m_enter_key_sound(0),
-	m_fullscreen(true),
-	m_save_positions(true)
+Window::Window(const QStringList& command_line_files)
+	: m_toolbar(0)
+	, m_loading(false)
+	, m_key_sound(0)
+	, m_enter_key_sound(0)
+	, m_fullscreen(true)
+	, m_save_positions(true)
 {
 	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -223,7 +225,7 @@ Window::Window(const QStringList& command_line_files) :
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchLastDocument", action);
 
-	for (int i = 2; i < 10 ; ++i) {
+	for (int i = 2; i < 10; ++i) {
 		action = new QAction(tr("Switch to Document %1").arg(i), this);
 		action->setShortcut(QKeySequence(Qt::CTRL | (Qt::Key_0 + i)));
 		connect(action, &QAction::triggered, [=] { m_tabs->setCurrentIndex(i - 1); });

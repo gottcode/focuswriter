@@ -8,8 +8,8 @@
 
 //-----------------------------------------------------------------------------
 
-ThemeRenderer::ThemeRenderer(QObject* parent) :
-	QThread(parent)
+ThemeRenderer::ThemeRenderer(QObject* parent)
+	: QThread(parent)
 {
 }
 

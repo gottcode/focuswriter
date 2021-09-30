@@ -14,8 +14,8 @@
 
 //-----------------------------------------------------------------------------
 
-LoadScreen::LoadScreen(QWidget* parent) :
-	QLabel(parent)
+LoadScreen::LoadScreen(QWidget* parent)
+	: QLabel(parent)
 {
 	setCursor(Qt::WaitCursor);
 

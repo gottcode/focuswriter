@@ -158,47 +158,58 @@ private:
 	DailyProgress* m_daily_progress;
 };
 
-inline QString Document::filename() const {
+inline QString Document::filename() const
+{
 	return m_filename;
 }
 
-inline int Document::untitledIndex() const {
+inline int Document::untitledIndex() const
+{
 	return m_index;
 }
 
-inline bool Document::isRichText() const {
+inline bool Document::isRichText() const
+{
 	return m_rich_text;
 }
 
-inline int Document::characterCount() const {
+inline int Document::characterCount() const
+{
 	return m_stats->characterCount();
 }
 
-inline int Document::characterAndSpaceCount() const {
+inline int Document::characterAndSpaceCount() const
+{
 	return m_stats->characterAndSpaceCount();
 }
 
-inline int Document::pageCount() const {
+inline int Document::pageCount() const
+{
 	return m_stats->pageCount();
 }
 
-inline int Document::paragraphCount() const {
+inline int Document::paragraphCount() const
+{
 	return m_stats->paragraphCount();
 }
 
-inline int Document::wordCount() const {
+inline int Document::wordCount() const
+{
 	return m_stats->wordCount();
 }
 
-inline int Document::wordCountDelta() const {
+inline int Document::wordCountDelta() const
+{
 	return m_document_stats.wordCount() - m_saved_wordcount;
 }
 
-inline SceneModel* Document::sceneModel() const {
+inline SceneModel* Document::sceneModel() const
+{
 	return m_scene_model;
 }
 
-inline QTextEdit* Document::text() const {
+inline QTextEdit* Document::text() const
+{
 	return m_text;
 }
 

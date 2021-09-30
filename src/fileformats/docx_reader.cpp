@@ -44,8 +44,8 @@ static bool readBool(const QStringRef& value)
 
 //-----------------------------------------------------------------------------
 
-DocxReader::DocxReader() :
-	m_in_block(false)
+DocxReader::DocxReader()
+	: m_in_block(false)
 {
 	m_xml.setNamespaceProcessing(false);
 }

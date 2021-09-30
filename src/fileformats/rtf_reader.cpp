@@ -22,24 +22,26 @@
 
 namespace
 {
-	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
-	{
-		QByteArray name = "CP" + QByteArray::number(value);
-		QByteArray codec;
-		if (value == 932) {
-			codec = "Shift-JIS";
-		} else if (value == 10000) {
-			codec = "Apple Roman";
-		} else if (value == 65001) {
-			codec = "UTF-8";
-		} else {
-			codec = name;
-		}
-		if (codepage) {
-			*codepage = name;
-		}
-		return QTextCodec::codecForName(codec);
+
+QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
+{
+	QByteArray name = "CP" + QByteArray::number(value);
+	QByteArray codec;
+	if (value == 932) {
+		codec = "Shift-JIS";
+	} else if (value == 10000) {
+		codec = "Apple Roman";
+	} else if (value == 65001) {
+		codec = "UTF-8";
+	} else {
+		codec = name;
 	}
+	if (codepage) {
+		*codepage = name;
+	}
+	return QTextCodec::codecForName(codec);
+}
+
 }
 
 //-----------------------------------------------------------------------------
@@ -47,9 +49,9 @@ namespace
 class RtfReader::FunctionTable
 {
 public:
-	FunctionTable() :
-		m_group_end_func(nullptr),
-		m_insert_text_func(nullptr)
+	FunctionTable()
+		: m_group_end_func(nullptr)
+		, m_insert_text_func(nullptr)
 	{
 	}
 
@@ -107,9 +109,9 @@ private:
 	class Function
 	{
 	public:
-		Function(void (RtfReader::*func)(qint32) = nullptr, qint32 value = 0) :
-			m_func(func),
-			m_value(value)
+		Function(void (RtfReader::*func)(qint32) = nullptr, qint32 value = 0)
+			: m_func(func)
+			, m_value(value)
 		{
 		}
 
@@ -130,10 +132,10 @@ heading_functions;
 
 //-----------------------------------------------------------------------------
 
-RtfReader::RtfReader() :
-	m_in_block(true),
-	m_codec(0),
-	m_decoder(0)
+RtfReader::RtfReader()
+	: m_in_block(true)
+	, m_codec(0)
+	, m_decoder(0)
 {
 	if (functions.isEmpty()) {
 		functions.setInsertText(&RtfReader::insertText);
@@ -396,8 +398,7 @@ void RtfReader::insertText(const QString& text)
 
 void RtfReader::insertUnicodeSymbol(qint32 value)
 {
-	if (value)
-	{
+	if (value) {
 		m_cursor.insertText(QChar(value));
 	}
 

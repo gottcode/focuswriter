@@ -49,7 +49,8 @@ private:
 	struct Style
 	{
 		Style(const QTextBlockFormat& block_format_ = QTextBlockFormat(), const QTextCharFormat& char_format_ = QTextCharFormat())
-			: block_format(block_format_), char_format(char_format_)
+			: block_format(block_format_)
+			, char_format(char_format_)
 		{
 		}
 

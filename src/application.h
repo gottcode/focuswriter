@@ -18,7 +18,9 @@ public:
 	Application(int& argc, char** argv);
 
 	QStringList files() const
-		{ return m_files; }
+	{
+		return m_files;
+	}
 
 	bool createWindow(const QStringList& files);
 

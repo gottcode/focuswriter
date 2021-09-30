@@ -14,7 +14,9 @@ class AbstractDictionary;
 class AbstractDictionaryProvider
 {
 public:
-	virtual ~AbstractDictionaryProvider() { }
+	virtual ~AbstractDictionaryProvider()
+	{
+	}
 
 	virtual bool isValid() const = 0;
 	virtual QStringList availableDictionaries() const = 0;

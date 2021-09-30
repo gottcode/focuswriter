@@ -15,7 +15,6 @@ class SymbolsModel : public QAbstractItemModel
 {
 	Q_OBJECT
 
-private:
 	struct Filter
 	{
 		struct Range

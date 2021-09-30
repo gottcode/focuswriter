@@ -22,9 +22,9 @@
 
 //-----------------------------------------------------------------------------
 
-Application::Application(int& argc, char** argv) :
-	QtSingleApplication("org.gottcode.FocusWriter", argc, argv),
-	m_window(0)
+Application::Application(int& argc, char** argv)
+	: QtSingleApplication("org.gottcode.FocusWriter", argc, argv)
+	, m_window(0)
 {
 	setApplicationName("FocusWriter");
 	setApplicationVersion(VERSIONSTR);

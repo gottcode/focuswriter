@@ -21,16 +21,16 @@ QString DailyProgress::m_path;
 
 //-----------------------------------------------------------------------------
 
-DailyProgress::DailyProgress(QObject* parent) :
-	QAbstractTableModel(parent),
-	m_words(0),
-	m_msecs(0),
-	m_type(0),
-	m_goal(0),
-	m_current_valid(false),
-	m_current_pos(0),
-	m_progress_enabled(0),
-	m_streak_minimum(100)
+DailyProgress::DailyProgress(QObject* parent)
+	: QAbstractTableModel(parent)
+	, m_words(0)
+	, m_msecs(0)
+	, m_type(0)
+	, m_goal(0)
+	, m_current_valid(false)
+	, m_current_pos(0)
+	, m_progress_enabled(0)
+	, m_streak_minimum(100)
 {
 	// Fetch date of when the program was started
 	QDate date = QDate::currentDate();

@@ -48,8 +48,8 @@ private:
 	QString m_text;
 };
 
-SymbolsDialog::ElideLabel::ElideLabel(QWidget* parent) :
-	QFrame(parent)
+SymbolsDialog::ElideLabel::ElideLabel(QWidget* parent)
+	: QFrame(parent)
 {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 }
@@ -79,8 +79,8 @@ void SymbolsDialog::ElideLabel::paintEvent(QPaintEvent* event)
 
 //-----------------------------------------------------------------------------
 
-SymbolsDialog::SymbolsDialog(QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+SymbolsDialog::SymbolsDialog(QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
 	setWindowTitle(tr("Symbols"));
 

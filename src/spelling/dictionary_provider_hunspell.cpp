@@ -56,9 +56,9 @@ private:
 
 //-----------------------------------------------------------------------------
 
-DictionaryHunspell::DictionaryHunspell(const QString& language) :
-	m_dictionary(0),
-	m_codec(0)
+DictionaryHunspell::DictionaryHunspell(const QString& language)
+	: m_dictionary(0)
+	, m_codec(0)
 {
 	// Find dictionary files
 	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();

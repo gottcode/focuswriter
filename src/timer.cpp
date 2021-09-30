@@ -29,25 +29,27 @@
 
 namespace
 {
-	QTime removeMSecs(const QTime& time)
-	{
-		return QTime(time.hour(), time.minute(), time.second());
-	}
 
-	QDateTime removeMSecs(const QDateTime& datetime)
-	{
-		return QDateTime(datetime.date(), removeMSecs(datetime.time()));
-	}
+QTime removeMSecs(const QTime& time)
+{
+	return QTime(time.hour(), time.minute(), time.second());
+}
+
+QDateTime removeMSecs(const QDateTime& datetime)
+{
+	return QDateTime(datetime.date(), removeMSecs(datetime.time()));
+}
+
 }
 
 //-----------------------------------------------------------------------------
 
 Timer::Timer(Stack* documents, QWidget* parent)
-	: QFrame(parent),
-	m_type(0),
-	m_started(false),
-	m_finished(false),
-	m_documents(documents)
+	: QFrame(parent)
+	, m_type(0)
+	, m_started(false)
+	, m_finished(false)
+	, m_documents(documents)
 {
 	init();
 
@@ -58,11 +60,11 @@ Timer::Timer(Stack* documents, QWidget* parent)
 //-----------------------------------------------------------------------------
 
 Timer::Timer(int type, const QStringList& values, Stack* documents, QWidget* parent)
-	: QFrame(parent),
-	m_type(type),
-	m_started(false),
-	m_finished(false),
-	m_documents(documents)
+	: QFrame(parent)
+	, m_type(type)
+	, m_started(false)
+	, m_finished(false)
+	, m_documents(documents)
 {
 	init();
 
@@ -83,11 +85,11 @@ Timer::Timer(int type, const QStringList& values, Stack* documents, QWidget* par
 //-----------------------------------------------------------------------------
 
 Timer::Timer(const QString& id, Stack* documents, QWidget* parent)
-	: QFrame(parent),
-	m_id(id),
-	m_started(false),
-	m_finished(false),
-	m_documents(documents)
+	: QFrame(parent)
+	, m_id(id)
+	, m_started(false)
+	, m_finished(false)
+	, m_documents(documents)
 {
 	init();
 

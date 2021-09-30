@@ -152,31 +152,38 @@ private:
 	int m_header_visible;
 };
 
-inline AlertLayer* Stack::alerts() const {
+inline AlertLayer* Stack::alerts() const
+{
 	return m_alerts;
 }
 
-inline QMenu* Stack::menu() const {
+inline QMenu* Stack::menu() const
+{
 	return m_menu;
 }
 
-inline SymbolsDialog* Stack::symbols() const {
+inline SymbolsDialog* Stack::symbols() const
+{
 	return m_symbols_dialog;
 }
 
-inline int Stack::count() const {
+inline int Stack::count() const
+{
 	return m_documents.count();
 }
 
-inline Document* Stack::currentDocument() const {
+inline Document* Stack::currentDocument() const
+{
 	return m_current_document;
 }
 
-inline int Stack::currentIndex() const {
+inline int Stack::currentIndex() const
+{
 	return m_documents.indexOf(m_current_document);
 }
 
-inline Document* Stack::document(int index) const {
+inline Document* Stack::document(int index) const
+{
 	return m_documents[index];
 }
 

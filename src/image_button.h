@@ -34,11 +34,13 @@ private:
 	QString m_path;
 };
 
-inline QString ImageButton::image() const {
+inline QString ImageButton::image() const
+{
 	return m_image;
 }
 
-inline QString ImageButton::toString() const {
+inline QString ImageButton::toString() const
+{
 	return m_path;
 }
 

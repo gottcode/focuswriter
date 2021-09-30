@@ -14,7 +14,9 @@ class WordRef;
 class AbstractDictionary
 {
 public:
-	virtual ~AbstractDictionary() { }
+	virtual ~AbstractDictionary()
+	{
+	}
 
 	virtual bool isValid() const = 0;
 	virtual WordRef check(const QString& string, int start_at) const = 0;

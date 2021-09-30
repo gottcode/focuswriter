@@ -16,8 +16,8 @@
 
 //-----------------------------------------------------------------------------
 
-OdtWriter::OdtWriter() :
-	m_flat(false)
+OdtWriter::OdtWriter()
+	: m_flat(false)
 {
 }
 

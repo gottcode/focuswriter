@@ -28,8 +28,8 @@
 //-----------------------------------------------------------------------------
 
 FindDialog::FindDialog(Stack* documents)
-	: QDialog(documents->window(), Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_documents(documents)
+	: QDialog(documents->window(), Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_documents(documents)
 {
 	// Create widgets
 	QLabel* find_label = new QLabel(tr("Search for:"), this);

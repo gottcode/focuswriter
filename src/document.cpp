@@ -78,250 +78,252 @@ static inline int cursorWidth()
 
 namespace
 {
-	QList<int> g_untitled_indexes = QList<int>() << 0;
 
-	class TextEdit : public QTextEdit
+QList<int> g_untitled_indexes = QList<int>() << 0;
+
+class TextEdit : public QTextEdit
+{
+public:
+	TextEdit(Document* document)
+		: QTextEdit(document)
+		, m_document(document)
 	{
-	public:
-		TextEdit(Document* document) :
-			QTextEdit(document),
-			m_document(document)
-		{
-		}
-
-	protected:
-		virtual bool canInsertFromMimeData(const QMimeData* source) const;
-		virtual QMimeData* createMimeDataFromSelection() const;
-		virtual void insertFromMimeData(const QMimeData* source);
-		virtual bool event(QEvent* event);
-		virtual void keyPressEvent(QKeyEvent* event);
-		virtual void inputMethodEvent(QInputMethodEvent* event);
-
-	private:
-		QByteArray mimeToRtf(const QMimeData* source) const;
-
-	private:
-		Document* m_document;
-	};
-
-	bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
-	{
-		return QTextEdit::canInsertFromMimeData(source)
-				|| source->hasFormat(QLatin1String("text/rtf"))
-				|| source->hasFormat(QLatin1String("text/richtext"))
-				|| source->hasFormat(QLatin1String("application/rtf"))
-				|| source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))
-				|| source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))
-				|| source->hasFormat(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
 	}
 
-	QMimeData* TextEdit::createMimeDataFromSelection() const
+protected:
+	virtual bool canInsertFromMimeData(const QMimeData* source) const;
+	virtual QMimeData* createMimeDataFromSelection() const;
+	virtual void insertFromMimeData(const QMimeData* source);
+	virtual bool event(QEvent* event);
+	virtual void keyPressEvent(QKeyEvent* event);
+	virtual void inputMethodEvent(QInputMethodEvent* event);
+
+private:
+	QByteArray mimeToRtf(const QMimeData* source) const;
+
+private:
+	Document* m_document;
+};
+
+bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
+{
+	return QTextEdit::canInsertFromMimeData(source)
+			|| source->hasFormat(QLatin1String("text/rtf"))
+			|| source->hasFormat(QLatin1String("text/richtext"))
+			|| source->hasFormat(QLatin1String("application/rtf"))
+			|| source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))
+			|| source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))
+			|| source->hasFormat(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+}
+
+QMimeData* TextEdit::createMimeDataFromSelection() const
+{
+	QMimeData* mime = new QMimeData;
+
+	QTextDocument doc;
+	QTextCursor cursor(&doc);
+	cursor.insertFragment(textCursor().selection());
+
 	{
-		QMimeData* mime = new QMimeData;;
-
-		QTextDocument doc;
-		QTextCursor cursor(&doc);
-		cursor.insertFragment(textCursor().selection());
-
-		{
-			OdtWriter writer;
-			QBuffer buffer;
-			buffer.open(QIODevice::WriteOnly);
-			writer.write(&buffer, &doc);
-			buffer.close();
-			mime->setData(QLatin1String("application/vnd.oasis.opendocument.text"), buffer.data());
-		}
-
-		{
-			DocxWriter writer;
-			QBuffer buffer;
-			buffer.open(QIODevice::WriteOnly);
-			writer.write(&buffer, &doc);
-			buffer.close();
-			mime->setData(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"), buffer.data());
-		}
-
-		{
-			RtfWriter writer;
-			QBuffer buffer;
-			buffer.open(QIODevice::WriteOnly);
-			writer.write(&buffer, &doc);
-			buffer.close();
-			mime->setData(QLatin1String("text/rtf"), buffer.data());
-			mime->setData(QLatin1String("text/richtext"), buffer.data());
-			mime->setData(QLatin1String("application/rtf"), buffer.data());
-		}
-
-		{
-			HtmlWriter writer;
-			QBuffer buffer;
-			buffer.open(QIODevice::WriteOnly);
-			writer.write(&buffer, &doc);
-			buffer.close();
-			mime->setHtml(buffer.data());
-		}
-
-		mime->setText(doc.toPlainText());
-
-		return mime;
+		OdtWriter writer;
+		QBuffer buffer;
+		buffer.open(QIODevice::WriteOnly);
+		writer.write(&buffer, &doc);
+		buffer.close();
+		mime->setData(QLatin1String("application/vnd.oasis.opendocument.text"), buffer.data());
 	}
 
-	void TextEdit::insertFromMimeData(const QMimeData* source)
 	{
-		if (isReadOnly()) {
-			return;
-		}
-
-		QTextDocument document;
-		QTextCursor cursor(&document);
-		cursor.mergeBlockFormat(textCursor().blockFormat());
-		const auto formats = document.allFormats().size();
-		if (m_document->isRichText()) {
-			cursor = textCursor();
-		}
-
-		QByteArray richtext;
-		if (source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))) {
-			QBuffer buffer;
-			buffer.setData(source->data(QLatin1String("application/vnd.oasis.opendocument.text")));
-			buffer.open(QIODevice::ReadOnly);
-			OdtReader reader;
-			reader.read(&buffer, cursor);
-		} else if (source->hasFormat(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))) {
-			QBuffer buffer;
-			buffer.setData(source->data(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document")));
-			buffer.open(QIODevice::ReadOnly);
-			DocxReader reader;
-			reader.read(&buffer, cursor);
-		} else if (source->hasFormat(QLatin1String("text/rtf"))) {
-			richtext = source->data(QLatin1String("text/rtf"));
-		} else if (source->hasFormat(QLatin1String("text/richtext"))) {
-			richtext = source->data(QLatin1String("text/richtext"));
-		} else if (source->hasFormat(QLatin1String("application/rtf"))) {
-			richtext = source->data(QLatin1String("application/rtf"));
-		} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
-			richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
-		} else if (source->hasHtml()) {
-			richtext = mimeToRtf(source);
-		} else {
-			QTextEdit::insertFromMimeData(source);
-			return;
-		}
-
-		if (!richtext.isEmpty()) {
-			RtfReader reader;
-			QBuffer buffer(&richtext);
-			buffer.open(QIODevice::ReadOnly);
-			reader.read(&buffer, cursor);
-			buffer.close();
-		}
-
-		if (!m_document->isRichText()) {
-			if (document.allFormats().size() > formats) {
-				m_document->setRichText(true);
-			}
-			textCursor().insertFragment(QTextDocumentFragment(&document));
-		}
+		DocxWriter writer;
+		QBuffer buffer;
+		buffer.open(QIODevice::WriteOnly);
+		writer.write(&buffer, &doc);
+		buffer.close();
+		mime->setData(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"), buffer.data());
 	}
 
-	bool TextEdit::event(QEvent* event)
 	{
-		if (event->type() == QEvent::ShortcutOverride) {
-			QKeyEvent* ke = static_cast<QKeyEvent*>(event);
-			if (ke == QKeySequence::Cut
-					|| ke == QKeySequence::Copy
-					|| ke == QKeySequence::Paste
-					|| ke == QKeySequence::Redo
-					|| ke == QKeySequence::Undo
-					|| ke == QKeySequence::SelectAll
-					|| ke == QKeySequence::MoveToEndOfBlock
-					|| ke == QKeySequence::MoveToStartOfBlock) {
-				event->ignore();
-				return true;
-			}
-		}
-		return QTextEdit::event(event);
-	}
-
-	void TextEdit::keyPressEvent(QKeyEvent* event)
-	{
-		if (event == QKeySequence::Cut
-				|| event == QKeySequence::Copy
-				|| event == QKeySequence::Paste
-				|| event == QKeySequence::Redo
-				|| event == QKeySequence::Undo
-				|| event == QKeySequence::SelectAll
-				|| event == QKeySequence::MoveToEndOfBlock
-				|| event == QKeySequence::MoveToStartOfBlock) {
-			event->ignore();
-			return;
-		}
-
-		QTextEdit::keyPressEvent(event);
-
-		if (event->key() == Qt::Key_Insert) {
-			setOverwriteMode(!overwriteMode());
-		} else {
-			// Play sound effect
-			int key = event->key();
-			if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
-					!(event->modifiers().testFlag(Qt::MetaModifier))) {
-				if ((key == Qt::Key_Return) || (key == Qt::Key_Enter)) {
-					Sound::play(Qt::Key_Enter);
-				} else if ((key < Qt::Key_Escape) || (key == Qt::Key_unknown)) {
-					Sound::play(Qt::Key_Any);
-				}
-			}
-		}
-	}
-
-	void TextEdit::inputMethodEvent(QInputMethodEvent* event)
-	{
-		QTextEdit::inputMethodEvent(event);
-		Sound::play(Qt::Key_Any);
-	}
-
-	QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
-	{
-		// Parse HTML
-		QTextDocument document;
-		if (source->hasHtml()) {
-			document.setHtml(source->html().remove(QChar(0x0)));
-		} else {
-			document.setPlainText(source->text().remove(QChar(0x0)));
-		}
-
-		// Convert to RTF
 		RtfWriter writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
-		writer.write(&buffer, &document);
+		writer.write(&buffer, &doc);
 		buffer.close();
-
-		return buffer.data();
+		mime->setData(QLatin1String("text/rtf"), buffer.data());
+		mime->setData(QLatin1String("text/richtext"), buffer.data());
+		mime->setData(QLatin1String("application/rtf"), buffer.data());
 	}
+
+	{
+		HtmlWriter writer;
+		QBuffer buffer;
+		buffer.open(QIODevice::WriteOnly);
+		writer.write(&buffer, &doc);
+		buffer.close();
+		mime->setHtml(buffer.data());
+	}
+
+	mime->setText(doc.toPlainText());
+
+	return mime;
+}
+
+void TextEdit::insertFromMimeData(const QMimeData* source)
+{
+	if (isReadOnly()) {
+		return;
+	}
+
+	QTextDocument document;
+	QTextCursor cursor(&document);
+	cursor.mergeBlockFormat(textCursor().blockFormat());
+	const auto formats = document.allFormats().size();
+	if (m_document->isRichText()) {
+		cursor = textCursor();
+	}
+
+	QByteArray richtext;
+	if (source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))) {
+		QBuffer buffer;
+		buffer.setData(source->data(QLatin1String("application/vnd.oasis.opendocument.text")));
+		buffer.open(QIODevice::ReadOnly);
+		OdtReader reader;
+		reader.read(&buffer, cursor);
+	} else if (source->hasFormat(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))) {
+		QBuffer buffer;
+		buffer.setData(source->data(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document")));
+		buffer.open(QIODevice::ReadOnly);
+		DocxReader reader;
+		reader.read(&buffer, cursor);
+	} else if (source->hasFormat(QLatin1String("text/rtf"))) {
+		richtext = source->data(QLatin1String("text/rtf"));
+	} else if (source->hasFormat(QLatin1String("text/richtext"))) {
+		richtext = source->data(QLatin1String("text/richtext"));
+	} else if (source->hasFormat(QLatin1String("application/rtf"))) {
+		richtext = source->data(QLatin1String("application/rtf"));
+	} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
+		richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
+	} else if (source->hasHtml()) {
+		richtext = mimeToRtf(source);
+	} else {
+		QTextEdit::insertFromMimeData(source);
+		return;
+	}
+
+	if (!richtext.isEmpty()) {
+		RtfReader reader;
+		QBuffer buffer(&richtext);
+		buffer.open(QIODevice::ReadOnly);
+		reader.read(&buffer, cursor);
+		buffer.close();
+	}
+
+	if (!m_document->isRichText()) {
+		if (document.allFormats().size() > formats) {
+			m_document->setRichText(true);
+		}
+		textCursor().insertFragment(QTextDocumentFragment(&document));
+	}
+}
+
+bool TextEdit::event(QEvent* event)
+{
+	if (event->type() == QEvent::ShortcutOverride) {
+		QKeyEvent* ke = static_cast<QKeyEvent*>(event);
+		if (ke == QKeySequence::Cut
+				|| ke == QKeySequence::Copy
+				|| ke == QKeySequence::Paste
+				|| ke == QKeySequence::Redo
+				|| ke == QKeySequence::Undo
+				|| ke == QKeySequence::SelectAll
+				|| ke == QKeySequence::MoveToEndOfBlock
+				|| ke == QKeySequence::MoveToStartOfBlock) {
+			event->ignore();
+			return true;
+		}
+	}
+	return QTextEdit::event(event);
+}
+
+void TextEdit::keyPressEvent(QKeyEvent* event)
+{
+	if (event == QKeySequence::Cut
+			|| event == QKeySequence::Copy
+			|| event == QKeySequence::Paste
+			|| event == QKeySequence::Redo
+			|| event == QKeySequence::Undo
+			|| event == QKeySequence::SelectAll
+			|| event == QKeySequence::MoveToEndOfBlock
+			|| event == QKeySequence::MoveToStartOfBlock) {
+		event->ignore();
+		return;
+	}
+
+	QTextEdit::keyPressEvent(event);
+
+	if (event->key() == Qt::Key_Insert) {
+		setOverwriteMode(!overwriteMode());
+	} else {
+		// Play sound effect
+		int key = event->key();
+		if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
+				!(event->modifiers().testFlag(Qt::MetaModifier))) {
+			if ((key == Qt::Key_Return) || (key == Qt::Key_Enter)) {
+				Sound::play(Qt::Key_Enter);
+			} else if ((key < Qt::Key_Escape) || (key == Qt::Key_unknown)) {
+				Sound::play(Qt::Key_Any);
+			}
+		}
+	}
+}
+
+void TextEdit::inputMethodEvent(QInputMethodEvent* event)
+{
+	QTextEdit::inputMethodEvent(event);
+	Sound::play(Qt::Key_Any);
+}
+
+QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
+{
+	// Parse HTML
+	QTextDocument document;
+	if (source->hasHtml()) {
+		document.setHtml(source->html().remove(QChar(0x0)));
+	} else {
+		document.setPlainText(source->text().remove(QChar(0x0)));
+	}
+
+	// Convert to RTF
+	RtfWriter writer;
+	QBuffer buffer;
+	buffer.open(QIODevice::WriteOnly);
+	writer.write(&buffer, &document);
+	buffer.close();
+
+	return buffer.data();
+}
+
 }
 
 //-----------------------------------------------------------------------------
 
 Document::Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent)
-	: QWidget(parent),
-	m_cache_outdated(false),
-	m_index(0),
-	m_always_center(false),
-	m_mouse_button_down(false),
-	m_rich_text(false),
-	m_spacings_loaded(false),
-	m_focus_mode(0),
-	m_scene_list(0),
-	m_dictionary(DictionaryManager::instance().requestDictionary()),
-	m_cached_block_count(-1),
-	m_cached_current_block(-1),
-	m_saved_wordcount(0),
-	m_page_type(0),
-	m_page_amount(0),
-	m_wordcount_type(0),
-	m_daily_progress(daily_progress)
+	: QWidget(parent)
+	, m_cache_outdated(false)
+	, m_index(0)
+	, m_always_center(false)
+	, m_mouse_button_down(false)
+	, m_rich_text(false)
+	, m_spacings_loaded(false)
+	, m_focus_mode(0)
+	, m_scene_list(0)
+	, m_dictionary(DictionaryManager::instance().requestDictionary())
+	, m_cached_block_count(-1)
+	, m_cached_current_block(-1)
+	, m_saved_wordcount(0)
+	, m_page_type(0)
+	, m_page_amount(0)
+	, m_wordcount_type(0)
+	, m_daily_progress(daily_progress)
 {
 	setMouseTracking(true);
 

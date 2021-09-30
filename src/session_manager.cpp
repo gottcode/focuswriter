@@ -32,9 +32,9 @@
 //-----------------------------------------------------------------------------
 
 SessionManager::SessionManager(Window* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_session(0),
-	m_window(parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_session(0)
+	, m_window(parent)
 {
 	setWindowTitle(tr("Manage Sessions"));
 

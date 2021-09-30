@@ -11,13 +11,13 @@
 
 //-----------------------------------------------------------------------------
 
-BlockStats::BlockStats(SceneModel* scene_model) :
-	m_characters(0),
-	m_letters(0),
-	m_spaces(0),
-	m_words(0),
-	m_scene(false),
-	m_scene_model(scene_model)
+BlockStats::BlockStats(SceneModel* scene_model)
+	: m_characters(0)
+	, m_letters(0)
+	, m_spaces(0)
+	, m_words(0)
+	, m_scene(false)
+	, m_scene_model(scene_model)
 {
 }
 

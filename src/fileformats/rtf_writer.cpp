@@ -198,10 +198,10 @@ QByteArray fetchCodePage()
 
 //-----------------------------------------------------------------------------
 
-RtfWriter::RtfWriter(const QByteArray& encoding) :
-	m_encoding(encoding),
-	m_codec(0),
-	m_supports_ascii(false)
+RtfWriter::RtfWriter(const QByteArray& encoding)
+	: m_encoding(encoding)
+	, m_codec(0)
+	, m_supports_ascii(false)
 {
 	// Fetch system codepage
 	if (m_encoding.isEmpty()) {

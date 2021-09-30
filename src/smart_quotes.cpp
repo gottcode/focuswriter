@@ -246,13 +246,15 @@ QString SmartQuotes::quoteString(const QString& string, size_t index)
 
 namespace
 {
-	struct DefaultQuotes
-	{
-		QLocale::Language language;
-		QLocale::Country country;
-		size_t double_index;
-		size_t single_index;
-	};
+
+struct DefaultQuotes
+{
+	QLocale::Language language;
+	QLocale::Country country;
+	size_t double_index;
+	size_t single_index;
+};
+
 }
 
 void SmartQuotes::loadPreferences()

@@ -110,13 +110,13 @@ void SpellChecker::changeAll()
 
 //-----------------------------------------------------------------------------
 
-SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
-	QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_dictionary(dictionary),
-	m_document(document),
-	m_checked_blocks(1),
-	m_total_blocks(document->document()->blockCount()),
-	m_loop_available(true)
+SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary)
+	: QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_dictionary(dictionary)
+	, m_document(document)
+	, m_checked_blocks(1)
+	, m_total_blocks(document->document()->blockCount())
+	, m_loop_available(true)
 {
 	setWindowTitle(tr("Check Spelling"));
 	setWindowModality(Qt::WindowModal);

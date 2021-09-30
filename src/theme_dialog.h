@@ -31,7 +31,6 @@ public:
 	ThemeDialog(Theme& theme, QWidget* parent = 0);
 	~ThemeDialog();
 
-
 public slots:
 	virtual void accept();
 

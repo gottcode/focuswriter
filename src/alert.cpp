@@ -20,16 +20,16 @@
 
 //-----------------------------------------------------------------------------
 
-Alert::Alert(QWidget* parent) :
-	QWidget(parent)
+Alert::Alert(QWidget* parent)
+	: QWidget(parent)
 {
 	init();
 }
 
 //-----------------------------------------------------------------------------
 
-Alert::Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent) :
-	QWidget(parent)
+Alert::Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent)
+	: QWidget(parent)
 {
 	init();
 

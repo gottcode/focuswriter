@@ -17,8 +17,8 @@
 
 //-----------------------------------------------------------------------------
 
-DictionaryDialog::DictionaryDialog(QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+DictionaryDialog::DictionaryDialog(QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
 	setWindowTitle(tr("Set Language"));
 

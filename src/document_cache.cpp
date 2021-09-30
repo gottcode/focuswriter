@@ -24,9 +24,9 @@ QString DocumentCache::m_path;
 
 //-----------------------------------------------------------------------------
 
-DocumentCache::DocumentCache(QObject* parent) :
-	QObject(parent),
-	m_ordering(0)
+DocumentCache::DocumentCache(QObject* parent)
+	: QObject(parent)
+	, m_ordering(0)
 {
 	QStringList entries = QDir(m_path).entryList(QDir::Files);
 	if ((entries.count() >= 1) && entries.contains("mapping")) {

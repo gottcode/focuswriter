@@ -14,8 +14,8 @@
 
 //-----------------------------------------------------------------------------
 
-OdtReader::OdtReader() :
-	m_in_block(true)
+OdtReader::OdtReader()
+	: m_in_block(true)
 {
 	m_xml.setNamespaceProcessing(false);
 }

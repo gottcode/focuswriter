@@ -17,17 +17,17 @@
 
 //-----------------------------------------------------------------------------
 
-Preferences::Preferences() :
-	m_goal_type(0, 2),
-	m_goal_minutes(5, 1440),
-	m_goal_words(100, 100000),
-	m_goal_streak_minimum(1, 100),
-	m_page_type(0, 2),
-	m_page_characters(1, 10000),
-	m_page_paragraphs(1, 100),
-	m_page_words(1, 2000),
-	m_wordcount_type(0, 2),
-	m_save_format(FormatManager::types())
+Preferences::Preferences()
+	: m_goal_type(0, 2)
+	, m_goal_minutes(5, 1440)
+	, m_goal_words(100, 100000)
+	, m_goal_streak_minimum(1, 100)
+	, m_page_type(0, 2)
+	, m_page_characters(1, 10000)
+	, m_page_paragraphs(1, 100)
+	, m_page_words(1, 2000)
+	, m_wordcount_type(0, 2)
+	, m_save_format(FormatManager::types())
 {
 	forgetChanges();
 }

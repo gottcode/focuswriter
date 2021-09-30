@@ -40,8 +40,8 @@ namespace
 class ThemeItem : public QListWidgetItem
 {
 public:
-	ThemeItem(const QIcon& icon, const QString& text, QListWidget* view) :
-		QListWidgetItem(icon, text, view)
+	ThemeItem(const QIcon& icon, const QString& text, QListWidget* view)
+		: QListWidgetItem(icon, text, view)
 	{
 	}
 
@@ -56,8 +56,8 @@ public:
 //-----------------------------------------------------------------------------
 
 ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_settings(settings)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_settings(settings)
 {
 	setWindowTitle(tr("Themes"));
 

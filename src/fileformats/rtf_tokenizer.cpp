@@ -16,11 +16,11 @@
 
 //-----------------------------------------------------------------------------
 
-RtfTokenizer::RtfTokenizer() :
-	m_device(nullptr),
-	m_position(0),
-	m_value(0),
-	m_has_value(false)
+RtfTokenizer::RtfTokenizer()
+	: m_device(nullptr)
+	, m_position(0)
+	, m_value(0)
+	, m_has_value(false)
 {
 	m_buffer.reserve(8192);
 	m_text.reserve(8192);

@@ -14,18 +14,20 @@
 
 namespace
 {
-	// Shared data
-	QString f_path;
-	bool f_enabled = false;
 
-	QHash<int, Sound*> f_sound_objects;
+// Shared data
+QString f_path;
+bool f_enabled = false;
+
+QHash<int, Sound*> f_sound_objects;
+
 }
 
 //-----------------------------------------------------------------------------
 
-Sound::Sound(int name, const QString& filename, QObject* parent) :
-	QObject(parent),
-	m_name(name)
+Sound::Sound(int name, const QString& filename, QObject* parent)
+	: QObject(parent)
+	, m_name(name)
 {
 	QSoundEffect* sound = new QSoundEffect(this);
 	sound->setSource(QUrl::fromLocalFile(f_path + "/" + filename));

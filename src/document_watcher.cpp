@@ -20,11 +20,11 @@
 
 //-----------------------------------------------------------------------------
 
-DocumentWatcher::Details::Details(const QFileInfo& info) :
-	path(info.canonicalFilePath()),
-	modified(info.lastModified()),
-	permissions(info.permissions()),
-	ignored(false)
+DocumentWatcher::Details::Details(const QFileInfo& info)
+	: path(info.canonicalFilePath())
+	, modified(info.lastModified())
+	, permissions(info.permissions())
+	, ignored(false)
 {
 }
 
@@ -34,8 +34,8 @@ DocumentWatcher* DocumentWatcher::m_instance = 0;
 
 //-----------------------------------------------------------------------------
 
-DocumentWatcher::DocumentWatcher(QObject* parent) :
-	QObject(parent)
+DocumentWatcher::DocumentWatcher(QObject* parent)
+	: QObject(parent)
 {
 	m_instance = this;
 	m_watcher = new QFileSystemWatcher(this);

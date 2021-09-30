@@ -10,8 +10,8 @@
 class SettingsFile
 {
 public:
-	SettingsFile() :
-		m_changed(false)
+	SettingsFile()
+		: m_changed(false)
 	{
 	}
 

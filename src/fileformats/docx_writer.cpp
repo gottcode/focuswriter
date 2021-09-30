@@ -15,8 +15,8 @@
 
 //-----------------------------------------------------------------------------
 
-DocxWriter::DocxWriter() :
-	m_strict(false)
+DocxWriter::DocxWriter()
+	: m_strict(false)
 {
 }
 

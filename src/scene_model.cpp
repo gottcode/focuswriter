@@ -23,10 +23,10 @@ static QList<SceneModel*> f_scene_models;
 
 //-----------------------------------------------------------------------------
 
-SceneModel::SceneModel(QTextEdit* document, QObject* parent) :
-	QAbstractListModel(parent),
-	m_document(document),
-	m_updates(0)
+SceneModel::SceneModel(QTextEdit* document, QObject* parent)
+	: QAbstractListModel(parent)
+	, m_document(document)
+	, m_updates(0)
 {
 	connect(m_document->document(), &QTextDocument::blockCountChanged, this, &SceneModel::invalidateScenes);
 

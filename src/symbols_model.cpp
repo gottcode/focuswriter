@@ -45,8 +45,8 @@ QString SymbolsModel::m_path;
 
 //-----------------------------------------------------------------------------
 
-SymbolsModel::SymbolsModel(QObject* parent) :
-	QAbstractItemModel(parent)
+SymbolsModel::SymbolsModel(QObject* parent)
+	: QAbstractItemModel(parent)
 {
 	QFile file(m_path);
 	if (!file.open(QFile::ReadOnly)) {

@@ -28,7 +28,8 @@ class DocumentWatcher : public QObject
 			permissions(0),
 #endif
 			ignored(false)
-		{ }
+		{
+		}
 
 		Details(const QFileInfo& info);
 

@@ -20,12 +20,12 @@
 //-----------------------------------------------------------------------------
 
 Highlighter::Highlighter(QTextEdit* text, DictionaryRef& dictionary)
-	: QSyntaxHighlighter(text),
-	m_dictionary(dictionary),
-	m_text(text),
-	m_enabled(true),
-	m_misspelled("#ff0000"),
-	m_changed(false)
+	: QSyntaxHighlighter(text)
+	, m_dictionary(dictionary)
+	, m_text(text)
+	, m_enabled(true)
+	, m_misspelled("#ff0000")
+	, m_changed(false)
 {
 	connect(m_text, &QTextEdit::cursorPositionChanged, this, &Highlighter::cursorPositionChanged);
 

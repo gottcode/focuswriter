@@ -10,9 +10,9 @@
 
 //-----------------------------------------------------------------------------
 
-DailyProgressLabel::DailyProgressLabel(DailyProgress* progress, QWidget* parent) :
-	QLabel(parent),
-	m_progress(progress)
+DailyProgressLabel::DailyProgressLabel(DailyProgress* progress, QWidget* parent)
+	: QLabel(parent)
+	, m_progress(progress)
 {
 	setText(tr("%L1% of daily goal").arg(0));
 	connect(m_progress, &DailyProgress::progressChanged, this, &DailyProgressLabel::progressChanged);

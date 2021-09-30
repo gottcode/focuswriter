@@ -18,7 +18,8 @@ class Alert : public QWidget
 	Q_OBJECT
 
 public:
-	enum Icon {
+	enum Icon
+	{
 		NoIcon = 0,
 		Information,
 		Warning,

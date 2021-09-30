@@ -32,8 +32,7 @@ bool HtmlWriter::write(QIODevice* device, QTextDocument* document)
 
 	m_xml.writeStartElement(QStringLiteral("body"));
 
-	for (QTextBlock block = document->begin(); block.isValid(); block = block.next())
-	{
+	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		QTextBlockFormat block_format = block.blockFormat();
 		int block_format_elements = 0;
 		for (int i = 0; i < block_format.indent(); ++i) {

@@ -86,8 +86,8 @@ private:
 
 //-----------------------------------------------------------------------------
 
-DictionaryVoikko::DictionaryVoikko(const QString& language) :
-	m_handle(0)
+DictionaryVoikko::DictionaryVoikko(const QString& language)
+	: m_handle(0)
 {
 	const char* voikko_error;
 	m_handle = voikkoInit(&voikko_error, language.toUtf8().constData(), f_voikko_path.constData());

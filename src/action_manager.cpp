@@ -18,9 +18,9 @@ ActionManager* ActionManager::m_instance = 0;
 
 //-----------------------------------------------------------------------------
 
-ActionManager::ActionManager(QWidget* parent) :
-	QObject(parent),
-	m_widget(parent)
+ActionManager::ActionManager(QWidget* parent)
+	: QObject(parent)
+	, m_widget(parent)
 {
 	m_instance = this;
 

@@ -29,8 +29,8 @@
 //-----------------------------------------------------------------------------
 
 TimerManager::TimerManager(Stack* documents, QWidget* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_documents(documents)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_documents(documents)
 {
 	setWindowTitle(tr("Timers"));
 

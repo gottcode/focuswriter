@@ -42,28 +42,30 @@
 
 namespace
 {
-	QWidget* makeScrollable(QWidget* tab)
-	{
-		QScrollArea* area = new QScrollArea(tab->parentWidget());
-		area->setFrameStyle(QFrame::NoFrame);
-		area->setWidget(tab);
-		area->setWidgetResizable(true);
 
-		area->setBackgroundRole(QPalette::Link);
-		QPalette p = area->palette();
-		p.setColor(area->backgroundRole(), Qt::transparent);
-		area->setPalette(p);
+QWidget* makeScrollable(QWidget* tab)
+{
+	QScrollArea* area = new QScrollArea(tab->parentWidget());
+	area->setFrameStyle(QFrame::NoFrame);
+	area->setWidget(tab);
+	area->setWidgetResizable(true);
 
-		return area;
-	}
+	area->setBackgroundRole(QPalette::Link);
+	QPalette p = area->palette();
+	p.setColor(area->backgroundRole(), Qt::transparent);
+	area->setPalette(p);
+
+	return area;
+}
+
 }
 
 //-----------------------------------------------------------------------------
 
-PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_daily_progress(daily_progress),
-	m_shortcut_conflicts(false)
+PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_daily_progress(daily_progress)
+	, m_shortcut_conflicts(false)
 {
 	setWindowTitle(tr("Preferences"));
 

@@ -40,8 +40,8 @@ void qt_blurImage(QPainter* p, QImage& blurImage, qreal radius, bool quality, bo
 //-----------------------------------------------------------------------------
 
 ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_theme(theme)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_theme(theme)
 {
 	setWindowTitle(tr("Edit Theme"));
 	setWindowModality(Qt::WindowModal);
