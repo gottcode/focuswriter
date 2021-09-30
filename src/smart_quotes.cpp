@@ -133,7 +133,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 void SmartQuotes::replace(QTextEdit* text, int start, int end)
 {
 	QProgressDialog progress(text);
-	progress.setCancelButton(0);
+	progress.setCancelButton(nullptr);
 	progress.setLabelText(tr("Replacing quotation marks..."));
 	progress.setWindowTitle(tr("Please Wait"));
 	progress.setModal(true);

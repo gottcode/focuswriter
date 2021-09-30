@@ -315,7 +315,7 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	, m_rich_text(false)
 	, m_spacings_loaded(false)
 	, m_focus_mode(0)
-	, m_scene_list(0)
+	, m_scene_list(nullptr)
 	, m_dictionary(DictionaryManager::instance().requestDictionary())
 	, m_cached_block_count(-1)
 	, m_cached_current_block(-1)
@@ -790,7 +790,7 @@ bool Document::loadFile(const QString& filename, int position)
 	emit replaceCacheFile(this, filename);
 
 	// Fetch reader for file
-	FormatReader* reader = 0;
+	FormatReader* reader = nullptr;
 	QFile file(filename);
 	if (file.open(QIODevice::ReadOnly)) {
 		reader = FormatManager::createReader(&file, filename.section(QLatin1Char('.'), -1).toLower());
@@ -1291,7 +1291,7 @@ void Document::selectionChanged()
 {
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
-		BlockStats temp(0);
+		BlockStats temp(nullptr);
 		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator,
 #if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
 			Qt::SkipEmptyParts
@@ -1370,7 +1370,7 @@ void Document::updateWordCount(int position, int removed, int added)
 		end = end.next();
 	}
 	bool update_spelling = false;
-	BlockStats* stats = 0;
+	BlockStats* stats = nullptr;
 	for (QTextBlock i = begin; i != end; i = i.next()) {
 		stats = static_cast<BlockStats*>(i.userData());
 		if (!stats) {
@@ -1403,7 +1403,7 @@ void Document::calculateWordCount()
 		m_cached_block_count = m_text->document()->blockCount();
 		m_cached_current_block = m_text->textCursor().blockNumber();
 
-		BlockStats* stats = 0;
+		BlockStats* stats = nullptr;
 		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
 			if (!i.userData()) {
 				stats = new BlockStats(m_scene_model);

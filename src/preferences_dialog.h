@@ -28,7 +28,7 @@ class PreferencesDialog : public QDialog
 	Q_OBJECT
 
 public:
-	explicit PreferencesDialog(DailyProgress* daily_progress, QWidget* parent = 0);
+	explicit PreferencesDialog(DailyProgress* daily_progress, QWidget* parent = nullptr);
 	~PreferencesDialog();
 
 public slots:

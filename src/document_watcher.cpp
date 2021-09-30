@@ -30,7 +30,7 @@ DocumentWatcher::Details::Details(const QFileInfo& info)
 
 //-----------------------------------------------------------------------------
 
-DocumentWatcher* DocumentWatcher::m_instance = 0;
+DocumentWatcher* DocumentWatcher::m_instance = nullptr;
 
 //-----------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ DocumentWatcher::DocumentWatcher(QObject* parent)
 DocumentWatcher::~DocumentWatcher()
 {
 	if (m_instance == this) {
-		m_instance = 0;
+		m_instance = nullptr;
 	}
 }
 

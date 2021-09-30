@@ -40,7 +40,7 @@ class DocumentWatcher : public QObject
 	};
 
 public:
-	explicit DocumentWatcher(QObject* parent = 0);
+	explicit DocumentWatcher(QObject* parent = nullptr);
 	~DocumentWatcher();
 
 	bool isWatching(const QString& path) const;

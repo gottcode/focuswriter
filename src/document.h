@@ -33,7 +33,7 @@ class Document : public QWidget
 	Q_OBJECT
 
 public:
-	Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent = 0);
+	Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent = nullptr);
 	~Document();
 
 	QString filename() const;

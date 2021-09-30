@@ -25,7 +25,7 @@ class ActionManager : public QObject
 	};
 
 public:
-	explicit ActionManager(QWidget* parent = 0);
+	explicit ActionManager(QWidget* parent = nullptr);
 	~ActionManager();
 
 	QList<QString> actions() const

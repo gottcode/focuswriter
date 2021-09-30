@@ -26,7 +26,7 @@ QString DocumentCache::m_path;
 
 DocumentCache::DocumentCache(QObject* parent)
 	: QObject(parent)
-	, m_ordering(0)
+	, m_ordering(nullptr)
 {
 	QStringList entries = QDir(m_path).entryList(QDir::Files);
 	if ((entries.count() >= 1) && entries.contains("mapping")) {
@@ -184,7 +184,7 @@ QString DocumentCache::backupCache()
 			extra = std::max(extra, subdir.mid(15).toInt() + 1);
 		}
 	}
-	QString cachepath = dir.absoluteFilePath(date + ((extra == 0) ? "" : QString("-%1").arg(extra)));
+	QString cachepath = dir.absoluteFilePath(date + (!extra ? "" : QString("-%1").arg(extra)));
 
 	// Move cache files to backup location
 	dir.rename("Files", cachepath);

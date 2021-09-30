@@ -222,7 +222,7 @@ void TimerManager::timerChanged(Timer* timer)
 
 		// Re-add all timers to widget so that tab order will be correct
 		for (int i = 0; i < m_timers.count(); ++i) {
-			m_timers[i]->setParent(0);
+			m_timers[i]->setParent(nullptr);
 		}
 		for (int i = 0; i < m_timers.count(); ++i) {
 			m_timers_layout->insertWidget(i, m_timers[i]);
@@ -345,7 +345,7 @@ void TimerManager::updateDisplay()
 			return;
 		}
 	}
-	m_display->setTimer(0);
+	m_display->setTimer(nullptr);
 }
 
 //-----------------------------------------------------------------------------

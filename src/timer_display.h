@@ -18,7 +18,7 @@ class TimerDisplay : public QWidget
 	Q_OBJECT
 
 public:
-	explicit TimerDisplay(QList<Timer*>& timers, QWidget* parent = 0);
+	explicit TimerDisplay(QList<Timer*>& timers, QWidget* parent = nullptr);
 
 	void setTimer(Timer* timer);
 

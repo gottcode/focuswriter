@@ -27,25 +27,25 @@ namespace
 	struct VoikkoHandle;
 
 	typedef struct VoikkoHandle* (*VoikkoInitFunction)(const char** error, const char* langcode, const char* path);
-	VoikkoInitFunction voikkoInit = 0;
+	VoikkoInitFunction voikkoInit = nullptr;
 
 	typedef void (*VoikkoTerminateFunction)(struct VoikkoHandle* handle);
-	VoikkoTerminateFunction voikkoTerminate = 0;
+	VoikkoTerminateFunction voikkoTerminate = nullptr;
 
 	typedef int (*VoikkoSetBooleanOptionFunction)(struct VoikkoHandle * handle, int option, int value);
-	VoikkoSetBooleanOptionFunction voikkoSetBooleanOption = 0;
+	VoikkoSetBooleanOptionFunction voikkoSetBooleanOption = nullptr;
 
 	typedef int (*VoikkoSpellCstrFunction)(struct VoikkoHandle* handle, const char* word);
-	VoikkoSpellCstrFunction voikkoSpellCstr = 0;
+	VoikkoSpellCstrFunction voikkoSpellCstr = nullptr;
 
 	typedef char** (*VoikkoSuggestCstrFunction)(struct VoikkoHandle* handle, const char* word);
-	VoikkoSuggestCstrFunction voikkoSuggestCstr = 0;
+	VoikkoSuggestCstrFunction voikkoSuggestCstr = nullptr;
 
 	typedef void (*VoikkoFreeCstrArrayFunction)(char** cstrArray);
-	VoikkoFreeCstrArrayFunction voikkoFreeCstrArray = 0;
+	VoikkoFreeCstrArrayFunction voikkoFreeCstrArray = nullptr;
 
 	typedef char** (*VoikkoListSupportedSpellingLanguagesFunction)(const char * path);
-	VoikkoListSupportedSpellingLanguagesFunction voikkoListSupportedSpellingLanguages = 0;
+	VoikkoListSupportedSpellingLanguagesFunction voikkoListSupportedSpellingLanguages = nullptr;
 
 	bool f_voikko_loaded = false;
 	QList<VoikkoHandle*> f_handles;
@@ -87,7 +87,7 @@ private:
 //-----------------------------------------------------------------------------
 
 DictionaryVoikko::DictionaryVoikko(const QString& language)
-	: m_handle(0)
+	: m_handle(nullptr)
 {
 	const char* voikko_error;
 	m_handle = voikkoInit(&voikko_error, language.toUtf8().constData(), f_voikko_path.constData());
@@ -225,21 +225,21 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 	voikkoSuggestCstr = (VoikkoSuggestCstrFunction) voikko_lib.resolve("voikkoSuggestCstr");
 	voikkoFreeCstrArray = (VoikkoFreeCstrArrayFunction) voikko_lib.resolve("voikkoFreeCstrArray");
 	voikkoListSupportedSpellingLanguages = (VoikkoListSupportedSpellingLanguagesFunction) voikko_lib.resolve("voikkoListSupportedSpellingLanguages");
-	f_voikko_loaded = (voikkoInit != 0)
-			&& (voikkoTerminate != 0)
-			&& (voikkoSetBooleanOption != 0)
-			&& (voikkoSpellCstr != 0)
-			&& (voikkoSuggestCstr != 0)
-			&& (voikkoFreeCstrArray != 0)
-			&& (voikkoListSupportedSpellingLanguages != 0);
+	f_voikko_loaded = voikkoInit
+			&& voikkoTerminate
+			&& voikkoSetBooleanOption
+			&& voikkoSpellCstr
+			&& voikkoSuggestCstr
+			&& voikkoFreeCstrArray
+			&& voikkoListSupportedSpellingLanguages;
 	if (!f_voikko_loaded) {
-		voikkoInit = 0;
-		voikkoTerminate = 0;
-		voikkoSetBooleanOption = 0;
-		voikkoSpellCstr = 0;
-		voikkoSuggestCstr = 0;
-		voikkoFreeCstrArray = 0;
-		voikkoListSupportedSpellingLanguages = 0;
+		voikkoInit = nullptr;
+		voikkoTerminate = nullptr;
+		voikkoSetBooleanOption = nullptr;
+		voikkoSpellCstr = nullptr;
+		voikkoSuggestCstr = nullptr;
+		voikkoFreeCstrArray = nullptr;
+		voikkoListSupportedSpellingLanguages = nullptr;
 	}
 }
 
@@ -274,7 +274,7 @@ QStringList DictionaryProviderVoikko::availableDictionaries() const
 AbstractDictionary* DictionaryProviderVoikko::requestDictionary(const QString& language) const
 {
 	if (!f_voikko_loaded) {
-		return 0;
+		return nullptr;
 	}
 
 	return new DictionaryVoikko(language);

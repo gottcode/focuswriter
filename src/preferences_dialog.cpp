@@ -177,7 +177,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 			text.remove(0, 1);
 		}
 
-		QListWidgetItem* item = 0;
+		QListWidgetItem* item = nullptr;
 		if (text != "|") {
 			int count = m_toolbar_actions->count();
 			for (int i = pos; i < count; ++i) {
@@ -191,7 +191,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 			item->setData(Qt::UserRole, "|");
 		}
 
-		if (item != 0) {
+		if (item) {
 			item->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
 			m_toolbar_actions->insertItem(pos, item);
 			pos++;
@@ -577,7 +577,7 @@ void PreferencesDialog::wordEdited()
 
 void PreferencesDialog::selectedShortcutChanged()
 {
-	m_shortcut_edit->setEnabled(m_shortcuts->currentItem() != 0);
+	m_shortcut_edit->setEnabled(m_shortcuts->currentItem());
 	if (!m_shortcuts->currentItem()) {
 		m_shortcut_edit->blockSignals(true);
 		m_shortcut_edit->setShortcut(QKeySequence(), QKeySequence());

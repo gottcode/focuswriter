@@ -37,7 +37,6 @@ Session::Session(const QString& id)
 Session::~Session()
 {
 	delete m_data;
-	m_data = 0;
 }
 
 //-----------------------------------------------------------------------------

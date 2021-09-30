@@ -27,9 +27,9 @@ class Timer : public QFrame
 	Q_OBJECT
 
 public:
-	explicit Timer(Stack* documents, QWidget* parent = 0);
-	Timer(int type, const QStringList& values, Stack* documents, QWidget* parent = 0);
-	Timer(const QString& id, Stack* documents, QWidget* parent = 0);
+	explicit Timer(Stack* documents, QWidget* parent = nullptr);
+	Timer(int type, const QStringList& values, Stack* documents, QWidget* parent = nullptr);
+	Timer(const QString& id, Stack* documents, QWidget* parent = nullptr);
 	~Timer();
 
 	bool isEditing() const;

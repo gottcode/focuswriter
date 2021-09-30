@@ -15,7 +15,7 @@
 
 FormatReader* FormatManager::createReader(QIODevice* device, const QString& type)
 {
-	FormatReader* reader = 0;
+	FormatReader* reader = nullptr;
 
 	// Try file extension first
 	if (type == "odt" || type == "fodt") {

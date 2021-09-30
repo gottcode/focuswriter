@@ -33,7 +33,7 @@
 
 SessionManager::SessionManager(Window* parent)
 	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
-	, m_session(0)
+	, m_session(nullptr)
 	, m_window(parent)
 {
 	setWindowTitle(tr("Manage Sessions"));
@@ -123,7 +123,6 @@ SessionManager::SessionManager(Window* parent)
 SessionManager::~SessionManager()
 {
 	delete m_session;
-	m_session = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -149,7 +148,7 @@ bool SessionManager::closeCurrent()
 			return false;
 		}
 		delete m_session;
-		m_session = 0;
+		m_session = nullptr;
 	}
 	return true;
 }
@@ -393,7 +392,7 @@ QListWidgetItem* SessionManager::selectedSession(bool prevent_default)
 {
 	QListWidgetItem* item = m_sessions_list->selectedItems().value(0, 0);
 	if (!item || (prevent_default && item == m_sessions_list->item(0))) {
-		return 0;
+		return nullptr;
 	} else {
 		return item;
 	}

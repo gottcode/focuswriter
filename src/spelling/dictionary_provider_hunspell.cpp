@@ -57,8 +57,8 @@ private:
 //-----------------------------------------------------------------------------
 
 DictionaryHunspell::DictionaryHunspell(const QString& language)
-	: m_dictionary(0)
-	, m_codec(0)
+	: m_dictionary(nullptr)
+	, m_codec(nullptr)
 {
 	// Find dictionary files
 	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
@@ -85,7 +85,7 @@ DictionaryHunspell::DictionaryHunspell(const QString& language)
 	m_codec = QTextCodec::codecForName(m_dictionary->get_dic_encoding());
 	if (!m_codec) {
 		delete m_dictionary;
-		m_dictionary = 0;
+		m_dictionary = nullptr;
 	}
 }
 
@@ -191,9 +191,9 @@ QStringList DictionaryHunspell::suggestions(const QString& word) const
 		result.append(word);
 	}
 #else
-	char** suggestions = 0;
+	char** suggestions = nullptr;
 	int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(check).constData());
-	if (suggestions != 0) {
+	if (suggestions) {
 		for (int i = 0; i < count; ++i) {
 			QString word = m_codec->toUnicode(suggestions[i]);
 			if (SmartQuotes::isEnabled()) {

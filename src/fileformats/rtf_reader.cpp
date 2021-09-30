@@ -134,8 +134,8 @@ heading_functions;
 
 RtfReader::RtfReader()
 	: m_in_block(true)
-	, m_codec(0)
-	, m_decoder(0)
+	, m_codec(nullptr)
+	, m_decoder(nullptr)
 {
 	if (functions.isEmpty()) {
 		functions.setInsertText(&RtfReader::insertText);
@@ -558,7 +558,7 @@ void RtfReader::setFont(qint32 value)
 	if (value < m_codepages.count()) {
 		setCodec(m_codepages[value]);
 	} else {
-		setCodec(0);
+		setCodec(nullptr);
 		m_codepages.resize(value + 1);
 	}
 

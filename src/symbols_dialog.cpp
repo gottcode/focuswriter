@@ -36,7 +36,7 @@
 class SymbolsDialog::ElideLabel : public QFrame
 {
 public:
-	explicit ElideLabel(QWidget* parent = 0);
+	explicit ElideLabel(QWidget* parent = nullptr);
 
 	void clear();
 	void setText(const QString& text);
@@ -430,7 +430,7 @@ bool SymbolsDialog::selectSymbol(char32_t unicode)
 	}
 	QListWidgetItem* item = filters->currentItem();
 	if (!item || !item->isSelected() || (item->data(Qt::UserRole).toInt() != filter)) {
-		item = 0;
+		item = nullptr;
 		for (int i = 0, count = filters->count(); i < count; ++i) {
 			QListWidgetItem* check = filters->item(i);
 			if (check->data(Qt::UserRole).toInt() == filter) {

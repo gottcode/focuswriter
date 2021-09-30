@@ -43,9 +43,9 @@
 
 Stack::Stack(QWidget* parent)
 	: QWidget(parent)
-	, m_symbols_dialog(0)
-	, m_printer(0)
-	, m_current_document(0)
+	, m_symbols_dialog(nullptr)
+	, m_printer(nullptr)
+	, m_current_document(nullptr)
 	, m_footer_margin(0)
 	, m_header_margin(0)
 	, m_footer_visible(0)

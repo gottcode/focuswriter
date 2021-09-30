@@ -20,7 +20,7 @@
 TimerDisplay::TimerDisplay(QList<Timer*>& timers, QWidget* parent)
 	: QWidget(parent)
 	, m_show_tip(false)
-	, m_timer(0)
+	, m_timer(nullptr)
 	, m_timers(timers)
 {
 	m_size = fontMetrics().height();

@@ -16,7 +16,7 @@ class ShortcutEdit : public QWidget
 	Q_OBJECT
 
 public:
-	explicit ShortcutEdit(QWidget* parent = 0);
+	explicit ShortcutEdit(QWidget* parent = nullptr);
 
 	QKeySequence shortcut() const;
 

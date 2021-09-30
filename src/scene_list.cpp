@@ -68,7 +68,7 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 
 SceneList::SceneList(QWidget* parent)
 	: QFrame(parent)
-	, m_document(0)
+	, m_document(nullptr)
 	, m_resizing(false)
 {
 	m_width = qBound(0, QSettings().value("SceneList/Width", (int)std::lround(3.5 * logicalDpiX())).toInt(), maximumWidth());
@@ -181,7 +181,7 @@ void SceneList::setDocument(Document* document)
 	if (m_document) {
 		disconnect(m_document->text(), &QTextEdit::cursorPositionChanged, this, &SceneList::selectCurrentScene);
 	}
-	m_document = 0;
+	m_document = nullptr;
 
 	m_scenes->clearSelection();
 	m_filter->clear();

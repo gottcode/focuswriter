@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------------
 
-ActionManager* ActionManager::m_instance = 0;
+ActionManager* ActionManager::m_instance = nullptr;
 
 //-----------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ ActionManager::ActionManager(QWidget* parent)
 ActionManager::~ActionManager()
 {
 	if (m_instance == this) {
-		m_instance = 0;
+		m_instance = nullptr;
 	}
 
 	// Save symbol shortcuts

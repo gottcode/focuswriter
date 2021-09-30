@@ -28,7 +28,7 @@ class SymbolsDialog : public QDialog
 	Q_OBJECT
 
 public:
-	explicit SymbolsDialog(QWidget* parent = 0);
+	explicit SymbolsDialog(QWidget* parent = nullptr);
 
 	void setInsertEnabled(bool enabled);
 	void setPreviewFont(const QFont& font);

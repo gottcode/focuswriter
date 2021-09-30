@@ -26,7 +26,7 @@ BlockStats::BlockStats(SceneModel* scene_model)
 BlockStats::~BlockStats()
 {
 	if (m_scene) {
-		Q_ASSERT(m_scene_model != 0);
+		Q_ASSERT(m_scene_model);
 		m_scene_model->removeScene(this);
 	}
 }

@@ -200,7 +200,7 @@ QByteArray fetchCodePage()
 
 RtfWriter::RtfWriter(const QByteArray& encoding)
 	: m_encoding(encoding)
-	, m_codec(0)
+	, m_codec(nullptr)
 	, m_supports_ascii(false)
 {
 	// Fetch system codepage
@@ -262,7 +262,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding)
 
 bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 {
-	if (m_codec == 0) {
+	if (!m_codec) {
 		return false;
 	}
 

@@ -35,7 +35,7 @@ private:
 	explicit DictionaryRef(AbstractDictionary** data)
 		: d(data)
 	{
-		Q_ASSERT(d != 0);
+		Q_ASSERT(d);
 	}
 
 private:

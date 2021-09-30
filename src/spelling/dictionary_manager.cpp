@@ -320,7 +320,7 @@ void DictionaryManager::addProvider(AbstractDictionaryProvider* provider)
 		m_providers.append(provider);
 	} else {
 		delete provider;
-		provider = 0;
+		provider = nullptr;
 	}
 }
 
@@ -329,14 +329,14 @@ void DictionaryManager::addProvider(AbstractDictionaryProvider* provider)
 AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		AbstractDictionary* dictionary = 0;
+		AbstractDictionary* dictionary = nullptr;
 		for (AbstractDictionaryProvider* provider : m_providers) {
 			dictionary = provider->requestDictionary(language);
 			if (dictionary && dictionary->isValid()) {
 				break;
 			} else {
 				delete dictionary;
-				dictionary = 0;
+				dictionary = nullptr;
 			}
 		}
 

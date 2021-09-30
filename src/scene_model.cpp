@@ -45,14 +45,14 @@ SceneModel::~SceneModel()
 QModelIndex SceneModel::findScene(const QTextCursor& cursor) const
 {
 	// Find block stats for text cursor
-	BlockStats* stats = 0;
+	BlockStats* stats = nullptr;
 	QTextBlock block = cursor.block();
 	while (block.isValid()) {
 		stats = static_cast<BlockStats*>(block.userData());
 		if (stats && stats->isScene()) {
 			break;
 		}
-		stats = 0;
+		stats = nullptr;
 		block = block.previous();
 	}
 	if (!stats) {
@@ -413,7 +413,7 @@ void SceneModel::invalidateScenes()
 void SceneModel::addScene(BlockStats* stats, const QTextBlock& block, const QString& text)
 {
 	// Find previous scene in document
-	BlockStats *before = 0, *check = 0;
+	BlockStats *before = nullptr, *check = nullptr;
 	QTextBlock previous = block.previous();
 	while (previous.isValid()) {
 		check = static_cast<BlockStats*>(previous.userData());
@@ -548,7 +548,7 @@ void SceneModel::updateScene(BlockStats* stats, const QString& text)
 void SceneModel::updateScene(const QTextBlock& block)
 {
 	// Find first scene above block
-	BlockStats* stats = 0;
+	BlockStats* stats = nullptr;
 	int count = 0;
 	QTextBlock check = block;
 	while (check.isValid()) {

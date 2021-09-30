@@ -301,7 +301,7 @@ void ThemeManager::deleteTheme()
 		QFile::remove(Theme::filePath(id));
 		Theme::removeIcon(id, false);
 		delete item;
-		item = 0;
+		item = nullptr;
 
 		// Handle deleting last custom theme
 		if (m_themes->count() == 0) {

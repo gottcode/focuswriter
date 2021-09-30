@@ -26,7 +26,7 @@
 
 DocumentWriter::DocumentWriter()
 	: m_type("fodt")
-	, m_document(0)
+	, m_document(nullptr)
 	, m_write_bom(false)
 {
 }
@@ -44,7 +44,7 @@ DocumentWriter::~DocumentWriter()
 
 bool DocumentWriter::write()
 {
-	Q_ASSERT(m_document != 0);
+	Q_ASSERT(m_document);
 	Q_ASSERT(!m_filename.isEmpty());
 
 	bool saved = false;

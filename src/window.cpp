@@ -78,10 +78,10 @@ QKeySequence keyBinding(const QKeySequence& shortcut, const QKeySequence& back)
 //-----------------------------------------------------------------------------
 
 Window::Window(const QStringList& command_line_files)
-	: m_toolbar(0)
+	: m_toolbar(nullptr)
 	, m_loading(false)
-	, m_key_sound(0)
-	, m_enter_key_sound(0)
+	, m_key_sound(nullptr)
+	, m_enter_key_sound(nullptr)
 	, m_fullscreen(true)
 	, m_save_positions(true)
 {
@@ -630,7 +630,7 @@ void Window::closeEvent(QCloseEvent* event)
 	m_document_cache_thread->quit();
 	m_document_cache_thread->wait();
 	delete m_document_cache;
-	m_document_cache = 0;
+	m_document_cache = nullptr;
 
 	QMainWindow::closeEvent(event);
 }
@@ -639,7 +639,7 @@ void Window::closeEvent(QCloseEvent* event)
 
 void Window::leaveEvent(QEvent* event)
 {
-	if ((qApp->activePopupWidget() == 0) && !m_fullscreen) {
+	if (!qApp->activePopupWidget() && !m_fullscreen) {
 		hideInterface();
 	}
 	QMainWindow::leaveEvent(event);
@@ -1156,7 +1156,7 @@ void Window::loadPreferences()
 				false));
 			delete m_key_sound;
 			delete m_enter_key_sound;
-			m_key_sound = m_enter_key_sound = 0;
+			m_key_sound = m_enter_key_sound = nullptr;
 			Preferences::instance().setTypewriterSounds(false);
 		}
 	}

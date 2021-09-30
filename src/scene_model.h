@@ -29,7 +29,7 @@ class SceneModel : public QAbstractListModel
 	};
 
 public:
-	explicit SceneModel(QTextEdit* document, QObject* parent = 0);
+	explicit SceneModel(QTextEdit* document, QObject* parent = nullptr);
 	~SceneModel();
 
 	QModelIndex findScene(const QTextCursor& cursor) const;

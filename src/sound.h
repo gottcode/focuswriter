@@ -14,7 +14,7 @@ class QSoundEffect;
 class Sound : public QObject
 {
 public:
-	Sound(int name, const QString& filename, QObject* parent = 0);
+	Sound(int name, const QString& filename, QObject* parent = nullptr);
 	~Sound();
 
 	bool isValid() const;
