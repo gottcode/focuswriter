@@ -228,7 +228,7 @@ Window::Window(const QStringList& command_line_files)
 	for (int i = 2; i < 10; ++i) {
 		action = new QAction(tr("Switch to Document %1").arg(i), this);
 		action->setShortcut(QKeySequence(Qt::CTRL | (Qt::Key_0 + i)));
-		connect(action, &QAction::triggered, [=] { m_tabs->setCurrentIndex(i - 1); });
+		connect(action, &QAction::triggered, this, [this, i] { m_tabs->setCurrentIndex(i - 1); });
 		addAction(action);
 		ActionManager::instance()->addAction(QString("SwitchDocument%1").arg(i), action);
 	}
@@ -1346,7 +1346,7 @@ void Window::initMenus()
 		headings[i]->setCheckable(true);
 		headings[i]->setData(i);
 		m_headings_actions->addAction(headings[i]);
-		connect(headings[i], &QAction::triggered, [=] { m_documents->setBlockHeading(i); });
+		connect(headings[i], &QAction::triggered, this, [this, i] { m_documents->setBlockHeading(i); });
 	}
 	for (int i = 1; i < 7; ++i) {
 		ActionManager::instance()->addAction(QString("FormatBlockHeading%1").arg(i), headings[i]);
