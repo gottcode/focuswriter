@@ -30,20 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% van %Ln minuut</numerusform>
-            <numerusform>%L1% van %Ln minuten</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% van %Ln woord</numerusform>
-            <numerusform>%L1% van %Ln woorden</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln woord</numerusform>
@@ -60,6 +46,20 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% van %Ln minuut</numerusform>
+            <numerusform>%L1% van %Ln minuten</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% van %Ln woord</numerusform>
+            <numerusform>%L1% van %Ln woorden</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -96,7 +96,7 @@
     <name>DailyProgressLabel</name>
     <message>
         <source>%L1% of daily goal</source>
-        <translation>%L1% van je dagelijkse doel</translation>
+        <translation>%L1% van uw dagelijkse doel</translation>
     </message>
 </context>
 <context>
@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; kan niet worden opgeslagen.</translation>
+        <translation>‘%1’ kan niet worden opgeslagen.</translation>
     </message>
     <message>
         <source>Save File As</source>
@@ -130,7 +130,7 @@
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; kan niet worden overschreven.</translation>
+        <translation>‘%1’ kan niet worden overschreven.</translation>
     </message>
     <message>
         <source>Rename File</source>
@@ -138,7 +138,7 @@
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>De bestandsnaam&apos;%1&apos; kan niet worden gewijzigd.</translation>
+        <translation>De bestandsnaam van ‘%1’ kan niet worden gewijzigd.</translation>
     </message>
     <message>
         <source>Reload File?</source>
@@ -146,11 +146,11 @@
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>Bestand &apos;%1&apos; herladen van schijf?</translation>
+        <translation>Wilt u ‘%1’ herladen van de schijf?</translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
-        <translation>Alle niet-opgeslagen wijzigingen zullen verloren gaan.</translation>
+        <translation>Alle niet-opgeslagen wijzigingen gaan verloren.</translation>
     </message>
     <message>
         <source>Reload</source>
@@ -166,7 +166,7 @@
     </message>
     <message>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Opslaan als kale tekst zal alle opmaak verwijderen. Opmaak verwijderen?</translation>
+        <translation>Door op te slaan als platte tekst wordt alle opmaak verwijderd. Weet u het zeker?</translation>
     </message>
 </context>
 <context>
@@ -177,11 +177,11 @@
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>Het bestand, &apos;%1&apos;, is gewijzigd door een andere applicatie.</translation>
+        <translation>‘%1’ is gewijzigd door een ander programma.</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
-        <translation>Wil je het bestand herladen?</translation>
+        <translation>Wilt u het bestand herladen?</translation>
     </message>
     <message>
         <source>Reload</source>
@@ -197,11 +197,11 @@
     </message>
     <message>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Het bestand, %1, is verwijderd door een andere applicatie.</translation>
+        <translation>‘%1’ is verwijderd door een ander programma.</translation>
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
-        <translation>Wil je het bestand opslaan of sluiten?</translation>
+        <translation>Wilt u het bestand opslaan of sluiten?</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>Ignore case</source>
-        <translation>Hoofd-/kleine letters negeren</translation>
+        <translation>Kleine en hoofdletters negeren</translation>
     </message>
     <message>
         <source>Whole words only</source>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <source>Regular expressions</source>
-        <translation>Reguliere expressies</translation>
+        <translation>Reguliere uitdrukkingen</translation>
     </message>
     <message>
         <source>Search up</source>
@@ -247,7 +247,7 @@
     </message>
     <message>
         <source>&amp;Replace</source>
-        <translation>&amp;Vervangen</translation>
+        <translation>Ve&amp;rvangen</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
@@ -264,8 +264,8 @@
     <message numerus="yes">
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform> %n vondst vervangen?</numerusform>
-            <numerusform> %n vondsten vervangen?</numerusform>
+            <numerusform>%n vondst vervangen?</numerusform>
+            <numerusform>%n vondsten vervangen?</numerusform>
         </translation>
     </message>
     <message>
@@ -285,7 +285,7 @@
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>OpenDocument Tekst</translation>
+        <translation>OpenDocument-tekst</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -320,7 +320,7 @@
     </message>
     <message>
         <source>Check Spelling...</source>
-        <translation>Spelling controleren...</translation>
+        <translation>Spelling controleren…</translation>
     </message>
     <message>
         <source>(No suggestions found)</source>
@@ -335,14 +335,14 @@
     </message>
     <message>
         <source>Images(%1)</source>
-        <translation>Afbeeldingen(%1)</translation>
+        <translation>Afbeeldingen (%1)</translation>
     </message>
 </context>
 <context>
     <name>LocaleDialog</name>
     <message>
         <source>Select application language:</source>
-        <translation>Taal selecteren:</translation>
+        <translation>Kies de programmataal:</translation>
     </message>
     <message>
         <source>&lt;System Language&gt;</source>
@@ -354,7 +354,7 @@
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Herstart de applicatie om de taalwijziging toe te passen.</translation>
+        <translation>Herstart FocusWriter om de taalwijziging toe te passen.</translation>
     </message>
 </context>
 <context>
@@ -368,7 +368,7 @@
     <name>PreferencesDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Voorkeuren</translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>General</source>
@@ -388,7 +388,7 @@
     </message>
     <message>
         <source>Select Dictionary</source>
-        <translation>Woordenboek kiezen</translation>
+        <translation>Kies een woordenboek</translation>
     </message>
     <message>
         <source>Sorry</source>
@@ -412,11 +412,11 @@
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Eén of meerdere sneltoetsen conflicteren. Wil je toch doorgaan?</translation>
+        <translation>Eén of meerdere sneltoetsen botsen. Wilt u tóch doorgaan?</translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Het woordenboek &quot;%1&quot; bestaat al. Wil je hem vervangen?</translation>
+        <translation>‘%1’ bestaat al. Wilt u het vervangen?</translation>
     </message>
     <message>
         <source>Daily Goal</source>
@@ -428,11 +428,11 @@
     </message>
     <message>
         <source>Minutes:</source>
-        <translation>Minuten:</translation>
+        <translation>Aantal minuten:</translation>
     </message>
     <message>
         <source>Words:</source>
-        <translation>Woorden:</translation>
+        <translation>Aantal woorden:</translation>
     </message>
     <message>
         <source>Editing</source>
@@ -444,7 +444,7 @@
     </message>
     <message>
         <source>Block insertion cursor</source>
-        <translation>Geblokte cursor</translation>
+        <translation>Blokcursor</translation>
     </message>
     <message>
         <source>Smooth fonts</source>
@@ -500,27 +500,27 @@
     </message>
     <message>
         <source>Characters:</source>
-        <translation>Tekens:</translation>
+        <translation>Aantal tekens:</translation>
     </message>
     <message>
         <source>Paragraphs:</source>
-        <translation>Paragrafen:</translation>
+        <translation>Aantal paragrafen:</translation>
     </message>
     <message>
         <source>Word Count Algorithm</source>
-        <translation>Algoritme voor woordtelling</translation>
+        <translation>Woordtelling-algoritme</translation>
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Dagelijkse voortgang voor vandaag op nul zetten?</translation>
+        <translation>Wilt u de dagelijkse voortgang voor vandaag op nul zetten?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation>Bytevolgorde-markering toevoegen aan platte tekst-bestanden</translation>
+        <translation>Bytevolgorde-markering toevoegen aan plattetekstbestanden</translation>
     </message>
     <message>
         <source>Default format:</source>
-        <translation>Standaard formaat:</translation>
+        <translation>Standaardformaat:</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -536,7 +536,7 @@
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Series weergeven</translation>
+        <translation>Series tonen</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
@@ -556,7 +556,7 @@
     </message>
     <message>
         <source>Page Count Algorithm</source>
-        <translation>Algoritme van paginatelling</translation>
+        <translation>Paginatelling-algoritme</translation>
     </message>
     <message>
         <source>Style</source>
@@ -612,7 +612,7 @@
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Spelling controleren tijdens het typen</translation>
+        <translation>Spelling controleren tijdens typen</translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>
@@ -644,40 +644,40 @@
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Uiterlijk</translation>
+        <translation>Vormgeving</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation>Scrollbalk altijd weergeven</translation>
+        <translation>Schuifbalk altijd tonen</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>Bovenste balk altijd weergeven</translation>
+        <translation>Bovenste balk altijd tonen</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation>Onderbalk altijd weergeven</translation>
+        <translation>Onderbalk altijd tonen</translation>
     </message>
 </context>
 <context>
     <name>RtfReader</name>
     <message>
         <source>Not a supported RTF file.</source>
-        <translation>Niet-ondersteund RTF-bestand.</translation>
+        <translation>Niet-ondersteund rtf-bestand.</translation>
     </message>
 </context>
 <context>
     <name>RtfTokenizer</name>
     <message>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Onverwacht het einde van het bestand bereikt.</translation>
+        <translation>Onverwachts het einde van het bestand bereikt.</translation>
     </message>
 </context>
 <context>
     <name>SceneList</name>
     <message>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Shift+Down</translation>
+        <translation>Ctrl+Shift+pijltje omlaag</translation>
     </message>
     <message>
         <source>Move Scenes Up</source>
@@ -685,11 +685,11 @@
     </message>
     <message>
         <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Shift+Up</translation>
+        <translation>Ctrl+Shift+pijltje omhoog</translation>
     </message>
     <message>
         <source>Toggle Scene List</source>
-        <translation>Scènelijst weergeven/verbergen</translation>
+        <translation>Scènelijst tonen/verbergen</translation>
     </message>
     <message>
         <source>Shift+F4</source>
@@ -697,7 +697,7 @@
     </message>
     <message>
         <source>Show scene list (%1)</source>
-        <translation>Scènelijst (%1) weergeven</translation>
+        <translation>Scènelijst (%1) tonen</translation>
     </message>
     <message>
         <source>Hide scene list (%1)</source>
@@ -739,7 +739,7 @@
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Dupliceren</translation>
+        <translation>Klonen</translation>
     </message>
     <message>
         <source>Rename</source>
@@ -759,7 +759,7 @@
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation>Sessie dupliceren</translation>
+        <translation>Sessie klonen</translation>
     </message>
     <message>
         <source>Rename Session</source>
@@ -787,7 +787,7 @@
     </message>
     <message>
         <source>&amp;New...</source>
-        <translation>&amp;Nieuw...</translation>
+        <translation>&amp;Nieuw…</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
@@ -795,7 +795,7 @@
     </message>
     <message>
         <source>&amp;Manage...</source>
-        <translation>&amp;Beheren...</translation>
+        <translation>&amp;Beheren…</translation>
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
@@ -821,11 +821,11 @@
     <name>SmartQuote</name>
     <message>
         <source>Replacing quotation marks...</source>
-        <translation>Bezig met vervangen van aanhalingstekens...</translation>
+        <translation>Bezig met vervangen van aanhalingstekens…</translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation>Even geduld</translation>
+        <translation>Even geduld…</translation>
     </message>
 </context>
 <context>
@@ -864,7 +864,7 @@
     </message>
     <message>
         <source>Checking spelling...</source>
-        <translation>Bezig met controleren van spelling...</translation>
+        <translation>Bezig met controleren van spelling…</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -872,15 +872,15 @@
     </message>
     <message>
         <source>Please wait</source>
-        <translation>Even geduld</translation>
+        <translation>Even geduld…</translation>
     </message>
     <message>
         <source>Continue checking at beginning of file?</source>
-        <translation>Doorgaan met controleren vanaf het begin van het bestand?</translation>
+        <translation>Wilt u doorgaan met controleren vanaf het begin van het bestand?</translation>
     </message>
     <message>
         <source>Spell check complete.</source>
-        <translation>Spellingcontrole voltooid.</translation>
+        <translation>De spellingcontrole is afgerond.</translation>
     </message>
 </context>
 <context>
@@ -891,7 +891,7 @@
     </message>
     <message>
         <source>Recently used symbols</source>
-        <translation>Recent gebruikte symbolen</translation>
+        <translation>Onlangs gebruikte symbolen</translation>
     </message>
     <message>
         <source>All symbols</source>
@@ -940,7 +940,7 @@
     </message>
     <message>
         <source>Tiled</source>
-        <translation>Getegeld</translation>
+        <translation>Tegels</translation>
     </message>
     <message>
         <source>Centered</source>
@@ -1080,7 +1080,7 @@
     </message>
     <message>
         <source>Double</source>
-        <translation>Dubbele regel</translation>
+        <translation>Twee regels</translation>
     </message>
     <message>
         <source>Proportional</source>
@@ -1115,7 +1115,7 @@
     </message>
     <message>
         <source>Gentle Blues</source>
-        <translation>Rustige blues</translation>
+        <translation>Rustig blauw</translation>
     </message>
     <message>
         <source>Old School</source>
@@ -1123,7 +1123,7 @@
     </message>
     <message>
         <source>Space Dreams</source>
-        <translation>Ruimtedromen</translation>
+        <translation>Ruimtereis</translation>
     </message>
     <message>
         <source>Writing Desk</source>
@@ -1135,7 +1135,7 @@
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Dupliceren</translation>
+        <translation>Klonen</translation>
     </message>
     <message>
         <source>Custom</source>
@@ -1163,11 +1163,11 @@
     </message>
     <message>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation>Thema &apos;%1&apos; verwijderen?</translation>
+        <translation>Wilt u ‘%1’ verwijderen?</translation>
     </message>
     <message>
         <source>Themes (%1)</source>
-        <translation>Thema&apos;s(%1)</translation>
+        <translation>Thema&apos;s (%1)</translation>
     </message>
     <message>
         <source>Import Theme</source>
@@ -1179,7 +1179,7 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation>Bittere luchten</translation>
+        <translation>Grimmig weer</translation>
     </message>
     <message>
         <source>Enchantment</source>
@@ -1187,7 +1187,7 @@
     </message>
     <message>
         <source>Spy Games</source>
-        <translation>Spionnenspel</translation>
+        <translation>Spionagespel</translation>
     </message>
     <message>
         <source>Tranquility</source>
@@ -1206,27 +1206,27 @@
     </message>
     <message>
         <source>Delete timer?</source>
-        <translation>Timer verwijderen?</translation>
+        <translation>Wilt u de tijdklok verwijderen?</translation>
     </message>
     <message>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;woorden:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Aantal woorden:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;pagina&apos;s:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Aantal pagina&apos;s:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;paragrafen:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Aantal paragrafen:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;tekens:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;Aantal tekens:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <source>Set Delay</source>
-        <translation>Vertraging instellen</translation>
+        <translation>Wachttijd instellen</translation>
     </message>
     <message>
         <source>Set Time</source>
@@ -1234,7 +1234,7 @@
     </message>
     <message>
         <source>Delay:</source>
-        <translation>Vertraging:</translation>
+        <translation>Wachttijd:</translation>
     </message>
     <message>
         <source>Time:</source>
@@ -1246,11 +1246,11 @@
     </message>
     <message>
         <source>Alarm</source>
-        <translation>Alarm</translation>
+        <translation>Wekker</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Type:</translation>
+        <translation>Soort:</translation>
     </message>
     <message>
         <source>Memo:</source>
@@ -1273,14 +1273,14 @@
     </message>
     <message>
         <source>No timers running</source>
-        <translation>Geen lopende timers</translation>
+        <translation>Geen lopende tijdklokken</translation>
     </message>
 </context>
 <context>
     <name>TimerManager</name>
     <message>
         <source>Timers</source>
-        <translation>Timers</translation>
+        <translation>Tijdklokken</translation>
     </message>
     <message>
         <source>New</source>
@@ -1296,7 +1296,7 @@
     </message>
     <message>
         <source>Cancel editing timers?</source>
-        <translation>Timerbewerking annuleren?</translation>
+        <translation>Tijdklokbewerking afbreken?</translation>
     </message>
     <message>
         <source>+HH:mm:ss</source>
@@ -1311,11 +1311,11 @@
     <name>Window</name>
     <message>
         <source>Loading themes</source>
-        <translation>Bezig met laden van thema&apos;s</translation>
+        <translation>Bezig met laden van thema&apos;s…</translation>
     </message>
     <message>
         <source>Loading sounds</source>
-        <translation>Bezig met laden van geluiden</translation>
+        <translation>Bezig met laden van geluiden…</translation>
     </message>
     <message>
         <source>Untitled</source>
@@ -1335,7 +1335,7 @@
     </message>
     <message>
         <source>A simple fullscreen word processor</source>
-        <translation>Een eenvoudige schermvullende tekstverwerker</translation>
+        <translation>Een eenvoudige, schermvullende tekstverwerker</translation>
     </message>
     <message>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
@@ -1343,7 +1343,7 @@
     </message>
     <message>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Uitgegeven onder de  &lt;a href=%1&gt;GPL 3&lt;/a&gt;-licentie</translation>
+        <translation>Uitgebracht onder de  &lt;a href=%1&gt;GPL 3&lt;/a&gt;-licentie</translation>
     </message>
     <message>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
@@ -1355,55 +1355,55 @@
     </message>
     <message>
         <source>Characters: %L1 / %L2</source>
-        <translation>Tekens: %L1 / %L2</translation>
+        <translation>Aantal tekens: %L1 / %L2</translation>
     </message>
     <message>
         <source>Pages: %L1</source>
-        <translation>Pagina&apos;s: %L1</translation>
+        <translation>Aantal pagina&apos;s: %L1</translation>
     </message>
     <message>
         <source>Paragraphs: %L1</source>
-        <translation>Paragrafen: %L1</translation>
+        <translation>Aantal paragrafen: %L1</translation>
     </message>
     <message>
         <source>Words: %L1</source>
-        <translation>Woorden: %L1</translation>
+        <translation>Aantal woorden: %L1</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Bezig met openen van %1</translation>
+        <translation>Bezig met openen van %1…</translation>
     </message>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(naamloos %1)</translation>
+        <translation>(Naamloos %1)</translation>
     </message>
     <message>
         <source>List all documents</source>
-        <translation>Alle documenten weergeven</translation>
+        <translation>Alle documenten tonen</translation>
     </message>
     <message>
         <source>Switch to Next Document</source>
-        <translation>Overschakelen naar volgend document</translation>
+        <translation>Ga naar volgend document</translation>
     </message>
     <message>
         <source>Switch to Previous Document</source>
-        <translation>Overschakelen naar vorig document</translation>
+        <translation>Ga naar vorig document</translation>
     </message>
     <message>
         <source>Switch to First Document</source>
-        <translation>Overschakelen naar eerste document</translation>
+        <translation>Ga naar eerste document</translation>
     </message>
     <message>
         <source>Switch to Last Document</source>
-        <translation>Overschakelen naar laatste document</translation>
+        <translation>Ga naar laatste document</translation>
     </message>
     <message>
         <source>Switch to Document %1</source>
-        <translation>Overschakelen naar document %1</translation>
+        <translation>Ga naar document %1</translation>
     </message>
     <message>
         <source>Loading settings</source>
-        <translation>Bezig met laden van instellingen</translation>
+        <translation>Bezig met laden van instellingen…</translation>
     </message>
     <message>
         <source>Emergency cache is not writable.</source>
@@ -1415,11 +1415,11 @@
     </message>
     <message>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter is niet netjes afgesloten.</translation>
+        <translation>FocusWriter is niet goed afgesloten.</translation>
     </message>
     <message>
         <source>Restore from the emergency cache?</source>
-        <translation>Veiligheidskopie herstellen?</translation>
+        <translation>Wilt u de veiligheidskopie herstellen?</translation>
     </message>
     <message>
         <source>Some files could not be opened.</source>
@@ -1427,15 +1427,15 @@
     </message>
     <message>
         <source>Some files were opened Read-Only.</source>
-        <translation>Enkele bestanden zijn geopend in alleen-lezen-modus.</translation>
+        <translation>Enkele bestanden zijn geopend in de alleen-lezenmodus.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>&apos;%1&apos; is nieuwer dan de opgeslagen kopie.</translation>
+        <translation>‘%1’ is nieuwer dan de opgeslagen kopie.</translation>
     </message>
     <message>
         <source>Overwrite newer file?</source>
-        <translation>Nieuwer bestand overschrijven?</translation>
+        <translation>Wilt u het nieuwere bestand overschrijven?</translation>
     </message>
     <message>
         <source>Save Changes?</source>
@@ -1443,11 +1443,11 @@
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation>Wijzigingen in bestand &apos;%1&apos; opslaan alvorens af te sluiten?</translation>
+        <translation>Wilt u de wijzigingen aan ‘%1’ opslaan alvorens af te sluiten?</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Als je de wijzingen niet opslaat, dan gaan ze verloren.</translation>
+        <translation>Als u de wijzigingen niet opslaat, dan gaan ze verloren.</translation>
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
@@ -1463,7 +1463,7 @@
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation>&amp;Openen...</translation>
+        <translation>&amp;Openen…</translation>
     </message>
     <message>
         <source>Reloa&amp;d</source>
@@ -1475,15 +1475,15 @@
     </message>
     <message>
         <source>Save &amp;As...</source>
-        <translation>Opslaan &amp;als...</translation>
+        <translation>Opslaan &amp;als…</translation>
     </message>
     <message>
         <source>&amp;Rename...</source>
-        <translation>Naam &amp;wijzigen...</translation>
+        <translation>Naam &amp;wijzigen…</translation>
     </message>
     <message>
         <source>Save A&amp;ll</source>
-        <translation>&amp;Alles opslaan</translation>
+        <translation>A&amp;lles opslaan</translation>
     </message>
     <message>
         <source>Manage Sessions</source>
@@ -1495,7 +1495,7 @@
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>A&amp;fdrukken...</translation>
+        <translation>A&amp;fdrukken…</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1627,7 +1627,7 @@
     </message>
     <message>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Minder inspringing</translation>
+        <translation>&amp;Inspringing verkleinen</translation>
     </message>
     <message>
         <source>Ctrl+&lt;</source>
@@ -1635,7 +1635,7 @@
     </message>
     <message>
         <source>I&amp;ncrease Indent</source>
-        <translation>&amp;Meer inspringing</translation>
+        <translation>I&amp;nspringing vergroten</translation>
     </message>
     <message>
         <source>Ctrl+&gt;</source>
@@ -1655,7 +1655,7 @@
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation>&amp;Zoeken...</translation>
+        <translation>&amp;Zoeken…</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
@@ -1667,7 +1667,7 @@
     </message>
     <message>
         <source>&amp;Replace...</source>
-        <translation>Ve&amp;rvangen...</translation>
+        <translation>Ve&amp;rvangen…</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -1687,7 +1687,7 @@
     </message>
     <message>
         <source>&amp;Spelling...</source>
-        <translation>Spelling&amp;controle...</translation>
+        <translation>Spelling&amp;controle…</translation>
     </message>
     <message>
         <source>F7</source>
@@ -1695,15 +1695,15 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Taa&amp;l instellen...</translation>
+        <translation>Taa&amp;l instellen…</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
-        <translation>&amp;Timers...</translation>
+        <translation>&amp;Tijdklokken…</translation>
     </message>
     <message>
         <source>S&amp;ymbols...</source>
-        <translation>S&amp;ymbolen...</translation>
+        <translation>S&amp;ymbolen…</translation>
     </message>
     <message>
         <source>&amp;Daily Progress</source>
@@ -1711,15 +1711,15 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Instellingen</translation>
+        <translation>In&amp;stellingen</translation>
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation>&amp;Werkbalk weergeven</translation>
+        <translation>Werkbalk &amp;tonen</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
-        <translation>Pictogrammen weergeven in &amp;menu</translation>
+        <translation>Pictogrammen tonen in &amp;menu</translation>
     </message>
     <message>
         <source>F&amp;ocused Text</source>
@@ -1727,7 +1727,7 @@
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Schermvullend</translation>
+        <translation>Beeld&amp;vullend</translation>
     </message>
     <message>
         <source>F11</source>
@@ -1747,11 +1747,11 @@
     </message>
     <message>
         <source>&amp;Themes...</source>
-        <translation>&amp;Thema&apos;s...</translation>
+        <translation>&amp;Thema&apos;s…</translation>
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Voorkeuren...</translation>
+        <translation>&amp;Instellingen…</translation>
     </message>
     <message>
         <source>Focus Off</source>
@@ -1779,11 +1779,11 @@
     </message>
     <message>
         <source>Application &amp;Language...</source>
-        <translation>Applicatietaa&amp;l...</translation>
+        <translation>Programmataa&amp;l…</translation>
     </message>
     <message>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Sommige bestanden worden niet ondersteund en kunnen niet worden geopend.</translation>
+        <translation>Enkele bestanden worden niet ondersteund en kunnen niet worden geopend.</translation>
     </message>
     <message>
         <source>&amp;Off</source>
@@ -1807,7 +1807,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation>Pagina-instellingen...</translation>
+        <translation>Pa&amp;gina-instellingen…</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
@@ -1852,6 +1852,13 @@
     <message>
         <source>Ctrl+Shift+`</source>
         <translation>Ctrl+Shift+`</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Files to open in current session.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

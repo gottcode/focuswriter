@@ -408,11 +408,11 @@
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Kortkommandon</translation>
+        <translation>Genvägar</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Kortkommandon i konflikt. Vill du fortsätta?</translation>
+        <translation>En eller flera genvägar i konflikt. Vill du fortsätta?</translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
@@ -448,7 +448,7 @@
     </message>
     <message>
         <source>Smooth fonts</source>
-        <translation>Mjuka typsnitt</translation>
+        <translation>Mjuka teckensnitt</translation>
     </message>
     <message>
         <source>Typewriter sounds</source>
@@ -604,7 +604,7 @@
     </message>
     <message>
         <source>Shortcut</source>
-        <translation>Kortkommando</translation>
+        <translation>Genväg</translation>
     </message>
     <message>
         <source>Action</source>
@@ -814,7 +814,7 @@
     </message>
     <message>
         <source>Shortcut:</source>
-        <translation>Kortkommando:</translation>
+        <translation>Genväg:</translation>
     </message>
 </context>
 <context>
@@ -1060,7 +1060,7 @@
     </message>
     <message>
         <source>Font:</source>
-        <translation>Typsnitt:</translation>
+        <translation>Teckensnitt:</translation>
     </message>
     <message>
         <source>Misspelled:</source>
@@ -1852,6 +1852,13 @@
     <message>
         <source>Ctrl+Shift+`</source>
         <translation>Ctrl+Skift+`</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Files to open in current session.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

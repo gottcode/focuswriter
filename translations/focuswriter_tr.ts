@@ -47,14 +47,14 @@
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln dakikanın %L1% &apos;i</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln dakikanın %L1%&apos;si</numerusform>
         </translation>
     </message>
 </context>
@@ -978,7 +978,7 @@
     </message>
     <message>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin Arka Planı Alt Gölge</translation>
     </message>
     <message>
         <source>Vertical Offset:</source>
@@ -1002,11 +1002,11 @@
     </message>
     <message>
         <source>Above:</source>
-        <translation type="unfinished"></translation>
+        <translation>Altında:</translation>
     </message>
     <message>
         <source>Below:</source>
-        <translation type="unfinished"></translation>
+        <translation>Üstünde:</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -1173,19 +1173,19 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>İliklere İşleyen Gökler </translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Büyü</translation>
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajan Oyunları</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Sükunet</translation>
     </message>
 </context>
 <context>
@@ -1801,7 +1801,7 @@
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Say&amp;fa Ayarı...</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
@@ -1837,14 +1837,21 @@
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Belge Akıllı Alıntılarını Güncelle</translation>
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation type="unfinished"></translation>
+        <translation>Akıllı Alıntılar Seçimini Güncelle </translation>
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
+        <translation>Ctrl+Shift+`</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Files to open in current session.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1860,4 +1860,11 @@
         <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Files to open in current session.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
