@@ -127,7 +127,7 @@ QString Session::createId()
 bool Session::exists(const QString& name)
 {
 	QDir dir(m_path, "*.session");
-	QStringList sessions = dir.entryList(QDir::Files);
+	const QStringList sessions = dir.entryList(QDir::Files);
 	for (const QString& id : sessions) {
 		QSettings session(dir.filePath(id), QSettings::IniFormat);
 		if (session.value("Name").toString() == name) {

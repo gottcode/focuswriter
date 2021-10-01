@@ -289,7 +289,7 @@ QString Theme::createId()
 bool Theme::exists(const QString& name)
 {
 	QDir dir(m_path, "*.theme");
-	QStringList themes = dir.entryList(QDir::Files);
+	const QStringList themes = dir.entryList(QDir::Files);
 	for (const QString& theme : themes) {
 		QSettings settings(dir.filePath(theme), QSettings::IniFormat);
 		if (settings.value("Name").toString() == name) {

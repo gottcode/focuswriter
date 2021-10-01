@@ -342,7 +342,7 @@ void SymbolsDialog::showFilter(QListWidgetItem* filter)
 
 void SymbolsDialog::showGroup(int group)
 {
-	for (QListWidget* filters : m_filters) {
+	for (QListWidget* filters : qAsConst(m_filters)) {
 		disconnect(filters, &QListWidget::currentItemChanged, this, &SymbolsDialog::showFilter);
 		filters->clearSelection();
 	}

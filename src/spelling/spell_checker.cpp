@@ -248,7 +248,7 @@ void SpellChecker::check()
 			// Show suggestions
 			m_suggestion->clear();
 			m_suggestions->clear();
-			QStringList words = m_dictionary.suggestions(m_word);
+			const QStringList words = m_dictionary.suggestions(m_word);
 			if (!words.isEmpty()) {
 				for (const QString& word : words) {
 					m_suggestions->addItem(word);

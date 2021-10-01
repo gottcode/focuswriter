@@ -168,7 +168,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 		style = m_toolbar_style->findData(Qt::ToolButtonTextUnderIcon);
 	}
 	m_toolbar_style->setCurrentIndex(style);
-	QStringList actions = Preferences::instance().toolbarActions();
+	const QStringList actions = Preferences::instance().toolbarActions();
 	int pos = 0;
 	for (const QString& action : actions) {
 		QString text = action;
@@ -296,7 +296,7 @@ void PreferencesDialog::accept()
 	ActionManager::instance()->setShortcuts(m_new_shortcuts);
 
 	// Uninstall languages
-	for (const QString& language : m_uninstalled) {
+	for (const QString& language : qAsConst(m_uninstalled)) {
 		QFile::remove("dict:" + language + ".aff");
 		QFile::remove("dict:" + language + ".dic");
 	}
@@ -305,7 +305,7 @@ void PreferencesDialog::accept()
 	QString path = DictionaryManager::path() + "/install/";
 	QString new_path = DictionaryManager::installedPath() + "/";
 	QDir dir(path);
-	QStringList files = dir.entryList(QDir::Files);
+	const QStringList files = dir.entryList(QDir::Files);
 	for (const QString& file : files) {
 		QFile::remove(new_path + file);
 		QFile::rename(path + file, new_path + file);
@@ -447,7 +447,7 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// Find Hunspell dictionary files
-	for (const QString& dic : dic_files) {
+	for (const QString& dic : qAsConst(dic_files)) {
 		QString aff = dic;
 		aff.replace(".dic", ".aff");
 		if (aff_files.contains(aff)) {
@@ -465,7 +465,7 @@ void PreferencesDialog::addLanguage()
 		QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		QString install = dir.absoluteFilePath("install") + "/";
-		for (const QString& file : files) {
+		for (const QString& file : qAsConst(files)) {
 			// Ignore path for Hunspell dictionaries
 			QString filename = file;
 			filename = filename.section('/', -1);
@@ -480,7 +480,7 @@ void PreferencesDialog::addLanguage()
 		// Add to language selection
 		QString dictionary_path = DictionaryManager::path() + "/install/";
 		QString dictionary_new_path = DictionaryManager::installedPath() + "/";
-		for (const QString& dictionary : dictionaries) {
+		for (const QString& dictionary : qAsConst(dictionaries)) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
 			QString name = LocaleDialog::languageName(language);
@@ -716,7 +716,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
 	m_save_format = new QComboBox(save_group);
-	QStringList types = Preferences::instance().saveFormat().allowedValues();
+	const QStringList types = Preferences::instance().saveFormat().allowedValues();
 	for (const QString& type : types) {
 		m_save_format->addItem(FormatManager::filter(type), type);
 	}
@@ -955,7 +955,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	m_remove_language_button->setAutoDefault(false);
 	connect(m_remove_language_button, &QPushButton::clicked, this, &PreferencesDialog::removeLanguage);
 
-	QStringList languages = DictionaryManager::instance().availableDictionaries();
+	const QStringList languages = DictionaryManager::instance().availableDictionaries();
 	for (const QString& language : languages) {
 		m_languages->addItem(LocaleDialog::languageName(language), language);
 	}
@@ -979,7 +979,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	connect(m_add_word_button, &QPushButton::clicked, this, &PreferencesDialog::addWord);
 
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
-	QStringList words = DictionaryManager::instance().personal();
+	const QStringList words = DictionaryManager::instance().personal();
 	for (const QString& word : words) {
 		m_personal_dictionary->addItem(word);
 	}
@@ -1030,7 +1030,7 @@ QWidget* PreferencesDialog::initToolbarTab()
 
 	m_toolbar_actions = new QListWidget(actions_group);
 	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
-	QList<QAction*> actions = parentWidget()->window()->actions();
+	const QList<QAction*> actions = parentWidget()->window()->actions();
 	for (QAction* action : actions) {
 		if (action->data().isNull()) {
 			continue;
@@ -1089,7 +1089,7 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	// List shortcuts
 	QPixmap empty_icon(m_shortcuts->iconSize());
 	empty_icon.fill(Qt::transparent);
-	QList<QString> actions = ActionManager::instance()->actions();
+	const QStringList actions = ActionManager::instance()->actions();
 	for (const QString& name : actions) {
 		QAction* action = ActionManager::instance()->action(name);
 		QIcon icon = action->icon();

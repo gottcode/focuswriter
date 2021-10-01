@@ -173,7 +173,7 @@ int main(int argc, char** argv)
 	}
 	Theme::setPath(dir.absoluteFilePath("Themes"));
 
-	for (const QString& datadir : datadirs) {
+	for (const QString& datadir : qAsConst(datadirs)) {
 		QFileInfo info(datadir + "/themes");
 		if (info.exists()) {
 			Theme::setDefaultPath(info.absoluteFilePath());

@@ -50,7 +50,7 @@ DailyProgress::DailyProgress(QObject* parent)
 		m_goal = values.value(3).toInt();
 
 		// Load all daily progress from 1.5
-		QStringList keys = m_file->childKeys();
+		const QStringList keys = m_file->childKeys();
 		for (const QString& key : keys) {
 			QDate date = QDate::fromString(key, Qt::ISODate);
 			if (!date.isValid()) {

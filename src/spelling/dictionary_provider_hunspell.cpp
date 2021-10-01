@@ -262,7 +262,7 @@ QStringList DictionaryProviderHunspell::availableDictionaries() const
 		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
 		aff_files.replaceInStrings(QRegularExpression("\\.aff.*"), "");
 
-		for (const QString& language : dic_files) {
+		for (const QString& language : qAsConst(dic_files)) {
 			if (aff_files.contains(language) && !result.contains(language)) {
 				result.append(language);
 			}

@@ -34,7 +34,7 @@ ActionManager::ActionManager(QWidget* parent)
 	// Load shortcuts
 	QSettings settings;
 	settings.beginGroup("Shortcuts");
-	QStringList keys = settings.childKeys();
+	const QStringList keys = settings.childKeys();
 	for (const QString& name : keys) {
 		m_actions[name].shortcut = settings.value(name).value<QKeySequence>();
 	}

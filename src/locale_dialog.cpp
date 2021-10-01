@@ -40,7 +40,7 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 
 	m_translations = new QComboBox(this);
 	m_translations->addItem(tr("<System Language>"));
-	QStringList translations = findTranslations();
+	const QStringList translations = findTranslations();
 	for (QString translation : translations) {
 		if (translation.startsWith("qt")) {
 			continue;

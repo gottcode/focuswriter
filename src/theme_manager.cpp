@@ -132,7 +132,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_themes->setMinimumSize(view_size);
 	m_themes->setWordWrap(true);
 	QDir dir(Theme::path(), "*.theme");
-	QStringList themes = dir.entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
+	const QStringList themes = dir.entryList(QDir::Files, QDir::Name | QDir::IgnoreCase);
 	for (const QString& theme : themes) {
 		QString name = QSettings(dir.filePath(theme), QSettings::IniFormat).value("Name").toString();
 		if (!name.isEmpty()) {
@@ -147,7 +147,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 
 			QStringList sessions = QDir(Session::path(), "*.session").entryList(QDir::Files);
 			sessions.prepend("");
-			for (const QString& file : sessions) {
+			for (const QString& file : qAsConst(sessions)) {
 				Session session(file);
 				if ((session.theme() == name) && (session.themeDefault() == false)) {
 					session.setTheme(id, false);

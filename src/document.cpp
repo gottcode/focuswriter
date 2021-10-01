@@ -1292,7 +1292,7 @@ void Document::selectionChanged()
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
 		BlockStats temp(nullptr);
-		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator,
+		const QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator,
 #if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
 			Qt::SkipEmptyParts
 #else

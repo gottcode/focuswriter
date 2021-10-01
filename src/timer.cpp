@@ -550,7 +550,7 @@ bool Timer::startTimer()
 
 void Timer::updateCounts()
 {
-	QList<Deltas*> deltas = m_deltas.values();
+	const QList<Deltas*> deltas = m_deltas.values();
 	for (Deltas* delta : deltas) {
 		m_character_count += delta->characterCount();
 		m_character_and_space_count += delta->characterAndSpaceCount();

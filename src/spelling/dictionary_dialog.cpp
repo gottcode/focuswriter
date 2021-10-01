@@ -23,7 +23,7 @@ DictionaryDialog::DictionaryDialog(QWidget* parent)
 	setWindowTitle(tr("Set Language"));
 
 	m_languages = new QListWidget(this);
-	QStringList languages = DictionaryManager::instance().availableDictionaries();
+	const QStringList languages = DictionaryManager::instance().availableDictionaries();
 	QString current_language = Preferences::instance().language();
 	for (const QString& language : languages) {
 		QListWidgetItem* item = new QListWidgetItem(LocaleDialog::languageName(language), m_languages);

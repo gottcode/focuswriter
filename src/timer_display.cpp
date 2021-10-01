@@ -131,7 +131,7 @@ void TimerDisplay::paintEvent(QPaintEvent* event)
 
 		if (m_show_tip) {
 			QStringList timers;
-			for (Timer* timer : m_timers) {
+			for (Timer* timer : qAsConst(m_timers)) {
 				if (timer->isRunning()) {
 					int msecs = timer->msecsFrom(current);
 					timers += Timer::toString(QTime().addMSecs(msecs).toString(tr("HH:mm:ss")), timer->memoShort());

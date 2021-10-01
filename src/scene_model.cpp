@@ -77,7 +77,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	// Copy text fragments of scenes
 	QTextCursor cursor = m_document->textCursor();
 	QList<QTextDocumentFragment> fragments;
-	for (int scene : scenes) {
+	for (int scene : qAsConst(scenes)) {
 		selectScene(m_scenes.at(scene), cursor);
 		fragments += cursor.selection();
 	}
@@ -118,7 +118,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	}
 
 	// Insert text fragments; will indirectly create scenes
-	for (const QTextDocumentFragment& fragment : fragments) {
+	for (const QTextDocumentFragment& fragment : qAsConst(fragments)) {
 		cursor.insertFragment(fragment);
 		if (!cursor.atBlockStart()) {
 			cursor.insertBlock();
@@ -348,7 +348,7 @@ void SceneModel::setSceneDivider(const QString& divider)
 	f_scene_divider = divider;
 	f_scene_divider.replace(QLatin1String("\\t"), QLatin1String("\t"));
 
-	for (SceneModel* model : f_scene_models) {
+	for (SceneModel* model : qAsConst(f_scene_models)) {
 		model->resetScenes();
 	}
 }

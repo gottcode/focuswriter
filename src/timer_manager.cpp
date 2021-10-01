@@ -86,7 +86,7 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 	resize(settings.value("DialogSize").toSize());
 
 	// Load currently running timers
-	QStringList ids = settings.childKeys();
+	const QStringList ids = settings.childKeys();
 	for (const QString& id : ids) {
 		int i = id.mid(5).toInt();
 		if (!id.startsWith("Timer") || i == 0) {
@@ -105,14 +105,14 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 bool TimerManager::cancelEditing()
 {
 	bool check = false;
-	for (Timer* timer : m_timers) {
+	for (Timer* timer : qAsConst(m_timers)) {
 		check |= timer->isEditing();
 	}
 	if (check) {
 		if (QMessageBox::question(this, tr("Question"), tr("Cancel editing timers?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return false;
 		} else {
-			for (Timer* timer : m_timers) {
+			for (Timer* timer : qAsConst(m_timers)) {
 				timer->cancelEditing();
 			}
 		}
@@ -131,7 +131,7 @@ TimerDisplay* TimerManager::display() const
 
 void TimerManager::saveTimers()
 {
-	for (Timer* timer : m_timers) {
+	for (Timer* timer : qAsConst(m_timers)) {
 		timer->save();
 	}
 }
@@ -293,7 +293,7 @@ void TimerManager::setupRecentMenu()
 
 	for (int i = 0; i < 2; ++i) {
 		QString type = QString::number(i);
-		QStringList recent = QSettings().value(QString("Timers/Recent%1").arg(i)).toStringList();
+		const QStringList recent = QSettings().value(QString("Timers/Recent%1").arg(i)).toStringList();
 		for (const QString& timer : recent) {
 			QString time = timer.section(' ', 0, 0);
 			QString memo = timer.section(' ', 1).simplified();
@@ -314,11 +314,11 @@ void TimerManager::setupRecentMenu()
 	}
 
 	m_recent_timers->clear();
-	for (QAction* action : delay_timers) {
+	for (QAction* action : qAsConst(delay_timers)) {
 		m_recent_timers->addAction(action);
 	}
 	m_recent_timers->addSeparator();
-	for (QAction* action : end_timers) {
+	for (QAction* action : qAsConst(end_timers)) {
 		m_recent_timers->addAction(action);
 	}
 
@@ -339,7 +339,7 @@ void TimerManager::startClock()
 
 void TimerManager::updateDisplay()
 {
-	for (Timer* timer : m_timers) {
+	for (Timer* timer : qAsConst(m_timers)) {
 		if (timer->isRunning()) {
 			m_display->setTimer(timer);
 			return;

@@ -47,7 +47,7 @@ SessionManager::SessionManager(Window* parent)
 	}
 
 	QDir dir(Session::path(), "*.session");
-	QStringList files = dir.entryList(QDir::Files);
+	const QStringList files = dir.entryList(QDir::Files);
 	for (const QString& file : files) {
 		QString path = dir.filePath(file);
 		QString name = QSettings(path, QSettings::IniFormat).value("Name").toString();
@@ -431,7 +431,7 @@ void SessionManager::updateList(const QString& selected)
 	QStringList files = dir.entryList(QDir::Files);
 
 	QHash<QString, QString> ids;
-	for (const QString& file : files) {
+	for (const QString& file : qAsConst(files)) {
 		QString id = QFileInfo(file).completeBaseName();
 		QString name = QSettings(dir.filePath(file), QSettings::IniFormat).value("Name").toString();
 		if (name == Session::tr("Default")) {
@@ -446,7 +446,7 @@ void SessionManager::updateList(const QString& selected)
 	ids.insert(Session::tr("Default"), QString());
 	files.prepend(Session::tr("Default"));
 
-	for (const QString& name : files) {
+	for (const QString& name : qAsConst(files)) {
 		QString id = ids.value(name);
 
 		QAction* action = m_sessions_menu->addAction(fontMetrics().elidedText(name, Qt::ElideRight, 3 * logicalDpiX()));

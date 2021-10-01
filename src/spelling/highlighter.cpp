@@ -97,7 +97,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 			// List suggestions in context menu
 			QMenu* menu = new QMenu;
-			QStringList guesses = m_dictionary.suggestions(m_word);
+			const QStringList guesses = m_dictionary.suggestions(m_word);
 			if (!guesses.isEmpty()) {
 				for (const QString& guess : guesses) {
 					menu->addAction(guess);
