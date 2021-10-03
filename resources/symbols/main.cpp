@@ -308,5 +308,5 @@ int main(int argc, char** argv)
 {
 	QCoreApplication app(argc, argv);
 
-	downloadAndParse("14.0.0", QDataStream::Qt_5_9);
+	downloadAndParse("14.0.0", QDataStream::Qt_5_12);
 }

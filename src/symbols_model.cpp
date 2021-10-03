@@ -74,7 +74,7 @@ SymbolsModel::SymbolsModel(QObject* parent) :
 	}
 
 	QDataStream stream(&buffer);
-	stream.setVersion(QDataStream::Qt_5_9);
+	stream.setVersion(QDataStream::Qt_5_12);
 	stream >> m_names;
 	stream >> m_groups;
 	buffer.close();
