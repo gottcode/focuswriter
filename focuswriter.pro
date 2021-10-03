@@ -250,7 +250,7 @@ macx {
 	SOUNDS.files = resources/sounds
 	SOUNDS.path = Contents/Resources
 
-	SYMBOLS.files = resources/symbols/symbols1300.dat
+	SYMBOLS.files = resources/symbols/symbols1400.dat
 	SYMBOLS.path = Contents/Resources
 
 	THEMES.files = resources/themes
@@ -292,7 +292,7 @@ macx {
 	themes.files = resources/themes/*
 	themes.path = $$DATADIR/themes
 
-	symbols.files = resources/symbols/symbols1300.dat
+	symbols.files = resources/symbols/symbols1400.dat
 	symbols.path = $$DATADIR
 
 	INSTALLS += target man icons qm sounds symbols themes
@@ -337,7 +337,7 @@ macx {
 	themes.files = resources/themes/*
 	themes.path = $$DATADIR/focuswriter/themes
 
-	symbols.files = resources/symbols/symbols1300.dat
+	symbols.files = resources/symbols/symbols1400.dat
 	symbols.path = $$DATADIR/focuswriter
 
 	INSTALLS += target icon desktop appdata man icons qm sounds symbols themes
