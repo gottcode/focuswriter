@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Concurrent Core Core5Compat Gui LinguistTools Network PrintSupport Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Concurrent Core Core5Compat Gui LinguistTools Multimedia Network PrintSupport Widgets)
 find_package(ZLIB REQUIRED)
 if(UNIX AND NOT APPLE)
 	include(GNUInstallDirs)
@@ -114,6 +114,7 @@ target_link_libraries(focuswriter PRIVATE
 	Qt6::Core
 	Qt6::Core5Compat
 	Qt6::Gui
+	Qt6::Multimedia
 	Qt6::Network
 	Qt6::PrintSupport
 	Qt6::Widgets

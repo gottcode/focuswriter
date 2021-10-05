@@ -3,12 +3,11 @@
 }
 
 TEMPLATE = app
-QT += network widgets printsupport concurrent
+QT += multimedia network widgets printsupport concurrent
 greaterThan(QT_MAJOR_VERSION, 5) {
 	QT += core5compat
 }
 lessThan(QT_MAJOR_VERSION, 6) {
-	QT += multimedia
 	macx {
 		QT += macextras
 	} else:win32 {
