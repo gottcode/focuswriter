@@ -122,6 +122,7 @@ namespace
 				|| source->hasFormat(QLatin1String("text/rtf"))
 				|| source->hasFormat(QLatin1String("text/richtext"))
 				|| source->hasFormat(QLatin1String("application/rtf"))
+				|| source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))
 				|| source->hasFormat(QLatin1String("application/vnd.oasis.opendocument.text"))
 				|| source->hasFormat(QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
 	}
@@ -206,6 +207,8 @@ namespace
 			richtext = source->data(QLatin1String("text/richtext"));
 		} else if (source->hasFormat(QLatin1String("application/rtf"))) {
 			richtext = source->data(QLatin1String("application/rtf"));
+		} else if (source->hasFormat(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""))) {
+			richtext = source->data(QLatin1String("application/x-qt-windows-mime;value=\"Rich Text Format\""));
 		} else if (source->hasHtml()) {
 			richtext = mimeToRtf(source);
 		} else {
