@@ -28,6 +28,7 @@
 #include "docx_writer.h"
 #include "format_manager.h"
 #include "highlighter.h"
+#include "html_writer.h"
 #include "odt_reader.h"
 #include "odt_writer.h"
 #include "preferences.h"
@@ -164,11 +165,15 @@ namespace
 			mime->setData(QLatin1String("application/rtf"), buffer.data());
 		}
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
-		mime->setData(QLatin1String("text/html"), doc.toHtml().toUtf8());
-#else
-		mime->setData(QLatin1String("text/html"), doc.toHtml("utf-8").toUtf8());
-#endif
+		{
+			HtmlWriter writer;
+			QBuffer buffer;
+			buffer.open(QIODevice::WriteOnly);
+			writer.write(&buffer, &doc);
+			buffer.close();
+			mime->setHtml(buffer.data());
+		}
+
 		mime->setText(doc.toPlainText());
 
 		return mime;

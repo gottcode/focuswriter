@@ -150,6 +150,7 @@ HEADERS += src/action_manager.h \
 	src/fileformats/docx_writer.h \
 	src/fileformats/format_manager.h \
 	src/fileformats/format_reader.h \
+	src/fileformats/html_writer.h \
 	src/fileformats/odt_reader.h \
 	src/fileformats/odt_writer.h \
 	src/fileformats/rtf_reader.h \
@@ -214,6 +215,7 @@ SOURCES += src/action_manager.cpp \
 	src/fileformats/docx_reader.cpp \
 	src/fileformats/docx_writer.cpp \
 	src/fileformats/format_manager.cpp \
+	src/fileformats/html_writer.cpp \
 	src/fileformats/odt_reader.cpp \
 	src/fileformats/odt_writer.cpp \
 	src/fileformats/rtf_reader.cpp \

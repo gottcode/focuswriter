@@ -84,6 +84,7 @@ qt6_add_executable(focuswriter
 	src/fileformats/docx_reader.cpp
 	src/fileformats/docx_writer.cpp
 	src/fileformats/format_manager.cpp
+	src/fileformats/html_writer.cpp
 	src/fileformats/odt_reader.cpp
 	src/fileformats/odt_writer.cpp
 	src/fileformats/rtf_reader.cpp
