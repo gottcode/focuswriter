@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2011-2020 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2011-2021 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ void OdtReader::readDataCompressed(QIODevice* device)
 
 	// Read archive
 	if (zip.isReadable()) {
-		const QString files[] = { QString::fromLatin1("styles.xml"), QString::fromLatin1("content.xml") };
+		const QString files[] = { QStringLiteral("styles.xml"), QStringLiteral("content.xml") };
 		for (int i = 0; i < 2; ++i) {
 			QByteArray data = zip.fileData(files[i]);
 			if (data.isEmpty()) {

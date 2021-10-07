@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013-2021 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,22 +49,22 @@ bool DocxWriter::write(QIODevice* device, const QTextDocument* document)
 		return false;
 	}
 
-	zip.addFile(QString::fromLatin1("_rels/.rels"),
+	zip.addFile(QStringLiteral("_rels/.rels"),
 		"<?xml version=\"1.0\"?>"
 		"<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">"
 		"<Relationship Target=\"word/document.xml\" Id=\"pkgRId0\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\"/>"
 		"</Relationships>");
 
-	zip.addFile(QString::fromLatin1("word/_rels/document.xml.rels"),
+	zip.addFile(QStringLiteral("word/_rels/document.xml.rels"),
 		"<?xml version=\"1.0\"?>"
 		"<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">"
 		"<Relationship Target=\"styles.xml\" Id=\"docRId0\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\"/>"
 		"</Relationships>");
 
-	zip.addFile(QString::fromLatin1("word/document.xml"),
+	zip.addFile(QStringLiteral("word/document.xml"),
 		writeDocument(document));
 
-	zip.addFile(QString::fromLatin1("word/styles.xml"),
+	zip.addFile(QStringLiteral("word/styles.xml"),
 		"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
 		"<w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">"
 		"<w:style w:type=\"paragraph\" w:styleId=\"Normal\">"
@@ -148,7 +148,7 @@ bool DocxWriter::write(QIODevice* device, const QTextDocument* document)
 		"</w:style>"
 		"</w:styles>");
 
-	zip.addFile(QString::fromLatin1("[Content_Types].xml"),
+	zip.addFile(QStringLiteral("[Content_Types].xml"),
 		"<?xml version=\"1.0\"?>"
 		"<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">"
 		"<Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>"
@@ -172,11 +172,11 @@ QByteArray DocxWriter::writeDocument(const QTextDocument* document)
 #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 	m_xml.setCodec("UTF-8");
 #endif
-	m_xml.writeNamespace(QString::fromLatin1("http://schemas.openxmlformats.org/wordprocessingml/2006/main"), QString::fromLatin1("w"));
-	m_xml.writeStartDocument(QString::fromLatin1("1.0"), true);
+	m_xml.writeNamespace(QStringLiteral("http://schemas.openxmlformats.org/wordprocessingml/2006/main"), QStringLiteral("w"));
+	m_xml.writeStartDocument(QStringLiteral("1.0"), true);
 
-	m_xml.writeStartElement(QString::fromLatin1("w:document"));
-	m_xml.writeStartElement(QString::fromLatin1("w:body"));
+	m_xml.writeStartElement(QStringLiteral("w:document"));
+	m_xml.writeStartElement(QStringLiteral("w:body"));
 
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		writeParagraph(block);
@@ -195,11 +195,11 @@ QByteArray DocxWriter::writeDocument(const QTextDocument* document)
 
 void DocxWriter::writeParagraph(const QTextBlock& block)
 {
-	m_xml.writeStartElement(QString::fromLatin1("w:p"));
+	m_xml.writeStartElement(QStringLiteral("w:p"));
 	writeParagraphProperties(block.blockFormat(), block.charFormat());
 
 	for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
-		m_xml.writeStartElement(QString::fromLatin1("w:r"));
+		m_xml.writeStartElement(QStringLiteral("w:r"));
 
 		QTextFragment fragment = iter.fragment();
 		writeRunProperties(fragment.charFormat());
@@ -211,11 +211,11 @@ void DocxWriter::writeParagraph(const QTextBlock& block)
 			QChar c = text.at(i);
 			if (c.unicode() == 0x0009) {
 				writeText(text, start, i);
-				m_xml.writeEmptyElement(QString::fromLatin1("w:tab"));
+				m_xml.writeEmptyElement(QStringLiteral("w:tab"));
 				start = i + 1;
 			} else if (c.unicode() == 0x2028) {
 				writeText(text, start, i);
-				m_xml.writeEmptyElement(QString::fromLatin1("w:br"));
+				m_xml.writeEmptyElement(QStringLiteral("w:br"));
 				start = i + 1;
 			} else if (c.unicode() == 0x0) {
 				writeText(text, start, i);
@@ -235,8 +235,8 @@ void DocxWriter::writeParagraph(const QTextBlock& block)
 void DocxWriter::writeText(const QString& text, int start, int end)
 {
 	if (start < end) {
-		m_xml.writeStartElement(QString::fromLatin1("w:t"));
-		m_xml.writeAttribute(QString::fromLatin1("xml:space"), QString::fromLatin1("preserve"));
+		m_xml.writeStartElement(QStringLiteral("w:t"));
+		m_xml.writeAttribute(QStringLiteral("xml:space"), QStringLiteral("preserve"));
 		m_xml.writeCharacters(text.mid(start, end - start));
 		m_xml.writeEndElement();
 	}
@@ -250,54 +250,54 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 
 	int heading = block_format.property(QTextFormat::UserProperty).toInt();
 	if (heading) {
-		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:pStyle"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString("Heading%1").arg(heading));
+		writePropertyElement(QStringLiteral("w:pPr"), empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:pStyle"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), QString("Heading%1").arg(heading));
 	}
 
 	bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
 	if (rtl) {
-		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:bidi"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("1"));
+		writePropertyElement(QStringLiteral("w:pPr"), empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:bidi"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), QStringLiteral("1"));
 	}
 
 	Qt::Alignment align = block_format.alignment();
 	if (rtl && (align & Qt::AlignRight)) {
-		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:jc"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), m_strict ? QString::fromLatin1("start") : QString::fromLatin1("left"));
+		writePropertyElement(QStringLiteral("w:pPr"), empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:jc"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), m_strict ? QStringLiteral("start") : QStringLiteral("left"));
 	} else if ((align & Qt::AlignRight) || (rtl && (align & Qt::AlignLeft))) {
-		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:jc"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), m_strict ? QString::fromLatin1("end") : QString::fromLatin1("right"));
+		writePropertyElement(QStringLiteral("w:pPr"), empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:jc"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), m_strict ? QStringLiteral("end") : QStringLiteral("right"));
 	} else if (align & Qt::AlignCenter) {
-		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:jc"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("center"));
+		writePropertyElement(QStringLiteral("w:pPr"), empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:jc"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), QStringLiteral("center"));
 	} else if (align & Qt::AlignJustify) {
-		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:jc"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("both"));
+		writePropertyElement(QStringLiteral("w:pPr"), empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:jc"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), QStringLiteral("both"));
 	}
 
 	if (block_format.indent() > 0) {
-		writePropertyElement(QString::fromLatin1("w:pPr"), empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:ind"));
+		writePropertyElement(QStringLiteral("w:pPr"), empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:ind"));
 		QString indent = QString::number(block_format.indent() * 720);
 		if (m_strict) {
-			m_xml.writeAttribute(QString::fromLatin1("w:start"), indent);
+			m_xml.writeAttribute(QStringLiteral("w:start"), indent);
 		} else if (rtl) {
-			m_xml.writeAttribute(QString::fromLatin1("w:right"), indent);
+			m_xml.writeAttribute(QStringLiteral("w:right"), indent);
 		} else {
-			m_xml.writeAttribute(QString::fromLatin1("w:left"), indent);
+			m_xml.writeAttribute(QStringLiteral("w:left"), indent);
 		}
 	}
 
 	if (!empty) {
 		writeRunProperties(char_format);
 	} else {
-		empty = writeRunProperties(char_format, QString::fromLatin1("w:pPr"));
+		empty = writeRunProperties(char_format, QStringLiteral("w:pPr"));
 	}
 
 	if (!empty) {
@@ -312,34 +312,34 @@ bool DocxWriter::writeRunProperties(const QTextCharFormat& char_format, const QS
 	bool empty = true;
 
 	if (char_format.fontWeight() == QFont::Bold) {
-		writePropertyElement(QString::fromLatin1("w:rPr"), parent_element, empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:b"));
+		writePropertyElement(QStringLiteral("w:rPr"), parent_element, empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:b"));
 	}
 
 	if (char_format.fontItalic()) {
-		writePropertyElement(QString::fromLatin1("w:rPr"), parent_element, empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:i"));
+		writePropertyElement(QStringLiteral("w:rPr"), parent_element, empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:i"));
 	}
 
 	if (char_format.fontUnderline()) {
-		writePropertyElement(QString::fromLatin1("w:rPr"), parent_element, empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:u"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("single"));
+		writePropertyElement(QStringLiteral("w:rPr"), parent_element, empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:u"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), QStringLiteral("single"));
 	}
 
 	if (char_format.fontStrikeOut()) {
-		writePropertyElement(QString::fromLatin1("w:rPr"), parent_element, empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:strike"));
+		writePropertyElement(QStringLiteral("w:rPr"), parent_element, empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:strike"));
 	}
 
 	if (char_format.verticalAlignment() == QTextCharFormat::AlignSuperScript) {
-		writePropertyElement(QString::fromLatin1("w:rPr"), parent_element, empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:vertAlign"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("superscript"));
+		writePropertyElement(QStringLiteral("w:rPr"), parent_element, empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:vertAlign"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), QStringLiteral("superscript"));
 	} else if (char_format.verticalAlignment() == QTextCharFormat::AlignSubScript) {
-		writePropertyElement(QString::fromLatin1("w:rPr"), parent_element, empty);
-		m_xml.writeEmptyElement(QString::fromLatin1("w:vertAlign"));
-		m_xml.writeAttribute(QString::fromLatin1("w:val"), QString::fromLatin1("subscript"));
+		writePropertyElement(QStringLiteral("w:rPr"), parent_element, empty);
+		m_xml.writeEmptyElement(QStringLiteral("w:vertAlign"));
+		m_xml.writeAttribute(QStringLiteral("w:val"), QStringLiteral("subscript"));
 	}
 
 	if (!empty) {

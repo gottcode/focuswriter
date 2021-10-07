@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2013-2020 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2013-2021 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ void DocxReader::readData(QIODevice* device)
 
 	// Read archive
 	if (zip.isReadable()) {
-		const QString files[] = { QString::fromLatin1("word/styles.xml"), QString::fromLatin1("word/document.xml") };
+		const QString files[] = { QStringLiteral("word/styles.xml"), QStringLiteral("word/document.xml") };
 		for (int i = 0; i < 2; ++i) {
 			QByteArray data = zip.fileData(files[i]);
 			if (data.isEmpty()) {
@@ -161,7 +161,7 @@ void DocxReader::readStyles()
 			Style style;
 
 			// Find style type
-			auto type = m_xml.attributes().value("w:type");
+			auto type = m_xml.attributes().value(QLatin1String("w:type"));
 			if (type == QLatin1String("paragraph")) {
 				style.type = Style::Paragraph;
 			} else if (type == QLatin1String("character")) {
@@ -184,21 +184,21 @@ void DocxReader::readStyles()
 			}
 
 			// Determine if this is the default style
-			if (m_xml.attributes().hasAttribute("w:default") && readBool(m_xml.attributes().value("w:default"))) {
+			if (m_xml.attributes().hasAttribute(QLatin1String("w:default")) && readBool(m_xml.attributes().value(QLatin1String("w:default")))) {
 				default_style[style.type] = style_id;
 			}
 
 			// Read style contents
 			while (m_xml.readNextStartElement()) {
 				if (m_xml.qualifiedName() == QLatin1String("w:name")) {
-					QString name = m_xml.attributes().value("w:val").toString();
-					if (name.startsWith("Head")) {
+					QString name = m_xml.attributes().value(QLatin1String("w:val")).toString();
+					if (name.startsWith(QLatin1String("Head"))) {
 						int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
 						style.block_format.setProperty(QTextFormat::UserProperty, heading);
 					}
 					m_xml.skipCurrentElement();
 				} else if (m_xml.qualifiedName() == QLatin1String("w:basedOn")) {
-					QString parent_style_id = m_xml.attributes().value("w:val").toString();
+					QString parent_style_id = m_xml.attributes().value(QLatin1String("w:val")).toString();
 					if (m_styles.contains(parent_style_id) && (style.type == m_styles[parent_style_id].type)) {
 						Style newstyle = m_styles[parent_style_id];
 						newstyle.block_format.merge(style.block_format);
@@ -319,7 +319,7 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 	int left_indent = 0, right_indent = 0, indent = 0;
 	bool textdir = false;
 	while (m_xml.readNextStartElement()) {
-		auto value = m_xml.attributes().value("w:val");
+		auto value = m_xml.attributes().value(QLatin1String("w:val"));
 		if (m_xml.qualifiedName() == QLatin1String("w:jc")) {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
 			if (value == QLatin1String("left")) {
@@ -339,16 +339,16 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 			}
 		} else if (m_xml.qualifiedName() == QLatin1String("w:ind")) {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
-			left_indent = std::lround(m_xml.attributes().value("w:left").toString().toDouble() / 720.0);
-			right_indent = std::lround(m_xml.attributes().value("w:right").toString().toDouble() / 720.0);
+			left_indent = std::lround(m_xml.attributes().value(QLatin1String("w:left")).toString().toDouble() / 720.0);
+			right_indent = std::lround(m_xml.attributes().value(QLatin1String("w:right")).toString().toDouble() / 720.0);
 			// ECMA-376 2nd edition, ISO/IEC 29500 strict
-			indent = std::lround(m_xml.attributes().value("w:start").toString().toDouble() / 720.0);
+			indent = std::lround(m_xml.attributes().value(QLatin1String("w:start")).toString().toDouble() / 720.0);
 			if (indent) {
 				style.block_format.setIndent(indent);
 				left_indent = right_indent = 0;
 			}
 		} else if (m_xml.qualifiedName() == QLatin1String("w:bidi")) {
-			if (readBool(m_xml.attributes().value("w:val"))) {
+			if (readBool(m_xml.attributes().value(QLatin1String("w:val")))) {
 				style.block_format.setLayoutDirection(Qt::RightToLeft);
 			}
 		} else if (m_xml.qualifiedName() == QLatin1String("w:textDirection")) {
@@ -359,7 +359,7 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 				style.block_format.setLayoutDirection(Qt::LeftToRight);
 			}
 		} else if (m_xml.qualifiedName() == QLatin1String("w:outlineLvl")) {
-			int heading = m_xml.attributes().value("w:val").toString().toInt();
+			int heading = m_xml.attributes().value(QLatin1String("w:val")).toString().toInt();
 			if (heading != 9) {
 				style.block_format.setProperty(QTextFormat::UserProperty, qBound(1, heading + 1, 6));
 			}
@@ -435,7 +435,7 @@ void DocxReader::readRun()
 void DocxReader::readRunProperties(Style& style, bool allowstyles)
 {
 	while (m_xml.readNextStartElement()) {
-		auto value = m_xml.attributes().value("w:val");
+		auto value = m_xml.attributes().value(QLatin1String("w:val"));
 		if ((m_xml.qualifiedName() == QLatin1String("w:b")) || (m_xml.qualifiedName() == QLatin1String("w:bCs"))) {
 			style.char_format.setFontWeight(readBool(value) ? QFont::Bold : QFont::Normal);
 		} else if ((m_xml.qualifiedName() == QLatin1String("w:i")) || (m_xml.qualifiedName() == QLatin1String("w:iCs"))) {
@@ -487,7 +487,7 @@ void DocxReader::readRunProperties(Style& style, bool allowstyles)
 
 void DocxReader::readText()
 {
-	bool keepws = (m_xml.attributes().value("xml:space") == QLatin1String("preserve"));
+	bool keepws = (m_xml.attributes().value(QLatin1String("xml:space")) == QLatin1String("preserve"));
 
 	QString text;
 	while (m_xml.readNext() == QXmlStreamReader::Characters) {
