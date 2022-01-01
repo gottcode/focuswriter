@@ -177,7 +177,7 @@ elseif(WIN32)
 		QT_TARGET_VERSION "${PROJECT_VERSION}"
 		QT_TARGET_COMPANY_NAME "Graeme Gott"
 		QT_TARGET_DESCRIPTION "Fullscreen word processor"
-		QT_TARGET_COPYRIGHT "Copyright (C) 2021 Graeme Gott"
+		QT_TARGET_COPYRIGHT "Copyright (C) 2022 Graeme Gott"
 		QT_TARGET_PRODUCT_NAME "FocusWriter"
 		QT_TARGET_RC_ICONS ${CMAKE_SOURCE_DIR}/resources/windows/focuswriter.ico
 	)
