@@ -832,7 +832,7 @@ QtZipReader::QtZipReader(const QString &archive, QIODevice::OpenMode mode)
     }
 
     d = new QtZipReaderPrivate(f.data(), /*ownDevice=*/true);
-    f.take();
+    f.reset();
     d->status = status;
 }
 
@@ -1150,7 +1150,7 @@ QtZipWriter::QtZipWriter(const QString &fileName, QIODevice::OpenMode mode)
     }
 
     d = new QtZipWriterPrivate(f.data(), /*ownDevice=*/true);
-    f.take();
+    f.reset();
     d->status = status;
 }
 
