@@ -216,6 +216,7 @@
   <provides>
     <binary>focuswriter</binary>
   </provides>
+  <launchable type="desktop-id">focuswriter.desktop</launchable>
 
   <kudos>
     <kudo>HiDpiIcon</kudo>
