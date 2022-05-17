@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- * Copyright (C) 2009-2020 Graeme Gott <graeme@gottcode.org>
+ * Copyright (C) 2009-2022 Graeme Gott <graeme@gottcode.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -182,7 +182,7 @@ namespace
 		QTextDocument document;
 		QTextCursor cursor(&document);
 		cursor.mergeBlockFormat(textCursor().blockFormat());
-		int formats = document.allFormats().size();
+		const auto formats = document.allFormats().size();
 		if (m_document->isRichText()) {
 			cursor = textCursor();
 		}
@@ -807,6 +807,7 @@ bool Document::loadFile(const QString& filename, int position)
 	document->setUndoRedoEnabled(false);
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
+	const auto formats = document->allFormats().size();
 	if (reader) {
 		QString error;
 		reader->read(&file, document);
@@ -823,6 +824,9 @@ bool Document::loadFile(const QString& filename, int position)
 			emit alert(new Alert(Alert::Warning, error, QStringList(filename), false));
 			findIndex();
 		}
+	}
+	if (m_filename.isEmpty()) {
+		m_rich_text = document->allFormats().size() > formats;
 	}
 	document->setUndoRedoEnabled(true);
 	document->setModified(false);
