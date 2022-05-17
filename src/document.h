@@ -21,16 +21,17 @@
 #define DOCUMENT_H
 
 #include "dictionary_ref.h"
+#include "document_writer.h"
 #include "stats.h"
 class Alert;
 class DailyProgress;
-class DocumentWriter;
 class Highlighter;
 class SceneList;
 class SceneModel;
 class Theme;
 
 #include <QHash>
+#include <QSharedPointer>
 #include <QTextBlockFormat>
 #include <QTime>
 #include <QWidget>
@@ -89,7 +90,7 @@ public slots:
 signals:
 	void alert(Alert* alert);
 	void replaceCacheFile(Document* document, const QString& file);
-	void writeCacheFile(Document* document, DocumentWriter* writer);
+	void writeCacheFile(Document* document, QSharedPointer<DocumentWriter> writer);
 	void changed();
 	void changedName();
 	void loadStarted(const QString& path);

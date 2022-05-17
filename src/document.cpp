@@ -24,7 +24,6 @@
 #include "daily_progress.h"
 #include "dictionary_manager.h"
 #include "document_watcher.h"
-#include "document_writer.h"
 #include "docx_reader.h"
 #include "docx_writer.h"
 #include "format_manager.h"
@@ -453,7 +452,7 @@ void Document::cache()
 {
 	if (m_cache_outdated) {
 		m_cache_outdated = false;
-		DocumentWriter* writer = new DocumentWriter;
+		QSharedPointer<DocumentWriter> writer(new DocumentWriter);
 		writer->setType(!m_filename.isEmpty() ? m_filename.section(QLatin1Char('.'), -1) : "odt");
 		writer->setEncoding(m_encoding);
 		writer->setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());

@@ -20,12 +20,13 @@
 #ifndef DOCUMENT_CACHE_H
 #define DOCUMENT_CACHE_H
 
+#include "document_writer.h"
 class Document;
-class DocumentWriter;
 class Stack;
 
 #include <QHash>
 #include <QObject>
+#include <QSharedPointer>
 
 class DocumentCache : public QObject
 {
@@ -50,7 +51,7 @@ public slots:
 
 private slots:
 	void replaceCacheFile(Document* document, const QString& file);
-	void writeCacheFile(Document* document, DocumentWriter* writer);
+	void writeCacheFile(Document* document, QSharedPointer<DocumentWriter> writer);
 
 private:
 	QString backupCache();

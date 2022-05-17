@@ -20,7 +20,6 @@
 #include "document_cache.h"
 
 #include "document.h"
-#include "document_writer.h"
 #include "stack.h"
 
 #include <QDateTime>
@@ -174,14 +173,13 @@ void DocumentCache::replaceCacheFile(Document* document, const QString& file)
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::writeCacheFile(Document* document, DocumentWriter* writer)
+void DocumentCache::writeCacheFile(Document* document, QSharedPointer<DocumentWriter> writer)
 {
 	QString cache_file = createFileName();
 	writer->setFileName(m_path + cache_file);
 	if (writer->write()) {
 		updateCacheFile(document, cache_file);
 	}
-	delete writer;
 }
 
 //-----------------------------------------------------------------------------
