@@ -836,6 +836,17 @@ bool Document::loadFile(const QString& filename, int position)
 
 	m_text->setReadOnly(!m_filename.isEmpty() ? !QFileInfo(m_filename).isWritable() : false);
 
+	// Update details
+	m_cached_stats.clear();
+	calculateWordCount();
+	m_saved_wordcount = m_document_stats.wordCount();
+	connect(m_text->document(), &QTextDocument::contentsChange, this, &Document::updateWordCount);
+	connect(m_text->document(), &QTextDocument::undoCommandAdded, this, &Document::undoCommandAdded);
+
+	// Force highlight before enabling spellcheck to prevent vertical shift from heading elements
+	m_highlighter->rehighlight();
+	m_highlighter->setEnabled(enabled);
+
 	// Restore cursor position
 	scrollBarRangeChanged(m_scrollbar->minimum(), m_scrollbar->maximum());
 	QTextCursor cursor = m_text->textCursor();
@@ -846,18 +857,6 @@ bool Document::loadFile(const QString& filename, int position)
 	}
 	m_text->setTextCursor(cursor);
 	centerCursor(true);
-
-	// Update details
-	m_cached_stats.clear();
-	calculateWordCount();
-	m_saved_wordcount = m_document_stats.wordCount();
-	if (enabled) {
-		m_highlighter->setEnabled(true);
-	} else {
-		m_highlighter->rehighlight();
-	}
-	connect(m_text->document(), &QTextDocument::contentsChange, this, &Document::updateWordCount);
-	connect(m_text->document(), &QTextDocument::undoCommandAdded, this, &Document::undoCommandAdded);
 
 	if (m_focus_mode) {
 		focusText();
