@@ -28,7 +28,7 @@ TimerDisplay::TimerDisplay(QList<Timer*>& timers, QWidget* parent)
 	m_update_timer = new QTimer(this);
 	m_update_timer->setInterval(40);
 	m_update_timer->start();
-	connect(m_update_timer, &QTimer::timeout, this, QOverload<>::of(&TimerDisplay::update));
+	connect(m_update_timer, &QTimer::timeout, this, qOverload<>(&TimerDisplay::update));
 }
 
 //-----------------------------------------------------------------------------

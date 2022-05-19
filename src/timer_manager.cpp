@@ -331,7 +331,7 @@ void TimerManager::startClock()
 {
 	updateClock();
 	int delay = 1000 - QTime::currentTime().msec();
-	QTimer::singleShot(delay, m_clock_timer, QOverload<>::of(&QTimer::start));
+	QTimer::singleShot(delay, m_clock_timer, qOverload<>(&QTimer::start));
 	QTimer::singleShot(delay, this, &TimerManager::updateClock);
 }
 

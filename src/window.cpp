@@ -122,7 +122,7 @@ Window::Window(const QStringList& command_line_files)
 
 	// Set up watcher for documents
 	m_document_watcher = new DocumentWatcher(this);
-	connect(m_document_watcher, &DocumentWatcher::closeDocument, this, QOverload<Document*>::of(&Window::closeDocument));
+	connect(m_document_watcher, &DocumentWatcher::closeDocument, this, qOverload<Document*>(&Window::closeDocument));
 	connect(m_document_watcher, &DocumentWatcher::showDocument, this, &Window::showDocument);
 
 	// Set up thread for caching documents
@@ -176,7 +176,7 @@ Window::Window(const QStringList& command_line_files)
 	connect(m_clock_timer, &QTimer::timeout, this, &Window::updateClock);
 	connect(m_clock_timer, &QTimer::timeout, m_timers, &TimerManager::saveTimers);
 	int delay = (60 - QTime::currentTime().second()) * 1000;
-	QTimer::singleShot(delay, m_clock_timer, QOverload<>::of(&QTimer::start));
+	QTimer::singleShot(delay, m_clock_timer, qOverload<>(&QTimer::start));
 	QTimer::singleShot(delay, this, &Window::updateClock);
 
 	// Set up tabs
@@ -1304,7 +1304,7 @@ void Window::initMenus()
 	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, &Stack::print, QKeySequence::Print);
 	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
 	file_menu->addSeparator();
-	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, QOverload<>::of(&Window::closeDocument), QKeySequence::Close);
+	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument), QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, &Window::close, keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
 	m_actions["Quit"]->setMenuRole(QAction::QuitRole);
 

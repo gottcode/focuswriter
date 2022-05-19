@@ -88,10 +88,10 @@ Stack::Stack(QWidget* parent)
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);
 	m_resize_timer->setSingleShot(true);
-	connect(m_resize_timer, &QTimer::timeout, this, QOverload<>::of(&Stack::updateBackground));
+	connect(m_resize_timer, &QTimer::timeout, this, qOverload<>(&Stack::updateBackground));
 
 	m_theme_renderer = new ThemeRenderer(this);
-	connect(m_theme_renderer, &ThemeRenderer::rendered, this, QOverload<const QImage&, const QRect&>::of(&Stack::updateBackground));
+	connect(m_theme_renderer, &ThemeRenderer::rendered, this, qOverload<const QImage&, const QRect&>(&Stack::updateBackground));
 
 	setHeaderVisible(Preferences::instance().alwaysShowHeader());
 	setFooterVisible(Preferences::instance().alwaysShowFooter());

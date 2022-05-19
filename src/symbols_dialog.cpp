@@ -118,7 +118,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent)
 	m_contents->addWidget(sidebar);
 
 	m_groups = new QComboBox(sidebar);
-	connect(m_groups, QOverload<int>::of(&QComboBox::activated), this, &SymbolsDialog::showGroup);
+	connect(m_groups, &QComboBox::activated, this, &SymbolsDialog::showGroup);
 
 	QVBoxLayout* sidebar_layout = new QVBoxLayout(sidebar);
 	sidebar_layout->setContentsMargins(0, 0, 0, 0);

@@ -53,7 +53,7 @@ FindDialog::FindDialog(Stack* documents)
 
 	m_find_button = buttons->addButton(tr("&Find"), QDialogButtonBox::ActionRole);
 	m_find_button->setEnabled(false);
-	connect(m_find_button, &QPushButton::clicked, this, QOverload<>::of(&FindDialog::find));
+	connect(m_find_button, &QPushButton::clicked, this, qOverload<>(&FindDialog::find));
 
 	m_replace_button = buttons->addButton(tr("&Replace"), QDialogButtonBox::ActionRole);
 	m_replace_button->setEnabled(false);

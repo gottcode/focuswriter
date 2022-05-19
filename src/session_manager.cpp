@@ -69,7 +69,7 @@ SessionManager::SessionManager(Window* parent)
 	m_sessions_menu = new QMenu(this);
 	m_sessions_menu->setTitle(tr("S&essions"));
 	m_sessions_actions = new QActionGroup(this);
-	connect(m_sessions_actions, &QActionGroup::triggered, this, QOverload<QAction*>::of(&SessionManager::switchSession));
+	connect(m_sessions_actions, &QActionGroup::triggered, this, qOverload<QAction*>(&SessionManager::switchSession));
 
 	m_sessions_list = new QListWidget(this);
 	m_sessions_list->setIconSize(QSize(16,16));
@@ -78,7 +78,7 @@ SessionManager::SessionManager(Window* parent)
 	m_sessions_list->setSelectionMode(QListWidget::SingleSelection);
 	m_sessions_list->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	connect(m_sessions_list, &QListWidget::currentItemChanged, this, &SessionManager::selectedSessionChanged);
-	connect(m_sessions_list, &QListWidget::itemActivated, this, QOverload<>::of(&SessionManager::switchSession));
+	connect(m_sessions_list, &QListWidget::itemActivated, this, qOverload<>(&SessionManager::switchSession));
 
 	// Create buttons
 	QPushButton* new_button = new QPushButton(tr("New"), this);
@@ -94,7 +94,7 @@ SessionManager::SessionManager(Window* parent)
 	connect(m_delete_button, &QPushButton::clicked, this, &SessionManager::deleteSession);
 
 	m_switch_button = new QPushButton(tr("Switch To"), this);
-	connect(m_switch_button, &QPushButton::clicked, this, QOverload<>::of(&SessionManager::switchSession));
+	connect(m_switch_button, &QPushButton::clicked, this, qOverload<>(&SessionManager::switchSession));
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Close, Qt::Horizontal, this);
 	connect(buttons, &QDialogButtonBox::rejected, this, &SessionManager::reject);

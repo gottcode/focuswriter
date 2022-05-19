@@ -946,7 +946,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	QGroupBox* languages_group = new QGroupBox(tr("Language"), tab);
 
 	m_languages = new QComboBox(languages_group);
-	connect(m_languages, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &PreferencesDialog::selectedLanguageChanged);
+	connect(m_languages, &QComboBox::currentIndexChanged, this, &PreferencesDialog::selectedLanguageChanged);
 
 	m_add_language_button = new QPushButton(tr("Add"), languages_group);
 	m_add_language_button->setAutoDefault(false);

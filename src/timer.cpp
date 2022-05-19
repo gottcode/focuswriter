@@ -398,10 +398,10 @@ void Timer::init()
 	label = new QLabel(tr("Time:"), time_labels);
 	label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	time_labels->addWidget(label);
-	connect(m_type_box, QOverload<int>::of(&QComboBox::currentIndexChanged), time_labels, &QStackedWidget::setCurrentIndex);
+	connect(m_type_box, &QComboBox::currentIndexChanged, time_labels, &QStackedWidget::setCurrentIndex);
 
 	QStackedWidget* time_edits = new QStackedWidget(this);
-	connect(m_type_box, QOverload<int>::of(&QComboBox::currentIndexChanged), time_edits, &QStackedWidget::setCurrentIndex);
+	connect(m_type_box, &QComboBox::currentIndexChanged, time_edits, &QStackedWidget::setCurrentIndex);
 
 	m_delay_edit = new QTimeEdit(time_edits);
 	m_delay_edit->setDisplayFormat(tr("HH:mm:ss"));

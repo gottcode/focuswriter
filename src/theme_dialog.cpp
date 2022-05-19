@@ -75,8 +75,8 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_font_names = new QFontComboBox(text_group);
 	m_font_names->setEditable(false);
 	m_font_names->setCurrentFont(m_theme.textFont());
-	connect(m_font_names, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ThemeDialog::fontChanged);
-	connect(m_font_names, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ThemeDialog::renderPreview);
+	connect(m_font_names, &QComboBox::currentIndexChanged, this, &ThemeDialog::fontChanged);
+	connect(m_font_names, &QComboBox::currentIndexChanged, this, &ThemeDialog::renderPreview);
 
 	m_font_sizes = new QComboBox(text_group);
 	m_font_sizes->setEditable(true);
@@ -116,7 +116,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_background_type = new QComboBox(background_group);
 	m_background_type->addItems(QStringList() << tr("No Image") << tr("Tiled") << tr("Centered") << tr("Stretched") << tr("Scaled") << tr("Zoomed"));
 	m_background_type->setCurrentIndex(m_theme.backgroundType());
-	connect(m_background_type, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ThemeDialog::renderPreview);
+	connect(m_background_type, &QComboBox::currentIndexChanged, this, &ThemeDialog::renderPreview);
 
 	QVBoxLayout* image_layout = new QVBoxLayout;
 	image_layout->setSpacing(0);
@@ -143,12 +143,12 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_opacity->setSuffix(QLocale().percent());
 	m_foreground_opacity->setRange(theme.foregroundOpacity().minimumValue(), theme.foregroundOpacity().maximumValue());
 	m_foreground_opacity->setValue(m_theme.foregroundOpacity());
-	connect(m_foreground_opacity, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_foreground_opacity, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	m_foreground_position = new QComboBox(foreground_group);
 	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
 	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
-	connect(m_foreground_position, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ThemeDialog::positionChanged);
+	connect(m_foreground_position, &QComboBox::currentIndexChanged, this, &ThemeDialog::positionChanged);
 
 	m_foreground_width = new QSpinBox(foreground_group);
 	m_foreground_width->setCorrectionMode(QSpinBox::CorrectToNearestValue);
@@ -156,7 +156,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_width->setRange(theme.foregroundWidth().minimumValue(), theme.foregroundWidth().maximumValue());
 	m_foreground_width->setValue(m_theme.foregroundWidth());
 	m_foreground_width->setEnabled(m_theme.foregroundPosition() != 3);
-	connect(m_foreground_width, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_foreground_width, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	QFormLayout* foreground_layout = new QFormLayout(foreground_group);
 	foreground_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
@@ -177,7 +177,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_corner_radius->setSuffix(tr(" pixels"));
 	m_corner_radius->setRange(theme.cornerRadius().minimumValue(), theme.cornerRadius().maximumValue());
 	m_corner_radius->setValue(m_theme.cornerRadius());
-	connect(m_corner_radius, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_corner_radius, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	QFormLayout* corner_layout = new QFormLayout(m_round_corners);
 	corner_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
@@ -195,7 +195,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_blur_radius->setSuffix(tr(" pixels"));
 	m_blur_radius->setRange(theme.blurRadius().minimumValue(), theme.blurRadius().maximumValue());
 	m_blur_radius->setValue(m_theme.blurRadius());
-	connect(m_blur_radius, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_blur_radius, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	QFormLayout* blur_layout = new QFormLayout(m_blur);
 	blur_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
@@ -217,14 +217,14 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_shadow_radius->setSuffix(tr(" pixels"));
 	m_shadow_radius->setRange(theme.shadowRadius().minimumValue(), theme.shadowRadius().maximumValue());
 	m_shadow_radius->setValue(m_theme.shadowRadius());
-	connect(m_shadow_radius, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_shadow_radius, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	m_shadow_offset = new QSpinBox(m_shadow);
 	m_shadow_offset->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_shadow_offset->setSuffix(tr(" pixels"));
 	m_shadow_offset->setRange(theme.shadowOffset().minimumValue(), theme.shadowOffset().maximumValue());
 	m_shadow_offset->setValue(m_theme.shadowOffset());
-	connect(m_shadow_offset, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_shadow_offset, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	QFormLayout* shadow_layout = new QFormLayout(m_shadow);
 	shadow_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
@@ -241,14 +241,14 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_foreground_margin->setSuffix(tr(" pixels"));
 	m_foreground_margin->setRange(theme.foregroundMargin().minimumValue(), theme.foregroundMargin().maximumValue());
 	m_foreground_margin->setValue(m_theme.foregroundMargin());
-	connect(m_foreground_margin, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_foreground_margin, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	m_foreground_padding = new QSpinBox(margins_group);
 	m_foreground_padding->setCorrectionMode(QSpinBox::CorrectToNearestValue);
 	m_foreground_padding->setSuffix(tr(" pixels"));
 	m_foreground_padding->setRange(theme.foregroundPadding().minimumValue(), theme.foregroundPadding().maximumValue());
 	m_foreground_padding->setValue(m_theme.foregroundPadding());
-	connect(m_foreground_padding, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_foreground_padding, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	QFormLayout* margins_layout = new QFormLayout(margins_group);
 	margins_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
@@ -276,9 +276,9 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	case 200: m_line_spacing_type->setCurrentIndex(2); break;
 	default: m_line_spacing->setEnabled(true); break;
 	}
-	connect(m_line_spacing_type, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ThemeDialog::lineSpacingChanged);
-	connect(m_line_spacing_type, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ThemeDialog::renderPreview);
-	connect(m_line_spacing, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_line_spacing_type, &QComboBox::currentIndexChanged, this, &ThemeDialog::lineSpacingChanged);
+	connect(m_line_spacing_type, &QComboBox::currentIndexChanged, this, &ThemeDialog::renderPreview);
+	connect(m_line_spacing, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	QFormLayout* line_spacing_layout = new QFormLayout(line_spacing);
 	line_spacing_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
@@ -293,19 +293,19 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_tab_width->setSuffix(tr(" pixels"));
 	m_tab_width->setRange(theme.tabWidth().minimumValue(), theme.tabWidth().maximumValue());
 	m_tab_width->setValue(m_theme.tabWidth());
-	connect(m_tab_width, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_tab_width, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	m_spacing_above_paragraph = new QSpinBox(paragraph_spacing);
 	m_spacing_above_paragraph->setSuffix(tr(" pixels"));
 	m_spacing_above_paragraph->setRange(theme.spacingAboveParagraph().minimumValue(), theme.spacingAboveParagraph().maximumValue());
 	m_spacing_above_paragraph->setValue(m_theme.spacingAboveParagraph());
-	connect(m_spacing_above_paragraph, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_spacing_above_paragraph, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	m_spacing_below_paragraph = new QSpinBox(paragraph_spacing);
 	m_spacing_below_paragraph->setSuffix(tr(" pixels"));
 	m_spacing_below_paragraph->setRange(theme.spacingBelowParagraph().minimumValue(), theme.spacingBelowParagraph().maximumValue());
 	m_spacing_below_paragraph->setValue(m_theme.spacingBelowParagraph());
-	connect(m_spacing_below_paragraph, QOverload<int>::of(&QSpinBox::valueChanged), this, &ThemeDialog::renderPreview);
+	connect(m_spacing_below_paragraph, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	m_indent_first_line = new QCheckBox(tr("Indent first line"), paragraph_spacing);
 	m_indent_first_line->setChecked(m_theme.indentFirstLine());

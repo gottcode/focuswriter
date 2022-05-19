@@ -66,7 +66,7 @@ bool Application::createWindow(const QStringList& files)
 #endif
 	m_window = new Window(m_files);
 	setActivationWindow(m_window);
-	connect(this, &Application::messageReceived, m_window, QOverload<const QString&>::of(&Window::addDocuments));
+	connect(this, &Application::messageReceived, m_window, qOverload<const QString&>(&Window::addDocuments));
 
 	return true;
 }
