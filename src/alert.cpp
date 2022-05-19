@@ -125,11 +125,7 @@ bool Alert::eventFilter(QObject* watched, QEvent* event)
 
 //-----------------------------------------------------------------------------
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 void Alert::enterEvent(QEnterEvent* event)
-#else
-void Alert::enterEvent(QEvent* event)
-#endif
 {
 	m_under_mouse = true;
 	update();

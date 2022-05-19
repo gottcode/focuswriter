@@ -1110,11 +1110,7 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 	unsetCursor();
 	m_hide_timer->start();
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 	const QPoint global = event->globalPosition().toPoint();
-#else
-	const QPoint global = event->globalPos();
-#endif
 
 	const QPoint point = mapFromGlobal(global);
 	if (rect().contains(point)) {
@@ -1292,13 +1288,7 @@ void Document::selectionChanged()
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
 		BlockStats temp(nullptr);
-		const QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator,
-#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
-			Qt::SkipEmptyParts
-#else
-			QString::SkipEmptyParts
-#endif
-		);
+		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, Qt::SkipEmptyParts);
 		for (const QString& string : selection) {
 			temp.update(string);
 			m_selected_stats.append(&temp);

@@ -17,16 +17,6 @@
 
 //-----------------------------------------------------------------------------
 
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-QDataStream& operator>>(QDataStream& stream, char32_t& c)
-{
-	quint32 u;
-	stream >> u;
-	c = char32_t(u);
-	return stream;
-}
-#endif
-
 QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter::Range& range)
 {
 	stream >> range.start >> range.end;

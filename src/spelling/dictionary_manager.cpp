@@ -262,9 +262,6 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-		stream.setCodec("UTF-8");
-#endif
 		for (const QString& word : qAsConst(m_personal)) {
 			stream << word << "\n";
 		}
@@ -289,9 +286,6 @@ DictionaryManager::DictionaryManager()
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-		stream.setCodec("UTF-8");
-#endif
 		while (!stream.atEnd()) {
 			m_personal.append(stream.readLine());
 		}

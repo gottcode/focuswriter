@@ -11,15 +11,6 @@
 #include <QFileOpenEvent>
 #include <QSettings>
 
-#ifdef RTFCLIPBOARD
-  #ifdef Q_OS_MAC
-	#include "clipboard_mac.h"
-  #endif
-  #ifdef Q_OS_WIN
-	#include "clipboard_windows.h"
-  #endif
-#endif
-
 //-----------------------------------------------------------------------------
 
 Application::Application(int& argc, char** argv)

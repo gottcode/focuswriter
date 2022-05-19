@@ -555,13 +555,7 @@ bool Window::saveDocuments(QSettings* session)
 
 void Window::addDocuments(const QString& documents)
 {
-	const QStringList files = documents.split(QLatin1String("\n"),
-#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
-		Qt::SkipEmptyParts
-#else
-		QString::SkipEmptyParts
-#endif
-	);
+	const QStringList files = documents.split(QLatin1String("\n"), Qt::SkipEmptyParts);
 	if (!files.isEmpty()) {
 		queueDocuments(files);
 	}

@@ -162,11 +162,7 @@ void FindDialog::showEvent(QShowEvent* event)
 {
 	if (!m_position.isNull()) {
 		QRect rect(m_position, sizeHint());
-#if (QT_VERSION >= QT_VERSION_CHECK(5,14,0))
 		if (screen()->availableGeometry().contains(rect)) {
-#else
-		if (QApplication::primaryScreen()->availableGeometry().contains(rect)) {
-#endif
 			move(m_position);
 		}
 	}

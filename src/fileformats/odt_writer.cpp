@@ -77,9 +77,6 @@ bool OdtWriter::writeCompressed(QIODevice* device, const QTextDocument* document
 bool OdtWriter::writeUncompressed(QIODevice* device, const QTextDocument* document)
 {
 	m_xml.setDevice(device);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-	m_xml.setCodec("UTF-8");
-#endif
 	m_xml.setAutoFormatting(true);
 	m_xml.setAutoFormattingIndent(1);
 
@@ -112,9 +109,6 @@ QByteArray OdtWriter::writeDocument(const QTextDocument* document)
 	buffer.open(QIODevice::WriteOnly);
 
 	m_xml.setDevice(&buffer);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-	m_xml.setCodec("UTF-8");
-#endif
 	m_xml.setAutoFormatting(true);
 	m_xml.setAutoFormattingIndent(1);
 
@@ -146,9 +140,6 @@ QByteArray OdtWriter::writeStylesDocument(const QTextDocument* document)
 	buffer.open(QIODevice::WriteOnly);
 
 	m_xml.setDevice(&buffer);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-	m_xml.setCodec("UTF-8");
-#endif
 	m_xml.setAutoFormatting(true);
 	m_xml.setAutoFormattingIndent(1);
 

@@ -14,11 +14,7 @@
 
 //-----------------------------------------------------------------------------
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 static bool readBool(QStringView value)
-#else
-static bool readBool(const QStringRef& value)
-#endif
 {
 	// ECMA-376, ISO/IEC 29500 strict
 	if (value.isEmpty()) {

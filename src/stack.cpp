@@ -638,11 +638,7 @@ void Stack::showHeader()
 
 void Stack::mouseMoveEvent(QMouseEvent* event)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 	int y = mapFromGlobal(event->globalPosition()).y();
-#else
-	int y = mapFromGlobal(event->globalPos()).y();
-#endif
 	bool header_visible = y <= m_header_margin;
 	bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);

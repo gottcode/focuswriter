@@ -156,9 +156,6 @@ QByteArray DocxWriter::writeDocument(const QTextDocument* document)
 	QBuffer buffer(&data);
 	buffer.open(QIODevice::WriteOnly);
 	m_xml.setDevice(&buffer);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-	m_xml.setCodec("UTF-8");
-#endif
 	m_xml.writeNamespace(QStringLiteral("http://schemas.openxmlformats.org/wordprocessingml/2006/main"), QStringLiteral("w"));
 	m_xml.writeStartDocument(QStringLiteral("1.0"), true);
 

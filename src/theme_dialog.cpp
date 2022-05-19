@@ -408,22 +408,11 @@ void ThemeDialog::checkNameAvailable()
 
 void ThemeDialog::fontChanged()
 {
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-	QFontDatabase db;
-#endif
 
 	QFont font = m_font_names->currentFont();
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 	QList<int> font_sizes = QFontDatabase::smoothSizes(font.family(), QString());
-#else
-	QList<int> font_sizes = db.smoothSizes(font.family(), QString());
-#endif
 	if (font_sizes.isEmpty()) {
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 		font_sizes = QFontDatabase::standardSizes();
-#else
-		font_sizes = db.standardSizes();
-#endif
 	}
 	qreal font_size = m_font_sizes->currentText().toDouble();
 	if (font_size < 0.1) {
