@@ -852,7 +852,10 @@ bool Document::loadFile(const QString& filename, int position)
 	connect(m_text->document(), &QTextDocument::undoCommandAdded, this, &Document::undoCommandAdded);
 
 	// Force highlight before enabling spellcheck to prevent vertical shift from heading elements
-	m_highlighter->rehighlight();
+	for (QTextBlock i = document->begin(); i.isValid(); i = i.next()) {
+		m_highlighter->rehighlightBlock(i);
+		QApplication::processEvents();
+	}
 	m_highlighter->setEnabled(enabled);
 
 	// Restore cursor position
