@@ -350,21 +350,25 @@ void OdtReader::readBody()
 
 void OdtReader::readBodyText()
 {
-	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == QLatin1String("text:p")) {
-			readParagraph();
-		} else if (m_xml.qualifiedName() == QLatin1String("text:h")) {
-			int heading = -1;
-			QXmlStreamAttributes attributes = m_xml.attributes();
-			if (attributes.hasAttribute(QLatin1String("text:outline-level"))) {
-				QString level = attributes.value(QLatin1String("text:outline-level")).toString();
-				heading = qBound(1, level.toInt(), 6);
+	int depth = 1;
+	while (depth && (m_xml.readNext() != QXmlStreamReader::Invalid)) {
+		if (m_xml.isStartElement()) {
+			if (m_xml.qualifiedName() == QLatin1String("text:p")) {
+				readParagraph();
+			} else if (m_xml.qualifiedName() == QLatin1String("text:h")) {
+				int heading = -1;
+				QXmlStreamAttributes attributes = m_xml.attributes();
+				if (attributes.hasAttribute(QLatin1String("text:outline-level"))) {
+					QString level = attributes.value(QLatin1String("text:outline-level")).toString();
+					heading = qBound(1, level.toInt(), 6);
+				}
+				readParagraph(heading);
+			} else {
+				// readParagraph() handles its end element, so only track depth for other elements
+				++depth;
 			}
-			readParagraph(heading);
-		} else if (m_xml.qualifiedName() == QLatin1String("text:section")) {
-			readBodyText();
-		} else {
-			m_xml.skipCurrentElement();
+		} else if (m_xml.isEndElement()) {
+			--depth;
 		}
 	}
 }
