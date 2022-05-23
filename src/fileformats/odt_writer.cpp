@@ -390,14 +390,17 @@ void OdtWriter::writeBody(const QTextDocument* document)
 				QChar c = text.at(i);
 				if (c.unicode() == 0x0) {
 					m_xml.writeCharacters(text.mid(start, i - start));
+					spaces = -1;
 					start = i + 1;
 				} else if (c.unicode() == 0x0009) {
 					m_xml.writeCharacters(text.mid(start, i - start));
 					m_xml.writeEmptyElement(QStringLiteral("text:tab"));
+					spaces = -1;
 					start = i + 1;
 				} else if (c.unicode() == 0x2028) {
 					m_xml.writeCharacters(text.mid(start, i - start));
 					m_xml.writeEmptyElement(QStringLiteral("text:line-break"));
+					spaces = -1;
 					start = i + 1;
 				} else if (c.unicode() == 0x0020) {
 					++spaces;
