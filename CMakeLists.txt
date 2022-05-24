@@ -91,13 +91,13 @@ qt6_add_executable(focuswriter
 	src/fileformats/rtf_tokenizer.cpp
 	src/fileformats/rtf_writer.cpp
 	src/fileformats/txt_reader.cpp
-	src/qtsingleapplication/qtsingleapplication.cpp
-	src/qtsingleapplication/qtlocalpeer.cpp
-	src/qtzip/qtzip.cpp
 	src/spelling/dictionary_dialog.cpp
 	src/spelling/dictionary_manager.cpp
 	src/spelling/highlighter.cpp
 	src/spelling/spell_checker.cpp
+	src/3rdparty/qtsingleapplication/qtsingleapplication.cpp
+	src/3rdparty/qtsingleapplication/qtlocalpeer.cpp
+	src/3rdparty/qtzip/qtzip.cpp
 	resources/images/images.qrc
 	${translations_QM}
 )
@@ -105,9 +105,9 @@ qt6_add_executable(focuswriter
 target_include_directories(focuswriter PRIVATE
 	src
 	src/fileformats
-	src/qtsingleapplication
-	src/qtzip
 	src/spelling
+	src/3rdparty/qtsingleapplication
+	src/3rdparty/qtzip
 )
 
 target_link_libraries(focuswriter PRIVATE
@@ -142,16 +142,16 @@ elseif(WIN32)
 	target_sources(focuswriter PRIVATE
 		src/spelling/dictionary_provider_hunspell.cpp
 		src/spelling/dictionary_provider_voikko.cpp
-		src/spelling/hunspell/affentry.cxx
-		src/spelling/hunspell/affixmgr.cxx
-		src/spelling/hunspell/csutil.cxx
-		src/spelling/hunspell/filemgr.cxx
-		src/spelling/hunspell/hashmgr.cxx
-		src/spelling/hunspell/hunspell.cxx
-		src/spelling/hunspell/hunzip.cxx
-		src/spelling/hunspell/phonet.cxx
-		src/spelling/hunspell/replist.cxx
-		src/spelling/hunspell/suggestmgr.cxx
+		src/3rdparty/spelling/hunspell/affentry.cxx
+		src/3rdparty/spelling/hunspell/affixmgr.cxx
+		src/3rdparty/spelling/hunspell/csutil.cxx
+		src/3rdparty/spelling/hunspell/filemgr.cxx
+		src/3rdparty/spelling/hunspell/hashmgr.cxx
+		src/3rdparty/spelling/hunspell/hunspell.cxx
+		src/3rdparty/spelling/hunspell/hunzip.cxx
+		src/3rdparty/spelling/hunspell/phonet.cxx
+		src/3rdparty/spelling/hunspell/replist.cxx
+		src/3rdparty/spelling/hunspell/suggestmgr.cxx
 	)
 endif()
 

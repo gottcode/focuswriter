@@ -76,16 +76,16 @@ macx {
 
 	SOURCES += src/spelling/dictionary_provider_hunspell.cpp \
 		src/spelling/dictionary_provider_voikko.cpp \
-		src/spelling/hunspell/affentry.cxx \
-		src/spelling/hunspell/affixmgr.cxx \
-		src/spelling/hunspell/csutil.cxx \
-		src/spelling/hunspell/filemgr.cxx \
-		src/spelling/hunspell/hashmgr.cxx \
-		src/spelling/hunspell/hunspell.cxx \
-		src/spelling/hunspell/hunzip.cxx \
-		src/spelling/hunspell/phonet.cxx \
-		src/spelling/hunspell/replist.cxx \
-		src/spelling/hunspell/suggestmgr.cxx
+		src/3rdparty/hunspell/affentry.cxx \
+		src/3rdparty/hunspell/affixmgr.cxx \
+		src/3rdparty/hunspell/csutil.cxx \
+		src/3rdparty/hunspell/filemgr.cxx \
+		src/3rdparty/hunspell/hashmgr.cxx \
+		src/3rdparty/hunspell/hunspell.cxx \
+		src/3rdparty/hunspell/hunzip.cxx \
+		src/3rdparty/hunspell/phonet.cxx \
+		src/3rdparty/hunspell/replist.cxx \
+		src/3rdparty/hunspell/suggestmgr.cxx
 } else:unix {
 	CONFIG += link_pkgconfig
 	PKGCONFIG += hunspell zlib
@@ -97,7 +97,7 @@ macx {
 		src/spelling/dictionary_provider_voikko.cpp
 }
 
-INCLUDEPATH += src src/fileformats src/qtsingleapplication src/qtzip src/spelling
+INCLUDEPATH += src src/fileformats src/spelling src/3rdparty/qtsingleapplication src/3rdparty/qtzip
 
 # Specify program sources
 HEADERS += src/action_manager.h \
@@ -157,17 +157,17 @@ HEADERS += src/action_manager.h \
 	src/fileformats/rtf_tokenizer.h \
 	src/fileformats/rtf_writer.h \
 	src/fileformats/txt_reader.h \
-	src/qtsingleapplication/qtsingleapplication.h \
-	src/qtsingleapplication/qtlocalpeer.h \
-	src/qtzip/qtzipreader.h \
-	src/qtzip/qtzipwriter.h \
 	src/spelling/abstract_dictionary.h \
 	src/spelling/abstract_dictionary_provider.h \
 	src/spelling/dictionary_dialog.h \
 	src/spelling/dictionary_manager.h \
 	src/spelling/dictionary_ref.h \
 	src/spelling/highlighter.h \
-	src/spelling/spell_checker.h
+	src/spelling/spell_checker.h \
+	src/3rdparty/qtsingleapplication/qtsingleapplication.h \
+	src/3rdparty/qtsingleapplication/qtlocalpeer.h \
+	src/3rdparty/qtzip/qtzipreader.h \
+	src/3rdparty/qtzip/qtzipwriter.h
 
 SOURCES += src/action_manager.cpp \
 	src/alert.cpp \
@@ -222,13 +222,13 @@ SOURCES += src/action_manager.cpp \
 	src/fileformats/rtf_tokenizer.cpp \
 	src/fileformats/rtf_writer.cpp \
 	src/fileformats/txt_reader.cpp \
-	src/qtsingleapplication/qtsingleapplication.cpp \
-	src/qtsingleapplication/qtlocalpeer.cpp \
-	src/qtzip/qtzip.cpp \
 	src/spelling/dictionary_dialog.cpp \
 	src/spelling/dictionary_manager.cpp \
 	src/spelling/highlighter.cpp \
-	src/spelling/spell_checker.cpp
+	src/spelling/spell_checker.cpp \
+	src/3rdparty/qtsingleapplication/qtsingleapplication.cpp \
+	src/3rdparty/qtsingleapplication/qtlocalpeer.cpp \
+	src/3rdparty/qtzip/qtzip.cpp
 
 # Generate translations
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
