@@ -20,7 +20,7 @@ LoadScreen::LoadScreen(QWidget* parent)
 	setCursor(Qt::WaitCursor);
 
 	QPalette p = palette();
-	p.setColor(backgroundRole(), "#666");
+	p.setColor(backgroundRole(), QColor(102, 102, 102));
 	setPalette(p);
 	setAutoFillBackground(true);
 
