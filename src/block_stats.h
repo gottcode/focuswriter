@@ -25,7 +25,7 @@ public:
 	int letterCount() const;
 	int spaceCount() const;
 	int wordCount() const;
-	QVector<WordRef> misspelled() const;
+	QList<WordRef> misspelled() const;
 
 	enum SpellCheckStatus
 	{
@@ -47,7 +47,7 @@ private:
 	int m_words;
 	bool m_scene;
 	SceneModel* m_scene_model;
-	QVector<WordRef> m_misspelled;
+	QList<WordRef> m_misspelled;
 	SpellCheckStatus m_checked;
 };
 
@@ -81,7 +81,7 @@ inline int BlockStats::wordCount() const
 	return m_words;
 }
 
-inline QVector<WordRef> BlockStats::misspelled() const
+inline QList<WordRef> BlockStats::misspelled() const
 {
 	return m_misspelled;
 }

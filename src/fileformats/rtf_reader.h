@@ -105,7 +105,7 @@ private:
 	QTextCodec* m_codec;
 	QTextDecoder* m_decoder;
 	QTextCodec* m_codepage;
-	QVector<QTextCodec*> m_codepages;
+	QList<QTextCodec*> m_codepages;
 };
 
 #endif // FOCUSWRITER_RTF_READER_H

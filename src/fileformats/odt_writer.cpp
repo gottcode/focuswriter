@@ -202,11 +202,11 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 {
 	m_xml.writeStartElement(QStringLiteral("office:automatic-styles"));
 
-	QVector<QTextFormat> formats = document->allFormats();
+	QList<QTextFormat> formats = document->allFormats();
 
 	// Find all used styles
-	QVector<int> text_styles;
-	QVector<int> paragraph_styles;
+	QList<int> text_styles;
+	QList<int> paragraph_styles;
 	int index = 0;
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		index = block.blockFormatIndex();

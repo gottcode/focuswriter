@@ -7,8 +7,8 @@
 #ifndef FOCUSWRITER_SOUND_H
 #define FOCUSWRITER_SOUND_H
 
+#include <QList>
 #include <QObject>
-#include <QVector>
 class QSoundEffect;
 
 class Sound : public QObject
@@ -26,7 +26,7 @@ public:
 
 private:
 	int m_name;
-	QVector<QSoundEffect*> m_sounds;
+	QList<QSoundEffect*> m_sounds;
 };
 
 #endif // FOCUSWRITER_SOUND_H

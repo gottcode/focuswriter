@@ -11,7 +11,6 @@
 #include <QDate>
 #include <QStringList>
 #include <QElapsedTimer>
-#include <QVector>
 class QSettings;
 
 class DailyProgress : public QAbstractTableModel
@@ -129,7 +128,7 @@ private:
 		int m_goal;
 		int m_progress;
 	};
-	QVector<Progress> m_progress;
+	QList<Progress> m_progress;
 	Progress* m_current;
 	bool m_current_valid;
 	int m_current_pos;

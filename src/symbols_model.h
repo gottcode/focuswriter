@@ -9,7 +9,7 @@
 
 #include <QAbstractListModel>
 #include <QHash>
-#include <QVector>
+#include <QList>
 
 class SymbolsModel : public QAbstractItemModel
 {
@@ -25,9 +25,9 @@ class SymbolsModel : public QAbstractItemModel
 
 		QByteArray name;
 		char32_t size;
-		QVector<Range> ranges;
+		QList<Range> ranges;
 	};
-	typedef QVector<Filter> FilterGroup;
+	typedef QList<Filter> FilterGroup;
 
 public:
 	explicit SymbolsModel(QObject* parent = nullptr);
@@ -52,10 +52,10 @@ public:
 	friend QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter::Range& range);
 
 private:
-	QVector<char32_t> m_symbols;
+	QList<char32_t> m_symbols;
 
 	QHash<char32_t, QByteArray> m_names;
-	QVector<FilterGroup> m_groups;
+	QList<FilterGroup> m_groups;
 
 	static QString m_path;
 };

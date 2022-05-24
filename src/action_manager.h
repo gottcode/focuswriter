@@ -10,6 +10,7 @@
 #include <QHash>
 #include <QKeySequence>
 #include <QObject>
+#include <QStringList>
 class QAction;
 class QShortcut;
 
@@ -28,7 +29,7 @@ public:
 	explicit ActionManager(QWidget* parent = nullptr);
 	~ActionManager();
 
-	QList<QString> actions() const
+	QStringList actions() const
 	{
 		return m_actions.keys();
 	}

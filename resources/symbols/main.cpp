@@ -23,6 +23,7 @@
 #include <QDir>
 #include <QFile>
 #include <QHash>
+#include <QList>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -30,7 +31,6 @@
 #include <QStringList>
 #include <QTextStream>
 #include <QUrl>
-#include <QVector>
 
 #include <iostream>
 
@@ -55,10 +55,10 @@ struct Filter
 
 	QByteArray name;
 	char32_t size;
-	QVector<Range> ranges;
+	QList<Range> ranges;
 };
 
-typedef QVector<Filter> FilterGroup;
+typedef QList<Filter> FilterGroup;
 
 void Filter::addRange(char32_t start, char32_t end)
 {
@@ -127,7 +127,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 	}
 
 	QHash<char32_t, QByteArray> names;
-	QVector<FilterGroup> groups;
+	QList<FilterGroup> groups;
 
 	// Parse names
 	{

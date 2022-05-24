@@ -12,8 +12,8 @@ class Document;
 #include <QDateTime>
 #include <QFile>
 #include <QHash>
-#include <QList>
 #include <QObject>
+#include <QStringList>
 class QFileInfo;
 class QFileSystemWatcher;
 
@@ -67,7 +67,7 @@ private:
 	QFileSystemWatcher* m_watcher;
 	QHash<Document*, Details> m_documents;
 	QHash<QString, Document*> m_paths;
-	QList<QString> m_updates;
+	QStringList m_updates;
 	static DocumentWatcher* m_instance;
 };
 
