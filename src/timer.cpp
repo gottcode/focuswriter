@@ -241,7 +241,7 @@ bool Timer::operator<=(const Timer& timer) const
 QString Timer::toString(const QString& time, const QString& memo)
 {
 	if (!memo.isEmpty()) {
-		return tr("<b>%1</b> - %2").arg(time.simplified()).arg(memo);
+		return tr("<b>%1</b> - %2").arg(time.simplified(), memo);
 	} else {
 		return QLatin1String("<b>") + time.simplified() + QLatin1String("</b>");
 	}

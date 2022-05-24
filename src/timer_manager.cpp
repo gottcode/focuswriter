@@ -309,7 +309,7 @@ void TimerManager::setupRecentMenu()
 				end_timers.append(action);
 			}
 			memo = fontMetrics().elidedText(memo, Qt::ElideRight, 300);
-			action->setText(!memo.isEmpty() ? tr("%1 - %2").arg(time).arg(memo) : time);
+			action->setText(!memo.isEmpty() ? tr("%1 - %2").arg(time, memo) : time);
 		}
 	}
 

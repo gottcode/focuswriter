@@ -292,9 +292,9 @@ QString DailyProgressDialog::createStreakText(const QString& title, const QDate&
 	}
 
 	return QString("<center><b>%1</b><br><big>%2</big><br><small>%3</small></center>")
-			.arg(title)
-			.arg(tr("%n day(s)", "", length))
-			.arg(tr("%1 &ndash; %2").arg(start_str).arg(end_str));
+			.arg(title,
+			tr("%n day(s)", "", length),
+			tr("%1 &ndash; %2").arg(start_str, end_str));
 }
 
 //-----------------------------------------------------------------------------
