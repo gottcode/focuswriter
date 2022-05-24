@@ -659,8 +659,8 @@ void RtfReader::setStyle(qint32 value)
 {
 	m_state.style = value;
 
-	QHash<int, Style>::const_iterator style = m_styles.find(m_state.style);
-	if (style != m_styles.end()) {
+	QHash<int, Style>::const_iterator style = m_styles.constFind(m_state.style);
+	if (style != m_styles.constEnd()) {
 		m_state.block_format.merge(style->block_format);
 		m_cursor.mergeBlockFormat(m_state.block_format);
 
