@@ -274,7 +274,7 @@ QVariant SceneModel::data(const QModelIndex& index, int role) const
 
 bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
-	QString format = mimeTypes().first();
+	QString format = mimeTypes().constFirst();
 	if (!data || !data->hasFormat(format) || (action != Qt::MoveAction) || (column > 0) || parent.isValid()) {
 		return false;
 	}
@@ -312,7 +312,7 @@ QMimeData* SceneModel::mimeData(const QModelIndexList& indexes) const
 
 	// Return mime data object containing list
 	QMimeData* data = new QMimeData();
-	data->setData(mimeTypes().first(), bytes);
+	data->setData(mimeTypes().constFirst(), bytes);
 	return data;
 }
 

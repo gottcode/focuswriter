@@ -208,7 +208,7 @@ QString Theme::clone(const QString& id, bool is_default, const QString& name)
 
 	// Copy icon
 	const QDir dir = listIcons(id, is_default);
-	const int suffix = dir.nameFilters().first().length() -1;
+	const int suffix = dir.nameFilters().constFirst().length() -1;
 	const QStringList files = dir.entryList();
 	for (const QString& file : files) {
 		QFile::copy(dir.filePath(file), dir.filePath(new_id + file.mid(suffix)));
