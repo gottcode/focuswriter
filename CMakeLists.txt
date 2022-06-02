@@ -137,7 +137,7 @@ if(UNIX AND NOT APPLE)
 elseif(WIN32)
 	target_compile_definitions(focuswriter PRIVATE HUNSPELL_STATIC)
 
-	target_include_directories(focuswriter PRIVATE src/spelling/hunspell)
+	target_include_directories(focuswriter PRIVATE src/3rdparty/hunspell)
 
 	target_sources(focuswriter PRIVATE
 		src/spelling/dictionary_provider_hunspell.cpp
