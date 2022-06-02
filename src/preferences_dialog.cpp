@@ -630,7 +630,7 @@ void PreferencesDialog::highlightShortcutConflicts()
 	QFont conflict = font();
 	conflict.setBold(true);
 
-	QMap<QKeySequence, QTreeWidgetItem*> shortcuts;
+	QHash<QKeySequence, QTreeWidgetItem*> shortcuts;
 	for (int i = 0, count = m_shortcuts->topLevelItemCount(); i < count; ++i) {
 		// Reset font and highlight
 		QTreeWidgetItem* item = m_shortcuts->topLevelItem(i);
