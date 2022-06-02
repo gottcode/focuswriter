@@ -142,16 +142,16 @@ elseif(WIN32)
 	target_sources(focuswriter PRIVATE
 		src/spelling/dictionary_provider_hunspell.cpp
 		src/spelling/dictionary_provider_voikko.cpp
-		src/3rdparty/spelling/hunspell/affentry.cxx
-		src/3rdparty/spelling/hunspell/affixmgr.cxx
-		src/3rdparty/spelling/hunspell/csutil.cxx
-		src/3rdparty/spelling/hunspell/filemgr.cxx
-		src/3rdparty/spelling/hunspell/hashmgr.cxx
-		src/3rdparty/spelling/hunspell/hunspell.cxx
-		src/3rdparty/spelling/hunspell/hunzip.cxx
-		src/3rdparty/spelling/hunspell/phonet.cxx
-		src/3rdparty/spelling/hunspell/replist.cxx
-		src/3rdparty/spelling/hunspell/suggestmgr.cxx
+		src/3rdparty/hunspell/affentry.cxx
+		src/3rdparty/hunspell/affixmgr.cxx
+		src/3rdparty/hunspell/csutil.cxx
+		src/3rdparty/hunspell/filemgr.cxx
+		src/3rdparty/hunspell/hashmgr.cxx
+		src/3rdparty/hunspell/hunspell.cxx
+		src/3rdparty/hunspell/hunzip.cxx
+		src/3rdparty/hunspell/phonet.cxx
+		src/3rdparty/hunspell/replist.cxx
+		src/3rdparty/hunspell/suggestmgr.cxx
 	)
 endif()
 
