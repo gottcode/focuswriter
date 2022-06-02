@@ -216,17 +216,17 @@ void Timer::save()
 	updateCounts();
 
 	// Write timer
-	QStringList values;
-	values.append(QString::number(m_type));
-	values.append(m_start.toString(Qt::ISODate));
-	values.append(m_end.toString(Qt::ISODate));
-	values.append(m_memo);
-	values.append(QString::number(m_character_count));
-	values.append(QString::number(m_character_and_space_count));
-	values.append(QString::number(m_page_count));
-	values.append(QString::number(m_paragraph_count));
-	values.append(QString::number(m_word_count));
-	settings.setValue(m_id, values);
+	settings.setValue(m_id, QStringList{
+		QString::number(m_type),
+		m_start.toString(Qt::ISODate),
+		m_end.toString(Qt::ISODate),
+		m_memo,
+		QString::number(m_character_count),
+		QString::number(m_character_and_space_count),
+		QString::number(m_page_count),
+		QString::number(m_paragraph_count),
+		QString::number(m_word_count)
+	});
 }
 
 //-----------------------------------------------------------------------------
@@ -340,11 +340,12 @@ void Timer::timerFinished()
 		qDeleteAll(m_deltas);
 		m_deltas.clear();
 
-		QStringList details;
-		details << tr("<b>Words:</b> %L1").arg(m_word_count);
-		details << tr("<b>Pages:</b> %L1").arg(m_page_count);
-		details << tr("<b>Paragraphs:</b> %L1").arg(m_paragraph_count);
-		details << tr("<b>Characters:</b> %L1 / %L2").arg(m_character_count).arg(m_character_and_space_count);
+		const QStringList details{
+			tr("<b>Words:</b> %L1").arg(m_word_count),
+			tr("<b>Pages:</b> %L1").arg(m_page_count),
+			tr("<b>Paragraphs:</b> %L1").arg(m_paragraph_count),
+			tr("<b>Characters:</b> %L1 / %L2").arg(m_character_count).arg(m_character_and_space_count)
+		};
 
 		remove();
 		m_documents->alerts()->addAlert(new Alert(Alert::NoIcon, m_display_label->text(), details, true));

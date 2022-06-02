@@ -216,7 +216,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent)
 	// Restore size of dialog
 	QSettings settings;
 	resize(settings.value("SymbolsDialog/Size", QSize(750,500)).toSize());
-	m_contents->setSizes(QList<int>() << 200 << 550);
+	m_contents->setSizes({ 200, 550 });
 	m_contents->restoreState(settings.value("SymbolsDialog/SplitterSizes").toByteArray());
 
 	// Switch to last used tab

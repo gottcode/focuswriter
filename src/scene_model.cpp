@@ -320,7 +320,8 @@ QMimeData* SceneModel::mimeData(const QModelIndexList& indexes) const
 
 QStringList SceneModel::mimeTypes() const
 {
-	return QStringList() << QLatin1String("application/x-fwscenelist");
+	static const QStringList types{ QStringLiteral("application/x-fwscenelist") };
+	return types;
 }
 
 //-----------------------------------------------------------------------------

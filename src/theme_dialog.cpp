@@ -114,7 +114,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_clear_image, &QPushButton::clicked, m_background_image, &ImageButton::unsetImage);
 
 	m_background_type = new QComboBox(background_group);
-	m_background_type->addItems(QStringList() << tr("No Image") << tr("Tiled") << tr("Centered") << tr("Stretched") << tr("Scaled") << tr("Zoomed"));
+	m_background_type->addItems({ tr("No Image"), tr("Tiled"), tr("Centered"), tr("Stretched"), tr("Scaled"), tr("Zoomed") });
 	m_background_type->setCurrentIndex(m_theme.backgroundType());
 	connect(m_background_type, &QComboBox::currentIndexChanged, this, &ThemeDialog::renderPreview);
 
@@ -146,7 +146,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	connect(m_foreground_opacity, &QSpinBox::valueChanged, this, &ThemeDialog::renderPreview);
 
 	m_foreground_position = new QComboBox(foreground_group);
-	m_foreground_position->addItems(QStringList() << tr("Left") << tr("Centered") << tr("Right") << tr("Stretched"));
+	m_foreground_position->addItems({ tr("Left"), tr("Centered"), tr("Right"), tr("Stretched") });
 	m_foreground_position->setCurrentIndex(m_theme.foregroundPosition());
 	connect(m_foreground_position, &QComboBox::currentIndexChanged, this, &ThemeDialog::positionChanged);
 
@@ -261,7 +261,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	m_line_spacing_type = new QComboBox(line_spacing);
 	m_line_spacing_type->setEditable(false);
-	m_line_spacing_type->addItems(QStringList() << tr("Single") << tr("1.5 Lines") << tr("Double") << tr("Proportional"));
+	m_line_spacing_type->addItems({ tr("Single"), tr("1.5 Lines"), tr("Double"), tr("Proportional") });
 	m_line_spacing_type->setCurrentIndex(3);
 
 	m_line_spacing = new QSpinBox(line_spacing);

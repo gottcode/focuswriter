@@ -101,7 +101,7 @@ int main(int argc, char** argv)
 			// Migrate data from old location
 			QString oldpath = Paths::oldDataPath();
 			if (QFile::exists(oldpath)) {
-				QStringList old_dirs = QStringList() << "";
+				QStringList old_dirs{ QString() };
 
 				QDir olddir(oldpath);
 				for (int i = 0; i < old_dirs.count(); ++i) {

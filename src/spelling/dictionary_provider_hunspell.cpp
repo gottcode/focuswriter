@@ -257,9 +257,9 @@ QStringList DictionaryProviderHunspell::availableDictionaries() const
 	while (i.hasNext()) {
 		QDir dir(i.next());
 
-		QStringList dic_files = dir.entryList(QStringList() << "*.dic*", QDir::Files, QDir::Name | QDir::IgnoreCase);
+		QStringList dic_files = dir.entryList({ "*.dic*" }, QDir::Files, QDir::Name | QDir::IgnoreCase);
 		dic_files.replaceInStrings(QRegularExpression("\\.dic.*"), "");
-		QStringList aff_files = dir.entryList(QStringList() << "*.aff*", QDir::Files);
+		QStringList aff_files = dir.entryList({ "*.aff*" }, QDir::Files);
 		aff_files.replaceInStrings(QRegularExpression("\\.aff.*"), "");
 
 		for (const QString& language : qAsConst(dic_files)) {

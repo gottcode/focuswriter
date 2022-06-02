@@ -580,7 +580,7 @@ void Preferences::reload()
 	m_save_format = settings.value("Save/DefaultFormat", "odt").toString();
 
 	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
-	m_toolbar_actions = QStringList() << "New" << "Open" << "Save" << "|" << "Undo" << "Redo" << "|" << "Cut" << "Copy" << "Paste" << "|" << "Find" << "Replace" << "|" << "Themes";
+	m_toolbar_actions = QStringList{ "New", "Open", "Save", "|", "Undo", "Redo", "|", "Cut", "Copy", "Paste", "|", "Find", "Replace", "|", "Themes" };
 	m_toolbar_actions = settings.value("Toolbar/Actions", m_toolbar_actions).toStringList();
 
 	m_highlight_misspelled = settings.value("Spelling/HighlightMisspelled", true).toBool();

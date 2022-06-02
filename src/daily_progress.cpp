@@ -384,11 +384,9 @@ int DailyProgress::rowCount(const QModelIndex& parent) const
 
 void DailyProgress::save()
 {
-	m_file->setValue(m_current->date().toString(Qt::ISODate), QVariantList()
-			<< m_words
-			<< m_msecs
-			<< m_type
-			<< m_goal);
+	m_file->setValue(m_current->date().toString(Qt::ISODate),
+		QVariantList{ m_words, m_msecs, m_type, m_goal }
+	);
 }
 
 //-----------------------------------------------------------------------------

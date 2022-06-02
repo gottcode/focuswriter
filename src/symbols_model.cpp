@@ -79,7 +79,8 @@ QStringList SymbolsModel::filters(int group) const
 
 QStringList SymbolsModel::filterGroups() const
 {
-	return QStringList() << tr("Blocks") << tr("Scripts");
+	static const QStringList groups{ tr("Blocks"), tr("Scripts") };
+	return groups;
 }
 
 //-----------------------------------------------------------------------------

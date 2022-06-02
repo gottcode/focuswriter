@@ -71,13 +71,14 @@ QString FormatManager::filter(const QString& type)
 
 QStringList FormatManager::filters(const QString& type)
 {
-	static const QStringList default_filters = QStringList()
-			<< filter("odt")
-			<< filter("fodt")
-			<< filter("docx")
-			<< filter("rtf")
-			<< filter("txt")
-			<< (tr("All Files") + QLatin1String(" (*)"));
+	static const QStringList default_filters{
+		filter("odt"),
+		filter("fodt"),
+		filter("docx"),
+		filter("rtf"),
+		filter("txt"),
+		(tr("All Files") + QLatin1String(" (*)"))
+	};
 
 	QStringList result = default_filters;
 	if (!type.isEmpty()) {
@@ -110,7 +111,8 @@ bool FormatManager::isRichText(const QString& filename)
 
 QStringList FormatManager::types()
 {
-	return QStringList() << "odt" << "fodt" << "docx" << "rtf" << "txt";
+	static const QStringList types{ "odt", "fodt", "docx", "rtf", "txt" };
+	return types;
 }
 
 //-----------------------------------------------------------------------------

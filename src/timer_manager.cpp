@@ -302,7 +302,7 @@ void TimerManager::setupRecentMenu()
 			memo.truncate(140);
 
 			QAction* action = new QAction(this);
-			action->setData(QStringList() << type << time << memo);
+			action->setData(QStringList{ type, time, memo });
 			if (i == 0) {
 				time = QTime::fromString(time, Qt::ISODate).toString(tr("+HH:mm:ss")).simplified();
 				delay_timers.append(action);

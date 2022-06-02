@@ -1080,7 +1080,7 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	m_shortcuts->setRootIsDecorated(false);
 	m_shortcuts->setColumnCount(3);
 	m_shortcuts->setColumnHidden(2, true);
-	m_shortcuts->setHeaderLabels(QStringList() << tr("Command") << tr("Shortcut") << tr("Action"));
+	m_shortcuts->setHeaderLabels({ tr("Command"), tr("Shortcut"), tr("Action") });
 	m_shortcuts->header()->setSectionsClickable(false);
 	m_shortcuts->header()->setSectionsMovable(false);
 	m_shortcuts->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
@@ -1101,7 +1101,7 @@ QWidget* PreferencesDialog::initShortcutsTab()
 			text = action->text();
 		}
 		text.replace("&", "");
-		QStringList strings = QStringList() << text << action->shortcut().toString(QKeySequence::NativeText) << name;
+		const QStringList strings{ text, action->shortcut().toString(QKeySequence::NativeText), name };
 		QTreeWidgetItem* item = new QTreeWidgetItem(m_shortcuts, strings);
 		item->setIcon(0, icon);
 	}

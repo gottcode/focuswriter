@@ -26,98 +26,93 @@ namespace
 
 #ifndef Q_OS_WIN
 
-QHash<QLocale::Language, QByteArray> mapCodePages()
-{
-	QHash<QLocale::Language, QByteArray> codepages;
-	codepages[QLocale::Thai] = "CP874";
-	codepages[QLocale::Japanese] = "CP932";
-	codepages[QLocale::Korean] = "CP949";
-	codepages[QLocale::Albanian] = "CP1250";
-	codepages[QLocale::Bosnian] = "CP1250";
-	codepages[QLocale::Croatian] = "CP1250";
-	codepages[QLocale::Czech] = "CP1250";
-	codepages[QLocale::Hungarian] = "CP1250";
-	codepages[QLocale::Polish] = "CP1250";
-	codepages[QLocale::Romanian] = "CP1250";
-	codepages[QLocale::Serbian] = "CP1250";
-	codepages[QLocale::Slovak] = "CP1250";
-	codepages[QLocale::Slovenian] = "CP1250";
-	codepages[QLocale::Turkmen] = "CP1250";
-	codepages[QLocale::Bashkir] = "CP1251";
-	codepages[QLocale::Bulgarian] = "CP1251";
-	codepages[QLocale::Byelorussian] = "CP1251";
-	codepages[QLocale::Kazakh] = "CP1251";
-	codepages[QLocale::Kirghiz] = "CP1251";
-	codepages[QLocale::Macedonian] = "CP1251";
-	codepages[QLocale::Mongolian] = "CP1251";
-	codepages[QLocale::Russian] = "CP1251";
-	codepages[QLocale::Tajik] = "CP1251";
-	codepages[QLocale::Tatar] = "CP1251";
-	codepages[QLocale::Ukrainian] = "CP1251";
-	codepages[QLocale::Afrikaans] = "CP1252";
-	codepages[QLocale::Basque] = "CP1252";
-	codepages[QLocale::Breton] = "CP1252";
-	codepages[QLocale::Corsican] = "CP1252";
-	codepages[QLocale::Danish] = "CP1252";
-	codepages[QLocale::Dutch] = "CP1252";
-	codepages[QLocale::English] = "CP1252";
-	codepages[QLocale::Faroese] = "CP1252";
-	codepages[QLocale::Filipino] = "CP1252";
-	codepages[QLocale::Finnish] = "CP1252";
-	codepages[QLocale::French] = "CP1252";
-	codepages[QLocale::Frisian] = "CP1252";
-	codepages[QLocale::Galician] = "CP1252";
-	codepages[QLocale::Gaelic] = "CP1252";
-	codepages[QLocale::German] = "CP1252";
-	codepages[QLocale::Greenlandic] = "CP1252";
-	codepages[QLocale::Hausa] = "CP1252";
-	codepages[QLocale::Icelandic] = "CP1252";
-	codepages[QLocale::Igbo] = "CP1252";
-	codepages[QLocale::Indonesian] = "CP1252";
-	codepages[QLocale::Inuktitut] = "CP1252";
-	codepages[QLocale::Irish] = "CP1252";
-	codepages[QLocale::Italian] = "CP1252";
-	codepages[QLocale::Kinyarwanda] = "CP1252";
-	codepages[QLocale::Malay] = "CP1252";
-	codepages[QLocale::NorwegianBokmal] = "CP1252";
-	codepages[QLocale::NorwegianNynorsk] = "CP1252";
-	codepages[QLocale::Occitan] = "CP1252";
-	codepages[QLocale::Portuguese] = "CP1252";
-	codepages[QLocale::RhaetoRomance] = "CP1252";
-	codepages[QLocale::Quechua] = "CP1252";
-	codepages[QLocale::Spanish] = "CP1252";
-	codepages[QLocale::Swahili] = "CP1252";
-	codepages[QLocale::Swedish] = "CP1252";
-	codepages[QLocale::Welsh] = "CP1252";
-	codepages[QLocale::Wolof] = "CP1252";
-	codepages[QLocale::Xhosa] = "CP1252";
-	codepages[QLocale::Yoruba] = "CP1252";
-	codepages[QLocale::Zulu] = "CP1252";
-	codepages[QLocale::Greek] = "CP1253";
-	codepages[QLocale::Azerbaijani] = "CP1254";
-	codepages[QLocale::Turkish] = "CP1254";
-	codepages[QLocale::Uzbek] = "CP1254";
-	codepages[QLocale::Hebrew] = "CP1255";
-	codepages[QLocale::Yiddish] = "CP1255";
-	codepages[QLocale::Arabic] = "CP1256";
-	codepages[QLocale::Persian] = "CP1256";
-	codepages[QLocale::Urdu] = "CP1256";
-	codepages[QLocale::Estonian] = "CP1257";
-	codepages[QLocale::Latvian] = "CP1257";
-	codepages[QLocale::Lithuanian] = "CP1257";
-	codepages[QLocale::Vietnamese] = "CP1258";
-	codepages[QLocale::CentralMoroccoTamazight] = "CP1252";
-	codepages[QLocale::LowGerman] = "CP1252";
-	codepages[QLocale::NorthernSami] = "CP1252";
-	codepages[QLocale::SwissGerman] = "CP1252";
-	return codepages;
-}
-
 QByteArray fetchCodePage()
 {
 	// Search code page map for current language
 	QLocale::Language language = QLocale().language();
-	static const QHash<QLocale::Language, QByteArray> codepages = mapCodePages();
+	static const QHash<QLocale::Language, QByteArray> codepages{
+		{ QLocale::Thai, "CP874" },
+		{ QLocale::Japanese, "CP932" },
+		{ QLocale::Korean, "CP949" },
+		{ QLocale::Albanian, "CP1250" },
+		{ QLocale::Bosnian, "CP1250" },
+		{ QLocale::Croatian, "CP1250" },
+		{ QLocale::Czech, "CP1250" },
+		{ QLocale::Hungarian, "CP1250" },
+		{ QLocale::Polish, "CP1250" },
+		{ QLocale::Romanian, "CP1250" },
+		{ QLocale::Serbian, "CP1250" },
+		{ QLocale::Slovak, "CP1250" },
+		{ QLocale::Slovenian, "CP1250" },
+		{ QLocale::Turkmen, "CP1250" },
+		{ QLocale::Bashkir, "CP1251" },
+		{ QLocale::Bulgarian, "CP1251" },
+		{ QLocale::Byelorussian, "CP1251" },
+		{ QLocale::Kazakh, "CP1251" },
+		{ QLocale::Kirghiz, "CP1251" },
+		{ QLocale::Macedonian, "CP1251" },
+		{ QLocale::Mongolian, "CP1251" },
+		{ QLocale::Russian, "CP1251" },
+		{ QLocale::Tajik, "CP1251" },
+		{ QLocale::Tatar, "CP1251" },
+		{ QLocale::Ukrainian, "CP1251" },
+		{ QLocale::Afrikaans, "CP1252" },
+		{ QLocale::Basque, "CP1252" },
+		{ QLocale::Breton, "CP1252" },
+		{ QLocale::CentralMoroccoTamazight, "CP1252" },
+		{ QLocale::Corsican, "CP1252" },
+		{ QLocale::Danish, "CP1252" },
+		{ QLocale::Dutch, "CP1252" },
+		{ QLocale::English, "CP1252" },
+		{ QLocale::Faroese, "CP1252" },
+		{ QLocale::Filipino, "CP1252" },
+		{ QLocale::Finnish, "CP1252" },
+		{ QLocale::French, "CP1252" },
+		{ QLocale::Frisian, "CP1252" },
+		{ QLocale::Galician, "CP1252" },
+		{ QLocale::Gaelic, "CP1252" },
+		{ QLocale::German, "CP1252" },
+		{ QLocale::Greenlandic, "CP1252" },
+		{ QLocale::Hausa, "CP1252" },
+		{ QLocale::Icelandic, "CP1252" },
+		{ QLocale::Igbo, "CP1252" },
+		{ QLocale::Indonesian, "CP1252" },
+		{ QLocale::Inuktitut, "CP1252" },
+		{ QLocale::Irish, "CP1252" },
+		{ QLocale::Italian, "CP1252" },
+		{ QLocale::Kinyarwanda, "CP1252" },
+		{ QLocale::LowGerman, "CP1252" },
+		{ QLocale::Malay, "CP1252" },
+		{ QLocale::NorthernSami, "CP1252" },
+		{ QLocale::NorwegianBokmal, "CP1252" },
+		{ QLocale::NorwegianNynorsk, "CP1252" },
+		{ QLocale::Occitan, "CP1252" },
+		{ QLocale::Portuguese, "CP1252" },
+		{ QLocale::RhaetoRomance, "CP1252" },
+		{ QLocale::Quechua, "CP1252" },
+		{ QLocale::Spanish, "CP1252" },
+		{ QLocale::Swahili, "CP1252" },
+		{ QLocale::Swedish, "CP1252" },
+		{ QLocale::SwissGerman, "CP1252" },
+		{ QLocale::Welsh, "CP1252" },
+		{ QLocale::Wolof, "CP1252" },
+		{ QLocale::Xhosa, "CP1252" },
+		{ QLocale::Yoruba, "CP1252" },
+		{ QLocale::Zulu, "CP1252" },
+		{ QLocale::Greek, "CP1253" },
+		{ QLocale::Azerbaijani, "CP1254" },
+		{ QLocale::Turkish, "CP1254" },
+		{ QLocale::Uzbek, "CP1254" },
+		{ QLocale::Hebrew, "CP1255" },
+		{ QLocale::Yiddish, "CP1255" },
+		{ QLocale::Arabic, "CP1256" },
+		{ QLocale::Persian, "CP1256" },
+		{ QLocale::Urdu, "CP1256" },
+		{ QLocale::Estonian, "CP1257" },
+		{ QLocale::Latvian, "CP1257" },
+		{ QLocale::Lithuanian, "CP1257" },
+		{ QLocale::Vietnamese, "CP1258" }
+	};
 	QByteArray codepage = codepages.value(language);
 
 	// Guess at Chinese code page for current country

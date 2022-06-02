@@ -224,7 +224,7 @@ void Theme::copyBackgrounds()
 	QDir dir(path() + "/Images");
 	QStringList images;
 	QHash<QString, QString> old_images;
-	const QHash<QString, QString> source_images = {
+	static const QHash<QString, QString> source_images{
 		{ "2-77534bf3da7fb42c830772be8d279be79869deb7.jpg", m_path_default + "/images/spacedreams.jpg" },
 		{ "2-1ccf9867f755b306830852e8fbf36952f93ab3fe.jpg", m_path_default + "/images/writingdesk.jpg" }
 	};

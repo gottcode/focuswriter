@@ -79,7 +79,7 @@ static inline int cursorWidth()
 namespace
 {
 
-QList<int> g_untitled_indexes = QList<int>() << 0;
+QList<int> g_untitled_indexes{ 0 };
 
 class TextEdit : public QTextEdit
 {
