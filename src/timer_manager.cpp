@@ -267,7 +267,9 @@ void TimerManager::toggleVisibility()
 
 void TimerManager::updateClock()
 {
-	m_clock_label->setText(QLocale().toString(QTime::currentTime()).simplified());
+	// Store clock format as changing locales already requires a program restart
+	static const QString format = QLocale().timeFormat().simplified();
+	m_clock_label->setText(QTime::currentTime().toString(format));
 }
 
 //-----------------------------------------------------------------------------

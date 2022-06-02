@@ -913,7 +913,9 @@ void Window::tabMoved(int from, int to)
 
 void Window::updateClock()
 {
-	m_clock_label->setText(QLocale().toString(QTime::currentTime(), QLocale::ShortFormat));
+	// Store clock format as changing locales already requires a program restart
+	static const QString format = QLocale().timeFormat(QLocale::ShortFormat).simplified();
+	m_clock_label->setText(QTime::currentTime().toString(format));
 }
 
 //-----------------------------------------------------------------------------
