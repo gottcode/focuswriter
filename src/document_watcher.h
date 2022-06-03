@@ -23,8 +23,8 @@ class DocumentWatcher : public QObject
 
 	struct Details
 	{
-		Details() :
-			ignored(false)
+		Details()
+			: ignored(false)
 		{
 		}
 

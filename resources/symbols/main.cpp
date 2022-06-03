@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012-2020 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2022 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include <QBuffer>
 #include <QCoreApplication>
@@ -36,18 +23,27 @@
 
 struct Filter
 {
-	Filter(const QByteArray& name_ = QByteArray()) :
-		name(name_), size(0) { }
+	Filter(const QByteArray& name_ = QByteArray())
+		: name(name_)
+		, size(0)
+	{
+	}
 
 	void addRange(char32_t start, char32_t end);
 
 	struct Range
 	{
-		Range() :
-			start(0), end(0) { }
+		Range()
+			: start(0)
+			, end(0)
+		{
+		}
 
-		Range(char32_t start_code, char32_t end_code) :
-			start(start_code), end(end_code) { }
+		Range(char32_t start_code, char32_t end_code)
+			: start(start_code)
+			, end(end_code)
+		{
+		}
 
 		char32_t start;
 		char32_t end;
