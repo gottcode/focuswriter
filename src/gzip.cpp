@@ -21,7 +21,7 @@ void gzip(const QString& path)
 	if (!file.open(QFile::ReadOnly)) {
 		return;
 	}
-	QByteArray data = file.readAll();
+	const QByteArray data = file.readAll();
 	file.close();
 
 	if (!file.open(QFile::WriteOnly)) {
