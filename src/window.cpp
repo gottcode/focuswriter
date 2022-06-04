@@ -122,7 +122,7 @@ Window::Window(const QStringList& command_line_files)
 
 	// Set up watcher for documents
 	m_document_watcher = new DocumentWatcher(this);
-	connect(m_document_watcher, &DocumentWatcher::closeDocument, this, qOverload<Document*>(&Window::closeDocument));
+	connect(m_document_watcher, &DocumentWatcher::closeDocument, this, qOverload<const Document*>(&Window::closeDocument));
 	connect(m_document_watcher, &DocumentWatcher::showDocument, this, &Window::showDocument);
 
 	// Set up thread for caching documents
@@ -175,7 +175,7 @@ Window::Window(const QStringList& command_line_files)
 	m_clock_timer->setInterval(60000);
 	connect(m_clock_timer, &QTimer::timeout, this, &Window::updateClock);
 	connect(m_clock_timer, &QTimer::timeout, m_timers, &TimerManager::saveTimers);
-	int delay = (60 - QTime::currentTime().second()) * 1000;
+	const int delay = (60 - QTime::currentTime().second()) * 1000;
 	QTimer::singleShot(delay, m_clock_timer, qOverload<>(&QTimer::start));
 	QTimer::singleShot(delay, this, &Window::updateClock);
 
@@ -292,7 +292,7 @@ Window::Window(const QStringList& command_line_files)
 	Theme::copyBackgrounds();
 	{
 		// Force a reload of previews
-		ThemeManager manager(settings);
+		const ThemeManager manager(settings);
 	}
 
 	// Update margin
@@ -317,7 +317,7 @@ Window::Window(const QStringList& command_line_files)
 		for (int i = 0, count = files.count(); i < count; ++i) {
 			if (!files.at(i).isEmpty()) {
 				// Ignore empty cache files
-				QFileInfo info(datafiles.at(i));
+				const QFileInfo info(datafiles.at(i));
 				if (!info.exists() || !info.size() || compareFiles(files[i], datafiles[i])) {
 					datafiles[i] = files[i];
 					continue;
@@ -423,7 +423,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	int open_files = m_documents->count();
 	for (int i = 0, count = files.count(); i < count; ++i) {
 		// Skip file known to be unsupported
-		if (!skip.isEmpty() && (skip.first() == i)) {
+		if (!skip.isEmpty() && (skip.constFirst() == i)) {
 			skip.removeFirst();
 			continue;
 		// Attempt to load file or datafile
@@ -432,7 +432,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			missing.append(QDir::toNativeSeparators(files.at(i)));
 		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
 			// Track if unable to read file
-			int index = m_documents->currentIndex();
+			const int index = m_documents->currentIndex();
 			errors.append(QDir::toNativeSeparators(files.at(i)));
 			closeDocument(index, true);
 		} else if (m_documents->currentDocument()->isReadOnly() && (m_documents->count() > open_files)) {
@@ -477,7 +477,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 
 	// Open any files queued during load
 	if (!m_queued_documents.isEmpty()) {
-		QStringList queued = m_queued_documents;
+		const QStringList queued = m_queued_documents;
 		m_queued_documents.clear();
 		addDocuments(queued, queued);
 	}
@@ -525,7 +525,7 @@ bool Window::saveDocuments(QSettings* session)
 	}
 
 	// Save files
-	int active = m_tabs->currentIndex();
+	const int active = m_tabs->currentIndex();
 	QStringList files;
 	QStringList positions;
 	for (int i = 0, count = m_documents->count(); i < count; ++i) {
@@ -536,7 +536,7 @@ bool Window::saveDocuments(QSettings* session)
 		}
 
 		Document* document = m_documents->document(i);
-		QString filename = document->filename();
+		const QString filename = document->filename();
 		if (!filename.isEmpty()) {
 			files.append(filename);
 			positions.append(QString::number(document->text()->textCursor().position()));
@@ -671,13 +671,13 @@ void Window::newDocument()
 void Window::openDocument()
 {
 	QSettings settings;
-	QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-	QString path = settings.value("Save/Location", default_path).toString();
+	const QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+	const QString path = settings.value("Save/Location", default_path).toString();
 
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
+	const QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
-		settings.setValue("Save/Location", QFileInfo(filenames.last()).absolutePath());
+		settings.setValue("Save/Location", QFileInfo(filenames.constLast()).absolutePath());
 	}
 }
 
@@ -694,7 +694,7 @@ void Window::renameDocument()
 
 void Window::saveAllDocuments()
 {
-	int index = m_tabs->currentIndex();
+	const int index = m_tabs->currentIndex();
 	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		Document* document = m_documents->document(i);
 		if (!document->filename().isEmpty()) {
@@ -711,7 +711,7 @@ void Window::saveAllDocuments()
 
 void Window::closeDocument()
 {
-	int index = m_documents->currentIndex();
+	const int index = m_documents->currentIndex();
 	if (!saveDocument(index)) {
 		return;
 	}
@@ -720,7 +720,7 @@ void Window::closeDocument()
 
 //-----------------------------------------------------------------------------
 
-void Window::closeDocument(Document* document)
+void Window::closeDocument(const Document* document)
 {
 	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		if (m_documents->document(i) == document) {
@@ -731,7 +731,7 @@ void Window::closeDocument(Document* document)
 
 //-----------------------------------------------------------------------------
 
-void Window::showDocument(Document* document)
+void Window::showDocument(const Document* document)
 {
 	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		if (m_documents->document(i) == document) {
@@ -921,7 +921,7 @@ void Window::updateClock()
 
 void Window::updateDetails()
 {
-	Document* document = m_documents->currentDocument();
+	const Document* document = m_documents->currentDocument();
 	m_character_label->setText(tr("Characters: %L1 / %L2").arg(document->characterCount()).arg(document->characterAndSpaceCount()));
 	m_page_label->setText(tr("Pages: %L1").arg(document->pageCount()));
 	m_paragraph_label->setText(tr("Paragraphs: %L1").arg(document->paragraphCount()));
@@ -932,14 +932,14 @@ void Window::updateDetails()
 
 void Window::updateFormatActions()
 {
-	Document* document = m_documents->currentDocument();
+	const Document* document = m_documents->currentDocument();
 	if (!document) {
 		return;
 	}
 
 	m_actions["FormatIndentDecrease"]->setEnabled(!document->isReadOnly() && document->text()->textCursor().blockFormat().indent() > 0);
 
-	QTextCharFormat format = document->text()->currentCharFormat();
+	const QTextCharFormat format = document->text()->currentCharFormat();
 	m_actions["FormatBold"]->setChecked(format.fontWeight() == QFont::Bold);
 	m_actions["FormatItalic"]->setChecked(format.fontItalic());
 	m_actions["FormatStrikeOut"]->setChecked(format.fontStrikeOut());
@@ -952,12 +952,12 @@ void Window::updateFormatActions()
 
 void Window::updateFormatAlignmentActions()
 {
-	Document* document = m_documents->currentDocument();
+	const Document* document = m_documents->currentDocument();
 	if (!document) {
 		return;
 	}
 
-	QTextBlockFormat format = document->text()->textCursor().blockFormat();
+	const QTextBlockFormat format = document->text()->textCursor().blockFormat();
 
 	if (format.layoutDirection() == Qt::LeftToRight) {
 		m_actions["FormatDirectionLTR"]->setChecked(true);
@@ -967,7 +967,7 @@ void Window::updateFormatAlignmentActions()
 		m_actions[QApplication::isLeftToRight() ? "FormatDirectionLTR" : "FormatDirectionRTL"]->setChecked(true);
 	}
 
-	Qt::Alignment alignment = document->text()->alignment();
+	const Qt::Alignment alignment = document->text()->alignment();
 	if (alignment & Qt::AlignLeft) {
 		m_actions["FormatAlignLeft"]->setChecked(true);
 	} else if (alignment & Qt::AlignRight) {
@@ -978,7 +978,7 @@ void Window::updateFormatAlignmentActions()
 		m_actions["FormatAlignJustify"]->setChecked(true);
 	}
 
-	int heading = format.property(QTextFormat::UserProperty).toInt();
+	const int heading = format.property(QTextFormat::UserProperty).toInt();
 	m_headings_actions->actions().at(heading)->setChecked(true);
 }
 
@@ -997,10 +997,10 @@ void Window::updateSave()
 
 bool Window::addDocument(const QString& file, const QString& datafile, int position)
 {
-	QFileInfo info(file);
+	const QFileInfo info(file);
 	if (!file.isEmpty()) {
 		// Check if already open
-		QString canonical_filename = info.canonicalFilePath();
+		const QString canonical_filename = info.canonicalFilePath();
 		for (int i = 0, count = m_documents->count(); i < count; ++i) {
 			if (QFileInfo(m_documents->document(i)->filename()).canonicalFilePath() == canonical_filename) {
 				m_tabs->setCurrentIndex(i);
@@ -1015,8 +1015,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	}
 
 	// Show filename in load screen
-	bool show_load = false;
-	show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
+	const bool show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
 	if (m_load_screen->isVisible() || show_load) {
 		if (!file.isEmpty()) {
 			m_load_screen->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
@@ -1064,7 +1063,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, &Document::modificationChanged, this, &Window::updateSave);
 
 	// Add tab for document
-	int index = m_tabs->addTab(tr("Untitled"));
+	const int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
@@ -1222,8 +1221,8 @@ void Window::hideInterface()
 void Window::updateMargin()
 {
 	QApplication::processEvents();
-	int header = centralWidget()->mapToParent(QPoint(0,0)).y();
-	int footer = m_footer->sizeHint().height();
+	const int header = centralWidget()->mapToParent(QPoint(0,0)).y();
+	const int footer = m_footer->sizeHint().height();
 	m_documents->setMargins(footer, header);
 }
 
@@ -1231,8 +1230,8 @@ void Window::updateMargin()
 
 void Window::updateTab(int index)
 {
-	Document* document = m_documents->document(index);
-	QString name = document->title();
+	const Document* document = m_documents->document(index);
+	const QString name = document->title();
 	m_tabs->setTabText(index, name + (document->isModified() ? "*" : ""));
 	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(document->filename()));
 	m_documents->updateDocument(index);
@@ -1247,9 +1246,9 @@ void Window::updateTab(int index)
 
 void Window::updateWriteState(int index)
 {
-	Document* document = m_documents->document(index);
+	const Document* document = m_documents->document(index);
 
-	bool writable = !document->isReadOnly();
+	const bool writable = !document->isReadOnly();
 	m_actions["Paste"]->setEnabled(writable);
 	m_actions["PasteUnformatted"]->setEnabled(writable);
 	m_actions["Replace"]->setEnabled(writable);

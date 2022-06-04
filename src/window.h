@@ -58,8 +58,8 @@ private slots:
 	void renameDocument();
 	void saveAllDocuments();
 	void closeDocument();
-	void closeDocument(Document* document);
-	void showDocument(Document* document);
+	void closeDocument(const Document* document);
+	void showDocument(const Document* document);
 	void nextDocument();
 	void previousDocument();
 	void firstDocument();
