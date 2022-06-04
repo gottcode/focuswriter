@@ -21,7 +21,7 @@ class SceneModel : public QAbstractListModel
 
 	struct Scene
 	{
-		BlockStats* stats;
+		const BlockStats* stats;
 		QString text;
 		QString display;
 		int block_number;
@@ -34,7 +34,7 @@ public:
 
 	QModelIndex findScene(const QTextCursor& cursor) const;
 	void moveScenes(QList<int> scenes, int row);
-	void removeScene(BlockStats* stats);
+	void removeScene(const BlockStats* stats);
 	void removeAllScenes();
 	void updateScene(BlockStats* stats, const QTextBlock& block);
 	void setUpdatesBlocked(bool blocked);
@@ -56,11 +56,11 @@ private slots:
 	void invalidateScenes();
 
 private:
-	void addScene(BlockStats* stats, const QTextBlock& block, const QString& text);
-	int findSceneByStats(BlockStats* stats) const;
+	void addScene(const BlockStats* stats, const QTextBlock& block, const QString& text);
+	int findSceneByStats(const BlockStats* stats) const;
 	void resetScenes();
 	void selectScene(const Scene& scene, QTextCursor& cursor) const;
-	void updateScene(BlockStats* stats, const QString& text);
+	void updateScene(const BlockStats* stats, const QString& text);
 	void updateScene(const QTextBlock& block);
 
 private:

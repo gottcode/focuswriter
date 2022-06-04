@@ -45,7 +45,7 @@ SceneModel::~SceneModel()
 QModelIndex SceneModel::findScene(const QTextCursor& cursor) const
 {
 	// Find block stats for text cursor
-	BlockStats* stats = nullptr;
+	const BlockStats* stats = nullptr;
 	for (QTextBlock block = cursor.block(); block.isValid(); block = block.previous()) {
 		stats = static_cast<BlockStats*>(block.userData());
 		if (stats && stats->isScene()) {
@@ -58,7 +58,7 @@ QModelIndex SceneModel::findScene(const QTextCursor& cursor) const
 	}
 
 	// Find block stats in scene list
-	int pos = findSceneByStats(stats);
+	const int pos = findSceneByStats(stats);
 	return (pos != -1) ? index(pos) : QModelIndex();
 }
 
@@ -84,7 +84,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	int position = 0;
 	if ((row < m_scenes.size()) && (row > -1)) {
 		const Scene& scene = m_scenes.at(row);
-		QTextBlock block = m_document->document()->findBlockByNumber(scene.block_number);
+		const QTextBlock block = m_document->document()->findBlockByNumber(scene.block_number);
 		if (block.userData() == scene.stats) {
 			position = block.position();
 		} else {
@@ -109,7 +109,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	cursor.setPosition(position);
 
 	// Make sure inserted text begins with divider
-	if (!fragments.first().toPlainText().startsWith(f_scene_divider)) {
+	if (!fragments.constFirst().toPlainText().startsWith(f_scene_divider)) {
 		cursor.insertText(f_scene_divider + "\n");
 	}
 
@@ -136,7 +136,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	}
 
 	// End edit block by moving to start of dropped scenes
-	if (row > scenes.first()) {
+	if (row > scenes.constFirst()) {
 		position -= delta;
 	}
 	cursor.setPosition(position);
@@ -146,10 +146,10 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 
 //-----------------------------------------------------------------------------
 
-void SceneModel::removeScene(BlockStats* stats)
+void SceneModel::removeScene(const BlockStats* stats)
 {
 	// Find scene containing stats
-	int pos = findSceneByStats(stats);
+	const int pos = findSceneByStats(stats);
 	if (pos == -1) {
 		return;
 	}
@@ -187,8 +187,8 @@ void SceneModel::updateScene(BlockStats* stats, const QTextBlock& block)
 	}
 
 	QString text = block.text();
-	bool was_scene = stats->isScene();
-	bool is_scene = !f_scene_divider.isEmpty() && text.startsWith(f_scene_divider);
+	const bool was_scene = stats->isScene();
+	const bool is_scene = !f_scene_divider.isEmpty() && text.startsWith(f_scene_divider);
 	stats->setScene(is_scene || (block.blockNumber() == 0));
 	if (stats->isScene()) {
 		// Add or update scene divider block
@@ -231,7 +231,7 @@ QVariant SceneModel::data(const QModelIndex& index, int role) const
 
 			QStringList lines;
 			for (QTextBlock block = m_document->document()->begin(); block.isValid(); block = block.next()) {
-				BlockStats* stats = static_cast<BlockStats*>(block.userData());
+				const BlockStats* stats = static_cast<BlockStats*>(block.userData());
 				if (stats == scene.stats) {
 					scene.block_number = block.blockNumber();
 					lines += scene.text;
@@ -239,7 +239,7 @@ QVariant SceneModel::data(const QModelIndex& index, int role) const
 					if (stats && stats->isScene()) {
 						break;
 					} else {
-						QString line = block.text().trimmed();
+						const QString line = block.text().trimmed();
 						if (!line.isEmpty()) {
 							lines += line;
 						}
@@ -268,7 +268,7 @@ QVariant SceneModel::data(const QModelIndex& index, int role) const
 
 bool SceneModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
-	QString format = mimeTypes().constFirst();
+	const QString format = mimeTypes().constFirst();
 	if (!data || !data->hasFormat(format) || (action != Qt::MoveAction) || (column > 0) || parent.isValid()) {
 		return false;
 	}
@@ -363,7 +363,8 @@ void SceneModel::selectScene()
 	// Select to first block of scene
 	cursor.movePosition(QTextCursor::StartOfBlock);
 	for (QTextBlock block = cursor.block(); block.isValid(); block = block.previous()) {
-		if (block.userData() && static_cast<BlockStats*>(block.userData())->isScene()) {
+		const BlockStats* stats = static_cast<BlockStats*>(block.userData());
+		if (stats && stats->isScene()) {
 			break;
 		}
 		cursor.movePosition(QTextCursor::StartOfBlock);
@@ -374,7 +375,8 @@ void SceneModel::selectScene()
 	// Select to last block of scene
 	cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
 	for (QTextBlock block = cursor.block(); block.isValid(); block = block.next()) {
-		if (block.userData() && static_cast<BlockStats*>(block.userData())->isScene()) {
+		const BlockStats* stats = static_cast<BlockStats*>(block.userData());
+		if (stats && stats->isScene()) {
 			break;
 		}
 		cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
@@ -388,7 +390,7 @@ void SceneModel::selectScene()
 
 void SceneModel::invalidateScenes()
 {
-	int count = m_scenes.count();
+	const int count = m_scenes.count();
 	if (count == 0) {
 		return;
 	}
@@ -401,12 +403,12 @@ void SceneModel::invalidateScenes()
 
 //-----------------------------------------------------------------------------
 
-void SceneModel::addScene(BlockStats* stats, const QTextBlock& block, const QString& text)
+void SceneModel::addScene(const BlockStats* stats, const QTextBlock& block, const QString& text)
 {
 	// Find previous scene in document
-	BlockStats *before = nullptr, *check = nullptr;
+	const BlockStats* before = nullptr;
 	for (QTextBlock previous = block.previous(); previous.isValid(); previous = previous.previous()) {
-		check = static_cast<BlockStats*>(previous.userData());
+		const BlockStats* check = static_cast<BlockStats*>(previous.userData());
 		if (check && check->isScene()) {
 			before = check;
 			break;
@@ -414,12 +416,11 @@ void SceneModel::addScene(BlockStats* stats, const QTextBlock& block, const QStr
 	}
 
 	// Find previous scene in list
-	int pos = findSceneByStats(before) + 1;
+	const int pos = findSceneByStats(before) + 1;
 
 	// Insert scene
 	beginInsertRows(QModelIndex(), pos, pos);
-	Scene scene = { stats, text, QString(), block.blockNumber(), true };
-	m_scenes.insert(pos, scene);
+	m_scenes.insert(pos, Scene{ stats, text, QString(), block.blockNumber(), true });
 	endInsertRows();
 
 	// Make sure to update values
@@ -428,7 +429,7 @@ void SceneModel::addScene(BlockStats* stats, const QTextBlock& block, const QStr
 
 //-----------------------------------------------------------------------------
 
-int SceneModel::findSceneByStats(BlockStats* stats) const
+int SceneModel::findSceneByStats(const BlockStats* stats) const
 {
 	int pos = -1;
 	for (int i = m_scenes.count() - 1; i >= 0; --i) {
@@ -454,14 +455,13 @@ void SceneModel::resetScenes()
 		if (stats) {
 			// Check if block is a scene
 			QString text = block.text();
-			bool is_scene = !f_scene_divider.isEmpty() && text.startsWith(f_scene_divider);
+			const bool is_scene = !f_scene_divider.isEmpty() && text.startsWith(f_scene_divider);
 			stats->setScene(is_scene || (block.blockNumber() == 0));
 
 			// Add scene
 			if (stats->isScene()) {
 				text = is_scene ? text.mid(f_scene_divider.length()).trimmed() : text;
-				Scene scene = { stats, text, QString(), block.blockNumber(), true };
-				scenes += scene;
+				scenes.append(Scene{ stats, text, QString(), block.blockNumber(), true });
 			}
 		}
 	}
@@ -484,7 +484,7 @@ void SceneModel::resetScenes()
 void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
 {
 	// Select first block of scene
-	QTextBlock block = cursor.document()->findBlockByNumber(scene.block_number);
+	const QTextBlock block = cursor.document()->findBlockByNumber(scene.block_number);
 	int position = block.position();
 	if (block.userData() != scene.stats) {
 		for (QTextBlock block = cursor.document()->begin(); block.isValid(); block = block.next()) {
@@ -499,10 +499,9 @@ void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
 
 	// Select to last block of scene
 	cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
-	block = cursor.block();
 	for (QTextBlock block = cursor.block(); block.isValid(); block = block.next()) {
-		if ((block.userData() && static_cast<BlockStats*>(block.userData())->isScene())
-				|| block.text().startsWith(f_scene_divider)) {
+		const BlockStats* stats = static_cast<BlockStats*>(block.userData());
+		if ((stats && stats->isScene()) || block.text().startsWith(f_scene_divider)) {
 			break;
 		}
 		cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
@@ -512,10 +511,10 @@ void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
 
 //-----------------------------------------------------------------------------
 
-void SceneModel::updateScene(BlockStats* stats, const QString& text)
+void SceneModel::updateScene(const BlockStats* stats, const QString& text)
 {
 	// Find scene containing stats
-	int pos = findSceneByStats(stats);
+	const int pos = findSceneByStats(stats);
 	if (pos == -1) {
 		return;
 	}
@@ -523,7 +522,7 @@ void SceneModel::updateScene(BlockStats* stats, const QString& text)
 	// Modify scene
 	m_scenes[pos].text = text;
 	m_scenes[pos].outdated = true;
-	QModelIndex i = index(pos);
+	const QModelIndex i = index(pos);
 	emit dataChanged(i, i);
 }
 
@@ -532,7 +531,7 @@ void SceneModel::updateScene(BlockStats* stats, const QString& text)
 void SceneModel::updateScene(const QTextBlock& block)
 {
 	// Find first scene above block
-	BlockStats* stats = nullptr;
+	const BlockStats* stats = nullptr;
 	int count = 0;
 	for (QTextBlock check = block; check.isValid(); check = check.previous()) {
 		stats = static_cast<BlockStats*>(check.userData());
@@ -549,14 +548,14 @@ void SceneModel::updateScene(const QTextBlock& block)
 	}
 
 	// Find scene containing stats
-	int pos = findSceneByStats(stats);
+	const int pos = findSceneByStats(stats);
 	if (pos == -1) {
 		return;
 	}
 
 	// Modify scene
 	m_scenes[pos].outdated = true;
-	QModelIndex i = index(pos);
+	const QModelIndex i = index(pos);
 	emit dataChanged(i, i);
 }
 
