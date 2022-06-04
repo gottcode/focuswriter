@@ -37,7 +37,7 @@ private slots:
 	void streaksChanged();
 
 private:
-	QString createStreakText(const QString& title, const QDate& start, const QDate& end);
+	QString createStreakText(const QString& title, const QDate& start, const QDate& end) const;
 
 private:
 	DailyProgress* m_progress;

@@ -55,7 +55,7 @@ public:
 		} else if ((index.column() > 0) && (index.column() < 8)) {
 			opt.rect = opt.rect.adjusted(2,2,-2,-2);
 
-			int progress = qBound(0, index.data(Qt::UserRole).toInt(), 100);
+			const int progress = qBound(0, index.data(Qt::UserRole).toInt(), 100);
 			if (progress == 0) {
 				opt.backgroundBrush = opt.palette.alternateBase();
 			} else if (progress == 100) {
@@ -63,10 +63,10 @@ public:
 				painter->drawPixmap(QPointF(opt.rect.topLeft()), fetchStarBackground(opt, pixelratio));
 				opt.font.setBold(true);
 			} else {
-				qreal k = (progress * 0.009) + 0.1;
-				qreal ik = 1.0 - k;
-				QColor base = opt.palette.color(QPalette::Active, QPalette::AlternateBase);
-				QColor highlight = opt.palette.color(QPalette::Active, QPalette::Highlight);
+				const qreal k = (progress * 0.009) + 0.1;
+				const qreal ik = 1.0 - k;
+				const QColor base = opt.palette.color(QPalette::Active, QPalette::AlternateBase);
+				const QColor highlight = opt.palette.color(QPalette::Active, QPalette::Highlight);
 				opt.backgroundBrush = QColor(std::lround((highlight.red() * k) + (base.red() * ik)),
 						std::lround((highlight.green() * k) + (base.green() * ik)),
 						std::lround((highlight.blue() * k) + (base.blue() * ik)));
@@ -80,7 +80,7 @@ public:
 			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Base);
 		}
 
-		QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
+		const QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 		style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
 	}
 
@@ -98,16 +98,18 @@ private:
 			QPainter p(&m_pixmap);
 			p.fillRect(QRectF(opt.rect), opt.palette.color(QPalette::Active, QPalette::Base));
 			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Highlight);
-			QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
+			const QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 			style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, &p, opt.widget);
 
 			// Create star
-			QPolygonF star;
 			const qreal pi = acos(-1.0);
-			for (int i = 0; i < 5; ++i) {
-				qreal angle = ((i * 0.8) - 0.5) * pi;
-				star << QPointF(cos(angle), sin(angle));
-			}
+			static const QPolygonF star{
+				{ 0.0, -1.0 },
+				{ cos(0.3 * pi), sin(0.3 * pi) },
+				{ cos(1.1 * pi), sin(1.1 * pi) },
+				{ cos(1.9 * pi), sin(1.9 * pi) },
+				{ cos(2.7 * pi), sin(2.7 * pi) }
+			};
 
 			// Draw star
 			p.setRenderHint(QPainter::Antialiasing);
@@ -115,8 +117,8 @@ private:
 			QColor background = opt.palette.color(QPalette::Active, QPalette::HighlightedText);
 			background.setAlpha(64);
 			p.setBrush(background);
-			qreal size = (opt.rect.width() * 0.5) - 2.0;
-			qreal offset = 2.0 + size;
+			const qreal size = (opt.rect.width() * 0.5) - 2.0;
+			const qreal offset = 2.0 + size;
 			p.translate(offset, offset);
 			p.scale(size, size);
 			p.drawPolygon(star, Qt::WindingFill);
@@ -173,8 +175,8 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->setColumnWidth(8, 0);
 
 	// Set minimum size to always show up to 5 weeks of data
-	int frame = (m_display->style()->pixelMetric(QStyle::PM_DefaultFrameWidth) * 2) + 4;
-	int min_width = m_display->fontMetrics().averageCharWidth() * 10;
+	const int frame = (m_display->style()->pixelMetric(QStyle::PM_DefaultFrameWidth) * 2) + 4;
+	const int min_width = m_display->fontMetrics().averageCharWidth() * 10;
 	m_display->setMinimumWidth(size * 7 + frame + m_display->verticalScrollBar()->sizeHint().width() + min_width);
 	m_display->setMinimumHeight((size * 5) + frame + m_display->horizontalHeader()->sizeHint().height());
 	m_display->scrollToBottom();
@@ -279,9 +281,9 @@ void DailyProgressDialog::streaksChanged()
 
 //-----------------------------------------------------------------------------
 
-QString DailyProgressDialog::createStreakText(const QString& title, const QDate& start, const QDate& end)
+QString DailyProgressDialog::createStreakText(const QString& title, const QDate& start, const QDate& end) const
 {
-	int length = start.isValid() ? (start.daysTo(end) + 1) : 0;
+	const int length = start.isValid() ? (start.daysTo(end) + 1) : 0;
 	QString start_str, end_str;
 	if (length > 0) {
 		const QLocale locale;
