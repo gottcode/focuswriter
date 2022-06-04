@@ -19,7 +19,7 @@ public:
 	QByteArray encoding() const;
 
 	void setEncoding(const QByteArray& encoding);
-	void setDocument(QTextDocument* document);
+	void setDocument(const QTextDocument* document);
 	void setFileName(const QString& filename);
 	void setType(const QString& type);
 	void setWriteByteOrderMark(bool write_bom);
@@ -30,7 +30,7 @@ private:
 	QString m_filename;
 	QString m_type;
 	QByteArray m_encoding;
-	QTextDocument* m_document;
+	const QTextDocument* m_document;
 	bool m_write_bom;
 };
 
@@ -44,7 +44,7 @@ inline void DocumentWriter::setEncoding(const QByteArray& encoding)
 	m_encoding = encoding;
 }
 
-inline void DocumentWriter::setDocument(QTextDocument* document)
+inline void DocumentWriter::setDocument(const QTextDocument* document)
 {
 	m_document = document;
 }
