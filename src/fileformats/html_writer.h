@@ -21,7 +21,7 @@ public:
 		return m_error;
 	}
 
-	bool write(QIODevice* device, QTextDocument* document);
+	bool write(QIODevice* device, const QTextDocument* document);
 
 private:
 	QXmlStreamWriter m_xml;

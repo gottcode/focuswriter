@@ -12,7 +12,7 @@
 
 //-----------------------------------------------------------------------------
 
-bool HtmlWriter::write(QIODevice* device, QTextDocument* document)
+bool HtmlWriter::write(QIODevice* device, const QTextDocument* document)
 {
 	m_xml.setDevice(device);
 
@@ -33,7 +33,7 @@ bool HtmlWriter::write(QIODevice* device, QTextDocument* document)
 	m_xml.writeStartElement(QStringLiteral("body"));
 
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
-		QTextBlockFormat block_format = block.blockFormat();
+		const QTextBlockFormat block_format = block.blockFormat();
 		int block_format_elements = 0;
 		for (int i = 0, count = block_format.indent(); i < count; ++i) {
 			m_xml.writeStartElement(QStringLiteral("blockquote"));
@@ -101,8 +101,7 @@ bool HtmlWriter::write(QIODevice* device, QTextDocument* document)
 			const QString text = fragment.text();
 			int start = 0;
 			for (int i = 0; i < end; ++i) {
-				QChar c = text.at(i);
-				if (c.unicode() == 0x2028) {
+				if (text.at(i).unicode() == 0x2028) {
 					m_xml.writeCharacters(text.mid(start, i - start));
 					m_xml.writeEmptyElement(QStringLiteral("br"));
 					start = i + 1;
