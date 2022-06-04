@@ -55,7 +55,7 @@ QColor averageImage(const QString& filename, const QColor& fallback)
 	for (unsigned int y = 0; y < height; ++y) {
 		const QRgb* scanline = reinterpret_cast<const QRgb*>(image.scanLine(y));
 		for (unsigned int x = 0; x < width; ++x) {
-			QRgb pixel = scanline[x];
+			const QRgb pixel = scanline[x];
 			sum_r += qRed(pixel);
 			sum_g += qGreen(pixel);
 			sum_b += qBlue(pixel);
@@ -189,7 +189,7 @@ QString Theme::clone(const QString& id, bool is_default, const QString& name)
 	}
 
 	// Find name for duplicate theme
-	QStringList values = splitStringAtLastNumber(name);
+	const QStringList values = splitStringAtLastNumber(name);
 	int count = values.at(1).toInt();
 	QString new_name;
 	do {
@@ -198,7 +198,7 @@ QString Theme::clone(const QString& id, bool is_default, const QString& name)
 	} while (exists(new_name));
 
 	// Create duplicate
-	QString new_id = createId();
+	const QString new_id = createId();
 	{
 		Theme duplicate(id, is_default);
 		duplicate.setValue(duplicate.d->name, new_name);
@@ -233,7 +233,7 @@ void Theme::copyBackgrounds()
 	const QStringList themes = QDir(path(), "*.theme").entryList(QDir::Files);
 	for (const QString& theme : themes) {
 		QSettings settings(path() + "/" + theme, QSettings::IniFormat);
-		QString background_path = settings.value("Background/Image").toString();
+		const QString background_path = settings.value("Background/Image").toString();
 		QString background_image = settings.value("Background/ImageFile").toString();
 		if (background_path.isEmpty() && background_image.isEmpty()) {
 			continue;
@@ -288,10 +288,10 @@ QString Theme::createId()
 
 bool Theme::exists(const QString& name)
 {
-	QDir dir(m_path, "*.theme");
+	const QDir dir(m_path, "*.theme");
 	const QStringList themes = dir.entryList(QDir::Files);
 	for (const QString& theme : themes) {
-		QSettings settings(dir.filePath(theme), QSettings::IniFormat);
+		const QSettings settings(dir.filePath(theme), QSettings::IniFormat);
 		if (settings.value("Name").toString() == name) {
 			return true;
 		}
@@ -419,9 +419,9 @@ QImage Theme::render(const QSize& background, QRect& foreground, const int margi
 	}
 
 	// Draw drop shadow
-	int shadow_radius = shadowEnabled() ? shadowRadius() : 0;
+	const int shadow_radius = shadowEnabled() ? shadowRadius() : 0;
 	if (shadow_radius) {
-		QImage copy = image.copy(QRect(foreground.topLeft() * pixelratio, foreground.bottomRight() * pixelratio));
+		const QImage copy = image.copy(QRect(foreground.topLeft() * pixelratio, foreground.bottomRight() * pixelratio));
 
 		QImage shadow(background, QImage::Format_ARGB32_Premultiplied);
 		shadow.fill(0);
@@ -466,11 +466,11 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 	}
 
 	// Position preview text
-	int padding = foregroundPadding();
-	int x = foreground.x() + padding;
-	int y = foreground.y() + padding + spacingAboveParagraph();
-	int width = foreground.width() - (padding * 2);
-	int height = foreground.height() - (padding * 2) - spacingAboveParagraph();
+	const int padding = foregroundPadding();
+	const int x = foreground.x() + padding;
+	const int y = foreground.y() + padding + spacingAboveParagraph();
+	const int width = foreground.width() - (padding * 2);
+	const int height = foreground.height() - (padding * 2) - spacingAboveParagraph();
 	preview_text.setGeometry(x, y, width, height);
 
 	// Set colors
@@ -486,7 +486,7 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 	preview_text.setPalette(p);
 
 	// Set spacings
-	int tab_width = tabWidth();
+	const int tab_width = tabWidth();
 	QTextBlockFormat block_format;
 	block_format.setLineHeight(lineSpacing(), (lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
 	block_format.setTextIndent(tab_width * indentFirstLine());
@@ -520,8 +520,8 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 		painter.fillRect(QRectF(24, 48, 166, 114), Qt::white);
 
 		// Draw text cutout
-		int x2 = (x >= 24) ? (x - 24) : 0;
-		int y2 = (y >= 24) ? (y - 24) : 0;
+		const int x2 = (x >= 24) ? (x - 24) : 0;
+		const int y2 = (y >= 24) ? (y - 24) : 0;
 		painter.drawImage(QPointF(26, 50), background, QRectF(x2 * pixelratio, y2 * pixelratio, 162 * pixelratio, 110 * pixelratio));
 	}
 
@@ -553,8 +553,8 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 		painter.fillRect(QRectF(21, 33, 83, 57), Qt::white);
 
 		// Draw text cutout
-		int x2 = (x >= 24) ? (x - 12 + tabWidth()) : 12 + tabWidth();
-		int y2 = (y >= 24) ? (y - 6) : 0;
+		const int x2 = (x >= 24) ? (x - 12 + tabWidth()) : 12 + tabWidth();
+		const int y2 = (y >= 24) ? (y - 6) : 0;
 		painter.drawImage(QPointF(22, 34), background, QRectF(x2 * pixelratio, y2 * pixelratio, 81 * pixelratio, 55 * pixelratio));
 	}
 }
@@ -676,7 +676,7 @@ void Theme::reload()
 		return;
 	}
 
-	QSettings settings(filePath(d->id, d->is_default), QSettings::IniFormat);
+	const QSettings settings(filePath(d->id, d->is_default), QSettings::IniFormat);
 
 	d->name = settings.value("Name", d->name).toString();
 
@@ -699,7 +699,7 @@ void Theme::reload()
 	d->foreground_padding = settings.value("Foreground/Padding", 10).toInt();
 	d->foreground_position = settings.value("Foreground/Position", 1).toInt();
 
-	int rounding = settings.value("Foreground/Rounding", 0).toInt();
+	const int rounding = settings.value("Foreground/Rounding", 0).toInt();
 	if (rounding > 0) {
 		d->round_corners_enabled = true;
 		d->corner_radius = rounding;
