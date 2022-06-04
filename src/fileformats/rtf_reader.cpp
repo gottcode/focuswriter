@@ -25,7 +25,7 @@ namespace
 
 QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
 {
-	QByteArray name = "CP" + QByteArray::number(value);
+	const QByteArray name = "CP" + QByteArray::number(value);
 	QByteArray codec;
 	if (value == 932) {
 		codec = "Shift-JIS";
@@ -406,7 +406,7 @@ void RtfReader::insertUnicodeSymbol(qint32 value)
 		m_token.readNext();
 
 		if (m_token.type() == TextToken) {
-			int len = m_token.text().count();
+			const int len = m_token.text().count();
 			if (len > i) {
 				m_cursor.insertText(m_decoder->toUnicode(m_token.text().mid(i)));
 				break;
