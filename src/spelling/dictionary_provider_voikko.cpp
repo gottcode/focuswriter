@@ -119,9 +119,9 @@ WordRef DictionaryVoikko::check(const QString& string, int start_at) const
 	int chars = 1;
 	bool is_word = false;
 
-	int count = string.length() - 1;
+	const int count = string.length() - 1;
 	for (int i = start_at; i <= count; ++i) {
-		QChar c = string.at(i);
+		const QChar c = string.at(i);
 		if (c.isLetterOrNumber() || c.category() == QChar::Punctuation_Dash) {
 			if (index == -1) {
 				index = i;
@@ -205,7 +205,7 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 	QString lib = "libvoikko";
 #ifdef Q_OS_WIN
 	const QStringList dictdirs = QDir::searchPaths("dict");
-	for (const QString dictdir : dictdirs) {
+	for (const QString& dictdir : dictdirs) {
 		lib = dictdir + "/libvoikko-1.dll";
 		if (QLibrary(lib).load()) {
 			f_voikko_path = QFile::encodeName(QDir::toNativeSeparators(QFileInfo(lib).path()));
