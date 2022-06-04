@@ -117,7 +117,7 @@ QByteArray fetchCodePage()
 
 	// Guess at Chinese code page for current country
 	if (codepage.isEmpty() && language == QLocale::Chinese) {
-		QLocale::Country country = QLocale().country();
+		const QLocale::Country country = QLocale().country();
 		codepage = (country == QLocale::HongKong || country == QLocale::Macau || country == QLocale::Taiwan) ? "CP950" : "CP936";
 	}
 
@@ -178,11 +178,11 @@ QByteArray fetchCodePage()
 QByteArray fetchCodePage()
 {
 	TCHAR buffer[7];
-	int size = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_IDEFAULTANSICODEPAGE, buffer, sizeof(buffer) / sizeof(TCHAR));
+	const int size = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_IDEFAULTANSICODEPAGE, buffer, sizeof(buffer) / sizeof(TCHAR));
 #if UNICODE
-	QString codepage = QLatin1String("CP") + QString::fromUtf16((char16_t*)buffer, size - 1);
+	const QString codepage = QLatin1String("CP") + QString::fromWCharArray(buffer, size - 1);
 #else
-	QString codepage = QLatin1String("CP") + QString::fromLocal8Bit(buffer);
+	const QString codepage = QLatin1String("CP") + QString::fromLocal8Bit(buffer);
 #endif
 	return codepage.toLatin1();
 }
@@ -215,7 +215,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding)
 
 	// Check if codec is a superset of ASCII
 	static QHash<int, bool> supports_ascii;
-	int mib = m_codec->mibEnum();
+	const int mib = m_codec->mibEnum();
 	if (supports_ascii.contains(mib)) {
 		m_supports_ascii = supports_ascii[mib];
 	} else {
@@ -224,7 +224,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding)
 		QTextCodec::ConverterState state;
 		state.flags = QTextCodec::ConvertInvalidToNull;
 		for (int i = 0x20; i < 0x80; ++i) {
-			QChar c = QChar::fromLatin1(i);
+			const QChar c = QChar::fromLatin1(i);
 			encoded = m_codec->fromUnicode(&c, 1, &state);
 			if (state.invalidChars || (encoded.size() > 1) || (encoded.at(0) != i)) {
 				m_supports_ascii = false;
@@ -265,8 +265,8 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 
 	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
 		QByteArray par("{\\pard\\plain");
-		QTextBlockFormat block_format = block.blockFormat();
-		int heading = block_format.property(QTextFormat::UserProperty).toInt();
+		const QTextBlockFormat block_format = block.blockFormat();
+		const int heading = block_format.property(QTextFormat::UserProperty).toInt();
 		if (heading) {
 			par += "\\s" + QByteArray::number(heading)
 				+ "\\outlinelevel" + QByteArray::number(heading - 1)
@@ -275,11 +275,11 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 		} else {
 			par += "\\s0";
 		}
-		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+		const bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
 		if (rtl) {
 			par += "\\rtlpar";
 		}
-		Qt::Alignment align = block_format.alignment();
+		const Qt::Alignment align = block_format.alignment();
 		if (rtl && (align & Qt::AlignLeft)) {
 			par += "\\ql";
 		} else if (align & Qt::AlignRight) {
@@ -297,8 +297,8 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 		if (block.begin() != block.end()) {
 			device->write(" ");
 			for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
-				QTextFragment fragment = iter.fragment();
-				QTextCharFormat char_format = fragment.charFormat();
+				const QTextFragment fragment = iter.fragment();
+				const QTextCharFormat char_format = fragment.charFormat();
 				QByteArray style;
 				if (char_format.fontWeight() == QFont::Bold) {
 					style += "\\b";
