@@ -93,7 +93,7 @@ void ImageButton::onClicked()
 		}
 	}
 
-	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")));
+	const QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")));
 	if (!image.isEmpty()) {
 		settings.setValue("ImageButton/Location", QFileInfo(image).absolutePath());
 		setImage(image, image);
