@@ -110,10 +110,10 @@ QStringList DictionaryManager::availableDictionaries() const
 
 QString DictionaryManager::availableDictionary(const QString& language) const
 {
-	QStringList languages = availableDictionaries();
+	const QStringList languages = availableDictionaries();
 	if (!languages.isEmpty() && !languages.contains(language)) {
-		int close = languages.indexOf(QRegularExpression(language.left(2) + ".*"));
-		return (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
+		const int close = languages.indexOf(QRegularExpression(language.left(2) + ".*"));
+		return (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.constFirst());
 	} else {
 		return language;
 	}
