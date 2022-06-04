@@ -88,7 +88,7 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 	// Load currently running timers
 	const QStringList ids = settings.childKeys();
 	for (const QString& id : ids) {
-		int i = id.mid(5).toInt();
+		const int i = id.mid(5).toInt();
 		if (!id.startsWith("Timer") || i == 0) {
 			continue;
 		}
@@ -175,7 +175,7 @@ void TimerManager::newTimer()
 
 //-----------------------------------------------------------------------------
 
-void TimerManager::recentTimer(QAction* action)
+void TimerManager::recentTimer(const QAction* action)
 {
 	QStringList values = action->data().toStringList();
 	Timer* timer = new Timer(values.takeAt(0).toInt(), values, m_documents, this);
@@ -204,10 +204,10 @@ void TimerManager::timerChanged(Timer* timer)
 	}
 
 	// Find new timer position based on when it ends
-	int index = m_timers.indexOf(timer);
+	const int index = m_timers.indexOf(timer);
 	int new_index = 0;
 	for (new_index = 0; new_index < m_timers.count(); ++new_index) {
-		Timer* test = m_timers[new_index];
+		const Timer* test = m_timers[new_index];
 		if ((*timer <= *test) && (timer != test)) {
 			break;
 		}
@@ -289,7 +289,7 @@ void TimerManager::setupRecentMenu()
 	QList<QAction*> delay_timers;
 
 	for (int i = 0; i < 2; ++i) {
-		QString type = QString::number(i);
+		const QString type = QString::number(i);
 		const QStringList recent = QSettings().value(QString("Timers/Recent%1").arg(i)).toStringList();
 		for (const QString& timer : recent) {
 			QString time = timer.section(' ', 0, 0);
@@ -327,7 +327,7 @@ void TimerManager::setupRecentMenu()
 void TimerManager::startClock()
 {
 	updateClock();
-	int delay = 1000 - QTime::currentTime().msec();
+	const int delay = 1000 - QTime::currentTime().msec();
 	QTimer::singleShot(delay, m_clock_timer, qOverload<>(&QTimer::start));
 	QTimer::singleShot(delay, this, &TimerManager::updateClock);
 }

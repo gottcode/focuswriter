@@ -38,7 +38,7 @@ protected:
 
 private slots:
 	void newTimer();
-	void recentTimer(QAction* action);
+	void recentTimer(const QAction* action);
 	void recentTimerMenuRequested(const QPoint& pos);
 	void timerChanged(Timer* timer);
 	void timerDeleted(QObject* object);
