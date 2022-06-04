@@ -44,10 +44,10 @@ protected:
 	void showEvent(QShowEvent* event) override;
 
 private slots:
-	void showFilter(QListWidgetItem* filter);
+	void showFilter(const QListWidgetItem* filter);
 	void showGroup(int group);
 	void symbolClicked(const QModelIndex& symbol);
-	void recentSymbolClicked(QTableWidgetItem* symbol);
+	void recentSymbolClicked(const QTableWidgetItem* symbol);
 	void shortcutChanged();
 
 private:
