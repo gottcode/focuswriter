@@ -12,7 +12,7 @@ class Document;
 class Deltas
 {
 public:
-	explicit Deltas(Document* document);
+	explicit Deltas(const Document* document);
 
 	int characterCount() const;
 	int characterAndSpaceCount() const;
@@ -23,7 +23,7 @@ public:
 	void refresh();
 
 private:
-	Document* m_document;
+	const Document* m_document;
 	int m_character_count;
 	int m_character_and_space_count;
 	int m_page_count;

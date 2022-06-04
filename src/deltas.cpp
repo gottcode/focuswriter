@@ -10,7 +10,7 @@
 
 //-----------------------------------------------------------------------------
 
-Deltas::Deltas(Document* document)
+Deltas::Deltas(const Document* document)
 	: m_document(document)
 {
 	refresh();
