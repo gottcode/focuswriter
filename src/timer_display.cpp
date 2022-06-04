@@ -17,7 +17,7 @@
 
 //-----------------------------------------------------------------------------
 
-TimerDisplay::TimerDisplay(QList<Timer*>& timers, QWidget* parent)
+TimerDisplay::TimerDisplay(const QList<Timer*>& timers, QWidget* parent)
 	: QWidget(parent)
 	, m_show_tip(false)
 	, m_timer(nullptr)
@@ -33,7 +33,7 @@ TimerDisplay::TimerDisplay(QList<Timer*>& timers, QWidget* parent)
 
 //-----------------------------------------------------------------------------
 
-void TimerDisplay::setTimer(Timer* timer)
+void TimerDisplay::setTimer(const Timer* timer)
 {
 	m_timer = timer;
 	if (m_timer) {
@@ -117,10 +117,10 @@ void TimerDisplay::paintEvent(QPaintEvent* event)
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 
-	QRectF rect(1.5, 1.5, m_size - 3, m_size - 3);
+	const QRectF rect(1.5, 1.5, m_size - 3, m_size - 3);
 	if (m_timer) {
-		QDateTime current = QDateTime::currentDateTime();
-		int degrees = (m_timer->msecsFrom(current) * -5760.0) / m_timer->msecsTotal();
+		const QDateTime current = QDateTime::currentDateTime();
+		const int degrees = (m_timer->msecsFrom(current) * -5760.0) / m_timer->msecsTotal();
 
 		painter.setPen(palette().color(QPalette::WindowText));
 		painter.drawEllipse(rect);
@@ -131,13 +131,13 @@ void TimerDisplay::paintEvent(QPaintEvent* event)
 
 		if (m_show_tip) {
 			QStringList timers;
-			for (Timer* timer : qAsConst(m_timers)) {
+			for (const Timer* timer : m_timers) {
 				if (timer->isRunning()) {
-					int msecs = timer->msecsFrom(current);
+					const int msecs = timer->msecsFrom(current);
 					timers += Timer::toString(QTime(0, 0, 0).addMSecs(msecs).toString(tr("HH:mm:ss")), timer->memoShort());
 				}
 			}
-			QString text = QLatin1String("<p style='white-space:pre'>") + timers.join(QLatin1String("\n")) + QLatin1String("</p>");
+			const QString text = QLatin1String("<p style='white-space:pre'>") + timers.join(QLatin1String("\n")) + QLatin1String("</p>");
 			QToolTip::showText(m_tip_pos, text, this, this->rect());
 		}
 	} else {

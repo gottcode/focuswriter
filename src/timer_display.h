@@ -18,9 +18,9 @@ class TimerDisplay : public QWidget
 	Q_OBJECT
 
 public:
-	explicit TimerDisplay(QList<Timer*>& timers, QWidget* parent = nullptr);
+	explicit TimerDisplay(const QList<Timer*>& timers, QWidget* parent = nullptr);
 
-	void setTimer(Timer* timer);
+	void setTimer(const Timer* timer);
 
 	virtual QSize minimumSizeHint() const override;
 	virtual QSize sizeHint() const override;
@@ -43,8 +43,8 @@ private:
 	QPoint m_tip_pos;
 	QTimer* m_update_timer;
 
-	Timer* m_timer;
-	QList<Timer*>& m_timers;
+	const Timer* m_timer;
+	const QList<Timer*>& m_timers;
 };
 
 #endif // FOCUSWRITER_TIMER_DISPLAY_H
