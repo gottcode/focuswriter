@@ -105,7 +105,7 @@ void SymbolsModel::setFilter(int group, int index)
 	// Allocate space for symbols
 	int padding = filter.size % 16;
 	padding = padding ? (16 - padding) : 0;
-	int size = filter.size + padding;
+	const int size = filter.size + padding;
 	if (m_symbols.capacity() < size) {
 		m_symbols.reserve(size);
 	}
@@ -187,14 +187,14 @@ QString SymbolsModel::symbolName(char32_t unicode) const
 			"S", "SS", "NG", "J", "C", "K", "T", "P", "H"
 		};
 
-		int SIndex = unicode - SBase;
+		const int SIndex = unicode - SBase;
 		if (SIndex < 0 || SIndex >= SCount) {
 			return QString();
 		}
 
-		int LIndex = SIndex / NCount;
-		int VIndex = (SIndex % NCount) / TCount;
-		int TIndex = SIndex % TCount;
+		const int LIndex = SIndex / NCount;
+		const int VIndex = (SIndex % NCount) / TCount;
+		const int TIndex = SIndex % TCount;
 
 		return QLatin1String("HANGUL SYLLABLE ") + QLatin1String(JAMO_L_TABLE[LIndex]) +
 				QLatin1String(JAMO_V_TABLE[VIndex]) + QLatin1String(JAMO_T_TABLE[TIndex]);
@@ -218,8 +218,8 @@ QVariant SymbolsModel::data(const QModelIndex& index, int role) const
 		return QVariant();
 	}
 
-	char32_t unicode = index.internalId();
-	bool printable = QChar(unicode).isPrint();
+	const char32_t unicode = index.internalId();
+	const bool printable = QChar(unicode).isPrint();
 	switch (role) {
 	case Qt::BackgroundRole:
 		return printable ? QVariant() : QApplication::palette().button();
@@ -247,7 +247,7 @@ Qt::ItemFlags SymbolsModel::flags(const QModelIndex& index) const
 
 QModelIndex SymbolsModel::index(char32_t unicode) const
 {
-	int index = m_symbols.indexOf(unicode);
+	const int index = m_symbols.indexOf(unicode);
 	if (index != -1) {
 		return createIndex(index / 16, index % 16, unicode);
 	} else {
@@ -259,7 +259,7 @@ QModelIndex SymbolsModel::index(char32_t unicode) const
 
 QModelIndex SymbolsModel::index(int row, int column, const QModelIndex& parent) const
 {
-	int pos = (row * 16) + column;
+	const int pos = (row * 16) + column;
 	return (!parent.isValid() && (pos < m_symbols.count())) ? createIndex(row, column, m_symbols.at(pos)) : QModelIndex();
 }
 
@@ -282,7 +282,7 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 void SymbolsModel::setData(const QStringList& datadirs)
 {
 	for (const QString& path : datadirs) {
-		QFileInfo info(path + "/symbols1400.dat");
+		const QFileInfo info(path + "/symbols1400.dat");
 		if (info.exists()) {
 			m_path = info.absoluteFilePath();
 			break;
