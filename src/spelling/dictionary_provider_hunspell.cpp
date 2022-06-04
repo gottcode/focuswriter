@@ -106,9 +106,9 @@ WordRef DictionaryHunspell::check(const QString& string, int start_at) const
 	bool is_uppercase = f_ignore_uppercase;
 	bool is_word = false;
 
-	int count = string.length() - 1;
+	const int count = string.length() - 1;
 	for (int i = start_at; i <= count; ++i) {
-		QChar c = string.at(i);
+		const QChar c = string.at(i);
 		switch (c.category()) {
 			case QChar::Number_DecimalDigit:
 			case QChar::Number_Letter:
@@ -191,7 +191,7 @@ QStringList DictionaryHunspell::suggestions(const QString& word) const
 	}
 #else
 	char** suggestions = nullptr;
-	int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(check).constData());
+	const int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(check).constData());
 	if (suggestions) {
 		for (int i = 0; i < count; ++i) {
 			QString word = m_codec->toUnicode(suggestions[i]);
@@ -251,9 +251,9 @@ DictionaryProviderHunspell::DictionaryProviderHunspell()
 QStringList DictionaryProviderHunspell::availableDictionaries() const
 {
 	QStringList result;
-	QStringList locations = QDir::searchPaths("dict");
+	const QStringList locations = QDir::searchPaths("dict");
 	for (const QString& location : locations) {
-		QDir dir(location);
+		const QDir dir(location);
 
 		QStringList dic_files = dir.entryList({ "*.dic*" }, QDir::Files, QDir::Name | QDir::IgnoreCase);
 		dic_files.replaceInStrings(QRegularExpression("\\.dic.*"), "");
