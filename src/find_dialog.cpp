@@ -84,7 +84,7 @@ FindDialog::FindDialog(Stack* documents)
 	setFixedWidth(sizeHint().width());
 
 	// Load settings
-	QSettings settings;
+	const QSettings settings;
 	m_ignore_case->setChecked(!settings.value("FindDialog/CaseSensitive", false).toBool());
 	m_whole_words->setChecked(settings.value("FindDialog/WholeWords", false).toBool());
 	m_regular_expressions->setChecked(settings.value("FindDialog/RegularExpressions", false).toBool());
@@ -161,7 +161,7 @@ void FindDialog::moveEvent(QMoveEvent* event)
 void FindDialog::showEvent(QShowEvent* event)
 {
 	if (!m_position.isNull()) {
-		QRect rect(m_position, sizeHint());
+		const QRect rect(m_position, sizeHint());
 		if (screen()->availableGeometry().contains(rect)) {
 			move(m_position);
 		}
@@ -180,7 +180,7 @@ void FindDialog::find()
 
 void FindDialog::findChanged(const QString& text)
 {
-	bool enabled = !text.isEmpty();
+	const bool enabled = !text.isEmpty();
 	m_find_button->setEnabled(enabled);
 	m_replace_button->setEnabled(enabled);
 	m_replace_all_button->setEnabled(enabled);
@@ -191,7 +191,7 @@ void FindDialog::findChanged(const QString& text)
 
 void FindDialog::replace()
 {
-	QString text = m_find_string->text();
+	const QString text = m_find_string->text();
 	if (text.isEmpty()) {
 		return;
 	}
@@ -204,7 +204,7 @@ void FindDialog::replace()
 			document->setTextCursor(cursor);
 		}
 	} else {
-		QRegularExpression regex("^" + text + "$", m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
+		const QRegularExpression regex("^" + text + "$", m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 		QString match = cursor.selectedText();
 		if (regex.match(match).hasMatch()) {
 			match.replace(regex, m_replace_string->text());
@@ -220,11 +220,11 @@ void FindDialog::replace()
 
 void FindDialog::replaceAll()
 {
-	QString text = m_find_string->text();
+	const QString text = m_find_string->text();
 	if (text.isEmpty()) {
 		return;
 	}
-	QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
+	const QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {
@@ -299,11 +299,11 @@ void FindDialog::replaceAll()
 
 void FindDialog::find(bool backwards)
 {
-	QString text = m_find_string->text();
+	const QString text = m_find_string->text();
 	if (text.isEmpty()) {
 		return;
 	}
-	QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
+	const QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {
