@@ -46,12 +46,12 @@ private slots:
 	void cloneSession();
 	void deleteSession();
 	void switchSession();
-	void switchSession(QAction* session);
-	void selectedSessionChanged(QListWidgetItem* session);
+	void switchSession(const QAction* session);
+	void selectedSessionChanged(const QListWidgetItem* session);
 
 private:
 	QString getSessionName(const QString& title, const QString& session = QString());
-	QListWidgetItem* selectedSession(bool prevent_default);
+	const QListWidgetItem* selectedSession(bool prevent_default) const;
 	void updateList(const QString& selected);
 
 private:

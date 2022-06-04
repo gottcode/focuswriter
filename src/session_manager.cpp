@@ -49,13 +49,13 @@ SessionManager::SessionManager(Window* parent)
 	QDir dir(Session::path(), "*.session");
 	const QStringList files = dir.entryList(QDir::Files);
 	for (const QString& file : files) {
-		QString path = dir.filePath(file);
+		const QString path = dir.filePath(file);
 		QString name = QSettings(path, QSettings::IniFormat).value("Name").toString();
 		if (!name.isEmpty()) {
 			continue;
 		}
 
-		QString id = Session::createId();
+		const QString id = Session::createId();
 		name = QUrl::fromPercentEncoding(QFileInfo(path).completeBaseName().toUtf8());
 		QSettings(path, QSettings::IniFormat).setValue("Name", name);
 		dir.rename(file, id + ".session");
@@ -69,7 +69,7 @@ SessionManager::SessionManager(Window* parent)
 	m_sessions_menu = new QMenu(this);
 	m_sessions_menu->setTitle(tr("S&essions"));
 	m_sessions_actions = new QActionGroup(this);
-	connect(m_sessions_actions, &QActionGroup::triggered, this, qOverload<QAction*>(&SessionManager::switchSession));
+	connect(m_sessions_actions, &QActionGroup::triggered, this, qOverload<const QAction*>(&SessionManager::switchSession));
 
 	m_sessions_list = new QListWidget(this);
 	m_sessions_list->setIconSize(QSize(16,16));
@@ -203,15 +203,15 @@ void SessionManager::setCurrent(const QString& id, const QStringList& files, con
 void SessionManager::newSession()
 {
 	// Fetch session name
-	QString name = getSessionName(tr("New Session"));
+	const QString name = getSessionName(tr("New Session"));
 	if (name.isEmpty()) {
 		return;
 	}
-	QString theme = m_session->theme();
-	bool is_default = m_session->themeDefault();
+	const QString theme = m_session->theme();
+	const bool is_default = m_session->themeDefault();
 
 	// Close open documents
-	bool visible = isVisible();
+	const bool visible = isVisible();
 	hide();
 	if (!closeCurrent()) {
 		if (visible) {
@@ -222,7 +222,7 @@ void SessionManager::newSession()
 	accept();
 
 	// Create session and make it active
-	QString id = Session::createId();
+	const QString id = Session::createId();
 	{
 		QSettings session(Session::pathFromId(id), QSettings::IniFormat);
 		session.setValue("Name", name);
@@ -246,15 +246,15 @@ void SessionManager::hideEvent(QHideEvent* event)
 void SessionManager::cloneSession()
 {
 	// Find path
-	QListWidgetItem* item = selectedSession(false);
+	const QListWidgetItem* item = selectedSession(false);
 	if (!item) {
 		return;
 	}
 	QString id = item->data(Qt::UserRole).toString();
-	QString filename = item != m_sessions_list->item(0) ? Session::pathFromId(id) : "";
+	const QString filename = item != m_sessions_list->item(0) ? Session::pathFromId(id) : "";
 
 	// Fetch session name
-	QStringList values = splitStringAtLastNumber(item->text());
+	const QStringList values = splitStringAtLastNumber(item->text());
 	int count = values.at(1).toInt();
 	QString name;
 	do {
@@ -277,12 +277,12 @@ void SessionManager::cloneSession()
 
 	// Create session and make it active
 	id = Session::createId();
-	QString path = Session::pathFromId(id);
+	const QString path = Session::pathFromId(id);
 	if (!filename.isEmpty()) {
 		QFile::copy(filename, path);
 		QSettings(path, QSettings::IniFormat).setValue("Name", name);
 	} else {
-		QSettings settings;
+		const QSettings settings;
 		QSettings session(path, QSettings::IniFormat);
 		session.setValue("Name", name);
 		session.setValue("ThemeManager/Theme", settings.value("ThemeManager/Theme"));
@@ -301,19 +301,19 @@ void SessionManager::cloneSession()
 
 void SessionManager::renameSession()
 {
-	QListWidgetItem* item = selectedSession(true);
+	const QListWidgetItem* item = selectedSession(true);
 	if (!item) {
 		return;
 	}
 
 	// Fetch session name
-	QString name = getSessionName(tr("Rename Session"), item->text());
+	const QString name = getSessionName(tr("Rename Session"), item->text());
 	if (name.isEmpty()) {
 		return;
 	}
 
 	// Rename session
-	QString id = item->data(Qt::UserRole).toString();
+	const QString id = item->data(Qt::UserRole).toString();
 	if (id == m_session->id()) {
 		m_session->setName(name);
 		QSettings().setValue("SessionManager/Session", m_session->id());
@@ -328,7 +328,7 @@ void SessionManager::renameSession()
 
 void SessionManager::deleteSession()
 {
-	QListWidgetItem* item = selectedSession(true);
+	const QListWidgetItem* item = selectedSession(true);
 	if (!item) {
 		return;
 	}
@@ -339,7 +339,7 @@ void SessionManager::deleteSession()
 	}
 
 	// Delete session
-	QString id = item->data(Qt::UserRole).toString();
+	const QString id = item->data(Qt::UserRole).toString();
 	if (id == m_session->id()) {
 		if (!closeCurrent()) {
 			return;
@@ -355,7 +355,7 @@ void SessionManager::deleteSession()
 
 void SessionManager::switchSession()
 {
-	QListWidgetItem* item = selectedSession(false);
+	const QListWidgetItem* item = selectedSession(false);
 	if (item) {
 		accept();
 		setCurrent(item->data(Qt::UserRole).toString());
@@ -364,17 +364,17 @@ void SessionManager::switchSession()
 
 //-----------------------------------------------------------------------------
 
-void SessionManager::switchSession(QAction* session)
+void SessionManager::switchSession(const QAction* session)
 {
 	setCurrent(session->data().toString());
 }
 
 //-----------------------------------------------------------------------------
 
-void  SessionManager::selectedSessionChanged(QListWidgetItem* session)
+void  SessionManager::selectedSessionChanged(const QListWidgetItem* session)
 {
-	bool not_default = (session && session != m_sessions_list->item(0));
-	QString id = session ? session->data(Qt::UserRole).toString() : "";
+	const bool not_default = (session && session != m_sessions_list->item(0));
+	const QString id = session ? session->data(Qt::UserRole).toString() : "";
 	if (not_default && m_session->id() == id) {
 		m_switch_button->setEnabled(false);
 		m_rename_button->setEnabled(true);
@@ -388,9 +388,9 @@ void  SessionManager::selectedSessionChanged(QListWidgetItem* session)
 
 //-----------------------------------------------------------------------------
 
-QListWidgetItem* SessionManager::selectedSession(bool prevent_default)
+const QListWidgetItem* SessionManager::selectedSession(bool prevent_default) const
 {
-	QListWidgetItem* item = m_sessions_list->selectedItems().value(0, 0);
+	const QListWidgetItem* item = m_sessions_list->selectedItems().value(0, 0);
 	if (!item || (prevent_default && item == m_sessions_list->item(0))) {
 		return nullptr;
 	} else {
@@ -427,13 +427,13 @@ void SessionManager::updateList(const QString& selected)
 	m_sessions_menu->clear();
 	m_sessions_list->clear();
 
-	QDir dir(Session::path(), "*.session");
+	const QDir dir(Session::path(), "*.session");
 	QStringList files = dir.entryList(QDir::Files);
 
 	QHash<QString, QString> ids;
 	for (const QString& file : qAsConst(files)) {
-		QString id = QFileInfo(file).completeBaseName();
-		QString name = QSettings(dir.filePath(file), QSettings::IniFormat).value("Name").toString();
+		const QString id = QFileInfo(file).completeBaseName();
+		const QString name = QSettings(dir.filePath(file), QSettings::IniFormat).value("Name").toString();
 		if (name == Session::tr("Default")) {
 			continue;
 		}
@@ -447,7 +447,7 @@ void SessionManager::updateList(const QString& selected)
 	files.prepend(Session::tr("Default"));
 
 	for (const QString& name : qAsConst(files)) {
-		QString id = ids.value(name);
+		const QString id = ids.value(name);
 
 		QAction* action = m_sessions_menu->addAction(fontMetrics().elidedText(name, Qt::ElideRight, 3 * logicalDpiX()));
 		action->setData(id);
