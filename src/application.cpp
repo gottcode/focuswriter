@@ -69,7 +69,7 @@ bool Application::event(QEvent* e)
 	if (e->type() != QEvent::FileOpen) {
 		return QApplication::event(e);
 	} else {
-		QString file = static_cast<QFileOpenEvent*>(e)->file();
+		const QString file = static_cast<QFileOpenEvent*>(e)->file();
 		if (m_window) {
 			m_window->addDocuments(QStringList(file), QStringList(file));
 		} else {
