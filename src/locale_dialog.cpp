@@ -33,7 +33,7 @@ QString LocaleDialog::m_appname;
 LocaleDialog::LocaleDialog(QWidget* parent)
 	: QDialog(parent, Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
-	QString title = parent ? parent->window()->windowTitle() : QString();
+	const QString title = parent ? parent->window()->windowTitle() : QString();
 	setWindowTitle(!title.isEmpty() ? title : QCoreApplication::applicationName());
 
 	QLabel* text = new QLabel(tr("Select application language:"), this);
@@ -48,7 +48,7 @@ LocaleDialog::LocaleDialog(QWidget* parent)
 		translation.remove(m_appname);
 		m_translations->addItem(languageName(translation), translation);
 	}
-	int index = std::max(0, m_translations->findData(m_current));
+	const int index = std::max(0, m_translations->findData(m_current));
 	m_translations->setCurrentIndex(index);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -71,7 +71,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	// Find translator path
 	QStringList paths = datadirs;
 	if (paths.isEmpty()) {
-		QString appdir = QCoreApplication::applicationDirPath();
+		const QString appdir = QCoreApplication::applicationDirPath();
 		paths.append(appdir);
 		paths.append(appdir + "/../share/" + QCoreApplication::applicationName().toLower());
 		paths.append(appdir + "/../Resources");
@@ -150,7 +150,7 @@ QStringList LocaleDialog::findTranslations()
 
 void LocaleDialog::accept()
 {
-	int current = m_translations->findData(m_current);
+	const int current = m_translations->findData(m_current);
 	if (current == m_translations->currentIndex()) {
 		return reject();
 	}
