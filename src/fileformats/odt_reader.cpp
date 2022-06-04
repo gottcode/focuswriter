@@ -33,18 +33,17 @@ bool OdtReader::canRead(QIODevice* device)
 			return false;
 		}
 
-		int index = data.indexOf("?>");
+		const int index = data.indexOf("?>");
 		if (index == -1) {
 			return false;
 		}
 
-		int tagindex = data.indexOf("<", index);
+		const int tagindex = data.indexOf("<", index);
 		if (tagindex == -1) {
 			return false;
 		}
 
-		index = data.indexOf("<office:document", index);
-		if (index != tagindex) {
+		if (data.indexOf("<office:document", index) != tagindex) {
 			return false;
 		}
 	}
@@ -76,9 +75,9 @@ void OdtReader::readDataCompressed(QIODevice* device)
 
 	// Read archive
 	if (zip.isReadable()) {
-		const QString files[] = { QStringLiteral("styles.xml"), QStringLiteral("content.xml") };
+		static const QString files[] = { QStringLiteral("styles.xml"), QStringLiteral("content.xml") };
 		for (int i = 0; i < 2; ++i) {
-			QByteArray data = zip.fileData(files[i]);
+			const QByteArray data = zip.fileData(files[i]);
 			if (data.isEmpty()) {
 				continue;
 			}
@@ -144,12 +143,12 @@ void OdtReader::readStylesGroup()
 
 void OdtReader::readStyle()
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
-	QString name = attributes.value(QLatin1String("style:name")).toString();
+	const QString name = attributes.value(QLatin1String("style:name")).toString();
 
 	int type = -1;
-	auto family = attributes.value(QLatin1String("style:family"));
+	const auto family = attributes.value(QLatin1String("style:family"));
 	if (family == QLatin1String("paragraph")) {
 		type = 0;
 	} else if (family == QLatin1String("text")) {
@@ -164,7 +163,7 @@ void OdtReader::readStyle()
 	}
 	Style& style = m_styles[type][name];
 
-	QString parent_style = attributes.value(QLatin1String("style:parent-style-name")).toString();
+	const QString parent_style = attributes.value(QLatin1String("style:parent-style-name")).toString();
 	if (!parent_style.isEmpty()) {
 		Style& parent = m_styles[type][parent_style];
 		style.block_format = parent.block_format;
@@ -173,7 +172,7 @@ void OdtReader::readStyle()
 	}
 
 	if (name.startsWith("Head")) {
-		int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
+		const int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
 		style.block_format.setProperty(QTextFormat::UserProperty, heading);
 	}
 
@@ -208,9 +207,9 @@ void OdtReader::readStyle()
 
 void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
-	auto align = attributes.value(QLatin1String("fo:text-align"));
+	const auto align = attributes.value(QLatin1String("fo:text-align"));
 	if (align == QLatin1String("start")) {
 		format.setAlignment(Qt::AlignLeading);
 	} else if (align == QLatin1String("end")) {
@@ -225,7 +224,7 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 		format.setAlignment(Qt::AlignJustify);
 	}
 
-	auto direction = attributes.value(QLatin1String("style:writing-mode"));
+	const auto direction = attributes.value(QLatin1String("style:writing-mode"));
 	if (direction == QLatin1String("rl-tb") || direction == QLatin1String("rl")) {
 		format.setLayoutDirection(Qt::RightToLeft);
 	} else if (direction == QLatin1String("lr-tb") || direction == QLatin1String("lr")) {
@@ -234,7 +233,7 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 
 	if (attributes.hasAttribute(QLatin1String("fo:margin-left"))) {
 		QString margin = attributes.value(QLatin1String("fo:margin-left")).toString();
-		QString type = margin.right(2);
+		const QString type = margin.right(2);
 		margin.chop(2);
 
 		// Internal indent units are 0.5in
@@ -259,8 +258,8 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:default-outline-level"))) {
-		QString level = attributes.value(QLatin1String("style:default-outline-level")).toString();
-		int heading = qBound(1, level.toInt(), 6);
+		const QString level = attributes.value(QLatin1String("style:default-outline-level")).toString();
+		const int heading = qBound(1, level.toInt(), 6);
 		format.setProperty(QTextFormat::UserProperty, heading);
 	}
 
@@ -271,7 +270,7 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 
 void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
 	if (attributes.hasAttribute(QLatin1String("fo:font-weight"))) {
 		if (attributes.value(QLatin1String("fo:font-weight")) == QLatin1String("bold")) {
@@ -292,13 +291,13 @@ void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-position"))) {
-		auto position = attributes.value((QLatin1String("style:text-position")));
+		const auto position = attributes.value((QLatin1String("style:text-position")));
 		if (position == QLatin1String("super")) {
 			format.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
 		} else if (position == QLatin1String("sub")) {
 			format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
 		} else {
-			QString value = position.toString().split(' ', Qt::SkipEmptyParts).first();
+			QString value = position.toString().split(' ', Qt::SkipEmptyParts).constFirst();
 			value.chop(1);
 			const int vertical = value.toInt();
 			if (vertical > 0) {
@@ -338,9 +337,9 @@ void OdtReader::readBodyText()
 				readParagraph();
 			} else if (m_xml.qualifiedName() == QLatin1String("text:h")) {
 				int heading = -1;
-				QXmlStreamAttributes attributes = m_xml.attributes();
+				const QXmlStreamAttributes attributes = m_xml.attributes();
 				if (attributes.hasAttribute(QLatin1String("text:outline-level"))) {
-					QString level = attributes.value(QLatin1String("text:outline-level")).toString();
+					const QString level = attributes.value(QLatin1String("text:outline-level")).toString();
 					heading = qBound(1, level.toInt(), 6);
 				}
 				readParagraph(heading);
@@ -362,7 +361,7 @@ void OdtReader::readParagraph(int level)
 	QTextCharFormat char_format;
 
 	// Style paragraph
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 	if (attributes.hasAttribute(QLatin1String("text:style-name"))) {
 		const Style& style = m_styles[0][attributes.value(QLatin1String("text:style-name")).toString()];
 		block_format = style.block_format;
@@ -399,10 +398,10 @@ void OdtReader::readParagraph(int level)
 
 void OdtReader::readSpan()
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
 	// Style text
-	QTextCharFormat format = m_cursor.charFormat();
+	const QTextCharFormat format = m_cursor.charFormat();
 	if (attributes.hasAttribute(QLatin1String("text:style-name"))) {
 		const Style& style = m_styles[1][attributes.value(QLatin1String("text:style-name")).toString()];
 		m_cursor.mergeCharFormat(style.char_format);
