@@ -34,16 +34,16 @@ DailyProgress::DailyProgress(QObject* parent)
 	, m_streak_minimum(100)
 {
 	// Fetch date of when the program was started
-	QDate date = QDate::currentDate();
+	const QDate date = QDate::currentDate();
 
 	// Initialize daily progress data
 	m_file = new QSettings(m_path, QSettings::IniFormat, this);
 
-	int version = m_file->value(QLatin1String("Version"), -1).toInt();
+	const int version = m_file->value(QLatin1String("Version"), -1).toInt();
 	if (version == 1) {
 		// Load current daily progress data from 1.5
 		m_file->beginGroup(QLatin1String("Progress"));
-		QVariantList values = m_file->value(date.toString(Qt::ISODate)).toList();
+		const QVariantList values = m_file->value(date.toString(Qt::ISODate)).toList();
 		m_words = values.value(0).toInt();
 		m_msecs = values.value(1).toInt();
 		m_type = values.value(2).toInt();
@@ -52,11 +52,11 @@ DailyProgress::DailyProgress(QObject* parent)
 		// Load all daily progress from 1.5
 		const QStringList keys = m_file->childKeys();
 		for (const QString& key : keys) {
-			QDate date = QDate::fromString(key, Qt::ISODate);
+			const QDate date = QDate::fromString(key, Qt::ISODate);
 			if (!date.isValid()) {
 				continue;
 			}
-			QVariantList values = m_file->value(key).toList();
+			const QVariantList values = m_file->value(key).toList();
 			if (values.size() == 4) {
 				m_progress.append(Progress(date, values.at(0).toInt(), values.at(1).toInt(), values.at(2).toInt(), values.at(3).toInt()));
 			} else {
@@ -85,14 +85,14 @@ DailyProgress::DailyProgress(QObject* parent)
 	}
 
 	// Make sure there is a current daily progress
-	if (m_progress.isEmpty() || (m_progress.last().date() != date)) {
+	if (m_progress.isEmpty() || (m_progress.constLast().date() != date)) {
 		m_progress.append(Progress(date));
 	}
 
 	// Add null entries before data to make it week-based
-	QLocale locale;
-	int start_of_week = locale.firstDayOfWeek();
-	int day_of_week = m_progress.first().date().dayOfWeek();
+	const QLocale locale;
+	const int start_of_week = locale.firstDayOfWeek();
+	int day_of_week = m_progress.constFirst().date().dayOfWeek();
 	int null_days = 0;
 	if (day_of_week < start_of_week) {
 		null_days = day_of_week + (7 - start_of_week);
@@ -161,7 +161,7 @@ void DailyProgress::findLongestStreak(QDate& start, QDate& end) const
 		findStreak(i, test_start_pos, test_end_pos);
 		if (test_start_pos != -1) {
 			// Track if it is longest streak found so far
-			int test_length = test_end_pos - test_start_pos;
+			const int test_length = test_end_pos - test_start_pos;
 			if (test_length > length) {
 				start_pos = test_start_pos;
 				end_pos = test_end_pos;
@@ -190,15 +190,15 @@ int DailyProgress::percentComplete()
 	if (!m_current_valid) {
 		m_current_valid = true;
 
-		bool had_streak_before = m_current->progress() >= m_streak_minimum;
+		const bool had_streak_before = m_current->progress() >= m_streak_minimum;
 		m_current->setProgress(m_words, m_msecs, m_type, m_goal);
-		bool had_streak_after = m_current->progress() >= m_streak_minimum;
+		const bool had_streak_after = m_current->progress() >= m_streak_minimum;
 
 		if (had_streak_before != had_streak_after) {
 			emit streaksChanged();
 		}
 
-		QModelIndex index = createIndex(m_current_pos / 7, m_current_pos % 7);
+		const QModelIndex index = createIndex(m_current_pos / 7, m_current_pos % 7);
 		emit dataChanged(index, index);
 
 		emit progressChanged();
@@ -231,16 +231,16 @@ void DailyProgress::loadPreferences()
 		m_file->remove(QLatin1String("HistoryDisabled"));
 	} else {
 		// Remove history of previous launch
-		QDate disabled_date = m_file->value(QLatin1String("HistoryDisabled")).toDate();
+		const QDate disabled_date = m_file->value(QLatin1String("HistoryDisabled")).toDate();
 		if (disabled_date.isValid() && (disabled_date != m_current->date())) {
 			m_file->remove(QLatin1String("Progress/") + disabled_date.toString(Qt::ISODate));
 
 			// Update model
-			int pos = m_current_pos - disabled_date.daysTo(m_current->date());
+			const int pos = m_current_pos - disabled_date.daysTo(m_current->date());
 			m_progress[pos] = Progress(disabled_date);
-			int row = pos / 7;
-			int col = pos % 7;
-			QModelIndex index = createIndex(row, col);
+			const int row = pos / 7;
+			const int col = pos % 7;
+			const QModelIndex index = createIndex(row, col);
 			emit dataChanged(index, index);
 		}
 		m_file->setValue(QLatin1String("HistoryDisabled"), m_current->date().toString(Qt::ISODate));
@@ -262,7 +262,7 @@ void DailyProgress::loadPreferences()
 	updateProgress();
 
 	// Refresh streaks if minimum percent has changed
-	int streak_minimum = m_streak_minimum;
+	const int streak_minimum = m_streak_minimum;
 	m_streak_minimum = Preferences::instance().goalStreakMinimum();
 	if (streak_minimum != m_streak_minimum) {
 		emit streaksChanged();
@@ -292,7 +292,7 @@ QVariant DailyProgress::data(const QModelIndex& index, int role) const
 {
 	QVariant result;
 
-	int column = index.column() - 1;
+	const int column = index.column() - 1;
 	if (column == -1) {
 		switch (role) {
 		case Qt::DisplayRole:
@@ -323,7 +323,7 @@ QVariant DailyProgress::data(const QModelIndex& index, int role) const
 		return result;
 	}
 
-	Progress progress = m_progress.value((index.row() * 7) + column);
+	const Progress progress = m_progress.value((index.row() * 7) + column);
 	if (!progress.date().isValid()) {
 		return result;
 	}
@@ -471,7 +471,7 @@ void DailyProgress::updateRows()
 
 	// Make sure current date exists
 	const QDate date = QDate::currentDate();
-	const Progress& progress = m_progress.last();
+	const Progress& progress = m_progress.constLast();
 	if (progress.date() != date) {
 		const int type = progress.type();
 		const int goal = progress.goal();
@@ -479,7 +479,7 @@ void DailyProgress::updateRows()
 	}
 
 	// Add empty entries for days without data
-	QDate previous = m_progress.last().date();
+	QDate previous = m_progress.constLast().date();
 	for (int i = m_progress.size() - 2; i >= 0; --i) {
 		const Progress& progress = m_progress.at(i);
 		const QDate next = progress.date();
@@ -497,7 +497,7 @@ void DailyProgress::updateRows()
 	m_current = &m_progress[m_current_pos];
 
 	// Fetch row month and year names
-	QLocale locale;
+	const QLocale locale;
 	int month = -1;
 	int year = -1;
 	int offset = 0;
