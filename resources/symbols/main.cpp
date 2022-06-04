@@ -58,7 +58,7 @@ typedef QList<Filter> FilterGroup;
 
 void Filter::addRange(char32_t start, char32_t end)
 {
-	if (ranges.isEmpty() || (ranges.last().end != (start - 1))) {
+	if (ranges.isEmpty() || (ranges.constLast().end != (start - 1))) {
 		ranges += Filter::Range(start, end);
 	} else {
 		ranges.last().end = end;
@@ -90,9 +90,9 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 
 	// Download necessary Unicode data files
 	{
-		QScopedPointer<QNetworkAccessManager> manager(new QNetworkAccessManager);
+		const QScopedPointer<QNetworkAccessManager> manager(new QNetworkAccessManager);
 
-		const QStringList filenames{"UnicodeData.txt", "Blocks.txt", "Scripts.txt"};
+		static const QStringList filenames{"UnicodeData.txt", "Blocks.txt", "Scripts.txt"};
 		for (const QString& filename : filenames) {
 			std::cout << "Downloading " << filename.toStdString() << "... " << std::flush;
 			if (QFile::exists(path + "/" + filename)) {
@@ -101,7 +101,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			}
 
 			// Download file
-			QUrl url("http://www.unicode.org/Public/" + unicode_version + "/ucd/" + filename);
+			const QUrl url("http://www.unicode.org/Public/" + unicode_version + "/ucd/" + filename);
 			QNetworkReply* reply = manager->get(QNetworkRequest(url));
 
 			QEventLoop loop;
@@ -225,7 +225,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 
 			// Find script code point range
 			char32_t start, end;
-			QStringList range = parts.at(0).trimmed().split('.', Qt::SkipEmptyParts);
+			const QStringList range = parts.at(0).trimmed().split('.', Qt::SkipEmptyParts);
 			if (range.count() == 1) {
 				start = end = range.at(0).toUInt(0, 16);
 			} else if (range.count() == 2) {
@@ -241,7 +241,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			if (name == "Nko") {
 				name = "N'Ko";
 			}
-			if (scripts.isEmpty() || (scripts.last().name != name)) {
+			if (scripts.isEmpty() || (scripts.constLast().name != name)) {
 				scripts += name;
 			}
 
