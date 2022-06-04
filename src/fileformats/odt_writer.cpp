@@ -202,7 +202,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 {
 	m_xml.writeStartElement(QStringLiteral("office:automatic-styles"));
 
-	QList<QTextFormat> formats = document->allFormats();
+	const QList<QTextFormat> formats = document->allFormats();
 
 	// Find all used styles
 	QList<int> text_styles;
@@ -211,7 +211,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		index = block.blockFormatIndex();
 		if (!paragraph_styles.contains(index)) {
-			int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+			const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
 			if (!heading) {
 				paragraph_styles.append(index);
 			} else {
@@ -230,7 +230,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	int text_style = 1;
 	for (const int index : qAsConst(text_styles)) {
 		const QTextFormat& format = formats.at(index);
-		QString name = QStringLiteral("T") + QString::number(text_style);
+		const QString name = QStringLiteral("T") + QString::number(text_style);
 		if (writeTextStyle(format.toCharFormat(), name)) {
 			m_styles.insert(index, name);
 			++text_style;
@@ -241,7 +241,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	int paragraph_style = 1;
 	for (const int index : qAsConst(paragraph_styles)) {
 		const QTextFormat& format = formats.at(index);
-		QString name = QStringLiteral("P") + QString::number(paragraph_style);
+		const QString name = QStringLiteral("P") + QString::number(paragraph_style);
 		if (writeParagraphStyle(format.toBlockFormat(), name)) {
 			m_styles.insert(index, name);
 			++paragraph_style;
@@ -258,12 +258,12 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 bool OdtWriter::writeParagraphStyle(const QTextBlockFormat& format, const QString& name)
 {
 	QXmlStreamAttributes attributes;
-	bool rtl = format.layoutDirection() == Qt::RightToLeft;
+	const bool rtl = format.layoutDirection() == Qt::RightToLeft;
 	if (rtl) {
 		attributes.append(QStringLiteral("style:writing-mode"), QStringLiteral("rl"));
 	}
 
-	Qt::Alignment align = format.alignment();
+	const Qt::Alignment align = format.alignment();
 	if (rtl && (align & Qt::AlignLeft)) {
 		attributes.append(QStringLiteral("fo:text-align"), QStringLiteral("left"));
 	} else if (align & Qt::AlignRight) {
@@ -341,7 +341,7 @@ void OdtWriter::writeBody(const QTextDocument* document)
 	m_xml.writeStartElement(QStringLiteral("office:text"));
 
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
-		int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+		const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
 		if (!heading) {
 			m_xml.writeStartElement(QStringLiteral("text:p"));
 		} else {
@@ -352,18 +352,18 @@ void OdtWriter::writeBody(const QTextDocument* document)
 		m_xml.setAutoFormatting(false);
 
 		for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
-			QTextFragment fragment = iter.fragment();
-			QString style = m_styles.value(fragment.charFormatIndex());
+			const QTextFragment fragment = iter.fragment();
+			const QString style = m_styles.value(fragment.charFormatIndex());
 			if (!style.isEmpty()) {
 				m_xml.writeStartElement(QStringLiteral("text:span"));
 				m_xml.writeAttribute(QStringLiteral("text:style-name"), style);
 			}
 
-			QString text = fragment.text();
+			const QString text = fragment.text();
 			int start = 0;
 			int spaces = -1;
 			for (int i = 0, count = text.length(); i < count; ++i) {
-				QChar c = text.at(i);
+				const QChar c = text.at(i);
 				if (c.unicode() == 0x0) {
 					m_xml.writeCharacters(text.mid(start, i - start));
 					spaces = -1;
