@@ -45,7 +45,7 @@ public:
 	}
 
 	QKeySequence shortcut(const QString& name) const;
-	QKeySequence shortcut(char32_t unicode);
+	QKeySequence shortcut(char32_t unicode) const;
 
 	void addAction(const QString& name, QAction* action);
 	void setShortcut(char32_t unicode, const QKeySequence& sequence);
@@ -69,7 +69,7 @@ private:
 	QWidget* m_widget;
 	QHash<QString, Action> m_actions;
 	QHash<char32_t, QShortcut*> m_symbol_shortcuts;
-	QHash<QObject*, QString> m_symbol_shortcuts_text;
+	QHash<const QObject*, QString> m_symbol_shortcuts_text;
 	static ActionManager* m_instance;
 };
 
