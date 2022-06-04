@@ -65,9 +65,9 @@ void DocxReader::readData(QIODevice* device)
 
 	// Read archive
 	if (zip.isReadable()) {
-		const QString files[] = { QStringLiteral("word/styles.xml"), QStringLiteral("word/document.xml") };
+		static const QString files[] = { QStringLiteral("word/styles.xml"), QStringLiteral("word/document.xml") };
 		for (int i = 0; i < 2; ++i) {
-			QByteArray data = zip.fileData(files[i]);
+			const QByteArray data = zip.fileData(files[i]);
 			if (data.isEmpty()) {
 				continue;
 			}
@@ -144,7 +144,7 @@ void DocxReader::readStyles()
 			Style style;
 
 			// Find style type
-			auto type = m_xml.attributes().value(QLatin1String("w:type"));
+			const auto type = m_xml.attributes().value(QLatin1String("w:type"));
 			if (type == QLatin1String("paragraph")) {
 				style.type = Style::Paragraph;
 			} else if (type == QLatin1String("character")) {
@@ -155,7 +155,7 @@ void DocxReader::readStyles()
 			}
 
 			// Find style ID
-			QString style_id = m_xml.attributes().value(QLatin1String("w:styleId")).toString();
+			const QString style_id = m_xml.attributes().value(QLatin1String("w:styleId")).toString();
 			if (m_styles.contains(style_id)) {
 				m_xml.skipCurrentElement();
 				continue;
@@ -174,14 +174,14 @@ void DocxReader::readStyles()
 			// Read style contents
 			while (m_xml.readNextStartElement()) {
 				if (m_xml.qualifiedName() == QLatin1String("w:name")) {
-					QString name = m_xml.attributes().value(QLatin1String("w:val")).toString();
+					const QString name = m_xml.attributes().value(QLatin1String("w:val")).toString();
 					if (name.startsWith(QLatin1String("Head"))) {
-						int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
+						const int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
 						style.block_format.setProperty(QTextFormat::UserProperty, heading);
 					}
 					m_xml.skipCurrentElement();
 				} else if (m_xml.qualifiedName() == QLatin1String("w:basedOn")) {
-					QString parent_style_id = m_xml.attributes().value(QLatin1String("w:val")).toString();
+					const QString parent_style_id = m_xml.attributes().value(QLatin1String("w:val")).toString();
 					if (m_styles.contains(parent_style_id) && (style.type == m_styles[parent_style_id].type)) {
 						Style newstyle = m_styles[parent_style_id];
 						newstyle.block_format.merge(style.block_format);
@@ -205,7 +205,7 @@ void DocxReader::readStyles()
 			// Recursively apply style to children
 			QStringList children = style_tree.value(style_id);
 			while (!children.isEmpty()) {
-				QString child_id = children.takeFirst();
+				const QString child_id = children.takeFirst();
 
 				Style newstyle = style;
 				Style& childstyle = m_styles[child_id];
@@ -256,7 +256,7 @@ void DocxReader::readBody()
 
 void DocxReader::readParagraph()
 {
-	bool has_children = m_xml.readNextStartElement();
+	const bool has_children = m_xml.readNextStartElement();
 
 	// Style paragraph
 	bool changedstate = false;
@@ -302,7 +302,7 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 	int left_indent = 0, right_indent = 0, indent = 0;
 	bool textdir = false;
 	while (m_xml.readNextStartElement()) {
-		auto value = m_xml.attributes().value(QLatin1String("w:val"));
+		const auto value = m_xml.attributes().value(QLatin1String("w:val"));
 		if (m_xml.qualifiedName() == QLatin1String("w:jc")) {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
 			if (value == QLatin1String("left")) {
@@ -342,7 +342,7 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 				style.block_format.setLayoutDirection(Qt::LeftToRight);
 			}
 		} else if (m_xml.qualifiedName() == QLatin1String("w:outlineLvl")) {
-			int heading = m_xml.attributes().value(QLatin1String("w:val")).toString().toInt();
+			const int heading = m_xml.attributes().value(QLatin1String("w:val")).toString().toInt();
 			if (heading != 9) {
 				style.block_format.setProperty(QTextFormat::UserProperty, qBound(1, heading + 1, 6));
 			}
@@ -418,7 +418,7 @@ void DocxReader::readRun()
 void DocxReader::readRunProperties(Style& style, bool allowstyles)
 {
 	while (m_xml.readNextStartElement()) {
-		auto value = m_xml.attributes().value(QLatin1String("w:val"));
+		const auto value = m_xml.attributes().value(QLatin1String("w:val"));
 		if ((m_xml.qualifiedName() == QLatin1String("w:b")) || (m_xml.qualifiedName() == QLatin1String("w:bCs"))) {
 			style.char_format.setFontWeight(readBool(value) ? QFont::Bold : QFont::Normal);
 		} else if ((m_xml.qualifiedName() == QLatin1String("w:i")) || (m_xml.qualifiedName() == QLatin1String("w:iCs"))) {
@@ -470,7 +470,7 @@ void DocxReader::readRunProperties(Style& style, bool allowstyles)
 
 void DocxReader::readText()
 {
-	bool keepws = (m_xml.attributes().value(QLatin1String("xml:space")) == QLatin1String("preserve"));
+	const bool keepws = (m_xml.attributes().value(QLatin1String("xml:space")) == QLatin1String("preserve"));
 
 	QString text;
 	while (m_xml.readNext() == QXmlStreamReader::Characters) {
