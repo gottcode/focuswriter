@@ -27,27 +27,27 @@ public:
 	bool isWritable() const;
 	void parseMapping(QStringList& files, QStringList& datafiles) const;
 
-	void add(Document* document);
-	void remove(Document* document);
+	void add(const Document* document);
+	void remove(const Document* document);
 	void setOrdering(Stack* ordering);
 
 	static void setPath(const QString& path);
 
 public slots:
-	void updateMapping();
+	void updateMapping() const;
 
 private slots:
-	void replaceCacheFile(Document* document, const QString& file);
-	void writeCacheFile(Document* document, QSharedPointer<DocumentWriter> writer);
+	void replaceCacheFile(const Document* document, const QString& file);
+	void writeCacheFile(const Document* document, QSharedPointer<DocumentWriter> writer);
 
 private:
-	QString backupCache();
-	QString createFileName();
-	void updateCacheFile(Document* document, const QString& cache_file);
+	QString backupCache() const;
+	QString createFileName() const;
+	void updateCacheFile(const Document* document, const QString& cache_file);
 
 private:
 	Stack* m_ordering;
-	QHash<Document*, QString> m_filenames;
+	QHash<const Document*, QString> m_filenames;
 	QString m_previous_cache;
 
 	static QString m_path;

@@ -28,7 +28,7 @@ DocumentCache::DocumentCache(QObject* parent)
 	: QObject(parent)
 	, m_ordering(nullptr)
 {
-	QStringList entries = QDir(m_path).entryList(QDir::Files);
+	const QStringList entries = QDir(m_path).entryList(QDir::Files);
 	if ((entries.count() >= 1) && entries.contains("mapping")) {
 		m_previous_cache = backupCache();
 	}
@@ -59,16 +59,16 @@ bool DocumentCache::isWritable() const
 
 void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) const
 {
-	QString cache_path = isClean() ? m_path : m_previous_cache;
+	const QString cache_path = isClean() ? m_path : m_previous_cache;
 	QFile file(cache_path + "/mapping");
 	if (file.open(QFile::ReadOnly | QFile::Text)) {
 		QTextStream stream(&file);
 		stream.setAutoDetectUnicode(true);
 
 		while (!stream.atEnd()) {
-			QString line = stream.readLine();
-			QString datafile = line.section(' ', 0, 0);
-			QString path = line.section(' ', 1);
+			const QString line = stream.readLine();
+			const QString datafile = line.section(' ', 0, 0);
+			const QString path = line.section(' ', 1);
 			if (!datafile.isEmpty()) {
 				files.append(path);
 				datafiles.append(cache_path + "/" + datafile);
@@ -80,7 +80,7 @@ void DocumentCache::parseMapping(QStringList& files, QStringList& datafiles) con
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::add(Document* document)
+void DocumentCache::add(const Document* document)
 {
 	m_filenames[document] = createFileName();
 	connect(document, &Document::changedName, this, &DocumentCache::updateMapping);
@@ -91,10 +91,10 @@ void DocumentCache::add(Document* document)
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::remove(Document* document)
+void DocumentCache::remove(const Document* document)
 {
 	if (m_filenames.contains(document)) {
-		QString cache_file = m_filenames.take(document);
+		const QString cache_file = m_filenames.take(document);
 		updateMapping();
 		QFile::remove(cache_file);
 	}
@@ -119,7 +119,7 @@ void DocumentCache::setPath(const QString& path)
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::updateMapping()
+void DocumentCache::updateMapping() const
 {
 	QFile file(m_path + "/mapping");
 	if (file.open(QFile::WriteOnly | QFile::Text)) {
@@ -127,7 +127,7 @@ void DocumentCache::updateMapping()
 		stream.setGenerateByteOrderMark(true);
 
 		for (int i = 0, count = m_ordering->count(); i < count; ++i) {
-			Document* document = m_ordering->document(i);
+			const Document* document = m_ordering->document(i);
 			if (!m_filenames.contains(document)) {
 				continue;
 			}
@@ -139,9 +139,9 @@ void DocumentCache::updateMapping()
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::replaceCacheFile(Document* document, const QString& file)
+void DocumentCache::replaceCacheFile(const Document* document, const QString& file)
 {
-	QString cache_file = createFileName();
+	const QString cache_file = createFileName();
 	if (QFile::copy(file, m_path + cache_file)) {
 		updateCacheFile(document, cache_file);
 	}
@@ -149,9 +149,9 @@ void DocumentCache::replaceCacheFile(Document* document, const QString& file)
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::writeCacheFile(Document* document, QSharedPointer<DocumentWriter> writer)
+void DocumentCache::writeCacheFile(const Document* document, QSharedPointer<DocumentWriter> writer)
 {
-	QString cache_file = createFileName();
+	const QString cache_file = createFileName();
 	writer->setFileName(m_path + cache_file);
 	if (writer->write()) {
 		updateCacheFile(document, cache_file);
@@ -160,10 +160,10 @@ void DocumentCache::writeCacheFile(Document* document, QSharedPointer<DocumentWr
 
 //-----------------------------------------------------------------------------
 
-QString DocumentCache::backupCache()
+QString DocumentCache::backupCache() const
 {
 	// Find backup location
-	QString date = QDateTime::currentDateTimeUtc().toString("yyyyMMddhhmmss");
+	const QString date = QDateTime::currentDateTimeUtc().toString("yyyyMMddhhmmss");
 	int extra = 0;
 	QDir dir(QDir::cleanPath(m_path + "/../"));
 	QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::LocaleAware);
@@ -173,7 +173,7 @@ QString DocumentCache::backupCache()
 			extra = std::max(extra, subdir.mid(15).toInt() + 1);
 		}
 	}
-	QString cachepath = dir.absoluteFilePath(date + (!extra ? "" : QString("-%1").arg(extra)));
+	const QString cachepath = dir.absoluteFilePath(date + (!extra ? "" : QString("-%1").arg(extra)));
 
 	// Move cache files to backup location
 	dir.rename("Files", cachepath);
@@ -181,7 +181,7 @@ QString DocumentCache::backupCache()
 
 	// Limit to five backups
 	while (subdirs.count() > 4) {
-		QString subdir_name = subdirs.takeAt(0);
+		const QString subdir_name = subdirs.takeAt(0);
 		QDir subdir(dir.absoluteFilePath(subdir_name));
 		subdir.removeRecursively();
 	}
@@ -191,12 +191,12 @@ QString DocumentCache::backupCache()
 
 //-----------------------------------------------------------------------------
 
-QString DocumentCache::createFileName()
+QString DocumentCache::createFileName() const
 {
 	QString filename;
-	QDir dir(m_path);
+	const QDir dir(m_path);
 	do {
-		quint32 value = QRandomGenerator::global()->generate();
+		const quint32 value = QRandomGenerator::global()->generate();
 		filename = QString("fw_%1").arg(value, 6, 36, QLatin1Char('0'));
 	} while (dir.exists(filename));
 
@@ -205,7 +205,7 @@ QString DocumentCache::createFileName()
 
 //-----------------------------------------------------------------------------
 
-void DocumentCache::updateCacheFile(Document* document, const QString& cache_file)
+void DocumentCache::updateCacheFile(const Document* document, const QString& cache_file)
 {
 	// Ensure new filenames only
 	if (m_filenames[document] == cache_file) {
