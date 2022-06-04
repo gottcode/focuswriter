@@ -28,7 +28,7 @@ public slots:
 	void reject() override;
 
 private slots:
-	void suggestionChanged(QListWidgetItem* suggestion);
+	void suggestionChanged(const QListWidgetItem* suggestion);
 	void add();
 	void ignore();
 	void ignoreAll();

@@ -50,7 +50,7 @@ void SpellChecker::reject()
 
 //-----------------------------------------------------------------------------
 
-void SpellChecker::suggestionChanged(QListWidgetItem* suggestion)
+void SpellChecker::suggestionChanged(const QListWidgetItem* suggestion)
 {
 	if (suggestion) {
 		m_suggestion->setText(suggestion->text());
@@ -92,7 +92,7 @@ void SpellChecker::change()
 
 void SpellChecker::changeAll()
 {
-	QString replacement = m_suggestion->text();
+	const QString replacement = m_suggestion->text();
 
 	QTextCursor cursor = m_cursor;
 	cursor.movePosition(QTextCursor::Start);
@@ -194,8 +194,8 @@ void SpellChecker::check()
 		}
 
 		// Check current line
-		QTextBlock block = m_cursor.block();
-		auto word = m_dictionary.check(block.text(), m_cursor.position() - block.position());
+		const QTextBlock block = m_cursor.block();
+		const auto word = m_dictionary.check(block.text(), m_cursor.position() - block.position());
 		if (word.isNull()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);
@@ -234,8 +234,8 @@ void SpellChecker::check()
 			// Show misspelled word in context
 			QTextCursor cursor = m_cursor;
 			cursor.movePosition(QTextCursor::PreviousWord, QTextCursor::MoveAnchor, 10);
-			int end = m_cursor.position() - cursor.position();
-			int start = end - m_word.length();
+			const int end = m_cursor.position() - cursor.position();
+			const int start = end - m_word.length();
 			cursor.movePosition(QTextCursor::NextWord, QTextCursor::KeepAnchor, 21);
 			QString context = cursor.selectedText();
 			context.insert(end, "</span>");
