@@ -185,14 +185,14 @@ void DocxWriter::writeParagraph(const QTextBlock& block)
 	for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
 		m_xml.writeStartElement(QStringLiteral("w:r"));
 
-		QTextFragment fragment = iter.fragment();
+		const QTextFragment fragment = iter.fragment();
 		writeRunProperties(fragment.charFormat());
 
-		QString text = fragment.text();
+		const QString text = fragment.text();
 		int start = 0;
-		int count = text.length();
+		const int count = text.length();
 		for (int i = 0; i < count; ++i) {
-			QChar c = text.at(i);
+			const QChar c = text.at(i);
 			if (c.unicode() == 0x0009) {
 				writeText(text, start, i);
 				m_xml.writeEmptyElement(QStringLiteral("w:tab"));
@@ -232,21 +232,21 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 {
 	bool empty = true;
 
-	int heading = block_format.property(QTextFormat::UserProperty).toInt();
+	const int heading = block_format.property(QTextFormat::UserProperty).toInt();
 	if (heading) {
 		writePropertyElement(QStringLiteral("w:pPr"), empty);
 		m_xml.writeEmptyElement(QStringLiteral("w:pStyle"));
 		m_xml.writeAttribute(QStringLiteral("w:val"), QString("Heading%1").arg(heading));
 	}
 
-	bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+	const bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
 	if (rtl) {
 		writePropertyElement(QStringLiteral("w:pPr"), empty);
 		m_xml.writeEmptyElement(QStringLiteral("w:bidi"));
 		m_xml.writeAttribute(QStringLiteral("w:val"), QStringLiteral("1"));
 	}
 
-	Qt::Alignment align = block_format.alignment();
+	const Qt::Alignment align = block_format.alignment();
 	if (rtl && (align & Qt::AlignRight)) {
 		writePropertyElement(QStringLiteral("w:pPr"), empty);
 		m_xml.writeEmptyElement(QStringLiteral("w:jc"));
@@ -268,7 +268,7 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 	if (block_format.indent() > 0) {
 		writePropertyElement(QStringLiteral("w:pPr"), empty);
 		m_xml.writeEmptyElement(QStringLiteral("w:ind"));
-		QString indent = QString::number(block_format.indent() * 720);
+		const QString indent = QString::number(block_format.indent() * 720);
 		if (m_strict) {
 			m_xml.writeAttribute(QStringLiteral("w:start"), indent);
 		} else if (rtl) {
