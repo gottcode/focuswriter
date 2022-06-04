@@ -179,8 +179,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 
 		QListWidgetItem* item = nullptr;
 		if (text != "|") {
-			int count = m_toolbar_actions->count();
-			for (int i = pos; i < count; ++i) {
+			for (int i = pos, count = m_toolbar_actions->count(); i < count; ++i) {
 				if (m_toolbar_actions->item(i)->data(Qt::UserRole).toString() == text) {
 					item = m_toolbar_actions->takeItem(i);
 					break;
@@ -283,8 +282,7 @@ void PreferencesDialog::accept()
 
 	Preferences::instance().setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
-	int count = m_toolbar_actions->count();
-	for (int i = 0; i < count; ++i) {
+	for (int i = 0, count = m_toolbar_actions->count(); i < count; ++i) {
 		QListWidgetItem* item = m_toolbar_actions->item(i);
 		QString action = (item->checkState() == Qt::Unchecked ? "^" : "") + item->data(Qt::UserRole).toString();
 		if (action != "^|") {
@@ -327,7 +325,7 @@ void PreferencesDialog::accept()
 
 	// Save personal dictionary
 	QStringList words;
-	for (int i = 0; i < m_personal_dictionary->count(); ++i) {
+	for (int i = 0, count = m_personal_dictionary->count(); i < count; ++i) {
 		words.append(m_personal_dictionary->item(i)->text());
 	}
 	DictionaryManager::instance().setPersonal(words);
@@ -436,9 +434,8 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// List files
-	QStringList entries = zip.fileList();
-	for (int i = 0; i < entries.count(); ++i) {
-		QString name = entries.at(i);
+	const QStringList entries = zip.fileList();
+	for (const QString& name : entries) {
 		if (name.endsWith(".aff")) {
 			aff_files += name;
 		} else if (name.endsWith(".dic")) {

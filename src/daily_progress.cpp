@@ -485,8 +485,7 @@ void DailyProgress::updateRows()
 		const QDate next = progress.date();
 		const int type = progress.type();
 		const int goal = progress.goal();
-		const int count = next.daysTo(previous) - 1;
-		for (int j = 0; j < count; ++j) {
+		for (int j = 0, count = next.daysTo(previous) - 1; j < count; ++j) {
 			previous = previous.addDays(-1);
 			m_progress.insert(i + 1, Progress(previous, 0, 0, type, goal));
 		}
@@ -502,7 +501,7 @@ void DailyProgress::updateRows()
 	int month = -1;
 	int year = -1;
 	int offset = 0;
-	for (int i = 0; i < m_progress.size(); i += 7) {
+	for (int i = 0, count = m_progress.count(); i < count; i += 7) {
 		const Progress& progress = m_progress.at(i);
 		if (progress.date().isNull()) {
 			i -= 6;

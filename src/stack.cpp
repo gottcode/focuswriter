@@ -795,7 +795,7 @@ void Stack::updateMask()
 
 void Stack::updateMenuIndexes()
 {
-	for (int i = 0; i < m_document_actions.size(); ++i) {
+	for (int i = 0, count = m_document_actions.count(); i < count; ++i) {
 		m_document_actions[i]->setData(i);
 	}
 }

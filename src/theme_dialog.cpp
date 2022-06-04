@@ -422,7 +422,7 @@ void ThemeDialog::fontChanged()
 	m_font_sizes->blockSignals(true);
 	m_font_sizes->clear();
 	int index = 0;
-	for (int i = 0; i < font_sizes.count(); ++i) {
+	for (int i = 0, count = font_sizes.count(); i < count; ++i) {
 		int size = font_sizes.at(i);
 		if (size <= font_size) {
 			index = i;

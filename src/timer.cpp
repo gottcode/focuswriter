@@ -536,8 +536,7 @@ bool Timer::startTimer()
 
 	// Create document deltas
 	if (m_deltas.isEmpty()) {
-		int count = m_documents->count();
-		for (int i = 0; i < count; ++i) {
+		for (int i = 0, count = m_documents->count(); i < count; ++i) {
 			Document* document = m_documents->document(i);
 			m_deltas.insert(document, new Deltas(document));
 		}

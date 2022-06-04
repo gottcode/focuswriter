@@ -147,9 +147,8 @@ void Highlighter::highlightBlock(const QString& text)
 	style.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
 	int cursor = m_text->textCursor().position() - currentBlock().position();
-	auto words = stats->misspelled();
-	for (int i = 0; i < words.count(); ++i) {
-		const auto& word = words.at(i);
+	const QList<WordRef> words = stats->misspelled();
+	for (const WordRef& word : words) {
 		int delta = cursor - word.position();
 		if (!m_changed || (delta < 0 || delta > word.length())) {
 			setFormat(word.position(), word.length(), style);

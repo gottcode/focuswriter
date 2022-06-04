@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2019 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -221,10 +221,10 @@ void TimerManager::timerChanged(Timer* timer)
 		m_timers.move(index, new_index);
 
 		// Re-add all timers to widget so that tab order will be correct
-		for (int i = 0; i < m_timers.count(); ++i) {
-			m_timers[i]->setParent(nullptr);
+		for (Timer* timer : qAsConst(m_timers)) {
+			timer->setParent(nullptr);
 		}
-		for (int i = 0; i < m_timers.count(); ++i) {
+		for (int i = 0, count = m_timers.count(); i < count; ++i) {
 			m_timers_layout->insertWidget(i, m_timers[i]);
 		}
 
@@ -240,12 +240,7 @@ void TimerManager::timerChanged(Timer* timer)
 
 void TimerManager::timerDeleted(QObject* object)
 {
-	for (int i = 0; i < m_timers.count(); ++i) {
-		if (m_timers.at(i) == object) {
-			m_timers.removeAt(i);
-			break;
-		}
-	}
+	m_timers.removeOne(object);
 	updateDisplay();
 }
 

@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2014 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -339,13 +339,11 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 {
 	QByteArray text;
 
-	QByteArray encoded;
 	QTextCodec::ConverterState state;
 	state.flags = QTextCodec::ConvertInvalidToNull;
 
-	QString::const_iterator end = string.constEnd();
-	for (QString::const_iterator i = string.constBegin(); i != end; ++i) {
-		switch (i->unicode()) {
+	for (const QChar& c : string) {
+		switch (c.unicode()) {
 		case '\t': text += "\\tab "; break;
 		case '\\': text += "\\'5C"; break;
 		case '{': text += "\\'7B"; break;
@@ -370,22 +368,20 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 		case 0x2022: text += "\\bullet "; break;
 		case 0x2028: text += "\\line "; break;
 		default:
-			if (m_supports_ascii && (i->unicode() >= 0x0020) && (i->unicode() < 0x0080)) {
-				text += i->unicode();
+			if (m_supports_ascii && (c.unicode() >= 0x0020) && (c.unicode() < 0x0080)) {
+				text += c.unicode();
 				break;
 			}
 
-			encoded = m_codec->fromUnicode(i, 1, &state);
+			const QByteArray encoded = m_codec->fromUnicode(&c, 1, &state);
 			if ((state.invalidChars == 0) && (encoded.at(0) != 0)) {
 				if (encoded.count() == 1 && encoded.at(0) >= 0x20) {
 					text += encoded;
 				} else {
-					for (int j = 0; j < encoded.count(); ++j) {
-						text += "\\'" + QByteArray::number(static_cast<unsigned char>(encoded.at(j)), 16).toUpper();
-					}
+					text += "\\'" + encoded.toHex().toUpper();
 				}
-			} else if (i->unicode()) {
-				text += "\\u" + QByteArray::number(i->unicode()) + "?";
+			} else if (c.unicode()) {
+				text += "\\u" + QByteArray::number(c.unicode()) + "?";
 			}
 		}
 	}

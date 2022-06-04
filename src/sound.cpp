@@ -61,9 +61,9 @@ bool Sound::isValid() const
 void Sound::play()
 {
 	QSoundEffect* sound = nullptr;
-	for (int i = 0, end = m_sounds.size(); i < end; ++i) {
-		if (!m_sounds.at(i)->isPlaying()) {
-			sound = m_sounds.at(i);
+	for (QSoundEffect* check : qAsConst(m_sounds)) {
+		if (!check->isPlaying()) {
+			sound = check;
 			break;
 		}
 	}

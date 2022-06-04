@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2009-2022 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -55,18 +55,17 @@ void BlockStats::update(const QString& text)
 	m_spaces = 0;
 	m_words = 0;
 	bool word = false;
-	QString::const_iterator end = text.constEnd();
-	for (QString::const_iterator i = text.constBegin(); i != end; ++i) {
-		if (i->isLetterOrNumber()) {
+	for (const QChar& c : text) {
+		if (c.isLetterOrNumber()) {
 			if (word == false) {
 				word = true;
 				m_words++;
 			}
-			m_letters += (i->category() != QChar::Punctuation_Dash);
-		} else if (i->isSpace()) {
+			m_letters += (c.category() != QChar::Punctuation_Dash);
+		} else if (c.isSpace()) {
 			word = false;
 			m_spaces++;
-		} else if (*i != u'’' && *i != '\'' && *i != '-') {
+		} else if (c != u'’' && c != '\'' && c != '-') {
 			word = false;
 		}
 	}

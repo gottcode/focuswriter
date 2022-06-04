@@ -35,7 +35,7 @@ bool HtmlWriter::write(QIODevice* device, QTextDocument* document)
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		QTextBlockFormat block_format = block.blockFormat();
 		int block_format_elements = 0;
-		for (int i = 0; i < block_format.indent(); ++i) {
+		for (int i = 0, count = block_format.indent(); i < count; ++i) {
 			m_xml.writeStartElement(QStringLiteral("blockquote"));
 			++block_format_elements;
 		}

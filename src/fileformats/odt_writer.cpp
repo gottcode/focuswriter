@@ -228,8 +228,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 
 	// Write text styles
 	int text_style = 1;
-	for (int i = 0; i < text_styles.size(); ++i) {
-		int index = text_styles.at(i);
+	for (const int index : qAsConst(text_styles)) {
 		const QTextFormat& format = formats.at(index);
 		QString name = QStringLiteral("T") + QString::number(text_style);
 		if (writeTextStyle(format.toCharFormat(), name)) {
@@ -240,8 +239,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 
 	// Write paragraph styles
 	int paragraph_style = 1;
-	for (int i = 0; i < paragraph_styles.size(); ++i) {
-		int index = paragraph_styles.at(i);
+	for (const int index : qAsConst(paragraph_styles)) {
 		const QTextFormat& format = formats.at(index);
 		QString name = QStringLiteral("P") + QString::number(paragraph_style);
 		if (writeParagraphStyle(format.toBlockFormat(), name)) {
@@ -364,7 +362,7 @@ void OdtWriter::writeBody(const QTextDocument* document)
 			QString text = fragment.text();
 			int start = 0;
 			int spaces = -1;
-			for (int i = 0; i < text.length(); ++i) {
+			for (int i = 0, count = text.length(); i < count; ++i) {
 				QChar c = text.at(i);
 				if (c.unicode() == 0x0) {
 					m_xml.writeCharacters(text.mid(start, i - start));

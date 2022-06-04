@@ -126,7 +126,7 @@ void DocumentCache::updateMapping()
 		QTextStream stream(&file);
 		stream.setGenerateByteOrderMark(true);
 
-		for (int i = 0; i < m_ordering->count(); ++i) {
+		for (int i = 0, count = m_ordering->count(); i < count; ++i) {
 			Document* document = m_ordering->document(i);
 			if (!m_filenames.contains(document)) {
 				continue;

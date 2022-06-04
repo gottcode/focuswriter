@@ -385,7 +385,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 		"avi", "m1v", "m2ts", "m4v", "mkv", "mov", "mp4", "mp4v", "mpa", "mpe", "mpg", "mpeg", "mpv2", "wm", "wmv"
 	};
 	QList<int> skip;
-	for (int i = 0; i < files.count(); ++i) {
+	for (int i = 0, count = files.count(); i < count; ++i) {
 		if (suffixes.contains(QFileInfo(files.at(i)).suffix().toLower())) {
 			skip += i;
 		}
@@ -421,7 +421,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	QStringList errors;
 	QStringList readonly;
 	int open_files = m_documents->count();
-	for (int i = 0; i < files.count(); ++i) {
+	for (int i = 0, count = files.count(); i < count; ++i) {
 		// Skip file known to be unsupported
 		if (!skip.isEmpty() && (skip.first() == i)) {
 			skip.removeFirst();
@@ -509,8 +509,7 @@ bool Window::closeDocuments(QSettings* session)
 	}
 
 	// Close files
-	int count = m_documents->count();
-	for (int i = 0; i < count; ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		closeDocument(0, true);
 	}
 
@@ -529,7 +528,7 @@ bool Window::saveDocuments(QSettings* session)
 	int active = m_tabs->currentIndex();
 	QStringList files;
 	QStringList positions;
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_tabs->setCurrentIndex(i);
 		if (!saveDocument(i)) {
 			m_tabs->setCurrentIndex(active);
@@ -610,8 +609,7 @@ void Window::closeEvent(QCloseEvent* event)
 
 	// Close documents but keep them cached
 	m_documents->autoCache();
-	int count = m_documents->count();
-	for (int i = 0; i < count; ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_documents->removeDocument(0);
 	}
 
@@ -697,7 +695,7 @@ void Window::renameDocument()
 void Window::saveAllDocuments()
 {
 	int index = m_tabs->currentIndex();
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		Document* document = m_documents->document(i);
 		if (!document->filename().isEmpty()) {
 			document->save();
@@ -724,7 +722,7 @@ void Window::closeDocument()
 
 void Window::closeDocument(Document* document)
 {
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		if (m_documents->document(i) == document) {
 			return closeDocument(i);
 		}
@@ -735,7 +733,7 @@ void Window::closeDocument(Document* document)
 
 void Window::showDocument(Document* document)
 {
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		if (m_documents->document(i) == document) {
 			m_tabs->setCurrentIndex(i);
 			break;
@@ -990,7 +988,7 @@ void Window::updateSave()
 {
 	m_actions["Save"]->setEnabled(m_documents->currentDocument()->isModified());
 	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->isReadOnly() || m_documents->currentDocument()->filename().isEmpty());
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		updateTab(i);
 	}
 }
@@ -1003,7 +1001,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	if (!file.isEmpty()) {
 		// Check if already open
 		QString canonical_filename = info.canonicalFilePath();
-		for (int i = 0; i < m_documents->count(); ++i) {
+		for (int i = 0, count = m_documents->count(); i < count; ++i) {
 			if (QFileInfo(m_documents->document(i)->filename()).canonicalFilePath() == canonical_filename) {
 				m_tabs->setCurrentIndex(i);
 				return true;
@@ -1196,7 +1194,7 @@ void Window::loadPreferences()
 
 	m_documents->setHeaderVisible(Preferences::instance().alwaysShowHeader());
 	m_documents->setFooterVisible(Preferences::instance().alwaysShowFooter());
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_documents->document(i)->loadPreferences();
 	}
 	if (m_documents->count() > 0) {
@@ -1214,7 +1212,7 @@ void Window::hideInterface()
 	m_documents->setFooterVisible(false);
 	m_documents->setHeaderVisible(false);
 	m_documents->setScenesVisible(false);
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_documents->document(i)->setScrollBarVisible(false);
 	}
 }

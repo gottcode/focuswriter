@@ -112,8 +112,7 @@ void SymbolsModel::setFilter(int group, int index)
 
 	// Create list of symbols
 	beginInsertRows(QModelIndex(), 0, (size / 16) - 1);
-	for (int i = 0, count = filter.ranges.count(); i < count; ++i) {
-		const Filter::Range& range = filter.ranges.at(i);
+	for (const Filter::Range& range : filter.ranges) {
 		for (char32_t code = range.start; code <= range.end; ++code) {
 			m_symbols.append(code);
 		}
