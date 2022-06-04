@@ -64,12 +64,12 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	m_tabs = new QTabWidget(this);
 
 	// Find view sizes
-	int focush = style()->pixelMetric(QStyle::PM_FocusFrameHMargin);
-	int focusv = style()->pixelMetric(QStyle::PM_FocusFrameVMargin);
-	int frame = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-	int scrollbar = style()->pixelMetric(QStyle::PM_SliderThickness);
-	QSize grid_size(259 + focush, 154 + focusv + (fontMetrics().height() * 2));
-	QSize view_size((grid_size.width() + frame + focush) * 2 + scrollbar, (grid_size.height() + frame + focusv) * 2);
+	const int focush = style()->pixelMetric(QStyle::PM_FocusFrameHMargin);
+	const int focusv = style()->pixelMetric(QStyle::PM_FocusFrameVMargin);
+	const int frame = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+	const int scrollbar = style()->pixelMetric(QStyle::PM_SliderThickness);
+	const QSize grid_size(259 + focush, 154 + focusv + (fontMetrics().height() * 2));
+	const QSize view_size((grid_size.width() + frame + focush) * 2 + scrollbar, (grid_size.height() + frame + focusv) * 2);
 
 	// Add default themes tab
 	QWidget* tab = new QWidget(this);
@@ -141,7 +141,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 			name = QUrl::fromPercentEncoding(QFileInfo(theme).completeBaseName().toUtf8());
 			QSettings(dir.filePath(theme), QSettings::IniFormat).setValue("Name", name);
 
-			QString id = Theme::createId();
+			const QString id = Theme::createId();
 			dir.rename(theme, id + ".theme");
 			dir.remove(QFileInfo(theme).completeBaseName() + ".png");
 
@@ -210,8 +210,8 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 	layout->addWidget(buttons);
 
 	// Select theme
-	QString theme = m_settings.value("ThemeManager/Theme").toString();
-	bool is_default = m_settings.value("ThemeManager/ThemeDefault", false).toBool();
+	const QString theme = m_settings.value("ThemeManager/Theme").toString();
+	const bool is_default = m_settings.value("ThemeManager/ThemeDefault", false).toBool();
 	if (!selectItem(theme, is_default)) {
 		selectItem(Theme::defaultId(), true);
 	}
@@ -273,14 +273,14 @@ void ThemeManager::editTheme()
 
 void ThemeManager::cloneTheme()
 {
-	bool is_default = m_tabs->currentIndex() == 0;
+	const bool is_default = m_tabs->currentIndex() == 0;
 	QListWidgetItem* item = (is_default ? m_default_themes : m_themes)->currentItem();
 	if (!item) {
 		return;
 	}
 
-	QString id = Theme::clone(item->data(Qt::UserRole).toString(), is_default, item->text());
-	QString name = QSettings(Theme::filePath(id, false), QSettings::IniFormat).value("Name").toString();
+	const QString id = Theme::clone(item->data(Qt::UserRole).toString(), is_default, item->text());
+	const QString name = QSettings(Theme::filePath(id, false), QSettings::IniFormat).value("Name").toString();
 	item = addItem(id, false, name);
 	m_themes->setCurrentItem(item);
 
@@ -297,7 +297,7 @@ void ThemeManager::deleteTheme()
 	}
 
 	if (QMessageBox::question(this, tr("Question"), tr("Delete theme '%1'?").arg(item->text()), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-		QString id = item->data(Qt::UserRole).toString();
+		const QString id = item->data(Qt::UserRole).toString();
 		QFile::remove(Theme::filePath(id));
 		Theme::removeIcon(id, false);
 		delete item;
@@ -320,17 +320,17 @@ void ThemeManager::importTheme()
 	if (path.isEmpty() || !QFile::exists(path)) {
 		path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 	}
-	QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), path, tr("Themes (%1)").arg("*.fwtz *.theme"));
+	const QString filename = QFileDialog::getOpenFileName(this, tr("Import Theme"), path, tr("Themes (%1)").arg("*.fwtz *.theme"));
 	if (filename.isEmpty()) {
 		return;
 	}
 	settings.setValue("ThemeManager/Location", QFileInfo(filename).absolutePath());
 
-	QString id = Theme::createId();
+	const QString id = Theme::createId();
 
 	// Uncompress theme
-	QString theme_filename = Theme::filePath(id);
-	QByteArray theme = gunzip(filename);
+	const QString theme_filename = Theme::filePath(id);
+	const QByteArray theme = gunzip(filename);
 	{
 		QFile file(theme_filename);
 		if (file.open(QFile::WriteOnly)) {
@@ -343,7 +343,7 @@ void ThemeManager::importTheme()
 	QSettings theme_ini(theme_filename, QSettings::IniFormat);
 	QString name = theme_ini.value("Name", QFileInfo(filename).completeBaseName()).toString();
 	{
-		QStringList values = splitStringAtLastNumber(name);
+		const QStringList values = splitStringAtLastNumber(name);
 		int count = values.at(1).toInt();
 		while (Theme::exists(name)) {
 			++count;
@@ -353,8 +353,8 @@ void ThemeManager::importTheme()
 	}
 
 	// Extract and use background image
-	QByteArray data = QByteArray::fromBase64(theme_ini.value("Data/Image").toByteArray());
-	QString image_file = theme_ini.value("Background/ImageFile").toString();
+	const QByteArray data = QByteArray::fromBase64(theme_ini.value("Data/Image").toByteArray());
+	const QString image_file = theme_ini.value("Background/ImageFile").toString();
 	theme_ini.remove("Background/ImageFile");
 	theme_ini.remove("Data/Image");
 	theme_ini.sync();
@@ -382,7 +382,7 @@ void ThemeManager::importTheme()
 
 void ThemeManager::exportTheme()
 {
-	QListWidgetItem* item = m_themes->currentItem();
+	const QListWidgetItem* item = m_themes->currentItem();
 	if (!item) {
 		return;
 	}
@@ -412,7 +412,7 @@ void ThemeManager::exportTheme()
 		QSettings theme_ini(filename, QSettings::IniFormat);
 		theme_ini.remove("Background/Image");
 
-		QString image = theme_ini.value("Background/ImageFile").toString();
+		const QString image = theme_ini.value("Background/ImageFile").toString();
 		if (!image.isEmpty()) {
 			QFile file(Theme::path() + "/Images/" + image);
 			if (file.open(QFile::ReadOnly)) {
@@ -428,10 +428,10 @@ void ThemeManager::exportTheme()
 
 //-----------------------------------------------------------------------------
 
-void ThemeManager::currentThemeChanged(QListWidgetItem* current)
+void ThemeManager::currentThemeChanged(const QListWidgetItem* current)
 {
 	if (current) {
-		bool is_default = current->listWidget() == m_default_themes;
+		const bool is_default = current->listWidget() == m_default_themes;
 		if (is_default) {
 			m_themes->setCurrentIndex(m_themes->rootIndex());
 		} else {
@@ -440,7 +440,7 @@ void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 
 		selectionChanged(is_default);
 
-		QString id = current->data(Qt::UserRole).toString();
+		const QString id = current->data(Qt::UserRole).toString();
 		m_settings.setValue("ThemeManager/Theme", id);
 		m_settings.setValue("ThemeManager/ThemeDefault", is_default);
 		emit themeSelected(Theme(id, is_default));
@@ -452,7 +452,7 @@ void ThemeManager::currentThemeChanged(QListWidgetItem* current)
 QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const QString& name)
 {
 	const qreal pixelratio = devicePixelRatioF();
-	QString icon = Theme::iconPath(id, is_default, pixelratio);
+	const QString icon = Theme::iconPath(id, is_default, pixelratio);
 	if (!QFile::exists(icon) || QImageReader(icon).size() != (QSize(258, 153) * pixelratio)) {
 		Theme theme(id, is_default);
 
@@ -464,7 +464,7 @@ QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const
 
 		// Generate preview
 		QRect foreground;
-		QImage background = theme.render(QSize(1920, 1080), foreground, 0, pixelratio);
+		const QImage background = theme.render(QSize(1920, 1080), foreground, 0, pixelratio);
 		QImage icon;
 		theme.renderText(background, foreground, pixelratio, nullptr, &icon);
 		icon.save(Theme::iconPath(theme.id(), theme.isDefault(), pixelratio));
@@ -494,11 +494,11 @@ bool ThemeManager::selectItem(const QString& id, bool is_default)
 	if (is_default) {
 		std::swap(view, other_view);
 	}
-	QAbstractItemModel* model = view->model();
-	QModelIndexList items = model->match(model->index(0, 0, QModelIndex()),
+	const QAbstractItemModel* model = view->model();
+	const QModelIndexList items = model->match(model->index(0, 0, QModelIndex()),
 			Qt::UserRole, id, 1, Qt::MatchFixedString | Qt::MatchCaseSensitive);
 	if (!items.isEmpty()) {
-		view->setCurrentRow(items.first().row());
+		view->setCurrentRow(items.constFirst().row());
 		other_view->setCurrentIndex(other_view->rootIndex());
 		m_tabs->setCurrentIndex(!is_default);
 		return true;

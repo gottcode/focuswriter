@@ -35,7 +35,7 @@ private slots:
 	void deleteTheme();
 	void importTheme();
 	void exportTheme();
-	void currentThemeChanged(QListWidgetItem* current);
+	void currentThemeChanged(const QListWidgetItem* current);
 
 private:
 	QListWidgetItem* addItem(const QString& id, bool is_default, const QString& name);
