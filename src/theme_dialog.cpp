@@ -397,10 +397,10 @@ void ThemeDialog::hideEvent(QHideEvent* event)
 
 void ThemeDialog::checkNameAvailable()
 {
-	QString name = m_name->text().simplified();
-	bool empty = name.isEmpty();
-	bool changed = (name != m_theme.name());
-	bool exists = Theme::exists(name);
+	const QString name = m_name->text().simplified();
+	const bool empty = name.isEmpty();
+	const bool changed = (name != m_theme.name());
+	const bool exists = Theme::exists(name);
 	m_ok->setEnabled(!changed || (!empty && !exists));
 }
 
@@ -408,8 +408,7 @@ void ThemeDialog::checkNameAvailable()
 
 void ThemeDialog::fontChanged()
 {
-
-	QFont font = m_font_names->currentFont();
+	const QFont font = m_font_names->currentFont();
 	QList<int> font_sizes = QFontDatabase::smoothSizes(font.family(), QString());
 	if (font_sizes.isEmpty()) {
 		font_sizes = QFontDatabase::standardSizes();
@@ -423,7 +422,7 @@ void ThemeDialog::fontChanged()
 	m_font_sizes->clear();
 	int index = 0;
 	for (int i = 0, count = font_sizes.count(); i < count; ++i) {
-		int size = font_sizes.at(i);
+		const int size = font_sizes.at(i);
 		if (size <= font_size) {
 			index = i;
 		}
@@ -431,7 +430,7 @@ void ThemeDialog::fontChanged()
 	}
 	m_font_sizes->setCurrentIndex(index);
 	m_font_sizes->setEditText(QString::number(font_size));
-	m_font_sizes->setValidator(new QDoubleValidator(font_sizes.first(), font_sizes.last(), 1, m_font_sizes));
+	m_font_sizes->setValidator(new QDoubleValidator(font_sizes.constFirst(), font_sizes.constLast(), 1, m_font_sizes));
 	m_font_sizes->blockSignals(false);
 }
 
@@ -440,8 +439,8 @@ void ThemeDialog::fontChanged()
 void ThemeDialog::imageChanged()
 {
 	if (!m_background_image->image().isEmpty()) {
-		QSize image = QImageReader(m_background_image->image()).size();
-		QSize desktop = QApplication::primaryScreen()->size();
+		const QSize image = QImageReader(m_background_image->image()).size();
+		const QSize desktop = QApplication::primaryScreen()->size();
 		if ((image.width() * image.height() * 4) <= (desktop.width() * desktop.height())) {
 			m_background_type->setCurrentIndex(1);
 		} else if (m_background_type->currentIndex() < 2) {
