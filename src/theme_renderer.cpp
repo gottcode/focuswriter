@@ -18,12 +18,12 @@ ThemeRenderer::ThemeRenderer(QObject* parent)
 void ThemeRenderer::create(const Theme& theme, const QSize& background, const int margin, const qreal pixelratio)
 {
 	// Check if already rendered
-	CacheFile file = { theme, background, QRect(), QImage(), margin, pixelratio };
+	const CacheFile file{ theme, background, QRect(), QImage(), margin, pixelratio };
 	if (!isRunning()) {
-		int index = m_cache.indexOf(file);
+		const int index = m_cache.indexOf(file);
 		if (index != -1) {
 			m_cache.move(index, 0);
-			emit rendered(m_cache.first().image, m_cache.first().foreground, file.theme);
+			emit rendered(m_cache.constFirst().image, m_cache.constFirst().foreground, file.theme);
 			return;
 		}
 	}
