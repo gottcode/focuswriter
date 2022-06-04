@@ -65,7 +65,7 @@ private slots:
 
 private:
 	QFileSystemWatcher* m_watcher;
-	QHash<Document*, Details> m_documents;
+	QHash<const Document*, Details> m_documents;
 	QHash<QString, Document*> m_paths;
 	QStringList m_updates;
 	static DocumentWatcher* m_instance;

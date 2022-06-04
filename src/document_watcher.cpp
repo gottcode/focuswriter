@@ -67,7 +67,7 @@ void DocumentWatcher::addWatch(Document* document)
 	}
 
 	// Store document details
-	QString path = document->filename();
+	const QString path = document->filename();
 	if (!path.isEmpty()) {
 		m_documents.insert(document, QFileInfo(path));
 		const Details& details = m_documents[document];
@@ -100,7 +100,7 @@ void DocumentWatcher::pauseWatch(Document* document)
 void DocumentWatcher::removeWatch(Document* document)
 {
 	// Remove document details
-	Details details = m_documents.take(document);
+	const Details details = m_documents.take(document);
 
 	// Remove path
 	if (!details.path.isEmpty()) {
@@ -123,10 +123,10 @@ void DocumentWatcher::updateWatch(Document* document)
 {
 	// Update document details
 	Details& details = m_documents[document];
-	QString oldpath = details.path;
-	QString path = document->filename();
+	const QString oldpath = details.path;
+	const QString path = document->filename();
 	if (!path.isEmpty()) {
-		QFileInfo info(path);
+		const QFileInfo info(path);
 		details.path = info.canonicalFilePath();
 		details.modified = info.lastModified();
 		details.permissions = info.permissions();
@@ -157,9 +157,9 @@ void DocumentWatcher::updateWatch(Document* document)
 void DocumentWatcher::processUpdates()
 {
 	while (!m_updates.isEmpty()) {
-		QString path = m_updates.takeFirst();
-		QFileInfo info(path);
-		QString filename = info.fileName();
+		const QString path = m_updates.takeFirst();
+		const QFileInfo info(path);
+		const QString filename = info.fileName();
 
 		// Find document
 		Document* document = m_paths.value(path);
@@ -210,7 +210,7 @@ void DocumentWatcher::processUpdates()
 			mbox.setStandardButtons(QMessageBox::Save | QMessageBox::Close | QMessageBox::Ignore);
 			mbox.setDefaultButton(QMessageBox::Save);
 
-			QAbstractButton* save_button = mbox.button(QMessageBox::Save);
+			const QAbstractButton* save_button = mbox.button(QMessageBox::Save);
 
 			QAbstractButton* ignore_button = mbox.button(QMessageBox::Ignore);
 			if (ignore_button->icon().isNull() && ignore_button->style()->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons)) {
