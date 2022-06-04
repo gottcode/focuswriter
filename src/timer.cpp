@@ -44,7 +44,7 @@ QDateTime removeMSecs(const QDateTime& datetime)
 
 //-----------------------------------------------------------------------------
 
-Timer::Timer(Stack* documents, QWidget* parent)
+Timer::Timer(const Stack* documents, QWidget* parent)
 	: QFrame(parent)
 	, m_type(0)
 	, m_started(false)
@@ -59,7 +59,7 @@ Timer::Timer(Stack* documents, QWidget* parent)
 
 //-----------------------------------------------------------------------------
 
-Timer::Timer(int type, const QStringList& values, Stack* documents, QWidget* parent)
+Timer::Timer(int type, const QStringList& values, const Stack* documents, QWidget* parent)
 	: QFrame(parent)
 	, m_type(type)
 	, m_started(false)
@@ -69,7 +69,7 @@ Timer::Timer(int type, const QStringList& values, Stack* documents, QWidget* par
 	init();
 
 	// Set default values
-	QTime time = QTime::fromString(values.value(0), Qt::ISODate);
+	const QTime time = QTime::fromString(values.value(0), Qt::ISODate);
 	m_type_box->setCurrentIndex(m_type);
 	if (m_type == 0) {
 		m_delay_edit->setTime(time);
@@ -84,7 +84,7 @@ Timer::Timer(int type, const QStringList& values, Stack* documents, QWidget* par
 
 //-----------------------------------------------------------------------------
 
-Timer::Timer(const QString& id, Stack* documents, QWidget* parent)
+Timer::Timer(const QString& id, const Stack* documents, QWidget* parent)
 	: QFrame(parent)
 	, m_id(id)
 	, m_started(false)
@@ -97,12 +97,12 @@ Timer::Timer(const QString& id, Stack* documents, QWidget* parent)
 	settings.beginGroup("Timers");
 
 	// Load values
-	QStringList values = settings.value(m_id).toStringList();
+	const QStringList values = settings.value(m_id).toStringList();
 	m_type = values.value(0).toInt();
-	QDateTime start = removeMSecs(QDateTime::fromString(values.value(1), Qt::ISODate));
-	QDateTime end = removeMSecs(QDateTime::fromString(values.value(2), Qt::ISODate));
-	QString memo = values.value(3);
-	QDateTime current = QDateTime::currentDateTime();
+	const QDateTime start = removeMSecs(QDateTime::fromString(values.value(1), Qt::ISODate));
+	const QDateTime end = removeMSecs(QDateTime::fromString(values.value(2), Qt::ISODate));
+	const QString memo = values.value(3);
+	const QDateTime current = QDateTime::currentDateTime();
 	if (start.isNull() || end.isNull() || start > end || start > current || end < current || start.daysTo(end) > 1) {
 		remove();
 		return;
@@ -202,7 +202,7 @@ void Timer::save()
 	if (m_id.isEmpty()) {
 		int i = 1;
 		forever {
-			QString timer_id = QString("Timer%1").arg(i);
+			const QString timer_id = QString("Timer%1").arg(i);
 			if (settings.contains(timer_id)) {
 				i++;
 			} else {
@@ -251,7 +251,7 @@ QString Timer::toString(const QString& time, const QString& memo)
 
 void Timer::delayChanged(const QTime& delay)
 {
-	QTime end = removeMSecs(QTime::currentTime()).addSecs(QTime(0,0,0).secsTo(delay));
+	const QTime end = removeMSecs(QTime::currentTime()).addSecs(QTime(0,0,0).secsTo(delay));
 	m_end_edit->blockSignals(true);
 	m_end_edit->setTime(end);
 	m_end_edit->blockSignals(false);
@@ -261,7 +261,7 @@ void Timer::delayChanged(const QTime& delay)
 
 void Timer::endChanged(const QTime& end)
 {
-	QTime delay = QTime(0,0,0).addSecs(removeMSecs(QTime::currentTime()).secsTo(end));
+	const QTime delay = QTime(0,0,0).addSecs(removeMSecs(QTime::currentTime()).secsTo(end));
 	m_delay_edit->blockSignals(true);
 	m_delay_edit->setTime(delay);
 	m_delay_edit->blockSignals(false);
@@ -280,9 +280,9 @@ void Timer::editAccepted()
 	settings.beginGroup("Timers");
 
 	// Prepend values to recent list
-	QString key = QString("Recent%1").arg(m_type);
+	const QString key = QString("Recent%1").arg(m_type);
+	const QString defaults = ((m_type == 0) ? m_delay_edit : m_end_edit)->time().toString(Qt::ISODate) + " " + m_memo;
 	QStringList recent = settings.value(key).toStringList();
-	QString defaults = ((m_type == 0) ? m_delay_edit : m_end_edit)->time().toString(Qt::ISODate)+ " " + m_memo;
 	recent.removeAll(defaults);
 	recent.prepend(defaults);
 	while (recent.count() > 5) {
@@ -354,14 +354,14 @@ void Timer::timerFinished()
 
 //-----------------------------------------------------------------------------
 
-void Timer::documentAdded(Document* document)
+void Timer::documentAdded(const Document* document)
 {
 	m_deltas.insert(document, new Deltas(document));
 }
 
 //-----------------------------------------------------------------------------
 
-void Timer::documentRemoved(Document* document)
+void Timer::documentRemoved(const Document* document)
 {
 	Deltas* delta = m_deltas.take(document);
 	m_character_count += delta->characterCount();
@@ -513,7 +513,7 @@ bool Timer::startTimer()
 
 	// Setup timer, making sure to ignore milliseconds
 	m_delay = m_delay_edit->time();
-	QDateTime start = removeMSecs(QDateTime::currentDateTime());
+	const QDateTime start = removeMSecs(QDateTime::currentDateTime());
 	if (!m_start.isValid()) {
 		m_start = start;
 	}

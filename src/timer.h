@@ -27,9 +27,9 @@ class Timer : public QFrame
 	Q_OBJECT
 
 public:
-	explicit Timer(Stack* documents, QWidget* parent = nullptr);
-	Timer(int type, const QStringList& values, Stack* documents, QWidget* parent = nullptr);
-	Timer(const QString& id, Stack* documents, QWidget* parent = nullptr);
+	explicit Timer(const Stack* documents, QWidget* parent = nullptr);
+	Timer(int type, const QStringList& values, const Stack* documents, QWidget* parent = nullptr);
+	Timer(const QString& id, const Stack* documents, QWidget* parent = nullptr);
 	~Timer();
 
 	bool isEditing() const;
@@ -47,8 +47,8 @@ public:
 	static QString toString(const QString& time, const QString& memo);
 
 public slots:
-	void documentAdded(Document* document);
-	void documentRemoved(Document* document);
+	void documentAdded(const Document* document);
+	void documentRemoved(const Document* document);
 
 signals:
 	void changed(Timer* timer);
@@ -82,10 +82,10 @@ private:
 	bool m_started;
 	bool m_finished;
 
-	Stack* m_documents;
+	const Stack* m_documents;
 	QTimer* m_timer;
 
-	QHash<Document*, Deltas*> m_deltas;
+	QHash<const Document*, Deltas*> m_deltas;
 	int m_character_count;
 	int m_character_and_space_count;
 	int m_page_count;
