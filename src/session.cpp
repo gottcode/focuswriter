@@ -21,7 +21,7 @@ Session::Session(const QString& id)
 	: m_id(id)
 	, m_default(id.isEmpty())
 {
-	QString path = pathFromId(m_id);
+	const QString path = pathFromId(m_id);
 	if (!m_id.isEmpty() && QFile::exists(path)) {
 		m_data = new QSettings(path, QSettings::IniFormat);
 		m_name = m_data->value("Name").toString();
@@ -126,10 +126,10 @@ QString Session::createId()
 
 bool Session::exists(const QString& name)
 {
-	QDir dir(m_path, "*.session");
+	const QDir dir(m_path, "*.session");
 	const QStringList sessions = dir.entryList(QDir::Files);
 	for (const QString& id : sessions) {
-		QSettings session(dir.filePath(id), QSettings::IniFormat);
+		const QSettings session(dir.filePath(id), QSettings::IniFormat);
 		if (session.value("Name").toString() == name) {
 			return true;
 		}
