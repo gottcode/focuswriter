@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2009-2022 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -14,7 +14,6 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QListIterator>
 #include <QRegularExpression>
 #include <QStandardPaths>
 #include <QTextCodec>
@@ -253,9 +252,8 @@ QStringList DictionaryProviderHunspell::availableDictionaries() const
 {
 	QStringList result;
 	QStringList locations = QDir::searchPaths("dict");
-	QListIterator<QString> i(locations);
-	while (i.hasNext()) {
-		QDir dir(i.next());
+	for (const QString& location : locations) {
+		QDir dir(location);
 
 		QStringList dic_files = dir.entryList({ "*.dic*" }, QDir::Files, QDir::Name | QDir::IgnoreCase);
 		dic_files.replaceInStrings(QRegularExpression("\\.dic.*"), "");

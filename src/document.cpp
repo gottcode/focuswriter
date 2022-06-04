@@ -1273,7 +1273,7 @@ void Document::scrollBarRangeChanged(int, int max)
 
 void Document::dictionaryChanged()
 {
-	for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
+	for (QTextBlock i = m_text->document()->begin(); i.isValid(); i = i.next()) {
 		if (i.userData()) {
 			static_cast<BlockStats*>(i.userData())->update(i.text());
 		}
@@ -1394,7 +1394,7 @@ void Document::calculateWordCount()
 		m_cached_current_block = m_text->textCursor().blockNumber();
 
 		BlockStats* stats = nullptr;
-		for (QTextBlock i = m_text->document()->begin(); i != m_text->document()->end(); i = i.next()) {
+		for (QTextBlock i = m_text->document()->begin(); i.isValid(); i = i.next()) {
 			if (!i.userData()) {
 				stats = new BlockStats(m_scene_model);
 				i.setUserData(stats);
