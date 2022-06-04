@@ -74,14 +74,14 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 		return QSyntaxHighlighter::eventFilter(watched, event);
 	} else {
 		// Check spelling of text block under mouse
-		QContextMenuEvent* context_event = static_cast<QContextMenuEvent*>(event);
+		const QContextMenuEvent* context_event = static_cast<const QContextMenuEvent*>(event);
 		m_start_cursor = m_text->cursorForPosition(context_event->pos());
-		QTextBlock block = m_start_cursor.block();
-		int cursor = m_start_cursor.position() - block.position();
+		const QTextBlock block = m_start_cursor.block();
+		const int cursor = m_start_cursor.position() - block.position();
 
-		const auto words = static_cast<BlockStats*>(block.userData())->misspelled();
-		for (auto word : words) {
-			int delta = cursor - word.position();
+		const QList<WordRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
+		for (const WordRef& word : words) {
+			const int delta = cursor - word.position();
 			if (delta < 0 || delta > word.length()) {
 				continue;
 			}
@@ -128,7 +128,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 void Highlighter::highlightBlock(const QString& text)
 {
 	QTextCharFormat style;
-	int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
+	const int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
 	if (heading) {
 		style.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
 		style.setFontWeight(QFont::Bold);
@@ -146,10 +146,10 @@ void Highlighter::highlightBlock(const QString& text)
 	style.setUnderlineColor(m_misspelled);
 	style.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
-	int cursor = m_text->textCursor().position() - currentBlock().position();
+	const int cursor = m_text->textCursor().position() - currentBlock().position();
 	const QList<WordRef> words = stats->misspelled();
 	for (const WordRef& word : words) {
-		int delta = cursor - word.position();
+		const int delta = cursor - word.position();
 		if (!m_changed || (delta < 0 || delta > word.length())) {
 			setFormat(word.position(), word.length(), style);
 		}
@@ -166,7 +166,7 @@ void Highlighter::updateSpelling()
 		return;
 	}
 
-	QTextBlock block = m_text->textCursor().block();
+	const QTextBlock block = m_text->textCursor().block();
 	bool found = false;
 
 	// Check first unchecked block at or after cursor
@@ -201,7 +201,7 @@ void Highlighter::updateSpelling()
 
 void Highlighter::cursorPositionChanged()
 {
-	QTextBlock current = m_text->textCursor().block();
+	const QTextBlock current = m_text->textCursor().block();
 	if (m_current != current) {
 		if (m_current.isValid() && m_text->document()->blockCount() > m_current.blockNumber()) {
 			rehighlightBlock(m_current);
