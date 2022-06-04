@@ -35,14 +35,14 @@ int main(int argc, char** argv)
 	// Find application data dirs
 	QStringList datadirs;
 #if defined(Q_OS_MAC)
-	QFileInfo portable(appdir + "/../../../Data");
+	const QFileInfo portable(appdir + "/../../../Data");
 	datadirs.append(appdir + "/../Resources");
 #elif defined(Q_OS_UNIX)
-	QFileInfo portable(appdir + "/Data");
+	const QFileInfo portable(appdir + "/Data");
 	datadirs.append(DATADIR);
 	datadirs.append(appdir + "/../share/focuswriter");
 #else
-	QFileInfo portable(appdir + "/Data");
+	const QFileInfo portable(appdir + "/Data");
 	datadirs.append(appdir);
 #endif
 
@@ -95,26 +95,26 @@ int main(int argc, char** argv)
 	if (userdir.isEmpty()) {
 		userdir = Paths::dataPath();
 		if (!QFile::exists(userdir)) {
-			QDir dir(userdir);
+			const QDir dir(userdir);
 			dir.mkpath(dir.absolutePath());
 
 			// Migrate data from old location
-			QString oldpath = Paths::oldDataPath();
+			const QString oldpath = Paths::oldDataPath();
 			if (QFile::exists(oldpath)) {
 				QStringList old_dirs{ QString() };
 
 				QDir olddir(oldpath);
 				for (int i = 0; i < old_dirs.count(); ++i) {
-					QString subpath = old_dirs.at(i);
+					const QString subpath = old_dirs.at(i);
 					dir.mkpath(userdir + "/" + subpath);
 					olddir.setPath(oldpath + "/" + subpath);
 
-					QStringList subdirs = olddir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+					const QStringList subdirs = olddir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
 					for (const QString& subdir : subdirs) {
 						old_dirs.append(subpath + "/" + subdir);
 					}
 
-					QStringList files = olddir.entryList(QDir::Files);
+					const QStringList files = olddir.entryList(QDir::Files);
 					for (const QString& file : files) {
 						QFile::rename(olddir.absoluteFilePath(file), userdir + "/" + subpath + "/" + file);
 					}
@@ -163,7 +163,7 @@ int main(int argc, char** argv)
 	Theme::setPath(dir.absoluteFilePath("Themes"));
 
 	for (const QString& datadir : qAsConst(datadirs)) {
-		QFileInfo info(datadir + "/themes");
+		const QFileInfo info(datadir + "/themes");
 		if (info.exists()) {
 			Theme::setDefaultPath(info.absoluteFilePath());
 			break;
