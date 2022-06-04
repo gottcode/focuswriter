@@ -103,7 +103,7 @@ QStringList FormatManager::filters(const QString& type)
 
 bool FormatManager::isRichText(const QString& filename)
 {
-	QString type = filename.section(QLatin1Char('.'), -1).toLower();
+	const QString type = filename.section(QLatin1Char('.'), -1).toLower();
 	return (type == "odt") || (type == "fodt") || (type == "docx") || (type == "rtf");
 }
 
