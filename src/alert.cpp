@@ -82,7 +82,7 @@ void Alert::setIcon(Icon icon)
 	default:
 		break;
 	}
-	int size = style()->pixelMetric(QStyle::PM_LargeIconSize);
+	const int size = style()->pixelMetric(QStyle::PM_LargeIconSize);
 	setIcon(style()->standardIcon(pixmap).pixmap(size,size));
 }
 
