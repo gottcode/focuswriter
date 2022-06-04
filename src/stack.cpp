@@ -178,7 +178,7 @@ void Stack::removeDocument(int index)
 
 void Stack::updateDocument(int index)
 {
-	Document* document = m_documents.at(index);
+	const Document* document = m_documents.at(index);
 	QAction* action = m_document_actions.at(index);
 	action->setText(document->title() + (document->isModified() ? "*" : ""));
 	action->setToolTip(QDir::toNativeSeparators(document->filename()));
@@ -353,7 +353,7 @@ void Stack::paste()
 
 void Stack::pasteUnformatted()
 {
-	QString text = QApplication::clipboard()->text(QClipboard::Clipboard);
+	const QString text = QApplication::clipboard()->text(QClipboard::Clipboard);
 	m_current_document->text()->insertPlainText(text);
 }
 
@@ -427,7 +427,7 @@ void Stack::selectScene()
 
 void Stack::setFocusMode(QAction* action)
 {
-	int focus_mode = action->data().toInt();
+	const int focus_mode = action->data().toInt();
 	for (Document* document : qAsConst(m_documents)) {
 		document->setFocusMode(focus_mode);
 	}
@@ -585,7 +585,7 @@ void Stack::updateSmartQuotes()
 
 void Stack::updateSmartQuotesSelection()
 {
-	QTextCursor cursor = m_current_document->text()->textCursor();
+	const QTextCursor cursor = m_current_document->text()->textCursor();
 	SmartQuotes::replace(m_current_document->text(), cursor.selectionStart(), cursor.selectionEnd());
 }
 
@@ -594,7 +594,7 @@ void Stack::updateSmartQuotesSelection()
 void Stack::setFooterVisible(bool visible)
 {
 	visible |= Preferences::instance().alwaysShowFooter();
-	int footer_visible = visible * -m_footer_margin;
+	const int footer_visible = visible * -m_footer_margin;
 	if (m_footer_visible != footer_visible) {
 		emit footerVisible(visible);
 		m_footer_visible = footer_visible;
@@ -607,7 +607,7 @@ void Stack::setFooterVisible(bool visible)
 void Stack::setHeaderVisible(bool visible)
 {
 	visible |= Preferences::instance().alwaysShowHeader();
-	int header_visible = visible * m_header_margin;
+	const int header_visible = visible * m_header_margin;
 	if (m_header_visible != header_visible) {
 		emit headerVisible(visible);
 		m_header_visible = header_visible;
@@ -630,7 +630,7 @@ void Stack::setScenesVisible(bool visible)
 
 void Stack::showHeader()
 {
-	QPoint point = mapFromGlobal(QCursor::pos());
+	const QPoint point = mapFromGlobal(QCursor::pos());
 	setHeaderVisible(window()->rect().contains(point) && point.y() <= m_header_margin);
 }
 
@@ -638,9 +638,9 @@ void Stack::showHeader()
 
 void Stack::mouseMoveEvent(QMouseEvent* event)
 {
-	int y = mapFromGlobal(event->globalPosition()).y();
-	bool header_visible = y <= m_header_margin;
-	bool footer_visible = y >= (height() - m_footer_margin);
+	const int y = mapFromGlobal(event->globalPosition()).y();
+	const bool header_visible = y <= m_header_margin;
+	const bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
 	setScenesVisible(false);
@@ -677,7 +677,7 @@ void Stack::resizeEvent(QResizeEvent* event)
 
 //-----------------------------------------------------------------------------
 
-void Stack::actionTriggered(QAction* action)
+void Stack::actionTriggered(const QAction* action)
 {
 	emit documentSelected(action->data().toInt());
 }
@@ -769,7 +769,7 @@ void Stack::updateMargin()
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(5, margin);
 
-	int minimum_size = (margin * 2) + (m_theme.foregroundPadding() * 2) + 100;
+	const int minimum_size = (margin * 2) + (m_theme.foregroundPadding() * 2) + 100;
 	window()->setMinimumSize(minimum_size, minimum_size);
 }
 

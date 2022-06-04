@@ -114,7 +114,7 @@ protected:
 	void resizeEvent(QResizeEvent* event) override;
 
 private slots:
-	void actionTriggered(QAction* action);
+	void actionTriggered(const QAction* action);
 	void insertSymbol(const QString& text);
 	void updateBackground();
 	void updateBackground(const QImage& image, const QRect& foreground);
