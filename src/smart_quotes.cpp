@@ -72,9 +72,9 @@ bool SmartQuotes::insert(QLineEdit* edit, QKeyEvent* key)
 		return false;
 	}
 
-	int position = edit->cursorPosition() - 1;
+	const int position = edit->cursorPosition() - 1;
 	if (position >= 0) {
-		QChar c = edit->text().at(position);
+		const QChar c = edit->text().at(position);
 		if (!c.isSpace() && !c.isNull() && (c.category() != QChar::Punctuation_Open)) {
 			quote++;
 		}
@@ -106,7 +106,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 	}
 
 	QTextCursor cursor = text->textCursor();
-	QChar c = text->document()->characterAt(cursor.selectionStart() - 1);
+	const QChar c = text->document()->characterAt(cursor.selectionStart() - 1);
 	if (!c.isSpace() && !c.isNull() && (c.category() != QChar::Punctuation_Open)) {
 		quote++;
 	}
@@ -117,7 +117,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 
 	if (key->text().right(1) != m_quotes[quote]) {
 		cursor.beginEditBlock();
-		QTextCharFormat format = cursor.charFormat();
+		const QTextCharFormat format = cursor.charFormat();
 		cursor.deletePreviousChar();
 		cursor.insertText(m_quotes[quote]);
 		cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor);
@@ -146,7 +146,7 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 	QChar previous = text->document()->characterAt(start - 1);
 	int length = 0;
 	for (int i = start; i < end; ++i) {
-		QChar c = text->document()->characterAt(i);
+		const QChar c = text->document()->characterAt(i);
 		int quote = 2;
 		if (c == '"') {
 			quote = 0;
@@ -182,7 +182,7 @@ void SmartQuotes::replace(QString& string)
 	int end = string.length();
 	int length = 0;
 	for (int i = 0; i < end; ++i) {
-		QChar c = string.at(i);
+		const QChar c = string.at(i);
 		int quote = 2;
 		if (c == '"') {
 			quote = 0;
@@ -320,7 +320,7 @@ void SmartQuotes::loadPreferences()
 	};
 	const size_t default_quotes_count = sizeof(default_quotes) / sizeof(DefaultQuotes);
 
-	QLocale locale;
+	const QLocale locale;
 	double_index = 0;
 	single_index = 1;
 	for (size_t i = 0; i < default_quotes_count; ++i) {
