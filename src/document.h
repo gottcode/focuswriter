@@ -76,8 +76,8 @@ public slots:
 
 signals:
 	void alert(Alert* alert);
-	void replaceCacheFile(Document* document, const QString& file);
-	void writeCacheFile(Document* document, QSharedPointer<DocumentWriter> writer);
+	void replaceCacheFile(const Document* document, const QString& file);
+	void writeCacheFile(const Document* document, QSharedPointer<DocumentWriter> writer);
 	void changed();
 	void changedName();
 	void loadStarted(const QString& path);

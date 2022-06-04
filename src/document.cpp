@@ -264,7 +264,7 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 		setOverwriteMode(!overwriteMode());
 	} else {
 		// Play sound effect
-		int key = event->key();
+		const int key = event->key();
 		if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
 				!(event->modifiers().testFlag(Qt::MetaModifier))) {
 			if ((key == Qt::Key_Return) || (key == Qt::Key_Enter)) {
@@ -477,7 +477,7 @@ bool Document::save()
 	writer.setEncoding(m_encoding);
 	writer.setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 	writer.setDocument(m_text->document());
-	bool saved = writer.write();
+	const bool saved = writer.write();
 	m_encoding = writer.encoding();
 	if (saved) {
 		m_cache_outdated = false;
@@ -542,7 +542,7 @@ bool Document::rename()
 	if (m_filename.isEmpty()) {
 		return false;
 	}
-	QString filename = getSaveFileName(tr("Rename File"));
+	const QString filename = getSaveFileName(tr("Rename File"));
 	if (filename.isEmpty()) {
 		return false;
 	}
@@ -629,7 +629,7 @@ static void printPage(int index, QPainter *painter, const QTextDocument *doc, co
 {
 	painter->save();
 	painter->translate(body.left(), body.top() - (index - 1) * body.height());
-	QRectF view(0, (index - 1) * body.height(), body.width(), body.height());
+	const QRectF view(0, (index - 1) * body.height(), body.width(), body.height());
 
 	QAbstractTextDocumentLayout *layout = doc->documentLayout();
 	QAbstractTextDocumentLayout::PaintContext ctx;
@@ -672,19 +672,19 @@ static void printDocument(QPrinter* printer, QTextDocument* doc)
 	QAbstractTextDocumentLayout *layout = doc->documentLayout();
 	layout->setPaintDevice(p.device());
 
-	int dpiy = p.device()->logicalDpiY();
+	const int dpiy = p.device()->logicalDpiY();
 	QTextFrameFormat fmt = doc->rootFrame()->frameFormat();
 	fmt.setMargin(0);
 	doc->rootFrame()->setFrameFormat(fmt);
 
-	qreal pageNumberHeight = QFontMetrics(doc->defaultFont(), p.device()).ascent() + 5 * dpiy / 72.0;
-	QRectF body = QRectF(0, 0, printer->width(), printer->height() - pageNumberHeight);
-	QPointF pageNumberPos = QPointF(body.width(), body.height() + pageNumberHeight);
+	const qreal pageNumberHeight = QFontMetrics(doc->defaultFont(), p.device()).ascent() + 5 * dpiy / 72.0;
+	const QRectF body = QRectF(0, 0, printer->width(), printer->height() - pageNumberHeight);
+	const QPointF pageNumberPos = QPointF(body.width(), body.height() + pageNumberHeight);
 	doc->setPageSize(body.size());
 
 	int fromPage = printer->fromPage();
 	int toPage = printer->toPage();
-	bool ascending = true;
+	const bool ascending = true;
 
 	if (fromPage == 0 && toPage == 0) {
 		fromPage = 1;
@@ -783,7 +783,7 @@ bool Document::loadFile(const QString& filename, int position)
 		return loaded;
 	}
 
-	bool enabled = m_highlighter->enabled();
+	const bool enabled = m_highlighter->enabled();
 	m_highlighter->setEnabled(false);
 
 	// Cache contents
@@ -890,7 +890,7 @@ void Document::loadTheme(const Theme& theme)
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 
 	// Update spacings
-	int tab_width = theme.tabWidth();
+	const int tab_width = theme.tabWidth();
 	m_block_format = QTextBlockFormat();
 	m_block_format.setLineHeight(theme.lineSpacing(), (theme.lineSpacing() == 100) ? QTextBlockFormat::SingleHeight : QTextBlockFormat::ProportionalHeight);
 	m_block_format.setTextIndent(tab_width * theme.indentFirstLine());
@@ -926,10 +926,10 @@ void Document::loadTheme(const Theme& theme)
 	}
 	m_text->setCursorWidth(!m_block_cursor ? cursorWidth() : m_text->fontMetrics().averageCharWidth());
 
-	int padding = theme.foregroundPadding();
+	const int padding = theme.foregroundPadding();
 	m_layout->setRowMinimumHeight(0, padding);
 	m_layout->setRowMinimumHeight(2, padding);
-	int margin = theme.foregroundMargin() + padding;
+	const int margin = theme.foregroundMargin() + padding;
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(2, margin);
 	switch (theme.foregroundPosition()) {
@@ -1118,7 +1118,7 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 		emit footerVisible(false);
 	}
 	if (m_scene_list && !m_scene_list->scenesVisible()) {
-		int sidebar_region = std::min(m_scene_list->width(), m_layout->cellRect(0,0).width());
+		const int sidebar_region = std::min(m_scene_list->width(), m_layout->cellRect(0,0).width());
 		emit scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
 	}
 	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(global)));
@@ -1128,10 +1128,10 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 
 void Document::centerCursor(bool force)
 {
-	QRect cursor = m_text->cursorRect();
-	QRect viewport = m_text->viewport()->rect();
+	const QRect cursor = m_text->cursorRect();
+	const QRect viewport = m_text->viewport()->rect();
 	if (force || m_always_center || (cursor.bottom() >= viewport.bottom()) || (cursor.top() <= viewport.top())) {
-		QPoint offset = viewport.center() - cursor.center();
+		const QPoint offset = viewport.center() - cursor.center();
 		QScrollBar* scrollbar = m_text->verticalScrollBar();
 		scrollbar->setValue(scrollbar->value() - offset.y());
 	}
@@ -1208,7 +1208,7 @@ void Document::focusText()
 
 void Document::hideMouse()
 {
-	QWidget* widget = QApplication::widgetAt(QCursor::pos());
+	const QWidget* widget = QApplication::widgetAt(QCursor::pos());
 	if (m_text->viewport()->hasFocus() && (widget == m_text->viewport() || widget == this)) {
 		m_text->viewport()->setCursor(Qt::BlankCursor);
 		setCursor(Qt::BlankCursor);
@@ -1288,7 +1288,7 @@ void Document::selectionChanged()
 	m_selected_stats.clear();
 	if (m_text->textCursor().hasSelection()) {
 		BlockStats temp(nullptr);
-		QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, Qt::SkipEmptyParts);
+		const QStringList selection = m_text->textCursor().selectedText().split(QChar::ParagraphSeparator, Qt::SkipEmptyParts);
 		for (const QString& string : selection) {
 			temp.update(string);
 			m_selected_stats.append(&temp);
@@ -1307,7 +1307,7 @@ void Document::selectionChanged()
 void Document::undoCommandAdded()
 {
 	if (!m_old_states.isEmpty()) {
-		int steps = m_text->document()->availableUndoSteps();
+		const int steps = m_text->document()->availableUndoSteps();
 		QMutableHashIterator<int, QPair<QString, bool>> i(m_old_states);
 		while (i.hasNext()) {
 			i.next();
@@ -1325,7 +1325,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	m_cache_outdated = true;
 
 	// Change filename and rich text status if necessary because of undo/redo
-	int steps = m_text->document()->availableUndoSteps();
+	const int steps = m_text->document()->availableUndoSteps();
 	if (m_old_states.contains(steps)) {
 		const QPair<QString, bool>& state = m_old_states[steps];
 		if (m_filename != state.first) {
@@ -1344,8 +1344,8 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 
 	// Clear cached stats if amount of blocks or current block has changed
-	int block_count = m_text->document()->blockCount();
-	int current_block = m_text->textCursor().blockNumber();
+	const int block_count = m_text->document()->blockCount();
+	const int current_block = m_text->textCursor().blockNumber();
 	if (m_cached_block_count != block_count || m_cached_current_block != current_block) {
 		m_cached_stats.clear();
 	}
@@ -1378,7 +1378,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 
 	// Update document stats and daily word count
-	int words = m_document_stats.wordCount();
+	const int words = m_document_stats.wordCount();
 	calculateWordCount();
 	m_daily_progress->increaseWordCount(m_document_stats.wordCount() - words);
 	emit changed();
@@ -1409,9 +1409,9 @@ void Document::calculateWordCount()
 
 	// Determine document stats by adding cached stats to current block stats
 	m_document_stats = m_cached_stats;
-	QTextBlockUserData* data = m_text->document()->findBlockByNumber(m_cached_current_block).userData();
+	const QTextBlockUserData* data = m_text->document()->findBlockByNumber(m_cached_current_block).userData();
 	if (data) {
-		m_document_stats.append(static_cast<BlockStats*>(data));
+		m_document_stats.append(static_cast<const BlockStats*>(data));
 	}
 	m_document_stats.calculateWordCount(m_wordcount_type);
 	m_document_stats.calculatePageCount(m_page_type, m_page_amount);
@@ -1431,7 +1431,7 @@ void Document::clearIndex()
 
 void Document::findIndex()
 {
-	m_index = g_untitled_indexes.last() + 1;
+	m_index = g_untitled_indexes.constLast() + 1;
 	g_untitled_indexes.append(m_index);
 }
 
@@ -1444,12 +1444,12 @@ QString Document::getSaveFileName(const QString& title)
 	if (type.isEmpty()) {
 		type = m_default_format;
 	}
-	QString filter = FormatManager::filters(type).join(";;");
+	const QString filter = FormatManager::filters(type).join(";;");
 
 	// Determine location
 	QString path = m_filename;
 	if (m_filename.isEmpty()) {
-		QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+		const QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 		path = QSettings().value("Save/Location", default_path).toString() + "/" + tr("Untitled %1").arg(m_index);
 	}
 
@@ -1463,12 +1463,12 @@ QString Document::getSaveFileName(const QString& title)
 		}
 
 		// Append file extension
-		QRegularExpression regex("\\*(\\.\\w+)");
+		static const QRegularExpression regex("\\*(\\.\\w+)");
 		QRegularExpressionMatchIterator i = regex.globalMatch(selected);
 		bool append_extension = i.hasNext();
 		QStringList types;
 		while (i.hasNext()) {
-			QString type = i.next().captured(1);
+			const QString type = i.next().captured(1);
 			types << type;
 
 			if (filename.endsWith(type)) {
@@ -1477,7 +1477,7 @@ QString Document::getSaveFileName(const QString& title)
 			}
 		}
 		if (append_extension) {
-			filename.append(types.first());
+			filename.append(types.constFirst());
 		}
 
 		// Handle rich text in plain text file
@@ -1494,7 +1494,7 @@ QString Document::getSaveFileName(const QString& title)
 bool Document::processFileName(const QString& filename)
 {
 	// Check if rich text status is the same
-	bool rich_text = FormatManager::isRichText(filename);
+	const bool rich_text = FormatManager::isRichText(filename);
 	if (m_rich_text == rich_text) {
 		return true;
 	}
@@ -1517,7 +1517,7 @@ bool Document::processFileName(const QString& filename)
 
 void Document::updateSaveLocation()
 {
-	QString path = QFileInfo(m_filename).absolutePath();
+	const QString path = QFileInfo(m_filename).absolutePath();
 	QSettings().setValue("Save/Location", path);
 	updateState();
 	updateSaveName();
@@ -1533,10 +1533,10 @@ void Document::updateSaveName()
 	}
 	QList<int> keys = m_old_states.keys();
 	std::sort(keys.begin(), keys.end());
-	int count = keys.count();
+	const int count = keys.count();
 
 	// Find undo states nearest to current
-	int steps = m_text->document()->availableUndoSteps();
+	const int steps = m_text->document()->availableUndoSteps();
 	int nearest_smaller = 0;
 	int nearest_larger = count - 1;
 	for (int i = 0; i < count; ++i) {
