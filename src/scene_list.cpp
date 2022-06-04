@@ -53,11 +53,11 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 
 	QSize size = style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), widget);
 #if !defined(Q_OS_MAC)
-	int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget);
+	const int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget);
 #else
-	int margin = 0;
+	const int margin = 0;
 #endif
-	int height = opt.fontMetrics.height() * 3;
+	const int height = opt.fontMetrics.height() * 3;
 	size.setHeight(margin + height);
 	return size;
 }
@@ -257,7 +257,7 @@ void SceneList::showScenes()
 void SceneList::mouseMoveEvent(QMouseEvent* event)
 {
 	if (m_resizing) {
-		int delta = event->pos().x() - m_mouse_current.x();
+		const int delta = event->pos().x() - m_mouse_current.x();
 		m_mouse_current = event->pos();
 
 		m_width += delta;
@@ -328,8 +328,8 @@ void SceneList::sceneSelected(const QModelIndex& index)
 	}
 
 	if (index.isValid()) {
-		int block_number = index.data(Qt::UserRole).toInt();
-		QTextBlock block = m_document->text()->document()->findBlockByNumber(block_number);
+		const int block_number = index.data(Qt::UserRole).toInt();
+		const QTextBlock block = m_document->text()->document()->findBlockByNumber(block_number);
 		QTextCursor cursor = m_document->text()->textCursor();
 		cursor.setPosition(block.position());
 		m_document->text()->setTextCursor(cursor);
@@ -385,7 +385,7 @@ void SceneList::toggleScenes()
 
 void SceneList::updateShortcuts()
 {
-	QKeySequence shortcut = ActionManager::instance()->action("ToggleScenes")->shortcut();
+	const QKeySequence shortcut = ActionManager::instance()->action("ToggleScenes")->shortcut();
 	m_toggle_action->setShortcut(shortcut);
 	m_show_button->setToolTip(tr("Show scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
 	m_hide_button->setToolTip(tr("Hide scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
@@ -396,7 +396,7 @@ void SceneList::updateShortcuts()
 void SceneList::moveSelectedScenes(int movement)
 {
 	// Find scenes to move
-	QModelIndexList indexes = m_filter_model->mapSelectionToSource(m_scenes->selectionModel()->selection()).indexes();
+	const QModelIndexList indexes = m_filter_model->mapSelectionToSource(m_scenes->selectionModel()->selection()).indexes();
 	if (indexes.isEmpty()) {
 		return;
 	}
@@ -411,7 +411,7 @@ void SceneList::moveSelectedScenes(int movement)
 		last_row = std::max(last_row, index_row);
 		scenes.append(index_row);
 	}
-	int row = std::max(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
+	const int row = std::max(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
 
 	// Move scenes
 	m_document->sceneModel()->moveScenes(scenes, row);
