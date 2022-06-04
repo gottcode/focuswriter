@@ -71,7 +71,7 @@ void RtfTokenizer::readNext()
 			}
 
 			// Read integer value
-			int sign = (c != '-') ? 1 : -1;
+			const int sign = (c != '-') ? 1 : -1;
 			if (sign == -1) {
 				c = next();
 			}
@@ -92,7 +92,7 @@ void RtfTokenizer::readNext()
 			if (m_text == "bin") {
 				if (m_value > 0) {
 					for (int i = 0; i < m_value; i++) {
-						c = next();
+						next();
 					}
 				}
 				return readNext();
@@ -133,7 +133,7 @@ char RtfTokenizer::next()
 	m_position++;
 	if (m_position >= m_buffer.size()) {
 		m_buffer.resize(8192);
-		int size = m_device->read(m_buffer.data(), m_buffer.size());
+		const int size = m_device->read(m_buffer.data(), m_buffer.size());
 		if (size < 1) {
 			throw tr("Unexpectedly reached end of file.");
 		}
