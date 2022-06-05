@@ -134,7 +134,7 @@ void TimerDisplay::paintEvent(QPaintEvent* event)
 			for (Timer* timer : qAsConst(m_timers)) {
 				if (timer->isRunning()) {
 					int msecs = timer->msecsFrom(current);
-					timers += Timer::toString(QTime().addMSecs(msecs).toString(tr("HH:mm:ss")), timer->memoShort());
+					timers += Timer::toString(QTime(0, 0, 0).addMSecs(msecs).toString(tr("HH:mm:ss")), timer->memoShort());
 				}
 			}
 			QString text = QLatin1String("<p style='white-space:pre'>") + timers.join(QLatin1String("\n")) + QLatin1String("</p>");
