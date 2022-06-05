@@ -61,14 +61,14 @@ DictionaryHunspell::DictionaryHunspell(const QString& language)
 	, m_codec(nullptr)
 {
 	// Find dictionary files
-	QString aff = QFileInfo("dict:" + language + ".aff").canonicalFilePath();
+	QString aff = QFileInfo("dict:" + language + ".aff").absoluteFilePath();
 	if (aff.isEmpty()) {
-		aff = QFileInfo("dict:" + language + ".aff.hz").canonicalFilePath();
+		aff = QFileInfo("dict:" + language + ".aff.hz").absoluteFilePath();
 		aff.chop(3);
 	}
-	QString dic = QFileInfo("dict:" + language + ".dic").canonicalFilePath();
+	QString dic = QFileInfo("dict:" + language + ".dic").absoluteFilePath();
 	if (dic.isEmpty()) {
-		dic = QFileInfo("dict:" + language + ".dic.hz").canonicalFilePath();
+		dic = QFileInfo("dict:" + language + ".dic.hz").absoluteFilePath();
 		dic.chop(3);
 	}
 	if (language.isEmpty() || aff.isEmpty() || dic.isEmpty()) {

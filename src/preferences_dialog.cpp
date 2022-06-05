@@ -531,7 +531,7 @@ void PreferencesDialog::selectedLanguageChanged(int index)
 {
 	if (index != -1) {
 		QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
-		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(DictionaryManager::installedPath()));
+		m_remove_language_button->setEnabled(info.absoluteFilePath().startsWith(DictionaryManager::installedPath()));
 	}
 }
 
