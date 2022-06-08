@@ -229,14 +229,14 @@ bool TextEdit::event(QEvent* event)
 {
 	if (event->type() == QEvent::ShortcutOverride) {
 		QKeyEvent* ke = static_cast<QKeyEvent*>(event);
-		if (ke == QKeySequence::Cut
-				|| ke == QKeySequence::Copy
-				|| ke == QKeySequence::Paste
-				|| ke == QKeySequence::Redo
-				|| ke == QKeySequence::Undo
-				|| ke == QKeySequence::SelectAll
-				|| ke == QKeySequence::MoveToEndOfBlock
-				|| ke == QKeySequence::MoveToStartOfBlock) {
+		if (ke->matches(QKeySequence::Cut)
+				|| ke->matches(QKeySequence::Copy)
+				|| ke->matches(QKeySequence::Paste)
+				|| ke->matches(QKeySequence::Redo)
+				|| ke->matches(QKeySequence::Undo)
+				|| ke->matches(QKeySequence::SelectAll)
+				|| ke->matches(QKeySequence::MoveToEndOfBlock)
+				|| ke->matches(QKeySequence::MoveToStartOfBlock)) {
 			event->ignore();
 			return true;
 		}
@@ -246,14 +246,14 @@ bool TextEdit::event(QEvent* event)
 
 void TextEdit::keyPressEvent(QKeyEvent* event)
 {
-	if (event == QKeySequence::Cut
-			|| event == QKeySequence::Copy
-			|| event == QKeySequence::Paste
-			|| event == QKeySequence::Redo
-			|| event == QKeySequence::Undo
-			|| event == QKeySequence::SelectAll
-			|| event == QKeySequence::MoveToEndOfBlock
-			|| event == QKeySequence::MoveToStartOfBlock) {
+	if (event->matches(QKeySequence::Cut)
+			|| event->matches(QKeySequence::Copy)
+			|| event->matches(QKeySequence::Paste)
+			|| event->matches(QKeySequence::Redo)
+			|| event->matches(QKeySequence::Undo)
+			|| event->matches(QKeySequence::SelectAll)
+			|| event->matches(QKeySequence::MoveToEndOfBlock)
+			|| event->matches(QKeySequence::MoveToStartOfBlock)) {
 		event->ignore();
 		return;
 	}
