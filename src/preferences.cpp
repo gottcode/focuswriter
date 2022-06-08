@@ -554,7 +554,7 @@ void Preferences::reload()
 	m_page_words = settings.value("Stats/WordsPerPage", 250).toInt();
 
 	int old_wordcount_type = !settings.value("Stats/AccurateWordcount", true).toBool();
-	QLocale::Language language = QLocale().language();
+	const QLocale::Language language = QLocale().language();
 	if (language == QLocale::Chinese ||
 			language == QLocale::Japanese ||
 			language == QLocale::Khmer ||
