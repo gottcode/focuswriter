@@ -33,10 +33,6 @@ Application::Application(int& argc, char** argv)
 	setAttribute(Qt::AA_DontShowIconsInMenus, true);
 #endif
 
-#ifdef RTFCLIPBOARD
-	new RTF::Clipboard;
-#endif
-
 	qputenv("UNICODEMAP_JP", "cp932");
 
 	processEvents();
