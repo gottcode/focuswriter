@@ -14,6 +14,7 @@
 #endif
 #include "dictionary_ref.h"
 #include "smart_quotes.h"
+#include "utils.h"
 
 #include <QDir>
 #include <QFile>
@@ -26,11 +27,6 @@
 
 namespace
 {
-
-bool compareWords(const QString& s1, const QString& s2)
-{
-	return s1.localeAwareCompare(s2) < 0;
-}
 
 class DictionaryFallback : public AbstractDictionary
 {
@@ -247,7 +243,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 {
 	// Check if new
 	QStringList personal = SmartQuotes::revert(words);
-	std::sort(personal.begin(), personal.end(), compareWords);
+	std::sort(personal.begin(), personal.end(), localeAwareSort);
 	if (personal == m_personal) {
 		return;
 	}
@@ -289,7 +285,7 @@ DictionaryManager::DictionaryManager()
 		while (!stream.atEnd()) {
 			m_personal.append(stream.readLine());
 		}
-		std::sort(m_personal.begin(), m_personal.end(), compareWords);
+		std::sort(m_personal.begin(), m_personal.end(), localeAwareSort);
 	}
 }
 
