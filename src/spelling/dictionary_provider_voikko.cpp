@@ -157,7 +157,7 @@ QStringList DictionaryVoikko::suggestions(const QString& word) const
 	QStringList result;
 	char** suggestions = voikkoSuggestCstr(m_handle, word.toUtf8().constData());
 	if (suggestions) {
-		for (size_t i = 0; suggestions[i] != NULL; ++i) {
+		for (size_t i = 0; suggestions[i]; ++i) {
 			QString word = QString::fromUtf8(suggestions[i]);
 			if (SmartQuotes::isEnabled()) {
 				SmartQuotes::replace(word);
@@ -261,7 +261,7 @@ QStringList DictionaryProviderVoikko::availableDictionaries() const
 	QStringList result;
 	char** languages = voikkoListSupportedSpellingLanguages(f_voikko_path.constData());
 	if (languages) {
-		for (size_t i = 0; languages[i] != NULL; ++i) {
+		for (size_t i = 0; languages[i]; ++i) {
 			result.append(QString::fromUtf8(languages[i]));
 		}
 		voikkoFreeCstrArray(languages);

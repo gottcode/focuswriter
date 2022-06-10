@@ -140,9 +140,9 @@ void DictionaryManager::addProviders()
 	bool has_voikko = false;
 
 	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
-		if (dynamic_cast<DictionaryProviderHunspell*>(provider) != NULL) {
+		if (dynamic_cast<DictionaryProviderHunspell*>(provider)) {
 			has_hunspell = true;
-		} else if (dynamic_cast<DictionaryProviderVoikko*>(provider) != NULL) {
+		} else if (dynamic_cast<DictionaryProviderVoikko*>(provider)) {
 			has_voikko = true;
 		}
 	}
@@ -157,7 +157,7 @@ void DictionaryManager::addProviders()
 	bool has_nsspellchecker = false;
 
 	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
-		if (dynamic_cast<DictionaryProviderNSSpellChecker*>(provider) != NULL) {
+		if (dynamic_cast<DictionaryProviderNSSpellChecker*>(provider)) {
 			has_nsspellchecker = true;
 		}
 	}

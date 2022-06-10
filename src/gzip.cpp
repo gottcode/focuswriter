@@ -28,7 +28,7 @@ void gzip(const QString& path)
 		return;
 	}
 	gzFile gz = gzdopen(file.handle(), "wb9");
-	if (gz == NULL) {
+	if (!gz) {
 		return;
 	}
 
@@ -47,7 +47,7 @@ QByteArray gunzip(const QString& path)
 		return data;
 	}
 	gzFile gz = gzdopen(file.handle(), "rb");
-	if (gz == NULL) {
+	if (!gz) {
 		return data;
 	}
 

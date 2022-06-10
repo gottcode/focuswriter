@@ -67,7 +67,7 @@ void Sound::play()
 			break;
 		}
 	}
-	if (sound == nullptr) {
+	if (!sound) {
 		sound = new QSoundEffect(this);
 		sound->setSource(m_sounds.constFirst()->source());
 		m_sounds.append(sound);
