@@ -218,8 +218,7 @@ void PreferencesDialog::accept()
 		if (QMessageBox::question(this,
 				tr("Question"),
 				tr("One or more shortcuts conflict. Do you wish to proceed?"),
-				QMessageBox::Yes | QMessageBox::No,
-				QMessageBox::No) == QMessageBox::No) {
+				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return;
 		}
 	}
@@ -359,10 +358,7 @@ void PreferencesDialog::resetDailyGoal()
 	if (QMessageBox::question(this,
 			tr("Question"),
 			tr("Reset daily progress for today to zero?"),
-			QMessageBox::Yes | QMessageBox::No,
-			QMessageBox::No)
-		== QMessageBox::Yes)
-	{
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		m_daily_progress->resetToday();
 	}
 }
@@ -489,7 +485,10 @@ void PreferencesDialog::addLanguage()
 			const QString new_dic_file = dictionary_new_path + language + ".dic";
 
 			if (!m_uninstalled.contains(language) && (QFile::exists(new_aff_file) || QFile::exists(new_dic_file))) {
-				if (QMessageBox::question(this, tr("Question"), tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+				if (QMessageBox::question(this,
+						tr("Question"),
+						tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name),
+						QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 					QFile::remove(aff_file);
 					QFile::remove(dic_file);
 				}
@@ -516,7 +515,10 @@ void PreferencesDialog::removeLanguage()
 	if (index == -1) {
 		return;
 	}
-	if (QMessageBox::question(this, tr("Question"), tr("Remove current dictionary?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+	if (QMessageBox::question(this,
+			tr("Question"),
+			tr("Remove current dictionary?"),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		m_uninstalled.append(m_languages->itemData(index).toString());
 		m_languages->removeItem(index);
 	}

@@ -259,7 +259,10 @@ void FindDialog::replaceAll()
 		}
 	}
 	if (found) {
-		if (QMessageBox::question(this, tr("Question"), tr("Replace %n instance(s)?", "", found), QMessageBox::Yes | QMessageBox::No) == QMessageBox::No) {
+		if (QMessageBox::question(this,
+				tr("Question"),
+				tr("Replace %n instance(s)?", "", found),
+				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return;
 		}
 	} else {

@@ -292,21 +292,23 @@ void ThemeManager::cloneTheme()
 void ThemeManager::deleteTheme()
 {
 	QListWidgetItem* item = m_themes->currentItem();
-	if (!item) {
+	if (!item || (QMessageBox::question(this,
+			tr("Question"),
+			tr("Delete theme '%1'?").arg(item->text()),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No)) {
 		return;
 	}
 
-	if (QMessageBox::question(this, tr("Question"), tr("Delete theme '%1'?").arg(item->text()), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-		const QString id = item->data(Qt::UserRole).toString();
-		QFile::remove(Theme::filePath(id));
-		Theme::removeIcon(id, false);
-		delete item;
-		item = nullptr;
+	const QString id = item->data(Qt::UserRole).toString();
+	QFile::remove(Theme::filePath(id));
+	Theme::removeIcon(id, false);
 
-		// Handle deleting last custom theme
-		if (m_themes->count() == 0) {
-			selectItem(Theme::defaultId(), true);
-		}
+	delete item;
+	item = nullptr;
+
+	// Handle deleting last custom theme
+	if (m_themes->count() == 0) {
+		selectItem(Theme::defaultId(), true);
 	}
 }
 

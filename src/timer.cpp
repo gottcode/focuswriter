@@ -326,7 +326,10 @@ void Timer::editClicked()
 
 void Timer::removeClicked()
 {
-	if (QMessageBox::question(this, tr("Question"), tr("Delete timer?"), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+	if (QMessageBox::question(this,
+			tr("Question"),
+			tr("Delete timer?"),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		remove();
 	}
 }

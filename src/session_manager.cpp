@@ -334,7 +334,10 @@ void SessionManager::deleteSession()
 	}
 
 	// Confirm removal
-	if (QMessageBox::question(this, tr("Question"), tr("Delete selected session?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+	if (QMessageBox::question(this,
+			tr("Question"),
+			tr("Delete selected session?"),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 		return;
 	}
 

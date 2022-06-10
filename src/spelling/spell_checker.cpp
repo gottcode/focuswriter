@@ -207,7 +207,9 @@ void SpellChecker::check()
 				}
 			} else if (m_loop_available) {
 				wait_dialog.reset();
-				if (QMessageBox::question(this, QString(), tr("Continue checking at beginning of file?"),
+				if (QMessageBox::question(this,
+						QString(),
+						tr("Continue checking at beginning of file?"),
 						QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
 					m_loop_available = false;
 					m_cursor.movePosition(QTextCursor::Start);

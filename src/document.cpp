@@ -1503,8 +1503,7 @@ bool Document::processFileName(const QString& filename)
 	if (!rich_text && (QMessageBox::question(window(),
 			tr("Question"),
 			tr("Saving as plain text will discard all formatting. Discard formatting?"),
-			QMessageBox::Yes | QMessageBox::No,
-			QMessageBox::No) == QMessageBox::No)) {
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No)) {
 		return false;
 	}
 

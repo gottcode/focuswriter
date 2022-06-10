@@ -109,12 +109,15 @@ bool TimerManager::cancelEditing()
 		check |= timer->isEditing();
 	}
 	if (check) {
-		if (QMessageBox::question(this, tr("Question"), tr("Cancel editing timers?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+		if (QMessageBox::question(this,
+				tr("Question"),
+				tr("Cancel editing timers?"),
+				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return false;
-		} else {
-			for (Timer* timer : qAsConst(m_timers)) {
-				timer->cancelEditing();
-			}
+		}
+
+		for (Timer* timer : qAsConst(m_timers)) {
+			timer->cancelEditing();
 		}
 	}
 	return true;
