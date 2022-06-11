@@ -490,7 +490,7 @@ void Window::addDocuments(QDropEvent* event)
 {
 	if (event->mimeData()->hasUrls()) {
 		QStringList files;
-		const auto urls = event->mimeData()->urls();
+		const QList<QUrl> urls = event->mimeData()->urls();
 		for (const QUrl& url : urls) {
 			files.append(url.toLocalFile());
 		}

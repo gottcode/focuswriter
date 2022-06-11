@@ -164,7 +164,7 @@ QByteArray OdtWriter::writeStylesDocument(const QTextDocument* document)
 
 void OdtWriter::writeStyles(const QTextDocument*)
 {
-	static const std::vector<std::vector<QString>> styles = {
+	static const QList<QStringList> styles{
 		{"Normal", "Normal", "0", "12pt", "normal"},
 		{"Heading-1", "Heading 1", "1", "18pt", "bold"},
 		{"Heading-2", "Heading 2", "2", "16pt", "bold"},
@@ -175,7 +175,7 @@ void OdtWriter::writeStyles(const QTextDocument*)
 	};
 
 	m_xml.writeStartElement(QStringLiteral("office:styles"));
-	for (const auto& style : styles) {
+	for (const QStringList& style : styles) {
 		m_xml.writeStartElement(QStringLiteral("style:style"));
 		m_xml.writeAttribute(QStringLiteral("style:name"), style[0]);
 		m_xml.writeAttribute(QStringLiteral("style:display-name"), style[1]);

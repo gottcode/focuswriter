@@ -153,7 +153,7 @@ WordRef DictionaryHunspell::check(const QString& string, int start_at) const
 
 		if (is_word || (i == count && index != -1)) {
 			if (!is_uppercase && !is_number) {
-				auto word = string.mid(index, length);
+				QString word = string.mid(index, length);
 				word.replace(QChar(0x2019), QLatin1Char('\''));
 #ifdef H_DEPRECATED
 				if (!m_dictionary->spell(m_codec->fromUnicode(word).toStdString())) {
@@ -181,8 +181,8 @@ QStringList DictionaryHunspell::suggestions(const QString& word) const
 	QString check = word;
 	check.replace(QChar(0x2019), QLatin1Char('\''));
 #ifdef H_DEPRECATED
-	const auto suggestions = m_dictionary->suggest(m_codec->fromUnicode(check).toStdString());
-	for (const auto& suggestion : suggestions) {
+	const std::vector<std::string> suggestions = m_dictionary->suggest(m_codec->fromUnicode(check).toStdString());
+	for (const std::string& suggestion : suggestions) {
 		QString word = m_codec->toUnicode(suggestion.c_str());
 		if (SmartQuotes::isEnabled()) {
 			SmartQuotes::replace(word);

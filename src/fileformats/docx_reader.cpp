@@ -144,7 +144,7 @@ void DocxReader::readStyles()
 			Style style;
 
 			// Find style type
-			const auto type = m_xml.attributes().value(QLatin1String("w:type"));
+			const QStringView type = m_xml.attributes().value(QLatin1String("w:type"));
 			if (type == QLatin1String("paragraph")) {
 				style.type = Style::Paragraph;
 			} else if (type == QLatin1String("character")) {
@@ -302,7 +302,7 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 	int left_indent = 0, right_indent = 0, indent = 0;
 	bool textdir = false;
 	while (m_xml.readNextStartElement()) {
-		const auto value = m_xml.attributes().value(QLatin1String("w:val"));
+		const QStringView value = m_xml.attributes().value(QLatin1String("w:val"));
 		if (m_xml.qualifiedName() == QLatin1String("w:jc")) {
 			// ECMA-376 1st edition, ECMA-376 2nd edition transitional, ISO/IEC 29500 transitional
 			if (value == QLatin1String("left")) {
@@ -418,7 +418,7 @@ void DocxReader::readRun()
 void DocxReader::readRunProperties(Style& style, bool allowstyles)
 {
 	while (m_xml.readNextStartElement()) {
-		const auto value = m_xml.attributes().value(QLatin1String("w:val"));
+		const QStringView value = m_xml.attributes().value(QLatin1String("w:val"));
 		if ((m_xml.qualifiedName() == QLatin1String("w:b")) || (m_xml.qualifiedName() == QLatin1String("w:bCs"))) {
 			style.char_format.setFontWeight(readBool(value) ? QFont::Bold : QFont::Normal);
 		} else if ((m_xml.qualifiedName() == QLatin1String("w:i")) || (m_xml.qualifiedName() == QLatin1String("w:iCs"))) {

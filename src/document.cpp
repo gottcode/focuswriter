@@ -176,7 +176,7 @@ void TextEdit::insertFromMimeData(const QMimeData* source)
 	QTextDocument document;
 	QTextCursor cursor(&document);
 	cursor.mergeBlockFormat(textCursor().blockFormat());
-	const auto formats = document.allFormats().size();
+	const qsizetype formats = document.allFormats().size();
 	if (m_document->isRichText()) {
 		cursor = textCursor();
 	}
@@ -804,7 +804,7 @@ bool Document::loadFile(const QString& filename, int position)
 	document->setUndoRedoEnabled(false);
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
-	const auto formats = document->allFormats().size();
+	const qsizetype formats = document->allFormats().size();
 	if (reader) {
 		QString error;
 		reader->read(&file, document);

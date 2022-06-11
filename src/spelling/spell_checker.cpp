@@ -195,7 +195,7 @@ void SpellChecker::check()
 
 		// Check current line
 		const QTextBlock block = m_cursor.block();
-		const auto word = m_dictionary.check(block.text(), m_cursor.position() - block.position());
+		const WordRef word = m_dictionary.check(block.text(), m_cursor.position() - block.position());
 		if (word.isNull()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);

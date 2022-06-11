@@ -148,7 +148,7 @@ void OdtReader::readStyle()
 	const QString name = attributes.value(QLatin1String("style:name")).toString();
 
 	int type = -1;
-	const auto family = attributes.value(QLatin1String("style:family"));
+	const QStringView family = attributes.value(QLatin1String("style:family"));
 	if (family == QLatin1String("paragraph")) {
 		type = 0;
 	} else if (family == QLatin1String("text")) {
@@ -209,7 +209,7 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 {
 	const QXmlStreamAttributes attributes = m_xml.attributes();
 
-	const auto align = attributes.value(QLatin1String("fo:text-align"));
+	const QStringView align = attributes.value(QLatin1String("fo:text-align"));
 	if (align == QLatin1String("start")) {
 		format.setAlignment(Qt::AlignLeading);
 	} else if (align == QLatin1String("end")) {
@@ -224,7 +224,7 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 		format.setAlignment(Qt::AlignJustify);
 	}
 
-	const auto direction = attributes.value(QLatin1String("style:writing-mode"));
+	const QStringView direction = attributes.value(QLatin1String("style:writing-mode"));
 	if (direction == QLatin1String("rl-tb") || direction == QLatin1String("rl")) {
 		format.setLayoutDirection(Qt::RightToLeft);
 	} else if (direction == QLatin1String("lr-tb") || direction == QLatin1String("lr")) {
@@ -291,7 +291,7 @@ void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-position"))) {
-		const auto position = attributes.value((QLatin1String("style:text-position")));
+		const QStringView position = attributes.value((QLatin1String("style:text-position")));
 		if (position == QLatin1String("super")) {
 			format.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
 		} else if (position == QLatin1String("sub")) {
