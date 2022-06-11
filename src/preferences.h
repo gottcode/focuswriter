@@ -24,84 +24,84 @@ public:
 		return preferences;
 	}
 
-	RangedInt goalType() const;
-	RangedInt goalMinutes() const;
-	RangedInt goalWords() const;
-	bool goalHistory() const;
-	bool goalStreaks() const;
-	RangedInt goalStreakMinimum() const;
-	void setGoalType(int goal);
-	void setGoalMinutes(int goal);
-	void setGoalWords(int goal);
-	void setGoalHistory(bool enable);
-	void setGoalStreaks(bool enable);
-	void setGoalStreakMinimum(int percent);
+	RangedInt goalType() const { return m_goal_type; }
+	RangedInt goalMinutes() const { return m_goal_minutes; }
+	RangedInt goalWords() const { return m_goal_words; }
+	bool goalHistory() const { return m_goal_history; }
+	bool goalStreaks() const { return m_goal_streaks; }
+	RangedInt goalStreakMinimum() const { return m_goal_streak_minimum; }
+	void setGoalType(int goal) { setValue(m_goal_type, goal); }
+	void setGoalMinutes(int goal) { setValue(m_goal_minutes, goal); }
+	void setGoalWords(int goal) { setValue(m_goal_words, goal); }
+	void setGoalHistory(bool enable) { setValue(m_goal_history, enable); }
+	void setGoalStreaks(bool enable) { setValue(m_goal_streaks, enable); }
+	void setGoalStreakMinimum(int percent) { setValue(m_goal_streak_minimum, percent); }
 
-	bool showCharacters() const;
-	bool showPages() const;
-	bool showParagraphs() const;
-	bool showWords() const;
-	void setShowCharacters(bool show);
-	void setShowPages(bool show);
-	void setShowParagraphs(bool show);
-	void setShowWords(bool show);
+	bool showCharacters() const { return m_show_characters; }
+	bool showPages() const { return m_show_pages; }
+	bool showParagraphs() const { return m_show_paragraphs; }
+	bool showWords() const { return m_show_words; }
+	void setShowCharacters(bool show) { setValue(m_show_characters, show); }
+	void setShowPages(bool show) { setValue(m_show_pages, show); }
+	void setShowParagraphs(bool show) { setValue(m_show_paragraphs, show); }
+	void setShowWords(bool show) { setValue(m_show_words, show); }
 
-	RangedInt pageType() const;
-	RangedInt pageCharacters() const;
-	RangedInt pageParagraphs() const;
-	RangedInt pageWords() const;
-	void setPageType(int type);
-	void setPageCharacters(int characters);
-	void setPageParagraphs(int paragraphs);
-	void setPageWords(int words);
+	RangedInt pageType() const { return m_page_type; }
+	RangedInt pageCharacters() const { return m_page_characters; }
+	RangedInt pageParagraphs() const { return m_page_paragraphs; }
+	RangedInt pageWords() const { return m_page_words; }
+	void setPageType(int type) { setValue(m_page_type, type); }
+	void setPageCharacters(int characters) { setValue(m_page_characters, characters); }
+	void setPageParagraphs(int paragraphs) { setValue(m_page_paragraphs, paragraphs); }
+	void setPageWords(int words) { setValue(m_page_words, words); }
 
-	RangedInt wordcountType() const;
-	void setWordcountType(int type);
+	RangedInt wordcountType() const { return m_wordcount_type; }
+	void setWordcountType(int type) { setValue(m_wordcount_type, type); }
 
-	bool alwaysCenter() const;
-	bool blockCursor() const;
-	bool smoothFonts() const;
-	bool smartQuotes() const;
-	int doubleQuotes() const;
-	int singleQuotes() const;
-	bool typewriterSounds() const;
-	void setAlwaysCenter(bool center);
-	void setBlockCursor(bool block);
-	void setSmoothFonts(bool smooth);
-	void setSmartQuotes(bool quotes);
-	void setDoubleQuotes(int quotes);
-	void setSingleQuotes(int quotes);
-	void setTypewriterSounds(bool sounds);
+	bool alwaysCenter() const { return m_always_center; }
+	bool blockCursor() const { return m_block_cursor; }
+	bool smoothFonts() const { return m_smooth_fonts; }
+	bool smartQuotes() const { return m_smart_quotes; }
+	int doubleQuotes() const { return m_double_quotes; }
+	int singleQuotes() const { return m_single_quotes; }
+	bool typewriterSounds() const { return m_typewriter_sounds; }
+	void setAlwaysCenter(bool center) { setValue(m_always_center, center); }
+	void setBlockCursor(bool block) { setValue(m_block_cursor, block); }
+	void setSmoothFonts(bool smooth) { setValue(m_smooth_fonts, smooth); }
+	void setSmartQuotes(bool quotes) { setValue(m_smart_quotes, quotes); }
+	void setDoubleQuotes(int quotes) { setValue(m_double_quotes, quotes); }
+	void setSingleQuotes(int quotes) { setValue(m_single_quotes, quotes); }
+	void setTypewriterSounds(bool sounds){ setValue(m_typewriter_sounds, sounds); }
 
-	QString sceneDivider() const;
+	QString sceneDivider() const{ return m_scene_divider; }
 	void setSceneDivider(const QString& divider);
 
-	bool savePositions() const;
-	bool writeByteOrderMark() const;
-	RangedString saveFormat() const;
-	void setSavePositions(bool save);
-	void setWriteByteOrderMark(bool write_bom);
-	void setSaveFormat(const QString& format);
+	bool savePositions() const { return m_save_positions; }
+	bool writeByteOrderMark() const { return m_write_bom; }
+	RangedString saveFormat() const { return m_save_format; }
+	void setSavePositions(bool save) { setValue(m_save_positions, save); }
+	void setWriteByteOrderMark(bool write_bom) { setValue(m_write_bom, write_bom); }
+	void setSaveFormat(const QString& format) { setValue(m_save_format, format); }
 
-	bool alwaysShowScrollBar() const;
-	void setAlwaysShowScrollbar(bool show_scrollbar);
-	bool alwaysShowHeader() const;
-	void setAlwaysShowHeader(bool show_header);
-	bool alwaysShowFooter() const;
-	void setAlwaysShowFooter(bool show_footer);
+	bool alwaysShowScrollBar() const { return m_always_show_scrollbar; }
+	bool alwaysShowHeader() const { return m_always_show_header; }
+	bool alwaysShowFooter() const { return m_always_show_footer; }
+	void setAlwaysShowScrollbar(bool show_scrollbar) { setValue(m_always_show_scrollbar, show_scrollbar); }
+	void setAlwaysShowHeader(bool show_header) { setValue(m_always_show_header, show_header); }
+	void setAlwaysShowFooter(bool show_footer) { setValue(m_always_show_footer, show_footer); }
 
-	int toolbarStyle() const;
-	QStringList toolbarActions() const;
-	void setToolbarStyle(int style);
-	void setToolbarActions(const QStringList& actions);
+	int toolbarStyle() const { return m_toolbar_style; }
+	QStringList toolbarActions() const { return m_toolbar_actions; }
+	void setToolbarStyle(int style) { setValue(m_toolbar_style, style); }
+	void setToolbarActions(const QStringList& actions) { setValue(m_toolbar_actions, actions); }
 
-	bool highlightMisspelled() const;
-	bool ignoredWordsWithNumbers() const;
-	bool ignoredUppercaseWords() const;
-	QString language() const;
-	void setHighlightMisspelled(bool highlight);
-	void setIgnoreWordsWithNumbers(bool ignore);
-	void setIgnoreUppercaseWords(bool ignore);
+	bool highlightMisspelled() const { return m_highlight_misspelled; }
+	bool ignoredWordsWithNumbers() const { return m_ignore_numbers; }
+	bool ignoredUppercaseWords() const { return m_ignore_uppercase; }
+	QString language() const { return m_language; }
+	void setHighlightMisspelled(bool highlight) { setValue(m_highlight_misspelled, highlight); }
+	void setIgnoreWordsWithNumbers(bool ignore) { setValue(m_ignore_numbers, ignore); }
+	void setIgnoreUppercaseWords(bool ignore) { setValue(m_ignore_uppercase, ignore); }
 	void setLanguage(const QString& language);
 
 private:
