@@ -173,7 +173,7 @@ QString DocumentCache::backupCache() const
 			extra = std::max(extra, subdir.mid(15).toInt() + 1);
 		}
 	}
-	const QString cachepath = dir.absoluteFilePath(date + (!extra ? "" : QString("-%1").arg(extra)));
+	const QString cachepath = dir.absoluteFilePath(date + (!extra ? QString() : QString("-%1").arg(extra)));
 
 	// Move cache files to backup location
 	dir.rename("Files", cachepath);

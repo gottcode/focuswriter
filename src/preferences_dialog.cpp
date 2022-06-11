@@ -283,7 +283,7 @@ void PreferencesDialog::accept()
 	QStringList actions;
 	for (int i = 0, count = m_toolbar_actions->count(); i < count; ++i) {
 		const QListWidgetItem* item = m_toolbar_actions->item(i);
-		const QString action = (item->checkState() == Qt::Unchecked ? "^" : "") + item->data(Qt::UserRole).toString();
+		const QString action = (item->checkState() == Qt::Unchecked ? "^" : QString()) + item->data(Qt::UserRole).toString();
 		if (action != "^|") {
 			actions.append(action);
 		}
@@ -1099,7 +1099,7 @@ QWidget* PreferencesDialog::initShortcutsTab()
 		if (text.isEmpty()) {
 			text = action->text();
 		}
-		text.replace("&", "");
+		text.replace("&", QString());
 		const QStringList strings{ text, action->shortcut().toString(QKeySequence::NativeText), name };
 		QTreeWidgetItem* item = new QTreeWidgetItem(m_shortcuts, strings);
 		item->setIcon(0, icon);

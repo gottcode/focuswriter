@@ -142,7 +142,7 @@ QString LocaleDialog::languageName(const QString& language)
 QStringList LocaleDialog::findTranslations()
 {
 	QStringList result = QDir(m_path, "*.qm").entryList(QDir::Files);
-	result.replaceInStrings(".qm", "");
+	result.replaceInStrings(".qm", QString());
 	return result;
 }
 

@@ -316,7 +316,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	paragraph_spacing_layout->addRow(tr("Tab Width:"), m_tab_width);
 	paragraph_spacing_layout->addRow(tr("Above:"), m_spacing_above_paragraph);
 	paragraph_spacing_layout->addRow(tr("Below:"), m_spacing_below_paragraph);
-	paragraph_spacing_layout->addRow("", m_indent_first_line);
+	paragraph_spacing_layout->addRow(QString(), m_indent_first_line);
 
 
 	// Create preview

@@ -251,7 +251,7 @@ void SessionManager::cloneSession()
 		return;
 	}
 	QString id = item->data(Qt::UserRole).toString();
-	const QString filename = item != m_sessions_list->item(0) ? Session::pathFromId(id) : "";
+	const QString filename = item != m_sessions_list->item(0) ? Session::pathFromId(id) : QString();
 
 	// Fetch session name
 	const QStringList values = splitStringAtLastNumber(item->text());
@@ -347,7 +347,7 @@ void SessionManager::deleteSession()
 		if (!closeCurrent()) {
 			return;
 		}
-		setCurrent("");
+		setCurrent(QString());
 	}
 	QFile::remove(Session::pathFromId(id));
 
@@ -377,7 +377,7 @@ void SessionManager::switchSession(const QAction* session)
 void  SessionManager::selectedSessionChanged(const QListWidgetItem* session)
 {
 	const bool not_default = (session && session != m_sessions_list->item(0));
-	const QString id = session ? session->data(Qt::UserRole).toString() : "";
+	const QString id = session ? session->data(Qt::UserRole).toString() : QString();
 	if (not_default && m_session->id() == id) {
 		m_switch_button->setEnabled(false);
 		m_rename_button->setEnabled(true);

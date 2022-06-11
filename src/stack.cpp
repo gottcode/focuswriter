@@ -180,7 +180,7 @@ void Stack::updateDocument(int index)
 {
 	const Document* document = m_documents.at(index);
 	QAction* action = m_document_actions.at(index);
-	action->setText(document->title() + (document->isModified() ? "*" : ""));
+	action->setText(document->title() + (document->isModified() ? "*" : QString()));
 	action->setToolTip(QDir::toNativeSeparators(document->filename()));
 }
 

@@ -332,7 +332,7 @@ Window::Window(const QStringList& command_line_files)
 
 		// Ask if they want to use cached files
 		if (!filenames.isEmpty()) {
-			m_load_screen->setText("");
+			m_load_screen->setText(QString());
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
@@ -401,7 +401,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	// Show load screen if switching sessions or opening more than one file
 	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()));
 	if (show_load) {
-		m_load_screen->setText("");
+		m_load_screen->setText(QString());
 		setCursor(Qt::WaitCursor);
 	}
 
@@ -1020,7 +1020,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 		if (!file.isEmpty()) {
 			m_load_screen->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
 		} else {
-			m_load_screen->setText("");
+			m_load_screen->setText(QString());
 		}
 	}
 
@@ -1232,7 +1232,7 @@ void Window::updateTab(int index)
 {
 	const Document* document = m_documents->document(index);
 	const QString name = document->title();
-	m_tabs->setTabText(index, name + (document->isModified() ? "*" : ""));
+	m_tabs->setTabText(index, name + (document->isModified() ? "*" : QString()));
 	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(document->filename()));
 	m_documents->updateDocument(index);
 	if (document == m_documents->currentDocument()) {

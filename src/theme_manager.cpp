@@ -146,7 +146,7 @@ ThemeManager::ThemeManager(QSettings& settings, QWidget* parent)
 			dir.remove(QFileInfo(theme).completeBaseName() + ".png");
 
 			QStringList sessions = QDir(Session::path(), "*.session").entryList(QDir::Files);
-			sessions.prepend("");
+			sessions.prepend(QString());
 			for (const QString& file : qAsConst(sessions)) {
 				Session session(file);
 				if ((session.theme() == name) && (session.themeDefault() == false)) {

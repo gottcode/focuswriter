@@ -169,7 +169,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent)
 
 	QGraphicsScene* scene = new QGraphicsScene(this);
 	scene->setBackgroundBrush(palette().base());
-	m_symbol_preview_item = scene->addSimpleText("");
+	m_symbol_preview_item = scene->addSimpleText(QString());
 	m_symbol_preview_item->setBrush(palette().text());
 	m_symbol_preview = new QGraphicsView(scene, details_group);
 	m_symbol_preview->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
