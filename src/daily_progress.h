@@ -38,15 +38,15 @@ public:
 
 	static void setPath(const QString& path);
 
-public slots:
+public Q_SLOTS:
 	void save();
 	void setProgressEnabled(bool enable = true);
 
-signals:
+Q_SIGNALS:
 	void progressChanged();
 	void streaksChanged();
 
-private slots:
+private Q_SLOTS:
 	void updateDay();
 
 private:

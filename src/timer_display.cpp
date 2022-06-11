@@ -103,7 +103,7 @@ void TimerDisplay::leaveEvent(QEvent* event)
 void TimerDisplay::mouseReleaseEvent(QMouseEvent* event)
 {
 	if ((event->button() == Qt::LeftButton) && rect().contains(event->pos())) {
-		emit clicked();
+		Q_EMIT clicked();
 	}
 	QWidget::mouseReleaseEvent(event);
 }

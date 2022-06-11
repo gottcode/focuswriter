@@ -40,7 +40,7 @@ public:
 	bool closeDocuments(QSettings* session);
 	bool saveDocuments(QSettings* session);
 
-public slots:
+public Q_SLOTS:
 	void addDocuments(const QString& documents);
 
 protected:
@@ -52,7 +52,7 @@ protected:
 	void leaveEvent(QEvent* event) override;
 	void resizeEvent(QResizeEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void newDocument();
 	void openDocument();
 	void renameDocument();

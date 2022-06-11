@@ -53,14 +53,14 @@ public:
 		return m_instance;
 	}
 
-public slots:
+public Q_SLOTS:
 	void processUpdates();
 
-signals:
+Q_SIGNALS:
 	void closeDocument(Document* document);
 	void showDocument(Document* document);
 
-private slots:
+private Q_SLOTS:
 	void documentChanged(const QString& path);
 
 private:

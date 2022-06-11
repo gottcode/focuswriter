@@ -201,7 +201,7 @@ void Timer::save()
 	// Find ID
 	if (m_id.isEmpty()) {
 		int i = 1;
-		forever {
+		Q_FOREVER {
 			const QString timer_id = QString("Timer%1").arg(i);
 			if (settings.contains(timer_id)) {
 				i++;
@@ -292,7 +292,7 @@ void Timer::editAccepted()
 
 	save();
 
-	emit changed(this);
+	Q_EMIT changed(this);
 }
 
 //-----------------------------------------------------------------------------
@@ -319,7 +319,7 @@ void Timer::editClicked()
 {
 	endChanged(m_end_edit->time());
 	setMode(true);
-	emit edited(this);
+	Q_EMIT edited(this);
 }
 
 //-----------------------------------------------------------------------------

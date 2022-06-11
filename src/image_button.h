@@ -19,14 +19,14 @@ public:
 	QString image() const;
 	QString toString() const;
 
-signals:
+Q_SIGNALS:
 	void changed(const QString& path);
 
-public slots:
+public Q_SLOTS:
 	void setImage(const QString& image, const QString& path);
 	void unsetImage();
 
-private slots:
+private Q_SLOTS:
 	void onClicked();
 
 private:

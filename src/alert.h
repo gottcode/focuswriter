@@ -45,7 +45,7 @@ protected:
 	void leaveEvent(QEvent* event) override;
 	void paintEvent(QPaintEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void expanderToggled();
 	void fadeInFinished();
 	void fadeOut();

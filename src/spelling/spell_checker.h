@@ -24,10 +24,10 @@ class SpellChecker : public QDialog
 public:
 	static void checkDocument(QTextEdit* document, DictionaryRef& dictionary);
 
-public slots:
+public Q_SLOTS:
 	void reject() override;
 
-private slots:
+private Q_SLOTS:
 	void suggestionChanged(const QListWidgetItem* suggestion);
 	void add();
 	void ignore();

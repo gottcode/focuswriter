@@ -39,7 +39,7 @@ public:
 	static QString path();
 	static void setPath(const QString& path);
 
-signals:
+Q_SIGNALS:
 	void changed();
 
 private:

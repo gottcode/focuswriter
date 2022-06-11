@@ -300,7 +300,7 @@ void SymbolsDialog::accept()
 		m_recent->clearSelection();
 		item->setSelected(true);
 
-		emit insertText(QString::fromUcs4(&unicode, 1));
+		Q_EMIT insertText(QString::fromUcs4(&unicode, 1));
 	}
 
 	saveSettings();

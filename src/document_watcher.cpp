@@ -177,7 +177,7 @@ void DocumentWatcher::processUpdates()
 		}
 
 		// Show document
-		emit showDocument(document);
+		Q_EMIT showDocument(document);
 
 		if (info.exists()) {
 			// Process changed file
@@ -223,7 +223,7 @@ void DocumentWatcher::processUpdates()
 			} else if (mbox.clickedButton() == ignore_button) {
 				document->setModified(true);
 			} else {
-				emit closeDocument(document);
+				Q_EMIT closeDocument(document);
 			}
 		}
 	}

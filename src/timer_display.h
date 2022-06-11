@@ -25,7 +25,7 @@ public:
 	virtual QSize minimumSizeHint() const override;
 	virtual QSize sizeHint() const override;
 
-signals:
+Q_SIGNALS:
 	void clicked();
 
 protected:

@@ -21,10 +21,10 @@ class AlertLayer : public QWidget
 public:
 	explicit AlertLayer(QWidget* parent);
 
-public slots:
+public Q_SLOTS:
 	void addAlert(Alert* alert);
 
-private slots:
+private Q_SLOTS:
 	void alertDestroyed(QObject* alert);
 	void dismissAlert();
 

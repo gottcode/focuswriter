@@ -96,7 +96,7 @@ void SpellChecker::changeAll()
 
 	QTextCursor cursor = m_cursor;
 	cursor.movePosition(QTextCursor::Start);
-	forever {
+	Q_FOREVER {
 		cursor = m_document->document()->find(m_word, cursor, QTextDocument::FindCaseSensitively | QTextDocument::FindWholeWords);
 		if (!cursor.isNull()) {
 			cursor.insertText(replacement);
@@ -185,7 +185,7 @@ void SpellChecker::check()
 	wait_dialog.setWindowModality(Qt::WindowModal);
 	bool canceled = false;
 
-	forever {
+	Q_FOREVER {
 		// Update wait dialog
 		wait_dialog.setValue(m_checked_blocks);
 		if (wait_dialog.wasCanceled()) {

@@ -23,7 +23,7 @@ public:
 
 	void loadPreferences();
 
-signals:
+Q_SIGNALS:
 	void visibleChanged(bool visible);
 
 protected:
@@ -32,7 +32,7 @@ protected:
 	void hideEvent(QHideEvent* event) override;
 	void showEvent(QShowEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void modelReset();
 	void streaksChanged();
 

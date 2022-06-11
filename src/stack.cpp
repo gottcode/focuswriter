@@ -141,8 +141,8 @@ void Stack::addDocument(Document* document)
 	document->loadTheme(m_theme);
 	document->text()->setFixedSize(m_foreground_size);
 
-	emit documentAdded(document);
-	emit updateFormatActions();
+	Q_EMIT documentAdded(document);
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -170,7 +170,7 @@ void Stack::removeDocument(int index)
 	delete action;
 	updateMenuIndexes();
 
-	emit documentRemoved(document);
+	Q_EMIT documentRemoved(document);
 	document->close();
 }
 
@@ -193,10 +193,10 @@ void Stack::setCurrentDocument(int index)
 	m_scenes->setDocument(m_current_document);
 	m_document_actions[index]->setChecked(true);
 
-	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
-	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
-	emit undoAvailable(m_current_document->text()->document()->isUndoAvailable());
-	emit updateFormatActions();
+	Q_EMIT copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
+	Q_EMIT redoAvailable(m_current_document->text()->document()->isRedoAvailable());
+	Q_EMIT undoAvailable(m_current_document->text()->document()->isUndoAvailable());
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -306,7 +306,7 @@ void Stack::decreaseIndent()
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(std::max(0, format.indent() - 1));
 	cursor.setBlockFormat(format);
-	emit updateFormatActions();
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -339,7 +339,7 @@ void Stack::increaseIndent()
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(format.indent() + 1);
 	cursor.setBlockFormat(format);
-	emit updateFormatActions();
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -509,7 +509,7 @@ void Stack::setTextDirectionLTR()
 		format.setLayoutDirection(Qt::LeftToRight);
 		format.setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
 		cursor.mergeBlockFormat(format);
-		emit updateFormatAlignmentActions();
+		Q_EMIT updateFormatAlignmentActions();
 	}
 }
 
@@ -524,7 +524,7 @@ void Stack::setTextDirectionRTL()
 		format.setLayoutDirection(Qt::RightToLeft);
 		format.setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
 		cursor.mergeBlockFormat(format);
-		emit updateFormatAlignmentActions();
+		Q_EMIT updateFormatAlignmentActions();
 	}
 }
 
@@ -596,7 +596,7 @@ void Stack::setFooterVisible(bool visible)
 	visible |= Preferences::instance().alwaysShowFooter();
 	const int footer_visible = visible * -m_footer_margin;
 	if (m_footer_visible != footer_visible) {
-		emit footerVisible(visible);
+		Q_EMIT footerVisible(visible);
 		m_footer_visible = footer_visible;
 		updateMask();
 	}
@@ -609,7 +609,7 @@ void Stack::setHeaderVisible(bool visible)
 	visible |= Preferences::instance().alwaysShowHeader();
 	const int header_visible = visible * m_header_margin;
 	if (m_header_visible != header_visible) {
-		emit headerVisible(visible);
+		Q_EMIT headerVisible(visible);
 		m_header_visible = header_visible;
 		updateMask();
 	}
@@ -679,7 +679,7 @@ void Stack::resizeEvent(QResizeEvent* event)
 
 void Stack::actionTriggered(const QAction* action)
 {
-	emit documentSelected(action->data().toInt());
+	Q_EMIT documentSelected(action->data().toInt());
 }
 
 //-----------------------------------------------------------------------------

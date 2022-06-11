@@ -18,6 +18,7 @@ if(UNIX AND NOT APPLE)
 	pkg_check_modules(Hunspell REQUIRED IMPORTED_TARGET hunspell)
 endif()
 
+add_compile_definitions(QT_NO_KEYWORDS)
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	add_compile_definitions(
 		QT_STRICT_ITERATORS

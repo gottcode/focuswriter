@@ -22,10 +22,10 @@ public:
 
 	void setShortcut(const QKeySequence& shortcut, const QKeySequence& default_shortcut = QKeySequence());
 
-signals:
+Q_SIGNALS:
 	void changed();
 
-public slots:
+public Q_SLOTS:
 	void clear();
 	void reset();
 

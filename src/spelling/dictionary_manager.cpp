@@ -192,7 +192,7 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 	m_default_dictionary = *requestDictionaryData(m_default_language);
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -204,7 +204,7 @@ void DictionaryManager::setIgnoreNumbers(bool ignore)
 	}
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -216,7 +216,7 @@ void DictionaryManager::setIgnoreUppercase(bool ignore)
 	}
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -269,7 +269,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	}
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------

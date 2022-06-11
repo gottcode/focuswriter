@@ -31,13 +31,13 @@ public:
 	explicit ThemeDialog(Theme& theme, QWidget* parent = nullptr);
 	~ThemeDialog();
 
-public slots:
+public Q_SLOTS:
 	void accept() override;
 
 protected:
 	void hideEvent(QHideEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void checkNameAvailable();
 	void fontChanged();
 	void imageChanged();

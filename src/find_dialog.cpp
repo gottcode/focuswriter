@@ -184,7 +184,7 @@ void FindDialog::findChanged(const QString& text)
 	m_find_button->setEnabled(enabled);
 	m_replace_button->setEnabled(enabled);
 	m_replace_all_button->setEnabled(enabled);
-	emit findNextAvailable(enabled);
+	Q_EMIT findNextAvailable(enabled);
 }
 
 //-----------------------------------------------------------------------------
@@ -240,7 +240,7 @@ void FindDialog::replaceAll()
 	QTextCursor cursor = document->textCursor();
 	cursor.movePosition(QTextCursor::Start);
 	if (!m_regular_expressions->isChecked()) {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(text, cursor, flags);
 			if (!cursor.isNull()) {
 				found++;
@@ -249,7 +249,7 @@ void FindDialog::replaceAll()
 			}
 		}
 	} else {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(regex, cursor, flags);
 			if (!cursor.isNull() && cursor.hasSelection()) {
 				found++;
@@ -274,7 +274,7 @@ void FindDialog::replaceAll()
 	QTextCursor start_cursor = document->textCursor();
 	start_cursor.beginEditBlock();
 	if (!m_regular_expressions->isChecked()) {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(text, cursor, flags);
 			if (!cursor.isNull()) {
 				cursor.insertText(m_replace_string->text());
@@ -283,7 +283,7 @@ void FindDialog::replaceAll()
 			}
 		}
 	} else {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(regex, cursor, flags);
 			if (!cursor.isNull() && cursor.hasSelection()) {
 				QString match = cursor.selectedText();

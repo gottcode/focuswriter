@@ -71,10 +71,10 @@ public:
 	bool eventFilter(QObject* watched, QEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
 
-public slots:
+public Q_SLOTS:
 	void centerCursor(bool force = false);
 
-signals:
+Q_SIGNALS:
 	void alert(Alert* alert);
 	void replaceCacheFile(const Document* document, const QString& file);
 	void writeCacheFile(const Document* document, QSharedPointer<DocumentWriter> writer);
@@ -93,7 +93,7 @@ protected:
 	void mousePressEvent(QMouseEvent* event) override;
 	void wheelEvent(QWheelEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void cursorPositionChanged();
 	void focusText();
 	void hideMouse();

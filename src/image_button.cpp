@@ -52,7 +52,7 @@ void ImageButton::setImage(const QString& image, const QString& path)
 		setIcon(QPixmap::fromImage(icon, Qt::AutoColor | Qt::AvoidDither));
 
 		m_path = (!path.isEmpty() && QImageReader(path).canRead()) ? path : QString();
-		emit changed(m_path);
+		Q_EMIT changed(m_path);
 	} else {
 		unsetImage();
 	}
@@ -71,7 +71,7 @@ void ImageButton::unsetImage()
 	icon.fill(Qt::transparent);
 	setIcon(icon);
 
-	emit changed(m_path);
+	Q_EMIT changed(m_path);
 }
 
 //-----------------------------------------------------------------------------

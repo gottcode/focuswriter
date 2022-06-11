@@ -454,7 +454,7 @@ void Document::cache()
 		writer->setEncoding(m_encoding);
 		writer->setWriteByteOrderMark(Preferences::instance().writeByteOrderMark());
 		writer->setDocument(m_text->document()->clone());
-		emit writeCacheFile(this, writer);
+		Q_EMIT writeCacheFile(this, writer);
 	}
 }
 
@@ -481,7 +481,7 @@ bool Document::save()
 	m_encoding = writer.encoding();
 	if (saved) {
 		m_cache_outdated = false;
-		emit replaceCacheFile(this, m_filename);
+		Q_EMIT replaceCacheFile(this, m_filename);
 	} else {
 		cache();
 	}
@@ -530,7 +530,7 @@ bool Document::saveAs()
 	updateSaveLocation();
 	m_text->setReadOnly(false);
 	m_text->document()->setModified(false);
-	emit changedName();
+	Q_EMIT changedName();
 	return true;
 }
 
@@ -564,7 +564,7 @@ bool Document::rename()
 	save();
 	updateSaveLocation();
 	m_text->document()->setModified(false);
-	emit changedName();
+	Q_EMIT changedName();
 	return true;
 }
 
@@ -598,13 +598,13 @@ void Document::reload(bool prompt)
 	}
 
 	// Reload file
-	emit loadStarted(Window::tr("Opening %1").arg(QDir::toNativeSeparators(m_filename)));
+	Q_EMIT loadStarted(Window::tr("Opening %1").arg(QDir::toNativeSeparators(m_filename)));
 	m_text->setReadOnly(true);
 	disconnect(m_text->document(), &QTextDocument::contentsChange, this, &Document::updateWordCount);
 	disconnect(m_text->document(), &QTextDocument::undoCommandAdded, this, &Document::undoCommandAdded);
 	m_daily_progress->increaseWordCount(-wordCountDelta());
 	loadFile(m_filename, -1);
-	emit loadFinished();
+	Q_EMIT loadFinished();
 }
 
 //-----------------------------------------------------------------------------
@@ -701,7 +701,7 @@ static void printDocument(QPrinter* printer, QTextDocument* doc)
 	}
 
 	int page = fromPage;
-	while (true) {
+	Q_FOREVER {
 		printPage(page, &p, doc, body, pageNumberPos);
 
 		if (page == toPage)
@@ -787,7 +787,7 @@ bool Document::loadFile(const QString& filename, int position)
 	m_highlighter->setEnabled(false);
 
 	// Cache contents
-	emit replaceCacheFile(this, filename);
+	Q_EMIT replaceCacheFile(this, filename);
 
 	// Fetch reader for file
 	FormatReader* reader = nullptr;
@@ -818,7 +818,7 @@ bool Document::loadFile(const QString& filename, int position)
 		}
 
 		if (!loaded) {
-			emit alert(new Alert(Alert::Warning, error, QStringList(filename), false));
+			Q_EMIT alert(new Alert(Alert::Warning, error, QStringList(filename), false));
 			findIndex();
 		}
 	}
@@ -1114,12 +1114,12 @@ void Document::mouseMoveEvent(QMouseEvent* event)
 
 	const QPoint point = mapFromGlobal(global);
 	if (rect().contains(point)) {
-		emit headerVisible(false);
-		emit footerVisible(false);
+		Q_EMIT headerVisible(false);
+		Q_EMIT footerVisible(false);
 	}
 	if (m_scene_list && !m_scene_list->scenesVisible()) {
 		const int sidebar_region = std::min(m_scene_list->width(), m_layout->cellRect(0,0).width());
-		emit scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
+		Q_EMIT scenesVisible(QRect(0,0, sidebar_region, height()).contains(point));
 	}
 	setScrollBarVisible(m_scrollbar->rect().contains(m_scrollbar->mapFromGlobal(global)));
 }
@@ -1162,8 +1162,8 @@ void Document::wheelEvent(QWheelEvent* event)
 
 void Document::cursorPositionChanged()
 {
-	emit indentChanged(m_text->textCursor().blockFormat().indent());
-	emit alignmentChanged();
+	Q_EMIT indentChanged(m_text->textCursor().blockFormat().indent());
+	Q_EMIT alignmentChanged();
 	if (!m_mouse_button_down) {
 		centerCursor();
 	}
@@ -1299,7 +1299,7 @@ void Document::selectionChanged()
 	} else {
 		m_stats = &m_document_stats;
 	}
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -1336,7 +1336,7 @@ void Document::updateWordCount(int position, int removed, int added)
 				clearIndex();
 			}
 			DocumentWatcher::instance()->updateWatch(this);
-			emit changedName();
+			Q_EMIT changedName();
 		}
 		if (m_rich_text != state.second) {
 			m_rich_text = state.second;
@@ -1381,7 +1381,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	const int words = m_document_stats.wordCount();
 	calculateWordCount();
 	m_daily_progress->increaseWordCount(m_document_stats.wordCount() - words);
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------

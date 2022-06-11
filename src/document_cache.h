@@ -33,10 +33,10 @@ public:
 
 	static void setPath(const QString& path);
 
-public slots:
+public Q_SLOTS:
 	void updateMapping() const;
 
-private slots:
+private Q_SLOTS:
 	void replaceCacheFile(const Document* document, const QString& file);
 	void writeCacheFile(const Document* document, QSharedPointer<DocumentWriter> writer);
 

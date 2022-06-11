@@ -21,7 +21,7 @@ public:
 
 	bool eventFilter(QObject* watched, QEvent* event) override;
 
-public slots:
+public Q_SLOTS:
 	void setText(const QString& step);
 	void finish();
 
@@ -30,7 +30,7 @@ protected:
 	void showEvent(QShowEvent* event) override;
 	void paintEvent(QPaintEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void fade();
 
 private:

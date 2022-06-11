@@ -17,7 +17,7 @@ class DictionaryDialog : public QDialog
 public:
 	explicit DictionaryDialog(QWidget* parent = nullptr);
 
-public slots:
+public Q_SLOTS:
 	void accept() override;
 
 private:

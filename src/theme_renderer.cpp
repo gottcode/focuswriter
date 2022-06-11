@@ -23,7 +23,7 @@ void ThemeRenderer::create(const Theme& theme, const QSize& background, const in
 		const int index = m_cache.indexOf(file);
 		if (index != -1) {
 			m_cache.move(index, 0);
-			emit rendered(m_cache.constFirst().image, m_cache.constFirst().foreground, file.theme);
+			Q_EMIT rendered(m_cache.constFirst().image, m_cache.constFirst().foreground, file.theme);
 			return;
 		}
 	}
@@ -53,7 +53,7 @@ void ThemeRenderer::run()
 		while (m_cache.size() > 10) {
 			m_cache.removeLast();
 		}
-		emit rendered(file.image, file.foreground, file.theme);
+		Q_EMIT rendered(file.image, file.foreground, file.theme);
 
 		// Check if done
 		m_file_mutex.lock();

@@ -28,7 +28,7 @@ public:
 	bool cancelEditing();
 	TimerDisplay* display() const;
 
-public slots:
+public Q_SLOTS:
 	void saveTimers();
 
 protected:
@@ -36,7 +36,7 @@ protected:
 	void hideEvent(QHideEvent* event) override;
 	void showEvent(QShowEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void newTimer();
 	void recentTimer(const QAction* action);
 	void recentTimerMenuRequested(const QPoint& pos);

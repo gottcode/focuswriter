@@ -180,7 +180,7 @@ void SessionManager::setCurrent(const QString& id, const QStringList& files, con
 		is_default = true;
 		m_session->setTheme(theme, is_default);
 	}
-	emit themeChanged(Theme(theme, is_default));
+	Q_EMIT themeChanged(Theme(theme, is_default));
 
 	if (files.isEmpty()) {
 		m_window->addDocuments(m_session->files(), m_session->files(), m_session->positions(), m_session->active(), true);
@@ -407,7 +407,7 @@ QString SessionManager::getSessionName(const QString& title, const QString& sess
 {
 	QWidget* window = isVisible() ? this : parentWidget()->window();
 	QString name = session;
-	forever {
+	Q_FOREVER {
 		bool ok;
 		name = QInputDialog::getText(window, title, tr("Session name:"), QLineEdit::Normal, name, &ok).simplified();
 		if (!ok) {

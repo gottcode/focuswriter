@@ -22,13 +22,13 @@ class ThemeManager : public QDialog
 public:
 	explicit ThemeManager(QSettings& settings, QWidget* parent = nullptr);
 
-signals:
+Q_SIGNALS:
 	void themeSelected(const Theme& theme);
 
 protected:
 	void hideEvent(QHideEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void newTheme();
 	void editTheme();
 	void cloneTheme();

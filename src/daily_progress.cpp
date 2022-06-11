@@ -195,13 +195,13 @@ int DailyProgress::percentComplete()
 		const bool had_streak_after = m_current->progress() >= m_streak_minimum;
 
 		if (had_streak_before != had_streak_after) {
-			emit streaksChanged();
+			Q_EMIT streaksChanged();
 		}
 
 		const QModelIndex index = createIndex(m_current_pos / 7, m_current_pos % 7);
-		emit dataChanged(index, index);
+		Q_EMIT dataChanged(index, index);
 
-		emit progressChanged();
+		Q_EMIT progressChanged();
 	}
 	return m_current->progress();
 }
@@ -241,7 +241,7 @@ void DailyProgress::loadPreferences()
 			const int row = pos / 7;
 			const int col = pos % 7;
 			const QModelIndex index = createIndex(row, col);
-			emit dataChanged(index, index);
+			Q_EMIT dataChanged(index, index);
 		}
 		m_file->setValue(QLatin1String("HistoryDisabled"), m_current->date().toString(Qt::ISODate));
 	}
@@ -265,7 +265,7 @@ void DailyProgress::loadPreferences()
 	const int streak_minimum = m_streak_minimum;
 	m_streak_minimum = Preferences::instance().goalStreakMinimum();
 	if (streak_minimum != m_streak_minimum) {
-		emit streaksChanged();
+		Q_EMIT streaksChanged();
 	}
 }
 

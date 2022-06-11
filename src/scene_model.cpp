@@ -398,7 +398,7 @@ void SceneModel::invalidateScenes()
 	for (int i = 0; i < count; ++i) {
 		m_scenes[i].outdated = true;
 	}
-	emit dataChanged(index(0), index(count - 1));
+	Q_EMIT dataChanged(index(0), index(count - 1));
 }
 
 //-----------------------------------------------------------------------------
@@ -523,7 +523,7 @@ void SceneModel::updateScene(const BlockStats* stats, const QString& text)
 	m_scenes[pos].text = text;
 	m_scenes[pos].outdated = true;
 	const QModelIndex i = index(pos);
-	emit dataChanged(i, i);
+	Q_EMIT dataChanged(i, i);
 }
 
 //-----------------------------------------------------------------------------
@@ -556,7 +556,7 @@ void SceneModel::updateScene(const QTextBlock& block)
 	// Modify scene
 	m_scenes[pos].outdated = true;
 	const QModelIndex i = index(pos);
-	emit dataChanged(i, i);
+	Q_EMIT dataChanged(i, i);
 }
 
 //-----------------------------------------------------------------------------

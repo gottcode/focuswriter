@@ -58,7 +58,7 @@ void ShortcutEdit::setShortcut(const QKeySequence& shortcut, const QKeySequence&
 void ShortcutEdit::clear()
 {
 	m_edit->clear();
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -66,7 +66,7 @@ void ShortcutEdit::clear()
 void ShortcutEdit::reset()
 {
 	m_edit->setKeySequence(m_default_shortcut);
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------

@@ -32,16 +32,16 @@ public:
 	bool saveCurrent();
 	void setCurrent(const QString& id, const QStringList& files = QStringList(), const QStringList& datafiles = QStringList());
 
-public slots:
+public Q_SLOTS:
 	void newSession();
 
-signals:
+Q_SIGNALS:
 	void themeChanged(const Theme& theme);
 
 protected:
 	void hideEvent(QHideEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void renameSession();
 	void cloneSession();
 	void deleteSession();

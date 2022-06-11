@@ -29,10 +29,10 @@ public:
 	bool eventFilter(QObject* watched, QEvent* event) override;
 	void highlightBlock(const QString& text) override;
 
-public slots:
+public Q_SLOTS:
 	void updateSpelling();
 
-private slots:
+private Q_SLOTS:
 	void cursorPositionChanged();
 	void suggestion(QAction* action);
 

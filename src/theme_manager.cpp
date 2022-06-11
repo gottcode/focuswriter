@@ -266,7 +266,7 @@ void ThemeManager::editTheme()
 
 	item->setText(theme.name());
 	item->setIcon(QIcon(Theme::iconPath(theme.id(), false, devicePixelRatioF())));
-	emit themeSelected(theme);
+	Q_EMIT themeSelected(theme);
 }
 
 //-----------------------------------------------------------------------------
@@ -445,7 +445,7 @@ void ThemeManager::currentThemeChanged(const QListWidgetItem* current)
 		const QString id = current->data(Qt::UserRole).toString();
 		m_settings.setValue("ThemeManager/Theme", id);
 		m_settings.setValue("ThemeManager/ThemeDefault", is_default);
-		emit themeSelected(Theme(id, is_default));
+		Q_EMIT themeSelected(Theme(id, is_default));
 	}
 }
 

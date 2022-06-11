@@ -24,21 +24,21 @@ public:
 
 	bool eventFilter(QObject* watched, QEvent* event) override;
 
-public slots:
+public Q_SLOTS:
 	void findNext();
 	void findPrevious();
 	void reject() override;
 	void showFindMode();
 	void showReplaceMode();
 
-signals:
+Q_SIGNALS:
 	void findNextAvailable(bool available);
 
 protected:
 	void moveEvent(QMoveEvent* event) override;
 	void showEvent(QShowEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void find();
 	void findChanged(const QString& text);
 	void replace();

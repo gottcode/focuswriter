@@ -46,15 +46,15 @@ public:
 
 	static QString toString(const QString& time, const QString& memo);
 
-public slots:
+public Q_SLOTS:
 	void documentAdded(const Document* document);
 	void documentRemoved(const Document* document);
 
-signals:
+Q_SIGNALS:
 	void changed(Timer* timer);
 	void edited(Timer* timer);
 
-private slots:
+private Q_SLOTS:
 	void delayChanged(const QTime& delay);
 	void endChanged(const QTime& end);
 	void editAccepted();

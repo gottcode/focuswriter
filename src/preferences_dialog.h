@@ -31,11 +31,11 @@ public:
 	explicit PreferencesDialog(DailyProgress* daily_progress, QWidget* parent = nullptr);
 	~PreferencesDialog();
 
-public slots:
+public Q_SLOTS:
 	void accept() override;
 	void reject() override;
 
-private slots:
+private Q_SLOTS:
 	void goalHistoryToggled();
 	void resetDailyGoal();
 	void moveActionUp();

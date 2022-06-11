@@ -22,7 +22,7 @@ DailyProgressLabel::DailyProgressLabel(DailyProgress* progress, QWidget* parent)
 
 void DailyProgressLabel::mousePressEvent(QMouseEvent* event)
 {
-	emit clicked();
+	Q_EMIT clicked();
 
 	QLabel::mousePressEvent(event);
 }

@@ -45,7 +45,7 @@ public:
 	 */
 	static QString languageName(const QString& language);
 
-public slots:
+public Q_SLOTS:
 	/** Override parent function to store application language. */
 	void accept() override;
 

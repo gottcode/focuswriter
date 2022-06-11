@@ -173,7 +173,7 @@ void ActionManager::symbolShortcutActivated()
 {
 	const QObject* object = sender();
 	if (m_symbol_shortcuts_text.contains(object)) {
-		emit insertText(m_symbol_shortcuts_text.value(object));
+		Q_EMIT insertText(m_symbol_shortcuts_text.value(object));
 	}
 }
 

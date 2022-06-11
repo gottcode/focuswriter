@@ -23,7 +23,7 @@ public:
 
 	void create(const Theme& theme, const QSize& background, const int margin, const qreal pixelratio);
 
-signals:
+Q_SIGNALS:
 	void rendered(const QImage& image, const QRect& foreground, const Theme& theme);
 
 protected:

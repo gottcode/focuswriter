@@ -56,10 +56,10 @@ public:
 		return m_instance;
 	}
 
-signals:
+Q_SIGNALS:
 	void insertText(const QString& text);
 
-private slots:
+private Q_SLOTS:
 	void symbolShortcutActivated();
 
 private:

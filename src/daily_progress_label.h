@@ -18,13 +18,13 @@ class DailyProgressLabel : public QLabel
 public:
 	explicit DailyProgressLabel(DailyProgress* progress, QWidget* parent = nullptr);
 
-signals:
+Q_SIGNALS:
 	void clicked();
 
 protected:
 	void mousePressEvent(QMouseEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void progressChanged();
 
 private:

@@ -33,17 +33,17 @@ public:
 	void setInsertEnabled(bool enabled);
 	void setPreviewFont(const QFont& font);
 
-signals:
+Q_SIGNALS:
 	void insertText(const QString& text);
 
-public slots:
+public Q_SLOTS:
 	void accept() override;
 	void reject() override;
 
 protected:
 	void showEvent(QShowEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void showFilter(const QListWidgetItem* filter);
 	void showGroup(int group);
 	void symbolClicked(const QModelIndex& symbol);

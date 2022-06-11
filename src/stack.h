@@ -50,7 +50,7 @@ public:
 
 	bool eventFilter(QObject* watched, QEvent* event) override;
 
-signals:
+Q_SIGNALS:
 	void copyAvailable(bool);
 	void redoAvailable(bool);
 	void undoAvailable(bool);
@@ -63,7 +63,7 @@ signals:
 	void updateFormatActions();
 	void updateFormatAlignmentActions();
 
-public slots:
+public Q_SLOTS:
 	void alignCenter();
 	void alignJustify();
 	void alignLeft();
@@ -113,7 +113,7 @@ protected:
 	void paintEvent(QPaintEvent* event) override;
 	void resizeEvent(QResizeEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void actionTriggered(const QAction* action);
 	void insertSymbol(const QString& text);
 	void updateBackground();
