@@ -296,7 +296,7 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 
 		if (block.begin() != block.end()) {
 			device->write(" ");
-			for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
+			for (QTextBlock::iterator iter = block.begin(); !iter.atEnd(); ++iter) {
 				const QTextFragment fragment = iter.fragment();
 				const QTextCharFormat char_format = fragment.charFormat();
 				QByteArray style;

@@ -218,7 +218,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 				m_styles.insert(index, QString("Heading-%1").arg(heading));
 			}
 		}
-		for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
+		for (QTextBlock::iterator iter = block.begin(); !iter.atEnd(); ++iter) {
 			index = iter.fragment().charFormatIndex();
 			if (!text_styles.contains(index) && formats.at(index).propertyCount()) {
 				text_styles.append(index);
@@ -351,7 +351,7 @@ void OdtWriter::writeBody(const QTextDocument* document)
 		m_xml.writeAttribute(QStringLiteral("text:style-name"), m_styles.value(block.blockFormatIndex()));
 		m_xml.setAutoFormatting(false);
 
-		for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
+		for (QTextBlock::iterator iter = block.begin(); !iter.atEnd(); ++iter) {
 			const QTextFragment fragment = iter.fragment();
 			const QString style = m_styles.value(fragment.charFormatIndex());
 			if (!style.isEmpty()) {

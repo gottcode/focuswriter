@@ -182,7 +182,7 @@ void DocxWriter::writeParagraph(const QTextBlock& block)
 	m_xml.writeStartElement(QStringLiteral("w:p"));
 	writeParagraphProperties(block.blockFormat(), block.charFormat());
 
-	for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
+	for (QTextBlock::iterator iter = block.begin(); !iter.atEnd(); ++iter) {
 		m_xml.writeStartElement(QStringLiteral("w:r"));
 
 		const QTextFragment fragment = iter.fragment();
