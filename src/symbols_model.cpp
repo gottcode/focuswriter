@@ -279,15 +279,9 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 
 //-----------------------------------------------------------------------------
 
-void SymbolsModel::setData(const QStringList& datadirs)
+void SymbolsModel::setPath(const QString& path)
 {
-	for (const QString& path : datadirs) {
-		const QFileInfo info(path + "/symbols1400.dat");
-		if (info.exists()) {
-			m_path = info.absoluteFilePath();
-			break;
-		}
-	}
+	m_path = path;
 }
 
 //-----------------------------------------------------------------------------

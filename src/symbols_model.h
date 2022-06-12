@@ -46,7 +46,7 @@ public:
 	QModelIndex parent(const QModelIndex& child) const override;
 	int rowCount(const QModelIndex& parent = QModelIndex()) const override;
 
-	static void setData(const QStringList& datadirs);
+	static void setPath(const QString& path);
 
 	friend QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter& filter);
 	friend QDataStream& operator>>(QDataStream& stream, SymbolsModel::Filter::Range& range);

@@ -1,78 +1,38 @@
 /*
-	SPDX-FileCopyrightText: 2008-2021 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2008-2022 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
 #include "application.h"
-#include "daily_progress.h"
-#include "dictionary_manager.h"
-#include "document_cache.h"
 #include "locale_dialog.h"
 #include "paths.h"
-#include "session.h"
-#include "sound.h"
-#include "symbols_model.h"
 #include "theme.h"
 #include "window.h"
 
 #include <QCommandLineParser>
 #include <QDir>
-#include <QFile>
-#include <QFileInfo>
-#include <QIcon>
 #include <QSettings>
-#include <QStringList>
 
 int main(int argc, char** argv)
 {
 	Application app(argc, argv);
-	QString appdir = app.applicationDirPath();
 
 	// Allow passing Theme as signal parameter
 	qRegisterMetaType<Theme>("Theme");
 
 	// Find application data dirs
-	QStringList datadirs;
+	const QString appdir = app.applicationDirPath();
+	const QStringList datadirs{
 #if defined(Q_OS_MAC)
-	const QFileInfo portable(appdir + "/../../../Data");
-	datadirs.append(appdir + "/../Resources");
+		appdir + "/../Resources"
 #elif defined(Q_OS_UNIX)
-	const QFileInfo portable(appdir + "/Data");
-	datadirs.append(DATADIR);
-	datadirs.append(appdir + "/../share/focuswriter");
+		DATADIR,
+		appdir + "/../share/focuswriter"
 #else
-	const QFileInfo portable(appdir + "/Data");
-	datadirs.append(appdir);
+		appdir
 #endif
-
-	// Handle portability
-	QString userdir;
-	if (portable.exists() && portable.isWritable()) {
-		userdir = portable.absoluteFilePath();
-		QSettings::setDefaultFormat(QSettings::IniFormat);
-		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userdir + "/Settings");
-	}
-
-	// Set locations of fallback icons
-	{
-		QStringList paths = QIcon::themeSearchPaths();
-		for (const QString& path : datadirs) {
-			paths.prepend(path + "/icons");
-		}
-		QIcon::setThemeSearchPaths(paths);
-	}
-
-	// Find sounds
-	for (const QString& path : datadirs) {
-		if (QFile::exists(path + "/sounds/")) {
-			Sound::setPath(path + "/sounds/");
-			break;
-		}
-	}
-
-	// Find unicode names
-	SymbolsModel::setData(datadirs);
+	};
 
 	// Load application language
 	LocaleDialog::loadTranslator("focuswriter_", datadirs);
@@ -91,81 +51,8 @@ int main(int argc, char** argv)
 		return 0;
 	}
 
-	// Find user data dir if not in portable mode
-	if (userdir.isEmpty()) {
-		userdir = Paths::dataPath();
-
-		// Migrate data from old location
-		if (!QFile::exists(userdir)) {
-			const QString oldpath = Paths::oldDataPath();
-			if (!oldpath.isEmpty()) {
-				QDir dir(userdir + "/../");
-				dir.mkpath(dir.absolutePath());
-				dir.rename(oldpath, userdir);
-			}
-		}
-	}
-
-	// Create base user data path
-	QDir dir(userdir);
-	if (!dir.exists()) {
-		dir.mkpath(dir.absolutePath());
-	}
-
-	// Create cache path
-	if (!dir.exists("Cache/Files")) {
-		dir.mkpath("Cache/Files");
-	}
-	DocumentCache::setPath(dir.filePath("Cache/Files"));
-
-	// Set sessions path
-	if (!dir.exists("Sessions")) {
-		dir.mkdir("Sessions");
-	}
-	Session::setPath(dir.absoluteFilePath("Sessions"));
-
-	// Set themes path
-	if (!dir.exists("Themes")) {
-		if (dir.exists("themes")) {
-			dir.rename("themes", "Themes");
-		} else {
-			dir.mkdir("Themes");
-		}
-	}
-	if (!dir.exists("Themes/Images")) {
-		dir.mkdir("Themes/Images");
-	}
-	if (!dir.exists("Themes/Previews/Default")) {
-		dir.mkpath("Themes/Previews/Default");
-	}
-	Theme::setPath(dir.absoluteFilePath("Themes"));
-
-	for (const QString& datadir : qAsConst(datadirs)) {
-		const QFileInfo info(datadir + "/themes");
-		if (info.exists()) {
-			Theme::setDefaultPath(info.absoluteFilePath());
-			break;
-		}
-	}
-
-	// Set dictionary paths
-	if (!dir.exists("Dictionaries")) {
-		if (dir.exists("dictionaries")) {
-			dir.rename("dictionaries", "Dictionaries");
-		} else {
-			dir.mkdir("Dictionaries");
-		}
-	}
-	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
-	QStringList dictdirs;
-	dictdirs.append(DictionaryManager::path());
-#ifdef Q_OS_WIN
-	dictdirs.append(appdir + "/dictionaries");
-#endif
-	QDir::setSearchPaths("dict", dictdirs);
-
-	// Set location for daily progress
-	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));
+	// Load paths
+	Paths::load(appdir, datadirs);
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
