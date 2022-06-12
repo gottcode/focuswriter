@@ -32,7 +32,7 @@ void gzip(const QString& path)
 		return;
 	}
 
-	gzwrite(gz, data.constData(), data.size());
+	gzwrite(gz, data.constData(), data.length());
 	gzclose(gz);
 }
 

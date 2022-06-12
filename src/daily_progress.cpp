@@ -57,7 +57,7 @@ DailyProgress::DailyProgress(QObject* parent)
 				continue;
 			}
 			const QVariantList values = m_file->value(key).toList();
-			if (values.size() == 4) {
+			if (values.count() == 4) {
 				m_progress.append(Progress(date, values.at(0).toInt(), values.at(1).toInt(), values.at(2).toInt(), values.at(3).toInt()));
 			} else {
 				m_progress.append(Progress(date));
@@ -377,7 +377,7 @@ QVariant DailyProgress::headerData(int section, Qt::Orientation orientation, int
 
 int DailyProgress::rowCount(const QModelIndex& parent) const
 {
-	return parent.isValid() ? 0 : std::ceil(m_progress.size() / 7.0);
+	return parent.isValid() ? 0 : std::ceil(m_progress.count() / 7.0);
 }
 
 //-----------------------------------------------------------------------------
@@ -480,7 +480,7 @@ void DailyProgress::updateRows()
 
 	// Add empty entries for days without data
 	QDate previous = m_progress.constLast().date();
-	for (int i = m_progress.size() - 2; i >= 0; --i) {
+	for (int i = m_progress.count() - 2; i >= 0; --i) {
 		const Progress& progress = m_progress.at(i);
 		const QDate next = progress.date();
 		const int type = progress.type();
@@ -493,7 +493,7 @@ void DailyProgress::updateRows()
 	}
 
 	// Fetch current daily progress
-	m_current_pos = m_progress.size() - 1;
+	m_current_pos = m_progress.count() - 1;
 	m_current = &m_progress[m_current_pos];
 
 	// Fetch row month and year names

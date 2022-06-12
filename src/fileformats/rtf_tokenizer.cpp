@@ -30,7 +30,7 @@ RtfTokenizer::RtfTokenizer()
 
 bool RtfTokenizer::hasNext() const
 {
-	return (m_position < m_buffer.size() - 1) || !m_device->atEnd();
+	return (m_position < m_buffer.length() - 1) || !m_device->atEnd();
 }
 
 //-----------------------------------------------------------------------------
@@ -131,9 +131,9 @@ void RtfTokenizer::setDevice(QIODevice* device)
 char RtfTokenizer::next()
 {
 	m_position++;
-	if (m_position >= m_buffer.size()) {
+	if (m_position >= m_buffer.length()) {
 		m_buffer.resize(8192);
-		const int size = m_device->read(m_buffer.data(), m_buffer.size());
+		const int size = m_device->read(m_buffer.data(), m_buffer.length());
 		if (size < 1) {
 			throw tr("Unexpectedly reached end of file.");
 		}

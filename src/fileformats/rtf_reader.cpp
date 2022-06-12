@@ -406,7 +406,7 @@ void RtfReader::insertUnicodeSymbol(qint32 value)
 		m_token.readNext();
 
 		if (m_token.type() == TextToken) {
-			const int len = m_token.text().count();
+			const int len = m_token.text().length();
 			if (len > i) {
 				m_cursor.insertText(m_decoder->toUnicode(m_token.text().mid(i)));
 				break;

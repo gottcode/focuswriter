@@ -82,7 +82,7 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 
 	// Find location in document to insert text fragments
 	int position = 0;
-	if ((row < m_scenes.size()) && (row > -1)) {
+	if ((row < m_scenes.count()) && (row > -1)) {
 		const Scene& scene = m_scenes.at(row);
 		const QTextBlock block = m_document->document()->findBlockByNumber(scene.block_number);
 		if (block.userData() == scene.stats) {

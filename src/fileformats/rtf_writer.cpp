@@ -226,7 +226,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding)
 		for (int i = 0x20; i < 0x80; ++i) {
 			const QChar c = QChar::fromLatin1(i);
 			encoded = m_codec->fromUnicode(&c, 1, &state);
-			if (state.invalidChars || (encoded.size() > 1) || (encoded.at(0) != i)) {
+			if (state.invalidChars || (encoded.length() > 1) || (encoded.at(0) != i)) {
 				m_supports_ascii = false;
 				break;
 			}
@@ -375,7 +375,7 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 
 			const QByteArray encoded = m_codec->fromUnicode(&c, 1, &state);
 			if ((state.invalidChars == 0) && (encoded.at(0) != 0)) {
-				if (encoded.count() == 1 && encoded.at(0) >= 0x20) {
+				if (encoded.length() == 1 && encoded.at(0) >= 0x20) {
 					text += encoded;
 				} else {
 					text += "\\'" + encoded.toHex().toUpper();

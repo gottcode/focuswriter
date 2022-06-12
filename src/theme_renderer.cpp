@@ -50,7 +50,7 @@ void ThemeRenderer::run()
 		// Render theme
 		file.image = file.theme.render(file.background, file.foreground, file.margin, file.pixelratio);
 		m_cache.prepend(file);
-		while (m_cache.size() > 10) {
+		while (m_cache.count() > 10) {
 			m_cache.removeLast();
 		}
 		Q_EMIT rendered(file.image, file.foreground, file.theme);

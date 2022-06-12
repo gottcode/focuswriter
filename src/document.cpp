@@ -176,7 +176,7 @@ void TextEdit::insertFromMimeData(const QMimeData* source)
 	QTextDocument document;
 	QTextCursor cursor(&document);
 	cursor.mergeBlockFormat(textCursor().blockFormat());
-	const qsizetype formats = document.allFormats().size();
+	const qsizetype formats = document.allFormats().count();
 	if (m_document->isRichText()) {
 		cursor = textCursor();
 	}
@@ -218,7 +218,7 @@ void TextEdit::insertFromMimeData(const QMimeData* source)
 	}
 
 	if (!m_document->isRichText()) {
-		if (document.allFormats().size() > formats) {
+		if (document.allFormats().count() > formats) {
 			m_document->setRichText(true);
 		}
 		textCursor().insertFragment(QTextDocumentFragment(&document));
@@ -804,7 +804,7 @@ bool Document::loadFile(const QString& filename, int position)
 	document->setUndoRedoEnabled(false);
 	document->clear();
 	m_text->textCursor().mergeBlockFormat(m_block_format);
-	const qsizetype formats = document->allFormats().size();
+	const qsizetype formats = document->allFormats().count();
 	if (reader) {
 		QString error;
 		reader->read(&file, document);
@@ -823,7 +823,7 @@ bool Document::loadFile(const QString& filename, int position)
 		}
 	}
 	if (m_filename.isEmpty()) {
-		m_rich_text = document->allFormats().size() > formats;
+		m_rich_text = document->allFormats().count() > formats;
 	}
 	document->setUndoRedoEnabled(true);
 	document->setModified(false);
