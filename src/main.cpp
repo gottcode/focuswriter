@@ -94,36 +94,14 @@ int main(int argc, char** argv)
 	// Find user data dir if not in portable mode
 	if (userdir.isEmpty()) {
 		userdir = Paths::dataPath();
+
+		// Migrate data from old location
 		if (!QFile::exists(userdir)) {
-			const QDir dir(userdir);
-			dir.mkpath(dir.absolutePath());
-
-			// Migrate data from old location
 			const QString oldpath = Paths::oldDataPath();
-			if (QFile::exists(oldpath)) {
-				QStringList old_dirs{ QString() };
-
-				QDir olddir(oldpath);
-				for (int i = 0; i < old_dirs.count(); ++i) {
-					const QString subpath = old_dirs.at(i);
-					dir.mkpath(userdir + "/" + subpath);
-					olddir.setPath(oldpath + "/" + subpath);
-
-					const QStringList subdirs = olddir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-					for (const QString& subdir : subdirs) {
-						old_dirs.append(subpath + "/" + subdir);
-					}
-
-					const QStringList files = olddir.entryList(QDir::Files);
-					for (const QString& file : files) {
-						QFile::rename(olddir.absoluteFilePath(file), userdir + "/" + subpath + "/" + file);
-					}
-				}
-
-				olddir.setPath(oldpath);
-				for (int i = old_dirs.count() - 1; i >= 0; --i) {
-					olddir.rmdir(oldpath + "/" + old_dirs.at(i));
-				}
+			if (!oldpath.isEmpty()) {
+				QDir dir(userdir + "/../");
+				dir.mkpath(dir.absolutePath());
+				dir.rename(oldpath, userdir);
 			}
 		}
 	}
