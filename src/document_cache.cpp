@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2012-2022 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -29,7 +29,7 @@ DocumentCache::DocumentCache(QObject* parent)
 	, m_ordering(nullptr)
 {
 	const QStringList entries = QDir(m_path).entryList(QDir::Files);
-	if ((entries.count() >= 1) && entries.contains("mapping")) {
+	if (!entries.isEmpty() && entries.contains("mapping")) {
 		m_previous_cache = backupCache();
 	}
 }
