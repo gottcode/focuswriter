@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16.0)
+cmake_minimum_required(VERSION 3.16)
 
 # Configure project
 project(focuswriter VERSION 1.7.6 LANGUAGES CXX)
@@ -18,14 +18,12 @@ if(UNIX AND NOT APPLE)
 	pkg_check_modules(Hunspell REQUIRED IMPORTED_TARGET hunspell)
 endif()
 
-add_compile_definitions(QT_NO_KEYWORDS)
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-	add_compile_definitions(
-		QT_STRICT_ITERATORS
-		QT_NO_NARROWING_CONVERSIONS_IN_CONNECT
-		QT_DISABLE_DEPRECATED_BEFORE=0x060300
-	)
-endif()
+add_compile_definitions(
+	QT_NO_KEYWORDS
+	$<$<CONFIG:DEBUG>:QT_STRICT_ITERATORS>
+	$<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
+	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060300>
+)
 
 # Create translations
 file(GLOB translations_SRCS translations/*.ts)
