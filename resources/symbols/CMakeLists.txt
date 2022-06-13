@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 Graeme Gott <graeme@gottcode.org>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 qt6_add_executable(generate main.cpp)
 
 target_link_libraries(generate PRIVATE
