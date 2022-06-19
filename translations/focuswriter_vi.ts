@@ -30,18 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -56,6 +44,18 @@
     <message>
         <source>0%</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>

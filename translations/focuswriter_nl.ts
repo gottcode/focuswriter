@@ -1858,7 +1858,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>De in de huidige sessie te openen bestanden.</translation>
     </message>
 </context>
 </TS>

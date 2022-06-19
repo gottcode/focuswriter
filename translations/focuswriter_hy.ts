@@ -30,20 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%Ln րոպեի %L1%-ը</numerusform>
-            <numerusform>%Ln րոպեի %L1%-ը</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%Ln բառի %L1%-ը</numerusform>
-            <numerusform>%Ln բառի %L1%-ը</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln բառ</numerusform>
@@ -60,6 +46,20 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%Ln րոպեի %L1%-ը</numerusform>
+            <numerusform>%Ln րոպեի %L1%-ը</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%Ln բառի %L1%-ը</numerusform>
+            <numerusform>%Ln բառի %L1%-ը</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -380,7 +380,7 @@
     </message>
     <message>
         <source>Toolbar</source>
-        <translation>Գործիքների վահանակ</translation>
+        <translation>Գործիքագոտի</translation>
     </message>
     <message>
         <source>Spell Checking</source>
@@ -1619,7 +1619,7 @@
     </message>
     <message>
         <source>Align &amp;Justify</source>
-        <translation>Երկու կողմից &amp;հավասարեցնել</translation>
+        <translation>Երկկողմ &amp;հավասարեցում</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -1715,7 +1715,7 @@
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation>Ցույց տալ &amp;գործիքների վահանակը</translation>
+        <translation>Ցույց տալ &amp;գործիքագոտին</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
@@ -1751,7 +1751,7 @@
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Նախընտրանքներ...</translation>
+        <translation>&amp;Ընտրանքներ...</translation>
     </message>
     <message>
         <source>Focus Off</source>
@@ -1858,7 +1858,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներկա գործաժամում բացվելիք նիշքերը</translation>
     </message>
 </context>
 </TS>

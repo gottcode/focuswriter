@@ -1864,7 +1864,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Файли для відкриття в поточному сеансі.</translation>
     </message>
 </context>
 </TS>

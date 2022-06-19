@@ -30,18 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% a %Ln percből</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% a %Ln szóból</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln szó</numerusform>
@@ -56,6 +44,18 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% a %Ln percből</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% a %Ln szóból</numerusform>
+        </translation>
     </message>
 </context>
 <context>

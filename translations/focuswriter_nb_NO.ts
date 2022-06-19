@@ -9,18 +9,18 @@
     </message>
     <message>
         <source>Collapse</source>
-        <translation type="unfinished"></translation>
+        <translation>Slå sammen</translation>
     </message>
     <message>
         <source>Expand</source>
-        <translation type="unfinished"></translation>
+        <translation>Utvide</translation>
     </message>
 </context>
 <context>
     <name>AlertLayer</name>
     <message>
         <source>Dismiss Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer alarm</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -31,16 +31,16 @@
     <name>DailyProgress</name>
     <message numerus="yes">
         <source>%Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln ord</numerusform>
+            <numerusform>%Ln ord</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln minutter</numerusform>
+            <numerusform>%Ln minutter</numerusform>
         </translation>
     </message>
     <message>
@@ -49,16 +49,16 @@
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% av %Ln minutter</numerusform>
+            <numerusform>%L1% av %Ln minutter</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% av %Ln ord</numerusform>
+            <numerusform>%L1% av %Ln ord</numerusform>
         </translation>
     </message>
 </context>
@@ -70,33 +70,33 @@
     </message>
     <message>
         <source>Longest streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Lengste strekk</translation>
     </message>
     <message>
         <source>Current streak</source>
-        <translation type="unfinished"></translation>
+        <translation>Nåværende strekk</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke tilgjengelig</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n dager</numerusform>
+            <numerusform>%n dager</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 &amp;ndash; %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 &amp;ndash; %2</translation>
     </message>
 </context>
 <context>
     <name>DailyProgressLabel</name>
     <message>
         <source>%L1% of daily goal</source>
-        <translation type="unfinished"></translation>
+        <translation>%L1% av daglige mål</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     <name>Document</name>
     <message>
         <source>(Untitled %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Uten tittel %1)</translation>
     </message>
     <message>
         <source>%1 (Read-Only)</source>
@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å lagre &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Save File As</source>
@@ -130,7 +130,7 @@
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å overskrive &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Rename File</source>
@@ -138,7 +138,7 @@
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å endre navn på &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Reload File?</source>
@@ -146,7 +146,7 @@
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation type="unfinished"></translation>
+        <translation>Laste filen &apos;%1&apos; fra disk på nytt?</translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
@@ -158,7 +158,7 @@
     </message>
     <message>
         <source>Untitled %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uten tittel %1</translation>
     </message>
     <message>
         <source>Question</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen &apos;%1&apos; er endret av et annet program.</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
@@ -197,7 +197,7 @@
     </message>
     <message>
         <source>The file %1 was deleted by another program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen &apos;%1&apos; ble slettet av et annet program.</translation>
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
@@ -263,9 +263,9 @@
     </message>
     <message numerus="yes">
         <source>Replace %n instance(s)?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Frasen ble ikke funnet</numerusform>
+            <numerusform>Erstatt %n forekomster?</numerusform>
         </translation>
     </message>
     <message>
@@ -278,7 +278,7 @@
     </message>
     <message>
         <source>Phrase not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Frasen ble ikke funnet.</translation>
     </message>
 </context>
 <context>
@@ -350,7 +350,7 @@
     </message>
     <message>
         <source>Note</source>
-        <translation type="unfinished"></translation>
+        <translation>Notat</translation>
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
@@ -368,7 +368,7 @@
     <name>PreferencesDialog</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Valg</translation>
     </message>
     <message>
         <source>General</source>
@@ -440,11 +440,11 @@
     </message>
     <message>
         <source>Always vertically center</source>
-        <translation type="unfinished"></translation>
+        <translation>Alltid vertikalt sentrert</translation>
     </message>
     <message>
         <source>Block insertion cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Innsettingsmarkør som blokk</translation>
     </message>
     <message>
         <source>Smooth fonts</source>
@@ -460,19 +460,19 @@
     </message>
     <message>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation>Dobbel</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkel</translation>
     </message>
     <message>
         <source>Scenes</source>
-        <translation type="unfinished"></translation>
+        <translation>Scene</translation>
     </message>
     <message>
         <source>Divider:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skille:</translation>
     </message>
     <message>
         <source>Saving</source>
@@ -480,7 +480,7 @@
     </message>
     <message>
         <source>Remember cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Husk markørplassering</translation>
     </message>
     <message>
         <source>Word count</source>
@@ -508,7 +508,7 @@
     </message>
     <message>
         <source>Word Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordtellingsalgoritme</translation>
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
@@ -516,11 +516,11 @@
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv byterekkefølge i tekstfiler</translation>
     </message>
     <message>
         <source>Default format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardformat:</translation>
     </message>
     <message>
         <source>Reset Today</source>
@@ -528,11 +528,11 @@
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historie</translation>
     </message>
     <message>
         <source>Remember history</source>
-        <translation type="unfinished"></translation>
+        <translation>Husk historikken</translation>
     </message>
     <message>
         <source>Show streaks</source>
@@ -540,15 +540,15 @@
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minste framgang for et strekk:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
-        <translation type="unfinished"></translation>
+        <translation>Finn ordgrenser</translation>
     </message>
     <message>
         <source>Divide character count by six</source>
-        <translation type="unfinished"></translation>
+        <translation>Del antall tegn på seks</translation>
     </message>
     <message>
         <source>Count each letter as a word</source>
@@ -556,7 +556,7 @@
     </message>
     <message>
         <source>Page Count Algorithm</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidetellingsalgoritme</translation>
     </message>
     <message>
         <source>Style</source>
@@ -580,7 +580,7 @@
     </message>
     <message>
         <source>Text Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstplassering:</translation>
     </message>
     <message>
         <source>Actions</source>
@@ -600,7 +600,7 @@
     </message>
     <message>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando</translation>
     </message>
     <message>
         <source>Shortcut</source>
@@ -648,29 +648,29 @@
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis alltid rullefelt</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis alltid topplinje</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis alltid bunnlinje</translation>
     </message>
 </context>
 <context>
     <name>RtfReader</name>
     <message>
         <source>Not a supported RTF file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke en støttet RTF-fil.</translation>
     </message>
 </context>
 <context>
     <name>RtfTokenizer</name>
     <message>
         <source>Unexpectedly reached end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nådde slutten på filen før forventet.</translation>
     </message>
 </context>
 <context>
@@ -681,7 +681,7 @@
     </message>
     <message>
         <source>Move Scenes Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytt scener opp</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Up</source>
@@ -689,7 +689,7 @@
     </message>
     <message>
         <source>Toggle Scene List</source>
-        <translation type="unfinished"></translation>
+        <translation>Skru av/på scenelisten</translation>
     </message>
     <message>
         <source>Shift+F4</source>
@@ -697,41 +697,41 @@
     </message>
     <message>
         <source>Show scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis sceneliste (%1)</translation>
     </message>
     <message>
         <source>Hide scene list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skjul sceneliste (%1)</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Move Scenes Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytt scener ned</translation>
     </message>
     <message>
         <source>Resize scene list</source>
-        <translation type="unfinished"></translation>
+        <translation>Endre størrelse på scenelisten</translation>
     </message>
 </context>
 <context>
     <name>Session</name>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
     <name>SessionManager</name>
     <message>
         <source>Manage Sessions</source>
-        <translation type="unfinished"></translation>
+        <translation>Håndter økter</translation>
     </message>
     <message>
         <source>S&amp;essions</source>
-        <translation type="unfinished"></translation>
+        <translation>Økter</translation>
     </message>
     <message>
         <source>New</source>
@@ -739,7 +739,7 @@
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplisere</translation>
     </message>
     <message>
         <source>Rename</source>
@@ -755,15 +755,15 @@
     </message>
     <message>
         <source>New Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny økt</translation>
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliser økt</translation>
     </message>
     <message>
         <source>Rename Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Gi nytt navn til økt</translation>
     </message>
     <message>
         <source>Question</source>
@@ -771,11 +771,11 @@
     </message>
     <message>
         <source>Delete selected session?</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett valgt økt?</translation>
     </message>
     <message>
         <source>Session name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Øktnavn:</translation>
     </message>
     <message>
         <source>Sorry</source>
@@ -783,7 +783,7 @@
     </message>
     <message>
         <source>The requested session name is already in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>Det valgte øktnavnet er allerede brukt.</translation>
     </message>
     <message>
         <source>&amp;New...</source>
@@ -795,7 +795,7 @@
     </message>
     <message>
         <source>&amp;Manage...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Administrer...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
@@ -806,11 +806,11 @@
     <name>ShortcutEdit</name>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Tøm</translation>
     </message>
     <message>
         <source>Reset to Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilbakestill til standard</translation>
     </message>
     <message>
         <source>Shortcut:</source>
@@ -821,7 +821,7 @@
     <name>SmartQuote</name>
     <message>
         <source>Replacing quotation marks...</source>
-        <translation type="unfinished"></translation>
+        <translation>Erstatt sitattegn...</translation>
     </message>
     <message>
         <source>Please Wait</source>
@@ -836,23 +836,23 @@
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Legg til</translation>
     </message>
     <message>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ignorer</translation>
     </message>
     <message>
         <source>I&amp;gnore All</source>
-        <translation type="unfinished"></translation>
+        <translation>I&amp;gnorer alle</translation>
     </message>
     <message>
         <source>&amp;Change</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Endre</translation>
     </message>
     <message>
         <source>C&amp;hange All</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;ndre alle</translation>
     </message>
     <message>
         <source>Not in dictionary:</source>
@@ -860,11 +860,11 @@
     </message>
     <message>
         <source>Change to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Endre til:</translation>
     </message>
     <message>
         <source>Checking spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kjør stavekontroll...</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -880,22 +880,22 @@
     </message>
     <message>
         <source>Spell check complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stavekontroll fullført.</translation>
     </message>
 </context>
 <context>
     <name>SymbolsDialog</name>
     <message>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Symboler</translation>
     </message>
     <message>
         <source>Recently used symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Nylig brukte symboler</translation>
     </message>
     <message>
         <source>All symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle symboler</translation>
     </message>
     <message>
         <source>Details</source>
@@ -907,25 +907,25 @@
     </message>
     <message>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>Sett inn</translation>
     </message>
 </context>
 <context>
     <name>SymbolsModel</name>
     <message>
         <source>Blocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokker</translation>
     </message>
     <message>
         <source>Scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Manus</translation>
     </message>
 </context>
 <context>
     <name>Theme</name>
     <message>
         <source>Untitled %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uten tittel %1</translation>
     </message>
 </context>
 <context>
@@ -936,35 +936,35 @@
     </message>
     <message>
         <source>No Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen bilder</translation>
     </message>
     <message>
         <source>Tiled</source>
-        <translation type="unfinished"></translation>
+        <translation>Som fliser</translation>
     </message>
     <message>
         <source>Centered</source>
-        <translation type="unfinished"></translation>
+        <translation>Sentrert</translation>
     </message>
     <message>
         <source>Stretched</source>
-        <translation type="unfinished"></translation>
+        <translation>Strukket ut</translation>
     </message>
     <message>
         <source>Scaled</source>
-        <translation type="unfinished"></translation>
+        <translation>Skalert</translation>
     </message>
     <message>
         <source>Zoomed</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoomet inn</translation>
     </message>
     <message>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugjennomsiktighet:</translation>
     </message>
     <message>
         <source>Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Plassering:</translation>
     </message>
     <message>
         <source>Width:</source>
@@ -972,7 +972,7 @@
     </message>
     <message>
         <source>Round Text Background Corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Avrundede hjørner på tekstbakgrunn</translation>
     </message>
     <message>
         <source>Radius:</source>
@@ -980,15 +980,15 @@
     </message>
     <message>
         <source>Blur Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Tåkete tekstbakgrunn</translation>
     </message>
     <message>
         <source>Text Background Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Skygge på tekstbakgrunn</translation>
     </message>
     <message>
         <source>Vertical Offset:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertikal offset</translation>
     </message>
     <message>
         <source>Margins</source>
@@ -1028,7 +1028,7 @@
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished">Valg:</translation>
+        <translation>Type:</translation>
     </message>
     <message>
         <source>Color:</source>
@@ -1040,7 +1040,7 @@
     </message>
     <message>
         <source> pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>piksler</translation>
     </message>
     <message>
         <source>Left</source>
@@ -1048,7 +1048,7 @@
     </message>
     <message>
         <source>Text Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstbakgrunn</translation>
     </message>
     <message>
         <source>Right</source>
@@ -1068,23 +1068,23 @@
     </message>
     <message>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Linjehøyde</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkel</translation>
     </message>
     <message>
         <source>1.5 Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>1,5 linjer</translation>
     </message>
     <message>
         <source>Double</source>
-        <translation type="unfinished"></translation>
+        <translation>Dobbel</translation>
     </message>
     <message>
         <source>Proportional</source>
-        <translation type="unfinished"></translation>
+        <translation>Proporsjonell</translation>
     </message>
     <message>
         <source>Height:</source>
@@ -1092,11 +1092,11 @@
     </message>
     <message>
         <source>Paragraph Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsnittsavstand</translation>
     </message>
     <message>
         <source>Tab Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulatorbredde:</translation>
     </message>
     <message>
         <source>New Theme</source>
@@ -1111,23 +1111,23 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
-        <translation type="unfinished"></translation>
+        <translation>Mjuk blues</translation>
     </message>
     <message>
         <source>Old School</source>
-        <translation type="unfinished"></translation>
+        <translation>Gammaldags</translation>
     </message>
     <message>
         <source>Space Dreams</source>
-        <translation type="unfinished"></translation>
+        <translation>Romfartsdrøm</translation>
     </message>
     <message>
         <source>Writing Desk</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrivebord</translation>
     </message>
     <message>
         <source>New</source>
@@ -1135,11 +1135,11 @@
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliser</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilpasset</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -1151,11 +1151,11 @@
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksporter</translation>
     </message>
     <message>
         <source>Question</source>
@@ -1171,27 +1171,27 @@
     </message>
     <message>
         <source>Import Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer tema</translation>
     </message>
     <message>
         <source>Export Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksporter tema</translation>
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitre skyer</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation type="unfinished"></translation>
+        <translation>Trolldom</translation>
     </message>
     <message>
         <source>Spy Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spionasje</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation type="unfinished"></translation>
+        <translation>Ro</translation>
     </message>
 </context>
 <context>
@@ -1206,7 +1206,7 @@
     </message>
     <message>
         <source>Delete timer?</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett tidtaker?</translation>
     </message>
     <message>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
@@ -1288,7 +1288,7 @@
     </message>
     <message>
         <source>Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Nylig</translation>
     </message>
     <message>
         <source>Question</source>
@@ -1296,7 +1296,7 @@
     </message>
     <message>
         <source>Cancel editing timers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt redigeringstidtaker?</translation>
     </message>
     <message>
         <source>+HH:mm:ss</source>
@@ -1304,7 +1304,7 @@
     </message>
     <message>
         <source>%1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - %2</translation>
     </message>
 </context>
 <context>
@@ -1339,7 +1339,8 @@
     </message>
     <message>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation type="unfinished"></translation>
+        <translation>Opphavsrettsbeskyttet &amp;copy; 2008-%1
+Graeme Gott</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
@@ -1347,7 +1348,7 @@
     </message>
     <message>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruker ikoner fra ikonpakken &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
@@ -1375,11 +1376,11 @@
     </message>
     <message>
         <source>(Untitled %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Uten tittel %1)</translation>
     </message>
     <message>
         <source>List all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>List alle dokumenter</translation>
     </message>
     <message>
         <source>Switch to Next Document</source>
@@ -1407,7 +1408,7 @@
     </message>
     <message>
         <source>Emergency cache is not writable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nødhurtigbufferen er ikke skrivbar.</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -1419,7 +1420,7 @@
     </message>
     <message>
         <source>Restore from the emergency cache?</source>
-        <translation type="unfinished"></translation>
+        <translation>Gjenopprett fra nødhurtigbufferen?</translation>
     </message>
     <message>
         <source>Some files could not be opened.</source>
@@ -1431,7 +1432,7 @@
     </message>
     <message>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; er nyere enn den hurtiglagrede kopien.</translation>
     </message>
     <message>
         <source>Overwrite newer file?</source>
@@ -1443,15 +1444,15 @@
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre endringer i filen &apos;%1&apos; før du lukker den?</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Endringene dine vil gå tapt dersom du ikke lagrer dem.</translation>
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å laste skrivemaskinlyd.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1487,11 +1488,11 @@
     </message>
     <message>
         <source>Manage Sessions</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrer økter</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny økt</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
@@ -1499,11 +1500,11 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lukk</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avslutt</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -1511,43 +1512,43 @@
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rediger</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Angre</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Angre angring</translation>
     </message>
     <message>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>Kl&amp;ipp</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopier</translation>
     </message>
     <message>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lim inn</translation>
     </message>
     <message>
         <source>Paste &amp;Unformatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Lim inn &amp;uformatert</translation>
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg &amp;alle</translation>
     </message>
     <message>
         <source>Select &amp;Scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg &amp;scene</translation>
     </message>
     <message>
         <source>Ctrl+Shift+A</source>
@@ -1555,23 +1556,23 @@
     </message>
     <message>
         <source>Fo&amp;rmat</source>
-        <translation type="unfinished"></translation>
+        <translation>Fo&amp;rmater</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fet</translation>
     </message>
     <message>
         <source>&amp;Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kursiv</translation>
     </message>
     <message>
         <source>&amp;Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Understrek</translation>
     </message>
     <message>
         <source>Stri&amp;kethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>Gje&amp;nnomstrøket</translation>
     </message>
     <message>
         <source>Ctrl+K</source>
@@ -1579,7 +1580,7 @@
     </message>
     <message>
         <source>Sup&amp;erscript</source>
-        <translation type="unfinished"></translation>
+        <translation>Over skriften</translation>
     </message>
     <message>
         <source>Ctrl+^</source>
@@ -1587,7 +1588,7 @@
     </message>
     <message>
         <source>&amp;Subscript</source>
-        <translation type="unfinished"></translation>
+        <translation>Under skriften</translation>
     </message>
     <message>
         <source>Ctrl+_</source>
@@ -1595,7 +1596,7 @@
     </message>
     <message>
         <source>Align &amp;Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Venstrejustert</translation>
     </message>
     <message>
         <source>Ctrl+{</source>
@@ -1603,7 +1604,7 @@
     </message>
     <message>
         <source>Align &amp;Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Midtstilt</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -1611,7 +1612,7 @@
     </message>
     <message>
         <source>Align &amp;Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Høyrejustert</translation>
     </message>
     <message>
         <source>Ctrl+}</source>
@@ -1619,7 +1620,7 @@
     </message>
     <message>
         <source>Align &amp;Justify</source>
-        <translation type="unfinished"></translation>
+        <translation>Blokkjustert</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -1627,7 +1628,7 @@
     </message>
     <message>
         <source>&amp;Decrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Reduser innrykk</translation>
     </message>
     <message>
         <source>Ctrl+&lt;</source>
@@ -1635,7 +1636,7 @@
     </message>
     <message>
         <source>I&amp;ncrease Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ø&amp;k innrykk</translation>
     </message>
     <message>
         <source>Ctrl+&gt;</source>
@@ -1643,31 +1644,31 @@
     </message>
     <message>
         <source>Le&amp;ft to Right Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Ve&amp;nstre til høyre-blokk</translation>
     </message>
     <message>
         <source>Ri&amp;ght to Left Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Hø&amp;yre til venstre-blokk</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verktøy</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Finn...</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Finn &amp;neste</translation>
     </message>
     <message>
         <source>Find Pre&amp;vious</source>
-        <translation type="unfinished"></translation>
+        <translation>Finn for&amp;rige</translation>
     </message>
     <message>
         <source>&amp;Replace...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Erstatt...</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -1679,15 +1680,15 @@
     </message>
     <message>
         <source>Update &amp;Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdater &amp;dokument</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdater &amp;valg</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stavekontroll...</translation>
     </message>
     <message>
         <source>F7</source>
@@ -1695,39 +1696,39 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg &amp;språk...</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tidtakere</translation>
     </message>
     <message>
         <source>S&amp;ymbols...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;ymboler...</translation>
     </message>
     <message>
         <source>&amp;Daily Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Daglig framgang</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Innstillinger</translation>
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis &amp;verktøylinje</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis menyikoner</translation>
     </message>
     <message>
         <source>F&amp;ocused Text</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;okusert tekst</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fullskjerm</translation>
     </message>
     <message>
         <source>F11</source>
@@ -1739,7 +1740,7 @@
     </message>
     <message>
         <source>M&amp;inimize</source>
-        <translation type="unfinished"></translation>
+        <translation>M&amp;inimer</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -1747,11 +1748,11 @@
     </message>
     <message>
         <source>&amp;Themes...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Temaer</translation>
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Valg...</translation>
     </message>
     <message>
         <source>Focus Off</source>
@@ -1779,7 +1780,7 @@
     </message>
     <message>
         <source>Application &amp;Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Programspråk...</translation>
     </message>
     <message>
         <source>Some files were unsupported and could not be opened.</source>
@@ -1787,27 +1788,27 @@
     </message>
     <message>
         <source>&amp;Off</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Av</translation>
     </message>
     <message>
         <source>One &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation>En &amp;linje</translation>
     </message>
     <message>
         <source>&amp;Three Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tre linjer</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Om</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Om &amp;Qt</translation>
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Si&amp;deoppsett...</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
@@ -1839,7 +1840,7 @@
     </message>
     <message>
         <source>&amp;Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Normal</translation>
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
@@ -1858,7 +1859,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filer som skal åpnes i nåværende økt.</translation>
     </message>
 </context>
 </TS>

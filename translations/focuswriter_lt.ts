@@ -30,22 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% iš %Ln minutės</numerusform>
-            <numerusform>%L1% iš %Ln minučių</numerusform>
-            <numerusform>%L1% iš %Ln minučių</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% iš %Ln žodžio</numerusform>
-            <numerusform>%L1% iš %Ln žodžių</numerusform>
-            <numerusform>%L1% iš %Ln žodžių</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln žodis</numerusform>
@@ -64,6 +48,22 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% iš %Ln minutės</numerusform>
+            <numerusform>%L1% iš %Ln minučių</numerusform>
+            <numerusform>%L1% iš %Ln minučių</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% iš %Ln žodžio</numerusform>
+            <numerusform>%L1% iš %Ln žodžių</numerusform>
+            <numerusform>%L1% iš %Ln žodžių</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1864,7 +1864,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failai, kuriuos atverti dabartiniame seanse.</translation>
     </message>
 </context>
 </TS>
