@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2013 Graeme Gott <graeme@gottcode.org>
 
-#ifndef HIGHLIGHTER_H
-#define HIGHLIGHTER_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_HIGHLIGHTER_H
+#define FOCUSWRITER_HIGHLIGHTER_H
 
 class DictionaryRef;
 
@@ -39,13 +26,13 @@ public:
 	void setEnabled(bool enabled);
 	void setMisspelledColor(const QColor& color);
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
-	virtual void highlightBlock(const QString& text);
+	bool eventFilter(QObject* watched, QEvent* event) override;
+	void highlightBlock(const QString& text) override;
 
-public slots:
+public Q_SLOTS:
 	void updateSpelling();
 
-private slots:
+private Q_SLOTS:
 	void cursorPositionChanged();
 	void suggestion(QAction* action);
 
@@ -70,4 +57,4 @@ inline bool Highlighter::enabled() const
 	return m_enabled;
 }
 
-#endif
+#endif // FOCUSWRITER_HIGHLIGHTER_H

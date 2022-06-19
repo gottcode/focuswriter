@@ -1,32 +1,21 @@
-/***********************************************************************
- *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2013-2022 Graeme Gott <graeme@gottcode.org>
 
-#ifndef PATHS_H
-#define PATHS_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
-class QString;
+#ifndef FOCUSWRITER_PATHS_H
+#define FOCUSWRITER_PATHS_H
+
+#include <QStringList>
 
 class Paths
 {
 public:
-	static QString dataPath();
+	static void load(const QString& appdir, const QStringList& datadirs);
+
+private:
 	static QString oldDataPath();
 };
 
-#endif
+#endif // FOCUSWRITER_PATHS_H

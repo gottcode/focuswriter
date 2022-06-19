@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2019 Graeme Gott <graeme@gottcode.org>
 
-#ifndef STACK_H
-#define STACK_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_STACK_H
+#define FOCUSWRITER_STACK_H
 
 #include "theme.h"
 class AlertLayer;
@@ -40,7 +27,7 @@ class Stack : public QWidget
 	Q_OBJECT
 
 public:
-	Stack(QWidget* parent = 0);
+	explicit Stack(QWidget* parent = nullptr);
 	~Stack();
 
 	void addDocument(Document* document);
@@ -61,9 +48,9 @@ public:
 	void setMargins(int footer, int header);
 	void waitForThemeBackground();
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
-signals:
+Q_SIGNALS:
 	void copyAvailable(bool);
 	void redoAvailable(bool);
 	void undoAvailable(bool);
@@ -76,7 +63,7 @@ signals:
 	void updateFormatActions();
 	void updateFormatAlignmentActions();
 
-public slots:
+public Q_SLOTS:
 	void alignCenter();
 	void alignJustify();
 	void alignLeft();
@@ -122,12 +109,12 @@ public slots:
 	void showHeader();
 
 protected:
-	virtual void mouseMoveEvent(QMouseEvent* event);
-	virtual void paintEvent(QPaintEvent* event);
-	virtual void resizeEvent(QResizeEvent* event);
+	void mouseMoveEvent(QMouseEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
+	void resizeEvent(QResizeEvent* event) override;
 
-private slots:
-	void actionTriggered(QAction* action);
+private Q_SLOTS:
+	void actionTriggered(const QAction* action);
 	void insertSymbol(const QString& text);
 	void updateBackground();
 	void updateBackground(const QImage& image, const QRect& foreground);
@@ -165,32 +152,39 @@ private:
 	int m_header_visible;
 };
 
-inline AlertLayer* Stack::alerts() const {
+inline AlertLayer* Stack::alerts() const
+{
 	return m_alerts;
 }
 
-inline QMenu* Stack::menu() const {
+inline QMenu* Stack::menu() const
+{
 	return m_menu;
 }
 
-inline SymbolsDialog* Stack::symbols() const {
+inline SymbolsDialog* Stack::symbols() const
+{
 	return m_symbols_dialog;
 }
 
-inline int Stack::count() const {
+inline int Stack::count() const
+{
 	return m_documents.count();
 }
 
-inline Document* Stack::currentDocument() const {
+inline Document* Stack::currentDocument() const
+{
 	return m_current_document;
 }
 
-inline int Stack::currentIndex() const {
+inline int Stack::currentIndex() const
+{
 	return m_documents.indexOf(m_current_document);
 }
 
-inline Document* Stack::document(int index) const {
+inline Document* Stack::document(int index) const
+{
 	return m_documents[index];
 }
 
-#endif
+#endif // FOCUSWRITER_STACK_H

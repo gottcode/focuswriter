@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "preferences_dialog.h"
 
@@ -55,28 +42,30 @@
 
 namespace
 {
-	QWidget* makeScrollable(QWidget* tab)
-	{
-		QScrollArea* area = new QScrollArea(tab->parentWidget());
-		area->setFrameStyle(QFrame::NoFrame);
-		area->setWidget(tab);
-		area->setWidgetResizable(true);
 
-		area->setBackgroundRole(QPalette::Link);
-		QPalette p = area->palette();
-		p.setColor(area->backgroundRole(), Qt::transparent);
-		area->setPalette(p);
+QWidget* makeScrollable(QWidget* tab)
+{
+	QScrollArea* area = new QScrollArea(tab->parentWidget());
+	area->setFrameStyle(QFrame::NoFrame);
+	area->setWidget(tab);
+	area->setWidgetResizable(true);
 
-		return area;
-	}
+	area->setBackgroundRole(QPalette::Link);
+	QPalette p = area->palette();
+	p.setColor(area->backgroundRole(), Qt::transparent);
+	area->setPalette(p);
+
+	return area;
+}
+
 }
 
 //-----------------------------------------------------------------------------
 
-PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_daily_progress(daily_progress),
-	m_shortcut_conflicts(false)
+PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_daily_progress(daily_progress)
+	, m_shortcut_conflicts(false)
 {
 	setWindowTitle(tr("Preferences"));
 
@@ -169,7 +158,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_highlight_misspelled->setChecked(Preferences::instance().highlightMisspelled());
 	m_ignore_numbers->setChecked(Preferences::instance().ignoredWordsWithNumbers());
 	m_ignore_uppercase->setChecked(Preferences::instance().ignoredUppercaseWords());
-	int index = m_languages->findData(Preferences::instance().language());
+	const int index = m_languages->findData(Preferences::instance().language());
 	if (index != -1) {
 		m_languages->setCurrentIndex(index);
 	}
@@ -179,19 +168,18 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 		style = m_toolbar_style->findData(Qt::ToolButtonTextUnderIcon);
 	}
 	m_toolbar_style->setCurrentIndex(style);
-	QStringList actions = Preferences::instance().toolbarActions();
+	const QStringList actions = Preferences::instance().toolbarActions();
 	int pos = 0;
 	for (const QString& action : actions) {
 		QString text = action;
-		bool checked = !text.startsWith("^");
+		const bool checked = !text.startsWith("^");
 		if (!checked) {
 			text.remove(0, 1);
 		}
 
-		QListWidgetItem* item = 0;
+		QListWidgetItem* item = nullptr;
 		if (text != "|") {
-			int count = m_toolbar_actions->count();
-			for (int i = pos; i < count; ++i) {
+			for (int i = pos, count = m_toolbar_actions->count(); i < count; ++i) {
 				if (m_toolbar_actions->item(i)->data(Qt::UserRole).toString() == text) {
 					item = m_toolbar_actions->takeItem(i);
 					break;
@@ -202,7 +190,7 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 			item->setData(Qt::UserRole, "|");
 		}
 
-		if (item != 0) {
+		if (item) {
 			item->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
 			m_toolbar_actions->insertItem(pos, item);
 			pos++;
@@ -230,8 +218,7 @@ void PreferencesDialog::accept()
 		if (QMessageBox::question(this,
 				tr("Question"),
 				tr("One or more shortcuts conflict. Do you wish to proceed?"),
-				QMessageBox::Yes | QMessageBox::No,
-				QMessageBox::No) == QMessageBox::No) {
+				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return;
 		}
 	}
@@ -294,10 +281,9 @@ void PreferencesDialog::accept()
 
 	Preferences::instance().setToolbarStyle(m_toolbar_style->itemData(m_toolbar_style->currentIndex()).toInt());
 	QStringList actions;
-	int count = m_toolbar_actions->count();
-	for (int i = 0; i < count; ++i) {
-		QListWidgetItem* item = m_toolbar_actions->item(i);
-		QString action = (item->checkState() == Qt::Unchecked ? "^" : "") + item->data(Qt::UserRole).toString();
+	for (int i = 0, count = m_toolbar_actions->count(); i < count; ++i) {
+		const QListWidgetItem* item = m_toolbar_actions->item(i);
+		const QString action = (item->checkState() == Qt::Unchecked ? "^" : QString()) + item->data(Qt::UserRole).toString();
 		if (action != "^|") {
 			actions.append(action);
 		}
@@ -307,16 +293,16 @@ void PreferencesDialog::accept()
 	ActionManager::instance()->setShortcuts(m_new_shortcuts);
 
 	// Uninstall languages
-	for (const QString& language : m_uninstalled) {
+	for (const QString& language : qAsConst(m_uninstalled)) {
 		QFile::remove("dict:" + language + ".aff");
 		QFile::remove("dict:" + language + ".dic");
 	}
 
 	// Install languages
-	QString path = DictionaryManager::path() + "/install/";
-	QString new_path = DictionaryManager::installedPath() + "/";
+	const QString path = DictionaryManager::path() + "/install/";
+	const QString new_path = DictionaryManager::installedPath() + "/";
 	QDir dir(path);
-	QStringList files = dir.entryList(QDir::Files);
+	const QStringList files = dir.entryList(QDir::Files);
 	for (const QString& file : files) {
 		QFile::remove(new_path + file);
 		QFile::rename(path + file, new_path + file);
@@ -338,7 +324,7 @@ void PreferencesDialog::accept()
 
 	// Save personal dictionary
 	QStringList words;
-	for (int i = 0; i < m_personal_dictionary->count(); ++i) {
+	for (int i = 0, count = m_personal_dictionary->count(); i < count; ++i) {
 		words.append(m_personal_dictionary->item(i)->text());
 	}
 	DictionaryManager::instance().setPersonal(words);
@@ -372,10 +358,7 @@ void PreferencesDialog::resetDailyGoal()
 	if (QMessageBox::question(this,
 			tr("Question"),
 			tr("Reset daily progress for today to zero?"),
-			QMessageBox::Yes | QMessageBox::No,
-			QMessageBox::No)
-		== QMessageBox::Yes)
-	{
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		m_daily_progress->resetToday();
 	}
 }
@@ -384,8 +367,8 @@ void PreferencesDialog::resetDailyGoal()
 
 void PreferencesDialog::moveActionUp()
 {
-	int from = m_toolbar_actions->currentRow();
-	int to = from - 1;
+	const int from = m_toolbar_actions->currentRow();
+	const int to = from - 1;
 	if (from > 0) {
 		m_toolbar_actions->insertItem(to, m_toolbar_actions->takeItem(from));
 		m_toolbar_actions->setCurrentRow(to);
@@ -396,8 +379,8 @@ void PreferencesDialog::moveActionUp()
 
 void PreferencesDialog::moveActionDown()
 {
-	int from = m_toolbar_actions->currentRow();
-	int to = from + 1;
+	const int from = m_toolbar_actions->currentRow();
+	const int to = from + 1;
 	if (to < m_toolbar_actions->count()) {
 		m_toolbar_actions->insertItem(to, m_toolbar_actions->takeItem(from));
 		m_toolbar_actions->setCurrentRow(to);
@@ -428,7 +411,7 @@ void PreferencesDialog::currentActionChanged(int action)
 
 void PreferencesDialog::addLanguage()
 {
-	QString path = QFileDialog::getOpenFileName(this, tr("Select Dictionary"), QDir::homePath());
+	const QString path = QFileDialog::getOpenFileName(this, tr("Select Dictionary"), QDir::homePath());
 	if (path.isEmpty()) {
 		return;
 	}
@@ -447,9 +430,8 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// List files
-	QStringList entries = zip.fileList();
-	for (int i = 0; i < entries.count(); ++i) {
-		QString name = entries.at(i);
+	const QStringList entries = zip.fileList();
+	for (const QString& name : entries) {
 		if (name.endsWith(".aff")) {
 			aff_files += name;
 		} else if (name.endsWith(".dic")) {
@@ -458,7 +440,7 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// Find Hunspell dictionary files
-	for (const QString& dic : dic_files) {
+	for (const QString& dic : qAsConst(dic_files)) {
 		QString aff = dic;
 		aff.replace(".dic", ".aff");
 		if (aff_files.contains(aff)) {
@@ -473,10 +455,10 @@ void PreferencesDialog::addLanguage()
 	// Check for dictionaries
 	if (!dictionaries.isEmpty()) {
 		// Extract files
-		QDir dir(DictionaryManager::path());
+		const QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
-		QString install = dir.absoluteFilePath("install") + "/";
-		for (const QString& file : files) {
+		const QString install = dir.absoluteFilePath("install") + "/";
+		for (const QString& file : qAsConst(files)) {
 			// Ignore path for Hunspell dictionaries
 			QString filename = file;
 			filename = filename.section('/', -1);
@@ -489,21 +471,24 @@ void PreferencesDialog::addLanguage()
 		}
 
 		// Add to language selection
-		QString dictionary_path = DictionaryManager::path() + "/install/";
-		QString dictionary_new_path = DictionaryManager::installedPath() + "/";
-		for (const QString& dictionary : dictionaries) {
+		const QString dictionary_path = DictionaryManager::path() + "/install/";
+		const QString dictionary_new_path = DictionaryManager::installedPath() + "/";
+		for (const QString& dictionary : qAsConst(dictionaries)) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
-			QString name = LocaleDialog::languageName(language);
+			const QString name = LocaleDialog::languageName(language);
 
 			// Prompt user about replacing duplicate languages
-			QString aff_file = dictionary_path + dictionary + ".aff";
-			QString dic_file = dictionary_path + dictionary + ".dic";
-			QString new_aff_file = dictionary_new_path + language + ".aff";
-			QString new_dic_file = dictionary_new_path + language + ".dic";
+			const QString aff_file = dictionary_path + dictionary + ".aff";
+			const QString dic_file = dictionary_path + dictionary + ".dic";
+			const QString new_aff_file = dictionary_new_path + language + ".aff";
+			const QString new_dic_file = dictionary_new_path + language + ".dic";
 
 			if (!m_uninstalled.contains(language) && (QFile::exists(new_aff_file) || QFile::exists(new_dic_file))) {
-				if (QMessageBox::question(this, tr("Question"), tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+				if (QMessageBox::question(this,
+						tr("Question"),
+						tr("The dictionary \"%1\" already exists. Do you want to replace it?").arg(name),
+						QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 					QFile::remove(aff_file);
 					QFile::remove(dic_file);
 				}
@@ -526,11 +511,14 @@ void PreferencesDialog::addLanguage()
 
 void PreferencesDialog::removeLanguage()
 {
-	int index = m_languages->currentIndex();
+	const int index = m_languages->currentIndex();
 	if (index == -1) {
 		return;
 	}
-	if (QMessageBox::question(this, tr("Question"), tr("Remove current dictionary?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+	if (QMessageBox::question(this,
+			tr("Question"),
+			tr("Remove current dictionary?"),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		m_uninstalled.append(m_languages->itemData(index).toString());
 		m_languages->removeItem(index);
 	}
@@ -541,8 +529,8 @@ void PreferencesDialog::removeLanguage()
 void PreferencesDialog::selectedLanguageChanged(int index)
 {
 	if (index != -1) {
-		QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
-		m_remove_language_button->setEnabled(info.canonicalFilePath().startsWith(DictionaryManager::installedPath()));
+		const QFileInfo info("dict:" + m_languages->itemData(index).toString() + ".dic");
+		m_remove_language_button->setEnabled(info.absoluteFilePath().startsWith(DictionaryManager::installedPath()));
 	}
 }
 
@@ -550,7 +538,7 @@ void PreferencesDialog::selectedLanguageChanged(int index)
 
 void PreferencesDialog::addWord()
 {
-	QString word = m_word->text();
+	const QString word = m_word->text();
 	m_word->clear();
 	int row;
 	for (row = 0; row < m_personal_dictionary->count(); ++row) {
@@ -565,7 +553,7 @@ void PreferencesDialog::addWord()
 
 void PreferencesDialog::removeWord()
 {
-	delete m_personal_dictionary->selectedItems().first();
+	delete m_personal_dictionary->selectedItems().constFirst();
 	m_personal_dictionary->clearSelection();
 }
 
@@ -580,7 +568,7 @@ void PreferencesDialog::selectedWordChanged()
 
 void PreferencesDialog::wordEdited()
 {
-	QString word = m_word->text();
+	const QString word = m_word->text();
 	m_add_word_button->setEnabled(!word.isEmpty() && m_personal_dictionary->findItems(word, Qt::MatchExactly).isEmpty());
 }
 
@@ -588,7 +576,7 @@ void PreferencesDialog::wordEdited()
 
 void PreferencesDialog::selectedShortcutChanged()
 {
-	m_shortcut_edit->setEnabled(m_shortcuts->currentItem() != 0);
+	m_shortcut_edit->setEnabled(m_shortcuts->currentItem());
 	if (!m_shortcuts->currentItem()) {
 		m_shortcut_edit->blockSignals(true);
 		m_shortcut_edit->setShortcut(QKeySequence(), QKeySequence());
@@ -597,8 +585,8 @@ void PreferencesDialog::selectedShortcutChanged()
 	}
 
 	// Set shortcut in editor
-	QString name = m_shortcuts->currentItem()->text(2);
-	QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+	const QString name = m_shortcuts->currentItem()->text(2);
+	const QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
 	m_shortcut_edit->blockSignals(true);
 	m_shortcut_edit->setShortcut(shortcut, ActionManager::instance()->defaultShortcut(name));
 	m_shortcut_edit->blockSignals(false);
@@ -613,9 +601,9 @@ void PreferencesDialog::shortcutChanged()
 	}
 
 	// Find old shortcut
-	QString name = m_shortcuts->currentItem()->text(2);
-	QKeySequence old_shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
-	QKeySequence shortcut = m_shortcut_edit->shortcut();
+	const QString name = m_shortcuts->currentItem()->text(2);
+	const QKeySequence old_shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+	const QKeySequence shortcut = m_shortcut_edit->shortcut();
 	if (shortcut == old_shortcut) {
 		return;
 	}
@@ -641,7 +629,7 @@ void PreferencesDialog::highlightShortcutConflicts()
 	QFont conflict = font();
 	conflict.setBold(true);
 
-	QMap<QKeySequence, QTreeWidgetItem*> shortcuts;
+	QHash<QKeySequence, QTreeWidgetItem*> shortcuts;
 	for (int i = 0, count = m_shortcuts->topLevelItemCount(); i < count; ++i) {
 		// Reset font and highlight
 		QTreeWidgetItem* item = m_shortcuts->topLevelItem(i);
@@ -649,8 +637,8 @@ void PreferencesDialog::highlightShortcutConflicts()
 		item->setFont(1, font());
 
 		// Find shortcut
-		QString name = item->text(2);
-		QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
+		const QString name = item->text(2);
+		const QKeySequence shortcut = m_new_shortcuts.value(name, ActionManager::instance()->shortcut(name));
 		if (shortcut.isEmpty() || (shortcut == Qt::Key_unknown)) {
 			continue;
 		}
@@ -686,7 +674,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_double_quotes->setEnabled(false);
 	m_single_quotes = new QComboBox(edit_group);
 	m_single_quotes->setEnabled(false);
-	int count = SmartQuotes::count();
+	const int count = SmartQuotes::count();
 	for (int i = 0; i < count; ++i) {
 		m_double_quotes->addItem(SmartQuotes::quoteString(tr("Double"), i));
 		m_single_quotes->addItem(SmartQuotes::quoteString(tr("Single"), i));
@@ -727,7 +715,7 @@ QWidget* PreferencesDialog::initGeneralTab()
 
 	QLabel* save_format_label = new QLabel(tr("Default format:"), save_group);
 	m_save_format = new QComboBox(save_group);
-	QStringList types = Preferences::instance().saveFormat().allowedValues();
+	const QStringList types = Preferences::instance().saveFormat().allowedValues();
 	for (const QString& type : types) {
 		m_save_format->addItem(FormatManager::filter(type), type);
 	}
@@ -957,7 +945,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	QGroupBox* languages_group = new QGroupBox(tr("Language"), tab);
 
 	m_languages = new QComboBox(languages_group);
-	connect(m_languages, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &PreferencesDialog::selectedLanguageChanged);
+	connect(m_languages, &QComboBox::currentIndexChanged, this, &PreferencesDialog::selectedLanguageChanged);
 
 	m_add_language_button = new QPushButton(tr("Add"), languages_group);
 	m_add_language_button->setAutoDefault(false);
@@ -966,7 +954,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	m_remove_language_button->setAutoDefault(false);
 	connect(m_remove_language_button, &QPushButton::clicked, this, &PreferencesDialog::removeLanguage);
 
-	QStringList languages = DictionaryManager::instance().availableDictionaries();
+	const QStringList languages = DictionaryManager::instance().availableDictionaries();
 	for (const QString& language : languages) {
 		m_languages->addItem(LocaleDialog::languageName(language), language);
 	}
@@ -990,7 +978,7 @@ QWidget* PreferencesDialog::initSpellingTab()
 	connect(m_add_word_button, &QPushButton::clicked, this, &PreferencesDialog::addWord);
 
 	m_personal_dictionary = new QListWidget(personal_dictionary_group);
-	QStringList words = DictionaryManager::instance().personal();
+	const QStringList words = DictionaryManager::instance().personal();
 	for (const QString& word : words) {
 		m_personal_dictionary->addItem(word);
 	}
@@ -1041,7 +1029,7 @@ QWidget* PreferencesDialog::initToolbarTab()
 
 	m_toolbar_actions = new QListWidget(actions_group);
 	m_toolbar_actions->setDragDropMode(QAbstractItemView::InternalMove);
-	QList<QAction*> actions = parentWidget()->window()->actions();
+	const QList<QAction*> actions = parentWidget()->window()->actions();
 	for (QAction* action : actions) {
 		if (action->data().isNull()) {
 			continue;
@@ -1091,7 +1079,7 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	m_shortcuts->setRootIsDecorated(false);
 	m_shortcuts->setColumnCount(3);
 	m_shortcuts->setColumnHidden(2, true);
-	m_shortcuts->setHeaderLabels(QStringList() << tr("Command") << tr("Shortcut") << tr("Action"));
+	m_shortcuts->setHeaderLabels({ tr("Command"), tr("Shortcut"), tr("Action") });
 	m_shortcuts->header()->setSectionsClickable(false);
 	m_shortcuts->header()->setSectionsMovable(false);
 	m_shortcuts->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
@@ -1100,9 +1088,9 @@ QWidget* PreferencesDialog::initShortcutsTab()
 	// List shortcuts
 	QPixmap empty_icon(m_shortcuts->iconSize());
 	empty_icon.fill(Qt::transparent);
-	QList<QString> actions = ActionManager::instance()->actions();
+	const QStringList actions = ActionManager::instance()->actions();
 	for (const QString& name : actions) {
-		QAction* action = ActionManager::instance()->action(name);
+		const QAction* action = ActionManager::instance()->action(name);
 		QIcon icon = action->icon();
 		if (icon.isNull()) {
 			icon = empty_icon;
@@ -1111,8 +1099,8 @@ QWidget* PreferencesDialog::initShortcutsTab()
 		if (text.isEmpty()) {
 			text = action->text();
 		}
-		text.replace("&", "");
-		QStringList strings = QStringList() << text << action->shortcut().toString(QKeySequence::NativeText) << name;
+		text.replace("&", QString());
+		const QStringList strings{ text, action->shortcut().toString(QKeySequence::NativeText), name };
 		QTreeWidgetItem* item = new QTreeWidgetItem(m_shortcuts, strings);
 		item->setIcon(0, icon);
 	}

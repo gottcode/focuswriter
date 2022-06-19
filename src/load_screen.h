@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2012, 2016 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2016 Graeme Gott <graeme@gottcode.org>
 
-#ifndef LOAD_SCREEN_H
-#define LOAD_SCREEN_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_LOAD_SCREEN_H
+#define FOCUSWRITER_LOAD_SCREEN_H
 
 #include <QLabel>
 #include <QPixmap>
@@ -30,20 +17,20 @@ class LoadScreen : public QLabel
 	Q_OBJECT
 
 public:
-	LoadScreen(QWidget* parent);
+	explicit LoadScreen(QWidget* parent);
 
-	bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
-public slots:
+public Q_SLOTS:
 	void setText(const QString& step);
 	void finish();
 
 protected:
-	void hideEvent(QHideEvent* event);
-	void showEvent(QShowEvent* event);
-	void paintEvent(QPaintEvent* event);
+	void hideEvent(QHideEvent* event) override;
+	void showEvent(QShowEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void fade();
 
 private:
@@ -54,4 +41,4 @@ private:
 	QTimer* m_hide_timer;
 };
 
-#endif
+#endif // FOCUSWRITER_LOAD_SCREEN_H

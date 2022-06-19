@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2013, 2014, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2013-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "daily_progress_dialog.h"
 
@@ -28,6 +15,7 @@
 #include <QHeaderView>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QLocale>
 #include <QPainter>
 #include <QPixmap>
 #include <QScrollBar>
@@ -45,8 +33,8 @@
 class DailyProgressDialog::Delegate : public QStyledItemDelegate
 {
 public:
-	Delegate(QObject* parent = 0) :
-		QStyledItemDelegate(parent)
+	explicit Delegate(QObject* parent = nullptr)
+		: QStyledItemDelegate(parent)
 	{
 	}
 
@@ -57,7 +45,7 @@ public:
 		}
 	}
 
-	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override
 	{
 		QStyleOptionViewItem opt = option;
 		initStyleOption(&opt, index);
@@ -67,7 +55,7 @@ public:
 		} else if ((index.column() > 0) && (index.column() < 8)) {
 			opt.rect = opt.rect.adjusted(2,2,-2,-2);
 
-			int progress = qBound(0, index.data(Qt::UserRole).toInt(), 100);
+			const int progress = qBound(0, index.data(Qt::UserRole).toInt(), 100);
 			if (progress == 0) {
 				opt.backgroundBrush = opt.palette.alternateBase();
 			} else if (progress == 100) {
@@ -75,10 +63,10 @@ public:
 				painter->drawPixmap(QPointF(opt.rect.topLeft()), fetchStarBackground(opt, pixelratio));
 				opt.font.setBold(true);
 			} else {
-				qreal k = (progress * 0.009) + 0.1;
-				qreal ik = 1.0 - k;
-				QColor base = opt.palette.color(QPalette::Active, QPalette::AlternateBase);
-				QColor highlight = opt.palette.color(QPalette::Active, QPalette::Highlight);
+				const qreal k = (progress * 0.009) + 0.1;
+				const qreal ik = 1.0 - k;
+				const QColor base = opt.palette.color(QPalette::Active, QPalette::AlternateBase);
+				const QColor highlight = opt.palette.color(QPalette::Active, QPalette::Highlight);
 				opt.backgroundBrush = QColor(std::lround((highlight.red() * k) + (base.red() * ik)),
 						std::lround((highlight.green() * k) + (base.green() * ik)),
 						std::lround((highlight.blue() * k) + (base.blue() * ik)));
@@ -92,7 +80,7 @@ public:
 			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Base);
 		}
 
-		QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
+		const QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 		style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
 	}
 
@@ -110,16 +98,18 @@ private:
 			QPainter p(&m_pixmap);
 			p.fillRect(QRectF(opt.rect), opt.palette.color(QPalette::Active, QPalette::Base));
 			opt.backgroundBrush = opt.palette.color(QPalette::Active, QPalette::Highlight);
-			QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
+			const QStyle* style = opt.widget ? opt.widget->style() : QApplication::style();
 			style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, &p, opt.widget);
 
 			// Create star
-			QPolygonF star;
 			const qreal pi = acos(-1.0);
-			for (int i = 0; i < 5; ++i) {
-				qreal angle = ((i * 0.8) - 0.5) * pi;
-				star << QPointF(cos(angle), sin(angle));
-			}
+			static const QPolygonF star{
+				{ 0.0, -1.0 },
+				{ cos(0.3 * pi), sin(0.3 * pi) },
+				{ cos(1.1 * pi), sin(1.1 * pi) },
+				{ cos(1.9 * pi), sin(1.9 * pi) },
+				{ cos(2.7 * pi), sin(2.7 * pi) }
+			};
 
 			// Draw star
 			p.setRenderHint(QPainter::Antialiasing);
@@ -127,8 +117,8 @@ private:
 			QColor background = opt.palette.color(QPalette::Active, QPalette::HighlightedText);
 			background.setAlpha(64);
 			p.setBrush(background);
-			qreal size = (opt.rect.width() * 0.5) - 2.0;
-			qreal offset = 2.0 + size;
+			const qreal size = (opt.rect.width() * 0.5) - 2.0;
+			const qreal offset = 2.0 + size;
 			p.translate(offset, offset);
 			p.scale(size, size);
 			p.drawPolygon(star, Qt::WindingFill);
@@ -142,9 +132,9 @@ private:
 
 //-----------------------------------------------------------------------------
 
-DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_progress(progress)
+DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_progress(progress)
 {
 	setWindowTitle(tr("Daily Progress"));
 
@@ -185,8 +175,8 @@ DailyProgressDialog::DailyProgressDialog(DailyProgress* progress, QWidget* paren
 	m_display->setColumnWidth(8, 0);
 
 	// Set minimum size to always show up to 5 weeks of data
-	int frame = (m_display->style()->pixelMetric(QStyle::PM_DefaultFrameWidth) * 2) + 4;
-	int min_width = m_display->fontMetrics().averageCharWidth() * 10;
+	const int frame = (m_display->style()->pixelMetric(QStyle::PM_DefaultFrameWidth) * 2) + 4;
+	const int min_width = m_display->fontMetrics().averageCharWidth() * 10;
 	m_display->setMinimumWidth(size * 7 + frame + m_display->verticalScrollBar()->sizeHint().width() + min_width);
 	m_display->setMinimumHeight((size * 5) + frame + m_display->horizontalHeader()->sizeHint().height());
 	m_display->scrollToBottom();
@@ -247,7 +237,7 @@ void DailyProgressDialog::closeEvent(QCloseEvent* event)
 
 void DailyProgressDialog::hideEvent(QHideEvent* event)
 {
-	emit visibleChanged(false);
+	Q_EMIT visibleChanged(false);
 
 	QDialog::hideEvent(event);
 }
@@ -256,7 +246,7 @@ void DailyProgressDialog::hideEvent(QHideEvent* event)
 
 void DailyProgressDialog::showEvent(QShowEvent* event)
 {
-	emit visibleChanged(true);
+	Q_EMIT visibleChanged(true);
 
 	m_display->scrollToBottom();
 
@@ -291,21 +281,22 @@ void DailyProgressDialog::streaksChanged()
 
 //-----------------------------------------------------------------------------
 
-QString DailyProgressDialog::createStreakText(const QString& title, const QDate& start, const QDate& end)
+QString DailyProgressDialog::createStreakText(const QString& title, const QDate& start, const QDate& end) const
 {
-	int length = start.isValid() ? (start.daysTo(end) + 1) : 0;
+	const int length = start.isValid() ? (start.daysTo(end) + 1) : 0;
 	QString start_str, end_str;
 	if (length > 0) {
-		start_str = start.toString(Qt::DefaultLocaleShortDate);
-		end_str = end.toString(Qt::DefaultLocaleShortDate);
+		const QLocale locale;
+		start_str = locale.toString(start, QLocale::ShortFormat);
+		end_str = locale.toString(end, QLocale::ShortFormat);
 	} else {
 		start_str = end_str = tr("N/A");
 	}
 
 	return QString("<center><b>%1</b><br><big>%2</big><br><small>%3</small></center>")
-			.arg(title)
-			.arg(tr("%n day(s)", "", length))
-			.arg(tr("%1 &ndash; %2").arg(start_str).arg(end_str));
+			.arg(title,
+			tr("%n day(s)", "", length),
+			tr("%1 &ndash; %2").arg(start_str, end_str));
 }
 
 //-----------------------------------------------------------------------------

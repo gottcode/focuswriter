@@ -1,7 +1,5 @@
-*.o
+Makefile
+build
+focuswriter
 *.qm
-moc_*.cpp
-qrc_*.cpp
-/Makefile
-/build
-/focuswriter
+*~

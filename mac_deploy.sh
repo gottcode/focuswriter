@@ -2,7 +2,7 @@
 
 APP='FocusWriter'
 BUNDLE="$APP.app"
-VERSION='1.7.6'
+VERSION='1.8.0'
 
 # Remove any previous disk folder or DMG
 echo -n 'Preparing... '
@@ -43,6 +43,14 @@ echo -n 'Copying translations... '
 TRANSLATIONS="$APP/$BUNDLE/Contents/Resources/translations"
 mkdir "$TRANSLATIONS"
 cp translations/*.qm "$TRANSLATIONS"
+echo 'Done'
+
+# Make macOS aware that the app bundle is translated.
+# This is required to translate parts of native open/save dialogs.
+echo -n 'Creating mac lproj directories for translations... '
+for translation in $(ls translations | grep qm | cut -d'.' -f1 | cut -d'_' -f2- | uniq); do
+    mkdir -p "$APP/$BUNDLE/Contents/Resources/${translation}.lproj"
+done
 echo 'Done'
 
 # Copy Qt translations

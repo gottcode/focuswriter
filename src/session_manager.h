@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2011 Graeme Gott <graeme@gottcode.org>
 
-#ifndef SESSION_MANAGER_H
-#define SESSION_MANAGER_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_SESSION_MANAGER_H
+#define FOCUSWRITER_SESSION_MANAGER_H
 
 class Session;
 class Theme;
@@ -35,7 +22,7 @@ class SessionManager : public QDialog
 	Q_OBJECT
 
 public:
-	SessionManager(Window* parent);
+	explicit SessionManager(Window* parent);
 	~SessionManager();
 
 	Session* current() const;
@@ -45,26 +32,26 @@ public:
 	bool saveCurrent();
 	void setCurrent(const QString& id, const QStringList& files = QStringList(), const QStringList& datafiles = QStringList());
 
-public slots:
+public Q_SLOTS:
 	void newSession();
 
-signals:
+Q_SIGNALS:
 	void themeChanged(const Theme& theme);
 
 protected:
-	virtual void hideEvent(QHideEvent* event);
+	void hideEvent(QHideEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void renameSession();
 	void cloneSession();
 	void deleteSession();
 	void switchSession();
-	void switchSession(QAction* session);
-	void selectedSessionChanged(QListWidgetItem* session);
+	void switchSession(const QAction* session);
+	void selectedSessionChanged(const QListWidgetItem* session);
 
 private:
 	QString getSessionName(const QString& title, const QString& session = QString());
-	QListWidgetItem* selectedSession(bool prevent_default);
+	const QListWidgetItem* selectedSession(bool prevent_default) const;
 	void updateList(const QString& selected);
 
 private:
@@ -78,4 +65,4 @@ private:
 	QPushButton* m_switch_button;
 };
 
-#endif
+#endif // FOCUSWRITER_SESSION_MANAGER_H

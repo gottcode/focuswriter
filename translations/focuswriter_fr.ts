@@ -30,20 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% sur %Ln minute</numerusform>
-            <numerusform>%L1% sur %Ln minutes</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% sur %Ln mot</numerusform>
-            <numerusform>%L1% sur %Ln mots</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln mot</numerusform>
@@ -60,6 +46,20 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% sur %Ln minute</numerusform>
+            <numerusform>%L1% sur %Ln minutes</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% sur %Ln mot</numerusform>
+            <numerusform>%L1% sur %Ln mots</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1852,6 +1852,13 @@
     <message>
         <source>Ctrl+Shift+`</source>
         <translation>Ctrl+Maj+`</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Files to open in current session.</source>
+        <translation>Fichiers à ouvrir dans la session courante.</translation>
     </message>
 </context>
 </TS>

@@ -1,26 +1,13 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2013 Graeme Gott <graeme@gottcode.org>
- *
- * Derived from KWord's rtfimport_tokenizer.cpp
- *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
- *  Copyright (C) 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
- *  Copyright (C) 2005 Tommi Rantala <tommi.rantala@cs.helsinki.fi>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2013 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
+	SPDX-FileCopyrightText: 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
+	SPDX-FileCopyrightText: 2005 Tommi Rantala <tommi.rantala@cs.helsinki.fi>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+
+	Derived from KWord's rtfimport_tokenizer.cpp
+*/
 
 #include "rtf_tokenizer.h"
 
@@ -29,11 +16,11 @@
 
 //-----------------------------------------------------------------------------
 
-RtfTokenizer::RtfTokenizer() :
-	m_device(0),
-	m_position(0),
-	m_value(0),
-	m_has_value(false)
+RtfTokenizer::RtfTokenizer()
+	: m_device(nullptr)
+	, m_position(0)
+	, m_value(0)
+	, m_has_value(false)
 {
 	m_buffer.reserve(8192);
 	m_text.reserve(8192);
@@ -43,7 +30,7 @@ RtfTokenizer::RtfTokenizer() :
 
 bool RtfTokenizer::hasNext() const
 {
-	return (m_position < m_buffer.size() - 1) || !m_device->atEnd();
+	return (m_position < m_buffer.length() - 1) || !m_device->atEnd();
 }
 
 //-----------------------------------------------------------------------------
@@ -84,7 +71,7 @@ void RtfTokenizer::readNext()
 			}
 
 			// Read integer value
-			int sign = (c != '-') ? 1 : -1;
+			const int sign = (c != '-') ? 1 : -1;
 			if (sign == -1) {
 				c = next();
 			}
@@ -105,7 +92,7 @@ void RtfTokenizer::readNext()
 			if (m_text == "bin") {
 				if (m_value > 0) {
 					for (int i = 0; i < m_value; i++) {
-						c = next();
+						next();
 					}
 				}
 				return readNext();
@@ -144,9 +131,9 @@ void RtfTokenizer::setDevice(QIODevice* device)
 char RtfTokenizer::next()
 {
 	m_position++;
-	if (m_position >= m_buffer.size()) {
+	if (m_position >= m_buffer.length()) {
 		m_buffer.resize(8192);
-		int size = m_device->read(m_buffer.data(), m_buffer.size());
+		const int size = m_device->read(m_buffer.data(), m_buffer.length());
 		if (size < 1) {
 			throw tr("Unexpectedly reached end of file.");
 		}

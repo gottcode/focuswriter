@@ -42,6 +42,7 @@
 #include "qtlocalpeer.h"
 #include <QCoreApplication>
 #include <QDataStream>
+#include <QRegularExpression>
 #include <QTime>
 
 #if defined(Q_OS_WIN)
@@ -69,11 +70,11 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
 #endif
         prefix = id.section(QLatin1Char('/'), -1);
     }
-    prefix.remove(QRegExp("[^a-zA-Z]"));
+    prefix.remove(QRegularExpression("[^a-zA-Z]"));
     prefix.truncate(6);
 
     QByteArray idc = id.toUtf8();
-    quint16 idNum = qChecksum(idc.constData(), idc.size());
+    quint16 idNum = qChecksum(idc);
     socketName = QLatin1String("qtsingleapp-") + prefix
                  + QLatin1Char('-') + QString::number(idNum, 16);
 
@@ -186,5 +187,5 @@ void QtLocalPeer::receiveConnection()
     socket->waitForBytesWritten(1000);
     socket->waitForDisconnected(1000); // make sure client reads ack
     delete socket;
-    emit messageReceived(message); //### (might take a long time to return)
+    Q_EMIT messageReceived(message); //### (might take a long time to return)
 }

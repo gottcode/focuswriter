@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
 
-#ifndef SYMBOLS_DIALOG_H
-#define SYMBOLS_DIALOG_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_SYMBOLS_DIALOG_H
+#define FOCUSWRITER_SYMBOLS_DIALOG_H
 
 class ShortcutEdit;
 class SymbolsModel;
@@ -41,30 +28,30 @@ class SymbolsDialog : public QDialog
 	Q_OBJECT
 
 public:
-	SymbolsDialog(QWidget* parent = 0);
+	explicit SymbolsDialog(QWidget* parent = nullptr);
 
 	void setInsertEnabled(bool enabled);
 	void setPreviewFont(const QFont& font);
 
-signals:
+Q_SIGNALS:
 	void insertText(const QString& text);
 
-public slots:
-	void accept();
-	void reject();
+public Q_SLOTS:
+	void accept() override;
+	void reject() override;
 
 protected:
-	void showEvent(QShowEvent* event);
+	void showEvent(QShowEvent* event) override;
 
-private slots:
-	void showFilter(QListWidgetItem* filter);
+private Q_SLOTS:
+	void showFilter(const QListWidgetItem* filter);
 	void showGroup(int group);
 	void symbolClicked(const QModelIndex& symbol);
-	void recentSymbolClicked(QTableWidgetItem* symbol);
+	void recentSymbolClicked(const QTableWidgetItem* symbol);
 	void shortcutChanged();
 
 private:
-	bool selectSymbol(quint32 unicode);
+	bool selectSymbol(char32_t unicode);
 	void saveSettings();
 
 private:
@@ -88,4 +75,4 @@ private:
 	QPushButton* m_insert_button;
 };
 
-#endif
+#endif // FOCUSWRITER_SYMBOLS_DIALOG_H

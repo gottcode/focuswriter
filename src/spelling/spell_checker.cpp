@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2012, 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "spell_checker.h"
 
@@ -63,7 +50,7 @@ void SpellChecker::reject()
 
 //-----------------------------------------------------------------------------
 
-void SpellChecker::suggestionChanged(QListWidgetItem* suggestion)
+void SpellChecker::suggestionChanged(const QListWidgetItem* suggestion)
 {
 	if (suggestion) {
 		m_suggestion->setText(suggestion->text());
@@ -105,11 +92,11 @@ void SpellChecker::change()
 
 void SpellChecker::changeAll()
 {
-	QString replacement = m_suggestion->text();
+	const QString replacement = m_suggestion->text();
 
 	QTextCursor cursor = m_cursor;
 	cursor.movePosition(QTextCursor::Start);
-	forever {
+	Q_FOREVER {
 		cursor = m_document->document()->find(m_word, cursor, QTextDocument::FindCaseSensitively | QTextDocument::FindWholeWords);
 		if (!cursor.isNull()) {
 			cursor.insertText(replacement);
@@ -123,13 +110,13 @@ void SpellChecker::changeAll()
 
 //-----------------------------------------------------------------------------
 
-SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
-	QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_dictionary(dictionary),
-	m_document(document),
-	m_checked_blocks(1),
-	m_total_blocks(document->document()->blockCount()),
-	m_loop_available(true)
+SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary)
+	: QDialog(document->parentWidget(), Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_dictionary(dictionary)
+	, m_document(document)
+	, m_checked_blocks(1)
+	, m_total_blocks(document->document()->blockCount())
+	, m_loop_available(true)
 {
 	setWindowTitle(tr("Check Spelling"));
 	setWindowModality(Qt::WindowModal);
@@ -138,11 +125,7 @@ SpellChecker::SpellChecker(QTextEdit* document, DictionaryRef& dictionary) :
 	// Create widgets
 	m_context = new QTextEdit(this);
 	m_context->setReadOnly(true);
-#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 	m_context->setTabStopDistance(50);
-#else
-	m_context->setTabStopWidth(50);
-#endif
 	QPushButton* add_button = new QPushButton(tr("&Add"), this);
 	add_button->setAutoDefault(false);
 	connect(add_button, &QPushButton::clicked, this, &SpellChecker::add);
@@ -202,7 +185,7 @@ void SpellChecker::check()
 	wait_dialog.setWindowModality(Qt::WindowModal);
 	bool canceled = false;
 
-	forever {
+	Q_FOREVER {
 		// Update wait dialog
 		wait_dialog.setValue(m_checked_blocks);
 		if (wait_dialog.wasCanceled()) {
@@ -211,8 +194,8 @@ void SpellChecker::check()
 		}
 
 		// Check current line
-		QTextBlock block = m_cursor.block();
-		QStringRef word =  m_dictionary.check(block.text(), m_cursor.position() - block.position());
+		const QTextBlock block = m_cursor.block();
+		const WordRef word = m_dictionary.check(block.text(), m_cursor.position() - block.position());
 		if (word.isNull()) {
 			if (block.next().isValid()) {
 				m_cursor.movePosition(QTextCursor::NextBlock);
@@ -224,7 +207,9 @@ void SpellChecker::check()
 				}
 			} else if (m_loop_available) {
 				wait_dialog.reset();
-				if (QMessageBox::question(this, QString(), tr("Continue checking at beginning of file?"),
+				if (QMessageBox::question(this,
+						QString(),
+						tr("Continue checking at beginning of file?"),
 						QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
 					m_loop_available = false;
 					m_cursor.movePosition(QTextCursor::Start);
@@ -251,8 +236,8 @@ void SpellChecker::check()
 			// Show misspelled word in context
 			QTextCursor cursor = m_cursor;
 			cursor.movePosition(QTextCursor::PreviousWord, QTextCursor::MoveAnchor, 10);
-			int end = m_cursor.position() - cursor.position();
-			int start = end - m_word.length();
+			const int end = m_cursor.position() - cursor.position();
+			const int start = end - m_word.length();
 			cursor.movePosition(QTextCursor::NextWord, QTextCursor::KeepAnchor, 21);
 			QString context = cursor.selectedText();
 			context.insert(end, "</span>");
@@ -265,7 +250,7 @@ void SpellChecker::check()
 			// Show suggestions
 			m_suggestion->clear();
 			m_suggestions->clear();
-			QStringList words = m_dictionary.suggestions(m_word);
+			const QStringList words = m_dictionary.suggestions(m_word);
 			if (!words.isEmpty()) {
 				for (const QString& word : words) {
 					m_suggestions->addItem(word);

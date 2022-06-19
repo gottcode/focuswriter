@@ -1,34 +1,20 @@
-/***********************************************************************
- *
- * Copyright (C) 2013, 2014, 2017 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2013-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "dictionary_provider_voikko.h"
 
 #include "abstract_dictionary.h"
 #include "dictionary_manager.h"
 #include "smart_quotes.h"
+#include "word_ref.h"
 
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QLibrary>
-#include <QStringList>
-#include <QStringRef>
 
 //-----------------------------------------------------------------------------
 
@@ -41,25 +27,25 @@ namespace
 	struct VoikkoHandle;
 
 	typedef struct VoikkoHandle* (*VoikkoInitFunction)(const char** error, const char* langcode, const char* path);
-	VoikkoInitFunction voikkoInit = 0;
+	VoikkoInitFunction voikkoInit = nullptr;
 
 	typedef void (*VoikkoTerminateFunction)(struct VoikkoHandle* handle);
-	VoikkoTerminateFunction voikkoTerminate = 0;
+	VoikkoTerminateFunction voikkoTerminate = nullptr;
 
 	typedef int (*VoikkoSetBooleanOptionFunction)(struct VoikkoHandle * handle, int option, int value);
-	VoikkoSetBooleanOptionFunction voikkoSetBooleanOption = 0;
+	VoikkoSetBooleanOptionFunction voikkoSetBooleanOption = nullptr;
 
 	typedef int (*VoikkoSpellCstrFunction)(struct VoikkoHandle* handle, const char* word);
-	VoikkoSpellCstrFunction voikkoSpellCstr = 0;
+	VoikkoSpellCstrFunction voikkoSpellCstr = nullptr;
 
 	typedef char** (*VoikkoSuggestCstrFunction)(struct VoikkoHandle* handle, const char* word);
-	VoikkoSuggestCstrFunction voikkoSuggestCstr = 0;
+	VoikkoSuggestCstrFunction voikkoSuggestCstr = nullptr;
 
 	typedef void (*VoikkoFreeCstrArrayFunction)(char** cstrArray);
-	VoikkoFreeCstrArrayFunction voikkoFreeCstrArray = 0;
+	VoikkoFreeCstrArrayFunction voikkoFreeCstrArray = nullptr;
 
 	typedef char** (*VoikkoListSupportedSpellingLanguagesFunction)(const char * path);
-	VoikkoListSupportedSpellingLanguagesFunction voikkoListSupportedSpellingLanguages = 0;
+	VoikkoListSupportedSpellingLanguagesFunction voikkoListSupportedSpellingLanguages = nullptr;
 
 	bool f_voikko_loaded = false;
 	QList<VoikkoHandle*> f_handles;
@@ -79,20 +65,20 @@ namespace
 class DictionaryVoikko : public AbstractDictionary
 {
 public:
-	DictionaryVoikko(const QString& language);
+	explicit DictionaryVoikko(const QString& language);
 	~DictionaryVoikko();
 
-	bool isValid() const
+	bool isValid() const override
 	{
 		return m_handle;
 	}
 
-	QStringRef check(const QString& string, int start_at) const;
-	QStringList suggestions(const QString& word) const;
+	WordRef check(const QString& string, int start_at) const override;
+	QStringList suggestions(const QString& word) const override;
 
-	void addToPersonal(const QString& word);
-	void addToSession(const QStringList& words);
-	void removeFromSession(const QStringList& words);
+	void addToPersonal(const QString& word) override;
+	void addToSession(const QStringList& words) override;
+	void removeFromSession(const QStringList& words) override;
 
 private:
 	VoikkoHandle* m_handle;
@@ -100,8 +86,8 @@ private:
 
 //-----------------------------------------------------------------------------
 
-DictionaryVoikko::DictionaryVoikko(const QString& language) :
-	m_handle(0)
+DictionaryVoikko::DictionaryVoikko(const QString& language)
+	: m_handle(nullptr)
 {
 	const char* voikko_error;
 	m_handle = voikkoInit(&voikko_error, language.toUtf8().constData(), f_voikko_path.constData());
@@ -126,16 +112,16 @@ DictionaryVoikko::~DictionaryVoikko()
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryVoikko::check(const QString& string, int start_at) const
+WordRef DictionaryVoikko::check(const QString& string, int start_at) const
 {
 	int index = -1;
 	int length = 0;
 	int chars = 1;
 	bool is_word = false;
 
-	int count = string.length() - 1;
+	const int count = string.length() - 1;
 	for (int i = start_at; i <= count; ++i) {
-		QChar c = string.at(i);
+		const QChar c = string.at(i);
 		if (c.isLetterOrNumber() || c.category() == QChar::Punctuation_Dash) {
 			if (index == -1) {
 				index = i;
@@ -153,16 +139,15 @@ QStringRef DictionaryVoikko::check(const QString& string, int start_at) const
 		}
 
 		if (is_word || (i == count && index != -1)) {
-			QStringRef check(&string, index, length);
-			if (voikkoSpellCstr(m_handle, check.toString().toUtf8().constData()) != VOIKKO_SPELL_OK) {
-				return check;
+			if (voikkoSpellCstr(m_handle, string.mid(index, length).toUtf8().constData()) != VOIKKO_SPELL_OK) {
+				return WordRef(index, length);
 			}
 			index = -1;
 			is_word = false;
 		}
 	}
 
-	return QStringRef();
+	return WordRef();
 }
 
 //-----------------------------------------------------------------------------
@@ -172,7 +157,7 @@ QStringList DictionaryVoikko::suggestions(const QString& word) const
 	QStringList result;
 	char** suggestions = voikkoSuggestCstr(m_handle, word.toUtf8().constData());
 	if (suggestions) {
-		for (size_t i = 0; suggestions[i] != NULL; ++i) {
+		for (size_t i = 0; suggestions[i]; ++i) {
 			QString word = QString::fromUtf8(suggestions[i]);
 			if (SmartQuotes::isEnabled()) {
 				SmartQuotes::replace(word);
@@ -219,8 +204,8 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 
 	QString lib = "libvoikko";
 #ifdef Q_OS_WIN
-	QStringList dictdirs = QDir::searchPaths("dict");
-	for (const QString dictdir : dictdirs) {
+	const QStringList dictdirs = QDir::searchPaths("dict");
+	for (const QString& dictdir : dictdirs) {
 		lib = dictdir + "/libvoikko-1.dll";
 		if (QLibrary(lib).load()) {
 			f_voikko_path = QFile::encodeName(QDir::toNativeSeparators(QFileInfo(lib).path()));
@@ -240,21 +225,21 @@ DictionaryProviderVoikko::DictionaryProviderVoikko()
 	voikkoSuggestCstr = (VoikkoSuggestCstrFunction) voikko_lib.resolve("voikkoSuggestCstr");
 	voikkoFreeCstrArray = (VoikkoFreeCstrArrayFunction) voikko_lib.resolve("voikkoFreeCstrArray");
 	voikkoListSupportedSpellingLanguages = (VoikkoListSupportedSpellingLanguagesFunction) voikko_lib.resolve("voikkoListSupportedSpellingLanguages");
-	f_voikko_loaded = (voikkoInit != 0)
-			&& (voikkoTerminate != 0)
-			&& (voikkoSetBooleanOption != 0)
-			&& (voikkoSpellCstr != 0)
-			&& (voikkoSuggestCstr != 0)
-			&& (voikkoFreeCstrArray != 0)
-			&& (voikkoListSupportedSpellingLanguages != 0);
+	f_voikko_loaded = voikkoInit
+			&& voikkoTerminate
+			&& voikkoSetBooleanOption
+			&& voikkoSpellCstr
+			&& voikkoSuggestCstr
+			&& voikkoFreeCstrArray
+			&& voikkoListSupportedSpellingLanguages;
 	if (!f_voikko_loaded) {
-		voikkoInit = 0;
-		voikkoTerminate = 0;
-		voikkoSetBooleanOption = 0;
-		voikkoSpellCstr = 0;
-		voikkoSuggestCstr = 0;
-		voikkoFreeCstrArray = 0;
-		voikkoListSupportedSpellingLanguages = 0;
+		voikkoInit = nullptr;
+		voikkoTerminate = nullptr;
+		voikkoSetBooleanOption = nullptr;
+		voikkoSpellCstr = nullptr;
+		voikkoSuggestCstr = nullptr;
+		voikkoFreeCstrArray = nullptr;
+		voikkoListSupportedSpellingLanguages = nullptr;
 	}
 }
 
@@ -276,7 +261,7 @@ QStringList DictionaryProviderVoikko::availableDictionaries() const
 	QStringList result;
 	char** languages = voikkoListSupportedSpellingLanguages(f_voikko_path.constData());
 	if (languages) {
-		for (size_t i = 0; languages[i] != NULL; ++i) {
+		for (size_t i = 0; languages[i]; ++i) {
 			result.append(QString::fromUtf8(languages[i]));
 		}
 		voikkoFreeCstrArray(languages);
@@ -289,7 +274,7 @@ QStringList DictionaryProviderVoikko::availableDictionaries() const
 AbstractDictionary* DictionaryProviderVoikko::requestDictionary(const QString& language) const
 {
 	if (!f_voikko_loaded) {
-		return 0;
+		return nullptr;
 	}
 
 	return new DictionaryVoikko(language);
@@ -300,7 +285,7 @@ AbstractDictionary* DictionaryProviderVoikko::requestDictionary(const QString& l
 void DictionaryProviderVoikko::setIgnoreNumbers(bool ignore)
 {
 	f_ignore_numbers = ignore;
-	for (VoikkoHandle* handle : f_handles) {
+	for (VoikkoHandle* handle : qAsConst(f_handles)) {
 		voikkoSetBooleanOption(handle, VOIKKO_OPT_IGNORE_NUMBERS, ignore);
 	}
 }
@@ -310,7 +295,7 @@ void DictionaryProviderVoikko::setIgnoreNumbers(bool ignore)
 void DictionaryProviderVoikko::setIgnoreUppercase(bool ignore)
 {
 	f_ignore_uppercase = ignore;
-	for (VoikkoHandle* handle : f_handles) {
+	for (VoikkoHandle* handle : qAsConst(f_handles)) {
 		voikkoSetBooleanOption(handle, VOIKKO_OPT_IGNORE_UPPERCASE, ignore);
 	}
 }

@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2014, 2015, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "action_manager.h"
 
@@ -23,16 +10,17 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QVariantHash>
+#include <QWidget>
 
 //-----------------------------------------------------------------------------
 
-ActionManager* ActionManager::m_instance = 0;
+ActionManager* ActionManager::m_instance = nullptr;
 
 //-----------------------------------------------------------------------------
 
-ActionManager::ActionManager(QWidget* parent) :
-	QObject(parent),
-	m_widget(parent)
+ActionManager::ActionManager(QWidget* parent)
+	: QObject(parent)
+	, m_widget(parent)
 {
 	m_instance = this;
 
@@ -46,17 +34,18 @@ ActionManager::ActionManager(QWidget* parent) :
 	// Load shortcuts
 	QSettings settings;
 	settings.beginGroup("Shortcuts");
-	QStringList keys = settings.childKeys();
+	const QStringList keys = settings.childKeys();
 	for (const QString& name : keys) {
 		m_actions[name].shortcut = settings.value(name).value<QKeySequence>();
 	}
 
 	// Load symbol shortcuts
-	QVariantHash defshortcuts;
-	defshortcuts.insert("2014", "Ctrl+-");
-	defshortcuts.insert("2019", "Ctrl+Shift+=");
-	defshortcuts.insert("2022", "Ctrl+*");
-	defshortcuts.insert("2026", "Ctrl+.");
+	static const QVariantHash defshortcuts{
+		{ "2014", "Ctrl+-" },
+		{ "2019", "Ctrl+Shift+=" },
+		{ "2022", "Ctrl+*" },
+		{ "2026", "Ctrl+." }
+	};
 	QVariantHash shortcuts = QSettings().value("SymbolsDialog/Shortcuts", defshortcuts).toHash();
 	QHashIterator<QString, QVariant> defiter(defshortcuts);
 	while (defiter.hasNext()) {
@@ -69,8 +58,8 @@ ActionManager::ActionManager(QWidget* parent) :
 	while (iter.hasNext()) {
 		iter.next();
 		bool ok = false;
-		quint32 unicode = iter.key().toUInt(&ok, 16);
-		QKeySequence shortcut = QKeySequence::fromString(iter.value().toString());
+		const char32_t unicode = iter.key().toUInt(&ok, 16);
+		const QKeySequence shortcut = QKeySequence::fromString(iter.value().toString());
 		if (ok && !shortcut.isEmpty()) {
 			addShortcut(unicode, shortcut);
 		}
@@ -82,12 +71,12 @@ ActionManager::ActionManager(QWidget* parent) :
 ActionManager::~ActionManager()
 {
 	if (m_instance == this) {
-		m_instance = 0;
+		m_instance = nullptr;
 	}
 
 	// Save symbol shortcuts
 	QVariantHash shortcuts;
-	QHashIterator<quint32, QShortcut*> iter(m_symbol_shortcuts);
+	QHashIterator<char32_t, QShortcut*> iter(m_symbol_shortcuts);
 	while (iter.hasNext()) {
 		iter.next();
 		shortcuts.insert(QString::number(iter.key(), 16), iter.value()->key().toString());
@@ -108,7 +97,7 @@ QKeySequence ActionManager::shortcut(const QString& name) const
 
 //-----------------------------------------------------------------------------
 
-QKeySequence ActionManager::shortcut(quint32 unicode)
+QKeySequence ActionManager::shortcut(char32_t unicode) const
 {
 	return m_symbol_shortcuts.contains(unicode) ? m_symbol_shortcuts.value(unicode)->key() : QKeySequence();
 }
@@ -117,7 +106,7 @@ QKeySequence ActionManager::shortcut(quint32 unicode)
 
 void ActionManager::addAction(const QString& name, QAction* action)
 {
-	bool set = m_actions.contains(name);
+	const bool set = m_actions.contains(name);
 	Action& act = m_actions[name];
 	act.action = action;
 	act.default_shortcut = action->shortcut();
@@ -129,7 +118,7 @@ void ActionManager::addAction(const QString& name, QAction* action)
 
 //-----------------------------------------------------------------------------
 
-void ActionManager::setShortcut(quint32 unicode, const QKeySequence& sequence)
+void ActionManager::setShortcut(char32_t unicode, const QKeySequence& sequence)
 {
 	if (!sequence.isEmpty()) {
 		if (m_symbol_shortcuts.contains(unicode)) {
@@ -138,7 +127,7 @@ void ActionManager::setShortcut(quint32 unicode, const QKeySequence& sequence)
 			addShortcut(unicode, sequence);
 		}
 	} else {
-		QShortcut* shortcut = m_symbol_shortcuts.value(unicode);
+		const QShortcut* shortcut = m_symbol_shortcuts.value(unicode);
 		m_symbol_shortcuts.remove(unicode);
 		m_symbol_shortcuts_text.remove(shortcut);
 		delete shortcut;
@@ -182,15 +171,15 @@ void ActionManager::setShortcuts(const QHash<QString, QKeySequence>& shortcuts)
 
 void ActionManager::symbolShortcutActivated()
 {
-	QObject* object = sender();
+	const QObject* object = sender();
 	if (m_symbol_shortcuts_text.contains(object)) {
-		emit insertText(m_symbol_shortcuts_text.value(object));
+		Q_EMIT insertText(m_symbol_shortcuts_text.value(object));
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-void ActionManager::addShortcut(quint32 unicode, const QKeySequence& sequence)
+void ActionManager::addShortcut(char32_t unicode, const QKeySequence& sequence)
 {
 	QShortcut* shortcut = new QShortcut(sequence, m_widget);
 	connect(shortcut, &QShortcut::activated, this, &ActionManager::symbolShortcutActivated);

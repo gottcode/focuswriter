@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2012 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2012 Graeme Gott <graeme@gottcode.org>
 
-#ifndef FIND_DIALOG_H
-#define FIND_DIALOG_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_FIND_DIALOG_H
+#define FOCUSWRITER_FIND_DIALOG_H
 
 class Stack;
 
@@ -33,25 +20,25 @@ class FindDialog : public QDialog
 	Q_OBJECT
 
 public:
-	FindDialog(Stack* documents);
+	explicit FindDialog(Stack* documents);
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
-public slots:
+public Q_SLOTS:
 	void findNext();
 	void findPrevious();
-	void reject();
+	void reject() override;
 	void showFindMode();
 	void showReplaceMode();
 
-signals:
+Q_SIGNALS:
 	void findNextAvailable(bool available);
 
 protected:
-	void moveEvent(QMoveEvent* event);
-	void showEvent(QShowEvent* event);
+	void moveEvent(QMoveEvent* event) override;
+	void showEvent(QShowEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void find();
 	void findChanged(const QString& text);
 	void replace();
@@ -80,4 +67,4 @@ private:
 	QPoint m_position;
 };
 
-#endif
+#endif // FOCUSWRITER_FIND_DIALOG_H

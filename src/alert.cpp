@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2018, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "alert.h"
 
@@ -33,16 +20,16 @@
 
 //-----------------------------------------------------------------------------
 
-Alert::Alert(QWidget* parent) :
-	QWidget(parent)
+Alert::Alert(QWidget* parent)
+	: QWidget(parent)
 {
 	init();
 }
 
 //-----------------------------------------------------------------------------
 
-Alert::Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent) :
-	QWidget(parent)
+Alert::Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent)
+	: QWidget(parent)
 {
 	init();
 
@@ -95,7 +82,7 @@ void Alert::setIcon(Icon icon)
 	default:
 		break;
 	}
-	int size = style()->pixelMetric(QStyle::PM_LargeIconSize);
+	const int size = style()->pixelMetric(QStyle::PM_LargeIconSize);
 	setIcon(style()->standardIcon(pixmap).pixmap(size,size));
 }
 
@@ -138,7 +125,7 @@ bool Alert::eventFilter(QObject* watched, QEvent* event)
 
 //-----------------------------------------------------------------------------
 
-void Alert::enterEvent(QEvent* event)
+void Alert::enterEvent(QEnterEvent* event)
 {
 	m_under_mouse = true;
 	update();

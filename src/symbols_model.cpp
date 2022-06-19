@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2013, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "symbols_model.h"
 
@@ -48,8 +35,8 @@ QString SymbolsModel::m_path;
 
 //-----------------------------------------------------------------------------
 
-SymbolsModel::SymbolsModel(QObject* parent) :
-	QAbstractItemModel(parent)
+SymbolsModel::SymbolsModel(QObject* parent)
+	: QAbstractItemModel(parent)
 {
 	QFile file(m_path);
 	if (!file.open(QFile::ReadOnly)) {
@@ -64,7 +51,7 @@ SymbolsModel::SymbolsModel(QObject* parent) :
 	}
 
 	QDataStream stream(&buffer);
-	stream.setVersion(QDataStream::Qt_5_2);
+	stream.setVersion(QDataStream::Qt_5_12);
 	stream >> m_names;
 	stream >> m_groups;
 	buffer.close();
@@ -92,7 +79,8 @@ QStringList SymbolsModel::filters(int group) const
 
 QStringList SymbolsModel::filterGroups() const
 {
-	return QStringList() << tr("Blocks") << tr("Scripts");
+	static const QStringList groups{ tr("Blocks"), tr("Scripts") };
+	return groups;
 }
 
 //-----------------------------------------------------------------------------
@@ -117,16 +105,15 @@ void SymbolsModel::setFilter(int group, int index)
 	// Allocate space for symbols
 	int padding = filter.size % 16;
 	padding = padding ? (16 - padding) : 0;
-	int size = filter.size + padding;
+	const int size = filter.size + padding;
 	if (m_symbols.capacity() < size) {
 		m_symbols.reserve(size);
 	}
 
 	// Create list of symbols
 	beginInsertRows(QModelIndex(), 0, (size / 16) - 1);
-	for (int i = 0, count = filter.ranges.count(); i < count; ++i) {
-		const Filter::Range& range = filter.ranges.at(i);
-		for (quint32 code = range.start; code <= range.end; ++code) {
+	for (const Filter::Range& range : filter.ranges) {
+		for (char32_t code = range.start; code <= range.end; ++code) {
 			m_symbols.append(code);
 		}
 	}
@@ -140,7 +127,7 @@ void SymbolsModel::setFilter(int group, int index)
 
 //-----------------------------------------------------------------------------
 
-int SymbolsModel::symbolFilter(int group, quint32 unicode) const
+int SymbolsModel::symbolFilter(int group, char32_t unicode) const
 {
 	// Find group
 	int index = -1;
@@ -164,7 +151,7 @@ int SymbolsModel::symbolFilter(int group, quint32 unicode) const
 
 //-----------------------------------------------------------------------------
 
-QString SymbolsModel::symbolName(quint32 unicode) const
+QString SymbolsModel::symbolName(char32_t unicode) const
 {
 	if ((unicode >= 0x3400 && unicode <= 0x4DBF)
 			|| (unicode >= 0x4E00 && unicode <= 0x9FFF)
@@ -200,14 +187,14 @@ QString SymbolsModel::symbolName(quint32 unicode) const
 			"S", "SS", "NG", "J", "C", "K", "T", "P", "H"
 		};
 
-		int SIndex = unicode - SBase;
+		const int SIndex = unicode - SBase;
 		if (SIndex < 0 || SIndex >= SCount) {
 			return QString();
 		}
 
-		int LIndex = SIndex / NCount;
-		int VIndex = (SIndex % NCount) / TCount;
-		int TIndex = SIndex % TCount;
+		const int LIndex = SIndex / NCount;
+		const int VIndex = (SIndex % NCount) / TCount;
+		const int TIndex = SIndex % TCount;
 
 		return QLatin1String("HANGUL SYLLABLE ") + QLatin1String(JAMO_L_TABLE[LIndex]) +
 				QLatin1String(JAMO_V_TABLE[VIndex]) + QLatin1String(JAMO_T_TABLE[TIndex]);
@@ -231,8 +218,8 @@ QVariant SymbolsModel::data(const QModelIndex& index, int role) const
 		return QVariant();
 	}
 
-	quint32 unicode = index.internalId();
-	bool printable = QChar(unicode).isPrint();
+	const char32_t unicode = index.internalId();
+	const bool printable = QChar(unicode).isPrint();
 	switch (role) {
 	case Qt::BackgroundRole:
 		return printable ? QVariant() : QApplication::palette().button();
@@ -258,9 +245,9 @@ Qt::ItemFlags SymbolsModel::flags(const QModelIndex& index) const
 
 //-----------------------------------------------------------------------------
 
-QModelIndex SymbolsModel::index(quint32 unicode) const
+QModelIndex SymbolsModel::index(char32_t unicode) const
 {
-	int index = m_symbols.indexOf(unicode);
+	const int index = m_symbols.indexOf(unicode);
 	if (index != -1) {
 		return createIndex(index / 16, index % 16, unicode);
 	} else {
@@ -272,7 +259,7 @@ QModelIndex SymbolsModel::index(quint32 unicode) const
 
 QModelIndex SymbolsModel::index(int row, int column, const QModelIndex& parent) const
 {
-	int pos = (row * 16) + column;
+	const int pos = (row * 16) + column;
 	return (!parent.isValid() && (pos < m_symbols.count())) ? createIndex(row, column, m_symbols.at(pos)) : QModelIndex();
 }
 
@@ -292,15 +279,9 @@ int SymbolsModel::rowCount(const QModelIndex& parent) const
 
 //-----------------------------------------------------------------------------
 
-void SymbolsModel::setData(const QStringList& datadirs)
+void SymbolsModel::setPath(const QString& path)
 {
-	for (const QString& path : datadirs) {
-		QFileInfo info(path + "/symbols1000.dat");
-		if (info.exists()) {
-			m_path = info.absoluteFilePath();
-			break;
-		}
-	}
+	m_path = path;
 }
 
 //-----------------------------------------------------------------------------

@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "dictionary_manager.h"
 
@@ -27,9 +14,11 @@
 #endif
 #include "dictionary_ref.h"
 #include "smart_quotes.h"
+#include "utils.h"
 
 #include <QDir>
 #include <QFile>
+#include <QRegularExpression>
 #include <QTextStream>
 
 #include <algorithm>
@@ -38,11 +27,6 @@
 
 namespace
 {
-
-bool compareWords(const QString& s1, const QString& s2)
-{
-	return s1.localeAwareCompare(s2) < 0;
-}
 
 class DictionaryFallback : public AbstractDictionary
 {
@@ -54,35 +38,35 @@ public:
 		return &fallback_ptr;
 	}
 
-	bool isValid() const
+	bool isValid() const override
 	{
 		return true;
 	}
 
-	QStringRef check(const QString& string, int start_at) const
+	WordRef check(const QString& string, int start_at) const override
 	{
 		Q_UNUSED(string);
 		Q_UNUSED(start_at);
-		return QStringRef();
+		return WordRef();
 	}
 
-	QStringList suggestions(const QString& word) const
+	QStringList suggestions(const QString& word) const override
 	{
 		Q_UNUSED(word);
 		return QStringList();
 	}
 
-	void addToPersonal(const QString& word)
+	void addToPersonal(const QString& word) override
 	{
 		Q_UNUSED(word);
 	}
 
-	void addToSession(const QStringList& words)
+	void addToSession(const QStringList& words) override
 	{
 		Q_UNUSED(words);
 	}
 
-	void removeFromSession(const QStringList& words)
+	void removeFromSession(const QStringList& words) override
 	{
 		Q_UNUSED(words);
 	}
@@ -122,10 +106,10 @@ QStringList DictionaryManager::availableDictionaries() const
 
 QString DictionaryManager::availableDictionary(const QString& language) const
 {
-	QStringList languages = availableDictionaries();
+	const QStringList languages = availableDictionaries();
 	if (!languages.isEmpty() && !languages.contains(language)) {
-		int close = languages.indexOf(QRegExp(language.left(2) + ".*"));
-		return (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.first());
+		const int close = languages.indexOf(QRegularExpression(language.left(2) + ".*"));
+		return (close != -1) ? languages.at(close) : (languages.contains("en_US") ? "en_US" : languages.constFirst());
 	} else {
 		return language;
 	}
@@ -151,10 +135,10 @@ void DictionaryManager::addProviders()
 	bool has_hunspell = false;
 	bool has_voikko = false;
 
-	for (AbstractDictionaryProvider* provider : m_providers) {
-		if (dynamic_cast<DictionaryProviderHunspell*>(provider) != NULL) {
+	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
+		if (dynamic_cast<DictionaryProviderHunspell*>(provider)) {
 			has_hunspell = true;
-		} else if (dynamic_cast<DictionaryProviderVoikko*>(provider) != NULL) {
+		} else if (dynamic_cast<DictionaryProviderVoikko*>(provider)) {
 			has_voikko = true;
 		}
 	}
@@ -168,8 +152,8 @@ void DictionaryManager::addProviders()
 #else
 	bool has_nsspellchecker = false;
 
-	for (AbstractDictionaryProvider* provider : m_providers) {
-		if (dynamic_cast<DictionaryProviderNSSpellChecker*>(provider) != NULL) {
+	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
+		if (dynamic_cast<DictionaryProviderNSSpellChecker*>(provider)) {
 			has_nsspellchecker = true;
 		}
 	}
@@ -189,10 +173,10 @@ DictionaryRef DictionaryManager::requestDictionary(const QString& language)
 		if (!m_default_dictionary) {
 			m_default_dictionary = *requestDictionaryData(m_default_language);
 		}
-		return &m_default_dictionary;
+		return DictionaryRef(&m_default_dictionary);
 	} else {
 		// Fetch specific dictionary
-		return requestDictionaryData(language);
+		return DictionaryRef(requestDictionaryData(language));
 	}
 }
 
@@ -208,31 +192,31 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 	m_default_dictionary = *requestDictionaryData(m_default_language);
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
 
 void DictionaryManager::setIgnoreNumbers(bool ignore)
 {
-	for (AbstractDictionaryProvider* provider : m_providers) {
+	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
 		provider->setIgnoreNumbers(ignore);
 	}
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
 
 void DictionaryManager::setIgnoreUppercase(bool ignore)
 {
-	for (AbstractDictionaryProvider* provider : m_providers) {
+	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
 		provider->setIgnoreUppercase(ignore);
 	}
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -259,13 +243,13 @@ void DictionaryManager::setPersonal(const QStringList& words)
 {
 	// Check if new
 	QStringList personal = SmartQuotes::revert(words);
-	std::sort(personal.begin(), personal.end(), compareWords);
+	std::sort(personal.begin(), personal.end(), localeAwareSort);
 	if (personal == m_personal) {
 		return;
 	}
 
 	// Remove current personal dictionary
-	for (AbstractDictionary* dictionary : m_dictionaries) {
+	for (AbstractDictionary* dictionary : qAsConst(m_dictionaries)) {
 		dictionary->removeFromSession(m_personal);
 	}
 
@@ -274,19 +258,18 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
-		stream.setCodec("UTF-8");
-		for (const QString& word : m_personal) {
+		for (const QString& word : qAsConst(m_personal)) {
 			stream << word << "\n";
 		}
 	}
 
 	// Add personal dictionary
-	for (AbstractDictionary* dictionary : m_dictionaries) {
+	for (AbstractDictionary* dictionary : qAsConst(m_dictionaries)) {
 		dictionary->addToSession(m_personal);
 	}
 
 	// Re-check documents
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -299,11 +282,10 @@ DictionaryManager::DictionaryManager()
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
-		stream.setCodec("UTF-8");
 		while (!stream.atEnd()) {
 			m_personal.append(stream.readLine());
 		}
-		std::sort(m_personal.begin(), m_personal.end(), compareWords);
+		std::sort(m_personal.begin(), m_personal.end(), localeAwareSort);
 	}
 }
 
@@ -311,7 +293,7 @@ DictionaryManager::DictionaryManager()
 
 DictionaryManager::~DictionaryManager()
 {
-	for (AbstractDictionary* dictionary : m_dictionaries) {
+	for (AbstractDictionary* dictionary : qAsConst(m_dictionaries)) {
 		delete dictionary;
 	}
 	m_dictionaries.clear();
@@ -328,7 +310,7 @@ void DictionaryManager::addProvider(AbstractDictionaryProvider* provider)
 		m_providers.append(provider);
 	} else {
 		delete provider;
-		provider = 0;
+		provider = nullptr;
 	}
 }
 
@@ -337,14 +319,14 @@ void DictionaryManager::addProvider(AbstractDictionaryProvider* provider)
 AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& language)
 {
 	if (!m_dictionaries.contains(language)) {
-		AbstractDictionary* dictionary = 0;
-		for (AbstractDictionaryProvider* provider : m_providers) {
+		AbstractDictionary* dictionary = nullptr;
+		for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
 			dictionary = provider->requestDictionary(language);
 			if (dictionary && dictionary->isValid()) {
 				break;
 			} else {
 				delete dictionary;
-				dictionary = 0;
+				dictionary = nullptr;
 			}
 		}
 

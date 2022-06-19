@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2022 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "window.h"
 
@@ -47,6 +34,7 @@
 #include "utils.h"
 
 #include <QAction>
+#include <QActionGroup>
 #include <QApplication>
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -54,6 +42,7 @@
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
+#include <QLocale>
 #include <QMenu>
 #include <QMenuBar>
 #include <QMessageBox>
@@ -74,25 +63,27 @@
 
 namespace
 {
-	QKeySequence keyBinding(const QKeySequence& shortcut, const QKeySequence& back)
-	{
-		if (!shortcut.isEmpty()) {
-			return shortcut;
-		} else {
-			return back;
-		}
+
+QKeySequence keyBinding(const QKeySequence& shortcut, const QKeySequence& back)
+{
+	if (!shortcut.isEmpty()) {
+		return shortcut;
+	} else {
+		return back;
 	}
+}
+
 }
 
 //-----------------------------------------------------------------------------
 
-Window::Window(const QStringList& command_line_files) :
-	m_toolbar(0),
-	m_loading(false),
-	m_key_sound(0),
-	m_enter_key_sound(0),
-	m_fullscreen(true),
-	m_save_positions(true)
+Window::Window(const QStringList& command_line_files)
+	: m_toolbar(nullptr)
+	, m_loading(false)
+	, m_key_sound(nullptr)
+	, m_enter_key_sound(nullptr)
+	, m_fullscreen(true)
+	, m_save_positions(true)
 {
 	setAcceptDrops(true);
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -110,9 +101,7 @@ Window::Window(const QStringList& command_line_files) :
 		QIcon::setThemeName("Hicolor");
 		setIconSize(QSize(22,22));
 	}
-#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
 	QIcon::setFallbackThemeName("hicolor");
-#endif
 #endif
 
 	// Create actions manager
@@ -133,7 +122,7 @@ Window::Window(const QStringList& command_line_files) :
 
 	// Set up watcher for documents
 	m_document_watcher = new DocumentWatcher(this);
-	connect(m_document_watcher, &DocumentWatcher::closeDocument, this, QOverload<Document*>::of(&Window::closeDocument));
+	connect(m_document_watcher, &DocumentWatcher::closeDocument, this, qOverload<const Document*>(&Window::closeDocument));
 	connect(m_document_watcher, &DocumentWatcher::showDocument, this, &Window::showDocument);
 
 	// Set up thread for caching documents
@@ -186,8 +175,8 @@ Window::Window(const QStringList& command_line_files) :
 	m_clock_timer->setInterval(60000);
 	connect(m_clock_timer, &QTimer::timeout, this, &Window::updateClock);
 	connect(m_clock_timer, &QTimer::timeout, m_timers, &TimerManager::saveTimers);
-	int delay = (60 - QTime::currentTime().second()) * 1000;
-	QTimer::singleShot(delay, m_clock_timer, QOverload<>::of(&QTimer::start));
+	const int delay = (60 - QTime::currentTime().second()) * 1000;
+	QTimer::singleShot(delay, m_clock_timer, qOverload<>(&QTimer::start));
 	QTimer::singleShot(delay, this, &Window::updateClock);
 
 	// Set up tabs
@@ -225,21 +214,21 @@ Window::Window(const QStringList& command_line_files) :
 	ActionManager::instance()->addAction("SwitchPreviousDocument", action);
 
 	action = new QAction(tr("Switch to First Document"), this);
-	action->setShortcut(Qt::CTRL + Qt::Key_1);
+	action->setShortcut(Qt::CTRL | Qt::Key_1);
 	connect(action, &QAction::triggered, this, &Window::firstDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchFirstDocument", action);
 
 	action = new QAction(tr("Switch to Last Document"), this);
-	action->setShortcut(Qt::CTRL + Qt::Key_0);
+	action->setShortcut(Qt::CTRL | Qt::Key_0);
 	connect(action, &QAction::triggered, this, &Window::lastDocument);
 	addAction(action);
 	ActionManager::instance()->addAction("SwitchLastDocument", action);
 
-	for (int i = 2; i < 10 ; ++i) {
+	for (int i = 2; i < 10; ++i) {
 		action = new QAction(tr("Switch to Document %1").arg(i), this);
-		action->setShortcut(Qt::CTRL + Qt::Key_0 + i);
-		connect(action, &QAction::triggered, [=] { m_tabs->setCurrentIndex(i - 1); });
+		action->setShortcut(QKeySequence(Qt::CTRL | (Qt::Key_0 + i)));
+		connect(action, &QAction::triggered, this, [this, i] { m_tabs->setCurrentIndex(i - 1); });
 		addAction(action);
 		ActionManager::instance()->addAction(QString("SwitchDocument%1").arg(i), action);
 	}
@@ -303,7 +292,7 @@ Window::Window(const QStringList& command_line_files) :
 	Theme::copyBackgrounds();
 	{
 		// Force a reload of previews
-		ThemeManager manager(settings);
+		const ThemeManager manager(settings);
 	}
 
 	// Update margin
@@ -328,8 +317,8 @@ Window::Window(const QStringList& command_line_files) :
 		for (int i = 0, count = files.count(); i < count; ++i) {
 			if (!files.at(i).isEmpty()) {
 				// Ignore empty cache files
-				QFileInfo info(datafiles.at(i));
-				if (!info.exists() || !info.size()) {
+				const QFileInfo info(datafiles.at(i));
+				if (!info.exists() || !info.size() || compareFiles(files[i], datafiles[i])) {
 					datafiles[i] = files[i];
 					continue;
 				}
@@ -343,7 +332,7 @@ Window::Window(const QStringList& command_line_files) :
 
 		// Ask if they want to use cached files
 		if (!filenames.isEmpty()) {
-			m_load_screen->setText("");
+			m_load_screen->setText(QString());
 			QMessageBox mbox(window());
 			mbox.setWindowTitle(tr("Warning"));
 			mbox.setText(tr("FocusWriter was not shut down cleanly."));
@@ -389,20 +378,21 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	m_documents->setFooterVisible(false);
 
 	// Skip loading files of unsupported formats
-	static const QStringList suffixes = QStringList()
-		<< "abw" << "awt" << "zabw" << "doc" << "dot" << "docm" << "dotx" << "dotm" << "kwd" << "ott" << "wpd"
-		<< "bmp" << "dds" << "gif" << "icns" << "ico" << "jng" << "jp2" << "jpg" << "jpeg" << "jps" << "mng" << "png" << "tga" << "tif" << "tiff" << "xcf"
-		<< "aac" << "aif" << "aifc" << "aiff" << "asf" << "au" << "flac" << "mid" << "midi" << "mod" << "mp2" << "mp3" << "m4a" << "ogg" << "s3m" << "snd" << "spx" << "wav" << "wma"
-		<< "avi" << "m1v" << "m2ts" << "m4v" << "mkv" << "mov" << "mp4" << "mp4v" << "mpa" << "mpe" << "mpg" << "mpeg" << "mpv2" << "wm" << "wmv";
+	static const QStringList suffixes{
+		"abw", "awt", "zabw", "doc", "dot", "docm", "dotx", "dotm", "gdoc", "kwd", "ott", "wpd",
+		"bmp", "dds", "gif", "icns", "ico", "jng", "jp2", "jpg", "jpeg", "jps", "mng", "png", "tga", "tif", "tiff", "xcf",
+		"aac", "aif", "aifc", "aiff", "asf", "au", "flac", "mid", "midi", "mod", "mp2", "mp3", "m4a", "ogg", "s3m", "snd", "spx", "wav", "wma",
+		"avi", "m1v", "m2ts", "m4v", "mkv", "mov", "mp4", "mp4v", "mpa", "mpe", "mpg", "mpeg", "mpv2", "wm", "wmv"
+	};
 	QList<int> skip;
-	for (int i = 0; i < files.count(); ++i) {
+	for (int i = 0, count = files.count(); i < count; ++i) {
 		if (suffixes.contains(QFileInfo(files.at(i)).suffix().toLower())) {
 			skip += i;
 		}
 	}
 	if (!skip.isEmpty()) {
 		QStringList skipped;
-		for (int i : skip) {
+		for (int i : qAsConst(skip)) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
 		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Some files were unsupported and could not be opened."), skipped, true));
@@ -411,7 +401,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	// Show load screen if switching sessions or opening more than one file
 	show_load = show_load || ((files.count() > 1) && (files.count() > skip.count()));
 	if (show_load) {
-		m_load_screen->setText("");
+		m_load_screen->setText(QString());
 		setCursor(Qt::WaitCursor);
 	}
 
@@ -431,9 +421,9 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	QStringList errors;
 	QStringList readonly;
 	int open_files = m_documents->count();
-	for (int i = 0; i < files.count(); ++i) {
+	for (int i = 0, count = files.count(); i < count; ++i) {
 		// Skip file known to be unsupported
-		if (!skip.isEmpty() && (skip.first() == i)) {
+		if (!skip.isEmpty() && (skip.constFirst() == i)) {
 			skip.removeFirst();
 			continue;
 		// Attempt to load file or datafile
@@ -442,7 +432,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 			missing.append(QDir::toNativeSeparators(files.at(i)));
 		} else if (!files.at(i).isEmpty() && (m_documents->currentDocument()->untitledIndex() > 0)) {
 			// Track if unable to read file
-			int index = m_documents->currentIndex();
+			const int index = m_documents->currentIndex();
 			errors.append(QDir::toNativeSeparators(files.at(i)));
 			closeDocument(index, true);
 		} else if (m_documents->currentDocument()->isReadOnly() && (m_documents->count() > open_files)) {
@@ -487,7 +477,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 
 	// Open any files queued during load
 	if (!m_queued_documents.isEmpty()) {
-		QStringList queued = m_queued_documents;
+		const QStringList queued = m_queued_documents;
 		m_queued_documents.clear();
 		addDocuments(queued, queued);
 	}
@@ -500,7 +490,8 @@ void Window::addDocuments(QDropEvent* event)
 {
 	if (event->mimeData()->hasUrls()) {
 		QStringList files;
-		for (const QUrl& url : event->mimeData()->urls()) {
+		const QList<QUrl> urls = event->mimeData()->urls();
+		for (const QUrl& url : urls) {
 			files.append(url.toLocalFile());
 		}
 		queueDocuments(files);
@@ -518,8 +509,7 @@ bool Window::closeDocuments(QSettings* session)
 	}
 
 	// Close files
-	int count = m_documents->count();
-	for (int i = 0; i < count; ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		closeDocument(0, true);
 	}
 
@@ -535,10 +525,10 @@ bool Window::saveDocuments(QSettings* session)
 	}
 
 	// Save files
-	int active = m_tabs->currentIndex();
+	const int active = m_tabs->currentIndex();
 	QStringList files;
 	QStringList positions;
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_tabs->setCurrentIndex(i);
 		if (!saveDocument(i)) {
 			m_tabs->setCurrentIndex(active);
@@ -546,7 +536,7 @@ bool Window::saveDocuments(QSettings* session)
 		}
 
 		Document* document = m_documents->document(i);
-		QString filename = document->filename();
+		const QString filename = document->filename();
 		if (!filename.isEmpty()) {
 			files.append(filename);
 			positions.append(QString::number(document->text()->textCursor().position()));
@@ -565,7 +555,7 @@ bool Window::saveDocuments(QSettings* session)
 
 void Window::addDocuments(const QString& documents)
 {
-	QStringList files = documents.split(QLatin1String("\n"), QString::SkipEmptyParts);
+	const QStringList files = documents.split(QLatin1String("\n"), Qt::SkipEmptyParts);
 	if (!files.isEmpty()) {
 		queueDocuments(files);
 	}
@@ -619,8 +609,7 @@ void Window::closeEvent(QCloseEvent* event)
 
 	// Close documents but keep them cached
 	m_documents->autoCache();
-	int count = m_documents->count();
-	for (int i = 0; i < count; ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_documents->removeDocument(0);
 	}
 
@@ -635,7 +624,7 @@ void Window::closeEvent(QCloseEvent* event)
 	m_document_cache_thread->quit();
 	m_document_cache_thread->wait();
 	delete m_document_cache;
-	m_document_cache = 0;
+	m_document_cache = nullptr;
 
 	QMainWindow::closeEvent(event);
 }
@@ -644,7 +633,7 @@ void Window::closeEvent(QCloseEvent* event)
 
 void Window::leaveEvent(QEvent* event)
 {
-	if ((qApp->activePopupWidget() == 0) && !m_fullscreen) {
+	if (!qApp->activePopupWidget() && !m_fullscreen) {
 		hideInterface();
 	}
 	QMainWindow::leaveEvent(event);
@@ -682,13 +671,13 @@ void Window::newDocument()
 void Window::openDocument()
 {
 	QSettings settings;
-	QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-	QString path = settings.value("Save/Location", default_path).toString();
+	const QString default_path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+	const QString path = settings.value("Save/Location", default_path).toString();
 
-	QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
+	const QStringList filenames = QFileDialog::getOpenFileNames(window(), tr("Open File"), path, FormatManager::filters().join(";;"));
 	if (!filenames.isEmpty()) {
 		addDocuments(filenames, filenames);
-		settings.setValue("Save/Location", QFileInfo(filenames.last()).absolutePath());
+		settings.setValue("Save/Location", QFileInfo(filenames.constLast()).absolutePath());
 	}
 }
 
@@ -705,8 +694,8 @@ void Window::renameDocument()
 
 void Window::saveAllDocuments()
 {
-	int index = m_tabs->currentIndex();
-	for (int i = 0; i < m_documents->count(); ++i) {
+	const int index = m_tabs->currentIndex();
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		Document* document = m_documents->document(i);
 		if (!document->filename().isEmpty()) {
 			document->save();
@@ -722,7 +711,7 @@ void Window::saveAllDocuments()
 
 void Window::closeDocument()
 {
-	int index = m_documents->currentIndex();
+	const int index = m_documents->currentIndex();
 	if (!saveDocument(index)) {
 		return;
 	}
@@ -731,9 +720,9 @@ void Window::closeDocument()
 
 //-----------------------------------------------------------------------------
 
-void Window::closeDocument(Document* document)
+void Window::closeDocument(const Document* document)
 {
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		if (m_documents->document(i) == document) {
 			return closeDocument(i);
 		}
@@ -742,9 +731,9 @@ void Window::closeDocument(Document* document)
 
 //-----------------------------------------------------------------------------
 
-void Window::showDocument(Document* document)
+void Window::showDocument(const Document* document)
 {
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		if (m_documents->document(i) == document) {
 			m_tabs->setCurrentIndex(i);
 			break;
@@ -872,7 +861,7 @@ void Window::aboutClicked()
 		"<p align='center'>%6<br/><small>%7</small></p>")
 		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
 			tr("A simple fullscreen word processor"),
-			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2020"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2022"),
 			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
 			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
 			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
@@ -923,14 +912,16 @@ void Window::tabMoved(int from, int to)
 
 void Window::updateClock()
 {
-	m_clock_label->setText(QTime::currentTime().toString(Qt::DefaultLocaleShortDate));
+	// Store clock format as changing locales already requires a program restart
+	static const QString format = QLocale().timeFormat(QLocale::ShortFormat).simplified();
+	m_clock_label->setText(QTime::currentTime().toString(format));
 }
 
 //-----------------------------------------------------------------------------
 
 void Window::updateDetails()
 {
-	Document* document = m_documents->currentDocument();
+	const Document* document = m_documents->currentDocument();
 	m_character_label->setText(tr("Characters: %L1 / %L2").arg(document->characterCount()).arg(document->characterAndSpaceCount()));
 	m_page_label->setText(tr("Pages: %L1").arg(document->pageCount()));
 	m_paragraph_label->setText(tr("Paragraphs: %L1").arg(document->paragraphCount()));
@@ -941,14 +932,14 @@ void Window::updateDetails()
 
 void Window::updateFormatActions()
 {
-	Document* document = m_documents->currentDocument();
+	const Document* document = m_documents->currentDocument();
 	if (!document) {
 		return;
 	}
 
 	m_actions["FormatIndentDecrease"]->setEnabled(!document->isReadOnly() && document->text()->textCursor().blockFormat().indent() > 0);
 
-	QTextCharFormat format = document->text()->currentCharFormat();
+	const QTextCharFormat format = document->text()->currentCharFormat();
 	m_actions["FormatBold"]->setChecked(format.fontWeight() == QFont::Bold);
 	m_actions["FormatItalic"]->setChecked(format.fontItalic());
 	m_actions["FormatStrikeOut"]->setChecked(format.fontStrikeOut());
@@ -961,12 +952,12 @@ void Window::updateFormatActions()
 
 void Window::updateFormatAlignmentActions()
 {
-	Document* document = m_documents->currentDocument();
+	const Document* document = m_documents->currentDocument();
 	if (!document) {
 		return;
 	}
 
-	QTextBlockFormat format = document->text()->textCursor().blockFormat();
+	const QTextBlockFormat format = document->text()->textCursor().blockFormat();
 
 	if (format.layoutDirection() == Qt::LeftToRight) {
 		m_actions["FormatDirectionLTR"]->setChecked(true);
@@ -976,7 +967,7 @@ void Window::updateFormatAlignmentActions()
 		m_actions[QApplication::isLeftToRight() ? "FormatDirectionLTR" : "FormatDirectionRTL"]->setChecked(true);
 	}
 
-	Qt::Alignment alignment = document->text()->alignment();
+	const Qt::Alignment alignment = document->text()->alignment();
 	if (alignment & Qt::AlignLeft) {
 		m_actions["FormatAlignLeft"]->setChecked(true);
 	} else if (alignment & Qt::AlignRight) {
@@ -987,7 +978,7 @@ void Window::updateFormatAlignmentActions()
 		m_actions["FormatAlignJustify"]->setChecked(true);
 	}
 
-	int heading = format.property(QTextFormat::UserProperty).toInt();
+	const int heading = format.property(QTextFormat::UserProperty).toInt();
 	m_headings_actions->actions().at(heading)->setChecked(true);
 }
 
@@ -997,7 +988,7 @@ void Window::updateSave()
 {
 	m_actions["Save"]->setEnabled(m_documents->currentDocument()->isModified());
 	m_actions["Rename"]->setDisabled(m_documents->currentDocument()->isReadOnly() || m_documents->currentDocument()->filename().isEmpty());
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		updateTab(i);
 	}
 }
@@ -1006,11 +997,11 @@ void Window::updateSave()
 
 bool Window::addDocument(const QString& file, const QString& datafile, int position)
 {
-	QFileInfo info(file);
+	const QFileInfo info(file);
 	if (!file.isEmpty()) {
 		// Check if already open
-		QString canonical_filename = info.canonicalFilePath();
-		for (int i = 0; i < m_documents->count(); ++i) {
+		const QString canonical_filename = info.canonicalFilePath();
+		for (int i = 0, count = m_documents->count(); i < count; ++i) {
 			if (QFileInfo(m_documents->document(i)->filename()).canonicalFilePath() == canonical_filename) {
 				m_tabs->setCurrentIndex(i);
 				return true;
@@ -1024,13 +1015,12 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	}
 
 	// Show filename in load screen
-	bool show_load = false;
-	show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
+	const bool show_load = !file.isEmpty() && !m_load_screen->isVisible() && (info.size() > 100000);
 	if (m_load_screen->isVisible() || show_load) {
 		if (!file.isEmpty()) {
 			m_load_screen->setText(tr("Opening %1").arg(QDir::toNativeSeparators(file)));
 		} else {
-			m_load_screen->setText("");
+			m_load_screen->setText(QString());
 		}
 	}
 
@@ -1073,7 +1063,7 @@ bool Window::addDocument(const QString& file, const QString& datafile, int posit
 	connect(document, &Document::modificationChanged, this, &Window::updateSave);
 
 	// Add tab for document
-	int index = m_tabs->addTab(tr("Untitled"));
+	const int index = m_tabs->addTab(tr("Untitled"));
 	updateTab(index);
 	m_tabs->setCurrentIndex(index);
 
@@ -1161,7 +1151,7 @@ void Window::loadPreferences()
 				false));
 			delete m_key_sound;
 			delete m_enter_key_sound;
-			m_key_sound = m_enter_key_sound = 0;
+			m_key_sound = m_enter_key_sound = nullptr;
 			Preferences::instance().setTypewriterSounds(false);
 		}
 	}
@@ -1190,8 +1180,8 @@ void Window::loadPreferences()
 	m_toolbar->clear();
 	m_toolbar->hide();
 	m_toolbar->setToolButtonStyle(Qt::ToolButtonStyle(Preferences::instance().toolbarStyle()));
-	QStringList actions = Preferences::instance().toolbarActions();
-	for (const QString action : actions) {
+	const QStringList actions = Preferences::instance().toolbarActions();
+	for (const QString& action : actions) {
 		if (action == "|") {
 			m_toolbar->addSeparator();
 		} else if (!action.startsWith("^")) {
@@ -1203,7 +1193,7 @@ void Window::loadPreferences()
 
 	m_documents->setHeaderVisible(Preferences::instance().alwaysShowHeader());
 	m_documents->setFooterVisible(Preferences::instance().alwaysShowFooter());
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_documents->document(i)->loadPreferences();
 	}
 	if (m_documents->count() > 0) {
@@ -1221,7 +1211,7 @@ void Window::hideInterface()
 	m_documents->setFooterVisible(false);
 	m_documents->setHeaderVisible(false);
 	m_documents->setScenesVisible(false);
-	for (int i = 0; i < m_documents->count(); ++i) {
+	for (int i = 0, count = m_documents->count(); i < count; ++i) {
 		m_documents->document(i)->setScrollBarVisible(false);
 	}
 }
@@ -1231,8 +1221,8 @@ void Window::hideInterface()
 void Window::updateMargin()
 {
 	QApplication::processEvents();
-	int header = centralWidget()->mapToParent(QPoint(0,0)).y();
-	int footer = m_footer->sizeHint().height();
+	const int header = centralWidget()->mapToParent(QPoint(0,0)).y();
+	const int footer = m_footer->sizeHint().height();
 	m_documents->setMargins(footer, header);
 }
 
@@ -1240,9 +1230,9 @@ void Window::updateMargin()
 
 void Window::updateTab(int index)
 {
-	Document* document = m_documents->document(index);
-	QString name = document->title();
-	m_tabs->setTabText(index, name + (document->isModified() ? "*" : ""));
+	const Document* document = m_documents->document(index);
+	const QString name = document->title();
+	m_tabs->setTabText(index, name + (document->isModified() ? "*" : QString()));
 	m_tabs->setTabToolTip(index, QDir::toNativeSeparators(document->filename()));
 	m_documents->updateDocument(index);
 	if (document == m_documents->currentDocument()) {
@@ -1256,9 +1246,9 @@ void Window::updateTab(int index)
 
 void Window::updateWriteState(int index)
 {
-	Document* document = m_documents->document(index);
+	const Document* document = m_documents->document(index);
 
-	bool writable = !document->isReadOnly();
+	const bool writable = !document->isReadOnly();
 	m_actions["Paste"]->setEnabled(writable);
 	m_actions["PasteUnformatted"]->setEnabled(writable);
 	m_actions["Replace"]->setEnabled(writable);
@@ -1276,7 +1266,7 @@ void Window::updateWriteState(int index)
 		m_documents->symbols()->setInsertEnabled(writable);
 	}
 
-	for (QAction* action : m_format_actions) {
+	for (QAction* action : qAsConst(m_format_actions)) {
 		action->setEnabled(writable);
 	}
 	m_actions["FormatIndentDecrease"]->setEnabled(writable && document->text()->textCursor().blockFormat().indent() > 0);
@@ -1308,7 +1298,7 @@ void Window::initMenus()
 	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, &Stack::print, QKeySequence::Print);
 	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
 	file_menu->addSeparator();
-	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, QOverload<>::of(&Window::closeDocument), QKeySequence::Close);
+	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument), QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, &Window::close, keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
 	m_actions["Quit"]->setMenuRole(QAction::QuitRole);
 
@@ -1350,7 +1340,7 @@ void Window::initMenus()
 		headings[i]->setCheckable(true);
 		headings[i]->setData(i);
 		m_headings_actions->addAction(headings[i]);
-		connect(headings[i], &QAction::triggered, [=] { m_documents->setBlockHeading(i); });
+		connect(headings[i], &QAction::triggered, this, [this, i] { m_documents->setBlockHeading(i); });
 	}
 	for (int i = 1; i < 7; ++i) {
 		ActionManager::instance()->addAction(QString("FormatBlockHeading%1").arg(i), headings[i]);
@@ -1469,7 +1459,7 @@ void Window::initMenus()
 	focus_mode[3]->setStatusTip(tr("Focus Paragraph"));
 	m_focus_actions = new QActionGroup(this);
 	for (int i = 0; i < 4; ++i) {
-		focus_mode[i]->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + (Qt::Key_0 + i)));
+		focus_mode[i]->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | (Qt::Key_0 + i)));
 		focus_mode[i]->setCheckable(true);
 		focus_mode[i]->setData(i);
 		m_focus_actions->addAction(focus_mode[i]);

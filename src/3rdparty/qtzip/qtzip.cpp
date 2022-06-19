@@ -1,42 +1,5 @@
-/****************************************************************************
-**
-** Copyright (C) 2016 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the QtGui module of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:LGPL$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 3 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPL3 included in the
-** packaging of this file. Please review the following information to
-** ensure the GNU Lesser General Public License version 3 requirements
-** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 2.0 or (at your option) the GNU General
-** Public license version 3 or any later version approved by the KDE Free
-** Qt Foundation. The licenses are as published by the Free Software
-** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
-** included in the packaging of this file. Please review the following
-** information to ensure the GNU General Public License requirements will
-** be met: https://www.gnu.org/licenses/gpl-2.0.html and
-** https://www.gnu.org/licenses/gpl-3.0.html.
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
-
+// Copyright (C) 2016 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
 
 #include "qtzipreader.h"
 #include "qtzipwriter.h"
@@ -45,6 +8,8 @@
 #include <QtDebug>
 #include <QtEndian>
 #include <QtGlobal>
+
+#include <memory>
 
 #include <zlib.h>
 
@@ -137,8 +102,8 @@ static int inflate(Bytef *dest, ulong *destLen, const Bytef *source, ulong sourc
     if ((uLong)stream.avail_out != *destLen)
         return Z_BUF_ERROR;
 
-    stream.zalloc = (alloc_func)0;
-    stream.zfree = (free_func)0;
+    stream.zalloc = (alloc_func)nullptr;
+    stream.zfree = (free_func)nullptr;
 
     err = inflateInit2(&stream, -MAX_WBITS);
     if (err != Z_OK)
@@ -168,9 +133,9 @@ static int deflate (Bytef *dest, ulong *destLen, const Bytef *source, ulong sour
     stream.avail_out = (uInt)*destLen;
     if ((uLong)stream.avail_out != *destLen) return Z_BUF_ERROR;
 
-    stream.zalloc = (alloc_func)0;
-    stream.zfree = (free_func)0;
-    stream.opaque = (voidpf)0;
+    stream.zalloc = (alloc_func)nullptr;
+    stream.zfree = (free_func)nullptr;
+    stream.opaque = (voidpf)nullptr;
 
     err = deflateInit2(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, -MAX_WBITS, 8, Z_DEFAULT_STRATEGY);
     if (err != Z_OK) return err;
@@ -385,7 +350,6 @@ struct CentralFileHeader
     uchar internal_file_attributes[2];
     uchar external_file_attributes[4];
     uchar offset_local_header[4];
-    LocalFileHeader toLocalHeader() const;
 };
 
 struct EndOfDirectory
@@ -429,7 +393,7 @@ public:
     QIODevice *device;
     bool ownDevice;
     bool dirtyFileTree;
-    QVector<FileHeader> fileHeaders;
+    QList<FileHeader> fileHeaders;
     QByteArray comment;
     uint start_of_directory;
 };
@@ -491,11 +455,13 @@ QtZipReader::FileInfo QtZipPrivate::fillFileInfo(int index) const
 
     // fix the file path, if broken (convert separators, eat leading and trailing ones)
     fileInfo.filePath = QDir::fromNativeSeparators(fileInfo.filePath);
-    while (!fileInfo.filePath.isEmpty() && (fileInfo.filePath.at(0) == QLatin1Char('.') || fileInfo.filePath.at(0) == QLatin1Char('/')))
-        fileInfo.filePath = fileInfo.filePath.mid(1);
-    while (!fileInfo.filePath.isEmpty() && fileInfo.filePath.at(fileInfo.filePath.size() - 1) == QLatin1Char('/'))
-        fileInfo.filePath.chop(1);
+    QStringView filePathRef(fileInfo.filePath);
+    while (filePathRef.startsWith(u'.') || filePathRef.startsWith(u'/'))
+        filePathRef = filePathRef.mid(1);
+    while (filePathRef.endsWith(u'/'))
+        filePathRef.chop(1);
 
+    fileInfo.filePath = filePathRef.toString();
     return fileInfo;
 }
 
@@ -532,19 +498,19 @@ public:
     void addEntry(EntryType type, const QString &fileName, const QByteArray &contents);
 };
 
-LocalFileHeader CentralFileHeader::toLocalHeader() const
+static LocalFileHeader toLocalHeader(const CentralFileHeader &ch)
 {
     LocalFileHeader h;
     writeUInt(h.signature, 0x04034b50);
-    copyUShort(h.version_needed, version_needed);
-    copyUShort(h.general_purpose_bits, general_purpose_bits);
-    copyUShort(h.compression_method, compression_method);
-    copyUInt(h.last_mod_file, last_mod_file);
-    copyUInt(h.crc_32, crc_32);
-    copyUInt(h.compressed_size, compressed_size);
-    copyUInt(h.uncompressed_size, uncompressed_size);
-    copyUShort(h.file_name_length, file_name_length);
-    copyUShort(h.extra_field_length, extra_field_length);
+    copyUShort(h.version_needed, ch.version_needed);
+    copyUShort(h.general_purpose_bits, ch.general_purpose_bits);
+    copyUShort(h.compression_method, ch.compression_method);
+    copyUInt(h.last_mod_file, ch.last_mod_file);
+    copyUInt(h.crc_32, ch.crc_32);
+    copyUInt(h.compressed_size, ch.compressed_size);
+    copyUInt(h.uncompressed_size, ch.uncompressed_size);
+    copyUShort(h.file_name_length, ch.file_name_length);
+    copyUShort(h.extra_field_length, ch.extra_field_length);
     return h;
 }
 
@@ -697,7 +663,7 @@ void QtZipWriterPrivate::addEntry(EntryType type, const QString &fileName, const
     }
 // TODO add a check if data.length() > contents.length().  Then try to store the original and revert the compression method to be uncompressed
     writeUInt(header.h.compressed_size, data.length());
-    uint crc_32 = ::crc32(0, 0, 0);
+    uint crc_32 = ::crc32(0, nullptr, 0);
     crc_32 = ::crc32(crc_32, (const uchar *)contents.constData(), contents.length());
     writeUInt(header.h.crc_32, crc_32);
 
@@ -742,7 +708,7 @@ void QtZipWriterPrivate::addEntry(EntryType type, const QString &fileName, const
 
     fileHeaders.append(header);
 
-    LocalFileHeader h = header.h.toLocalHeader();
+    LocalFileHeader h = toLocalHeader(header.h);
     device->write((const char *)&h, sizeof(LocalFileHeader));
     device->write(header.file_name);
     device->write(data);
@@ -814,7 +780,7 @@ void QtZipWriterPrivate::addEntry(EntryType type, const QString &fileName, const
 */
 QtZipReader::QtZipReader(const QString &archive, QIODevice::OpenMode mode)
 {
-    QScopedPointer<QFile> f(new QFile(archive));
+    auto f = std::make_unique<QFile>(archive);
     const bool result = f->open(mode);
     QtZipReader::Status status;
     const QFileDevice::FileError error = f->error();
@@ -831,8 +797,8 @@ QtZipReader::QtZipReader(const QString &archive, QIODevice::OpenMode mode)
             status = FileError;
     }
 
-    d = new QtZipReaderPrivate(f.data(), /*ownDevice=*/true);
-    f.take();
+    d = new QtZipReaderPrivate(f.get(), /*ownDevice=*/true);
+    Q_UNUSED(f.release());
     d->status = status;
 }
 
@@ -848,7 +814,7 @@ QtZipReader::QtZipReader(QIODevice *device)
 }
 
 /*!
-    Desctructor
+    Destructor
 */
 QtZipReader::~QtZipReader()
 {
@@ -878,7 +844,7 @@ bool QtZipReader::isReadable() const
 bool QtZipReader::exists() const
 {
     QFile *f = qobject_cast<QFile*> (d->device);
-    if (f == 0)
+    if (f == nullptr)
         return true;
     return f->exists();
 }
@@ -886,10 +852,10 @@ bool QtZipReader::exists() const
 /*!
     Returns the list of files the archive contains.
 */
-QVector<QtZipReader::FileInfo> QtZipReader::fileInfoList() const
+QList<QtZipReader::FileInfo> QtZipReader::fileInfoList() const
 {
     d->scanFiles();
-    QVector<FileInfo> files;
+    QList<FileInfo> files;
     const int numFileHeaders = d->fileHeaders.size();
     files.reserve(numFileHeaders);
     for (int i = 0; i < numFileHeaders; ++i)
@@ -1028,14 +994,34 @@ bool QtZipReader::extractAll(const QString &destinationDir) const
     QDir baseDir(destinationDir);
 
     // create directories first
-    const QVector<FileInfo> allFiles = fileInfoList();
+    const QList<FileInfo> allFiles = fileInfoList();
+    bool foundDirs = false;
+    bool hasDirs = false;
     for (const FileInfo &fi : allFiles) {
         const QString absPath = destinationDir + QDir::separator() + fi.filePath;
         if (fi.isDir) {
+            foundDirs = true;
             if (!baseDir.mkpath(fi.filePath))
                 return false;
             if (!QFile::setPermissions(absPath, fi.permissions))
                 return false;
+        } else if (!hasDirs && fi.filePath.contains(u"/")) {
+            // filePath does not have leading or trailing '/', so if we find
+            // one, than the file path contains directories.
+            hasDirs = true;
+        }
+    }
+
+    // Some zip archives can be broken in the sense that they do not report
+    // separate entries for directories, only for files. In this case we
+    // need to recreate directory structure based on the file paths.
+    if (hasDirs && !foundDirs) {
+        for (const FileInfo &fi : allFiles) {
+            const auto dirPath = fi.filePath.left(fi.filePath.lastIndexOf(u"/"));
+            if (!baseDir.mkpath(dirPath))
+                return false;
+            // We will leave the directory permissions default in this case,
+            // because setting dir permissions based on file is incorrect
         }
     }
 
@@ -1134,7 +1120,7 @@ bool QtZipReader::canRead(QIODevice* device)
 */
 QtZipWriter::QtZipWriter(const QString &fileName, QIODevice::OpenMode mode)
 {
-    QScopedPointer<QFile> f(new QFile(fileName));
+    auto f = std::make_unique<QFile>(fileName);
     QtZipWriter::Status status;
     if (f->open(mode) && f->error() == QFile::NoError)
         status = QtZipWriter::NoError;
@@ -1149,8 +1135,8 @@ QtZipWriter::QtZipWriter(const QString &fileName, QIODevice::OpenMode mode)
             status = QtZipWriter::FileError;
     }
 
-    d = new QtZipWriterPrivate(f.data(), /*ownDevice=*/true);
-    f.take();
+    d = new QtZipWriterPrivate(f.get(), /*ownDevice=*/true);
+    Q_UNUSED(f.release());
     d->status = status;
 }
 
@@ -1193,7 +1179,7 @@ bool QtZipWriter::isWritable() const
 bool QtZipWriter::exists() const
 {
     QFile *f = qobject_cast<QFile*> (d->device);
-    if (f == 0)
+    if (f == nullptr)
         return true;
     return f->exists();
 }
@@ -1323,8 +1309,8 @@ void QtZipWriter::addDirectory(const QString &dirName)
 {
     QString name(QDir::fromNativeSeparators(dirName));
     // separator is mandatory
-    if (!name.endsWith(QLatin1Char('/')))
-        name.append(QLatin1Char('/'));
+    if (!name.endsWith(u'/'))
+        name.append(u'/');
     d->addEntry(QtZipWriterPrivate::Directory, name, QByteArray());
 }
 

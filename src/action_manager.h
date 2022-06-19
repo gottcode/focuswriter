@@ -1,28 +1,16 @@
-/***********************************************************************
- *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
 
-#ifndef ACTION_MANAGER_H
-#define ACTION_MANAGER_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_ACTION_MANAGER_H
+#define FOCUSWRITER_ACTION_MANAGER_H
 
 #include <QHash>
 #include <QKeySequence>
 #include <QObject>
+#include <QStringList>
 class QAction;
 class QShortcut;
 
@@ -38,10 +26,10 @@ class ActionManager : public QObject
 	};
 
 public:
-	ActionManager(QWidget* parent = 0);
+	explicit ActionManager(QWidget* parent = nullptr);
 	~ActionManager();
 
-	QList<QString> actions() const
+	QStringList actions() const
 	{
 		return m_actions.keys();
 	}
@@ -57,10 +45,10 @@ public:
 	}
 
 	QKeySequence shortcut(const QString& name) const;
-	QKeySequence shortcut(quint32 unicode);
+	QKeySequence shortcut(char32_t unicode) const;
 
 	void addAction(const QString& name, QAction* action);
-	void setShortcut(quint32 unicode, const QKeySequence& sequence);
+	void setShortcut(char32_t unicode, const QKeySequence& sequence);
 	void setShortcuts(const QHash<QString, QKeySequence>& shortcuts);
 
 	static ActionManager* instance()
@@ -68,21 +56,21 @@ public:
 		return m_instance;
 	}
 
-signals:
+Q_SIGNALS:
 	void insertText(const QString& text);
 
-private slots:
+private Q_SLOTS:
 	void symbolShortcutActivated();
 
 private:
-	void addShortcut(quint32 unicode, const QKeySequence& sequence);
+	void addShortcut(char32_t unicode, const QKeySequence& sequence);
 
 private:
 	QWidget* m_widget;
 	QHash<QString, Action> m_actions;
-	QHash<quint32, QShortcut*> m_symbol_shortcuts;
-	QHash<QObject*, QString> m_symbol_shortcuts_text;
+	QHash<char32_t, QShortcut*> m_symbol_shortcuts;
+	QHash<const QObject*, QString> m_symbol_shortcuts_text;
 	static ActionManager* m_instance;
 };
 
-#endif
+#endif // FOCUSWRITER_ACTION_MANAGER_H

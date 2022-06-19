@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2013, 2015 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2013-2015 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "format_manager.h"
 
@@ -24,13 +11,11 @@
 #include "rtf_reader.h"
 #include "txt_reader.h"
 
-#include <QStringList>
-
 //-----------------------------------------------------------------------------
 
 FormatReader* FormatManager::createReader(QIODevice* device, const QString& type)
 {
-	FormatReader* reader = 0;
+	FormatReader* reader = nullptr;
 
 	// Try file extension first
 	if (type == "odt" || type == "fodt") {
@@ -86,13 +71,14 @@ QString FormatManager::filter(const QString& type)
 
 QStringList FormatManager::filters(const QString& type)
 {
-	static const QStringList default_filters = QStringList()
-			<< filter("odt")
-			<< filter("fodt")
-			<< filter("docx")
-			<< filter("rtf")
-			<< filter("txt")
-			<< (tr("All Files") + QLatin1String(" (*)"));
+	static const QStringList default_filters{
+		filter("odt"),
+		filter("fodt"),
+		filter("docx"),
+		filter("rtf"),
+		filter("txt"),
+		(tr("All Files") + QLatin1String(" (*)"))
+	};
 
 	QStringList result = default_filters;
 	if (!type.isEmpty()) {
@@ -117,7 +103,7 @@ QStringList FormatManager::filters(const QString& type)
 
 bool FormatManager::isRichText(const QString& filename)
 {
-	QString type = filename.section(QLatin1Char('.'), -1).toLower();
+	const QString type = filename.section(QLatin1Char('.'), -1).toLower();
 	return (type == "odt") || (type == "fodt") || (type == "docx") || (type == "rtf");
 }
 
@@ -125,7 +111,8 @@ bool FormatManager::isRichText(const QString& filename)
 
 QStringList FormatManager::types()
 {
-	return QStringList() << "odt" << "fodt" << "docx" << "rtf" << "txt";
+	static const QStringList types{ "odt", "fodt", "docx", "rtf", "txt" };
+	return types;
 }
 
 //-----------------------------------------------------------------------------

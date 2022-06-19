@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2014 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "stats.h"
 
@@ -26,27 +13,27 @@
 
 //-----------------------------------------------------------------------------
 
-Stats::Stats() :
-	m_valid(false),
-	m_character_count(0),
-	m_letter_count(0),
-	m_page_count(0),
-	m_paragraph_count(0),
-	m_space_count(0),
-	m_word_count(0)
+Stats::Stats()
+	: m_valid(false)
+	, m_character_count(0)
+	, m_letter_count(0)
+	, m_page_count(0)
+	, m_paragraph_count(0)
+	, m_space_count(0)
+	, m_word_count(0)
 {
 }
 
 //-----------------------------------------------------------------------------
 
-Stats::Stats(const Stats& stats) :
-	m_valid(stats.m_valid),
-	m_character_count(stats.m_character_count),
-	m_letter_count(stats.m_letter_count),
-	m_page_count(stats.m_page_count),
-	m_paragraph_count(stats.m_paragraph_count),
-	m_space_count(stats.m_space_count),
-	m_word_count(stats.m_word_count)
+Stats::Stats(const Stats& stats)
+	: m_valid(stats.m_valid)
+	, m_character_count(stats.m_character_count)
+	, m_letter_count(stats.m_letter_count)
+	, m_page_count(stats.m_page_count)
+	, m_paragraph_count(stats.m_paragraph_count)
+	, m_space_count(stats.m_space_count)
+	, m_word_count(stats.m_word_count)
 {
 }
 

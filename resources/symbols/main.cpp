@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2013, 2014, 2016, 2018 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2022 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include <QBuffer>
 #include <QCoreApplication>
@@ -23,6 +10,7 @@
 #include <QDir>
 #include <QFile>
 #include <QHash>
+#include <QList>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -30,39 +18,47 @@
 #include <QStringList>
 #include <QTextStream>
 #include <QUrl>
-#include <QVector>
 
 #include <iostream>
 
 struct Filter
 {
-	Filter(const QByteArray& name_ = QByteArray()) :
-		name(name_), size(0) { }
+	Filter(const QByteArray& name_ = QByteArray())
+		: name(name_)
+		, size(0)
+	{
+	}
 
-	void addRange(quint32 start, quint32 end);
+	void addRange(char32_t start, char32_t end);
 
 	struct Range
 	{
-		Range() :
-			start(0), end(0) { }
+		Range()
+			: start(0)
+			, end(0)
+		{
+		}
 
-		Range(quint32 start_code, quint32 end_code) :
-			start(start_code), end(end_code) { }
+		Range(char32_t start_code, char32_t end_code)
+			: start(start_code)
+			, end(end_code)
+		{
+		}
 
-		quint32 start;
-		quint32 end;
+		char32_t start;
+		char32_t end;
 	};
 
 	QByteArray name;
-	quint32 size;
-	QVector<Range> ranges;
+	char32_t size;
+	QList<Range> ranges;
 };
 
-typedef QVector<Filter> FilterGroup;
+typedef QList<Filter> FilterGroup;
 
-void Filter::addRange(quint32 start, quint32 end)
+void Filter::addRange(char32_t start, char32_t end)
 {
-	if (ranges.isEmpty() || (ranges.last().end != (start - 1))) {
+	if (ranges.isEmpty() || (ranges.constLast().end != (start - 1))) {
 		ranges += Filter::Range(start, end);
 	} else {
 		ranges.last().end = end;
@@ -94,9 +90,9 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 
 	// Download necessary Unicode data files
 	{
-		QScopedPointer<QNetworkAccessManager> manager(new QNetworkAccessManager);
+		const QScopedPointer<QNetworkAccessManager> manager(new QNetworkAccessManager);
 
-		const QStringList filenames{"UnicodeData.txt", "Blocks.txt", "Scripts.txt"};
+		static const QStringList filenames{"UnicodeData.txt", "Blocks.txt", "Scripts.txt"};
 		for (const QString& filename : filenames) {
 			std::cout << "Downloading " << filename.toStdString() << "... " << std::flush;
 			if (QFile::exists(path + "/" + filename)) {
@@ -105,7 +101,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			}
 
 			// Download file
-			QUrl url("http://www.unicode.org/Public/" + unicode_version + "/ucd/" + filename);
+			const QUrl url("http://www.unicode.org/Public/" + unicode_version + "/ucd/" + filename);
 			QNetworkReply* reply = manager->get(QNetworkRequest(url));
 
 			QEventLoop loop;
@@ -126,8 +122,8 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 		}
 	}
 
-	QHash<quint32, QByteArray> names;
-	QVector<FilterGroup> groups;
+	QHash<char32_t, QByteArray> names;
+	QList<FilterGroup> groups;
 
 	// Parse names
 	{
@@ -141,7 +137,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 		QTextStream stream(&file);
 		while (!stream.atEnd()) {
 			const QStringList parts = stream.readLine().split(";");
-			const quint32 code = parts.at(0).toUInt(0, 16);
+			const char32_t code = parts.at(0).toUInt(0, 16);
 			QString name = parts.at(1);
 			if (name.startsWith('<')) {
 				name = parts.at(10);
@@ -181,7 +177,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			const QStringList parts = line.split(";");
 
 			// Find block code point range
-			const QStringList range = parts.at(0).trimmed().split('.', QString::SkipEmptyParts);
+			const QStringList range = parts.at(0).trimmed().split('.', Qt::SkipEmptyParts);
 			if (range.count() != 2) {
 				continue;
 			}
@@ -228,8 +224,8 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			const QStringList parts = line.split(";");
 
 			// Find script code point range
-			quint32 start, end;
-			QStringList range = parts.at(0).trimmed().split('.', QString::SkipEmptyParts);
+			char32_t start, end;
+			const QStringList range = parts.at(0).trimmed().split('.', Qt::SkipEmptyParts);
 			if (range.count() == 1) {
 				start = end = range.at(0).toUInt(0, 16);
 			} else if (range.count() == 2) {
@@ -245,7 +241,7 @@ int downloadAndParse(const QString& unicode_version, QDataStream::Version data_v
 			if (name == "Nko") {
 				name = "N'Ko";
 			}
-			if (scripts.isEmpty() || (scripts.last().name != name)) {
+			if (scripts.isEmpty() || (scripts.constLast().name != name)) {
 				scripts += name;
 			}
 
@@ -293,5 +289,5 @@ int main(int argc, char** argv)
 {
 	QCoreApplication app(argc, argv);
 
-	downloadAndParse("10.0.0", QDataStream::Qt_5_2);
+	downloadAndParse("14.0.0", QDataStream::Qt_5_12);
 }

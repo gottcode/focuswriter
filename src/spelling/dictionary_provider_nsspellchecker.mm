@@ -1,28 +1,15 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "dictionary_provider_nsspellchecker.h"
 
 #include "abstract_dictionary.h"
 #include "dictionary_manager.h"
+#include "word_ref.h"
 
-#include <QStringList>
 #include <QVector>
 
 #import <AppKit/NSSpellChecker.h>
@@ -51,20 +38,20 @@ namespace
 class DictionaryNSSpellChecker : public AbstractDictionary
 {
 public:
-	DictionaryNSSpellChecker(const QString& language);
+	explicit DictionaryNSSpellChecker(const QString& language);
 	~DictionaryNSSpellChecker();
 
-	bool isValid() const
+	bool isValid() const override
 	{
 		return true;
 	}
 
-	QStringRef check(const QString& string, int start_at) const;
-	QStringList suggestions(const QString& word) const;
+	WordRef check(const QString& string, int start_at) const override;
+	QStringList suggestions(const QString& word) const override;
 
-	void addToPersonal(const QString& word);
-	void addToSession(const QStringList& words);
-	void removeFromSession(const QStringList& words);
+	void addToPersonal(const QString& word) override;
+	void addToSession(const QStringList& words) override;
+	void removeFromSession(const QStringList& words) override;
 
 private:
 	NSString* m_language;
@@ -95,13 +82,13 @@ DictionaryNSSpellChecker::~DictionaryNSSpellChecker()
 
 //-----------------------------------------------------------------------------
 
-QStringRef DictionaryNSSpellChecker::check(const QString& string, int start_at) const
+WordRef DictionaryNSSpellChecker::check(const QString& string, int start_at) const
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
 	NSString* nsstring = [NSString stringWithCharacters:reinterpret_cast<const unichar*>(string.unicode()) length:string.length()];
 
-	QStringRef misspelled;
+	WordRef misspelled;
 
 	NSRange range = [[NSSpellChecker sharedSpellChecker] checkSpellingOfString:nsstring
 		startingAt:start_at
@@ -111,7 +98,7 @@ QStringRef DictionaryNSSpellChecker::check(const QString& string, int start_at) 
 		wordCount:NULL];
 
 	if (range.length > 0) {
-		misspelled = QStringRef(&string, range.location, range.length);
+		misspelled = WordRef(range.location, range.length);
 	}
 
 	[pool release];

@@ -1,25 +1,13 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
 
-#ifndef BLOCK_STATS_H
-#define BLOCK_STATS_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
+#ifndef FOCUSWRITER_BLOCK_STATS_H
+#define FOCUSWRITER_BLOCK_STATS_H
+
+#include "word_ref.h"
 class DictionaryRef;
 class SceneModel;
 
@@ -28,7 +16,7 @@ class SceneModel;
 class BlockStats : public QTextBlockUserData
 {
 public:
-	BlockStats(SceneModel* scene_model);
+	explicit BlockStats(SceneModel* scene_model);
 	~BlockStats();
 
 	bool isEmpty() const;
@@ -37,7 +25,7 @@ public:
 	int letterCount() const;
 	int spaceCount() const;
 	int wordCount() const;
-	QVector<QStringRef> misspelled() const;
+	QList<WordRef> misspelled() const;
 
 	enum SpellCheckStatus
 	{
@@ -59,7 +47,7 @@ private:
 	int m_words;
 	bool m_scene;
 	SceneModel* m_scene_model;
-	QVector<QStringRef> m_misspelled;
+	QList<WordRef> m_misspelled;
 	SpellCheckStatus m_checked;
 };
 
@@ -93,7 +81,7 @@ inline int BlockStats::wordCount() const
 	return m_words;
 }
 
-inline QVector<QStringRef> BlockStats::misspelled() const
+inline QList<WordRef> BlockStats::misspelled() const
 {
 	return m_misspelled;
 }
@@ -113,4 +101,4 @@ inline void BlockStats::recheckSpelling()
 	m_checked = CheckSpelling;
 }
 
-#endif
+#endif // FOCUSWRITER_BLOCK_STATS_H

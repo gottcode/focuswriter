@@ -1,36 +1,24 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2016 Graeme Gott <graeme@gottcode.org>
 
-#ifndef DOCUMENT_H
-#define DOCUMENT_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_DOCUMENT_H
+#define FOCUSWRITER_DOCUMENT_H
 
 #include "dictionary_ref.h"
+#include "document_writer.h"
 #include "stats.h"
 class Alert;
 class DailyProgress;
-class DocumentWriter;
 class Highlighter;
 class SceneList;
 class SceneModel;
 class Theme;
 
 #include <QHash>
+#include <QSharedPointer>
 #include <QTextBlockFormat>
 #include <QTime>
 #include <QWidget>
@@ -45,7 +33,7 @@ class Document : public QWidget
 	Q_OBJECT
 
 public:
-	Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent = 0);
+	Document(const QString& filename, DailyProgress* daily_progress, QWidget* parent = nullptr);
 	~Document();
 
 	QString filename() const;
@@ -80,16 +68,16 @@ public:
 	void setScrollBarVisible(bool visible);
 	void setSceneList(SceneList* scene_list);
 
-	virtual bool eventFilter(QObject* watched, QEvent* event);
-	virtual void mouseMoveEvent(QMouseEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
+	void mouseMoveEvent(QMouseEvent* event) override;
 
-public slots:
+public Q_SLOTS:
 	void centerCursor(bool force = false);
 
-signals:
+Q_SIGNALS:
 	void alert(Alert* alert);
-	void replaceCacheFile(Document* document, const QString& file);
-	void writeCacheFile(Document* document, DocumentWriter* writer);
+	void replaceCacheFile(const Document* document, const QString& file);
+	void writeCacheFile(const Document* document, QSharedPointer<DocumentWriter> writer);
 	void changed();
 	void changedName();
 	void loadStarted(const QString& path);
@@ -102,10 +90,10 @@ signals:
 	void alignmentChanged();
 
 protected:
-	virtual void mousePressEvent(QMouseEvent* event);
-	virtual void wheelEvent(QWheelEvent* event);
+	void mousePressEvent(QMouseEvent* event) override;
+	void wheelEvent(QWheelEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void cursorPositionChanged();
 	void focusText();
 	void hideMouse();
@@ -133,7 +121,7 @@ private:
 	QString m_default_format;
 	bool m_cache_outdated;
 	QByteArray m_encoding;
-	QHash<int, QPair<QString, bool> > m_old_states;
+	QHash<int, QPair<QString, bool>> m_old_states;
 	int m_index;
 	bool m_always_center;
 	bool m_mouse_button_down;
@@ -170,48 +158,59 @@ private:
 	DailyProgress* m_daily_progress;
 };
 
-inline QString Document::filename() const {
+inline QString Document::filename() const
+{
 	return m_filename;
 }
 
-inline int Document::untitledIndex() const {
+inline int Document::untitledIndex() const
+{
 	return m_index;
 }
 
-inline bool Document::isRichText() const {
+inline bool Document::isRichText() const
+{
 	return m_rich_text;
 }
 
-inline int Document::characterCount() const {
+inline int Document::characterCount() const
+{
 	return m_stats->characterCount();
 }
 
-inline int Document::characterAndSpaceCount() const {
+inline int Document::characterAndSpaceCount() const
+{
 	return m_stats->characterAndSpaceCount();
 }
 
-inline int Document::pageCount() const {
+inline int Document::pageCount() const
+{
 	return m_stats->pageCount();
 }
 
-inline int Document::paragraphCount() const {
+inline int Document::paragraphCount() const
+{
 	return m_stats->paragraphCount();
 }
 
-inline int Document::wordCount() const {
+inline int Document::wordCount() const
+{
 	return m_stats->wordCount();
 }
 
-inline int Document::wordCountDelta() const {
+inline int Document::wordCountDelta() const
+{
 	return m_document_stats.wordCount() - m_saved_wordcount;
 }
 
-inline SceneModel* Document::sceneModel() const {
+inline SceneModel* Document::sceneModel() const
+{
 	return m_scene_model;
 }
 
-inline QTextEdit* Document::text() const {
+inline QTextEdit* Document::text() const
+{
 	return m_text;
 }
 
-#endif
+#endif // FOCUSWRITER_DOCUMENT_H

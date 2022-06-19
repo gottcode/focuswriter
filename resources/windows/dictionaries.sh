@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='6.4.1.1'
+loversion='7.3.4.2'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/6.4.1/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/7.3.4/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -31,29 +31,9 @@ else
 	echo ' SKIPPED'
 fi
 
-echo -n 'Downloading Esperanto dictionary...'
-eodict='dict-eo'
-eofiles='dict-eo/dictionaries'
-if [ ! -e "${eodict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/esperanto-spellchecker-thesaurus-and-hyphenizer/1.01/@@download/file/${eodict}.oxt"
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
 echo -n 'Downloading Finnish dictionary...'
 if [ ! -e 'voikko.oxt' ]; then
 	curl -s -O 'https://www.puimula.org/htp/ooo/voikko-win/5.0.0.20151123/voikko.oxt'
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
-echo -n 'Downloading Korean dictionary...'
-kodict='Korean_spell-checker-0.7.91_LibO'
-kofiles='Korean_spell-checker-0.7.91_LibO/dictionaries'
-if [ ! -e "${kodict}.oxt" ]; then
-	curl -s -O "https://extensions.libreoffice.org/extensions/korean-spellchecker/0-7.91/@@download/file/${kodict}.oxt"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -77,25 +57,9 @@ else
 	echo ' SKIPPED'
 fi
 
-echo -n 'Extracting Esperanto dictionary...'
-if [ ! -e "${eodict}" ]; then
-	unzip -qq "${eodict}.oxt" -d "${eodict}"
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
 echo -n 'Extracting Finnish dictionary...'
 if [ ! -e voikko ]; then
 	unzip -qq voikko.oxt -d voikko
-	echo ' DONE'
-else
-	echo ' SKIPPED'
-fi
-
-echo -n 'Extracting Korean dictionary...'
-if [ ! -e "${kodict}" ]; then
-	unzip -qq "${kodict}.oxt" -d "${kodict}"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -151,11 +115,11 @@ echo -n ' en_ZA'
 cp -a $lofiles/en/en_ZA.aff dicts/en_ZA.aff
 cp -a $lofiles/en/en_ZA.dic dicts/en_ZA.dic
 echo -n ' eo'
-cp -a $eofiles/eo.aff dicts/eo.aff
-cp -a $eofiles/eo.dic dicts/eo.dic
+cp -a $lofiles/eo/eo.aff dicts/eo.aff
+cp -a $lofiles/eo/eo.dic dicts/eo.dic
 echo -n ' es'
-cp -a $lofiles/es/es_ANY.aff dicts/es.aff
-cp -a $lofiles/es/es_ANY.dic dicts/es.dic
+cp -a $lofiles/es/es_ES.aff dicts/es.aff
+cp -a $lofiles/es/es_ES.dic dicts/es.dic
 echo -n ' fi'
 cp -a voikko/voikko/2 dicts
 cp -a voikko/voikko/Windows-64bit-WindowsPE/libvoikko-1.dll dicts
@@ -181,8 +145,8 @@ echo -n ' it'
 cp -a $lofiles/it_IT/it_IT.aff dicts/it.aff
 cp -a $lofiles/it_IT/it_IT.dic dicts/it.dic
 echo -n ' ko'
-cp -a $kofiles/ko-KR.aff dicts/ko.aff
-cp -a $kofiles/ko-KR.dic dicts/ko.dic
+cp -a $lofiles/ko_KR/ko_KR.aff dicts/ko.aff
+cp -a $lofiles/ko_KR/ko_KR.dic dicts/ko.dic
 echo -n ' lt'
 cp -a $lofiles/lt_LT/lt.aff dicts/lt.aff
 cp -a $lofiles/lt_LT/lt.dic dicts/lt.dic

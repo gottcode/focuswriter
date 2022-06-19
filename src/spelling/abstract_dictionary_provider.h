@@ -1,34 +1,22 @@
-/***********************************************************************
- *
- * Copyright (C) 2013 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2013 Graeme Gott <graeme@gottcode.org>
 
-#ifndef ABSTRACT_DICTIONARY_PROVIDER_H
-#define ABSTRACT_DICTIONARY_PROVIDER_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_ABSTRACT_DICTIONARY_PROVIDER_H
+#define FOCUSWRITER_ABSTRACT_DICTIONARY_PROVIDER_H
 
 class AbstractDictionary;
 
-class QString;
-class QStringList;
+#include <QStringList>
 
 class AbstractDictionaryProvider
 {
 public:
-	virtual ~AbstractDictionaryProvider() { }
+	virtual ~AbstractDictionaryProvider()
+	{
+	}
 
 	virtual bool isValid() const = 0;
 	virtual QStringList availableDictionaries() const = 0;
@@ -38,4 +26,4 @@ public:
 	virtual void setIgnoreUppercase(bool ignore) = 0;
 };
 
-#endif
+#endif // FOCUSWRITER_ABSTRACT_DICTIONARY_PROVIDER_H

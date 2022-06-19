@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "alert_layer.h"
 
@@ -27,8 +14,8 @@
 
 //-----------------------------------------------------------------------------
 
-AlertLayer::AlertLayer(QWidget* parent) :
-	QWidget(parent)
+AlertLayer::AlertLayer(QWidget* parent)
+	: QWidget(parent)
 {
 	setMaximumWidth(4 * logicalDpiX());
 	m_alerts_layout = new QVBoxLayout(this);
@@ -56,12 +43,7 @@ void AlertLayer::addAlert(Alert* alert)
 
 void AlertLayer::alertDestroyed(QObject* alert)
 {
-	for (int i = 0; i < m_alerts.count(); ++i) {
-		if (m_alerts[i] == alert) {
-			m_alerts.removeAt(i);
-			return;
-		}
-	}
+	m_alerts.removeOne(alert);
 }
 
 //-----------------------------------------------------------------------------
@@ -69,7 +51,7 @@ void AlertLayer::alertDestroyed(QObject* alert)
 void AlertLayer::dismissAlert()
 {
 	if (!m_alerts.isEmpty()) {
-		for (int i = 0; i < m_alerts.count(); ++i) {
+		for (int i = 0, count = m_alerts.count(); i < count; ++i) {
 			if (m_alerts[i]->underMouse()) {
 				delete m_alerts.takeAt(i);
 				return;

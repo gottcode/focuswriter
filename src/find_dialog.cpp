@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "find_dialog.h"
 
@@ -25,7 +12,6 @@
 
 #include <QApplication>
 #include <QCheckBox>
-#include <QDesktopWidget>
 #include <QDialogButtonBox>
 #include <QGridLayout>
 #include <QKeyEvent>
@@ -35,13 +21,15 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QRegularExpression>
+#include <QScreen>
 #include <QSettings>
 
 //-----------------------------------------------------------------------------
 
 FindDialog::FindDialog(Stack* documents)
-	: QDialog(documents->window(), Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_documents(documents)
+	: QDialog(documents->window(), Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_documents(documents)
 {
 	// Create widgets
 	QLabel* find_label = new QLabel(tr("Search for:"), this);
@@ -65,7 +53,7 @@ FindDialog::FindDialog(Stack* documents)
 
 	m_find_button = buttons->addButton(tr("&Find"), QDialogButtonBox::ActionRole);
 	m_find_button->setEnabled(false);
-	connect(m_find_button, &QPushButton::clicked, this, QOverload<>::of(&FindDialog::find));
+	connect(m_find_button, &QPushButton::clicked, this, qOverload<>(&FindDialog::find));
 
 	m_replace_button = buttons->addButton(tr("&Replace"), QDialogButtonBox::ActionRole);
 	m_replace_button->setEnabled(false);
@@ -96,7 +84,7 @@ FindDialog::FindDialog(Stack* documents)
 	setFixedWidth(sizeHint().width());
 
 	// Load settings
-	QSettings settings;
+	const QSettings settings;
 	m_ignore_case->setChecked(!settings.value("FindDialog/CaseSensitive", false).toBool());
 	m_whole_words->setChecked(settings.value("FindDialog/WholeWords", false).toBool());
 	m_regular_expressions->setChecked(settings.value("FindDialog/RegularExpressions", false).toBool());
@@ -173,8 +161,8 @@ void FindDialog::moveEvent(QMoveEvent* event)
 void FindDialog::showEvent(QShowEvent* event)
 {
 	if (!m_position.isNull()) {
-		QRect rect(m_position, sizeHint());
-		if (QApplication::desktop()->availableGeometry(this).contains(rect)) {
+		const QRect rect(m_position, sizeHint());
+		if (screen()->availableGeometry().contains(rect)) {
 			move(m_position);
 		}
 	}
@@ -192,34 +180,33 @@ void FindDialog::find()
 
 void FindDialog::findChanged(const QString& text)
 {
-	bool enabled = !text.isEmpty();
+	const bool enabled = !text.isEmpty();
 	m_find_button->setEnabled(enabled);
 	m_replace_button->setEnabled(enabled);
 	m_replace_all_button->setEnabled(enabled);
-	emit findNextAvailable(enabled);
+	Q_EMIT findNextAvailable(enabled);
 }
 
 //-----------------------------------------------------------------------------
 
 void FindDialog::replace()
 {
-	QString text = m_find_string->text();
+	const QString text = m_find_string->text();
 	if (text.isEmpty()) {
 		return;
 	}
 
 	QTextEdit* document = m_documents->currentDocument()->text();
 	QTextCursor cursor = document->textCursor();
-	Qt::CaseSensitivity cs = m_ignore_case->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive;
 	if (!m_regular_expressions->isChecked()) {
-		if (QString::compare(cursor.selectedText(), text, cs) == 0) {
+		if (QString::compare(cursor.selectedText(), text, m_ignore_case->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive) == 0) {
 			cursor.insertText(m_replace_string->text());
 			document->setTextCursor(cursor);
 		}
 	} else {
-		QRegExp regex(text, cs, QRegExp::RegExp2);
+		const QRegularExpression regex("^" + text + "$", m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 		QString match = cursor.selectedText();
-		if (regex.exactMatch(match)) {
+		if (regex.match(match).hasMatch()) {
 			match.replace(regex, m_replace_string->text());
 			cursor.insertText(match);
 			document->setTextCursor(cursor);
@@ -233,11 +220,11 @@ void FindDialog::replace()
 
 void FindDialog::replaceAll()
 {
-	QString text = m_find_string->text();
+	const QString text = m_find_string->text();
 	if (text.isEmpty()) {
 		return;
 	}
-	QRegExp regex(text, !m_ignore_case->isChecked() ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp2);
+	const QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {
@@ -253,7 +240,7 @@ void FindDialog::replaceAll()
 	QTextCursor cursor = document->textCursor();
 	cursor.movePosition(QTextCursor::Start);
 	if (!m_regular_expressions->isChecked()) {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(text, cursor, flags);
 			if (!cursor.isNull()) {
 				found++;
@@ -262,7 +249,7 @@ void FindDialog::replaceAll()
 			}
 		}
 	} else {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(regex, cursor, flags);
 			if (!cursor.isNull() && cursor.hasSelection()) {
 				found++;
@@ -272,7 +259,10 @@ void FindDialog::replaceAll()
 		}
 	}
 	if (found) {
-		if (QMessageBox::question(this, tr("Question"), tr("Replace %n instance(s)?", "", found), QMessageBox::Yes | QMessageBox::No) == QMessageBox::No) {
+		if (QMessageBox::question(this,
+				tr("Question"),
+				tr("Replace %n instance(s)?", "", found),
+				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return;
 		}
 	} else {
@@ -284,7 +274,7 @@ void FindDialog::replaceAll()
 	QTextCursor start_cursor = document->textCursor();
 	start_cursor.beginEditBlock();
 	if (!m_regular_expressions->isChecked()) {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(text, cursor, flags);
 			if (!cursor.isNull()) {
 				cursor.insertText(m_replace_string->text());
@@ -293,7 +283,7 @@ void FindDialog::replaceAll()
 			}
 		}
 	} else {
-		forever {
+		Q_FOREVER {
 			cursor = document->document()->find(regex, cursor, flags);
 			if (!cursor.isNull() && cursor.hasSelection()) {
 				QString match = cursor.selectedText();
@@ -312,11 +302,11 @@ void FindDialog::replaceAll()
 
 void FindDialog::find(bool backwards)
 {
-	QString text = m_find_string->text();
+	const QString text = m_find_string->text();
 	if (text.isEmpty()) {
 		return;
 	}
-	QRegExp regex(text, !m_ignore_case->isChecked() ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp2);
+	const QRegularExpression regex(text, m_ignore_case->isChecked() ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
 
 	QTextDocument::FindFlags flags;
 	if (!m_ignore_case->isChecked()) {

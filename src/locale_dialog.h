@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2013 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2013 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #ifndef FOCUSWRITER_LOCALE_DIALOG_H
 #define FOCUSWRITER_LOCALE_DIALOG_H
@@ -40,7 +27,7 @@ public:
 	 *
 	 * @param parent the parent widget of the dialog
 	 */
-	LocaleDialog(QWidget* parent = 0);
+	explicit LocaleDialog(QWidget* parent = nullptr);
 
 	/**
 	 * Load the stored language into the application; defaults to system language.
@@ -58,9 +45,9 @@ public:
 	 */
 	static QString languageName(const QString& language);
 
-public slots:
+public Q_SLOTS:
 	/** Override parent function to store application language. */
-	void accept();
+	void accept() override;
 
 private:
 	/**

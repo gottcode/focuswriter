@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2018 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2020 Graeme Gott <graeme@gottcode.org>
 
-#ifndef ALERT_H
-#define ALERT_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_ALERT_H
+#define FOCUSWRITER_ALERT_H
 
 #include <QWidget>
 class QGraphicsOpacityEffect;
@@ -31,7 +18,8 @@ class Alert : public QWidget
 	Q_OBJECT
 
 public:
-	enum Icon {
+	enum Icon
+	{
 		NoIcon = 0,
 		Information,
 		Warning,
@@ -39,8 +27,8 @@ public:
 		Question
 	};
 
-	Alert(QWidget* parent = 0);
-	Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent = 0);
+	explicit Alert(QWidget* parent = nullptr);
+	Alert(Icon icon, const QString& text, const QStringList& details, bool expandable, QWidget* parent = nullptr);
 
 	bool underMouse() const;
 
@@ -50,14 +38,14 @@ public:
 	void setIcon(const QPixmap& pixmap);
 	void setText(const QString& text, const QStringList& details);
 
-	bool eventFilter(QObject* watched, QEvent* event);
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
 protected:
-	void enterEvent(QEvent* event);
-	void leaveEvent(QEvent* event);
-	void paintEvent(QPaintEvent* event);
+	void enterEvent(QEnterEvent* event) override;
+	void leaveEvent(QEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void expanderToggled();
 	void fadeInFinished();
 	void fadeOut();
@@ -83,4 +71,4 @@ inline bool Alert::underMouse() const
 	return m_under_mouse;
 }
 
-#endif
+#endif // FOCUSWRITER_ALERT_H

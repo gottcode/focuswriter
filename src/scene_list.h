@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2012 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012 Graeme Gott <graeme@gottcode.org>
 
-#ifndef SCENE_LIST_H
-#define SCENE_LIST_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_SCENE_LIST_H
+#define FOCUSWRITER_SCENE_LIST_H
 
 class Document;
 
@@ -34,24 +21,24 @@ class SceneList : public QFrame
 	Q_OBJECT
 
 public:
-	SceneList(QWidget* parent = 0);
+	explicit SceneList(QWidget* parent = nullptr);
 	~SceneList();
 
 	bool scenesVisible() const;
 
 	void setDocument(Document* document);
 
-public slots:
+public Q_SLOTS:
 	void hideScenes();
 	void showScenes();
 
 protected:
-	void mouseMoveEvent(QMouseEvent* event);
-	void mousePressEvent(QMouseEvent* event);
-	void mouseReleaseEvent(QMouseEvent* event);
-	void resizeEvent(QResizeEvent* event);
+	void mouseMoveEvent(QMouseEvent* event) override;
+	void mousePressEvent(QMouseEvent* event) override;
+	void mouseReleaseEvent(QMouseEvent* event) override;
+	void resizeEvent(QResizeEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void moveScenesDown();
 	void moveScenesUp();
 	void sceneSelected(const QModelIndex& index);
@@ -78,4 +65,4 @@ private:
 	bool m_resizing;
 };
 
-#endif
+#endif // FOCUSWRITER_SCENE_LIST_H

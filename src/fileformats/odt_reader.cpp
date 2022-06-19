@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2011, 2012, 2013, 2014, 2015, 2016, 2017 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2011-2021 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "odt_reader.h"
 
@@ -27,8 +14,8 @@
 
 //-----------------------------------------------------------------------------
 
-OdtReader::OdtReader() :
-	m_in_block(true)
+OdtReader::OdtReader()
+	: m_in_block(true)
 {
 	m_xml.setNamespaceProcessing(false);
 }
@@ -46,18 +33,17 @@ bool OdtReader::canRead(QIODevice* device)
 			return false;
 		}
 
-		int index = data.indexOf("?>");
+		const int index = data.indexOf("?>");
 		if (index == -1) {
 			return false;
 		}
 
-		int tagindex = data.indexOf("<", index);
+		const int tagindex = data.indexOf("<", index);
 		if (tagindex == -1) {
 			return false;
 		}
 
-		index = data.indexOf("<office:document", index);
-		if (index != tagindex) {
+		if (data.indexOf("<office:document", index) != tagindex) {
 			return false;
 		}
 	}
@@ -89,9 +75,9 @@ void OdtReader::readDataCompressed(QIODevice* device)
 
 	// Read archive
 	if (zip.isReadable()) {
-		const QString files[] = { QString::fromLatin1("styles.xml"), QString::fromLatin1("content.xml") };
+		static const QString files[] = { QStringLiteral("styles.xml"), QStringLiteral("content.xml") };
 		for (int i = 0; i < 2; ++i) {
-			QByteArray data = zip.fileData(files[i]);
+			const QByteArray data = zip.fileData(files[i]);
 			if (data.isEmpty()) {
 				continue;
 			}
@@ -128,11 +114,11 @@ void OdtReader::readDocument()
 {
 	m_xml.readNextStartElement();
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "office:styles") {
+		if (m_xml.qualifiedName() == QLatin1String("office:styles")) {
 			readStylesGroup();
-		} else if (m_xml.qualifiedName() == "office:automatic-styles") {
+		} else if (m_xml.qualifiedName() == QLatin1String("office:automatic-styles")) {
 			readStylesGroup();
-		} else if (m_xml.qualifiedName() == "office:body") {
+		} else if (m_xml.qualifiedName() == QLatin1String("office:body")) {
 			readBody();
 		}  else {
 			m_xml.skipCurrentElement();
@@ -145,7 +131,7 @@ void OdtReader::readDocument()
 void OdtReader::readStylesGroup()
 {
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "style:style") {
+		if (m_xml.qualifiedName() == QLatin1String("style:style")) {
 			readStyle();
 		} else {
 			m_xml.skipCurrentElement();
@@ -157,15 +143,15 @@ void OdtReader::readStylesGroup()
 
 void OdtReader::readStyle()
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
-	QString name = attributes.value(QLatin1String("style:name")).toString();
+	const QString name = attributes.value(QLatin1String("style:name")).toString();
 
 	int type = -1;
-	QStringRef family = attributes.value(QLatin1String("style:family"));
-	if (family == "paragraph") {
+	const QStringView family = attributes.value(QLatin1String("style:family"));
+	if (family == QLatin1String("paragraph")) {
 		type = 0;
-	} else if (family == "text") {
+	} else if (family == QLatin1String("text")) {
 		type = 1;
 	} else {
 		m_xml.skipCurrentElement();
@@ -177,7 +163,7 @@ void OdtReader::readStyle()
 	}
 	Style& style = m_styles[type][name];
 
-	QString parent_style = attributes.value(QLatin1String("style:parent-style-name")).toString();
+	const QString parent_style = attributes.value(QLatin1String("style:parent-style-name")).toString();
 	if (!parent_style.isEmpty()) {
 		Style& parent = m_styles[type][parent_style];
 		style.block_format = parent.block_format;
@@ -186,14 +172,14 @@ void OdtReader::readStyle()
 	}
 
 	if (name.startsWith("Head")) {
-		int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
+		const int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
 		style.block_format.setProperty(QTextFormat::UserProperty, heading);
 	}
 
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "style:paragraph-properties") {
+		if (m_xml.qualifiedName() == QLatin1String("style:paragraph-properties")) {
 			readStyleParagraphProperties(style.block_format);
-		} else if (m_xml.qualifiedName() == "style:text-properties") {
+		} else if (m_xml.qualifiedName() == QLatin1String("style:text-properties")) {
 			readStyleTextProperties(style.char_format);
 		} else {
 			m_xml.skipCurrentElement();
@@ -221,33 +207,33 @@ void OdtReader::readStyle()
 
 void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
-	QStringRef align = attributes.value(QLatin1String("fo:text-align"));
-	if (align == "start") {
+	const QStringView align = attributes.value(QLatin1String("fo:text-align"));
+	if (align == QLatin1String("start")) {
 		format.setAlignment(Qt::AlignLeading);
-	} else if (align == "end") {
+	} else if (align == QLatin1String("end")) {
 		format.setAlignment(Qt::AlignTrailing);
-	} else if (align == "left") {
+	} else if (align == QLatin1String("left")) {
 		format.setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
-	} else if (align == "right") {
+	} else if (align == QLatin1String("right")) {
 		format.setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
-	} else if (align == "center") {
+	} else if (align == QLatin1String("center")) {
 		format.setAlignment(Qt::AlignHCenter);
-	} else if (align == "justify") {
+	} else if (align == QLatin1String("justify")) {
 		format.setAlignment(Qt::AlignJustify);
 	}
 
-	QStringRef direction = attributes.value(QLatin1String("style:writing-mode"));
-	if (direction == "rl-tb" || direction == "rl") {
+	const QStringView direction = attributes.value(QLatin1String("style:writing-mode"));
+	if (direction == QLatin1String("rl-tb") || direction == QLatin1String("rl")) {
 		format.setLayoutDirection(Qt::RightToLeft);
-	} else if (direction == "lr-tb" || direction == "lr") {
+	} else if (direction == QLatin1String("lr-tb") || direction == QLatin1String("lr")) {
 		format.setLayoutDirection(Qt::LeftToRight);
 	}
 
 	if (attributes.hasAttribute(QLatin1String("fo:margin-left"))) {
 		QString margin = attributes.value(QLatin1String("fo:margin-left")).toString();
-		QString type = margin.right(2);
+		const QString type = margin.right(2);
 		margin.chop(2);
 
 		// Internal indent units are 0.5in
@@ -272,8 +258,8 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:default-outline-level"))) {
-		QString level = attributes.value(QLatin1String("style:default-outline-level")).toString();
-		int heading = qBound(1, level.toInt(), 6);
+		const QString level = attributes.value(QLatin1String("style:default-outline-level")).toString();
+		const int heading = qBound(1, level.toInt(), 6);
 		format.setProperty(QTextFormat::UserProperty, heading);
 	}
 
@@ -284,34 +270,34 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 
 void OdtReader::readStyleTextProperties(QTextCharFormat& format)
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
 	if (attributes.hasAttribute(QLatin1String("fo:font-weight"))) {
-		if (attributes.value(QLatin1String("fo:font-weight")) == "bold") {
+		if (attributes.value(QLatin1String("fo:font-weight")) == QLatin1String("bold")) {
 			format.setFontWeight(QFont::Bold);
 		}
 	}
 
 	if (attributes.hasAttribute(QLatin1String("fo:font-style"))) {
-		format.setFontItalic(attributes.value(QLatin1String("fo:font-style")) != "normal");
+		format.setFontItalic(attributes.value(QLatin1String("fo:font-style")) != QLatin1String("normal"));
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-underline-style"))) {
-		format.setFontUnderline(attributes.value(QLatin1String("style:text-underline-style")) != "none");
+		format.setFontUnderline(attributes.value(QLatin1String("style:text-underline-style")) != QLatin1String("none"));
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-line-through-type"))) {
-		format.setFontStrikeOut(attributes.value(QLatin1String("style:text-line-through-type")) != "none");
+		format.setFontStrikeOut(attributes.value(QLatin1String("style:text-line-through-type")) != QLatin1String("none"));
 	}
 
 	if (attributes.hasAttribute(QLatin1String("style:text-position"))) {
-		QStringRef position = attributes.value((QLatin1String("style:text-position")));
-		if (position == "super") {
+		const QStringView position = attributes.value((QLatin1String("style:text-position")));
+		if (position == QLatin1String("super")) {
 			format.setVerticalAlignment(QTextCharFormat::AlignSuperScript);
-		} else if (position == "sub") {
+		} else if (position == QLatin1String("sub")) {
 			format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
 		} else {
-			QString value = position.toString().split(' ', QString::SkipEmptyParts).first();
+			QString value = position.toString().split(' ', Qt::SkipEmptyParts).constFirst();
 			value.chop(1);
 			const int vertical = value.toInt();
 			if (vertical > 0) {
@@ -331,7 +317,7 @@ void OdtReader::readBody()
 {
 	m_cursor.beginEditBlock();
 	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "office:text") {
+		if (m_xml.qualifiedName() == QLatin1String("office:text")) {
 			readBodyText();
 		} else {
 			m_xml.skipCurrentElement();
@@ -344,21 +330,25 @@ void OdtReader::readBody()
 
 void OdtReader::readBodyText()
 {
-	while (m_xml.readNextStartElement()) {
-		if (m_xml.qualifiedName() == "text:p") {
-			readParagraph();
-		} else if (m_xml.qualifiedName() == "text:h") {
-			int heading = -1;
-			QXmlStreamAttributes attributes = m_xml.attributes();
-			if (attributes.hasAttribute(QLatin1String("text:outline-level"))) {
-				QString level = attributes.value(QLatin1String("text:outline-level")).toString();
-				heading = qBound(1, level.toInt(), 6);
+	int depth = 1;
+	while (depth && (m_xml.readNext() != QXmlStreamReader::Invalid)) {
+		if (m_xml.isStartElement()) {
+			if (m_xml.qualifiedName() == QLatin1String("text:p")) {
+				readParagraph();
+			} else if (m_xml.qualifiedName() == QLatin1String("text:h")) {
+				int heading = -1;
+				const QXmlStreamAttributes attributes = m_xml.attributes();
+				if (attributes.hasAttribute(QLatin1String("text:outline-level"))) {
+					const QString level = attributes.value(QLatin1String("text:outline-level")).toString();
+					heading = qBound(1, level.toInt(), 6);
+				}
+				readParagraph(heading);
+			} else {
+				// readParagraph() handles its end element, so only track depth for other elements
+				++depth;
 			}
-			readParagraph(heading);
-		} else if (m_xml.qualifiedName() == "text:section") {
-			readBodyText();
-		} else {
-			m_xml.skipCurrentElement();
+		} else if (m_xml.isEndElement()) {
+			--depth;
 		}
 	}
 }
@@ -371,7 +361,7 @@ void OdtReader::readParagraph(int level)
 	QTextCharFormat char_format;
 
 	// Style paragraph
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 	if (attributes.hasAttribute(QLatin1String("text:style-name"))) {
 		const Style& style = m_styles[0][attributes.value(QLatin1String("text:style-name")).toString()];
 		block_format = style.block_format;
@@ -408,20 +398,19 @@ void OdtReader::readParagraph(int level)
 
 void OdtReader::readSpan()
 {
-	QXmlStreamAttributes attributes = m_xml.attributes();
+	const QXmlStreamAttributes attributes = m_xml.attributes();
 
 	// Style text
-	QTextCharFormat format = m_cursor.charFormat();
+	const QTextCharFormat format = m_cursor.charFormat();
 	if (attributes.hasAttribute(QLatin1String("text:style-name"))) {
 		const Style& style = m_styles[1][attributes.value(QLatin1String("text:style-name")).toString()];
 		m_cursor.mergeCharFormat(style.char_format);
 	}
 
 	if (attributes.hasAttribute(QLatin1String("text:class-names"))) {
-		QStringList styles = attributes.value(QLatin1String("text:class-names")).toString().simplified().split(QLatin1Char(' '), QString::SkipEmptyParts);
-		int count = styles.count();
-		for (int i = 0; i < count; ++i) {
-			const Style& style = m_styles[1][styles.at(i)];
+		const QStringList styles = attributes.value(QLatin1String("text:class-names")).toString().simplified().split(QLatin1Char(' '), Qt::SkipEmptyParts);
+		for (const QString& name : styles) {
+			const Style& style = m_styles[1][name];
 			m_cursor.mergeCharFormat(style.char_format);
 		}
 	}
@@ -443,15 +432,15 @@ void OdtReader::readText()
 			m_cursor.insertText(m_xml.text().toString());
 		} else if (m_xml.isStartElement()) {
 			++depth;
-			if (m_xml.qualifiedName() == "text:span") {
+			if (m_xml.qualifiedName() == QLatin1String("text:span")) {
 				readSpan();
 				--depth;
-			} else if (m_xml.qualifiedName() == "text:s") {
+			} else if (m_xml.qualifiedName() == QLatin1String("text:s")) {
 				int spaces = m_xml.attributes().value(QLatin1String("text:c")).toString().toInt();
 				m_cursor.insertText(QString(std::max(1, spaces), QLatin1Char(' ')));
-			} else if (m_xml.qualifiedName() == "text:tab") {
+			} else if (m_xml.qualifiedName() == QLatin1String("text:tab")) {
 				m_cursor.insertText(QLatin1String("\t"));
-			} else if (m_xml.qualifiedName() == "text:line-break") {
+			} else if (m_xml.qualifiedName() == QLatin1String("text:line-break")) {
 				m_cursor.insertText(QChar(0x2028));
 			}
 		} else if (m_xml.isEndElement()) {

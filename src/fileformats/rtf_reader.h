@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2014 Graeme Gott <graeme@gottcode.org>
 
-#ifndef RTF_READER_H
-#define RTF_READER_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_RTF_READER_H
+#define FOCUSWRITER_RTF_READER_H
 
 #include "format_reader.h"
 #include "rtf_tokenizer.h"
@@ -29,6 +16,7 @@
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
 class QString;
+class QTextCodec;
 class QTextDecoder;
 
 class RtfReader : public FormatReader
@@ -36,11 +24,11 @@ class RtfReader : public FormatReader
 	Q_DECLARE_TR_FUNCTIONS(RtfReader)
 
 public:
-	RtfReader();
+	explicit RtfReader();
 	~RtfReader();
 
 	enum { Type = 2 };
-	int type() const
+	int type() const override
 	{
 		return Type;
 	}
@@ -48,7 +36,7 @@ public:
 	static bool canRead(QIODevice* device);
 
 private:
-	void readData(QIODevice* device);
+	void readData(QIODevice* device) override;
 	void endBlock(qint32);
 	void ignoreGroup(qint32);
 	void ignoreText(qint32);
@@ -117,7 +105,7 @@ private:
 	QTextCodec* m_codec;
 	QTextDecoder* m_decoder;
 	QTextCodec* m_codepage;
-	QVector<QTextCodec*> m_codepages;
+	QList<QTextCodec*> m_codepages;
 };
 
-#endif
+#endif // FOCUSWRITER_RTF_READER_H

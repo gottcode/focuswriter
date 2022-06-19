@@ -30,20 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% de %Ln minuto</numerusform>
-            <numerusform>%L1% de %Ln minutos</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% de %Ln palavra</numerusform>
-            <numerusform>%L1% de %Ln palavras</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln palavra</numerusform>
@@ -60,6 +46,20 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% de %Ln minuto</numerusform>
+            <numerusform>%L1% de %Ln minutos</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% de %Ln palavra</numerusform>
+            <numerusform>%L1% de %Ln palavras</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -588,11 +588,11 @@
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Subir</translation>
+        <translation>Para cima</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Descer</translation>
+        <translation>Para baixo</translation>
     </message>
     <message>
         <source>Add Separator</source>
@@ -677,7 +677,7 @@
     <name>SceneList</name>
     <message>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Shift+Seta para Abaixo</translation>
+        <translation>Ctrl+Shift+Seta para Baixo</translation>
     </message>
     <message>
         <source>Move Scenes Up</source>
@@ -685,7 +685,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Shift+Seta para Acima</translation>
+        <translation>Ctrl+Shift+Seta para Cima</translation>
     </message>
     <message>
         <source>Toggle Scene List</source>
@@ -1579,7 +1579,7 @@
     </message>
     <message>
         <source>Sup&amp;erscript</source>
-        <translation>Sobr%escrito</translation>
+        <translation>Sobr&amp;escrito</translation>
     </message>
     <message>
         <source>Ctrl+^</source>
@@ -1852,6 +1852,13 @@
     <message>
         <source>Ctrl+Shift+`</source>
         <translation>Ctrl+Shift+`</translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Files to open in current session.</source>
+        <translation>Ficheiros a abrir na sessão em curso.</translation>
     </message>
 </context>
 </TS>

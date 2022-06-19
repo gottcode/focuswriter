@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2017 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2017 Graeme Gott <graeme@gottcode.org>
 
-#ifndef WINDOW_H
-#define WINDOW_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_WINDOW_H
+#define FOCUSWRITER_WINDOW_H
 
 class DailyProgress;
 class DailyProgressDialog;
@@ -46,33 +33,33 @@ class Window : public QMainWindow
 	Q_OBJECT
 
 public:
-	Window(const QStringList& command_line_files);
+	explicit Window(const QStringList& command_line_files);
 
 	void addDocuments(const QStringList& files, const QStringList& datafiles, const QStringList& positions = QStringList(), int active = -1, bool show_load = false);
 	void addDocuments(QDropEvent* event);
 	bool closeDocuments(QSettings* session);
 	bool saveDocuments(QSettings* session);
 
-public slots:
+public Q_SLOTS:
 	void addDocuments(const QString& documents);
 
 protected:
-	virtual void changeEvent(QEvent* event);
-	virtual void dragEnterEvent(QDragEnterEvent* event);
-	virtual void dropEvent(QDropEvent* event);
-	virtual bool event(QEvent* event);
-	virtual void closeEvent(QCloseEvent* event);
-	virtual void leaveEvent(QEvent* event);
-	virtual void resizeEvent(QResizeEvent* event);
+	void changeEvent(QEvent* event) override;
+	void dragEnterEvent(QDragEnterEvent* event) override;
+	void dropEvent(QDropEvent* event) override;
+	bool event(QEvent* event) override;
+	void closeEvent(QCloseEvent* event) override;
+	void leaveEvent(QEvent* event) override;
+	void resizeEvent(QResizeEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void newDocument();
 	void openDocument();
 	void renameDocument();
 	void saveAllDocuments();
 	void closeDocument();
-	void closeDocument(Document* document);
-	void showDocument(Document* document);
+	void closeDocument(const Document* document);
+	void showDocument(const Document* document);
 	void nextDocument();
 	void previousDocument();
 	void firstDocument();
@@ -147,4 +134,4 @@ private:
 	DailyProgressDialog* m_daily_progress_dialog;
 };
 
-#endif
+#endif // FOCUSWRITER_WINDOW_H

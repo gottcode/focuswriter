@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2014, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "timer_manager.h"
 
@@ -29,6 +16,7 @@
 #include <QCloseEvent>
 #include <QDialogButtonBox>
 #include <QLabel>
+#include <QLocale>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPushButton>
@@ -41,8 +29,8 @@
 //-----------------------------------------------------------------------------
 
 TimerManager::TimerManager(Stack* documents, QWidget* parent)
-	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint),
-	m_documents(documents)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+	, m_documents(documents)
 {
 	setWindowTitle(tr("Timers"));
 
@@ -98,9 +86,9 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 	resize(settings.value("DialogSize").toSize());
 
 	// Load currently running timers
-	QStringList ids = settings.childKeys();
+	const QStringList ids = settings.childKeys();
 	for (const QString& id : ids) {
-		int i = id.mid(5).toInt();
+		const int i = id.mid(5).toInt();
 		if (!id.startsWith("Timer") || i == 0) {
 			continue;
 		}
@@ -117,16 +105,19 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 bool TimerManager::cancelEditing()
 {
 	bool check = false;
-	for (Timer* timer : m_timers) {
+	for (Timer* timer : qAsConst(m_timers)) {
 		check |= timer->isEditing();
 	}
 	if (check) {
-		if (QMessageBox::question(this, tr("Question"), tr("Cancel editing timers?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+		if (QMessageBox::question(this,
+				tr("Question"),
+				tr("Cancel editing timers?"),
+				QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 			return false;
-		} else {
-			for (Timer* timer : m_timers) {
-				timer->cancelEditing();
-			}
+		}
+
+		for (Timer* timer : qAsConst(m_timers)) {
+			timer->cancelEditing();
 		}
 	}
 	return true;
@@ -143,7 +134,7 @@ TimerDisplay* TimerManager::display() const
 
 void TimerManager::saveTimers()
 {
-	for (Timer* timer : m_timers) {
+	for (Timer* timer : qAsConst(m_timers)) {
 		timer->save();
 	}
 }
@@ -187,7 +178,7 @@ void TimerManager::newTimer()
 
 //-----------------------------------------------------------------------------
 
-void TimerManager::recentTimer(QAction* action)
+void TimerManager::recentTimer(const QAction* action)
 {
 	QStringList values = action->data().toStringList();
 	Timer* timer = new Timer(values.takeAt(0).toInt(), values, m_documents, this);
@@ -216,10 +207,10 @@ void TimerManager::timerChanged(Timer* timer)
 	}
 
 	// Find new timer position based on when it ends
-	int index = m_timers.indexOf(timer);
+	const int index = m_timers.indexOf(timer);
 	int new_index = 0;
 	for (new_index = 0; new_index < m_timers.count(); ++new_index) {
-		Timer* test = m_timers[new_index];
+		const Timer* test = m_timers[new_index];
 		if ((*timer <= *test) && (timer != test)) {
 			break;
 		}
@@ -233,10 +224,10 @@ void TimerManager::timerChanged(Timer* timer)
 		m_timers.move(index, new_index);
 
 		// Re-add all timers to widget so that tab order will be correct
-		for (int i = 0; i < m_timers.count(); ++i) {
-			m_timers[i]->setParent(0);
+		for (Timer* timer : qAsConst(m_timers)) {
+			timer->setParent(nullptr);
 		}
-		for (int i = 0; i < m_timers.count(); ++i) {
+		for (int i = 0, count = m_timers.count(); i < count; ++i) {
 			m_timers_layout->insertWidget(i, m_timers[i]);
 		}
 
@@ -252,12 +243,7 @@ void TimerManager::timerChanged(Timer* timer)
 
 void TimerManager::timerDeleted(QObject* object)
 {
-	for (int i = 0; i < m_timers.count(); ++i) {
-		if (m_timers.at(i) == object) {
-			m_timers.removeAt(i);
-			break;
-		}
-	}
+	m_timers.removeOne(object);
 	updateDisplay();
 }
 
@@ -279,7 +265,9 @@ void TimerManager::toggleVisibility()
 
 void TimerManager::updateClock()
 {
-	m_clock_label->setText(QTime::currentTime().toString(Qt::DefaultLocaleLongDate).simplified());
+	// Store clock format as changing locales already requires a program restart
+	static const QString format = QLocale().timeFormat().simplified();
+	m_clock_label->setText(QTime::currentTime().toString(format));
 }
 
 //-----------------------------------------------------------------------------
@@ -304,33 +292,33 @@ void TimerManager::setupRecentMenu()
 	QList<QAction*> delay_timers;
 
 	for (int i = 0; i < 2; ++i) {
-		QString type = QString::number(i);
-		QStringList recent = QSettings().value(QString("Timers/Recent%1").arg(i)).toStringList();
+		const QString type = QString::number(i);
+		const QStringList recent = QSettings().value(QString("Timers/Recent%1").arg(i)).toStringList();
 		for (const QString& timer : recent) {
 			QString time = timer.section(' ', 0, 0);
 			QString memo = timer.section(' ', 1).simplified();
 			memo.truncate(140);
 
 			QAction* action = new QAction(this);
-			action->setData(QStringList() << type << time << memo);
+			action->setData(QStringList{ type, time, memo });
 			if (i == 0) {
 				time = QTime::fromString(time, Qt::ISODate).toString(tr("+HH:mm:ss")).simplified();
 				delay_timers.append(action);
 			} else {
-				time = QTime::fromString(time, Qt::ISODate).toString(Qt::DefaultLocaleLongDate).simplified();
+				time = QLocale().toString(QTime::fromString(time, Qt::ISODate)).simplified();
 				end_timers.append(action);
 			}
 			memo = fontMetrics().elidedText(memo, Qt::ElideRight, 300);
-			action->setText(!memo.isEmpty() ? tr("%1 - %2").arg(time).arg(memo) : time);
+			action->setText(!memo.isEmpty() ? tr("%1 - %2").arg(time, memo) : time);
 		}
 	}
 
 	m_recent_timers->clear();
-	for (QAction* action : delay_timers) {
+	for (QAction* action : qAsConst(delay_timers)) {
 		m_recent_timers->addAction(action);
 	}
 	m_recent_timers->addSeparator();
-	for (QAction* action : end_timers) {
+	for (QAction* action : qAsConst(end_timers)) {
 		m_recent_timers->addAction(action);
 	}
 
@@ -342,8 +330,8 @@ void TimerManager::setupRecentMenu()
 void TimerManager::startClock()
 {
 	updateClock();
-	int delay = 1000 - QTime::currentTime().msec();
-	QTimer::singleShot(delay, m_clock_timer, QOverload<>::of(&QTimer::start));
+	const int delay = 1000 - QTime::currentTime().msec();
+	QTimer::singleShot(delay, m_clock_timer, qOverload<>(&QTimer::start));
 	QTimer::singleShot(delay, this, &TimerManager::updateClock);
 }
 
@@ -351,13 +339,13 @@ void TimerManager::startClock()
 
 void TimerManager::updateDisplay()
 {
-	for (Timer* timer : m_timers) {
+	for (Timer* timer : qAsConst(m_timers)) {
 		if (timer->isRunning()) {
 			m_display->setTimer(timer);
 			return;
 		}
 	}
-	m_display->setTimer(0);
+	m_display->setTimer(nullptr);
 }
 
 //-----------------------------------------------------------------------------

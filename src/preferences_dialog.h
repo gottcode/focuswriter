@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2017 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2017 Graeme Gott <graeme@gottcode.org>
 
-#ifndef PREFERENCES_DIALOG_H
-#define PREFERENCES_DIALOG_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_PREFERENCES_DIALOG_H
+#define FOCUSWRITER_PREFERENCES_DIALOG_H
 
 class DailyProgress;
 class ShortcutEdit;
@@ -41,14 +28,14 @@ class PreferencesDialog : public QDialog
 	Q_OBJECT
 
 public:
-	PreferencesDialog(DailyProgress* daily_progress, QWidget* parent = 0);
+	explicit PreferencesDialog(DailyProgress* daily_progress, QWidget* parent = nullptr);
 	~PreferencesDialog();
 
-public slots:
-	virtual void accept();
-	virtual void reject();
+public Q_SLOTS:
+	void accept() override;
+	void reject() override;
 
-private slots:
+private Q_SLOTS:
 	void goalHistoryToggled();
 	void resetDailyGoal();
 	void moveActionUp();
@@ -141,4 +128,4 @@ private:
 	bool m_shortcut_conflicts;
 };
 
-#endif
+#endif // FOCUSWRITER_PREFERENCES_DIALOG_H

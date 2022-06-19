@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2012, 2014, 2016, 2018, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "image_button.h"
 
@@ -65,7 +52,7 @@ void ImageButton::setImage(const QString& image, const QString& path)
 		setIcon(QPixmap::fromImage(icon, Qt::AutoColor | Qt::AvoidDither));
 
 		m_path = (!path.isEmpty() && QImageReader(path).canRead()) ? path : QString();
-		emit changed(m_path);
+		Q_EMIT changed(m_path);
 	} else {
 		unsetImage();
 	}
@@ -84,7 +71,7 @@ void ImageButton::unsetImage()
 	icon.fill(Qt::transparent);
 	setIcon(icon);
 
-	emit changed(m_path);
+	Q_EMIT changed(m_path);
 }
 
 //-----------------------------------------------------------------------------
@@ -92,7 +79,7 @@ void ImageButton::unsetImage()
 void ImageButton::onClicked()
 {
 	QStringList filters;
-	QList<QByteArray> formats = QImageReader::supportedImageFormats();
+	const QList<QByteArray> formats = QImageReader::supportedImageFormats();
 	for (const QByteArray& type : formats) {
 		filters.append("*." + type);
 	}
@@ -106,7 +93,7 @@ void ImageButton::onClicked()
 		}
 	}
 
-	QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")));
+	const QString image = QFileDialog::getOpenFileName(window(), tr("Open Image"), path, tr("Images(%1)").arg(filters.join(" ")));
 	if (!image.isEmpty()) {
 		settings.setValue("ImageButton/Location", QFileInfo(image).absolutePath());
 		setImage(image, image);

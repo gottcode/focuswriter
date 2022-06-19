@@ -1,18 +1,21 @@
-@ECHO ON>resources\windows\dirs.nsh
-@ECHO ON>resources\windows\files.nsh
+@ECHO ON>..\focuswriter\resources\windows\dirs.nsh
+@ECHO ON>..\focuswriter\resources\windows\files.nsh
 @ECHO OFF
 
+SET SRCDIR=..\focuswriter
 SET APP=FocusWriter
-SET VERSION=1.7.6
+SET VERSION=1.8.0
 
 ECHO Copying executable
-MKDIR %APP%
-COPY release\%APP%.exe %APP% >nul
+MKDIR %SRCDIR%\%APP%
+COPY %APP%.exe %SRCDIR%\%APP%\%APP%.exe >nul
 
 ECHO Copying translations
-SET TRANSLATIONS=%APP%\translations
+SET TRANSLATIONS=%SRCDIR%\%APP%\translations
 MKDIR %TRANSLATIONS%
-COPY translations\*.qm %TRANSLATIONS% >nul
+COPY *.qm %TRANSLATIONS% >nul
+
+CD %SRCDIR%
 
 ECHO Copying icons
 SET ICONS=%APP%\icons\hicolor
@@ -30,7 +33,7 @@ MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
 ECHO Copying symbols
-COPY resources\symbols\symbols1000.dat %APP% >nul
+COPY resources\symbols\symbols1400.dat %APP% >nul
 
 ECHO Copying themes
 SET THEMES=%APP%\themes
@@ -38,7 +41,7 @@ MKDIR %THEMES%
 XCOPY /Q /S /Y resources\themes\* %THEMES% >nul
 
 ECHO Copying Qt
-%QTDIR%\bin\windeployqt.exe --verbose 0 --no-angle --no-opengl-sw %APP%\%APP%.exe
+%QTDIR%\bin\windeployqt.exe --verbose 0 --no-opengl-sw --no-system-d3d-compiler %APP%\%APP%.exe
 RMDIR /S /Q %APP%\iconengines
 
 ECHO Creating ReadMe

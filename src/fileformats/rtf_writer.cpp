@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "rtf_writer.h"
 
@@ -39,103 +26,98 @@ namespace
 
 #ifndef Q_OS_WIN
 
-QHash<QLocale::Language, QByteArray> mapCodePages()
-{
-	QHash<QLocale::Language, QByteArray> codepages;
-	codepages[QLocale::Thai] = "CP874";
-	codepages[QLocale::Japanese] = "CP932";
-	codepages[QLocale::Korean] = "CP949";
-	codepages[QLocale::Albanian] = "CP1250";
-	codepages[QLocale::Bosnian] = "CP1250";
-	codepages[QLocale::Croatian] = "CP1250";
-	codepages[QLocale::Czech] = "CP1250";
-	codepages[QLocale::Hungarian] = "CP1250";
-	codepages[QLocale::Polish] = "CP1250";
-	codepages[QLocale::Romanian] = "CP1250";
-	codepages[QLocale::SerboCroatian] = "CP1250";
-	codepages[QLocale::Slovak] = "CP1250";
-	codepages[QLocale::Slovenian] = "CP1250";
-	codepages[QLocale::Turkmen] = "CP1250";
-	codepages[QLocale::Bashkir] = "CP1251";
-	codepages[QLocale::Bulgarian] = "CP1251";
-	codepages[QLocale::Byelorussian] = "CP1251";
-	codepages[QLocale::Kazakh] = "CP1251";
-	codepages[QLocale::Kirghiz] = "CP1251";
-	codepages[QLocale::Macedonian] = "CP1251";
-	codepages[QLocale::Mongolian] = "CP1251";
-	codepages[QLocale::Russian] = "CP1251";
-	codepages[QLocale::Tajik] = "CP1251";
-	codepages[QLocale::Tatar] = "CP1251";
-	codepages[QLocale::Ukrainian] = "CP1251";
-	codepages[QLocale::Afrikaans] = "CP1252";
-	codepages[QLocale::Basque] = "CP1252";
-	codepages[QLocale::Breton] = "CP1252";
-	codepages[QLocale::Corsican] = "CP1252";
-	codepages[QLocale::Danish] = "CP1252";
-	codepages[QLocale::Dutch] = "CP1252";
-	codepages[QLocale::English] = "CP1252";
-	codepages[QLocale::Faroese] = "CP1252";
-	codepages[QLocale::Finnish] = "CP1252";
-	codepages[QLocale::French] = "CP1252";
-	codepages[QLocale::Frisian] = "CP1252";
-	codepages[QLocale::Galician] = "CP1252";
-	codepages[QLocale::Gaelic] = "CP1252";
-	codepages[QLocale::German] = "CP1252";
-	codepages[QLocale::Greenlandic] = "CP1252";
-	codepages[QLocale::Hausa] = "CP1252";
-	codepages[QLocale::Icelandic] = "CP1252";
-	codepages[QLocale::Igbo] = "CP1252";
-	codepages[QLocale::Indonesian] = "CP1252";
-	codepages[QLocale::Inuktitut] = "CP1252";
-	codepages[QLocale::Irish] = "CP1252";
-	codepages[QLocale::Italian] = "CP1252";
-	codepages[QLocale::Kinyarwanda] = "CP1252";
-	codepages[QLocale::Malay] = "CP1252";
-	codepages[QLocale::Norwegian] = "CP1252";
-	codepages[QLocale::NorwegianNynorsk] = "CP1252";
-	codepages[QLocale::Occitan] = "CP1252";
-	codepages[QLocale::Portuguese] = "CP1252";
-	codepages[QLocale::RhaetoRomance] = "CP1252";
-	codepages[QLocale::Quechua] = "CP1252";
-	codepages[QLocale::Spanish] = "CP1252";
-	codepages[QLocale::Swahili] = "CP1252";
-	codepages[QLocale::Swedish] = "CP1252";
-	codepages[QLocale::Tagalog] = "CP1252";
-	codepages[QLocale::Welsh] = "CP1252";
-	codepages[QLocale::Wolof] = "CP1252";
-	codepages[QLocale::Xhosa] = "CP1252";
-	codepages[QLocale::Yoruba] = "CP1252";
-	codepages[QLocale::Zulu] = "CP1252";
-	codepages[QLocale::Greek] = "CP1253";
-	codepages[QLocale::Azerbaijani] = "CP1254";
-	codepages[QLocale::Turkish] = "CP1254";
-	codepages[QLocale::Uzbek] = "CP1254";
-	codepages[QLocale::Hebrew] = "CP1255";
-	codepages[QLocale::Yiddish] = "CP1255";
-	codepages[QLocale::Arabic] = "CP1256";
-	codepages[QLocale::Persian] = "CP1256";
-	codepages[QLocale::Urdu] = "CP1256";
-	codepages[QLocale::Estonian] = "CP1257";
-	codepages[QLocale::Latvian] = "CP1257";
-	codepages[QLocale::Lithuanian] = "CP1257";
-	codepages[QLocale::Vietnamese] = "CP1258";
-	codepages[QLocale::CentralMoroccoTamazight] = "CP1252";
-	codepages[QLocale::LowGerman] = "CP1252";
-	codepages[QLocale::NorthernSami] = "CP1252";
-	codepages[QLocale::SwissGerman] = "CP1252";
-	return codepages;
-}
-
 QByteArray fetchCodePage()
 {
 	// Search code page map for current language
 	QLocale::Language language = QLocale().language();
-	static const QHash<QLocale::Language, QByteArray> codepages = mapCodePages();
+	static const QHash<QLocale::Language, QByteArray> codepages{
+		{ QLocale::Thai, "CP874" },
+		{ QLocale::Japanese, "CP932" },
+		{ QLocale::Korean, "CP949" },
+		{ QLocale::Albanian, "CP1250" },
+		{ QLocale::Bosnian, "CP1250" },
+		{ QLocale::Croatian, "CP1250" },
+		{ QLocale::Czech, "CP1250" },
+		{ QLocale::Hungarian, "CP1250" },
+		{ QLocale::Polish, "CP1250" },
+		{ QLocale::Romanian, "CP1250" },
+		{ QLocale::Serbian, "CP1250" },
+		{ QLocale::Slovak, "CP1250" },
+		{ QLocale::Slovenian, "CP1250" },
+		{ QLocale::Turkmen, "CP1250" },
+		{ QLocale::Bashkir, "CP1251" },
+		{ QLocale::Bulgarian, "CP1251" },
+		{ QLocale::Byelorussian, "CP1251" },
+		{ QLocale::Kazakh, "CP1251" },
+		{ QLocale::Kirghiz, "CP1251" },
+		{ QLocale::Macedonian, "CP1251" },
+		{ QLocale::Mongolian, "CP1251" },
+		{ QLocale::Russian, "CP1251" },
+		{ QLocale::Tajik, "CP1251" },
+		{ QLocale::Tatar, "CP1251" },
+		{ QLocale::Ukrainian, "CP1251" },
+		{ QLocale::Afrikaans, "CP1252" },
+		{ QLocale::Basque, "CP1252" },
+		{ QLocale::Breton, "CP1252" },
+		{ QLocale::CentralMoroccoTamazight, "CP1252" },
+		{ QLocale::Corsican, "CP1252" },
+		{ QLocale::Danish, "CP1252" },
+		{ QLocale::Dutch, "CP1252" },
+		{ QLocale::English, "CP1252" },
+		{ QLocale::Faroese, "CP1252" },
+		{ QLocale::Filipino, "CP1252" },
+		{ QLocale::Finnish, "CP1252" },
+		{ QLocale::French, "CP1252" },
+		{ QLocale::Frisian, "CP1252" },
+		{ QLocale::Galician, "CP1252" },
+		{ QLocale::Gaelic, "CP1252" },
+		{ QLocale::German, "CP1252" },
+		{ QLocale::Greenlandic, "CP1252" },
+		{ QLocale::Hausa, "CP1252" },
+		{ QLocale::Icelandic, "CP1252" },
+		{ QLocale::Igbo, "CP1252" },
+		{ QLocale::Indonesian, "CP1252" },
+		{ QLocale::Inuktitut, "CP1252" },
+		{ QLocale::Irish, "CP1252" },
+		{ QLocale::Italian, "CP1252" },
+		{ QLocale::Kinyarwanda, "CP1252" },
+		{ QLocale::LowGerman, "CP1252" },
+		{ QLocale::Malay, "CP1252" },
+		{ QLocale::NorthernSami, "CP1252" },
+		{ QLocale::NorwegianBokmal, "CP1252" },
+		{ QLocale::NorwegianNynorsk, "CP1252" },
+		{ QLocale::Occitan, "CP1252" },
+		{ QLocale::Portuguese, "CP1252" },
+		{ QLocale::RhaetoRomance, "CP1252" },
+		{ QLocale::Quechua, "CP1252" },
+		{ QLocale::Spanish, "CP1252" },
+		{ QLocale::Swahili, "CP1252" },
+		{ QLocale::Swedish, "CP1252" },
+		{ QLocale::SwissGerman, "CP1252" },
+		{ QLocale::Welsh, "CP1252" },
+		{ QLocale::Wolof, "CP1252" },
+		{ QLocale::Xhosa, "CP1252" },
+		{ QLocale::Yoruba, "CP1252" },
+		{ QLocale::Zulu, "CP1252" },
+		{ QLocale::Greek, "CP1253" },
+		{ QLocale::Azerbaijani, "CP1254" },
+		{ QLocale::Turkish, "CP1254" },
+		{ QLocale::Uzbek, "CP1254" },
+		{ QLocale::Hebrew, "CP1255" },
+		{ QLocale::Yiddish, "CP1255" },
+		{ QLocale::Arabic, "CP1256" },
+		{ QLocale::Persian, "CP1256" },
+		{ QLocale::Urdu, "CP1256" },
+		{ QLocale::Estonian, "CP1257" },
+		{ QLocale::Latvian, "CP1257" },
+		{ QLocale::Lithuanian, "CP1257" },
+		{ QLocale::Vietnamese, "CP1258" }
+	};
 	QByteArray codepage = codepages.value(language);
 
 	// Guess at Chinese code page for current country
 	if (codepage.isEmpty() && language == QLocale::Chinese) {
-		QLocale::Country country = QLocale().country();
+		const QLocale::Country country = QLocale().country();
 		codepage = (country == QLocale::HongKong || country == QLocale::Macau || country == QLocale::Taiwan) ? "CP950" : "CP936";
 	}
 
@@ -196,11 +178,11 @@ QByteArray fetchCodePage()
 QByteArray fetchCodePage()
 {
 	TCHAR buffer[7];
-	int size = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_IDEFAULTANSICODEPAGE, buffer, sizeof(buffer) / sizeof(TCHAR));
+	const int size = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_IDEFAULTANSICODEPAGE, buffer, sizeof(buffer) / sizeof(TCHAR));
 #if UNICODE
-	QString codepage = QLatin1String("CP") + QString::fromUtf16((ushort*)buffer, size - 1);
+	const QString codepage = QLatin1String("CP") + QString::fromWCharArray(buffer, size - 1);
 #else
-	QString codepage = QLatin1String("CP") + QString::fromLocal8Bit(buffer);
+	const QString codepage = QLatin1String("CP") + QString::fromLocal8Bit(buffer);
 #endif
 	return codepage.toLatin1();
 }
@@ -211,10 +193,10 @@ QByteArray fetchCodePage()
 
 //-----------------------------------------------------------------------------
 
-RtfWriter::RtfWriter(const QByteArray& encoding) :
-	m_encoding(encoding),
-	m_codec(0),
-	m_supports_ascii(false)
+RtfWriter::RtfWriter(const QByteArray& encoding)
+	: m_encoding(encoding)
+	, m_codec(nullptr)
+	, m_supports_ascii(false)
 {
 	// Fetch system codepage
 	if (m_encoding.isEmpty()) {
@@ -233,7 +215,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 
 	// Check if codec is a superset of ASCII
 	static QHash<int, bool> supports_ascii;
-	int mib = m_codec->mibEnum();
+	const int mib = m_codec->mibEnum();
 	if (supports_ascii.contains(mib)) {
 		m_supports_ascii = supports_ascii[mib];
 	} else {
@@ -242,9 +224,9 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 		QTextCodec::ConverterState state;
 		state.flags = QTextCodec::ConvertInvalidToNull;
 		for (int i = 0x20; i < 0x80; ++i) {
-			QChar c = QChar::fromLatin1(i);
+			const QChar c = QChar::fromLatin1(i);
 			encoded = m_codec->fromUnicode(&c, 1, &state);
-			if (state.invalidChars || (encoded.size() > 1) || (encoded.at(0) != i)) {
+			if (state.invalidChars || (encoded.length() > 1) || (encoded.at(0) != i)) {
 				m_supports_ascii = false;
 				break;
 			}
@@ -275,7 +257,7 @@ RtfWriter::RtfWriter(const QByteArray& encoding) :
 
 bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 {
-	if (m_codec == 0) {
+	if (!m_codec) {
 		return false;
 	}
 
@@ -283,8 +265,8 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 
 	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
 		QByteArray par("{\\pard\\plain");
-		QTextBlockFormat block_format = block.blockFormat();
-		int heading = block_format.property(QTextFormat::UserProperty).toInt();
+		const QTextBlockFormat block_format = block.blockFormat();
+		const int heading = block_format.property(QTextFormat::UserProperty).toInt();
 		if (heading) {
 			par += "\\s" + QByteArray::number(heading)
 				+ "\\outlinelevel" + QByteArray::number(heading - 1)
@@ -293,11 +275,11 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 		} else {
 			par += "\\s0";
 		}
-		bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
+		const bool rtl = block_format.layoutDirection() == Qt::RightToLeft;
 		if (rtl) {
 			par += "\\rtlpar";
 		}
-		Qt::Alignment align = block_format.alignment();
+		const Qt::Alignment align = block_format.alignment();
 		if (rtl && (align & Qt::AlignLeft)) {
 			par += "\\ql";
 		} else if (align & Qt::AlignRight) {
@@ -314,9 +296,9 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 
 		if (block.begin() != block.end()) {
 			device->write(" ");
-			for (QTextBlock::iterator iter = block.begin(); !(iter.atEnd()); ++iter) {
-				QTextFragment fragment = iter.fragment();
-				QTextCharFormat char_format = fragment.charFormat();
+			for (QTextBlock::iterator iter = block.begin(); !iter.atEnd(); ++iter) {
+				const QTextFragment fragment = iter.fragment();
+				const QTextCharFormat char_format = fragment.charFormat();
 				QByteArray style;
 				if (char_format.fontWeight() == QFont::Bold) {
 					style += "\\b";
@@ -357,13 +339,11 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 {
 	QByteArray text;
 
-	QByteArray encoded;
 	QTextCodec::ConverterState state;
 	state.flags = QTextCodec::ConvertInvalidToNull;
 
-	QString::const_iterator end = string.constEnd();
-	for (QString::const_iterator i = string.constBegin(); i != end; ++i) {
-		switch (i->unicode()) {
+	for (const QChar& c : string) {
+		switch (c.unicode()) {
 		case '\t': text += "\\tab "; break;
 		case '\\': text += "\\'5C"; break;
 		case '{': text += "\\'7B"; break;
@@ -388,22 +368,20 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 		case 0x2022: text += "\\bullet "; break;
 		case 0x2028: text += "\\line "; break;
 		default:
-			if (m_supports_ascii && (i->unicode() >= 0x0020) && (i->unicode() < 0x0080)) {
-				text += i->unicode();
+			if (m_supports_ascii && (c.unicode() >= 0x0020) && (c.unicode() < 0x0080)) {
+				text += c.unicode();
 				break;
 			}
 
-			encoded = m_codec->fromUnicode(i, 1, &state);
+			const QByteArray encoded = m_codec->fromUnicode(&c, 1, &state);
 			if ((state.invalidChars == 0) && (encoded.at(0) != 0)) {
-				if (encoded.count() == 1 && encoded.at(0) >= 0x20) {
+				if (encoded.length() == 1 && encoded.at(0) >= 0x20) {
 					text += encoded;
 				} else {
-					for (int j = 0; j < encoded.count(); ++j) {
-						text += "\\'" + QByteArray::number(static_cast<unsigned char>(encoded.at(j)), 16).toUpper();
-					}
+					text += "\\'" + encoded.toHex().toUpper();
 				}
-			} else if (i->unicode()) {
-				text += "\\u" + QByteArray::number(i->unicode()) + "?";
+			} else if (c.unicode()) {
+				text += "\\u" + QByteArray::number(c.unicode()) + "?";
 			}
 		}
 	}

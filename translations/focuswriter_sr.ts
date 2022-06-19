@@ -30,22 +30,6 @@
 <context>
     <name>DailyProgress</name>
     <message numerus="yes">
-        <source>%L1% of %Ln minute(s)</source>
-        <translation>
-            <numerusform>%L1% од %Ln минута</numerusform>
-            <numerusform>%L1% од %Ln минута</numerusform>
-            <numerusform>%L1% од %Ln минута</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%L1% of %Ln word(s)</source>
-        <translation>
-            <numerusform>%L1% од %Ln речи</numerusform>
-            <numerusform>%L1% од %Ln речи</numerusform>
-            <numerusform>%L1% од %Ln речи</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
             <numerusform>%Ln реч</numerusform>
@@ -64,6 +48,22 @@
     <message>
         <source>0%</source>
         <translation>0%</translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln minute(s)</source>
+        <translation>
+            <numerusform>%L1% од %Ln минута</numerusform>
+            <numerusform>%L1% од %Ln минута</numerusform>
+            <numerusform>%L1% од %Ln минута</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%L1% of %Ln word(s)</source>
+        <translation>
+            <numerusform>%L1% од %Ln речи</numerusform>
+            <numerusform>%L1% од %Ln речи</numerusform>
+            <numerusform>%L1% од %Ln речи</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1857,6 +1857,13 @@
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <source>Files to open in current session.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

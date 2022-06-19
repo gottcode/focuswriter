@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2012, 2013, 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2016 Graeme Gott <graeme@gottcode.org>
 
-#ifndef THEME_H
-#define THEME_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_THEME_H
+#define FOCUSWRITER_THEME_H
 
 #include "ranged_int.h"
 #include "settings_file.h"
@@ -83,7 +70,7 @@ class Theme : public SettingsFile
 	QSharedDataPointer<ThemeData> d;
 
 public:
-	Theme();
+	explicit Theme();
 	Theme(const Theme& theme);
 	Theme(const QString& id, bool is_default);
 	~Theme();
@@ -187,8 +174,8 @@ public:
 	bool operator==(const Theme& theme) const;
 
 private:
-	void reload();
-	void write();
+	void reload() override;
+	void write() override;
 
 private:
 	static QString m_path_default;
@@ -197,4 +184,4 @@ private:
 
 Q_DECLARE_METATYPE(Theme)
 
-#endif
+#endif // FOCUSWRITER_THEME_H

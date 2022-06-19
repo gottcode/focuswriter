@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2012, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2014 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "session.h"
 
@@ -30,11 +17,11 @@ QString Session::m_path;
 
 //-----------------------------------------------------------------------------
 
-Session::Session(const QString& id) :
-	m_id(id),
-	m_default(id.isEmpty())
+Session::Session(const QString& id)
+	: m_id(id)
+	, m_default(id.isEmpty())
 {
-	QString path = pathFromId(m_id);
+	const QString path = pathFromId(m_id);
 	if (!m_id.isEmpty() && QFile::exists(path)) {
 		m_data = new QSettings(path, QSettings::IniFormat);
 		m_name = m_data->value("Name").toString();
@@ -50,7 +37,6 @@ Session::Session(const QString& id) :
 Session::~Session()
 {
 	delete m_data;
-	m_data = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -140,10 +126,10 @@ QString Session::createId()
 
 bool Session::exists(const QString& name)
 {
-	QDir dir(m_path, "*.session");
-	QStringList sessions = dir.entryList(QDir::Files);
+	const QDir dir(m_path, "*.session");
+	const QStringList sessions = dir.entryList(QDir::Files);
 	for (const QString& id : sessions) {
-		QSettings session(dir.filePath(id), QSettings::IniFormat);
+		const QSettings session(dir.filePath(id), QSettings::IniFormat);
 		if (session.value("Name").toString() == name) {
 			return true;
 		}

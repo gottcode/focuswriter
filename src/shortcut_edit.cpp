@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2014, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "shortcut_edit.h"
 
@@ -27,8 +14,8 @@
 
 //-----------------------------------------------------------------------------
 
-ShortcutEdit::ShortcutEdit(QWidget* parent) :
-	QWidget(parent)
+ShortcutEdit::ShortcutEdit(QWidget* parent)
+	: QWidget(parent)
 {
 	m_edit = new QKeySequenceEdit(this);
 	connect(m_edit, &QKeySequenceEdit::editingFinished, this, &ShortcutEdit::changed);
@@ -71,7 +58,7 @@ void ShortcutEdit::setShortcut(const QKeySequence& shortcut, const QKeySequence&
 void ShortcutEdit::clear()
 {
 	m_edit->clear();
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------
@@ -79,7 +66,7 @@ void ShortcutEdit::clear()
 void ShortcutEdit::reset()
 {
 	m_edit->setKeySequence(m_default_shortcut);
-	emit changed();
+	Q_EMIT changed();
 }
 
 //-----------------------------------------------------------------------------

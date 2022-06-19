@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "stack.h"
 
@@ -32,6 +19,7 @@
 #include "theme_renderer.h"
 
 #include <QAction>
+#include <QActionGroup>
 #include <QApplication>
 #include <QClipboard>
 #include <QDir>
@@ -53,15 +41,15 @@
 
 //-----------------------------------------------------------------------------
 
-Stack::Stack(QWidget* parent) :
-	QWidget(parent),
-	m_symbols_dialog(0),
-	m_printer(0),
-	m_current_document(0),
-	m_footer_margin(0),
-	m_header_margin(0),
-	m_footer_visible(0),
-	m_header_visible(0)
+Stack::Stack(QWidget* parent)
+	: QWidget(parent)
+	, m_symbols_dialog(nullptr)
+	, m_printer(nullptr)
+	, m_current_document(nullptr)
+	, m_footer_margin(0)
+	, m_header_margin(0)
+	, m_footer_visible(0)
+	, m_header_visible(0)
 {
 	setMouseTracking(true);
 
@@ -100,10 +88,10 @@ Stack::Stack(QWidget* parent) :
 	m_resize_timer = new QTimer(this);
 	m_resize_timer->setInterval(50);
 	m_resize_timer->setSingleShot(true);
-	connect(m_resize_timer, &QTimer::timeout, this, QOverload<>::of(&Stack::updateBackground));
+	connect(m_resize_timer, &QTimer::timeout, this, qOverload<>(&Stack::updateBackground));
 
 	m_theme_renderer = new ThemeRenderer(this);
-	connect(m_theme_renderer, &ThemeRenderer::rendered, this, QOverload<const QImage&, const QRect&>::of(&Stack::updateBackground));
+	connect(m_theme_renderer, &ThemeRenderer::rendered, this, qOverload<const QImage&, const QRect&>(&Stack::updateBackground));
 
 	setHeaderVisible(Preferences::instance().alwaysShowHeader());
 	setFooterVisible(Preferences::instance().alwaysShowFooter());
@@ -153,8 +141,8 @@ void Stack::addDocument(Document* document)
 	document->loadTheme(m_theme);
 	document->text()->setFixedSize(m_foreground_size);
 
-	emit documentAdded(document);
-	emit updateFormatActions();
+	Q_EMIT documentAdded(document);
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -182,7 +170,7 @@ void Stack::removeDocument(int index)
 	delete action;
 	updateMenuIndexes();
 
-	emit documentRemoved(document);
+	Q_EMIT documentRemoved(document);
 	document->close();
 }
 
@@ -190,9 +178,9 @@ void Stack::removeDocument(int index)
 
 void Stack::updateDocument(int index)
 {
-	Document* document = m_documents.at(index);
+	const Document* document = m_documents.at(index);
 	QAction* action = m_document_actions.at(index);
-	action->setText(document->title() + (document->isModified() ? "*" : ""));
+	action->setText(document->title() + (document->isModified() ? "*" : QString()));
 	action->setToolTip(QDir::toNativeSeparators(document->filename()));
 }
 
@@ -205,10 +193,10 @@ void Stack::setCurrentDocument(int index)
 	m_scenes->setDocument(m_current_document);
 	m_document_actions[index]->setChecked(true);
 
-	emit copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
-	emit redoAvailable(m_current_document->text()->document()->isRedoAvailable());
-	emit undoAvailable(m_current_document->text()->document()->isUndoAvailable());
-	emit updateFormatActions();
+	Q_EMIT copyAvailable(!m_current_document->text()->textCursor().selectedText().isEmpty());
+	Q_EMIT redoAvailable(m_current_document->text()->document()->isRedoAvailable());
+	Q_EMIT undoAvailable(m_current_document->text()->document()->isUndoAvailable());
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -281,7 +269,7 @@ void Stack::alignRight()
 
 void Stack::autoCache()
 {
-	for (Document* document : m_documents) {
+	for (Document* document : qAsConst(m_documents)) {
 		if (document->isModified()) {
 			document->cache();
 		}
@@ -318,7 +306,7 @@ void Stack::decreaseIndent()
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(std::max(0, format.indent() - 1));
 	cursor.setBlockFormat(format);
-	emit updateFormatActions();
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -351,7 +339,7 @@ void Stack::increaseIndent()
 	QTextBlockFormat format = cursor.blockFormat();
 	format.setIndent(format.indent() + 1);
 	cursor.setBlockFormat(format);
-	emit updateFormatActions();
+	Q_EMIT updateFormatActions();
 }
 
 //-----------------------------------------------------------------------------
@@ -365,7 +353,7 @@ void Stack::paste()
 
 void Stack::pasteUnformatted()
 {
-	QString text = QApplication::clipboard()->text(QClipboard::Clipboard);
+	const QString text = QApplication::clipboard()->text(QClipboard::Clipboard);
 	m_current_document->text()->insertPlainText(text);
 }
 
@@ -439,8 +427,8 @@ void Stack::selectScene()
 
 void Stack::setFocusMode(QAction* action)
 {
-	int focus_mode = action->data().toInt();
-	for (Document* document : m_documents) {
+	const int focus_mode = action->data().toInt();
+	for (Document* document : qAsConst(m_documents)) {
 		document->setFocusMode(focus_mode);
 	}
 }
@@ -521,7 +509,7 @@ void Stack::setTextDirectionLTR()
 		format.setLayoutDirection(Qt::LeftToRight);
 		format.setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
 		cursor.mergeBlockFormat(format);
-		emit updateFormatAlignmentActions();
+		Q_EMIT updateFormatAlignmentActions();
 	}
 }
 
@@ -536,7 +524,7 @@ void Stack::setTextDirectionRTL()
 		format.setLayoutDirection(Qt::RightToLeft);
 		format.setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
 		cursor.mergeBlockFormat(format);
-		emit updateFormatAlignmentActions();
+		Q_EMIT updateFormatAlignmentActions();
 	}
 }
 
@@ -573,7 +561,7 @@ void Stack::themeSelected(const Theme& theme)
 	updateMargin();
 	updateBackground();
 
-	for (Document* document : m_documents) {
+	for (Document* document : qAsConst(m_documents)) {
 		document->loadTheme(theme);
 	}
 }
@@ -597,7 +585,7 @@ void Stack::updateSmartQuotes()
 
 void Stack::updateSmartQuotesSelection()
 {
-	QTextCursor cursor = m_current_document->text()->textCursor();
+	const QTextCursor cursor = m_current_document->text()->textCursor();
 	SmartQuotes::replace(m_current_document->text(), cursor.selectionStart(), cursor.selectionEnd());
 }
 
@@ -606,9 +594,9 @@ void Stack::updateSmartQuotesSelection()
 void Stack::setFooterVisible(bool visible)
 {
 	visible |= Preferences::instance().alwaysShowFooter();
-	int footer_visible = visible * -m_footer_margin;
+	const int footer_visible = visible * -m_footer_margin;
 	if (m_footer_visible != footer_visible) {
-		emit footerVisible(visible);
+		Q_EMIT footerVisible(visible);
 		m_footer_visible = footer_visible;
 		updateMask();
 	}
@@ -619,9 +607,9 @@ void Stack::setFooterVisible(bool visible)
 void Stack::setHeaderVisible(bool visible)
 {
 	visible |= Preferences::instance().alwaysShowHeader();
-	int header_visible = visible * m_header_margin;
+	const int header_visible = visible * m_header_margin;
 	if (m_header_visible != header_visible) {
-		emit headerVisible(visible);
+		Q_EMIT headerVisible(visible);
 		m_header_visible = header_visible;
 		updateMask();
 	}
@@ -642,7 +630,7 @@ void Stack::setScenesVisible(bool visible)
 
 void Stack::showHeader()
 {
-	QPoint point = mapFromGlobal(QCursor::pos());
+	const QPoint point = mapFromGlobal(QCursor::pos());
 	setHeaderVisible(window()->rect().contains(point) && point.y() <= m_header_margin);
 }
 
@@ -650,9 +638,9 @@ void Stack::showHeader()
 
 void Stack::mouseMoveEvent(QMouseEvent* event)
 {
-	int y = mapFromGlobal(event->globalPos()).y();
-	bool header_visible = y <= m_header_margin;
-	bool footer_visible = y >= (height() - m_footer_margin);
+	const int y = mapFromGlobal(event->globalPosition()).y();
+	const bool header_visible = y <= m_header_margin;
+	const bool footer_visible = y >= (height() - m_footer_margin);
 	setHeaderVisible(header_visible);
 	setFooterVisible(footer_visible);
 	setScenesVisible(false);
@@ -689,9 +677,9 @@ void Stack::resizeEvent(QResizeEvent* event)
 
 //-----------------------------------------------------------------------------
 
-void Stack::actionTriggered(QAction* action)
+void Stack::actionTriggered(const QAction* action)
 {
-	emit documentSelected(action->data().toInt());
+	Q_EMIT documentSelected(action->data().toInt());
 }
 
 //-----------------------------------------------------------------------------
@@ -756,7 +744,7 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 	if (!m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size)) {
 		m_foreground_size = foreground_rect.size();
 
-		for (Document* document : m_documents) {
+		for (Document* document : qAsConst(m_documents)) {
 			document->text()->setFixedSize(m_foreground_size);
 			document->centerCursor(true);
 		}
@@ -781,7 +769,7 @@ void Stack::updateMargin()
 	m_layout->setColumnMinimumWidth(0, margin);
 	m_layout->setColumnMinimumWidth(5, margin);
 
-	int minimum_size = (margin * 2) + (m_theme.foregroundPadding() * 2) + 100;
+	const int minimum_size = (margin * 2) + (m_theme.foregroundPadding() * 2) + 100;
 	window()->setMinimumSize(minimum_size, minimum_size);
 }
 
@@ -807,7 +795,7 @@ void Stack::updateMask()
 
 void Stack::updateMenuIndexes()
 {
-	for (int i = 0; i < m_document_actions.size(); ++i) {
+	for (int i = 0, count = m_document_actions.count(); i < count; ++i) {
 		m_document_actions[i]->setData(i);
 	}
 }

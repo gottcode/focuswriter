@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "highlighter.h"
 
@@ -24,23 +11,21 @@
 #include "spell_checker.h"
 
 #include <QAction>
-#include <QApplication>
 #include <QContextMenuEvent>
 #include <QEvent>
 #include <QMenu>
-#include <QStyle>
 #include <QTextEdit>
 #include <QTimer>
 
 //-----------------------------------------------------------------------------
 
 Highlighter::Highlighter(QTextEdit* text, DictionaryRef& dictionary)
-	: QSyntaxHighlighter(text),
-	m_dictionary(dictionary),
-	m_text(text),
-	m_enabled(true),
-	m_misspelled("#ff0000"),
-	m_changed(false)
+	: QSyntaxHighlighter(text)
+	, m_dictionary(dictionary)
+	, m_text(text)
+	, m_enabled(true)
+	, m_misspelled(0xff, 0, 0)
+	, m_changed(false)
 {
 	connect(m_text, &QTextEdit::cursorPositionChanged, this, &Highlighter::cursorPositionChanged);
 
@@ -89,26 +74,18 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 		return QSyntaxHighlighter::eventFilter(watched, event);
 	} else {
 		// Check spelling of text block under mouse
-		QContextMenuEvent* context_event = static_cast<QContextMenuEvent*>(event);
+		const QContextMenuEvent* context_event = static_cast<const QContextMenuEvent*>(event);
 		m_start_cursor = m_text->cursorForPosition(context_event->pos());
-		QTextBlock block = m_start_cursor.block();
-		int cursor = m_start_cursor.position() - block.position();
+		const QTextBlock block = m_start_cursor.block();
+		const int cursor = m_start_cursor.position() - block.position();
 
-		bool under_mouse = false;
-		QStringRef word;
-		QVector<QStringRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
-		for (int i = 0; i < words.count(); ++i) {
-			word = words.at(i);
-			int delta = cursor - word.position();
-			if (delta >= 0 && delta <= word.length()) {
-				under_mouse = true;
-				break;
+		const QList<WordRef> words = static_cast<BlockStats*>(block.userData())->misspelled();
+		for (const WordRef& word : words) {
+			const int delta = cursor - word.position();
+			if (delta < 0 || delta > word.length()) {
+				continue;
 			}
-		}
 
-		if (!under_mouse) {
-			return false;
-		} else {
 			// Select misspelled word
 			m_cursor = m_start_cursor;
 			m_cursor.setPosition(word.position() + block.position());
@@ -120,7 +97,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 			// List suggestions in context menu
 			QMenu* menu = new QMenu;
-			QStringList guesses = m_dictionary.suggestions(m_word);
+			const QStringList guesses = m_dictionary.suggestions(m_word);
 			if (!guesses.isEmpty()) {
 				for (const QString& guess : guesses) {
 					menu->addAction(guess);
@@ -141,6 +118,8 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 
 			return true;
 		}
+
+		return false;
 	}
 }
 
@@ -149,7 +128,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 void Highlighter::highlightBlock(const QString& text)
 {
 	QTextCharFormat style;
-	int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
+	const int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
 	if (heading) {
 		style.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
 		style.setFontWeight(QFont::Bold);
@@ -165,13 +144,12 @@ void Highlighter::highlightBlock(const QString& text)
 	}
 
 	style.setUnderlineColor(m_misspelled);
-	style.setUnderlineStyle((QTextCharFormat::UnderlineStyle)QApplication::style()->styleHint(QStyle::SH_SpellCheckUnderlineStyle));
+	style.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
 
-	int cursor = m_text->textCursor().position() - currentBlock().position();
-	QVector<QStringRef> words = stats->misspelled();
-	for (int i = 0; i < words.count(); ++i) {
-		const QStringRef& word = words.at(i);
-		int delta = cursor - word.position();
+	const int cursor = m_text->textCursor().position() - currentBlock().position();
+	const QList<WordRef> words = stats->misspelled();
+	for (const WordRef& word : words) {
+		const int delta = cursor - word.position();
 		if (!m_changed || (delta < 0 || delta > word.length())) {
 			setFormat(word.position(), word.length(), style);
 		}
@@ -188,7 +166,7 @@ void Highlighter::updateSpelling()
 		return;
 	}
 
-	QTextBlock block = m_text->textCursor().block();
+	const QTextBlock block = m_text->textCursor().block();
 	bool found = false;
 
 	// Check first unchecked block at or after cursor
@@ -223,7 +201,7 @@ void Highlighter::updateSpelling()
 
 void Highlighter::cursorPositionChanged()
 {
-	QTextBlock current = m_text->textCursor().block();
+	const QTextBlock current = m_text->textCursor().block();
 	if (m_current != current) {
 		if (m_current.isValid() && m_text->document()->blockCount() > m_current.blockNumber()) {
 			rehighlightBlock(m_current);

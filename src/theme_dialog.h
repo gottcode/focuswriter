@@ -1,27 +1,13 @@
-/***********************************************************************
- *
- * Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
 
-#ifndef THEME_DIALOG_H
-#define THEME_DIALOG_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_THEME_DIALOG_H
+#define FOCUSWRITER_THEME_DIALOG_H
 
 class ColorButton;
-class FontComboBox;
 class ImageButton;
 class Theme;
 class ThemeRenderer;
@@ -30,6 +16,7 @@ class ThemeRenderer;
 #include <QFuture>
 class QCheckBox;
 class QComboBox;
+class QFontComboBox;
 class QGroupBox;
 class QLabel;
 class QLineEdit;
@@ -41,17 +28,16 @@ class ThemeDialog : public QDialog
 	Q_OBJECT
 
 public:
-	ThemeDialog(Theme& theme, QWidget* parent = 0);
+	explicit ThemeDialog(Theme& theme, QWidget* parent = nullptr);
 	~ThemeDialog();
 
-
-public slots:
-	virtual void accept();
+public Q_SLOTS:
+	void accept() override;
 
 protected:
-	virtual void hideEvent(QHideEvent* event);
+	void hideEvent(QHideEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 	void checkNameAvailable();
 	void fontChanged();
 	void imageChanged();
@@ -76,7 +62,7 @@ private:
 	QFuture<QColor> m_load_color;
 
 	ColorButton* m_text_color;
-	FontComboBox* m_font_names;
+	QFontComboBox* m_font_names;
 	QComboBox* m_font_sizes;
 	ColorButton* m_misspelled_color;
 
@@ -113,4 +99,4 @@ private:
 	QCheckBox* m_indent_first_line;
 };
 
-#endif
+#endif // FOCUSWRITER_THEME_DIALOG_H

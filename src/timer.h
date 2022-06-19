@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2019 Graeme Gott <graeme@gottcode.org>
 
-#ifndef TIMER_H
-#define TIMER_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_TIMER_H
+#define FOCUSWRITER_TIMER_H
 
 class Document;
 class Deltas;
@@ -40,9 +27,9 @@ class Timer : public QFrame
 	Q_OBJECT
 
 public:
-	Timer(Stack* documents, QWidget* parent = 0);
-	Timer(int type, const QStringList& values, Stack* documents, QWidget* parent = 0);
-	Timer(const QString& id, Stack* documents, QWidget* parent = 0);
+	explicit Timer(const Stack* documents, QWidget* parent = nullptr);
+	Timer(int type, const QStringList& values, const Stack* documents, QWidget* parent = nullptr);
+	Timer(const QString& id, const Stack* documents, QWidget* parent = nullptr);
 	~Timer();
 
 	bool isEditing() const;
@@ -59,15 +46,15 @@ public:
 
 	static QString toString(const QString& time, const QString& memo);
 
-public slots:
-	void documentAdded(Document* document);
-	void documentRemoved(Document* document);
+public Q_SLOTS:
+	void documentAdded(const Document* document);
+	void documentRemoved(const Document* document);
 
-signals:
+Q_SIGNALS:
 	void changed(Timer* timer);
 	void edited(Timer* timer);
 
-private slots:
+private Q_SLOTS:
 	void delayChanged(const QTime& delay);
 	void endChanged(const QTime& end);
 	void editAccepted();
@@ -95,10 +82,10 @@ private:
 	bool m_started;
 	bool m_finished;
 
-	Stack* m_documents;
+	const Stack* m_documents;
 	QTimer* m_timer;
 
-	QHash<Document*, Deltas*> m_deltas;
+	QHash<const Document*, Deltas*> m_deltas;
 	int m_character_count;
 	int m_character_and_space_count;
 	int m_page_count;
@@ -119,4 +106,4 @@ private:
 	QPushButton* m_edit_button;
 };
 
-#endif
+#endif // FOCUSWRITER_TIMER_H

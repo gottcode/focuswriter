@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2013, 2014, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2013-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "dictionary_dialog.h"
 
@@ -30,14 +17,14 @@
 
 //-----------------------------------------------------------------------------
 
-DictionaryDialog::DictionaryDialog(QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+DictionaryDialog::DictionaryDialog(QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
 	setWindowTitle(tr("Set Language"));
 
 	m_languages = new QListWidget(this);
-	QStringList languages = DictionaryManager::instance().availableDictionaries();
-	QString current_language = Preferences::instance().language();
+	const QStringList languages = DictionaryManager::instance().availableDictionaries();
+	const QString current_language = Preferences::instance().language();
 	for (const QString& language : languages) {
 		QListWidgetItem* item = new QListWidgetItem(LocaleDialog::languageName(language), m_languages);
 		item->setData(Qt::UserRole, language);

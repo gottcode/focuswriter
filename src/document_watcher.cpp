@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2013, 2015, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "document_watcher.h"
 
@@ -33,22 +20,22 @@
 
 //-----------------------------------------------------------------------------
 
-DocumentWatcher::Details::Details(const QFileInfo& info) :
-	path(info.canonicalFilePath()),
-	modified(info.lastModified()),
-	permissions(info.permissions()),
-	ignored(false)
+DocumentWatcher::Details::Details(const QFileInfo& info)
+	: path(info.canonicalFilePath())
+	, modified(info.lastModified())
+	, permissions(info.permissions())
+	, ignored(false)
 {
 }
 
 //-----------------------------------------------------------------------------
 
-DocumentWatcher* DocumentWatcher::m_instance = 0;
+DocumentWatcher* DocumentWatcher::m_instance = nullptr;
 
 //-----------------------------------------------------------------------------
 
-DocumentWatcher::DocumentWatcher(QObject* parent) :
-	QObject(parent)
+DocumentWatcher::DocumentWatcher(QObject* parent)
+	: QObject(parent)
 {
 	m_instance = this;
 	m_watcher = new QFileSystemWatcher(this);
@@ -60,7 +47,7 @@ DocumentWatcher::DocumentWatcher(QObject* parent) :
 DocumentWatcher::~DocumentWatcher()
 {
 	if (m_instance == this) {
-		m_instance = 0;
+		m_instance = nullptr;
 	}
 }
 
@@ -80,7 +67,7 @@ void DocumentWatcher::addWatch(Document* document)
 	}
 
 	// Store document details
-	QString path = document->filename();
+	const QString path = document->filename();
 	if (!path.isEmpty()) {
 		m_documents.insert(document, QFileInfo(path));
 		const Details& details = m_documents[document];
@@ -113,7 +100,7 @@ void DocumentWatcher::pauseWatch(Document* document)
 void DocumentWatcher::removeWatch(Document* document)
 {
 	// Remove document details
-	Details details = m_documents.take(document);
+	const Details details = m_documents.take(document);
 
 	// Remove path
 	if (!details.path.isEmpty()) {
@@ -136,17 +123,17 @@ void DocumentWatcher::updateWatch(Document* document)
 {
 	// Update document details
 	Details& details = m_documents[document];
-	QString oldpath = details.path;
-	QString path = document->filename();
+	const QString oldpath = details.path;
+	const QString path = document->filename();
 	if (!path.isEmpty()) {
-		QFileInfo info(path);
+		const QFileInfo info(path);
 		details.path = info.canonicalFilePath();
 		details.modified = info.lastModified();
 		details.permissions = info.permissions();
 	} else {
 		details.path = path;
 		details.modified = QDateTime();
-		details.permissions = 0;
+		details.permissions = QFile::Permissions();
 	}
 
 	// Update path
@@ -170,9 +157,9 @@ void DocumentWatcher::updateWatch(Document* document)
 void DocumentWatcher::processUpdates()
 {
 	while (!m_updates.isEmpty()) {
-		QString path = m_updates.takeFirst();
-		QFileInfo info(path);
-		QString filename = info.fileName();
+		const QString path = m_updates.takeFirst();
+		const QFileInfo info(path);
+		const QString filename = info.fileName();
 
 		// Find document
 		Document* document = m_paths.value(path);
@@ -190,7 +177,7 @@ void DocumentWatcher::processUpdates()
 		}
 
 		// Show document
-		emit showDocument(document);
+		Q_EMIT showDocument(document);
 
 		if (info.exists()) {
 			// Process changed file
@@ -223,7 +210,7 @@ void DocumentWatcher::processUpdates()
 			mbox.setStandardButtons(QMessageBox::Save | QMessageBox::Close | QMessageBox::Ignore);
 			mbox.setDefaultButton(QMessageBox::Save);
 
-			QAbstractButton* save_button = mbox.button(QMessageBox::Save);
+			const QAbstractButton* save_button = mbox.button(QMessageBox::Save);
 
 			QAbstractButton* ignore_button = mbox.button(QMessageBox::Ignore);
 			if (ignore_button->icon().isNull() && ignore_button->style()->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons)) {
@@ -236,7 +223,7 @@ void DocumentWatcher::processUpdates()
 			} else if (mbox.clickedButton() == ignore_button) {
 				document->setModified(true);
 			} else {
-				emit closeDocument(document);
+				Q_EMIT closeDocument(document);
 			}
 		}
 	}

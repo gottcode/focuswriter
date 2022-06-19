@@ -1,35 +1,144 @@
-/***********************************************************************
- *
- * Copyright (C) 2013, 2014, 2015 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2013-2022 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "paths.h"
 
+#include "daily_progress.h"
+#include "dictionary_manager.h"
+#include "document_cache.h"
+#include "session.h"
+#include "sound.h"
+#include "symbols_model.h"
+#include "theme.h"
+
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
+#include <QIcon>
+#include <QSettings>
 #include <QStandardPaths>
-#include <QStringList>
 
 //-----------------------------------------------------------------------------
 
-QString Paths::dataPath()
+void Paths::load(const QString& appdir, const QStringList& datadirs)
 {
-	static QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-	return path;
+	// Set locations of fallback icons
+	QStringList paths = QIcon::themeSearchPaths();
+	for (const QString& path : datadirs) {
+		paths.prepend(path + "/icons");
+	}
+	QIcon::setThemeSearchPaths(paths);
+
+	// Find sounds
+	for (const QString& datadir : datadirs) {
+		const QFileInfo info(datadir + "/sounds");
+		if (info.exists()) {
+			Sound::setPath(info.absoluteFilePath());
+			break;
+		}
+	}
+
+	// Find unicode names
+	for (const QString& datadir : datadirs) {
+		const QFileInfo info(datadir + "/symbols1400.dat");
+		if (info.exists()) {
+			SymbolsModel::setPath(info.absoluteFilePath());
+			break;
+		}
+	}
+
+	// Handle portability
+	QString userdir;
+#ifdef Q_OS_MAC
+	const QFileInfo portable(appdir + "/../../../Data");
+#else
+	const QFileInfo portable(appdir + "/Data");
+#endif
+	if (portable.exists() && portable.isWritable()) {
+		userdir = portable.absoluteFilePath();
+		QSettings::setDefaultFormat(QSettings::IniFormat);
+		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userdir + "/Settings");
+	}
+
+	// Find user data dir if not in portable mode
+	if (userdir.isEmpty()) {
+		userdir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+
+		// Migrate data from old location
+		if (!QFile::exists(userdir)) {
+			const QString oldpath = oldDataPath();
+			if (!oldpath.isEmpty()) {
+				QDir dir(userdir + "/../");
+				dir.mkpath(dir.absolutePath());
+				dir.rename(oldpath, userdir);
+			}
+		}
+	}
+
+	// Create base user data path
+	QDir dir(userdir);
+	if (!dir.exists()) {
+		dir.mkpath(dir.absolutePath());
+	}
+
+	// Set cache path
+	if (!dir.exists("Cache/Files")) {
+		dir.mkpath("Cache/Files");
+	}
+	DocumentCache::setPath(dir.absoluteFilePath("Cache/Files"));
+
+	// Set sessions path
+	if (!dir.exists("Sessions")) {
+		dir.mkdir("Sessions");
+	}
+	Session::setPath(dir.absoluteFilePath("Sessions"));
+
+	// Set themes path
+	if (!dir.exists("Themes")) {
+		if (dir.exists("themes")) {
+			dir.rename("themes", "Themes");
+		} else {
+			dir.mkdir("Themes");
+		}
+	}
+	if (!dir.exists("Themes/Images")) {
+		dir.mkdir("Themes/Images");
+	}
+	if (!dir.exists("Themes/Previews/Default")) {
+		dir.mkpath("Themes/Previews/Default");
+	}
+	Theme::setPath(dir.absoluteFilePath("Themes"));
+
+	for (const QString& datadir : datadirs) {
+		const QFileInfo info(datadir + "/themes");
+		if (info.exists()) {
+			Theme::setDefaultPath(info.absoluteFilePath());
+			break;
+		}
+	}
+
+	// Set dictionary paths
+	if (!dir.exists("Dictionaries")) {
+		if (dir.exists("dictionaries")) {
+			dir.rename("dictionaries", "Dictionaries");
+		} else {
+			dir.mkdir("Dictionaries");
+		}
+	}
+	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
+
+	QDir::setSearchPaths("dict", {
+		DictionaryManager::path()
+#ifdef Q_OS_WIN
+		, appdir + "/dictionaries"
+#endif
+	});
+
+	// Set location for daily progress
+	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));
 }
 
 //-----------------------------------------------------------------------------

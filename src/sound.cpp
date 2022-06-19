@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2013, 2016 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2016 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "sound.h"
 
@@ -27,18 +14,20 @@
 
 namespace
 {
-	// Shared data
-	QString f_path;
-	bool f_enabled = false;
 
-	QHash<int, Sound*> f_sound_objects;
+// Shared data
+QString f_path;
+bool f_enabled = false;
+
+QHash<int, Sound*> f_sound_objects;
+
 }
 
 //-----------------------------------------------------------------------------
 
-Sound::Sound(int name, const QString& filename, QObject* parent) :
-	QObject(parent),
-	m_name(name)
+Sound::Sound(int name, const QString& filename, QObject* parent)
+	: QObject(parent)
+	, m_name(name)
 {
 	QSoundEffect* sound = new QSoundEffect(this);
 	sound->setSource(QUrl::fromLocalFile(f_path + "/" + filename));
@@ -72,15 +61,15 @@ bool Sound::isValid() const
 void Sound::play()
 {
 	QSoundEffect* sound = nullptr;
-	for (int i = 0, end = m_sounds.size(); i < end; ++i) {
-		if (!m_sounds.at(i)->isPlaying()) {
-			sound = m_sounds.at(i);
+	for (QSoundEffect* check : qAsConst(m_sounds)) {
+		if (!check->isPlaying()) {
+			sound = check;
 			break;
 		}
 	}
-	if (sound == nullptr) {
+	if (!sound) {
 		sound = new QSoundEffect(this);
-		sound->setSource(m_sounds.first()->source());
+		sound->setSource(m_sounds.constFirst()->source());
 		m_sounds.append(sound);
 	}
 	sound->play();

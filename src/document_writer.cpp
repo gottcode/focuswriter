@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2013, 2014, 2015, 2017, 2018 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "document_writer.h"
 
@@ -37,10 +24,10 @@
 
 //-----------------------------------------------------------------------------
 
-DocumentWriter::DocumentWriter() :
-	m_type("fodt"),
-	m_document(0),
-	m_write_bom(false)
+DocumentWriter::DocumentWriter()
+	: m_type("fodt")
+	, m_document(nullptr)
+	, m_write_bom(false)
 {
 }
 
@@ -57,7 +44,7 @@ DocumentWriter::~DocumentWriter()
 
 bool DocumentWriter::write()
 {
-	Q_ASSERT(m_document != 0);
+	Q_ASSERT(m_document);
 	Q_ASSERT(!m_filename.isEmpty());
 
 	bool saved = false;
@@ -87,8 +74,10 @@ bool DocumentWriter::write()
 	} else {
 		file.setTextModeEnabled(true);
 		QTextStream stream(&file);
-		QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
-		stream.setCodec(encoding);
+		const QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
+		if (auto e = QStringConverter::encodingForName(encoding)) {
+			stream.setEncoding(*e);
+		}
 		if (m_write_bom || (encoding != "UTF-8")) {
 			stream.setGenerateByteOrderMark(true);
 		}

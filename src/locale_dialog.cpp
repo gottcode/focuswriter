@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2014, 2015, 2016, 2018, 2019, 2020 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "locale_dialog.h"
 
@@ -43,17 +30,17 @@ QString LocaleDialog::m_appname;
 
 //-----------------------------------------------------------------------------
 
-LocaleDialog::LocaleDialog(QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+LocaleDialog::LocaleDialog(QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
-	QString title = parent ? parent->window()->windowTitle() : QString();
+	const QString title = parent ? parent->window()->windowTitle() : QString();
 	setWindowTitle(!title.isEmpty() ? title : QCoreApplication::applicationName());
 
 	QLabel* text = new QLabel(tr("Select application language:"), this);
 
 	m_translations = new QComboBox(this);
 	m_translations->addItem(tr("<System Language>"));
-	QStringList translations = findTranslations();
+	const QStringList translations = findTranslations();
 	for (QString translation : translations) {
 		if (translation.startsWith("qt")) {
 			continue;
@@ -61,7 +48,7 @@ LocaleDialog::LocaleDialog(QWidget* parent) :
 		translation.remove(m_appname);
 		m_translations->addItem(languageName(translation), translation);
 	}
-	int index = std::max(0, m_translations->findData(m_current));
+	const int index = std::max(0, m_translations->findData(m_current));
 	m_translations->setCurrentIndex(index);
 
 	QDialogButtonBox* buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -84,7 +71,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	// Find translator path
 	QStringList paths = datadirs;
 	if (paths.isEmpty()) {
-		QString appdir = QCoreApplication::applicationDirPath();
+		const QString appdir = QCoreApplication::applicationDirPath();
 		paths.append(appdir);
 		paths.append(appdir + "/../share/" + QCoreApplication::applicationName().toLower());
 		paths.append(appdir + "/../Resources");
@@ -99,7 +86,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	// Find current locale
 	m_current = QSettings().value("Locale/Language").toString();
 	if (!m_current.isEmpty()) {
-		QLocale::setDefault(m_current);
+		QLocale::setDefault(QLocale(m_current));
 	}
 	const QString locale = QLocale().name();
 
@@ -108,7 +95,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	if (translator.load(m_appname + locale, m_path)) {
 		QCoreApplication::installTranslator(&translator);
 
-		const QString path = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+		const QString path = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 
 		static QTranslator qtbase_translator;
 		if (qtbase_translator.load("qtbase_" + locale, m_path) || qtbase_translator.load("qtbase_" + locale, path)) {
@@ -155,7 +142,7 @@ QString LocaleDialog::languageName(const QString& language)
 QStringList LocaleDialog::findTranslations()
 {
 	QStringList result = QDir(m_path, "*.qm").entryList(QDir::Files);
-	result.replaceInStrings(".qm", "");
+	result.replaceInStrings(".qm", QString());
 	return result;
 }
 
@@ -163,7 +150,7 @@ QStringList LocaleDialog::findTranslations()
 
 void LocaleDialog::accept()
 {
-	int current = m_translations->findData(m_current);
+	const int current = m_translations->findData(m_current);
 	if (current == m_translations->currentIndex()) {
 		return reject();
 	}

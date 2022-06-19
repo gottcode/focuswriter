@@ -1,28 +1,15 @@
-/***********************************************************************
- *
- * Copyright (C) 2014, 2015, 2016 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2014-2016 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "theme_renderer.h"
 
 //-----------------------------------------------------------------------------
 
-ThemeRenderer::ThemeRenderer(QObject* parent) :
-	QThread(parent)
+ThemeRenderer::ThemeRenderer(QObject* parent)
+	: QThread(parent)
 {
 }
 
@@ -31,12 +18,12 @@ ThemeRenderer::ThemeRenderer(QObject* parent) :
 void ThemeRenderer::create(const Theme& theme, const QSize& background, const int margin, const qreal pixelratio)
 {
 	// Check if already rendered
-	CacheFile file = { theme, background, QRect(), QImage(), margin, pixelratio };
+	const CacheFile file{ theme, background, QRect(), QImage(), margin, pixelratio };
 	if (!isRunning()) {
-		int index = m_cache.indexOf(file);
+		const int index = m_cache.indexOf(file);
 		if (index != -1) {
 			m_cache.move(index, 0);
-			emit rendered(m_cache.first().image, m_cache.first().foreground, file.theme);
+			Q_EMIT rendered(m_cache.constFirst().image, m_cache.constFirst().foreground, file.theme);
 			return;
 		}
 	}
@@ -63,10 +50,10 @@ void ThemeRenderer::run()
 		// Render theme
 		file.image = file.theme.render(file.background, file.foreground, file.margin, file.pixelratio);
 		m_cache.prepend(file);
-		while (m_cache.size() > 10) {
+		while (m_cache.count() > 10) {
 			m_cache.removeLast();
 		}
-		emit rendered(file.image, file.foreground, file.theme);
+		Q_EMIT rendered(file.image, file.foreground, file.theme);
 
 		// Check if done
 		m_file_mutex.lock();

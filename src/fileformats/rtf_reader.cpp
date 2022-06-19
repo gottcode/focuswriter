@@ -1,26 +1,13 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * Derived in part from KWord's rtfimport.cpp
- *  Copyright (C) 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
- *  Copyright (C) 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
- *  Copyright (C) 2003, 2004 Nicolas GOUTTE <goutte@kde.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2014 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
+	SPDX-FileCopyrightText: 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
+	SPDX-FileCopyrightText: 2003, 2004 Nicolas GOUTTE <goutte@kde.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+
+	Derived in part from KWord's rtfimport.cpp
+*/
 
 #include "rtf_reader.h"
 
@@ -35,24 +22,26 @@
 
 namespace
 {
-	QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = 0)
-	{
-		QByteArray name = "CP" + QByteArray::number(value);
-		QByteArray codec;
-		if (value == 932) {
-			codec = "Shift-JIS";
-		} else if (value == 10000) {
-			codec = "Apple Roman";
-		} else if (value == 65001) {
-			codec = "UTF-8";
-		} else {
-			codec = name;
-		}
-		if (codepage) {
-			*codepage = name;
-		}
-		return QTextCodec::codecForName(codec);
+
+QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
+{
+	const QByteArray name = "CP" + QByteArray::number(value);
+	QByteArray codec;
+	if (value == 932) {
+		codec = "Shift-JIS";
+	} else if (value == 10000) {
+		codec = "Apple Roman";
+	} else if (value == 65001) {
+		codec = "UTF-8";
+	} else {
+		codec = name;
 	}
+	if (codepage) {
+		*codepage = name;
+	}
+	return QTextCodec::codecForName(codec);
+}
+
 }
 
 //-----------------------------------------------------------------------------
@@ -60,9 +49,9 @@ namespace
 class RtfReader::FunctionTable
 {
 public:
-	FunctionTable() :
-		m_group_end_func(0),
-		m_insert_text_func(0)
+	explicit FunctionTable()
+		: m_group_end_func(nullptr)
+		, m_insert_text_func(nullptr)
 	{
 	}
 
@@ -120,9 +109,9 @@ private:
 	class Function
 	{
 	public:
-		Function(void (RtfReader::*func)(qint32) = 0, qint32 value = 0) :
-			m_func(func),
-			m_value(value)
+		explicit Function(void (RtfReader::*func)(qint32) = nullptr, qint32 value = 0)
+			: m_func(func)
+			, m_value(value)
 		{
 		}
 
@@ -143,10 +132,10 @@ heading_functions;
 
 //-----------------------------------------------------------------------------
 
-RtfReader::RtfReader() :
-	m_in_block(true),
-	m_codec(0),
-	m_decoder(0)
+RtfReader::RtfReader()
+	: m_in_block(true)
+	, m_codec(nullptr)
+	, m_decoder(nullptr)
 {
 	if (functions.isEmpty()) {
 		functions.setInsertText(&RtfReader::insertText);
@@ -409,8 +398,7 @@ void RtfReader::insertText(const QString& text)
 
 void RtfReader::insertUnicodeSymbol(qint32 value)
 {
-	if (value)
-	{
+	if (value) {
 		m_cursor.insertText(QChar(value));
 	}
 
@@ -418,7 +406,7 @@ void RtfReader::insertUnicodeSymbol(qint32 value)
 		m_token.readNext();
 
 		if (m_token.type() == TextToken) {
-			int len = m_token.text().count();
+			const int len = m_token.text().length();
 			if (len > i) {
 				m_cursor.insertText(m_decoder->toUnicode(m_token.text().mid(i)));
 				break;
@@ -554,7 +542,7 @@ void RtfReader::setCodepage(qint32 value)
 {
 	QByteArray codepage;
 	QTextCodec* codec = codecForCodePage(value, &codepage);
-	if (codec != 0) {
+	if (codec) {
 		m_codepage = codec;
 		m_encoding = codepage;
 		setCodec(codec);
@@ -570,11 +558,11 @@ void RtfReader::setFont(qint32 value)
 	if (value < m_codepages.count()) {
 		setCodec(m_codepages[value]);
 	} else {
-		setCodec(0);
+		setCodec(nullptr);
 		m_codepages.resize(value + 1);
 	}
 
-	if (m_codec == 0) {
+	if (!m_codec) {
 		setCodec(m_codepage);
 	}
 }
@@ -590,7 +578,7 @@ void RtfReader::setFontCodepage(qint32 value)
 	}
 
 	QTextCodec* codec = codecForCodePage(value);
-	if (codec != 0) {
+	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
 		setCodec(codec);
 	}
@@ -607,7 +595,7 @@ void RtfReader::setFontCharset(qint32 value)
 		return;
 	}
 
-	if (m_codepages[m_state.active_codepage] != 0) {
+	if (m_codepages[m_state.active_codepage]) {
 		setCodec(m_codepages[m_state.active_codepage]);
 		m_state.ignore_text = true;
 		return;
@@ -637,7 +625,7 @@ void RtfReader::setFontCharset(qint32 value)
 	}
 
 	QTextCodec* codec = QTextCodec::codecForName(charset);
-	if (codec != 0) {
+	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
 		setCodec(codec);
 	}
@@ -671,8 +659,8 @@ void RtfReader::setStyle(qint32 value)
 {
 	m_state.style = value;
 
-	QHash<int, Style>::const_iterator style = m_styles.find(m_state.style);
-	if (style != m_styles.end()) {
+	QHash<int, Style>::const_iterator style = m_styles.constFind(m_state.style);
+	if (style != m_styles.constEnd()) {
 		m_state.block_format.merge(style->block_format);
 		m_cursor.mergeBlockFormat(m_state.block_format);
 
@@ -764,7 +752,7 @@ void RtfReader::setStyleEnd()
 
 void RtfReader::setStyleSheetEnd()
 {
-	stylesheet_functions.setGroupEnd(0);
+	stylesheet_functions.setGroupEnd(nullptr);
 }
 
 //-----------------------------------------------------------------------------

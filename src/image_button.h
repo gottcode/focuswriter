@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2008, 2009, 2010, 2016 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2008-2016 Graeme Gott <graeme@gottcode.org>
 
-#ifndef IMAGE_BUTTON_H
-#define IMAGE_BUTTON_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_IMAGE_BUTTON_H
+#define FOCUSWRITER_IMAGE_BUTTON_H
 
 #include <QPushButton>
 
@@ -27,19 +14,19 @@ class ImageButton : public QPushButton
 	Q_OBJECT
 
 public:
-	ImageButton(QWidget* parent = 0);
+	explicit ImageButton(QWidget* parent = nullptr);
 
 	QString image() const;
 	QString toString() const;
 
-signals:
+Q_SIGNALS:
 	void changed(const QString& path);
 
-public slots:
+public Q_SLOTS:
 	void setImage(const QString& image, const QString& path);
 	void unsetImage();
 
-private slots:
+private Q_SLOTS:
 	void onClicked();
 
 private:
@@ -47,12 +34,14 @@ private:
 	QString m_path;
 };
 
-inline QString ImageButton::image() const {
+inline QString ImageButton::image() const
+{
 	return m_image;
 }
 
-inline QString ImageButton::toString() const {
+inline QString ImageButton::toString() const
+{
 	return m_path;
 }
 
-#endif
+#endif // FOCUSWRITER_IMAGE_BUTTON_H

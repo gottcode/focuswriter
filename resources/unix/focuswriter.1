@@ -1,11 +1,12 @@
-.TH FOCUSWRITER "1" "March 2014"
+.TH FOCUSWRITER 1 "April 2021" "FocusWriter 1.7.6" "General Commands Manual"
 
 .SH "NAME"
 focuswriter \- fullscreen word processor
 
 .SH "SYNOPSIS"
 .B focuswriter
-[\fIFILENAME...\fR]
+[options]
+.RI [ files ]
 
 .SH "DESCRIPTION"
 FocusWriter is a simple, distraction-free word processor. It utilizes a
@@ -14,21 +15,32 @@ the screen, allowing the program to have a familiar look and feel to it
 while still getting out of the way so that you can immerse yourself in
 your work.
 
+.SH "OPTIONS"
+.TP
+.BR \-h ", " \-\-help
+Displays help on commandline options.
+.TP
+.B \-\-help-all
+Displays help including Qt specific options.
+.TP
+.BR \-v ", " \-\-version
+Displays version information.
+.TP
+.I files
+Files to open in current session.
+
+.SH "SEE ALSO"
+.BR qt5options (7)
+
+.SH "REPORTING BUGS"
+Report bugs to <focuswriter@bugs.gottcode.org>.
+
 .SH "COPYRIGHT"
-Copyright \(co 2014 Graeme Gott
+Copyright \(co 2008-2021 Graeme Gott
 .PP
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3 of the License, or
-(at your option) any later version.
-.PP
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-.PP
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
+Free use of this software is granted under the terms of the GNU General
+Public License version 3 (GPLv3). There is NO WARRANTY, to the extent
+permitted by law.
 
 .SH "AUTHOR"
 Graeme Gott <graeme@gottcode.org>.

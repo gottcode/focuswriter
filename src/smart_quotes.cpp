@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2011, 2013, 2014 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2014 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "smart_quotes.h"
 
@@ -85,9 +72,9 @@ bool SmartQuotes::insert(QLineEdit* edit, QKeyEvent* key)
 		return false;
 	}
 
-	int position = edit->cursorPosition() - 1;
+	const int position = edit->cursorPosition() - 1;
 	if (position >= 0) {
-		QChar c = edit->text().at(position);
+		const QChar c = edit->text().at(position);
 		if (!c.isSpace() && !c.isNull() && (c.category() != QChar::Punctuation_Open)) {
 			quote++;
 		}
@@ -119,7 +106,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 	}
 
 	QTextCursor cursor = text->textCursor();
-	QChar c = text->document()->characterAt(cursor.selectionStart() - 1);
+	const QChar c = text->document()->characterAt(cursor.selectionStart() - 1);
 	if (!c.isSpace() && !c.isNull() && (c.category() != QChar::Punctuation_Open)) {
 		quote++;
 	}
@@ -130,7 +117,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 
 	if (key->text().right(1) != m_quotes[quote]) {
 		cursor.beginEditBlock();
-		QTextCharFormat format = cursor.charFormat();
+		const QTextCharFormat format = cursor.charFormat();
 		cursor.deletePreviousChar();
 		cursor.insertText(m_quotes[quote]);
 		cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor);
@@ -146,7 +133,7 @@ bool SmartQuotes::insert(QTextEdit* text, QKeyEvent* key)
 void SmartQuotes::replace(QTextEdit* text, int start, int end)
 {
 	QProgressDialog progress(text);
-	progress.setCancelButton(0);
+	progress.setCancelButton(nullptr);
 	progress.setLabelText(tr("Replacing quotation marks..."));
 	progress.setWindowTitle(tr("Please Wait"));
 	progress.setModal(true);
@@ -159,7 +146,7 @@ void SmartQuotes::replace(QTextEdit* text, int start, int end)
 	QChar previous = text->document()->characterAt(start - 1);
 	int length = 0;
 	for (int i = start; i < end; ++i) {
-		QChar c = text->document()->characterAt(i);
+		const QChar c = text->document()->characterAt(i);
 		int quote = 2;
 		if (c == '"') {
 			quote = 0;
@@ -195,7 +182,7 @@ void SmartQuotes::replace(QString& string)
 	int end = string.length();
 	int length = 0;
 	for (int i = 0; i < end; ++i) {
-		QChar c = string.at(i);
+		const QChar c = string.at(i);
 		int quote = 2;
 		if (c == '"') {
 			quote = 0;
@@ -259,13 +246,15 @@ QString SmartQuotes::quoteString(const QString& string, size_t index)
 
 namespace
 {
-	struct DefaultQuotes
-	{
-		QLocale::Language language;
-		QLocale::Country country;
-		size_t double_index;
-		size_t single_index;
-	};
+
+struct DefaultQuotes
+{
+	QLocale::Language language;
+	QLocale::Country country;
+	size_t double_index;
+	size_t single_index;
+};
+
 }
 
 void SmartQuotes::loadPreferences()
@@ -279,58 +268,59 @@ void SmartQuotes::loadPreferences()
 	}
 
 	const DefaultQuotes default_quotes[] = {
-		{ QLocale::Afrikaans,    QLocale::AnyCountry,   0,  1 },
-		{ QLocale::Albanian,     QLocale::AnyCountry,   2,  1 },
-		{ QLocale::Basque,       QLocale::AnyCountry,  12, 13 },
-		{ QLocale::Bulgarian,    QLocale::AnyCountry,   2, 21 },
-		{ QLocale::Byelorussian, QLocale::AnyCountry,  12, 21 },
-		{ QLocale::Catalan,      QLocale::AnyCountry,  12,  0 },
-		{ QLocale::Chinese,      QLocale::AnyCountry,  18, 19 },
-		{ QLocale::Croatian,     QLocale::AnyCountry,   4,  5 },
-		{ QLocale::Czech,        QLocale::AnyCountry,   2,  3 },
-		{ QLocale::Danish,       QLocale::AnyCountry,  14, 15 },
-		{ QLocale::Dutch,        QLocale::AnyCountry,   0,  1 },
-		{ QLocale::English,      QLocale::AnyCountry,   0,  1 },
-		{ QLocale::Esperanto,    QLocale::AnyCountry,   0,  1 },
-		{ QLocale::Estonian,     QLocale::AnyCountry,   2, 21 },
-		{ QLocale::Finnish,      QLocale::AnyCountry,   8,  9 },
-		{ QLocale::French,       QLocale::Switzerland, 12, 13 },
-		{ QLocale::French,       QLocale::AnyCountry,  12,  0 },
-		{ QLocale::Georgian,     QLocale::AnyCountry,   2, 21 },
-		{ QLocale::German,       QLocale::Switzerland, 12, 13 },
-		{ QLocale::German,       QLocale::AnyCountry,   2,  3 },
-		{ QLocale::Greek,        QLocale::AnyCountry,  12, 21 },
-		{ QLocale::Hebrew,       QLocale::AnyCountry,   0, 21 },
-		{ QLocale::Hungarian,    QLocale::AnyCountry,   4, 14 },
-		{ QLocale::Icelandic,    QLocale::AnyCountry,   2,  3 },
-		{ QLocale::Indonesian,   QLocale::AnyCountry,   0,  1 },
-		{ QLocale::Irish,        QLocale::AnyCountry,   0,  1 },
-		{ QLocale::Italian,      QLocale::Switzerland, 12, 13 },
-		{ QLocale::Italian,      QLocale::AnyCountry,  12, 21 },
-		{ QLocale::Japanese,     QLocale::AnyCountry,  18, 19 },
-		{ QLocale::Korean,       QLocale::AnyCountry,   0,  1 },
-		{ QLocale::Latvian,      QLocale::AnyCountry,  12,  2 },
-		{ QLocale::Lithuanian,   QLocale::AnyCountry,   2,  3 },
-		{ QLocale::Macedonian,   QLocale::AnyCountry,   2, 21 },
-		{ QLocale::Norwegian,    QLocale::AnyCountry,   2,  9 },
-		{ QLocale::Polish,       QLocale::AnyCountry,   4, 12 },
-		{ QLocale::Portuguese,   QLocale::Brazil,       0,  1 },
-		{ QLocale::Portuguese,   QLocale::AnyCountry,  12,  0 },
-		{ QLocale::Romanian,     QLocale::AnyCountry,   4, 12 },
-		{ QLocale::Russian,      QLocale::AnyCountry,  12,  2 },
-		{ QLocale::Serbian,      QLocale::AnyCountry,   2,  9 },
-		{ QLocale::Slovak,       QLocale::AnyCountry,   2,  3 },
-		{ QLocale::Slovenian,    QLocale::AnyCountry,   2,  3 },
-		{ QLocale::Spanish,      QLocale::AnyCountry,  12,  0 },
-		{ QLocale::Swedish,      QLocale::AnyCountry,   8,  9 },
-		{ QLocale::Thai,         QLocale::AnyCountry,   0,  1 },
-		{ QLocale::Turkish,      QLocale::AnyCountry,  12, 13 },
-		{ QLocale::Ukrainian,    QLocale::AnyCountry,  12, 21 },
-		{ QLocale::Welsh,        QLocale::AnyCountry,   0,  1 }
+		{ QLocale::Afrikaans,        QLocale::AnyCountry,   0,  1 },
+		{ QLocale::Albanian,         QLocale::AnyCountry,   2,  1 },
+		{ QLocale::Basque,           QLocale::AnyCountry,  12, 13 },
+		{ QLocale::Bulgarian,        QLocale::AnyCountry,   2, 21 },
+		{ QLocale::Byelorussian,     QLocale::AnyCountry,  12, 21 },
+		{ QLocale::Catalan,          QLocale::AnyCountry,  12,  0 },
+		{ QLocale::Chinese,          QLocale::AnyCountry,  18, 19 },
+		{ QLocale::Croatian,         QLocale::AnyCountry,   4,  5 },
+		{ QLocale::Czech,            QLocale::AnyCountry,   2,  3 },
+		{ QLocale::Danish,           QLocale::AnyCountry,  14, 15 },
+		{ QLocale::Dutch,            QLocale::AnyCountry,   0,  1 },
+		{ QLocale::English,          QLocale::AnyCountry,   0,  1 },
+		{ QLocale::Esperanto,        QLocale::AnyCountry,   0,  1 },
+		{ QLocale::Estonian,         QLocale::AnyCountry,   2, 21 },
+		{ QLocale::Finnish,          QLocale::AnyCountry,   8,  9 },
+		{ QLocale::French,           QLocale::Switzerland, 12, 13 },
+		{ QLocale::French,           QLocale::AnyCountry,  12,  0 },
+		{ QLocale::Georgian,         QLocale::AnyCountry,   2, 21 },
+		{ QLocale::German,           QLocale::Switzerland, 12, 13 },
+		{ QLocale::German,           QLocale::AnyCountry,   2,  3 },
+		{ QLocale::Greek,            QLocale::AnyCountry,  12, 21 },
+		{ QLocale::Hebrew,           QLocale::AnyCountry,   0, 21 },
+		{ QLocale::Hungarian,        QLocale::AnyCountry,   4, 14 },
+		{ QLocale::Icelandic,        QLocale::AnyCountry,   2,  3 },
+		{ QLocale::Indonesian,       QLocale::AnyCountry,   0,  1 },
+		{ QLocale::Irish,            QLocale::AnyCountry,   0,  1 },
+		{ QLocale::Italian,          QLocale::Switzerland, 12, 13 },
+		{ QLocale::Italian,          QLocale::AnyCountry,  12, 21 },
+		{ QLocale::Japanese,         QLocale::AnyCountry,  18, 19 },
+		{ QLocale::Korean,           QLocale::AnyCountry,   0,  1 },
+		{ QLocale::Latvian,          QLocale::AnyCountry,  12,  2 },
+		{ QLocale::Lithuanian,       QLocale::AnyCountry,   2,  3 },
+		{ QLocale::Macedonian,       QLocale::AnyCountry,   2, 21 },
+		{ QLocale::NorwegianBokmal,  QLocale::AnyCountry,   2,  9 },
+		{ QLocale::NorwegianNynorsk, QLocale::AnyCountry,   2,  9 },
+		{ QLocale::Polish,           QLocale::AnyCountry,   4, 12 },
+		{ QLocale::Portuguese,       QLocale::Brazil,       0,  1 },
+		{ QLocale::Portuguese,       QLocale::AnyCountry,  12,  0 },
+		{ QLocale::Romanian,         QLocale::AnyCountry,   4, 12 },
+		{ QLocale::Russian,          QLocale::AnyCountry,  12,  2 },
+		{ QLocale::Serbian,          QLocale::AnyCountry,   2,  9 },
+		{ QLocale::Slovak,           QLocale::AnyCountry,   2,  3 },
+		{ QLocale::Slovenian,        QLocale::AnyCountry,   2,  3 },
+		{ QLocale::Spanish,          QLocale::AnyCountry,  12,  0 },
+		{ QLocale::Swedish,          QLocale::AnyCountry,   8,  9 },
+		{ QLocale::Thai,             QLocale::AnyCountry,   0,  1 },
+		{ QLocale::Turkish,          QLocale::AnyCountry,  12, 13 },
+		{ QLocale::Ukrainian,        QLocale::AnyCountry,  12, 21 },
+		{ QLocale::Welsh,            QLocale::AnyCountry,   0,  1 }
 	};
 	const size_t default_quotes_count = sizeof(default_quotes) / sizeof(DefaultQuotes);
 
-	QLocale locale;
+	const QLocale locale;
 	double_index = 0;
 	single_index = 1;
 	for (size_t i = 0; i < default_quotes_count; ++i) {

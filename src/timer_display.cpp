@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2014, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "timer_display.h"
 
@@ -30,23 +17,23 @@
 
 //-----------------------------------------------------------------------------
 
-TimerDisplay::TimerDisplay(QList<Timer*>& timers, QWidget* parent)
-	: QWidget(parent),
-	m_show_tip(false),
-	m_timer(0),
-	m_timers(timers)
+TimerDisplay::TimerDisplay(const QList<Timer*>& timers, QWidget* parent)
+	: QWidget(parent)
+	, m_show_tip(false)
+	, m_timer(nullptr)
+	, m_timers(timers)
 {
 	m_size = fontMetrics().height();
 
 	m_update_timer = new QTimer(this);
 	m_update_timer->setInterval(40);
 	m_update_timer->start();
-	connect(m_update_timer, &QTimer::timeout, this, QOverload<>::of(&TimerDisplay::update));
+	connect(m_update_timer, &QTimer::timeout, this, qOverload<>(&TimerDisplay::update));
 }
 
 //-----------------------------------------------------------------------------
 
-void TimerDisplay::setTimer(Timer* timer)
+void TimerDisplay::setTimer(const Timer* timer)
 {
 	m_timer = timer;
 	if (m_timer) {
@@ -116,7 +103,7 @@ void TimerDisplay::leaveEvent(QEvent* event)
 void TimerDisplay::mouseReleaseEvent(QMouseEvent* event)
 {
 	if ((event->button() == Qt::LeftButton) && rect().contains(event->pos())) {
-		emit clicked();
+		Q_EMIT clicked();
 	}
 	QWidget::mouseReleaseEvent(event);
 }
@@ -130,10 +117,10 @@ void TimerDisplay::paintEvent(QPaintEvent* event)
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 
-	QRectF rect(1.5, 1.5, m_size - 3, m_size - 3);
+	const QRectF rect(1.5, 1.5, m_size - 3, m_size - 3);
 	if (m_timer) {
-		QDateTime current = QDateTime::currentDateTime();
-		int degrees = (m_timer->msecsFrom(current) * -5760.0) / m_timer->msecsTotal();
+		const QDateTime current = QDateTime::currentDateTime();
+		const int degrees = (m_timer->msecsFrom(current) * -5760.0) / m_timer->msecsTotal();
 
 		painter.setPen(palette().color(QPalette::WindowText));
 		painter.drawEllipse(rect);
@@ -144,13 +131,13 @@ void TimerDisplay::paintEvent(QPaintEvent* event)
 
 		if (m_show_tip) {
 			QStringList timers;
-			for (Timer* timer : m_timers) {
+			for (const Timer* timer : m_timers) {
 				if (timer->isRunning()) {
-					int msecs = timer->msecsFrom(current);
-					timers += Timer::toString(QTime().addMSecs(msecs).toString(tr("HH:mm:ss")), timer->memoShort());
+					const int msecs = timer->msecsFrom(current);
+					timers += Timer::toString(QTime(0, 0, 0).addMSecs(msecs).toString(tr("HH:mm:ss")), timer->memoShort());
 				}
 			}
-			QString text = QLatin1String("<p style='white-space:pre'>") + timers.join(QLatin1String("\n")) + QLatin1String("</p>");
+			const QString text = QLatin1String("<p style='white-space:pre'>") + timers.join(QLatin1String("\n")) + QLatin1String("</p>");
 			QToolTip::showText(m_tip_pos, text, this, this->rect());
 		}
 	} else {

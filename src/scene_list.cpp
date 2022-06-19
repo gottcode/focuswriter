@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2014, 2018, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "scene_list.h"
 
@@ -49,12 +36,12 @@ namespace
 class SceneDelegate : public QStyledItemDelegate
 {
 public:
-	SceneDelegate(QObject* parent) :
-		QStyledItemDelegate(parent)
+	explicit SceneDelegate(QObject* parent)
+		: QStyledItemDelegate(parent)
 	{
 	}
 
-	QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
+	QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const override;
 };
 
 QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -66,11 +53,11 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 
 	QSize size = style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), widget);
 #if !defined(Q_OS_MAC)
-	int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget);
+	const int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget);
 #else
-	int margin = 0;
+	const int margin = 0;
 #endif
-	int height = opt.fontMetrics.height() * 3;
+	const int height = opt.fontMetrics.height() * 3;
 	size.setHeight(margin + height);
 	return size;
 }
@@ -79,10 +66,10 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 
 //-----------------------------------------------------------------------------
 
-SceneList::SceneList(QWidget* parent) :
-	QFrame(parent),
-	m_document(0),
-	m_resizing(false)
+SceneList::SceneList(QWidget* parent)
+	: QFrame(parent)
+	, m_document(nullptr)
+	, m_resizing(false)
 {
 	m_width = qBound(0, QSettings().value("SceneList/Width", (int)std::lround(3.5 * logicalDpiX())).toInt(), maximumWidth());
 
@@ -194,7 +181,7 @@ void SceneList::setDocument(Document* document)
 	if (m_document) {
 		disconnect(m_document->text(), &QTextEdit::cursorPositionChanged, this, &SceneList::selectCurrentScene);
 	}
-	m_document = 0;
+	m_document = nullptr;
 
 	m_scenes->clearSelection();
 	m_filter->clear();
@@ -270,7 +257,7 @@ void SceneList::showScenes()
 void SceneList::mouseMoveEvent(QMouseEvent* event)
 {
 	if (m_resizing) {
-		int delta = event->pos().x() - m_mouse_current.x();
+		const int delta = event->pos().x() - m_mouse_current.x();
 		m_mouse_current = event->pos();
 
 		m_width += delta;
@@ -341,8 +328,8 @@ void SceneList::sceneSelected(const QModelIndex& index)
 	}
 
 	if (index.isValid()) {
-		int block_number = index.data(Qt::UserRole).toInt();
-		QTextBlock block = m_document->text()->document()->findBlockByNumber(block_number);
+		const int block_number = index.data(Qt::UserRole).toInt();
+		const QTextBlock block = m_document->text()->document()->findBlockByNumber(block_number);
 		QTextCursor cursor = m_document->text()->textCursor();
 		cursor.setPosition(block.position());
 		m_document->text()->setTextCursor(cursor);
@@ -398,7 +385,7 @@ void SceneList::toggleScenes()
 
 void SceneList::updateShortcuts()
 {
-	QKeySequence shortcut = ActionManager::instance()->action("ToggleScenes")->shortcut();
+	const QKeySequence shortcut = ActionManager::instance()->action("ToggleScenes")->shortcut();
 	m_toggle_action->setShortcut(shortcut);
 	m_show_button->setToolTip(tr("Show scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
 	m_hide_button->setToolTip(tr("Hide scene list (%1)").arg(shortcut.toString(QKeySequence::NativeText)));
@@ -409,7 +396,7 @@ void SceneList::updateShortcuts()
 void SceneList::moveSelectedScenes(int movement)
 {
 	// Find scenes to move
-	QModelIndexList indexes = m_filter_model->mapSelectionToSource(m_scenes->selectionModel()->selection()).indexes();
+	const QModelIndexList indexes = m_filter_model->mapSelectionToSource(m_scenes->selectionModel()->selection()).indexes();
 	if (indexes.isEmpty()) {
 		return;
 	}
@@ -418,14 +405,13 @@ void SceneList::moveSelectedScenes(int movement)
 	// Find target row
 	int first_row = INT_MAX;
 	int last_row = 0;
-	int index_row = 0;
-	for (int i = 0, count = indexes.count(); i < count; ++i) {
-		index_row = indexes.at(i).row();
+	for (const QModelIndex& index : qAsConst(indexes)) {
+		const int index_row = index.row();
 		first_row = std::min(first_row, index_row);
 		last_row = std::max(last_row, index_row);
 		scenes.append(index_row);
 	}
-	int row = std::max(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
+	const int row = std::max(0, ((movement > 0) ? (last_row + 1) : first_row) + movement);
 
 	// Move scenes
 	m_document->sceneModel()->moveScenes(scenes, row);

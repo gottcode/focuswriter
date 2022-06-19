@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2010, 2014, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010-2019 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "timer.h"
 
@@ -42,25 +29,27 @@
 
 namespace
 {
-	QTime removeMSecs(const QTime& time)
-	{
-		return QTime(time.hour(), time.minute(), time.second());
-	}
 
-	QDateTime removeMSecs(const QDateTime& datetime)
-	{
-		return QDateTime(datetime.date(), removeMSecs(datetime.time()));
-	}
+QTime removeMSecs(const QTime& time)
+{
+	return QTime(time.hour(), time.minute(), time.second());
+}
+
+QDateTime removeMSecs(const QDateTime& datetime)
+{
+	return QDateTime(datetime.date(), removeMSecs(datetime.time()));
+}
+
 }
 
 //-----------------------------------------------------------------------------
 
-Timer::Timer(Stack* documents, QWidget* parent)
-	: QFrame(parent),
-	m_type(0),
-	m_started(false),
-	m_finished(false),
-	m_documents(documents)
+Timer::Timer(const Stack* documents, QWidget* parent)
+	: QFrame(parent)
+	, m_type(0)
+	, m_started(false)
+	, m_finished(false)
+	, m_documents(documents)
 {
 	init();
 
@@ -70,17 +59,17 @@ Timer::Timer(Stack* documents, QWidget* parent)
 
 //-----------------------------------------------------------------------------
 
-Timer::Timer(int type, const QStringList& values, Stack* documents, QWidget* parent)
-	: QFrame(parent),
-	m_type(type),
-	m_started(false),
-	m_finished(false),
-	m_documents(documents)
+Timer::Timer(int type, const QStringList& values, const Stack* documents, QWidget* parent)
+	: QFrame(parent)
+	, m_type(type)
+	, m_started(false)
+	, m_finished(false)
+	, m_documents(documents)
 {
 	init();
 
 	// Set default values
-	QTime time = QTime::fromString(values.value(0), Qt::ISODate);
+	const QTime time = QTime::fromString(values.value(0), Qt::ISODate);
 	m_type_box->setCurrentIndex(m_type);
 	if (m_type == 0) {
 		m_delay_edit->setTime(time);
@@ -95,12 +84,12 @@ Timer::Timer(int type, const QStringList& values, Stack* documents, QWidget* par
 
 //-----------------------------------------------------------------------------
 
-Timer::Timer(const QString& id, Stack* documents, QWidget* parent)
-	: QFrame(parent),
-	m_id(id),
-	m_started(false),
-	m_finished(false),
-	m_documents(documents)
+Timer::Timer(const QString& id, const Stack* documents, QWidget* parent)
+	: QFrame(parent)
+	, m_id(id)
+	, m_started(false)
+	, m_finished(false)
+	, m_documents(documents)
 {
 	init();
 
@@ -108,12 +97,12 @@ Timer::Timer(const QString& id, Stack* documents, QWidget* parent)
 	settings.beginGroup("Timers");
 
 	// Load values
-	QStringList values = settings.value(m_id).toStringList();
+	const QStringList values = settings.value(m_id).toStringList();
 	m_type = values.value(0).toInt();
-	QDateTime start = removeMSecs(QDateTime::fromString(values.value(1), Qt::ISODate));
-	QDateTime end = removeMSecs(QDateTime::fromString(values.value(2), Qt::ISODate));
-	QString memo = values.value(3);
-	QDateTime current = QDateTime::currentDateTime();
+	const QDateTime start = removeMSecs(QDateTime::fromString(values.value(1), Qt::ISODate));
+	const QDateTime end = removeMSecs(QDateTime::fromString(values.value(2), Qt::ISODate));
+	const QString memo = values.value(3);
+	const QDateTime current = QDateTime::currentDateTime();
 	if (start.isNull() || end.isNull() || start > end || start > current || end < current || start.daysTo(end) > 1) {
 		remove();
 		return;
@@ -212,8 +201,8 @@ void Timer::save()
 	// Find ID
 	if (m_id.isEmpty()) {
 		int i = 1;
-		forever {
-			QString timer_id = QString("Timer%1").arg(i);
+		Q_FOREVER {
+			const QString timer_id = QString("Timer%1").arg(i);
 			if (settings.contains(timer_id)) {
 				i++;
 			} else {
@@ -227,17 +216,17 @@ void Timer::save()
 	updateCounts();
 
 	// Write timer
-	QStringList values;
-	values.append(QString::number(m_type));
-	values.append(m_start.toString(Qt::ISODate));
-	values.append(m_end.toString(Qt::ISODate));
-	values.append(m_memo);
-	values.append(QString::number(m_character_count));
-	values.append(QString::number(m_character_and_space_count));
-	values.append(QString::number(m_page_count));
-	values.append(QString::number(m_paragraph_count));
-	values.append(QString::number(m_word_count));
-	settings.setValue(m_id, values);
+	settings.setValue(m_id, QStringList{
+		QString::number(m_type),
+		m_start.toString(Qt::ISODate),
+		m_end.toString(Qt::ISODate),
+		m_memo,
+		QString::number(m_character_count),
+		QString::number(m_character_and_space_count),
+		QString::number(m_page_count),
+		QString::number(m_paragraph_count),
+		QString::number(m_word_count)
+	});
 }
 
 //-----------------------------------------------------------------------------
@@ -252,7 +241,7 @@ bool Timer::operator<=(const Timer& timer) const
 QString Timer::toString(const QString& time, const QString& memo)
 {
 	if (!memo.isEmpty()) {
-		return tr("<b>%1</b> - %2").arg(time.simplified()).arg(memo);
+		return tr("<b>%1</b> - %2").arg(time.simplified(), memo);
 	} else {
 		return QLatin1String("<b>") + time.simplified() + QLatin1String("</b>");
 	}
@@ -262,7 +251,7 @@ QString Timer::toString(const QString& time, const QString& memo)
 
 void Timer::delayChanged(const QTime& delay)
 {
-	QTime end = removeMSecs(QTime::currentTime()).addSecs(QTime(0,0,0).secsTo(delay));
+	const QTime end = removeMSecs(QTime::currentTime()).addSecs(QTime(0,0,0).secsTo(delay));
 	m_end_edit->blockSignals(true);
 	m_end_edit->setTime(end);
 	m_end_edit->blockSignals(false);
@@ -272,7 +261,7 @@ void Timer::delayChanged(const QTime& delay)
 
 void Timer::endChanged(const QTime& end)
 {
-	QTime delay = QTime(0,0,0).addSecs(removeMSecs(QTime::currentTime()).secsTo(end));
+	const QTime delay = QTime(0,0,0).addSecs(removeMSecs(QTime::currentTime()).secsTo(end));
 	m_delay_edit->blockSignals(true);
 	m_delay_edit->setTime(delay);
 	m_delay_edit->blockSignals(false);
@@ -291,9 +280,9 @@ void Timer::editAccepted()
 	settings.beginGroup("Timers");
 
 	// Prepend values to recent list
-	QString key = QString("Recent%1").arg(m_type);
+	const QString key = QString("Recent%1").arg(m_type);
+	const QString defaults = ((m_type == 0) ? m_delay_edit : m_end_edit)->time().toString(Qt::ISODate) + " " + m_memo;
 	QStringList recent = settings.value(key).toStringList();
-	QString defaults = ((m_type == 0) ? m_delay_edit : m_end_edit)->time().toString(Qt::ISODate)+ " " + m_memo;
 	recent.removeAll(defaults);
 	recent.prepend(defaults);
 	while (recent.count() > 5) {
@@ -303,7 +292,7 @@ void Timer::editAccepted()
 
 	save();
 
-	emit changed(this);
+	Q_EMIT changed(this);
 }
 
 //-----------------------------------------------------------------------------
@@ -330,14 +319,17 @@ void Timer::editClicked()
 {
 	endChanged(m_end_edit->time());
 	setMode(true);
-	emit edited(this);
+	Q_EMIT edited(this);
 }
 
 //-----------------------------------------------------------------------------
 
 void Timer::removeClicked()
 {
-	if (QMessageBox::question(this, tr("Question"), tr("Delete timer?"), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
+	if (QMessageBox::question(this,
+			tr("Question"),
+			tr("Delete timer?"),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		remove();
 	}
 }
@@ -351,11 +343,12 @@ void Timer::timerFinished()
 		qDeleteAll(m_deltas);
 		m_deltas.clear();
 
-		QStringList details;
-		details << tr("<b>Words:</b> %L1").arg(m_word_count);
-		details << tr("<b>Pages:</b> %L1").arg(m_page_count);
-		details << tr("<b>Paragraphs:</b> %L1").arg(m_paragraph_count);
-		details << tr("<b>Characters:</b> %L1 / %L2").arg(m_character_count).arg(m_character_and_space_count);
+		const QStringList details{
+			tr("<b>Words:</b> %L1").arg(m_word_count),
+			tr("<b>Pages:</b> %L1").arg(m_page_count),
+			tr("<b>Paragraphs:</b> %L1").arg(m_paragraph_count),
+			tr("<b>Characters:</b> %L1 / %L2").arg(m_character_count).arg(m_character_and_space_count)
+		};
 
 		remove();
 		m_documents->alerts()->addAlert(new Alert(Alert::NoIcon, m_display_label->text(), details, true));
@@ -364,14 +357,14 @@ void Timer::timerFinished()
 
 //-----------------------------------------------------------------------------
 
-void Timer::documentAdded(Document* document)
+void Timer::documentAdded(const Document* document)
 {
 	m_deltas.insert(document, new Deltas(document));
 }
 
 //-----------------------------------------------------------------------------
 
-void Timer::documentRemoved(Document* document)
+void Timer::documentRemoved(const Document* document)
 {
 	Deltas* delta = m_deltas.take(document);
 	m_character_count += delta->characterCount();
@@ -409,10 +402,10 @@ void Timer::init()
 	label = new QLabel(tr("Time:"), time_labels);
 	label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	time_labels->addWidget(label);
-	connect(m_type_box, QOverload<int>::of(&QComboBox::currentIndexChanged), time_labels, &QStackedWidget::setCurrentIndex);
+	connect(m_type_box, &QComboBox::currentIndexChanged, time_labels, &QStackedWidget::setCurrentIndex);
 
 	QStackedWidget* time_edits = new QStackedWidget(this);
-	connect(m_type_box, QOverload<int>::of(&QComboBox::currentIndexChanged), time_edits, &QStackedWidget::setCurrentIndex);
+	connect(m_type_box, &QComboBox::currentIndexChanged, time_edits, &QStackedWidget::setCurrentIndex);
 
 	m_delay_edit = new QTimeEdit(time_edits);
 	m_delay_edit->setDisplayFormat(tr("HH:mm:ss"));
@@ -523,7 +516,7 @@ bool Timer::startTimer()
 
 	// Setup timer, making sure to ignore milliseconds
 	m_delay = m_delay_edit->time();
-	QDateTime start = removeMSecs(QDateTime::currentDateTime());
+	const QDateTime start = removeMSecs(QDateTime::currentDateTime());
 	if (!m_start.isValid()) {
 		m_start = start;
 	}
@@ -541,13 +534,12 @@ bool Timer::startTimer()
 	m_memo.truncate(140);
 	m_memo_short = fontMetrics().elidedText(m_memo, Qt::ElideRight, 300);
 	m_delay_msecs = m_start.secsTo(m_end) * 1000;
-	m_display_label->setText(toString(m_end.time().toString(Qt::DefaultLocaleLongDate), m_memo));
+	m_display_label->setText(toString(QLocale().toString(m_end.time()), m_memo));
 	setMode(false);
 
 	// Create document deltas
 	if (m_deltas.isEmpty()) {
-		int count = m_documents->count();
-		for (int i = 0; i < count; ++i) {
+		for (int i = 0, count = m_documents->count(); i < count; ++i) {
 			Document* document = m_documents->document(i);
 			m_deltas.insert(document, new Deltas(document));
 		}
@@ -561,7 +553,7 @@ bool Timer::startTimer()
 
 void Timer::updateCounts()
 {
-	QList<Deltas*> deltas = m_deltas.values();
+	const QList<Deltas*> deltas = m_deltas.values();
 	for (Deltas* delta : deltas) {
 		m_character_count += delta->characterCount();
 		m_character_and_space_count += delta->characterAndSpaceCount();

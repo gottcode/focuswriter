@@ -1,24 +1,11 @@
-/***********************************************************************
- *
- * Copyright (C) 2010 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2010 Graeme Gott <graeme@gottcode.org>
 
-#ifndef TIMER_DISPLAY_H
-#define TIMER_DISPLAY_H
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+#ifndef FOCUSWRITER_TIMER_DISPLAY_H
+#define FOCUSWRITER_TIMER_DISPLAY_H
 
 class Timer;
 
@@ -31,24 +18,24 @@ class TimerDisplay : public QWidget
 	Q_OBJECT
 
 public:
-	TimerDisplay(QList<Timer*>& timers, QWidget* parent = 0);
+	explicit TimerDisplay(const QList<Timer*>& timers, QWidget* parent = nullptr);
 
-	void setTimer(Timer* timer);
+	void setTimer(const Timer* timer);
 
-	virtual QSize minimumSizeHint() const;
-	virtual QSize sizeHint() const;
+	virtual QSize minimumSizeHint() const override;
+	virtual QSize sizeHint() const override;
 
-signals:
+Q_SIGNALS:
 	void clicked();
 
 protected:
-	virtual void changeEvent(QEvent* event);
-	virtual bool event(QEvent* event);
-	virtual void hideEvent(QHideEvent* event);
-	virtual void leaveEvent(QEvent* event);
-	virtual void mouseReleaseEvent(QMouseEvent* event);
-	virtual void paintEvent(QPaintEvent* event);
-	virtual void showEvent(QShowEvent* event);
+	void changeEvent(QEvent* event) override;
+	bool event(QEvent* event) override;
+	void hideEvent(QHideEvent* event) override;
+	void leaveEvent(QEvent* event) override;
+	void mouseReleaseEvent(QMouseEvent* event) override;
+	void paintEvent(QPaintEvent* event) override;
+	void showEvent(QShowEvent* event) override;
 
 private:
 	int m_size;
@@ -56,8 +43,8 @@ private:
 	QPoint m_tip_pos;
 	QTimer* m_update_timer;
 
-	Timer* m_timer;
-	QList<Timer*>& m_timers;
+	const Timer* m_timer;
+	const QList<Timer*>& m_timers;
 };
 
-#endif
+#endif // FOCUSWRITER_TIMER_DISPLAY_H

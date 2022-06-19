@@ -1,21 +1,8 @@
-/***********************************************************************
- *
- * Copyright (C) 2012, 2014, 2016, 2019 Graeme Gott <graeme@gottcode.org>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ***********************************************************************/
+/*
+	SPDX-FileCopyrightText: 2012-2020 Graeme Gott <graeme@gottcode.org>
+
+	SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
 #include "symbols_dialog.h"
 
@@ -49,20 +36,20 @@
 class SymbolsDialog::ElideLabel : public QFrame
 {
 public:
-	ElideLabel(QWidget* parent = 0);
+	explicit ElideLabel(QWidget* parent = nullptr);
 
 	void clear();
 	void setText(const QString& text);
 
 protected:
-	void paintEvent(QPaintEvent* event);
+	void paintEvent(QPaintEvent* event) override;
 
 private:
 	QString m_text;
 };
 
-SymbolsDialog::ElideLabel::ElideLabel(QWidget* parent) :
-	QFrame(parent)
+SymbolsDialog::ElideLabel::ElideLabel(QWidget* parent)
+	: QFrame(parent)
 {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 }
@@ -84,16 +71,16 @@ void SymbolsDialog::ElideLabel::paintEvent(QPaintEvent* event)
 	QFrame::paintEvent(event);
 
 	QPainter painter(this);
-	QFontMetrics metrics = painter.fontMetrics();
+	const QFontMetrics metrics = painter.fontMetrics();
 
-	QString text = metrics.elidedText(m_text, Qt::ElideRight, width());
+	const QString text = metrics.elidedText(m_text, Qt::ElideRight, width());
 	painter.drawText(QPointF(0, metrics.ascent()), text);
 }
 
 //-----------------------------------------------------------------------------
 
-SymbolsDialog::SymbolsDialog(QWidget* parent) :
-	QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+SymbolsDialog::SymbolsDialog(QWidget* parent)
+	: QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
 {
 	setWindowTitle(tr("Symbols"));
 
@@ -131,13 +118,13 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	m_contents->addWidget(sidebar);
 
 	m_groups = new QComboBox(sidebar);
-	connect(m_groups, QOverload<int>::of(&QComboBox::activated), this, &SymbolsDialog::showGroup);
+	connect(m_groups, &QComboBox::activated, this, &SymbolsDialog::showGroup);
 
 	QVBoxLayout* sidebar_layout = new QVBoxLayout(sidebar);
 	sidebar_layout->setContentsMargins(0, 0, 0, 0);
 	sidebar_layout->addWidget(m_groups);
 
-	QStringList groups = m_model->filterGroups();
+	const QStringList groups = m_model->filterGroups();
 	for (int i = 0, count = groups.count(); i < count; ++i) {
 		m_groups->addItem(groups.at(i));
 
@@ -145,7 +132,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 		sidebar_layout->addWidget(filters, 1);
 		m_filters += filters;
 
-		QStringList names = m_model->filters(i);
+		const QStringList names = m_model->filters(i);
 		for (int j = 0, j_count = names.count(); j < j_count; ++j) {
 			QListWidgetItem* item = new QListWidgetItem(names.at(j), filters);
 			item->setData(Qt::UserRole, j);
@@ -182,12 +169,12 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 
 	QGraphicsScene* scene = new QGraphicsScene(this);
 	scene->setBackgroundBrush(palette().base());
-	m_symbol_preview_item = scene->addSimpleText("");
+	m_symbol_preview_item = scene->addSimpleText(QString());
 	m_symbol_preview_item->setBrush(palette().text());
 	m_symbol_preview = new QGraphicsView(scene, details_group);
 	m_symbol_preview->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	m_symbol_preview->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	int size = fontMetrics().height() * 4;
+	const int size = fontMetrics().height() * 4;
 	m_symbol_preview->setFixedSize(size, size);
 
 	m_symbol_shortcut = new ShortcutEdit(details_group);
@@ -229,7 +216,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	// Restore size of dialog
 	QSettings settings;
 	resize(settings.value("SymbolsDialog/Size", QSize(750,500)).toSize());
-	m_contents->setSizes(QList<int>() << 200 << 550);
+	m_contents->setSizes({ 200, 550 });
 	m_contents->restoreState(settings.value("SymbolsDialog/SplitterSizes").toByteArray());
 
 	// Switch to last used tab
@@ -237,9 +224,9 @@ SymbolsDialog::SymbolsDialog(QWidget* parent) :
 	showGroup(m_groups->currentIndex());
 
 	// Fetch list of recently used symbols
-	QList<QVariant> recent = settings.value("SymbolsDialog/Recent").toList();
-	for (int i = 0, count = std::min(16, recent.count()); i < count; ++i) {
-		quint32 unicode = recent.at(i).toUInt();
+	const QVariantList recent = settings.value("SymbolsDialog/Recent").toList();
+	for (int i = 0, count = std::min(16, int(recent.count())); i < count; ++i) {
+		const char32_t unicode = recent.at(i).toUInt();
 		QTableWidgetItem* item = new QTableWidgetItem(QString::fromUcs4(&unicode, 1));
 		item->setTextAlignment(Qt::AlignCenter);
 		item->setData(Qt::UserRole, unicode);
@@ -278,7 +265,7 @@ void SymbolsDialog::setInsertEnabled(bool enabled)
 
 void SymbolsDialog::setPreviewFont(const QFont& font)
 {
-	QFontMetrics metrics(font);
+	const QFontMetrics metrics(font);
 	m_symbol_preview_item->setFont(font);
 	m_symbol_preview->fitInView(0, 0, metrics.height() * 1.5, metrics.height() * 1.5, Qt::KeepAspectRatio);
 }
@@ -287,13 +274,13 @@ void SymbolsDialog::setPreviewFont(const QFont& font)
 
 void SymbolsDialog::accept()
 {
-	QModelIndex symbol = m_view->currentIndex();
+	const QModelIndex symbol = m_view->currentIndex();
 	if (symbol.isValid()) {
-		quint32 unicode = symbol.internalId();
+		const char32_t unicode = symbol.internalId();
 
 		// Remove symbol from recent list
 		for (int i = 0, count = m_recent->columnCount(); i < count; ++i) {
-			QTableWidgetItem* item = m_recent->item(0, i);
+			const QTableWidgetItem* item = m_recent->item(0, i);
 			if (item && (item->data(Qt::UserRole).toUInt() == unicode)) {
 				m_recent->removeColumn(i);
 				break;
@@ -313,7 +300,7 @@ void SymbolsDialog::accept()
 		m_recent->clearSelection();
 		item->setSelected(true);
 
-		emit insertText(QString::fromUcs4(&unicode, 1));
+		Q_EMIT insertText(QString::fromUcs4(&unicode, 1));
 	}
 
 	saveSettings();
@@ -332,8 +319,8 @@ void SymbolsDialog::reject()
 
 void SymbolsDialog::showEvent(QShowEvent* event)
 {
-	QFontMetrics metrics(m_symbol_preview_item->font());
-	float size = metrics.height() * 1.5f;
+	const QFontMetrics metrics(m_symbol_preview_item->font());
+	const float size = metrics.height() * 1.5f;
 	m_symbol_preview->fitInView(0, 0, size, size);
 
 	m_view->setFocus();
@@ -342,7 +329,7 @@ void SymbolsDialog::showEvent(QShowEvent* event)
 
 //-----------------------------------------------------------------------------
 
-void SymbolsDialog::showFilter(QListWidgetItem* filter)
+void SymbolsDialog::showFilter(const QListWidgetItem* filter)
 {
 	if (!filter) {
 		return;
@@ -355,21 +342,18 @@ void SymbolsDialog::showFilter(QListWidgetItem* filter)
 
 void SymbolsDialog::showGroup(int group)
 {
-	for (QListWidget* filters : m_filters) {
+	for (QListWidget* filters : qAsConst(m_filters)) {
 		disconnect(filters, &QListWidget::currentItemChanged, this, &SymbolsDialog::showFilter);
 		filters->clearSelection();
-	}
-
-	for (int i = 0, count = m_filters.count(); i < count; ++i) {
-		m_filters.at(i)->hide();
+		filters->hide();
 	}
 
 	QListWidget* filters = m_filters.at(group);
 	filters->show();
 
 	if (m_model->rowCount()) {
-		QModelIndex symbol = m_view->currentIndex();
-		quint32 unicode = symbol.internalId();
+		const QModelIndex symbol = m_view->currentIndex();
+		const char32_t unicode = symbol.internalId();
 
 		if (!selectSymbol(unicode)) {
 			selectSymbol(' ');
@@ -387,8 +371,8 @@ void SymbolsDialog::symbolClicked(const QModelIndex& symbol)
 {
 	if (symbol.isValid()) {
 		// Show symbol details
-		quint32 unicode = symbol.internalId();
-		QString name = m_model->symbolName(unicode);
+		const char32_t unicode = symbol.internalId();
+		const QString name = m_model->symbolName(unicode);
 		m_symbol_preview_item->setText(symbol.data(Qt::DisplayRole).toString());
 		m_symbol_preview->setSceneRect(m_symbol_preview_item->boundingRect());
 		m_symbol_name->setText(name);
@@ -411,7 +395,7 @@ void SymbolsDialog::symbolClicked(const QModelIndex& symbol)
 
 //-----------------------------------------------------------------------------
 
-void SymbolsDialog::recentSymbolClicked(QTableWidgetItem* symbol)
+void SymbolsDialog::recentSymbolClicked(const QTableWidgetItem* symbol)
 {
 	if (!symbol) {
 		return;
@@ -424,26 +408,26 @@ void SymbolsDialog::recentSymbolClicked(QTableWidgetItem* symbol)
 
 void SymbolsDialog::shortcutChanged()
 {
-	quint32 unicode = m_view->currentIndex().internalId();
-	QKeySequence sequence = m_symbol_shortcut->shortcut();
+	const char32_t unicode = m_view->currentIndex().internalId();
+	const QKeySequence sequence = m_symbol_shortcut->shortcut();
 	ActionManager::instance()->setShortcut(unicode, sequence);
 }
 
 //-----------------------------------------------------------------------------
 
-bool SymbolsDialog::selectSymbol(quint32 unicode)
+bool SymbolsDialog::selectSymbol(char32_t unicode)
 {
-	int group = m_groups->currentIndex();
+	const int group = m_groups->currentIndex();
 
 	// Select filter for symbol
 	QListWidget* filters = m_filters.at(group);
-	int filter = m_model->symbolFilter(group, unicode);
+	const int filter = m_model->symbolFilter(group, unicode);
 	if (filter == -1) {
 		return false;
 	}
 	QListWidgetItem* item = filters->currentItem();
 	if (!item || !item->isSelected() || (item->data(Qt::UserRole).toInt() != filter)) {
-		item = 0;
+		item = nullptr;
 		for (int i = 0, count = filters->count(); i < count; ++i) {
 			QListWidgetItem* check = filters->item(i);
 			if (check->data(Qt::UserRole).toInt() == filter) {
@@ -463,7 +447,7 @@ bool SymbolsDialog::selectSymbol(quint32 unicode)
 	}
 
 	// Select symbol in table
-	QModelIndex symbol = m_model->index(unicode);
+	const QModelIndex symbol = m_model->index(unicode);
 	m_view->setCurrentIndex(symbol);
 	m_view->scrollTo(symbol);
 
@@ -478,9 +462,9 @@ void SymbolsDialog::saveSettings()
 	settings.setValue("SymbolsDialog/Size", size());
 	settings.setValue("SymbolsDialog/SplitterSizes", m_contents->saveState());
 	settings.setValue("SymbolsDialog/Group", m_groups->currentIndex());
-	QList<QVariant> recent;
+	QVariantList recent;
 	for (int i = 0; i < 16; ++i) {
-		QTableWidgetItem* item = m_recent->item(0, i);
+		const QTableWidgetItem* item = m_recent->item(0, i);
 		if (item && (item->flags() & Qt::ItemIsEnabled)) {
 			recent += item->data(Qt::UserRole);
 		}
