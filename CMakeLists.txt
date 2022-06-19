@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.7.6 LANGUAGES CXX)
+project(focuswriter VERSION 1.8.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -170,7 +170,7 @@ if(ENABLE_LINK_TIME_OPTIMIZATION)
 	endif()
 endif()
 
-option(ENABLE_STRIP "Enable automatic stripping of release builds" OFF)
+option(ENABLE_STRIP "Enable automatic stripping of builds" OFF)
 if(ENABLE_STRIP)
 	add_custom_command(TARGET focuswriter
 		POST_BUILD

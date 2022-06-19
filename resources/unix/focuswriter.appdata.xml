@@ -231,6 +231,25 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.0" date="2022-06-19">
+      <description>
+        <ul>
+          <li>FIXED: Lines were randomly duplicated in ODT</li>
+          <li>FIXED: Did not read text from lists in ODT</li>
+          <li>FIXED: Formatting was lost when restoring untitled documents from cache</li>
+          <li>FIXED: Loading headings caused document to shift vertically</li>
+          <li>FIXED: Timers did not show countdown in tooltip</li>
+          <li>FIXED: Sometimes could not remove dictionaries</li>
+          <li>Only restore changed files from cache</li>
+          <li>Refactored code</li>
+          <li>Removed XPM icon</li>
+          <li>Switched to Qt 6</li>
+          <li>Updated Unicode symbols database</li>
+          <li>Updated Windows dictionaries</li>
+          <li>Translation updates: Armenian, Bosnian, Czech, Dutch, French, Georgian, Italian, Lithuanian, Norwegian Bokmål, Norwegian Bokmål (Norway), Portuguese, Romanian, Swedish, Turkish, Ukrainian</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.7.6" date="2020-04-20">
       <description>
         <ul>

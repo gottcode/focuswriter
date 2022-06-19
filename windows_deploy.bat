@@ -4,7 +4,7 @@
 
 SET SRCDIR=..\focuswriter
 SET APP=FocusWriter
-FOR /f %%i IN ('git describe') DO SET VERSION=%%i
+SET VERSION=1.8.0
 
 ECHO Copying executable
 MKDIR %SRCDIR%\%APP%

@@ -3,7 +3,7 @@
 
 !define APPNAME "FocusWriter"
 !define VERSIONMAJOR 1
-!define VERSIONMINOR 7
+!define VERSIONMINOR 8
 !define VERSIONPATCH 0
 !define APPVERSION "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONPATCH}"
 !define ABOUTURL "https://gottcode.org/focuswriter/"

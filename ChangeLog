@@ -1,3 +1,19 @@
+1.8.0
+-----
+* FIXED: Lines were randomly duplicated in ODT.
+* FIXED: Did not read text from lists in ODT.
+* FIXED: Formatting was lost when restoring untitled documents from cache.
+* FIXED: Loading headings caused document to shift vertically.
+* FIXED: Timers did not show countdown in tooltip.
+* FIXED: Sometimes could not remove dictionaries.
+* Only restore changed files from cache.
+* Refactored code.
+* Removed XPM icon.
+* Switched to Qt 6.
+* Updated Unicode symbols database.
+* Updated Windows dictionaries.
+* Translation updates: Armenian, Bosnian, Czech, Dutch, French, Georgian, Italian, Lithuanian, Norwegian Bokmål, Norwegian Bokmål (Norway), Portuguese, Romanian, Swedish, Turkish, Ukrainian.
+
 1.7.6
 -----
 * FIXED: Did not load locales with underscores.
