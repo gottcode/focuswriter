@@ -1,3 +1,10 @@
+focuswriter (1.8.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Switch to Qt 6
+
+ -- Graeme Gott <graeme@gottcode.org>  Sun, 19 Jun 2022 19:04:50 +0000
+
 focuswriter (1.7.6-2) unstable; urgency=medium
 
   * tweak uscan watch file
