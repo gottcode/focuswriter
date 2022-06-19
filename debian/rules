@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-export QT_SELECT = qt5
-
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/buildflags.mk

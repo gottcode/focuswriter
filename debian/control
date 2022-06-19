@@ -4,12 +4,17 @@ Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
 Build-Depends: debhelper-compat (= 13),
-		qtbase5-dev,
-		qttools5-dev-tools,
-		qtmultimedia5-dev,
-		libhunspell-dev,
-		pkg-config,
-		zlib1g-dev
+  cmake,
+  mesa-common-dev,
+  qt6-base-dev,
+  qt6-tools-dev,
+  qt6-tools-dev-tools,
+  qt6-l10n-tools,
+  qt6-multimedia-dev,
+  libqt6core5compat6-dev,
+  libhunspell-dev,
+  pkg-config,
+  zlib1g-dev
 Standards-Version: 4.6.0
 Rules-Requires-Root: no
 Homepage: https://gottcode.org/focuswriter/
@@ -18,7 +23,7 @@ Vcs-Browser: https://salsa.debian.org/debian/focuswriter
 
 Package: focuswriter
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: qt6-qpa-plugins, ${misc:Depends}, ${shlibs:Depends}
 Suggests: hunspell-dictionary, myspell-dictionary
 Description: Fullscreen distraction-free writing program
  Focuswriter is a fullscreen writing program designed to be
