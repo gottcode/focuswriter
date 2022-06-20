@@ -100,7 +100,7 @@ void Preferences::reload()
 	SceneModel::setSceneDivider(m_scene_divider);
 
 	m_save_positions = settings.value("Save/RememberPositions", true).toBool();
-	m_write_bom = settings.value("Save/WriteBOM", true).toBool();
+	m_write_bom = settings.value("Save/WriteBOM", false).toBool();
 	m_save_format = settings.value("Save/DefaultFormat", "odt").toString();
 
 	m_toolbar_style = settings.value("Toolbar/Style", QApplication::style()->styleHint(QStyle::SH_ToolButtonStyle)).toInt();
