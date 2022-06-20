@@ -55,11 +55,6 @@ More CMake Options
 -DENABLE_STRIP=[OFF]
     Reduce size by removing symbols.
 
--DUSE_WINDOWS_ICU=[OFF]
-    Use the ICU library provided by the Windows 10 SDK. You will need to
-    tell CMake how to find it, possibly through CMAKE_SYSTEM_PREFIX_PATH
-    or CMAKE_SYSTEM_INCLUDE_PATH and CMAKE_SYSTEM_LIBRARY_PATH.
-
 
 Linux CMake Options
 ===================

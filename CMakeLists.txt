@@ -13,7 +13,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+if (WIN32)
+	set(Iconv_IS_BUILT_IN true)
+endif()
+
 find_package(Qt6 REQUIRED COMPONENTS Concurrent Core Gui LinguistTools Multimedia Network PrintSupport Widgets)
+find_package(Iconv REQUIRED)
 find_package(ZLIB REQUIRED)
 if(UNIX AND NOT APPLE)
 	include(GNUInstallDirs)
@@ -126,6 +131,7 @@ target_link_libraries(focuswriter PRIVATE
 	Qt6::Network
 	Qt6::PrintSupport
 	Qt6::Widgets
+	Iconv::Iconv
 	ZLIB::ZLIB
 )
 
@@ -157,31 +163,6 @@ elseif(WIN32)
 		src/3rdparty/hunspell/phonet.cxx
 		src/3rdparty/hunspell/replist.cxx
 		src/3rdparty/hunspell/suggestmgr.cxx
-	)
-endif()
-
-option(USE_WINDOWS_ICU "Use ICU from Windows 10 SDK" OFF)
-if(USE_WINDOWS_ICU)
-	set_property(
-		SOURCE src/text_codec.cpp
-		APPEND
-		PROPERTY COMPILE_DEFINITIONS HAVE_WINDOWS_ICU
-	)
-
-	find_path(ICU_INCLUDE_DIR icu.h)
-	set_property(
-		SOURCE src/text_codec.cpp
-		APPEND
-		PROPERTY INCLUDE_DIRECTORIES ${ICU_INCLUDE_DIR}
-	)
-
-	find_library(ICU_LIBRARY icu)
-	target_link_libraries(focuswriter PRIVATE ${ICU_LIBRARY})
-else()
-	find_package(ICU REQUIRED COMPONENTS uc data)
-	target_link_libraries(focuswriter PRIVATE
-		ICU::uc
-		ICU::data
 	)
 endif()
 
