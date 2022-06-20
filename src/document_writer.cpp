@@ -74,11 +74,7 @@ bool DocumentWriter::write()
 	} else {
 		file.setTextModeEnabled(true);
 		QTextStream stream(&file);
-		const QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
-		if (auto e = QStringConverter::encodingForName(encoding)) {
-			stream.setEncoding(*e);
-		}
-		if (m_write_bom || (encoding != "UTF-8")) {
+		if (m_write_bom) {
 			stream.setGenerateByteOrderMark(true);
 		}
 		stream << m_document->toPlainText();
