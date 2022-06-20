@@ -22,7 +22,6 @@ void TxtReader::readData(QIODevice* device)
 	m_cursor.beginEditBlock();
 
 	QTextStream stream(device);
-	m_encoding = QStringConverter::nameForEncoding(stream.encoding());
 
 	while (!stream.atEnd()) {
 		m_cursor.insertText(stream.read(0x4000));

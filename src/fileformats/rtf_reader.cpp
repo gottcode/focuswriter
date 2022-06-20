@@ -544,7 +544,6 @@ void RtfReader::setCodepage(qint32 value)
 	QTextCodec* codec = codecForCodePage(value, &codepage);
 	if (codec) {
 		m_codepage = codec;
-		m_encoding = codepage;
 		setCodec(codec);
 	}
 }

@@ -120,7 +120,6 @@ private:
 	QString m_filename;
 	QString m_default_format;
 	bool m_cache_outdated;
-	QByteArray m_encoding;
 	QHash<int, QPair<QString, bool>> m_old_states;
 	int m_index;
 	bool m_always_center;

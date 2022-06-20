@@ -16,9 +16,6 @@ public:
 	explicit DocumentWriter();
 	~DocumentWriter();
 
-	QByteArray encoding() const;
-
-	void setEncoding(const QByteArray& encoding);
 	void setDocument(const QTextDocument* document);
 	void setFileName(const QString& filename);
 	void setType(const QString& type);
@@ -29,20 +26,9 @@ public:
 private:
 	QString m_filename;
 	QString m_type;
-	QByteArray m_encoding;
 	const QTextDocument* m_document;
 	bool m_write_bom;
 };
-
-inline QByteArray DocumentWriter::encoding() const
-{
-	return m_encoding;
-}
-
-inline void DocumentWriter::setEncoding(const QByteArray& encoding)
-{
-	m_encoding = encoding;
-}
 
 inline void DocumentWriter::setDocument(const QTextDocument* document)
 {
