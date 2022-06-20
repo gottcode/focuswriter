@@ -9,6 +9,7 @@
 
 #include "format_reader.h"
 #include "rtf_tokenizer.h"
+class TextCodec;
 
 #include <QCoreApplication>
 #include <QSet>
@@ -16,8 +17,6 @@
 #include <QTextBlockFormat>
 #include <QTextCharFormat>
 class QString;
-class QTextCodec;
-class QTextDecoder;
 
 class RtfReader : public FormatReader
 {
@@ -25,7 +24,6 @@ class RtfReader : public FormatReader
 
 public:
 	explicit RtfReader();
-	~RtfReader();
 
 	enum { Type = 2 };
 	int type() const override
@@ -61,7 +59,6 @@ private:
 	void setFont(qint32 value);
 	void setFontCharset(qint32 value);
 	void setFontCodepage(qint32 value);
-	void setCodec(QTextCodec* codec);
 	void setOutlineLevel(qint32 value);
 	void setStyle(qint32 value);
 
@@ -102,10 +99,9 @@ private:
 	State m_state;
 	QTextBlockFormat m_block_format;
 
-	QTextCodec* m_codec;
-	QTextDecoder* m_decoder;
-	QTextCodec* m_codepage;
-	QList<QTextCodec*> m_codepages;
+	TextCodec* m_codec;
+	TextCodec* m_codepage;
+	QList<TextCodec*> m_codepages;
 };
 
 #endif // FOCUSWRITER_RTF_READER_H

@@ -9,6 +9,7 @@
 #include "abstract_dictionary.h"
 #include "dictionary_manager.h"
 #include "smart_quotes.h"
+#include "text_codec.h"
 #include "word_ref.h"
 
 #include <QDir>
@@ -16,7 +17,6 @@
 #include <QFileInfo>
 #include <QRegularExpression>
 #include <QStandardPaths>
-#include <QTextCodec>
 
 #include <hunspell.hxx>
 
@@ -50,7 +50,7 @@ public:
 
 private:
 	Hunspell* m_dictionary;
-	QTextCodec* m_codec;
+	TextCodec* m_codec;
 };
 
 //-----------------------------------------------------------------------------
@@ -81,7 +81,7 @@ DictionaryHunspell::DictionaryHunspell(const QString& language)
 	m_dictionary = new Hunspell( ("\\\\?\\" + QDir::toNativeSeparators(aff)).toUtf8().constData(),
 			("\\\\?\\" + QDir::toNativeSeparators(dic)).toUtf8().constData() );
 #endif
-	m_codec = QTextCodec::codecForName(m_dictionary->get_dic_encoding());
+	m_codec = TextCodec::codecForName(m_dictionary->get_dic_encoding());
 	if (!m_codec) {
 		delete m_dictionary;
 		m_dictionary = nullptr;

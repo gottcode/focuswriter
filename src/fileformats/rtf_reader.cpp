@@ -11,10 +11,10 @@
 
 #include "rtf_reader.h"
 
+#include "text_codec.h"
+
 #include <QFile>
 #include <QTextBlock>
-#include <QTextCodec>
-#include <QTextDecoder>
 
 #include <cmath>
 
@@ -23,9 +23,8 @@
 namespace
 {
 
-QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
+TextCodec* codecForCodePage(qint32 value)
 {
-	const QByteArray name = "CP" + QByteArray::number(value);
 	QByteArray codec;
 	if (value == 932) {
 		codec = "Shift-JIS";
@@ -34,12 +33,9 @@ QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
 	} else if (value == 65001) {
 		codec = "UTF-8";
 	} else {
-		codec = name;
+		codec = "CP" + QByteArray::number(value);
 	}
-	if (codepage) {
-		*codepage = name;
-	}
-	return QTextCodec::codecForName(codec);
+	return TextCodec::codecForName(codec);
 }
 
 }
@@ -135,7 +131,6 @@ heading_functions;
 RtfReader::RtfReader()
 	: m_in_block(true)
 	, m_codec(nullptr)
-	, m_decoder(nullptr)
 {
 	if (functions.isEmpty()) {
 		functions.setInsertText(&RtfReader::insertText);
@@ -284,13 +279,6 @@ RtfReader::RtfReader()
 
 //-----------------------------------------------------------------------------
 
-RtfReader::~RtfReader()
-{
-	delete m_decoder;
-}
-
-//-----------------------------------------------------------------------------
-
 bool RtfReader::canRead(QIODevice* device)
 {
 	return device->peek(5) == "{\\rtf";
@@ -341,7 +329,7 @@ void RtfReader::readData(QIODevice* device)
 				}
 			} else if (m_token.type() == TextToken) {
 				if (!m_state.ignore_text) {
-					m_state.functions->insertText(this, m_decoder->toUnicode(m_token.text()));
+					m_state.functions->insertText(this, m_codec->toUnicode(m_token.text()));
 				}
 			}
 		}
@@ -377,7 +365,7 @@ void RtfReader::ignoreText(qint32)
 
 void RtfReader::insertHexSymbol(qint32)
 {
-	m_cursor.insertText(m_decoder->toUnicode(m_token.hex()));
+	m_cursor.insertText(m_codec->toUnicode(m_token.hex()));
 }
 
 //-----------------------------------------------------------------------------
@@ -408,7 +396,7 @@ void RtfReader::insertUnicodeSymbol(qint32 value)
 		if (m_token.type() == TextToken) {
 			const int len = m_token.text().length();
 			if (len > i) {
-				m_cursor.insertText(m_decoder->toUnicode(m_token.text().mid(i)));
+				m_cursor.insertText(m_codec->toUnicode(m_token.text().mid(i)));
 				break;
 			} else {
 				i -= len;
@@ -540,11 +528,10 @@ void RtfReader::setSkipCharacters(qint32 value)
 
 void RtfReader::setCodepage(qint32 value)
 {
-	QByteArray codepage;
-	QTextCodec* codec = codecForCodePage(value, &codepage);
+	TextCodec* codec = codecForCodePage(value);
 	if (codec) {
 		m_codepage = codec;
-		setCodec(codec);
+		m_codec = codec;
 	}
 }
 
@@ -555,14 +542,14 @@ void RtfReader::setFont(qint32 value)
 	m_state.active_codepage = value;
 
 	if (value < m_codepages.count()) {
-		setCodec(m_codepages[value]);
+		m_codec = m_codepages[value];
 	} else {
-		setCodec(nullptr);
+		m_codec = nullptr;
 		m_codepages.resize(value + 1);
 	}
 
 	if (!m_codec) {
-		setCodec(m_codepage);
+		m_codec = m_codepage;
 	}
 }
 
@@ -576,10 +563,10 @@ void RtfReader::setFontCodepage(qint32 value)
 		return;
 	}
 
-	QTextCodec* codec = codecForCodePage(value);
+	TextCodec* codec = codecForCodePage(value);
 	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
-		setCodec(codec);
+		m_codec = codec;
 	}
 	m_state.ignore_control_word = true;
 	m_state.ignore_text = true;
@@ -595,7 +582,7 @@ void RtfReader::setFontCharset(qint32 value)
 	}
 
 	if (m_codepages[m_state.active_codepage]) {
-		setCodec(m_codepages[m_state.active_codepage]);
+		m_codec = m_codepages[m_state.active_codepage];
 		m_state.ignore_text = true;
 		return;
 	}
@@ -623,25 +610,12 @@ void RtfReader::setFontCharset(qint32 value)
 	default: return;
 	}
 
-	QTextCodec* codec = QTextCodec::codecForName(charset);
+	TextCodec* codec = TextCodec::codecForName(charset);
 	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
-		setCodec(codec);
+		m_codec = codec;
 	}
 	m_state.ignore_text = true;
-}
-
-//-----------------------------------------------------------------------------
-
-void RtfReader::setCodec(QTextCodec* codec)
-{
-	if (m_codec != codec) {
-		m_codec = codec;
-		if (m_codec) {
-			delete m_decoder;
-			m_decoder = m_codec->makeDecoder();
-		}
-	}
 }
 
 //-----------------------------------------------------------------------------
