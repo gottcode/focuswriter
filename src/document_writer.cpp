@@ -66,10 +66,7 @@ bool DocumentWriter::write()
 		saved = writer.write(&file, m_document);
 	} else if (m_type == "rtf") {
 		file.setTextModeEnabled(true);
-		RtfWriter writer(m_encoding);
-		if (m_encoding.isEmpty()) {
-			m_encoding = writer.encoding();
-		}
+		RtfWriter writer;
 		saved = writer.write(&file, m_document);
 	} else {
 		file.setTextModeEnabled(true);
