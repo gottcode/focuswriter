@@ -1,9 +1,13 @@
 focuswriter (1.8.0-1) unstable; urgency=medium
 
+  [ Graeme Gott ]
   * New upstream release
   * Switch to Qt 6
 
- -- Graeme Gott <graeme@gottcode.org>  Sun, 19 Jun 2022 19:04:50 +0000
+  [ Barak A. Pearlmutter ]
+  * Bump policy version
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 24 Jun 2022 14:12:27 +0100
 
 focuswriter (1.7.6-2) unstable; urgency=medium
 
