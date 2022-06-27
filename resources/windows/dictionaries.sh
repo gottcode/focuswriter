@@ -120,6 +120,9 @@ cp -a $lofiles/eo/eo.dic dicts/eo.dic
 echo -n ' es'
 cp -a $lofiles/es/es_ES.aff dicts/es.aff
 cp -a $lofiles/es/es_ES.dic dicts/es.dic
+echo -n ' et'
+cp -a $lofiles/et_EE/et_EE.aff dicts/et.aff
+cp -a $lofiles/et_EE/et_EE.dic dicts/et.dic
 echo -n ' fi'
 cp -a voikko/voikko/2 dicts
 cp -a voikko/voikko/Windows-64bit-WindowsPE/libvoikko-1.dll dicts
