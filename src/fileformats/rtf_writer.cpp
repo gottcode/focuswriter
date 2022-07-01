@@ -105,7 +105,7 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 	text.reserve(string.length() * 3);
 
 	for (const QChar& c : string) {
-		const char16_t unicode = c.unicode();
+		const int unicode = c.unicode();
 		switch (unicode) {
 		case '\t': text += "\\tab "; break;
 		case '\\': text += "\\'5c"; break;
@@ -135,7 +135,7 @@ QByteArray RtfWriter::fromUnicode(const QString& string) const
 				text += unicode;
 			} else {
 				text += "\\u";
-				text += QByteArray::number(unicode);
+				text += QByteArray::number((unicode < 0x8000) ? unicode : (unicode - 0x10000));
 				text += "?";
 			}
 		}
