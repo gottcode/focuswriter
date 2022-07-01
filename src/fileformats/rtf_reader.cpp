@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2014 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
 	SPDX-FileCopyrightText: 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
 	SPDX-FileCopyrightText: 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
 	SPDX-FileCopyrightText: 2003, 2004 Nicolas GOUTTE <goutte@kde.org>
@@ -25,17 +25,27 @@ namespace
 
 TextCodec* codecForCodePage(qint32 value)
 {
-	QByteArray codec;
-	if (value == 932) {
-		codec = "Shift-JIS";
-	} else if (value == 10000) {
-		codec = "Apple Roman";
+	TextCodec* codec = nullptr;
+	if (value == 708) {
+		codec = TextCodec::codecForName("ISO-8859-6");
+	} else if (value == 819) {
+		codec = TextCodec::codecForName("ISO-8859-1");
 	} else if (value == 65001) {
-		codec = "UTF-8";
-	} else {
-		codec = "CP" + QByteArray::number(value);
+		codec = TextCodec::codecForName("UTF-8");
 	}
-	return TextCodec::codecForName(codec);
+
+	const QByteArray codepage = QByteArray::number(value);
+	if (!codec) {
+		codec = TextCodec::codecForName("windows-" + codepage);
+	}
+	if (!codec) {
+		codec = TextCodec::codecForName("ibm-" + codepage);
+	}
+	if (!codec) {
+		codec = TextCodec::codecForName("cp" + codepage);
+	}
+
+	return codec;
 }
 
 }
