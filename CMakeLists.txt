@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.8.0 LANGUAGES CXX)
+project(focuswriter VERSION 1.8.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Concurrent Core Core5Compat Gui LinguistTools Multimedia Network PrintSupport Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Concurrent Core Gui LinguistTools Multimedia Network PrintSupport Widgets)
 find_package(ZLIB REQUIRED)
 if(UNIX AND NOT APPLE)
 	include(GNUInstallDirs)
@@ -79,6 +79,7 @@ qt6_add_executable(focuswriter
 	src/stats.cpp
 	src/symbols_dialog.cpp
 	src/symbols_model.cpp
+	src/text_codec.cpp
 	src/theme.cpp
 	src/theme_dialog.cpp
 	src/theme_manager.cpp
@@ -120,7 +121,6 @@ target_include_directories(focuswriter PRIVATE
 target_link_libraries(focuswriter PRIVATE
 	Qt6::Concurrent
 	Qt6::Core
-	Qt6::Core5Compat
 	Qt6::Gui
 	Qt6::Multimedia
 	Qt6::Network
@@ -157,6 +157,31 @@ elseif(WIN32)
 		src/3rdparty/hunspell/phonet.cxx
 		src/3rdparty/hunspell/replist.cxx
 		src/3rdparty/hunspell/suggestmgr.cxx
+	)
+endif()
+
+option(USE_WINDOWS_ICU "Use ICU from Windows 10 SDK" OFF)
+if(USE_WINDOWS_ICU)
+	set_property(
+		SOURCE src/text_codec.cpp
+		APPEND
+		PROPERTY COMPILE_DEFINITIONS HAVE_WINDOWS_ICU
+	)
+
+	find_path(ICU_INCLUDE_DIR icu.h)
+	set_property(
+		SOURCE src/text_codec.cpp
+		APPEND
+		PROPERTY INCLUDE_DIRECTORIES ${ICU_INCLUDE_DIR}
+	)
+
+	find_library(ICU_LIBRARY icu)
+	target_link_libraries(focuswriter PRIVATE ${ICU_LIBRARY})
+else()
+	find_package(ICU REQUIRED COMPONENTS uc data)
+	target_link_libraries(focuswriter PRIVATE
+		ICU::uc
+		ICU::data
 	)
 endif()
 

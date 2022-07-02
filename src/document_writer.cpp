@@ -66,19 +66,12 @@ bool DocumentWriter::write()
 		saved = writer.write(&file, m_document);
 	} else if (m_type == "rtf") {
 		file.setTextModeEnabled(true);
-		RtfWriter writer(m_encoding);
-		if (m_encoding.isEmpty()) {
-			m_encoding = writer.encoding();
-		}
+		RtfWriter writer;
 		saved = writer.write(&file, m_document);
 	} else {
 		file.setTextModeEnabled(true);
 		QTextStream stream(&file);
-		const QByteArray encoding = !m_encoding.isEmpty() ? m_encoding : "UTF-8";
-		if (auto e = QStringConverter::encodingForName(encoding)) {
-			stream.setEncoding(*e);
-		}
-		if (m_write_bom || (encoding != "UTF-8")) {
+		if (m_write_bom) {
 			stream.setGenerateByteOrderMark(true);
 		}
 		stream << m_document->toPlainText();

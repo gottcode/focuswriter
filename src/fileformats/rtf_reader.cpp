@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2014 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
 	SPDX-FileCopyrightText: 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
 	SPDX-FileCopyrightText: 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
 	SPDX-FileCopyrightText: 2003, 2004 Nicolas GOUTTE <goutte@kde.org>
@@ -11,10 +11,10 @@
 
 #include "rtf_reader.h"
 
+#include "text_codec.h"
+
 #include <QFile>
 #include <QTextBlock>
-#include <QTextCodec>
-#include <QTextDecoder>
 
 #include <cmath>
 
@@ -23,23 +23,57 @@
 namespace
 {
 
-QTextCodec* codecForCodePage(qint32 value, QByteArray* codepage = nullptr)
+TextCodec* codecForCodePage(qint32 value)
 {
-	const QByteArray name = "CP" + QByteArray::number(value);
-	QByteArray codec;
-	if (value == 932) {
-		codec = "Shift-JIS";
-	} else if (value == 10000) {
-		codec = "Apple Roman";
-	} else if (value == 65001) {
-		codec = "UTF-8";
-	} else {
-		codec = name;
+	TextCodec* codec = nullptr;
+
+	// Look up by ISO codec
+	switch (value) {
+	case   819: codec = TextCodec::codecForName("ISO-8859-1"); break;
+	case  1200: codec = TextCodec::codecForName("UTF-16LE"); break;
+	case  1201: codec = TextCodec::codecForName("UTF-16BE"); break;
+	case 12000: codec = TextCodec::codecForName("UTF-32LE"); break;
+	case 12001: codec = TextCodec::codecForName("UTF-32BE"); break;
+	case 65001: codec = TextCodec::codecForName("UTF-8"); break;
 	}
-	if (codepage) {
-		*codepage = name;
+
+	// Look up by codepage number
+	const QByteArray codepage = QByteArray::number(value);
+	if (!codec) {
+		codec = TextCodec::codecForName("windows-" + codepage);
 	}
-	return QTextCodec::codecForName(codec);
+	if (!codec) {
+		codec = TextCodec::codecForName("ibm-" + codepage);
+	}
+	if (!codec) {
+		codec = TextCodec::codecForName("cp" + codepage);
+	}
+
+	// Look up by fallback codec name
+	if (!codec) {
+		switch (value) {
+		case   708: codec = TextCodec::codecForName("ISO-8859-6"); break;
+		case  1361: codec = TextCodec::codecForName("johab"); break;
+		case 10000: codec = TextCodec::codecForName("macintosh"); break;
+		case 10001: codec = TextCodec::codecForName("Shift_JIS"); break;
+		case 10002: codec = TextCodec::codecForName("Big5"); break;
+		case 10003: codec = TextCodec::codecForName("johab"); break;
+		case 10004: codec = TextCodec::codecForName("x-mac-arabic"); break;
+		case 10005: codec = TextCodec::codecForName("x-mac-hebrew"); break;
+		case 10006: codec = TextCodec::codecForName("x-mac-greek"); break;
+		case 10007: codec = TextCodec::codecForName("x-mac-cyrillic"); break;
+		case 10008: codec = TextCodec::codecForName("gb2312"); break;
+		case 10010: codec = TextCodec::codecForName("x-mac-romania"); break;
+		case 10017: codec = TextCodec::codecForName("x-mac-ukraine"); break;
+		case 10021: codec = TextCodec::codecForName("x-mac-thai"); break;
+		case 10029: codec = TextCodec::codecForName("x-mac-centraleurroman"); break;
+		case 10079: codec = TextCodec::codecForName("x-mac-iceland"); break;
+		case 10081: codec = TextCodec::codecForName("x-mac-turkish"); break;
+		case 10082: codec = TextCodec::codecForName("x-mac-croatian"); break;
+		}
+	}
+
+	return codec;
 }
 
 }
@@ -135,7 +169,6 @@ heading_functions;
 RtfReader::RtfReader()
 	: m_in_block(true)
 	, m_codec(nullptr)
-	, m_decoder(nullptr)
 {
 	if (functions.isEmpty()) {
 		functions.setInsertText(&RtfReader::insertText);
@@ -284,13 +317,6 @@ RtfReader::RtfReader()
 
 //-----------------------------------------------------------------------------
 
-RtfReader::~RtfReader()
-{
-	delete m_decoder;
-}
-
-//-----------------------------------------------------------------------------
-
 bool RtfReader::canRead(QIODevice* device)
 {
 	return device->peek(5) == "{\\rtf";
@@ -341,7 +367,7 @@ void RtfReader::readData(QIODevice* device)
 				}
 			} else if (m_token.type() == TextToken) {
 				if (!m_state.ignore_text) {
-					m_state.functions->insertText(this, m_decoder->toUnicode(m_token.text()));
+					m_state.functions->insertText(this, m_codec->toUnicode(m_token.text()));
 				}
 			}
 		}
@@ -377,7 +403,7 @@ void RtfReader::ignoreText(qint32)
 
 void RtfReader::insertHexSymbol(qint32)
 {
-	m_cursor.insertText(m_decoder->toUnicode(m_token.hex()));
+	m_cursor.insertText(m_codec->toUnicode(m_token.hex()));
 }
 
 //-----------------------------------------------------------------------------
@@ -408,7 +434,7 @@ void RtfReader::insertUnicodeSymbol(qint32 value)
 		if (m_token.type() == TextToken) {
 			const int len = m_token.text().length();
 			if (len > i) {
-				m_cursor.insertText(m_decoder->toUnicode(m_token.text().mid(i)));
+				m_cursor.insertText(m_codec->toUnicode(m_token.text().mid(i)));
 				break;
 			} else {
 				i -= len;
@@ -540,12 +566,10 @@ void RtfReader::setSkipCharacters(qint32 value)
 
 void RtfReader::setCodepage(qint32 value)
 {
-	QByteArray codepage;
-	QTextCodec* codec = codecForCodePage(value, &codepage);
+	TextCodec* codec = codecForCodePage(value);
 	if (codec) {
 		m_codepage = codec;
-		m_encoding = codepage;
-		setCodec(codec);
+		m_codec = codec;
 	}
 }
 
@@ -556,14 +580,14 @@ void RtfReader::setFont(qint32 value)
 	m_state.active_codepage = value;
 
 	if (value < m_codepages.count()) {
-		setCodec(m_codepages[value]);
+		m_codec = m_codepages[value];
 	} else {
-		setCodec(nullptr);
+		m_codec = nullptr;
 		m_codepages.resize(value + 1);
 	}
 
 	if (!m_codec) {
-		setCodec(m_codepage);
+		m_codec = m_codepage;
 	}
 }
 
@@ -577,10 +601,10 @@ void RtfReader::setFontCodepage(qint32 value)
 		return;
 	}
 
-	QTextCodec* codec = codecForCodePage(value);
+	TextCodec* codec = codecForCodePage(value);
 	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
-		setCodec(codec);
+		m_codec = codec;
 	}
 	m_state.ignore_control_word = true;
 	m_state.ignore_text = true;
@@ -596,53 +620,52 @@ void RtfReader::setFontCharset(qint32 value)
 	}
 
 	if (m_codepages[m_state.active_codepage]) {
-		setCodec(m_codepages[m_state.active_codepage]);
+		m_codec = m_codepages[m_state.active_codepage];
 		m_state.ignore_text = true;
 		return;
 	}
 
 	QByteArray charset;
 	switch (value) {
-	case 0: charset = "CP1252"; break;
-	case 1: charset = "CP1252"; break;
-	case 77: charset = "Apple Roman"; break;
-	case 128: charset = "Shift-JIS"; break;
-	case 129: charset = "eucKR"; break;
-	case 130: charset = "CP1361"; break;
-	case 134: charset = "GB2312"; break;
-	case 136: charset = "Big5-HKSCS"; break;
-	case 161: charset = "CP1253"; break;
-	case 162: charset = "CP1254"; break;
-	case 163: charset = "CP1258"; break;
-	case 177: charset = "CP1255"; break;
-	case 178: charset = "CP1256"; break;
-	case 186: charset = "CP1257"; break;
-	case 204: charset = "CP1251"; break;
-	case 222: charset = "CP874"; break;
-	case 238: charset = "CP1250"; break;
-	case 255: charset = "CP850"; break;
+	case   0: charset = "windows-1252"; break;
+	case   1: charset = "windows-1252"; break;
+	case  77: charset = "macintosh"; break;
+	case  78: charset = "Shift_JIS"; break;
+	case  79: charset = "johab"; break;
+	case  80: charset = "gb2312"; break;
+	case  81: charset = "Big5"; break;
+	case  83: charset = "x-mac-hebrew"; break;
+	case  84: charset = "x-mac-arabic"; break;
+	case  85: charset = "x-mac-greek"; break;
+	case  86: charset = "x-mac-turkish"; break;
+	case  87: charset = "x-mac-thai"; break;
+	case  88: charset = "x-mac-centraleurroman"; break;
+	case  89: charset = "x-mac-cyrillic"; break;
+	case 128: charset = "windows-932"; break; //Shift-JIS
+	case 129: charset = "windows-949"; break;
+	case 130: charset = "johab"; break; //CP1361
+	case 134: charset = "windows-936"; break; //GB2312
+	case 136: charset = "windows-950"; break; //Big5
+	case 161: charset = "windows-1253"; break;
+	case 162: charset = "windows-1254"; break;
+	case 163: charset = "windows-1258"; break;
+	case 177: charset = "windows-1255"; break;
+	case 178: charset = "windows-1256"; break;
+	case 186: charset = "windows-1257"; break;
+	case 204: charset = "windows-1251"; break;
+	case 222: charset = "windows-874"; break;
+	case 238: charset = "windows-1250"; break;
+	case 254: charset = "ibm-437"; break;
+	case 255: charset = "ibm-850"; break;
 	default: return;
 	}
 
-	QTextCodec* codec = QTextCodec::codecForName(charset);
+	TextCodec* codec = TextCodec::codecForName(charset);
 	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
-		setCodec(codec);
+		m_codec = codec;
 	}
 	m_state.ignore_text = true;
-}
-
-//-----------------------------------------------------------------------------
-
-void RtfReader::setCodec(QTextCodec* codec)
-{
-	if (m_codec != codec) {
-		m_codec = codec;
-		if (m_codec) {
-			delete m_decoder;
-			m_decoder = m_codec->makeDecoder();
-		}
-	}
 }
 
 //-----------------------------------------------------------------------------
