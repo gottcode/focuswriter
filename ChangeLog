@@ -1,3 +1,10 @@
+1.8.1
+-----
+* Always write plain text as UTF-8.
+* Always write RTF as codepage 1252.
+* Replaced QTextCodec with ICU.
+* Translation updates: Estonian, German.
+
 1.8.0
 -----
 * FIXED: Lines were randomly duplicated in ODT.
