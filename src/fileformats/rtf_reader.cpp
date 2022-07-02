@@ -26,14 +26,18 @@ namespace
 TextCodec* codecForCodePage(qint32 value)
 {
 	TextCodec* codec = nullptr;
-	if (value == 708) {
-		codec = TextCodec::codecForName("ISO-8859-6");
-	} else if (value == 819) {
-		codec = TextCodec::codecForName("ISO-8859-1");
-	} else if (value == 65001) {
-		codec = TextCodec::codecForName("UTF-8");
+
+	// Look up by ISO codec
+	switch (value) {
+	case   819: codec = TextCodec::codecForName("ISO-8859-1"); break;
+	case  1200: codec = TextCodec::codecForName("UTF-16LE"); break;
+	case  1201: codec = TextCodec::codecForName("UTF-16BE"); break;
+	case 12000: codec = TextCodec::codecForName("UTF-32LE"); break;
+	case 12001: codec = TextCodec::codecForName("UTF-32BE"); break;
+	case 65001: codec = TextCodec::codecForName("UTF-8"); break;
 	}
 
+	// Look up by codepage number
 	const QByteArray codepage = QByteArray::number(value);
 	if (!codec) {
 		codec = TextCodec::codecForName("windows-" + codepage);
@@ -43,6 +47,30 @@ TextCodec* codecForCodePage(qint32 value)
 	}
 	if (!codec) {
 		codec = TextCodec::codecForName("cp" + codepage);
+	}
+
+	// Look up by fallback codec name
+	if (!codec) {
+		switch (value) {
+		case   708: codec = TextCodec::codecForName("ISO-8859-6"); break;
+		case  1361: codec = TextCodec::codecForName("johab"); break;
+		case 10000: codec = TextCodec::codecForName("macintosh"); break;
+		case 10001: codec = TextCodec::codecForName("Shift_JIS"); break;
+		case 10002: codec = TextCodec::codecForName("Big5"); break;
+		case 10003: codec = TextCodec::codecForName("johab"); break;
+		case 10004: codec = TextCodec::codecForName("x-mac-arabic"); break;
+		case 10005: codec = TextCodec::codecForName("x-mac-hebrew"); break;
+		case 10006: codec = TextCodec::codecForName("x-mac-greek"); break;
+		case 10007: codec = TextCodec::codecForName("x-mac-cyrillic"); break;
+		case 10008: codec = TextCodec::codecForName("gb2312"); break;
+		case 10010: codec = TextCodec::codecForName("x-mac-romania"); break;
+		case 10017: codec = TextCodec::codecForName("x-mac-ukraine"); break;
+		case 10021: codec = TextCodec::codecForName("x-mac-thai"); break;
+		case 10029: codec = TextCodec::codecForName("x-mac-centraleurroman"); break;
+		case 10079: codec = TextCodec::codecForName("x-mac-iceland"); break;
+		case 10081: codec = TextCodec::codecForName("x-mac-turkish"); break;
+		case 10082: codec = TextCodec::codecForName("x-mac-croatian"); break;
+		}
 	}
 
 	return codec;
@@ -599,24 +627,36 @@ void RtfReader::setFontCharset(qint32 value)
 
 	QByteArray charset;
 	switch (value) {
-	case 0: charset = "CP1252"; break;
-	case 1: charset = "CP1252"; break;
-	case 77: charset = "Apple Roman"; break;
-	case 128: charset = "Shift-JIS"; break;
-	case 129: charset = "eucKR"; break;
-	case 130: charset = "CP1361"; break;
-	case 134: charset = "GB2312"; break;
-	case 136: charset = "Big5-HKSCS"; break;
-	case 161: charset = "CP1253"; break;
-	case 162: charset = "CP1254"; break;
-	case 163: charset = "CP1258"; break;
-	case 177: charset = "CP1255"; break;
-	case 178: charset = "CP1256"; break;
-	case 186: charset = "CP1257"; break;
-	case 204: charset = "CP1251"; break;
-	case 222: charset = "CP874"; break;
-	case 238: charset = "CP1250"; break;
-	case 255: charset = "CP850"; break;
+	case   0: charset = "windows-1252"; break;
+	case   1: charset = "windows-1252"; break;
+	case  77: charset = "macintosh"; break;
+	case  78: charset = "Shift_JIS"; break;
+	case  79: charset = "johab"; break;
+	case  80: charset = "gb2312"; break;
+	case  81: charset = "Big5"; break;
+	case  83: charset = "x-mac-hebrew"; break;
+	case  84: charset = "x-mac-arabic"; break;
+	case  85: charset = "x-mac-greek"; break;
+	case  86: charset = "x-mac-turkish"; break;
+	case  87: charset = "x-mac-thai"; break;
+	case  88: charset = "x-mac-centraleurroman"; break;
+	case  89: charset = "x-mac-cyrillic"; break;
+	case 128: charset = "windows-932"; break; //Shift-JIS
+	case 129: charset = "windows-949"; break;
+	case 130: charset = "johab"; break; //CP1361
+	case 134: charset = "windows-936"; break; //GB2312
+	case 136: charset = "windows-950"; break; //Big5
+	case 161: charset = "windows-1253"; break;
+	case 162: charset = "windows-1254"; break;
+	case 163: charset = "windows-1258"; break;
+	case 177: charset = "windows-1255"; break;
+	case 178: charset = "windows-1256"; break;
+	case 186: charset = "windows-1257"; break;
+	case 204: charset = "windows-1251"; break;
+	case 222: charset = "windows-874"; break;
+	case 238: charset = "windows-1250"; break;
+	case 254: charset = "ibm-437"; break;
+	case 255: charset = "ibm-850"; break;
 	default: return;
 	}
 
