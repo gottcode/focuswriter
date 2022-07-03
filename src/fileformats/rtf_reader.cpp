@@ -424,8 +424,10 @@ void RtfReader::insertText(const QString& text)
 
 void RtfReader::insertUnicodeSymbol(qint32 value)
 {
-	if (value) {
+	if (value > 0) {
 		m_cursor.insertText(QChar(value));
+	} else if (value < 0) {
+		m_cursor.insertText(QChar(value + 0x10000));
 	}
 
 	for (int i = m_state.skip; i > 0;) {
