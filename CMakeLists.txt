@@ -130,7 +130,7 @@ target_link_libraries(focuswriter PRIVATE
 )
 
 if(UNIX AND NOT APPLE)
-	target_compile_definitions(focuswriter PRIVATE DATADIR="${CMAKE_INSTALL_DATADIR}")
+	target_compile_definitions(focuswriter PRIVATE DATADIR="${CMAKE_INSTALL_FULL_DATADIR}/focuswriter")
 
 	target_sources(focuswriter PRIVATE
 		src/spelling/dictionary_provider_hunspell.cpp

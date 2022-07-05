@@ -69,14 +69,7 @@ void LocaleDialog::loadTranslator(const QString& name, const QStringList& datadi
 	m_appname = name;
 
 	// Find translator path
-	QStringList paths = datadirs;
-	if (paths.isEmpty()) {
-		const QString appdir = QCoreApplication::applicationDirPath();
-		paths.append(appdir);
-		paths.append(appdir + "/../share/" + QCoreApplication::applicationName().toLower());
-		paths.append(appdir + "/../Resources");
-	}
-	for (const QString& path : paths) {
+	for (const QString& path : datadirs) {
 		if (QFile::exists(path + "/translations/")) {
 			m_path = path + "/translations/";
 			break;

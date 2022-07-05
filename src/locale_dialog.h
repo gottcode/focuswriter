@@ -35,7 +35,7 @@ public:
 	 * @param appname application name to prepend to translation filenames
 	 * @param datadirs locations to search for directory containing translations
 	 */
-	static void loadTranslator(const QString& appname, const QStringList& datadirs = QStringList());
+	static void loadTranslator(const QString& appname, const QStringList& datadirs);
 
 	/**
 	 * Fetch native language name for QLocale name.
