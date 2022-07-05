@@ -12,6 +12,7 @@
 
 #include <QCommandLineParser>
 #include <QDir>
+#include <QFileInfo>
 #include <QSettings>
 
 int main(int argc, char** argv)
@@ -34,6 +35,19 @@ int main(int argc, char** argv)
 #endif
 	};
 
+	// Handle portability
+	QString userdir;
+#ifdef Q_OS_MAC
+	const QFileInfo portable(appdir + "/../../../Data");
+#else
+	const QFileInfo portable(appdir + "/Data");
+#endif
+	if (portable.exists() && portable.isWritable()) {
+		userdir = portable.absoluteFilePath();
+		QSettings::setDefaultFormat(QSettings::IniFormat);
+		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userdir + "/Settings");
+	}
+
 	// Load application language
 	LocaleDialog::loadTranslator("focuswriter_", datadirs);
 
@@ -52,7 +66,7 @@ int main(int argc, char** argv)
 	}
 
 	// Load paths
-	Paths::load(appdir, datadirs);
+	Paths::load(appdir, userdir, datadirs);
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
