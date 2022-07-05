@@ -12,7 +12,7 @@
 class Paths
 {
 public:
-	static void load(const QString& appdir, const QStringList& datadirs);
+	static void load(const QString& appdir, QString& userdir, const QStringList& datadirs);
 
 private:
 	static QString oldDataPath();

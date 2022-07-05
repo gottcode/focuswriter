@@ -18,12 +18,11 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QIcon>
-#include <QSettings>
 #include <QStandardPaths>
 
 //-----------------------------------------------------------------------------
 
-void Paths::load(const QString& appdir, const QStringList& datadirs)
+void Paths::load(const QString& appdir, QString& userdir, const QStringList& datadirs)
 {
 	// Set locations of fallback icons
 	QStringList paths = QIcon::themeSearchPaths();
@@ -48,19 +47,6 @@ void Paths::load(const QString& appdir, const QStringList& datadirs)
 			SymbolsModel::setPath(info.absoluteFilePath());
 			break;
 		}
-	}
-
-	// Handle portability
-	QString userdir;
-#ifdef Q_OS_MAC
-	const QFileInfo portable(appdir + "/../../../Data");
-#else
-	const QFileInfo portable(appdir + "/Data");
-#endif
-	if (portable.exists() && portable.isWritable()) {
-		userdir = portable.absoluteFilePath();
-		QSettings::setDefaultFormat(QSettings::IniFormat);
-		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userdir + "/Settings");
 	}
 
 	// Find user data dir if not in portable mode
