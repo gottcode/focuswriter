@@ -4,6 +4,10 @@ APP='FocusWriter'
 BUNDLE="$APP.app"
 VERSION='1.8.1'
 
+# Locate deployment script
+BIN_DIR=$(pwd)
+cd $(dirname "${BASH_SOURCE[0]}")
+
 # Remove any previous disk folder or DMG
 echo -n 'Preparing... '
 rm -f "${APP}_$VERSION.dmg"
@@ -16,7 +20,7 @@ echo 'Done'
 # Create disk folder
 echo -n 'Copying application bundle... '
 mkdir "$APP"
-cp -Rf "$BUNDLE" "$APP/"
+cp -Rf "${BIN_DIR}/${BUNDLE}" "$APP/"
 strip "$APP/$BUNDLE/Contents/MacOS/$APP"
 cp COPYING "$APP/License.txt"
 echo 'Done'
@@ -38,23 +42,9 @@ echo >> "$APP/Read Me.txt"
 cat ChangeLog >> "$APP/Read Me.txt"
 echo 'Done'
 
-# Copy translations
-echo -n 'Copying translations... '
-TRANSLATIONS="$APP/$BUNDLE/Contents/Resources/translations"
-mkdir "$TRANSLATIONS"
-cp translations/*.qm "$TRANSLATIONS"
-echo 'Done'
-
-# Make macOS aware that the app bundle is translated.
-# This is required to translate parts of native open/save dialogs.
-echo -n 'Creating mac lproj directories for translations... '
-for translation in $(ls translations | grep qm | cut -d'.' -f1 | cut -d'_' -f2- | uniq); do
-    mkdir -p "$APP/$BUNDLE/Contents/Resources/${translation}.lproj"
-done
-echo 'Done'
-
 # Copy Qt translations
 echo -n 'Copying Qt translations... '
+TRANSLATIONS="$APP/$BUNDLE/Contents/Resources/translations"
 cp $QTDIR/translations/qt_* "$TRANSLATIONS"
 cp $QTDIR/translations/qtbase_* "$TRANSLATIONS"
 rm -f $TRANSLATIONS/qt_help_*
