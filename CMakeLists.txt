@@ -7,6 +7,8 @@ cmake_minimum_required(VERSION 3.16)
 # Configure project
 project(focuswriter VERSION 1.8.0 LANGUAGES CXX)
 
+set(project_copyright "2008-2022 Graeme Gott")
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -20,12 +22,7 @@ endif()
 find_package(Qt6 REQUIRED COMPONENTS Concurrent Core Gui LinguistTools Multimedia Network PrintSupport Widgets)
 find_package(Iconv REQUIRED)
 find_package(ZLIB REQUIRED)
-if(UNIX AND NOT APPLE)
-	include(GNUInstallDirs)
-
-	find_package(PkgConfig REQUIRED)
-	pkg_check_modules(Hunspell REQUIRED IMPORTED_TARGET hunspell)
-endif()
+include(GNUInstallDirs)
 
 add_compile_definitions(
 	QT_NO_KEYWORDS
@@ -135,14 +132,14 @@ target_link_libraries(focuswriter PRIVATE
 	ZLIB::ZLIB
 )
 
-if(UNIX AND NOT APPLE)
+# Add spellchecking support
+if(APPLE)
 	target_sources(focuswriter PRIVATE
-		src/spelling/dictionary_provider_hunspell.cpp
-		src/spelling/dictionary_provider_voikko.cpp
-		resources/images/icons/icons.qrc
+		src/spelling/dictionary_provider_nsspellchecker.mm
 	)
 
-	target_link_libraries(focuswriter PRIVATE PkgConfig::Hunspell)
+	find_library(APPKIT AppKit)
+	target_link_libraries(focuswriter PRIVATE ${APPKIT})
 elseif(WIN32)
 	target_compile_definitions(focuswriter PRIVATE HUNSPELL_STATIC)
 
@@ -162,6 +159,16 @@ elseif(WIN32)
 		src/3rdparty/hunspell/replist.cxx
 		src/3rdparty/hunspell/suggestmgr.cxx
 	)
+else()
+	find_package(PkgConfig REQUIRED)
+	pkg_check_modules(Hunspell REQUIRED IMPORTED_TARGET hunspell)
+
+	target_sources(focuswriter PRIVATE
+		src/spelling/dictionary_provider_hunspell.cpp
+		src/spelling/dictionary_provider_voikko.cpp
+	)
+
+	target_link_libraries(focuswriter PRIVATE PkgConfig::Hunspell)
 endif()
 
 # Optimize build
@@ -186,8 +193,42 @@ endif()
 add_subdirectory(resources/symbols)
 
 # Install
-if(UNIX AND NOT APPLE)
+if(APPLE)
+	set(datadir "../Resources")
+
+	set_target_properties(focuswriter PROPERTIES
+		OUTPUT_NAME FocusWriter
+		MACOSX_BUNDLE TRUE
+		MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/resources/mac/Info.plist.in
+	)
+
+	include(cmake/BundleResources.cmake)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/mac/focuswriter.icns Resources)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/images/icons/oxygen/hicolor Resources/icons/hicolor)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/sounds Resources/sounds)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/symbols/symbols1400.dat Resources)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/themes Resources/themes)
+	bundle_translations(focuswriter "${translations_QM}")
+elseif(WIN32)
+	set(datadir ".")
+
+	# Use Qt6 macro until CMake provides something
+	# https://bugreports.qt.io/browse/QTBUG-87618
+	set_target_properties(focuswriter PROPERTIES
+		OUTPUT_NAME FocusWriter
+		WIN32_EXECUTABLE TRUE
+		QT_TARGET_VERSION "${PROJECT_VERSION}"
+		QT_TARGET_COMPANY_NAME "Graeme Gott"
+		QT_TARGET_DESCRIPTION "Fullscreen word processor"
+		QT_TARGET_COPYRIGHT "\\xA9 ${project_copyright}"
+		QT_TARGET_PRODUCT_NAME "FocusWriter"
+		QT_TARGET_RC_ICONS ${CMAKE_SOURCE_DIR}/resources/windows/focuswriter.ico
+	)
+	_qt_internal_generate_win32_rc_file(focuswriter)
+else()
 	file(RELATIVE_PATH datadir ${CMAKE_INSTALL_FULL_BINDIR} ${CMAKE_INSTALL_FULL_DATADIR}/focuswriter)
+
+	target_sources(focuswriter PRIVATE resources/images/icons/icons.qrc)
 
 	install(TARGETS focuswriter RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 	install(FILES ${translations_QM} DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter/translations)
@@ -199,21 +240,6 @@ if(UNIX AND NOT APPLE)
 	install(FILES resources/unix/focuswriter.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1 COMPONENT doc)
 	install(FILES resources/unix/focuswriter.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
 	install(FILES resources/unix/focuswriter.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
-elseif(WIN32)
-	set(datadir ".")
-
-	# Use Qt6 macro until CMake provides something
-	# https://bugreports.qt.io/browse/QTBUG-87618
-	set_target_properties(focuswriter PROPERTIES
-		WIN32_EXECUTABLE TRUE
-		QT_TARGET_VERSION "${PROJECT_VERSION}"
-		QT_TARGET_COMPANY_NAME "Graeme Gott"
-		QT_TARGET_DESCRIPTION "Fullscreen word processor"
-		QT_TARGET_COPYRIGHT "Copyright (C) 2022 Graeme Gott"
-		QT_TARGET_PRODUCT_NAME "FocusWriter"
-		QT_TARGET_RC_ICONS ${CMAKE_SOURCE_DIR}/resources/windows/focuswriter.ico
-	)
-	_qt_internal_generate_win32_rc_file(focuswriter)
 endif()
 
 set_property(SOURCE src/main.cpp APPEND PROPERTY COMPILE_DEFINITIONS FOCUSWRITER_DATADIR="${datadir}")

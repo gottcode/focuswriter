@@ -19,6 +19,16 @@ Linux:
      `DESTDIR="alternate/directory" cmake --install build' will prepend
      'alternate/directory' before all installation names.
 
+macOS:
+  1. `cmake -B build -S .' to create a location for the build and then
+     configure the program. There are more options you can pass to CMake,
+     see below for details.
+
+  2. `cmake --build build' to compile the program.
+
+  3. Run `mac_deploy.sh' from inside the build directory to create a disk
+     image of the program.
+
 Windows:
   1. `cmake -B ..\build -S .' to create a location for the build and then
      configure the program. There are more options you can pass to CMake,
@@ -30,6 +40,15 @@ Windows:
      installer of the program. Note that you must have the NSIS executable
      from nsis.sourceforge.io and the 7z executable from 7-zip.org in your
      %PATH% for this to work.
+
+
+Release Builds
+==============
+
+CMake does not specify any compiler optimizations by default; this is
+useful if you want to inherit CFLAGS and CXXFLAGS from the environment.
+You may want to add "-DCMAKE_BUILD_TYPE=Release" during configuration
+to get an optimized build.
 
 
 Debug Builds
