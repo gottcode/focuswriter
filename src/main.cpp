@@ -22,18 +22,9 @@ int main(int argc, char** argv)
 	// Allow passing Theme as signal parameter
 	qRegisterMetaType<Theme>("Theme");
 
-	// Find application data dirs
+	// Find application data
 	const QString appdir = app.applicationDirPath();
-	const QStringList datadirs{
-#if defined(Q_OS_MAC)
-		appdir + "/../Resources"
-#elif defined(Q_OS_UNIX)
-		DATADIR,
-		appdir + "/../share/focuswriter"
-#else
-		appdir
-#endif
-	};
+	const QString datadir = QDir::cleanPath(appdir + "/" + FOCUSWRITER_DATADIR);
 
 	// Handle portability
 	QString userdir;
@@ -49,7 +40,7 @@ int main(int argc, char** argv)
 	}
 
 	// Load application language
-	LocaleDialog::loadTranslator("focuswriter_", datadirs);
+	LocaleDialog::loadTranslator("focuswriter_", datadir);
 
 	// Handle commandline
 	QCommandLineParser parser;
@@ -66,7 +57,7 @@ int main(int argc, char** argv)
 	}
 
 	// Load paths
-	Paths::load(appdir, userdir, datadirs);
+	Paths::load(appdir, userdir, datadir);
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {
