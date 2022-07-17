@@ -136,8 +136,6 @@ target_link_libraries(focuswriter PRIVATE
 )
 
 if(UNIX AND NOT APPLE)
-	target_compile_definitions(focuswriter PRIVATE DATADIR="${CMAKE_INSTALL_FULL_DATADIR}/focuswriter")
-
 	target_sources(focuswriter PRIVATE
 		src/spelling/dictionary_provider_hunspell.cpp
 		src/spelling/dictionary_provider_voikko.cpp
@@ -189,6 +187,8 @@ add_subdirectory(resources/symbols)
 
 # Install
 if(UNIX AND NOT APPLE)
+	file(RELATIVE_PATH datadir ${CMAKE_INSTALL_FULL_BINDIR} ${CMAKE_INSTALL_FULL_DATADIR}/focuswriter)
+
 	install(TARGETS focuswriter RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 	install(FILES ${translations_QM} DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter/translations)
 	install(DIRECTORY resources/images/icons/hicolor DESTINATION ${CMAKE_INSTALL_DATADIR}/icons)
@@ -200,6 +200,8 @@ if(UNIX AND NOT APPLE)
 	install(FILES resources/unix/focuswriter.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
 	install(FILES resources/unix/focuswriter.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
 elseif(WIN32)
+	set(datadir ".")
+
 	# Use Qt6 macro until CMake provides something
 	# https://bugreports.qt.io/browse/QTBUG-87618
 	set_target_properties(focuswriter PROPERTIES
@@ -213,3 +215,5 @@ elseif(WIN32)
 	)
 	_qt_internal_generate_win32_rc_file(focuswriter)
 endif()
+
+set_property(SOURCE src/main.cpp APPEND PROPERTY COMPILE_DEFINITIONS FOCUSWRITER_DATADIR="${datadir}")
