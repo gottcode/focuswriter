@@ -16,7 +16,7 @@
 
 bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 {
-	device->write("{\\rtf1\\ansi\\ansicpg1252\n"
+	device->write("{\\rtf1\\ansi\\ansicpg819\n"
 		"{\\stylesheet\n"
 		"{\\s0 Normal;}\n"
 		"{\\s1\\snext0\\outlinelevel0\\fs36\\b Heading 1;}\n"
