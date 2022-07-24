@@ -159,6 +159,9 @@ FunctionEnd
 
 Section "install"
 
+	;Remove previous installs
+	!include removeprevious.nsh
+
 	;Copy files
 	SetOutPath "$INSTDIR"
 	File /r "..\..\${APPNAME}\*"
