@@ -1,5 +1,13 @@
 Makefile
 build
 focuswriter
+focuswriter.app
+focuswriter_autogen
 *.qm
 *~
+.qt
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+resources/symbols/generate
+resources/symbols/generate_autogen
