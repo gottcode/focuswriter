@@ -412,7 +412,7 @@
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Eine oder mehrere Verknüpfungen verursachen Konflikte. Möchten Sie fortfahren?</translation>
+        <translation>Ein oder mehrere Tastaturkurzbefehle (Shortcuts) verursachen Konflikte. Möchten Sie fortfahren?</translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
@@ -1575,7 +1575,7 @@
     </message>
     <message>
         <source>Ctrl+K</source>
-        <translation>Strg+G</translation>
+        <translation>Strg+L</translation>
     </message>
     <message>
         <source>Sup&amp;erscript</source>
