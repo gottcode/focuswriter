@@ -20,7 +20,7 @@
     <name>AlertLayer</name>
     <message>
         <source>Dismiss Alert</source>
-        <translation>Stäng varning</translation>
+        <translation>Avvisa varning</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -588,11 +588,11 @@
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Flytta uppåt</translation>
+        <translation>Flytta upp</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Flytta nedåt</translation>
+        <translation>Flytta ner</translation>
     </message>
     <message>
         <source>Add Separator</source>
@@ -810,7 +810,7 @@
     </message>
     <message>
         <source>Reset to Default</source>
-        <translation>Återställ till förval</translation>
+        <translation>Återställ till standard</translation>
     </message>
     <message>
         <source>Shortcut:</source>
@@ -1858,7 +1858,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation>Filer som ska öppnas under den aktuella sessionen.</translation>
+        <translation>Filer att öppna i aktuell session.</translation>
     </message>
 </context>
 </TS>
