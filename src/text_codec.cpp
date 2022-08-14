@@ -23,7 +23,7 @@ public:
 	explicit TextCodecIconv(const QByteArray& name);
 	~TextCodecIconv();
 
-	bool isValid() const
+	bool isValid() const override
 	{
 		return m_from_cd != reinterpret_cast<iconv_t>(-1);
 	}
@@ -40,11 +40,11 @@ private:
 
 TextCodecIconv::TextCodecIconv(const QByteArray& name)
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
-	: TextCodec(QStringConverter::Utf16BE)
+	: TextCodec("UTF-16BE")
 	, m_from_cd(iconv_open(name, "UTF-16BE"))
 	, m_to_cd(iconv_open("UTF-16BE", name))
 #else
-	: TextCodec(QStringConverter::Utf16LE)
+	: TextCodec("UTF-16LE")
 	, m_from_cd(iconv_open(name, "UTF-16LE"))
 	, m_to_cd(iconv_open("UTF-16LE", name))
 #endif
@@ -66,7 +66,7 @@ TextCodecIconv::TextCodecIconv(const QByteArray& name)
 
 TextCodecIconv::~TextCodecIconv()
 {
-	if (isValid()) {
+	if (TextCodecIconv::isValid()) {
 		iconv_close(m_from_cd);
 		iconv_close(m_to_cd);
 	}
@@ -175,21 +175,28 @@ public:
 
 	TextCodec* fetch(const QByteArray& name)
 	{
-		if (!m_codecs.contains(name)) {
-			const auto encoding = QStringConverter::encodingForName(name);
-			if (encoding) {
-				m_codecs.insert(name, new TextCodec(*encoding));
-			} else {
-				TextCodecIconv* codec = new TextCodecIconv(name);
-				if (codec->isValid()) {
-					m_codecs.insert(name, codec);
-				} else {
-					delete codec;
-				}
-			}
+		TextCodec* codec = m_codecs.value(name, nullptr);
+		if (codec) {
+			return codec;
 		}
 
-		return m_codecs.value(name);
+		codec = new TextCodec(name);
+		if (codec->isValid()) {
+			m_codecs.insert(name, codec);
+			return codec;
+		} else {
+			delete codec;
+		}
+
+		codec = new TextCodecIconv(name);
+		if (codec->isValid()) {
+			m_codecs.insert(name, codec);
+			return codec;
+		} else {
+			delete codec;
+		}
+
+		return nullptr;
 	}
 
 private:
