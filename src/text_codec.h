@@ -13,7 +13,7 @@
 class TextCodec
 {
 public:
-	explicit TextCodec(QStringConverter::Encoding encoding)
+	explicit TextCodec(const QByteArray& encoding)
 		: m_decoder(encoding)
 		, m_encoder(encoding)
 	{
@@ -24,6 +24,11 @@ public:
 
 	virtual ~TextCodec()
 	{
+	}
+
+	virtual bool isValid() const
+	{
+		return m_decoder.isValid() && m_encoder.isValid();
 	}
 
 	virtual QByteArray fromUnicode(const QString& input)
