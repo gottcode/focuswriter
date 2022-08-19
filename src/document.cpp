@@ -36,6 +36,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QGridLayout>
+#include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QMouseEvent>
@@ -94,6 +95,7 @@ protected:
 	bool canInsertFromMimeData(const QMimeData* source) const override;
 	QMimeData* createMimeDataFromSelection() const override;
 	void insertFromMimeData(const QMimeData* source) override;
+	void contextMenuEvent(QContextMenuEvent* event) override;
 	bool event(QEvent* event) override;
 	void keyPressEvent(QKeyEvent* event) override;
 	void inputMethodEvent(QInputMethodEvent* event) override;
@@ -223,6 +225,13 @@ void TextEdit::insertFromMimeData(const QMimeData* source)
 		}
 		textCursor().insertFragment(QTextDocumentFragment(&document));
 	}
+}
+
+void TextEdit::contextMenuEvent(QContextMenuEvent* event)
+{
+	QMenu* menu = createStandardContextMenu();
+	menu->exec(event->globalPos());
+	delete menu;
 }
 
 bool TextEdit::event(QEvent* event)
