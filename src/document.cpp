@@ -101,6 +101,8 @@ protected:
 
 private:
 	QByteArray mimeToRtf(const QMimeData* source) const;
+	void moveToBlockEnd(QTextCursor::MoveMode mode = QTextCursor::MoveAnchor);
+	void moveToBlockStart(QTextCursor::MoveMode mode = QTextCursor::MoveAnchor);
 
 private:
 	Document* m_document;
@@ -244,7 +246,9 @@ bool TextEdit::event(QEvent* event)
 				|| ke->matches(QKeySequence::Undo)
 				|| ke->matches(QKeySequence::SelectAll)
 				|| ke->matches(QKeySequence::MoveToEndOfBlock)
-				|| ke->matches(QKeySequence::MoveToStartOfBlock)) {
+				|| ke->matches(QKeySequence::MoveToStartOfBlock)
+				|| ke->matches(QKeySequence::SelectEndOfBlock)
+				|| ke->matches(QKeySequence::SelectStartOfBlock)) {
 			event->ignore();
 			return true;
 		}
@@ -261,9 +265,40 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 			|| event->matches(QKeySequence::Undo)
 			|| event->matches(QKeySequence::SelectAll)
 			|| event->matches(QKeySequence::MoveToEndOfBlock)
-			|| event->matches(QKeySequence::MoveToStartOfBlock)) {
+			|| event->matches(QKeySequence::MoveToStartOfBlock)
+			|| event->matches(QKeySequence::SelectEndOfBlock)
+			|| event->matches(QKeySequence::SelectStartOfBlock)) {
 		event->ignore();
 		return;
+	}
+
+#ifndef Q_OS_MAC
+	const Qt::KeyboardModifiers move_modifiers = Qt::ControlModifier;
+	const Qt::KeyboardModifiers select_modifiers = Qt::ControlModifier | Qt::ShiftModifier;
+#else
+	const Qt::KeyboardModifiers move_modifiers = Qt::AltModifier;
+	const Qt::KeyboardModifiers select_modifiers = Qt::AltModifier | Qt::ShiftModifier;
+#endif
+	if (event->key() == Qt::Key_Up) {
+		if (event->modifiers() == move_modifiers) {
+			moveToBlockStart();
+			event->ignore();
+			return;
+		} else if (event->modifiers() == select_modifiers) {
+			moveToBlockStart(QTextCursor::KeepAnchor);
+			event->ignore();
+			return;
+		}
+	} else if (event->key() == Qt::Key_Down) {
+		if (event->modifiers() == move_modifiers) {
+			moveToBlockEnd();
+			event->ignore();
+			return;
+		} else if (event->modifiers() == select_modifiers) {
+			moveToBlockEnd(QTextCursor::KeepAnchor);
+			event->ignore();
+			return;
+		}
 	}
 
 	// Keep formatting in new paragraphs
@@ -306,6 +341,36 @@ QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
 	buffer.close();
 
 	return buffer.data();
+}
+
+void TextEdit::moveToBlockEnd(QTextCursor::MoveMode mode)
+{
+	QTextCursor cursor = textCursor();
+	if (cursor.atEnd()) {
+		return;
+	}
+
+	if (cursor.atBlockEnd()) {
+		cursor.movePosition(QTextCursor::NextCharacter, mode);
+	}
+	cursor.movePosition(QTextCursor::EndOfBlock, mode);
+
+	setTextCursor(cursor);
+}
+
+void TextEdit::moveToBlockStart(QTextCursor::MoveMode mode)
+{
+	QTextCursor cursor = textCursor();
+	if (cursor.atStart()) {
+		return;
+	}
+
+	if (cursor.atBlockStart()) {
+		cursor.movePosition(QTextCursor::PreviousCharacter, mode);
+	}
+	cursor.movePosition(QTextCursor::StartOfBlock, mode);
+
+	setTextCursor(cursor);
 }
 
 }
@@ -355,18 +420,6 @@ Document::Document(const QString& filename, DailyProgress* daily_progress, QWidg
 	connect(m_text, &QTextEdit::cursorPositionChanged, this, &Document::cursorPositionChanged);
 	connect(m_text, &QTextEdit::selectionChanged, this, &Document::selectionChanged);
 	connect(m_text->document(), &QTextDocument::modificationChanged, this, &Document::modificationChanged);
-
-	QShortcut* shortcut_down = new QShortcut(m_text);
-	QShortcut* shortcut_up = new QShortcut(m_text);
-#ifndef Q_OS_MAC
-	shortcut_down->setKey(Qt::CTRL | Qt::Key_Down);
-	shortcut_up->setKey(Qt::CTRL | Qt::Key_Up);
-#else
-	shortcut_down->setKey(Qt::ALT | Qt::Key_Down);
-	shortcut_up->setKey(Qt::ALT | Qt::Key_Up);
-#endif
-	connect(shortcut_down, &QShortcut::activated, this, &Document::moveToBlockEnd);
-	connect(shortcut_up, &QShortcut::activated, this, &Document::moveToBlockStart);
 
 	m_scene_model = new SceneModel(m_text, this);
 
@@ -1211,40 +1264,6 @@ void Document::hideMouse()
 		m_text->viewport()->setCursor(Qt::BlankCursor);
 		setCursor(Qt::BlankCursor);
 	}
-}
-
-//-----------------------------------------------------------------------------
-
-void Document::moveToBlockEnd()
-{
-	QTextCursor cursor = m_text->textCursor();
-	if (cursor.atEnd()) {
-		return;
-	}
-
-	if (cursor.atBlockEnd()) {
-		cursor.movePosition(QTextCursor::NextCharacter);
-	}
-	cursor.movePosition(QTextCursor::EndOfBlock);
-
-	m_text->setTextCursor(cursor);
-}
-
-//-----------------------------------------------------------------------------
-
-void Document::moveToBlockStart()
-{
-	QTextCursor cursor = m_text->textCursor();
-	if (cursor.atStart()) {
-		return;
-	}
-
-	if (cursor.atBlockStart()) {
-		cursor.movePosition(QTextCursor::PreviousCharacter);
-	}
-	cursor.movePosition(QTextCursor::StartOfBlock);
-
-	m_text->setTextCursor(cursor);
 }
 
 //-----------------------------------------------------------------------------
