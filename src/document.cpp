@@ -302,6 +302,14 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 		}
 	}
 
+	// Keep formatting in new paragraphs
+	if (event->matches(QKeySequence::InsertParagraphSeparator)) {
+		textCursor().insertBlock();
+		event->accept();
+		ensureCursorVisible();
+		return;
+	}
+
 	QTextEdit::keyPressEvent(event);
 
 	if (event->key() == Qt::Key_Insert) {
