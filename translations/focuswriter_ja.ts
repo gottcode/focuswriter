@@ -328,8 +328,8 @@
         <translation>画像の選択</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>画像 (%1)</translation>
+        <source>Images</source>
+        <translation>画像</translation>
     </message>
 </context>
 <context>

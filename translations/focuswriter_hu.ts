@@ -328,8 +328,8 @@
         <translation>Kép megnyitása</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Képek(%1)</translation>
+        <source>Images</source>
+        <translation>Képek</translation>
     </message>
 </context>
 <context>

@@ -334,8 +334,8 @@
         <translation>Άνοιγμα Εικόνας</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Εικόνες (%1)</translation>
+        <source>Images</source>
+        <translation>Εικόνες</translation>
     </message>
 </context>
 <context>

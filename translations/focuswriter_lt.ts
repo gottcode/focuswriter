@@ -340,8 +340,8 @@
         <translation>Atverti paveikslą</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Paveikslai(%1)</translation>
+        <source>Images</source>
+        <translation>Paveikslai</translation>
     </message>
 </context>
 <context>

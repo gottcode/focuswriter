@@ -334,7 +334,7 @@
         <translation>Abrir imaxe</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
+        <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

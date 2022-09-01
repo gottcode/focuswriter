@@ -334,8 +334,8 @@
         <translation>Avaa kuva</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Kuvat (%1)</translation>
+        <source>Images</source>
+        <translation>Kuvat</translation>
     </message>
 </context>
 <context>

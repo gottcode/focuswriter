@@ -328,7 +328,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Images(%1)</source>
+        <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

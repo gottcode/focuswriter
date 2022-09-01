@@ -334,8 +334,8 @@
         <translation>Maak foto oop</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Foto&apos;s(%1)</translation>
+        <source>Images</source>
+        <translation>Foto&apos;s</translation>
     </message>
 </context>
 <context>

@@ -328,8 +328,8 @@
         <translation>이미지 열기</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>이미지(%1)</translation>
+        <source>Images</source>
+        <translation>이미지</translation>
     </message>
 </context>
 <context>
