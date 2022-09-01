@@ -1,3 +1,13 @@
+1.8.2
+-----
+* FIXED: Could not change language in portable mode.
+* FIXED: Crashed during paste from context menu.
+* FIXED: First line indent was lost on empty paragraphs.
+* Always write RTF as Latin1.
+* Replaced ICU with iconv.
+* Improved Linux deployment.
+* Translation updates: German, Korean, Portuguese (Brazil), Russian, Swedish.
+
 1.8.1
 -----
 * Always write plain text as UTF-8.

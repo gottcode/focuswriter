@@ -231,6 +231,19 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.2" date="2022-09-01">
+      <description>
+        <ul>
+          <li>FIXED: Could not change language in portable mode</li>
+          <li>FIXED: Crashed during paste from context menu</li>
+          <li>FIXED: First line indent was lost on empty paragraphs</li>
+          <li>Always write RTF as Latin1</li>
+          <li>Replaced ICU with iconv</li>
+          <li>Improved Linux deployment</li>
+          <li>Translation updates: German, Korean, Portuguese (Brazil), Russian, Swedish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.1" date="2022-07-02">
       <description>
         <ul>
