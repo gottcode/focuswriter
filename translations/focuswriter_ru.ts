@@ -20,7 +20,7 @@
     <name>AlertLayer</name>
     <message>
         <source>Dismiss Alert</source>
-        <translation>Убрать предупреждение</translation>
+        <translation>Убрать оповещение</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -39,10 +39,10 @@
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%Ln минута</numerusform>
+            <numerusform>%Ln минуты</numerusform>
+            <numerusform>%Ln минут</numerusform>
         </translation>
     </message>
     <message>
@@ -51,18 +51,18 @@
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% из %Ln минуты</numerusform>
+            <numerusform>%L1% из %Ln минут</numerusform>
+            <numerusform>%L1% из %Ln минут</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%L1% из %Ln слова</numerusform>
+            <numerusform>%L1% из %Ln слов</numerusform>
+            <numerusform>%L1% из %Ln слов</numerusform>
         </translation>
     </message>
 </context>
@@ -86,10 +86,10 @@
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n день</numerusform>
+            <numerusform>%n дня</numerusform>
+            <numerusform>%n дней</numerusform>
         </translation>
     </message>
     <message>
@@ -291,11 +291,11 @@
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>Открытый Текстовый Документ</translation>
+        <translation>Текстовый файл OpenDocument</translation>
     </message>
     <message>
         <source>Office Open XML</source>
-        <translation>Открытый офисный файл XML</translation>
+        <translation>Офисный файл Open XML</translation>
     </message>
     <message>
         <source>Rich Text Format</source>
@@ -352,7 +352,7 @@
     </message>
     <message>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Язык системы&gt;</translation>
+        <translation>&lt;System Language&gt;</translation>
     </message>
     <message>
         <source>Note</source>
@@ -765,7 +765,7 @@
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation>Дублировать сессию</translation>
+        <translation>Дублировать сеанс</translation>
     </message>
     <message>
         <source>Rename Session</source>
@@ -789,7 +789,7 @@
     </message>
     <message>
         <source>The requested session name is already in use.</source>
-        <translation>Заданное имя сеанса уже используется.</translation>
+        <translation>Запрошенное имя сеанса уже используется.</translation>
     </message>
     <message>
         <source>&amp;New...</source>
@@ -931,7 +931,7 @@
     <name>Theme</name>
     <message>
         <source>Untitled %1</source>
-        <translation>Безымянная %1</translation>
+        <translation>Без названия %1</translation>
     </message>
 </context>
 <context>
@@ -1345,11 +1345,11 @@
     </message>
     <message>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
+        <translation>Авторское право &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Выпущен под лицензией &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
+        <translation>Выпущено под лицензией &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
@@ -1381,7 +1381,7 @@
     </message>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Безымянный %1)</translation>
+        <translation>(Без названия %1)</translation>
     </message>
     <message>
         <source>List all documents</source>
@@ -1864,7 +1864,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлы для открытия в текущем сеансе.</translation>
     </message>
 </context>
 </TS>
