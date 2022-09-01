@@ -340,8 +340,8 @@
         <translation>Otevřít obrázek</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Obrázky (%1)</translation>
+        <source>Images</source>
+        <translation>Obrázky</translation>
     </message>
 </context>
 <context>

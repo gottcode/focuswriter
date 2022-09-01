@@ -334,7 +334,7 @@
         <translation>Ava pilt</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
+        <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

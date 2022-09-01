@@ -340,8 +340,8 @@
         <translation>Открыть изображение</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Изображения(%1)</translation>
+        <source>Images</source>
+        <translation>Изображения</translation>
     </message>
 </context>
 <context>

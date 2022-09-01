@@ -358,8 +358,8 @@
         <translation>فتح صورة</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>صور(%1)</translation>
+        <source>Images</source>
+        <translation>صور</translation>
     </message>
 </context>
 <context>

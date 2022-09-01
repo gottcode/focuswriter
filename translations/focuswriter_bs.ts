@@ -340,8 +340,8 @@
         <translation>Otvori sliku</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Slike(%1)</translation>
+        <source>Images</source>
+        <translation>Slike</translation>
     </message>
 </context>
 <context>

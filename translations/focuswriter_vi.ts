@@ -328,8 +328,8 @@
         <translation>Mở hình ảnh</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Hình ảnh(%1)</translation>
+        <source>Images</source>
+        <translation>Hình ảnh</translation>
     </message>
 </context>
 <context>

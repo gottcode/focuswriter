@@ -334,8 +334,8 @@
         <translation>Open Image</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Images(%1)</translation>
+        <source>Images</source>
+        <translation>Images</translation>
     </message>
 </context>
 <context>

@@ -334,8 +334,8 @@
         <translation>Vierç Imagjine</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Imagjinis(%1)</translation>
+        <source>Images</source>
+        <translation>Imagjinis</translation>
     </message>
 </context>
 <context>

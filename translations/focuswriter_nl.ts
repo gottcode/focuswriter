@@ -334,8 +334,8 @@
         <translation>Afbeelding openen</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Afbeeldingen (%1)</translation>
+        <source>Images</source>
+        <translation>Afbeeldingen</translation>
     </message>
 </context>
 <context>

@@ -340,8 +340,8 @@
         <translation>Deschide imagine</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Imagini (%1)</translation>
+        <source>Images</source>
+        <translation>Imagini</translation>
     </message>
 </context>
 <context>

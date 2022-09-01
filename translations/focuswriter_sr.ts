@@ -340,8 +340,8 @@
         <translation>Отвори слику</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Слике(%1)</translation>
+        <source>Images</source>
+        <translation>Слике</translation>
     </message>
 </context>
 <context>
