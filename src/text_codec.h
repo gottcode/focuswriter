@@ -7,12 +7,18 @@
 #ifndef FOCUSWRITER_TEXT_CODEC_H
 #define FOCUSWRITER_TEXT_CODEC_H
 
-class QByteArray;
-class QString;
+#include <QStringDecoder>
+#include <QStringEncoder>
 
 class TextCodec
 {
 public:
+	explicit TextCodec(const QByteArray& encoding)
+		: m_decoder(encoding)
+		, m_encoder(encoding)
+	{
+	}
+
 	TextCodec(const TextCodec&) = delete;
 	TextCodec& operator=(const TextCodec&) = delete;
 
@@ -20,15 +26,26 @@ public:
 	{
 	}
 
-	virtual QByteArray fromUnicode(const QString& input) = 0;
-	virtual QString toUnicode(const QByteArray& input) = 0;
+	virtual bool isValid() const
+	{
+		return m_decoder.isValid() && m_encoder.isValid();
+	}
+
+	virtual QByteArray fromUnicode(const QString& input)
+	{
+		return m_encoder.encode(input);
+	}
+
+	virtual QString toUnicode(const QByteArray& input)
+	{
+		return m_decoder.decode(input);
+	}
 
 	static TextCodec* codecForName(const QByteArray& name);
 
-protected:
-	TextCodec()
-	{
-	}
+private:
+	QStringDecoder m_decoder;
+	QStringEncoder m_encoder;
 };
 
 #endif // FOCUSWRITER_TEXT_CODEC_H

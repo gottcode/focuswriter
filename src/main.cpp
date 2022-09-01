@@ -12,6 +12,7 @@
 
 #include <QCommandLineParser>
 #include <QDir>
+#include <QFileInfo>
 #include <QSettings>
 
 int main(int argc, char** argv)
@@ -21,21 +22,25 @@ int main(int argc, char** argv)
 	// Allow passing Theme as signal parameter
 	qRegisterMetaType<Theme>("Theme");
 
-	// Find application data dirs
+	// Find application data
 	const QString appdir = app.applicationDirPath();
-	const QStringList datadirs{
-#if defined(Q_OS_MAC)
-		appdir + "/../Resources"
-#elif defined(Q_OS_UNIX)
-		DATADIR,
-		appdir + "/../share/focuswriter"
+	const QString datadir = QDir::cleanPath(appdir + "/" + FOCUSWRITER_DATADIR);
+
+	// Handle portability
+	QString userdir;
+#ifdef Q_OS_MAC
+	const QFileInfo portable(appdir + "/../../../Data");
 #else
-		appdir
+	const QFileInfo portable(appdir + "/Data");
 #endif
-	};
+	if (portable.exists() && portable.isWritable()) {
+		userdir = portable.absoluteFilePath();
+		QSettings::setDefaultFormat(QSettings::IniFormat);
+		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userdir + "/Settings");
+	}
 
 	// Load application language
-	LocaleDialog::loadTranslator("focuswriter_", datadirs);
+	LocaleDialog::loadTranslator("focuswriter_", datadir);
 
 	// Handle commandline
 	QCommandLineParser parser;
@@ -52,7 +57,7 @@ int main(int argc, char** argv)
 	}
 
 	// Load paths
-	Paths::load(appdir, datadirs);
+	Paths::load(appdir, userdir, datadir);
 
 	// Create theme from old settings
 	if (QDir(Theme::path(), "*.theme").entryList(QDir::Files).isEmpty()) {

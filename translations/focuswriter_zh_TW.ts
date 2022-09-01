@@ -328,8 +328,8 @@
         <translation>打開圖像</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>圖像(%1)</translation>
+        <source>Images</source>
+        <translation>圖像</translation>
     </message>
 </context>
 <context>

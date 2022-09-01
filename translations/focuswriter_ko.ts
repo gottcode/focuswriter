@@ -328,8 +328,8 @@
         <translation>이미지 열기</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>이미지(%1)</translation>
+        <source>Images</source>
+        <translation>이미지</translation>
     </message>
 </context>
 <context>
@@ -1852,7 +1852,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>현제 세션에서 열 파일</translation>
     </message>
 </context>
 </TS>

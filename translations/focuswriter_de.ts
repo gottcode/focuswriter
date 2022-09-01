@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>Longest streak</source>
-        <translation>Längster Siegeszug</translation>
+        <translation>Längste Erfolgsserie</translation>
     </message>
     <message>
         <source>Current streak</source>
-        <translation>Aktueller Siegeszug</translation>
+        <translation>Aktuelle Erfolgsserie</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -334,8 +334,8 @@
         <translation>Bild öffnen</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Bilder(%1)</translation>
+        <source>Images</source>
+        <translation>Bilder</translation>
     </message>
 </context>
 <context>
@@ -408,11 +408,11 @@
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Shortcuts</translation>
+        <translation>Tastaturkurzbefehle</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Eine oder mehrere Verknüpfungen verursachen Konflikte. Möchten Sie fortfahren?</translation>
+        <translation>Ein oder mehrere Tastaturkurzbefehle wurden doppelt belegt. Möchten Sie fortfahren?</translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
@@ -536,11 +536,11 @@
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Siegeszüge anzeigen</translation>
+        <translation>Erfolgsserie anzeigen</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation>Mindestfortschritt für Siegeszüge:</translation>
+        <translation>Mindestfortschritt für Erfolgsserie:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
@@ -572,7 +572,7 @@
     </message>
     <message>
         <source>Text Alongside Icons</source>
-        <translation>Text neben  Symbolen</translation>
+        <translation>Text neben Symbolen</translation>
     </message>
     <message>
         <source>Text Under Icons</source>
@@ -604,7 +604,7 @@
     </message>
     <message>
         <source>Shortcut</source>
-        <translation>Shortcut</translation>
+        <translation>Tastaturkurzbefehle</translation>
     </message>
     <message>
         <source>Action</source>
@@ -783,7 +783,7 @@
     </message>
     <message>
         <source>The requested session name is already in use.</source>
-        <translation>Die gewünschte Sitzung wird derzeit benutzt.</translation>
+        <translation>Der gewählte Name für die Sitzung wird bereits verwendet.</translation>
     </message>
     <message>
         <source>&amp;New...</source>
@@ -814,7 +814,7 @@
     </message>
     <message>
         <source>Shortcut:</source>
-        <translation>Shortcut:</translation>
+        <translation>Tastaturkurzbefehl:</translation>
     </message>
 </context>
 <context>
@@ -1179,7 +1179,7 @@
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation>Bittere Himmel</translation>
+        <translation>Bedrückender Himmel</translation>
     </message>
     <message>
         <source>Enchantment</source>
@@ -1383,23 +1383,23 @@
     </message>
     <message>
         <source>Switch to Next Document</source>
-        <translation>Ins nächste Dokument übergehen</translation>
+        <translation>Zum nächsten Dokument wechseln</translation>
     </message>
     <message>
         <source>Switch to Previous Document</source>
-        <translation>Ins vorherige Dokument übergehen</translation>
+        <translation>Zum vorherigen Dokument wechseln</translation>
     </message>
     <message>
         <source>Switch to First Document</source>
-        <translation>Ins erste Dokument übergehen</translation>
+        <translation>Zum ersten Dokument wechseln</translation>
     </message>
     <message>
         <source>Switch to Last Document</source>
-        <translation>Ins letzte Dokument übergehen</translation>
+        <translation>Zum letzten Dokument wechseln</translation>
     </message>
     <message>
         <source>Switch to Document %1</source>
-        <translation>Ins Dokument %1 übergehen</translation>
+        <translation>Zu Dokument %1 wechseln</translation>
     </message>
     <message>
         <source>Loading settings</source>
@@ -1575,7 +1575,7 @@
     </message>
     <message>
         <source>Ctrl+K</source>
-        <translation>Strg+G</translation>
+        <translation>Strg+L</translation>
     </message>
     <message>
         <source>Sup&amp;erscript</source>

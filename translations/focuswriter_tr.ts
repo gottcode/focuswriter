@@ -328,8 +328,8 @@
         <translation>Resim Aç</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Resimler(%1)</translation>
+        <source>Images</source>
+        <translation>Resimler</translation>
     </message>
 </context>
 <context>

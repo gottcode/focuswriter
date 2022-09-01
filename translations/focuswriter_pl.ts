@@ -340,8 +340,8 @@
         <translation>Otwórz obrazek</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Obrazki(%1)</translation>
+        <source>Images</source>
+        <translation>Obrazki</translation>
     </message>
 </context>
 <context>

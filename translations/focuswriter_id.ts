@@ -328,8 +328,8 @@
         <translation>Buka Gambar</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Gambar(%1)</translation>
+        <source>Images</source>
+        <translation>Gambar</translation>
     </message>
 </context>
 <context>

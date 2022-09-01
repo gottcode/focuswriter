@@ -7,12 +7,12 @@
 #ifndef FOCUSWRITER_PATHS_H
 #define FOCUSWRITER_PATHS_H
 
-#include <QStringList>
+#include <QString>
 
 class Paths
 {
 public:
-	static void load(const QString& appdir, const QStringList& datadirs);
+	static void load(const QString& appdir, QString& userdir, const QString& datadir);
 
 private:
 	static QString oldDataPath();

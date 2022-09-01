@@ -9,169 +9,159 @@
 #include <QByteArray>
 #include <QHash>
 #include <QString>
-#include <QStringDecoder>
-#include <QStringEncoder>
 
-#ifdef HAVE_WINDOWS_ICU
-#  include <icu.h>
-#else
-#  include <unicode/ucnv.h>
-#endif
+#include <iconv.h>
 
 //-----------------------------------------------------------------------------
 
 namespace
 {
 
-class TextCodecIcu : public TextCodec
+class TextCodecIconv : public TextCodec
 {
 public:
-	explicit TextCodecIcu(const QByteArray& name);
-	~TextCodecIcu();
+	explicit TextCodecIconv(const QByteArray& name);
+	~TextCodecIconv();
 
-	bool isValid() const
+	bool isValid() const override
 	{
-		return m_converter;
+		return m_from_cd != reinterpret_cast<iconv_t>(-1);
 	}
 
 	QByteArray fromUnicode(const QString& input) override;
 	QString toUnicode(const QByteArray& input) override;
 
 private:
-	UConverter* m_converter;
+	iconv_t m_from_cd;
+	iconv_t m_to_cd;
 };
 
 //-----------------------------------------------------------------------------
 
-TextCodecIcu::TextCodecIcu(const QByteArray& name)
+TextCodecIconv::TextCodecIconv(const QByteArray& name)
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+	: TextCodec("UTF-16BE")
+	, m_from_cd(iconv_open(name, "UTF-16BE"))
+	, m_to_cd(iconv_open("UTF-16BE", name))
+#else
+	: TextCodec("UTF-16LE")
+	, m_from_cd(iconv_open(name, "UTF-16LE"))
+	, m_to_cd(iconv_open("UTF-16LE", name))
+#endif
 {
-	UErrorCode error = U_ZERO_ERROR;
-
-	m_converter = ucnv_open(name.constData(), &error);
-	if (U_FAILURE(error)) {
-		qDebug("TextCodec::TextCodec('%s') failed: %s", name.constData(), u_errorName(error));
-		return;
-	}
-
-	ucnv_setSubstString(m_converter, u"?", 1, &error);
-	if (U_SUCCESS(error)) {
-		ucnv_setFromUCallBack(m_converter, UCNV_FROM_U_CALLBACK_SUBSTITUTE, nullptr, nullptr, nullptr, &error);
-	}
-	if (U_FAILURE(error)) {
-		qDebug("TextCodec::TextCodec('%s') failed: %s", name.constData(), u_errorName(error));
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-TextCodecIcu::~TextCodecIcu()
-{
-	if (isValid()) {
-		ucnv_close(m_converter);
-	}
-}
-
-//-----------------------------------------------------------------------------
-
-QByteArray TextCodecIcu::fromUnicode(const QString& input)
-{
-	const UChar* source = reinterpret_cast<const UChar*>(input.constData());
-	const UChar* source_limit = source + input.length();
-
-	QByteArray output(UCNV_GET_MAX_BYTES_FOR_STRING(input.length(), ucnv_getMaxCharSize(m_converter)), Qt::Uninitialized);
-	qsizetype converted_length = 0;
-
-	UErrorCode error = U_ZERO_ERROR;
-	do {
-		// Resize output if it was too small
-		if (converted_length) {
-			output.resize(output.length() * 2);
+	if (m_from_cd == reinterpret_cast<iconv_t>(-1)) {
+		qDebug("TextCodec::TextCodec('%s') failed", name.constData());
+		if (m_to_cd != reinterpret_cast<iconv_t>(-1)) {
+			iconv_close(m_to_cd);
+			m_to_cd = reinterpret_cast<iconv_t>(-1);
 		}
+	} else if (m_to_cd == reinterpret_cast<iconv_t>(-1)) {
+		qDebug("TextCodec::TextCodec('%s') failed", name.constData());
+		iconv_close(m_from_cd);
+		m_from_cd = reinterpret_cast<iconv_t>(-1);
+	}
+}
 
-		// Set target past anything in output so far
-		char* target = output.data();
-		char* target_limit = target + output.length();
-		target += converted_length;
+//-----------------------------------------------------------------------------
 
-		// Convert from Unicode
-		error = U_ZERO_ERROR;
-		ucnv_fromUnicode(m_converter, &target, target_limit, &source, source_limit, nullptr, false, &error);
-		converted_length = target - output.data();
-	} while (error == U_BUFFER_OVERFLOW_ERROR);
+TextCodecIconv::~TextCodecIconv()
+{
+	if (TextCodecIconv::isValid()) {
+		iconv_close(m_from_cd);
+		iconv_close(m_to_cd);
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+QByteArray TextCodecIconv::fromUnicode(const QString& input)
+{
+	// POSIX requires the source to not be const, even though it does not modify it
+	QByteArray in = TextCodec::fromUnicode(input);
+	char* source = in.data();
+	size_t source_remain = in.length();
+
+	QByteArray output(input.length(), Qt::Uninitialized);
+	char* dest = output.data();
+	size_t dest_remain = output.length();
+
+	while (source_remain) {
+		if (iconv(m_from_cd, &source, &source_remain, &dest, &dest_remain) == static_cast<size_t>(-1)) {
+			if (errno == E2BIG) {
+				// Resize output buffer because it was too small
+				const size_t converted_bytes = output.length() - dest_remain;
+				output.resize(output.length() * 2);
+				dest = output.data() + converted_bytes;
+				dest_remain = output.length() - converted_bytes;
+			} else if ((errno == EILSEQ) || (errno == EINVAL)) {
+				// Skip invalid or incomplete multibyte sequence
+				source += sizeof(QChar);
+				source_remain -= sizeof(QChar);
+			} else {
+				// Abort on all other errors
+				qDebug("TextCodec::fromUnicode() failed");
+
+				// Reset converter to initial state
+				iconv(m_from_cd, nullptr, &source_remain, nullptr, &dest_remain);
+
+				return QByteArray();
+			}
+		}
+	}
 
 	// Shrink output to converted contents
-	output.resize(converted_length);
+	output.resize(output.length() - dest_remain);
 
-	if (U_FAILURE(error)) {
-		qDebug("TextCodec::fromUnicode() failed: %s", u_errorName(error));
-	}
+	// Reset converter to initial state
+	iconv(m_from_cd, nullptr, &source_remain, nullptr, &dest_remain);
 
 	return output;
 }
 
 //-----------------------------------------------------------------------------
 
-QString TextCodecIcu::toUnicode(const QByteArray& input)
+QString TextCodecIconv::toUnicode(const QByteArray& input)
 {
-	const char* source = input.constData();
-	const char* source_limit = source + input.length();
+	// POSIX requires the source to not be const, even though it does not modify it
+	char* source = const_cast<char*>(input.data());
+	size_t source_remain = input.length();
 
-	QString output(input.length(), Qt::Uninitialized);
-	qsizetype converted_length = 0;
+	QByteArray output(input.length() * sizeof(QChar), Qt::Uninitialized);
+	char* dest = output.data();
+	size_t dest_remain = output.length();
 
-	UErrorCode error = U_ZERO_ERROR;
-	do {
-		// Resize output if it was too small
-		if (converted_length) {
-			output.resize(output.length() * 2);
+	while (source_remain) {
+		if (iconv(m_to_cd, &source, &source_remain, &dest, &dest_remain) == static_cast<size_t>(-1)) {
+			if (errno == E2BIG) {
+				// Resize output buffer because it was too small
+				const size_t converted_bytes = output.length() - dest_remain;
+				output.resize(output.length() * 2);
+				dest = output.data() + converted_bytes;
+				dest_remain = output.length() - converted_bytes;
+			} else if ((errno == EILSEQ) || (errno == EINVAL)) {
+				// Skip invalid or incomplete multibyte sequence
+				++source;
+				--source_remain;
+			} else {
+				// Abort on all other errors
+				qDebug("TextCodec::toUnicode() failed");
+
+				// Reset converter to initial state
+				iconv(m_to_cd, nullptr, &source_remain, nullptr, &dest_remain);
+
+				return QString();
+			}
 		}
-
-		// Set target past anything in output so far
-		UChar* target = reinterpret_cast<UChar*>(output.data());
-		UChar* target_limit = target + output.length();
-		target += converted_length;
-
-		// Convert to Unicode
-		error = U_ZERO_ERROR;
-		ucnv_toUnicode(m_converter, &target, target_limit, &source, source_limit, nullptr, false, &error);
-		converted_length = target - reinterpret_cast<UChar*>(output.data());
-	} while (error == U_BUFFER_OVERFLOW_ERROR);
+	}
 
 	// Shrink output to converted contents
-	output.resize(converted_length);
+	output.resize(output.length() - dest_remain);
 
-	if (U_FAILURE(error)) {
-		qDebug("TextCodec::toUnicode() failed: %s", u_errorName(error));
-	}
+	// Reset converter to initial state
+	iconv(m_to_cd, nullptr, &source_remain, nullptr, &dest_remain);
 
-	return output;
+	return TextCodec::toUnicode(output);
 }
-
-//-----------------------------------------------------------------------------
-
-class TextCodecQt : public TextCodec
-{
-public:
-	explicit TextCodecQt(QStringConverter::Encoding encoding)
-		: m_decoder(encoding)
-		, m_encoder(encoding)
-	{
-	}
-
-	QByteArray fromUnicode(const QString& input) override
-	{
-		return m_encoder.encode(input);
-	}
-
-	QString toUnicode(const QByteArray& input) override
-	{
-		return m_decoder.decode(input);
-	}
-
-private:
-	QStringDecoder m_decoder;
-	QStringEncoder m_encoder;
-};
 
 //-----------------------------------------------------------------------------
 
@@ -185,32 +175,28 @@ public:
 
 	TextCodec* fetch(const QByteArray& name)
 	{
-		// Check if name is alias of already loaded codec
-		if (!m_codecs.contains(name)) {
-			for (auto i = m_codecs.constBegin(), end = m_codecs.constEnd(); i != end; ++i) {
-				if (ucnv_compareNames(name, i.key()) == 0) {
-					m_codecs.insert(name, i.value());
-					break;
-				}
-			}
+		TextCodec* codec = m_codecs.value(name, nullptr);
+		if (codec) {
+			return codec;
 		}
 
-		// Create codec if not loaded yet
-		if (!m_codecs.contains(name)) {
-			const auto encoding = QStringConverter::encodingForName(name);
-			if (encoding) {
-				m_codecs.insert(name, new TextCodecQt(*encoding));
-			} else {
-				TextCodecIcu* codec = new TextCodecIcu(name);
-				if (codec->isValid()) {
-					m_codecs.insert(name, codec);
-				} else {
-					delete codec;
-				}
-			}
+		codec = new TextCodec(name);
+		if (codec->isValid()) {
+			m_codecs.insert(name, codec);
+			return codec;
+		} else {
+			delete codec;
 		}
 
-		return m_codecs.value(name);
+		codec = new TextCodecIconv(name);
+		if (codec->isValid()) {
+			m_codecs.insert(name, codec);
+			return codec;
+		} else {
+			delete codec;
+		}
+
+		return nullptr;
 	}
 
 private:

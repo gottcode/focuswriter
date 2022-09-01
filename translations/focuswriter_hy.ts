@@ -334,8 +334,8 @@
         <translation>Բացել նկարը</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Նկարներ(%1)</translation>
+        <source>Images</source>
+        <translation>Նկարներ</translation>
     </message>
 </context>
 <context>

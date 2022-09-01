@@ -340,8 +340,8 @@
         <translation>Відкрити зображення</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Зображень(%1)</translation>
+        <source>Images</source>
+        <translation>Зображень</translation>
     </message>
 </context>
 <context>

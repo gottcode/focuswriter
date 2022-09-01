@@ -334,8 +334,8 @@
         <translation>Malfermi Bildon</translation>
     </message>
     <message>
-        <source>Images(%1)</source>
-        <translation>Bildoj(%1)</translation>
+        <source>Images</source>
+        <translation>Bildoj</translation>
     </message>
 </context>
 <context>

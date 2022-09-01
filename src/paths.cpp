@@ -16,52 +16,23 @@
 
 #include <QDir>
 #include <QFile>
-#include <QFileInfo>
 #include <QIcon>
-#include <QSettings>
 #include <QStandardPaths>
 
 //-----------------------------------------------------------------------------
 
-void Paths::load(const QString& appdir, const QStringList& datadirs)
+void Paths::load(const QString& appdir, QString& userdir, const QString& datadir)
 {
 	// Set locations of fallback icons
 	QStringList paths = QIcon::themeSearchPaths();
-	for (const QString& path : datadirs) {
-		paths.prepend(path + "/icons");
-	}
+	paths.prepend(datadir + "/icons");
 	QIcon::setThemeSearchPaths(paths);
 
-	// Find sounds
-	for (const QString& datadir : datadirs) {
-		const QFileInfo info(datadir + "/sounds");
-		if (info.exists()) {
-			Sound::setPath(info.absoluteFilePath());
-			break;
-		}
-	}
+	// Set sounds path
+	Sound::setPath(datadir + "/sounds");
 
-	// Find unicode names
-	for (const QString& datadir : datadirs) {
-		const QFileInfo info(datadir + "/symbols1400.dat");
-		if (info.exists()) {
-			SymbolsModel::setPath(info.absoluteFilePath());
-			break;
-		}
-	}
-
-	// Handle portability
-	QString userdir;
-#ifdef Q_OS_MAC
-	const QFileInfo portable(appdir + "/../../../Data");
-#else
-	const QFileInfo portable(appdir + "/Data");
-#endif
-	if (portable.exists() && portable.isWritable()) {
-		userdir = portable.absoluteFilePath();
-		QSettings::setDefaultFormat(QSettings::IniFormat);
-		QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userdir + "/Settings");
-	}
+	// Set unicode names path
+	SymbolsModel::setPath(datadir + "/symbols1400.dat");
 
 	// Find user data dir if not in portable mode
 	if (userdir.isEmpty()) {
@@ -110,15 +81,8 @@ void Paths::load(const QString& appdir, const QStringList& datadirs)
 	if (!dir.exists("Themes/Previews/Default")) {
 		dir.mkpath("Themes/Previews/Default");
 	}
+	Theme::setDefaultPath(datadir + "/themes");
 	Theme::setPath(dir.absoluteFilePath("Themes"));
-
-	for (const QString& datadir : datadirs) {
-		const QFileInfo info(datadir + "/themes");
-		if (info.exists()) {
-			Theme::setDefaultPath(info.absoluteFilePath());
-			break;
-		}
-	}
 
 	// Set dictionary paths
 	if (!dir.exists("Dictionaries")) {

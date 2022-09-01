@@ -4,26 +4,92 @@ Installation
 Open a terminal and browse into the extracted folder.
 
 Linux:
-    1.) Type 'qmake' to configure the program. If you would like to install the
-        program somewhere other than /usr/local, pass a new value for PREFIX
-        during configuration: 'qmake PREFIX=/opt'.
+  1. `cmake -B build -S . -DCMAKE_INSTALL_PREFIX=/usr' to create a location
+     for the build and then configure the program. There are more options
+     you can pass to CMake, see below for details.
 
-    2.) Type 'make' to compile the program.
+  2. `cmake --build build' to compile the program.
 
-    3.) Type 'sudo make install' to install the program.
+  3. `cmake --install build' to install the program. This has to be done
+     with root privileges if installing to system directories, but the
+     rest of the build should be done with regular user privileges.
+
+     For packaging you can optionally install the program into a temporary
+     directory by setting the DESTDIR environment variable. For example,
+     `DESTDIR="alternate/directory" cmake --install build' will prepend
+     'alternate/directory' before all installation names.
 
 macOS:
-    1.) Type 'qmake -spec macx-clang' to configure the program.
+  1. `cmake -B build -S .' to create a location for the build and then
+     configure the program. There are more options you can pass to CMake,
+     see below for details.
 
-    2.) Type 'make' to compile the program.
+  2. `cmake --build build' to compile the program.
 
-    3.) Type './mac_deploy.sh' to create a disk image of the program.
+  3. Run `mac_deploy.sh' from inside the build directory to create a disk
+     image of the program.
 
 Windows:
-    1.) Type 'qmake' to configure the program.
+  1. `cmake -B ..\build -S .' to create a location for the build and then
+     configure the program. There are more options you can pass to CMake,
+     see below for details.
 
-    2.) Type 'make' to compile the program.
+  2. `cmake --build ..\build' to compile the program.
 
-    3.) Type 'windows_deploy' to create an installer of the program. Note
-        that you must have the NSIS executable from nsis.sourceforge.io and
-        the 7z executable from 7-zip.org in your %PATH% for this to work.
+  3. Run `windows_deploy.bat' from inside the build directory to create an
+     installer of the program. Note that you must have the NSIS executable
+     from nsis.sourceforge.io and the 7z executable from 7-zip.org in your
+     %PATH% for this to work.
+
+
+Release Builds
+==============
+
+CMake does not specify any compiler optimizations by default; this is
+useful if you want to inherit CFLAGS and CXXFLAGS from the environment.
+You may want to add "-DCMAKE_BUILD_TYPE=Release" during configuration
+to get an optimized build.
+
+
+Debug Builds
+============
+
+You should create different directories for each type of build:
+
+  1. `cmake -B debug -S . -DCMAKE_BUILD_TYPE=Debug' to configure the sources.
+
+  2. `cmake --build debug' to compile the program.
+
+
+More CMake Options
+==================
+
+-DCMAKE_BUILD_TYPE=<type>
+    Choose the type of build. Possible values are:
+      'None' 'Debug' 'Release' 'RelWithDebInfo' 'MinSizeRel'
+
+-DENABLE_LINK_TIME_OPTIMIZATION=[OFF]
+    Reduce size by optimizing entire program at link time.
+
+-DENABLE_STRIP=[OFF]
+    Reduce size by removing symbols.
+
+
+Linux CMake Options
+===================
+
+-DCMAKE_INSTALL_PREFIX=<path>
+    Choose the base location where the program is installed
+    (defaults to /usr/local).
+
+-DCMAKE_INSTALL_BINDIR=<path>
+    Choose where binaries are installed
+    (defaults to $CMAKE_INSTALL_PREFIX/bin).
+
+-DCMAKE_INSTALL_DATADIR=<path>
+    Choose where the data files are installed
+    (defaults to $CMAKE_INSTALL_PREFIX/share).
+
+-DCMAKE_INSTALL_MANDIR=<path>
+    Choose where manual pages are installed
+    (defaults to $CMAKE_INSTALL_DATADIR/man).

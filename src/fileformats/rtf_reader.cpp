@@ -36,41 +36,35 @@ TextCodec* codecForCodePage(qint32 value)
 	case 12001: codec = TextCodec::codecForName("UTF-32BE"); break;
 	case 65001: codec = TextCodec::codecForName("UTF-8"); break;
 	}
+	if (codec) {
+		return codec;
+	}
 
 	// Look up by codepage number
-	const QByteArray codepage = QByteArray::number(value);
-	if (!codec) {
-		codec = TextCodec::codecForName("windows-" + codepage);
-	}
-	if (!codec) {
-		codec = TextCodec::codecForName("ibm-" + codepage);
-	}
-	if (!codec) {
-		codec = TextCodec::codecForName("cp" + codepage);
+	codec = TextCodec::codecForName("CP" + QByteArray::number(value));
+	if (codec) {
+		return codec;
 	}
 
 	// Look up by fallback codec name
-	if (!codec) {
-		switch (value) {
-		case   708: codec = TextCodec::codecForName("ISO-8859-6"); break;
-		case  1361: codec = TextCodec::codecForName("johab"); break;
-		case 10000: codec = TextCodec::codecForName("macintosh"); break;
-		case 10001: codec = TextCodec::codecForName("Shift_JIS"); break;
-		case 10002: codec = TextCodec::codecForName("Big5"); break;
-		case 10003: codec = TextCodec::codecForName("johab"); break;
-		case 10004: codec = TextCodec::codecForName("x-mac-arabic"); break;
-		case 10005: codec = TextCodec::codecForName("x-mac-hebrew"); break;
-		case 10006: codec = TextCodec::codecForName("x-mac-greek"); break;
-		case 10007: codec = TextCodec::codecForName("x-mac-cyrillic"); break;
-		case 10008: codec = TextCodec::codecForName("gb2312"); break;
-		case 10010: codec = TextCodec::codecForName("x-mac-romania"); break;
-		case 10017: codec = TextCodec::codecForName("x-mac-ukraine"); break;
-		case 10021: codec = TextCodec::codecForName("x-mac-thai"); break;
-		case 10029: codec = TextCodec::codecForName("x-mac-centraleurroman"); break;
-		case 10079: codec = TextCodec::codecForName("x-mac-iceland"); break;
-		case 10081: codec = TextCodec::codecForName("x-mac-turkish"); break;
-		case 10082: codec = TextCodec::codecForName("x-mac-croatian"); break;
-		}
+	switch (value) {
+	case   708: codec = TextCodec::codecForName("ASMO-708"); break;
+	case 10000: codec = TextCodec::codecForName("MACINTOSH"); break;
+	case 10001: codec = TextCodec::codecForName("SJIS"); break;
+	case 10002: codec = TextCodec::codecForName("BIG5"); break;
+	case 10003: codec = TextCodec::codecForName("JOHAB"); break;
+	case 10004: codec = TextCodec::codecForName("MACARABIC"); break;
+	case 10005: codec = TextCodec::codecForName("MACHEBREW"); break;
+	case 10006: codec = TextCodec::codecForName("MACGREEK"); break;
+	case 10007: codec = TextCodec::codecForName("MACCYRILLIC"); break;
+	case 10008: codec = TextCodec::codecForName("GB2312"); break;
+	case 10010: codec = TextCodec::codecForName("MACROMANIA"); break;
+	case 10017: codec = TextCodec::codecForName("MACUKRAINE"); break;
+	case 10021: codec = TextCodec::codecForName("MACTHAI"); break;
+	case 10029: codec = TextCodec::codecForName("MACCENTRALEUROPE"); break;
+	case 10079: codec = TextCodec::codecForName("MACICELAND"); break;
+	case 10081: codec = TextCodec::codecForName("MACTURKISH"); break;
+	case 10082: codec = TextCodec::codecForName("MACCROATIAN"); break;
 	}
 
 	return codec;
@@ -424,8 +418,10 @@ void RtfReader::insertText(const QString& text)
 
 void RtfReader::insertUnicodeSymbol(qint32 value)
 {
-	if (value) {
+	if (value > 0) {
 		m_cursor.insertText(QChar(value));
+	} else if (value < 0) {
+		m_cursor.insertText(QChar(value + 0x10000));
 	}
 
 	for (int i = m_state.skip; i > 0;) {
@@ -625,42 +621,42 @@ void RtfReader::setFontCharset(qint32 value)
 		return;
 	}
 
-	QByteArray charset;
+	qint32 charset;
 	switch (value) {
-	case   0: charset = "windows-1252"; break;
-	case   1: charset = "windows-1252"; break;
-	case  77: charset = "macintosh"; break;
-	case  78: charset = "Shift_JIS"; break;
-	case  79: charset = "johab"; break;
-	case  80: charset = "gb2312"; break;
-	case  81: charset = "Big5"; break;
-	case  83: charset = "x-mac-hebrew"; break;
-	case  84: charset = "x-mac-arabic"; break;
-	case  85: charset = "x-mac-greek"; break;
-	case  86: charset = "x-mac-turkish"; break;
-	case  87: charset = "x-mac-thai"; break;
-	case  88: charset = "x-mac-centraleurroman"; break;
-	case  89: charset = "x-mac-cyrillic"; break;
-	case 128: charset = "windows-932"; break; //Shift-JIS
-	case 129: charset = "windows-949"; break;
-	case 130: charset = "johab"; break; //CP1361
-	case 134: charset = "windows-936"; break; //GB2312
-	case 136: charset = "windows-950"; break; //Big5
-	case 161: charset = "windows-1253"; break;
-	case 162: charset = "windows-1254"; break;
-	case 163: charset = "windows-1258"; break;
-	case 177: charset = "windows-1255"; break;
-	case 178: charset = "windows-1256"; break;
-	case 186: charset = "windows-1257"; break;
-	case 204: charset = "windows-1251"; break;
-	case 222: charset = "windows-874"; break;
-	case 238: charset = "windows-1250"; break;
-	case 254: charset = "ibm-437"; break;
-	case 255: charset = "ibm-850"; break;
+	case   0: charset = 1252; break;
+	case   1: charset = 1252; break;
+	case  77: charset = 10000; break;
+	case  78: charset = 10001; break;
+	case  79: charset = 10003; break;
+	case  80: charset = 10008; break;
+	case  81: charset = 10002; break;
+	case  83: charset = 10005; break;
+	case  84: charset = 10004; break;
+	case  85: charset = 10006; break;
+	case  86: charset = 10081; break;
+	case  87: charset = 10021; break;
+	case  88: charset = 10029; break;
+	case  89: charset = 10007; break;
+	case 128: charset = 932; break;
+	case 129: charset = 949; break;
+	case 130: charset = 1361; break;
+	case 134: charset = 936; break;
+	case 136: charset = 950; break;
+	case 161: charset = 1253; break;
+	case 162: charset = 1254; break;
+	case 163: charset = 1258; break;
+	case 177: charset = 1255; break;
+	case 178: charset = 1256; break;
+	case 186: charset = 1257; break;
+	case 204: charset = 1251; break;
+	case 222: charset = 874; break;
+	case 238: charset = 1250; break;
+	case 254: charset = 437; break;
+	case 255: charset = 850; break;
 	default: return;
 	}
 
-	TextCodec* codec = TextCodec::codecForName(charset);
+	TextCodec* codec = codecForCodePage(charset);
 	if (codec) {
 		m_codepages[m_state.active_codepage] = codec;
 		m_codec = codec;
