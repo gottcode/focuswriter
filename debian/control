@@ -12,7 +12,6 @@ Build-Depends: debhelper-compat (= 13),
   qt6-l10n-tools,
   qt6-multimedia-dev,
   libhunspell-dev,
-  libicu-dev,
   pkg-config,
   zlib1g-dev
 Standards-Version: 4.6.1
