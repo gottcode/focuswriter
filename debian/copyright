@@ -5,12 +5,16 @@ Source: http://gottcode.org/focuswriter/
         https://github.com/gottcode/focuswriter
 
 Files: *
-Copyright: 2008-2014, Graeme Gott <graeme@gottcode.org>
+Copyright: 2008-2022, Graeme Gott <graeme@gottcode.org>
 License: GPL-3+
 
+Files: resources/unix/focuswriter.appdata.xml
+Copyright: 2014-2022, Graeme Gott <graeme@gottcode.org>
+License: CC0-1.0
+
 Files: debian/*
-Copyright: 2010-2014, Graeme Gott <graeme@gottcode.org>
-           2010-2014, Barak A. Pearlmutter <bap@debian.org>
+Copyright: 2010-2022, Graeme Gott <graeme@gottcode.org>
+           2010-2022, Barak A. Pearlmutter <bap@debian.org>
 License: GPL-3+
 
 License: GPL-3+
@@ -29,3 +33,11 @@ License: GPL-3+
  .
  On Debian systems, the full text of the GNU General Public License
  version 3 can be found in the file `/usr/share/common-licenses/GPL-3'.
+
+License: CC0-1.0
+ To the extent possible under law, the author(s) have dedicated all copyright
+ and related and neighboring rights to this software to the public domain
+ worldwide. This software is distributed without any warranty.
+ .
+ On Debian systems, the full copy of CC0-1.0 can be found at
+ /usr/share/common-licenses/CC0-1.0
