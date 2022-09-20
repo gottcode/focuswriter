@@ -269,6 +269,7 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 
 	// Keep formatting in new paragraphs
 	if (event->matches(QKeySequence::InsertParagraphSeparator)) {
+		Sound::play(Qt::Key_Enter);
 		textCursor().insertBlock();
 		event->accept();
 		ensureCursorVisible();
@@ -281,14 +282,9 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 		setOverwriteMode(!overwriteMode());
 	} else {
 		// Play sound effect
-		const int key = event->key();
 		if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
 				!(event->modifiers().testFlag(Qt::MetaModifier))) {
-			if ((key == Qt::Key_Return) || (key == Qt::Key_Enter)) {
-				Sound::play(Qt::Key_Enter);
-			} else if ((key < Qt::Key_Escape) || (key == Qt::Key_unknown)) {
-				Sound::play(Qt::Key_Any);
-			}
+			Sound::play(Qt::Key_Any);
 		}
 	}
 }
