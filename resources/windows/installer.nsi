@@ -4,7 +4,7 @@
 !define APPNAME "FocusWriter"
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 8
-!define VERSIONPATCH 2
+!define VERSIONPATCH 3
 !define APPVERSION "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONPATCH}"
 !define ABOUTURL "https://gottcode.org/focuswriter/"
 
@@ -158,6 +158,9 @@ FunctionEnd
 ;Installer Section
 
 Section "install"
+
+	;Remove previous installs
+	!include removeprevious.nsh
 
 	;Copy files
 	SetOutPath "$INSTDIR"

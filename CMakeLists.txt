@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.8.2 LANGUAGES CXX)
+project(focuswriter VERSION 1.8.3 LANGUAGES CXX)
 
 set(project_copyright "2008-2022 Graeme Gott")
 

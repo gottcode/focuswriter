@@ -20,7 +20,7 @@
     <name>AlertLayer</name>
     <message>
         <source>Dismiss Alert</source>
-        <translation>Waarschuwing verwerpen</translation>
+        <translation>Waarschuwing negeren</translation>
     </message>
     <message>
         <source>Ctrl+D</source>

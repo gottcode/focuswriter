@@ -1,3 +1,10 @@
+1.8.3
+-----
+* FIXED: Did not play sound effect when pressing enter.
+* FIXED: Played sound effect when opening files.
+* FIXED: Missing version number.
+* Translation updates: Dutch.
+
 1.8.2
 -----
 * FIXED: Could not change language in portable mode.
