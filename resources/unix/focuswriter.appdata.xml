@@ -231,6 +231,16 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.3" date="2022-09-26">
+      <description>
+        <ul>
+          <li>FIXED: Did not play sound effect when pressing enter</li>
+          <li>FIXED: Played sound effect when opening files</li>
+          <li>FIXED: Missing version number</li>
+          <li>Translation updates: Dutch</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.2" date="2022-09-01">
       <description>
         <ul>
