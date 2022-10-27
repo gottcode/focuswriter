@@ -100,7 +100,7 @@ void LoadScreen::setText(const QString& step)
 
 	show();
 	raise();
-	QApplication::processEvents();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------

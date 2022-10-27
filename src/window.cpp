@@ -810,10 +810,10 @@ void Window::toggleFullscreen()
 		setWindowState(windowState() & ~Qt::WindowFullScreen);
 	}
 	show();
-	QApplication::processEvents();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	activateWindow();
 	raise();
-	QApplication::processEvents();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------
@@ -1220,7 +1220,7 @@ void Window::hideInterface()
 
 void Window::updateMargin()
 {
-	QApplication::processEvents();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	const int header = centralWidget()->mapToParent(QPoint(0,0)).y();
 	const int footer = m_footer->sizeHint().height();
 	m_documents->setMargins(footer, header);

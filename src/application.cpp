@@ -33,7 +33,7 @@ Application::Application(int& argc, char** argv)
 	setAttribute(Qt::AA_DontShowIconsInMenus, true);
 #endif
 
-	processEvents();
+	processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------
