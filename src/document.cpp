@@ -841,7 +841,7 @@ bool Document::loadFile(const QString& filename, int position)
 	// Force highlight before enabling spellcheck to prevent vertical shift from heading elements
 	for (QTextBlock i = document->begin(); i.isValid(); i = i.next()) {
 		m_highlighter->rehighlightBlock(i);
-		QApplication::processEvents();
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 	m_highlighter->setEnabled(enabled);
 

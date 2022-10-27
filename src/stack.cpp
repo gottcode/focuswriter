@@ -781,7 +781,7 @@ void Stack::updateMask()
 	raise();
 
 	if (m_scenes->isVisible()) {
-		QApplication::processEvents();
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 		m_scenes->update();
 		m_scenes->clearFocus();
 		m_scenes->setFocus();

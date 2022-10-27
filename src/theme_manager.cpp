@@ -478,7 +478,7 @@ QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const
 			theme.saveChanges();
 		}
 
-		QApplication::processEvents();
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 
 	QListWidgetItem* item = new ThemeItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);

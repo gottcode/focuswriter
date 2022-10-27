@@ -25,7 +25,7 @@ void TxtReader::readData(QIODevice* device)
 
 	while (!stream.atEnd()) {
 		m_cursor.insertText(stream.read(0x4000));
-		QCoreApplication::processEvents();
+		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 
 	m_cursor.endEditBlock();
