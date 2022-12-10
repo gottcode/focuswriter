@@ -143,7 +143,9 @@ PreferencesDialog::PreferencesDialog(DailyProgress* daily_progress, QWidget* par
 	m_smart_quotes->setChecked(Preferences::instance().smartQuotes());
 	m_double_quotes->setCurrentIndex(Preferences::instance().doubleQuotes());
 	m_single_quotes->setCurrentIndex(Preferences::instance().singleQuotes());
+#ifndef __OS2__
 	m_typewriter_sounds->setChecked(Preferences::instance().typewriterSounds());
+#endif
 
 	m_scene_divider->setText(Preferences::instance().sceneDivider());
 
@@ -668,6 +670,9 @@ QWidget* PreferencesDialog::initGeneralTab()
 	m_block_cursor = new QCheckBox(tr("Block insertion cursor"), edit_group);
 	m_smooth_fonts = new QCheckBox(tr("Smooth fonts"), edit_group);
 	m_typewriter_sounds = new QCheckBox(tr("Typewriter sounds"), edit_group);
+#ifdef __OS2__
+	m_typewriter_sounds->setEnabled(false);
+#endif
 
 	m_smart_quotes = new QCheckBox(tr("Smart quotes:"), edit_group);
 	m_double_quotes = new QComboBox(edit_group);

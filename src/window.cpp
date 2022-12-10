@@ -1137,6 +1137,7 @@ bool Window::saveDocument(int index)
 
 void Window::loadPreferences()
 {
+#ifndef __OS2__
 	if (Preferences::instance().typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
 		if (m_load_screen->isVisible()) {
 			m_load_screen->setText(tr("Loading sounds"));
@@ -1156,6 +1157,7 @@ void Window::loadPreferences()
 		}
 	}
 	Sound::setEnabled(Preferences::instance().typewriterSounds());
+#endif
 
 	m_save_positions = Preferences::instance().savePositions();
 
