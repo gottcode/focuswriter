@@ -1,3 +1,9 @@
+focuswriter (1.8.3-2) UNRELEASED; urgency=medium
+
+  * Remove runtime dependency on qt6-qpa-plugins (closes: #1026956)
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 25 Dec 2022 11:12:20 +0000
+
 focuswriter (1.8.3-1) unstable; urgency=medium
 
   [ Graeme Gott ]

@@ -22,7 +22,7 @@ Vcs-Browser: https://salsa.debian.org/debian/focuswriter
 
 Package: focuswriter
 Architecture: any
-Depends: qt6-qpa-plugins, ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Suggests: hunspell-dictionary, myspell-dictionary
 Description: Fullscreen distraction-free writing program
  Focuswriter is a fullscreen writing program designed to be
