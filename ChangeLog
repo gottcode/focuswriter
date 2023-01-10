@@ -1,3 +1,11 @@
+1.8.4
+-----
+* FIXED: Did not ignore user input when force processing events.
+* FIXED: Did not compile on macOS.
+* FIXED: Did not compile on OS/2.
+* Disabled typewriter sounds on OS/2.
+* Replaced deprecated code.
+
 1.8.3
 -----
 * FIXED: Did not play sound effect when pressing enter.
