@@ -12,6 +12,8 @@
 
 #include <iconv.h>
 
+#include <errno.h>
+
 //-----------------------------------------------------------------------------
 
 namespace
@@ -76,9 +78,13 @@ TextCodecIconv::~TextCodecIconv()
 
 QByteArray TextCodecIconv::fromUnicode(const QString& input)
 {
-	// POSIX requires the source to not be const, even though it does not modify it
 	QByteArray in = TextCodec::fromUnicode(input);
+#ifndef __OS2__
+	// POSIX requires the source to not be const, even though it does not modify it
 	char* source = in.data();
+#else
+	const char* source = in.data();
+#endif
 	size_t source_remain = in.length();
 
 	QByteArray output(input.length(), Qt::Uninitialized);
@@ -122,8 +128,12 @@ QByteArray TextCodecIconv::fromUnicode(const QString& input)
 
 QString TextCodecIconv::toUnicode(const QByteArray& input)
 {
+#ifndef __OS2__
 	// POSIX requires the source to not be const, even though it does not modify it
 	char* source = const_cast<char*>(input.data());
+#else
+	const char* source = input.data();
+#endif
 	size_t source_remain = input.length();
 
 	QByteArray output(input.length() * sizeof(QChar), Qt::Uninitialized);

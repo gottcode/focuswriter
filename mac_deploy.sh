@@ -2,7 +2,7 @@
 
 APP='FocusWriter'
 BUNDLE="$APP.app"
-VERSION='1.8.3'
+VERSION='1.8.4'
 
 # Locate deployment script
 BIN_DIR=$(pwd)

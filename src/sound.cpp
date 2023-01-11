@@ -32,7 +32,7 @@ Sound::Sound(int name, const QString& filename, QObject* parent)
 	QSoundEffect* sound = new QSoundEffect(this);
 	sound->setSource(QUrl::fromLocalFile(f_path + "/" + filename));
 	while (sound->status() == QSoundEffect::Loading) {
-		QApplication::processEvents();
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 	m_sounds.append(sound);
 

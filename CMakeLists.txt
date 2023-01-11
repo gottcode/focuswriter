@@ -1,13 +1,13 @@
-# SPDX-FileCopyrightText: 2021-2022 Graeme Gott <graeme@gottcode.org>
+# SPDX-FileCopyrightText: 2021-2023 Graeme Gott <graeme@gottcode.org>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.8.3 LANGUAGES CXX)
+project(focuswriter VERSION 1.8.4 LANGUAGES CXX)
 
-set(project_copyright "2008-2022 Graeme Gott")
+set(project_copyright "2008-2023 Graeme Gott")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -28,7 +28,7 @@ add_compile_definitions(
 	QT_NO_KEYWORDS
 	$<$<CONFIG:DEBUG>:QT_STRICT_ITERATORS>
 	$<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
-	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060300>
+	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060400>
 )
 
 # Version number
@@ -206,7 +206,7 @@ if(APPLE)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/mac/focuswriter.icns Resources)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/images/icons/oxygen/hicolor Resources/icons/hicolor)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/sounds Resources/sounds)
-	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/symbols/symbols1400.dat Resources)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/symbols/symbols1500.dat Resources)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/themes Resources/themes)
 	bundle_translations(focuswriter "${translations_QM}")
 elseif(WIN32)
@@ -236,7 +236,7 @@ else()
 	install(DIRECTORY resources/images/icons/oxygen/hicolor DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter/icons)
 	install(DIRECTORY resources/sounds DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(DIRECTORY resources/themes DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
-	install(FILES resources/symbols/symbols1400.dat DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
+	install(FILES resources/symbols/symbols1500.dat DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(FILES resources/unix/focuswriter.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1 COMPONENT doc)
 	install(FILES resources/unix/focuswriter.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
 	install(FILES resources/unix/focuswriter.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)

@@ -232,7 +232,7 @@ void TimerManager::timerChanged(Timer* timer)
 		}
 
 		// Scroll to current timer
-		QApplication::processEvents();
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 		m_timers_area->ensureWidgetVisible(timer, 0, 0);
 	}
 

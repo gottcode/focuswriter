@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2019 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -473,8 +473,10 @@ void SessionManager::updateList(const QString& selected)
 	}
 
 	m_sessions_menu->addSeparator();
-	m_sessions_menu->addAction(QIcon::fromTheme("window-new"), tr("&New..."), this, &SessionManager::newSession, tr("Ctrl+Shift+N"));
-	m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, &SessionManager::exec, tr("Ctrl+Shift+M"));
+	QAction* action = m_sessions_menu->addAction(QIcon::fromTheme("window-new"), tr("&New..."), this, &SessionManager::newSession);
+	action->setShortcut(tr("Ctrl+Shift+N"));
+	action = m_sessions_menu->addAction(QIcon::fromTheme("view-choose"), tr("&Manage..."), this, &SessionManager::exec);
+	action->setShortcut(tr("Ctrl+Shift+M"));
 }
 
 //-----------------------------------------------------------------------------

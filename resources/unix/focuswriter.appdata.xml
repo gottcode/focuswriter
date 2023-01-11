@@ -231,6 +231,17 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.4" date="2023-01-10">
+      <description>
+        <ul>
+          <li>FIXED: Did not ignore user input when force processing events</li>
+          <li>FIXED: Did not compile on macOS</li>
+          <li>FIXED: Did not compile on OS/2</li>
+          <li>Disabled typewriter sounds on OS/2</li>
+          <li>Replaced deprecated code</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.3" date="2022-09-26">
       <description>
         <ul>

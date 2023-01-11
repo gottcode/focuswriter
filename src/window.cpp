@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2008-2022 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2008-2023 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -810,10 +810,10 @@ void Window::toggleFullscreen()
 		setWindowState(windowState() & ~Qt::WindowFullScreen);
 	}
 	show();
-	QApplication::processEvents();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	activateWindow();
 	raise();
-	QApplication::processEvents();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------
@@ -861,7 +861,7 @@ void Window::aboutClicked()
 		"<p align='center'>%6<br/><small>%7</small></p>")
 		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
 			tr("A simple fullscreen word processor"),
-			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2022"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2023"),
 			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
 			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
 			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
@@ -1137,6 +1137,7 @@ bool Window::saveDocument(int index)
 
 void Window::loadPreferences()
 {
+#ifndef __OS2__
 	if (Preferences::instance().typewriterSounds() && (!m_key_sound || !m_enter_key_sound)) {
 		if (m_load_screen->isVisible()) {
 			m_load_screen->setText(tr("Loading sounds"));
@@ -1156,6 +1157,7 @@ void Window::loadPreferences()
 		}
 	}
 	Sound::setEnabled(Preferences::instance().typewriterSounds());
+#endif
 
 	m_save_positions = Preferences::instance().savePositions();
 
@@ -1220,7 +1222,7 @@ void Window::hideInterface()
 
 void Window::updateMargin()
 {
-	QApplication::processEvents();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	const int header = centralWidget()->mapToParent(QPoint(0,0)).y();
 	const int footer = m_footer->sizeHint().height();
 	m_documents->setMargins(footer, header);
@@ -1278,13 +1280,18 @@ void Window::initMenus()
 {
 	// Create file menu
 	QMenu* file_menu = menuBar()->addMenu(tr("&File"));
-	m_actions["New"] = file_menu->addAction(QIcon::fromTheme("document-new"), tr("&New"), this, &Window::newDocument, QKeySequence::New);
-	m_actions["Open"] = file_menu->addAction(QIcon::fromTheme("document-open"), tr("&Open..."), this, &Window::openDocument, QKeySequence::Open);
-	m_actions["Reload"] = file_menu->addAction(QIcon::fromTheme("view-refresh"), tr("Reloa&d"), m_documents, &Stack::reload, QKeySequence::Refresh);
+	m_actions["New"] = file_menu->addAction(QIcon::fromTheme("document-new"), tr("&New"), this, &Window::newDocument);
+	m_actions["New"]->setShortcut(QKeySequence::New);
+	m_actions["Open"] = file_menu->addAction(QIcon::fromTheme("document-open"), tr("&Open..."), this, &Window::openDocument);
+	m_actions["Open"]->setShortcut(QKeySequence::Open);
+	m_actions["Reload"] = file_menu->addAction(QIcon::fromTheme("view-refresh"), tr("Reloa&d"), m_documents, &Stack::reload);
+	m_actions["Reload"]->setShortcut(QKeySequence::Refresh);
 	file_menu->addSeparator();
-	m_actions["Save"] = file_menu->addAction(QIcon::fromTheme("document-save"), tr("&Save"), m_documents, &Stack::save, QKeySequence::Save);
+	m_actions["Save"] = file_menu->addAction(QIcon::fromTheme("document-save"), tr("&Save"), m_documents, &Stack::save);
+	m_actions["Save"]->setShortcut(QKeySequence::Save);
 	m_actions["Save"]->setEnabled(false);
-	m_actions["SaveAs"] = file_menu->addAction(QIcon::fromTheme("document-save-as"), tr("Save &As..."), m_documents, &Stack::saveAs, QKeySequence::SaveAs);
+	m_actions["SaveAs"] = file_menu->addAction(QIcon::fromTheme("document-save-as"), tr("Save &As..."), m_documents, &Stack::saveAs);
+	m_actions["SaveAs"]->setShortcut(QKeySequence::SaveAs);
 	m_actions["Rename"] = file_menu->addAction(QIcon::fromTheme("edit-rename"), tr("&Rename..."), this, &Window::renameDocument);
 	m_actions["Rename"]->setEnabled(false);
 	m_actions["SaveAll"] = file_menu->addAction(QIcon::fromTheme("document-save-all"), tr("Save A&ll"), this, &Window::saveAllDocuments);
@@ -1295,33 +1302,44 @@ void Window::initMenus()
 	m_actions["NewSession"] = new QAction(QIcon::fromTheme("window-new"), tr("New Session"), this);
 	connect(m_actions["NewSession"], &QAction::triggered, m_sessions, &SessionManager::newSession);
 	file_menu->addSeparator();
-	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, &Stack::print, QKeySequence::Print);
+	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, &Stack::print);
+	m_actions["Print"]->setShortcut(QKeySequence::Print);
 	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
 	file_menu->addSeparator();
-	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument), QKeySequence::Close);
-	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, &Window::close, keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
+	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument));
+	m_actions["Close"]->setShortcut(QKeySequence::Close);
+	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, &Window::close);
+	m_actions["Quit"]->setShortcut(keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
 	m_actions["Quit"]->setMenuRole(QAction::QuitRole);
 
 	// Create edit menu
 	QMenu* edit_menu = menuBar()->addMenu(tr("&Edit"));
-	m_actions["Undo"] = edit_menu->addAction(QIcon::fromTheme("edit-undo"), tr("&Undo"), m_documents, &Stack::undo, QKeySequence::Undo);
+	m_actions["Undo"] = edit_menu->addAction(QIcon::fromTheme("edit-undo"), tr("&Undo"), m_documents, &Stack::undo);
+	m_actions["Undo"]->setShortcut(QKeySequence::Undo);
 	m_actions["Undo"]->setEnabled(false);
 	connect(m_documents, &Stack::undoAvailable, m_actions["Undo"], &QAction::setEnabled);
-	m_actions["Redo"] = edit_menu->addAction(QIcon::fromTheme("edit-redo"), tr("&Redo"), m_documents, &Stack::redo, QKeySequence::Redo);
+	m_actions["Redo"] = edit_menu->addAction(QIcon::fromTheme("edit-redo"), tr("&Redo"), m_documents, &Stack::redo);
+	m_actions["Redo"]->setShortcut(QKeySequence::Redo);
 	m_actions["Redo"]->setEnabled(false);
 	connect(m_documents, &Stack::redoAvailable, m_actions["Redo"], &QAction::setEnabled);
 	edit_menu->addSeparator();
-	m_actions["Cut"] = edit_menu->addAction(QIcon::fromTheme("edit-cut"), tr("Cu&t"), m_documents, &Stack::cut, QKeySequence::Cut);
+	m_actions["Cut"] = edit_menu->addAction(QIcon::fromTheme("edit-cut"), tr("Cu&t"), m_documents, &Stack::cut);
+	m_actions["Cut"]->setShortcut(QKeySequence::Cut);
 	m_actions["Cut"]->setEnabled(false);
 	connect(m_documents, &Stack::copyAvailable, m_actions["Cut"], &QAction::setEnabled);
-	m_actions["Copy"] = edit_menu->addAction(QIcon::fromTheme("edit-copy"), tr("&Copy"), m_documents, &Stack::copy, QKeySequence::Copy);
+	m_actions["Copy"] = edit_menu->addAction(QIcon::fromTheme("edit-copy"), tr("&Copy"), m_documents, &Stack::copy);
+	m_actions["Copy"]->setShortcut(QKeySequence::Copy);
 	m_actions["Copy"]->setEnabled(false);
 	connect(m_documents, &Stack::copyAvailable, m_actions["Copy"], &QAction::setEnabled);
-	m_actions["Paste"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("&Paste"), m_documents, &Stack::paste, QKeySequence::Paste);
-	m_actions["PasteUnformatted"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("Paste &Unformatted"), m_documents, &Stack::pasteUnformatted, tr("Ctrl+Shift+V"));
+	m_actions["Paste"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("&Paste"), m_documents, &Stack::paste);
+	m_actions["Paste"]->setShortcut(QKeySequence::Paste);
+	m_actions["PasteUnformatted"] = edit_menu->addAction(QIcon::fromTheme("edit-paste"), tr("Paste &Unformatted"), m_documents, &Stack::pasteUnformatted);
+	m_actions["PasteUnformatted"]->setShortcut(tr("Ctrl+Shift+V"));
 	edit_menu->addSeparator();
-	m_actions["SelectAll"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &All"), m_documents, &Stack::selectAll, QKeySequence::SelectAll);
-	m_actions["SelectScene"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &Scene"), m_documents, &Stack::selectScene, tr("Ctrl+Shift+A"));
+	m_actions["SelectAll"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &All"), m_documents, &Stack::selectAll);
+	m_actions["SelectAll"]->setShortcut(QKeySequence::SelectAll);
+	m_actions["SelectScene"] = edit_menu->addAction(QIcon::fromTheme("edit-select-all"), tr("Select &Scene"), m_documents, &Stack::selectScene);
+	m_actions["SelectScene"]->setShortcut(tr("Ctrl+Shift+A"));
 
 	// Create format menu
 	QMenu* format_menu = menuBar()->addMenu(tr("Fo&rmat"));
@@ -1349,27 +1367,37 @@ void Window::initMenus()
 	headings[0]->setChecked(true);
 
 	format_menu->addSeparator();
-	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, &Stack::setFontBold, QKeySequence::Bold);
+	m_actions["FormatBold"] = format_menu->addAction(QIcon::fromTheme("format-text-bold"), tr("&Bold"), m_documents, &Stack::setFontBold);
+	m_actions["FormatBold"]->setShortcut(QKeySequence::Bold);
 	m_actions["FormatBold"]->setCheckable(true);
-	m_actions["FormatItalic"] = format_menu->addAction(QIcon::fromTheme("format-text-italic"), tr("&Italic"), m_documents, &Stack::setFontItalic, QKeySequence::Italic);
+	m_actions["FormatItalic"] = format_menu->addAction(QIcon::fromTheme("format-text-italic"), tr("&Italic"), m_documents, &Stack::setFontItalic);
+	m_actions["FormatItalic"]->setShortcut(QKeySequence::Italic);
 	m_actions["FormatItalic"]->setCheckable(true);
-	m_actions["FormatUnderline"] = format_menu->addAction(QIcon::fromTheme("format-text-underline"), tr("&Underline"), m_documents, &Stack::setFontUnderline, QKeySequence::Underline);
+	m_actions["FormatUnderline"] = format_menu->addAction(QIcon::fromTheme("format-text-underline"), tr("&Underline"), m_documents, &Stack::setFontUnderline);
+	m_actions["FormatUnderline"]->setShortcut(QKeySequence::Underline);
 	m_actions["FormatUnderline"]->setCheckable(true);
-	m_actions["FormatStrikeOut"] = format_menu->addAction(QIcon::fromTheme("format-text-strikethrough"), tr("Stri&kethrough"), m_documents, &Stack::setFontStrikeOut, tr("Ctrl+K"));
+	m_actions["FormatStrikeOut"] = format_menu->addAction(QIcon::fromTheme("format-text-strikethrough"), tr("Stri&kethrough"), m_documents, &Stack::setFontStrikeOut);
+	m_actions["FormatStrikeOut"]->setShortcut(tr("Ctrl+K"));
 	m_actions["FormatStrikeOut"]->setCheckable(true);
-	m_actions["FormatSuperScript"] = format_menu->addAction(QIcon::fromTheme("format-text-superscript"), tr("Sup&erscript"), m_documents, &Stack::setFontSuperScript, tr("Ctrl+^"));
+	m_actions["FormatSuperScript"] = format_menu->addAction(QIcon::fromTheme("format-text-superscript"), tr("Sup&erscript"), m_documents, &Stack::setFontSuperScript);
+	m_actions["FormatSuperScript"]->setShortcut(tr("Ctrl+^"));
 	m_actions["FormatSuperScript"]->setCheckable(true);
-	m_actions["FormatSubScript"] = format_menu->addAction(QIcon::fromTheme("format-text-subscript"), tr("&Subscript"), m_documents, &Stack::setFontSubScript, tr("Ctrl+_"));
+	m_actions["FormatSubScript"] = format_menu->addAction(QIcon::fromTheme("format-text-subscript"), tr("&Subscript"), m_documents, &Stack::setFontSubScript);
+	m_actions["FormatSubScript"]->setShortcut(tr("Ctrl+_"));
 	m_actions["FormatSubScript"]->setCheckable(true);
 
 	format_menu->addSeparator();
-	m_actions["FormatAlignLeft"] = format_menu->addAction(QIcon::fromTheme("format-justify-left"), tr("Align &Left"), m_documents, &Stack::alignLeft, tr("Ctrl+{"));
+	m_actions["FormatAlignLeft"] = format_menu->addAction(QIcon::fromTheme("format-justify-left"), tr("Align &Left"), m_documents, &Stack::alignLeft);
+	m_actions["FormatAlignLeft"]->setShortcut(tr("Ctrl+{"));
 	m_actions["FormatAlignLeft"]->setCheckable(true);
-	m_actions["FormatAlignCenter"] = format_menu->addAction(QIcon::fromTheme("format-justify-center"), tr("Align &Center"), m_documents, &Stack::alignCenter, tr("Ctrl+|"));
+	m_actions["FormatAlignCenter"] = format_menu->addAction(QIcon::fromTheme("format-justify-center"), tr("Align &Center"), m_documents, &Stack::alignCenter);
+	m_actions["FormatAlignCenter"]->setShortcut(tr("Ctrl+|"));
 	m_actions["FormatAlignCenter"]->setCheckable(true);
-	m_actions["FormatAlignRight"] = format_menu->addAction(QIcon::fromTheme("format-justify-right"), tr("Align &Right"), m_documents, &Stack::alignRight, tr("Ctrl+}"));
+	m_actions["FormatAlignRight"] = format_menu->addAction(QIcon::fromTheme("format-justify-right"), tr("Align &Right"), m_documents, &Stack::alignRight);
+	m_actions["FormatAlignRight"]->setShortcut(tr("Ctrl+}"));
 	m_actions["FormatAlignRight"]->setCheckable(true);
-	m_actions["FormatAlignJustify"] = format_menu->addAction(QIcon::fromTheme("format-justify-fill"), tr("Align &Justify"), m_documents, &Stack::alignJustify, tr("Ctrl+J"));
+	m_actions["FormatAlignJustify"] = format_menu->addAction(QIcon::fromTheme("format-justify-fill"), tr("Align &Justify"), m_documents, &Stack::alignJustify);
+	m_actions["FormatAlignJustify"]->setShortcut(tr("Ctrl+J"));
 	m_actions["FormatAlignJustify"]->setCheckable(true);
 	QActionGroup* alignment = new QActionGroup(this);
 	alignment->addAction(m_actions["FormatAlignLeft"]);
@@ -1379,8 +1407,10 @@ void Window::initMenus()
 	m_actions["FormatAlignLeft"]->setChecked(true);
 
 	format_menu->addSeparator();
-	m_actions["FormatIndentDecrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-less"), tr("&Decrease Indent"), m_documents, &Stack::decreaseIndent, tr("Ctrl+<"));
-	m_actions["FormatIndentIncrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-more"), tr("I&ncrease Indent"), m_documents, &Stack::increaseIndent, tr("Ctrl+>"));
+	m_actions["FormatIndentDecrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-less"), tr("&Decrease Indent"), m_documents, &Stack::decreaseIndent);
+	m_actions["FormatIndentDecrease"]->setShortcut(tr("Ctrl+<"));
+	m_actions["FormatIndentIncrease"] = format_menu->addAction(QIcon::fromTheme("format-indent-more"), tr("I&ncrease Indent"), m_documents, &Stack::increaseIndent);
+	m_actions["FormatIndentIncrease"]->setShortcut(tr("Ctrl+>"));
 
 	format_menu->addSeparator();
 	m_actions["FormatDirectionLTR"] = format_menu->addAction(QIcon::fromTheme("format-text-direction-ltr"), tr("Le&ft to Right Block"), m_documents, &Stack::setTextDirectionLTR);
@@ -1394,14 +1424,18 @@ void Window::initMenus()
 
 	// Create tools menu
 	QMenu* tools_menu = menuBar()->addMenu(tr("&Tools"));
-	m_actions["Find"] = tools_menu->addAction(QIcon::fromTheme("edit-find"), tr("&Find..."), m_documents, &Stack::find, QKeySequence::Find);
-	m_actions["FindNext"] = tools_menu->addAction(QIcon::fromTheme("go-down"), tr("Find &Next"), m_documents, &Stack::findNext, QKeySequence::FindNext);
+	m_actions["Find"] = tools_menu->addAction(QIcon::fromTheme("edit-find"), tr("&Find..."), m_documents, &Stack::find);
+	m_actions["Find"]->setShortcut(QKeySequence::Find);
+	m_actions["FindNext"] = tools_menu->addAction(QIcon::fromTheme("go-down"), tr("Find &Next"), m_documents, &Stack::findNext);
+	m_actions["FindNext"]->setShortcut(QKeySequence::FindNext);
 	m_actions["FindNext"]->setEnabled(false);
 	connect(m_documents, &Stack::findNextAvailable, m_actions["FindNext"], &QAction::setEnabled);
-	m_actions["FindPrevious"] = tools_menu->addAction(QIcon::fromTheme("go-up"), tr("Find Pre&vious"), m_documents, &Stack::findPrevious, QKeySequence::FindPrevious);
+	m_actions["FindPrevious"] = tools_menu->addAction(QIcon::fromTheme("go-up"), tr("Find Pre&vious"), m_documents, &Stack::findPrevious);
+	m_actions["FindPrevious"]->setShortcut(QKeySequence::FindPrevious);
 	m_actions["FindPrevious"]->setEnabled(false);
 	connect(m_documents, &Stack::findNextAvailable, m_actions["FindPrevious"], &QAction::setEnabled);
-	m_actions["Replace"] = tools_menu->addAction(QIcon::fromTheme("edit-find-replace"), tr("&Replace..."), m_documents, &Stack::replace, keyBinding(QKeySequence::Replace, tr("Ctrl+R")));
+	m_actions["Replace"] = tools_menu->addAction(QIcon::fromTheme("edit-find-replace"), tr("&Replace..."), m_documents, &Stack::replace);
+	m_actions["Replace"]->setShortcut(keyBinding(QKeySequence::Replace, tr("Ctrl+R")));
 	tools_menu->addSeparator();
 	QMenu* quotes_menu = tools_menu->addMenu(tr("Smart &Quotes"));
 	m_replace_document_quotes = quotes_menu->addAction(tr("Update &Document"), m_documents, &Stack::updateSmartQuotes);
@@ -1411,7 +1445,8 @@ void Window::initMenus()
 	m_replace_selection_quotes->setStatusTip(tr("Update Selection Smart Quotes"));
 	ActionManager::instance()->addAction("SmartQuotesUpdateSelection", m_replace_selection_quotes);
 	tools_menu->addSeparator();
-	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, &Stack::checkSpelling, tr("F7"));
+	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, &Stack::checkSpelling);
+	m_actions["CheckSpelling"]->setShortcut(tr("F7"));
 	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("accessories-dictionary"), tr("Set &Language..."), this, &Window::setLanguageClicked);
 	tools_menu->addSeparator();
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, &TimerManager::show);
@@ -1433,18 +1468,21 @@ void Window::initMenus()
 	settings_menu->addSeparator();
 	QMenu* focus_menu = settings_menu->addMenu(tr("F&ocused Text"));
 	settings_menu->addSeparator();
-	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, &Window::toggleFullscreen, tr("F11"));
+	m_actions["Fullscreen"] = settings_menu->addAction(QIcon::fromTheme("view-fullscreen"), tr("&Fullscreen"), this, &Window::toggleFullscreen);
 #ifdef Q_OS_MAC
 	m_actions["Fullscreen"]->setShortcut(tr("Esc"));
 #else
+	m_actions["Fullscreen"]->setShortcut(tr("F11"));
 	m_actions["Fullscreen"]->setCheckable(true);
 #endif
-	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, &Window::minimize, tr("Ctrl+M"));
+	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, &Window::minimize);
+	m_actions["Minimize"]->setShortcut(tr("Ctrl+M"));
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, &Window::themeClicked);
 	settings_menu->addSeparator();
 	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, &Window::setLocaleClicked);
-	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, &Window::preferencesClicked, QKeySequence::Preferences);
+	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, &Window::preferencesClicked);
+	m_actions["Preferences"]->setShortcut(QKeySequence::Preferences);
 	m_actions["Preferences"]->setMenuRole(QAction::PreferencesRole);
 
 	// Create focus sub-menu
