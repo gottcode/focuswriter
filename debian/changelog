@@ -1,9 +1,13 @@
 focuswriter (1.8.4-1) unstable; urgency=medium
 
+  [ Graeme Gott ]
   * New upstream release
   * Update debian/copyright
 
- -- Graeme Gott <graeme@gottcode.org>  Tue, 10 Jan 2023 19:12:17 +0000
+  [ Barak A. Pearlmutter ]
+  * Update standards version to 4.6.2, no changes needed.
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 13 Jan 2023 09:01:24 +0000
 
 focuswriter (1.8.3-2) UNRELEASED; urgency=medium
 
