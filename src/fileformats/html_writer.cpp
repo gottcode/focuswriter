@@ -25,9 +25,7 @@ bool HtmlWriter::write(QIODevice* device, const QTextDocument* document)
 
 	m_xml.writeStartElement(QStringLiteral("head"));
 	m_xml.writeEmptyElement(QStringLiteral("meta"));
-	m_xml.writeAttribute(QStringLiteral("http-equiv"), QStringLiteral("Content-Type"));
-	m_xml.writeAttribute(QStringLiteral("content"), QStringLiteral("text/html; charset=utf-8"));
-	m_xml.writeEmptyElement(QStringLiteral("title"));
+	m_xml.writeAttribute(QStringLiteral("charset"), QStringLiteral("utf-8"));
 	m_xml.writeEndElement();
 
 	m_xml.writeStartElement(QStringLiteral("body"));
