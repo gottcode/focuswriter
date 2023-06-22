@@ -1,8 +1,9 @@
-focuswriter (1.8.4-2) UNRELEASED; urgency=medium
+focuswriter (1.8.4-2) unstable; urgency=medium
 
   * fix unmerged changelog stanza
+  * merge upstream fix (HTML paste bug)
 
- -- Barak A. Pearlmutter <bap@debian.org>  Fri, 13 Jan 2023 20:59:43 +0000
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 22 Jun 2023 13:28:03 +0100
 
 focuswriter (1.8.4-1) unstable; urgency=medium
 
