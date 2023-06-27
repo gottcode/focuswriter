@@ -341,7 +341,7 @@
     </message>
     <message>
         <source>Images</source>
-        <translation>Зображень</translation>
+        <translation>Зображення</translation>
     </message>
 </context>
 <context>

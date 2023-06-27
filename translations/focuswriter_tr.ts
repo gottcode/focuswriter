@@ -1852,7 +1852,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli oturumda açılacak dosyalar.</translation>
     </message>
 </context>
 </TS>
