@@ -182,7 +182,7 @@
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>Файл &apos;%1&apos; был изменен в другой программе.</translation>
+        <translation>Файл &apos;%1&apos; был изменён другой программой.</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
@@ -206,7 +206,7 @@
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
-        <translation>Хотите ли вы сохранить файл, или же закрыть его?</translation>
+        <translation>Вы хотите сохранить или закрыть файл?</translation>
     </message>
 </context>
 <context>
@@ -295,11 +295,11 @@
     </message>
     <message>
         <source>Office Open XML</source>
-        <translation>Офисный файл Open XML</translation>
+        <translation>Файл Office Open XML</translation>
     </message>
     <message>
         <source>Rich Text Format</source>
-        <translation>Расширенный Текстовый формат</translation>
+        <translation>Файл Rich Text Format</translation>
     </message>
     <message>
         <source>Plain Text</source>
@@ -356,7 +356,7 @@
     </message>
     <message>
         <source>Note</source>
-        <translation>Информация</translation>
+        <translation>Примечание</translation>
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
@@ -414,7 +414,7 @@
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Комбинация клавиш</translation>
+        <translation>Комбинации клавиш</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
@@ -695,7 +695,7 @@
     </message>
     <message>
         <source>Toggle Scene List</source>
-        <translation>Открыть/закрыть список сцен</translation>
+        <translation>Переключить список сцен</translation>
     </message>
     <message>
         <source>Shift+F4</source>
@@ -1717,7 +1717,7 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Параметры</translation>
+        <translation>&amp;Настройки</translation>
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
