@@ -231,6 +231,14 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.5" date="2023-06-27">
+      <description>
+        <ul>
+          <li>FIXED: Unable to paste HTML into web browser</li>
+          <li>Translation updates: Russian, Turkish, Ukrainian</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.4" date="2023-01-10">
       <description>
         <ul>
