@@ -1,3 +1,8 @@
+1.8.5
+-----
+* FIXED: Unable to paste HTML into web browser.
+* Translation updates: Russian, Turkish, Ukrainian.
+
 1.8.4
 -----
 * FIXED: Did not ignore user input when force processing events.
