@@ -652,7 +652,7 @@
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>MOstrar sempre a barra superior</translation>
+        <translation>Mostrar sempre a barra superior</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
