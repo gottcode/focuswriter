@@ -345,6 +345,7 @@ void ThemeManager::importTheme()
 	QSettings theme_ini(theme_filename, QSettings::IniFormat);
 	QString name = theme_ini.value("Name", QFileInfo(filename).completeBaseName()).toString();
 	{
+		theme_ini.setValue("Name", id);
 		const QStringList values = splitStringAtLastNumber(name);
 		int count = values.at(1).toInt();
 		while (Theme::exists(name)) {
