@@ -581,7 +581,7 @@ QString Theme::backgroundImage() const
 
 void Theme::setBackgroundImage(const QString& path)
 {
-	if (d->background_path != path) {
+	if ((d->background_path != path) || compareFiles(d->background_path, path)) {
 		setValue(d->background_path, path);
 		if (!d->background_path.isEmpty()) {
 			d->background_image = copyImage(d->background_path);
