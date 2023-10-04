@@ -11,8 +11,6 @@
 
 #include <zlib.h>
 
-#include <algorithm>
-
 //-----------------------------------------------------------------------------
 
 void gzip(const QString& path)
@@ -51,13 +49,11 @@ QByteArray gunzip(const QString& path)
 		return data;
 	}
 
-	static const int buffer_size = 0x40000;
-	char buffer[buffer_size];
-	memset(buffer, 0, buffer_size);
+	QByteArray buffer(0x40000, 0);
 	int read = 0;
 	do {
-		data.append(buffer, read);
-		read = std::min(gzread(gz, buffer, buffer_size), buffer_size);
+		data.append(buffer.constData(), read);
+		read = gzread(gz, buffer.data(), buffer.size());
 	} while (read > 0);
 	gzclose(gz);
 
