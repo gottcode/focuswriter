@@ -392,7 +392,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	}
 	if (!skip.isEmpty()) {
 		QStringList skipped;
-		for (int i : qAsConst(skip)) {
+		for (int i : std::as_const(skip)) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
 		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Some files were unsupported and could not be opened."), skipped, true));
@@ -1268,7 +1268,7 @@ void Window::updateWriteState(int index)
 		m_documents->symbols()->setInsertEnabled(writable);
 	}
 
-	for (QAction* action : qAsConst(m_format_actions)) {
+	for (QAction* action : std::as_const(m_format_actions)) {
 		action->setEnabled(writable);
 	}
 	m_actions["FormatIndentDecrease"]->setEnabled(writable && document->text()->textCursor().blockFormat().indent() > 0);

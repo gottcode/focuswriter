@@ -325,7 +325,7 @@ void SmartQuotes::loadPreferences()
 	single_index = 1;
 	for (size_t i = 0; i < default_quotes_count; ++i) {
 		const DefaultQuotes& quotes = default_quotes[i];
-		if (quotes.language == locale.language() && (quotes.country == QLocale::AnyCountry || quotes.country == locale.country())) {
+		if (quotes.language == locale.language() && (quotes.country == QLocale::AnyCountry || quotes.country == locale.territory())) {
 			double_index = quotes.double_index;
 			single_index = quotes.single_index;
 			break;

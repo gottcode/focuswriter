@@ -269,7 +269,7 @@ void Stack::alignRight()
 
 void Stack::autoCache()
 {
-	for (Document* document : qAsConst(m_documents)) {
+	for (Document* document : std::as_const(m_documents)) {
 		if (document->isModified()) {
 			document->cache();
 		}
@@ -428,7 +428,7 @@ void Stack::selectScene()
 void Stack::setFocusMode(QAction* action)
 {
 	const int focus_mode = action->data().toInt();
-	for (Document* document : qAsConst(m_documents)) {
+	for (Document* document : std::as_const(m_documents)) {
 		document->setFocusMode(focus_mode);
 	}
 }
@@ -561,7 +561,7 @@ void Stack::themeSelected(const Theme& theme)
 	updateMargin();
 	updateBackground();
 
-	for (Document* document : qAsConst(m_documents)) {
+	for (Document* document : std::as_const(m_documents)) {
 		document->loadTheme(theme);
 	}
 }
@@ -744,7 +744,7 @@ void Stack::updateBackground(const QImage& image, const QRect& foreground)
 	if (!m_resize_timer->isActive() && (foreground_rect.size() != m_foreground_size)) {
 		m_foreground_size = foreground_rect.size();
 
-		for (Document* document : qAsConst(m_documents)) {
+		for (Document* document : std::as_const(m_documents)) {
 			document->text()->setFixedSize(m_foreground_size);
 			document->centerCursor(true);
 		}

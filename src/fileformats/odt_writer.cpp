@@ -228,7 +228,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 
 	// Write text styles
 	int text_style = 1;
-	for (const int index : qAsConst(text_styles)) {
+	for (const int index : std::as_const(text_styles)) {
 		const QTextFormat& format = formats.at(index);
 		const QString name = QStringLiteral("T") + QString::number(text_style);
 		if (writeTextStyle(format.toCharFormat(), name)) {
@@ -239,7 +239,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 
 	// Write paragraph styles
 	int paragraph_style = 1;
-	for (const int index : qAsConst(paragraph_styles)) {
+	for (const int index : std::as_const(paragraph_styles)) {
 		const QTextFormat& format = formats.at(index);
 		const QString name = QStringLiteral("P") + QString::number(paragraph_style);
 		if (writeParagraphStyle(format.toBlockFormat(), name)) {

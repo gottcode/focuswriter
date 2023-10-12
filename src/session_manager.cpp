@@ -434,7 +434,7 @@ void SessionManager::updateList(const QString& selected)
 	QStringList files = dir.entryList(QDir::Files);
 
 	QHash<QString, QString> ids;
-	for (const QString& file : qAsConst(files)) {
+	for (const QString& file : std::as_const(files)) {
 		const QString id = QFileInfo(file).completeBaseName();
 		const QString name = QSettings(dir.filePath(file), QSettings::IniFormat).value("Name").toString();
 		if (name == Session::tr("Default")) {
@@ -449,7 +449,7 @@ void SessionManager::updateList(const QString& selected)
 	ids.insert(Session::tr("Default"), QString());
 	files.prepend(Session::tr("Default"));
 
-	for (const QString& name : qAsConst(files)) {
+	for (const QString& name : std::as_const(files)) {
 		const QString id = ids.value(name);
 
 		QAction* action = m_sessions_menu->addAction(fontMetrics().elidedText(name, Qt::ElideRight, 3 * logicalDpiX()));
