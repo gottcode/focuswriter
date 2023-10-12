@@ -135,7 +135,7 @@ void DictionaryManager::addProviders()
 	bool has_hunspell = false;
 	bool has_voikko = false;
 
-	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
+	for (AbstractDictionaryProvider* provider : std::as_const(m_providers)) {
 		if (dynamic_cast<DictionaryProviderHunspell*>(provider)) {
 			has_hunspell = true;
 		} else if (dynamic_cast<DictionaryProviderVoikko*>(provider)) {
@@ -199,7 +199,7 @@ void DictionaryManager::setDefaultLanguage(const QString& language)
 
 void DictionaryManager::setIgnoreNumbers(bool ignore)
 {
-	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
+	for (AbstractDictionaryProvider* provider : std::as_const(m_providers)) {
 		provider->setIgnoreNumbers(ignore);
 	}
 
@@ -211,7 +211,7 @@ void DictionaryManager::setIgnoreNumbers(bool ignore)
 
 void DictionaryManager::setIgnoreUppercase(bool ignore)
 {
-	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
+	for (AbstractDictionaryProvider* provider : std::as_const(m_providers)) {
 		provider->setIgnoreUppercase(ignore);
 	}
 
@@ -249,7 +249,7 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	}
 
 	// Remove current personal dictionary
-	for (AbstractDictionary* dictionary : qAsConst(m_dictionaries)) {
+	for (AbstractDictionary* dictionary : std::as_const(m_dictionaries)) {
 		dictionary->removeFromSession(m_personal);
 	}
 
@@ -258,13 +258,13 @@ void DictionaryManager::setPersonal(const QStringList& words)
 	QFile file(m_path + "/personal");
 	if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
-		for (const QString& word : qAsConst(m_personal)) {
+		for (const QString& word : std::as_const(m_personal)) {
 			stream << word << "\n";
 		}
 	}
 
 	// Add personal dictionary
-	for (AbstractDictionary* dictionary : qAsConst(m_dictionaries)) {
+	for (AbstractDictionary* dictionary : std::as_const(m_dictionaries)) {
 		dictionary->addToSession(m_personal);
 	}
 
@@ -293,7 +293,7 @@ DictionaryManager::DictionaryManager()
 
 DictionaryManager::~DictionaryManager()
 {
-	for (AbstractDictionary* dictionary : qAsConst(m_dictionaries)) {
+	for (AbstractDictionary* dictionary : std::as_const(m_dictionaries)) {
 		delete dictionary;
 	}
 	m_dictionaries.clear();
@@ -320,7 +320,7 @@ AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& lan
 {
 	if (!m_dictionaries.contains(language)) {
 		AbstractDictionary* dictionary = nullptr;
-		for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
+		for (AbstractDictionaryProvider* provider : std::as_const(m_providers)) {
 			dictionary = provider->requestDictionary(language);
 			if (dictionary && dictionary->isValid()) {
 				break;

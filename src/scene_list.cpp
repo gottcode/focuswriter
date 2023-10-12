@@ -405,7 +405,7 @@ void SceneList::moveSelectedScenes(int movement)
 	// Find target row
 	int first_row = INT_MAX;
 	int last_row = 0;
-	for (const QModelIndex& index : qAsConst(indexes)) {
+	for (const QModelIndex& index : std::as_const(indexes)) {
 		const int index_row = index.row();
 		first_row = std::min(first_row, index_row);
 		last_row = std::max(last_row, index_row);

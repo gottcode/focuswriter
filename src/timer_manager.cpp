@@ -105,7 +105,7 @@ TimerManager::TimerManager(Stack* documents, QWidget* parent)
 bool TimerManager::cancelEditing()
 {
 	bool check = false;
-	for (Timer* timer : qAsConst(m_timers)) {
+	for (Timer* timer : std::as_const(m_timers)) {
 		check |= timer->isEditing();
 	}
 	if (check) {
@@ -116,7 +116,7 @@ bool TimerManager::cancelEditing()
 			return false;
 		}
 
-		for (Timer* timer : qAsConst(m_timers)) {
+		for (Timer* timer : std::as_const(m_timers)) {
 			timer->cancelEditing();
 		}
 	}
@@ -134,7 +134,7 @@ TimerDisplay* TimerManager::display() const
 
 void TimerManager::saveTimers()
 {
-	for (Timer* timer : qAsConst(m_timers)) {
+	for (Timer* timer : std::as_const(m_timers)) {
 		timer->save();
 	}
 }
@@ -224,7 +224,7 @@ void TimerManager::timerChanged(Timer* timer)
 		m_timers.move(index, new_index);
 
 		// Re-add all timers to widget so that tab order will be correct
-		for (Timer* timer : qAsConst(m_timers)) {
+		for (Timer* timer : std::as_const(m_timers)) {
 			timer->setParent(nullptr);
 		}
 		for (int i = 0, count = m_timers.count(); i < count; ++i) {
@@ -314,11 +314,11 @@ void TimerManager::setupRecentMenu()
 	}
 
 	m_recent_timers->clear();
-	for (QAction* action : qAsConst(delay_timers)) {
+	for (QAction* action : std::as_const(delay_timers)) {
 		m_recent_timers->addAction(action);
 	}
 	m_recent_timers->addSeparator();
-	for (QAction* action : qAsConst(end_timers)) {
+	for (QAction* action : std::as_const(end_timers)) {
 		m_recent_timers->addAction(action);
 	}
 
@@ -339,7 +339,7 @@ void TimerManager::startClock()
 
 void TimerManager::updateDisplay()
 {
-	for (Timer* timer : qAsConst(m_timers)) {
+	for (Timer* timer : std::as_const(m_timers)) {
 		if (timer->isRunning()) {
 			m_display->setTimer(timer);
 			return;

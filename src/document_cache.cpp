@@ -168,7 +168,7 @@ QString DocumentCache::backupCache() const
 	QDir dir(QDir::cleanPath(m_path + "/../"));
 	QStringList subdirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::LocaleAware);
 	subdirs.removeAll("Files");
-	for (const QString& subdir : qAsConst(subdirs)) {
+	for (const QString& subdir : std::as_const(subdirs)) {
 		if (subdir.startsWith(date)) {
 			extra = std::max(extra, subdir.mid(15).toInt() + 1);
 		}
