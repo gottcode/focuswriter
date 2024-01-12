@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='7.4.4.1'
+loversion='7.6.4.1'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/7.4.4/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/7.6.4/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
@@ -120,6 +120,9 @@ cp -a $lofiles/eo/eo.dic dicts/eo.dic
 echo -n ' es'
 cp -a $lofiles/es/es_ES.aff dicts/es.aff
 cp -a $lofiles/es/es_ES.dic dicts/es.dic
+echo -n ' es_MX'
+cp -a $lofiles/es/es_MX.aff dicts/es_MX.aff
+cp -a $lofiles/es/es_MX.dic dicts/es_MX.dic
 echo -n ' et'
 cp -a $lofiles/et_EE/et_EE.aff dicts/et.aff
 cp -a $lofiles/et_EE/et_EE.dic dicts/et.dic
