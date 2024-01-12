@@ -34,12 +34,14 @@
         <translation>
             <numerusform>%Ln palavra</numerusform>
             <numerusform>%Ln palavras</numerusform>
+            <numerusform>%Ln palavras</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
         <translation>
             <numerusform>%Ln minuto</numerusform>
+            <numerusform>%Ln minutos</numerusform>
             <numerusform>%Ln minutos</numerusform>
         </translation>
     </message>
@@ -52,12 +54,14 @@
         <translation>
             <numerusform>%L1% de %Ln minuto</numerusform>
             <numerusform>%L1% de %Ln minutos</numerusform>
+            <numerusform>%L1% de %Ln minutos</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
         <translation>
             <numerusform>%L1% de %Ln palavra</numerusform>
+            <numerusform>%L1% de %Ln palavras</numerusform>
             <numerusform>%L1% de %Ln palavras</numerusform>
         </translation>
     </message>
@@ -84,6 +88,7 @@
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n dia</numerusform>
+            <numerusform>%n dias</numerusform>
             <numerusform>%n dias</numerusform>
         </translation>
     </message>
@@ -265,6 +270,7 @@
         <source>Replace %n instance(s)?</source>
         <translation>
             <numerusform>Substituir %n ocorrência?</numerusform>
+            <numerusform>Substituir %n ocorrências?</numerusform>
             <numerusform>Substituir %n ocorrências?</numerusform>
         </translation>
     </message>
