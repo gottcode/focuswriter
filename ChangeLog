@@ -1,3 +1,15 @@
+1.8.6
+-----
+* FIXED: Always incremented number for imported themes.
+* FIXED: Unable to update contents of theme background image.
+* FIXED: Modifying themes sometimes removed backgrounds.
+* FIXED: Decompression failed in Haiku.
+* Added shortcuts for selecting by paragraph.
+* Replaced deprecated code.
+* Updated Unicode symbols database.
+* Updated Windows dictionaries.
+* Translation updates: Portuguese, Portuguese (Brazil), Swedish.
+
 1.8.5
 -----
 * FIXED: Unable to paste HTML into web browser.
