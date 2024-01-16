@@ -231,6 +231,21 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.6" date="2024-01-16">
+      <description>
+        <ul>
+          <li>FIXED: Always incremented number for imported themes</li>
+          <li>FIXED: Unable to update contents of theme background image</li>
+          <li>FIXED: Modifying themes sometimes removed backgrounds</li>
+          <li>FIXED: Decompression failed in Haiku</li>
+          <li>Added shortcuts for selecting by paragraph</li>
+          <li>Replaced deprecated code</li>
+          <li>Updated Unicode symbols database</li>
+          <li>Updated Windows dictionaries</li>
+          <li>Translation updates: Portuguese, Portuguese (Brazil), Swedish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.5" date="2023-06-27">
       <description>
         <ul>

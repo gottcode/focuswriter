@@ -295,7 +295,7 @@ void PreferencesDialog::accept()
 	ActionManager::instance()->setShortcuts(m_new_shortcuts);
 
 	// Uninstall languages
-	for (const QString& language : qAsConst(m_uninstalled)) {
+	for (const QString& language : std::as_const(m_uninstalled)) {
 		QFile::remove("dict:" + language + ".aff");
 		QFile::remove("dict:" + language + ".dic");
 	}
@@ -442,7 +442,7 @@ void PreferencesDialog::addLanguage()
 	}
 
 	// Find Hunspell dictionary files
-	for (const QString& dic : qAsConst(dic_files)) {
+	for (const QString& dic : std::as_const(dic_files)) {
 		QString aff = dic;
 		aff.replace(".dic", ".aff");
 		if (aff_files.contains(aff)) {
@@ -460,7 +460,7 @@ void PreferencesDialog::addLanguage()
 		const QDir dir(DictionaryManager::path());
 		dir.mkdir("install");
 		const QString install = dir.absoluteFilePath("install") + "/";
-		for (const QString& file : qAsConst(files)) {
+		for (const QString& file : std::as_const(files)) {
 			// Ignore path for Hunspell dictionaries
 			QString filename = file;
 			filename = filename.section('/', -1);
@@ -475,7 +475,7 @@ void PreferencesDialog::addLanguage()
 		// Add to language selection
 		const QString dictionary_path = DictionaryManager::path() + "/install/";
 		const QString dictionary_new_path = DictionaryManager::installedPath() + "/";
-		for (const QString& dictionary : qAsConst(dictionaries)) {
+		for (const QString& dictionary : std::as_const(dictionaries)) {
 			QString language = dictionary;
 			language.replace(QChar('-'), QChar('_'));
 			const QString name = LocaleDialog::languageName(language);

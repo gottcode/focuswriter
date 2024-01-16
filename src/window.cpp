@@ -392,7 +392,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	}
 	if (!skip.isEmpty()) {
 		QStringList skipped;
-		for (int i : qAsConst(skip)) {
+		for (int i : std::as_const(skip)) {
 			skipped += QDir::toNativeSeparators(files.at(i));
 		}
 		m_documents->alerts()->addAlert(new Alert(Alert::Warning, tr("Some files were unsupported and could not be opened."), skipped, true));
@@ -861,7 +861,7 @@ void Window::aboutClicked()
 		"<p align='center'>%6<br/><small>%7</small></p>")
 		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
 			tr("A simple fullscreen word processor"),
-			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2023"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2024"),
 			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
 			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
 			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
@@ -1268,7 +1268,7 @@ void Window::updateWriteState(int index)
 		m_documents->symbols()->setInsertEnabled(writable);
 	}
 
-	for (QAction* action : qAsConst(m_format_actions)) {
+	for (QAction* action : std::as_const(m_format_actions)) {
 		action->setEnabled(writable);
 	}
 	m_actions["FormatIndentDecrease"]->setEnabled(writable && document->text()->textCursor().blockFormat().indent() > 0);

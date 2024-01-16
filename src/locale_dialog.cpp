@@ -105,7 +105,7 @@ QString LocaleDialog::languageName(const QString& language)
 	const QLocale locale(language);
 	if (language.contains('_')) {
 		if (locale.name() == language) {
-			name = locale.nativeLanguageName() + " (" + locale.nativeCountryName() + ")";
+			name = locale.nativeLanguageName() + " (" + locale.nativeTerritoryName() + ")";
 		} else {
 			name = locale.nativeLanguageName() + " (" + language + ")";
 		}

@@ -285,7 +285,7 @@ AbstractDictionary* DictionaryProviderVoikko::requestDictionary(const QString& l
 void DictionaryProviderVoikko::setIgnoreNumbers(bool ignore)
 {
 	f_ignore_numbers = ignore;
-	for (VoikkoHandle* handle : qAsConst(f_handles)) {
+	for (VoikkoHandle* handle : std::as_const(f_handles)) {
 		voikkoSetBooleanOption(handle, VOIKKO_OPT_IGNORE_NUMBERS, ignore);
 	}
 }
@@ -295,7 +295,7 @@ void DictionaryProviderVoikko::setIgnoreNumbers(bool ignore)
 void DictionaryProviderVoikko::setIgnoreUppercase(bool ignore)
 {
 	f_ignore_uppercase = ignore;
-	for (VoikkoHandle* handle : qAsConst(f_handles)) {
+	for (VoikkoHandle* handle : std::as_const(f_handles)) {
 		voikkoSetBooleanOption(handle, VOIKKO_OPT_IGNORE_UPPERCASE, ignore);
 	}
 }

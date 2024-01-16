@@ -142,11 +142,11 @@
     </message>
     <message>
         <source>Reload File?</source>
-        <translation>Läs om fil?</translation>
+        <translation>Ladda om fil?</translation>
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>Läs om filen &quot;%1&quot; från disk?</translation>
+        <translation>Ladda om filen &quot;%1&quot; från disk?</translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
@@ -154,7 +154,7 @@
     </message>
     <message>
         <source>Reload</source>
-        <translation>Läs om</translation>
+        <translation>Ladda om</translation>
     </message>
     <message>
         <source>Untitled %1</source>
@@ -181,11 +181,11 @@
     </message>
     <message>
         <source>Do you want to reload the file?</source>
-        <translation>Vill du läsa om filen?</translation>
+        <translation>Vill du ladda om filen?</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Läs om</translation>
+        <translation>Ladda om</translation>
     </message>
     <message>
         <source>Ignore</source>
@@ -444,7 +444,7 @@
     </message>
     <message>
         <source>Block insertion cursor</source>
-        <translation>Blockmarkör för infogning</translation>
+        <translation>Blockmarkör för inmatning</translation>
     </message>
     <message>
         <source>Smooth fonts</source>
@@ -612,7 +612,7 @@
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Kontrollera stavning när du skriver</translation>
+        <translation>Kontrollera stavningen medan du skriver</translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>

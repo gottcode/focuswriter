@@ -32,7 +32,7 @@ void Paths::load(const QString& appdir, QString& userdir, const QString& datadir
 	Sound::setPath(datadir + "/sounds");
 
 	// Set unicode names path
-	SymbolsModel::setPath(datadir + "/symbols1500.dat");
+	SymbolsModel::setPath(datadir + "/symbols1510.dat");
 
 	// Find user data dir if not in portable mode
 	if (userdir.isEmpty()) {

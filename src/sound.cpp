@@ -61,7 +61,7 @@ bool Sound::isValid() const
 void Sound::play()
 {
 	QSoundEffect* sound = nullptr;
-	for (QSoundEffect* check : qAsConst(m_sounds)) {
+	for (QSoundEffect* check : std::as_const(m_sounds)) {
 		if (!check->isPlaying()) {
 			sound = check;
 			break;

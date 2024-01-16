@@ -51,7 +51,7 @@ void ImageButton::setImage(const QString& image, const QString& path)
 		icon.setDevicePixelRatio(pixelratio);
 		setIcon(QPixmap::fromImage(icon, Qt::AutoColor | Qt::AvoidDither));
 
-		m_path = (!path.isEmpty() && QImageReader(path).canRead()) ? path : QString();
+		m_path = path;
 		Q_EMIT changed(m_path);
 	} else {
 		unsetImage();
