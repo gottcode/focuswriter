@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
+<component type="desktop-application">
   <id>focuswriter.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
@@ -211,17 +211,31 @@
   <url type="homepage">https://gottcode.org/focuswriter/</url>
   <url type="bugtracker">https://gottcode.org/focuswriter/bugs/</url>
   <url type="donation">https://gottcode.org/tip/</url>
-  <url type="translate">https://www.transifex.com/projects/p/focuswriter/</url>
+  <url type="translate">https://www.transifex.com/gottcode/focuswriter/</url>
 
-  <developer_name>Graeme Gott</developer_name>
+  <developer id="org.gottcode">
+    <name translatable="no">Graeme Gott</name>
+  </developer>
   <update_contact>graeme@gottcode.org</update_contact>
 
   <translation type="qt">focuswriter</translation>
 
   <provides>
     <binary>focuswriter</binary>
+    <mediatype>application/rtf</mediatype>
+    <mediatype>application/vnd.oasis.opendocument.text</mediatype>
+    <mediatype>application/vnd.oasis.opendocument.text-flat-xml</mediatype>
+    <mediatype>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mediatype>
+    <mediatype>text/plain</mediatype>
+    <mediatype>text/rtf</mediatype>
   </provides>
   <launchable type="desktop-id">focuswriter.desktop</launchable>
+  <icon type="stock">focuswriter</icon>
+
+  <categories>
+    <category>Office</category>
+    <category>WordProcessor</category>
+  </categories>
 
   <kudos>
     <kudo>HiDpiIcon</kudo>
