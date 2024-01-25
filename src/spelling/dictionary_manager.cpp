@@ -152,7 +152,7 @@ void DictionaryManager::addProviders()
 #else
 	bool has_nsspellchecker = false;
 
-	for (AbstractDictionaryProvider* provider : qAsConst(m_providers)) {
+	for (AbstractDictionaryProvider* provider : std::as_const(m_providers)) {
 		if (dynamic_cast<DictionaryProviderNSSpellChecker*>(provider)) {
 			has_nsspellchecker = true;
 		}
