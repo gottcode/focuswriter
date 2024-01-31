@@ -35,18 +35,8 @@ add_compile_definitions(
 include(cmake/AddVersionCompileDefinition.cmake)
 add_version_compile_definition(src/application.cpp VERSIONSTR)
 
-# Create translations
-file(GLOB translations_SRCS translations/*.ts)
-qt6_add_translation(translations_QM ${translations_SRCS})
-
-add_custom_target(update_translations
-	COMMAND Qt6::lupdate -no-obsolete -locations none src -ts ${translations_SRCS}
-	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-	VERBATIM
-)
-
 # Create program
-qt6_add_executable(focuswriter
+qt_add_executable(focuswriter
 	src/action_manager.cpp
 	src/alert.cpp
 	src/alert_layer.cpp
@@ -130,6 +120,14 @@ target_link_libraries(focuswriter PRIVATE
 	Qt6::Widgets
 	Iconv::Iconv
 	ZLIB::ZLIB
+)
+
+# Create translations
+file(GLOB translations_SRCS translations/*.ts)
+qt_add_translations(focuswriter
+	TS_FILES ${translations_SRCS}
+	QM_FILES_OUTPUT_VARIABLE translations_QM
+	LUPDATE_OPTIONS -no-obsolete -locations none
 )
 
 # Add spellchecking support
