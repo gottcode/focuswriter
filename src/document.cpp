@@ -56,7 +56,6 @@
 #include <QTimer>
 
 #include <algorithm>
-#include <ctime>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
