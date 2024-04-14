@@ -208,7 +208,7 @@ void TextEdit::insertFromMimeData(const QMimeData* source)
 	} else if (source->hasHtml()) {
 		richtext = mimeToRtf(source);
 	} else {
-		QTextEdit::insertFromMimeData(source);
+		textCursor().insertText(source->text());
 		return;
 	}
 
