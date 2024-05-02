@@ -1,3 +1,10 @@
+focuswriter (1.8.7-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump policy version
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Fri, 03 May 2024 00:03:07 +0100
+
 focuswriter (1.8.6-1) unstable; urgency=low
 
   * New upstream release
