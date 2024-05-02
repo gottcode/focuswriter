@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.8.6 LANGUAGES CXX)
+project(focuswriter VERSION 1.8.7 LANGUAGES CXX)
 
 set(project_copyright "2008-2024 Graeme Gott")
 
@@ -28,25 +28,15 @@ add_compile_definitions(
 	QT_NO_KEYWORDS
 	$<$<CONFIG:DEBUG>:QT_STRICT_ITERATORS>
 	$<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
-	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060600>
+	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060700>
 )
 
 # Version number
 include(cmake/AddVersionCompileDefinition.cmake)
 add_version_compile_definition(src/application.cpp VERSIONSTR)
 
-# Create translations
-file(GLOB translations_SRCS translations/*.ts)
-qt6_add_translation(translations_QM ${translations_SRCS})
-
-add_custom_target(update_translations
-	COMMAND Qt6::lupdate -no-obsolete -locations none src -ts ${translations_SRCS}
-	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-	VERBATIM
-)
-
 # Create program
-qt6_add_executable(focuswriter
+qt_add_executable(focuswriter
 	src/action_manager.cpp
 	src/alert.cpp
 	src/alert_layer.cpp
@@ -130,6 +120,14 @@ target_link_libraries(focuswriter PRIVATE
 	Qt6::Widgets
 	Iconv::Iconv
 	ZLIB::ZLIB
+)
+
+# Create translations
+file(GLOB translations_SRCS translations/*.ts)
+qt_add_translations(focuswriter
+	TS_FILES ${translations_SRCS}
+	QM_FILES_OUTPUT_VARIABLE translations_QM
+	LUPDATE_OPTIONS -no-obsolete -locations none
 )
 
 # Add spellchecking support

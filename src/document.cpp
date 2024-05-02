@@ -56,7 +56,6 @@
 #include <QTimer>
 
 #include <algorithm>
-#include <ctime>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -110,7 +109,8 @@ private:
 
 bool TextEdit::canInsertFromMimeData(const QMimeData* source) const
 {
-	return QTextEdit::canInsertFromMimeData(source)
+	return (source->hasText() && !source->text().isEmpty())
+			|| source->hasHtml()
 			|| source->hasFormat(QLatin1String("text/rtf"))
 			|| source->hasFormat(QLatin1String("text/richtext"))
 			|| source->hasFormat(QLatin1String("application/rtf"))
@@ -208,7 +208,10 @@ void TextEdit::insertFromMimeData(const QMimeData* source)
 	} else if (source->hasHtml()) {
 		richtext = mimeToRtf(source);
 	} else {
-		QTextEdit::insertFromMimeData(source);
+		const QString text = source->text();
+		if (!text.isNull()) {
+			textCursor().insertText(text);
+		}
 		return;
 	}
 

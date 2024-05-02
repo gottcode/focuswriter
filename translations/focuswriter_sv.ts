@@ -612,7 +612,7 @@
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Kontrollera stavningen medan du skriver</translation>
+        <translation>Kontrollera stavning medan du skriver</translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>
