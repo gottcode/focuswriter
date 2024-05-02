@@ -245,6 +245,15 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.7" date="2024-05-02">
+      <description>
+        <ul>
+          <li>FIXED: Did not keep line spacing when pasting plain text</li>
+          <li>Replaced deprecated code</li>
+          <li>Translation updates: Swedish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.6" date="2024-01-16">
       <description>
         <ul>
