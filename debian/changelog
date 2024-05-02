@@ -2,6 +2,7 @@ focuswriter (1.8.7-1) unstable; urgency=medium
 
   * New upstream release
   * Bump policy version
+  * Switch build dependency from pkg-config to pkgconf
 
  -- Barak A. Pearlmutter <bap@debian.org>  Fri, 03 May 2024 00:03:07 +0100
 
