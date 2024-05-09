@@ -15,7 +15,7 @@ class QTextDocument;
 class RtfWriter
 {
 public:
-	bool write(QIODevice* device, const QTextDocument* text);
+	bool write(QIODevice* device, const QTextDocument* text, bool full = true);
 
 private:
 	QByteArray fromUnicode(const QString& string) const;
