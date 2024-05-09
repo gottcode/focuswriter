@@ -15,9 +15,18 @@
 #include <QFileInfo>
 #include <QSettings>
 
+#ifdef RTFCLIPBOARD
+  #ifdef Q_OS_WIN
+	#include "clipboard_windows.h"
+  #endif
+#endif
+
 int main(int argc, char** argv)
 {
 	Application app(argc, argv);
+#ifdef RTFCLIPBOARD
+	RtfClipboard clipboard;
+#endif
 
 	// Allow passing Theme as signal parameter
 	qRegisterMetaType<Theme>("Theme");

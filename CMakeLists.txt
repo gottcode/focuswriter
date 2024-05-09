@@ -157,6 +157,12 @@ elseif(WIN32)
 		src/3rdparty/hunspell/replist.cxx
 		src/3rdparty/hunspell/suggestmgr.cxx
 	)
+
+	if (Qt6_VERSION VERSION_GREATER_EQUAL 6.5)
+		target_compile_definitions(focuswriter PRIVATE RTFCLIPBOARD)
+
+		target_sources(focuswriter PRIVATE src/fileformats/clipboard_windows.cpp)
+	endif()
 else()
 	find_package(PkgConfig REQUIRED)
 	pkg_check_modules(Hunspell REQUIRED IMPORTED_TARGET hunspell)
