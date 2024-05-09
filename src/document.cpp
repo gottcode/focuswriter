@@ -149,7 +149,7 @@ QMimeData* TextEdit::createMimeDataFromSelection() const
 		RtfWriter writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
-		writer.write(&buffer, &doc);
+		writer.write(&buffer, &doc, false);
 		buffer.close();
 		mime->setData(QLatin1String("text/rtf"), buffer.data());
 		mime->setData(QLatin1String("text/richtext"), buffer.data());
@@ -340,7 +340,7 @@ QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
 	RtfWriter writer;
 	QBuffer buffer;
 	buffer.open(QIODevice::WriteOnly);
-	writer.write(&buffer, &document);
+	writer.write(&buffer, &document, false);
 	buffer.close();
 
 	return buffer.data();
