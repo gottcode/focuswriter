@@ -929,10 +929,16 @@ void Document::loadTheme(const Theme& theme)
 	m_text->document()->blockSignals(true);
 
 	// Update colors
+	m_text->setStyleSheet(theme.styleSheet());
+
 	m_text_color = theme.textColor();
 	m_text_color.setAlpha(255);
+	QColor text_color = m_text_color;
+	text_color.setAlpha(m_focus_mode ? 128 : 255);
 
-	m_text->setStyleSheet(theme.styleSheet(m_focus_mode));
+	QPalette p = m_text->palette();
+	p.setColor(QPalette::Text, text_color);
+	m_text->setPalette(p);
 
 	m_highlighter->setMisspelledColor(theme.misspelledColor());
 

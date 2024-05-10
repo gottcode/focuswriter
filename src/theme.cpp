@@ -476,6 +476,13 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 	// Set colors
 	preview_text.setStyleSheet(styleSheet());
 
+	QColor text_color = textColor();
+	text_color.setAlpha(255);
+
+	QPalette p = preview_text.palette();
+	p.setColor(QPalette::Text, text_color);
+	preview_text.setPalette(p);
+
 	// Set spacings
 	const int tab_width = tabWidth();
 	QTextBlockFormat block_format;
@@ -552,19 +559,15 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 
 //-----------------------------------------------------------------------------
 
-QString Theme::styleSheet(bool focus) const
+QString Theme::styleSheet() const
 {
 	const QColor color = foregroundColor();
 	const QColor text_color = textColor();
 	const QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
-	return QString("QTextEdit { background:rgba(%1,%2,%3,0); color:rgba(%4,%5,%6,%7); selection-background-color:%8; selection-color:%9; }")
+	return QString("QTextEdit { background:rgba(%1,%2,%3,0); selection-background-color:%4; selection-color:%5; }")
 		.arg(color.red())
 		.arg(color.green())
 		.arg(color.blue())
-		.arg(text_color.red())
-		.arg(text_color.green())
-		.arg(text_color.blue())
-		.arg(focus ? 128 : 255)
 		.arg(text_color.name())
 		.arg(contrast);
 }

@@ -90,7 +90,7 @@ public:
 
 	QImage render(const QSize& background, QRect& foreground, const int margin, const qreal pixelratio) const;
 	void renderText(QImage background, const QRect& foreground, const qreal pixelratio, QImage* preview, QImage* icon) const;
-	QString styleSheet(bool focus = false) const;
+	QString styleSheet() const;
 
 	// Name settings
 	bool isDefault() const { return d->is_default; }
