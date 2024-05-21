@@ -245,6 +245,15 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.8" date="2024-05-21">
+      <description>
+        <ul>
+          <li>FIXED: Broken backgrounds in Windows dark theme</li>
+          <li>FIXED: Extra newline when copying RTF</li>
+          <li>Added Windows support for copying RTF</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.7" date="2024-05-02">
       <description>
         <ul>
