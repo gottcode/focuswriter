@@ -474,15 +474,13 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 	preview_text.setGeometry(x, y, width, height);
 
 	// Set colors
+	preview_text.setStyleSheet(styleSheet());
+
 	QColor text_color = textColor();
 	text_color.setAlpha(255);
 
 	QPalette p = preview_text.palette();
-	p.setBrush(QPalette::Window, Qt::transparent);
-	p.setBrush(QPalette::Base, Qt::transparent);
 	p.setColor(QPalette::Text, text_color);
-	p.setColor(QPalette::Highlight, text_color);
-	p.setColor(QPalette::HighlightedText, (qGray(text_color.rgb()) > 127) ? Qt::black : Qt::white);
 	preview_text.setPalette(p);
 
 	// Set spacings
@@ -557,6 +555,21 @@ void Theme::renderText(QImage background, const QRect& foreground, const qreal p
 		const int y2 = (y >= 24) ? (y - 6) : 0;
 		painter.drawImage(QPointF(22, 34), background, QRectF(x2 * pixelratio, y2 * pixelratio, 81 * pixelratio, 55 * pixelratio));
 	}
+}
+
+//-----------------------------------------------------------------------------
+
+QString Theme::styleSheet() const
+{
+	const QColor color = foregroundColor();
+	const QColor text_color = textColor();
+	const QString contrast = (qGray(text_color.rgb()) > 127) ? "black" : "white";
+	return QString("QTextEdit { background:rgba(%1,%2,%3,0); selection-background-color:%4; selection-color:%5; }")
+		.arg(color.red())
+		.arg(color.green())
+		.arg(color.blue())
+		.arg(text_color.name())
+		.arg(contrast);
 }
 
 //-----------------------------------------------------------------------------

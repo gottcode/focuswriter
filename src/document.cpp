@@ -149,7 +149,7 @@ QMimeData* TextEdit::createMimeDataFromSelection() const
 		RtfWriter writer;
 		QBuffer buffer;
 		buffer.open(QIODevice::WriteOnly);
-		writer.write(&buffer, &doc);
+		writer.write(&buffer, &doc, false);
 		buffer.close();
 		mime->setData(QLatin1String("text/rtf"), buffer.data());
 		mime->setData(QLatin1String("text/richtext"), buffer.data());
@@ -340,7 +340,7 @@ QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
 	RtfWriter writer;
 	QBuffer buffer;
 	buffer.open(QIODevice::WriteOnly);
-	writer.write(&buffer, &document);
+	writer.write(&buffer, &document, false);
 	buffer.close();
 
 	return buffer.data();
@@ -929,16 +929,15 @@ void Document::loadTheme(const Theme& theme)
 	m_text->document()->blockSignals(true);
 
 	// Update colors
+	m_text->setStyleSheet(theme.styleSheet());
+
 	m_text_color = theme.textColor();
 	m_text_color.setAlpha(255);
 	QColor text_color = m_text_color;
 	text_color.setAlpha(m_focus_mode ? 128 : 255);
 
 	QPalette p = m_text->palette();
-	p.setBrush(QPalette::Base, Qt::transparent);
 	p.setColor(QPalette::Text, text_color);
-	p.setColor(QPalette::Highlight, m_text_color);
-	p.setColor(QPalette::HighlightedText, (qGray(m_text_color.rgb()) > 127) ? Qt::black : Qt::white);
 	m_text->setPalette(p);
 
 	m_highlighter->setMisspelledColor(theme.misspelledColor());

@@ -1,3 +1,9 @@
+1.8.8
+-----
+* FIXED: Broken backgrounds in Windows dark theme.
+* FIXED: Extra newline when copying RTF.
+* Added Windows support for copying RTF.
+
 1.8.7
 -----
 * FIXED: Did not keep line spacing when pasting plain text.

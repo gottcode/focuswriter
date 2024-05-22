@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2022 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010-2024 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------------
 
-bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
+bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 {
 	device->write("{\\rtf1\\ansi\\ansicpg819\n"
 		"{\\stylesheet\n"
@@ -90,7 +90,7 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text)
 			}
 		}
 
-		device->write("\\par}\n");
+		device->write((full || block.next().isValid()) ? "\\par}\n" : "}\n");
 	}
 
 	device->write("}");
