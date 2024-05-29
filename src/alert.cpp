@@ -160,11 +160,11 @@ void Alert::expanderToggled()
 {
 	m_expanded = !m_expanded;
 	if (m_expanded || m_always_expanded) {
-		m_expander->setIcon(QIcon::fromTheme("arrow-up"));
+		m_expander->setArrowType(Qt::UpArrow);
 		m_expander->setToolTip(tr("Collapse"));
 		m_text->setText(m_long_text);
 	} else {
-		m_expander->setIcon(QIcon::fromTheme("arrow-right"));
+		m_expander->setArrowType(Qt::RightArrow);
 		m_expander->setToolTip(tr("Expand"));
 		m_text->setText(m_short_text);
 	}
@@ -199,7 +199,7 @@ void Alert::init()
 	m_under_mouse = false;
 
 	setAttribute(Qt::WA_TranslucentBackground);
-	setStyleSheet("QLabel { color: white } Alert { color: white; background-color: black }");
+	setStyleSheet("QLabel, QToolButton { color: white } Alert { color: white; background-color: black }");
 
 	if (parent()) {
 		parent()->installEventFilter(this);
