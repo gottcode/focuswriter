@@ -1478,7 +1478,7 @@ void Window::initMenus()
 	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("window-minimize", QIcon::fromTheme("arrow-down")), tr("M&inimize"), this, &Window::minimize);
 	m_actions["Minimize"]->setShortcut(tr("Ctrl+M"));
 	settings_menu->addSeparator();
-	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, &Window::themeClicked);
+	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-color"), tr("&Themes..."), this, &Window::themeClicked);
 	settings_menu->addSeparator();
 	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, &Window::setLocaleClicked);
 	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, &Window::preferencesClicked);
