@@ -1475,7 +1475,7 @@ void Window::initMenus()
 	m_actions["Fullscreen"]->setShortcut(tr("F11"));
 	m_actions["Fullscreen"]->setCheckable(true);
 #endif
-	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, &Window::minimize);
+	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("window-minimize", QIcon::fromTheme("arrow-down")), tr("M&inimize"), this, &Window::minimize);
 	m_actions["Minimize"]->setShortcut(tr("Ctrl+M"));
 	settings_menu->addSeparator();
 	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, &Window::themeClicked);
