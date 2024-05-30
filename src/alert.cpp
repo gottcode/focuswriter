@@ -221,7 +221,7 @@ void Alert::init()
 	QToolButton* close = new QToolButton(this);
 	close->setAutoRaise(true);
 	close->setIconSize(QSize(16,16));
-	close->setIcon(QIcon::fromTheme("window-close"));
+	close->setIcon(QIcon::fromTheme("dialog-close"));
 	close->setToolTip(tr("Close (%1)").arg(ActionManager::instance()->action("DismissAlert")->shortcut().toString(QKeySequence::NativeText)));
 	connect(close, &QToolButton::clicked, this, &Alert::fadeOut);
 
