@@ -1447,7 +1447,7 @@ void Window::initMenus()
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, &Stack::checkSpelling);
 	m_actions["CheckSpelling"]->setShortcut(tr("F7"));
-	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("accessories-dictionary"), tr("Set &Language..."), this, &Window::setLanguageClicked);
+	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("languages", QIcon::fromTheme("accessories-dictionary")), tr("Set &Language..."), this, &Window::setLanguageClicked);
 	tools_menu->addSeparator();
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, &TimerManager::show);
 	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, &Stack::showSymbols);
