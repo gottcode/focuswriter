@@ -1306,7 +1306,7 @@ void Window::initMenus()
 	m_actions["Print"]->setShortcut(QKeySequence::Print);
 	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
 	file_menu->addSeparator();
-	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument));
+	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("document-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument));
 	m_actions["Close"]->setShortcut(QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, &Window::close);
 	m_actions["Quit"]->setShortcut(keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
