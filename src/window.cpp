@@ -1304,7 +1304,7 @@ void Window::initMenus()
 	file_menu->addSeparator();
 	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, &Stack::print);
 	m_actions["Print"]->setShortcut(QKeySequence::Print);
-	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
+	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("document-page-setup", QIcon::fromTheme("document-print")), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
 	file_menu->addSeparator();
 	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("document-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument));
 	m_actions["Close"]->setShortcut(QKeySequence::Close);
