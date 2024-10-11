@@ -252,6 +252,17 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.9" date="2024-10-11">
+      <description>
+        <ul>
+          <li>FIXED: Slow loading of themes</li>
+          <li>FIXED: Font did not update in theme preview</li>
+          <li>FIXED: Alert expander invisible with monochrome icon themes</li>
+          <li>FIXED: Incorrect icons in monochrome icon themes</li>
+          <li>Translation updates: Estonian, Marathi.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.8" date="2024-05-21">
       <description>
         <ul>
