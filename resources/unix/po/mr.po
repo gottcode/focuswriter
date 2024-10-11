@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Graeme Gott
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+# sabretou <sabretou@gmail.com>, 2024
+msgid ""
+msgstr ""
+"Project-Id-Version: FocusWriter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"PO-Revision-Date: 2014-03-25 21:45+0000\n"
+"Last-Translator: sabretou <sabretou@gmail.com>, 2024\n"
+"Language-Team: Marathi (http://app.transifex.com/gottcode/focuswriter/"
+"language/mr/)\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.appdata.xml.in:7
+msgid "Fullscreen word processor"
+msgstr "फुलस्क्रीन वर्ड प्रोसेसर"
+
+#: ../focuswriter.appdata.xml.in:10
+msgid ""
+"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
+"away interface that you access by moving your mouse to the edges of the "
+"screen, allowing the program to have a familiar look and feel to it while "
+"still getting out of the way so that you can immerse yourself in your work."
+msgstr ""
+
+#: ../focuswriter.appdata.xml.in:11
+msgid ""
+"FocusWriter allows you to customize your environment by creating themes that "
+"control the font, colors, and background image to add ambiance. It also "
+"features on-the-fly updating statistics, daily goals, multiple open "
+"documents, spell-checking, and much more."
+msgstr ""
+
+#: ../focuswriter.appdata.xml.in:12
+msgid ""
+"Additionally, when you open the program your current work in progress will "
+"automatically load and position you where you last left off so that you can "
+"immediately jump back in."
+msgstr ""
+
+#: ../focuswriter.desktop.in:5
+msgid "Fullscreen Word Processor"
+msgstr "फुलस्क्रीन वर्ड प्रोसेसर"
+
+#: ../focuswriter.desktop.in:6
+msgid "Write without distractions"
+msgstr "विकर्षण बाजूला करून लिहा"
