@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="et" sourcelanguage="en">
+<TS version="2.1" language="mr" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <source>Close (%1)</source>
-        <translation>Sulge (%1)</translation>
+        <translation>बंद करा (%1)</translation>
     </message>
     <message>
         <source>Collapse</source>
-        <translation>Kahanda</translation>
+        <translation>संक्षिप्त करा</translation>
     </message>
     <message>
         <source>Expand</source>
-        <translation>Laienda</translation>
+        <translation>विस्तारित करा</translation>
     </message>
 </context>
 <context>
     <name>AlertLayer</name>
     <message>
         <source>Dismiss Alert</source>
-        <translation>Ära arvesta hoiatusega</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -32,15 +32,15 @@
     <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
-            <numerusform>%Ln sõna</numerusform>
-            <numerusform>%Ln sõnu</numerusform>
+            <numerusform>%Ln शब्द</numerusform>
+            <numerusform>%Ln शब्द</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln minut</numerusform>
-            <numerusform>%Ln minutit</numerusform>
+            <numerusform>%Ln मिनिट</numerusform>
+            <numerusform>%Ln मिनिटे</numerusform>
         </translation>
     </message>
     <message>
@@ -50,15 +50,15 @@
     <message numerus="yes">
         <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%L1% minutist %Ln</numerusform>
-            <numerusform>%L1% minutist %Ln</numerusform>
+            <numerusform>%Ln मधून %L1% मिनिट</numerusform>
+            <numerusform>%Ln मधून %L1% मिनिटे</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%Ln sõnast %L1%</numerusform>
-            <numerusform>%Ln sõnast %L1%</numerusform>
+            <numerusform>%Ln मधून %L1% शब्द</numerusform>
+            <numerusform>%Ln मधून %L1% शब्द</numerusform>
         </translation>
     </message>
 </context>
@@ -66,25 +66,25 @@
     <name>DailyProgressDialog</name>
     <message>
         <source>Daily Progress</source>
-        <translation>Päevaga tehtud töö</translation>
+        <translation>दैनिक प्रगती</translation>
     </message>
     <message>
         <source>Longest streak</source>
-        <translation>Pikim tööamps</translation>
+        <translation>सर्वात दीर्घ स्ट्रीक</translation>
     </message>
     <message>
         <source>Current streak</source>
-        <translation>Pragune tööamps</translation>
+        <translation>वर्तमान स्ट्रीक</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation>Pole saadaval</translation>
+        <translation>अनुपलब्ध</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
         <translation>
-            <numerusform>%n päev</numerusform>
-            <numerusform>%n päeva</numerusform>
+            <numerusform>%n दिवस</numerusform>
+            <numerusform>%n दिवस</numerusform>
         </translation>
     </message>
     <message>
@@ -96,196 +96,196 @@
     <name>DailyProgressLabel</name>
     <message>
         <source>%L1% of daily goal</source>
-        <translation>%L1% päevasest eesmärgist</translation>
+        <translation>दैनिक लक्ष्याचे %L1%</translation>
     </message>
 </context>
 <context>
     <name>DictionaryDialog</name>
     <message>
         <source>Set Language</source>
-        <translation>Vali keel</translation>
+        <translation>भाषा सेट करा</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Nimetu %1)</translation>
+        <translation>(अनामांकित %1)</translation>
     </message>
     <message>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (ainult lugemisõigusega)</translation>
+        <translation>%1 (रीड-ऑनली)</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Vabandust</translation>
+        <translation>क्षमा करा</translation>
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; salvestamine ei õnnestunud.</translation>
+        <translation>&apos;%1&apos; सेव्ह करता आले नाही.</translation>
     </message>
     <message>
         <source>Save File As</source>
-        <translation>Salvesta fail kui</translation>
+        <translation>फाईल अशी सेव्ह करा</translation>
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>„%1“ ülekirjutamine ei õnnestu.</translation>
+        <translation>&apos;%1&apos; मध्ये उपरिलेखन करता आले नाही.</translation>
     </message>
     <message>
         <source>Rename File</source>
-        <translation>Nimeta fail ümber</translation>
+        <translation>फाईलचे नाव बदला</translation>
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>„%1“ nime muutmine ei õnnestunud.</translation>
+        <translation>&apos;%1&apos; चे नाव बदलता आले नाही.</translation>
     </message>
     <message>
         <source>Reload File?</source>
-        <translation>Kas laadime faili uuesti?</translation>
+        <translation>फाईल पुन्हा लोड करायची का?</translation>
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>Kas laadime „%1“ faili uuesti andmekandjalt?</translation>
+        <translation>&apos;%1&apos; ही फाईल डिस्कवरून पुन्हा लोड करायची का?</translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
-        <translation>Kõik salvestamata muudatused lähevad kaduma.</translation>
+        <translation>सेव्ह न केलेले सर्व बदल गमावले जातील.</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Laadi uuesti</translation>
+        <translation>पुन्हा लोड करा</translation>
     </message>
     <message>
         <source>Untitled %1</source>
-        <translation>Nimetu %1</translation>
+        <translation>अनामांकित %1</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Küsimus</translation>
+        <translation>प्रश्न</translation>
     </message>
     <message>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Kui salvestad faili vormindamata tektstina, siis kõik sinu lisatud vormindua läheb kaotsi. Kas oled sellega nõus?</translation>
+        <translation>साध्या मजकुराच्या रूपात सेव्ह केल्याने सर्व स्वरूपण फेकून दिले जाईल. स्वरूपण फेकून द्यायचे का?</translation>
     </message>
 </context>
 <context>
     <name>DocumentWatcher</name>
     <message>
         <source>File Changed</source>
-        <translation>Fail on muutunud</translation>
+        <translation>फाईल बदलली</translation>
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>„%1“ faili on muutnud mõni teine rakendus.</translation>
+        <translation>&apos;%1&apos; या फायलीत एका वेगळ्या प्रोग्रामने बदल केला.</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
-        <translation>Kas sa soovid faili uuesti laadida?</translation>
+        <translation>तुम्हाला फाईल पुन्हा लोड करायची आहे का?</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Laadi uuesti</translation>
+        <translation>पुन्हा लोड करा</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation>Eira</translation>
+        <translation>दुर्लक्ष करा</translation>
     </message>
     <message>
         <source>File Deleted</source>
-        <translation>Fail on kustutatud</translation>
+        <translation>फाईल डिलीट केली</translation>
     </message>
     <message>
         <source>The file %1 was deleted by another program.</source>
-        <translation>%1 faili kustutas üks teine rakendus.</translation>
+        <translation>&apos;%1&apos; ही फाईल एका वेगळ्या प्रोग्रामने डिलीट केली.</translation>
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
-        <translation>Kas sa soovid faili sulgeda või salvestada?</translation>
+        <translation>तुम्हाला फाईल सेव्ह किंवा बंद करायची आहे का?</translation>
     </message>
 </context>
 <context>
     <name>DocxReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Arhiivi avamine pole võimalik.</translation>
+        <translation>आर्काइव्ह उघडता आला नाही.</translation>
     </message>
 </context>
 <context>
     <name>FindDialog</name>
     <message>
         <source>Search for:</source>
-        <translation>Otsi:</translation>
+        <translation>हे शोधा:</translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Asenda:</translation>
+        <translation>याने फेरबदल करा:</translation>
     </message>
     <message>
         <source>Ignore case</source>
-        <translation>Ära arvesta suur- ja väiketähti</translation>
+        <translation>केस दुर्लक्ष करा</translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation>Arvesta vaid terveid sõnu</translation>
+        <translation>केवळ संपूर्ण शब्द</translation>
     </message>
     <message>
         <source>Regular expressions</source>
-        <translation>Kasuta regulaaavaldisi</translation>
+        <translation>रेग्युलर एक्सप्रेशन</translation>
     </message>
     <message>
         <source>Search up</source>
-        <translation>Otsi ülespoole</translation>
+        <translation>वर शोधा</translation>
     </message>
     <message>
         <source>Search down</source>
-        <translation>Otsi allapoole</translation>
+        <translation>खाली शोधा</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation>&amp;Otsi</translation>
+        <translation>शोधून काढा (&amp;F)</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
-        <translation>&amp;Asenda</translation>
+        <translation>फेरबदल करा (&amp;R)</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
-        <translation>Asenda &amp;kõik</translation>
+        <translation>सर्वांची फेरबदल करा (&amp;A)</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>Otsi</translation>
+        <translation>शोधून काढा</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation>Asenda</translation>
+        <translation>फेरबदल करा</translation>
     </message>
     <message numerus="yes">
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Kas asendame %n juhul?</numerusform>
-            <numerusform>Kas asendame %n juhul?</numerusform>
+            <numerusform>%n प्रसंगाची फेरबदल करायची का?</numerusform>
+            <numerusform>%n प्रसंगांची फेरबदल करायची का?</numerusform>
         </translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Küsimus</translation>
+        <translation>प्रश्न</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Vabandust</translation>
+        <translation>क्षमा करा</translation>
     </message>
     <message>
         <source>Phrase not found.</source>
-        <translation>Fraasi ei leitud.</translation>
+        <translation>वाक्यांश सापडला नाही.</translation>
     </message>
 </context>
 <context>
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>OpenDocument tekst</translation>
+        <translation>OpenDocument मजकूर</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -293,19 +293,19 @@
     </message>
     <message>
         <source>Rich Text Format</source>
-        <translation>RTF ehk rikastatud tekstivorming</translation>
+        <translation>Rich Text Format</translation>
     </message>
     <message>
         <source>Plain Text</source>
-        <translation>Vormindamata tekst</translation>
+        <translation>साधे मजकूर</translation>
     </message>
     <message>
         <source>All Files</source>
-        <translation>Kõik failid</translation>
+        <translation>सर्व फायली</translation>
     </message>
     <message>
         <source>All Supported Files</source>
-        <translation>Kõik toetatud failid</translation>
+        <translation>सर्व समर्थित फायली</translation>
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
@@ -316,380 +316,380 @@
     <name>Highlighter</name>
     <message>
         <source>Add</source>
-        <translation>Lisa</translation>
+        <translation>जोडा</translation>
     </message>
     <message>
         <source>Check Spelling...</source>
-        <translation>Õigekirjakontroll...</translation>
+        <translation>वर्णलेखन तपासा...</translation>
     </message>
     <message>
         <source>(No suggestions found)</source>
-        <translation>(Soovitusi ei leidu)</translation>
+        <translation>(कोणतेही सल्ले सापडले नाहीत)</translation>
     </message>
 </context>
 <context>
     <name>ImageButton</name>
     <message>
         <source>Open Image</source>
-        <translation>Ava pilt</translation>
+        <translation>चित्र उघडा</translation>
     </message>
     <message>
         <source>Images</source>
-        <translation>Pildid</translation>
+        <translation>चित्र</translation>
     </message>
 </context>
 <context>
     <name>LocaleDialog</name>
     <message>
         <source>Select application language:</source>
-        <translation>Vali rakenduse keel:</translation>
+        <translation>ॲप्लिकेशनची भाषा निवडा:</translation>
     </message>
     <message>
         <source>&lt;System Language&gt;</source>
-        <translation>Süsteemi keel</translation>
+        <translation>&lt;System Language&gt;</translation>
     </message>
     <message>
         <source>Note</source>
-        <translation>Märge</translation>
+        <translation>टीप</translation>
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Keele vahetamise jõustamiseks palun käivita rakendus uuesti.</translation>
+        <translation>भाषेतील बदल लागू होण्यासाठी कृपया ॲप्लिकेशन पुन्हा चालू करा.</translation>
     </message>
 </context>
 <context>
     <name>OdtReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Arhiivi avamine pole võimalik.</translation>
+        <translation>आर्काइव्ह उघडता आला नाही.</translation>
     </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Eelistused</translation>
+        <translation>पसंती</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Üldine</translation>
+        <translation>साधारण</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation>Statistika</translation>
+        <translation>आकडेवारी</translation>
     </message>
     <message>
         <source>Toolbar</source>
-        <translation>Tegumiriba</translation>
+        <translation>टूलबार</translation>
     </message>
     <message>
         <source>Spell Checking</source>
-        <translation>Õigekirjakontroll</translation>
+        <translation>वर्णलेखन तपासणे</translation>
     </message>
     <message>
         <source>Select Dictionary</source>
-        <translation>Vali sõnastik</translation>
+        <translation>शब्दकोश निवडा</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Vabandust</translation>
+        <translation>क्षमा करा</translation>
     </message>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Arhiivi avamine ebaõnnestus.</translation>
+        <translation>आर्काइव्ह उघडता आला नाही.</translation>
     </message>
     <message>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Arhiivis pole kasutamiskõlblikku sõnastikku.</translation>
+        <translation>आर्काइव्हमध्ये वापरता येईल असे शब्दकोश नाही.</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Küsimus</translation>
+        <translation>प्रश्न</translation>
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Kiirklahvid</translation>
+        <translation>शॉर्टकट</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>Üks või mitu kiirklahvi kattuvad. Soovid jätkata?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Sõnastik „%1“ on juba olemas. Sooviksid selle asendada?</translation>
+        <translation>&quot;%1&quot; हे शब्दकोश आधीपासूनच अस्तित्वात आहे. तुम्हाला त्याची फेरबदल करायची आहे का?</translation>
     </message>
     <message>
         <source>Daily Goal</source>
-        <translation>Päevane eesmärk</translation>
+        <translation>दैनिक लक्ष्य</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Puudub</translation>
+        <translation>नाही</translation>
     </message>
     <message>
         <source>Minutes:</source>
-        <translation>Minuteid:</translation>
+        <translation>मिनिटे:</translation>
     </message>
     <message>
         <source>Words:</source>
-        <translation>Sõnu:</translation>
+        <translation>शब्द:</translation>
     </message>
     <message>
         <source>Editing</source>
-        <translation>Kirjutamine</translation>
+        <translation>संपादन</translation>
     </message>
     <message>
         <source>Always vertically center</source>
-        <translation>Alati joonda rõhtselt keskele</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Block insertion cursor</source>
-        <translation>Kursor on kriipsu asemel plokk</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Smooth fonts</source>
-        <translation>Kuva kirjatüübid pehmejoontelistena</translation>
+        <translation>समतल फाँट</translation>
     </message>
     <message>
         <source>Typewriter sounds</source>
-        <translation>Trükimasina helid</translation>
+        <translation>टाइपरायटरचे आवाज</translation>
     </message>
     <message>
         <source>Smart quotes:</source>
-        <translation>Nutikad jutumärgid:</translation>
+        <translation>स्मार्ट अवतरणचिन्हे:</translation>
     </message>
     <message>
         <source>Double</source>
-        <translation>Kahekordsed</translation>
+        <translation>दुप्पट</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation>Ühekordsed</translation>
+        <translation>एकेरी</translation>
     </message>
     <message>
         <source>Scenes</source>
-        <translation>Stseenid</translation>
+        <translation>सीन</translation>
     </message>
     <message>
         <source>Divider:</source>
-        <translation>Eraldaja:</translation>
+        <translation>विभाजक:</translation>
     </message>
     <message>
         <source>Saving</source>
-        <translation>Salvestame</translation>
+        <translation>सेव्ह करणे</translation>
     </message>
     <message>
         <source>Remember cursor position</source>
-        <translation>Jäta kursori asukoht meelde</translation>
+        <translation>कर्सरची जागा लक्ष्यात ठेवा</translation>
     </message>
     <message>
         <source>Word count</source>
-        <translation>Sõnade arv</translation>
+        <translation>शब्दांची मोजणी</translation>
     </message>
     <message>
         <source>Page count</source>
-        <translation>Lehekülgede arv</translation>
+        <translation>पानांची मोजणी</translation>
     </message>
     <message>
         <source>Paragraph count</source>
-        <translation>Lõikude arv</translation>
+        <translation>परिच्छेदांची मोजणी</translation>
     </message>
     <message>
         <source>Character count</source>
-        <translation>Tähemärkide arv</translation>
+        <translation>कॅरॅक्टरांची मोजणी</translation>
     </message>
     <message>
         <source>Characters:</source>
-        <translation>Tähemärke:</translation>
+        <translation>कॅरॅक्टर:</translation>
     </message>
     <message>
         <source>Paragraphs:</source>
-        <translation>Lõike:</translation>
+        <translation>परिच्छेद:</translation>
     </message>
     <message>
         <source>Word Count Algorithm</source>
-        <translation>Sõnade loendamise algoritm</translation>
+        <translation>शब्द मोजण्याचे अ‍ॅल्गोरिदम</translation>
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Kas nullime täna tehtud tööde loenduri?</translation>
+        <translation>आजसाठीची दैनिक प्रगती शून्याला रिसेट करायची का?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation>Salvesta baitide järjekorra märge vormindamata tekstifaili</translation>
+        <translation>साध्या मजकूर फायलींमध्ये बाइट ऑर्डर मार्क लिहा</translation>
     </message>
     <message>
         <source>Default format:</source>
-        <translation>Vaikimisi vorming:</translation>
+        <translation>डिफॉल्ट स्वरूप:</translation>
     </message>
     <message>
         <source>Reset Today</source>
-        <translation>Nulli tänased andmed</translation>
+        <translation>आजचे रिसेट करा</translation>
     </message>
     <message>
         <source>History</source>
-        <translation>Ajalugu</translation>
+        <translation>इतिहास</translation>
     </message>
     <message>
         <source>Remember history</source>
-        <translation>Jäta kasutamise ajalugu meelde</translation>
+        <translation>इतिहास लक्ष्यात ठेवा</translation>
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Näita tööampse</translation>
+        <translation>स्ट्रीक दाखवा</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation>Tööampsu suhe päevase eesmärgiga:</translation>
+        <translation>स्ट्रीकसाठी किमान प्रगती:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
-        <translation>Tuvasta sõnade piirid</translation>
+        <translation>शब्दांच्या सीमा शोधून काढा</translation>
     </message>
     <message>
         <source>Divide character count by six</source>
-        <translation>Jaga tähemärkide arv kuuega</translation>
+        <translation>कॅरॅक्टरच्या मोजणीचा सहाने भाग पाडा</translation>
     </message>
     <message>
         <source>Count each letter as a word</source>
-        <translation>Loe iga täht sõnaks</translation>
+        <translation>प्रत्येक अक्षराला शब्द म्हणून मोजा</translation>
     </message>
     <message>
         <source>Page Count Algorithm</source>
-        <translation>Lehtede loendamise algoritm</translation>
+        <translation>पान मोजण्याचे अ‍ॅल्गोरिदम</translation>
     </message>
     <message>
         <source>Style</source>
-        <translation>Teema</translation>
+        <translation>शैली</translation>
     </message>
     <message>
         <source>Icons Only</source>
-        <translation>Ainult ikoonid</translation>
+        <translation>केवळ आयकन</translation>
     </message>
     <message>
         <source>Text Only</source>
-        <translation>Ainult tekst</translation>
+        <translation>केवळ मजकूर</translation>
     </message>
     <message>
         <source>Text Alongside Icons</source>
-        <translation>Tekst ikoonide kõrval</translation>
+        <translation>आयकनांच्या बाजूला मजकूर</translation>
     </message>
     <message>
         <source>Text Under Icons</source>
-        <translation>Tekst ikoonide all</translation>
+        <translation>आयकनांच्या खाली मजकूर</translation>
     </message>
     <message>
         <source>Text Position:</source>
-        <translation>Teksti asukoht:</translation>
+        <translation>मजकुराची जागा:</translation>
     </message>
     <message>
         <source>Actions</source>
-        <translation>Tegevused</translation>
+        <translation>कार्ये</translation>
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Liiguta ülespoole</translation>
+        <translation>वर न्या</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Liiguta allapoole</translation>
+        <translation>खाली न्या</translation>
     </message>
     <message>
         <source>Add Separator</source>
-        <translation>Lisa eraldaja</translation>
+        <translation>विभाजक जोडा</translation>
     </message>
     <message>
         <source>Command</source>
-        <translation>Käsk</translation>
+        <translation>आदेश</translation>
     </message>
     <message>
         <source>Shortcut</source>
-        <translation>Kiirklahv</translation>
+        <translation>शॉर्टकट</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Tegevus</translation>
+        <translation>कार्य</translation>
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Kontrolli kirjutamise ajal õigekirja</translation>
+        <translation>टाइप करता-करता वर्णलेखन तपासा</translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Eira SUURTÄHTEDES sõnu</translation>
+        <translation>अपरकेसमधील शब्द दुर्लक्ष करा</translation>
     </message>
     <message>
         <source>Ignore words with numbers</source>
-        <translation>Eira numbritega sõnu</translation>
+        <translation>ज्यांत अंक असतील असे शब्द दुर्लक्ष करा</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Keel</translation>
+        <translation>भाषा</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Lisa</translation>
+        <translation>जोडा</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Eemalda</translation>
+        <translation>काढून टाका</translation>
     </message>
     <message>
         <source>Personal Dictionary</source>
-        <translation>Isiklik sõnastik</translation>
+        <translation>व्यक्तिगत शब्दकोश</translation>
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation>Kas eemaldame selle sõnastiku?</translation>
+        <translation>वर्तमान शब्दकोश काढून टाकायचा का?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Kasutajaliides</translation>
+        <translation>प्रयोक्ता इंटरफेस</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation>Alati näita kerimisriba</translation>
+        <translation>स्क्रोल पट्टी नेमहीच दाखवा</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>Alati näita ülemist menüü- ja tööriistariba</translation>
+        <translation>वरची पट्टी नेहमीच दाखवा</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation>Alati näita alumist kaardi- ja inforiba</translation>
+        <translation>खालची पट्टी नेहमीच दाखवा</translation>
     </message>
 </context>
 <context>
     <name>RtfReader</name>
     <message>
         <source>Not a supported RTF file.</source>
-        <translation>See rtf-faili tüüp pole toetatud.</translation>
+        <translation>समर्थित RTF फाईल नाही.</translation>
     </message>
 </context>
 <context>
     <name>RtfTokenizer</name>
     <message>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Ootamatult jõudsime faili lõppu.</translation>
+        <translation>अनपेक्षितरित्या फाईलच्या शेवटी पोहोचलो.</translation>
     </message>
 </context>
 <context>
     <name>SceneList</name>
     <message>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Shift+Down</translation>
+        <translation>Ctrl+Shift+खाली</translation>
     </message>
     <message>
         <source>Move Scenes Up</source>
-        <translation>Liiguta stseenid ülespoole</translation>
+        <translation>सीन वर न्या</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Shift+Up</translation>
+        <translation>Ctrl+Shift+वर</translation>
     </message>
     <message>
         <source>Toggle Scene List</source>
-        <translation>Lülita stseenide loend sisse/välja</translation>
+        <translation>सीनांची यादी टॉगल करा</translation>
     </message>
     <message>
         <source>Shift+F4</source>
@@ -697,97 +697,97 @@
     </message>
     <message>
         <source>Show scene list (%1)</source>
-        <translation>Näita stseenide loendit (%1)</translation>
+        <translation>सीनांची यादी दाखवा (%1)</translation>
     </message>
     <message>
         <source>Hide scene list (%1)</source>
-        <translation>Peida stseenide loend (%1)</translation>
+        <translation>सीनांची यादी लपवा (%1)</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation>Otsi loendist</translation>
+        <translation>गाळा</translation>
     </message>
     <message>
         <source>Move Scenes Down</source>
-        <translation>Liiguta stseenid allapoole</translation>
+        <translation>सीन खाली न्या</translation>
     </message>
     <message>
         <source>Resize scene list</source>
-        <translation>Muuda stseenide loendi suurust</translation>
+        <translation>सीनांच्या यादीचा आकार बदला</translation>
     </message>
 </context>
 <context>
     <name>Session</name>
     <message>
         <source>Default</source>
-        <translation>Vaikimisi</translation>
+        <translation>डिफॉल्ट</translation>
     </message>
 </context>
 <context>
     <name>SessionManager</name>
     <message>
         <source>Manage Sessions</source>
-        <translation>Halda sessioone</translation>
+        <translation>सत्रे व्यवस्थापित करा</translation>
     </message>
     <message>
         <source>S&amp;essions</source>
-        <translation>S&amp;essioonid</translation>
+        <translation>सत्रे (&amp;e)</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Uus</translation>
+        <translation>नवीन</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Paljunda</translation>
+        <translation>प्रतिलिपि</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Nimeta ümber</translation>
+        <translation>नाव बदला</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Kustuta</translation>
+        <translation>डिलीट करा</translation>
     </message>
     <message>
         <source>Switch To</source>
-        <translation>Võta kasutusele</translation>
+        <translation>याला स्विच करा</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Uus sessioon</translation>
+        <translation>नवीन सत्र</translation>
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation>Tee sessioonist koopia</translation>
+        <translation>प्रतिलिपि सत्र</translation>
     </message>
     <message>
         <source>Rename Session</source>
-        <translation>Muuda sessiooni nime</translation>
+        <translation>सत्राचे नाव बदला</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Küsimus</translation>
+        <translation>प्रश्न</translation>
     </message>
     <message>
         <source>Delete selected session?</source>
-        <translation>Kas kustutame valitud sessiooni?</translation>
+        <translation>निवडलेले सत्र डिलीट करायचे का?</translation>
     </message>
     <message>
         <source>Session name:</source>
-        <translation>Sessiooni nimi:</translation>
+        <translation>सत्राचे नाव:</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Vabandust</translation>
+        <translation>क्षमा करा</translation>
     </message>
     <message>
         <source>The requested session name is already in use.</source>
-        <translation>Sellise nimega sessioon on juba kasutusel.</translation>
+        <translation>सत्रासाठी निवडलेले नाव आधीपासूनच वापरात आहे.</translation>
     </message>
     <message>
         <source>&amp;New...</source>
-        <translation>&amp;Uus...</translation>
+        <translation>नवीन (&amp;N)...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
@@ -795,7 +795,7 @@
     </message>
     <message>
         <source>&amp;Manage...</source>
-        <translation>&amp;Halda...</translation>
+        <translation>व्यवस्थापित करा (&amp;M)...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
@@ -806,392 +806,392 @@
     <name>ShortcutEdit</name>
     <message>
         <source>Clear</source>
-        <translation>Eemalda</translation>
+        <translation>साफ करा</translation>
     </message>
     <message>
         <source>Reset to Default</source>
-        <translation>Lähtesta vaikimisi väärtusteks</translation>
+        <translation>डिफॉल्टला रिसेट करा</translation>
     </message>
     <message>
         <source>Shortcut:</source>
-        <translation>Kiirklahv:</translation>
+        <translation>शॉर्टकट:</translation>
     </message>
 </context>
 <context>
     <name>SmartQuote</name>
     <message>
         <source>Replacing quotation marks...</source>
-        <translation>Jutumärkide asendamine...</translation>
+        <translation>अवतरणचिन्हांची फेरबदल करत आहे...</translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation>Palun oota</translation>
+        <translation>कृपया प्रतीक्षा करा</translation>
     </message>
 </context>
 <context>
     <name>SpellChecker</name>
     <message>
         <source>Check Spelling</source>
-        <translation>Õigekirjakontroll</translation>
+        <translation>वर्णलेखन तपासा</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation>&amp;Lisa</translation>
+        <translation>जोडा (&amp;A)</translation>
     </message>
     <message>
         <source>&amp;Ignore</source>
-        <translation>&amp;Eira</translation>
+        <translation>दुर्लक्ष करा (&amp;I)</translation>
     </message>
     <message>
         <source>I&amp;gnore All</source>
-        <translation>Eira &amp;kõiki</translation>
+        <translation>सर्व दुर्लक्ष करा (&amp;G)</translation>
     </message>
     <message>
         <source>&amp;Change</source>
-        <translation>&amp;Paranda</translation>
+        <translation>बदला (&amp;C)</translation>
     </message>
     <message>
         <source>C&amp;hange All</source>
-        <translation>Paranda k&amp;õik</translation>
+        <translation>सर्व बदला (&amp;H)</translation>
     </message>
     <message>
         <source>Not in dictionary:</source>
-        <translation>Pole sõnastikus:</translation>
+        <translation>शब्दकोशात नाही:</translation>
     </message>
     <message>
         <source>Change to:</source>
-        <translation>Asenda sõnaga:</translation>
+        <translation>बदलून हा वापरा:</translation>
     </message>
     <message>
         <source>Checking spelling...</source>
-        <translation>Kontrollime õigekirja...</translation>
+        <translation>वर्णलेखन तपासत आहे...</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Tühista</translation>
+        <translation>रद्द करा</translation>
     </message>
     <message>
         <source>Please wait</source>
-        <translation>Palun oota</translation>
+        <translation>कृपया प्रतीक्षा करा</translation>
     </message>
     <message>
         <source>Continue checking at beginning of file?</source>
-        <translation>Kas jätkame õigekirjakontrolli faili algusest?</translation>
+        <translation>चालू ठेवून फाईलच्या सुरुवातीपासून तपासायचे का?</translation>
     </message>
     <message>
         <source>Spell check complete.</source>
-        <translation>Õigekirjakontroll on tehtud.</translation>
+        <translation>वर्णलेखनाचा तपास पूर्ण झाला.</translation>
     </message>
 </context>
 <context>
     <name>SymbolsDialog</name>
     <message>
         <source>Symbols</source>
-        <translation>Sümbolid</translation>
+        <translation>चिन्हे</translation>
     </message>
     <message>
         <source>Recently used symbols</source>
-        <translation>Viimati kasutatud sümbolid</translation>
+        <translation>अलीकडे वापरलेली चिन्हे</translation>
     </message>
     <message>
         <source>All symbols</source>
-        <translation>Kõik sümbolid</translation>
+        <translation>सर्व चिन्हे</translation>
     </message>
     <message>
         <source>Details</source>
-        <translation>Üksikasjad</translation>
+        <translation>तपशील</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Nimi:</translation>
+        <translation>नाव:</translation>
     </message>
     <message>
         <source>Insert</source>
-        <translation>Sisesta</translation>
+        <translation>घाला</translation>
     </message>
 </context>
 <context>
     <name>SymbolsModel</name>
     <message>
         <source>Blocks</source>
-        <translation>Plokid</translation>
+        <translation>ब्लॉक</translation>
     </message>
     <message>
         <source>Scripts</source>
-        <translation>Kirjasüsteemid</translation>
+        <translation>लिप्या</translation>
     </message>
 </context>
 <context>
     <name>Theme</name>
     <message>
         <source>Untitled %1</source>
-        <translation>Nimeta teema %1</translation>
+        <translation>अनामांकित %1</translation>
     </message>
 </context>
 <context>
     <name>ThemeDialog</name>
     <message>
         <source>Name:</source>
-        <translation>Nimi:</translation>
+        <translation>नाव:</translation>
     </message>
     <message>
         <source>No Image</source>
-        <translation>Pilt puudub</translation>
+        <translation>चित्र नाही</translation>
     </message>
     <message>
         <source>Tiled</source>
-        <translation>Paanidena</translation>
+        <translation>टाईल केलेले</translation>
     </message>
     <message>
         <source>Centered</source>
-        <translation>Keskel</translation>
+        <translation>केंद्रित केलेले</translation>
     </message>
     <message>
         <source>Stretched</source>
-        <translation>Venitatud</translation>
+        <translation>खेचलेले</translation>
     </message>
     <message>
         <source>Scaled</source>
-        <translation>Skaleeritud</translation>
+        <translation>स्केल केलेले</translation>
     </message>
     <message>
         <source>Zoomed</source>
-        <translation>Suumitud</translation>
+        <translation>झूम केलेले</translation>
     </message>
     <message>
         <source>Opacity:</source>
-        <translation>Läbipaistvus:</translation>
+        <translation>अपार्यता:</translation>
     </message>
     <message>
         <source>Position:</source>
-        <translation>Asukoht:</translation>
+        <translation>जागा:</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation>Laius:</translation>
+        <translation>रुंदी:</translation>
     </message>
     <message>
         <source>Round Text Background Corners</source>
-        <translation>Teksti taustal on ümmargused nurgad</translation>
+        <translation>मजकुराच्या पार्श्वभूमीच्या कोपर्‍यांचे गोलन करा</translation>
     </message>
     <message>
         <source>Radius:</source>
-        <translation>Raadius:</translation>
+        <translation>त्रिज्या:</translation>
     </message>
     <message>
         <source>Blur Text Background</source>
-        <translation>Hägusta teksti taust</translation>
+        <translation>मजकुराची पार्श्वभूमी अस्पष्ट करा</translation>
     </message>
     <message>
         <source>Text Background Drop Shadow</source>
-        <translation>Teksti tausta varjutus</translation>
+        <translation>मजकुराची पार्श्वभूमीची सावली पाडा</translation>
     </message>
     <message>
         <source>Vertical Offset:</source>
-        <translation>Vertikaalne nihe:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Margins</source>
-        <translation>Veerised</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window:</source>
-        <translation>Aknal:</translation>
+        <translation>विंडो:</translation>
     </message>
     <message>
         <source>Page:</source>
-        <translation>Lehel:</translation>
+        <translation>पान:</translation>
     </message>
     <message>
         <source>Indent first line</source>
-        <translation>Lisa esimesele reale taane</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Above:</source>
-        <translation>Ülal:</translation>
+        <translation>वर:</translation>
     </message>
     <message>
         <source>Below:</source>
-        <translation>All:</translation>
+        <translation>खाली:</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Eemalda</translation>
+        <translation>काढून टाका</translation>
     </message>
     <message>
         <source>Edit Theme</source>
-        <translation>Muuda kujundust</translation>
+        <translation>थीम संपादित करा</translation>
     </message>
     <message>
         <source>Window Background</source>
-        <translation>Akna taust</translation>
+        <translation>विंडोची पार्श्वभूमी</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Tüüp:</translation>
+        <translation>प्रकार:</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation>Värv:</translation>
+        <translation>रंग:</translation>
     </message>
     <message>
         <source>Image:</source>
-        <translation>Pilt:</translation>
+        <translation>चित्र:</translation>
     </message>
     <message>
         <source> pixels</source>
-        <translation> pikslit</translation>
+        <translation> पिक्सेल</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation>Vasakul</translation>
+        <translation>डावीकडे</translation>
     </message>
     <message>
         <source>Text Background</source>
-        <translation>Teksti taust</translation>
+        <translation>मजकुराची पार्श्वभूमी</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>Paremal</translation>
+        <translation>उजवीकडे</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation>Tekst</translation>
+        <translation>मजकूर</translation>
     </message>
     <message>
         <source>Font:</source>
-        <translation>Kirjatüüp:</translation>
+        <translation>फाँट:</translation>
     </message>
     <message>
         <source>Misspelled:</source>
-        <translation>Valesti kirjutatud:</translation>
+        <translation>चुकीचे वर्णलेखन:</translation>
     </message>
     <message>
         <source>Line Spacing</source>
-        <translation>Reavahe</translation>
+        <translation>ओळींच्या मधील अंतर</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation>Ühekordne</translation>
+        <translation>एकेरी</translation>
     </message>
     <message>
         <source>1.5 Lines</source>
-        <translation>1,5-kordne</translation>
+        <translation>1.5</translation>
     </message>
     <message>
         <source>Double</source>
-        <translation>Kahekordne</translation>
+        <translation>दुप्पट</translation>
     </message>
     <message>
         <source>Proportional</source>
-        <translation>Proportsionaalne</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation>Kõrgus:</translation>
+        <translation>उंची:</translation>
     </message>
     <message>
         <source>Paragraph Spacing</source>
-        <translation>Lõiguvahe</translation>
+        <translation>परिच्छेदांच्या मधील अंतर</translation>
     </message>
     <message>
         <source>Tab Width:</source>
-        <translation>Tabulaatorisamm:</translation>
+        <translation>टॅबची रुंदी:</translation>
     </message>
     <message>
         <source>New Theme</source>
-        <translation>Uus kujundus</translation>
+        <translation>नवीन थीम</translation>
     </message>
 </context>
 <context>
     <name>ThemeManager</name>
     <message>
         <source>Themes</source>
-        <translation>Kujundused</translation>
+        <translation>थीम</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Valmiskujundused</translation>
+        <translation>डिफॉल्ट</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
-        <translation>Õrn sinine</translation>
+        <translation>सौम्य निळा</translation>
     </message>
     <message>
         <source>Old School</source>
-        <translation>Vanakooli</translation>
+        <translation>जुन्या शैलीची</translation>
     </message>
     <message>
         <source>Space Dreams</source>
-        <translation>Kosmilised unenäod</translation>
+        <translation>अवकाशाची स्वप्ने</translation>
     </message>
     <message>
         <source>Writing Desk</source>
-        <translation>Kirjutuslaud</translation>
+        <translation>लेखनाचा डेस्क</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Uus</translation>
+        <translation>नवीन</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Tee koopia</translation>
+        <translation>प्रतिलिपि</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation>Sinu tehtud kujundused</translation>
+        <translation>सानुकूल</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Muuda</translation>
+        <translation>संपादित करा</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Kustuta</translation>
+        <translation>डिलीट करा</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation>Impordi</translation>
+        <translation>आयात करा</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation>Ekspordi</translation>
+        <translation>निर्यात करा</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Küsimus</translation>
+        <translation>प्रश्न</translation>
     </message>
     <message>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation>Kas kustutame kujunduse „%1“?</translation>
+        <translation>&apos;%1&apos; ही थीम डिलीट करायची का?</translation>
     </message>
     <message>
         <source>Themes (%1)</source>
-        <translation>Kujundused (%1)</translation>
+        <translation>थीम (%1)</translation>
     </message>
     <message>
         <source>Import Theme</source>
-        <translation>Impordi kujundus</translation>
+        <translation>थीम आयात करा</translation>
     </message>
     <message>
         <source>Export Theme</source>
-        <translation>Ekspordi kujundus</translation>
+        <translation>थीम निर्यात करा</translation>
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation>Mõru taevas</translation>
+        <translation>कडवट आकाश</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation>Lummus</translation>
+        <translation>जादू</translation>
     </message>
     <message>
         <source>Spy Games</source>
-        <translation>Luuremängud</translation>
+        <translation>हेरांचे खेळ</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation>Rahu ise</translation>
+        <translation>स्थिरचित्तता</translation>
     </message>
 </context>
 <context>
@@ -1202,43 +1202,43 @@
     </message>
     <message>
         <source>Question</source>
-        <translation>Küsimus</translation>
+        <translation>प्रश्न</translation>
     </message>
     <message>
         <source>Delete timer?</source>
-        <translation>Kas kustutame taimeri?</translation>
+        <translation>टायमर डिलीट करायचा का?</translation>
     </message>
     <message>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sõnu:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;शब्द:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Lehti:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;पाने:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Lõike:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;परिच्छेद:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Tähemärke:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;कॅरॅक्टर:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <source>Set Delay</source>
-        <translation>Märgi taimeri aeg</translation>
+        <translation>विलंब सेट करा</translation>
     </message>
     <message>
         <source>Set Time</source>
-        <translation>Märgi kellaaeg</translation>
+        <translation>कालावधी सेट करा</translation>
     </message>
     <message>
         <source>Delay:</source>
-        <translation>Taimeri aeg:</translation>
+        <translation>विलंब:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Kellaaeg:</translation>
+        <translation>वेळ:</translation>
     </message>
     <message>
         <source>HH:mm:ss</source>
@@ -1246,23 +1246,23 @@
     </message>
     <message>
         <source>Alarm</source>
-        <translation>Äratus</translation>
+        <translation>अलार्म</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Tüüp:</translation>
+        <translation>प्रकार:</translation>
     </message>
     <message>
         <source>Memo:</source>
-        <translation>Selgitus:</translation>
+        <translation>मेमो:</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Muuda</translation>
+        <translation>संपादित करा</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Kustuta</translation>
+        <translation>डिलीट करा</translation>
     </message>
 </context>
 <context>
@@ -1273,30 +1273,30 @@
     </message>
     <message>
         <source>No timers running</source>
-        <translation>Ükski taimer hetkel ei tööta</translation>
+        <translation>कोणतेही टायमर चालू नाहीत</translation>
     </message>
 </context>
 <context>
     <name>TimerManager</name>
     <message>
         <source>Timers</source>
-        <translation>Taimerid</translation>
+        <translation>टायमर</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Uus</translation>
+        <translation>नवीन</translation>
     </message>
     <message>
         <source>Recent</source>
-        <translation>Hiljutised</translation>
+        <translation>अलीकडचे</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Küsimus</translation>
+        <translation>प्रश्न</translation>
     </message>
     <message>
         <source>Cancel editing timers?</source>
-        <translation>Kas katkestame taimerite muutmise?</translation>
+        <translation>टायमर संपादित करणे रद्द करायचे का?</translation>
     </message>
     <message>
         <source>+HH:mm:ss</source>
@@ -1311,23 +1311,23 @@
     <name>Window</name>
     <message>
         <source>Loading themes</source>
-        <translation>Laadime kujundusi</translation>
+        <translation>थीम लोड करत आहे</translation>
     </message>
     <message>
         <source>Loading sounds</source>
-        <translation>Laadime helisid</translation>
+        <translation>आवाज लोड करत आहे</translation>
     </message>
     <message>
         <source>Untitled</source>
-        <translation>Nimetu</translation>
+        <translation>अनामांकित</translation>
     </message>
     <message>
         <source>Open File</source>
-        <translation>Ava fail</translation>
+        <translation>फाईल उघडा</translation>
     </message>
     <message>
         <source>About FocusWriter</source>
-        <translation>Rakenduse teave</translation>
+        <translation>FocusWriter विषयी</translation>
     </message>
     <message>
         <source>FocusWriter</source>
@@ -1335,175 +1335,175 @@
     </message>
     <message>
         <source>A simple fullscreen word processor</source>
-        <translation>Lihtne täisekraanivaates toimiv tekstitöötlusprogramm</translation>
+        <translation>सोपा व फुलस्क्रीन वर्ड प्रोसेसर</translation>
     </message>
     <message>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Autoriõigused &amp;copy; 2008-%1 Graeme Gott</translation>
+        <translation>कॉपीराइट &amp;copy; 2008-%1 Graeme Gott</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Avaldatud &lt;a href=%1&gt;GPL 3&lt;/a&gt; litsentsi alusel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Rakendus kasutab ikoone ikoonipakist &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
+        <translation>&lt;a href=%1&gt;Oxygen&lt;/a&gt; आयकन थीममधील आयकन वापरले गेले आहेत</translation>
     </message>
     <message>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Kasutusel &lt;a href=%1&gt;LGPL 3&lt;/a&gt; litsentsi alusel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Characters: %L1 / %L2</source>
-        <translation>Tähemärke: %L1 / %L2</translation>
+        <translation>कॅरॅक्टर: %L1 / %L2</translation>
     </message>
     <message>
         <source>Pages: %L1</source>
-        <translation>Lehti: %L1</translation>
+        <translation>पाने: %L1</translation>
     </message>
     <message>
         <source>Paragraphs: %L1</source>
-        <translation>Lõike: %L1</translation>
+        <translation>परिच्छेद: %L1</translation>
     </message>
     <message>
         <source>Words: %L1</source>
-        <translation>Sõnu: %L1</translation>
+        <translation>शब्द: %L1</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Avame faili %1</translation>
+        <translation>%1 उघडत आहे</translation>
     </message>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Nimetu %1)</translation>
+        <translation>(अनामांकित %1)</translation>
     </message>
     <message>
         <source>List all documents</source>
-        <translation>Näita kõikide dokumentide loendit</translation>
+        <translation>सर्व दस्तऐवजांची यादी दाखवा</translation>
     </message>
     <message>
         <source>Switch to Next Document</source>
-        <translation>Kuva järgmine dokument</translation>
+        <translation>पुढच्या दस्तऐवजाला स्विच करा</translation>
     </message>
     <message>
         <source>Switch to Previous Document</source>
-        <translation>Kuva eelmine dokument</translation>
+        <translation>मागच्या दस्तऐवजाला स्विच करा</translation>
     </message>
     <message>
         <source>Switch to First Document</source>
-        <translation>Kuva esimine dokument</translation>
+        <translation>पहिल्या दस्तऐवजाला स्विच करा</translation>
     </message>
     <message>
         <source>Switch to Last Document</source>
-        <translation>Kuva viimane dokument</translation>
+        <translation>शेवटच्या दस्तऐवजाला स्विच करा</translation>
     </message>
     <message>
         <source>Switch to Document %1</source>
-        <translation>Kuva dokument nimega %1</translation>
+        <translation>दस्तऐवज %1 ला स्विच करा</translation>
     </message>
     <message>
         <source>Loading settings</source>
-        <translation>Laadime seadistusi</translation>
+        <translation>सेटिंग लोड करत आहे</translation>
     </message>
     <message>
         <source>Emergency cache is not writable.</source>
-        <translation>Eriolukorraks mõeldud puhver pole kirjutatav.</translation>
+        <translation>आकस्मिक कॅशमध्ये या वेळी लिहिता येत नाही.</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Hoiatus</translation>
+        <translation>चेतावणी</translation>
     </message>
     <message>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>Viimati FocusWriter ei lõpetanud oma tegevust korrektselt.</translation>
+        <translation>FocusWriter ला नीटपणे बंद केले गेले नव्हते.</translation>
     </message>
     <message>
         <source>Restore from the emergency cache?</source>
-        <translation>Kas taastame teksti oriolukorraks mõeldud puhvrist?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Some files could not be opened.</source>
-        <translation>Mõne faili avamine ei õnnestunud.</translation>
+        <translation>काही फायली उघडत्या आल्या नाहीत.</translation>
     </message>
     <message>
         <source>Some files were opened Read-Only.</source>
-        <translation>Mõned failid õnnestus avada vaid nii, et meil on vaid õigus neid lugeda.</translation>
+        <translation>काही फायली रीड-ऑनली अश्या उघडल्या गेल्या.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>„%1“ on uuem, kui puhverdatud koopia.</translation>
+        <translation>&apos;%1&apos; ही कॅश केलेल्या कॉपीपेक्षा नवीन आहे.</translation>
     </message>
     <message>
         <source>Overwrite newer file?</source>
-        <translation>Kas kirjutame uuema faili üle?</translation>
+        <translation>नवीन असलेल्या फाईलचे उपरिलेखन करायचे का?</translation>
     </message>
     <message>
         <source>Save Changes?</source>
-        <translation>Kas salvestame muudatused?</translation>
+        <translation>बदल सेव्ह करायचे का?</translation>
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation>Kas salvestame enne sulgemist „%1“ faili muudatused?</translation>
+        <translation>बंद करण्याअगोदर &apos;%1&apos; फायलीतील बदल सेव्ह करायचे का?</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Kui sa sinu tehtud muudatusi ei salvesta, siis lähevad nad kaotsi.</translation>
+        <translation>बदल सेव्ह केले नाहीत तर ते गमावले जातील.</translation>
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Kirjutusmasina helide laadimine ei õnnestu.</translation>
+        <translation>टाइपरायटरचे आवाज लोड करता आले नाहीत.</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Fail</translation>
+        <translation>फाईल (&amp;F)</translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;Uus</translation>
+        <translation>नवीन (&amp;N)</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation>&amp;Ava...</translation>
+        <translation>उघडा (&amp;O)...</translation>
     </message>
     <message>
         <source>Reloa&amp;d</source>
-        <translation>Laa&amp;di uuesti</translation>
+        <translation>पुन्हा लोड करा (&amp;D)...</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Salvesta</translation>
+        <translation>सेव्ह करा (&amp;S)</translation>
     </message>
     <message>
         <source>Save &amp;As...</source>
-        <translation>Salvest&amp;a kui...</translation>
+        <translation>असे सेव्ह करा (&amp;A)...</translation>
     </message>
     <message>
         <source>&amp;Rename...</source>
-        <translation>&amp;Muuda nime...</translation>
+        <translation>नाव बदला (&amp;R)...</translation>
     </message>
     <message>
         <source>Save A&amp;ll</source>
-        <translation>Sa&amp;lvesta kõik</translation>
+        <translation>सर्व सेव्ह करा (&amp;L)</translation>
     </message>
     <message>
         <source>Manage Sessions</source>
-        <translation>Halda sessioone</translation>
+        <translation>सत्रे व्यवस्थापित करा</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Uus sessioon</translation>
+        <translation>नवीन सत्र</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>&amp;Prindi...</translation>
+        <translation>छापा (&amp;P)...</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sulge</translation>
+        <translation>बंद करा (&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Välju</translation>
+        <translation>बाहेर पडा (&amp;Q)</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -1511,31 +1511,31 @@
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Muutmine</translation>
+        <translation>संपादित करा (&amp;E)</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation>&amp;Võta tagasi</translation>
+        <translation>अनडू करा (&amp;U)</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation>&amp;Tee uuesti</translation>
+        <translation>रीडू करा (&amp;R)</translation>
     </message>
     <message>
         <source>Cu&amp;t</source>
-        <translation>&amp;Lõika</translation>
+        <translation>कट करा (&amp;T)</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>K&amp;opeeri</translation>
+        <translation>कॉपी करा (&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Paste</source>
-        <translation>&amp;Aseta</translation>
+        <translation>पेस्ट करा (&amp;P)</translation>
     </message>
     <message>
         <source>Paste &amp;Unformatted</source>
-        <translation>A&amp;seta vorminduseta</translation>
+        <translation>स्वरूपण काढून पेस्ट करा (&amp;U)</translation>
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
@@ -1543,11 +1543,11 @@
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation>Val&amp;i kõik</translation>
+        <translation>सर्व निवडा (&amp;A)</translation>
     </message>
     <message>
         <source>Select &amp;Scene</source>
-        <translation>Vali &amp;stseen</translation>
+        <translation>सीन निवडा (&amp;S)</translation>
     </message>
     <message>
         <source>Ctrl+Shift+A</source>
@@ -1555,23 +1555,23 @@
     </message>
     <message>
         <source>Fo&amp;rmat</source>
-        <translation>Vo&amp;rming</translation>
+        <translation>स्वरूपण (&amp;R)</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
-        <translation>&amp;Paks kiri</translation>
+        <translation>ठळक (&amp;B)</translation>
     </message>
     <message>
         <source>&amp;Italic</source>
-        <translation>&amp;Kaldkiri</translation>
+        <translation>तिर्यक (&amp;I)</translation>
     </message>
     <message>
         <source>&amp;Underline</source>
-        <translation>&amp;Allajoonitud kiri</translation>
+        <translation>अधोरेखित (&amp;U)</translation>
     </message>
     <message>
         <source>Stri&amp;kethrough</source>
-        <translation>Lä&amp;bikriipsutus</translation>
+        <translation>मध्यरेखित (&amp;K)</translation>
     </message>
     <message>
         <source>Ctrl+K</source>
@@ -1579,7 +1579,7 @@
     </message>
     <message>
         <source>Sup&amp;erscript</source>
-        <translation>&amp;Ülakiri</translation>
+        <translation>सुपरस्क्रिप्ट (&amp;E)</translation>
     </message>
     <message>
         <source>Ctrl+^</source>
@@ -1587,7 +1587,7 @@
     </message>
     <message>
         <source>&amp;Subscript</source>
-        <translation>A&amp;lakiri</translation>
+        <translation>सबस्क्रिप्ट (&amp;S)</translation>
     </message>
     <message>
         <source>Ctrl+_</source>
@@ -1595,7 +1595,7 @@
     </message>
     <message>
         <source>Align &amp;Left</source>
-        <translation>Joonda &amp;vasakule</translation>
+        <translation>डावीकडे सरेखित करा (&amp;L)</translation>
     </message>
     <message>
         <source>Ctrl+{</source>
@@ -1603,7 +1603,7 @@
     </message>
     <message>
         <source>Align &amp;Center</source>
-        <translation>Joonda &amp;keskele</translation>
+        <translation>मधोमध सरेखित करा (&amp;C)</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -1611,7 +1611,7 @@
     </message>
     <message>
         <source>Align &amp;Right</source>
-        <translation>Joonda &amp;paremale</translation>
+        <translation>उजवीकडे सरेखित करा (&amp;R)</translation>
     </message>
     <message>
         <source>Ctrl+}</source>
@@ -1619,7 +1619,7 @@
     </message>
     <message>
         <source>Align &amp;Justify</source>
-        <translation>Joonda &amp;rööpselt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -1627,7 +1627,7 @@
     </message>
     <message>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Vähenda taanet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+&lt;</source>
@@ -1635,7 +1635,7 @@
     </message>
     <message>
         <source>I&amp;ncrease Indent</source>
-        <translation>&amp;Suurenda taanet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+&gt;</source>
@@ -1643,31 +1643,31 @@
     </message>
     <message>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Plokk va&amp;sakult paremale</translation>
+        <translation>डावीकडून उजवीकडे ब्लॉक (&amp;F)</translation>
     </message>
     <message>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Plokk par&amp;emalt vasakule</translation>
+        <translation>उजवीकडून डावीकडे ब्लॉक (&amp;G)</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation>&amp;Tarvikud</translation>
+        <translation>औजारे (&amp;T)</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation>&amp;Otsi...</translation>
+        <translation>शोधून काढा (&amp;F)...</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation>Otsi järgmi&amp;ne</translation>
+        <translation>पुढचे शोधून काढा (&amp;N)</translation>
     </message>
     <message>
         <source>Find Pre&amp;vious</source>
-        <translation>Otsi eel&amp;mine</translation>
+        <translation>मागचे शोधून काढा (&amp;V)</translation>
     </message>
     <message>
         <source>&amp;Replace...</source>
-        <translation>&amp;Asenda...</translation>
+        <translation>फेरबदल करा (&amp;R)...</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -1675,19 +1675,19 @@
     </message>
     <message>
         <source>Smart &amp;Quotes</source>
-        <translation>Nutikad &amp;jutumärgid</translation>
+        <translation>स्मार्ट अवतरणचिन्हे (&amp;Q):</translation>
     </message>
     <message>
         <source>Update &amp;Document</source>
-        <translation>Uuenda kogu &amp;dokument</translation>
+        <translation>दस्तऐवज अपडेट करा (&amp;D)</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
-        <translation>Uuenda &amp;valik</translation>
+        <translation>निवड अपडेट करा (&amp;S)</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
-        <translation>&amp;Õigekiri...</translation>
+        <translation>वर्णलेखन (&amp;S)...</translation>
     </message>
     <message>
         <source>F7</source>
@@ -1695,39 +1695,39 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Vali &amp;keel...</translation>
+        <translation>भाषा सेट करा (&amp;L)...</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
-        <translation>&amp;Taimerid...</translation>
+        <translation>टायमर (&amp;T)...</translation>
     </message>
     <message>
         <source>S&amp;ymbols...</source>
-        <translation>S&amp;ümbolid...</translation>
+        <translation>चिन्हे (&amp;Y)...</translation>
     </message>
     <message>
         <source>&amp;Daily Progress</source>
-        <translation>Päevaga tehtu&amp;d tööd</translation>
+        <translation>दैनिक प्रगती (&amp;D)</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Seadistused</translation>
+        <translation>सेटिंग (&amp;S)</translation>
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation>Näita &amp;tööriistariba</translation>
+        <translation>औजारांची पट्टी दाखवा (&amp;T)</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
-        <translation>Näita &amp;menüü ikoone</translation>
+        <translation>मेन्यू आयकन दाखवा (&amp;M)</translation>
     </message>
     <message>
         <source>F&amp;ocused Text</source>
-        <translation>F&amp;ookuses tekst</translation>
+        <translation>फोकस केलेले मजकूर (&amp;O)</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Täisekraanivaade</translation>
+        <translation>फुलस्क्रीन (&amp;F)</translation>
     </message>
     <message>
         <source>F11</source>
@@ -1739,7 +1739,7 @@
     </message>
     <message>
         <source>M&amp;inimize</source>
-        <translation>M&amp;inimeeri</translation>
+        <translation>मिनिमाइझ करा (&amp;I)</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -1747,107 +1747,107 @@
     </message>
     <message>
         <source>&amp;Themes...</source>
-        <translation>&amp;Kujundused...</translation>
+        <translation>थीम (&amp;T)...</translation>
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Eelistused...</translation>
+        <translation>पसंती (&amp;P)...</translation>
     </message>
     <message>
         <source>Focus Off</source>
-        <translation>Fookust ei kasuta</translation>
+        <translation>फोकस बंद</translation>
     </message>
     <message>
         <source>Focus One Line</source>
-        <translation>Fookus ühele reale</translation>
+        <translation>एका ओळीवर फोकस करा</translation>
     </message>
     <message>
         <source>Focus Three Lines</source>
-        <translation>Fookus kolmele reale</translation>
+        <translation>तीन ओळींवर फोकस करा</translation>
     </message>
     <message>
         <source>&amp;Paragraph</source>
-        <translation>&amp;Lõik</translation>
+        <translation>परिच्छेद (&amp;P):</translation>
     </message>
     <message>
         <source>Focus Paragraph</source>
-        <translation>Fookus lõigule</translation>
+        <translation>परिच्छेदावर फोकस करा</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Abiteave</translation>
+        <translation>मदत (&amp;H)</translation>
     </message>
     <message>
         <source>Application &amp;Language...</source>
-        <translation>Rakenduse &amp;keel...</translation>
+        <translation>ॲप्लिकेशनची भाषा (&amp;L)...</translation>
     </message>
     <message>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Mõnede failide tugi puudub ja nende avamine ei ole võimalik.</translation>
+        <translation>काही फायली असमर्थित असल्यामुळे त्या उघडत्या आल्या नाहीत.</translation>
     </message>
     <message>
         <source>&amp;Off</source>
-        <translation>&amp;Pole kasutusel</translation>
+        <translation>बंद करा (&amp;O)</translation>
     </message>
     <message>
         <source>One &amp;Line</source>
-        <translation>&amp;Üks rida</translation>
+        <translation>एक ओळ (&amp;L)</translation>
     </message>
     <message>
         <source>&amp;Three Lines</source>
-        <translation>&amp;Kolm rida</translation>
+        <translation>तीन ओळी (&amp;T)</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>R&amp;akenduse teave</translation>
+        <translation>याविषयी (&amp;A)</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>&amp;Qt teave</translation>
+        <translation>Qt विषयी (&amp;Q)</translation>
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation>Lehekül&amp;je paigutus...</translation>
+        <translation>पानाची मांडणी (&amp;G)...</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
-        <translation>&amp;Pealkiri</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heading &amp;1</source>
-        <translation>Pealkiri &amp;1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heading &amp;2</source>
-        <translation>Pealkiri &amp;2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heading &amp;3</source>
-        <translation>Pealkiri &amp;3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heading &amp;4</source>
-        <translation>Pealkiri &amp;4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heading &amp;5</source>
-        <translation>Pealkiri &amp;5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heading &amp;6</source>
-        <translation>Pealkiri &amp;6</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Normal</source>
-        <translation>Tavali&amp;ne tekst</translation>
+        <translation>साधारण (&amp;N)</translation>
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation>Uenda nutikad jutumärgid dokumendis</translation>
+        <translation>दस्तऐवजातील स्मार्ट अवतरणचिन्हे अपडेट करा</translation>
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation>Uenda nutikad jutumärgid valikus</translation>
+        <translation>निवडीतील स्मार्ट अवतरणचिन्हे अपडेट करा</translation>
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
@@ -1858,7 +1858,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation>Praeguses sessioonis avatavad failid.</translation>
+        <translation>वर्तमान सत्रात उघडायच्या फायली.</translation>
     </message>
 </context>
 </TS>
