@@ -75,8 +75,8 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	m_font_names = new QFontComboBox(text_group);
 	m_font_names->setEditable(false);
 	m_font_names->setCurrentFont(m_theme.textFont());
-	connect(m_font_names, &QComboBox::currentIndexChanged, this, &ThemeDialog::fontChanged);
-	connect(m_font_names, &QComboBox::currentIndexChanged, this, &ThemeDialog::renderPreview);
+	connect(m_font_names, &QComboBox::activated, this, &ThemeDialog::fontChanged);
+	connect(m_font_names, &QComboBox::activated, this, &ThemeDialog::renderPreview);
 
 	m_font_sizes = new QComboBox(text_group);
 	m_font_sizes->setEditable(true);

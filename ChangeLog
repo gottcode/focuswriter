@@ -1,3 +1,11 @@
+1.8.9
+-----
+* FIXED: Slow loading of themes.
+* FIXED: Font did not update in theme preview.
+* FIXED: Alert expander invisible with monochrome icon themes.
+* FIXED: Incorrect icons in monochrome icon themes.
+* Translation updates: Estonian, Marathi.
+
 1.8.8
 -----
 * FIXED: Broken backgrounds in Windows dark theme.

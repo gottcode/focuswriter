@@ -1304,9 +1304,9 @@ void Window::initMenus()
 	file_menu->addSeparator();
 	m_actions["Print"] = file_menu->addAction(QIcon::fromTheme("document-print"), tr("&Print..."), m_documents, &Stack::print);
 	m_actions["Print"]->setShortcut(QKeySequence::Print);
-	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("preferences-desktop-printer"), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
+	m_actions["PageSetup"] = file_menu->addAction(QIcon::fromTheme("document-page-setup", QIcon::fromTheme("document-print")), tr("Pa&ge Setup..."), m_documents, &Stack::pageSetup);
 	file_menu->addSeparator();
-	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("window-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument));
+	m_actions["Close"] = file_menu->addAction(QIcon::fromTheme("document-close"), tr("&Close"), this, qOverload<>(&Window::closeDocument));
 	m_actions["Close"]->setShortcut(QKeySequence::Close);
 	m_actions["Quit"] = file_menu->addAction(QIcon::fromTheme("application-exit"), tr("&Quit"), this, &Window::close);
 	m_actions["Quit"]->setShortcut(keyBinding(QKeySequence::Quit, tr("Ctrl+Q")));
@@ -1447,7 +1447,7 @@ void Window::initMenus()
 	tools_menu->addSeparator();
 	m_actions["CheckSpelling"] = tools_menu->addAction(QIcon::fromTheme("tools-check-spelling"), tr("&Spelling..."), m_documents, &Stack::checkSpelling);
 	m_actions["CheckSpelling"]->setShortcut(tr("F7"));
-	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("accessories-dictionary"), tr("Set &Language..."), this, &Window::setLanguageClicked);
+	m_actions["SetDefaultLanguage"] = tools_menu->addAction(QIcon::fromTheme("languages", QIcon::fromTheme("accessories-dictionary")), tr("Set &Language..."), this, &Window::setLanguageClicked);
 	tools_menu->addSeparator();
 	m_actions["Timers"] = tools_menu->addAction(QIcon::fromTheme("appointment", QIcon::fromTheme("chronometer")), tr("&Timers..."), m_timers, &TimerManager::show);
 	m_actions["Symbols"] = tools_menu->addAction(QIcon::fromTheme("character-set"), tr("S&ymbols..."), m_documents, &Stack::showSymbols);
@@ -1475,13 +1475,13 @@ void Window::initMenus()
 	m_actions["Fullscreen"]->setShortcut(tr("F11"));
 	m_actions["Fullscreen"]->setCheckable(true);
 #endif
-	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("arrow-down"), tr("M&inimize"), this, &Window::minimize);
+	m_actions["Minimize"] = settings_menu->addAction(QIcon::fromTheme("window-minimize", QIcon::fromTheme("arrow-down")), tr("M&inimize"), this, &Window::minimize);
 	m_actions["Minimize"]->setShortcut(tr("Ctrl+M"));
 	settings_menu->addSeparator();
-	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("applications-graphics"), tr("&Themes..."), this, &Window::themeClicked);
+	m_actions["Themes"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-color"), tr("&Themes..."), this, &Window::themeClicked);
 	settings_menu->addSeparator();
 	m_actions["PreferencesLocale"] = settings_menu->addAction(QIcon::fromTheme("preferences-desktop-locale"), tr("Application &Language..."), this, &Window::setLocaleClicked);
-	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("preferences-system"), tr("&Preferences..."), this, &Window::preferencesClicked);
+	m_actions["Preferences"] = settings_menu->addAction(QIcon::fromTheme("configure"), tr("&Preferences..."), this, &Window::preferencesClicked);
 	m_actions["Preferences"]->setShortcut(QKeySequence::Preferences);
 	m_actions["Preferences"]->setMenuRole(QAction::PreferencesRole);
 

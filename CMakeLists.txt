@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2021-2023 Graeme Gott <graeme@gottcode.org>
+# SPDX-FileCopyrightText: 2021-2024 Graeme Gott <graeme@gottcode.org>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.8.8 LANGUAGES CXX)
+project(focuswriter VERSION 1.8.9 LANGUAGES CXX)
 
 set(project_copyright "2008-2024 Graeme Gott")
 

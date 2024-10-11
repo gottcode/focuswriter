@@ -15,6 +15,7 @@
   <name xml:lang="eo">FocusWriter</name>
   <name xml:lang="es">FocusWriter</name>
   <name xml:lang="es_MX">FocusWriter</name>
+  <name xml:lang="et">FocusWriter</name>
   <name xml:lang="fi">FocusWriter</name>
   <name xml:lang="fr">FocusWriter</name>
   <name xml:lang="fur">FocusWriter</name>
@@ -28,6 +29,7 @@
   <name xml:lang="ja">FocusWriter</name>
   <name xml:lang="ko">포커스 라이터</name>
   <name xml:lang="lt">FocusWriter</name>
+  <name xml:lang="mr">FocusWriter</name>
   <name xml:lang="nb">FocusWriter</name>
   <name xml:lang="nb_NO">FocusWriter</name>
   <name xml:lang="nl">FocusWriter</name>
@@ -56,6 +58,7 @@
   <summary xml:lang="eo">Plenekrana tekstoprilaborilo</summary>
   <summary xml:lang="es">Procesador de texto a pantalla completa</summary>
   <summary xml:lang="es_MX">Procesador de palabras en pantalla completa</summary>
+  <summary xml:lang="et">Täisekraanivaates toimiv tekstitöötlusprogramm</summary>
   <summary xml:lang="fi">Koko näytön tekstinkäsittelyohjelma</summary>
   <summary xml:lang="fr">Traitement de texte plein écran</summary>
   <summary xml:lang="fur">word processor a plen schermi</summary>
@@ -68,6 +71,7 @@
   <summary xml:lang="ja">フルスクリーン・ワードプロセッサ</summary>
   <summary xml:lang="ko">풀스크린 워드 프로세서</summary>
   <summary xml:lang="lt">Viso ekrano žodžių doroklė</summary>
+  <summary xml:lang="mr">फुलस्क्रीन वर्ड प्रोसेसर</summary>
   <summary xml:lang="nb">Fullskjerm tekstbehandler</summary>
   <summary xml:lang="nb_NO">Tekstbehandler over hele skjermen</summary>
   <summary xml:lang="nl">Schermvullende tekstverwerker</summary>
@@ -97,6 +101,7 @@
     <p xml:lang="eo">FocusWriter estas simpla senmalatentiga tekstoprilaborilo. Ĝi uzas kaŝatan interfacon, kion vi atingas per movi vian muson al la randoj de la ekrano. Tiel la programaro eblas havi kutiman fasadon, dum ankoraŭ estas malobstrukciĝante por ke vi povas ĉirkaŭi vin en via laboro.</p>
     <p xml:lang="es">FocusWriter es un procesador de texto simple y libre de distracciones. Utiliza una interfaz que se esconde automáticamente y a la que puedes acceder moviendo el ratón hacia las esquinas de la pantalla, dando al programa esa sensación de familiaridad mientras se mantiene fuera de tu camino, para que puedas concentrarte en tú trabajo.</p>
     <p xml:lang="es_MX">FocusWriter es un procesador de palabras simple y sin distractores. Éste utiliza una interfaz aislada que puede ser accedida moviendo el ratón a las esquinas de la pantalla, permitiendo que el programa tener una apariencia similar a cuando uno se aparta de todo y se puede concentrar sólo en su trabajo.</p>
+    <p xml:lang="et">FocusWriter on lihtne tekstitöötlusprogramm, millel pole tööd segavaid elemente. See rakendus põhineb peidetud kasutajaliidesel, mille osiseid saad näha, kui liigutad hiirekursori ekraani servadesse. Sel moel on sul võimalus kombineerida nii tekstitöötlusprogrammidele tavapärast kasutajaliidest kui täiesti puhta lehe vaadet, kus saad keskenduda vaid kirjutamisele.</p>
     <p xml:lang="fi">FocusWriter on yksinkertainen ja häiriötekijätön tekstinkäsittelyohjelma. Siinä on automaattisesti piiloutuva käyttöliittymä, johon pääsee siirtämällä hiiren näytön laitoihin. Sen ansiosta ohjelmassa on tuttu ulkoasu ja käyttötuntuma. Samalla käyttöliittymä väistyy työhön uppoutumisen tieltä.</p>
     <p xml:lang="fr">FocusWriter est un traitement de texte simple et non intrusif. Il utilise une interface masquée, accessible en déplaçant votre souris vers les coins de l'écran, ce qui confère au programme un aspect convivial tout en restant discret afin que vous puissiez vous plonger dans votre travail.</p>
     <p xml:lang="fur">FocusWriter al è un sempliç elaboradôr di tescj, cence distrazions. Al dopre une interface a disparizion che si mostre movint il mouse viers i ôrs dal schermi, cussì di dâ al program un aspiet e une sensazion familiâr, cussì di jessi a plen dentri intal propri lavôr.</p>
@@ -135,6 +140,7 @@
     <p xml:lang="eo">FocusWriter ebligas vin agordi vian verkejon per kreado de etosoj, kiuj agordas la tiparon, kolorojn, kaj fonan bildon por ŝanĝi etoson. Ĝi ankaŭ havas funkciojn por tuje ĝisdatiganta statistiko, ĉiutagaj celoj, plure da malfermataj dokumentoj, literumada kontrolo, kaj multe pli.</p>
     <p xml:lang="es">FocusWriter te permite personalizar el entorno creando temas que controlan la fuente, los colores y la imagen de fondo para crear ambiente. También incorpora estadísticas de escritura, objetivos diarios, apertura de múltiples documentos, comprobación de ortografía y mucho mas.</p>
     <p xml:lang="es_MX">FocusWriter permite personalizar su ambiente creado temas que controlan la fuente, los colores y la imagen de fondo para crear un ambiente. Otras características son que actualiza en tiempo real estadísticas, metas diarias, abre múltiples documentos, verifica ortografía y mucho más.</p>
+    <p xml:lang="et">FocusWriter võimaldab sul kohandada oma töökeskkonda ja luua endale sobivaid välimuse kujundusi, mis sisaldavad kirjatüüpe, värve, joondumisi, taustapilte ja palju muud. Lisaks peab rakendus arvet tehtud töömahu üle, võid seada endale kirjutamiseesmärke, avada mitu faili  korraga, kasutada õigekirjakontrolli ning muid tarvikuid.</p>
     <p xml:lang="fi">FocusWriterin ympäristöä voi muokata luomaan tunnelmaa tekemällä teemoja, jotka vaihtavat fontit, värit ja taustakuvan. FocusWriterissa on myös automaattisesti päivittyvät tilastot, päivittäiset tavoitteet, tuki useille avoimille tiedostoille, oikeinkirjoituksen tarkistus ja paljon muuta.</p>
     <p xml:lang="fr">FocusWriter vous permet de personnaliser votre environnement en créant des thèmes composés de polices, de couleurs et d'images d'arrière-plan afin d'agrémenter votre interface. Il inclut également des statistiques mises à jour à la volée, des objectifs quotidiens, l'ouverture de documents multiples, une vérification orthographique, et bien plus encore.</p>
     <p xml:lang="fur">FocusWriter al permet di personalizâ l'ambient inmaneant temis che a controlin il font e i colors. Cun di plui si pues zontâ un fondâl par vê une biele atmosfere di scriture. Al à funzions di inzornament automatic des statistichis, obietîfs par zornade, vierzidure di plui documents, control ortografic e cetant ancjemò.</p>
@@ -173,6 +179,7 @@
     <p xml:lang="eo">Plue, kiam vi lanĉas la programaron, via lasta malpreta verko aŭtomate ŝarĝas kaj allokas vin, kie vi laste ĉesis, por ke vi povas daŭri verki tuj.</p>
     <p xml:lang="es">Además, cuando abres el programa se cargará automáticamente tu trabajo actual y la posición donde lo dejaste, de forma que puedas continuar inmediatamente con él.</p>
     <p xml:lang="es_MX">Además, cuando se abre el programa, su trabajo actual se cargará y la posición en la que dejó la última vez para que pueda continuar inmediatamente.</p>
+    <p xml:lang="et">Kuna FocusWriter oskab sinu tehtud töö üle arvet pidada, siis rakenduse avamisel kuvatakse täpselt sama vaade ja asukoht, kus sa viimati olid ning saad tööd mugavasti jätkata.</p>
     <p xml:lang="fi">Lisäksi ohjelman käynnistyessä kesken jäänyt työ ladataan automaattisesti siltä kohtaa, mihin viimeksi jäit, jotta työn jatkaminen on helppoa.</p>
     <p xml:lang="fr">De plus, lorsque vous lancez le programme, votre travail en cours sera automatiquement chargé et vous vous retrouverez là où vous vous étiez arrêté, de sorte que vous puissiez immédiament vous remettre à l'ouvrage.</p>
     <p xml:lang="fur">Cun di plui, cuant che tu vierzis il program, il lavôr che tu puartis indenant al ven cjariât in automatic inte posizion che tu lu âs lassât, cussì che tu puedis tornâ a lavorâ fin di subit.</p>
@@ -245,6 +252,17 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.9" date="2024-10-11">
+      <description>
+        <ul>
+          <li>FIXED: Slow loading of themes</li>
+          <li>FIXED: Font did not update in theme preview</li>
+          <li>FIXED: Alert expander invisible with monochrome icon themes</li>
+          <li>FIXED: Incorrect icons in monochrome icon themes</li>
+          <li>Translation updates: Estonian, Marathi.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.8" date="2024-05-21">
       <description>
         <ul>
