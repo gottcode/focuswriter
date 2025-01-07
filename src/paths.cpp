@@ -101,6 +101,13 @@ void Paths::load(const QString& appdir, QString& userdir, const QString& datadir
 #endif
 	});
 
+#ifdef Q_OS_UNIX
+	QStringList dicpath = QString::fromLocal8Bit(qgetenv("DICPATH")).split(":", Qt::SkipEmptyParts);
+	for (auto it = dicpath.rbegin(); it != dicpath.rend(); ++it) {
+		QDir::addSearchPath("dict", *it);
+	}
+#endif
+
 	// Set location for daily progress
 	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));
 }
