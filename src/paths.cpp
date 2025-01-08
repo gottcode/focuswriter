@@ -94,19 +94,14 @@ void Paths::load(const QString& appdir, QString& userdir, const QString& datadir
 	}
 	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
 
-	QDir::setSearchPaths("dict", {
-		DictionaryManager::path()
+	QStringList dictdirs = qEnvironmentVariable("DICPATH").split(QDir::listSeparator(), Qt::SkipEmptyParts);
 #ifdef Q_OS_WIN
-		, appdir + "/dictionaries"
+	dictdirs.append(appdir + "/dictionaries");
 #endif
-	});
+	dictdirs.append(DictionaryManager::path());
+	std::reverse(dictdirs.begin(), dictdirs.end());
 
-#ifdef Q_OS_UNIX
-	QStringList dicpath = QString::fromLocal8Bit(qgetenv("DICPATH")).split(":", Qt::SkipEmptyParts);
-	for (auto it = dicpath.rbegin(); it != dicpath.rend(); ++it) {
-		QDir::addSearchPath("dict", *it);
-	}
-#endif
+	QDir::setSearchPaths("dict", dictdirs);
 
 	// Set location for daily progress
 	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));
