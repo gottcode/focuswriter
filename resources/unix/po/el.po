@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Wasilis Mandratzis-Walz, 2015
 # Γιάννης Ανθυμίδης, 2014
@@ -9,65 +9,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2017-09-20 01:16+0000\n"
 "Last-Translator: Wasilis Mandratzis-Walz\n"
-"Language-Team: Greek (http://www.transifex.com/gottcode/focuswriter/language/"
-"el/)\n"
-"Language: el\n"
+"Language-Team: Greek (http://www.transifex.com/gottcode/focuswriter/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Επεξεργαστής κειμένου σε πλήρης οθόνη"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"Το FocusWriter είναι ένα απλό, χωρίς περισπασμούς πρόγραμμα επεξεργασίας "
-"κειμένου. Χρησιμοποιεί μια κρυφή διεπαφή που μπορείτε να αποκτήσετε πρόσβαση "
-"μετακινώντας το ποντίκι σας προς τα άκρα της οθόνης, επιτρέποντας στο "
-"πρόγραμμα να έχει μια οικεία εμφάνιση και αίσθηση σε αυτόενώ εξακολουθεί να "
-"πάρει έξω από το δρόμο, έτσι ώστε να μπορείτε να αφεθείτε στην εργασία σας."
+msgstr "Το FocusWriter είναι ένα απλό, χωρίς περισπασμούς πρόγραμμα επεξεργασίας κειμένου. Χρησιμοποιεί μια κρυφή διεπαφή που μπορείτε να αποκτήσετε πρόσβαση μετακινώντας το ποντίκι σας προς τα άκρα της οθόνης, επιτρέποντας στο πρόγραμμα να έχει μια οικεία εμφάνιση και αίσθηση σε αυτόενώ εξακολουθεί να πάρει έξω από το δρόμο, έτσι ώστε να μπορείτε να αφεθείτε στην εργασία σας."
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"Το FocusWriter σας επιτρέπει να προσαρμόσετε το περιβάλλον σας, "
-"δημιουργώντας θέματα που ελέγχουν την γραμματοσειρά, τα χρώματα και το φόντο "
-"της εικόνας για να προσθέσετε ατμόσφαιρα. Διαθέτει επίσης on-the-fly "
-"στατιστικές ενημέρωσης, καθημερινούς στόχους, πολλά ανοικτά έγγραφα, "
-"ορθογραφικό έλεγχο, και πολλά άλλα."
+msgstr "Το FocusWriter σας επιτρέπει να προσαρμόσετε το περιβάλλον σας, δημιουργώντας θέματα που ελέγχουν την γραμματοσειρά, τα χρώματα και το φόντο της εικόνας για να προσθέσετε ατμόσφαιρα. Διαθέτει επίσης on-the-fly στατιστικές ενημέρωσης, καθημερινούς στόχους, πολλά ανοικτά έγγραφα, ορθογραφικό έλεγχο, και πολλά άλλα."
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Επιπλέον, όταν ανοίγετε στο πρόγραμμα την τρέχουσα εργασία σας θα φορτώσει "
-"αυτόματα και την θέση όπου σταματήσατε, έτσι ώστε να μπορείτε να μεταβείτε "
-"αμέσως πίσω."
+msgstr "Επιπλέον, όταν ανοίγετε στο πρόγραμμα την τρέχουσα εργασία σας θα φορτώσει αυτόματα και την θέση όπου σταματήσατε, έτσι ώστε να μπορείτε να μεταβείτε αμέσως πίσω."
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Επεξεργαστής Κειμένου σε Πλήρης Οθόνη"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Γράψτε χωρίς ενόχληση"
