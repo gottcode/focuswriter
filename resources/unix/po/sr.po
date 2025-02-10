@@ -1,71 +1,58 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # miroslav <miroslav031@yandex.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2017-09-20 01:16+0000\n"
 "Last-Translator: miroslav <miroslav031@yandex.com>\n"
-"Language-Team: Serbian (http://www.transifex.com/gottcode/focuswriter/"
-"language/sr/)\n"
-"Language: sr\n"
+"Language-Team: Serbian (http://www.transifex.com/gottcode/focuswriter/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Обрађивач текста у пуном екрану"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"FocusWriter је једноставан, слободан уређивач текста. Он користи скривени "
-"интерфејс коме се приступа померањем миша на ивице екрана, омогућавајући "
-"програму да добије познати изглед и тако вам обезбеди да се посветите вашем "
-"раду."
+msgstr "FocusWriter је једноставан, слободан уређивач текста. Он користи скривени интерфејс коме се приступа померањем миша на ивице екрана, омогућавајући програму да добије познати изглед и тако вам обезбеди да се посветите вашем раду."
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"FocusWriter вам омогућава да прилагодите окружење креирањем теме са фонтом, "
-"бојама и позадинском сликом. Такође, поседује ажурирање статистике, дневне "
-"циљеве, истовремено отварање више докумената, проверу правописа и још много "
-"тога."
+msgstr "FocusWriter вам омогућава да прилагодите окружење креирањем теме са фонтом, бојама и позадинском сликом. Такође, поседује ажурирање статистике, дневне циљеве, истовремено отварање више докумената, проверу правописа и још много тога."
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Поред тога, када отворите програм, ваш тренутни посао ће се аутоматски "
-"учитати на месту где сте последњи пут стали, тако да га можете одмах "
-"наставити."
+msgstr "Поред тога, када отворите програм, ваш тренутни посао ће се аутоматски учитати на месту где сте последњи пут стали, тако да га можете одмах наставити."
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Обрађивач текста у пуном екрану"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Пишите без ометања"

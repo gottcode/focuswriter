@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Serhii Haifullin <apexpredator@ya.ru>, 2014,2016
 # Виктор, 2022
@@ -9,68 +9,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2014-03-25 21:45+0000\n"
 "Last-Translator: Виктор, 2022\n"
-"Language-Team: Russian (http://www.transifex.com/gottcode/focuswriter/"
-"language/ru/)\n"
-"Language: ru\n"
+"Language-Team: Russian (http://www.transifex.com/gottcode/focuswriter/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Полноэкранный текстовый редактор"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"FocusWriter — это простой, позволяющий полностью сосредоточиться на работе "
-"текстовый редактор. В нем используется выдвижной интерфейс управления, "
-"который становится доступным при наведении стрелки мыши на края экрана. Это "
-"дает возможность добиться узнаваемого внешнего вида и в то же время "
-"полностью погрузиться в вашу работу."
+msgstr "FocusWriter — это простой, позволяющий полностью сосредоточиться на работе текстовый редактор. В нем используется выдвижной интерфейс управления, который становится доступным при наведении стрелки мыши на края экрана. Это дает возможность добиться узнаваемого внешнего вида и в то же время полностью погрузиться в вашу работу."
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"FocusWriter позволяет вам настроить свое рабочее окружение путем создания "
-"тем, в которых можно управлять шрифтами, цветами и фоновыми изображениями "
-"для создания нужной атмосферы. У него также есть функции обновления "
-"статистики \"на лету\", постановки ежедневных целей, открытия нескольких "
-"документов одновременно, проверки орфографии и много другого."
+msgstr "FocusWriter позволяет вам настроить свое рабочее окружение путем создания тем, в которых можно управлять шрифтами, цветами и фоновыми изображениями для создания нужной атмосферы. У него также есть функции обновления статистики \"на лету\", постановки ежедневных целей, открытия нескольких документов одновременно, проверки орфографии и много другого."
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Кроме того, когда вы откроете программу, сразу же будет загружен прогресс "
-"вашей текущей работы и курсор перейдет на ту позицию, на которой в последний "
-"раз работа была прервана. Так вы сможете практически мгновенно вернуться к "
-"делу."
+msgstr "Кроме того, когда вы откроете программу, сразу же будет загружен прогресс вашей текущей работы и курсор перейдет на ту позицию, на которой в последний раз работа была прервана. Так вы сможете практически мгновенно вернуться к делу."
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Полноэкранный текстовый редактор"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Писать не отвлекаясь"

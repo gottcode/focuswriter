@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Cuneyt Oktay <cuneytoktay@gmail.com>, 2014
 # Kemal Oktay Aktoğan <oktayaktogan@gmail.com>, 2020
@@ -9,63 +9,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2020-02-28 08:40+0000\n"
 "Last-Translator: Kemal Oktay Aktoğan <oktayaktogan@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/gottcode/focuswriter/"
-"language/tr/)\n"
-"Language: tr\n"
+"Language-Team: Turkish (http://www.transifex.com/gottcode/focuswriter/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Tam ekran kelime işlemci"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"FocusWriter, dikkat dağıtıcı olmayan basit bir kelime işlemcidir. Farenizi "
-"ekranın kenarlarına hareket ettirerek eriştiğiniz bir gizleme arabirimi "
-"kullanır ve programın tanıdık bir görünüme sahip olmasını sağlarken, yine de "
-"yoldan çıkarken kendinizi işinize sokabilirsiniz."
+msgstr "FocusWriter, dikkat dağıtıcı olmayan basit bir kelime işlemcidir. Farenizi ekranın kenarlarına hareket ettirerek eriştiğiniz bir gizleme arabirimi kullanır ve programın tanıdık bir görünüme sahip olmasını sağlarken, yine de yoldan çıkarken kendinizi işinize sokabilirsiniz."
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"FocusWriter, ortam eklemek için yazı tipini, renkleri ve arka plan resmini "
-"kontrol eden temalar oluşturarak ortamınızı özelleştirmenizi sağlar. Ayrıca "
-"anında güncelleme istatistikleri, günlük hedefler, birden çok açık belge, "
-"yazım denetimi ve çok daha fazlasını içerir."
+msgstr "FocusWriter, ortam eklemek için yazı tipini, renkleri ve arka plan resmini kontrol eden temalar oluşturarak ortamınızı özelleştirmenizi sağlar. Ayrıca anında güncelleme istatistikleri, günlük hedefler, birden çok açık belge, yazım denetimi ve çok daha fazlasını içerir."
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Ayrıca, programı açtığınızda, devam etmekte olduğunuz mevcut işiniz otomatik "
-"olarak yüklenir ve sizi en son kaldığınız yere konumlandırır, böylece hemen "
-"geri dönebilirsiniz."
+msgstr "Ayrıca, programı açtığınızda, devam etmekte olduğunuz mevcut işiniz otomatik olarak yüklenir ve sizi en son kaldığınız yere konumlandırır, böylece hemen geri dönebilirsiniz."
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Tam Ekran Kelime İşlemci"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Dikkat dağıtıcılar olmadan yazın"

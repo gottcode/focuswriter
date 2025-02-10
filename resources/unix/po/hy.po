@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # seda <sedastam@yandex.com>, 2014
 # Seda Stamboltsyan<sedastam@yandex.com>, 2014
@@ -9,68 +9,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2017-09-20 01:16+0000\n"
 "Last-Translator: sedas\n"
-"Language-Team: Armenian (http://www.transifex.com/gottcode/focuswriter/"
-"language/hy/)\n"
-"Language: hy\n"
+"Language-Team: Armenian (http://www.transifex.com/gottcode/focuswriter/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hy\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Լիէկրան տեքստային խմբագրիչ"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"FocusWriter-ն արտաքին շեղումներից ուշադրությունը զերծ պահող պարզ տեքստային "
-"խմբագրիչ է։ Այն գործածում է թաքնվող միջերես, որը հասանելի է դառնում էկրանի "
-"ծայրերին մկնիկի շարժմամբ հպվելու միջոցով։ Սա թե՛ ծրագրին տալիս է գործածողի "
-"աչքի համար սովորական տեսք ու զգացողություն, թե՛ միաժամանակ նրան թույլ տալիս "
-"խորասուզվել աշխատանքի մեջ, առանց ուշադրությունն արտաքին հանգամանքներով "
-"շեղելու։"
+msgstr "FocusWriter-ն արտաքին շեղումներից ուշադրությունը զերծ պահող պարզ տեքստային խմբագրիչ է։ Այն գործածում է թաքնվող միջերես, որը հասանելի է դառնում էկրանի ծայրերին մկնիկի շարժմամբ հպվելու միջոցով։ Սա թե՛ ծրագրին տալիս է գործածողի աչքի համար սովորական տեսք ու զգացողություն, թե՛ միաժամանակ նրան թույլ տալիս խորասուզվել աշխատանքի մեջ, առանց ուշադրությունն արտաքին հանգամանքներով շեղելու։"
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"FocusWriter-ը գործածողին թույլ է տալիս ստեղծել աշխատանքի սեփական միջավայր՝ "
-"թեմաների միջոցով, որոնցով կարելի է ընտրել տառատեսակը, գույները և որևէ նկարով "
-"խորապատկեր՝ որոշակի տրամադրություն ստեղծելու համար։ Այն նաև ցույց է տալիս "
-"մուտքագրվող նյութի մանրամասն վիճակագրությունը, թույլ տալիս սահմանել "
-"աշխատանքի օրական սահմանաքանակ, հնարավորություն ունի մեկ պատուհանում "
-"միանգամից շատ նիշքեր բացելու, ուղղագրությունը ստուգելու և այլն։"
+msgstr "FocusWriter-ը գործածողին թույլ է տալիս ստեղծել աշխատանքի սեփական միջավայր՝ թեմաների միջոցով, որոնցով կարելի է ընտրել տառատեսակը, գույները և որևէ նկարով խորապատկեր՝ որոշակի տրամադրություն ստեղծելու համար։ Այն նաև ցույց է տալիս մուտքագրվող նյութի մանրամասն վիճակագրությունը, թույլ տալիս սահմանել աշխատանքի օրական սահմանաքանակ, հնարավորություն ունի մեկ պատուհանում միանգամից շատ նիշքեր բացելու, ուղղագրությունը ստուգելու և այլն։"
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Բացի դրանից, ծրագիրը բացվելիս լռելյայն ցուցադրում է այն վերջին նիշքը, որի "
-"վրա գործածողն աշխատել է, և հենց այն հատվածում, որում նա վերջին անգամ "
-"փոփոխություն է կատարել, ինչը հնարավորություն է տալիս շարունակելու աշխատանքն "
-"այնտեղից, որտեղ այն վերջին անգամ ընդհատվել էր։"
+msgstr "Բացի դրանից, ծրագիրը բացվելիս լռելյայն ցուցադրում է այն վերջին նիշքը, որի վրա գործածողն աշխատել է, և հենց այն հատվածում, որում նա վերջին անգամ փոփոխություն է կատարել, ինչը հնարավորություն է տալիս շարունակելու աշխատանքն այնտեղից, որտեղ այն վերջին անգամ ընդհատվել էր։"
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Լիէկրան տեքստային խմբագրիչ"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Գրիր առանց ուշադրության շեղման"

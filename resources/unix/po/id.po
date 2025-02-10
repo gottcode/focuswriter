@@ -1,71 +1,58 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # M. Ridwan Hakim <adminrescen@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2017-09-23 19:40+0000\n"
 "Last-Translator: M. Ridwan Hakim <adminrescen@gmail.com>\n"
-"Language-Team: Indonesian (Indonesia) (http://www.transifex.com/gottcode/"
-"focuswriter/language/id_ID/)\n"
-"Language: id\n"
+"Language-Team: Indonesian (Indonesia) (http://www.transifex.com/gottcode/focuswriter/language/id_ID/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Layar Penuh"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"FocusWriter merupakan pengolah kata yang bebas pengalihan dan sederhana. "
-"Menggunakan antarmuka yang Anda akses dengan cara menggerakkan mouse ke tepi "
-"layar, membuat program ini memilik tampilan yang familiar dan memudahkan "
-"Anda untuk menyelam ke dalam pekerjaan Anda."
+msgstr "FocusWriter merupakan pengolah kata yang bebas pengalihan dan sederhana. Menggunakan antarmuka yang Anda akses dengan cara menggerakkan mouse ke tepi layar, membuat program ini memilik tampilan yang familiar dan memudahkan Anda untuk menyelam ke dalam pekerjaan Anda."
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"FocusWriter membuat Anda untuk menciptakan lingkungan Anda sendiri dengan "
-"cara membuat tema yang mengatur jenis huruf, warna, dan gambar latar untuk "
-"menambah suasana. Program ini juga dilengkapi oleh statistika yang selalu "
-"diperbarui setiap saat, tujuan sehari-hari, membuka banyak dokumen "
-"sekaligus, pengecekan ejaan, dan masih banyak lagi."
+msgstr "FocusWriter membuat Anda untuk menciptakan lingkungan Anda sendiri dengan cara membuat tema yang mengatur jenis huruf, warna, dan gambar latar untuk menambah suasana. Program ini juga dilengkapi oleh statistika yang selalu diperbarui setiap saat, tujuan sehari-hari, membuka banyak dokumen sekaligus, pengecekan ejaan, dan masih banyak lagi."
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Ditambah lagi, ketika Anda membuka program, pekerjaan Anda yang sedang "
-"dikerjaan akan otomatis dimuat dan memulai di mana Anda terakhir "
-"meninggalkannya sehingga Anda bisa memulainya lagi lebih cepat."
+msgstr "Ditambah lagi, ketika Anda membuka program, pekerjaan Anda yang sedang dikerjaan akan otomatis dimuat dan memulai di mana Anda terakhir meninggalkannya sehingga Anda bisa memulainya lagi lebih cepat."
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Layar Penuh"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Menulis tanpa gangguan"
