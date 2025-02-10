@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>focuswriter.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+
+  <name>FocusWriter</name>
+  <summary>Fullscreen word processor</summary>
+  <description>
+    <p>FocusWriter is a simple, distraction-free word processor. It utilizes a hide-away interface that you access by moving your mouse to the edges of the screen, allowing the program to have a familiar look and feel to it while still getting out of the way so that you can immerse yourself in your work.</p>
+    <p>FocusWriter allows you to customize your environment by creating themes that control the font, colors, and background image to add ambiance. It also features on-the-fly updating statistics, daily goals, multiple open documents, spell-checking, and much more.</p>
+    <p>Additionally, when you open the program your current work in progress will automatically load and position you where you last left off so that you can immediately jump back in.</p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://gottcode.org/focuswriter/screenshots/appdata.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://gottcode.org/focuswriter/</url>
+  <url type="bugtracker">https://gottcode.org/focuswriter/bugs/</url>
+  <url type="donation">https://gottcode.org/tip/</url>
+  <url type="translate">https://www.transifex.com/gottcode/focuswriter/</url>
+
+  <developer id="org.gottcode">
+    <name translatable="no">Graeme Gott</name>
+  </developer>
+  <update_contact>graeme@gottcode.org</update_contact>
+
+  <translation type="qt">focuswriter</translation>
+
+  <provides>
+    <binary>focuswriter</binary>
+    <mediatype>application/rtf</mediatype>
+    <mediatype>application/vnd.oasis.opendocument.text</mediatype>
+    <mediatype>application/vnd.oasis.opendocument.text-flat-xml</mediatype>
+    <mediatype>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mediatype>
+    <mediatype>text/plain</mediatype>
+    <mediatype>text/rtf</mediatype>
+  </provides>
+  <launchable type="desktop-id">focuswriter.desktop</launchable>
+  <icon type="stock">focuswriter</icon>
+
+  <categories>
+    <category>Office</category>
+    <category>WordProcessor</category>
+  </categories>
+
+  <kudos>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="1.8.9" date="2024-10-11">
+      <description>
+        <ul>
+          <li>FIXED: Slow loading of themes</li>
+          <li>FIXED: Font did not update in theme preview</li>
+          <li>FIXED: Alert expander invisible with monochrome icon themes</li>
+          <li>FIXED: Incorrect icons in monochrome icon themes</li>
+          <li>Translation updates: Estonian, Marathi.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.8" date="2024-05-21">
+      <description>
+        <ul>
+          <li>FIXED: Broken backgrounds in Windows dark theme</li>
+          <li>FIXED: Extra newline when copying RTF</li>
+          <li>Added Windows support for copying RTF</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.7" date="2024-05-02">
+      <description>
+        <ul>
+          <li>FIXED: Did not keep line spacing when pasting plain text</li>
+          <li>Replaced deprecated code</li>
+          <li>Translation updates: Swedish</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.6" date="2024-01-16">
+      <description>
+        <ul>
+          <li>FIXED: Always incremented number for imported themes</li>
+          <li>FIXED: Unable to update contents of theme background image</li>
+          <li>FIXED: Modifying themes sometimes removed backgrounds</li>
+          <li>FIXED: Decompression failed in Haiku</li>
+          <li>Added shortcuts for selecting by paragraph</li>
+          <li>Replaced deprecated code</li>
+          <li>Updated Unicode symbols database</li>
+          <li>Updated Windows dictionaries</li>
+          <li>Translation updates: Portuguese, Portuguese (Brazil), Swedish</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.5" date="2023-06-27">
+      <description>
+        <ul>
+          <li>FIXED: Unable to paste HTML into web browser</li>
+          <li>Translation updates: Russian, Turkish, Ukrainian</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.4" date="2023-01-10">
+      <description>
+        <ul>
+          <li>FIXED: Did not ignore user input when force processing events</li>
+          <li>FIXED: Did not compile on macOS</li>
+          <li>FIXED: Did not compile on OS/2</li>
+          <li>Disabled typewriter sounds on OS/2</li>
+          <li>Replaced deprecated code</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.3" date="2022-09-26">
+      <description>
+        <ul>
+          <li>FIXED: Did not play sound effect when pressing enter</li>
+          <li>FIXED: Played sound effect when opening files</li>
+          <li>FIXED: Missing version number</li>
+          <li>Translation updates: Dutch</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.2" date="2022-09-01">
+      <description>
+        <ul>
+          <li>FIXED: Could not change language in portable mode</li>
+          <li>FIXED: Crashed during paste from context menu</li>
+          <li>FIXED: First line indent was lost on empty paragraphs</li>
+          <li>Always write RTF as Latin1</li>
+          <li>Replaced ICU with iconv</li>
+          <li>Improved Linux deployment</li>
+          <li>Translation updates: German, Korean, Portuguese (Brazil), Russian, Swedish</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.1" date="2022-07-02">
+      <description>
+        <ul>
+          <li>Always write plain text as UTF-8</li>
+          <li>Always write RTF as codepage 1252</li>
+          <li>Replaced QTextCodec with ICU</li>
+          <li>Translation updates: Estonian, German</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.8.0" date="2022-06-19">
+      <description>
+        <ul>
+          <li>FIXED: Lines were randomly duplicated in ODT</li>
+          <li>FIXED: Did not read text from lists in ODT</li>
+          <li>FIXED: Formatting was lost when restoring untitled documents from cache</li>
+          <li>FIXED: Loading headings caused document to shift vertically</li>
+          <li>FIXED: Timers did not show countdown in tooltip</li>
+          <li>FIXED: Sometimes could not remove dictionaries</li>
+          <li>Only restore changed files from cache</li>
+          <li>Refactored code</li>
+          <li>Removed XPM icon</li>
+          <li>Switched to Qt 6</li>
+          <li>Updated Unicode symbols database</li>
+          <li>Updated Windows dictionaries</li>
+          <li>Translation updates: Armenian, Bosnian, Czech, Dutch, French, Georgian, Italian, Lithuanian, Norwegian Bokmål, Norwegian Bokmål (Norway), Portuguese, Romanian, Swedish, Turkish, Ukrainian</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.6" date="2020-04-20">
+      <description>
+        <ul>
+          <li>FIXED: Did not load locales with underscores</li>
+          <li>FIXED: Compile failure due to missing header</li>
+          <li>Translation updates: Slovenian, Swedish, Turkish</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.5" date="2020-02-24">
+      <description>
+        <ul>
+          <li>Updated Windows dictionaries</li>
+          <li>Updated Windows deployment</li>
+          <li>Translation updates: Ukrainian</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.4" date="2020-01-16">
+      <description>
+        <ul>
+          <li>FIXED: Broken emergency cache in Windows</li>
+          <li>FIXED: Daily progress did not show star background with some themes</li>
+          <li>Replaced deprecated code</li>
+          <li>Translation updates: Catalan, Swedish</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.3" date="2019-08-07">
+      <description>
+        <ul>
+          <li>FIXED: Was not loading KDE icon theme</li>
+          <li>FIXED: Headings menu was incorrectly shown in German</li>
+          <li>Replaced deprecated code</li>
+          <li>Translation updates: Friulian, German, Korean</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.2" date="2019-03-07">
+      <description>
+        <ul>
+          <li>FIXED: Minimum sizes for page counts were too high</li>
+          <li>FIXED: Window icon didn't work in Wayland</li>
+          <li>Require Qt 5.9</li>
+          <li>Improved loading locales</li>
+          <li>Translation updates: Friulian, Korean</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.1" date="2018-12-17">
+      <description>
+        <ul>
+          <li>FIXED: Did not launch when incorrect lock file was found</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.7.0" date="2018-12-11">
+      <description>
+        <ul>
+          <li>FIXED: Daily progress percentages were not locale aware</li>
+          <li>FIXED: Scene list text was incorrect with Qt 5.12</li>
+          <li>Show current streak for previous day</li>
+          <li>Improved detection of running instance</li>
+          <li>Updated included hunspell</li>
+          <li>Updated dictionaries</li>
+          <li>Translation updates: Czech, Dutch, Hungarian</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.6.16" date="2018-09-03">
+      <description>
+        <ul>
+          <li>FIXED: Could not always save to remote drives</li>
+          <li>FIXED: Could not browse shortcuts in Windows file dialogs</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.6.15" date="2018-07-20">
+      <description>
+        <ul>
+          <li>FIXED: Automatic high DPI support</li>
+          <li>Translation updates: Galician, Spanish</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.6.14" date="2018-07-06">
+      <description>
+        <ul>
+          <li>FIXED: Regression where emergency cache didn't run</li>
+          <li>Renamed NEWS to ChangeLog</li>
+          <li>Translation updates: Bosnian</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.6.13" date="2018-05-29">
+      <description>
+        <ul>
+          <li>Updated dictionaries</li>
+          <li>Updated Unicode symbols database</li>
+          <li>Replaced deprecated code</li>
+          <li>Extra warnings only shown in debug build</li>
+          <li>Improved Linux deployment</li>
+          <li>Improved macOS deployment</li>
+          <li>Improved Windows deployment</li>
+          <li>Translation updates: Dutch, French, Portuguese</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>

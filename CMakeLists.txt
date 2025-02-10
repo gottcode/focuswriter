@@ -317,8 +317,9 @@ else()
 	install(DIRECTORY resources/themes DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(FILES resources/symbols/symbols1600.dat DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(FILES resources/unix/focuswriter.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1 COMPONENT doc)
-	install(FILES resources/unix/focuswriter.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
-	install(FILES resources/unix/focuswriter.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+
+	include(cmake/TranslateMetainfo.cmake)
+	process_and_install_metainfo(PO_DIR ${CMAKE_SOURCE_DIR}/resources/unix/po)
 endif()
 
 set_property(SOURCE src/main.cpp APPEND PROPERTY COMPILE_DEFINITIONS FOCUSWRITER_DATADIR="${datadir}")
