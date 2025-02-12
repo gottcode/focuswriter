@@ -29,7 +29,7 @@ function(process_and_install_metainfo name po_dir)
 			--template=${po_dir}/../${desktop_file}.in
 			-d ${po_dir}
 			-o ${desktop_file}
-		DEPENDS ${po_files} ${po_dir}/LINGUAS
+		DEPENDS ${po_dir}/../${desktop_file}.in ${po_files} ${po_dir}/LINGUAS
 	)
 	install(
 		FILES ${CMAKE_CURRENT_BINARY_DIR}/${desktop_file}
@@ -46,7 +46,7 @@ function(process_and_install_metainfo name po_dir)
 			--template=${po_dir}/../${appdata_file}.in
 			-d ${po_dir}
 			-o ${appdata_file}
-		DEPENDS ${po_files} ${po_dir}/LINGUAS
+		DEPENDS ${po_dir}/../${appdata_file}.in ${po_files} ${po_dir}/LINGUAS
 	)
 	install(
 		FILES ${CMAKE_CURRENT_BINARY_DIR}/${appdata_file}
@@ -64,7 +64,7 @@ function(process_and_install_metainfo name po_dir)
 				--template=${po_dir}/../${mimetype_file}.in
 				-d ${po_dir}
 				-o ${mimetype_file}
-			DEPENDS ${po_files} ${po_dir}/LINGUAS
+			DEPENDS ${po_dir}/../${mimetype_file}.in ${po_files} ${po_dir}/LINGUAS
 		)
 		install(
 			FILES ${CMAKE_CURRENT_BINARY_DIR}/${mimetype_file}
