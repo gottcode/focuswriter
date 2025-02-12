@@ -40,12 +40,6 @@
     <mediatype>text/rtf</mediatype>
   </provides>
   <launchable type="desktop-id">focuswriter.desktop</launchable>
-  <icon type="stock">focuswriter</icon>
-
-  <categories>
-    <category>Office</category>
-    <category>WordProcessor</category>
-  </categories>
 
   <kudos>
     <kudo>HiDpiIcon</kudo>
