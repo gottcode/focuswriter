@@ -319,7 +319,7 @@ else()
 	install(FILES resources/unix/focuswriter.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1 COMPONENT doc)
 
 	include(cmake/TranslateMetainfo.cmake)
-	process_and_install_metainfo(FocusWriter ${CMAKE_SOURCE_DIR}/resources/unix/po)
+	process_and_install_metainfo(PO_DIR ${CMAKE_SOURCE_DIR}/resources/unix/po)
 endif()
 
 set_property(SOURCE src/main.cpp APPEND PROPERTY COMPILE_DEFINITIONS FOCUSWRITER_DATADIR="${datadir}")

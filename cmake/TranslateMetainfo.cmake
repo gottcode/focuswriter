@@ -2,34 +2,34 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-function(process_and_install_metainfo name po_dir)
+function(process_and_install_metainfo)
+	cmake_parse_arguments(PARSE_ARGV 0 arg "" "PO_DIR" "MIMETYPES")
+
 	find_package(Gettext 0.19.8 REQUIRED)
 
-	string(TOLOWER "${name}" prefix)
-
 	# Generate LINGUAS file
-	file(GLOB po_files ${po_dir}/*.po)
+	file(GLOB po_files ${arg_PO_DIR}/*.po)
 	foreach(po_file ${po_files})
 		get_filename_component(lang ${po_file} NAME_WE)
 		list(APPEND linguas ${lang})
 	endforeach()
 	add_custom_command(
-		OUTPUT ${po_dir}/LINGUAS
-		COMMAND ${CMAKE_COMMAND} -E echo "${linguas}" > ${po_dir}/LINGUAS
+		OUTPUT ${arg_PO_DIR}/LINGUAS
+		COMMAND ${CMAKE_COMMAND} -E echo "${linguas}" > ${arg_PO_DIR}/LINGUAS
 		COMMAND_EXPAND_LISTS
 		COMMENT "Generating LINGUAS"
 	)
 
 	# Generate desktop file
-	set(desktop_file "${prefix}.desktop")
+	set(desktop_file "${PROJECT_NAME}.desktop")
 	add_custom_command(
 		OUTPUT ${desktop_file}
 		COMMAND ${GETTEXT_MSGFMT_EXECUTABLE}
 			--desktop
-			--template=${po_dir}/../${desktop_file}.in
-			-d ${po_dir}
+			--template=${arg_PO_DIR}/../${desktop_file}.in
+			-d ${arg_PO_DIR}
 			-o ${desktop_file}
-		DEPENDS ${po_dir}/../${desktop_file}.in ${po_files} ${po_dir}/LINGUAS
+		DEPENDS ${arg_PO_DIR}/../${desktop_file}.in ${po_files} ${arg_PO_DIR}/LINGUAS
 	)
 	install(
 		FILES ${CMAKE_CURRENT_BINARY_DIR}/${desktop_file}
@@ -38,15 +38,15 @@ function(process_and_install_metainfo name po_dir)
 	list(APPEND metainfo_files ${desktop_file})
 
 	# Generate AppData file
-	set(appdata_file "${prefix}.appdata.xml")
+	set(appdata_file "${PROJECT_NAME}.appdata.xml")
 	add_custom_command(
 		OUTPUT ${appdata_file}
 		COMMAND ${GETTEXT_MSGFMT_EXECUTABLE}
 			--xml
-			--template=${po_dir}/../${appdata_file}.in
-			-d ${po_dir}
+			--template=${arg_PO_DIR}/../${appdata_file}.in
+			-d ${arg_PO_DIR}
 			-o ${appdata_file}
-		DEPENDS ${po_dir}/../${appdata_file}.in ${po_files} ${po_dir}/LINGUAS
+		DEPENDS ${arg_PO_DIR}/../${appdata_file}.in ${po_files} ${arg_PO_DIR}/LINGUAS
 	)
 	install(
 		FILES ${CMAKE_CURRENT_BINARY_DIR}/${appdata_file}
@@ -54,24 +54,23 @@ function(process_and_install_metainfo name po_dir)
 	)
 	list(APPEND metainfo_files ${appdata_file})
 
-	# Generate mimetype file
-	set(mimetype_file "${prefix}.xml")
-	if(EXISTS "${po_dir}/../${mimetype_file}.in")
+	# Generate mimetype files
+	foreach(mimetype_file ${arg_MIMETYPES})
 		add_custom_command(
 			OUTPUT ${mimetype_file}
 			COMMAND ${GETTEXT_MSGFMT_EXECUTABLE}
 				--xml
-				--template=${po_dir}/../${mimetype_file}.in
-				-d ${po_dir}
+				--template=${arg_PO_DIR}/../${mimetype_file}.in
+				-d ${arg_PO_DIR}
 				-o ${mimetype_file}
-			DEPENDS ${po_dir}/../${mimetype_file}.in ${po_files} ${po_dir}/LINGUAS
+			DEPENDS ${arg_PO_DIR}/../${mimetype_file}.in ${po_files} ${arg_PO_DIR}/LINGUAS
 		)
 		install(
 			FILES ${CMAKE_CURRENT_BINARY_DIR}/${mimetype_file}
 			DESTINATION ${CMAKE_INSTALL_DATADIR}/mime/packages
 		)
 		list(APPEND metainfo_files ${mimetype_file})
-	endif()
+	endforeach()
 
 	# Generate description template
 	find_program(XGETTEXT_EXECUTABLE xgettext)
@@ -80,10 +79,10 @@ function(process_and_install_metainfo name po_dir)
 			COMMAND ${XGETTEXT_EXECUTABLE}
 				--output=description.pot
 				--from-code=UTF-8
-				--package-name='${name}'
+				--package-name='${PROJECT_NAME}'
 				--copyright-holder='Graeme Gott'
 				../*.in
-			WORKING_DIRECTORY ${po_dir}
+			WORKING_DIRECTORY ${arg_PO_DIR}
 			COMMENT "Generating description.pot"
 		)
 	endif()
