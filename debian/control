@@ -5,6 +5,7 @@ Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
 Build-Depends: debhelper-compat (= 13),
   cmake,
+  gettext,
   mesa-common-dev,
   qt6-base-dev,
   qt6-tools-dev,
