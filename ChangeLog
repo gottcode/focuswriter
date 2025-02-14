@@ -1,3 +1,11 @@
+1.8.10
+------
+* Added support for DICPATH to find dictionaries.
+* Improved code for building translations.
+* Updated Unicode symbols database.
+* Updated Windows dictionaries.
+* Translation updates: Slovenian.
+
 1.8.9
 -----
 * FIXED: Slow loading of themes.

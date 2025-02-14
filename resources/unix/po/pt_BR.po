@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Lorram Lomeu de Souza Rampi <lorrampi@gmail.com>, 2014
 # Márcio Massula Jr. <marciomassulajr@gmail.com>, 2014,2022
@@ -9,64 +9,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2014-03-25 21:45+0000\n"
 "Last-Translator: Márcio Massula Jr. <marciomassulajr@gmail.com>, 2014,2022\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/gottcode/"
-"focuswriter/language/pt_BR/)\n"
-"Language: pt_BR\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/gottcode/focuswriter/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
-"1000000 == 0 ? 1 : 2;\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Processador de texto em tela cheia"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"FocusWriter é um processador de texto simples livre de distrações. Ele "
-"utiliza uma interface que pode ser ocultada, acessível ao mover o mouse para "
-"os cantos da tela, o que dá ao programa um visual familiar, mas discreto. "
-"Assim você pode mergulhar em seu trabalho."
+msgstr "FocusWriter é um processador de texto simples livre de distrações. Ele utiliza uma interface que pode ser ocultada, acessível ao mover o mouse para os cantos da tela, o que dá ao programa um visual familiar, mas discreto. Assim você pode mergulhar em seu trabalho."
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"FocusWriter permite que você personalize o seu ambiente de trabalho, criando "
-"temas que possibilitam a mudança das fontes, cores e imagem de fundo, para "
-"criar a atmosfera ideal. Também permite atualização de estatísticas, metas "
-"diárias, abertura de vários documentos, verificação ortográfica e muito mais."
+msgstr "FocusWriter permite que você personalize o seu ambiente de trabalho, criando temas que possibilitam a mudança das fontes, cores e imagem de fundo, para criar a atmosfera ideal. Também permite atualização de estatísticas, metas diárias, abertura de vários documentos, verificação ortográfica e muito mais."
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Além disso, quando você abrir o programa, seu trabalho em andamento será "
-"automaticamente carregado e e o cursor posicionado onde você parou, de modo "
-"que você pode reiniciá-lo imediatamente."
+msgstr "Além disso, quando você abrir o programa, seu trabalho em andamento será automaticamente carregado e e o cursor posicionado onde você parou, de modo que você pode reiniciá-lo imediatamente."
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Processador de texto em tela cheia"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Escreva sem distrações"

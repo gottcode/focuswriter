@@ -1,13 +1,13 @@
-# SPDX-FileCopyrightText: 2021-2024 Graeme Gott <graeme@gottcode.org>
+# SPDX-FileCopyrightText: 2021-2025 Graeme Gott <graeme@gottcode.org>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.8.9 LANGUAGES CXX)
+project(focuswriter VERSION 1.8.10 LANGUAGES CXX)
 
-set(project_copyright "2008-2024 Graeme Gott")
+set(project_copyright "2008-2025 Graeme Gott")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -28,7 +28,7 @@ add_compile_definitions(
 	QT_NO_KEYWORDS
 	$<$<CONFIG:DEBUG>:QT_STRICT_ITERATORS>
 	$<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
-	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060700>
+	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060800>
 )
 
 # Version number
@@ -37,6 +37,72 @@ add_version_compile_definition(src/application.cpp VERSIONSTR)
 
 # Create program
 qt_add_executable(focuswriter
+	# Headers
+	src/action_manager.h
+	src/alert.h
+	src/alert_layer.h
+	src/application.h
+	src/block_stats.h
+	src/color_button.h
+	src/deltas.h
+	src/daily_progress.h
+	src/daily_progress_dialog.h
+	src/daily_progress_label.h
+	src/document.h
+	src/document_cache.h
+	src/document_watcher.h
+	src/document_writer.h
+	src/find_dialog.h
+	src/gzip.h
+	src/image_button.h
+	src/load_screen.h
+	src/locale_dialog.h
+	src/paths.h
+	src/preferences.h
+	src/preferences_dialog.h
+	src/scene_list.h
+	src/scene_model.h
+	src/session.h
+	src/session_manager.h
+	src/shortcut_edit.h
+	src/smart_quotes.h
+	src/sound.h
+	src/stack.h
+	src/stats.h
+	src/symbols_dialog.h
+	src/symbols_model.h
+	src/text_codec.h
+	src/theme.h
+	src/theme_dialog.h
+	src/theme_manager.h
+	src/theme_renderer.h
+	src/timer.h
+	src/timer_display.h
+	src/timer_manager.h
+	src/utils.h
+	src/window.h
+	src/fileformats/docx_reader.h
+	src/fileformats/docx_writer.h
+	src/fileformats/format_manager.h
+	src/fileformats/html_writer.h
+	src/fileformats/odt_reader.h
+	src/fileformats/odt_writer.h
+	src/fileformats/rtf_reader.h
+	src/fileformats/rtf_tokenizer.h
+	src/fileformats/rtf_writer.h
+	src/fileformats/txt_reader.h
+	src/spelling/abstract_dictionary.h
+	src/spelling/abstract_dictionary_provider.h
+	src/spelling/dictionary_dialog.h
+	src/spelling/dictionary_manager.h
+	src/spelling/dictionary_ref.h
+	src/spelling/highlighter.h
+	src/spelling/spell_checker.h
+	src/3rdparty/qtsingleapplication/qtsingleapplication.h
+	src/3rdparty/qtsingleapplication/qtlocalpeer.h
+	src/3rdparty/qtzip/qtzipreader.h
+	src/3rdparty/qtzip/qtzipwriter.h
+	# Sources
 	src/action_manager.cpp
 	src/alert.cpp
 	src/alert_layer.cpp
@@ -98,6 +164,7 @@ qt_add_executable(focuswriter
 	src/3rdparty/qtsingleapplication/qtsingleapplication.cpp
 	src/3rdparty/qtsingleapplication/qtlocalpeer.cpp
 	src/3rdparty/qtzip/qtzip.cpp
+	# Resources
 	resources/images/images.qrc
 	${translations_QM}
 )
@@ -133,6 +200,7 @@ qt_add_translations(focuswriter
 # Add spellchecking support
 if(APPLE)
 	target_sources(focuswriter PRIVATE
+		src/spelling/dictionary_provider_nsspellchecker.h
 		src/spelling/dictionary_provider_nsspellchecker.mm
 	)
 
@@ -144,7 +212,9 @@ elseif(WIN32)
 	target_include_directories(focuswriter PRIVATE src/3rdparty/hunspell)
 
 	target_sources(focuswriter PRIVATE
+		src/spelling/dictionary_provider_hunspell.h
 		src/spelling/dictionary_provider_hunspell.cpp
+		src/spelling/dictionary_provider_voikko.h
 		src/spelling/dictionary_provider_voikko.cpp
 		src/3rdparty/hunspell/affentry.cxx
 		src/3rdparty/hunspell/affixmgr.cxx
@@ -161,14 +231,19 @@ elseif(WIN32)
 	if (Qt6_VERSION VERSION_GREATER_EQUAL 6.5)
 		target_compile_definitions(focuswriter PRIVATE RTFCLIPBOARD)
 
-		target_sources(focuswriter PRIVATE src/fileformats/clipboard_windows.cpp)
+		target_sources(focuswriter PRIVATE
+			src/fileformats/clipboard_windows.h
+			src/fileformats/clipboard_windows.cpp
+		)
 	endif()
 else()
 	find_package(PkgConfig REQUIRED)
 	pkg_check_modules(Hunspell REQUIRED IMPORTED_TARGET hunspell)
 
 	target_sources(focuswriter PRIVATE
+		src/spelling/dictionary_provider_hunspell.h
 		src/spelling/dictionary_provider_hunspell.cpp
+		src/spelling/dictionary_provider_voikko.h
 		src/spelling/dictionary_provider_voikko.cpp
 	)
 
@@ -210,7 +285,7 @@ if(APPLE)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/mac/focuswriter.icns Resources)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/images/icons/oxygen/hicolor Resources/icons/hicolor)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/sounds Resources/sounds)
-	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/symbols/symbols1510.dat Resources)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/symbols/symbols1600.dat Resources)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/themes Resources/themes)
 	bundle_translations(focuswriter "${translations_QM}")
 elseif(WIN32)
@@ -240,10 +315,11 @@ else()
 	install(DIRECTORY resources/images/icons/oxygen/hicolor DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter/icons)
 	install(DIRECTORY resources/sounds DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(DIRECTORY resources/themes DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
-	install(FILES resources/symbols/symbols1510.dat DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
+	install(FILES resources/symbols/symbols1600.dat DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(FILES resources/unix/focuswriter.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1 COMPONENT doc)
-	install(FILES resources/unix/focuswriter.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
-	install(FILES resources/unix/focuswriter.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+
+	include(cmake/TranslateMetainfo.cmake)
+	process_and_install_metainfo(PO_DIR ${CMAKE_SOURCE_DIR}/resources/unix/po)
 endif()
 
 set_property(SOURCE src/main.cpp APPEND PROPERTY COMPILE_DEFINITIONS FOCUSWRITER_DATADIR="${datadir}")

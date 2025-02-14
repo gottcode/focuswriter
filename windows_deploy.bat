@@ -4,7 +4,7 @@
 
 SET SRCDIR=..\focuswriter
 SET APP=FocusWriter
-SET VERSION=1.8.9
+SET VERSION=1.8.10
 
 ECHO Copying executable
 MKDIR %SRCDIR%\%APP%
@@ -33,7 +33,7 @@ MKDIR %SOUNDS%
 COPY resources\sounds\* %SOUNDS% >nul
 
 ECHO Copying symbols
-COPY resources\symbols\symbols1510.dat %APP% >nul
+COPY resources\symbols\symbols1600.dat %APP% >nul
 
 ECHO Copying themes
 SET THEMES=%APP%\themes

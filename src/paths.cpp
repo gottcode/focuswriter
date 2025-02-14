@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2013-2022 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2013-2025 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -32,7 +32,7 @@ void Paths::load(const QString& appdir, QString& userdir, const QString& datadir
 	Sound::setPath(datadir + "/sounds");
 
 	// Set unicode names path
-	SymbolsModel::setPath(datadir + "/symbols1510.dat");
+	SymbolsModel::setPath(datadir + "/symbols1600.dat");
 
 	// Find user data dir if not in portable mode
 	if (userdir.isEmpty()) {
@@ -94,12 +94,14 @@ void Paths::load(const QString& appdir, QString& userdir, const QString& datadir
 	}
 	DictionaryManager::setPath(dir.absoluteFilePath("Dictionaries"));
 
-	QDir::setSearchPaths("dict", {
-		DictionaryManager::path()
+	QStringList dictdirs = qEnvironmentVariable("DICPATH").split(QDir::listSeparator(), Qt::SkipEmptyParts);
 #ifdef Q_OS_WIN
-		, appdir + "/dictionaries"
+	dictdirs.append(appdir + "/dictionaries");
 #endif
-	});
+	dictdirs.append(DictionaryManager::path());
+	std::reverse(dictdirs.begin(), dictdirs.end());
+
+	QDir::setSearchPaths("dict", dictdirs);
 
 	// Set location for daily progress
 	DailyProgress::setPath(dir.absoluteFilePath("DailyProgress.ini"));

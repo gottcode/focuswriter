@@ -1870,7 +1870,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteke za odpreti v trenutni seji.</translation>
     </message>
 </context>
 </TS>

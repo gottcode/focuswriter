@@ -1,69 +1,58 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Graeme Gott
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Corey Mardix, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: FocusWriter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 20:43+0000\n"
+"POT-Creation-Date: 2014-03-25 17:42-0400\n"
 "PO-Revision-Date: 2017-09-22 10:01+0000\n"
 "Last-Translator: Corey Mardix\n"
-"Language-Team: Esperanto (http://www.transifex.com/gottcode/focuswriter/"
-"language/eo/)\n"
-"Language: eo\n"
+"Language-Team: Esperanto (http://www.transifex.com/gottcode/focuswriter/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../focuswriter.appdata.xml.in:6 ../focuswriter.desktop.in:4
-msgid "FocusWriter"
-msgstr "FocusWriter"
-
-#: ../focuswriter.appdata.xml.in:7
+#: ../focuswriter.appdata.xml.in.h:1
 msgid "Fullscreen word processor"
 msgstr "Plenekrana tekstoprilaborilo"
 
-#: ../focuswriter.appdata.xml.in:10
+#: ../focuswriter.appdata.xml.in.h:2
 msgid ""
-"FocusWriter is a simple, distraction-free word processor. It utilizes a hide-"
-"away interface that you access by moving your mouse to the edges of the "
-"screen, allowing the program to have a familiar look and feel to it while "
+"FocusWriter is a simple, distraction-free word processor. It utilizes a "
+"hide-away interface that you access by moving your mouse to the edges of the"
+" screen, allowing the program to have a familiar look and feel to it while "
 "still getting out of the way so that you can immerse yourself in your work."
-msgstr ""
-"FocusWriter estas simpla senmalatentiga tekstoprilaborilo. Ĝi uzas kaŝatan "
-"interfacon, kion vi atingas per movi vian muson al la randoj de la ekrano. "
-"Tiel la programaro eblas havi kutiman fasadon, dum ankoraŭ estas "
-"malobstrukciĝante por ke vi povas ĉirkaŭi vin en via laboro."
+msgstr "FocusWriter estas simpla senmalatentiga tekstoprilaborilo. Ĝi uzas kaŝatan interfacon, kion vi atingas per movi vian muson al la randoj de la ekrano. Tiel la programaro eblas havi kutiman fasadon, dum ankoraŭ estas malobstrukciĝante por ke vi povas ĉirkaŭi vin en via laboro."
 
-#: ../focuswriter.appdata.xml.in:11
+#: ../focuswriter.appdata.xml.in.h:3
 msgid ""
-"FocusWriter allows you to customize your environment by creating themes that "
-"control the font, colors, and background image to add ambiance. It also "
+"FocusWriter allows you to customize your environment by creating themes that"
+" control the font, colors, and background image to add ambiance. It also "
 "features on-the-fly updating statistics, daily goals, multiple open "
 "documents, spell-checking, and much more."
-msgstr ""
-"FocusWriter ebligas vin agordi vian verkejon per kreado de etosoj, kiuj "
-"agordas la tiparon, kolorojn, kaj fonan bildon por ŝanĝi etoson. Ĝi ankaŭ "
-"havas funkciojn por tuje ĝisdatiganta statistiko, ĉiutagaj celoj, plure da "
-"malfermataj dokumentoj, literumada kontrolo, kaj multe pli."
+msgstr "FocusWriter ebligas vin agordi vian verkejon per kreado de etosoj, kiuj agordas la tiparon, kolorojn, kaj fonan bildon por ŝanĝi etoson. Ĝi ankaŭ havas funkciojn por tuje ĝisdatiganta statistiko, ĉiutagaj celoj, plure da malfermataj dokumentoj, literumada kontrolo, kaj multe pli."
 
-#: ../focuswriter.appdata.xml.in:12
+#: ../focuswriter.appdata.xml.in.h:4
 msgid ""
 "Additionally, when you open the program your current work in progress will "
 "automatically load and position you where you last left off so that you can "
 "immediately jump back in."
-msgstr ""
-"Plue, kiam vi lanĉas la programaron, via lasta malpreta verko aŭtomate "
-"ŝarĝas kaj allokas vin, kie vi laste ĉesis, por ke vi povas daŭri verki tuj."
+msgstr "Plue, kiam vi lanĉas la programaron, via lasta malpreta verko aŭtomate ŝarĝas kaj allokas vin, kie vi laste ĉesis, por ke vi povas daŭri verki tuj."
 
-#: ../focuswriter.desktop.in:5
+#: ../focuswriter.desktop.in.h:1
+msgid "FocusWriter"
+msgstr "FocusWriter"
+
+#: ../focuswriter.desktop.in.h:2
 msgid "Fullscreen Word Processor"
 msgstr "Plenekrana Tekstoprilaborilo"
 
-#: ../focuswriter.desktop.in:6
+#: ../focuswriter.desktop.in.h:3
 msgid "Write without distractions"
 msgstr "Skribu sen malatentigoj"
