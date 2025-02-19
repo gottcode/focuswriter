@@ -36,7 +36,7 @@ add_compile_options(
 
 # Version number
 include(cmake/AddVersionCompileDefinition.cmake)
-add_version_compile_definition(src/application.cpp VERSIONSTR)
+add_version_compile_definition(src/main.cpp VERSIONSTR)
 
 # Create program
 qt_add_executable(focuswriter
@@ -44,7 +44,6 @@ qt_add_executable(focuswriter
 	src/action_manager.h
 	src/alert.h
 	src/alert_layer.h
-	src/application.h
 	src/block_stats.h
 	src/color_button.h
 	src/deltas.h
@@ -101,15 +100,12 @@ qt_add_executable(focuswriter
 	src/spelling/dictionary_ref.h
 	src/spelling/highlighter.h
 	src/spelling/spell_checker.h
-	src/3rdparty/qtsingleapplication/qtsingleapplication.h
-	src/3rdparty/qtsingleapplication/qtlocalpeer.h
 	src/3rdparty/qtzip/qtzipreader.h
 	src/3rdparty/qtzip/qtzipwriter.h
 	# Sources
 	src/action_manager.cpp
 	src/alert.cpp
 	src/alert_layer.cpp
-	src/application.cpp
 	src/block_stats.cpp
 	src/color_button.cpp
 	src/deltas.cpp
@@ -164,8 +160,6 @@ qt_add_executable(focuswriter
 	src/spelling/dictionary_manager.cpp
 	src/spelling/highlighter.cpp
 	src/spelling/spell_checker.cpp
-	src/3rdparty/qtsingleapplication/qtsingleapplication.cpp
-	src/3rdparty/qtsingleapplication/qtlocalpeer.cpp
 	src/3rdparty/qtzip/qtzip.cpp
 	# Resources
 	resources/images/images.qrc
@@ -176,7 +170,6 @@ target_include_directories(focuswriter PRIVATE
 	src
 	src/fileformats
 	src/spelling
-	src/3rdparty/qtsingleapplication
 	src/3rdparty/qtzip
 )
 
@@ -251,6 +244,23 @@ else()
 	)
 
 	target_link_libraries(focuswriter PRIVATE PkgConfig::Hunspell)
+endif()
+
+# Make single instance
+find_package(KDSingleApplication-qt6)
+if(TARGET KDAB::kdsingleapplication)
+	target_link_libraries(focuswriter PRIVATE KDAB::kdsingleapplication)
+else()
+	message(STATUS "Using 3rdparty KDSingleApplication")
+
+	target_compile_definitions(focuswriter PRIVATE KDSINGLEAPPLICATION_STATIC_BUILD)
+
+	target_include_directories(focuswriter PRIVATE src/3rdparty/kdsingleapplication)
+
+	target_sources(focuswriter PRIVATE
+		src/3rdparty/kdsingleapplication/kdsingleapplication.cpp
+		src/3rdparty/kdsingleapplication/kdsingleapplication_localsocket.cpp
+	)
 endif()
 
 # Optimize build

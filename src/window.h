@@ -41,7 +41,7 @@ public:
 	bool saveDocuments(QSettings* session);
 
 public Q_SLOTS:
-	void addDocuments(const QString& documents);
+	void addDocuments(const QByteArray& documents);
 
 protected:
 	void changeEvent(QEvent* event) override;

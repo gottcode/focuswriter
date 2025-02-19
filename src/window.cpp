@@ -554,11 +554,14 @@ bool Window::saveDocuments(QSettings* session)
 
 //-----------------------------------------------------------------------------
 
-void Window::addDocuments(const QString& documents)
+void Window::addDocuments(const QByteArray& documents)
 {
-	const QStringList files = documents.split(QLatin1String("\n"), Qt::SkipEmptyParts);
+	const QStringList files = QString::fromUtf8(documents).split(QLatin1String("\n"), Qt::SkipEmptyParts);
 	if (!files.isEmpty()) {
 		queueDocuments(files);
+	} else {
+		activateWindow();
+		raise();
 	}
 }
 
