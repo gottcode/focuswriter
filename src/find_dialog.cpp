@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2008-2020 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2008-2025 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -53,14 +53,17 @@ FindDialog::FindDialog(Stack* documents)
 
 	m_find_button = buttons->addButton(tr("&Find"), QDialogButtonBox::ActionRole);
 	m_find_button->setEnabled(false);
+	m_find_button->setDefault(true);
 	connect(m_find_button, &QPushButton::clicked, this, qOverload<>(&FindDialog::find));
 
 	m_replace_button = buttons->addButton(tr("&Replace"), QDialogButtonBox::ActionRole);
 	m_replace_button->setEnabled(false);
+	m_replace_button->setAutoDefault(false);
 	connect(m_replace_button, &QAbstractButton::clicked, this, &FindDialog::replace);
 
 	m_replace_all_button = buttons->addButton(tr("Replace &All"), QDialogButtonBox::ActionRole);
 	m_replace_all_button->setEnabled(false);
+	m_replace_all_button->setAutoDefault(false);
 	connect(m_replace_all_button, &QPushButton::clicked, this, &FindDialog::replaceAll);
 
 	if (!buttons->button(QDialogButtonBox::Close)->icon().isNull()) {
