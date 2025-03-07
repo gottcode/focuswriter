@@ -49,6 +49,13 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.11" date="2025-03-07">
+      <description>
+        <ul>
+          <li>FIXED: Find button was not default in find dialog</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.10" date="2025-02-14">
       <description>
         <ul>
