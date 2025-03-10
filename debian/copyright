@@ -5,16 +5,16 @@ Source: https://gottcode.org/focuswriter/
         https://github.com/gottcode/focuswriter
 
 Files: *
-Copyright: 2008-2023, Graeme Gott <graeme@gottcode.org>
+Copyright: 2008–2025, Graeme Gott <graeme@gottcode.org>
 License: GPL-3+
 
-Files: resources/unix/focuswriter.appdata.xml
-Copyright: 2014-2023, Graeme Gott <graeme@gottcode.org>
+Files: resources/unix/focuswriter.appdata.xml.in
+Copyright: 2014–2025, Graeme Gott <graeme@gottcode.org>
 License: CC0-1.0
 
 Files: debian/*
-Copyright: 2010-2023, Graeme Gott <graeme@gottcode.org>
-           2010-2022, Barak A. Pearlmutter <bap@debian.org>
+Copyright: 2010–2025, Graeme Gott <graeme@gottcode.org>
+	   and Barak A. Pearlmutter <bap@debian.org>
 License: GPL-3+
 
 License: GPL-3+
