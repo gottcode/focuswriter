@@ -377,7 +377,7 @@ void SymbolsDialog::symbolClicked(const QModelIndex& symbol)
 		m_symbol_preview->setSceneRect(m_symbol_preview_item->boundingRect());
 		m_symbol_name->setText(name);
 		m_symbol_name->setToolTip(name);
-		m_symbol_code->setText(QString("<tt>U+%1</tt>").arg(unicode, 4, 16, QLatin1Char('0')).toUpper());
+		m_symbol_code->setText(QString("<tt>U+%1</tt>").arg(static_cast<quint32>(unicode), 4, 16, QLatin1Char('0')).toUpper());
 		m_symbol_shortcut->setShortcut(ActionManager::instance()->shortcut(unicode));
 
 		// Select symbol in recent list, and clear any other selections
