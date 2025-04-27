@@ -50,7 +50,7 @@ ActionManager::ActionManager(QWidget* parent)
 	QHashIterator<QString, QVariant> defiter(defshortcuts);
 	while (defiter.hasNext()) {
 		defiter.next();
-		if (!shortcuts.contains(defiter.key())) {
+		if (!shortcuts.contains(defiter.key()) && shortcuts.key(defiter.value()).isEmpty()) {
 			shortcuts.insert(defiter.key(), defiter.value());
 		}
 	}
