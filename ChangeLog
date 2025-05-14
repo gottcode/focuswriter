@@ -1,3 +1,10 @@
+1.8.12
+------
+* FIXED: Compile error with QString::arg overload for char32_t
+* FIXED: Conflict when creating default symbol shortcuts
+* FIXED: Columns in symbols dialog were very wide
+* Translation updates: Swedish
+
 1.8.11
 ------
 * FIXED: Find button was not default in find dialog.
