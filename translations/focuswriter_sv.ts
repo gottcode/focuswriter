@@ -9,11 +9,11 @@
     </message>
     <message>
         <source>Collapse</source>
-        <translation>Fäll in</translation>
+        <translation>Komprimera</translation>
     </message>
     <message>
         <source>Expand</source>
-        <translation>Fäll ut</translation>
+        <translation>Expandera</translation>
     </message>
 </context>
 <context>
