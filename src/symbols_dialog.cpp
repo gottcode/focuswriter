@@ -146,6 +146,7 @@ SymbolsDialog::SymbolsDialog(QWidget* parent)
 	m_view->setSelectionMode(QAbstractItemView::SingleSelection);
 	m_view->setTabKeyNavigation(false);
 	m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+	m_view->horizontalHeader()->setDefaultSectionSize(0);
 	m_view->horizontalHeader()->setSectionsClickable(false);
 	m_view->horizontalHeader()->setSectionsMovable(false);
 	m_view->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
