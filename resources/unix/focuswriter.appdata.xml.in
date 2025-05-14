@@ -49,6 +49,16 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.12" date="2025-05-14">
+      <description>
+        <ul>
+          <li>FIXED: Compile error with QString::arg overload for char32_t</li>
+          <li>FIXED: Conflict when creating default symbol shortcuts</li>
+          <li>FIXED: Columns in symbols dialog were very wide</li>
+          <li>Translation updates: Swedish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.11" date="2025-03-07">
       <description>
         <ul>
