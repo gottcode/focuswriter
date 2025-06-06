@@ -311,6 +311,13 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 		textCursor().insertBlock();
 		event->accept();
 		ensureCursorVisible();
+
+		// Reset from headings to normal
+		QTextCursor cursor = textCursor();
+		QTextBlockFormat block_format = cursor.blockFormat();
+		block_format.setProperty(QTextFormat::UserProperty, 0);
+		cursor.setBlockFormat(block_format);
+
 		return;
 	}
 
