@@ -232,7 +232,7 @@ void DocxWriter::writeParagraphProperties(const QTextBlockFormat& block_format, 
 {
 	bool empty = true;
 
-	const int heading = block_format.property(QTextFormat::UserProperty).toInt();
+	const int heading = block_format.headingLevel();
 	if (heading) {
 		writePropertyElement(QStringLiteral("w:pPr"), empty);
 		m_xml.writeEmptyElement(QStringLiteral("w:pStyle"));

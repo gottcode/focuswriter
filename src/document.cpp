@@ -315,7 +315,7 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 		// Reset from headings to normal
 		QTextCursor cursor = textCursor();
 		QTextBlockFormat block_format = cursor.blockFormat();
-		block_format.setProperty(QTextFormat::UserProperty, 0);
+		block_format.setHeadingLevel(0);
 		cursor.setBlockFormat(block_format);
 
 		return;
@@ -805,7 +805,7 @@ void Document::print(QPrinter* printer)
 
 	// Apply headings
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
-		const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+		const int heading = block.blockFormat().headingLevel();
 		if (!heading) {
 			continue;
 		}

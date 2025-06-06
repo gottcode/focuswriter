@@ -173,7 +173,7 @@ void OdtReader::readStyle()
 
 	if (name.startsWith("Head")) {
 		const int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
-		style.block_format.setProperty(QTextFormat::UserProperty, heading);
+		style.block_format.setHeadingLevel(heading);
 	}
 
 	while (m_xml.readNextStartElement()) {
@@ -260,7 +260,7 @@ void OdtReader::readStyleParagraphProperties(QTextBlockFormat& format)
 	if (attributes.hasAttribute(QLatin1String("style:default-outline-level"))) {
 		const QString level = attributes.value(QLatin1String("style:default-outline-level")).toString();
 		const int heading = qBound(1, level.toInt(), 6);
-		format.setProperty(QTextFormat::UserProperty, heading);
+		format.setHeadingLevel(heading);
 	}
 
 	m_xml.skipCurrentElement();
@@ -369,12 +369,12 @@ void OdtReader::readParagraph(int level)
 	}
 
 	if (level == -1) {
-		level = qBound(1, block_format.property(QTextFormat::UserProperty).toInt(), 6);
+		level = qBound(1, block_format.headingLevel(), 6);
 	} else if (level == 0) {
-		level = qBound(0, block_format.property(QTextFormat::UserProperty).toInt(), 6);
+		level = qBound(0, block_format.headingLevel(), 6);
 	}
 	if (level) {
-		block_format.setProperty(QTextFormat::UserProperty, level);
+		block_format.setHeadingLevel(level);
 		char_format = QTextCharFormat();
 	}
 

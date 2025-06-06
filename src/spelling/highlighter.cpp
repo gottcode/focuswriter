@@ -128,7 +128,7 @@ bool Highlighter::eventFilter(QObject* watched, QEvent* event)
 void Highlighter::highlightBlock(const QString& text)
 {
 	QTextCharFormat style;
-	const int heading = currentBlock().blockFormat().property(QTextFormat::UserProperty).toInt();
+	const int heading = currentBlock().blockFormat().headingLevel();
 	if (heading) {
 		style.setProperty(QTextFormat::FontSizeAdjustment, 4 - heading);
 		style.setFontWeight(QFont::Bold);

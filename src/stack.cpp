@@ -440,7 +440,7 @@ void Stack::setBlockHeading(int heading)
 	m_current_document->setRichText(true);
 	QTextCursor cursor = m_current_document->text()->textCursor();
 	QTextBlockFormat block_format = cursor.blockFormat();
-	block_format.setProperty(QTextFormat::UserProperty, heading);
+	block_format.setHeadingLevel(heading);
 	cursor.setBlockFormat(block_format);
 }
 

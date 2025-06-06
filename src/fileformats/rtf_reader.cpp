@@ -668,7 +668,7 @@ void RtfReader::setFontCharset(qint32 value)
 
 void RtfReader::setOutlineLevel(qint32 value)
 {
-	m_state.block_format.setProperty(QTextFormat::UserProperty, qBound(1, value + 1, 6));
+	m_state.block_format.setHeadingLevel(qBound(1, value + 1, 6));
 	m_cursor.mergeBlockFormat(m_state.block_format);
 }
 
@@ -733,7 +733,7 @@ void RtfReader::setStyleName(const QString& style)
 		heading = qBound(1, style.at(style.length() - 2).digitValue(), 6);
 	}
 	if (heading != -1) {
-		m_styles[m_state.style].block_format.setProperty(QTextFormat::UserProperty, heading);
+		m_styles[m_state.style].block_format.setHeadingLevel(heading);
 	}
 }
 
@@ -744,7 +744,7 @@ void RtfReader::setStyleEnd()
 	Style& style = m_styles[m_state.style];
 	style.block_format.merge(m_state.block_format);
 	style.char_format.merge(m_state.char_format);
-	if (style.block_format.property(QTextFormat::UserProperty).toInt() != 0) {
+	if (style.block_format.headingLevel() != 0) {
 		style.char_format.setFontWeight(QFont::Normal);
 		style.functions = &heading_functions;
 	} else {

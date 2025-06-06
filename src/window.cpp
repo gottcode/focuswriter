@@ -978,7 +978,7 @@ void Window::updateFormatAlignmentActions()
 		m_actions["FormatAlignJustify"]->setChecked(true);
 	}
 
-	const int heading = format.property(QTextFormat::UserProperty).toInt();
+	const int heading = format.headingLevel();
 	m_headings_actions->actions().at(heading)->setChecked(true);
 }
 

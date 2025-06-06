@@ -211,7 +211,7 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
 		index = block.blockFormatIndex();
 		if (!paragraph_styles.contains(index)) {
-			const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+			const int heading = block.blockFormat().headingLevel();
 			if (!heading) {
 				paragraph_styles.append(index);
 			} else {
@@ -341,7 +341,7 @@ void OdtWriter::writeBody(const QTextDocument* document)
 	m_xml.writeStartElement(QStringLiteral("office:text"));
 
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
-		const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+		const int heading = block.blockFormat().headingLevel();
 		if (!heading) {
 			m_xml.writeStartElement(QStringLiteral("text:p"));
 		} else {
