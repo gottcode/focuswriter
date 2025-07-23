@@ -62,8 +62,6 @@ void OdtReader::readData(QIODevice* device)
 	} else {
 		readDataUncompressed(device);
 	}
-
-	QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------
@@ -390,8 +388,6 @@ void OdtReader::readParagraph(int level)
 	// Read paragraph text
 	readText();
 	m_in_block = false;
-
-	QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------
