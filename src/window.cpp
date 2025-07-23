@@ -403,6 +403,7 @@ void Window::addDocuments(const QStringList& files, const QStringList& datafiles
 	if (show_load) {
 		m_load_screen->setText(QString());
 		setCursor(Qt::WaitCursor);
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 
 	// Remember current file and if it is untitled and unmodified

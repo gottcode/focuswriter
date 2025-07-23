@@ -139,7 +139,6 @@ char RtfTokenizer::next()
 		}
 		m_buffer.resize(size);
 		m_position = 0;
-		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 	return m_buffer.at(m_position);
 }

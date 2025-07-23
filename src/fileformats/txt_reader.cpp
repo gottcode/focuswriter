@@ -6,7 +6,6 @@
 
 #include "txt_reader.h"
 
-#include <QCoreApplication>
 #include <QTextStream>
 
 //-----------------------------------------------------------------------------
@@ -22,11 +21,7 @@ void TxtReader::readData(QIODevice* device)
 	m_cursor.beginEditBlock();
 
 	QTextStream stream(device);
-
-	while (!stream.atEnd()) {
-		m_cursor.insertText(stream.read(0x4000));
-		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-	}
+	m_cursor.insertText(stream.readAll());
 
 	m_cursor.endEditBlock();
 }
