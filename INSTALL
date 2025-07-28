@@ -4,6 +4,8 @@ Installation
 Open a terminal and browse into the extracted folder.
 
 Linux:
+  0. Install dependencies. On Ubuntu and Debian this can be done with ./scripts/install-dependencies-debian-ubuntu.sh
+
   1. `cmake -B build -S . -DCMAKE_INSTALL_PREFIX=/usr' to create a location
      for the build and then configure the program. There are more options
      you can pass to CMake, see below for details.
