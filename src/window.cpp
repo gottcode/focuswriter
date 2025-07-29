@@ -1358,6 +1358,7 @@ void Window::initMenus()
 	for (int i = 0; i < 7; ++i) {
 		headings[i]->setCheckable(true);
 		headings[i]->setData(i);
+		headings[i]->setShortcut(QKeySequence(Qt::CTRL | Qt::ALT | (Qt::Key_0 + i)));
 		m_headings_actions->addAction(headings[i]);
 		connect(headings[i], &QAction::triggered, this, [this, i] { m_documents->setBlockHeading(i); });
 	}
