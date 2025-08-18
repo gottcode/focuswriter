@@ -49,6 +49,13 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.8.13" date="2025-08-18">
+      <description>
+        <ul>
+          <li>FIXED: Crash when dragging justified text</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.12" date="2025-05-14">
       <description>
         <ul>

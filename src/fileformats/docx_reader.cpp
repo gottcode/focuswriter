@@ -85,8 +85,6 @@ void DocxReader::readData(QIODevice* device)
 
 	// Close archive
 	zip.close();
-
-	QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------
@@ -291,8 +289,6 @@ void DocxReader::readParagraph()
 	if (changedstate) {
 		m_current_style = m_previous_styles.pop();
 	}
-
-	QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 //-----------------------------------------------------------------------------
