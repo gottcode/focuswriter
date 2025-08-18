@@ -1,3 +1,7 @@
+1.8.13
+------
+* FIXED: Crash when dragging justified text
+
 1.8.12
 ------
 * FIXED: Compile error with QString::arg overload for char32_t
