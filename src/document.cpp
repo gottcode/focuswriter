@@ -1146,6 +1146,7 @@ bool Document::eventFilter(QObject* watched, QEvent* event)
 	} else if (event->type() == QEvent::KeyPress && watched == m_text) {
 		m_daily_progress->increaseTime();
 		if (SmartQuotes::isEnabled() && SmartQuotes::insert(m_text, static_cast<QKeyEvent*>(event))) {
+			Sound::play(Qt::Key_Any);
 			return true;
 		}
 	} else if (event->type() == QEvent::Drop) {
