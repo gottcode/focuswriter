@@ -21,7 +21,7 @@
   <url type="homepage">https://gottcode.org/focuswriter/</url>
   <url type="bugtracker">https://gottcode.org/focuswriter/bugs/</url>
   <url type="donation">https://gottcode.org/tip/</url>
-  <url type="translate">https://www.transifex.com/gottcode/focuswriter/</url>
+  <url type="translate">https://app.transifex.com/gottcode/focuswriter/</url>
 
   <developer id="org.gottcode">
     <name translatable="no">Graeme Gott</name>
