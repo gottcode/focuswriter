@@ -1,2 +1,4 @@
-version=4
-https://github.com/gottcode/@PACKAGE@/tags .*/v?@ANY_VERSION@@ARCHIVE_EXT@
+Version: 5
+Template: GitHub
+Owner: gottcode
+Project: @PACKAGE@

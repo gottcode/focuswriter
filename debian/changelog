@@ -1,3 +1,9 @@
+focuswriter (1.8.13-2) UNRELEASED; urgency=medium
+
+  * Update debian/watch file to version 5
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 14 Dec 2025 15:13:13 +0000
+
 focuswriter (1.8.13-1) unstable; urgency=medium
 
   [ Graeme Gott ]
