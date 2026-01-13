@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2012-2025 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2012-2026 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -289,5 +289,5 @@ int main(int argc, char** argv)
 {
 	QCoreApplication app(argc, argv);
 
-	downloadAndParse("16.0.0", QDataStream::Qt_6_2);
+	downloadAndParse("17.0.0", QDataStream::Qt_6_2);
 }
