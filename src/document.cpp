@@ -1438,9 +1438,9 @@ void Document::calculateWordCount()
 
 	// Determine document stats by adding cached stats to current block stats
 	m_document_stats = m_cached_stats;
-	const QTextBlockUserData* data = m_text->document()->findBlockByNumber(m_cached_current_block).userData();
-	if (data) {
-		m_document_stats.append(static_cast<const BlockStats*>(data));
+	const QTextBlockUserData* stats = m_text->document()->findBlockByNumber(m_cached_current_block).userData();
+	if (stats) {
+		m_document_stats.append(static_cast<const BlockStats*>(stats));
 	}
 	m_document_stats.calculateWordCount(m_wordcount_type);
 	m_document_stats.calculatePageCount(m_page_type, m_page_amount);
@@ -1495,18 +1495,18 @@ QString Document::getSaveFileName(const QString& title)
 		static const QRegularExpression regex("\\*(\\.\\w+)");
 		QRegularExpressionMatchIterator i = regex.globalMatch(selected);
 		bool append_extension = i.hasNext();
-		QStringList types;
+		QStringList extensions;
 		while (i.hasNext()) {
-			const QString type = i.next().captured(1);
-			types << type;
+			const QString extension = i.next().captured(1);
+			extensions << extension;
 
-			if (filename.endsWith(type)) {
+			if (filename.endsWith(extension)) {
 				append_extension = false;
 				break;
 			}
 		}
 		if (append_extension) {
-			filename.append(types.constFirst());
+			filename.append(extensions.constFirst());
 		}
 
 		// Handle rich text in plain text file

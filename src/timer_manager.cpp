@@ -224,8 +224,8 @@ void TimerManager::timerChanged(Timer* timer)
 		m_timers.move(index, new_index);
 
 		// Re-add all timers to widget so that tab order will be correct
-		for (Timer* timer : std::as_const(m_timers)) {
-			timer->setParent(nullptr);
+		for (Timer* t : std::as_const(m_timers)) {
+			t->setParent(nullptr);
 		}
 		for (int i = 0, count = m_timers.count(); i < count; ++i) {
 			m_timers_layout->insertWidget(i, m_timers[i]);

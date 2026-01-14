@@ -250,10 +250,10 @@ void SpellChecker::check()
 			// Show suggestions
 			m_suggestion->clear();
 			m_suggestions->clear();
-			const QStringList words = m_dictionary.suggestions(m_word);
-			if (!words.isEmpty()) {
-				for (const QString& word : words) {
-					m_suggestions->addItem(word);
+			const QStringList suggestions = m_dictionary.suggestions(m_word);
+			if (!suggestions.isEmpty()) {
+				for (const QString& suggestion : suggestions) {
+					m_suggestions->addItem(suggestion);
 				}
 				m_suggestions->setCurrentRow(0);
 			}

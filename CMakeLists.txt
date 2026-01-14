@@ -30,6 +30,9 @@ add_compile_definitions(
 	$<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
 	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x061000>
 )
+add_compile_options(
+	$<$<CONFIG:DEBUG>:-Wshadow>
+)
 
 # Version number
 include(cmake/AddVersionCompileDefinition.cmake)

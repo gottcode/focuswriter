@@ -207,9 +207,8 @@ void OdtWriter::writeAutomaticStyles(const QTextDocument* document)
 	// Find all used styles
 	QList<int> text_styles;
 	QList<int> paragraph_styles;
-	int index = 0;
 	for (QTextBlock block = document->begin(); block.isValid(); block = block.next()) {
-		index = block.blockFormatIndex();
+		int index = block.blockFormatIndex();
 		if (!paragraph_styles.contains(index)) {
 			const int heading = block.blockFormat().headingLevel();
 			if (!heading) {
