@@ -13,6 +13,7 @@ Build-Depends: debhelper-compat (= 13),
   qt6-l10n-tools,
   qt6-multimedia-dev,
   libhunspell-dev,
+  libkdsingleapplication-qt6-dev,
   pkgconf,
   zlib1g-dev
 Standards-Version: 4.7.2
