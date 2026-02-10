@@ -1,3 +1,10 @@
+focuswriter (1.9.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add dependency on libkdsingleapplcation-qt6
+
+ -- Graeme Gott <graeme@gottcode.org>  Tue, 10 Feb 2026 15:30:29 +0000
+
 focuswriter (1.8.13-2) UNRELEASED; urgency=medium
 
   * Update debian/watch file to version 5
