@@ -1,19 +1,21 @@
 /*
-	SPDX-FileCopyrightText: 2008-2022 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2008 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
 
-#include "application.h"
 #include "locale_dialog.h"
 #include "paths.h"
 #include "theme.h"
 #include "window.h"
 
+#include <QApplication>
 #include <QCommandLineParser>
 #include <QDir>
 #include <QFileInfo>
 #include <QSettings>
+
+#include <KDSingleApplication>
 
 #ifdef RTFCLIPBOARD
   #ifdef Q_OS_WIN
@@ -23,7 +25,24 @@
 
 int main(int argc, char** argv)
 {
-	Application app(argc, argv);
+	QApplication app(argc, argv);
+	app.setApplicationName("FocusWriter");
+	app.setApplicationVersion(VERSIONSTR);
+	app.setApplicationDisplayName(Window::tr("FocusWriter"));
+	app.setOrganizationDomain("gottcode.org");
+	app.setOrganizationName("GottCode");
+#if !defined(Q_OS_WIN) && !defined(Q_OS_MAC)
+	app.setWindowIcon(QIcon::fromTheme("focuswriter", QIcon(":/focuswriter.png")));
+	app.setDesktopFileName("focuswriter");
+#endif
+
+#ifndef Q_OS_MAC
+	app.setAttribute(Qt::AA_DontUseNativeMenuBar);
+	app.setAttribute(Qt::AA_DontShowIconsInMenus, !QSettings().value("Window/MenuIcons", false).toBool());
+#else
+	app.setAttribute(Qt::AA_DontShowIconsInMenus, true);
+#endif
+
 #ifdef RTFCLIPBOARD
 	RtfClipboard clipboard;
 #endif
@@ -60,8 +79,11 @@ int main(int argc, char** argv)
 	parser.process(app);
 	const QStringList files = parser.positionalArguments();
 
-	if (app.isRunning()) {
-		app.sendMessage(files.join(QLatin1String("\n")));
+	// Force single instance
+	KDSingleApplication kdsa("org.gottcode.FocusWriter");
+	if (!kdsa.isPrimaryInstance()) {
+		const QString list = files.join(QLatin1String("\n"));
+		kdsa.sendMessage(list.toUtf8());
 		return 0;
 	}
 
@@ -94,9 +116,8 @@ int main(int argc, char** argv)
 	}
 
 	// Create main window
-	if (!app.createWindow(files)) {
-		return 0;
-	}
+	Window* window = new Window(files);
+	Window::connect(&kdsa, &KDSingleApplication::messageReceived, window, qOverload<const QByteArray&>(&Window::addDocuments), Qt::QueuedConnection);
 
 	return app.exec();
 }

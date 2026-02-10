@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2013-2020 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2013 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -158,11 +158,11 @@ QStringList DictionaryVoikko::suggestions(const QString& word) const
 	char** suggestions = voikkoSuggestCstr(m_handle, word.toUtf8().constData());
 	if (suggestions) {
 		for (size_t i = 0; suggestions[i]; ++i) {
-			QString word = QString::fromUtf8(suggestions[i]);
+			QString suggestion = QString::fromUtf8(suggestions[i]);
 			if (SmartQuotes::isEnabled()) {
-				SmartQuotes::replace(word);
+				SmartQuotes::replace(suggestion);
 			}
-			result.append(word);
+			result.append(suggestion);
 		}
 		voikkoFreeCstrArray(suggestions);
 	}

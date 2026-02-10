@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2008-2017 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2008 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -41,7 +41,7 @@ public:
 	bool saveDocuments(QSettings* session);
 
 public Q_SLOTS:
-	void addDocuments(const QString& documents);
+	void addDocuments(const QByteArray& documents);
 
 protected:
 	void changeEvent(QEvent* event) override;

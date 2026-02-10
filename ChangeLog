@@ -1,3 +1,13 @@
+1.9.0
+-----
+* FIXED: Did not play sound effects for smart quotes.
+* Added keyboard shortcuts for headings.
+* Clears headings when pressing enter.
+* Replaced shadowed variable names.
+* Switched to KDSingleApplication.
+* Updated link to translations.
+* Translation updates: Swedish.
+
 1.8.13
 ------
 * FIXED: Crash when dragging justified text

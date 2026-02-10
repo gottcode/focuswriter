@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2012-2022 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2012 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -84,9 +84,9 @@ void SceneModel::moveScenes(QList<int> scenes, int row)
 	int position = 0;
 	if ((row < m_scenes.count()) && (row > -1)) {
 		const Scene& scene = m_scenes.at(row);
-		const QTextBlock block = m_document->document()->findBlockByNumber(scene.block_number);
-		if (block.userData() == scene.stats) {
-			position = block.position();
+		const QTextBlock scene_block = m_document->document()->findBlockByNumber(scene.block_number);
+		if (scene_block.userData() == scene.stats) {
+			position = scene_block.position();
 		} else {
 			for (QTextBlock block = m_document->document()->begin(); block.isValid(); block = block.next()) {
 				position = block.position();
@@ -484,9 +484,9 @@ void SceneModel::resetScenes()
 void SceneModel::selectScene(const Scene& scene, QTextCursor& cursor) const
 {
 	// Select first block of scene
-	const QTextBlock block = cursor.document()->findBlockByNumber(scene.block_number);
-	int position = block.position();
-	if (block.userData() != scene.stats) {
+	const QTextBlock scene_block = cursor.document()->findBlockByNumber(scene.block_number);
+	int position = scene_block.position();
+	if (scene_block.userData() != scene.stats) {
 		for (QTextBlock block = cursor.document()->begin(); block.isValid(); block = block.next()) {
 			position = block.position();
 			if (block.userData() == scene.stats) {

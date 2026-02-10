@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2020 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */

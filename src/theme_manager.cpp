@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2009-2020 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2009 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -40,8 +40,8 @@ namespace
 class ThemeItem : public QListWidgetItem
 {
 public:
-	ThemeItem(const QIcon& icon, const QString& text, QListWidget* view)
-		: QListWidgetItem(icon, text, view)
+	ThemeItem(const QIcon& icon, const QString& text, QListWidget* list)
+		: QListWidgetItem(icon, text, list)
 	{
 	}
 
@@ -332,11 +332,11 @@ void ThemeManager::importTheme()
 
 	// Uncompress theme
 	const QString theme_filename = Theme::filePath(id);
-	const QByteArray theme = gunzip(filename);
+	const QByteArray theme_data = gunzip(filename);
 	{
 		QFile file(theme_filename);
 		if (file.open(QFile::WriteOnly)) {
-			file.write(theme);
+			file.write(theme_data);
 			file.close();
 		}
 	}
@@ -356,16 +356,16 @@ void ThemeManager::importTheme()
 	}
 
 	// Extract and use background image
-	const QByteArray data = QByteArray::fromBase64(theme_ini.value("Data/Image").toByteArray());
+	const QByteArray image_data = QByteArray::fromBase64(theme_ini.value("Data/Image").toByteArray());
 	const QString image_file = theme_ini.value("Background/ImageFile").toString();
 	theme_ini.remove("Background/ImageFile");
 	theme_ini.remove("Data/Image");
 	theme_ini.sync();
 
-	if (!data.isEmpty()) {
+	if (!image_data.isEmpty()) {
 		QTemporaryFile file(QDir::tempPath() + "/XXXXXX-" + image_file);
 		if (file.open()) {
-			file.write(data);
+			file.write(image_data);
 			file.close();
 		}
 
@@ -455,8 +455,8 @@ void ThemeManager::currentThemeChanged(const QListWidgetItem* current)
 QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const QString& name)
 {
 	const qreal pixelratio = devicePixelRatioF();
-	const QString icon = Theme::iconPath(id, is_default, pixelratio);
-	if (!QFile::exists(icon) || QImageReader(icon).size() != (QSize(258, 153) * pixelratio)) {
+	const QString icon_path = Theme::iconPath(id, is_default, pixelratio);
+	if (!QFile::exists(icon_path) || QImageReader(icon_path).size() != (QSize(258, 153) * pixelratio)) {
 		Theme theme(id, is_default);
 
 		// Find load color in separate thread
@@ -482,7 +482,7 @@ QListWidgetItem* ThemeManager::addItem(const QString& id, bool is_default, const
 		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 
-	QListWidgetItem* item = new ThemeItem(QIcon(icon), name, is_default ? m_default_themes : m_themes);
+	QListWidgetItem* item = new ThemeItem(QIcon(icon_path), name, is_default ? m_default_themes : m_themes);
 	item->setToolTip(name);
 	item->setData(Qt::UserRole, id);
 	return item;

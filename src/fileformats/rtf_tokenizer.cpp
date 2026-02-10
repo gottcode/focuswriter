@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2013 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010 Graeme Gott <graeme@gottcode.org>
 	SPDX-FileCopyrightText: 2001 Ewald Snel <ewald@rambo.its.tudelft.nl>
 	SPDX-FileCopyrightText: 2001 Tomasz Grobelny <grotk@poczta.onet.pl>
 	SPDX-FileCopyrightText: 2005 Tommi Rantala <tommi.rantala@cs.helsinki.fi>

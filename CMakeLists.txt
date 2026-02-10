@@ -1,13 +1,13 @@
-# SPDX-FileCopyrightText: 2021-2025 Graeme Gott <graeme@gottcode.org>
+# SPDX-FileCopyrightText: 2021 Graeme Gott <graeme@gottcode.org>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.8.13 LANGUAGES CXX)
+project(focuswriter VERSION 1.9.0 LANGUAGES CXX)
 
-set(project_copyright "2008-2025 Graeme Gott")
+set(project_copyright "2008-2026 Graeme Gott")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -28,12 +28,15 @@ add_compile_definitions(
 	QT_NO_KEYWORDS
 	$<$<CONFIG:DEBUG>:QT_STRICT_ITERATORS>
 	$<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
-	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x060900>
+	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x061000>
+)
+add_compile_options(
+	$<$<CONFIG:DEBUG>:-Wshadow>
 )
 
 # Version number
 include(cmake/AddVersionCompileDefinition.cmake)
-add_version_compile_definition(src/application.cpp VERSIONSTR)
+add_version_compile_definition(src/main.cpp VERSIONSTR)
 
 # Create program
 qt_add_executable(focuswriter
@@ -41,7 +44,6 @@ qt_add_executable(focuswriter
 	src/action_manager.h
 	src/alert.h
 	src/alert_layer.h
-	src/application.h
 	src/block_stats.h
 	src/color_button.h
 	src/deltas.h
@@ -98,15 +100,12 @@ qt_add_executable(focuswriter
 	src/spelling/dictionary_ref.h
 	src/spelling/highlighter.h
 	src/spelling/spell_checker.h
-	src/3rdparty/qtsingleapplication/qtsingleapplication.h
-	src/3rdparty/qtsingleapplication/qtlocalpeer.h
 	src/3rdparty/qtzip/qtzipreader.h
 	src/3rdparty/qtzip/qtzipwriter.h
 	# Sources
 	src/action_manager.cpp
 	src/alert.cpp
 	src/alert_layer.cpp
-	src/application.cpp
 	src/block_stats.cpp
 	src/color_button.cpp
 	src/deltas.cpp
@@ -161,8 +160,6 @@ qt_add_executable(focuswriter
 	src/spelling/dictionary_manager.cpp
 	src/spelling/highlighter.cpp
 	src/spelling/spell_checker.cpp
-	src/3rdparty/qtsingleapplication/qtsingleapplication.cpp
-	src/3rdparty/qtsingleapplication/qtlocalpeer.cpp
 	src/3rdparty/qtzip/qtzip.cpp
 	# Resources
 	resources/images/images.qrc
@@ -173,7 +170,6 @@ target_include_directories(focuswriter PRIVATE
 	src
 	src/fileformats
 	src/spelling
-	src/3rdparty/qtsingleapplication
 	src/3rdparty/qtzip
 )
 
@@ -250,6 +246,23 @@ else()
 	target_link_libraries(focuswriter PRIVATE PkgConfig::Hunspell)
 endif()
 
+# Make single instance
+find_package(KDSingleApplication-qt6)
+if(TARGET KDAB::kdsingleapplication)
+	target_link_libraries(focuswriter PRIVATE KDAB::kdsingleapplication)
+else()
+	message(STATUS "Using 3rdparty KDSingleApplication")
+
+	target_compile_definitions(focuswriter PRIVATE KDSINGLEAPPLICATION_STATIC_BUILD)
+
+	target_include_directories(focuswriter PRIVATE src/3rdparty/kdsingleapplication)
+
+	target_sources(focuswriter PRIVATE
+		src/3rdparty/kdsingleapplication/kdsingleapplication.cpp
+		src/3rdparty/kdsingleapplication/kdsingleapplication_localsocket.cpp
+	)
+endif()
+
 # Optimize build
 option(ENABLE_LINK_TIME_OPTIMIZATION "Enable link time optimization" OFF)
 if(ENABLE_LINK_TIME_OPTIMIZATION)
@@ -285,7 +298,7 @@ if(APPLE)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/mac/focuswriter.icns Resources)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/images/icons/oxygen/hicolor Resources/icons/hicolor)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/sounds Resources/sounds)
-	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/symbols/symbols1600.dat Resources)
+	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/symbols/symbols1700.dat Resources)
 	bundle_data(focuswriter ${CMAKE_SOURCE_DIR}/resources/themes Resources/themes)
 	bundle_translations(focuswriter "${translations_QM}")
 elseif(WIN32)
@@ -315,7 +328,7 @@ else()
 	install(DIRECTORY resources/images/icons/oxygen/hicolor DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter/icons)
 	install(DIRECTORY resources/sounds DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(DIRECTORY resources/themes DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
-	install(FILES resources/symbols/symbols1600.dat DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
+	install(FILES resources/symbols/symbols1700.dat DESTINATION ${CMAKE_INSTALL_DATADIR}/focuswriter)
 	install(FILES resources/unix/focuswriter.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1 COMPONENT doc)
 
 	include(cmake/TranslateMetainfo.cmake)

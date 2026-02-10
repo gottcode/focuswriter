@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2008-2025 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2008 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -554,11 +554,14 @@ bool Window::saveDocuments(QSettings* session)
 
 //-----------------------------------------------------------------------------
 
-void Window::addDocuments(const QString& documents)
+void Window::addDocuments(const QByteArray& documents)
 {
-	const QStringList files = documents.split(QLatin1String("\n"), Qt::SkipEmptyParts);
+	const QStringList files = QString::fromUtf8(documents).split(QLatin1String("\n"), Qt::SkipEmptyParts);
 	if (!files.isEmpty()) {
 		queueDocuments(files);
+	} else {
+		activateWindow();
+		raise();
 	}
 }
 
@@ -862,7 +865,7 @@ void Window::aboutClicked()
 		"<p align='center'>%6<br/><small>%7</small></p>")
 		.arg(tr("FocusWriter"), QApplication::applicationVersion(),
 			tr("A simple fullscreen word processor"),
-			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2025"),
+			tr("Copyright &copy; 2008-%1 Graeme Gott").arg("2026"),
 			tr("Released under the <a href=%1>GPL 3</a> license").arg("\"http://www.gnu.org/licenses/gpl.html\""),
 			tr("Uses icons from the <a href=%1>Oxygen</a> icon theme").arg("\"http://www.oxygen-icons.org/\""),
 			tr("Used under the <a href=%1>LGPL 3</a> license").arg("\"http://www.gnu.org/licenses/lgpl.html\""))
@@ -979,7 +982,7 @@ void Window::updateFormatAlignmentActions()
 		m_actions["FormatAlignJustify"]->setChecked(true);
 	}
 
-	const int heading = format.property(QTextFormat::UserProperty).toInt();
+	const int heading = format.headingLevel();
 	m_headings_actions->actions().at(heading)->setChecked(true);
 }
 
@@ -1358,6 +1361,7 @@ void Window::initMenus()
 	for (int i = 0; i < 7; ++i) {
 		headings[i]->setCheckable(true);
 		headings[i]->setData(i);
+		headings[i]->setShortcut(QKeySequence(Qt::CTRL | Qt::ALT | (Qt::Key_0 + i)));
 		m_headings_actions->addAction(headings[i]);
 		connect(headings[i], &QAction::triggered, this, [this, i] { m_documents->setBlockHeading(i); });
 	}

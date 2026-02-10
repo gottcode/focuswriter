@@ -21,7 +21,7 @@
   <url type="homepage">https://gottcode.org/focuswriter/</url>
   <url type="bugtracker">https://gottcode.org/focuswriter/bugs/</url>
   <url type="donation">https://gottcode.org/tip/</url>
-  <url type="translate">https://www.transifex.com/gottcode/focuswriter/</url>
+  <url type="translate">https://app.transifex.com/gottcode/focuswriter/</url>
 
   <developer id="org.gottcode">
     <name translatable="no">Graeme Gott</name>
@@ -49,6 +49,19 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.9.0" date="2026-02-10">
+      <description>
+        <ul>
+          <li>FIXED: Did not play sound effects for smart quotes</li>
+          <li>Added keyboard shortcuts for headings</li>
+          <li>Clears headings when pressing enter</li>
+          <li>Replaced shadowed variable names</li>
+          <li>Switched to KDSingleApplication</li>
+          <li>Updated link to translations</li>
+          <li>Translation updates: Swedish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.8.13" date="2025-08-18">
       <description>
         <ul>

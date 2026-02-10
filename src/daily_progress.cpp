@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2013-2019 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2013 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -34,7 +34,7 @@ DailyProgress::DailyProgress(QObject* parent)
 	, m_streak_minimum(100)
 {
 	// Fetch date of when the program was started
-	const QDate date = QDate::currentDate();
+	const QDate current_date = QDate::currentDate();
 
 	// Initialize daily progress data
 	m_file = new QSettings(m_path, QSettings::IniFormat, this);
@@ -43,11 +43,11 @@ DailyProgress::DailyProgress(QObject* parent)
 	if (version == 1) {
 		// Load current daily progress data from 1.5
 		m_file->beginGroup(QLatin1String("Progress"));
-		const QVariantList values = m_file->value(date.toString(Qt::ISODate)).toList();
-		m_words = values.value(0).toInt();
-		m_msecs = values.value(1).toInt();
-		m_type = values.value(2).toInt();
-		m_goal = values.value(3).toInt();
+		const QVariantList current_values = m_file->value(current_date.toString(Qt::ISODate)).toList();
+		m_words = current_values.value(0).toInt();
+		m_msecs = current_values.value(1).toInt();
+		m_type = current_values.value(2).toInt();
+		m_goal = current_values.value(3).toInt();
 
 		// Load all daily progress from 1.5
 		const QStringList keys = m_file->childKeys();
@@ -66,7 +66,7 @@ DailyProgress::DailyProgress(QObject* parent)
 	} else if (version == -1) {
 		// Load current daily progress data from 1.4
 		QSettings settings;
-		if (settings.value(QLatin1String("Progress/Date")).toString() == date.toString(Qt::ISODate)) {
+		if (settings.value(QLatin1String("Progress/Date")).toString() == current_date.toString(Qt::ISODate)) {
 			m_words = settings.value(QLatin1String("Progress/Words"), 0).toInt();
 			m_msecs = settings.value(QLatin1String("Progress/Time"), 0).toInt();
 		}
@@ -85,8 +85,8 @@ DailyProgress::DailyProgress(QObject* parent)
 	}
 
 	// Make sure there is a current daily progress
-	if (m_progress.isEmpty() || (m_progress.constLast().date() != date)) {
-		m_progress.append(Progress(date));
+	if (m_progress.isEmpty() || (m_progress.constLast().date() != current_date)) {
+		m_progress.append(Progress(current_date));
 	}
 
 	// Add null entries before data to make it week-based
@@ -471,10 +471,10 @@ void DailyProgress::updateRows()
 
 	// Make sure current date exists
 	const QDate date = QDate::currentDate();
-	const Progress& progress = m_progress.constLast();
-	if (progress.date() != date) {
-		const int type = progress.type();
-		const int goal = progress.goal();
+	const Progress& current_progress = m_progress.constLast();
+	if (current_progress.date() != date) {
+		const int type = current_progress.type();
+		const int goal = current_progress.goal();
 		m_progress.append(Progress(date, 0, 0, type, goal));
 	}
 

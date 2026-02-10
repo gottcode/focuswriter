@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2010-2024 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2010 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -30,7 +30,7 @@ bool RtfWriter::write(QIODevice* device, const QTextDocument* text, bool full)
 	for (QTextBlock block = text->begin(); block.isValid(); block = block.next()) {
 		QByteArray par("{\\pard\\plain");
 		const QTextBlockFormat block_format = block.blockFormat();
-		const int heading = block_format.property(QTextFormat::UserProperty).toInt();
+		const int heading = block_format.headingLevel();
 		if (heading) {
 			par += "\\s" + QByteArray::number(heading)
 				+ "\\outlinelevel" + QByteArray::number(heading - 1)

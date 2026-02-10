@@ -38,7 +38,7 @@ bool HtmlWriter::write(QIODevice* device, const QTextDocument* document)
 			++block_format_elements;
 		}
 
-		const int heading = block.blockFormat().property(QTextFormat::UserProperty).toInt();
+		const int heading = block.blockFormat().headingLevel();
 		m_xml.writeStartElement(!heading ? QStringLiteral("p") : QString("h%1").arg(heading));
 		{
 			const bool rtl = block_format.layoutDirection() == Qt::RightToLeft;

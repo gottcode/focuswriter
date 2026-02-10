@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2013-2021 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2013 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -175,7 +175,7 @@ void DocxReader::readStyles()
 					const QString name = m_xml.attributes().value(QLatin1String("w:val")).toString();
 					if (name.startsWith(QLatin1String("Head"))) {
 						const int heading = qBound(1, name.at(name.length() - 1).digitValue(), 6);
-						style.block_format.setProperty(QTextFormat::UserProperty, heading);
+						style.block_format.setHeadingLevel(heading);
 					}
 					m_xml.skipCurrentElement();
 				} else if (m_xml.qualifiedName() == QLatin1String("w:basedOn")) {
@@ -340,7 +340,7 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 		} else if (m_xml.qualifiedName() == QLatin1String("w:outlineLvl")) {
 			const int heading = m_xml.attributes().value(QLatin1String("w:val")).toString().toInt();
 			if (heading != 9) {
-				style.block_format.setProperty(QTextFormat::UserProperty, qBound(1, heading + 1, 6));
+				style.block_format.setHeadingLevel(qBound(1, heading + 1, 6));
 			}
 		} else if ((m_xml.qualifiedName() == QLatin1String("w:pStyle")) && allowstyles) {
 			Style pstyle = m_styles.value(value.toString());
@@ -366,7 +366,7 @@ void DocxReader::readParagraphProperties(Style& style, bool allowstyles)
 		}
 	}
 
-	if (style.block_format.property(QTextFormat::UserProperty).toInt()) {
+	if (style.block_format.headingLevel()) {
 		style.char_format.setFontWeight(QFont::Normal);
 	}
 }

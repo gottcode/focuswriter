@@ -1,5 +1,5 @@
 /*
-	SPDX-FileCopyrightText: 2009-2022 Graeme Gott <graeme@gottcode.org>
+	SPDX-FileCopyrightText: 2009 Graeme Gott <graeme@gottcode.org>
 
 	SPDX-License-Identifier: GPL-3.0-or-later
 */
@@ -182,23 +182,23 @@ QStringList DictionaryHunspell::suggestions(const QString& word) const
 	check.replace(QChar(0x2019), QLatin1Char('\''));
 #ifdef H_DEPRECATED
 	const std::vector<std::string> suggestions = m_dictionary->suggest(m_codec->fromUnicode(check).toStdString());
-	for (const std::string& suggestion : suggestions) {
-		QString word = m_codec->toUnicode(suggestion.c_str());
+	for (const std::string& string : suggestions) {
+		QString suggestion = m_codec->toUnicode(string.c_str());
 		if (SmartQuotes::isEnabled()) {
-			SmartQuotes::replace(word);
+			SmartQuotes::replace(suggestion);
 		}
-		result.append(word);
+		result.append(suggestion);
 	}
 #else
 	char** suggestions = nullptr;
 	const int count = m_dictionary->suggest(&suggestions, m_codec->fromUnicode(check).constData());
 	if (suggestions) {
 		for (int i = 0; i < count; ++i) {
-			QString word = m_codec->toUnicode(suggestions[i]);
+			QString suggestion = m_codec->toUnicode(suggestions[i]);
 			if (SmartQuotes::isEnabled()) {
-				SmartQuotes::replace(word);
+				SmartQuotes::replace(suggestion);
 			}
-			result.append(word);
+			result.append(suggestion);
 		}
 		m_dictionary->free_list(&suggestions, count);
 	}
