@@ -4,7 +4,7 @@
 
 SET SRCDIR=..\focuswriter
 SET APP=FocusWriter
-SET VERSION=1.8.0
+SET VERSION=1.9.0
 
 ECHO Copying executable
 MKDIR %SRCDIR%\%APP%
