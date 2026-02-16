@@ -1,6 +1,5 @@
 Source: focuswriter
 Section: editors
-Priority: optional
 Maintainer: Barak A. Pearlmutter <bap@debian.org>
 Uploaders: Graeme Gott <graeme@gottcode.org>
 Build-Depends: debhelper-compat (= 13),
@@ -16,7 +15,7 @@ Build-Depends: debhelper-compat (= 13),
   libkdsingleapplication-qt6-dev,
   pkgconf,
   zlib1g-dev
-Standards-Version: 4.7.2
+Standards-Version: 4.7.3
 Homepage: https://gottcode.org/focuswriter/
 Vcs-Git: https://salsa.debian.org/debian/focuswriter.git
 Vcs-Browser: https://salsa.debian.org/debian/focuswriter
