@@ -143,11 +143,11 @@ void DictionaryManager::addProviders()
 		}
 	}
 
-	if (!has_hunspell) {
-		addProvider(new DictionaryProviderHunspell);
-	}
 	if (!has_voikko) {
 		addProvider(new DictionaryProviderVoikko);
+	}
+	if (!has_hunspell) {
+		addProvider(new DictionaryProviderHunspell);
 	}
 #else
 	bool has_nsspellchecker = false;
