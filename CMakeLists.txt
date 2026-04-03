@@ -87,6 +87,8 @@ qt_add_executable(focuswriter
 	src/fileformats/docx_writer.h
 	src/fileformats/format_manager.h
 	src/fileformats/html_writer.h
+	src/fileformats/md_reader.h
+	src/fileformats/md_writer.h
 	src/fileformats/odt_reader.h
 	src/fileformats/odt_writer.h
 	src/fileformats/rtf_reader.h
@@ -150,6 +152,8 @@ qt_add_executable(focuswriter
 	src/fileformats/docx_writer.cpp
 	src/fileformats/format_manager.cpp
 	src/fileformats/html_writer.cpp
+	src/fileformats/md_reader.cpp
+	src/fileformats/md_writer.cpp
 	src/fileformats/odt_reader.cpp
 	src/fileformats/odt_writer.cpp
 	src/fileformats/rtf_reader.cpp

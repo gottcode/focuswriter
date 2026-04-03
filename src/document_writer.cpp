@@ -7,6 +7,7 @@
 #include "document_writer.h"
 
 #include "docx_writer.h"
+#include "md_writer.h"
 #include "odt_writer.h"
 #include "rtf_writer.h"
 
@@ -67,6 +68,10 @@ bool DocumentWriter::write()
 	} else if (m_type == "rtf") {
 		file.setTextModeEnabled(true);
 		RtfWriter writer;
+		saved = writer.write(&file, m_document);
+	} else if (m_type == "md" || m_type == "markdown") {
+		file.setTextModeEnabled(true);
+		MdWriter writer;
 		saved = writer.write(&file, m_document);
 	} else {
 		file.setTextModeEnabled(true);
