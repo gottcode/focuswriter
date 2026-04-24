@@ -751,9 +751,8 @@ void RtfReader::setStyleEnd()
 		style.functions = &functions;
 	}
 
-	QSetIterator<int> iter(style.children);
-	while (iter.hasNext()) {
-		Style& child = m_styles[iter.next()];
+	for (int i : std::as_const(style.children)) {
+		Style& child = m_styles[i];
 
 		QTextBlockFormat block_format = style.block_format;
 		block_format.merge(child.block_format);

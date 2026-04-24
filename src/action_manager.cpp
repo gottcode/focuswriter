@@ -47,16 +47,12 @@ ActionManager::ActionManager(QWidget* parent)
 		{ "2026", "Ctrl+." }
 	};
 	QVariantHash shortcuts = QSettings().value("SymbolsDialog/Shortcuts", defshortcuts).toHash();
-	QHashIterator<QString, QVariant> defiter(defshortcuts);
-	while (defiter.hasNext()) {
-		defiter.next();
+	for (auto defiter = defshortcuts.cbegin(); defiter != defshortcuts.cend(); ++defiter) {
 		if (!shortcuts.contains(defiter.key()) && shortcuts.key(defiter.value()).isEmpty()) {
 			shortcuts.insert(defiter.key(), defiter.value());
 		}
 	}
-	QHashIterator<QString, QVariant> iter(shortcuts);
-	while (iter.hasNext()) {
-		iter.next();
+	for (auto iter = shortcuts.cbegin(); iter != shortcuts.cend(); ++iter) {
 		bool ok = false;
 		const char32_t unicode = iter.key().toUInt(&ok, 16);
 		const QKeySequence shortcut = QKeySequence::fromString(iter.value().toString());
@@ -76,9 +72,7 @@ ActionManager::~ActionManager()
 
 	// Save symbol shortcuts
 	QVariantHash shortcuts;
-	QHashIterator<char32_t, QShortcut*> iter(m_symbol_shortcuts);
-	while (iter.hasNext()) {
-		iter.next();
+	for (auto iter = m_symbol_shortcuts.cbegin(); iter != m_symbol_shortcuts.cend(); ++iter) {
 		shortcuts.insert(QString::number(iter.key(), 16), iter.value()->key().toString());
 	}
 	QSettings().setValue("SymbolsDialog/Shortcuts", shortcuts);
@@ -139,9 +133,7 @@ void ActionManager::setShortcut(char32_t unicode, const QKeySequence& sequence)
 void ActionManager::setShortcuts(const QHash<QString, QKeySequence>& shortcuts)
 {
 	// Update specified shortcuts
-	QHashIterator<QString, QKeySequence> i(shortcuts);
-	while (i.hasNext()) {
-		i.next();
+	for (auto i = shortcuts.cbegin(); i != shortcuts.cend(); ++i) {
 		const QString& name = i.key();
 		if (!m_actions.contains(name)) {
 			continue;
@@ -155,10 +147,9 @@ void ActionManager::setShortcuts(const QHash<QString, QKeySequence>& shortcuts)
 	// Save all non-default shortcuts
 	QSettings settings;
 	settings.beginGroup("Shortcuts");
-	QHashIterator<QString, Action> j(m_actions);
-	while (j.hasNext()) {
-		const QString& name = j.next().key();
-		const Action& act = j.value();
+	for (auto i = m_actions.cbegin(); i != m_actions.cend(); ++i) {
+		const QString& name = i.key();
+		const Action& act = i.value();
 		if (act.default_shortcut != act.shortcut) {
 			settings.setValue(name, act.shortcut);
 		} else {

@@ -1337,13 +1337,9 @@ void Document::undoCommandAdded()
 {
 	if (!m_old_states.isEmpty()) {
 		const int steps = m_text->document()->availableUndoSteps();
-		QMutableHashIterator<int, QPair<QString, bool>> i(m_old_states);
-		while (i.hasNext()) {
-			i.next();
-			if (i.key() >= steps) {
-				i.remove();
-			}
-		}
+		m_old_states.removeIf([steps](const auto& iter) {
+			return iter.key() >= steps;
+		});
 	}
 }
 
