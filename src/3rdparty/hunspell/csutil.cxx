@@ -74,8 +74,9 @@
 #include <cstring>
 #include <cstdio>
 #include <cctype>
+#include <iterator>
 #include <sstream>
-#if __cplusplus >= 202002L
+#if __cplusplus >= 202002L || (defined(_MSVC_LANG) && _MSVC_LANG >= 202002L)
 #include <bit>
 #endif
 
@@ -104,6 +105,7 @@
 using namespace mozilla;
 #endif
 
+#ifndef MOZILLA_CLIENT
 void myopen(std::ifstream& stream, const char* path, std::ios_base::openmode mode)
 {
 #if defined(_WIN32) && defined(_MSC_VER)
@@ -123,6 +125,7 @@ void myopen(std::ifstream& stream, const char* path, std::ios_base::openmode mod
 #endif
   stream.open(path, mode);
 }
+#endif
 
 std::string& u16_u8(std::string& dest, const std::vector<w_char>& src) {
   dest.clear();
@@ -198,7 +201,7 @@ int u8_u16(std::vector<w_char>& dest, const std::string& src, bool only_convert_
       }
       case 0xc0:
       case 0xd0: {  // 2-byte UTF-8 codes
-        if ((*(u8 + 1) & 0xc0) == 0x80) {
+        if (u8 + 1 < u8_max && (*(u8 + 1) & 0xc0) == 0x80) {
           u2.h = (*u8 & 0x1f) >> 2;
           u2.l = (static_cast<unsigned char>(*u8) << 6) + (*(u8 + 1) & 0x3f);
           ++u8;
@@ -214,10 +217,10 @@ int u8_u16(std::vector<w_char>& dest, const std::string& src, bool only_convert_
         break;
       }
       case 0xe0: {  // 3-byte UTF-8 codes
-        if ((*(u8 + 1) & 0xc0) == 0x80) {
+        if (u8 + 1 < u8_max && (*(u8 + 1) & 0xc0) == 0x80) {
           u2.h = ((*u8 & 0x0f) << 4) + ((*(u8 + 1) & 0x3f) >> 2);
           ++u8;
-          if ((*(u8 + 1) & 0xc0) == 0x80) {
+          if (u8 + 1 < u8_max && (*(u8 + 1) & 0xc0) == 0x80) {
             u2.l = (static_cast<unsigned char>(*u8) << 6) + (*(u8 + 1) & 0x3f);
             ++u8;
           } else {
@@ -420,7 +423,7 @@ bool copy_field(std::string& dest,
   std::string beg(morph.substr(pos + MORPH_TAG_LEN, std::string::npos));
 
   for (const char c : beg) {
-	if (c == ' ' || c == '\t' || c == '\n')
+    if (c == ' ' || c == '\t' || c == '\n')
       break;
     dest.push_back(c);
   }
@@ -448,8 +451,7 @@ size_t reverseword(std::string& word) {
 // reverse word
 size_t reverseword_utf(std::string& word) {
   std::reverse(word.begin(), word.end()); //1st step: we reverse the string
-	
-  size_t num_chars = word.size(); //in order to make sure there are enough characters at the end of the string when we process a multibyte character
+
   //2nd step: we process each multibyte character and reverse it
   for (auto it = word.rbegin(); it != word.rend(); ) {
     switch ((*it) & 0xf0) {
@@ -463,7 +465,6 @@ size_t reverseword_utf(std::string& word) {
       case 0x70:
         //one byte
         ++it;
-        --num_chars;
         break;
       case 0x80:
       case 0x90:
@@ -475,52 +476,45 @@ size_t reverseword_utf(std::string& word) {
                          static_cast<long>(std::distance(word.begin(), it.base()) - 1),
                          word.c_str());
         ++it;
-        --num_chars;
         break;
       case 0xc0:
       case 0xd0: {
-	//two bytes
-        if (num_chars >= 2) {
+        //two bytes
+        if (std::distance(it, word.rend()) >= 2) {
           std::iter_swap(it, it + 1);
           it += 2;
-          num_chars -= 2;
         } else {
           HUNSPELL_WARNING(stderr,
                          "UTF-8 encoding error. Missing character at the end\n%s\n",
                          word.c_str());
           ++it;
-          --num_chars;
         }
         break;
       }
       case 0xe0: {
         //three bytes
-        if (num_chars >= 3) {
+        if (std::distance(it, word.rend()) >= 3) {
           std::iter_swap(it, it + 2);
           it += 3;
-          num_chars -= 3;
         } else {
           HUNSPELL_WARNING(stderr,
                          "UTF-8 encoding error. Missing character at the end\n%s\n",
                          word.c_str());
           ++it;
-          --num_chars;
         }
         break;
       }
       default: {
         // 4 or more byte UTF-8 codes
-        if (num_chars >= 4) {
+        if (std::distance(it, word.rend()) >= 4) {
           std::iter_swap(it, it + 3);
           std::iter_swap(it + 1, it + 2);
           it += 4;
-          num_chars -= 4;
         } else {
           HUNSPELL_WARNING(stderr,
                          "UTF-8 encoding error. Missing character at the end\n%s\n",
                          word.c_str());
           ++it;
-          --num_chars;
         }
         break;
       }
@@ -562,14 +556,14 @@ unsigned char ccase(const struct cs_info* csconv, int nIndex) {
 }
 
 w_char upper_utf(w_char u, int langnum) {
-	
-#if defined(__i386__) || defined(_M_IX86) || defined(_M_X64)
+
+#if defined(_WIN32) || (defined(__BYTE_ORDER__) && (__BYTE_ORDER__==__ORDER_LITTLE_ENDIAN__))  || defined(__LITTLE_ENDIAN__)
 
 //with these optimizations, msvc can optimize this function to one jmp instruction
 //but g++ remains in five instructions
 //maybe use inline asm for g++?
 
-#if __cplusplus >= 202002L
+#if __cplusplus >= 202002L || (defined(_MSVC_LANG) && _MSVC_LANG >= 202002L)
   return std::bit_cast<w_char>(unicodetoupper((unsigned short)u, langnum));
 #else
   const auto us = unicodetoupper((unsigned short)u, langnum);
@@ -586,14 +580,14 @@ w_char upper_utf(w_char u, int langnum) {
 }
 
 w_char lower_utf(w_char u, int langnum) {
-	
-#if defined(__i386__) || defined(_M_IX86) || defined(_M_X64)
+
+#if defined(_WIN32) || (defined(__BYTE_ORDER__) && (__BYTE_ORDER__==__ORDER_LITTLE_ENDIAN__))  || defined(__LITTLE_ENDIAN__)
 
 //with these optimizations, msvc can optimize this function to one jmp instruction
 //but g++ remains in five instructions
 //maybe use inline asm for g++?
 
-#if __cplusplus >= 202002L
+#if __cplusplus >= 202002L || (defined(_MSVC_LANG) && _MSVC_LANG >= 202002L)
   return std::bit_cast<w_char>(unicodetolower((unsigned short)u, langnum));
 #else
   const auto us = unicodetolower((unsigned short)u, langnum);
@@ -648,7 +642,7 @@ std::string& mkinitcap(std::string& s, const struct cs_info* csconv) {
 
 std::vector<w_char>& mkinitcap_utf(std::vector<w_char>& u, int langnum) {
   if (!u.empty()) {
-	u[0] = upper_utf(u[0], langnum);
+    u[0] = upper_utf(u[0], langnum);
   }
   return u;
 }
@@ -662,7 +656,7 @@ std::string& mkinitsmall(std::string& s, const struct cs_info* csconv) {
 
 std::vector<w_char>& mkinitsmall_utf(std::vector<w_char>& u, int langnum) {
   if (!u.empty()) {
-	u[0] = lower_utf(u[0], langnum);
+    u[0] = lower_utf(u[0], langnum);
   }
   return u;
 }
@@ -685,7 +679,7 @@ char* get_stored_pointer(const char* s) {
 // encodings supported
 // supplying isupper, tolower, and toupper
 
-static struct cs_info iso1_tbl[] = {
+const struct cs_info iso1_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -773,7 +767,7 @@ static struct cs_info iso1_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0xdd}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso2_tbl[] = {
+const struct cs_info iso2_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -861,7 +855,7 @@ static struct cs_info iso2_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0xdd}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso3_tbl[] = {
+const struct cs_info iso3_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -949,7 +943,7 @@ static struct cs_info iso3_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0xdd}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso4_tbl[] = {
+const struct cs_info iso4_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1037,7 +1031,7 @@ static struct cs_info iso4_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0xdd}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso5_tbl[] = {
+const struct cs_info iso5_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1125,7 +1119,7 @@ static struct cs_info iso5_tbl[] = {
     {0x00, 0xfc, 0xac}, {0x00, 0xfd, 0xfd}, {0x00, 0xfe, 0xae},
     {0x00, 0xff, 0xaf}};
 
-static struct cs_info iso6_tbl[] = {
+const struct cs_info iso6_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1213,7 +1207,7 @@ static struct cs_info iso6_tbl[] = {
     {0x00, 0xfc, 0xfc}, {0x00, 0xfd, 0xfd}, {0x00, 0xfe, 0xfe},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso7_tbl[] = {
+const struct cs_info iso7_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1301,7 +1295,7 @@ static struct cs_info iso7_tbl[] = {
     {0x00, 0xfc, 0xbc}, {0x00, 0xfd, 0xbe}, {0x00, 0xfe, 0xbf},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso8_tbl[] = {
+const struct cs_info iso8_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1389,7 +1383,7 @@ static struct cs_info iso8_tbl[] = {
     {0x00, 0xfc, 0xfc}, {0x00, 0xfd, 0xfd}, {0x00, 0xfe, 0xfe},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso9_tbl[] = {
+const struct cs_info iso9_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1477,7 +1471,7 @@ static struct cs_info iso9_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0x49}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso10_tbl[] = {
+const struct cs_info iso10_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1565,7 +1559,7 @@ static struct cs_info iso10_tbl[] = {
     {0x00, 0xfc, 0xfc}, {0x00, 0xfd, 0xfd}, {0x00, 0xfe, 0xfe},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info koi8r_tbl[] = {
+const struct cs_info koi8r_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1653,7 +1647,7 @@ static struct cs_info koi8r_tbl[] = {
     {0x01, 0xdc, 0xfc}, {0x01, 0xdd, 0xfd}, {0x01, 0xde, 0xfe},
     {0x01, 0xdf, 0xff}};
 
-static struct cs_info koi8u_tbl[] = {
+const struct cs_info koi8u_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1743,7 +1737,7 @@ static struct cs_info koi8u_tbl[] = {
     {0x01, 0xda, 0xfa}, {0x01, 0xdb, 0xfb}, {0x01, 0xdc, 0xfc},
     {0x01, 0xdd, 0xfd}, {0x01, 0xde, 0xfe}, {0x01, 0xdf, 0xff}};
 
-static struct cs_info cp1251_tbl[] = {
+const struct cs_info cp1251_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1831,7 +1825,7 @@ static struct cs_info cp1251_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0xdd}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xdf}};
 
-static struct cs_info iso13_tbl[] = {
+const struct cs_info iso13_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -1919,7 +1913,7 @@ static struct cs_info iso13_tbl[] = {
     {0x00, 0xFC, 0xDC}, {0x00, 0xFD, 0xDD}, {0x00, 0xFE, 0xDE},
     {0x00, 0xFF, 0xFF}};
 
-static struct cs_info iso14_tbl[] = {
+const struct cs_info iso14_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -2007,7 +2001,7 @@ static struct cs_info iso14_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0xdd}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info iso15_tbl[] = {
+const struct cs_info iso15_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -2095,7 +2089,7 @@ static struct cs_info iso15_tbl[] = {
     {0x00, 0xfc, 0xdc}, {0x00, 0xfd, 0xdd}, {0x00, 0xfe, 0xde},
     {0x00, 0xff, 0xbe}};
 
-static struct cs_info iscii_devanagari_tbl[] = {
+const struct cs_info iscii_devanagari_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -2183,7 +2177,7 @@ static struct cs_info iscii_devanagari_tbl[] = {
     {0x00, 0xfc, 0xfc}, {0x00, 0xfd, 0xfd}, {0x00, 0xfe, 0xfe},
     {0x00, 0xff, 0xff}};
 
-static struct cs_info tis620_tbl[] = {
+const struct cs_info tis620_tbl[] = {
     {0x00, 0x00, 0x00}, {0x00, 0x01, 0x01}, {0x00, 0x02, 0x02},
     {0x00, 0x03, 0x03}, {0x00, 0x04, 0x04}, {0x00, 0x05, 0x05},
     {0x00, 0x06, 0x06}, {0x00, 0x07, 0x07}, {0x00, 0x08, 0x08},
@@ -2273,10 +2267,10 @@ static struct cs_info tis620_tbl[] = {
 
 struct enc_entry {
   const char* enc_name;
-  struct cs_info* cs_table;
+  const struct cs_info* cs_table;
 };
 
-static struct enc_entry encds[] = {
+const struct enc_entry encds[] = {
     {"iso88591", iso1_tbl},  // ISO-8859-1
     {"iso88592", iso2_tbl},  // ISO-8859-2
     {"iso88593", iso3_tbl},  // ISO-8859-3
@@ -2323,11 +2317,11 @@ static void toAsciiLowerAndRemoveNonAlphanumeric(const char* pName,
   *pBuf = '\0';
 }
 
-struct cs_info* get_current_cs(const std::string& es) {
+const struct cs_info* get_current_cs(const std::string& es) {
   char* normalized_encoding = new char[es.size() + 1];
   toAsciiLowerAndRemoveNonAlphanumeric(es.c_str(), normalized_encoding);
 
-  struct cs_info* ccs = NULL;
+  const struct cs_info* ccs = nullptr;
   for (const auto& encd : encds) {
     if (strcmp(normalized_encoding, encd.enc_name) == 0) {
       ccs = encd.cs_table;
@@ -2350,7 +2344,7 @@ struct cs_info* get_current_cs(const std::string& es) {
 // XXX This function was rewritten for mozilla. Instead of storing the
 // conversion tables static in this file, create them when needed
 // with help the mozilla backend.
-struct cs_info* get_current_cs(const std::string& es) {
+const struct cs_info* get_current_cs(const std::string& es) {
   struct cs_info* ccs = new cs_info[256];
   // Initialze the array with dummy data so that we wouldn't need
   // to return null in case of failures.
@@ -2437,7 +2431,7 @@ struct cs_info* get_current_cs(const std::string& es) {
 
 // primitive isalpha() replacement for tokenization
 std::string get_casechars(const char* enc) {
-  struct cs_info* csconv = get_current_cs(enc);
+  const struct cs_info* csconv = get_current_cs(enc);
   std::string expw;
   for (int i = 0; i <= 255; ++i) {
     if (cupper(csconv, i) != clower(csconv, i)) {
@@ -2457,7 +2451,7 @@ struct lang_map {
   int num;
 };
 
-static struct lang_map lang2enc[] =
+const struct lang_map lang2enc[] =
     {{"ar", LANG_ar},    {"az", LANG_az},
      {"az_AZ", LANG_az},  // for back-compatibility
      {"bg", LANG_bg},    {"ca", LANG_ca},
@@ -2527,15 +2521,15 @@ int unicodeisalpha(unsigned short c) {
 }
 
 /* get type of capitalization */
-int get_captype(const std::string& word, cs_info* csconv) {
+int get_captype(const std::string& word, const cs_info* csconv) {
   // now determine the capitalization type of the first nl letters
   size_t ncap = 0;
   size_t nneutral = 0;
   size_t firstcap = 0;
-  if (csconv == NULL)
+  if (csconv == nullptr)
     return NOCAP;
-  for (auto q = word.begin(); q != word.end(); ++q) {
-    const auto nIndex = static_cast<unsigned char>(*q);
+  for (char q : word) {
+    const auto nIndex = static_cast<unsigned char>(q);
     if (ccase(csconv, nIndex))
       ncap++;
     if (cupper(csconv, nIndex) == clower(csconv, nIndex))
@@ -2600,7 +2594,7 @@ size_t remove_ignored_chars_utf(std::string& word,
   std::vector<w_char> w2;
   u8_u16(w, word);
 
-  std::copy_if(w.begin(), w.end(), std::back_inserter(w2), 
+  std::copy_if(w.begin(), w.end(), std::back_inserter(w2),
   [&ignored_chars](w_char wc) {
     return !std::binary_search(ignored_chars.begin(), ignored_chars.end(), wc);
   });

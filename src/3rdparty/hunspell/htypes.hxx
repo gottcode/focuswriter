@@ -48,6 +48,7 @@
 #define H_OPT_ALIASM (1 << 1)   // using alias compression?
 #define H_OPT_PHON (1 << 2)     // is there ph: field in the morphological data?
 #define H_OPT_INITCAP (1 << 3)  // is dictionary word capitalized?
+#define H_OPT_OWNFLAGS (1 << 4) // astr is independently allocated?
 
 // see also csutil.hxx
 #define HENTRY_WORD(h) &(h->word[0])
@@ -62,8 +63,8 @@
 #endif
 
 struct hentry {
-  unsigned char blen;    // word length in bytes
-  unsigned char clen;    // word length in characters (different for UTF-8 enc.)
+  unsigned short blen;   // word length in bytes
+  unsigned short clen;   // word length in characters (different for UTF-8 enc.)
   short alen;            // length of affix flag vector
   unsigned short* astr;  // affix flag vector
   struct hentry* next;   // next word with same hash code
