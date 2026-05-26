@@ -1403,7 +1403,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 
 	// Update document stats and daily word count
-	const int words = m_document_stats.wordCount();
+	const qint64 words = m_document_stats.wordCount();
 	calculateWordCount();
 	m_daily_progress->increaseWordCount(m_document_stats.wordCount() - words);
 	Q_EMIT changed();

@@ -21,10 +21,10 @@ public:
 
 	bool isEmpty() const;
 	bool isScene() const;
-	int characterCount() const;
-	int letterCount() const;
-	int spaceCount() const;
-	int wordCount() const;
+	qint64 characterCount() const;
+	qint64 letterCount() const;
+	qint64 spaceCount() const;
+	qint64 wordCount() const;
 	QList<WordRef> misspelled() const;
 
 	enum SpellCheckStatus
@@ -41,10 +41,10 @@ public:
 	void update(const QString& text);
 
 private:
-	int m_characters;
-	int m_letters;
-	int m_spaces;
-	int m_words;
+	qint64 m_characters;
+	qint64 m_letters;
+	qint64 m_spaces;
+	qint64 m_words;
 	bool m_scene;
 	SceneModel* m_scene_model;
 	QList<WordRef> m_misspelled;
@@ -61,22 +61,22 @@ inline bool BlockStats::isScene() const
 	return m_scene;
 }
 
-inline int BlockStats::characterCount() const
+inline qint64 BlockStats::characterCount() const
 {
 	return m_characters;
 }
 
-inline int BlockStats::letterCount() const
+inline qint64 BlockStats::letterCount() const
 {
 	return m_letters;
 }
 
-inline int BlockStats::spaceCount() const
+inline qint64 BlockStats::spaceCount() const
 {
 	return m_spaces;
 }
 
-inline int BlockStats::wordCount() const
+inline qint64 BlockStats::wordCount() const
 {
 	return m_words;
 }
