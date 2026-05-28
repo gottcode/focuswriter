@@ -52,7 +52,7 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 	const QStyle* style = widget ? widget->style() : QApplication::style();
 
 	QSize size = style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), widget);
-#if !defined(Q_OS_MAC)
+#if !defined(Q_OS_APPLE) && !defined(Q_OS_WIN)
 	const int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget);
 #else
 	const int margin = 0;
