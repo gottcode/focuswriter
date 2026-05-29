@@ -55,7 +55,7 @@ QSize SceneDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIn
 #if !defined(Q_OS_APPLE) && !defined(Q_OS_WIN)
 	const int margin = style->pixelMetric(QStyle::PM_FocusFrameVMargin, &opt, widget);
 #else
-	const int margin = 0;
+	const int margin = 1;
 #endif
 	const int height = opt.fontMetrics.height() * 3;
 	size.setHeight(margin + height);
