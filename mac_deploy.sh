@@ -1,12 +1,64 @@
 #!/bin/bash
 
+set -euo pipefail
+
 APP='FocusWriter'
 BUNDLE="$APP.app"
 VERSION='1.9.0'
 
+find_qt_tool() {
+	local tool
+	for tool in "$@"; do
+		if command -v "$tool" >/dev/null 2>&1; then
+			command -v "$tool"
+			return 0
+		elif [ -n "${QTDIR:-}" ] && [ -x "${QTDIR}/bin/${tool}" ]; then
+			printf '%s\n' "${QTDIR}/bin/${tool}"
+			return 0
+		fi
+	done
+
+	return 1
+}
+
+copy_qt_plugin() {
+	local plugin="$1"
+	local source="${QT_PLUGINS}/${plugin}"
+	local target="${APP}/${BUNDLE}/Contents/PlugIns/${plugin}"
+
+	if [ ! -f "$source" ]; then
+		echo "Missing Qt plugin: $source" >&2
+		exit 1
+	fi
+
+	mkdir -p "$(dirname "$target")"
+	cp "$source" "$target"
+	DEPLOY_EXECUTABLES+=("-executable=${SCRIPT_DIR}/${target}")
+}
+
 # Locate deployment script
 BIN_DIR=$(pwd)
-cd $(dirname "${BASH_SOURCE[0]}")
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+cd "$SCRIPT_DIR"
+
+QTPATHS_BIN=$(find_qt_tool qtpaths qtpaths6) || {
+	echo 'Unable to find qtpaths. Install Qt 6 and ensure its tools are in PATH or set QTDIR.' >&2
+	exit 1
+}
+
+QT_PREFIX=$("$QTPATHS_BIN" --query QT_INSTALL_PREFIX)
+QT_LIBS=$("$QTPATHS_BIN" --query QT_INSTALL_LIBS)
+QT_PLUGINS=$("$QTPATHS_BIN" --query QT_INSTALL_PLUGINS)
+QT_TRANSLATIONS=$("$QTPATHS_BIN" --query QT_INSTALL_TRANSLATIONS)
+
+MACDEPLOYQT_BIN=$(find_qt_tool macdeployqt macdeployqt6 || true)
+if [ -z "$MACDEPLOYQT_BIN" ] && [ -x "${QT_PREFIX}/bin/macdeployqt" ]; then
+	MACDEPLOYQT_BIN="${QT_PREFIX}/bin/macdeployqt"
+fi
+if [ -z "$MACDEPLOYQT_BIN" ]; then
+	echo 'Unable to find macdeployqt. Install Qt 6 and ensure its tools are in PATH or set QTDIR.' >&2
+	exit 1
+fi
 
 # Remove any previous disk folder or DMG
 echo -n 'Preparing... '
@@ -45,15 +97,27 @@ echo 'Done'
 # Copy Qt translations
 echo -n 'Copying Qt translations... '
 TRANSLATIONS="$APP/$BUNDLE/Contents/Resources/translations"
-cp $QTDIR/translations/qt_* "$TRANSLATIONS"
-cp $QTDIR/translations/qtbase_* "$TRANSLATIONS"
-rm -f $TRANSLATIONS/qt_help_*
+mkdir -p "$TRANSLATIONS"
+find "$QT_TRANSLATIONS" -maxdepth 1 -type f \( -name 'qt_*.qm' -o -name 'qtbase_*.qm' \) ! -name 'qt_help_*' -exec cp {} "$TRANSLATIONS" \;
 echo 'Done'
 
 # Copy frameworks and plugins
 echo -n 'Copying frameworks and plugins... '
-macdeployqt "$APP/$BUNDLE"
-rm -Rf "$APP/$BUNDLE/Contents/PlugIns/iconengines"
+DEPLOY_EXECUTABLES=()
+DEPLOY_ARGS=(
+	"-no-plugins"
+	"-libpath=${QT_LIBS}"
+)
+if [ -d "${QT_PREFIX}/Frameworks" ]; then
+	DEPLOY_ARGS+=("-libpath=${QT_PREFIX}/Frameworks")
+fi
+
+# Deploy only the plugins the app actually needs on macOS.
+copy_qt_plugin 'platforms/libqcocoa.dylib'
+copy_qt_plugin 'styles/libqmacstyle.dylib'
+copy_qt_plugin 'imageformats/libqjpeg.dylib'
+
+"$MACDEPLOYQT_BIN" "${SCRIPT_DIR}/${APP}/${BUNDLE}" "${DEPLOY_ARGS[@]}" "${DEPLOY_EXECUTABLES[@]}"
 echo 'Done'
 
 # Copy background
