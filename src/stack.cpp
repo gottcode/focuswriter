@@ -24,6 +24,7 @@
 #include <QClipboard>
 #include <QDir>
 #include <QGridLayout>
+#include <QLabel>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPageSetupDialog>
@@ -96,6 +97,9 @@ Stack::Stack(QWidget* parent)
 	setHeaderVisible(Preferences::instance().alwaysShowHeader());
 	setFooterVisible(Preferences::instance().alwaysShowFooter());
 
+	m_top_wordcount = new QLabel(this);
+	m_top_wordcount->setVisible(false);
+
 	// Always draw background
 	setAttribute(Qt::WA_OpaquePaintEvent);
 	setAutoFillBackground(false);
@@ -126,6 +130,7 @@ void Stack::addDocument(Document* document)
 	connect(document->text(), &QTextEdit::redoAvailable, this, &Stack::redoAvailable);
 	connect(document->text(), &QTextEdit::undoAvailable, this, &Stack::undoAvailable);
 	connect(document->text(), &QTextEdit::currentCharFormatChanged, this, &Stack::updateFormatActions);
+	connect(document, &Document::changed, this, qOverload<>(&Stack::updateWordCount));
 
 	m_documents.append(document);
 	m_contents->addWidget(document);
@@ -197,6 +202,8 @@ void Stack::setCurrentDocument(int index)
 	Q_EMIT redoAvailable(m_current_document->text()->document()->isRedoAvailable());
 	Q_EMIT undoAvailable(m_current_document->text()->document()->isUndoAvailable());
 	Q_EMIT updateFormatActions();
+
+	updateWordCount();
 }
 
 //-----------------------------------------------------------------------------
@@ -210,6 +217,7 @@ void Stack::setMargins(int footer, int header)
 	updateMargin();
 	updateBackground();
 	updateMask();
+	m_top_wordcount->move(15, m_header_visible + 10);
 	showHeader();
 }
 
@@ -561,6 +569,13 @@ void Stack::themeSelected(const Theme& theme)
 	updateMargin();
 	updateBackground();
 
+	m_top_wordcount->setVisible(m_theme.showWordCount());
+	m_top_wordcount->setFont(m_theme.textFont());
+	QPalette p = m_top_wordcount->palette();
+	p.setColor(QPalette::WindowText, m_theme.textColor());
+	m_top_wordcount->setPalette(p);
+	updateWordCount();
+
 	for (Document* document : std::as_const(m_documents)) {
 		document->loadTheme(theme);
 	}
@@ -612,6 +627,7 @@ void Stack::setHeaderVisible(bool visible)
 		Q_EMIT headerVisible(visible);
 		m_header_visible = header_visible;
 		updateMask();
+		m_top_wordcount->move(15, m_header_visible + 10);
 	}
 }
 
@@ -672,6 +688,7 @@ void Stack::resizeEvent(QResizeEvent* event)
 	updateMask();
 	m_resize_timer->start();
 	updateBackground();
+	m_top_wordcount->move(15, m_header_visible + 10);
 	QWidget::resizeEvent(event);
 }
 
@@ -812,6 +829,18 @@ void Stack::initPrinter()
 	m_printer->setPageSize(QPageSize(QPageSize::Letter));
 	m_printer->setPageOrientation(QPageLayout::Portrait);
 	m_printer->setPageMargins(QMarginsF(1.0, 1.0, 1.0, 1.0), QPageLayout::Inch);
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::updateWordCount()
+{
+	if (m_current_document) {
+		m_top_wordcount->setText(tr("Words: %L1").arg(m_current_document->wordCount()));
+	} else {
+		m_top_wordcount->setText(tr("Words: %L1").arg(0));
+	}
+	m_top_wordcount->adjustSize();
 }
 
 //-----------------------------------------------------------------------------

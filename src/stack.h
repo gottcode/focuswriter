@@ -11,6 +11,7 @@
 class AlertLayer;
 class Document;
 class FindDialog;
+class QLabel;
 class SceneList;
 class SymbolsDialog;
 class ThemeRenderer;
@@ -107,6 +108,7 @@ public Q_SLOTS:
 	void setHeaderVisible(bool visible);
 	void setScenesVisible(bool visible);
 	void showHeader();
+	void updateWordCount();
 
 protected:
 	void mouseMoveEvent(QMouseEvent* event) override;
@@ -138,6 +140,7 @@ private:
 	QStackedWidget* m_contents;
 	QList<Document*> m_documents;
 	QList<QAction*> m_document_actions;
+	QLabel* m_top_wordcount;
 	Document* m_current_document;
 
 	ThemeRenderer* m_theme_renderer;

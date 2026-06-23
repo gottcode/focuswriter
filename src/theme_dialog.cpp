@@ -92,11 +92,16 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	font_layout->addWidget(m_font_names);
 	font_layout->addWidget(m_font_sizes);
 
+	m_show_word_count = new QCheckBox(tr("Show word count in top left"), text_group);
+	m_show_word_count->setChecked(m_theme.showWordCount());
+	connect(m_show_word_count, &QCheckBox::toggled, this, &ThemeDialog::renderPreview);
+
 	QFormLayout* text_layout = new QFormLayout(text_group);
 	text_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	text_layout->addRow(tr("Color:"), m_text_color);
 	text_layout->addRow(tr("Font:"), font_layout);
 	text_layout->addRow(tr("Misspelled:"), m_misspelled_color);
+	text_layout->addRow(QString(), m_show_word_count);
 
 
 	// Create background group
@@ -552,6 +557,7 @@ void ThemeDialog::setValues(Theme& theme)
 	font.setPointSizeF(m_font_sizes->currentText().toDouble());
 	theme.setTextFont(font);
 	theme.setMisspelledColor(m_misspelled_color->color());
+	theme.setShowWordCount(m_show_word_count->isChecked());
 
 	theme.setIndentFirstLine(m_indent_first_line->isChecked());
 	theme.setLineSpacing(m_line_spacing->value());

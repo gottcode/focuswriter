@@ -97,6 +97,7 @@ private:
 	QSpinBox* m_spacing_above_paragraph;
 	QSpinBox* m_spacing_below_paragraph;
 	QCheckBox* m_indent_first_line;
+	QCheckBox* m_show_word_count;
 };
 
 #endif // FOCUSWRITER_THEME_DIALOG_H

@@ -60,6 +60,7 @@ class Theme : public SettingsFile
 		QColor text_color;
 		QFont text_font;
 		QColor misspelled_color;
+		bool show_word_count;
 
 		bool indent_first_line;
 		RangedInt line_spacing;
@@ -153,10 +154,12 @@ public:
 	QColor textColor() const { return d->text_color; }
 	QFont textFont() const { return d->text_font; }
 	QColor misspelledColor() const { return d->misspelled_color; }
+	bool showWordCount() const { return d->show_word_count; }
 
 	void setTextColor(const QColor& color) { setValue(d->text_color, color); }
 	void setTextFont(const QFont& font) { setValue(d->text_font, font); }
 	void setMisspelledColor(const QColor& color) { setValue(d->misspelled_color, color); }
+	void setShowWordCount(bool show) { setValue(d->show_word_count, show); }
 
 	// Spacing settings
 	bool indentFirstLine() const { return d->indent_first_line; }

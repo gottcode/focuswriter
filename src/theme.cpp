@@ -131,6 +131,7 @@ Theme::ThemeData::ThemeData(const QString& theme_id, bool theme_default, bool cr
 	, paragraph_spacing_above(0, 1000)
 	, paragraph_spacing_below(0, 1000)
 	, tab_width(1, 1000)
+	, show_word_count(false)
 {
 	if (id.isEmpty() && create) {
 		QString untitled;
@@ -661,6 +662,7 @@ bool Theme::operator==(const Theme& theme) const
 		&& (d->text_color == theme.d->text_color)
 		&& (d->text_font == theme.d->text_font)
 		&& (d->misspelled_color == theme.d->misspelled_color)
+		&& (d->show_word_count == theme.d->show_word_count)
 
 		&& (d->indent_first_line == theme.d->indent_first_line)
 		&& (d->line_spacing == theme.d->line_spacing)
@@ -731,6 +733,7 @@ void Theme::reload()
 		d->text_font.setPointSize(std::max(point_size, QFont().pointSize()));
 	}
 	d->misspelled_color = settings.value("Text/Misspelled", "#ff0000").toString();
+	d->show_word_count = settings.value("Text/ShowWordCount", false).toBool();
 
 	// Load spacings
 	d->indent_first_line = settings.value("Spacings/IndentFirstLine", false).toBool();
@@ -796,6 +799,7 @@ void Theme::write()
 	settings.setValue("Text/Color", d->text_color.name());
 	settings.setValue("Text/Font", d->text_font.toString());
 	settings.setValue("Text/Misspelled", d->misspelled_color.name());
+	settings.setValue("Text/ShowWordCount", d->show_word_count);
 
 	// Store spacings
 	settings.setValue("Spacings/IndentFirstLine", d->indent_first_line);
