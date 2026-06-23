@@ -126,6 +126,7 @@ private Q_SLOTS:
 
 private:
 	void initPrinter();
+	void positionWordCount();
 
 private:
 	AlertLayer* m_alerts;

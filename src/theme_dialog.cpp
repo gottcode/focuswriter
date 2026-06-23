@@ -92,16 +92,48 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 	font_layout->addWidget(m_font_names);
 	font_layout->addWidget(m_font_sizes);
 
-	m_show_word_count = new QCheckBox(tr("Show word count in top left"), text_group);
-	m_show_word_count->setChecked(m_theme.showWordCount());
-	connect(m_show_word_count, &QCheckBox::toggled, this, &ThemeDialog::renderPreview);
-
 	QFormLayout* text_layout = new QFormLayout(text_group);
 	text_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
 	text_layout->addRow(tr("Color:"), m_text_color);
 	text_layout->addRow(tr("Font:"), font_layout);
 	text_layout->addRow(tr("Misspelled:"), m_misspelled_color);
-	text_layout->addRow(QString(), m_show_word_count);
+
+	m_wordcount_group = new QGroupBox(tr("Corner Word Count"), contents);
+	m_wordcount_group->setCheckable(true);
+	m_wordcount_group->setChecked(m_theme.showWordCount());
+	connect(m_wordcount_group, &QGroupBox::clicked, this, &ThemeDialog::renderPreview);
+
+	m_wordcount_position = new QComboBox(m_wordcount_group);
+	m_wordcount_position->addItems({ tr("Top Left"), tr("Top Right"), tr("Bottom Left"), tr("Bottom Right") });
+	m_wordcount_position->setCurrentIndex(m_theme.wordcountPosition());
+	connect(m_wordcount_position, &QComboBox::currentIndexChanged, this, &ThemeDialog::renderPreview);
+
+	m_wordcount_color = new ColorButton(m_wordcount_group);
+	m_wordcount_color->setColor(m_theme.wordcountColor());
+	connect(m_wordcount_color, &ColorButton::changed, this, &ThemeDialog::renderPreview);
+
+	m_wordcount_font_names = new QFontComboBox(m_wordcount_group);
+	m_wordcount_font_names->setEditable(false);
+	m_wordcount_font_names->setCurrentFont(m_theme.wordcountFont());
+	connect(m_wordcount_font_names, &QComboBox::activated, this, &ThemeDialog::wordcountFontChanged);
+	connect(m_wordcount_font_names, &QComboBox::activated, this, &ThemeDialog::renderPreview);
+
+	m_wordcount_font_sizes = new QComboBox(m_wordcount_group);
+	m_wordcount_font_sizes->setEditable(true);
+	m_wordcount_font_sizes->setMinimumContentsLength(3);
+	connect(m_wordcount_font_sizes, &QComboBox::editTextChanged, this, &ThemeDialog::renderPreview);
+
+	QHBoxLayout* wordcount_font_layout = new QHBoxLayout;
+	wordcount_font_layout->addWidget(m_wordcount_font_names);
+	wordcount_font_layout->addWidget(m_wordcount_font_sizes);
+
+	QFormLayout* wordcount_layout = new QFormLayout(m_wordcount_group);
+	wordcount_layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+	wordcount_layout->addRow(tr("Position:"), m_wordcount_position);
+	wordcount_layout->addRow(tr("Color:"), m_wordcount_color);
+	wordcount_layout->addRow(tr("Font:"), wordcount_font_layout);
+
+	wordcountFontChanged();
 
 
 	// Create background group
@@ -346,6 +378,7 @@ ThemeDialog::ThemeDialog(Theme& theme, QWidget* parent)
 
 	QVBoxLayout* groups_layout = new QVBoxLayout(contents);
 	groups_layout->addWidget(text_group);
+	groups_layout->addWidget(m_wordcount_group);
 	groups_layout->addWidget(background_group);
 	groups_layout->addWidget(foreground_group);
 	groups_layout->addWidget(m_round_corners);
@@ -437,6 +470,36 @@ void ThemeDialog::fontChanged()
 	m_font_sizes->setEditText(QString::number(font_size));
 	m_font_sizes->setValidator(new QDoubleValidator(font_sizes.constFirst(), font_sizes.constLast(), 1, m_font_sizes));
 	m_font_sizes->blockSignals(false);
+}
+
+//-----------------------------------------------------------------------------
+
+void ThemeDialog::wordcountFontChanged()
+{
+	const QFont font = m_wordcount_font_names->currentFont();
+	QList<int> font_sizes = QFontDatabase::smoothSizes(font.family(), QString());
+	if (font_sizes.isEmpty()) {
+		font_sizes = QFontDatabase::standardSizes();
+	}
+	qreal font_size = m_wordcount_font_sizes->currentText().toDouble();
+	if (font_size < 0.1) {
+		font_size = std::lround(m_theme.wordcountFont().pointSizeF() * 10.0) * 0.1;
+	}
+
+	m_wordcount_font_sizes->blockSignals(true);
+	m_wordcount_font_sizes->clear();
+	int index = 0;
+	for (int i = 0, count = font_sizes.count(); i < count; ++i) {
+		const int size = font_sizes.at(i);
+		if (size <= font_size) {
+			index = i;
+		}
+		m_wordcount_font_sizes->addItem(QString::number(size));
+	}
+	m_wordcount_font_sizes->setCurrentIndex(index);
+	m_wordcount_font_sizes->setEditText(QString::number(font_size));
+	m_wordcount_font_sizes->setValidator(new QDoubleValidator(font_sizes.constFirst(), font_sizes.constLast(), 1, m_wordcount_font_sizes));
+	m_wordcount_font_sizes->blockSignals(false);
 }
 
 //-----------------------------------------------------------------------------
@@ -557,7 +620,13 @@ void ThemeDialog::setValues(Theme& theme)
 	font.setPointSizeF(m_font_sizes->currentText().toDouble());
 	theme.setTextFont(font);
 	theme.setMisspelledColor(m_misspelled_color->color());
-	theme.setShowWordCount(m_show_word_count->isChecked());
+
+	theme.setShowWordCount(m_wordcount_group->isChecked());
+	theme.setWordcountPosition(m_wordcount_position->currentIndex());
+	theme.setWordcountColor(m_wordcount_color->color());
+	QFont wordcount_font = m_wordcount_font_names->currentFont();
+	wordcount_font.setPointSizeF(m_wordcount_font_sizes->currentText().toDouble());
+	theme.setWordcountFont(wordcount_font);
 
 	theme.setIndentFirstLine(m_indent_first_line->isChecked());
 	theme.setLineSpacing(m_line_spacing->value());

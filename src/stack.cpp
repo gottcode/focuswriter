@@ -217,7 +217,7 @@ void Stack::setMargins(int footer, int header)
 	updateMargin();
 	updateBackground();
 	updateMask();
-	m_top_wordcount->move(15, m_header_visible + 10);
+	positionWordCount();
 	showHeader();
 }
 
@@ -570,9 +570,9 @@ void Stack::themeSelected(const Theme& theme)
 	updateBackground();
 
 	m_top_wordcount->setVisible(m_theme.showWordCount());
-	m_top_wordcount->setFont(m_theme.textFont());
+	m_top_wordcount->setFont(m_theme.wordcountFont());
 	QPalette p = m_top_wordcount->palette();
-	p.setColor(QPalette::WindowText, m_theme.textColor());
+	p.setColor(QPalette::WindowText, m_theme.wordcountColor());
 	m_top_wordcount->setPalette(p);
 	updateWordCount();
 
@@ -614,6 +614,7 @@ void Stack::setFooterVisible(bool visible)
 		Q_EMIT footerVisible(visible);
 		m_footer_visible = footer_visible;
 		updateMask();
+		positionWordCount();
 	}
 }
 
@@ -627,7 +628,7 @@ void Stack::setHeaderVisible(bool visible)
 		Q_EMIT headerVisible(visible);
 		m_header_visible = header_visible;
 		updateMask();
-		m_top_wordcount->move(15, m_header_visible + 10);
+		positionWordCount();
 	}
 }
 
@@ -688,7 +689,7 @@ void Stack::resizeEvent(QResizeEvent* event)
 	updateMask();
 	m_resize_timer->start();
 	updateBackground();
-	m_top_wordcount->move(15, m_header_visible + 10);
+	positionWordCount();
 	QWidget::resizeEvent(event);
 }
 
@@ -840,7 +841,38 @@ void Stack::updateWordCount()
 	} else {
 		m_top_wordcount->setText(tr("Words: %L1").arg(0));
 	}
+	positionWordCount();
+}
+
+//-----------------------------------------------------------------------------
+
+void Stack::positionWordCount()
+{
 	m_top_wordcount->adjustSize();
+
+	int x = 15;
+	int y = 10;
+
+	switch (m_theme.wordcountPosition()) {
+	case 0: // Top Left
+		x = 15;
+		y = m_header_visible + 10;
+		break;
+	case 1: // Top Right
+		x = width() - 15 - m_top_wordcount->width();
+		y = m_header_visible + 10;
+		break;
+	case 2: // Bottom Left
+		x = 15;
+		y = height() + m_footer_visible - 10 - m_top_wordcount->height();
+		break;
+	case 3: // Bottom Right
+		x = width() - 15 - m_top_wordcount->width();
+		y = height() + m_footer_visible - 10 - m_top_wordcount->height();
+		break;
+	}
+
+	m_top_wordcount->move(x, y);
 }
 
 //-----------------------------------------------------------------------------

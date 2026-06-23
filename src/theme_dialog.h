@@ -40,6 +40,7 @@ protected:
 private Q_SLOTS:
 	void checkNameAvailable();
 	void fontChanged();
+	void wordcountFontChanged();
 	void imageChanged();
 	void lineSpacingChanged(int index);
 	void positionChanged(int index);
@@ -97,7 +98,11 @@ private:
 	QSpinBox* m_spacing_above_paragraph;
 	QSpinBox* m_spacing_below_paragraph;
 	QCheckBox* m_indent_first_line;
-	QCheckBox* m_show_word_count;
+	QGroupBox* m_wordcount_group;
+	QComboBox* m_wordcount_position;
+	ColorButton* m_wordcount_color;
+	QFontComboBox* m_wordcount_font_names;
+	QComboBox* m_wordcount_font_sizes;
 };
 
 #endif // FOCUSWRITER_THEME_DIALOG_H
