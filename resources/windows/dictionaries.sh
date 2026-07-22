@@ -11,11 +11,11 @@ cd temp
 
 # Download
 echo -n 'Downloading LibreOffice dictionaries...'
-loversion='25.8.4.2'
+loversion='26.2.5.1'
 lodict="libreoffice-dictionaries-${loversion}"
 lofiles="libreoffice-${loversion}/dictionaries"
 if [ ! -e "${lodict}.tar.xz" ]; then
-	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/25.8.4/${lodict}.tar.xz"
+	curl -s -O -L "https://download.documentfoundation.org/libreoffice/src/26.2.5/${lodict}.tar.xz"
 	echo ' DONE'
 else
 	echo ' SKIPPED'
