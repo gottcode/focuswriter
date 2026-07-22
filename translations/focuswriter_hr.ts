@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sv" sourcelanguage="en">
+<TS version="2.1" language="hr" sourcelanguage="en">
 <context>
     <name>Alert</name>
     <message>
         <source>Close (%1)</source>
-        <translation>Stäng (%1)</translation>
+        <translation>Zatvori (%1)</translation>
     </message>
     <message>
         <source>Collapse</source>
-        <translation>Fäll ihop</translation>
+        <translation>Sklopi</translation>
     </message>
     <message>
         <source>Expand</source>
-        <translation>Fäll ut</translation>
+        <translation>Rasklopi</translation>
     </message>
 </context>
 <context>
     <name>AlertLayer</name>
     <message>
         <source>Dismiss Alert</source>
-        <translation>Avfärda aviseringen</translation>
+        <translation>Odbaci upozorenje</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -32,33 +32,37 @@
     <message numerus="yes">
         <source>%Ln word(s)</source>
         <translation>
-            <numerusform>%Ln ord</numerusform>
-            <numerusform>%Ln ord</numerusform>
+            <numerusform>%Ln riječ</numerusform>
+            <numerusform>%Ln riječi</numerusform>
+            <numerusform>%Ln riječi</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%Ln minute(s)</source>
         <translation>
-            <numerusform>%Ln minut</numerusform>
-            <numerusform>%Ln minuter</numerusform>
+            <numerusform>%Ln minuta</numerusform>
+            <numerusform>%Ln minute</numerusform>
+            <numerusform>%Ln minuta</numerusform>
         </translation>
     </message>
     <message>
         <source>0%</source>
-        <translation>0%</translation>
+        <translation>0&#xa0;%</translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln minute(s)</source>
         <translation>
-            <numerusform>%L1% av %Ln minut</numerusform>
-            <numerusform>%L1% av %Ln minuter</numerusform>
+            <numerusform>%L1% od %Ln minuta</numerusform>
+            <numerusform>%L1% od %Ln minuta</numerusform>
+            <numerusform>%L1% od %Ln minuta</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%L1% of %Ln word(s)</source>
         <translation>
-            <numerusform>%L1% av %Ln ord</numerusform>
-            <numerusform>%L1% av %Ln ord</numerusform>
+            <numerusform>%L1% od %Ln riječi</numerusform>
+            <numerusform>%L1% od %Ln riječi</numerusform>
+            <numerusform>%L1% od %Ln riječi</numerusform>
         </translation>
     </message>
 </context>
@@ -66,25 +70,26 @@
     <name>DailyProgressDialog</name>
     <message>
         <source>Daily Progress</source>
-        <translation>Dagens framsteg</translation>
+        <translation>Dnevni napredak</translation>
     </message>
     <message>
         <source>Longest streak</source>
-        <translation>Längsta svit</translation>
+        <translation>Najduži skor</translation>
     </message>
     <message>
         <source>Current streak</source>
-        <translation>Aktuell svit</translation>
+        <translation>Trenutačni skor</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation>Ej tillgängligt</translation>
+        <translation>--</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
         <translation>
-            <numerusform>%n dag</numerusform>
-            <numerusform>%n dagar</numerusform>
+            <numerusform>%n dan</numerusform>
+            <numerusform>%n dana</numerusform>
+            <numerusform>%n dana</numerusform>
         </translation>
     </message>
     <message>
@@ -96,196 +101,197 @@
     <name>DailyProgressLabel</name>
     <message>
         <source>%L1% of daily goal</source>
-        <translation>%L1% av det dagliga målet</translation>
+        <translation>%L1% od dnevnog cilja</translation>
     </message>
 </context>
 <context>
     <name>DictionaryDialog</name>
     <message>
         <source>Set Language</source>
-        <translation>Ställ in språk</translation>
+        <translation>Postavi jezik</translation>
     </message>
 </context>
 <context>
     <name>Document</name>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Namnlös %1)</translation>
+        <translation>(Bez naslova %1)</translation>
     </message>
     <message>
         <source>%1 (Read-Only)</source>
-        <translation>%1 (skrivskyddad)</translation>
+        <translation>%1 (samo-za-čitanje)</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Tyvärr</translation>
+        <translation>Oprosti</translation>
     </message>
     <message>
         <source>Unable to save &apos;%1&apos;.</source>
-        <translation>Det gick inte att spara ”%1”.</translation>
+        <translation>Nije moguće sremiti datotku „%1”.</translation>
     </message>
     <message>
         <source>Save File As</source>
-        <translation>Spara fil som</translation>
+        <translation>Spremi datoteku kao</translation>
     </message>
     <message>
         <source>Unable to overwrite &apos;%1&apos;.</source>
-        <translation>Det gick inte att skriva över ”%1”.</translation>
+        <translation>Nije moguće prepisati datotku „%1”.</translation>
     </message>
     <message>
         <source>Rename File</source>
-        <translation>Byt namn på fil</translation>
+        <translation>Preimenuj datoteku</translation>
     </message>
     <message>
         <source>Unable to rename &apos;%1&apos;.</source>
-        <translation>Det gick inte att byta namn på filen ”%1”.</translation>
+        <translation>Nije moguće preimenovati datotku „%1”.</translation>
     </message>
     <message>
         <source>Reload File?</source>
-        <translation>Ladda om fil?</translation>
+        <translation>Ponovo učitaj datoteku?</translation>
     </message>
     <message>
         <source>Reload the file &apos;%1&apos; from disk?</source>
-        <translation>Ladda om filen ”%1” från disken?</translation>
+        <translation>Ponovno učitati datoteku „%1” s diska?</translation>
     </message>
     <message>
         <source>All unsaved changes will be lost.</source>
-        <translation>Alla osparade ändringar går förlorade.</translation>
+        <translation>Sve nespremljene promjene će se izgubiti.</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Ladda om</translation>
+        <translation>Učitaj ponovo</translation>
     </message>
     <message>
         <source>Untitled %1</source>
-        <translation>Namnlös %1</translation>
+        <translation>Bez naslova %1</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Fråga</translation>
+        <translation>Pitanje</translation>
     </message>
     <message>
         <source>Saving as plain text will discard all formatting. Discard formatting?</source>
-        <translation>Om du sparar som oformaterad text tas all formatering bort. Vill du fortsätta?</translation>
+        <translation>Spremanje kao običan tekst odbacuje sva formatiranja. Odbaciti formatiranje?</translation>
     </message>
 </context>
 <context>
     <name>DocumentWatcher</name>
     <message>
         <source>File Changed</source>
-        <translation>Filen har ändrats</translation>
+        <translation>Datoteka je promijenjena</translation>
     </message>
     <message>
         <source>The file &apos;%1&apos; was changed by another program.</source>
-        <translation>Filen ”%1” har ändrats av ett annat program.</translation>
+        <translation>Jedna druga aplikacija je promijenila datoteku „%1”.</translation>
     </message>
     <message>
         <source>Do you want to reload the file?</source>
-        <translation>Vill du ladda om filen?</translation>
+        <translation>Želiš li ponovo učitati datoteku?</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation>Ladda om</translation>
+        <translation>Učitaj ponovo</translation>
     </message>
     <message>
         <source>Ignore</source>
-        <translation>Ignorera</translation>
+        <translation>Zanemari</translation>
     </message>
     <message>
         <source>File Deleted</source>
-        <translation>Filen har tagits bort</translation>
+        <translation>Datoteka je izbrisana</translation>
     </message>
     <message>
         <source>The file %1 was deleted by another program.</source>
-        <translation>Filen %1 togs bort av ett annat program.</translation>
+        <translation>Jedna druga aplikacija je izbrisala datoteku „%1”.</translation>
     </message>
     <message>
         <source>Do you want to save or close the file?</source>
-        <translation>Vill du spara eller stänga filen?</translation>
+        <translation>Želiš li spremiti ili zatvoriti datoteku?</translation>
     </message>
 </context>
 <context>
     <name>DocxReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Det gick inte att öppna arkivet.</translation>
+        <translation>Nije moguće otvoriti arhivu.</translation>
     </message>
 </context>
 <context>
     <name>FindDialog</name>
     <message>
         <source>Search for:</source>
-        <translation>Sök efter:</translation>
+        <translation>Traži:</translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Ersätt med:</translation>
+        <translation>Zamijeni s:</translation>
     </message>
     <message>
         <source>Ignore case</source>
-        <translation>Ignorera skiftläge</translation>
+        <translation>Zanemari veličinu slova</translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation>Endast hela ord</translation>
+        <translation>Samo cijele riječi</translation>
     </message>
     <message>
         <source>Regular expressions</source>
-        <translation>Reguljära uttryck</translation>
+        <translation>Regularni izrazi</translation>
     </message>
     <message>
         <source>Search up</source>
-        <translation>Sök uppåt</translation>
+        <translation>Traži prema gore</translation>
     </message>
     <message>
         <source>Search down</source>
-        <translation>Sök nedåt</translation>
+        <translation>Traži prema dolje</translation>
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation>&amp;Sök</translation>
+        <translation>&amp;Pronađi</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
-        <translation>&amp;Ersätt</translation>
+        <translation>&amp;Zamijeni</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
-        <translation>Ersätt &amp;alla</translation>
+        <translation>Zamijeni &amp;sve</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>Sök</translation>
+        <translation>Pronađi</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation>Ersätt</translation>
+        <translation>Zamijeni</translation>
     </message>
     <message numerus="yes">
         <source>Replace %n instance(s)?</source>
         <translation>
-            <numerusform>Ersätt %n förekomst?</numerusform>
-            <numerusform>Ersätt %n förekomster?</numerusform>
+            <numerusform>Zamijeniti %n instancu?</numerusform>
+            <numerusform>Zamijeniti %n instance?</numerusform>
+            <numerusform>Zamijeniti %n instanci?</numerusform>
         </translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Fråga</translation>
+        <translation>Pitanje</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Tyvärr</translation>
+        <translation>Oprosti</translation>
     </message>
     <message>
         <source>Phrase not found.</source>
-        <translation>Frasen hittades inte.</translation>
+        <translation>Izraz nije pronađen.</translation>
     </message>
 </context>
 <context>
     <name>FormatManager</name>
     <message>
         <source>OpenDocument Text</source>
-        <translation>OpenDocument Text</translation>
+        <translation>OpenDocument tekst</translation>
     </message>
     <message>
         <source>Office Open XML</source>
@@ -293,19 +299,19 @@
     </message>
     <message>
         <source>Rich Text Format</source>
-        <translation>Rich Text Format</translation>
+        <translation>Formatirani tekst</translation>
     </message>
     <message>
         <source>Plain Text</source>
-        <translation>Oformaterad text</translation>
+        <translation>Obični tekst</translation>
     </message>
     <message>
         <source>All Files</source>
-        <translation>Alla filer</translation>
+        <translation>Sve datoteke</translation>
     </message>
     <message>
         <source>All Supported Files</source>
-        <translation>Alla filer som stöds</translation>
+        <translation>Sve podržane datoteke</translation>
     </message>
     <message>
         <source>OpenDocument Flat XML</source>
@@ -316,247 +322,247 @@
     <name>Highlighter</name>
     <message>
         <source>Add</source>
-        <translation>Lägg till</translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <source>Check Spelling...</source>
-        <translation>Kontrollera stavning…</translation>
+        <translation>Provjeri pravopis …</translation>
     </message>
     <message>
         <source>(No suggestions found)</source>
-        <translation>(Inga förslag hittades)</translation>
+        <translation>(Nema prijedloga)</translation>
     </message>
 </context>
 <context>
     <name>ImageButton</name>
     <message>
         <source>Open Image</source>
-        <translation>Öppna bild</translation>
+        <translation>Otvori sliku</translation>
     </message>
     <message>
         <source>Images</source>
-        <translation>Bilder</translation>
+        <translation>Slike</translation>
     </message>
 </context>
 <context>
     <name>LocaleDialog</name>
     <message>
         <source>Select application language:</source>
-        <translation>Välj programspråk:</translation>
+        <translation>Odaberi jezik aplikacije:</translation>
     </message>
     <message>
         <source>&lt;System Language&gt;</source>
-        <translation>&lt;Systemets språk&gt;</translation>
+        <translation>&lt;Jezik sustava&gt;</translation>
     </message>
     <message>
         <source>Note</source>
-        <translation>Observera</translation>
+        <translation>Bilješka</translation>
     </message>
     <message>
         <source>Please restart this application for the change in language to take effect.</source>
-        <translation>Starta om programmet för att språkändringen ska aktiveras.</translation>
+        <translation>Ponovo pokreni ovu aplikaciju kako bi promjena jezika stupila na snagu.</translation>
     </message>
 </context>
 <context>
     <name>OdtReader</name>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Det gick inte att öppna arkivet.</translation>
+        <translation>Nije moguće otvoriti arhivu.</translation>
     </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Inställningar</translation>
+        <translation>Postavke</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation>Opće</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation>Statistik</translation>
+        <translation>Statistike</translation>
     </message>
     <message>
         <source>Toolbar</source>
-        <translation>Verktygsfält</translation>
+        <translation>Traka alata</translation>
     </message>
     <message>
         <source>Spell Checking</source>
-        <translation>Stavningskontroll</translation>
+        <translation>Provjera pravopisa</translation>
     </message>
     <message>
         <source>Select Dictionary</source>
-        <translation>Välj ordlista</translation>
+        <translation>Odaberi rječnik</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Tyvärr</translation>
+        <translation>Oprosti</translation>
     </message>
     <message>
         <source>Unable to open archive.</source>
-        <translation>Det gick inte att öppna arkivet.</translation>
+        <translation>Nije moguće otvoriti arhivu.</translation>
     </message>
     <message>
         <source>The archive does not contain a usable dictionary.</source>
-        <translation>Arkivet innehåller ingen användbar ordlista.</translation>
+        <translation>Arhiva ne sadrži upotrebljiv rječnik.</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Fråga</translation>
+        <translation>Pitanje</translation>
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation>Genvägar</translation>
+        <translation>Prečaci</translation>
     </message>
     <message>
         <source>One or more shortcuts conflict. Do you wish to proceed?</source>
-        <translation>En eller flera genvägar står i konflikt. Vill du fortsätta?</translation>
+        <translation>Jedan ili više prečaca se sukobljavaju. Želiš li nastaviti?</translation>
     </message>
     <message>
         <source>The dictionary &quot;%1&quot; already exists. Do you want to replace it?</source>
-        <translation>Ordlistan ”%1” finns redan. Vill du ersätta den?</translation>
+        <translation>Rječnik „%1” već postoji. Želiš li ga zamijeniti?</translation>
     </message>
     <message>
         <source>Daily Goal</source>
-        <translation>Dagligt mål</translation>
+        <translation>Dnevni cilj</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Inget</translation>
+        <translation>Bez</translation>
     </message>
     <message>
         <source>Minutes:</source>
-        <translation>Minuter:</translation>
+        <translation>Minute:</translation>
     </message>
     <message>
         <source>Words:</source>
-        <translation>Ord:</translation>
+        <translation>Riječi:</translation>
     </message>
     <message>
         <source>Editing</source>
-        <translation>Redigering</translation>
+        <translation>Uređivanje</translation>
     </message>
     <message>
         <source>Always vertically center</source>
-        <translation>Centrera alltid vertikalt</translation>
+        <translation>Uvijek okomito centrirano</translation>
     </message>
     <message>
         <source>Block insertion cursor</source>
-        <translation>Blockformad infogningsmarkör</translation>
+        <translation>Kursor za umetanje blokova</translation>
     </message>
     <message>
         <source>Smooth fonts</source>
-        <translation>Utjämning av teckensnitt</translation>
+        <translation>Zaglađeni fontovi</translation>
     </message>
     <message>
         <source>Typewriter sounds</source>
-        <translation>Skrivmaskinsljud</translation>
+        <translation>Zvukovi pisaćeg stroja</translation>
     </message>
     <message>
         <source>Smart quotes:</source>
-        <translation>Smarta citationstecken:</translation>
+        <translation>Pametni navodnici:</translation>
     </message>
     <message>
         <source>Double</source>
-        <translation>Dubbel</translation>
+        <translation>Dvostruki</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation>Enkel</translation>
+        <translation>Jednostruki</translation>
     </message>
     <message>
         <source>Scenes</source>
-        <translation>Scener</translation>
+        <translation>Scene</translation>
     </message>
     <message>
         <source>Divider:</source>
-        <translation>Avdelare:</translation>
+        <translation>Znak razdvajanja:</translation>
     </message>
     <message>
         <source>Saving</source>
-        <translation>Sparning</translation>
+        <translation>Spremanje</translation>
     </message>
     <message>
         <source>Remember cursor position</source>
-        <translation>Kom ihåg markörens position</translation>
+        <translation>Zapamti položaj kursora</translation>
     </message>
     <message>
         <source>Word count</source>
-        <translation>Antal ord</translation>
+        <translation>Broj riječi</translation>
     </message>
     <message>
         <source>Page count</source>
-        <translation>Antal sidor</translation>
+        <translation>Broj stranica</translation>
     </message>
     <message>
         <source>Paragraph count</source>
-        <translation>Antal stycken</translation>
+        <translation>Broj odlomaka</translation>
     </message>
     <message>
         <source>Character count</source>
-        <translation>Antal tecken</translation>
+        <translation>Broj znakova</translation>
     </message>
     <message>
         <source>Characters:</source>
-        <translation>Tecken:</translation>
+        <translation>Znakovi:</translation>
     </message>
     <message>
         <source>Paragraphs:</source>
-        <translation>Stycken:</translation>
+        <translation>Odlomci:</translation>
     </message>
     <message>
         <source>Word Count Algorithm</source>
-        <translation>Algoritm för ordräkning</translation>
+        <translation>Algoritam za broj riječi</translation>
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Återställ dagens framsteg till noll?</translation>
+        <translation>Resetirati dnevni napredak za danas na nulu?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation>Skriv byteordningsmärke i oformaterade textfiler</translation>
+        <translation>Zapiši oznaku redoslijeda bajtova u obične tekstualne datoteke</translation>
     </message>
     <message>
         <source>Default format:</source>
-        <translation>Standardformat:</translation>
+        <translation>Standardni format:</translation>
     </message>
     <message>
         <source>Reset Today</source>
-        <translation>Återställ idag</translation>
+        <translation>Resetiraj danas</translation>
     </message>
     <message>
         <source>History</source>
-        <translation>Historik</translation>
+        <translation>Povijest</translation>
     </message>
     <message>
         <source>Remember history</source>
-        <translation>Kom ihåg historik</translation>
+        <translation>Zapamti povijest</translation>
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Visa sviter</translation>
+        <translation>Prikaži skorove</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
-        <translation>Minsta framsteg för en svit:</translation>
+        <translation>Najmanji napredak za skorove:</translation>
     </message>
     <message>
         <source>Detect word boundaries</source>
-        <translation>Identifiera ordgränser</translation>
+        <translation>Otkrij granice riječi</translation>
     </message>
     <message>
         <source>Divide character count by six</source>
-        <translation>Dela teckenantal med sex</translation>
+        <translation>Podijeli broj znakova sa šest</translation>
     </message>
     <message>
         <source>Count each letter as a word</source>
-        <translation>Räkna varje bokstav som ett ord</translation>
+        <translation>Broji svako slovo kao riječ</translation>
     </message>
     <message>
         <source>Page Count Algorithm</source>
-        <translation>Algoritm för sidräkning</translation>
+        <translation>Algoritam za broj stranica</translation>
     </message>
     <message>
         <source>Style</source>
@@ -564,634 +570,634 @@
     </message>
     <message>
         <source>Icons Only</source>
-        <translation>Endast ikoner</translation>
+        <translation>Samo ikone</translation>
     </message>
     <message>
         <source>Text Only</source>
-        <translation>Endast text</translation>
+        <translation>Samo tekst</translation>
     </message>
     <message>
         <source>Text Alongside Icons</source>
-        <translation>Text bredvid ikoner</translation>
+        <translation>Tekst uz ikone</translation>
     </message>
     <message>
         <source>Text Under Icons</source>
-        <translation>Text under ikoner</translation>
+        <translation>Tekst ispod ikona</translation>
     </message>
     <message>
         <source>Text Position:</source>
-        <translation>Textens placering:</translation>
+        <translation>Položaj teksta:</translation>
     </message>
     <message>
         <source>Actions</source>
-        <translation>Åtgärder</translation>
+        <translation>Radnje</translation>
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Flytta upp</translation>
+        <translation>Pomakni gore</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Flytta ner</translation>
+        <translation>Pomakni dolje</translation>
     </message>
     <message>
         <source>Add Separator</source>
-        <translation>Lägg till avgränsare</translation>
+        <translation>Dodaj znak rastavljanja</translation>
     </message>
     <message>
         <source>Command</source>
-        <translation>Kommando</translation>
+        <translation>Naredba</translation>
     </message>
     <message>
         <source>Shortcut</source>
-        <translation>Genväg</translation>
+        <translation>Prečac</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Åtgärd</translation>
+        <translation>Radnja</translation>
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Kontrollera stavning medan du skriver</translation>
+        <translation>Provjeri pravopis tijekom tipkanja</translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Ignorera ord med VERSALER</translation>
+        <translation>Zanemari riječi s VELIKIM SLOVIMA</translation>
     </message>
     <message>
         <source>Ignore words with numbers</source>
-        <translation>Ignorera ord med siffror</translation>
+        <translation>Zanemari riječi s brojevima</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Språk</translation>
+        <translation>Jezik</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Lägg till</translation>
+        <translation>Dodaj</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Ta bort</translation>
+        <translation>Ukloni</translation>
     </message>
     <message>
         <source>Personal Dictionary</source>
-        <translation>Personlig ordlista</translation>
+        <translation>Osobni rječnik</translation>
     </message>
     <message>
         <source>Remove current dictionary?</source>
-        <translation>Ta bort den aktuella ordlistan?</translation>
+        <translation>Ukloniti trenutačni rječnik?</translation>
     </message>
     <message>
         <source>User Interface</source>
-        <translation>Användargränssnitt</translation>
+        <translation>Korisničko sučelje</translation>
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation>Visa alltid rullningslisten</translation>
+        <translation>Uvijek prikaži kliznu traku</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>Visa alltid det övre fältet</translation>
+        <translation>Uvijek prikaži gornju traku</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
-        <translation>Visa alltid det nedre fältet</translation>
+        <translation>Uvijek prikaži donju traku</translation>
     </message>
 </context>
 <context>
     <name>RtfReader</name>
     <message>
         <source>Not a supported RTF file.</source>
-        <translation>RTF-filen stöds inte.</translation>
+        <translation>Nije podržana RTF datoteka.</translation>
     </message>
 </context>
 <context>
     <name>RtfTokenizer</name>
     <message>
         <source>Unexpectedly reached end of file.</source>
-        <translation>Filslutet nåddes oväntat.</translation>
+        <translation>Neočekivano je dosegnut kraj datoteke.</translation>
     </message>
 </context>
 <context>
     <name>SceneList</name>
     <message>
         <source>Ctrl+Shift+Down</source>
-        <translation>Ctrl+Skift+Ned</translation>
+        <translation>Ctrl+Shift+Down</translation>
     </message>
     <message>
         <source>Move Scenes Up</source>
-        <translation>Flytta upp scener</translation>
+        <translation>Pomakni scene prema gore</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Up</source>
-        <translation>Ctrl+Skift+Upp</translation>
+        <translation>Ctrl+Shift+Up</translation>
     </message>
     <message>
         <source>Toggle Scene List</source>
-        <translation>Visa eller dölj scenlistan</translation>
+        <translation>Uključi/Isključi popis scena</translation>
     </message>
     <message>
         <source>Shift+F4</source>
-        <translation>Skift+F4</translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <source>Show scene list (%1)</source>
-        <translation>Visa scenlistan (%1)</translation>
+        <translation>Prikaži popis scena (%1)</translation>
     </message>
     <message>
         <source>Hide scene list (%1)</source>
-        <translation>Dölj scenlistan (%1)</translation>
+        <translation>Sakrij popis scena (%1)</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation>Filter</translation>
+        <translation>Filtar</translation>
     </message>
     <message>
         <source>Move Scenes Down</source>
-        <translation>Flytta ner scener</translation>
+        <translation>Pomakni scene prema dolje</translation>
     </message>
     <message>
         <source>Resize scene list</source>
-        <translation>Ändra scenlistans storlek</translation>
+        <translation>Promijeni veličinu popisa scena</translation>
     </message>
 </context>
 <context>
     <name>Session</name>
     <message>
         <source>Default</source>
-        <translation>Standard</translation>
+        <translation>Standardno</translation>
     </message>
 </context>
 <context>
     <name>SessionManager</name>
     <message>
         <source>Manage Sessions</source>
-        <translation>Hantera sessioner</translation>
+        <translation>Upravljaj sesijama</translation>
     </message>
     <message>
         <source>S&amp;essions</source>
-        <translation>S&amp;essioner</translation>
+        <translation>S&amp;esije</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Ny</translation>
+        <translation>Nova</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Duplicera</translation>
+        <translation>Dupliciraj</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Byt namn</translation>
+        <translation>Preimenuj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Ta bort</translation>
+        <translation>Izbriši</translation>
     </message>
     <message>
         <source>Switch To</source>
-        <translation>Växla till</translation>
+        <translation>Prijeđi na</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Ny session</translation>
+        <translation>Nova sesija</translation>
     </message>
     <message>
         <source>Duplicate Session</source>
-        <translation>Duplicera session</translation>
+        <translation>Dupliciraj sesiju</translation>
     </message>
     <message>
         <source>Rename Session</source>
-        <translation>Byt namn på session</translation>
+        <translation>Preimenuj sesiju</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Fråga</translation>
+        <translation>Pitanje</translation>
     </message>
     <message>
         <source>Delete selected session?</source>
-        <translation>Vill du ta bort den markerade sessionen?</translation>
+        <translation>Izbrisati odabranu sesiju?</translation>
     </message>
     <message>
         <source>Session name:</source>
-        <translation>Sessionsnamn:</translation>
+        <translation>Ime sesije:</translation>
     </message>
     <message>
         <source>Sorry</source>
-        <translation>Tyvärr</translation>
+        <translation>Oprosti</translation>
     </message>
     <message>
         <source>The requested session name is already in use.</source>
-        <translation>Det begärda sessionsnamnet används redan.</translation>
+        <translation>Zatraženo ime sesije se već koristi.</translation>
     </message>
     <message>
         <source>&amp;New...</source>
-        <translation>&amp;Ny…</translation>
+        <translation>&amp;Nova …</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation>Ctrl+Skift+N</translation>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <source>&amp;Manage...</source>
-        <translation>&amp;Hantera…</translation>
+        <translation>&amp;Upravljaj …</translation>
     </message>
     <message>
         <source>Ctrl+Shift+M</source>
-        <translation>Ctrl+Skift+M</translation>
+        <translation>Ctrl+Shift+U</translation>
     </message>
 </context>
 <context>
     <name>ShortcutEdit</name>
     <message>
         <source>Clear</source>
-        <translation>Rensa</translation>
+        <translation>Izbriši</translation>
     </message>
     <message>
         <source>Reset to Default</source>
-        <translation>Återställ standardvärdet</translation>
+        <translation>Resetiraj na zadane vrijednosti</translation>
     </message>
     <message>
         <source>Shortcut:</source>
-        <translation>Genväg:</translation>
+        <translation>Prečac: </translation>
     </message>
 </context>
 <context>
     <name>SmartQuote</name>
     <message>
         <source>Replacing quotation marks...</source>
-        <translation>Ersätter citationstecken…</translation>
+        <translation>Zamjena navodnika …</translation>
     </message>
     <message>
         <source>Please Wait</source>
-        <translation>Vänta</translation>
+        <translation>Pričekaj</translation>
     </message>
 </context>
 <context>
     <name>SpellChecker</name>
     <message>
         <source>Check Spelling</source>
-        <translation>Kontrollera stavning</translation>
+        <translation>Provjeri pravopis</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation>&amp;Lägg till</translation>
+        <translation>&amp;Dodaj</translation>
     </message>
     <message>
         <source>&amp;Ignore</source>
-        <translation>&amp;Ignorera</translation>
+        <translation>&amp;Zanemari</translation>
     </message>
     <message>
         <source>I&amp;gnore All</source>
-        <translation>I&amp;gnorera alla</translation>
+        <translation>Zanemari &amp;sve</translation>
     </message>
     <message>
         <source>&amp;Change</source>
-        <translation>&amp;Ändra</translation>
+        <translation>&amp;Promijeni</translation>
     </message>
     <message>
         <source>C&amp;hange All</source>
-        <translation>Ä&amp;ndra alla</translation>
+        <translation>Pro&amp;mijeni sve</translation>
     </message>
     <message>
         <source>Not in dictionary:</source>
-        <translation>Finns inte i ordboken:</translation>
+        <translation>&amp;Nije u rječniku:</translation>
     </message>
     <message>
         <source>Change to:</source>
-        <translation>Ändra till:</translation>
+        <translation>Promijeni u:</translation>
     </message>
     <message>
         <source>Checking spelling...</source>
-        <translation>Kontrollerar stavning…</translation>
+        <translation>Provjera pravopisa …</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <translation>Odustani</translation>
     </message>
     <message>
         <source>Please wait</source>
-        <translation>Vänta</translation>
+        <translation>Pričekaj</translation>
     </message>
     <message>
         <source>Continue checking at beginning of file?</source>
-        <translation>Fortsätt stavningskontrollen från början av filen?</translation>
+        <translation>Nastaviti provjeravati s početka datoteke?</translation>
     </message>
     <message>
         <source>Spell check complete.</source>
-        <translation>Stavningskontrollen är klar.</translation>
+        <translation>Provjera pravopisa je završena.</translation>
     </message>
 </context>
 <context>
     <name>SymbolsDialog</name>
     <message>
         <source>Symbols</source>
-        <translation>Symboler</translation>
+        <translation>Simboli</translation>
     </message>
     <message>
         <source>Recently used symbols</source>
-        <translation>Senast använda symboler</translation>
+        <translation>Nedavno korišteni simboli</translation>
     </message>
     <message>
         <source>All symbols</source>
-        <translation>Alla symboler</translation>
+        <translation>Svi simboli</translation>
     </message>
     <message>
         <source>Details</source>
-        <translation>Detaljer</translation>
+        <translation>Detalji</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Namn:</translation>
+        <translation>Ime:</translation>
     </message>
     <message>
         <source>Insert</source>
-        <translation>Infoga</translation>
+        <translation>Umetni</translation>
     </message>
 </context>
 <context>
     <name>SymbolsModel</name>
     <message>
         <source>Blocks</source>
-        <translation>Block</translation>
+        <translation>Blokovi</translation>
     </message>
     <message>
         <source>Scripts</source>
-        <translation>Skriftsystem</translation>
+        <translation>Skriptovi</translation>
     </message>
 </context>
 <context>
     <name>Theme</name>
     <message>
         <source>Untitled %1</source>
-        <translation>Namnlös %1</translation>
+        <translation>Bez naslova %1</translation>
     </message>
 </context>
 <context>
     <name>ThemeDialog</name>
     <message>
         <source>Name:</source>
-        <translation>Namn:</translation>
+        <translation>Ime:</translation>
     </message>
     <message>
         <source>No Image</source>
-        <translation>Ingen bild</translation>
+        <translation>Bez slike</translation>
     </message>
     <message>
         <source>Tiled</source>
-        <translation>Sida vid sida</translation>
+        <translation>Popločeno</translation>
     </message>
     <message>
         <source>Centered</source>
-        <translation>Centrerad</translation>
+        <translation>Centrirano</translation>
     </message>
     <message>
         <source>Stretched</source>
-        <translation>Utsträckt</translation>
+        <translation>Rastegnuto</translation>
     </message>
     <message>
         <source>Scaled</source>
-        <translation>Skalad</translation>
+        <translation>Skalirano</translation>
     </message>
     <message>
         <source>Zoomed</source>
-        <translation>Zoomad</translation>
+        <translation>Zumirano</translation>
     </message>
     <message>
         <source>Opacity:</source>
-        <translation>Opacitet:</translation>
+        <translation>Neprozirnost:</translation>
     </message>
     <message>
         <source>Position:</source>
-        <translation>Position:</translation>
+        <translation>Položaj:</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation>Bredd:</translation>
+        <translation>Širina:</translation>
     </message>
     <message>
         <source>Round Text Background Corners</source>
-        <translation>Runda textbakgrundens hörn</translation>
+        <translation>Zaobljeni kutovi pozadine teksta</translation>
     </message>
     <message>
         <source>Radius:</source>
-        <translation>Radie:</translation>
+        <translation>Polumjer:</translation>
     </message>
     <message>
         <source>Blur Text Background</source>
-        <translation>Gör textbakgrunden suddig</translation>
+        <translation>Zamućena pozadina teksta</translation>
     </message>
     <message>
         <source>Text Background Drop Shadow</source>
-        <translation>Skugga på textbakgrunden</translation>
+        <translation>Odmaknuta sjena pozadine teksta</translation>
     </message>
     <message>
         <source>Vertical Offset:</source>
-        <translation>Vertikal förskjutning:</translation>
+        <translation>Okomiti odmak:</translation>
     </message>
     <message>
         <source>Margins</source>
-        <translation>Marginaler</translation>
+        <translation>Margine</translation>
     </message>
     <message>
         <source>Window:</source>
-        <translation>Fönster:</translation>
+        <translation>Prozor:</translation>
     </message>
     <message>
         <source>Page:</source>
-        <translation>Sida:</translation>
+        <translation>Stranica:</translation>
     </message>
     <message>
         <source>Indent first line</source>
-        <translation>Dra in första raden</translation>
+        <translation>Uvuci prvi redak</translation>
     </message>
     <message>
         <source>Above:</source>
-        <translation>Ovanför:</translation>
+        <translation>Iznad:</translation>
     </message>
     <message>
         <source>Below:</source>
-        <translation>Under:</translation>
+        <translation>Ispod:</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Ta bort</translation>
+        <translation>Ukloni</translation>
     </message>
     <message>
         <source>Edit Theme</source>
-        <translation>Redigera tema</translation>
+        <translation>Uredi temu</translation>
     </message>
     <message>
         <source>Window Background</source>
-        <translation>Fönsterbakgrund</translation>
+        <translation>Pozadina prozora</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Typ:</translation>
+        <translation>Vrsta:</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation>Färg:</translation>
+        <translation>Boja:</translation>
     </message>
     <message>
         <source>Image:</source>
-        <translation>Bild:</translation>
+        <translation>Slika:</translation>
     </message>
     <message>
         <source> pixels</source>
-        <translation> bildpunkter</translation>
+        <translation>piksela</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation>Vänster</translation>
+        <translation>Lijevo</translation>
     </message>
     <message>
         <source>Text Background</source>
-        <translation>Textbakgrund</translation>
+        <translation>Pozadina teksta</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>Höger</translation>
+        <translation>Desno</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation>Text</translation>
+        <translation>Tekst</translation>
     </message>
     <message>
         <source>Font:</source>
-        <translation>Teckensnitt:</translation>
+        <translation>Font:</translation>
     </message>
     <message>
         <source>Misspelled:</source>
-        <translation>Felstavade ord:</translation>
+        <translation>Pogrešno napisano:</translation>
     </message>
     <message>
         <source>Line Spacing</source>
-        <translation>Radavstånd</translation>
+        <translation>Razmak između redaka</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation>Enkelt</translation>
+        <translation>Jednostruki</translation>
     </message>
     <message>
         <source>1.5 Lines</source>
-        <translation>1,5 rader</translation>
+        <translation>1,5 redaka</translation>
     </message>
     <message>
         <source>Double</source>
-        <translation>Dubbelt</translation>
+        <translation>Dvostruki</translation>
     </message>
     <message>
         <source>Proportional</source>
-        <translation>Proportionellt</translation>
+        <translation>Proporcijalni</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation>Höjd:</translation>
+        <translation>Visina:</translation>
     </message>
     <message>
         <source>Paragraph Spacing</source>
-        <translation>Styckeavstånd</translation>
+        <translation>Razmak između odlomaka</translation>
     </message>
     <message>
         <source>Tab Width:</source>
-        <translation>Tabbredd:</translation>
+        <translation>Širina tabulatora:</translation>
     </message>
     <message>
         <source>New Theme</source>
-        <translation>Nytt tema</translation>
+        <translation>Nova tema</translation>
     </message>
 </context>
 <context>
     <name>ThemeManager</name>
     <message>
         <source>Themes</source>
-        <translation>Teman</translation>
+        <translation>Teme</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Standard</translation>
+        <translation>Standardna</translation>
     </message>
     <message>
         <source>Gentle Blues</source>
-        <translation>Mjukblått</translation>
+        <translation>Nježni blues</translation>
     </message>
     <message>
         <source>Old School</source>
-        <translation>Gamla skolan</translation>
+        <translation>Stara škola</translation>
     </message>
     <message>
         <source>Space Dreams</source>
-        <translation>Rymddrömmar</translation>
+        <translation>Svemirski snovi</translation>
     </message>
     <message>
         <source>Writing Desk</source>
-        <translation>Skrivbord</translation>
+        <translation>Pisaći stol</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Nytt</translation>
+        <translation>Nova</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Duplicera</translation>
+        <translation>Dupliciraj</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation>Anpassade</translation>
+        <translation>Prilagođeno</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Redigera</translation>
+        <translation>Uredi</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Ta bort</translation>
+        <translation>Izbriši</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation>Importera</translation>
+        <translation>Uvezi</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation>Exportera</translation>
+        <translation>Izvezi</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Fråga</translation>
+        <translation>Pitanje</translation>
     </message>
     <message>
         <source>Delete theme &apos;%1&apos;?</source>
-        <translation>Ta bort temat ”%1”?</translation>
+        <translation>Izbrisati temu „%1”?</translation>
     </message>
     <message>
         <source>Themes (%1)</source>
-        <translation>Teman (%1)</translation>
+        <translation>Teme (%1)</translation>
     </message>
     <message>
         <source>Import Theme</source>
-        <translation>Importera tema</translation>
+        <translation>Uvezi temu</translation>
     </message>
     <message>
         <source>Export Theme</source>
-        <translation>Exportera tema</translation>
+        <translation>Izvezi temu</translation>
     </message>
     <message>
         <source>Bitter Skies</source>
-        <translation>Bittra himlar</translation>
+        <translation>Gorka nebesa</translation>
     </message>
     <message>
         <source>Enchantment</source>
-        <translation>Förtrollning</translation>
+        <translation>Očaranost</translation>
     </message>
     <message>
         <source>Spy Games</source>
-        <translation>Spionspel</translation>
+        <translation>Špijunske igre</translation>
     </message>
     <message>
         <source>Tranquility</source>
-        <translation>Fridfullhet</translation>
+        <translation>Tišina</translation>
     </message>
 </context>
 <context>
@@ -1202,43 +1208,43 @@
     </message>
     <message>
         <source>Question</source>
-        <translation>Fråga</translation>
+        <translation>Pitanje</translation>
     </message>
     <message>
         <source>Delete timer?</source>
-        <translation>Ta bort tidtagaren?</translation>
+        <translation>Izbrisati timer?</translation>
     </message>
     <message>
         <source>&lt;b&gt;Words:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Ord:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Riječi:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Pages:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Sidor:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Stranice:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Paragraphs:&lt;/b&gt; %L1</source>
-        <translation>&lt;b&gt;Stycken:&lt;/b&gt; %L1</translation>
+        <translation>&lt;b&gt;Odlomci:&lt;/b&gt; %L1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Characters:&lt;/b&gt; %L1 / %L2</source>
-        <translation>&lt;b&gt;Tecken:&lt;/b&gt; %L1 / %L2</translation>
+        <translation>&lt;b&gt;Znakovi:&lt;/b&gt; %L1 / %L2</translation>
     </message>
     <message>
         <source>Set Delay</source>
-        <translation>Ställ in fördröjning</translation>
+        <translation>Postavi odgodu</translation>
     </message>
     <message>
         <source>Set Time</source>
-        <translation>Ställ in tid</translation>
+        <translation>Postavi vrijeme</translation>
     </message>
     <message>
         <source>Delay:</source>
-        <translation>Fördröjning:</translation>
+        <translation>Odgoda:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Tid:</translation>
+        <translation>Vrijeme:</translation>
     </message>
     <message>
         <source>HH:mm:ss</source>
@@ -1246,23 +1252,23 @@
     </message>
     <message>
         <source>Alarm</source>
-        <translation>Larm</translation>
+        <translation>Alarm</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation>Typ:</translation>
+        <translation>Vrsta:</translation>
     </message>
     <message>
         <source>Memo:</source>
-        <translation>Anteckning:</translation>
+        <translation>Zabilješka:</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Redigera</translation>
+        <translation>Uredi</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Ta bort</translation>
+        <translation>Izbriši</translation>
     </message>
 </context>
 <context>
@@ -1273,30 +1279,30 @@
     </message>
     <message>
         <source>No timers running</source>
-        <translation>Inga tidtagare är aktiva</translation>
+        <translation>Nijedan timer nije aktivan</translation>
     </message>
 </context>
 <context>
     <name>TimerManager</name>
     <message>
         <source>Timers</source>
-        <translation>Tidtagare</translation>
+        <translation>Timeri</translation>
     </message>
     <message>
         <source>New</source>
-        <translation>Ny</translation>
+        <translation>Novi</translation>
     </message>
     <message>
         <source>Recent</source>
-        <translation>Senaste</translation>
+        <translation>Nedavni</translation>
     </message>
     <message>
         <source>Question</source>
-        <translation>Fråga</translation>
+        <translation>Pitanje</translation>
     </message>
     <message>
         <source>Cancel editing timers?</source>
-        <translation>Vill du avbryta redigeringen av tidtagare?</translation>
+        <translation>Prekinuti timere za uređivanje?</translation>
     </message>
     <message>
         <source>+HH:mm:ss</source>
@@ -1311,23 +1317,23 @@
     <name>Window</name>
     <message>
         <source>Loading themes</source>
-        <translation>Läser in teman</translation>
+        <translation>Učitavanje tema</translation>
     </message>
     <message>
         <source>Loading sounds</source>
-        <translation>Läser in ljud</translation>
+        <translation>Učitavanje zvukova</translation>
     </message>
     <message>
         <source>Untitled</source>
-        <translation>Namnlös</translation>
+        <translation>Bez naslova</translation>
     </message>
     <message>
         <source>Open File</source>
-        <translation>Öppna fil</translation>
+        <translation>Otvori datoteku</translation>
     </message>
     <message>
         <source>About FocusWriter</source>
-        <translation>Om FocusWriter</translation>
+        <translation>O aplikaciji FocusWriter</translation>
     </message>
     <message>
         <source>FocusWriter</source>
@@ -1335,175 +1341,175 @@
     </message>
     <message>
         <source>A simple fullscreen word processor</source>
-        <translation>En enkel ordbehandlare med helskärmsläge</translation>
+        <translation>Jednostavan cjeloekranski uređivač teksta</translation>
     </message>
     <message>
         <source>Copyright &amp;copy; 2008-%1 Graeme Gott</source>
-        <translation>Copyright &amp;copy; 2008-%1 Graeme Gott</translation>
+        <translation>Autorska prava © 2008. – %1. Graeme Gott</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=%1&gt;GPL 3&lt;/a&gt; license</source>
-        <translation>Utgivet under licensen &lt;a href=%1&gt;GPL 3&lt;/a&gt;</translation>
+        <translation>Objavljeno pod &lt;a href=&quot;%1&quot;&gt;GPL 3&lt;/a&gt; licencom</translation>
     </message>
     <message>
         <source>Uses icons from the &lt;a href=%1&gt;Oxygen&lt;/a&gt; icon theme</source>
-        <translation>Använder ikoner från ikontemat &lt;a href=%1&gt;Oxygen&lt;/a&gt;</translation>
+        <translation>Koristi ikone iz &lt;a href=&quot;%1&quot;&gt;Oxygen&lt;/a&gt; teme ikona</translation>
     </message>
     <message>
         <source>Used under the &lt;a href=%1&gt;LGPL 3&lt;/a&gt; license</source>
-        <translation>Används under licensen &lt;a href=%1&gt;LGPL 3&lt;/a&gt;</translation>
+        <translation>Koristi se pod &lt;a href=&quot;%1&quot;&gt;LGPL 3&lt;/a&gt; licencom</translation>
     </message>
     <message>
         <source>Characters: %L1 / %L2</source>
-        <translation>Tecken: %L1 / %L2</translation>
+        <translation>Znakovi: %L1 / %L2</translation>
     </message>
     <message>
         <source>Pages: %L1</source>
-        <translation>Sidor: %L1</translation>
+        <translation>Stranice: %L1</translation>
     </message>
     <message>
         <source>Paragraphs: %L1</source>
-        <translation>Stycken: %L1</translation>
+        <translation>Odlomci: %L1</translation>
     </message>
     <message>
         <source>Words: %L1</source>
-        <translation>Ord: %L1</translation>
+        <translation>Riječi: %L1</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Öppnar %1</translation>
+        <translation>Otvara se %1</translation>
     </message>
     <message>
         <source>(Untitled %1)</source>
-        <translation>(Namnlös %1)</translation>
+        <translation>(Bez naslova %1)</translation>
     </message>
     <message>
         <source>List all documents</source>
-        <translation>Lista alla dokument</translation>
+        <translation>Popis svih dokumenata</translation>
     </message>
     <message>
         <source>Switch to Next Document</source>
-        <translation>Växla till nästa dokument</translation>
+        <translation>Prijeđi na sljedeći dokument</translation>
     </message>
     <message>
         <source>Switch to Previous Document</source>
-        <translation>Växla till föregående dokument</translation>
+        <translation>Prijeđi na prethodni dokument</translation>
     </message>
     <message>
         <source>Switch to First Document</source>
-        <translation>Växla till första dokumentet</translation>
+        <translation>Prijeđi na prvi dokument</translation>
     </message>
     <message>
         <source>Switch to Last Document</source>
-        <translation>Växla till sista dokumentet</translation>
+        <translation>Prijeđi na zadnji dokument</translation>
     </message>
     <message>
         <source>Switch to Document %1</source>
-        <translation>Växla till dokument %1</translation>
+        <translation>Prijeđi na dokument %1</translation>
     </message>
     <message>
         <source>Loading settings</source>
-        <translation>Läser in inställningar</translation>
+        <translation>Učitavanje postavki</translation>
     </message>
     <message>
         <source>Emergency cache is not writable.</source>
-        <translation>Det går inte att skriva till nödcachen.</translation>
+        <translation>Hitna predmemorija nije zapisiva.</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Varning</translation>
+        <translation>Upozorenje</translation>
     </message>
     <message>
         <source>FocusWriter was not shut down cleanly.</source>
-        <translation>FocusWriter avslutades inte korrekt.</translation>
+        <translation>FocusWriter nije zatvoren na ispravan način.</translation>
     </message>
     <message>
         <source>Restore from the emergency cache?</source>
-        <translation>Återställ från nödcachen?</translation>
+        <translation>Obnoviti iz hitne predmemorije?</translation>
     </message>
     <message>
         <source>Some files could not be opened.</source>
-        <translation>Vissa filer kunde inte öppnas.</translation>
+        <translation>Neke datoteke se nisu mogle otvoriti.</translation>
     </message>
     <message>
         <source>Some files were opened Read-Only.</source>
-        <translation>Vissa filer öppnades skrivskyddade.</translation>
+        <translation>Neke su datoteke otvorene s dozvolom samo-za-čitanje.</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is newer than the cached copy.</source>
-        <translation>”%1” är nyare än den mellanlagrade kopian.</translation>
+        <translation>Datoteka „%1” je novija od kopije u predmemoriji.</translation>
     </message>
     <message>
         <source>Overwrite newer file?</source>
-        <translation>Skriv över nyare fil?</translation>
+        <translation>Prepisati noviju datoteku?</translation>
     </message>
     <message>
         <source>Save Changes?</source>
-        <translation>Spara ändringar?</translation>
+        <translation>Spremiti promjene?</translation>
     </message>
     <message>
         <source>Save changes to the file &apos;%1&apos; before closing?</source>
-        <translation>Spara ändringarna i filen ”%1” innan den stängs?</translation>
+        <translation>Spremiti promjene u datoteku „%1” prije zatvaranja?</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Dina ändringar går förlorade om du inte sparar dem.</translation>
+        <translation>Izgubit ćeš svoje promjene ako ih ne spremiš.</translation>
     </message>
     <message>
         <source>Unable to load typewriter sounds.</source>
-        <translation>Det gick inte att läsa in skrivmaskinsljud.</translation>
+        <translation>Nije moguće učitati zvukove pisaćeg stroja.</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Arkiv</translation>
+        <translation>&amp;Datoteka</translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;Nytt</translation>
+        <translation>&amp;Nova</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation>&amp;Öppna…</translation>
+        <translation>&amp;Otvori …</translation>
     </message>
     <message>
         <source>Reloa&amp;d</source>
-        <translation>La&amp;dda om</translation>
+        <translation>&amp;Učitaj ponovo</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Spara</translation>
+        <translation>&amp;Spremi</translation>
     </message>
     <message>
         <source>Save &amp;As...</source>
-        <translation>Spara so&amp;m…</translation>
+        <translation>Spremi &amp;kao …</translation>
     </message>
     <message>
         <source>&amp;Rename...</source>
-        <translation>&amp;Byt namn…</translation>
+        <translation>&amp;Preimenuj …</translation>
     </message>
     <message>
         <source>Save A&amp;ll</source>
-        <translation>Spara a&amp;lla</translation>
+        <translation>Spremi &amp;sve</translation>
     </message>
     <message>
         <source>Manage Sessions</source>
-        <translation>Hantera sessioner</translation>
+        <translation>Upravljaj sesijama</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Ny session</translation>
+        <translation>Nova sesija</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>Skriv &amp;ut…</translation>
+        <translation>Is&amp;piši …</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>S&amp;täng</translation>
+        <translation>&amp;Zatvori</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>A&amp;vsluta</translation>
+        <translation>Zatvori &amp;aplikaciju</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -1511,67 +1517,67 @@
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>R&amp;edigera</translation>
+        <translation>&amp;Uredi</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation>&amp;Ångra</translation>
+        <translation>&amp;Poništi</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation>&amp;Gör om</translation>
+        <translation>Po&amp;novi</translation>
     </message>
     <message>
         <source>Cu&amp;t</source>
-        <translation>Klipp &amp;ut</translation>
+        <translation>&amp;Izreži</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopiera</translation>
+        <translation>&amp;Kopiraj</translation>
     </message>
     <message>
         <source>&amp;Paste</source>
-        <translation>Klistra &amp;in</translation>
+        <translation>&amp;Umetni</translation>
     </message>
     <message>
         <source>Paste &amp;Unformatted</source>
-        <translation>Klistra in &amp;oformaterat</translation>
+        <translation>Umetni &amp;neformatirano</translation>
     </message>
     <message>
         <source>Ctrl+Shift+V</source>
-        <translation>Ctrl+Skift+V</translation>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation>Markera &amp;allt</translation>
+        <translation>Odaberi &amp;sve</translation>
     </message>
     <message>
         <source>Select &amp;Scene</source>
-        <translation>Markera &amp;scen</translation>
+        <translation>Odaberi &amp;scenu</translation>
     </message>
     <message>
         <source>Ctrl+Shift+A</source>
-        <translation>Ctrl+Skift+A</translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <source>Fo&amp;rmat</source>
-        <translation>Fo&amp;rmatera</translation>
+        <translation>Fo&amp;rmat</translation>
     </message>
     <message>
         <source>&amp;Bold</source>
-        <translation>&amp;Fet</translation>
+        <translation>&amp;Podebljano</translation>
     </message>
     <message>
         <source>&amp;Italic</source>
-        <translation>&amp;Kursiv</translation>
+        <translation>&amp;Kurziv</translation>
     </message>
     <message>
         <source>&amp;Underline</source>
-        <translation>&amp;Understruken</translation>
+        <translation>Pod&amp;cratno</translation>
     </message>
     <message>
         <source>Stri&amp;kethrough</source>
-        <translation>G&amp;enomstruken</translation>
+        <translation>Pre&amp;križeno</translation>
     </message>
     <message>
         <source>Ctrl+K</source>
@@ -1579,7 +1585,7 @@
     </message>
     <message>
         <source>Sup&amp;erscript</source>
-        <translation>Upphö&amp;jd</translation>
+        <translation>&amp;Eksponent</translation>
     </message>
     <message>
         <source>Ctrl+^</source>
@@ -1587,7 +1593,7 @@
     </message>
     <message>
         <source>&amp;Subscript</source>
-        <translation>Nedsän&amp;kt</translation>
+        <translation>&amp;Indeks</translation>
     </message>
     <message>
         <source>Ctrl+_</source>
@@ -1595,7 +1601,7 @@
     </message>
     <message>
         <source>Align &amp;Left</source>
-        <translation>&amp;Vänsterjustera</translation>
+        <translation>Poravnaj &amp;lijevo</translation>
     </message>
     <message>
         <source>Ctrl+{</source>
@@ -1603,7 +1609,7 @@
     </message>
     <message>
         <source>Align &amp;Center</source>
-        <translation>&amp;Centrera</translation>
+        <translation>&amp;Centriraj</translation>
     </message>
     <message>
         <source>Ctrl+|</source>
@@ -1611,7 +1617,7 @@
     </message>
     <message>
         <source>Align &amp;Right</source>
-        <translation>&amp;Högerjustera</translation>
+        <translation>Poravnaj &amp;desno</translation>
     </message>
     <message>
         <source>Ctrl+}</source>
@@ -1619,7 +1625,7 @@
     </message>
     <message>
         <source>Align &amp;Justify</source>
-        <translation>Marginal&amp;justera</translation>
+        <translation>Poravnaj &amp;obostrano</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -1627,7 +1633,7 @@
     </message>
     <message>
         <source>&amp;Decrease Indent</source>
-        <translation>&amp;Minska indrag</translation>
+        <translation>&amp;Smanji uvlaku</translation>
     </message>
     <message>
         <source>Ctrl+&lt;</source>
@@ -1635,7 +1641,7 @@
     </message>
     <message>
         <source>I&amp;ncrease Indent</source>
-        <translation>Öka in&amp;drag</translation>
+        <translation>&amp;Povećaj uvlaku</translation>
     </message>
     <message>
         <source>Ctrl+&gt;</source>
@@ -1643,31 +1649,31 @@
     </message>
     <message>
         <source>Le&amp;ft to Right Block</source>
-        <translation>Vänster-till-&amp;höger-block</translation>
+        <translation>Blok s lije&amp;va na desno</translation>
     </message>
     <message>
         <source>Ri&amp;ght to Left Block</source>
-        <translation>Höger-till-&amp;vänster-block</translation>
+        <translation>Blok s sdes&amp;na na lijevo</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation>Ver&amp;ktyg</translation>
+        <translation>&amp;Alati</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
-        <translation>&amp;Sök…</translation>
+        <translation>Pro&amp;nađi …</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation>Sök &amp;nästa</translation>
+        <translation>Pronađi &amp;sljedeće</translation>
     </message>
     <message>
         <source>Find Pre&amp;vious</source>
-        <translation>Sök &amp;föregående</translation>
+        <translation>Pronađi &amp;prethodno</translation>
     </message>
     <message>
         <source>&amp;Replace...</source>
-        <translation>&amp;Ersätt…</translation>
+        <translation>&amp;Zamijeni …</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -1675,19 +1681,19 @@
     </message>
     <message>
         <source>Smart &amp;Quotes</source>
-        <translation>Smarta &amp;citationstecken</translation>
+        <translation>Pametni &amp;navodnici</translation>
     </message>
     <message>
         <source>Update &amp;Document</source>
-        <translation>Uppdatera &amp;dokument</translation>
+        <translation>Aktualiziraj &amp;dokument</translation>
     </message>
     <message>
         <source>Update &amp;Selection</source>
-        <translation>Uppdatera &amp;markering</translation>
+        <translation>Aktualiziraj &amp;odabir</translation>
     </message>
     <message>
         <source>&amp;Spelling...</source>
-        <translation>Sta&amp;vning…</translation>
+        <translation>&amp;Pravopis …</translation>
     </message>
     <message>
         <source>F7</source>
@@ -1695,39 +1701,39 @@
     </message>
     <message>
         <source>Set &amp;Language...</source>
-        <translation>Ställ in &amp;språk…</translation>
+        <translation>Postavi &amp;jezik …</translation>
     </message>
     <message>
         <source>&amp;Timers...</source>
-        <translation>&amp;Tidtagare…</translation>
+        <translation>&amp;Timeri …</translation>
     </message>
     <message>
         <source>S&amp;ymbols...</source>
-        <translation>S&amp;ymboler…</translation>
+        <translation>S&amp;imboli …</translation>
     </message>
     <message>
         <source>&amp;Daily Progress</source>
-        <translation>&amp;Dagliga framsteg</translation>
+        <translation>&amp;Dnevni napredak</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Inställningar</translation>
+        <translation>&amp;Postavke</translation>
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation>Visa &amp;verktygsfält</translation>
+        <translation>Prikaži &amp;alatnu traku</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
-        <translation>Visa &amp;menyikoner</translation>
+        <translation>Prikaži &amp;ikone izbornika</translation>
     </message>
     <message>
         <source>F&amp;ocused Text</source>
-        <translation>F&amp;okuserad text</translation>
+        <translation>F&amp;okusirani tekst</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <translation>&amp;Helskärm</translation>
+        <translation>&amp;Cjeloekranski prikaz</translation>
     </message>
     <message>
         <source>F11</source>
@@ -1739,7 +1745,7 @@
     </message>
     <message>
         <source>M&amp;inimize</source>
-        <translation>Mi&amp;nimera</translation>
+        <translation>Smanj&amp;i</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -1747,118 +1753,118 @@
     </message>
     <message>
         <source>&amp;Themes...</source>
-        <translation>&amp;Teman…</translation>
+        <translation>&amp;Teme …</translation>
     </message>
     <message>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Inställningar…</translation>
+        <translation>&amp;Postavke …</translation>
     </message>
     <message>
         <source>Focus Off</source>
-        <translation>Ingen fokusering</translation>
+        <translation>Fokus isključen</translation>
     </message>
     <message>
         <source>Focus One Line</source>
-        <translation>Fokusera på en rad</translation>
+        <translation>Fokusiraj jedan redak</translation>
     </message>
     <message>
         <source>Focus Three Lines</source>
-        <translation>Fokusera på tre rader</translation>
+        <translation>Fokusiraj tri retka</translation>
     </message>
     <message>
         <source>&amp;Paragraph</source>
-        <translation>&amp;Stycke</translation>
+        <translation>&amp;Odlomak</translation>
     </message>
     <message>
         <source>Focus Paragraph</source>
-        <translation>Fokusera på stycket</translation>
+        <translation>Fokusiraj odlomak</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Hjälp</translation>
+        <translation>&amp;Pomoć</translation>
     </message>
     <message>
         <source>Application &amp;Language...</source>
-        <translation>Programs&amp;pråk…</translation>
+        <translation>Jezik &amp;aplikacije …</translation>
     </message>
     <message>
         <source>Some files were unsupported and could not be opened.</source>
-        <translation>Vissa filer stöds inte och kunde därför inte öppnas.</translation>
+        <translation>Neke datoteke nisu podržane i nisu se mogle otvoriti.</translation>
     </message>
     <message>
         <source>&amp;Off</source>
-        <translation>&amp;Av</translation>
+        <translation>&amp;Isključeno</translation>
     </message>
     <message>
         <source>One &amp;Line</source>
-        <translation>En &amp;rad</translation>
+        <translation>_Jedan redak</translation>
     </message>
     <message>
         <source>&amp;Three Lines</source>
-        <translation>&amp;Tre rader</translation>
+        <translation>&amp;Tri retka</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Om</translation>
+        <translation>&amp;O aplikaciji</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>Om &amp;Qt</translation>
+        <translation>O &amp;Qt‑u</translation>
     </message>
     <message>
         <source>Pa&amp;ge Setup...</source>
-        <translation>Si&amp;dinställningar…</translation>
+        <translation>P&amp;ostavke stranice …</translation>
     </message>
     <message>
         <source>&amp;Heading</source>
-        <translation>&amp;Rubrik</translation>
+        <translation>&amp;Naslov</translation>
     </message>
     <message>
         <source>Heading &amp;1</source>
-        <translation>Rubrik &amp;1</translation>
+        <translation>Naslov &amp;1</translation>
     </message>
     <message>
         <source>Heading &amp;2</source>
-        <translation>Rubrik &amp;2</translation>
+        <translation>Naslov &amp;2</translation>
     </message>
     <message>
         <source>Heading &amp;3</source>
-        <translation>Rubrik &amp;3</translation>
+        <translation>Naslov &amp;3</translation>
     </message>
     <message>
         <source>Heading &amp;4</source>
-        <translation>Rubrik &amp;4</translation>
+        <translation>Naslov &amp;4</translation>
     </message>
     <message>
         <source>Heading &amp;5</source>
-        <translation>Rubrik &amp;5</translation>
+        <translation>Naslov &amp;5</translation>
     </message>
     <message>
         <source>Heading &amp;6</source>
-        <translation>Rubrik &amp;6</translation>
+        <translation>Naslov &amp;6</translation>
     </message>
     <message>
         <source>&amp;Normal</source>
-        <translation>&amp;Normal</translation>
+        <translation>&amp;Normalno</translation>
     </message>
     <message>
         <source>Update Document Smart Quotes</source>
-        <translation>Uppdatera smarta citationstecken i dokumentet</translation>
+        <translation>Aktualiziraj pametne navodnike u dokumentu</translation>
     </message>
     <message>
         <source>Update Selection Smart Quotes</source>
-        <translation>Uppdatera smarta citationstecken i markeringen</translation>
+        <translation>Aktualiziraj pametne navodnike u odabiru</translation>
     </message>
     <message>
         <source>Ctrl+Shift+`</source>
-        <translation>Ctrl+Skift+`</translation>
+        <translation>Ctrl+Shift+`</translation>
     </message>
 </context>
 <context>
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation>Filer som ska öppnas i den aktuella sessionen.</translation>
+        <translation>Datoteke za otvaranje u trenutačnoj sesiji.</translation>
     </message>
 </context>
 </TS>
