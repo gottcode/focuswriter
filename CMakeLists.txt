@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Configure project
-project(focuswriter VERSION 1.9.0 LANGUAGES CXX)
+project(focuswriter VERSION 1.9.1 LANGUAGES CXX)
 
 set(project_copyright "2008-2026 Graeme Gott")
 
@@ -27,8 +27,7 @@ include(GNUInstallDirs)
 add_compile_definitions(
 	QT_NO_KEYWORDS
 	$<$<CONFIG:DEBUG>:QT_STRICT_ITERATORS>
-	$<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
-	$<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x061000>
+	$<$<CONFIG:DEBUG>:QT_ENABLE_STRICT_MODE_UP_TO=0x061100>
 )
 add_compile_options(
 	$<$<CONFIG:DEBUG>:-Wshadow>

@@ -53,6 +53,7 @@
 #include <QTextBlock>
 #include <QTextDocumentFragment>
 #include <QTextEdit>
+#include <QInputMethodEvent>
 #include <QTimer>
 
 #include <algorithm>
@@ -98,6 +99,7 @@ protected:
 	void contextMenuEvent(QContextMenuEvent* event) override;
 	bool event(QEvent* event) override;
 	void keyPressEvent(QKeyEvent* event) override;
+	void inputMethodEvent(QInputMethodEvent* event) override;
 
 private:
 	QByteArray mimeToRtf(const QMimeData* source) const;
@@ -325,13 +327,22 @@ void TextEdit::keyPressEvent(QKeyEvent* event)
 
 	if (event->key() == Qt::Key_Insert) {
 		setOverwriteMode(!overwriteMode());
-	} else {
+	} else if (event->key() != Qt::Key_CapsLock) {
 		// Play sound effect
-		if (!(event->modifiers().testFlag(Qt::ControlModifier)) &&
-				!(event->modifiers().testFlag(Qt::MetaModifier))) {
+		if (event->modifiers().testFlag(Qt::NoModifier) ||
+				event->modifiers().testFlag(Qt::KeypadModifier)) {
 			Sound::play(Qt::Key_Any);
 		}
 	}
+}
+
+void TextEdit::inputMethodEvent(QInputMethodEvent* event)
+{
+	if (!event->preeditString().isEmpty() || !event->commitString().isEmpty()) {
+		Sound::play(Qt::Key_Any);
+	}
+
+	QTextEdit::inputMethodEvent(event);
 }
 
 QByteArray TextEdit::mimeToRtf(const QMimeData* source) const
@@ -1337,13 +1348,9 @@ void Document::undoCommandAdded()
 {
 	if (!m_old_states.isEmpty()) {
 		const int steps = m_text->document()->availableUndoSteps();
-		QMutableHashIterator<int, QPair<QString, bool>> i(m_old_states);
-		while (i.hasNext()) {
-			i.next();
-			if (i.key() >= steps) {
-				i.remove();
-			}
-		}
+		m_old_states.removeIf([steps](const auto& iter) {
+			return iter.key() >= steps;
+		});
 	}
 }
 
@@ -1407,7 +1414,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	}
 
 	// Update document stats and daily word count
-	const int words = m_document_stats.wordCount();
+	const qint64 words = m_document_stats.wordCount();
 	calculateWordCount();
 	m_daily_progress->increaseWordCount(m_document_stats.wordCount() - words);
 	Q_EMIT changed();

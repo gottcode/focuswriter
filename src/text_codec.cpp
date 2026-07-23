@@ -43,12 +43,12 @@ private:
 TextCodecIconv::TextCodecIconv(const QByteArray& name)
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
 	: TextCodec("UTF-16BE")
-	, m_from_cd(iconv_open(name, "UTF-16BE"))
-	, m_to_cd(iconv_open("UTF-16BE", name))
+	, m_from_cd(iconv_open(name.constData(), "UTF-16BE"))
+	, m_to_cd(iconv_open("UTF-16BE", name.constData()))
 #else
 	: TextCodec("UTF-16LE")
-	, m_from_cd(iconv_open(name, "UTF-16LE"))
-	, m_to_cd(iconv_open("UTF-16LE", name))
+	, m_from_cd(iconv_open(name.constData(), "UTF-16LE"))
+	, m_to_cd(iconv_open("UTF-16LE", name.constData()))
 #endif
 {
 	if (m_from_cd == reinterpret_cast<iconv_t>(-1)) {

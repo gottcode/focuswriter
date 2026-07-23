@@ -189,7 +189,7 @@ LIBHUNSPELL_DLL_EXPORTED unsigned short unicodetolower(unsigned short c,
                                                        int langnum);
 LIBHUNSPELL_DLL_EXPORTED int unicodeisalpha(unsigned short c);
 
-LIBHUNSPELL_DLL_EXPORTED struct cs_info* get_current_cs(const std::string& es);
+LIBHUNSPELL_DLL_EXPORTED const struct cs_info* get_current_cs(const std::string& es);
 
 // get language identifiers of language codes
 LIBHUNSPELL_DLL_EXPORTED int get_lang_num(const std::string& lang);
@@ -230,7 +230,7 @@ LIBHUNSPELL_DLL_EXPORTED std::vector<w_char>&
 mkallcap_utf(std::vector<w_char>& u, int langnum);
 
 // get type of capitalization
-LIBHUNSPELL_DLL_EXPORTED int get_captype(const std::string& q, cs_info*);
+LIBHUNSPELL_DLL_EXPORTED int get_captype(const std::string& q, const cs_info*);
 
 // get type of capitalization (UTF-8)
 LIBHUNSPELL_DLL_EXPORTED int get_captype_utf8(const std::vector<w_char>& q, int langnum);
@@ -274,7 +274,7 @@ LIBHUNSPELL_DLL_EXPORTED char* get_stored_pointer(const char* s);
 // "likely false", if ignored_chars characters are not ASCII)
 inline bool has_no_ignored_chars(const std::string& word,
                             const std::string& ignored_chars) {
-  return std::all_of(ignored_chars.begin(), ignored_chars.end(), 
+  return std::all_of(ignored_chars.begin(), ignored_chars.end(),
     [&word](char ic) { return word.find(ic) == std::string::npos; });
 }
 
@@ -282,7 +282,7 @@ inline bool has_no_ignored_chars(const std::string& word,
 inline char* HENTRY_DATA(struct hentry* h) {
   char* ret;
   if (!(h->var & H_OPT))
-    ret = NULL;
+    ret = nullptr;
   else if (h->var & H_OPT_ALIASM)
     ret = get_stored_pointer(HENTRY_WORD(h) + h->blen + 1);
   else
@@ -294,7 +294,7 @@ inline const char* HENTRY_DATA(
     const struct hentry* h) {
   const char* ret;
   if (!(h->var & H_OPT))
-    ret = NULL;
+    ret = nullptr;
   else if (h->var & H_OPT_ALIASM)
     ret = get_stored_pointer(HENTRY_WORD(h) + h->blen + 1);
   else
@@ -317,7 +317,7 @@ inline const char* HENTRY_DATA2(
 
 inline char* HENTRY_FIND(struct hentry* h, const char* p) {
   char* data = HENTRY_DATA(h);
-  return data ? strstr(data, p) : NULL;
+  return data ? strstr(data, p) : nullptr;
 }
 
 #endif

@@ -44,8 +44,8 @@ DailyProgress::DailyProgress(QObject* parent)
 		// Load current daily progress data from 1.5
 		m_file->beginGroup(QLatin1String("Progress"));
 		const QVariantList current_values = m_file->value(current_date.toString(Qt::ISODate)).toList();
-		m_words = current_values.value(0).toInt();
-		m_msecs = current_values.value(1).toInt();
+		m_words = current_values.value(0).toLongLong();
+		m_msecs = current_values.value(1).toLongLong();
 		m_type = current_values.value(2).toInt();
 		m_goal = current_values.value(3).toInt();
 
@@ -67,8 +67,8 @@ DailyProgress::DailyProgress(QObject* parent)
 		// Load current daily progress data from 1.4
 		QSettings settings;
 		if (settings.value(QLatin1String("Progress/Date")).toString() == current_date.toString(Qt::ISODate)) {
-			m_words = settings.value(QLatin1String("Progress/Words"), 0).toInt();
-			m_msecs = settings.value(QLatin1String("Progress/Time"), 0).toInt();
+			m_words = settings.value(QLatin1String("Progress/Words"), 0).toLongLong();
+			m_msecs = settings.value(QLatin1String("Progress/Time"), 0).toLongLong();
 		}
 		settings.remove(QLatin1String("Progress"));
 		m_file->setValue(QLatin1String("Version"), 1);
@@ -547,7 +547,7 @@ QString DailyProgress::Progress::progressString() const
 
 //-----------------------------------------------------------------------------
 
-void DailyProgress::Progress::setProgress(int words, int msecs, int type, int goal)
+void DailyProgress::Progress::setProgress(qint64 words, qint64 msecs, int type, int goal)
 {
 	m_words = words;
 	m_msecs = msecs;

@@ -49,6 +49,18 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="1.9.1" date="2026-07-23">
+      <description>
+        <ul>
+          <li>FIXED: Daily progress was sometimes incorrectly shown as negative</li>
+          <li>FIXED: Scene list items overlapped on Windows 11</li>
+          <li>FIXED: Did not play sound effects for composed text</li>
+          <li>Document policy prohibiting the use of AI</li>
+          <li>Use strict mode to disable unsafe Qt APIs</li>
+          <li>Translation updates: Croatian, Swedish</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.9.0" date="2026-02-10">
       <description>
         <ul>

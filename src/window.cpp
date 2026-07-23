@@ -1525,12 +1525,12 @@ void Window::initMenus()
 
 	// Always show menubar
 #ifndef Q_OS_MAC
-	connect(file_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
-	connect(edit_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
-	connect(format_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
-	connect(tools_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
-	connect(settings_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
-	connect(help_menu, &QMenu::aboutToShow, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(file_menu, &QMenu::aboutToShow, m_documents, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(edit_menu, &QMenu::aboutToShow, m_documents, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(format_menu, &QMenu::aboutToShow, m_documents, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(tools_menu, &QMenu::aboutToShow, m_documents, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(settings_menu, &QMenu::aboutToShow, m_documents, std::bind(&Stack::setHeaderVisible, m_documents, true));
+	connect(help_menu, &QMenu::aboutToShow, m_documents, std::bind(&Stack::setHeaderVisible, m_documents, true));
 
 	connect(file_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
 	connect(edit_menu, &QMenu::aboutToHide, m_documents, &Stack::showHeader);
@@ -1552,9 +1552,7 @@ void Window::initMenus()
 	help_menu->menuAction()->setMenuRole(QAction::NoRole);
 
 	// Enable toolbar management in preferences dialog
-	QHashIterator<QString, QAction*> i(m_actions);
-	while (i.hasNext()) {
-		i.next();
+	for (auto i = m_actions.cbegin(); i != m_actions.cend(); ++i) {
 		i.value()->setData(i.key());
 
 		// Add to format actions

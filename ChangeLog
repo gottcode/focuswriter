@@ -1,3 +1,12 @@
+1.9.1
+-----
+* FIXED: Daily progress was sometimes incorrectly shown as negative.
+* FIXED: Scene list items overlapped on Windows 11.
+* FIXED: Did not play sound effects for composed text.
+* Document policy prohibiting the use of AI.
+* Use strict mode to disable unsafe Qt APIs.
+* Translation updates: Croatian, Swedish.
+
 1.9.0
 -----
 * FIXED: Did not play sound effects for smart quotes.

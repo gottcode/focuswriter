@@ -83,6 +83,8 @@
 #define NGRAM_LOWERING (1 << 2)
 #define NGRAM_WEIGHTED (1 << 3)
 
+#include <memory>
+
 #include "atypes.hxx"
 #include "affixmgr.hxx"
 #include "hashmgr.hxx"
@@ -103,13 +105,14 @@ class SuggestMgr {
 
   AffixMgr* pAMgr;
   unsigned int maxSug;
-  struct cs_info* csconv;
+  const struct cs_info* csconv;
   int utf8;
   int langnum;
   int nosplitsugs;
   int maxngramsugs;
   int maxcpdsugs;
   int complexprefixes;
+  std::chrono::steady_clock::time_point suggest_start;
 
  public:
   SuggestMgr(const std::string& tryme, unsigned int maxn, AffixMgr* aptr);
@@ -122,7 +125,7 @@ class SuggestMgr {
           // if test_simplesug == true, suggest() doesn't suggest compound words,
           // and it returns with true at the first suggestion found
           bool test_simplesug = false);
-  void ngsuggest(std::vector<std::string>& slst, const char* word, const std::vector<HashMgr*>& rHMgr, int captype);
+  void ngsuggest(std::vector<std::string>& slst, const char* word, const std::vector<std::unique_ptr<HashMgr>>& rHMgr, int captype);
 
   std::string suggest_morph(const std::string& word);
   std::string suggest_gen(const std::vector<std::string>& pl, const std::string& pattern);
@@ -132,9 +135,9 @@ class SuggestMgr {
                const std::string& candidate,
                int cpdsuggest,
                int* timer,
-               clock_t* timelimit,
+               std::chrono::steady_clock::time_point* timelimit,
                int& info);
-  int checkword(const std::string& word, int, int*, clock_t*);
+  int checkword(const std::string& word, int, int*, std::chrono::steady_clock::time_point*);
   int check_forbidden(const std::string&);
 
   void capchars(std::vector<std::string>&, const std::string&, int, int&);
@@ -167,7 +170,7 @@ class SuggestMgr {
                   int,
                   const std::vector<mapentry>&,
                   int*,
-                  clock_t*,
+                  std::chrono::steady_clock::time_point*,
                   int depth,
                   int& info);
   int ngram(int n, const std::vector<w_char>& su1,

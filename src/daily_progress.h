@@ -25,7 +25,7 @@ public:
 	void findLongestStreak(QDate& start, QDate& end) const;
 	int percentComplete();
 
-	void increaseWordCount(int words);
+	void increaseWordCount(qint64 words);
 	void increaseTime();
 	void loadPreferences();
 	void resetToday();
@@ -57,8 +57,8 @@ private:
 private:
 	QSettings* m_file;
 
-	int m_words;
-	int m_msecs;
+	qint64 m_words;
+	qint64 m_msecs;
 	int m_type;
 	int m_goal;
 
@@ -77,7 +77,7 @@ private:
 		{
 		}
 
-		Progress(const QDate& date, int words, int msecs, int type, int goal)
+		Progress(const QDate& date, qint64 words, qint64 msecs, int type, int goal)
 			: m_date(date)
 			, m_words(words)
 			, m_msecs(msecs)
@@ -115,15 +115,15 @@ private:
 			m_date = date;
 		}
 
-		void setProgress(int words, int msecs, int type, int goal);
+		void setProgress(qint64 words, qint64 msecs, int type, int goal);
 
 	private:
 		void calculateProgress();
 
 	private:
 		QDate m_date;
-		int m_words;
-		int m_msecs;
+		qint64 m_words;
+		qint64 m_msecs;
 		int m_type;
 		int m_goal;
 		int m_progress;
@@ -142,7 +142,7 @@ private:
 	static QString m_path;
 };
 
-inline void DailyProgress::increaseWordCount(int words)
+inline void DailyProgress::increaseWordCount(qint64 words)
 {
 	m_words += words;
 	m_current_valid = false;
