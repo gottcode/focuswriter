@@ -189,8 +189,8 @@ cp -a $lofiles/sr/sr.dic dicts/sr.dic
 cp -a $lofiles/sr/sr-Latn.aff dicts/sr-Latn.aff
 cp -a $lofiles/sr/sr-Latn.dic dicts/sr-Latn.dic
 echo -n ' sv'
-cp -a $lofiles/sv_SE/sv_SE.aff dicts/sv.aff
-cp -a $lofiles/sv_SE/sv_SE.dic dicts/sv.dic
+cp -a $lofiles/sv_SE/dictionaries/sv_SE.aff dicts/sv.aff
+cp -a $lofiles/sv_SE/dictionaries/sv_SE.dic dicts/sv.dic
 echo -n ' tr'
 cp -a $lofiles/tr_TR/tr_TR.aff dicts/tr.aff
 cp -a $lofiles/tr_TR/tr_TR.dic dicts/tr.dic
