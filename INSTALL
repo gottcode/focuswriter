@@ -20,14 +20,18 @@ Linux:
      'alternate/directory' before all installation names.
 
 macOS:
-  1. `cmake -B build -S .' to create a location for the build and then
+  1. Install Qt 6 if it is not already available. With Homebrew this is
+     typically `brew install qt'.
+
+  2. `cmake -B build -S .' to create a location for the build and then
      configure the program. There are more options you can pass to CMake,
      see below for details.
 
-  2. `cmake --build build' to compile the program.
+  3. `cmake --build build' to compile the program.
 
-  3. Run `mac_deploy.sh' from inside the build directory to create a disk
-     image of the program.
+  4. Run `mac_deploy.sh' from inside the build directory to create a disk
+     image of the program. The script automatically detects Qt tools and
+     translations from a Homebrew Qt installation.
 
 Windows:
   1. `cmake -B ..\build -S .' to create a location for the build and then
