@@ -15,7 +15,7 @@ Build-Depends: debhelper-compat (= 13),
   libkdsingleapplication-qt6-dev,
   pkgconf,
   zlib1g-dev
-Standards-Version: 4.7.3
+Standards-Version: 4.7.4
 Homepage: https://gottcode.org/focuswriter/
 Vcs-Git: https://salsa.debian.org/debian/focuswriter.git
 Vcs-Browser: https://salsa.debian.org/debian/focuswriter
