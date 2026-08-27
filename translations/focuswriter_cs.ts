@@ -518,11 +518,11 @@
     </message>
     <message>
         <source>Reset daily progress for today to zero?</source>
-        <translation>Nastavit denní postup pro dnešek znovu na nulu?</translation>
+        <translation>Vynulovat dnešní denní postup?</translation>
     </message>
     <message>
         <source>Write byte order mark in plain text files</source>
-        <translation>Zapsat značku pro pořadí bytů (BOM) do souborů prostého textu</translation>
+        <translation>Zapsat značku pořadí bajtů do souborů v prostém textu</translation>
     </message>
     <message>
         <source>Default format:</source>
@@ -542,7 +542,7 @@
     </message>
     <message>
         <source>Show streaks</source>
-        <translation>Ukázat proužky</translation>
+        <translation>Zobrazit proužky</translation>
     </message>
     <message>
         <source>Minimum progress for streaks:</source>
@@ -618,15 +618,15 @@
     </message>
     <message>
         <source>Check spelling as you type</source>
-        <translation>Ověřování pravopisu během psaní</translation>
+        <translation>Ověřovat pravopis během psaní</translation>
     </message>
     <message>
         <source>Ignore words in UPPERCASE</source>
-        <translation>Nevšímat si slov psaných VELKÝMI PÍSMENY</translation>
+        <translation>Přehlížet slova psaná VELKÝMI PÍSMENY</translation>
     </message>
     <message>
         <source>Ignore words with numbers</source>
-        <translation>Nevšímat si slov s čísly</translation>
+        <translation>Přehlížet slova s čísly</translation>
     </message>
     <message>
         <source>Language</source>
@@ -654,11 +654,11 @@
     </message>
     <message>
         <source>Always show scrollbar</source>
-        <translation>Vždy ukázat posuvník</translation>
+        <translation>Vždy zobrazit posuvník</translation>
     </message>
     <message>
         <source>Always show top bar</source>
-        <translation>Vždy ukázat horní pruh</translation>
+        <translation>Vždy zobrazit horní pruh nástrojů</translation>
     </message>
     <message>
         <source>Always show bottom bar</source>
@@ -1317,7 +1317,7 @@
     <name>Window</name>
     <message>
         <source>Loading themes</source>
-        <translation>Nahrávají se podoby</translation>
+        <translation>Nahrávají se témata</translation>
     </message>
     <message>
         <source>Loading sounds</source>
@@ -1413,7 +1413,7 @@
     </message>
     <message>
         <source>Emergency cache is not writable.</source>
-        <translation>Pohotovostní vyrovnávací paměť není zapisovatelná</translation>
+        <translation>Pohotovostní vyrovnávací paměť není zapisovatelná.</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -1721,15 +1721,15 @@
     </message>
     <message>
         <source>Show &amp;Toolbar</source>
-        <translation>Ukázat ná&amp;strojový pruh</translation>
+        <translation>Zobrazit ná&amp;strojový pruh</translation>
     </message>
     <message>
         <source>Show &amp;Menu Icons</source>
-        <translation>Ukázat &amp;nabídkové ikony</translation>
+        <translation>Zobrazit v &amp;nabídkách ikony</translation>
     </message>
     <message>
         <source>F&amp;ocused Text</source>
-        <translation>Zao&amp;střený text</translation>
+        <translation>Za&amp;měřený text</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
@@ -1745,7 +1745,7 @@
     </message>
     <message>
         <source>M&amp;inimize</source>
-        <translation>Z&amp;menšit na panel</translation>
+        <translation>Z&amp;menšit do panelu</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -1864,7 +1864,7 @@
     <name>main</name>
     <message>
         <source>Files to open in current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory k otevření v nynějším sezení.</translation>
     </message>
 </context>
 </TS>
