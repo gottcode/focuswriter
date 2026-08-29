@@ -480,3 +480,5 @@ void SessionManager::updateList(const QString& selected)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_session_manager.cpp"

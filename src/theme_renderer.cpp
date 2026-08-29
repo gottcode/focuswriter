@@ -62,3 +62,5 @@ void ThemeRenderer::run()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_theme_renderer.cpp"

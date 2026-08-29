@@ -101,3 +101,5 @@ void ImageButton::onClicked()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_image_button.cpp"

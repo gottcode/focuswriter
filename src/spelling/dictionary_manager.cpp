@@ -340,3 +340,5 @@ AbstractDictionary** DictionaryManager::requestDictionaryData(const QString& lan
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_dictionary_manager.cpp"

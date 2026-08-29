@@ -475,3 +475,5 @@ void SymbolsDialog::saveSettings()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_symbols_dialog.cpp"

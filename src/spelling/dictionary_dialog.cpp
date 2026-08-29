@@ -56,3 +56,5 @@ void DictionaryDialog::accept()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_dictionary_dialog.cpp"

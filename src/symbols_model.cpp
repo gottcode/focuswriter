@@ -285,3 +285,5 @@ void SymbolsModel::setPath(const QString& path)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_symbols_model.cpp"

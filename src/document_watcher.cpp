@@ -243,3 +243,5 @@ void DocumentWatcher::documentChanged(const QString& path)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_document_watcher.cpp"

@@ -560,3 +560,5 @@ void SceneModel::updateScene(const QTextBlock& block)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_scene_model.cpp"

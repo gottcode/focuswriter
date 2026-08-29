@@ -62,3 +62,5 @@ void AlertLayer::dismissAlert()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_alert_layer.cpp"

@@ -300,3 +300,5 @@ QString DailyProgressDialog::createStreakText(const QString& title, const QDate&
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_daily_progress_dialog.cpp"

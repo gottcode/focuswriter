@@ -349,3 +349,5 @@ void TimerManager::updateDisplay()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_timer_manager.cpp"

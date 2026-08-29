@@ -228,3 +228,5 @@ void Highlighter::suggestion(QAction* action)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_highlighter.cpp"

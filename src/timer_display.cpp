@@ -160,3 +160,5 @@ void TimerDisplay::showEvent(QShowEvent* event)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_timer_display.cpp"

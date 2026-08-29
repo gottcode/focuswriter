@@ -522,3 +522,5 @@ void ThemeManager::selectionChanged(bool is_default)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_theme_manager.cpp"

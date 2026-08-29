@@ -370,3 +370,5 @@ void FindDialog::showMode(bool replace)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_find_dialog.cpp"

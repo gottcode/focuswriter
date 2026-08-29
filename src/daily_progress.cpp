@@ -573,3 +573,5 @@ void DailyProgress::Progress::calculateProgress()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_daily_progress.cpp"

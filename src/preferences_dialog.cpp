@@ -1131,3 +1131,5 @@ QWidget* PreferencesDialog::initShortcutsTab()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_preferences_dialog.cpp"

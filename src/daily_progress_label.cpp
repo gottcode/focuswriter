@@ -35,3 +35,5 @@ void DailyProgressLabel::progressChanged()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_daily_progress_label.cpp"

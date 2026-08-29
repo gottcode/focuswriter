@@ -224,3 +224,5 @@ void DocumentCache::updateCacheFile(const Document* document, const QString& cac
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_document_cache.cpp"

@@ -70,3 +70,5 @@ void ShortcutEdit::reset()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_shortcut_edit.cpp"

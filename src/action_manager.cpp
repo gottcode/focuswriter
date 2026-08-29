@@ -179,3 +179,5 @@ void ActionManager::addShortcut(char32_t unicode, const QKeySequence& sequence)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_action_manager.cpp"

@@ -61,3 +61,5 @@ void ColorButton::onClicked()
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_color_button.cpp"

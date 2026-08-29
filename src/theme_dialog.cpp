@@ -561,3 +561,5 @@ void ThemeDialog::setValues(Theme& theme)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_theme_dialog.cpp"

@@ -418,3 +418,5 @@ void SceneList::moveSelectedScenes(int movement)
 }
 
 //-----------------------------------------------------------------------------
+
+#include "moc_scene_list.cpp"
