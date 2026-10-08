@@ -12,6 +12,7 @@
 #include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
+#include <QHash>
 #include <QImageReader>
 #include <QPainter>
 #include <QPainterPath>

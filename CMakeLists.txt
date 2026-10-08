@@ -27,7 +27,7 @@ include(GNUInstallDirs)
 add_compile_definitions(
 	QT_NO_KEYWORDS
 	$<$<CONFIG:DEBUG>:QT_STRICT_ITERATORS>
-	$<$<CONFIG:DEBUG>:QT_ENABLE_STRICT_MODE_UP_TO=0x061100>
+	$<$<CONFIG:DEBUG>:QT_ENABLE_STRICT_MODE_UP_TO=0x061200>
 )
 add_compile_options(
 	$<$<CONFIG:DEBUG>:-Wshadow>

@@ -1363,7 +1363,7 @@ void Document::updateWordCount(int position, int removed, int added)
 	// Change filename and rich text status if necessary because of undo/redo
 	const int steps = m_text->document()->availableUndoSteps();
 	if (m_old_states.contains(steps)) {
-		const QPair<QString, bool>& state = m_old_states[steps];
+		const std::pair<QString, bool>& state = m_old_states[steps];
 		if (m_filename != state.first) {
 			m_filename = state.first;
 			if (m_filename.isEmpty()) {
@@ -1586,7 +1586,7 @@ void Document::updateSaveName()
 
 	// Replace filename of states until the rich text status differs
 	for (int i = nearest_smaller; i > -1; --i) {
-		QPair<QString, bool>& state = m_old_states[keys.at(i)];
+		std::pair<QString, bool>& state = m_old_states[keys.at(i)];
 		if (state.second == m_rich_text) {
 			state.first = m_filename;
 		} else {
@@ -1594,7 +1594,7 @@ void Document::updateSaveName()
 		}
 	}
 	for (int i = nearest_larger; i < count; ++i) {
-		QPair<QString, bool>& state = m_old_states[keys.at(i)];
+		std::pair<QString, bool>& state = m_old_states[keys.at(i)];
 		if (state.second == m_rich_text) {
 			state.first = m_filename;
 		} else {
@@ -1607,7 +1607,7 @@ void Document::updateSaveName()
 
 void Document::updateState()
 {
-	m_old_states[m_text->document()->availableUndoSteps()] = qMakePair(m_filename, m_rich_text);
+	m_old_states[m_text->document()->availableUndoSteps()] = std::make_pair(m_filename, m_rich_text);
 }
 
 //-----------------------------------------------------------------------------

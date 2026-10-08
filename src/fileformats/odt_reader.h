@@ -10,6 +10,7 @@
 #include "format_reader.h"
 
 #include <QCoreApplication>
+#include <QHash>
 #include <QStack>
 #include <QXmlStreamReader>
 
